@@ -204,7 +204,7 @@ Vérif.    : 55/55 checks PASS (voir scripts/verify-cross.py)
   Date d'intégration : 2026-08-09
 
   Skills installés :
-    skills/gen-plan/SKILL.md           (157 lignes)
+    skills/gen-plan/SKILL.md           (172 lignes)
     skills/gen-plan/references/         (5 fichiers : etapes-detaillees,
                                          grille-token, classification-types,
                                          profils-ressource, guide-selection-agent-skill)
@@ -222,7 +222,7 @@ Vérif.    : 55/55 checks PASS (voir scripts/verify-cross.py)
     skills/_prompts-maitres/PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md
 
   Vérifications effectuées :
-    gen-plan post-installation : 13/13 PASS
+    gen-plan post-installation : 9/9 PASS
     correct-work post-installation : 16/16 PASS (checklist dans prompt)
     Cross-refs gen-plan <-> correct-work : PASS
     Interactions 3 fichiers MD + déclencheurs : PASS
