@@ -1,15 +1,15 @@
-# PROMPT MAÎTRE SHARED — Socle commun écosystème Skills DJ
+# PROMPT MAÎTRE SHARED — Socle commun écosystème Knowledge
 
 > **Version** : 1.0.0
 > **Date** : 2026-08-09
-> **Source** : Écosystème Skills DJ — Clone de discussion
+> **Source** : Écosystème Knowledge — Clone de discussion
 > **Usage** : Ce fichier doit être lu en premier avant tout prompt maître spécifique (gen-plan, correct-work, etc.)
 
 ---
 
 ## §0 — Règle zéro (Contexte commun)
 
-L'écosystème Skills DJ est un ensemble de 72+ skills conçus pour un assistant IA. Chaque skill est auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un fichier `SKILL.md` principal, d'un frontmatter YAML, et de références optionnelles dans `references/`.
+L'écosystème Knowledge est un ensemble de 72+ skills conçus pour un assistant IA. Chaque skill est auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un fichier `SKILL.md` principal, d'un frontmatter YAML, et de références optionnelles dans `references/`.
 
 **Principes fondamentaux** :
 - Chaque skill est versionné sémantiquement (MAJEUR.MINEUR.PATCH)
@@ -47,7 +47,6 @@ Chaque `SKILL.md` commence par un bloc YAML délimité par `---` contenant au mi
 name: [kebab-case]
 version: [X.Y.Z]
 category: ecosystem
-department: [détail]
 language: fr
 tags:
   - [tag1]
@@ -127,7 +126,9 @@ Quand un skill doit identifier les skills pertinents pour une tâche :
 | correct-work | utilise | gen-plan | Plan de vérification | Étape 1, >= v3.6.0 |
 | correct-work | vérifie | clone-chat | Mode CIBLE | §3.5 Context Drift, >= v1.2.0 |
 | correct-work | vérifie | fullstack-dev | Projets web | Structure et dépendances |
-| clone-chat | archivé par | gen-plan | Sessions longues | Optionnel |
+| clone-chat | archivé par | gen-plan | Sessions longues | Optionnel, >= v1.2.0 |
+| clone-chat | vérifié par | correct-work | Validation croisée | §3.5 drift, >= v1.2.0 |
+| clone-chat | conventions par | skill-creator | Conventions structurelles | >= v1.0.0 |
 
 ### §3.2 Règles de cross-references
 
@@ -151,6 +152,7 @@ Cette matrice définit quels agents peuvent utiliser quels skills et dans quel c
 | **Subagent** | Exécution étapes | Vérification ciblée | Non | Non | Développement délégué | Lecture seule |
 | **gen-plan (E1)** | — | Validation plan | Non | Scan skills | Non | Consultation |
 | **correct-work (E1)** | Création plan | — | Vérification | Non | Vérification | Scan dynamique |
+| **clone-chat** | Non | Non | — | Non | Non | Lecture seule |
 
 ### §4.2 Légende des droits
 

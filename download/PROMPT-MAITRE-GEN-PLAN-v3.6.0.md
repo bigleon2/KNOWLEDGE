@@ -3,7 +3,7 @@
 > **Version du prompt** : 1.0.0
 > **Skill cible** : gen-plan v3.6.0
 > **Date** : 2026-08-09
-> **Source** : Écosystème Skills DJ — Clone de discussion
+> **Source** : Écosystème Knowledge — Clone de discussion
 > **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
 
 ---

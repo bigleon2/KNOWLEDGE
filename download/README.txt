@@ -1,5 +1,5 @@
 ===============================================================================
-         PROMPTS MAÎTRES — Écosystème Skills DJ
+         PROMPTS MAÎTRES — Écosystème Knowledge
          Architecture en 3 fichiers + workflow
 ===============================================================================
 
