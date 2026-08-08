@@ -73,6 +73,7 @@ my-project/
 - La liste de tous les skills avec leurs versions, catégories et statuts
 - Les dépendances inter-skills (bidirectionnelles)
 - Les métadonnées de calibration
+- L'historique des interactions entre skills
 
 ### Template d'une entrée
 
@@ -124,7 +125,7 @@ skills/[nom-skill]/
 |---------------|-----------------|-------------------|-------|
 | Complexe (gen-plan) | ~170 lignes | 5 fichiers | Le prompt maître (866 lignes) contient la spec complète et le contenu in extenso des références |
 | Moyen (correct-work) | ~130 lignes | 0 fichier | Le prompt maître (490 lignes) contient les checklists complètes (§10) |
-| Simple | < 100 lignes | 0-1 fichier | |
+| Simple | < 100 lignes | 0-1 fichier | Pas de prompt maître ; tout le contenu tient dans le SKILL.md |
 
 ---
 
@@ -178,7 +179,9 @@ Cette matrice définit quels agents peuvent utiliser quels skills et dans quel c
 | **correct-work (E1)** | Création plan | — | Vérification | Non | Vérification | Scan dynamique |
 | **clone-chat** | Non | Non | — | Non | Non | Lecture seule |
 
-**Droits** : Planification complète = E1-E15 · Exécution = E9-E14 sans E15 · Vérification finale = mode PROJET · Vérification ciblée = mode CIBLE/DIRECT · Scan dynamique = vérifie versions via KB · Lecture/écriture = accès complet au registre
+**Légende détaillée** : voir SHARED §4.2
+
+**Résumé** : Planification complète = E1-E15 · Exécution = E9-E14 sans E15 · Vérification finale = mode PROJET · Vérification ciblée = mode CIBLE/DIRECT · Scan dynamique = vérifie versions via KB · Lecture/écriture = accès complet au registre
 
 ---
 
