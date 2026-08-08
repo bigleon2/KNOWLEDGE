@@ -196,4 +196,38 @@ Vérif.    : 55/55 checks PASS (voir scripts/verify-cross.py)
     pas de duplication, références SHARED cohérentes, relations
     bidirectionnelles, aucune info perdue, tailles conformes.
 
+
+===============================================================================
+7. INTÉGRATION DANS L'ÉCOSYSTÈME
+===============================================================================
+
+  Date d'intégration : 2026-08-09
+
+  Skills installés :
+    skills/gen-plan/SKILL.md           (157 lignes)
+    skills/gen-plan/references/         (5 fichiers : etapes-detaillees,
+                                         grille-token, classification-types,
+                                         profils-ressource, guide-selection-agent-skill)
+    skills/gen-plan/evals/evals.json   (5 evals)
+
+    skills/correct-work/SKILL.md        (monolithe, checklists via
+                                         prompt maître §10)
+
+  Registre KB :
+    skills/KNOWLEDGE.md                 (5 skills écosystème, 10 relations)
+
+  Prompts maîtres (copies de travail) :
+    skills/_prompts-maitres/PROMPT-MAITRE-SHARED.md
+    skills/_prompts-maitres/PROMPT-MAITRE-GEN-PLAN-v3.6.0.md
+    skills/_prompts-maitres/PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md
+
+  Vérifications effectuées :
+    gen-plan post-installation : 13/13 PASS
+    correct-work post-installation : 16/16 PASS (checklist dans prompt)
+    Cross-refs gen-plan <-> correct-work : PASS
+    Interactions 3 fichiers MD + déclencheurs : PASS
+    verify-cross.py (prompts maîtres) : 55/55 PASS
+
+  Total fichiers intégrés : 11 fichiers
+
 ===============================================================================
