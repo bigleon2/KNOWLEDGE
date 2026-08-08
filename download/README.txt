@@ -12,7 +12,7 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
 1. FICHIERS
 ===============================================================================
 
-  PROMPT-MAITRE-SHARED.md              (~214 lignes)
+  PROMPT-MAITRE-SHARED.md              (~216 lignes)
     Socle commun de l'écosystème. Contient tout ce qui est partagé entre
     les skills : contexte, conventions, variables d'installation, registre
     KB, relations inter-skills, matrice agent x skill.
@@ -51,7 +51,7 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
     SHARED §1.2")
   - Toute mise à jour d'une info commune se fait UNE SEULE FOIS
 
-  Réduction mesurée : -92 lignes (6.2%), mais surtout une maintenance
+  Réduction mesurée : -90 lignes (6.0%), mais surtout une maintenance
   simplifiée et un risque d'incohérence réduit.
 
 
