@@ -183,11 +183,11 @@ Tout `SKILL.md` suit cette structure :
 
 ### §5.2 Tailles cibles
 
-| Type de skill | Lignes SKILL.md | Fichiers references |
-|---------------|-----------------|-------------------|
-| Complexe (gen-plan) | ~275 lignes | 4 fichiers |
-| Moyen (correct-work) | ~481 lignes | 0 fichier (monolithe) |
-| Simple | < 100 lignes | 0-1 fichier |
+| Type de skill | Lignes SKILL.md | Fichiers references | Note |
+|---------------|-----------------|-------------------|-------|
+| Complexe (gen-plan) | ~170 lignes | 5 fichiers | Version compacte ; le prompt maître (866 lignes) contient la spec complète et le contenu in extenso des références |
+| Moyen (correct-work) | ~130 lignes | 0 fichier | Version compacte ; le prompt maître (490 lignes) contient les checklists complètes (§10) |
+| Simple | < 100 lignes | 0-1 fichier | |
 
 ---
 

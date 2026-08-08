@@ -101,7 +101,7 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 
 ```
 {{SKILLS_ROOT}}gen-plan/
-├── SKILL.md                          # Skill principal (~275 lignes)
+├── SKILL.md                          # Skill opérationnel compact (~170 lignes)
 ├── references/
 │   ├── etapes-detaillees.md          # Détail des 15 étapes
 │   ├── grille-token.md               # Grille de calibration #token
@@ -203,7 +203,7 @@ mkdir -p {{SKILLS_ROOT}}gen-plan/evals
 
 ### §5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (~275 lignes, in extenso) doit contenir :
+Le fichier `SKILL.md` (~170 lignes, version compacte) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
 2. **§0 — Règle zéro** (voir SHARED §0)
@@ -269,7 +269,7 @@ Le contenu in extenso de chaque fichier est en §8.
 | # | Check | Critère | Résultat attendu |
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}gen-plan/SKILL.md` | File exists |
-| 2 | Taille SKILL.md | ~275 lignes | Within range |
+| 2 | Taille SKILL.md | ~170 lignes (version compacte) | Within range |
 | 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
 | 4 | 5 fichiers référence | `references/` contient 5 fichiers | 5 files |
 | 5 | evals.json valide | JSON parsable, 5 evals | Valid JSON |

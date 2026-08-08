@@ -89,7 +89,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 
 ```
 {{SKILLS_ROOT}}correct-work/
-└── SKILL.md                          # Skill principal (~481 lignes)
+└── SKILL.md                          # Skill opérationnel compact (~130 lignes)
 ```
 
 ### §2.4 Format du rapport de vérification
@@ -226,7 +226,7 @@ mkdir -p {{SKILLS_ROOT}}correct-work
 
 ### §5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (~481 lignes) doit contenir :
+Le fichier `SKILL.md` (~130 lignes, version compacte) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
 2. **§0 — Règle zéro** (voir SHARED §0)
@@ -243,7 +243,7 @@ Le fichier `SKILL.md` (~481 lignes) doit contenir :
 | # | Check | Critère | Résultat attendu |
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}correct-work/SKILL.md` | File exists |
-| 2 | Taille SKILL.md | ~481 lignes | Within range |
+| 2 | Taille SKILL.md | ~130 lignes (version compacte) | Within range |
 | 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
 | 4 | 3 modes documentés | PROJET, CIBLE, DIRECT | All present |
 | 5 | 5 étapes documentées | E1-E5 | All present |

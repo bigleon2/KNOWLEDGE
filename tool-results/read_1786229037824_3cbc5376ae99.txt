@@ -1,0 +1,768 @@
+   100→### §2.2 Structure des fichiers
+   101→
+   102→```
+   103→{{SKILLS_ROOT}}gen-plan/
+   104→├── SKILL.md                          # Skill principal (~275 lignes)
+   105→├── references/
+   106→│   ├── etapes-detaillees.md          # Détail des 15 étapes
+   107→│   ├── grille-token.md               # Grille de calibration #token
+   108→│   ├── classification-types.md       # Routage Type 1-4
+   109→│   ├── profils-ressource.md          # NORMAL / ECO / VIEUX PC
+   110→│   └── guide-selection-agent-skill.md # Arbre de décision + tableau
+   111→└── evals/
+   112→    └── evals.json                    # Cas de test d'évaluation
+   113→```
+   114→
+   115→### §2.3 Auto-calibration E15
+   116→
+   117→| Écart estimé vs réel | Action |
+   118→|----------------------|--------|
+   119→| 0-20% | Aucune action (estimation fiable) |
+   120→| 20-35% | Ajustement de la grille (paramétrage fin) |
+   121→| >35% | Recalibration complète (révision des coefficients) |
+   122→
+   123→La calibration porte sur : la grille #token par agent/skill, les seuils de profil ressource, les ratios de complexité par type de tâche.
+   124→
+   125→### §2.4 Profils ressource
+   126→
+   127→Détail complet dans §8.4. Résumé :
+   128→
+   129→| Profil | Contexte | Règles clés |
+   130→|--------|----------|-------------|
+   131→| **NORMAL** | Par défaut | 15 étapes complètes, tous les skills, surveillance complète |
+   132→| **ECO** | Discussion < 5 sessions, #token < 3500 | Étapes réduites, 1 checkpoint, pas de matrice dynamique KB |
+   133→| **VIEUX PC** | Matériel limité | Règles ECO + scripts < 100 lignes, pas de graphiques |
+   134→
+   135→### §2.5 Intégration KB
+   136→
+   137→Si `{{KB_ENABLED}}` est `true` :
+   138→
+   139→- **`kb_path`** : chemin vers `{{KB_PATH}}`
+   140→- **`--kb-skill`** : flag pour activer la consultation KB
+   141→- **Protocole de Découverte** : scan du registre pour identifier les skills pertinents (voir SHARED §2.3)
+   142→
+   143→---
+   144→
+   145→## §3 — RELATIONS
+   146→
+   147→Voir `PROMPT-MAITRE-SHARED.md §3` pour le registre complet des relations inter-skills.
+   148→
+   149→Relations directes de gen-plan (extrait de SHARED §3.1) :
+   150→
+   151→| Avec | Nature | Détails |
+   152→|------|--------|--------|
+   153→| correct-work | Invocation à E1 | Validation du plan initial, version >= v2.3.0 |
+   154→| clone-chat | Calibration + archivage | E1-E7, E4, E15, optionnel, version >= v1.2.0 |
+   155→| skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
+   156→| knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
+   157→
+   158→---
+   159→
+   160→## §4 — YAML FRONTMATTER
+   161→
+   162→```yaml
+   163→---
+   164→name: gen-plan
+   165→version: 3.6.0
+   166→category: ecosystem
+   167→language: fr
+   168→tags:
+   169→  - planning
+   170→  - task-management
+   171→  - token-estimation
+   172→  - auto-calibration
+   173→  - ecosystem
+   174→description: >
+   175→  Skill de planification de tâches pour assistant IA.
+   176→  4 modes (Planification, Exécution, Surveillance, Adaptation),
+   177→  15 étapes (E1-E15), 3 profils ressource (NORMAL/ECO/VIEUX PC),
+   178→  tagging #token, snippets, scripts Python uniquement.
+   179→dependencies:
+   180→  - skill: correct-work
+   181→    version: ">=2.3.0"
+   182→    used_at: "E1"
+   183→  - skill: clone-chat
+   184→    version: ">=1.2.0"
+   185→    used_at: "E1-E7, E4, E15"
+   186→    optional: true
+   187→  - skill: skills-inventory
+   188→    version: ">=1.0.0"
+   189→    used_at: "E5"
+   190→---
+   191→```
+   192→
+   193→---
+   194→
+   195→## §5 — INSTRUCTIONS D'INSTALLATION
+   196→
+   197→### §5.1 Créer la structure
+   198→
+   199→```bash
+   200→mkdir -p {{SKILLS_ROOT}}gen-plan/references
+   201→mkdir -p {{SKILLS_ROOT}}gen-plan/evals
+   202→```
+   203→
+   204→### §5.2 Créer le fichier SKILL.md
+   205→
+   206→Le fichier `SKILL.md` (~275 lignes, in extenso) doit contenir :
+   207→
+   208→1. **YAML frontmatter** (voir §4)
+   209→2. **§0 — Règle zéro** (voir SHARED §0)
+   210→3. **§1 — Spécification fonctionnelle** : 4 modes, 15 étapes, normes N1-N3
+   211→4. **§2 — Spécification technique** : Stack, structure, auto-calibration, profils, KB
+   212→5. **§3 — Relations** : Voir SHARED §3 (résumé des relations directes)
+   213→6. **§4 — Grille #token** : Résumé de §8.2
+   214→7. **§5 — Conventions** : Nommage (SHARED §1.2), Python uniquement (N3), tagging
+   215→
+   216→### §5.3 Créer les fichiers de référence
+   217→
+   218→Le contenu in extenso de chaque fichier est en §8.
+   219→
+   220→### §5.4 Créer evals/evals.json
+   221→
+   222→```json
+   223→{
+   224→  "skill": "gen-plan",
+   225→  "version": "3.6.0",
+   226→  "evals": [
+   227→    {
+   228→      "id": "E1-classification",
+   229→      "name": "Classification correcte Type 1-4",
+   230→      "input": "Crée un rapport d'analyse",
+   231→      "expected_type": 1,
+   232→      "expected_skill": "docx"
+   233→    },
+   234→    {
+   235→      "id": "E2-token-estimation",
+   236→      "name": "Estimation #token cohérente",
+   237→      "input": "Tâche moyenne, 5-15 sessions",
+   238→      "expected_token_range": [3500, 5500],
+   239→      "expected_profile": "NORMAL"
+   240→    },
+   241→    {
+   242→      "id": "E3-plan-complet",
+   243→      "name": "Plan E1-E15 complet",
+   244→      "input": "Planifier la création d'un dashboard Next.js",
+   245→      "expected_steps": 15,
+   246→      "expected_type": 3
+   247→    },
+   248→    {
+   249→      "id": "E4-auto-calibration",
+   250→      "name": "Auto-calibration E15",
+   251→      "input": "Écart estimé 28%",
+   252→      "expected_action": "Ajustement paramétrage fin"
+   253→    },
+   254→    {
+   255→      "id": "E5-python-only",
+   256→      "name": "Scripts Python uniquement",
+   257→      "input": "Générer un script de traitement",
+   258→      "expected_language": "python",
+   259→      "forbidden": ["bash", "sh", "powershell"]
+   260→    }
+   261→  ]
+   262→}
+   263→```
+   264→
+   265→---
+   266→
+   267→## §6 — VÉRIFICATION POST-INSTALLATION
+   268→
+   269→| # | Check | Critère | Résultat attendu |
+   270→|---|-------|---------|------------------|
+   271→| 1 | SKILL.md existe | `{{SKILLS_ROOT}}gen-plan/SKILL.md` | File exists |
+   272→| 2 | Taille SKILL.md | ~275 lignes | Within range |
+   273→| 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
+   274→| 4 | 5 fichiers référence | `references/` contient 5 fichiers | 5 files |
+   275→| 5 | evals.json valide | JSON parsable, 5 evals | Valid JSON |
+   276→| 6 | Norme N3 (Python) | Aucune mention shell/bash | No shell refs |
+   277→| 7 | Intégration KB | Mention kb_path, --kb-skill | Present |
+   278→| 8 | KNOWLEDGE.md | Entrée gen-plan présente (SHARED §2.2) | Present |
+   279→| 9 | Cross-refs | correct-work et clone-chat mis à jour (SHARED §3.2) | Present |
+   280→
+   281→---
+   282→
+   283→## §7 — HISTORIQUE DES VERSIONS
+   284→
+   285→| Version | Date | Changements |
+   286→|---------|------|-------------|
+   287→| v2.0.0 | 2026-07-18 | Version initiale (refusée par l'utilisateur) |
+   288→| v3.1.0 | 2026-07-18 | Refactoring complet suite refus v2.0.0 |
+   289→| v3.3.0 | 2026-07-29 | Ajout Registre KB, Protocole de Découverte |
+   290→| v3.5.0 | 2026-07-29 | Intégration clone-chat, calibration #token, normes N1-N3 |
+   291→| v3.6.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
+   292→
+   293→---
+   294→
+   295→## §8 — NOTES DE CONCEPTION
+   296→
+   297→### §8.1 Pourquoi 15 étapes ?
+   298→
+   299→Les 15 étapes couvrent le cycle de vie complet d'une tâche complexe : de l'analyse initiale (E1) au bilan post-exécution (E15). Chaque étape a un objectif clair, des inputs/outputs définis, et des critères de validation. La séquence E1-E8 (planification) est suivie de E9-E14 (exécution/surveillance) et clôturée par E15 (calibration). Ce découpage permet un parallélisme partiel (E9-E14 peuvent chevaucher M2/M3) tout en gardant un contrôle strict via E11 (checkpoint) et E12 (détection d'écart).
+   300→
+   301→### §8.2 Pourquoi 3 profils ?
+   302→
+   303→Les profils NORMAL/ECO/VIEUX PC permettent d'adapter la planification aux contraintes matérielles et à la complexité de la tâche. Le profil ECO est conçu pour les discussions courtes (< 5 sessions) ou les tâches simples (1 skill, 1 livrable), évitant la surcharge de planification. Le profil VIEUX PC ajoute des restrictions matérielles (scripts < 100 lignes, pas de graphiques, token plafonné à 2000) pour les environnements limités.
+   304→
+   305→### §8.3 Pourquoi auto-calibration ?
+   306→
+   307→L'estimation en tokens est intrinsèquement imprécise. L'auto-calibration E15 permet d'améliorer continuellement les estimations en comparant le prévu au réel, avec des seuils d'action clairs (20-35% ajustement paramétrage fin, >35% recalibration complète). L'historique de calibration (voir §9.2) trace les écarts successifs pour identifier les biais systématiques.
+   308→
+   309→### §8.4 Pourquoi Python uniquement ?
+   310→
+   311→La règle N3 (Python uniquement) garantit la portabilité cross-platform. Les scripts shell sont dépendants du système d'exploitation, tandis que Python est universellement disponible dans l'environnement de l'assistant. Cette contrainte simplifie aussi la maintenance et réduit les risques d'incompatibilité.
+   312→
+   313→---
+   314→
+   315→## §9 — CONTENU IN EXTENSO DES FICHIERS RÉFÉRENCE
+   316→
+   317→Les 5 fichiers référence suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/references/` (plus 1 fichier evals). Voici leur contenu intégral.
+   318→
+   319→### §9.1 `references/etapes-detaillees.md`
+   320→
+   321→```markdown
+   322→# Détail des 15 étapes gen-plan
+   323→
+   324→## E1 — Analyse de la demande
+   325→
+   326→**Objectif** : Décortiquer la demande utilisateur pour en extraire les livrables, contraintes et critères de succès.
+   327→
+   328→**Inputs** :
+   329→- Message ou demande brute de l'utilisateur
+   330→- Contexte de session (worklog, artefacts précédents)
+   331→- KNOWLEDGE.md (si disponible via KB)
+   332→
+   333→**Outputs** :
+   334→- Liste des livrables identifiés
+   335→- Liste des contraintes (techniques, temporelles, ressources)
+   336→- Critères de succès explicites
+   337→- Questions clarificatoires (si ambiguïté)
+   338→
+   339→**Critères de validation** :
+   340→- [ ] Au moins 1 livrable identifié
+   341→- [ ] Les contraintes sont explicites
+   342→- [ ] Le type de tâche est identifiable
+   343→
+   344→**Exemple** :
+   345→> Demande : « Crée un rapport d'analyse des ventes du Q3 »
+   346→> Livrables : rapport.docx, graphiques PNG
+   347→> Contraintes : données Q3, format professionnel
+   348→
+   349→---
+   350→
+   351→## E2 — Inventaire des ressources
+   352→
+   353→**Objectif** : Faire le bilan de tout ce qui est disponible pour accomplir la tâche.
+   354→
+   355→**Inputs** :
+   356→- Sortie de E1 (livrables, contraintes)
+   357→- `{{SKILLS_ROOT}}` (liste des skills installés)
+   358→- `{{KB_PATH}}` (registre KB)
+   359→- Fichiers existants dans le projet
+   360→
+   361→**Outputs** :
+   362→- Liste des skills disponibles et pertinents
+   363→- Liste des fichiers/sources de données existants
+   364→- Gaps identifiés (ressources manquantes)
+   365→
+   366→**Critères de validation** :
+   367→- [ ] Skills pertinents identifiés
+   368→- [ ] Gaps clairement listés
+   369→- [ ] Pas de ressource critique manquante sans contournement
+   370→
+   371→---
+   372→
+   373→## E3 — Classification du type de tâche
+   374→
+   375→**Objectif** : Router la tâche vers le bon type de traitement (Type 1-4).
+   376→
+   377→**Inputs** :
+   378→- Sortie de E1 (livrables)
+   379→- Sortie de E2 (ressources)
+   380→- Grille de classification (voir classification-types.md)
+   381→
+   382→**Outputs** :
+   383→- Type assigné (1, 2, 3 ou 4)
+   384→- Skill principal à invoquer
+   385→- Skills secondaires éventuels
+   386→- Mode par défaut (M1-M4)
+   387→
+   388→**Critères de validation** :
+   389→- [ ] Exactement 1 type assigné
+   390→- [ ] Skill principal identifié
+   391→- [ ] Pas de conflit type/skill
+   392→
+   393→---
+   394→
+   395→## E4 — Estimation #token
+   396→
+   397→**Objectif** : Calculer le budget token de la tâche.
+   398→
+   399→**Inputs** :
+   400→- Type de tâche (E3)
+   401→- Complexité estimée (simple/moyenne/complexe)
+   402→- Profil ressource cible (E6, si connu)
+   403→- Grille #token (voir grille-token.md)
+   404→
+   405→**Outputs** :
+   406→- Estimation #token totale
+   407→- Estimation par étape
+   408→- Tag #token pour chaque skill utilisé
+   409→
+   410→**Critères de validation** :
+   411→- [ ] Estimation dans la plage du profil
+   412→- [ ] Tags #token présents sur chaque élément du plan
+   413→
+   414→---
+   415→
+   416→## E5 — Sélection des skills
+   417→
+   418→**Objectif** : Identifier les skills pertinents pour la tâche.
+   419→
+   420→**Inputs** :
+   421→- Type de tâche (E3)
+   422→- Ressources disponibles (E2)
+   423→- skills-inventory (scan)
+   424→- KNOWLEDGE.md (KB)
+   425→
+   426→**Outputs** :
+   427→- Liste ordonnée des skills à utiliser
+   428→- Version minimale requise pour chaque skill
+   429→- Nature de l'utilisation de chaque skill
+   430→
+   431→**Critères de validation** :
+   432→- [ ] Chaque skill cité existe dans le registre ou l'inventaire
+   433→- [ ] Versions minimales cohérentes
+   434→- [ ] Pas de doublon
+   435→
+   436→---
+   437→
+   438→## E6 — Profilage ressource
+   439→
+   440→**Objectif** : Choisir le profil de ressource adapté.
+   441→
+   442→**Inputs** :
+   443→- Estimation #token (E4)
+   444→- Complexité de la tâche
+   445→- Contraintes matérielles (si connues)
+   446→- Grille des profils (voir profils-ressource.md)
+   447→
+   448→**Outputs** :
+   449→- Profil assigné (NORMAL/ECO/VIEUX PC)
+   450→- Justification du choix
+   451→- Restrictions activées (si profil réduit)
+   452→
+   453→**Critères de validation** :
+   454→- [ ] 1 profil assigné
+   455→- [ ] Justification cohérente avec les inputs
+   456→
+   457→---
+   458→
+   459→## E7 — Création du plan
+   460→
+   461→**Objectif** : Assembler le plan d'exécution structuré.
+   462→
+   463→**Inputs** :
+   464→- Livrables (E1), Skills (E5), Profil (E6), #token (E4)
+   465→
+   466→**Outputs** :
+   467→- Plan structuré : étapes, dépendances, checkpoints, #token par étape
+   468→- TODO list ordonnée
+   469→- Identification des étapes parallélisables
+   470→
+   471→**Critères de validation** :
+   472→- [ ] Toutes les étapes E9-E14 couvertes
+   473→- [ ] Dépendances explicites
+   474→- [ ] Au moins 1 checkpoint
+   475→- [ ] #token total cohérent avec E4
+   476→
+   477→---
+   478→
+   479→## E8 — Validation du plan
+   480→
+   481→**Objectif** : Vérifier cohérence, complétude et faisabilité.
+   482→
+   483→**Inputs** :
+   484→- Plan brut (E7), Contraintes (E1)
+   485→
+   486→**Outputs** :
+   487→- Plan validé (ou révisé)
+   488→- Liste des risques et plans de contournement
+   489→
+   490→**Critères de validation** :
+   491→- [ ] Cohérence interne (pas de contradiction)
+   492→- [ ] Complétude (tous les livrables couverts)
+   493→- [ ] Faisabilité (ressources suffisantes)
+   494→- [ ] Pas de cycle dans les dépendances
+   495→
+   496→---
+   497→
+   498→## E9 — Lancement de l'exécution
+   499→
+   500→**Objectif** : Démarrer l'exécution selon le plan validé.
+   501→
+   502→**Inputs** : Plan validé (E8), Contexte session
+   503→
+   504→**Outputs** : Première étape lancée, Entrée worklog initialisée
+   505→
+   506→**Critères** : [ ] Exécution démarrée, [ ] Worklog initialisé
+   507→
+   508→---
+   509→
+   510→## E10 — Suivi d'étape
+   511→
+   512→**Objectif** : Monitorer chaque étape en cours.
+   513→
+   514→**Inputs** : Plan en cours (E8), État réel
+   515→
+   516→**Outputs** : Entrée worklog par étape, #token réel, Écarts éventuels
+   517→
+   518→**Critères** : [ ] Chaque étape terminée loggée, [ ] #token réel mesuré
+   519→
+   520→---
+   521→
+   522→## E11 — Checkpoint intermédiaire
+   523→
+   524→**Objectif** : Vérification à mi-parcours.
+   525→
+   526→**Inputs** : Avancement (E10), Plan initial (E8)
+   527→
+   528→**Outputs** : Bilan mi-parcours, Ajustements mineurs, Décision (continuer/ajuster/arrêter)
+   529→
+   530→**Critères** : [ ] Checkpoint à ~50%, [ ] Décision documentée
+   531→
+   532→---
+   533→
+   534→## E12 — Détection d'écart
+   535→
+   536→**Objectif** : Comparer réel vs estimé.
+   537→
+   538→**Inputs** : #token estimé (E4), #token réel (E10)
+   539→
+   540→**Outputs** : Tableau des écarts, Alertes si > 20%
+   541→
+   542→**Critères** : [ ] Écarts calculés, [ ] Alertes si seuil dépassé
+   543→
+   544→---
+   545→
+   546→## E13 — Ajustement
+   547→
+   548→**Objectif** : Modifier le plan en cas de dérive.
+   549→
+   550→**Inputs** : Écarts (E12), Plan en cours (E8)
+   551→
+   552→**Outputs** : Plan révisé (si nécessaire), Justification, Nouvelle estimation
+   553→
+   554→**Critères** : [ ] Modifications justifiées, [ ] Plan révisé cohérent
+   555→
+   556→---
+   557→
+   558→## E14 — Finalisation
+   559→
+   560→**Objectif** : Achèvement des étapes restantes.
+   561→
+   562→**Inputs** : Plan (révisé ou non), État d'avancement
+   563→
+   564→**Outputs** : Toutes les étapes terminées, Livrables finaux, Worklog complet
+   565→
+   566→**Critères** : [ ] Tous les livrables produits, [ ] Worklog à jour
+   567→
+   568→---
+   569→
+   570→## E15 — Bilan et auto-calibration
+   571→
+   572→**Objectif** : Retour d'expérience et mise à jour des grilles.
+   573→
+   574→**Inputs** : Plan initial (E8), Worklog complet, #token estimé vs réel
+   575→
+   576→**Outputs** :
+   577→- Bilan de la session
+   578→- Mise à jour grille #token (si écart > 20%)
+   579→- Enrichissement KNOWLEDGE.md (si `{{KB_ENABLED}}`)
+   580→- Déclenchement éventuel de clone-chat
+   581→
+   582→**Critères** : [ ] Bilan produit, [ ] Calibration mise à jour si nécessaire, [ ] KNOWLEDGE.md enrichi si pertinent
+   583→
+   584→---
+   585→
+   586→## Portées étendues (E8, E14, E15)
+   587→
+   588→Les étapes E8, E14 et E15 incluent des portées héritées des versions antérieures du protocole :
+   589→
+   590→**E8 — Validation du plan** inclut aussi les vérifications de qualité pré-intégration :
+   591→- [ ] Chaque fichier candidat à l'intégration est classifié : Skill / Écosystème / Utilitaire
+   592→- [ ] Les fichiers Skill ont un YAML frontmatter valide (name, description, > 200 chars)
+   593→- [ ] Les scripts Python compilent (pas de syntax error, imports valides)
+   594→- [ ] Les fichiers Markdown sont structurés (titres, sections cohérentes, pas de contenu tronqué)
+   595→- [ ] Les fichiers de configuration (JSON/YAML) sont valides
+   596→- [ ] Les références croisées entre fichiers sont valides
+   597→
+   598→**E14 — Finalisation** inclut l'intégration écosystème :
+   599→- [ ] Les fichiers Skill sont placés dans `{{SKILLS_ROOT}}<nom>/SKILL.md`
+   600→- [ ] Les fichiers de référence vont dans `{{SKILLS_ROOT}}<nom>/references/`
+   601→- [ ] Aucun skill existant n'est écrasé sans confirmation utilisateur
+   602→- [ ] Le YAML frontmatter est conforme (SHARED §1.3)
+   603→- [ ] L'inventaire des skills est mis à jour si nécessaire
+   604→
+   605→**E15 — Bilan** inclut l'auto-réapplication :
+   606→- [ ] Si le SKILL.md de gen-plan a été modifié pendant l'exécution, les tâches restantes sont réévaluées
+   607→- [ ] Les tâches affectées sont marquées `[REEVALUER]` avec la raison et les sections impactées
+   608→- [ ] Chaque réévaluation est documentée dans le worklog
+   609→```
+   610→
+   611→### §9.2 `references/grille-token.md`
+   612→
+   613→```markdown
+   614→# Grille de calibration #token — gen-plan v3.6.0
+   615→
+   616→## Grille par agent/skill
+   617→
+   618→| Agent/Skill | #token sortie (min) | #token sortie (max) | Coeff. complexité |
+   619→|-------------|--------------------|--------------------|------------------|
+   620→| Planification E1-E2 | 800 | 1500 | 1.0x |
+   621→| Classification E3 | 200 | 500 | 1.0x |
+   622→| Estimation E4 | 300 | 800 | 1.0x |
+   623→| Sélection E5 | 500 | 1200 | 1.2x |
+   624→| Profilage E6 | 200 | 400 | 1.0x |
+   625→| Création plan E7 | 1000 | 2500 | 1.5x |
+   626→| Validation E8 | 500 | 1500 | 1.0x |
+   627→| Exécution simple (1 skill) | 2000 | 5000 | 1.0x |
+   628→| Exécution moyenne (2-3 skills) | 5000 | 10000 | 1.3x |
+   629→| Exécution complexe (4+ skills) | 10000 | 20000 | 1.5x |
+   630→| Surveillance E10-E12 | 500 | 1500 | 1.0x |
+   631→| Auto-calibration E15 | 800 | 2000 | 1.0x |
+   632→
+   633→## Grille par type de tâche (usage clone-chat)
+   634→
+   635→| Mode | Longueur discussion | #token estimé | Profil min. |
+   636→|------|---------------------|---------------|-------------|
+   637→| clone-court | < 5 sessions | 2000-3500 | ECO |
+   638→| clone-moyen | 5-15 sessions | 3500-5500 | NORMAL |
+   639→| clone-long | > 15 sessions | 5500-9000 | NORMAL |
+   640→
+   641→> Note v1.2.0 : estimation +10% pour couvrir l'Étape 3.5 Context Drift et l'intégration gen-plan.
+   642→
+   643→## Coefficients d'ajustement
+   644→
+   645→| Facteur | Coefficient | Condition |
+   646→|---------|-------------|-----------|
+   647→| Complexité faible | 0.8x | Tâche routinière, template existant |
+   648→| Complexité standard | 1.0x | Cas nominal |
+   649→| Complexité élevée | 1.3x | Multi-skills, dépendances croisées |
+   650→| Complexité critique | 1.5x | Projet nouveau, aucune référence |
+   651→| Profil ECO | 0.7x | Réduction surveillance, snippets simplifiés |
+   652→| Profil VIEUX PC | 0.5x | Scripts légers, pas de graphiques |
+   653→
+   654→## Historique de calibration
+   655→
+   656→| Exécution | Date | Type tâche | #token estimé | #token réel | Écart | Action |
+   657→|-----------|------|-----------|---------------|-------------|-------|--------|
+   658→| 1 | 2026-07-18 | Planification 66 skills | 4500 | 5200 | +15.6% | Aucune (0-20%) |
+   659→| 2 | 2026-07-18 | Test E2E gen-plan | 3000 | 3600 | +20.0% | Aucune (seuil) |
+   660→| 3 | 2026-07-29 | clone-chat v1.1.0 | 4000 | 5200 | +30.0% | Ajustement grille |
+   661→| 4 | 2026-07-29 | clone-chat v1.2.0 | 4400 | 4600 | +4.5% | Aucune (0-20%) |
+   662→```
+   663→
+   664→### §9.3 `references/classification-types.md`
+   665→
+   666→```markdown
+   667→# Classification des types de tâches — gen-plan E3
+   668→
+   669→## Type 1 — Document Creation
+   670→
+   671→**Indicateurs** :
+   672→- Mots-clés : rapport, document, article, analyse, proposition, PRD, script, manuscrit, présentation, tableur
+   673→- Formats : DOCX, PDF, XLSX, PPTX, MD
+   674→- Verbes : rédiger, créer, générer, produire, écrire, composer
+   675→
+   676→**Skill à invoquer** :
+   677→- docx → `docx`
+   678→- PDF → `pdf`
+   679→- Tableur → `xlsx`
+   680→- Présentation → `pptx`
+   681→- Markdown seul → aucun skill (rédaction directe)
+   682→
+   683→**Exemples** :
+   684→- "Écris un rapport d'analyse" → Type 1, skill docx
+   685→- "Génère une présentation" → Type 1, skill pptx
+   686→
+   687→**Contre-exemples** :
+   688→- "Affiche ces données en graphique" → Type 2
+   689→- "Construis une page web" → Type 3
+   690→
+   691→---
+   692→
+   693→## Type 2 — Data Visualization
+   694→
+   695→**Indicateurs** :
+   696→- Mots-clés : graphique, chart, diagramme, mind map, flowchart, architecture, visualisation
+   697→- Formats : PNG, SVG, Mermaid, D3, ECharts
+   698→- Verbes : tracer, dessiner, visualiser, représenter
+   699→
+   700→**Skill** : `charts`
+   701→
+   702→**Sous-routage** :
+   703→- Données chiffrées → matplotlib/seaborn/echarts
+   704→- Structure/diagramme → Mermaid ou Playwright+CSS
+   705→- Mind map → Playwright+CSS (pas matplotlib)
+   706→- Dashboard → charts d'abord, puis Type 3 si interactif
+   707→
+   708→---
+   709→
+   710→## Type 3 — Interactive Web Development
+   711→
+   712→**Indicateurs** :
+   713→- Mots-clés : site web, application, dashboard interactif, page, interface, Next.js, React
+   714→- Interactivité : cliquable, dynamique, temps réel, formulaire, navigation
+   715→- Verbes : construis, développe, crée une app, build
+   716→
+   717→**Skill** : `fullstack-dev`
+   718→
+   719→**Contre-exemples** :
+   720→- "Génère un dashboard en PDF" → Type 1
+   721→- "Affiche des données en graphique statique" → Type 2
+   722→
+   723→---
+   724→
+   725→## Type 4 — Data Processing
+   726→
+   727→**Indicateurs** :
+   728→- Mots-clés : analyse, traiter, transformer, calculer, extraire, filtrer, convertir
+   729→- Absence de livrable document final
+   730→- Focus sur le traitement de données
+   731→
+   732→**Action** : Écrire un script Python directement
+   733→
+   734→---
+   735→
+   736→## Cas ambigus — Règle de décision
+   737→
+   738→| Situation | Règle | Type |
+   739→|-----------|-------|------|
+   740→| "Dashboard" sans précision | Demander : interactif ou statique ? | 3 si interactif, 1/2 si statique |
+   741→| "Analyse" avec sortie document | Finalité = document | Type 1 |
+   742→| "Analyse" sans sortie | Traitement de données | Type 4 |
+   743→| "Visualisation" dans un document | Finalité = document | Type 1 (charts embarqués) |
+   744→| "Visualisation" autonome | Finalité = visuel | Type 2 |
+   745→| Mention Next.js/React | Toujours web dev | Type 3 |
+   746→```
+   747→
+   748→### §9.4 `references/profils-ressource.md`
+   749→
+   750→```markdown
+   751→# Profils ressource — gen-plan v3.6.0
+   752→
+   753→## NORMAL
+   754→
+   755→**Contexte** : Ressources standards, sans contrainte.
+   756→**Déclenchement** : Par défaut.
+   757→
+   758→**Règles** :
+   759→- 15 étapes exécutées
+   760→- Tous les skills disponibles
+   761→- Surveillance complète (E10-E12)
+   762→- Snippets complets et versionnés
+   763→- Graphiques et visuels autorisés
+   764→
+   765→**Seuils** : #token sans plafond, E10+E11+E12 obligatoires.
+   766→
+   767→---
+   768→
+   769→## ECO
+   770→
+   771→**Contexte** : Discussion courte ou tâche simple.
+   772→
+   773→**Déclenchement** :
+   774→- Discussion < 5 sessions
+   775→- #token estimé < 3500
+   776→- Tâche simple (1 skill, 1 livrable)
+   777→- Demande explicite de l'utilisateur
+   778→
+   779→**Règles** :
+   780→- Étapes réduites : E1-E9 puis E14-E15 (E10-E13 fusionnées)
+   781→- Snippets simplifiés (pas de versionnage)
+   782→- 1 checkpoint unique à E11
+   783→- Pas de matrice dynamique KB (statique seulement)
+   784→
+   785→**Restrictions** :
+   786→- Pas de rapport de vérification détaillé
+   787→- Auto-calibration E15 simplifiée (ajustement seulement si > 35%)
+   788→- Pas de déclenchement clone-chat automatique
+   789→
+   790→---
+   791→
+   792→## VIEUX PC
+   793→
+   794→**Contexte** : Environnement matériel limité.
+   795→
+   796→**Déclenchement** :
+   797→- Demande explicite de l'utilisateur
+   798→- Environnement détecté comme limité
+   799→
+   800→**Règles** :
+   801→- Toutes les règles ECO s'appliquent
+   802→- Scripts Python légers uniquement (pas de bibliothèques lourdes)
+   803→- Pas de graphiques Matplotlib/Seaborn
+   804→- Pas de Playwright
+   805→- Préférer les sorties Markdown/texte
+   806→
+   807→**Restrictions supplémentaires** :
+   808→- Pas de génération d'images
+   809→- Scripts < 100 lignes
+   810→- Préférer O(n) à O(n²)
+   811→- Pas de chargement de gros fichiers en mémoire
+   812→
+   813→**Seuils** : #token plafond 2000, pas de graphiques.
+   814→```
+   815→
+   816→### §9.5 `references/guide-selection-agent-skill.md`
+   817→
+   818→```markdown
+   819→# Guide de Sélection Agent/Skill — gen-plan E5/E7
+   820→
+   821→## Arbre de décision
+   822→
+   823→```
+   824→1. Existe-t-il un SKILL correspondant ?
+   825→   |-- OUI -> Charger le skill
+   826→   |   |-- Le skill bénéficie-t-il d'un agent spécialisé ?
+   827→   |       |-- OUI -> Skill + Agent Spécialisé (OPTIMAL)
+   828→   |       |-- NON -> Skill seul via agent général (BON)
+   829→   |-- NON -> Existe-t-il un agent spécialisé ?
+   830→       |-- OUI -> Agent Spécialisé seul
+   831→       |-- NON -> Agent général (DERNIER RECOURS)
+   832→```
+   833→
+   834→## Critères de sélection (ordonnés par impact performance)
+   835→
+   836→1. **Skill + agent spécialisé** (meilleure performance) — Un skill dont le protocole correspond à la tâche ET qui délègue en interne à un agent spécialisé.
+   837→2. **Skill seul** (bonne performance) — Un skill dont le protocole couvre entièrement la tâche.
+   838→3. **Agent spécialisé seul** (performance modérée) — Aucun skill correspondant, mais un agent spécialisé couvre la tâche.
+   839→4. **Agent général** (fallback) — Ni skill ni agent spécialisé. Ne jamais utiliser comme premier choix.
+   840→
+   841→## Tableau de correspondance
+   842→
+   843→| Type de tâche | Skill | Agent | Performance |
+   844→|--------------|-------|-------|-------------|
+   845→| Dev web Next.js | fullstack-dev | full-stack-developer | OPTIMAL |
+   846→| Création PPT/slides | pptx | ppt-expert | OPTIMAL |
+   847→| Génération PDF | pdf | general-purpose | OPTIMAL |
+   848→| Compréhension images | VLM | general-purpose | OPTIMAL |
+   849→| Charts/diagrammes | charts | general-purpose | OPTIMAL |
+   850→| Documents Word | docx | general-purpose | BON |
+   851→| Fichiers Excel | xlsx | general-purpose | BON |
+   852→| Recherche web | web-search | general-purpose | BON |
+   853→| Extraction web | web-reader | general-purpose | BON |
+   854→| Création skills | skill-creator | general-purpose | BON |
+   855→| Génération images | image-generation | general-purpose | BON |
+   856→| Édition images | image-edit | general-purpose | BON |
+   857→| Speech-to-text | ASR | general-purpose | BON |
+   858→| Text-to-speech | TTS | general-purpose | BON |
+   859→| Video understanding | video-understand | general-purpose | BON |
+   860→| LLM chat | LLM | general-purpose | BON |
+   861→| Recherche images | image-search | general-purpose | BON |
+   862→| Navigation web | agent-browser | general-purpose | BON |
+   863→| Exploration fichiers | — | Explore | Agent seul |
+   864→| Architecture/planif | — | Plan | Agent seul |
+   865→| Styling CSS | — | frontend-styling-expert | Agent seul |
+   866→| Vérification correction | correct-work | general-purpose | BON |
+   867→```
