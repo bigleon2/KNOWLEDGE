@@ -371,3 +371,564 @@ L'estimation en tokens est intrinsèquement imprécise. L'auto-calibration E15 p
 ### 8.4 Pourquoi Python uniquement ?
 
 La règle N3 (Python uniquement) garantit la portabilité cross-platform. Les scripts shell sont dépendants du système d'exploitation, tandis que Python est universellement disponible dans l'environnement.
+
+---
+
+## §9 — CONTENU IN EXTENSO DES FICHIERS RÉFÉRENCE
+
+Les 4 fichiers de référence doivent être créés dans `skills/gen-plan/references/`. Voici leur contenu intégral :
+
+### 9.1 `references/etapes-detaillees.md`
+
+```markdown
+# Détail des 15 étapes gen-plan
+
+## E1 — Analyse de la demande
+
+**Objectif** : Décortiquer la demande utilisateur pour en extraire les livrables, contraintes et critères de succès.
+
+**Inputs** :
+- Message ou demande brute de l'utilisateur
+- Contexte de session (worklog, artefacts précédents)
+- KNOWLEDGE.md (si disponible via KB)
+
+**Outputs** :
+- Liste des livrables identifiés
+- Liste des contraintes (techniques, temporelles, ressources)
+- Critères de succès explicites
+- Questions clarificatoires (si ambiguïté)
+
+**Critères de validation** :
+- [ ] Au moins 1 livrable identifié
+- [ ] Les contraintes sont explicites
+- [ ] Le type de tâche est identifiable
+
+**Exemple** :
+> Demande : « Crée un rapport d'analyse des ventes du Q3 »
+> Livrables : rapport.docx, graphiques PNG
+> Contraintes : données Q3, format professionnel
+> Critères : données exactes, visuels clairs
+
+---
+
+## E2 — Inventaire des ressources
+
+**Objectif** : Faire le bilan de tout ce qui est disponible pour accomplir la tâche.
+
+**Inputs** :
+- Sortie de E1 (livrables, contraintes)
+- `skills/` (liste des skills installés)
+- `skills/KNOWLEDGE.md` (registre KB)
+- Fichiers existants dans le projet
+
+**Outputs** :
+- Liste des skills disponibles et pertinents
+- Liste des fichiers/sources de données existants
+- Outils système disponibles
+- Gaps identifiés (ressources manquantes)
+
+**Critères de validation** :
+- [ ] Skills pertinents identifiés
+- [ ] Gaps clairement listés
+- [ ] Pas de ressource critique manquante sans plan de contournement
+
+---
+
+## E3 — Classification du type de tâche
+
+**Objectif** : Router la tâche vers le bon type de traitement (Type 1-4).
+
+**Inputs** :
+- Sortie de E1 (livrables)
+- Sortie de E2 (ressources)
+- Grille de classification (voir classification-types.md)
+
+**Outputs** :
+- Type assigné (1, 2, 3 ou 4)
+- Skill principal à invoquer
+- Skills secondaires éventuels
+- Mode par défaut (M1-M4)
+
+**Critères de validation** :
+- [ ] Exactement 1 type assigné
+- [ ] Skill principal identifié
+- [ ] Pas de conflit type/skill
+
+---
+
+## E4 — Estimation #token
+
+**Objectif** : Calculer le budget token de la tâche.
+
+**Inputs** :
+- Type de tâche (E3)
+- Complexité estimée (simple/moyenne/complexe)
+- Profil ressource cible (E6, si connu)
+- Grille #token (voir grille-token.md)
+
+**Outputs** :
+- Estimation #token totale
+- Estimation par étape
+- Tag #token pour chaque skill utilisé
+
+**Critères de validation** :
+- [ ] Estimation dans la plage du profil
+- [ ] Tags #token présents sur chaque élément du plan
+
+---
+
+## E5 — Sélection des skills
+
+**Objectif** : Identifier les skills pertinents pour la tâche.
+
+**Inputs** :
+- Type de tâche (E3)
+- Ressources disponibles (E2)
+- skills-inventory (scan)
+- KNOWLEDGE.md (KB)
+
+**Outputs** :
+- Liste ordonnée des skills à utiliser
+- Version minimale requise pour chaque skill
+- Nature de l'utilisation de chaque skill
+
+**Critères de validation** :
+- [ ] Chaque skill cité existe dans le registre ou l'inventaire
+- [ ] Versions minimales cohérentes
+- [ ] Pas de doublon
+
+---
+
+## E6 — Profilage ressource
+
+**Objectif** : Choisir le profil de ressource adapté.
+
+**Inputs** :
+- Estimation #token (E4)
+- Complexité de la tâche
+- Contraintes matérielles (si connues)
+- Grille des profils (voir profils-ressource.md)
+
+**Outputs** :
+- Profil assigné (NORMAL/ECO/VIEUX PC)
+- Justification du choix
+- Restrictions activées (si profil réduit)
+
+**Critères de validation** :
+- [ ] 1 profil assigné
+- [ ] Justification cohérente avec les inputs
+
+---
+
+## E7 — Création du plan
+
+**Objectif** : Assembler le plan d'exécution structuré.
+
+**Inputs** :
+- Livrables (E1)
+- Skills sélectionnés (E5)
+- Profil (E6)
+- Estimation #token (E4)
+
+**Outputs** :
+- Plan structuré avec : étapes, dépendances, checkpoints, #token par étape
+- TODO list ordonnée
+- Identification des étapes parallélisables
+
+**Critères de validation** :
+- [ ] Toutes les étapes E9-E14 couvertes
+- [ ] Dépendances explicites
+- [ ] Checkpoints identifiés (au moins 1)
+- [ ] #token total cohérent avec E4
+
+---
+
+## E8 — Validation du plan
+
+**Objectif** : Vérifier la cohérence, la complétude et la faisabilité du plan.
+
+**Inputs** :
+- Plan brut (E7)
+- Contraintes (E1)
+- Grille de vérification interne
+
+**Outputs** :
+- Plan validé (ou plan révisé si corrections)
+- Liste des risques identifiés
+- Plan de contournement pour chaque risque
+
+**Critères de validation** :
+- [ ] Cohérence interne (pas de contradiction entre étapes)
+- [ ] Complétude (tous les livrables couverts)
+- [ ] Faisabilité (ressources suffisantes)
+- [ ] Pas de cycle dans les dépendances
+
+---
+
+## E9 — Lancement de l'exécution
+
+**Objectif** : Démarrer l'exécution selon le plan validé.
+
+**Inputs** :
+- Plan validé (E8)
+- Contexte session
+
+**Outputs** :
+- Première étape lancée
+- Entrée worklog initialisée
+
+**Critères de validation** :
+- [ ] Exécution démarrée
+- [ ] Worklog initialisé
+
+---
+
+## E10 — Suivi d'étape
+
+**Objectif** : Monitorer chaque étape en cours d'exécution.
+
+**Inputs** :
+- Plan en cours (E8)
+- État réel de l'avancement
+
+**Outputs** :
+- Entrée worklog par étape terminée
+- #token réel consommé par étape
+- Écarts éventuels (réel vs estimé)
+
+**Critères de validation** :
+- [ ] Chaque étape terminée est loggée
+- [ ] #token réel mesuré
+
+---
+
+## E11 — Checkpoint intermédiaire
+
+**Objectif** : Vérification à mi-parcours.
+
+**Inputs** :
+- État d'avancement (E10)
+- Plan initial (E8)
+
+**Outputs** :
+- Bilan mi-parcours
+- Ajustements mineurs si nécessaire
+- Decision : continuer / ajuster / arrêter
+
+**Critères de validation** :
+- [ ] Checkpoint effectué à ~50% du plan
+- [ ] Décision documentée
+
+---
+
+## E12 — Détection d'écart
+
+**Objectif** : Comparer le réel vs l'estimé.
+
+**Inputs** :
+- #token estimé (E4)
+- #token réel (E10)
+- Délais estimés vs réels
+
+**Outputs** :
+- Tableau des écarts
+- Alertes si seuils dépassés
+
+**Critères de validation** :
+- [ ] Écarts calculés
+- [ ] Alertes émises si > 20%
+
+---
+
+## E13 — Ajustement
+
+**Objectif** : Modifier le plan en cas de dérive.
+
+**Inputs** :
+- Écarts (E12)
+- Plan en cours (E8)
+
+**Outputs** :
+- Plan révisé (si nécessaire)
+- Justification des modifications
+- Nouvelle estimation si recalibration
+
+**Critères de validation** :
+- [ ] Modifications justifiées
+- [ ] Plan révisé cohérent
+
+---
+
+## E14 — Finalisation
+
+**Objectif** : Achèvement des étapes restantes.
+
+**Inputs** :
+- Plan (révisé ou non)
+- État d'avancement
+
+**Outputs** :
+- Toutes les étapes terminées
+- Livrables finaux produits
+- Worklog complet
+
+**Critères de validation** :
+- [ ] Tous les livrables produits
+- [ ] Worklog à jour
+
+---
+
+## E15 — Bilan et auto-calibration
+
+**Objectif** : Retour d'expérience et mise à jour des grilles.
+
+**Inputs** :
+- Plan initial (E8)
+- Worklog complet (E10-E14)
+- #token estimé vs réel
+
+**Outputs** :
+- Bilan de la session
+- Mise à jour grille #token (si écart > 20%)
+- Enrichissement KNOWLEDGE.md
+- Déclenchement éventuel de clone-chat
+
+**Critères de validation** :
+- [ ] Bilan produit
+- [ ] Calibration mise à jour si nécessaire
+- [ ] KNOWLEDGE.md enrichi si pertinent
+```
+
+### 9.2 `references/grille-token.md`
+
+```markdown
+# Grille de calibration #token — gen-plan v3.5.0
+
+## Grille par agent/skill
+
+| Agent/Skill | #token sortie (min) | #token sortie (max) | Coefficient complexité |
+|-------------|--------------------|--------------------|----------------------|
+| Planification E1-E2 | 800 | 1500 | 1.0x |
+| Classification E3 | 200 | 500 | 1.0x |
+| Estimation E4 | 300 | 800 | 1.0x |
+| Sélection E5 | 500 | 1200 | 1.2x |
+| Profilage E6 | 200 | 400 | 1.0x |
+| Création plan E7 | 1000 | 2500 | 1.5x |
+| Validation E8 | 500 | 1500 | 1.0x |
+| Exécution simple (1 skill) | 2000 | 5000 | 1.0x |
+| Exécution moyenne (2-3 skills) | 5000 | 10000 | 1.3x |
+| Exécution complexe (4+ skills) | 10000 | 20000 | 1.5x |
+| Surveillance E10-E12 | 500 | 1500 | 1.0x |
+| Auto-calibration E15 | 800 | 2000 | 1.0x |
+
+## Grille par type de tâche (usage clone-chat)
+
+| Mode | Longueur discussion | #token estimé | Profil minimum |
+|------|---------------------|---------------|-------------|
+| clone-court | < 5 sessions | 2000-3500 | ECO |
+| clone-moyen | 5-15 sessions | 3500-5500 | NORMAL |
+| clone-long | > 15 sessions | 5500-9000 | NORMAL |
+
+> Note v1.2.0 : estimation +10% pour couvrir l'Étape 3.5 Context Drift et l'intégration gen-plan.
+
+## Coefficients d'ajustement
+
+| Facteur | Coefficient | Condition |
+|---------|-------------|-----------|
+| Complexité faible | 0.8x | Tâche routinière, template existant |
+| Complexité standard | 1.0x | Cas nominal |
+| Complexité élevée | 1.3x | Multi-skills, dépendances croisées |
+| Complexité critique | 1.5x | Projet nouveau, aucune référence |
+| Profil ECO | 0.7x | Réduction surveillance, snippets simplifiés |
+| Profil VIEUX PC | 0.5x | Scripts légers, pas de graphiques |
+
+## Historique de calibration
+
+| Exécution | Date | Type tâche | #token estimé | #token réel | Écart | Action |
+|-----------|------|-----------|---------------|-------------|-------|--------|
+| 1 | 2026-07-18 | Planification 66 skills | 4500 | 5200 | +15.6% | Aucune (0-20%) |
+| 2 | 2026-07-18 | Test E2E gen-plan | 3000 | 3600 | +20.0% | Aucune (seuil) |
+| 3 | 2026-07-29 | clone-chat v1.1.0 | 4000 | 5200 | +30.0% | Ajustement grille |
+| 4 | 2026-07-29 | clone-chat v1.2.0 | 4400 | 4600 | +4.5% | Aucune (0-20%) |
+```
+
+### 9.3 `references/classification-types.md`
+
+```markdown
+# Classification des types de tâches — gen-plan E3
+
+## Type 1 — Document Creation
+
+**Indicateurs de déclenchement** :
+- Mots-clés : rapport, document, article, analyse, proposition, PRD, script, manuscrit, présentation, tableur
+- Formats mentionnés : DOCX, PDF, XLSX, PPTX, MD
+- Verbes : rédiger, créer, générer, produire, écrire, composer
+
+**Skill à invoquer** :
+- docx → `docx`
+- PDF → `pdf`
+- Tableur → `xlsx`
+- Présentation → `pptx`
+- Markdown seul → aucun skill (rédaction directe)
+
+**Exemples** :
+- "Écris un rapport d'analyse" → Type 1, skill docx
+- "Génère une présentation" → Type 1, skill pptx
+- "Crée un tableur de suivi" → Type 1, skill xlsx
+
+**Contre-exemples** :
+- "Affiche ces données en graphique" → Type 2 (visualisation)
+- "Construis une page web" → Type 3 (web dev)
+
+---
+
+## Type 2 — Data Visualization
+
+**Indicateurs de déclenchement** :
+- Mots-clés : graphique, chart, diagramme, mind map, flowchart, architecture, visualisation
+- Formats mentionnés : PNG, SVG, Mermaid, D3, ECharts
+- Verbes : tracer, dessiner, visualiser, représenter, générer un graphe
+
+**Skill à invoquer** : `charts`
+
+**Sous-routage charts** :
+- Données chiffrées → matplotlib/seaborn/echarts
+- Structure/diagramme → Mermaid ou Playwright+CSS
+- Mind map → Playwright+CSS (pas matplotlib)
+- Dashboard → charts d'abord, puis Type 3 si interactif
+
+**Exemples** :
+- "Trace un graphique d'évolution des ventes" → Type 2, charts (matplotlib)
+- "Fais un diagramme de Gantt" → Type 2, charts (Mermaid)
+- "Génère une mind map" → Type 2, charts (Playwright+CSS)
+
+---
+
+## Type 3 — Interactive Web Development
+
+**Indicateurs de déclenchement** :
+- Mots-clés : site web, application, dashboard interactif, page, interface, Next.js, React
+- Mots-clés d'interactivité : cliquable, dynamique, temps réel, formulaire, navigation
+- Verbes : construis, développe, crée une app, build
+
+**Skill à invoquer** : `fullstack-dev`
+
+**Exemples** :
+- "Construis un dashboard interactif" → Type 3, fullstack-dev
+- "Crée une application de gestion" → Type 3, fullstack-dev
+- "Développe une page de landing" → Type 3, fullstack-dev
+
+**Contre-exemples** :
+- "Génère un dashboard en PDF" → Type 1 (document)
+- "Affiche des données en graphique statique" → Type 2 (visualisation)
+
+---
+
+## Type 4 — Data Processing
+
+**Indicateurs de déclenchement** :
+- Mots-clés : analyse, traiter, transformer, calculer, extraire, filtrer, convertir
+- Absence de livrable document final
+- Focus sur le traitement de données
+
+**Action** : Écrire un script Python directement
+
+**Exemples** :
+- "Analyse ce fichier CSV" → Type 4, script Python
+- "Transforme ces données" → Type 4, script Python
+- "Extrais les informations de ce PDF" → Type 4, script Python
+
+---
+
+## Cas ambigus — Règle de décision
+
+| Situation | Règle | Type assigné |
+|-----------|-------|-------------|
+| "Dashboard" sans précision | Demander : interactif ou statique ? | Type 3 si interactif, Type 1/2 si statique |
+| "Analyse" avec sortie document | Livrable = document | Type 1 |
+| "Analyse" sans sortie | Traitement de données | Type 4 |
+| "Visualisation" dans un document | Finalité = document | Type 1 (avec charts embarqués) |
+| "Visualisation" autonome | Finalité = visuel | Type 2 |
+| Mention de Next.js/React | Toujours web dev | Type 3 |
+```
+
+### 9.4 `references/profils-ressource.md`
+
+```markdown
+# Profils ressource — gen-plan v3.5.0
+
+## NORMAL
+
+**Contexte** : Ressources standards, environnement sans contrainte particulière.
+
+**Déclenchement** : Par défaut, sauf si critères ECO ou VIEUX PC sont remplis.
+
+**Règles** :
+- Toutes les 15 étapes sont exécutées
+- Tous les skills sont disponibles
+- Surveillance complète (E10-E12)
+- Snippets complets et versionnés
+- Pas de restriction sur la taille des scripts
+- Graphiques et visuels autorisés
+
+**Seuils** :
+- #token : pas de plafond
+- Étapes de surveillance : E10, E11, E12 obligatoires
+- Checkpoints : au moins 1 (E11)
+
+---
+
+## ECO
+
+**Contexte** : Discussion courte ou tâche simple nécessitant une planification allégée.
+
+**Déclenchement** :
+- Discussion < 5 sessions
+- #token estimé < 3500
+- Tâche simple (1 skill, 1 livrable)
+- Explicitement demandé par l'utilisateur
+
+**Règles** :
+- Étapes réduites : E1-E9 puis E14-E15 (E10-E13 fusionnées)
+- Snippets simplifiés (pas de versionnage)
+- Surveillance allégée (1 checkpoint unique à E11)
+- Pas de matrice dynamique KB (statique seulement)
+
+**Restrictions** :
+- Pas de rapport de vérification détaillé
+- Auto-calibration E15 simplifiée (ajustement seulement si > 35%)
+- Pas de déclenchement clone-chat automatique
+
+**Seuils** :
+- #token plafond : 3500
+- Surveillance : E11 uniquement
+
+---
+
+## VIEUX PC
+
+**Contexte** : Environnement matériel limité (CPU lent, RAM limitée, pas de GPU).
+
+**Déclenchement** :
+- Explicitement demandé par l'utilisateur
+- Environnement détecté comme limité
+
+**Règles** :
+- Toutes les règles ECO s'appliquent
+- Scripts Python légers uniquement (pas de bibliothèques lourdes)
+- Pas de graphiques Matplotlib/Seaborn (trop lourds)
+- Pas de Playwright (trop lourd)
+- Préférer les sorties Markdown/texte
+- Templates minimalistes
+
+**Restrictions supplémentaires** (par rapport à ECO) :
+- Pas de génération d'images
+- Pas de scripts > 100 lignes
+- Préférer les algorithms O(n) aux O(n²)
+- Pas de chargement de gros fichiers en mémoire
+
+**Seuils** :
+- #token plafond : 2000
+- Taille script max : 100 lignes
+- Pas de graphiques
+```

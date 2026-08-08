@@ -390,3 +390,171 @@ La double matrice (statique + dynamique) permet de couvrir à la fois les relati
 ### 9.5 Pourquoi le logging worklog ?
 
 Le logging systématique dans le worklog permet de tracer l'historique des vérifications. C'est essentiel pour le suivi qualité au fil des sessions et pour le Context Drift de clone-chat (qui utilise le worklog comme source).
+
+---
+
+## §10 — CONTENU DÉTAILLÉ DU SKILL.MD
+
+Le fichier `SKILL.md` (~481 lignes) doit contenir les sections suivantes. Voici le plan détaillé de chaque section avec le contenu attendu.
+
+### 10.1 Structure du SKILL.md
+
+```
+§0 — Règle zéro (5 lignes)
+§1 — Spécification fonctionnelle (~120 lignes)
+  1.1 Description (10 lignes)
+  1.2 Les 3 modes avec workflow détaillé (40 lignes)
+  1.3 Les 5 étapes avec inputs/outputs/checks (50 lignes)
+  1.4 Intégration KB (20 lignes)
+§2 — Spécification technique (~150 lignes)
+  2.1 Stack technique (10 lignes)
+  2.2 Dépendances et versions (15 lignes)
+  2.3 Format du rapport (50 lignes)
+  2.4 Matrice statique agent × skill (25 lignes)
+  2.5 Matrice dynamique KB (20 lignes)
+  2.6 Logging worklog (15 lignes)
+  2.7 Critères de sévérité S1-S4 (15 lignes)
+§3 — Relations avec les autres skills (~60 lignes)
+  3.1 gen-plan (15 lignes)
+  3.2 clone-chat (25 lignes)
+  3.3 fullstack-dev (10 lignes)
+  3.4 Skills KB (10 lignes)
+§4 — Grille de vérification par mode (~80 lignes)
+  4.1 Mode PROJET — checklist (25 lignes)
+  4.2 Mode CIBLE — checklist (25 lignes)
+  4.3 Mode DIRECT — checklist (15 lignes)
+  4.4 Sélection du mode (15 lignes)
+§5 — Conventions (~40 lignes)
+  5.1 Nommage (10 lignes)
+  5.2 Format rapport (15 lignes)
+  5.3 Verdicts (15 lignes)
+```
+
+### 10.2 Contenu des checklist par mode (§4)
+
+#### Mode PROJET — Checklist complète
+
+```markdown
+## Checklist Mode PROJET
+
+### Pré-vérification
+- [ ] Le prompt maître est disponible et lisible
+- [ ] La version du prompt maître est identifiée
+- [ ] Les livrables attendus sont listés dans le prompt
+
+### Phase 1 — Plan (via gen-plan E1)
+- [ ] Le plan de vérification est créé via gen-plan
+- [ ] Les sections du prompt à vérifier sont identifiées
+- [ ] L'ordre de vérification est défini
+- [ ] L'estimation #token est faite
+
+### Phase 2 — Erreurs et omissions
+- [ ] Chaque section du prompt est comparée au livrable
+- [ ] Les erreurs factuelles sont listées
+- [ ] Les omissions de contenu sont listées
+- [ ] Les incohérences logiques sont listées
+- [ ] Chaque problème est classé S1-S4
+
+### Phase 3 — Structure et conflits
+- [ ] La structure des fichiers est vérifiée
+- [ ] Les conventions de nommage sont respectées
+- [ ] Les cross-references sont cohérentes
+- [ ] Les conflits entre sections sont détectés
+- [ ] Le format est cohérent avec les specs
+
+### Phase 4 — Interactions
+- [ ] Les dépendances entre skills sont vérifiées
+- [ ] Les versions minimales sont respectées
+- [ ] Les interfaces entre skills sont cohérentes
+- [ ] Les paramètres partagés sont compatibles
+
+### Phase 5 — Cohérence
+- [ ] La chaîne de raisonnement est logique
+- [ ] Les décisions sont cohérentes entre elles
+- [ ] L'alignement décisions/actions est vérifié
+- [ ] La cohérence temporelle est vérifiée (si applicable)
+
+### Post-vérification
+- [ ] Le rapport est produit
+- [ ] Le verdict est assigné (PASS / PASS AVEC RÉSERVES / FAIL)
+- [ ] Le worklog est mis à jour
+```
+
+#### Mode CIBLE — Checklist
+
+```markdown
+## Checklist Mode CIBLE
+
+### Pré-vérification
+- [ ] Le skill/fichier cible est identifié
+- [ ] Les spécifications du skill sont chargées (via KB si disponible)
+- [ ] La version actuelle est identifiée
+
+### Vérification ciblée
+- [ ] La structure du fichier est cohérente
+- [ ] Le contenu correspond aux spécifications
+- [ ] Les cross-references sont correctes
+- [ ] Les dépendances sont vérifiées
+- [ ] Le format respecte les conventions
+
+### Vérification spécifique clone-chat (si applicable)
+- [ ] Le §3.5 Context Drift est présent
+- [ ] La règle « drift vide » est documentée
+- [ ] Les 5 types de drift sont listés
+- [ ] La table des drifts est cohérente avec le worklog
+- [ ] Le format « 7+1 étapes » est cohérent partout
+- [ ] Les chemins sont relatifs (pas absolus)
+- [ ] Le seuil in extenso est correct (< 200 lignes)
+
+### Post-vérification
+- [ ] Les corrections sont appliquées avec justification
+- [ ] Le worklog est mis à jour
+- [ ] Le verdict est assigné
+```
+
+#### Mode DIRECT — Checklist
+
+```markdown
+## Checklist Mode DIRECT
+
+### Inspection
+- [ ] L'artefact cible est accessible
+- [ ] Les problèmes évidents sont identifiés
+- [ ] Les corrections sont appliquées immédiatement
+
+### Post-correction
+- [ ] La correction ne casse rien d'autre
+- [ ] Le worklog est mis à jour (optionnel en DIRECT)
+```
+
+### 10.3 Règles de sélection du mode
+
+```markdown
+## Sélection du mode
+
+| Condition | Mode |
+|-----------|-------|
+| Un prompt maître existe pour le projet | PROJET |
+| Un skill spécifique doit être vérifié | CIBLE |
+| Correction rapide d'un fichier isolé | DIRECT |
+| L'utilisateur ne précise pas | CIBLE (mode par défaut) |
+| Vérification complète + historique | PROJET |
+| Le skill a déjà été vérifié (round 2+) | CIBLE |
+```
+
+### 10.4 Conventions de format du rapport
+
+```markdown
+## Format du rapport
+
+1. **Titre** : `# Rapport correct-work — [Nom]`
+2. **Métadonnées** : date, mode, version, cible
+3. **Sections E1-E5** : une par étape, avec tableaux structurés
+4. **Résumé** : compteur problèmes/corrections/restants + verdict
+5. **Verdicts** :
+   - PASS : 0 problème S1-S2
+   - PASS AVEC RÉSERVES : 0 S1 mais >= 1 S2, ou >= 2 S3
+   - FAIL : >= 1 S1
+6. **Langue** : même langue que le livrable vérifié
+7. **Entrée worklog** : obligatoire après chaque exécution
+```
