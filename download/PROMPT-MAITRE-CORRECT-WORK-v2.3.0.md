@@ -8,6 +8,21 @@
 
 ---
 
+## DÉCLENCHEURS
+
+- `verifie ton travail`
+- `verifie tes résultats`
+- `verifie ton code`
+- `correct-work` ou `correct_work`
+- `verify-work` (alias anglais)
+- `correct-work(projet)` — vérification complète du projet
+- `correct-work(<cible>)` — vérification ciblée sur un livrable
+- `correct-work()` — vérification rapide sans analyse approfondie
+
+Options avancées (gen-plan >= v3.6.0) :
+- `correct-work(projet, kb_path=/chemin/KB)` — vérification avec scan des skills KB
+- `correct-work(cible, --kb-skill=<name>)` — forcer l'utilisation d'un skill KB spécifique
+
 ## PRÉREQUIS
 
 Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
@@ -417,3 +432,60 @@ Ces checklists doivent être intégrées dans la section §4 du SKILL.md.
 - **PASS** : 0 problème S1-S2
 - **PASS AVEC RÉSERVES** : 0 S1 mais >= 1 S2, ou >= 2 S3
 - **FAIL** : >= 1 S1
+
+---
+
+## §11 — CHECKLISTS OPÉRATIONNELLES (contenu SKILL.md)
+
+Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elles sont adaptées au type de projet vérifié.
+
+### 11.1 Adaptation au type de projet
+
+| Type de projet | Étape 2 focus | Étape 3 focus | Étape 4 focus |
+|---------------|---------------|---------------|---------------|
+| **Fullstack** | Schema BDD, auth, endpoints | Imports circulaires, state | API frontend-backend, props, data flow |
+| **Frontend only** | Responsive, accessibilité, composants | Conventions CSS, composants | Props, state management |
+| **Backend/API** | Endpoints, validation, sécurité | Gestion erreurs, imports | Services, timeouts, CORS |
+| **Document/PDF** | Contenu, mise en page, données | Cohérence sections, refs croisées | Références entre livrables |
+| **Script/automatisation** | I/O, paramètres, sorties | Chemins en dur, gestion erreurs | Dépendances externes |
+
+### 11.2 Étape 2 — Erreurs et omissions (détail)
+
+1. **Relire les spécifications initiales** de l'utilisateur et vérifier que chaque exigence a été satisfaite. Si une exigence a été oubliée, la réaliser maintenant.
+2. **Vérifier les données factuelles** : noms, chemins, numéros de version, tailles de fichiers, counts — tout chiffre ou valeur assertée doit être vérifié contre la source réelle.
+3. **Vérifier la cohérence linguistique** : la langue utilisée doit être identique à celle de la demande initiale. Pas de mélange incohérent.
+4. **Vérifier les fichiers de sortie** : chaque fichier promis existe-t-il ? Est-il lisible ? Pas de fichier vide ou corrompu.
+5. **Vérifier les dépendances** : les imports, les chemins de skill, les références croisées entre fichiers sont-ils corrects ?
+6. **Adapter la vérification au projet** : les erreurs sont évaluées relativement au type de projet (cf. §11.1).
+7. **Corriger** chaque erreur ou omission identifiée.
+
+### 11.3 Étape 3 — Structure et conflits (détail)
+
+1. **Imports circulaires** (code) : vérifier qu'aucun module n'importe un autre qui l'importe.
+2. **Conflits de noms** : deux fonctions/classes/variables avec le même nom dans des scopes qui pourraient interférer.
+3. **Variables non initialisées** ou utilisées avant d'être définies (code).
+4. **Chemins en dur** qui ne fonctionneraient pas dans un autre environnement.
+5. **Gestion des erreurs** : les cas d'erreur sont-ils traités ou le code échouerait silencieusement ?
+6. **Doublons** : du code dupliqué qui devrait être factorisé, ou du contenu dupliqué dans un document.
+7. **Convention de nommage** : cohérence dans le style (snake_case, PascalCase, kebab-case).
+8. **Matrice de cohérence logique** : si des conditions booléennes complexes sont identifiées (XOR, exclusions mutuelles, guard clauses multiples), lister toutes les combinaisons possibles, vérifier que chaque combinaison est couverte par exactement une branche, détecter les branches mortes et les conflits.
+9. **Corriger** chaque problème de structure ou conflit identifié.
+
+### 11.4 Étape 4 — Interactions (détail)
+
+1. **API frontend-backend** : chaque endpoint appelé existe-t-il ? Paramètres correspondants ? Codes d'erreur gérés ?
+2. **Props et communication inter-composants** : types, noms, optionnalité, valeurs par défaut cohérents ?
+3. **State management** : store expose-t-il toutes les données nécessaires ? Actions appelées aux bons moments ? State mort ?
+4. **Flux de données bout en bout** : tracer un scenario complet (clic → API → store → re-render). Race conditions ?
+5. **Communications entre services** : bons ports/URLs ? WebSockets ? Timeouts et réessais ?
+6. **Références croisées entre livrables** : numéros de section corrects ? Données cohérentes ? Liens valides ?
+7. **Corriger** chaque problème d'interaction identifié.
+
+### 11.5 Étape 5 — Cohérence des raisonnements (détail)
+
+1. **Cohérence logique** : les étapes de raisonnement s'enchaînent-elles logiquement ? Pas de saut non justifié.
+2. **Cohérence numérique** : les chiffres s'additionnent-ils ? Pourcentages cohérents avec les valeurs absolues ?
+3. **Cohérence temporelle** : dates, versions, chronologies cohérentes entre elles ?
+4. **Résultat attendu vs obtenu** : ce qui a été promis correspond-il à ce qui a été livré ?
+5. **Cohérence entre fichiers** : pas de contradiction entre le contenu de deux livrables.
+6. **Corriger** toute incohérence identifiée.

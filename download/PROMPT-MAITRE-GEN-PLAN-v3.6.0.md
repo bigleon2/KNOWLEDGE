@@ -8,6 +8,16 @@
 
 ---
 
+## DÉCLENCHEURS
+
+- `gen-plan:` suivi d'une description de tâche
+- `gen-plan:correct-work(projet)` — vérification et correction d'un projet complet
+- `gen-plan:correct-work(<cible>)` — vérification/correction d'un élément spécifique
+- `plan d'actions` — demande explicite de planification
+- `orchestre` — orchestration multi-agents
+- Toute demande impliquant plusieurs étapes séquentielles avec des livrables
+- `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
+
 ## PRÉREQUIS
 
 Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
@@ -67,6 +77,16 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 
 **Règle #7** : Tous les scripts générés par gen-plan doivent être en Python. Aucun script shell (bash, sh, powershell). Cette règle garantit la portabilité cross-platform.
 
+### 1.7 Philosophie
+
+1. **Read before planning** — Toujours lire le projet avant de planifier. Un plan sans connaissance du projet est générique et probablement inadéquat. La lecture exhaustive est un investissement nécessaire.
+2. **Performance-driven selection** — Le choix entre skill, agent spécialisé ou agent général est dicté par le gain de performance, pas par une hiérarchie rigide. Un skill avec un protocole pertinent bat toujours un agent nu.
+3. **Skills can launch specialized agents** — Les skills ne sont pas des terminaisons mais des orchestrateurs. Un skill chargé peut lancer en interne un agent spécialisé (full-stack-developer, ppt-expert, etc.). Modèle à deux couches : Skill (protocole + connaissances domaine) → Agent Spécialisé (exécution).
+4. **Serial execution by DEFAULT** — Toutes les tâches s'exécutent UNE À LA UNE. Le parallélisme est INTERDIT sauf demande explicite de l'utilisateur ET preuve que les sous-tâches sont indépendantes.
+5. **Visible progress** — L'utilisateur sait toujours quelle phase est en cours, ce qui est terminé, et ce qui vient ensuite.
+6. **CoT + Chaining avec auto-correction** — Chaque étape est exécutée avec un raisonnement structuré (Chain-of-Thought) avant l'action. Le chainage suit un pipeline hiérarchique où chaque sortie est vérifiée et corrigée avant de passer à la suivante.
+7. **Lecture bloc par bloc** — Les fichiers volumineux (> 500 lignes) sont lus par blocs successifs avec une synthèse intermédiaire à chaque bloc, évitant la surcharge de contexte et garantissant une couverture totale.
+
 ---
 
 ## §2 — SPÉCIFICATION TECHNIQUE
@@ -86,7 +106,8 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 │   ├── etapes-detaillees.md          # Détail des 15 étapes
 │   ├── grille-token.md               # Grille de calibration #token
 │   ├── classification-types.md       # Routage Type 1-4
-│   └── profils-ressource.md          # NORMAL / ECO / VIEUX PC
+│   ├── profils-ressource.md          # NORMAL / ECO / VIEUX PC
+│   └── guide-selection-agent-skill.md # Arbre de décision + tableau
 └── evals/
     └── evals.json                    # Cas de test d'évaluation
 ```
@@ -250,7 +271,7 @@ Le contenu in extenso de chaque fichier est en §8.
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}gen-plan/SKILL.md` | File exists |
 | 2 | Taille SKILL.md | ~275 lignes | Within range |
 | 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
-| 4 | 4 fichiers référence | `references/` contient 4 fichiers | 4 files |
+| 4 | 6 fichiers référence | `references/` contient 6 fichiers | 6 files |
 | 5 | evals.json valide | JSON parsable, 5 evals | Valid JSON |
 | 6 | Norme N3 (Python) | Aucune mention shell/bash | No shell refs |
 | 7 | Intégration KB | Mention kb_path, --kb-skill | Present |
@@ -293,7 +314,7 @@ La règle N3 (Python uniquement) garantit la portabilité cross-platform. Les sc
 
 ## §9 — CONTENU IN EXTENSO DES FICHIERS RÉFÉRENCE
 
-Les 4 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/references/`. Voici leur contenu intégral.
+Les 6 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/references/`. Voici leur contenu intégral.
 
 ### 9.1 `references/etapes-detaillees.md`
 
@@ -765,3 +786,80 @@ Les 4 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/refe
 
 **Seuils** : #token plafond 2000, pas de graphiques.
 ```
+
+### 9.5 `references/guide-selection-agent-skill.md`
+
+```markdown
+# Guide de Sélection Agent/Skill — gen-plan E5/E7
+
+## Arbre de décision
+
+```
+1. Existe-t-il un SKILL correspondant ?
+   |-- OUI -> Charger le skill
+   |   |-- Le skill bénéficie-t-il d'un agent spécialisé ?
+   |       |-- OUI -> Skill + Agent Spécialisé (OPTIMAL)
+   |       |-- NON -> Skill seul via agent général (BON)
+   |-- NON -> Existe-t-il un agent spécialisé ?
+       |-- OUI -> Agent Spécialisé seul
+       |-- NON -> Agent général (DERNIER RECOURS)
+```
+
+## Critères de sélection (ordonnés par impact performance)
+
+1. **Skill + agent spécialisé** (meilleure performance) — Un skill dont le protocole correspond à la tâche ET qui délègue en interne à un agent spécialisé.
+2. **Skill seul** (bonne performance) — Un skill dont le protocole couvre entièrement la tâche.
+3. **Agent spécialisé seul** (performance modérée) — Aucun skill correspondant, mais un agent spécialisé couvre la tâche.
+4. **Agent général** (fallback) — Ni skill ni agent spécialisé. Ne jamais utiliser comme premier choix.
+
+## Tableau de correspondance
+
+| Type de tâche | Skill | Agent | Performance |
+|--------------|-------|-------|-------------|
+| Dev web Next.js | fullstack-dev | full-stack-developer | OPTIMAL |
+| Création PPT/slides | pptx | ppt-expert | OPTIMAL |
+| Génération PDF | pdf | general-purpose | OPTIMAL |
+| Compréhension images | VLM | general-purpose | OPTIMAL |
+| Charts/diagrammes | charts | general-purpose | OPTIMAL |
+| Documents Word | docx | general-purpose | BON |
+| Fichiers Excel | xlsx | general-purpose | BON |
+| Recherche web | web-search | general-purpose | BON |
+| Extraction web | web-reader | general-purpose | BON |
+| Création skills | skill-creator | general-purpose | BON |
+| Génération images | image-generation | general-purpose | BON |
+| Édition images | image-edit | general-purpose | BON |
+| Speech-to-text | ASR | general-purpose | BON |
+| Text-to-speech | TTS | general-purpose | BON |
+| Video understanding | video-understand | general-purpose | BON |
+| LLM chat | LLM | general-purpose | BON |
+| Recherche images | image-search | general-purpose | BON |
+| Navigation web | agent-browser | general-purpose | BON |
+| Exploration fichiers | — | Explore | Agent seul |
+| Architecture/planif | — | Plan | Agent seul |
+| Styling CSS | — | frontend-styling-expert | Agent seul |
+| Vérification correction | correct-work | general-purpose | BON |
+```
+
+### 9.6 Portées des étapes E8, E14 et E15 (qualité, intégration, auto-réapplication)
+
+Les étapes E8, E14 et E15 incluent des portées héritées des versions antérieures du protocole :
+
+**E8 — Validation du plan** inclut aussi les vérifications de qualité pré-intégration :
+- [ ] Chaque fichier candidat à l'intégration est classifié : Skill / Écosystème / Utilitaire
+- [ ] Les fichiers Skill ont un YAML frontmatter valide (name, description, > 200 chars)
+- [ ] Les scripts Python compilent (pas de syntax error, imports valides)
+- [ ] Les fichiers Markdown sont structurés (titres, sections cohérentes, pas de contenu tronqué)
+- [ ] Les fichiers de configuration (JSON/YAML) sont valides
+- [ ] Les références croisées entre fichiers sont valides
+
+**E14 — Finalisation** inclut l'intégration écosystème :
+- [ ] Les fichiers Skill sont placés dans `{{SKILLS_ROOT}}<nom>/SKILL.md`
+- [ ] Les fichiers de référence vont dans `{{SKILLS_ROOT}}<nom>/references/`
+- [ ] Aucun skill existant n'est écrasé sans confirmation utilisateur
+- [ ] Le YAML frontmatter est conforme (SHARED §1.3)
+- [ ] L'inventaire des skills est mis à jour si nécessaire
+
+**E15 — Bilan** inclut l'auto-réapplication :
+- [ ] Si le SKILL.md de gen-plan a été modifié pendant l'exécution, les tâches restantes sont réévaluées
+- [ ] Les tâches affectées sont marquées `[REEVALUER]` avec la raison et les sections impactées
+- [ ] Chaque réévaluation est documentée dans le worklog

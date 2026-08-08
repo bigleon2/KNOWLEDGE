@@ -17,20 +17,23 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
     les skills : contexte, conventions, variables d'installation, registre
     KB, relations inter-skills, matrice agent x skill.
 
-  PROMPT-MAITRE-GEN-PLAN-v3.6.0.md     (~766 lignes)
+  PROMPT-MAITRE-GEN-PLAN-v3.6.0.md     (~870 lignes)
     Spécification complète du skill gen-plan v3.6.0. Contient la spec
-    fonctionnelle (4 modes, 15 étapes E1-E15, normes N1-N3), la spec
-    technique (stack, auto-calibration, profils, KB), le YAML frontmatter,
-    les instructions d'installation, et le contenu in extenso des 4
-    fichiers référence (étapes, grille #token, classification Type 1-4,
-    profils ressource).
+    fonctionnelle (4 modes, 15 étapes E1-E15, normes N1-N3, philosophie,
+    déclencheurs), la spec technique (stack, auto-calibration, profils, KB),
+    le YAML frontmatter, les instructions d'installation, et le contenu
+    in extenso des 6 fichiers référence (étapes, grille #token,
+    classification Type 1-4, profils ressource, guide agent/skill,
+    portées E8/E14/E15).
 
-  PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md  (~418 lignes)
+  PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md  (~530 lignes)
     Spécification complète du skill correct-work v2.3.0. Contient la spec
-    fonctionnelle (3 modes, 5 étapes, sévérité S1-S4), la spec technique
-    (rapport, matrices statique/dynamique, logging), le YAML frontmatter,
-    les instructions d'installation, l'historique des corrections clone-chat
-    (3 rounds), et les checklists détaillées pour le SKILL.md.
+    fonctionnelle (3 modes, 5 étapes, sévérité S1-S4, déclencheurs), la
+    spec technique (rapport, matrices statique/dynamique, logging), le
+    YAML frontmatter, les instructions d'installation, l'historique des
+    corrections clone-chat (3 rounds), les checklists d'installation et
+    les checklists opérationnelles détaillées (Étapes 2-5, adaptation par
+    type de projet, matrice de cohérence logique).
 
 
 ===============================================================================
@@ -89,7 +92,8 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
     §6 — Vérification post-installation (9 checks)
     §7 — Historique des versions
     §8 — Notes de conception
-    §9 — Contenu in extenso des 4 fichiers référence
+    §9 — Contenu in extenso des 6 fichiers référence
+    §10 — Checklists (installation + opérationnelles)
 
   CORRECT-WORK v2.3.0.md
     PRÉREQUIS (référence SHARED)
