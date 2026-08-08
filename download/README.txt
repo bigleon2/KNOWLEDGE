@@ -5,7 +5,7 @@
 
 Date      : 2026-08-09
 Version   : 1.0.0
-Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
+Vérif.    : 55/55 checks PASS (voir scripts/verify-cross.py)
 
 
 ===============================================================================
@@ -17,23 +17,23 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
     les skills : contexte, conventions, variables d'installation, registre
     KB, relations inter-skills, matrice agent x skill.
 
-  PROMPT-MAITRE-GEN-PLAN-v3.6.0.md     (~870 lignes)
+  PROMPT-MAITRE-GEN-PLAN-v3.6.0.md     (~866 lignes)
     Spécification complète du skill gen-plan v3.6.0. Contient la spec
     fonctionnelle (4 modes, 15 étapes E1-E15, normes N1-N3, philosophie,
     déclencheurs), la spec technique (stack, auto-calibration, profils, KB),
     le YAML frontmatter, les instructions d'installation, et le contenu
-    in extenso des 6 fichiers référence (étapes, grille #token,
-    classification Type 1-4, profils ressource, guide agent/skill,
-    portées E8/E14/E15).
+    in extenso des 5 fichiers référence (étapes avec portées étendues,
+    grille #token, classification Type 1-4, profils ressource, guide
+    agent/skill) + 1 fichier evals.
 
-  PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md  (~530 lignes)
+  PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md  (~490 lignes)
     Spécification complète du skill correct-work v2.3.0. Contient la spec
     fonctionnelle (3 modes, 5 étapes, sévérité S1-S4, déclencheurs), la
     spec technique (rapport, matrices statique/dynamique, logging), le
     YAML frontmatter, les instructions d'installation, l'historique des
-    corrections clone-chat (3 rounds), les checklists d'installation et
-    les checklists opérationnelles détaillées (Étapes 2-5, adaptation par
-    type de projet, matrice de cohérence logique).
+    corrections clone-chat (3 rounds), et les checklists unifiées (par
+    mode §10.1-§10.5 + opérationnelles détaillées §10.6-§10.10, adaptation
+    par type de projet, matrice de cohérence logique).
 
 
 ===============================================================================
@@ -54,8 +54,8 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
     SHARED §1.2")
   - Toute mise à jour d'une info commune se fait UNE SEULE FOIS
 
-  Réduction mesurée : -90 lignes (6.0%), mais surtout une maintenance
-  simplifiée et un risque d'incohérence réduit.
+  Réduction mesurée : les 3 fichiers totalisent ~1572 lignes, avec une
+  maintenance simplifiée et un risque d'incohérence réduit.
 
 
 ===============================================================================
@@ -83,7 +83,8 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
     §6 — Prompt maîtres : architecture et workflow
 
   GEN-PLAN v3.6.0.md
-    PRÉREQUIS (référence SHARED)
+    §A — Déclencheurs
+    §B — Prérequis (référence SHARED)
     §1 — Spécification fonctionnelle (4 modes, 15 étapes, N1-N3)
     §2 — Spécification technique (stack, auto-calibration, profils, KB)
     §3 — Relations (extrait SHARED §3.1)
@@ -92,11 +93,11 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
     §6 — Vérification post-installation (9 checks)
     §7 — Historique des versions
     §8 — Notes de conception
-    §9 — Contenu in extenso des 6 fichiers référence
-    §10 — Checklists (installation + opérationnelles)
+    §9 — Contenu in extenso des 5 fichiers référence + evals
 
   CORRECT-WORK v2.3.0.md
-    PRÉREQUIS (référence SHARED)
+    §A — Déclencheurs
+    §B — Prérequis (référence SHARED)
     §1 — Spécification fonctionnelle (3 modes, 5 étapes, KB)
     §2 — Spécification technique (rapport, matrices, sévérité S1-S4)
     §3 — Relations (extrait SHARED §3.1)
@@ -106,7 +107,7 @@ Vérif.    : 54/54 checks PASS (voir scripts/verify-cross.py)
     §7 — Historique des versions
     §8 — Historique des corrections clone-chat (3 rounds)
     §9 — Notes de conception
-    §10 — Checklists pour le SKILL.md
+    §10 — Checklists unifiées (par mode + opérationnelles)
 
 
 ===============================================================================

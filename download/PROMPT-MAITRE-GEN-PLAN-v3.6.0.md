@@ -8,7 +8,7 @@
 
 ---
 
-## DÉCLENCHEURS
+## §A — DÉCLENCHEURS
 
 - `gen-plan:` suivi d'une description de tâche
 - `gen-plan:correct-work(projet)` — vérification et correction d'un projet complet
@@ -18,7 +18,7 @@
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
-## PRÉREQUIS
+## §B — PRÉREQUIS
 
 Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
 
@@ -32,11 +32,11 @@ Résumé des variables utiles (SHARED §1.1) :
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
-### 1.1 Description
+### §1.1 Description
 
 gen-plan est un skill de **planification de tâches** pour assistant IA. Il fournit un cadre structuré en 4 modes de fonctionnement et 15 étapes (E1-E15) pour analyser, planifier, exécuter, surveiller et adapter toute tâche complexe.
 
-### 1.2 Les 4 modes
+### §1.2 Les 4 modes
 
 | Mode | Nom | Description |
 |------|-----|-------------|
@@ -45,7 +45,7 @@ gen-plan est un skill de **planification de tâches** pour assistant IA. Il four
 | M3 | **Surveillance** | Monitoring en temps réel de l'avancement, détection d'écarts |
 | M4 | **Adaptation** | Ajustement du plan en cas de dérive, recalibration |
 
-### 1.3 Les 15 étapes (E1-E15)
+### §1.3 Les 15 étapes (E1-E15)
 
 | Étape | Nom | Description | Mode par défaut |
 |-------|------|-------------|----------------|
@@ -65,19 +65,19 @@ gen-plan est un skill de **planification de tâches** pour assistant IA. Il four
 | E14 | Finalisation | Achèvement des étapes restantes | M2 |
 | E15 | Bilan et auto-calibration | Retour d'expérience, mise à jour des grilles, enrichment KNOWLEDGE.md | M1/M4 |
 
-### 1.4 Tagging #token (Norme N1)
+### §1.4 Tagging #token (Norme N1)
 
 Chaque étape et chaque skill utilisé reçoit un tag `#token` indiquant le coût estimé en tokens. La grille est auto-calibrée après exécutions (voir §8.2).
 
-### 1.5 Snippets (Norme N2)
+### §1.5 Snippets (Norme N2)
 
 gen-plan peut générer des snippets de code réutilisables pendant l'exécution. Chaque snippet est tagué et versionné.
 
-### 1.6 Python uniquement (Norme N3)
+### §1.6 Python uniquement (Norme N3)
 
 **Règle #7** : Tous les scripts générés par gen-plan doivent être en Python. Aucun script shell (bash, sh, powershell). Cette règle garantit la portabilité cross-platform.
 
-### 1.7 Philosophie
+### §1.7 Philosophie
 
 1. **Read before planning** — Toujours lire le projet avant de planifier. Un plan sans connaissance du projet est générique et probablement inadéquat. La lecture exhaustive est un investissement nécessaire.
 2. **Performance-driven selection** — Le choix entre skill, agent spécialisé ou agent général est dicté par le gain de performance, pas par une hiérarchie rigide. Un skill avec un protocole pertinent bat toujours un agent nu.
@@ -91,13 +91,13 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 
-### 2.1 Stack technique
+### §2.1 Stack technique
 
 - **Langage** : Python (scripts), Markdown (documentation), YAML (frontmatter)
 - **Environnement** : `{{SKILLS_ROOT}}gen-plan/`
 - **Pas de dépendance externe** (sauf intégration KB si `{{KB_ENABLED}}`)
 
-### 2.2 Structure des fichiers
+### §2.2 Structure des fichiers
 
 ```
 {{SKILLS_ROOT}}gen-plan/
@@ -112,7 +112,7 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
     └── evals.json                    # Cas de test d'évaluation
 ```
 
-### 2.3 Auto-calibration E15
+### §2.3 Auto-calibration E15
 
 | Écart estimé vs réel | Action |
 |----------------------|--------|
@@ -122,7 +122,7 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 
 La calibration porte sur : la grille #token par agent/skill, les seuils de profil ressource, les ratios de complexité par type de tâche.
 
-### 2.4 Profils ressource
+### §2.4 Profils ressource
 
 Détail complet dans §8.4. Résumé :
 
@@ -132,7 +132,7 @@ Détail complet dans §8.4. Résumé :
 | **ECO** | Discussion < 5 sessions, #token < 3500 | Étapes réduites, 1 checkpoint, pas de matrice dynamique KB |
 | **VIEUX PC** | Matériel limité | Règles ECO + scripts < 100 lignes, pas de graphiques |
 
-### 2.5 Intégration KB
+### §2.5 Intégration KB
 
 Si `{{KB_ENABLED}}` est `true` :
 
@@ -194,14 +194,14 @@ dependencies:
 
 ## §5 — INSTRUCTIONS D'INSTALLATION
 
-### 5.1 Créer la structure
+### §5.1 Créer la structure
 
 ```bash
 mkdir -p {{SKILLS_ROOT}}gen-plan/references
 mkdir -p {{SKILLS_ROOT}}gen-plan/evals
 ```
 
-### 5.2 Créer le fichier SKILL.md
+### §5.2 Créer le fichier SKILL.md
 
 Le fichier `SKILL.md` (~275 lignes, in extenso) doit contenir :
 
@@ -213,11 +213,11 @@ Le fichier `SKILL.md` (~275 lignes, in extenso) doit contenir :
 6. **§4 — Grille #token** : Résumé de §8.2
 7. **§5 — Conventions** : Nommage (SHARED §1.2), Python uniquement (N3), tagging
 
-### 5.3 Créer les fichiers de référence
+### §5.3 Créer les fichiers de référence
 
 Le contenu in extenso de chaque fichier est en §8.
 
-### 5.4 Créer evals/evals.json
+### §5.4 Créer evals/evals.json
 
 ```json
 {
@@ -271,7 +271,7 @@ Le contenu in extenso de chaque fichier est en §8.
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}gen-plan/SKILL.md` | File exists |
 | 2 | Taille SKILL.md | ~275 lignes | Within range |
 | 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
-| 4 | 6 fichiers référence | `references/` contient 6 fichiers | 6 files |
+| 4 | 5 fichiers référence | `references/` contient 5 fichiers | 5 files |
 | 5 | evals.json valide | JSON parsable, 5 evals | Valid JSON |
 | 6 | Norme N3 (Python) | Aucune mention shell/bash | No shell refs |
 | 7 | Intégration KB | Mention kb_path, --kb-skill | Present |
@@ -294,19 +294,19 @@ Le contenu in extenso de chaque fichier est en §8.
 
 ## §8 — NOTES DE CONCEPTION
 
-### 8.1 Pourquoi 15 étapes ?
+### §8.1 Pourquoi 15 étapes ?
 
 Les 15 étapes couvrent le cycle de vie complet d'une tâche complexe : de l'analyse initiale (E1) au bilan post-exécution (E15). Chaque étape a un objectif clair, des inputs/outputs définis, et des critères de validation. La séquence E1-E8 (planification) est suivie de E9-E14 (exécution/surveillance) et clôturée par E15 (calibration). Ce découpage permet un parallélisme partiel (E9-E14 peuvent chevaucher M2/M3) tout en gardant un contrôle strict via E11 (checkpoint) et E12 (détection d'écart).
 
-### 8.2 Pourquoi 3 profils ?
+### §8.2 Pourquoi 3 profils ?
 
 Les profils NORMAL/ECO/VIEUX PC permettent d'adapter la planification aux contraintes matérielles et à la complexité de la tâche. Le profil ECO est conçu pour les discussions courtes (< 5 sessions) ou les tâches simples (1 skill, 1 livrable), évitant la surcharge de planification. Le profil VIEUX PC ajoute des restrictions matérielles (scripts < 100 lignes, pas de graphiques, token plafonné à 2000) pour les environnements limités.
 
-### 8.3 Pourquoi auto-calibration ?
+### §8.3 Pourquoi auto-calibration ?
 
 L'estimation en tokens est intrinsèquement imprécise. L'auto-calibration E15 permet d'améliorer continuellement les estimations en comparant le prévu au réel, avec des seuils d'action clairs (20-35% ajustement paramétrage fin, >35% recalibration complète). L'historique de calibration (voir §9.2) trace les écarts successifs pour identifier les biais systématiques.
 
-### 8.4 Pourquoi Python uniquement ?
+### §8.4 Pourquoi Python uniquement ?
 
 La règle N3 (Python uniquement) garantit la portabilité cross-platform. Les scripts shell sont dépendants du système d'exploitation, tandis que Python est universellement disponible dans l'environnement de l'assistant. Cette contrainte simplifie aussi la maintenance et réduit les risques d'incompatibilité.
 
@@ -314,9 +314,9 @@ La règle N3 (Python uniquement) garantit la portabilité cross-platform. Les sc
 
 ## §9 — CONTENU IN EXTENSO DES FICHIERS RÉFÉRENCE
 
-Les 6 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/references/`. Voici leur contenu intégral.
+Les 5 fichiers référence suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/references/` (plus 1 fichier evals). Voici leur contenu intégral.
 
-### 9.1 `references/etapes-detaillees.md`
+### §9.1 `references/etapes-detaillees.md`
 
 ```markdown
 # Détail des 15 étapes gen-plan
@@ -580,9 +580,35 @@ Les 6 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/refe
 - Déclenchement éventuel de clone-chat
 
 **Critères** : [ ] Bilan produit, [ ] Calibration mise à jour si nécessaire, [ ] KNOWLEDGE.md enrichi si pertinent
+
+---
+
+## Portées étendues (E8, E14, E15)
+
+Les étapes E8, E14 et E15 incluent des portées héritées des versions antérieures du protocole :
+
+**E8 — Validation du plan** inclut aussi les vérifications de qualité pré-intégration :
+- [ ] Chaque fichier candidat à l'intégration est classifié : Skill / Écosystème / Utilitaire
+- [ ] Les fichiers Skill ont un YAML frontmatter valide (name, description, > 200 chars)
+- [ ] Les scripts Python compilent (pas de syntax error, imports valides)
+- [ ] Les fichiers Markdown sont structurés (titres, sections cohérentes, pas de contenu tronqué)
+- [ ] Les fichiers de configuration (JSON/YAML) sont valides
+- [ ] Les références croisées entre fichiers sont valides
+
+**E14 — Finalisation** inclut l'intégration écosystème :
+- [ ] Les fichiers Skill sont placés dans `{{SKILLS_ROOT}}<nom>/SKILL.md`
+- [ ] Les fichiers de référence vont dans `{{SKILLS_ROOT}}<nom>/references/`
+- [ ] Aucun skill existant n'est écrasé sans confirmation utilisateur
+- [ ] Le YAML frontmatter est conforme (SHARED §1.3)
+- [ ] L'inventaire des skills est mis à jour si nécessaire
+
+**E15 — Bilan** inclut l'auto-réapplication :
+- [ ] Si le SKILL.md de gen-plan a été modifié pendant l'exécution, les tâches restantes sont réévaluées
+- [ ] Les tâches affectées sont marquées `[REEVALUER]` avec la raison et les sections impactées
+- [ ] Chaque réévaluation est documentée dans le worklog
 ```
 
-### 9.2 `references/grille-token.md`
+### §9.2 `references/grille-token.md`
 
 ```markdown
 # Grille de calibration #token — gen-plan v3.6.0
@@ -635,7 +661,7 @@ Les 6 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/refe
 | 4 | 2026-07-29 | clone-chat v1.2.0 | 4400 | 4600 | +4.5% | Aucune (0-20%) |
 ```
 
-### 9.3 `references/classification-types.md`
+### §9.3 `references/classification-types.md`
 
 ```markdown
 # Classification des types de tâches — gen-plan E3
@@ -719,7 +745,7 @@ Les 6 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/refe
 | Mention Next.js/React | Toujours web dev | Type 3 |
 ```
 
-### 9.4 `references/profils-ressource.md`
+### §9.4 `references/profils-ressource.md`
 
 ```markdown
 # Profils ressource — gen-plan v3.6.0
@@ -787,7 +813,7 @@ Les 6 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/refe
 **Seuils** : #token plafond 2000, pas de graphiques.
 ```
 
-### 9.5 `references/guide-selection-agent-skill.md`
+### §9.5 `references/guide-selection-agent-skill.md`
 
 ```markdown
 # Guide de Sélection Agent/Skill — gen-plan E5/E7
@@ -839,27 +865,3 @@ Les 6 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/refe
 | Styling CSS | — | frontend-styling-expert | Agent seul |
 | Vérification correction | correct-work | general-purpose | BON |
 ```
-
-### 9.6 Portées des étapes E8, E14 et E15 (qualité, intégration, auto-réapplication)
-
-Les étapes E8, E14 et E15 incluent des portées héritées des versions antérieures du protocole :
-
-**E8 — Validation du plan** inclut aussi les vérifications de qualité pré-intégration :
-- [ ] Chaque fichier candidat à l'intégration est classifié : Skill / Écosystème / Utilitaire
-- [ ] Les fichiers Skill ont un YAML frontmatter valide (name, description, > 200 chars)
-- [ ] Les scripts Python compilent (pas de syntax error, imports valides)
-- [ ] Les fichiers Markdown sont structurés (titres, sections cohérentes, pas de contenu tronqué)
-- [ ] Les fichiers de configuration (JSON/YAML) sont valides
-- [ ] Les références croisées entre fichiers sont valides
-
-**E14 — Finalisation** inclut l'intégration écosystème :
-- [ ] Les fichiers Skill sont placés dans `{{SKILLS_ROOT}}<nom>/SKILL.md`
-- [ ] Les fichiers de référence vont dans `{{SKILLS_ROOT}}<nom>/references/`
-- [ ] Aucun skill existant n'est écrasé sans confirmation utilisateur
-- [ ] Le YAML frontmatter est conforme (SHARED §1.3)
-- [ ] L'inventaire des skills est mis à jour si nécessaire
-
-**E15 — Bilan** inclut l'auto-réapplication :
-- [ ] Si le SKILL.md de gen-plan a été modifié pendant l'exécution, les tâches restantes sont réévaluées
-- [ ] Les tâches affectées sont marquées `[REEVALUER]` avec la raison et les sections impactées
-- [ ] Chaque réévaluation est documentée dans le worklog

@@ -8,7 +8,7 @@
 
 ---
 
-## DÉCLENCHEURS
+## §A — DÉCLENCHEURS
 
 - `verifie ton travail`
 - `verifie tes résultats`
@@ -23,7 +23,7 @@ Options avancées (gen-plan >= v3.6.0) :
 - `correct-work(projet, kb_path=/chemin/KB)` — vérification avec scan des skills KB
 - `correct-work(cible, --kb-skill=<name>)` — forcer l'utilisation d'un skill KB spécifique
 
-## PRÉREQUIS
+## §B — PRÉREQUIS
 
 Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
 
@@ -36,11 +36,11 @@ Résumé des variables utiles (SHARED §1.1) :
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
-### 1.1 Description
+### §1.1 Description
 
 correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 3 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session.
 
-### 1.2 Les 3 modes
+### §1.2 Les 3 modes
 
 | Mode | Nom | Description | Cas d'usage |
 |------|-----|-------------|-------------|
@@ -48,7 +48,7 @@ correct-work est un skill de **vérification et correction** du travail réalis�
 | **CIBLE** | Ciblé | Vérification ciblée d'un skill ou fichier spécifique | Vérification d'un skill (ex: clone-chat) |
 | **DIRECT** | Rapide | Vérification directe sans plan préalable | Correction rapide d'un fichier |
 
-### 1.3 Les 5 étapes
+### §1.3 Les 5 étapes
 
 | Étape | Nom | Description |
 |-------|------|-------------|
@@ -58,7 +58,7 @@ correct-work est un skill de **vérification et correction** du travail réalis�
 | **4** | Vérification des interactions | Inspection des relations inter-skills, dépendances, interfaces |
 | **5** | Cohérence des raisonnements | Vérification de la logique globale, cohérence argumentaire, décisions |
 
-### 1.4 Intégration KB
+### §1.4 Intégration KB
 
 Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan :
 
@@ -71,13 +71,13 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 
-### 2.1 Stack technique
+### §2.1 Stack technique
 
 - **Langage** : Markdown (documentation), YAML (frontmatter)
 - **Environnement** : `{{SKILLS_ROOT}}correct-work/`
 - **Pas de dépendance externe** (sauf gen-plan pour Étape 1)
 
-### 2.2 Dépendances
+### §2.2 Dépendances
 
 | Dépendance | Version minimale | Utilisation |
 |------------|-----------------|-------------|
@@ -85,14 +85,14 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 | clone-chat | >= v1.2.0 | Mode CIBLE (§3.5 Context Drift) |
 | fullstack-dev | any | Vérification de projets web |
 
-### 2.3 Structure des fichiers
+### §2.3 Structure des fichiers
 
 ```
 {{SKILLS_ROOT}}correct-work/
 └── SKILL.md                          # Skill principal (~481 lignes)
 ```
 
-### 2.4 Format du rapport de vérification
+### §2.4 Format du rapport de vérification
 
 ```markdown
 # Rapport correct-work — [Nom du projet/skill]
@@ -129,12 +129,12 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 - **Verdict** : PASS | PASS AVEC RÉSERVES | FAIL
 ```
 
-### 2.5 Matrice de décision
+### §2.5 Matrice de décision
 
 - **Matrice statique** : voir `PROMPT-MAITRE-SHARED.md §4` (référence unique)
 - **Matrice dynamique** (si `{{KB_ENABLED}}`) : scan `{{KB_PATH}}` pour vérifier présence, version, compatibilité de chaque skill référencé.
 
-### 2.6 Logging worklog
+### §2.6 Logging worklog
 
 Voir SHARED §1.4 pour le format. Spécifiquement pour correct-work :
 
@@ -156,7 +156,7 @@ Stage Summary:
 - Verdict : [PASS|PASS AVEC RÉSERVES|FAIL]
 ```
 
-### 2.7 Critères de sévérité
+### §2.7 Critères de sévérité
 
 | Sévérité | Label | Description | Action requise |
 |----------|-------|-------------|----------------|
@@ -199,7 +199,7 @@ tags:
 description: >
   Skill de vérification et correction du travail réalisé.
   5 étapes, 3 modes (PROJET/CIBLE/DIRECT),
-  intégration gen-plan v3.3.0+ (Registre KB, kb_path, --kb-skill),
+  intégration gen-plan v3.6.0+ (Registre KB, kb_path, --kb-skill),
   matrice de décision agent/skill (statique + dynamique KB).
 dependencies:
   - skill: gen-plan
@@ -218,13 +218,13 @@ dependencies:
 
 ## §5 — INSTRUCTIONS D'INSTALLATION
 
-### 5.1 Créer la structure
+### §5.1 Créer la structure
 
 ```bash
 mkdir -p {{SKILLS_ROOT}}correct-work
 ```
 
-### 5.2 Créer le fichier SKILL.md
+### §5.2 Créer le fichier SKILL.md
 
 Le fichier `SKILL.md` (~481 lignes) doit contenir :
 
@@ -233,8 +233,8 @@ Le fichier `SKILL.md` (~481 lignes) doit contenir :
 3. **§1 — Spécification fonctionnelle** : 3 modes, 5 étapes, intégration KB
 4. **§2 — Spécification technique** : Stack, dépendances, rapport (§2.4), matrice dynamique (§2.5), logging (§2.6), sévérité (§2.7)
 5. **§3 — Relations** : Voir SHARED §3 (résumé des relations directes)
-6. **§4 — Grille de vérification** : Checklists par mode (voir §8)
-7. **§5 — Conventions** : Nommage (SHARED §1.2), format rapport, verdicts (§7)
+6. **§4 — Grille de vérification** : Checklists par mode et opérationnelles (voir §10)
+7. **§5 — Conventions** : Nommage (SHARED §1.2), format rapport, verdicts (§10.5)
 
 ---
 
@@ -275,7 +275,7 @@ Le fichier `SKILL.md` (~481 lignes) doit contenir :
 
 ## §8 — HISTORIQUE DES CORRECTIONS (clone-chat)
 
-### Round 1 (Session 17 → clone-chat v1.1.0)
+### §8.1 Round 1 (Session 17 → clone-chat v1.1.0)
 
 | # | Problème | Sévérité | Correction |
 |---|----------|----------|------------|
@@ -285,7 +285,7 @@ Le fichier `SKILL.md` (~481 lignes) doit contenir :
 
 **Bilan** : 8 corrections.
 
-### Round 2 (Sessions 21-22)
+### §8.2 Round 2 (Sessions 21-22)
 
 | # | Problème | Sévérité | Correction |
 |---|----------|----------|------------|
@@ -296,7 +296,7 @@ Le fichier `SKILL.md` (~481 lignes) doit contenir :
 
 **Bilan** : 9 problèmes, 7 corrections.
 
-### Round 3 (Session 23 → stabilisation)
+### §8.3 Round 3 (Session 23 → stabilisation)
 
 | # | Problème | Sévérité | Correction |
 |---|----------|----------|------------|
@@ -309,29 +309,29 @@ Le fichier `SKILL.md` (~481 lignes) doit contenir :
 
 ## §9 — NOTES DE CONCEPTION
 
-### 9.1 Pourquoi 3 modes ?
+### §9.1 Pourquoi 3 modes ?
 
 Les 3 modes couvrent 3 niveaux de vérification : PROJET (lourd mais exhaustif, utilise le prompt maître comme référence), CIBLE (équilibre précision/effort, vérifie un skill précis), DIRECT (léger mais immédiat, correction rapide d'un fichier isolé). Le mode par défaut est CIBLE si l'utilisateur ne précise pas.
 
-### 9.2 Pourquoi 5 étapes ?
+### §9.2 Pourquoi 5 étapes ?
 
 Progression logique du plus évident au plus subtil : plan (via gen-plan) → contenu factuel → structure formelle → interactions entre composants → cohérence globale des raisonnements. Cette séquence garantit que les erreurs grossières (S1) sont détectées avant les problèmes subtils (S3-S4).
 
-### 9.3 Pourquoi l'intégration KB ?
+### §9.3 Pourquoi l'intégration KB ?
 
 Sans KB, correct-work vérifie uniquement la matrice statique (SHARED §4). Avec KB, il découvre dynamiquement les skills disponibles, leurs versions réelles et leurs dépendances. La matrice dynamique est construite en temps réel via le Protocole de Découverte (SHARED §2.3), offrant une vérification plus précise et à jour.
 
-### 9.4 Pourquoi la double matrice ?
+### §9.4 Pourquoi la double matrice ?
 
 La matrice statique garantit un fonctionnement minimum sans KB (fallback). La matrice dynamique enrichit la vérification quand KB est disponible. Ce pattern « statique + dynamique » assure la résilience : si KNOWLEDGE.md est absent ou corrompu, correct-work peut encore fonctionner avec la matrice intégrée.
 
 ---
 
-## §10 — CHECKLISTS POUR LE SKILL.MD
+## §10 — CHECKLISTS (SKILL.md)
 
-Ces checklists doivent être intégrées dans la section §4 du SKILL.md.
+Ces checklists doivent être intégrées dans la section §4 du SKILL.md. Elles sont divisées en deux parties : les checklists par mode de vérification (§10.1-§10.5) et les checklists opérationnelles détaillées par étape et type de projet (§10.6-§10.10).
 
-### 10.1 Mode PROJET
+### §10.1 Mode PROJET
 
 ```markdown
 ### Pré-vérification
@@ -373,7 +373,7 @@ Ces checklists doivent être intégrées dans la section §4 du SKILL.md.
 - [ ] Worklog mis à jour
 ```
 
-### 10.2 Mode CIBLE
+### §10.2 Mode CIBLE
 
 ```markdown
 ### Pré-vérification
@@ -403,7 +403,7 @@ Ces checklists doivent être intégrées dans la section §4 du SKILL.md.
 - [ ] Verdict assigné
 ```
 
-### 10.3 Mode DIRECT
+### §10.3 Mode DIRECT
 
 ```markdown
 ### Inspection
@@ -416,7 +416,7 @@ Ces checklists doivent être intégrées dans la section §4 du SKILL.md.
 - [ ] Worklog mis à jour (optionnel)
 ```
 
-### 10.4 Sélection du mode
+### §10.4 Sélection du mode
 
 | Condition | Mode |
 |-----------|-------|
@@ -427,7 +427,7 @@ Ces checklists doivent être intégrées dans la section §4 du SKILL.md.
 | Vérification complète + historique | PROJET |
 | Le skill a déjà été vérifié (round 2+) | CIBLE |
 
-### 10.5 Verdicts
+### §10.5 Verdicts
 
 - **PASS** : 0 problème S1-S2
 - **PASS AVEC RÉSERVES** : 0 S1 mais >= 1 S2, ou >= 2 S3
@@ -435,11 +435,11 @@ Ces checklists doivent être intégrées dans la section §4 du SKILL.md.
 
 ---
 
-## §11 — CHECKLISTS OPÉRATIONNELLES (contenu SKILL.md)
+## §10 — CHECKLISTS (SKILL.md) (suite)
 
 Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elles sont adaptées au type de projet vérifié.
 
-### 11.1 Adaptation au type de projet
+### §10.6 Adaptation au type de projet
 
 | Type de projet | Étape 2 focus | Étape 3 focus | Étape 4 focus |
 |---------------|---------------|---------------|---------------|
@@ -449,17 +449,17 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 | **Document/PDF** | Contenu, mise en page, données | Cohérence sections, refs croisées | Références entre livrables |
 | **Script/automatisation** | I/O, paramètres, sorties | Chemins en dur, gestion erreurs | Dépendances externes |
 
-### 11.2 Étape 2 — Erreurs et omissions (détail)
+### §10.7 Étape 2 — Erreurs et omissions (détail)
 
 1. **Relire les spécifications initiales** de l'utilisateur et vérifier que chaque exigence a été satisfaite. Si une exigence a été oubliée, la réaliser maintenant.
 2. **Vérifier les données factuelles** : noms, chemins, numéros de version, tailles de fichiers, counts — tout chiffre ou valeur assertée doit être vérifié contre la source réelle.
 3. **Vérifier la cohérence linguistique** : la langue utilisée doit être identique à celle de la demande initiale. Pas de mélange incohérent.
 4. **Vérifier les fichiers de sortie** : chaque fichier promis existe-t-il ? Est-il lisible ? Pas de fichier vide ou corrompu.
 5. **Vérifier les dépendances** : les imports, les chemins de skill, les références croisées entre fichiers sont-ils corrects ?
-6. **Adapter la vérification au projet** : les erreurs sont évaluées relativement au type de projet (cf. §11.1).
+6. **Adapter la vérification au projet** : les erreurs sont évaluées relativement au type de projet (cf. §10.6).
 7. **Corriger** chaque erreur ou omission identifiée.
 
-### 11.3 Étape 3 — Structure et conflits (détail)
+### §10.8 Étape 3 — Structure et conflits (détail)
 
 1. **Imports circulaires** (code) : vérifier qu'aucun module n'importe un autre qui l'importe.
 2. **Conflits de noms** : deux fonctions/classes/variables avec le même nom dans des scopes qui pourraient interférer.
@@ -471,7 +471,7 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 8. **Matrice de cohérence logique** : si des conditions booléennes complexes sont identifiées (XOR, exclusions mutuelles, guard clauses multiples), lister toutes les combinaisons possibles, vérifier que chaque combinaison est couverte par exactement une branche, détecter les branches mortes et les conflits.
 9. **Corriger** chaque problème de structure ou conflit identifié.
 
-### 11.4 Étape 4 — Interactions (détail)
+### §10.9 Étape 4 — Interactions (détail)
 
 1. **API frontend-backend** : chaque endpoint appelé existe-t-il ? Paramètres correspondants ? Codes d'erreur gérés ?
 2. **Props et communication inter-composants** : types, noms, optionnalité, valeurs par défaut cohérents ?
@@ -481,7 +481,7 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 6. **Références croisées entre livrables** : numéros de section corrects ? Données cohérentes ? Liens valides ?
 7. **Corriger** chaque problème d'interaction identifié.
 
-### 11.5 Étape 5 — Cohérence des raisonnements (détail)
+### §10.10 Étape 5 — Cohérence des raisonnements (détail)
 
 1. **Cohérence logique** : les étapes de raisonnement s'enchaînent-elles logiquement ? Pas de saut non justifié.
 2. **Cohérence numérique** : les chiffres s'additionnent-ils ? Pourcentages cohérents avec les valeurs absolues ?
