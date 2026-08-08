@@ -8,7 +8,7 @@
 
 ## 1. Vue d'ensemble
 
-L'écosystème Knowledge est un ensemble de **77 skills** conçus pour un assistant IA. Chaque skill est auto-contenu dans son répertoire sous `skills/`, dispose d'un fichier `SKILL.md` principal, et peut inclure des références, scripts, évaluations et modèles.
+L'écosystème Knowledge est un ensemble de **77 skills** conçus pour un assistant IA (5 skills écosystème + 72 skills métier). Chaque skill est auto-contenu dans son répertoire sous `skills/`, dispose d'un fichier `SKILL.md` principal, et peut inclure des références, scripts, évaluations et modèles.
 
 Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : ils sont utilisés dans toutes les discussions pour planifier les tâches et vérifier/corriger le travail produit. Leur cycle d'interaction (gen-plan produit un plan, correct-work le valide) forme le moteur opérationnel de l'écosystème.
 
@@ -17,38 +17,38 @@ Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : i
 ## 2. Architecture des répertoires
 
 ```
-skills/
-├── KNOWLEDGE.md                          ← Registre central (source de vérité)
-├── _prompts-maitres/                     ← Specs d'installation des skills écosystème
-│   ├── PROMPT-MAITRE-SHARED.md           ← Socle commun (conventions, KB, matrice)
-│   ├── PROMPT-MAITRE-GEN-PLAN-v3.6.0.md  ← Spec complète gen-plan
-│   ├── PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md ← Spec complète correct-work
-│   └── README.md
-├── gen-plan/                             ← Skill écosystème
-│   ├── SKILL.md                          (172 lignes, version compacte)
-│   ├── references/                       (5 fichiers)
-│   └── evals/evals.json
-├── correct-work/                         ← Skill écosystème
-│   └── SKILL.md                          (128 lignes, version compacte)
-├── clone-chat/                           ← Skill écosystème
-│   ├── SKILL.md
-│   └── references/
-├── skills-inventory/                     ← Skill écosystème
-│   ├── SKILL.md
-│   ├── evals/
-│   └── scripts/
-├── skill-creator/                        ← Skill écosystème
-│   ├── SKILL.md
-│   ├── references/
-│   ├── scripts/
-│   └── agents/
-├── [72+ autres skills]/                  ← Skills métier (docx, pdf, xlsx, pptx, charts, …)
-│   ├── SKILL.md
-│   └── [references/, scripts/, evals/, …]
-
-download/                                ← Copies de référence des prompts maîtres
-scripts/
-├── verify-cross.py                       ← Vérification croisée (55 checks, 5 axes)
+my-project/
+├── skills/                              ← Racine de l'écosystème (77 skills)
+│   ├── KNOWLEDGE.md                    ← Registre central (source de vérité)
+│   ├── _prompts-maitres/               ← Specs d'installation des skills écosystème
+│   │   ├── PROMPT-MAITRE-SHARED.md     ← Socle commun (conventions, KB, matrice)
+│   │   ├── PROMPT-MAITRE-GEN-PLAN-v3.6.0.md
+│   │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md
+│   │   └── README.md
+│   ├── gen-plan/                       ← Skill écosystème
+│   │   ├── SKILL.md                    (172 lignes, version compacte)
+│   │   ├── references/                 (5 fichiers)
+│   │   └── evals/evals.json            (5 evals)
+│   ├── correct-work/                   ← Skill écosystème
+│   │   └── SKILL.md                    (128 lignes, version compacte)
+│   ├── clone-chat/                     ← Skill écosystème
+│   │   ├── SKILL.md
+│   │   └── references/                 (1 fichier)
+│   ├── skills-inventory/               ← Skill écosystème
+│   │   ├── SKILL.md
+│   │   ├── evals/                      (2 fichiers)
+│   │   └── scripts/
+│   ├── skill-creator/                  ← Skill écosystème
+│   │   ├── SKILL.md
+│   │   ├── references/
+│   │   ├── scripts/
+│   │   └── agents/
+│   └── [72 autres skills]/             ← Skills métier (docx, pdf, xlsx, pptx, charts, …)
+│       ├── SKILL.md
+│       └── [references/, scripts/, evals/, …]
+├── download/                            ← Copies de référence des prompts maîtres
+└── scripts/
+    └── verify-cross.py                 ← Vérification croisée (55 checks, 5 axes)
 ```
 
 ---
@@ -291,8 +291,8 @@ Le script valide **5 axes** (55 checks) :
 | gen-plan | v3.6.0 | Planification de tâches (4 modes, 15 étapes) | SKILL.md (172 lignes), 5 références, 5 evals |
 | correct-work | v2.3.0 | Vérification et correction (3 modes, S1-S4) | SKILL.md (128 lignes) |
 | clone-chat | v1.2.0 | Clonage de discussion en Markdown | SKILL.md, 1 référence |
-| skills-inventory | v1.0.0 | Scan et inventaire des skills | SKILL.md, evals, scripts |
-| skill-creator | v1.0.0 | Création et gestion de skills | SKILL.md, références, scripts, agents |
+| skills-inventory | v1.0.0 | Scan et inventaire des skills | SKILL.md, 2 evals, scripts |
+| skill-creator | v1.0.0 | Création et gestion de skills | SKILL.md, 1 référence, 7 scripts, 3 agents |
 
 **Registre KB** : `skills/KNOWLEDGE.md` — 5 skills écosystème, 10 relations bidirectionnelles
 
