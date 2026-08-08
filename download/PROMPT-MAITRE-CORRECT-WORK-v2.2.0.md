@@ -1,17 +1,21 @@
 # PROMPT MAÎTRE — Installation du skill correct-work v2.2.0
 
-> **Version du prompt** : 1.0.0
+> **Version du prompt** : 2.0.0 (refactored)
 > **Skill cible** : correct-work v2.2.0
 > **Date** : 2026-08-09
 > **Source** : Écosystème Skills DJ — Clone de discussion
+> **Dépend** : `PROMPT-MAITRE-SHARED.md` §0-§4 (lire en premier)
 
 ---
 
-## §0 — CONTEXTE
+## PRÉREQUIS
 
-Tu es un assistant IA (Z AI / GLM) dans l'environnement `my-project/`. L'utilisateur souhaite installer le skill **correct-work v2.2.0**, un skill de vérification et correction du travail réalisé. Ce skill fait partie d'un écosystème de 72+ skills. Tu dois créer l'intégralité des fichiers du skill à partir de ce prompt maître.
+Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
 
-**Règle zéro** : Ne pas utiliser le verbe « conserver » — tout est à créer.
+Résumé des variables utiles (défauts SHARED §1) :
+- `{{SKILLS_ROOT}}` = `skills/`
+- `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
+- `{{KB_ENABLED}}` = `true`
 
 ---
 
@@ -25,28 +29,28 @@ correct-work est un skill de **vérification et correction** du travail réalis�
 
 | Mode | Nom | Description | Cas d'usage |
 |------|-----|-------------|-------------|
-| **PROJET** | Prompt-maître | Vérification complète d'un projet via son prompt maître. Parcourt toutes les sections du prompt et vérifie la conformité du livrable. | Validation finale d'un projet complexe |
-| **CIBLE** | Ciblé | Vérification ciblée d'un skill ou fichier spécifique. Se concentre sur un périmètre défini. | Vérification d'un skill particulier (ex: clone-chat) |
-| **DIRECT** | Rapide | Vérification directe sans plan préalable. Inspection immédiate d'un artefact. | Correction rapide d'un fichier |
+| **PROJET** | Prompt-maître | Vérification complète d'un projet via son prompt maître | Validation finale d'un projet complexe |
+| **CIBLE** | Ciblé | Vérification ciblée d'un skill ou fichier spécifique | Vérification d'un skill (ex: clone-chat) |
+| **DIRECT** | Rapide | Vérification directe sans plan préalable | Correction rapide d'un fichier |
 
 ### 1.3 Les 5 étapes
 
-| Étape | Nom | Description | Détail |
-|-------|------|-------------|--------|
-| **1** | Plan d'actions via gen-plan | Création du plan de vérification en utilisant gen-plan (Étape 1) | Identification des points à vérifier, priorisation, estimation |
-| **2** | Erreurs et omissions | Détection des erreurs factuelles, des omissions de contenu, des incohérences logiques | Comparaison livrable vs spécifications, checklist de complétude |
-| **3** | Structure et conflits | Vérification de la structure documentaire, des conflits entre sections, de la cohérence du format | Conventions de nommage, structure de fichiers, conflits cross-réferences |
-| **4** | Vérification des interactions | Inspection des relations entre skills, des dépendances, des interfaces | Appels inter-skills, paramètres partagés, compatibilité versions |
-| **5** | Cohérence des raisonnements | Vérification de la logique globale, de la cohérence argumentaire, des décisions | Chaîne de raisonnement, cohérence temporelle, alignement décisions/actions |
+| Étape | Nom | Description |
+|-------|------|-------------|
+| **1** | Plan d'actions via gen-plan | Création du plan de vérification via gen-plan (Étape 1) |
+| **2** | Erreurs et omissions | Détection des erreurs factuelles, omissions, incohérences logiques |
+| **3** | Structure et conflits | Vérification de la structure, conflits entre sections, cohérence du format |
+| **4** | Vérification des interactions | Inspection des relations inter-skills, dépendances, interfaces |
+| **5** | Cohérence des raisonnements | Vérification de la logique globale, cohérence argumentaire, décisions |
 
-### 1.4 Intégration gen-plan v3.3.0+ (Registre KB)
+### 1.4 Intégration KB
 
-Depuis v2.2.0, correct-work intègre le **Registre KB** de gen-plan :
+Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan :
 
-- **`kb_path`** : chemin vers `skills/KNOWLEDGE.md` pour consulter le registre des skills
-- **`--kb-skill`** : flag pour cibler un skill spécifique dans le registre KB
-- **Matrice de décision agent × skill** : matrice statique (codée dans le skill) + matrice dynamique (construite via KB)
-- **Protocole de Découverte** : scan du registre pour vérifier la compatibilité des skills référencés
+- **`kb_path`** : chemin vers `{{KB_PATH}}`
+- **`--kb-skill`** : flag pour cibler un skill spécifique
+- **Matrice statique** : voir SHARED §4.2
+- **Matrice dynamique** : construite à l'exécution en scannant `KNOWLEDGE.md` (SHARED §3.3)
 
 ---
 
@@ -55,8 +59,8 @@ Depuis v2.2.0, correct-work intègre le **Registre KB** de gen-plan :
 ### 2.1 Stack technique
 
 - **Langage** : Markdown (documentation), YAML (frontmatter)
-- **Environnement** : `my-project/skills/correct-work/`
-- **Pas de dépendance externe** (sauf gen-plan optionnel pour Étape 1)
+- **Environnement** : `{{SKILLS_ROOT}}correct-work/`
+- **Pas de dépendance externe** (sauf gen-plan pour Étape 1)
 
 ### 2.2 Dépendances
 
@@ -69,13 +73,11 @@ Depuis v2.2.0, correct-work intègre le **Registre KB** de gen-plan :
 ### 2.3 Structure des fichiers
 
 ```
-skills/correct-work/
-└── SKILL.md                          # Skill principal (24 Ko, ~481 lignes)
+{{SKILLS_ROOT}}correct-work/
+└── SKILL.md                          # Skill principal (~481 lignes)
 ```
 
-### 2.4 Rapport de vérification
-
-Le rapport produit par correct-work suit cette structure :
+### 2.4 Format du rapport de vérification
 
 ```markdown
 # Rapport correct-work — [Nom du projet/skill]
@@ -112,29 +114,14 @@ Le rapport produit par correct-work suit cette structure :
 - **Verdict** : PASS | PASS AVEC RÉSERVES | FAIL
 ```
 
-### 2.5 Matrice de décision agent × skill
+### 2.5 Matrice de décision
 
-#### Matrice statique (codée dans le skill)
-
-| Agent/Task Type | gen-plan | correct-work | clone-chat | skills-inventory | fullstack-dev |
-|-----------------|----------|--------------|------------|------------------|---------------|
-| Planification | ✅ orchestre | ✅ valide | — | ✅ consulte | — |
-| Création document | ✅ E3 route | ✅ vérifie | — | — | — |
-| Web dev | ✅ E3 route | ✅ vérifie | — | — | ✅ exécute |
-| Clonage discussion | ✅ E1-E7 | ✅ Mode CIBLE | ✅ exécute | — | — |
-| Data processing | ✅ E3 route | ✅ vérifie | — | — | — |
-
-#### Matrice dynamique (via KB)
-
-Construite à l'exécution en scannant `KNOWLEDGE.md` :
-- Pour chaque skill référencé, vérifier sa présence dans le registre
-- Vérifier la compatibilité de version
-- Détecter les skills manquants
-- Signaler les conflits de dépendances
+- **Matrice statique** : voir `PROMPT-MAITRE-SHARED.md §4.2` (référence unique)
+- **Matrice dynamique** (si `{{KB_ENABLED}}`) : scan `{{KB_PATH}}` pour vérifier présence, version, compatibilité de chaque skill référencé.
 
 ### 2.6 Logging worklog
 
-Chaque exécution de correct-work génère une entrée dans le worklog :
+Voir SHARED §2.6 pour le format. Spécifiquement pour correct-work :
 
 ```markdown
 ---
@@ -154,38 +141,33 @@ Stage Summary:
 - Verdict : [PASS|PASS AVEC RÉSERVES|FAIL]
 ```
 
+### 2.7 Critères de sévérité
+
+| Sévérité | Label | Description | Action requise |
+|----------|-------|-------------|----------------|
+| **S1** | Critique | Empêche le fonctionnement du skill | Correction immédiate obligatoire |
+| **S2** | Majeur | Altère significativement le comportement | Correction dans cette session |
+| **S3** | Mineur | Impact limité, cosmétique | Correction souhaitable, non bloquante |
+| **S4** | Suggestion | Amélioration possible, pas de problème | Optionnel, pour info |
+
 ---
 
-## §3 — RELATIONS AVEC LES AUTRES SKILLS
+## §3 — RELATIONS
 
-### 3.1 gen-plan
-- **Relation** : correct-work utilise gen-plan à l'**Étape 1** pour créer le plan de vérification
-- **Sens** : gen-plan orchestre la vérification, correct-work exécute
-- **Version minimale** : gen-plan >= v3.1.0
-- **Registre KB** : Depuis gen-plan v3.3.0, correct-work utilise `kb_path` et `--kb-skill`
+Voir `PROMPT-MAITRE-SHARED.md §4` pour le registre complet des relations inter-skills.
 
-### 3.2 clone-chat
-- **Relation** : correct-work opère en **Mode CIBLE** sur clone-chat
-- **Sens** : Vérification spécifique du skill clone-chat, notamment le §3.5 Context Drift
-- **Version minimale** : clone-chat >= v1.2.0
-- **Historique** : 3 rounds de correction ont été effectués (sessions 17, 21-23) :
-  - Round 1 (session 17) : 8 corrections
-  - Round 2 (session 21-22) : 9 problèmes, 7 corrections
-  - Round 3 (session 23) : 2 problèmes, 2 corrections (stabilisation)
+Relations directes de correct-work (extrait de SHARED §4.1) :
 
-### 3.3 fullstack-dev
-- **Relation** : correct-work vérifie les projets web
-- **Sens** : Validation de la structure, des dépendances, des interfaces
-
-### 3.4 Skills KB
-- **Relation** : correct-work consulte le registre des skills
-- **Sens** : Vérification de la présence et compatibilité des skills référencés
+| Avec | Nature | Détails |
+|------|--------|--------|
+| gen-plan | Utilisation à Étape 1 | Création du plan de vérification, version >= v3.1.0 |
+| clone-chat | Mode CIBLE | Vérification spécifique, §3.5 Context Drift, version >= v1.2.0 |
+| fullstack-dev | Vérification | Validation de la structure et dépendances projets web |
+| Skills KB | Consultation | Vérification présence et compatibilité des skills référencés |
 
 ---
 
 ## §4 — YAML FRONTMATTER
-
-Le fichier `SKILL.md` doit commencer par ce YAML frontmatter :
 
 ```yaml
 ---
@@ -221,101 +203,50 @@ dependencies:
 
 ## §5 — INSTRUCTIONS D'INSTALLATION
 
-### 5.1 Créer la structure de répertoires
+### 5.1 Créer la structure
 
 ```bash
-mkdir -p skills/correct-work
+mkdir -p {{SKILLS_ROOT}}correct-work
 ```
 
 ### 5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (environ 24 Ko, ~481 lignes) doit contenir :
+Le fichier `SKILL.md` (~481 lignes) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
-2. **§0 — Règle zéro** : Tout est à créer, pas de « conserver »
+2. **§0 — Règle zéro** (voir SHARED §0)
 3. **§1 — Spécification fonctionnelle** : 3 modes, 5 étapes, intégration KB
-4. **§2 — Spécification technique** : Stack, dépendances, rapport, matrices, logging
-5. **§3 — Relations** : gen-plan, clone-chat, fullstack-dev, Skills KB
-6. **§4 — Grille de vérification** : Checklist par mode et par étape
-7. **§5 — Conventions** : Nommage, format rapport, critères de sévérité
+4. **§2 — Spécification technique** : Stack, dépendances, rapport (§2.4), matrice dynamique (§2.5), logging (§2.6), sévérité (§2.7)
+5. **§3 — Relations** : Voir SHARED §4 (résumé des relations directes)
+6. **§4 — Grille de vérification** : Checklists par mode (voir §7)
+7. **§5 — Conventions** : Nommage (SHARED §2.1), format rapport, verdicts (§6)
 
-### 5.3 Contenu détaillé du SKILL.md
+### 5.3 Mettre à jour KNOWLEDGE.md et cross-references
 
-#### Section « Grille de vérification par mode »
-
-**Mode PROJET (prompt-maître)** :
-- Lire le prompt maître complet
-- Pour chaque section du prompt, vérifier la conformité du livrable
-- Comparer les spécifications vs la réalisation
-- Produire un rapport complet 5 étapes
-
-**Mode CIBLE (ciblé)** :
-- Identifier le skill/fichier cible
-- Charger les spécifications du skill (via KB si disponible)
-- Vérifier la structure, le contenu, les relations
-- Appliquer les corrections avec justification
-- Cas d'usage typique : vérification de clone-chat (§3.5 Context Drift)
-
-**Mode DIRECT (rapide)** :
-- Inspecter directement l'artefact cible
-- Identifier les problèmes évidents
-- Appliquer les corrections immédiates
-- Pas de plan préalable, pas de rapport structuré
-
-#### Section « Critères de sévérité »
-
-| Sévérité | Label | Description | Action requise |
-|----------|-------|-------------|----------------|
-| **S1** | Critique | Empêche le fonctionnement du skill | Correction immédiate obligatoire |
-| **S2** | Majeur | Altère significativement le comportement | Correction dans cette session |
-| **S3** | Mineur | Impact limité, cosmétique | Correction souhaitable, non bloquante |
-| **S4** | Suggestion | Amélioration possible, pas de problème | Optionnel, pour info |
-
-### 5.4 Mettre à jour KNOWLEDGE.md
-
-Ajouter l'entrée correct-work dans le registre des skills (`skills/KNOWLEDGE.md`) :
-
-```markdown
-## correct-work
-- **Version** : 2.2.0
-- **Catégorie** : ecosystem
-- **Fichier** : `skills/correct-work/SKILL.md`
-- **Description** : Vérification et correction, 5 étapes, 3 modes (PROJET/CIBLE/DIRECT), intégration gen-plan KB
-- **Relations** : gen-plan (Étape 1), clone-chat (Mode CIBLE, §3.5), fullstack-dev (projets web)
-```
-
-### 5.5 Mettre à jour les cross-references
-
-Mettre à jour les skills suivants pour référencer correct-work :
-
-- **gen-plan** : Mentionner « correct-work utilisé à l'Étape 1 pour validation du plan »
-- **clone-chat** : Mentionner « Vérifié par correct-work en Mode CIBLE (3 rounds, sessions 17, 21-23) »
+Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de cross-references).
 
 ---
 
 ## §6 — VÉRIFICATION POST-INSTALLATION
 
-Après installation, vérifier :
-
 | # | Check | Critère | Résultat attendu |
 |---|-------|---------|------------------|
-| 1 | Fichier SKILL.md existe | `skills/correct-work/SKILL.md` | File exists |
-| 2 | Taille SKILL.md | ~24 Ko, ~481 lignes | Within range |
+| 1 | SKILL.md existe | `{{SKILLS_ROOT}}correct-work/SKILL.md` | File exists |
+| 2 | Taille SKILL.md | ~481 lignes | Within range |
 | 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
 | 4 | 3 modes documentés | PROJET, CIBLE, DIRECT | All present |
 | 5 | 5 étapes documentées | E1-E5 | All present |
-| 6 | Intégration KB | Mention kb_path, --kb-skill, Registre KB | Present |
-| 7 | Matrice statique | Tableau agent × skill | Present |
-| 8 | Matrice dynamique KB | Description du scan KNOWLEDGE.md | Present |
-| 9 | Critères de sévérité | S1-S4 documentés | All present |
+| 6 | Intégration KB | Mention kb_path, --kb-skill | Present |
+| 7 | Matrice statique | Voir SHARED §4.2 | Referenced |
+| 8 | Matrice dynamique KB | Description du scan | Present |
+| 9 | Critères de sévérité | S1-S4 | All present |
 | 10 | Format rapport | Structure 5 sections | Present |
-| 11 | Cross-reference gen-plan | Mention Étape 1, version >=3.1.0 | Present |
-| 12 | Cross-reference clone-chat | Mention Mode CIBLE, §3.5 | Present |
-| 13 | KNOWLEDGE.md mis à jour | Entrée correct-work présente | Present |
-| 14 | Logging worklog | Format d'entrée worklog documenté | Present |
-| 15 | Dépendance gen-plan | >= v3.1.0 dans frontmatter | Correct |
-| 16 | Dépendance clone-chat | >= v1.2.0 dans frontmatter | Correct |
-| 17 | Compatibilité écosystème | 17/17 checks PASS | All PASS |
+| 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.1.0 | Present |
+| 12 | Cross-ref clone-chat | Mention Mode CIBLE, §3.5 | Present |
+| 13 | KNOWLEDGE.md | Entrée correct-work (SHARED §3.2) | Present |
+| 14 | Logging worklog | Format documenté | Present |
+| 15 | Dépendances frontmatter | gen-plan >=3.1.0, clone-chat >=1.2.0 | Correct |
+| 16 | Compatibilité écosystème | 16/16 checks PASS | All PASS |
 
 ---
 
@@ -326,43 +257,41 @@ Après installation, vérifier :
 | v1.0.0 | 2026-07-18 | Version initiale, vérification basique |
 | v2.0.0 | 2026-07-29 | Ajout Mode CIBLE, amélioration du rapport |
 | v2.1.0 | 2026-07-29 | Intégration gen-plan pour Étape 1 |
-| v2.2.0 | 2026-07-29 | Ajout Registre KB (gen-plan >=3.3.0), kb_path, --kb-skill, matrice dynamique, 3 rounds de correction clone-chat |
+| v2.2.0 | 2026-07-29 | Registre KB (gen-plan >=3.3.0), kb_path, --kb-skill, matrice dynamique |
 
 ---
 
 ## §8 — HISTORIQUE DES CORRECTIONS (clone-chat)
 
-Ce skill a été utilisé intensivement pour vérifier clone-chat. Voici l'historique des corrections appliquées :
-
-### Round 1 (Session 17, correct-work v1.0.0 → clone-chat v1.1.0)
+### Round 1 (Session 17 → clone-chat v1.1.0)
 
 | # | Problème | Sévérité | Correction |
 |---|----------|----------|------------|
-| 1 | Seuil in extenso < 500 lignes trop haut | S2 | Réduit à < 200 lignes (recommandation correct-work) |
-| 2 | Chemins absolus dans §3.3 | S1 | Remplacés par chemins relatifs (convention clone-chat) |
-| 3-8 | Autres corrections structurelles | S2-S3 | Alignement SKILL.md ↔ template |
+| 1 | Seuil in extenso < 500 lignes trop haut | S2 | Réduit à < 200 lignes |
+| 2 | Chemins absolus dans §3.3 | S1 | Remplacés par chemins relatifs |
+| 3-8 | Corrections structurelles | S2-S3 | Alignement SKILL.md ↔ template |
 
-**Bilan** : 8 corrections, clone-chat v1.0.0 → v1.1.0
+**Bilan** : 8 corrections.
 
-### Round 2 (Sessions 21-22, correct-work v2.2.0)
+### Round 2 (Sessions 21-22)
 
 | # | Problème | Sévérité | Correction |
 |---|----------|----------|------------|
-| 1 | Template §5 ne mentionnait pas §0 | S2 | Ajout référence §0 dans template §5 |
-| 2 | Règle « drift vide » absente | S2 | Ajout : « Aucune évolution détectée » certifie l'analyse |
-| 3 | Décision #12 absente | S3 | Ajout décision « Intégrer correct-work v2.2.0 » |
+| 1 | Template §5 ne mentionnait pas §0 | S2 | Ajout référence §0 |
+| 2 | Règle « drift vide » absente | S2 | Ajout règle obligatoire |
+| 3 | Décision #12 absente | S3 | Ajout décision intégration v2.2.0 |
 | 4-9 | Autres problèmes | S2-S4 | Corrections diverses |
 
-**Bilan** : 9 problèmes détectés, 7 corrections appliquées
+**Bilan** : 9 problèmes, 7 corrections.
 
-### Round 3 (Session 23, correct-work v2.2.0)
+### Round 3 (Session 23 → stabilisation)
 
 | # | Problème | Sévérité | Correction |
 |---|----------|----------|------------|
-| 1 | Cohérence « 7 étapes » vs « 7+1 étapes » | S2 | Unification en « 7+1 étapes » partout |
-| 2 | Template §5 incomplet | S3 | Enrichissement du template |
+| 1 | « 7 étapes » vs « 7+1 étapes » | S2 | Unification en « 7+1 étapes » |
+| 2 | Template §5 incomplet | S3 | Enrichissement |
 
-**Bilan** : 2 problèmes, 2 corrections → **stabilisation atteinte**
+**Bilan** : 2 problèmes, 2 corrections → **stabilisation atteinte**.
 
 ---
 
@@ -370,191 +299,124 @@ Ce skill a été utilisé intensivement pour vérifier clone-chat. Voici l'histo
 
 ### 9.1 Pourquoi 3 modes ?
 
-Les 3 modes couvrent les 3 niveaux de vérification nécessaires :
-- **PROJET** : validation complète d'un projet (lourde mais exhaustive)
-- **CIBLE** : vérification ciblée d'un skill (équilibre précision/effort)
-- **DIRECT** : correction rapide (légère mais immédiate)
+Les 3 modes couvrent 3 niveaux de vérification : PROJET (lourd mais exhaustif), CIBLE (équilibre précision/effort), DIRECT (léger mais immédiat).
 
 ### 9.2 Pourquoi 5 étapes ?
 
-Les 5 étapes suivent un progression logique : plan → contenu → structure → interactions → cohérence. Chaque étape ajoute une couche de vérification, des plus évidentes (erreurs factuelles) aux plus subtiles (cohérence des raisonnements).
+Progression logique : plan → contenu → structure → interactions → cohérence. Des plus évidents (erreurs factuelles) aux plus subtiles (cohérence des raisonnements).
 
 ### 9.3 Pourquoi l'intégration KB ?
 
-L'intégration du Registre KB de gen-plan permet à correct-work de vérifier automatiquement la compatibilité des skills référencés. Sans KB, correct-work ne peut vérifier que ce qui est codé en dur (matrice statique). Avec KB, il peut découvrir dynamiquement les skills disponibles et leurs versions.
+Sans KB, correct-work ne vérifie que la matrice statique. Avec KB, il découvre dynamiquement les skills disponibles et leurs versions.
 
-### 9.4 Pourquoi la matrice agent × skill ?
+### 9.4 Pourquoi la double matrice ?
 
-La double matrice (statique + dynamique) permet de couvrir à la fois les relations connues (codées en dur) et les relations découvertes (via KB). La matrice statique garantit un fonctionnement minimum même sans KB, tandis que la matrice dynamique enrichit la vérification quand KB est disponible.
-
-### 9.5 Pourquoi le logging worklog ?
-
-Le logging systématique dans le worklog permet de tracer l'historique des vérifications. C'est essentiel pour le suivi qualité au fil des sessions et pour le Context Drift de clone-chat (qui utilise le worklog comme source).
+Statique garantit un fonctionnement minimum sans KB. Dynamique enrichit la vérification quand KB est disponible.
 
 ---
 
-## §10 — CONTENU DÉTAILLÉ DU SKILL.MD
+## §10 — CHECKLISTS POUR LE SKILL.MD
 
-Le fichier `SKILL.md` (~481 lignes) doit contenir les sections suivantes. Voici le plan détaillé de chaque section avec le contenu attendu.
+Ces checklists doivent être intégrées dans la section §4 du SKILL.md.
 
-### 10.1 Structure du SKILL.md
-
-```
-§0 — Règle zéro (5 lignes)
-§1 — Spécification fonctionnelle (~120 lignes)
-  1.1 Description (10 lignes)
-  1.2 Les 3 modes avec workflow détaillé (40 lignes)
-  1.3 Les 5 étapes avec inputs/outputs/checks (50 lignes)
-  1.4 Intégration KB (20 lignes)
-§2 — Spécification technique (~150 lignes)
-  2.1 Stack technique (10 lignes)
-  2.2 Dépendances et versions (15 lignes)
-  2.3 Format du rapport (50 lignes)
-  2.4 Matrice statique agent × skill (25 lignes)
-  2.5 Matrice dynamique KB (20 lignes)
-  2.6 Logging worklog (15 lignes)
-  2.7 Critères de sévérité S1-S4 (15 lignes)
-§3 — Relations avec les autres skills (~60 lignes)
-  3.1 gen-plan (15 lignes)
-  3.2 clone-chat (25 lignes)
-  3.3 fullstack-dev (10 lignes)
-  3.4 Skills KB (10 lignes)
-§4 — Grille de vérification par mode (~80 lignes)
-  4.1 Mode PROJET — checklist (25 lignes)
-  4.2 Mode CIBLE — checklist (25 lignes)
-  4.3 Mode DIRECT — checklist (15 lignes)
-  4.4 Sélection du mode (15 lignes)
-§5 — Conventions (~40 lignes)
-  5.1 Nommage (10 lignes)
-  5.2 Format rapport (15 lignes)
-  5.3 Verdicts (15 lignes)
-```
-
-### 10.2 Contenu des checklist par mode (§4)
-
-#### Mode PROJET — Checklist complète
+### 10.1 Mode PROJET
 
 ```markdown
-## Checklist Mode PROJET
-
 ### Pré-vérification
 - [ ] Le prompt maître est disponible et lisible
 - [ ] La version du prompt maître est identifiée
-- [ ] Les livrables attendus sont listés dans le prompt
+- [ ] Les livrables attendus sont listés
 
 ### Phase 1 — Plan (via gen-plan E1)
-- [ ] Le plan de vérification est créé via gen-plan
-- [ ] Les sections du prompt à vérifier sont identifiées
-- [ ] L'ordre de vérification est défini
-- [ ] L'estimation #token est faite
+- [ ] Plan de vérification créé via gen-plan
+- [ ] Sections à vérifier identifiées
+- [ ] Ordre de vérification défini
+- [ ] Estimation #token faite
 
 ### Phase 2 — Erreurs et omissions
-- [ ] Chaque section du prompt est comparée au livrable
-- [ ] Les erreurs factuelles sont listées
-- [ ] Les omissions de contenu sont listées
-- [ ] Les incohérences logiques sont listées
-- [ ] Chaque problème est classé S1-S4
+- [ ] Chaque section du prompt comparée au livrable
+- [ ] Erreurs factuelles listées
+- [ ] Omissions listées
+- [ ] Chaque problème classé S1-S4
 
 ### Phase 3 — Structure et conflits
-- [ ] La structure des fichiers est vérifiée
-- [ ] Les conventions de nommage sont respectées
-- [ ] Les cross-references sont cohérentes
-- [ ] Les conflits entre sections sont détectés
-- [ ] Le format est cohérent avec les specs
+- [ ] Structure des fichiers vérifiée
+- [ ] Conventions de nommage respectées
+- [ ] Cross-references cohérentes
+- [ ] Conflits entre sections détectés
 
 ### Phase 4 — Interactions
-- [ ] Les dépendances entre skills sont vérifiées
-- [ ] Les versions minimales sont respectées
-- [ ] Les interfaces entre skills sont cohérentes
-- [ ] Les paramètres partagés sont compatibles
+- [ ] Dépendances inter-skills vérifiées
+- [ ] Versions minimales respectées
+- [ ] Interfaces cohérentes
 
 ### Phase 5 — Cohérence
-- [ ] La chaîne de raisonnement est logique
-- [ ] Les décisions sont cohérentes entre elles
-- [ ] L'alignement décisions/actions est vérifié
-- [ ] La cohérence temporelle est vérifiée (si applicable)
+- [ ] Chaîne de raisonnement logique
+- [ ] Décisions cohérentes entre elles
+- [ ] Alignement décisions/actions vérifié
 
 ### Post-vérification
-- [ ] Le rapport est produit
-- [ ] Le verdict est assigné (PASS / PASS AVEC RÉSERVES / FAIL)
-- [ ] Le worklog est mis à jour
+- [ ] Rapport produit
+- [ ] Verdict assigné (PASS / PASS AVEC RÉSERVES / FAIL)
+- [ ] Worklog mis à jour
 ```
 
-#### Mode CIBLE — Checklist
+### 10.2 Mode CIBLE
 
 ```markdown
-## Checklist Mode CIBLE
-
 ### Pré-vérification
-- [ ] Le skill/fichier cible est identifié
-- [ ] Les spécifications du skill sont chargées (via KB si disponible)
-- [ ] La version actuelle est identifiée
+- [ ] Skill/fichier cible identifié
+- [ ] Spécifications chargées (via KB si disponible)
+- [ ] Version actuelle identifiée
 
 ### Vérification ciblée
-- [ ] La structure du fichier est cohérente
-- [ ] Le contenu correspond aux spécifications
-- [ ] Les cross-references sont correctes
-- [ ] Les dépendances sont vérifiées
-- [ ] Le format respecte les conventions
+- [ ] Structure cohérente
+- [ ] Contenu correspond aux spécifications
+- [ ] Cross-references correctes
+- [ ] Dépendances vérifiées
+- [ ] Format respecte les conventions
 
-### Vérification spécifique clone-chat (si applicable)
-- [ ] Le §3.5 Context Drift est présent
-- [ ] La règle « drift vide » est documentée
-- [ ] Les 5 types de drift sont listés
-- [ ] La table des drifts est cohérente avec le worklog
-- [ ] Le format « 7+1 étapes » est cohérent partout
-- [ ] Les chemins sont relatifs (pas absolus)
-- [ ] Le seuil in extenso est correct (< 200 lignes)
+### Spécifique clone-chat (si applicable)
+- [ ] §3.5 Context Drift présent
+- [ ] Règle « drift vide » documentée
+- [ ] 5 types de drift listés
+- [ ] Table des drifts cohérente avec le worklog
+- [ ] Format « 7+1 étapes » cohérent partout
+- [ ] Chemins relatifs (pas absolus)
+- [ ] Seuil in extenso < 200 lignes
 
 ### Post-vérification
-- [ ] Les corrections sont appliquées avec justification
-- [ ] Le worklog est mis à jour
-- [ ] Le verdict est assigné
+- [ ] Corrections appliquées avec justification
+- [ ] Worklog mis à jour
+- [ ] Verdict assigné
 ```
 
-#### Mode DIRECT — Checklist
+### 10.3 Mode DIRECT
 
 ```markdown
-## Checklist Mode DIRECT
-
 ### Inspection
-- [ ] L'artefact cible est accessible
-- [ ] Les problèmes évidents sont identifiés
-- [ ] Les corrections sont appliquées immédiatement
+- [ ] Artefact cible accessible
+- [ ] Problèmes évidents identifiés
+- [ ] Corrections appliquées immédiatement
 
 ### Post-correction
 - [ ] La correction ne casse rien d'autre
-- [ ] Le worklog est mis à jour (optionnel en DIRECT)
+- [ ] Worklog mis à jour (optionnel)
 ```
 
-### 10.3 Règles de sélection du mode
-
-```markdown
-## Sélection du mode
+### 10.4 Sélection du mode
 
 | Condition | Mode |
 |-----------|-------|
 | Un prompt maître existe pour le projet | PROJET |
 | Un skill spécifique doit être vérifié | CIBLE |
 | Correction rapide d'un fichier isolé | DIRECT |
-| L'utilisateur ne précise pas | CIBLE (mode par défaut) |
+| L'utilisateur ne précise pas | CIBLE (défaut) |
 | Vérification complète + historique | PROJET |
 | Le skill a déjà été vérifié (round 2+) | CIBLE |
-```
 
-### 10.4 Conventions de format du rapport
+### 10.5 Verdicts
 
-```markdown
-## Format du rapport
-
-1. **Titre** : `# Rapport correct-work — [Nom]`
-2. **Métadonnées** : date, mode, version, cible
-3. **Sections E1-E5** : une par étape, avec tableaux structurés
-4. **Résumé** : compteur problèmes/corrections/restants + verdict
-5. **Verdicts** :
-   - PASS : 0 problème S1-S2
-   - PASS AVEC RÉSERVES : 0 S1 mais >= 1 S2, ou >= 2 S3
-   - FAIL : >= 1 S1
-6. **Langue** : même langue que le livrable vérifié
-7. **Entrée worklog** : obligatoire après chaque exécution
-```
+- **PASS** : 0 problème S1-S2
+- **PASS AVEC RÉSERVES** : 0 S1 mais >= 1 S2, ou >= 2 S3
+- **FAIL** : >= 1 S1
