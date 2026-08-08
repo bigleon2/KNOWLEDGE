@@ -1,10 +1,10 @@
-# PROMPT MAÎTRE — Installation du skill gen-plan v3.5.0
+# PROMPT MAÎTRE — Installation du skill gen-plan v3.6.0
 
-> **Version du prompt** : 2.0.0 (refactored)
-> **Skill cible** : gen-plan v3.5.0
+> **Version du prompt** : 1.0.0
+> **Skill cible** : gen-plan v3.6.0
 > **Date** : 2026-08-09
 > **Source** : Écosystème Skills DJ — Clone de discussion
-> **Dépend** : `PROMPT-MAITRE-SHARED.md` §0-§4 (lire en premier)
+> **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
 
 ---
 
@@ -12,7 +12,7 @@
 
 Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
 
-Résumé des variables utiles (défauts SHARED §1) :
+Résumé des variables utiles (SHARED §1.1) :
 - `{{SKILLS_ROOT}}` = `skills/`
 - `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
 - `{{KB_ENABLED}}` = `true`
@@ -41,7 +41,7 @@ gen-plan est un skill de **planification de tâches** pour assistant IA. Il four
 |-------|------|-------------|----------------|
 | E1 | Analyse de la demande | Décortication de la demande utilisateur, identification des livrables, contraintes et critères de succès | M1 |
 | E2 | Inventaire des ressources | Bilan des skills disponibles, outils, fichiers, contexte | M1 |
-| E3 | Classification du type de tâche | Routage Type 1-4 (voir §9.3 pour le détail complet) | M1 |
+| E3 | Classification du type de tâche | Routage Type 1-4 (voir §8.3 pour le détail complet) | M1 |
 | E4 | Estimation #token | Calcul budgétaire en tokens de la tâche | M1 |
 | E5 | Sélection des skills | Identification des skills pertinents via skills-inventory et KNOWLEDGE.md | M1 |
 | E6 | Profilage ressource | Choix du profil NORMAL / ECO / VIEUX PC | M1 |
@@ -57,7 +57,7 @@ gen-plan est un skill de **planification de tâches** pour assistant IA. Il four
 
 ### 1.4 Tagging #token (Norme N1)
 
-Chaque étape et chaque skill utilisé reçoit un tag `#token` indiquant le coût estimé en tokens. La grille est auto-calibrée après exécutions (voir §9.2).
+Chaque étape et chaque skill utilisé reçoit un tag `#token` indiquant le coût estimé en tokens. La grille est auto-calibrée après exécutions (voir §8.2).
 
 ### 1.5 Snippets (Norme N2)
 
@@ -103,7 +103,7 @@ La calibration porte sur : la grille #token par agent/skill, les seuils de profi
 
 ### 2.4 Profils ressource
 
-Détail complet dans §9.4. Résumé :
+Détail complet dans §8.4. Résumé :
 
 | Profil | Contexte | Règles clés |
 |--------|----------|-------------|
@@ -111,25 +111,25 @@ Détail complet dans §9.4. Résumé :
 | **ECO** | Discussion < 5 sessions, #token < 3500 | Étapes réduites, 1 checkpoint, pas de matrice dynamique KB |
 | **VIEUX PC** | Matériel limité | Règles ECO + scripts < 100 lignes, pas de graphiques |
 
-### 2.5 Intégration KB (gen-plan >= v3.3.0)
+### 2.5 Intégration KB
 
 Si `{{KB_ENABLED}}` est `true` :
 
 - **`kb_path`** : chemin vers `{{KB_PATH}}`
 - **`--kb-skill`** : flag pour activer la consultation KB
-- **Protocole de Découverte** : scan du registre pour identifier les skills pertinents (voir SHARED §3.3)
+- **Protocole de Découverte** : scan du registre pour identifier les skills pertinents (voir SHARED §2.3)
 
 ---
 
 ## §3 — RELATIONS
 
-Voir `PROMPT-MAITRE-SHARED.md §4` pour le registre complet des relations inter-skills.
+Voir `PROMPT-MAITRE-SHARED.md §3` pour le registre complet des relations inter-skills.
 
-Relations directes de gen-plan (extrait de SHARED §4.1) :
+Relations directes de gen-plan (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| correct-work | Invocation à E1 | Validation du plan initial, version >= v2.2.0 |
+| correct-work | Invocation à E1 | Validation du plan initial, version >= v2.3.0 |
 | clone-chat | Calibration + archivage | E1-E7, E4, E15, optionnel, version >= v1.2.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
@@ -141,7 +141,7 @@ Relations directes de gen-plan (extrait de SHARED §4.1) :
 ```yaml
 ---
 name: gen-plan
-version: 3.5.0
+version: 3.6.0
 category: ecosystem
 language: fr
 tags:
@@ -157,7 +157,7 @@ description: >
   tagging #token, snippets, scripts Python uniquement.
 dependencies:
   - skill: correct-work
-    version: ">=2.2.0"
+    version: ">=2.3.0"
     used_at: "E1"
   - skill: clone-chat
     version: ">=1.2.0"
@@ -188,20 +188,20 @@ Le fichier `SKILL.md` (~275 lignes, in extenso) doit contenir :
 2. **§0 — Règle zéro** (voir SHARED §0)
 3. **§1 — Spécification fonctionnelle** : 4 modes, 15 étapes, normes N1-N3
 4. **§2 — Spécification technique** : Stack, structure, auto-calibration, profils, KB
-5. **§3 — Relations** : Voir SHARED §4 (résumé des relations directes)
-6. **§4 — Grille #token** : Résumé de §9.2
-7. **§5 — Conventions** : Nommage (SHARED §2.1), Python uniquement (N3), tagging
+5. **§3 — Relations** : Voir SHARED §3 (résumé des relations directes)
+6. **§4 — Grille #token** : Résumé de §8.2
+7. **§5 — Conventions** : Nommage (SHARED §1.2), Python uniquement (N3), tagging
 
 ### 5.3 Créer les fichiers de référence
 
-Le contenu in extenso de chaque fichier est en §9.
+Le contenu in extenso de chaque fichier est en §8.
 
 ### 5.4 Créer evals/evals.json
 
 ```json
 {
   "skill": "gen-plan",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "evals": [
     {
       "id": "E1-classification",
@@ -241,10 +241,6 @@ Le contenu in extenso de chaque fichier est en §9.
 }
 ```
 
-### 5.5 Mettre à jour KNOWLEDGE.md et cross-references
-
-Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de cross-references).
-
 ---
 
 ## §6 — VÉRIFICATION POST-INSTALLATION
@@ -258,8 +254,8 @@ Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de
 | 5 | evals.json valide | JSON parsable, 5 evals | Valid JSON |
 | 6 | Norme N3 (Python) | Aucune mention shell/bash | No shell refs |
 | 7 | Intégration KB | Mention kb_path, --kb-skill | Present |
-| 8 | KNOWLEDGE.md | Entrée gen-plan présente (SHARED §3.2) | Present |
-| 9 | Cross-refs | correct-work et clone-chat mis à jour (SHARED §4.3) | Present |
+| 8 | KNOWLEDGE.md | Entrée gen-plan présente (SHARED §2.2) | Present |
+| 9 | Cross-refs | correct-work et clone-chat mis à jour (SHARED §3.2) | Present |
 
 ---
 
@@ -271,6 +267,7 @@ Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de
 | v3.1.0 | 2026-07-18 | Refactoring complet suite refus v2.0.0 |
 | v3.3.0 | 2026-07-29 | Ajout Registre KB, Protocole de Découverte |
 | v3.5.0 | 2026-07-29 | Intégration clone-chat, calibration #token, normes N1-N3 |
+| v3.6.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
 
 ---
 
@@ -278,19 +275,19 @@ Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de
 
 ### 8.1 Pourquoi 15 étapes ?
 
-Les 15 étapes couvrent le cycle de vie complet d'une tâche complexe : de l'analyse initiale (E1) au bilan post-exécution (E15). Chaque étape a un objectif clair, des inputs/outputs définis, et des critères de validation.
+Les 15 étapes couvrent le cycle de vie complet d'une tâche complexe : de l'analyse initiale (E1) au bilan post-exécution (E15). Chaque étape a un objectif clair, des inputs/outputs définis, et des critères de validation. La séquence E1-E8 (planification) est suivie de E9-E14 (exécution/surveillance) et clôturée par E15 (calibration). Ce découpage permet un parallélisme partiel (E9-E14 peuvent chevaucher M2/M3) tout en gardant un contrôle strict via E11 (checkpoint) et E12 (détection d'écart).
 
 ### 8.2 Pourquoi 3 profils ?
 
-Les profils NORMAL/ECO/VIEUX PC permettent d'adapter la planification aux contraintes matérielles. Le profil ECO est conçu pour les discussions courtes, le profil VIEUX PC pour les environnements limités.
+Les profils NORMAL/ECO/VIEUX PC permettent d'adapter la planification aux contraintes matérielles et à la complexité de la tâche. Le profil ECO est conçu pour les discussions courtes (< 5 sessions) ou les tâches simples (1 skill, 1 livrable), évitant la surcharge de planification. Le profil VIEUX PC ajoute des restrictions matérielles (scripts < 100 lignes, pas de graphiques, token plafonné à 2000) pour les environnements limités.
 
 ### 8.3 Pourquoi auto-calibration ?
 
-L'estimation en tokens est intrinsèquement imprécise. L'auto-calibration E15 permet d'améliorer continuellement les estimations en comparant le prévu au réel, avec des seuils d'action clairs (20-35% ajustement, >35% recalibration).
+L'estimation en tokens est intrinsèquement imprécise. L'auto-calibration E15 permet d'améliorer continuellement les estimations en comparant le prévu au réel, avec des seuils d'action clairs (20-35% ajustement paramétrage fin, >35% recalibration complète). L'historique de calibration (voir §9.2) trace les écarts successifs pour identifier les biais systématiques.
 
 ### 8.4 Pourquoi Python uniquement ?
 
-La règle N3 (Python uniquement) garantit la portabilité cross-platform. Les scripts shell sont dépendants du système d'exploitation, tandis que Python est universellement disponible dans l'environnement.
+La règle N3 (Python uniquement) garantit la portabilité cross-platform. Les scripts shell sont dépendants du système d'exploitation, tandis que Python est universellement disponible dans l'environnement de l'assistant. Cette contrainte simplifie aussi la maintenance et réduit les risques d'incompatibilité.
 
 ---
 
@@ -567,7 +564,7 @@ Les 4 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/refe
 ### 9.2 `references/grille-token.md`
 
 ```markdown
-# Grille de calibration #token — gen-plan v3.5.0
+# Grille de calibration #token — gen-plan v3.6.0
 
 ## Grille par agent/skill
 
@@ -704,7 +701,7 @@ Les 4 fichiers suivants doivent être créés dans `{{SKILLS_ROOT}}gen-plan/refe
 ### 9.4 `references/profils-ressource.md`
 
 ```markdown
-# Profils ressource — gen-plan v3.5.0
+# Profils ressource — gen-plan v3.6.0
 
 ## NORMAL
 

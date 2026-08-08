@@ -1,208 +1,214 @@
-# PROMPT MAÎTRE SHARED — Écosystème Skills DJ
+# PROMPT MAÎTRE SHARED — Socle commun écosystème Skills DJ
 
 > **Version** : 1.0.0
 > **Date** : 2026-08-09
-> **Source** : Écosystème Skills DJ — Clone de discussion (30 sessions)
-> **Usage** : Ce fichier est inclus par référence dans les prompts maîtres de chaque skill écosystème.
+> **Source** : Écosystème Skills DJ — Clone de discussion
+> **Usage** : Ce fichier doit être lu en premier avant tout prompt maître spécifique (gen-plan, correct-work, etc.)
 
 ---
 
-## §0 — CONTEXTE COMMUN
+## §0 — Règle zéro (Contexte commun)
 
-Tu es un assistant IA (Z AI / GLM) dans l'environnement `{{SKILLS_ROOT}}/`. L'utilisateur souhaite installer un skill de l'écosystème (72+ skills). Tu dois créer l'intégralité des fichiers du skill à partir du prompt maître qui t'est fourni, combiné à ce fichier shared.
+L'écosystème Skills DJ est un ensemble de 72+ skills conçus pour un assistant IA. Chaque skill est auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un fichier `SKILL.md` principal, d'un frontmatter YAML, et de références optionnelles dans `references/`.
 
-**Règle zéro** : Ne pas utiliser le verbe « conserver » — tout est à créer.
+**Principes fondamentaux** :
+- Chaque skill est versionné sémantiquement (MAJEUR.MINEUR.PATCH)
+- Les dépendances inter-skills sont déclarées dans le frontmatter YAML avec versions minimales
+- Les cross-references entre skills doivent être maintenues bidirectionnellement
+- Le registre KB (`KNOWLEDGE.md`) est la source de vérité pour l'état de l'écosystème
 
 ---
 
-## §1 — VARIABLES D'INSTALLATION
+## §1 — Conventions écosystème
 
-| Variable | Valeur par défaut | Description |
-|----------|------------------|-------------|
-| `{{SKILLS_ROOT}}` | `skills/` | Chemin racine du répertoire des skills (relatif au projet) |
+### §1.1 Variables d'installation
+
+| Variable | Défaut | Description |
+|----------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
 | `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
-| `{{WORKLOG_PATH}}` | `worklog.md` | Chemin vers le worklog partagé |
-| `{{KB_ENABLED}}` | `true` | Activer l'intégration Registre KB |
-| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut (NORMAL / ECO / VIEUX PC) |
-| `{{IN_EXTENSO_THRESHOLD}}` | `200` | Seuil en lignes : en dessous = contenu intégral, au-dessus = résumé structuré |
+| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
+| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
 
-**Utilisation** : Lors de l'installation, remplacer les variables `{{...}}` par leurs valeurs. Si l'utilisateur ne précise pas, utiliser les valeurs par défaut.
+### §1.2 Conventions de nommage
 
----
+- **Répertoires** : kebab-case (`gen-plan`, `correct-work`, `clone-chat`)
+- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`, `evals.json`)
+- **Versions** : format semver (`3.6.0`, `2.3.0`)
+- **Tags** : préfixe `#` pour les tokens (`#token 3500`)
+- **Variables** : double accolades (`{{SKILLS_ROOT}}`)
 
-## §2 — CONVENTIONS ÉCOSYSTÈME
+### §1.3 Conventions YAML frontmatter
 
-### 2.1 Nommage des skills
-
-```
-{{SKILLS_ROOT}}/<nom-skill>/SKILL.md
-```
-
-Exemples : `skills/gen-plan/SKILL.md`, `skills/correct-work/SKILL.md`, `skills/clone-chat/SKILL.md`.
-
-### 2.2 YAML frontmatter
-
-Tout fichier `SKILL.md` doit commencer par un bloc YAML frontmatter avec ces champs obligatoires :
+Chaque `SKILL.md` commence par un bloc YAML délimité par `---` contenant au minimum :
 
 ```yaml
 ---
-name: <nom-du-skill>
-version: <x.y.z>
+name: [kebab-case]
+version: [X.Y.Z]
 category: ecosystem
+department: [détail]
 language: fr
 tags:
-  - <tag1>
-  - <tag2>
+  - [tag1]
+  - [tag2]
 description: >
-  Description concise du skill (1-3 phrases).
+  [Description en 1-3 phrases]
 dependencies:
-  - skill: <nom-skill-dep>
-    version: ">=x.y.z"
-    used_at: "<où/comment>"
-    optional: true  # si applicable
+  - skill: [nom-skill]
+    version: ">=X.Y.Z"
+    used_at: "[étape/mode d'utilisation]"
 ---
 ```
 
-### 2.3 Numérotation des sections
+### §1.4 Format worklog
 
-Les skills écosystème utilisent une numérotation `§0` à `§N` (pas `1-N`).
-
-### 2.4 Règle in extenso
-
-| Taille du contenu | Traitement |
-|--------------------|------------|
-| < {{IN_EXTENSO_THRESHOLD}} lignes | Contenu intégral (in extenso) |
-| > 500 lignes | Résumé structuré |
-| Entre 200 et 500 lignes | Au choix, préférer in extenso si référence unique |
-
-### 2.5 Conventions de chemins dans les clones
-
-Tous les chemins dans les artefacts de clone-chat sont **relatifs** (jamais absolus). Exemple : `skills/clone-chat/SKILL.md`, jamais `/home/user/...`.
-
-### 2.6 Format des entrées worklog
-
-Chaque exécution d'un skill génère une entrée worklog :
+Tous les agents partagent un worklog unique. Chaque entrée suit ce format :
 
 ```markdown
 ---
-Task ID: <task-id>
-Agent: <skill-name> v<x.y.z>
-Task: <description brève>
+Task ID: [task-id]
+Agent: [nom-agent] [version]
+Task: [description de la tâche]
 
 Work Log:
-- <action 1>
-- <action 2>
-- ...
+- [action concrète 1]
+- [action concrète 2]
 
 Stage Summary:
-- <résultat clé 1>
-- <résultat clé 2>
+- [résultats clés / décisions / artefacts produits]
 ```
 
 ---
 
-## §3 — REGISTRE KB (KNOWLEDGE.md)
+## §2 — Registre KB (KNOWLEDGE.md)
 
-### 3.1 Présentation
+### §2.1 Rôle
 
-`KNOWLEDGE.md` est le registre central des skills de l'écosystème. Il contient 72+ entrées et permet aux skills de découvrir dynamiquement les autres skills disponibles.
+`KNOWLEDGE.md` est le registre central de l'écosystème. Il contient :
+- La liste de tous les skills installés avec leurs versions
+- Les relations inter-skills
+- Les métadonnées de calibration
+- L'historique des interactions
 
-### 3.2 Template d'entrée
-
-Chaque skill installé doit ajouter son entrée dans `KNOWLEDGE.md` :
+### §2.2 Format d'une entrée (template)
 
 ```markdown
-## <nom-skill>
-- **Version** : <x.y.z>
-- **Catégorie** : <category>
-- **Fichier** : `<chemin-relatif>/SKILL.md`
-- **Description** : <description courte>
-- **Relations** : <skill-A> (<nature>), <skill-B> (<nature>)
+## [nom-skill] v[X.Y.Z]
+
+- **Category** : [category]
+- **Description** : [description courte]
+- **Dépend de** : [liste des skills et versions min]
+- **Utilisé par** : [liste des skills qui utilisent celui-ci]
+- **Dernière calibration** : [date ou N/A]
+- **Statut** : [stable | expérimental | en cours]
 ```
 
-### 3.3 Protocole de Découverte
+### §2.3 Protocole de Découverte
 
-Quand `{{KB_ENABLED}}` est `true`, un skill peut :
-1. Scanner `KNOWLEDGE.md` pour lister les skills disponibles
-2. Vérifier la version minimale de chaque dépendance
-3. Détecter les skills manquants
-4. Signaler les conflits de dépendances
-
-Le flag `--kb-skill <nom>` cible un skill spécifique dans le registre.
+Quand un skill doit identifier les skills pertinents pour une tâche :
+1. Scanner les entrées de `KNOWLEDGE.md` par catégorie et tags
+2. Filtrer par compatibilité de version
+3. Vérifier les dépendances croisées
+4. Produire une liste ordonnée des skills candidats
 
 ---
 
-## §4 — REGISTRE DES RELATIONS
+## §3 — Registre des relations inter-skills
 
-### 4.1 Matrice de relations inter-skills
+### §3.1 Tableau complet
 
-| Skill A | Skill B | Relation | Version min A | Version min B | Optionnel ? |
-|---------|---------|----------|---------------|---------------|------------|
-| **gen-plan** | correct-work | gen-plan invoque correct-work à E1 pour valider le plan | >= v3.5.0 | >= v2.2.0 | Non |
-| **gen-plan** | clone-chat | gen-plan fournit calibration #token à clone-chat (E1-E7, E4, E15) | >= v3.5.0 | >= v1.2.0 | Oui |
-| **gen-plan** | skills-inventory | gen-plan consulte l'inventaire à E5 pour sélectionner les skills | >= v3.5.0 | >= v1.0.0 | Non |
-| **gen-plan** | knowledge.md | gen-plan enrichit le registre à E15 (bilan, calibration) | >= v3.5.0 | >= v1.0.0 | Non |
-| **correct-work** | gen-plan | correct-work utilise gen-plan à son Étape 1 pour créer le plan de vérification | >= v2.2.0 | >= v3.1.0 | Non |
-| **correct-work** | clone-chat | correct-work vérifie clone-chat en Mode CIBLE (§3.5 Context Drift) | >= v2.2.0 | >= v1.2.0 | Non |
-| **correct-work** | fullstack-dev | correct-work vérifie les projets web | >= v2.2.0 | any | Non |
-| **clone-chat** | gen-plan | clone-chat utilise les données calibration gen-plan pour le tagging #token | >= v1.2.0 | >= v3.3.0 | Oui |
+| Skill A | Relation | Skill B | Nature | Détails |
+|---------|----------|---------|--------|--------|
+| gen-plan | invoque | correct-work | Étape 1 | Validation plan initial, >= v2.3.0 |
+| gen-plan | utilise | clone-chat | Calibration + archivage | E1-E7, E4, E15, optionnel, >= v1.2.0 |
+| gen-plan | consulte | skills-inventory | Sélection skills | E5, >= v1.0.0 |
+| gen-plan | enrichit | KNOWLEDGE.md | Calibration | E15, mise à jour registre |
+| correct-work | utilise | gen-plan | Plan de vérification | Étape 1, >= v3.6.0 |
+| correct-work | vérifie | clone-chat | Mode CIBLE | §3.5 Context Drift, >= v1.2.0 |
+| correct-work | vérifie | fullstack-dev | Projets web | Structure et dépendances |
+| clone-chat | archivé par | gen-plan | Sessions longues | Optionnel |
 
-### 4.2 Matrice de décision agent × skill (statique)
+### §3.2 Règles de cross-references
 
-Cette matrice est la référence unique pour toutes les interactions agent × skill :
-
-| Agent / Type de tâche | gen-plan | correct-work | clone-chat | skills-inventory | fullstack-dev |
-|----------------------|----------|--------------|------------|------------------|---------------|
-| Planification | orchestre | valide | — | consulte | — |
-| Création document | E3 route | vérifie | — | — | — |
-| Web dev | E3 route | vérifie | — | — | exécute |
-| Clonage discussion | E1-E7 | Mode CIBLE | exécute | — | — |
-| Data processing | E3 route | vérifie | — | — | — |
-
-### 4.3 Règles de cross-references
-
-Lors de l'installation d'un skill, mettre à jour les autres skills :
-
-| Skill installé | Skills à mettre à jour | Contenu de la mise à jour |
-|----------------|----------------------|--------------------------|
-| gen-plan | correct-work, clone-chat, skills-inventory | Mentionner l'utilisation par gen-plan avec les étapes |
-| correct-work | gen-plan, clone-chat | Mentionner la vérification par correct-work avec le mode |
-| clone-chat | gen-plan, correct-work | Mentionner l'intégration optionnelle et la vérification croisée |
+Quand un skill A référence un skill B :
+1. La référence dans A doit inclure la version minimale requise de B
+2. Le fichier de B doit mentionner A dans sa section « Utilisé par » de KNOWLEDGE.md
+3. Si A modifie le comportement de B (ex : correct-work modifie clone-chat), la relation doit être documentée dans les deux sens
+4. Les mises à jour de version d'un skill doivent déclencher une vérification des dépendances
 
 ---
 
-## §5 — HISTORIQUE DE L'ÉCOSYSTÈME
+## §4 — Matrice agent × skill (statique)
 
-| Période | Événements clés |
-|---------|---------------|
-| 2026-07-18 | Création gen-plan v3.5.0, normalisation 67 skills, Prompt Maître DJ v2.0→v3.4 |
-| 2026-07-20 | Bundle skill-all-days.zip |
-| 2026-07-29 | Naissance clone-chat v1.0.0→v1.2.0, correct-work v1.0.0→v2.2.0, 3 rounds de vérification |
-| 2026-07-30 | Intégration écosystème : KNOWLEDGE.md 72 skills, cross-references bidirectionnelles |
-| 2026-08-09 | Clone final 30 sessions, 18 drifts, 17/17 compat checks PASS |
+Cette matrice définit quels agents peuvent utiliser quels skills et dans quel contexte.
+
+### §4.1 Matrice principale
+
+| Agent | gen-plan | correct-work | clone-chat | skills-inventory | fullstack-dev | KB |
+|-------|----------|-------------|------------|-----------------|---------------|-----|
+| **Main** | Planification complète | Vérification finale | Archivage sessions | Consultation | Développement web | Lecture/écriture |
+| **Subagent** | Exécution étapes | Vérification ciblée | Non | Non | Développement délégué | Lecture seule |
+| **gen-plan (E1)** | — | Validation plan | Non | Scan skills | Non | Consultation |
+| **correct-work (E1)** | Création plan | — | Vérification | Non | Vérification | Scan dynamique |
+
+### §4.2 Légende des droits
+
+- **Planification complète** : toutes les étapes E1-E15
+- **Exécution étapes** : E9-E14 uniquement, sans E15
+- **Vérification finale** : mode PROJET complet
+- **Vérification ciblée** : mode CIBLE ou DIRECT uniquement
+- **Consultation** : lecture des données du skill
+- **Scan dynamique** : vérifie les versions et la présence via KB
+- **Lecture/écriture** : accès complet au registre
+- **Lecture seule** : peut consulter mais pas modifier
 
 ---
 
-## §6 — MÉTA-INFORMATIONS SUR LES PROMPTS MAÎTRES
+## §5 — Format du fichier SKILL.md (conventions structurelles)
 
-### 6.1 Fichiers du bundle
+### §5.1 Structure type
 
-| Fichier | Version du prompt | Skill cible | Dépend de |
-|---------|-------------------|-------------|------------|
-| `PROMPT-MAITRE-SHARED.md` | 1.0.0 | (commun) | Aucun |
-| `PROMPT-MAITRE-GEN-PLAN-v3.5.0.md` | 2.0.0 | gen-plan v3.5.0 | SHARED §0-§4 |
-| `PROMPT-MAITRE-CORRECT-WORK-v2.2.0.md` | 2.0.0 | correct-work v2.2.0 | SHARED §0-§4 |
+Tout `SKILL.md` suit cette structure :
 
-### 6.2 Ordre de lecture
+1. **YAML frontmatter** (obligatoire)
+2. **§0 — Règle zéro** : contexte écosystème (résumé de SHARED §0)
+3. **§1 — Spécification fonctionnelle** : modes, étapes, normes propres au skill
+4. **§2 — Spécification technique** : stack, structure fichiers, intégrations
+5. **§3 — Relations** : extrait de SHARED §3.1 pour les relations directes
+6. **Sections spécifiques** : grille de vérification, grille #token, checklists, etc.
+7. **§N — Conventions** : nommage (SHARED §1.2), règles propres
 
-Pour installer un skill, l'assistant doit lire les fichiers dans cet ordre :
+### §5.2 Tailles cibles
 
-1. `PROMPT-MAITRE-SHARED.md` (contexte, conventions, relations)
-2. `PROMPT-MAITRE-<SKILL>-v<X.Y.Z>.md` (spécifications du skill cible)
+| Type de skill | Lignes SKILL.md | Fichiers references |
+|---------------|-----------------|-------------------|
+| Complexe (gen-plan) | ~275 lignes | 4 fichiers |
+| Moyen (correct-work) | ~481 lignes | 0 fichier (monolithe) |
+| Simple | < 100 lignes | 0-1 fichier |
 
-### 6.3 Versionnage des prompts maîtres
+---
 
-| Prompt version | Signification |
-|----------------|---------------|
-| 1.0.0 | Première génération (fichiers autonomes, duplication ~15%) |
-| 2.0.0 | Refactoring en 3 fichiers (shared + 2 spécifiques), duplication ~0% |
+## §6 — Prompt maîtres : architecture et workflow
+
+### §6.1 Fichiers
+
+| Fichier | Rôle | Version skill |
+|---------|------|---------------|
+| `PROMPT-MAITRE-SHARED.md` | Socle commun (ce fichier) | — |
+| `PROMPT-MAITRE-GEN-PLAN-v3.6.0.md` | Spécification gen-plan | v3.6.0 |
+| `PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md` | Spécification correct-work | v2.3.0 |
+
+### §6.2 Workflow d'utilisation
+
+1. **Lire SHARED** en premier pour le contexte, conventions, variables et relations
+2. **Lire le prompt maître spécifique** (gen-plan ou correct-work)
+3. Suivre les instructions d'installation du fichier spécifique
+4. Utiliser les références vers SHARED pour éviter la duplication
+5. Mettre à jour KNOWLEDGE.md et les cross-references (SHARED §2.2 et §3.2)
+
+### §6.3 Maintenance
+
+- Toute modification d'une info commune (convention, relation, variable) se fait **une seule fois** dans SHARED
+- Les prompts spécifiques contiennent uniquement la logique propre à leur skill
+- La vérification croisée régulière garantit la cohérence (relations bidirectionnelles, versions)

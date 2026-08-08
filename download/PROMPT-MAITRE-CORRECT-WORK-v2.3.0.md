@@ -1,10 +1,10 @@
-# PROMPT MAÎTRE — Installation du skill correct-work v2.2.0
+# PROMPT MAÎTRE — Installation du skill correct-work v2.3.0
 
-> **Version du prompt** : 2.0.0 (refactored)
-> **Skill cible** : correct-work v2.2.0
+> **Version du prompt** : 1.0.0
+> **Skill cible** : correct-work v2.3.0
 > **Date** : 2026-08-09
 > **Source** : Écosystème Skills DJ — Clone de discussion
-> **Dépend** : `PROMPT-MAITRE-SHARED.md` §0-§4 (lire en premier)
+> **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
 
 ---
 
@@ -12,7 +12,7 @@
 
 Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
 
-Résumé des variables utiles (défauts SHARED §1) :
+Résumé des variables utiles (SHARED §1.1) :
 - `{{SKILLS_ROOT}}` = `skills/`
 - `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
 - `{{KB_ENABLED}}` = `true`
@@ -49,8 +49,8 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 
 - **`kb_path`** : chemin vers `{{KB_PATH}}`
 - **`--kb-skill`** : flag pour cibler un skill spécifique
-- **Matrice statique** : voir SHARED §4.2
-- **Matrice dynamique** : construite à l'exécution en scannant `KNOWLEDGE.md` (SHARED §3.3)
+- **Matrice statique** : voir SHARED §4.1
+- **Matrice dynamique** : construite à l'exécution en scannant `KNOWLEDGE.md` (SHARED §2.3)
 
 ---
 
@@ -66,7 +66,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 
 | Dépendance | Version minimale | Utilisation |
 |------------|-----------------|-------------|
-| gen-plan | >= v3.1.0 | Étape 1 (plan d'actions) |
+| gen-plan | >= v3.6.0 | Étape 1 (plan d'actions) |
 | clone-chat | >= v1.2.0 | Mode CIBLE (§3.5 Context Drift) |
 | fullstack-dev | any | Vérification de projets web |
 
@@ -85,7 +85,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 ## Métadonnées
 - **Date** : YYYY-MM-DD
 - **Mode** : PROJET | CIBLE | DIRECT
-- **Version correct-work** : 2.2.0
+- **Version correct-work** : 2.3.0
 - **Cible** : [nom du skill/fichier]
 
 ## Étape 1 — Plan d'actions
@@ -116,17 +116,17 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 
 ### 2.5 Matrice de décision
 
-- **Matrice statique** : voir `PROMPT-MAITRE-SHARED.md §4.2` (référence unique)
+- **Matrice statique** : voir `PROMPT-MAITRE-SHARED.md §4` (référence unique)
 - **Matrice dynamique** (si `{{KB_ENABLED}}`) : scan `{{KB_PATH}}` pour vérifier présence, version, compatibilité de chaque skill référencé.
 
 ### 2.6 Logging worklog
 
-Voir SHARED §2.6 pour le format. Spécifiquement pour correct-work :
+Voir SHARED §1.4 pour le format. Spécifiquement pour correct-work :
 
 ```markdown
 ---
 Task ID: [task-id]
-Agent: correct-work v2.2.0
+Agent: correct-work v2.3.0
 Task: Vérification [mode] de [cible]
 
 Work Log:
@@ -154,13 +154,13 @@ Stage Summary:
 
 ## §3 — RELATIONS
 
-Voir `PROMPT-MAITRE-SHARED.md §4` pour le registre complet des relations inter-skills.
+Voir `PROMPT-MAITRE-SHARED.md §3` pour le registre complet des relations inter-skills.
 
-Relations directes de correct-work (extrait de SHARED §4.1) :
+Relations directes de correct-work (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| gen-plan | Utilisation à Étape 1 | Création du plan de vérification, version >= v3.1.0 |
+| gen-plan | Utilisation à Étape 1 | Création du plan de vérification, version >= v3.6.0 |
 | clone-chat | Mode CIBLE | Vérification spécifique, §3.5 Context Drift, version >= v1.2.0 |
 | fullstack-dev | Vérification | Validation de la structure et dépendances projets web |
 | Skills KB | Consultation | Vérification présence et compatibilité des skills référencés |
@@ -172,7 +172,7 @@ Relations directes de correct-work (extrait de SHARED §4.1) :
 ```yaml
 ---
 name: correct-work
-version: 2.2.0
+version: 2.3.0
 category: ecosystem
 language: fr
 tags:
@@ -188,7 +188,7 @@ description: >
   matrice de décision agent/skill (statique + dynamique KB).
 dependencies:
   - skill: gen-plan
-    version: ">=3.1.0"
+    version: ">=3.6.0"
     used_at: "Étape 1"
   - skill: clone-chat
     version: ">=1.2.0"
@@ -217,13 +217,9 @@ Le fichier `SKILL.md` (~481 lignes) doit contenir :
 2. **§0 — Règle zéro** (voir SHARED §0)
 3. **§1 — Spécification fonctionnelle** : 3 modes, 5 étapes, intégration KB
 4. **§2 — Spécification technique** : Stack, dépendances, rapport (§2.4), matrice dynamique (§2.5), logging (§2.6), sévérité (§2.7)
-5. **§3 — Relations** : Voir SHARED §4 (résumé des relations directes)
-6. **§4 — Grille de vérification** : Checklists par mode (voir §7)
-7. **§5 — Conventions** : Nommage (SHARED §2.1), format rapport, verdicts (§6)
-
-### 5.3 Mettre à jour KNOWLEDGE.md et cross-references
-
-Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de cross-references).
+5. **§3 — Relations** : Voir SHARED §3 (résumé des relations directes)
+6. **§4 — Grille de vérification** : Checklists par mode (voir §8)
+7. **§5 — Conventions** : Nommage (SHARED §1.2), format rapport, verdicts (§7)
 
 ---
 
@@ -237,15 +233,15 @@ Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de
 | 4 | 3 modes documentés | PROJET, CIBLE, DIRECT | All present |
 | 5 | 5 étapes documentées | E1-E5 | All present |
 | 6 | Intégration KB | Mention kb_path, --kb-skill | Present |
-| 7 | Matrice statique | Voir SHARED §4.2 | Referenced |
+| 7 | Matrice statique | Voir SHARED §4 | Referenced |
 | 8 | Matrice dynamique KB | Description du scan | Present |
 | 9 | Critères de sévérité | S1-S4 | All present |
 | 10 | Format rapport | Structure 5 sections | Present |
-| 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.1.0 | Present |
+| 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.6.0 | Present |
 | 12 | Cross-ref clone-chat | Mention Mode CIBLE, §3.5 | Present |
-| 13 | KNOWLEDGE.md | Entrée correct-work (SHARED §3.2) | Present |
+| 13 | KNOWLEDGE.md | Entrée correct-work (SHARED §2.2) | Present |
 | 14 | Logging worklog | Format documenté | Present |
-| 15 | Dépendances frontmatter | gen-plan >=3.1.0, clone-chat >=1.2.0 | Correct |
+| 15 | Dépendances frontmatter | gen-plan >=3.6.0, clone-chat >=1.2.0 | Correct |
 | 16 | Compatibilité écosystème | 16/16 checks PASS | All PASS |
 
 ---
@@ -258,6 +254,7 @@ Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de
 | v2.0.0 | 2026-07-29 | Ajout Mode CIBLE, amélioration du rapport |
 | v2.1.0 | 2026-07-29 | Intégration gen-plan pour Étape 1 |
 | v2.2.0 | 2026-07-29 | Registre KB (gen-plan >=3.3.0), kb_path, --kb-skill, matrice dynamique |
+| v2.3.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
 
 ---
 
@@ -299,19 +296,19 @@ Voir `PROMPT-MAITRE-SHARED.md §3.2` (template d'entrée) et `§4.3` (règles de
 
 ### 9.1 Pourquoi 3 modes ?
 
-Les 3 modes couvrent 3 niveaux de vérification : PROJET (lourd mais exhaustif), CIBLE (équilibre précision/effort), DIRECT (léger mais immédiat).
+Les 3 modes couvrent 3 niveaux de vérification : PROJET (lourd mais exhaustif, utilise le prompt maître comme référence), CIBLE (équilibre précision/effort, vérifie un skill précis), DIRECT (léger mais immédiat, correction rapide d'un fichier isolé). Le mode par défaut est CIBLE si l'utilisateur ne précise pas.
 
 ### 9.2 Pourquoi 5 étapes ?
 
-Progression logique : plan → contenu → structure → interactions → cohérence. Des plus évidents (erreurs factuelles) aux plus subtiles (cohérence des raisonnements).
+Progression logique du plus évident au plus subtil : plan (via gen-plan) → contenu factuel → structure formelle → interactions entre composants → cohérence globale des raisonnements. Cette séquence garantit que les erreurs grossières (S1) sont détectées avant les problèmes subtils (S3-S4).
 
 ### 9.3 Pourquoi l'intégration KB ?
 
-Sans KB, correct-work ne vérifie que la matrice statique. Avec KB, il découvre dynamiquement les skills disponibles et leurs versions.
+Sans KB, correct-work vérifie uniquement la matrice statique (SHARED §4). Avec KB, il découvre dynamiquement les skills disponibles, leurs versions réelles et leurs dépendances. La matrice dynamique est construite en temps réel via le Protocole de Découverte (SHARED §2.3), offrant une vérification plus précise et à jour.
 
 ### 9.4 Pourquoi la double matrice ?
 
-Statique garantit un fonctionnement minimum sans KB. Dynamique enrichit la vérification quand KB est disponible.
+La matrice statique garantit un fonctionnement minimum sans KB (fallback). La matrice dynamique enrichit la vérification quand KB est disponible. Ce pattern « statique + dynamique » assure la résilience : si KNOWLEDGE.md est absent ou corrompu, correct-work peut encore fonctionner avec la matrice intégrée.
 
 ---
 
