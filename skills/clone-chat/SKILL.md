@@ -30,10 +30,10 @@ dependencies:
 
 ## §0 — RÈGLE ZÉRO
 
-L'écosystème Knowledge comprend **78 skills** (6 écosystème + 72 métier),
+L'écosystème Knowledge comprend **77 skills** (6 écosystème + 71 métier),
 chacun auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}` avec un
 fichier `SKILL.md` principal, un frontmatter YAML, et des références
-optionnelles dans `références/`. Le registre KB (`{{KB_PATH}}`) est la
+optionnelles dans `references/`. Le registre KB (`{{KB_PATH}}`) est la
 source de vérité pour l'état de l'écosystème (`{{KB_ENABLED}}`).
 
 **Principes fondamentaux** :
@@ -110,7 +110,7 @@ et étapes E1-E7.
 Markdown unique et cohérent. L'ordre est imposé : §0 (Règle zéro), §1
 (Chronologie), §2 (Écosystème skills), §2.4 (Historique interactions si
 `{{KB_ENABLED}}`), §3 (Décisions clés), §3.5 (Context Drift), §4
-(Instructions), §5 (Auto-clonage). Voir `références/clone-template.md`.
+(Instructions), §5 (Auto-clonage). Voir `references/clone-template.md`.
 
 **Étape 6 — Validation (8 checks)** : Exécuter les 8 checks de validation.
 Chaque check est binaire (PASS/FAIL). Le clone est valide si 8/8 PASS.
@@ -240,7 +240,7 @@ KB sont omis. Le clone reste fonctionnel et auto-suffisant sans le registre.
 ```
 {{SKILLS_ROOT}}clone-chat/
 ├── SKILL.md
-└── références/
+└── references/
     └── clone-template.md
 ```
 
@@ -347,7 +347,7 @@ instructions pour se cloner lui-même. À la fin d'une nouvelle session :
 décrit cette propriété, et le template inclut toujours le §5 pour
 permettre la chaîne de clonage infinie sans perte d'information.
 
-Fichier de référence : `références/clone-template.md`
+Fichier de référence : `references/clone-template.md`
 
 ---
 

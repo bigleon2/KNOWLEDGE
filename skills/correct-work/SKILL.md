@@ -30,7 +30,7 @@ dependencies:
 
 ## §0 — Règle zéro
 
-Écosystème Knowledge : 78 skills (6 écosystème + 72 métier). Chaque skill versionné semver, dépendances déclarées en YAML, cross-refs bidirectionnelles, registre KB unique (`skills/KNOWLEDGE.md`). Voir `PROMPT-MAITRE-SHARED.md §0`.
+Écosystème Knowledge : 77 skills (6 écosystème + 71 métier). Chaque skill versionné semver, dépendances déclarées en YAML, cross-refs bidirectionnelles, registre KB unique (`skills/KNOWLEDGE.md`). Voir `PROMPT-MAITRE-SHARED.md §0`.
 
 ---
 

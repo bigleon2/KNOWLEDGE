@@ -322,3 +322,32 @@ Stage Summary:
 - Verdict initial: PASS AVEC RÉSERVES → post-correction: **PASS**
 - 4 S4 acceptés (répertoires ASR/LLM/TTS/VLM)
 - verify-cross.py: 60/60 PASS stable avant et après corrections
+
+---
+Task ID: 14
+Agent: correct-work v2.4.0
+Task: Vérification PROJET de l'écosystème Knowledge complet
+
+Work Log:
+- Étape 1 : Plan de vérification autonome (6 axes, ~5000 #token, type écosystème skills)
+- Pré-vérification : 3 scripts auto = 81/81 PASS (verify-cross 60, verify-correct-work 16, sync-download 5)
+- Étape 2 : 4 findings (F1 S2 count 78→77, F2 S2 références accent clone-chat, F3 S2 frontmatter skill-creator, F4 S2 frontmatter skills-inventory)
+- Étape 3 : 0 conflit structurel additionnel
+- Étape 4 : 2 findings (F5 S2 version SHARED §3.1 v2.0.0→v3.6.1, F6 S2 relation autonomous-agent→skills-inventory manquante)
+- Étape 5 : 1 finding (F7 S3 SHARED §5.2 PM correct-work ~490→~530 lignes)
+- 7 corrections appliquées sur 7 fichiers :
+  - SHARED §0 : 78→77 skills, §3.1 version corrigée, §5.2 taille corrigée, ajout relation aa→si
+  - correct-work §0 : 78→77
+  - clone-chat §0 : 78→77, références/→references/ (4 occ.)
+  - autonomous-agent §0 : 5+1+72 → 6+71
+  - KNOWLEDGE.md : 78→77, 13→14 relations, ajout aa→si dans skills-inventory + tableau relations
+  - skill-creator : ajout language, tags, dependencies dans frontmatter
+  - skills-inventory : ajout language, tags, dependencies dans frontmatter
+- Post-correction : 81/81 PASS (verify-cross 60, verify-correct-work 16, sync-download 5)
+- Sync download/ : 1 fichier mis à jour (SHARED 220→221 lignes)
+
+Stage Summary:
+- 7 findings (6 S2, 1 S3), 7 corrections appliquées
+- Verdict initial: PASS AVEC RÉSERVES → post-correction: **PASS**
+- 81/81 checks automatisés PASS après correction
+- Count réel : 77 skills (6 écosystème + 71 métier), 14 relations bidirectionnelles

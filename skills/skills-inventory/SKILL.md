@@ -2,6 +2,12 @@
 name: skills-inventory
 version: 1.0.0
 category: ecosystem
+language: fr
+tags:
+  - inventory
+  - scanning
+  - catalog
+  - ecosystem
 description: >
   Skill inventory scanner and reporter. Activates whenever the user asks to list, inventory,
   catalog, browse, search, or explore available skills — e.g. "quelles sont les skills dispo",
@@ -13,6 +19,7 @@ description: >
   Use this skill whenever you need to scan /home/z/my-project/skills/, generate a skills inventory
   document, find the right skill for a task, or answer questions about the skill ecosystem — even
   if the user doesn't explicitly say "skill inventory".
+dependencies: []
 ---
 
 # Skills Inventory

@@ -9,7 +9,7 @@
 
 ## §0 — Règle zéro (Contexte commun)
 
-L'écosystème Knowledge est un ensemble de 78 skills conçus pour un assistant IA (6 skills écosystème + 72 skills métier). Chaque skill est auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un fichier `SKILL.md` principal, d'un frontmatter YAML, et de références optionnelles dans `references/`.
+L'écosystème Knowledge est un ensemble de 77 skills conçus pour un assistant IA (6 skills écosystème + 71 skills métier). Chaque skill est auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un fichier `SKILL.md` principal, d'un frontmatter YAML, et de références optionnelles dans `references/`.
 
 **Principes fondamentaux** :
 - Chaque skill est versionné sémantiquement (MAJEUR.MINEUR.PATCH)
@@ -126,12 +126,13 @@ Quand un skill doit identifier les skills pertinents pour une tâche :
 | correct-work | utilise | gen-plan | Plan de vérification | Étape 1, >= v3.6.0 |
 | correct-work | vérifie | clone-chat | Mode CIBLE | §3.5 Context Drift, >= v2.0.0 |
 | correct-work | vérifie | fullstack-dev | Projets web | Structure et dépendances |
-| clone-chat | archivé par | gen-plan | Sessions longues | Optionnel, >= v2.0.0 |
+| clone-chat | archivé par | gen-plan | Sessions longues | Optionnel, >= v3.6.1 |
 | clone-chat | vérifié par | correct-work | Validation croisée | §3.5 drift, >= v2.0.0 |
 | clone-chat | conventions par | skill-creator | Conventions structurelles | >= v1.0.0 |
 | autonomous-agent | utilise | gen-plan | Planification | Tâches complexes, >= v3.6.0 |
 | autonomous-agent | persist via | clone-chat | État Long | Inter-sessions, optionnel, >= v2.0.0 |
 | autonomous-agent | vérifié par | correct-work | Validation | Cohérence agent, >= v2.4.0 |
+| autonomous-agent | consulte | skills-inventory | Découverte agents | Sélection, >= v1.0.0 |
 
 ### §3.2 Règles de cross-references
 
@@ -189,7 +190,7 @@ Tout `SKILL.md` suit cette structure :
 | Type de skill | Lignes SKILL.md | Fichiers références | Note |
 |---------------|-----------------|-------------------|-------|
 | Complexe (gen-plan) | ~180 lignes | 5 fichiers | Version compacte ; le prompt maître (~937 lignes) contient la spec complète et le contenu in extenso des références |
-| Moyen (correct-work) | ~280 lignes | scripts/ + evals/ | Version compacte avec checklists op. integrees ; le prompt maître (~490 lignes) contient la spec, checklists detaillees et historique |
+| Moyen (correct-work) | ~280 lignes | scripts/ + evals/ | Version compacte avec checklists op. integrees ; le prompt maître (~530 lignes) contient la spec, checklists detaillees et historique |
 | Simple | < 100 lignes | 0-1 fichier | |
 
 ---

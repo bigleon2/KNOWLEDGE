@@ -31,8 +31,8 @@ dependencies:
 
 ## §0 — Règle zéro
 
-L'écosystème Knowledge est un ensemble de **78 skills** conçus pour un
-assistant IA (5+1 skills écosystème + 72 skills métier). Chaque skill est
+L'écosystème Knowledge est un ensemble de **77 skills** conçus pour un
+assistant IA (6 skills écosystème + 71 skills métier). Chaque skill est
 auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un
 fichier `SKILL.md` principal, d'un frontmatter YAML, et de références
 optionnelles dans `references/`.

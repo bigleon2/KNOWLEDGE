@@ -2,8 +2,8 @@
 
 > **Date** : 2026-08-09
 > **Version** : 2.0.0
-> **Skills** : 78 (6 écosystème + 72 métier)
-> **Relations** : 13 bidirectionnelles
+> **Skills** : 77 (6 écosystème + 71 métier)
+> **Relations** : 14 bidirectionnelles
 
 ---
 
@@ -45,7 +45,7 @@
 - **Category** : ecosystem
 - **Description** : Scan et inventaire des skills disponibles. Consultation par tags, catégories, versions.
 - **Dépend de** : aucun
-- **Utilisé par** : gen-plan (E5 sélection skills)
+- **Utilisé par** : gen-plan (E5 sélection skills), autonomous-agent (découverte agents)
 - **Dernière calibration** : N/A
 - **Statut** : stable
 
@@ -90,3 +90,4 @@
 | autonomous-agent | utilise | gen-plan | Planification | Tâches complexes, >= v3.6.0 |
 | autonomous-agent | persist via | clone-chat | État Long | Inter-sessions, optionnel, >= v2.0.0 |
 | autonomous-agent | vérifié par | correct-work | Validation | Cohérence agent, >= v2.4.0 |
+| autonomous-agent | consulte | skills-inventory | Découverte agents | Sélection, >= v1.0.0 |
