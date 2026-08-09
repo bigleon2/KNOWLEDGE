@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""Vérification croisée des 3 prompts maîtres (Phase 3)."""
+"""Vérification croisée des prompts maîtres + sync download/.
+
+Checks 1-5 : validation du contenu des PMs (source = download/).
+Check 6   : rappel de synchronisation download/ vs skills/_prompts-maitres/.
+"""
 
 import re
 import os
+import filecmp
 
 BASE = "/home/z/my-project/download/"
 
@@ -80,7 +85,7 @@ elements = {
         ("Matrice statique", "Matrice statique" in correct or "SHARED §4" in correct),
         ("Matrice dynamique", "dynamique" in correct),
         ("gen-plan dep", ">= v3.6.0" in correct or ">=3.6.0" in correct),
-        ("clone-chat dep", ">= v1.2.0" in correct or ">=1.2.0" in correct),
+        ("clone-chat dep", ">= v2.0.0" in correct or ">=2.0.0" in correct),
         ("Verdicts", "PASS" in correct and "FAIL" in correct),
         ("Round corrections", "Round 1" in correct and "Round 3" in correct),
         ("Checklists", "PROJET" in correct or "Mode PROJET" in correct),
@@ -100,6 +105,34 @@ check(f"CORRECT-WORK ~490 lignes (incluant checklists opérationnelles)", 400 <=
 total_lines = sh_lines + gp_lines + cw_lines
 print(f"\n  Total : {total_lines} lignes (vs ~930+560={930+560} avant refactoring)")
 print(f"  Réduction : {930+560 - total_lines} lignes ({round((1-total_lines/(930+560))*100,1)}%)")
+
+# === CHECK 6 : Sync download/ vs source de vérité ===
+print("\n=== CHECK 6 : Synchronisation download/ ===")
+SOURCE_DIR = "/home/z/my-project/skills/_prompts-maitres/"
+SYNC_FILES = [
+    "PROMPT-MAITRE-SHARED.md",
+    "PROMPT-MAITRE-GEN-PLAN-v3.6.0.md",
+    "PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md",
+    "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+    "README.md",
+]
+sync_ok = True
+for fname in SYNC_FILES:
+    src = os.path.join(SOURCE_DIR, fname)
+    dst = os.path.join(BASE, fname)
+    if not os.path.exists(src):
+        check(f"sync {fname}", False, "source manquante")
+        sync_ok = False
+        continue
+    if not os.path.exists(dst):
+        check(f"sync {fname}", False, "absent de download/")
+        sync_ok = False
+        continue
+    if filecmp.cmp(src, dst, shallow=False):
+        check(f"sync {fname}", True, "identique")
+    else:
+        check(f"sync {fname}", False, "EN ÉCART — lancez python3 scripts/sync-download.py --sync")
+        sync_ok = False
 
 print("\n=== RÉSUMÉ ===")
 pass_count = sum(1 for _, s, _ in results if s == "PASS")

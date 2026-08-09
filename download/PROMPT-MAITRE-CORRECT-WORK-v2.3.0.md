@@ -82,7 +82,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 | Dépendance | Version minimale | Utilisation |
 |------------|-----------------|-------------|
 | gen-plan | >= v3.6.0 | Étape 1 (plan d'actions) |
-| clone-chat | >= v1.2.0 | Mode CIBLE (§3.5 Context Drift) |
+| clone-chat | >= v2.0.0 | Mode CIBLE (§3.5 Context Drift) |
 | fullstack-dev | any | Vérification de projets web |
 
 ### §2.3 Structure des fichiers
@@ -176,7 +176,7 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 | Avec | Nature | Détails |
 |------|--------|--------|
 | gen-plan | Utilisation à Étape 1 | Création du plan de vérification, version >= v3.6.0 |
-| clone-chat | Mode CIBLE | Vérification spécifique, §3.5 Context Drift, version >= v1.2.0 |
+| clone-chat | Mode CIBLE | Vérification spécifique, §3.5 Context Drift, version >= v2.0.0 |
 | fullstack-dev | Vérification | Validation de la structure et dépendances projets web |
 | Skills KB | Consultation | Vérification présence et compatibilité des skills référencés |
 
@@ -206,7 +206,7 @@ dependencies:
     version: ">=3.6.0"
     used_at: "Étape 1"
   - skill: clone-chat
-    version: ">=1.2.0"
+    version: ">=2.0.0"
     used_at: "Mode CIBLE, §3.5 Context Drift"
   - skill: fullstack-dev
     version: ">=1.0.0"
@@ -256,7 +256,7 @@ Le fichier `SKILL.md` (~130 lignes, version compacte) doit contenir :
 | 12 | Cross-ref clone-chat | Mention Mode CIBLE, §3.5 | Present |
 | 13 | KNOWLEDGE.md | Entrée correct-work (SHARED §2.2) | Present |
 | 14 | Logging worklog | Format documenté | Present |
-| 15 | Dépendances frontmatter | gen-plan >=3.6.0, clone-chat >=1.2.0 | Correct |
+| 15 | Dépendances frontmatter | gen-plan >=3.6.0, clone-chat >=2.0.0 | Correct |
 | 16 | Compatibilité écosystème | 16/16 checks PASS | All PASS |
 
 ---
@@ -435,7 +435,7 @@ Ces checklists doivent être intégrées dans la section §4 du SKILL.md. Elles 
 
 ---
 
-## §10 — CHECKLISTS (SKILL.md) (suite)
+## §10b — Checklists opérationnelles (Étapes 2-5)
 
 Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elles sont adaptées au type de projet vérifié.
 

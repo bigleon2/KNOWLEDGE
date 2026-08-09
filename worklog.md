@@ -127,6 +127,34 @@ Stage Summary:
 - Verdict : PASS AVEC RÉSERVES (0 S1, 4 S2 corrigés)
 
 ---
+Task ID: 7
+Agent: Main (gen-plan v3.6.0)
+Task: Option C — Script de synchronisation download/ + rappel automatique
+
+Work Log:
+- E1-E2: Analyse demande (Option C sync), inventaire 6 fichiers download/ (5 périmés, 1 doublon)
+- E4: Comparaison complète source vs download (diff + line counts + hashes)
+- E7: Diagnostic structuré — 5/6 fichiers en écart, sévérité S1 à S4
+- Création scripts/sync-download.py (mode CHECK dry-run + mode SYNC avec confirmation)
+  - 5 fichiers PM mappés (SHARED, gen-plan, correct-work, clone-chat, README)
+  - integrate-clone-chat-kb-v3.py exclu du sync (doublon de scripts/)
+  - SHA-256 comparaison, rapport détaillé, --force pour sans confirmation
+- Premier sync exécuté : 5 fichiers mis à jour (220, 913, 491, 663, 323 lignes)
+- Vérification post-sync : sync-download.py CHECK → SYNC OK
+- Modification scripts/verify-cross.py :
+  - Ajout CHECK 6 (5 checks) : comparaison download/ vs skills/_prompts-maitres/
+  - Correction CHECK 4 : clone-chat dep v1.2.0 → v2.0.0
+  - Ajout import filecmp
+  - Docstring mis à jour (6 checks au lieu de 5 implicites)
+- verify-cross.py final : 60/60 PASS (55 anciens + 5 sync)
+
+Stage Summary:
+- Nouveau script : scripts/sync-download.py (2 modes : check + sync)
+- verify-cross.py : 55 → 60 checks (CHECK 6 ajouté)
+- download/ synchronisé avec skills/_prompts-maitres/ (5 fichiers)
+- Rappel automatique : CHECK 6 signale tout écart + message d'instruction
+
+---
 Task ID: 6
 Agent: correct-work v2.3.0
 Task: Vérification PROJET de l'écosystème Knowledge complet (4 PMs, 6 skills, KB, README)

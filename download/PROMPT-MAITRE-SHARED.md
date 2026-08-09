@@ -9,7 +9,7 @@
 
 ## §0 — Règle zéro (Contexte commun)
 
-L'écosystème Knowledge est un ensemble de 77 skills conçus pour un assistant IA (5 skills écosystème + 72 skills métier). Chaque skill est auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un fichier `SKILL.md` principal, d'un frontmatter YAML, et de références optionnelles dans `references/`.
+L'écosystème Knowledge est un ensemble de 78 skills conçus pour un assistant IA (6 skills écosystème + 72 skills métier). Chaque skill est auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un fichier `SKILL.md` principal, d'un frontmatter YAML, et de références optionnelles dans `references/`.
 
 **Principes fondamentaux** :
 - Chaque skill est versionné sémantiquement (MAJEUR.MINEUR.PATCH)
@@ -120,15 +120,18 @@ Quand un skill doit identifier les skills pertinents pour une tâche :
 | Skill A | Relation | Skill B | Nature | Détails |
 |---------|----------|---------|--------|--------|
 | gen-plan | invoque | correct-work | Étape 1 | Validation plan initial, >= v2.3.0 |
-| gen-plan | utilise | clone-chat | Calibration + archivage | E1-E7, E4, E15, optionnel, >= v1.2.0 |
+| gen-plan | utilise | clone-chat | Calibration + archivage | E4, E15, optionnel, >= v2.0.0 |
 | gen-plan | consulte | skills-inventory | Sélection skills | E5, >= v1.0.0 |
 | gen-plan | enrichit | KNOWLEDGE.md | Calibration | E15, mise à jour registre |
 | correct-work | utilise | gen-plan | Plan de vérification | Étape 1, >= v3.6.0 |
-| correct-work | vérifie | clone-chat | Mode CIBLE | §3.5 Context Drift, >= v1.2.0 |
+| correct-work | vérifie | clone-chat | Mode CIBLE | §3.5 Context Drift, >= v2.0.0 |
 | correct-work | vérifie | fullstack-dev | Projets web | Structure et dépendances |
-| clone-chat | archivé par | gen-plan | Sessions longues | Optionnel, >= v1.2.0 |
-| clone-chat | vérifié par | correct-work | Validation croisée | §3.5 drift, >= v1.2.0 |
+| clone-chat | archivé par | gen-plan | Sessions longues | Optionnel, >= v2.0.0 |
+| clone-chat | vérifié par | correct-work | Validation croisée | §3.5 drift, >= v2.0.0 |
 | clone-chat | conventions par | skill-creator | Conventions structurelles | >= v1.0.0 |
+| autonomous-agent | utilise | gen-plan | Planification | Tâches complexes, >= v3.6.0 |
+| autonomous-agent | persist via | clone-chat | État Long | Inter-sessions, optionnel, >= v2.0.0 |
+| autonomous-agent | vérifié par | correct-work | Validation | Cohérence agent, >= v2.3.0 |
 
 ### §3.2 Règles de cross-references
 
@@ -185,7 +188,7 @@ Tout `SKILL.md` suit cette structure :
 
 | Type de skill | Lignes SKILL.md | Fichiers references | Note |
 |---------------|-----------------|-------------------|-------|
-| Complexe (gen-plan) | ~170 lignes | 5 fichiers | Version compacte ; le prompt maître (866 lignes) contient la spec complète et le contenu in extenso des références |
+| Complexe (gen-plan) | ~195 lignes | 5 fichiers | Version compacte ; le prompt maître (~912 lignes) contient la spec complète et le contenu in extenso des références |
 | Moyen (correct-work) | ~130 lignes | 0 fichier | Version compacte ; le prompt maître (490 lignes) contient les checklists complètes (§10) |
 | Simple | < 100 lignes | 0-1 fichier | |
 
@@ -200,11 +203,12 @@ Tout `SKILL.md` suit cette structure :
 | `PROMPT-MAITRE-SHARED.md` | Socle commun (ce fichier) | — |
 | `PROMPT-MAITRE-GEN-PLAN-v3.6.0.md` | Spécification gen-plan | v3.6.0 |
 | `PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md` | Spécification correct-work | v2.3.0 |
+| `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | Spécification clone-chat | v2.0.0 |
 
 ### §6.2 Workflow d'utilisation
 
 1. **Lire SHARED** en premier pour le contexte, conventions, variables et relations
-2. **Lire le prompt maître spécifique** (gen-plan ou correct-work)
+2. **Lire le prompt maître spécifique** (gen-plan, correct-work ou clone-chat)
 3. Suivre les instructions d'installation du fichier spécifique
 4. Utiliser les références vers SHARED pour éviter la duplication
 5. Mettre à jour KNOWLEDGE.md et les cross-references (SHARED §2.2 et §3.2)

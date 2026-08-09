@@ -90,7 +90,7 @@ Cette étape **trace chaque fois que le contexte a changé** durant la discussio
 | INVERSION | Décision renversée (A accepté puis A refusé) | « Version v2.0.0 » acceptée puis refusée au profit de v3.1.0 |
 | MODIFICATION | Décision ajustée (paramètre X remplacé par Y) | Export DOCX remplacé par export MD par défaut |
 | CORRECTION | Spécification ou décision erronée corrigée | Chemins absolus corrigés en chemins relatifs |
-| ENRICHISSEMENT | Décision complétée par ajout d'un élément nouveau | Ajout Étape 3.5 Context Drift à clone-chat v1.1.0→v1.2.0 |
+| ENRICHISSEMENT | Décision complétée par ajout d'un élément nouveau | Ajout Étape 3.5 Context Drift à clone-chat v1.1.0→v1.2.0 (historique) |
 | RECALIBRAGE | Paramètre ajusté (seuil, ratio, estimation recalibrée) | Grille #token ajustée de -32% après calibration E15 |
 
 **Format de la table des drifts** :
@@ -321,7 +321,7 @@ mkdir -p {{SKILLS_ROOT}}clone-chat/references
 Le fichier `SKILL.md` (~365 lignes) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
-2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention 77 skills, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
+2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention 78 skills, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
 3. **§1 — Spécification fonctionnelle** : objectif, 7+1 étapes (détail de chaque), profils ressource
 4. **§2 — Spécification technique** : format sortie, stack, grille #token, intégration gen-plan, mitigation taille, structure fichiers
 5. **§3 — Conventions** : nommage (SHARED §1.2), chemins relatifs, règle in extenso, numérotation §0-§5, Context Drift obligatoire
@@ -363,7 +363,7 @@ Vérifier que (SHARED §3.2) :
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}clone-chat/SKILL.md` | File exists |
 | 2 | YAML frontmatter valide | name, version, category, language, tags, description, dependencies | All present |
-| 3 | §0 Règle zéro | 77 skills mentionnés, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}` | Present |
+| 3 | §0 Règle zéro | 78 skills mentionnés, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}` | Present |
 | 4 | 7+1 étapes | Étapes 1-7 + Étape 3.5 documentées | All present |
 | 5 | 8 checks validation | Table complète en Étape 6 | 8 checks |
 | 6 | 5 types de drift | INVERSION, MODIFICATION, CORRECTION, ENRICHISSEMENT, RECALIBRAGE | All present |
@@ -387,7 +387,7 @@ Vérifier que (SHARED §3.2) :
 | v1.0.0 | 2026-07-29 | Version initiale, 7 étapes, template, auto-clonage |
 | v1.1.0 | 2026-07-29 | 8 corrections correct-work (§0-§5, #token, chemins) |
 | v1.2.0 | 2026-07-29 | Étape 3.5 Context Drift, 5 types, 8 checks, gen-plan KB |
-| v2.0.0 | 2026-08-09 | Harmonisation écosystème maître : gen-plan v3.6.0, correct-work v2.3.0, 77 skills, variables SHARED, dependencies frontmatter, worklog SHARED §1.4, prompt maître |
+| v2.0.0 | 2026-08-09 | Harmonisation écosystème maître : gen-plan v3.6.0, correct-work v2.3.0, 78 skills, variables SHARED, dependencies frontmatter, worklog SHARED §1.4, prompt maître |
 
 ---
 
@@ -395,7 +395,7 @@ Vérifier que (SHARED §3.2) :
 
 ### §8.1 Pourquoi 7+1 étapes ?
 
-Les 7 étapes (collecte, artefacts, décisions, spécifications, assemblage, validation, sauvegarde) couvrent le cycle complet de clonage d'une discussion. L'Étape 3.5 (Context Drift) est une étape d'analyse critique ajoutée en v1.2.0 après correction par correct-work : elle certifie que les évolutions de contexte ont été détectées et tracées. Le numbering « 7+1 » (et non « 8 étapes ») souligne que l'Étape 3.5 est une analyse transversale insérée entre l'extraction des décisions et les spécifications techniques, et non une étape séquentielle indépendante.
+Les 7 étapes (collecte, artefacts, décisions, spécifications, assemblage, validation, sauvegarde) couvrent le cycle complet de clonage d'une discussion. L'Étape 3.5 (Context Drift) est une étape d'analyse critique ajoutée en v1.2.0 (historique) après correction par correct-work : elle certifie que les évolutions de contexte ont été détectées et tracées. Le numbering « 7+1 » (et non « 8 étapes ») souligne que l'Étape 3.5 est une analyse transversale insérée entre l'extraction des décisions et les spécifications techniques, et non une étape séquentielle indépendante.
 
 ### §8.2 Pourquoi le Context Drift ?
 
@@ -630,7 +630,7 @@ Cette section retrace les corrections appliquées à clone-chat par correct-work
 |---|----------|----------|------------|
 | 1 | Seuil in extenso < 500 lignes trop haut | S2 | Réduit à < 200 lignes |
 | 2 | Chemins absolus dans §3.3 | S1 | Remplacés par chemins relatifs |
-| 3-8 | Corrections structurelles (SKILL.md ↔ template, §5, #token, 77 skills) | S2-S3 | Alignement complet |
+| 3-8 | Corrections structurelles (SKILL.md ↔ template, §5, #token, 78 skills) | S2-S3 | Alignement complet |
 
 **Bilan** : 8 corrections. 3 HAUTE, 3 MOYENNE, 2 BASSE. → v1.1.0
 

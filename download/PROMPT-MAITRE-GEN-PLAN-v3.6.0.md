@@ -86,6 +86,7 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 5. **Visible progress** — L'utilisateur sait toujours quelle phase est en cours, ce qui est terminé, et ce qui vient ensuite.
 6. **CoT + Chaining avec auto-correction** — Chaque étape est exécutée avec un raisonnement structuré (Chain-of-Thought) avant l'action. Le chainage suit un pipeline hiérarchique où chaque sortie est vérifiée et corrigée avant de passer à la suivante.
 7. **Lecture bloc par bloc** — Les fichiers volumineux (> 500 lignes) sont lus par blocs successifs avec une synthèse intermédiaire à chaque bloc, évitant la surcharge de contexte et garantissant une couverture totale.
+8. **Downgrade irréversible** — Le profil ressource ne remonte jamais automatiquement. Si la détection des signaux de pression (disque < 5 Go, timeout 2+, tokens > 80 %) force un passage de NORMAL à ECO ou VIEUX PC, ce downgrade est définitif pour la session.
 
 ---
 
@@ -124,13 +125,35 @@ La calibration porte sur : la grille #token par agent/skill, les seuils de profi
 
 ### §2.4 Profils ressource
 
-Détail complet dans §8.4. Résumé :
+Détail complet dans §8.2. Résumé :
 
 | Profil | Contexte | Règles clés |
 |--------|----------|-------------|
 | **NORMAL** | Par défaut | 15 étapes complètes, tous les skills, surveillance complète |
 | **ECO** | Discussion < 5 sessions, #token < 3500 | Étapes réduites, 1 checkpoint, pas de matrice dynamique KB |
 | **VIEUX PC** | Matériel limité | Règles ECO + scripts < 100 lignes, pas de graphiques |
+
+**Règle de downgrade irréversible** : le profil ne remonte jamais automatiquement. Si une discussion passe de NORMAL à ECO (ou ECO à VIEUX PC), le profil restera au niveau inférieur pour toute la durée de la session. Le profil initial est NORMAL sauf détection de signaux de pression.
+
+#### §2.4.1 Signaux de pression
+
+| Signal | Seuil pression | Seuil critique |
+|--------|---------------|----------------|
+| Espace disque | < 5 Go | < 3 Go |
+| Timeout appels | 2+ consécutifs sur 5 min | 4+ sur 5 min |
+| Budget tokens | > 80 % consommé | > 95 % consommé |
+
+**1 signal pression** → passage en ECO. **2+ signaux pression** ou **1 signal critique** → passage en VIEUX PC.
+
+#### §2.4.2 Filtrage #token par profil
+
+| Profil | Seuil d'exclusion | Action |
+|--------|------------------|--------|
+| NORMAL | Aucun | Aucun filtrage |
+| ECO | > 8000 #token | Sous-tâche exclue du plan |
+| VIEUX PC | > 5000 #token | Sous-tâche exclue du plan |
+
+Le filtrage s'applique à l'étape E4 (estimation), avant la construction du plan (E7).
 
 ### §2.5 Intégration KB
 
@@ -151,7 +174,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 | Avec | Nature | Détails |
 |------|--------|--------|
 | correct-work | Invocation à E1 | Validation du plan initial, version >= v2.3.0 |
-| clone-chat | Calibration + archivage | E1-E7, E4, E15, optionnel, version >= v1.2.0 |
+| clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
 
@@ -181,8 +204,8 @@ dependencies:
     version: ">=2.3.0"
     used_at: "E1"
   - skill: clone-chat
-    version: ">=1.2.0"
-    used_at: "E1-E7, E4, E15"
+    version: ">=2.0.0"
+    used_at: "E4, E15"
     optional: true
   - skill: skills-inventory
     version: ">=1.0.0"
@@ -203,7 +226,7 @@ mkdir -p {{SKILLS_ROOT}}gen-plan/evals
 
 ### §5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (~170 lignes, version compacte) doit contenir :
+Le fichier `SKILL.md` (~195 lignes, version compacte) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
 2. **§0 — Règle zéro** (voir SHARED §0)
@@ -269,7 +292,7 @@ Le contenu in extenso de chaque fichier est en §8.
 | # | Check | Critère | Résultat attendu |
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}gen-plan/SKILL.md` | File exists |
-| 2 | Taille SKILL.md | ~170 lignes (version compacte) | Within range |
+| 2 | Taille SKILL.md | ~195 lignes (version compacte) | Within range |
 | 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
 | 4 | 5 fichiers référence | `references/` contient 5 fichiers | 5 files |
 | 5 | evals.json valide | JSON parsable, 5 evals | Valid JSON |
@@ -638,7 +661,7 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 | clone-moyen | 5-15 sessions | 3500-5500 | NORMAL |
 | clone-long | > 15 sessions | 5500-9000 | NORMAL |
 
-> Note v1.2.0 : estimation +10% pour couvrir l'Étape 3.5 Context Drift et l'intégration gen-plan.
+> Note (historique v1.2.0) : estimation +10% pour couvrir l'Étape 3.5 Context Drift et l'intégration gen-plan.
 
 ## Coefficients d'ajustement
 
@@ -658,7 +681,7 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 | 1 | 2026-07-18 | Planification 66 skills | 4500 | 5200 | +15.6% | Aucune (0-20%) |
 | 2 | 2026-07-18 | Test E2E gen-plan | 3000 | 3600 | +20.0% | Aucune (seuil) |
 | 3 | 2026-07-29 | clone-chat v1.1.0 | 4000 | 5200 | +30.0% | Ajustement grille |
-| 4 | 2026-07-29 | clone-chat v1.2.0 | 4400 | 4600 | +4.5% | Aucune (0-20%) |
+| 4 | 2026-07-29 | clone-chat v1.2.0 (historique) | 4400 | 4600 | +4.5% | Aucune (0-20%) |
 ```
 
 ### §9.3 `references/classification-types.md`
@@ -775,12 +798,14 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 - #token estimé < 3500
 - Tâche simple (1 skill, 1 livrable)
 - Demande explicite de l'utilisateur
+- **1 signal de pression** détecté (§2.4.1 du SKILL.md)
 
 **Règles** :
 - Étapes réduites : E1-E9 puis E14-E15 (E10-E13 fusionnées)
 - Snippets simplifiés (pas de versionnage)
 - 1 checkpoint unique à E11
 - Pas de matrice dynamique KB (statique seulement)
+- Sous-tâches > 8000 #token exclues du plan (filtrage E4)
 
 **Restrictions** :
 - Pas de rapport de vérification détaillé
@@ -796,22 +821,43 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 **Déclenchement** :
 - Demande explicite de l'utilisateur
 - Environnement détecté comme limité
+- **2+ signaux de pression** ou **1 signal critique** (§2.4.1 du SKILL.md)
 
-**Règles** :
-- Toutes les règles ECO s'appliquent
-- Scripts Python légers uniquement (pas de bibliothèques lourdes)
-- Pas de graphiques Matplotlib/Seaborn
-- Pas de Playwright
-- Préférer les sorties Markdown/texte
+**Règles ECO** : toutes les règles ECO s'appliquent (filtrage > 5000 #token).
+
+**5 règles supplémentaires** :
+
+1. **Dépendances séquentielles uniquement** — Pas de parallélisme. Chaque étape doit être terminée avant de commencer la suivante.
+2. **Choix agent/skill justifié par le coût** — Toujours choisir l'agent ou le skill le moins cher qui suffit pour la tâche. Justifier le choix dans le plan.
+3. **Budget ressource par phase** — Le budget #token est alloué par phase (E1-E8, E9-E14, E15), jamais global. Si une phase dépasse son budget, les étapes restantes sont reportées.
+4. **Actions d'économie explicites** — Résumé de contexte avant chaque étape majeure, troncature des fichiers > 500 lignes, pas de relecture intégrale.
+5. **Plan de contingence** — Si le profil se dégrade encore (3+ signaux critiques), basculer en mode survie : seules les étapes E1, E3, E7, E14 sont exécutées.
 
 **Restrictions supplémentaires** :
 - Pas de génération d'images
 - Scripts < 100 lignes
 - Préférer O(n) à O(n²)
 - Pas de chargement de gros fichiers en mémoire
+- Scripts Python légers uniquement (pas de bibliothèques lourdes)
+- Pas de graphiques Matplotlib/Seaborn
+- Pas de Playwright
+- Préférer les sorties Markdown/texte
 
 **Seuils** : #token plafond 2000, pas de graphiques.
+
+---
+
+## Règle de downgrade irréversible
+
+Le profil ne remonte jamais automatiquement au cours d'une session :
+- NORMAL → ECO : définitif pour la session
+- ECO → VIEUX PC : définitif pour la session
+- NORMAL → VIEUX PC : définitif pour la session
+
+Le profil initial est NORMAL sauf détection de signaux de pression dès E2.
 ```
+
+---
 
 ### §9.5 `references/guide-selection-agent-skill.md`
 
