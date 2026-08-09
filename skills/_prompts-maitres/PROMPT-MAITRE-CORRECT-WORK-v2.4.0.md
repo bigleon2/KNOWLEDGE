@@ -1,9 +1,9 @@
-# PROMPT MAÎTRE — Installation du skill correct-work v2.3.0
+# PROMPT MAÎTRE — Installation du skill correct-work v2.4.0
 
-> **Version du prompt** : 1.0.0
-> **Skill cible** : correct-work v2.3.0
+> **Version du prompt** : 1.1.0
+> **Skill cible** : correct-work v2.4.0
 > **Date** : 2026-08-09
-> **Source** : Écosystème Knowledge — Clone de discussion
+> **Source** : Écosystème Knowledge
 > **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
 
 ---
@@ -38,34 +38,43 @@ Résumé des variables utiles (SHARED §1.1) :
 
 ### §1.1 Description
 
-correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 3 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session.
+correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 3 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session. Supporte le multi-cibles, le découplage gen-plan optionnel, et les métriques de performance.
 
 ### §1.2 Les 3 modes
 
 | Mode | Nom | Description | Cas d'usage |
 |------|-----|-------------|-------------|
 | **PROJET** | Prompt-maître | Vérification complète d'un projet via son prompt maître | Validation finale d'un projet complexe |
-| **CIBLE** | Ciblé | Vérification ciblée d'un skill ou fichier spécifique | Vérification d'un skill (ex: clone-chat) |
+| **CIBLE** | Ciblé | Vérification ciblée d'un skill ou fichier spécifique (défaut) | Vérification d'un skill (ex: clone-chat) |
 | **DIRECT** | Rapide | Vérification directe sans plan préalable | Correction rapide d'un fichier |
 
 ### §1.3 Les 5 étapes
 
 | Étape | Nom | Description |
 |-------|------|-------------|
-| **1** | Plan d'actions via gen-plan | Création du plan de vérification via gen-plan (Étape 1) |
+| **1** | Plan d'actions | Création du plan de vérification (gen-plan si dispo, sinon autonome) |
 | **2** | Erreurs et omissions | Détection des erreurs factuelles, omissions, incohérences logiques |
 | **3** | Structure et conflits | Vérification de la structure, conflits entre sections, cohérence du format |
 | **4** | Vérification des interactions | Inspection des relations inter-skills, dépendances, interfaces |
 | **5** | Cohérence des raisonnements | Vérification de la logique globale, cohérence argumentaire, décisions |
 
-### §1.4 Intégration KB
+### §1.4 Support multi-cibles
 
-Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan :
+correct-work peut vérifier plusieurs artefacts dans une même session. Chaque cible reçoit un sous-rapport indépendant, et le rapport final agrège les résultats. Les verdicts sont calculés par cible puis globalement (le verdict global est le pire des verdicts individuels).
+
+### §1.5 Découplage gen-plan
+
+Le mode PROJET utilise gen-plan à l'Étape 1 pour créer le plan de vérification. Si gen-plan n'est pas disponible, correct-work fonctionne en mode autonome : il génère un plan simplifié (sections à vérifier dans l'ordre logique) sans estimation #token ni sélection de skills. Les modes CIBLE et DIRECT n'utilisent jamais gen-plan.
+
+### §1.6 Intégration KB
+
+Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 
 - **`kb_path`** : chemin vers `{{KB_PATH}}`
 - **`--kb-skill`** : flag pour cibler un skill spécifique
 - **Matrice statique** : voir SHARED §4.1
 - **Matrice dynamique** : construite à l'exécution en scannant `KNOWLEDGE.md` (SHARED §2.3)
+- **verify-cross.py --mode correct-work** : 8 checks KB spécifiques
 
 ---
 
@@ -73,23 +82,27 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 
 ### §2.1 Stack technique
 
-- **Langage** : Markdown (documentation), YAML (frontmatter)
+- **Langage** : Markdown (rapports), Python (scripts), YAML (frontmatter)
 - **Environnement** : `{{SKILLS_ROOT}}correct-work/`
-- **Pas de dépendance externe** (sauf gen-plan pour Étape 1)
+- **Pas de dépendance externe** (sauf intégration KB)
 
 ### §2.2 Dépendances
 
-| Dépendance | Version minimale | Utilisation |
-|------------|-----------------|-------------|
-| gen-plan | >= v3.6.0 | Étape 1 (plan d'actions) |
-| clone-chat | >= v2.0.0 | Mode CIBLE (§3.5 Context Drift) |
-| fullstack-dev | any | Vérification de projets web |
+| Dépendance | Version minimale | Utilisation | Optionnelle |
+|------------|-----------------|-------------|-------------|
+| gen-plan | >= v3.6.0 | Étape 1 (plan d'actions) | Oui (autonome sinon) |
+| clone-chat | >= v2.0.0 | Mode CIBLE (§3.5 Context Drift) | Oui |
+| fullstack-dev | >= v1.0.0 | Vérification de projets web | Oui |
 
 ### §2.3 Structure des fichiers
 
 ```
 {{SKILLS_ROOT}}correct-work/
-└── SKILL.md                          # Skill opérationnel compact (~130 lignes)
+├── SKILL.md              # Skill opérationnel (~315 lignes)
+├── scripts/
+│   └── verify-correct-work.py  # 16 checks post-install automatisés
+└── evals/
+    └── evals.json        # Cas de test d'évaluation
 ```
 
 ### §2.4 Format du rapport de vérification
@@ -100,11 +113,11 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB de gen-plan 
 ## Métadonnées
 - **Date** : YYYY-MM-DD
 - **Mode** : PROJET | CIBLE | DIRECT
-- **Version correct-work** : 2.3.0
-- **Cible** : [nom du skill/fichier]
+- **Version correct-work** : 2.4.0
+- **Cible** : [nom du skill/fichier] (ou multi-cibles)
 
 ## Étape 1 — Plan d'actions
-[Plan généré via gen-plan]
+[Plan généré via gen-plan ou autonome]
 
 ## Étape 2 — Erreurs et omissions
 | # | Sévérité | Description | Emplacement | Correction proposée |
@@ -141,11 +154,11 @@ Voir SHARED §1.4 pour le format. Spécifiquement pour correct-work :
 ```markdown
 ---
 Task ID: [task-id]
-Agent: correct-work v2.3.0
+Agent: correct-work v2.4.0
 Task: Vérification [mode] de [cible]
 
 Work Log:
-- Étape 1 : Plan d'actions créé (gen-plan)
+- Étape 1 : Plan d'actions créé (gen-plan ou autonome)
 - Étape 2 : N erreurs détectées
 - Étape 3 : N conflits structurels
 - Étape 4 : N interactions vérifiées
@@ -165,6 +178,18 @@ Stage Summary:
 | **S3** | Mineur | Impact limité, cosmétique | Correction souhaitable, non bloquante |
 | **S4** | Suggestion | Amélioration possible, pas de problème | Optionnel, pour info |
 
+### §2.8 Métriques de performance
+
+Les métriques suivantes sont collectées pour chaque exécution de correct-work :
+
+| Métrique | Description | Cible |
+|----------|-------------|-------|
+| `findings_total` | Nombre total de findings | Réduire au fil des sessions |
+| `findings_par_étape` | Répartition E1-E5 | Identifier les étapes les plus productives |
+| `taux_correction` | Corrections appliquées / findings trouvés | > 80% |
+| `temps_par_mode` | Durée par mode (PROJET/CIBLE/DIRECT) | Baseline pour calibration |
+| `faux_positifs` | Findings reclassés ou annulés | < 10% |
+
 ---
 
 ## §3 — RELATIONS
@@ -175,10 +200,10 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| gen-plan | Utilisation à Étape 1 | Création du plan de vérification, version >= v3.6.0 |
-| clone-chat | Mode CIBLE | Vérification spécifique, §3.5 Context Drift, version >= v2.0.0 |
-| fullstack-dev | Vérification | Validation de la structure et dépendances projets web |
-| Skills KB | Consultation | Vérification présence et compatibilité des skills référencés |
+| gen-plan | Invocation à E1 | Plan de vérification (optionnel, autonome sinon), version >= v3.6.0 |
+| clone-chat | Vérification Mode CIBLE | §3.5 Context Drift, version >= v2.0.0 |
+| fullstack-dev | Vérification | Projets web : structure et dépendances, version >= v1.0.0 |
+| knowledge.md | Scan dynamique | Découverte versions et dépendances |
 
 ---
 
@@ -187,11 +212,11 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 ```yaml
 ---
 name: correct-work
-version: 2.3.0
+version: 2.4.0
 category: ecosystem
 language: fr
 tags:
-  - verification
+  - vérification
   - correction
   - quality-assurance
   - ecosystem
@@ -199,12 +224,14 @@ tags:
 description: >
   Skill de vérification et correction du travail réalisé.
   5 étapes, 3 modes (PROJET/CIBLE/DIRECT),
-  intégration gen-plan v3.6.0+ (Registre KB, kb_path, --kb-skill),
-  matrice de décision agent/skill (statique + dynamique KB).
+  support multi-cibles, découplage gen-plan optionnel,
+  intégration KB (Registre, kb_path, --kb-skill),
+  matrice de décision agent/skill (statique + dynamique KB),
+  métriques de performance.
 dependencies:
   - skill: gen-plan
     version: ">=3.6.0"
-    used_at: "Étape 1"
+    used_at: "Étape 1 (optionnel, mode PROJET)"
   - skill: clone-chat
     version: ">=2.0.0"
     used_at: "Mode CIBLE, §3.5 Context Drift"
@@ -221,20 +248,21 @@ dependencies:
 ### §5.1 Créer la structure
 
 ```bash
-mkdir -p {{SKILLS_ROOT}}correct-work
+mkdir -p {{SKILLS_ROOT}}correct-work/scripts
+mkdir -p {{SKILLS_ROOT}}correct-work/evals
 ```
 
 ### §5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (~130 lignes, version compacte) doit contenir :
+Le fichier `SKILL.md` (~315 lignes, version compacte avec checklists intégrées) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
 2. **§0 — Règle zéro** (voir SHARED §0)
-3. **§1 — Spécification fonctionnelle** : 3 modes, 5 étapes, intégration KB
-4. **§2 — Spécification technique** : Stack, dépendances, rapport (§2.4), matrice dynamique (§2.5), logging (§2.6), sévérité (§2.7)
+3. **§1 — Spécification fonctionnelle** : 3 modes, 5 étapes, multi-cibles, découplage gen-plan, intégration KB
+4. **§2 — Spécification technique** : Stack, dépendances, rapport (§2.4), matrice (§2.5), logging (§2.6), sévérité (§2.7), métriques (§2.8)
 5. **§3 — Relations** : Voir SHARED §3 (résumé des relations directes)
-6. **§4 — Grille de vérification** : Checklists par mode et opérationnelles (voir §10)
-7. **§5 — Conventions** : Nommage (SHARED §1.2), format rapport, verdicts (§10.5)
+6. **§4 — Checklists** : Par mode (§4.1-§4.3), sélection (§4.4), verdicts (§4.5), types projet (§4.6), détail étapes 2-5 (§4.7-§4.10)
+7. **§5 — Conventions** : Nommage (SHARED §1.2), format rapport, verdicts
 
 ---
 
@@ -243,20 +271,20 @@ Le fichier `SKILL.md` (~130 lignes, version compacte) doit contenir :
 | # | Check | Critère | Résultat attendu |
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}correct-work/SKILL.md` | File exists |
-| 2 | Taille SKILL.md | ~130 lignes (version compacte) | Within range |
-| 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
+| 2 | Taille SKILL.md | 200-350 lignes | Within range |
+| 3 | YAML frontmatter valide | name, version, category, language, tags, dependencies | All present |
 | 4 | 3 modes documentés | PROJET, CIBLE, DIRECT | All present |
 | 5 | 5 étapes documentées | E1-E5 | All present |
 | 6 | Intégration KB | Mention kb_path, --kb-skill | Present |
 | 7 | Matrice statique | Voir SHARED §4 | Referenced |
 | 8 | Matrice dynamique KB | Description du scan | Present |
 | 9 | Critères de sévérité | S1-S4 | All present |
-| 10 | Format rapport | Structure 5 sections | Present |
+| 10 | Format rapport | Structure 5 sections, support multi-cibles | Present |
 | 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.6.0 | Present |
 | 12 | Cross-ref clone-chat | Mention Mode CIBLE, §3.5 | Present |
 | 13 | KNOWLEDGE.md | Entrée correct-work (SHARED §2.2) | Present |
 | 14 | Logging worklog | Format documenté | Present |
-| 15 | Dépendances frontmatter | gen-plan >=3.6.0, clone-chat >=2.0.0 | Correct |
+| 15 | Dépendances frontmatter | gen-plan >=3.6.0, clone-chat >=2.0.0, fullstack-dev >=1.0.0 | Correct |
 | 16 | Compatibilité écosystème | 16/16 checks PASS | All PASS |
 
 ---
@@ -270,6 +298,7 @@ Le fichier `SKILL.md` (~130 lignes, version compacte) doit contenir :
 | v2.1.0 | 2026-07-29 | Intégration gen-plan pour Étape 1 |
 | v2.2.0 | 2026-07-29 | Registre KB (gen-plan >=3.3.0), kb_path, --kb-skill, matrice dynamique |
 | v2.3.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
+| v2.4.0 | 2026-08-09 | Support multi-cibles, découplage gen-plan (autonome), métriques de performance, checklists opérationnelles (§4.6-§4.10), scripts/ + evals/, hook gen-plan E8, verify-cross --mode correct-work (8 checks KB) |
 
 ---
 
@@ -315,7 +344,7 @@ Les 3 modes couvrent 3 niveaux de vérification : PROJET (lourd mais exhaustif, 
 
 ### §9.2 Pourquoi 5 étapes ?
 
-Progression logique du plus évident au plus subtil : plan (via gen-plan) → contenu factuel → structure formelle → interactions entre composants → cohérence globale des raisonnements. Cette séquence garantit que les erreurs grossières (S1) sont détectées avant les problèmes subtils (S3-S4).
+Progression logique du plus évident au plus subtil : plan (via gen-plan ou autonome) → contenu factuel → structure formelle → interactions entre composants → cohérence globale des raisonnements. Cette séquence garantit que les erreurs grossières (S1) sont détectées avant les problèmes subtils (S3-S4).
 
 ### §9.3 Pourquoi l'intégration KB ?
 
@@ -325,11 +354,19 @@ Sans KB, correct-work vérifie uniquement la matrice statique (SHARED §4). Avec
 
 La matrice statique garantit un fonctionnement minimum sans KB (fallback). La matrice dynamique enrichit la vérification quand KB est disponible. Ce pattern « statique + dynamique » assure la résilience : si KNOWLEDGE.md est absent ou corrompu, correct-work peut encore fonctionner avec la matrice intégrée.
 
+### §9.5 Pourquoi le découplage gen-plan ?
+
+gen-plan est un skill lourd (15 étapes). Pour les vérifications simples (modes CIBLE et DIRECT), correct-work n'a pas besoin de gen-plan. Le mode PROJET l'utilise à l'Étape 1, mais si gen-plan est indisponible, correct-work bascule en mode autonome avec un plan simplifié. Cela réduit les dépendances et améliore la résilience.
+
+### §9.6 Pourquoi le support multi-cibles ?
+
+Une session de travail peut produire plusieurs livrables (ex : un SKILL.md + un script + un evals.json). Le support multi-cibles permet de tous les vérifier dans une seule exécution, avec un sous-rapport par cible et un verdict global.
+
 ---
 
 ## §10 — CHECKLISTS (SKILL.md)
 
-Ces checklists doivent être intégrées dans la section §4 du SKILL.md. Elles sont divisées en deux parties : les checklists par mode de vérification (§10.1-§10.5) et les checklists opérationnelles détaillées par étape et type de projet (§10.6-§10.10).
+Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divisées en deux parties : les checklists par mode de vérification (§10.1-§10.5) et les checklists opérationnelles détaillées par étape et type de projet (§10.6-§10.10).
 
 ### §10.1 Mode PROJET
 
@@ -339,11 +376,11 @@ Ces checklists doivent être intégrées dans la section §4 du SKILL.md. Elles 
 - [ ] La version du prompt maître est identifiée
 - [ ] Les livrables attendus sont listés
 
-### Phase 1 — Plan (via gen-plan E1)
-- [ ] Plan de vérification créé via gen-plan
+### Phase 1 — Plan (via gen-plan ou autonome)
+- [ ] Plan de vérification créé (gen-plan ou autonome)
 - [ ] Sections à vérifier identifiées
 - [ ] Ordre de vérification défini
-- [ ] Estimation #token faite
+- [ ] Estimation #token faite (si gen-plan disponible)
 
 ### Phase 2 — Erreurs et omissions
 - [ ] Chaque section du prompt comparée au livrable
@@ -448,6 +485,7 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 | **Backend/API** | Endpoints, validation, sécurité | Gestion erreurs, imports | Services, timeouts, CORS |
 | **Document/PDF** | Contenu, mise en page, données | Cohérence sections, refs croisées | Références entre livrables |
 | **Script/automatisation** | I/O, paramètres, sorties | Chemins en dur, gestion erreurs | Dépendances externes |
+| **Écosystème skills** | Versions, frontmatter, deps | Cross-refs, conventions SHARED | Relations bidirectionnelles, KB |
 
 ### §10.7 Étape 2 — Erreurs et omissions (détail)
 
@@ -476,7 +514,7 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 1. **API frontend-backend** : chaque endpoint appelé existe-t-il ? Paramètres correspondants ? Codes d'erreur gérés ?
 2. **Props et communication inter-composants** : types, noms, optionnalité, valeurs par défaut cohérents ?
 3. **State management** : store expose-t-il toutes les données nécessaires ? Actions appelées aux bons moments ? State mort ?
-4. **Flux de données bout en bout** : tracer un scenario complet (clic → API → store → re-render). Race conditions ?
+4. **Flux de données bout en bout** : tracer un scénario complet (clic → API → store → re-render). Race conditions ?
 5. **Communications entre services** : bons ports/URLs ? WebSockets ? Timeouts et réessais ?
 6. **Références croisées entre livrables** : numéros de section corrects ? Données cohérentes ? Liens valides ?
 7. **Corriger** chaque problème d'interaction identifié.

@@ -1,7 +1,7 @@
-# PROMPT MAÎTRE — Installation du skill gen-plan v3.6.0
+# PROMPT MAÎTRE — Installation du skill gen-plan v3.6.1
 
-> **Version du prompt** : 1.0.0
-> **Skill cible** : gen-plan v3.6.0
+> **Version du prompt** : 1.1.0
+> **Skill cible** : gen-plan v3.6.1
 > **Date** : 2026-08-09
 > **Source** : Écosystème Knowledge — Clone de discussion
 > **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
@@ -34,7 +34,7 @@ Résumé des variables utiles (SHARED §1.1) :
 
 ### §1.1 Description
 
-gen-plan est un skill de **planification de tâches** pour assistant IA. Il fournit un cadre structuré en 4 modes de fonctionnement et 15 étapes (E1-E15) pour analyser, planifier, exécuter, surveiller et adapter toute tâche complexe.
+gen-plan est un skill de **planification de tâches** pour assistant IA. Il fournit un cadre structuré en 4 modes de fonctionnement et 15 étapes (E1-E15) pour analyser, planifier, exécuter, surveiller et adapter toute tâche complexe. La philosophie #7 (v3.6.1) impose la lecture bloc par bloc pour les fichiers > 500 lignes.
 
 ### §1.2 Les 4 modes
 
@@ -80,9 +80,9 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 ### §1.7 Philosophie
 
 1. **Read before planning** — Toujours lire le projet avant de planifier. Un plan sans connaissance du projet est générique et probablement inadéquat. La lecture exhaustive est un investissement nécessaire.
-2. **Performance-driven selection** — Le choix entre skill, agent spécialisé ou agent général est dicté par le gain de performance, pas par une hiérarchie rigide. Un skill avec un protocole pertinent bat toujours un agent nu.
+2. **Performance-driven sélection** — Le choix entre skill, agent spécialisé ou agent général est dicté par le gain de performance, pas par une hiérarchie rigide. Un skill avec un protocole pertinent bat toujours un agent nu.
 3. **Skills can launch specialized agents** — Les skills ne sont pas des terminaisons mais des orchestrateurs. Un skill chargé peut lancer en interne un agent spécialisé (full-stack-developer, ppt-expert, etc.). Modèle à deux couches : Skill (protocole + connaissances domaine) → Agent Spécialisé (exécution).
-4. **Serial execution by DEFAULT** — Toutes les tâches s'exécutent UNE À LA UNE. Le parallélisme est INTERDIT sauf demande explicite de l'utilisateur ET preuve que les sous-tâches sont indépendantes.
+4. **Serial exécution by DEFAULT** — Toutes les tâches s'exécutent UNE À LA UNE. Le parallélisme est INTERDIT sauf demande explicite de l'utilisateur ET preuve que les sous-tâches sont indépendantes.
 5. **Visible progress** — L'utilisateur sait toujours quelle phase est en cours, ce qui est terminé, et ce qui vient ensuite.
 6. **CoT + Chaining avec auto-correction** — Chaque étape est exécutée avec un raisonnement structuré (Chain-of-Thought) avant l'action. Le chainage suit un pipeline hiérarchique où chaque sortie est vérifiée et corrigée avant de passer à la suivante.
 7. **Lecture bloc par bloc** — Les fichiers volumineux (> 500 lignes) sont lus par blocs successifs avec une synthèse intermédiaire à chaque bloc, évitant la surcharge de contexte et garantissant une couverture totale.
@@ -102,7 +102,7 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 
 ```
 {{SKILLS_ROOT}}gen-plan/
-├── SKILL.md                          # Skill opérationnel compact (~170 lignes)
+├── SKILL.md                          # Skill opérationnel compact (~180 lignes)
 ├── references/
 │   ├── etapes-detaillees.md          # Détail des 15 étapes
 │   ├── grille-token.md               # Grille de calibration #token
@@ -173,7 +173,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| correct-work | Invocation à E1 | Validation du plan initial, version >= v2.3.0 |
+| correct-work | Invocation à E1 | Validation du plan initial, version >= v2.4.0 |
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
@@ -185,7 +185,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 ```yaml
 ---
 name: gen-plan
-version: 3.6.0
+version: 3.6.1
 category: ecosystem
 language: fr
 tags:
@@ -201,8 +201,8 @@ description: >
   tagging #token, snippets, scripts Python uniquement.
 dependencies:
   - skill: correct-work
-    version: ">=2.3.0"
-    used_at: "E1"
+    version: ">=2.4.0"
+    used_at: "E1, E8 hook"
   - skill: clone-chat
     version: ">=2.0.0"
     used_at: "E4, E15"
@@ -226,7 +226,7 @@ mkdir -p {{SKILLS_ROOT}}gen-plan/evals
 
 ### §5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (~195 lignes, version compacte) doit contenir :
+Le fichier `SKILL.md` (~180 lignes, version compacte) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
 2. **§0 — Règle zéro** (voir SHARED §0)
@@ -245,7 +245,7 @@ Le contenu in extenso de chaque fichier est en §8.
 ```json
 {
   "skill": "gen-plan",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "evals": [
     {
       "id": "E1-classification",
@@ -292,7 +292,7 @@ Le contenu in extenso de chaque fichier est en §8.
 | # | Check | Critère | Résultat attendu |
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}gen-plan/SKILL.md` | File exists |
-| 2 | Taille SKILL.md | ~195 lignes (version compacte) | Within range |
+| 2 | Taille SKILL.md | ~180 lignes (version compacte) | Within range |
 | 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
 | 4 | 5 fichiers référence | `references/` contient 5 fichiers | 5 files |
 | 5 | evals.json valide | JSON parsable, 5 evals | Valid JSON |
@@ -312,6 +312,7 @@ Le contenu in extenso de chaque fichier est en §8.
 | v3.3.0 | 2026-07-29 | Ajout Registre KB, Protocole de Découverte |
 | v3.5.0 | 2026-07-29 | Intégration clone-chat, calibration #token, normes N1-N3 |
 | v3.6.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
+| v3.6.1 | 2026-08-09 | Méthode lecture bloc par bloc (philosophie #7, E2/E9/E10), correct-work >= v2.4.0 avec hook E8, chemins references/ sans accent, description enrichie, count ~180L |
 
 ---
 
@@ -381,15 +382,26 @@ Les 5 fichiers référence suivants doivent être créés dans `{{SKILLS_ROOT}}g
 - `{{KB_PATH}}` (registre KB)
 - Fichiers existants dans le projet
 
+**Méthode — Lecture bloc par bloc** :
+Pour chaque fichier > 500 lignes à inventorier :
+1. Lire le premier bloc (200 lignes max)
+2. Produire une synthèse intermédiaire (objectif, structure, sections clés)
+3. Lire le bloc suivant (200 lignes max) en utilisant la synthèse comme contexte
+4. Répéter jusqu'à la fin du fichier
+5. Synthèse finale consolidée
+Les fichiers ≤ 500 lignes sont lus en une seule fois.
+
 **Outputs** :
 - Liste des skills disponibles et pertinents
 - Liste des fichiers/sources de données existants
+- Synthèses intermédiaires des fichiers volumineux
 - Gaps identifiés (ressources manquantes)
 
 **Critères de validation** :
 - [ ] Skills pertinents identifiés
 - [ ] Gaps clairement listés
 - [ ] Pas de ressource critique manquante sans contournement
+- [ ] Fichiers > 500L lus par blocs avec synthèse intermédiaire
 
 ---
 
@@ -524,9 +536,12 @@ Les 5 fichiers référence suivants doivent être créés dans `{{SKILLS_ROOT}}g
 
 **Inputs** : Plan validé (E8), Contexte session
 
+**Méthode — Lecture bloc par bloc** :
+Si les fichiers sources de l'étape E9 sont > 500 lignes, appliquer la méthode de lecture par blocs (voir E2) avant de démarrer l'exécution.
+
 **Outputs** : Première étape lancée, Entrée worklog initialisée
 
-**Critères** : [ ] Exécution démarrée, [ ] Worklog initialisé
+**Critères** : [ ] Exécution démarrée, [ ] Worklog initialisé, [ ] Fichiers volumineux synthétisés par blocs
 
 ---
 
@@ -536,9 +551,12 @@ Les 5 fichiers référence suivants doivent être créés dans `{{SKILLS_ROOT}}g
 
 **Inputs** : Plan en cours (E8), État réel
 
+**Méthode — Lecture bloc par bloc** :
+Lors du suivi d'étapes manipulant des fichiers > 500 lignes, vérifier la cohérence bloc par bloc (ne pas relire le fichier intégralement, utiliser les synthèses produites à E2/E9).
+
 **Outputs** : Entrée worklog par étape, #token réel, Écarts éventuels
 
-**Critères** : [ ] Chaque étape terminée loggée, [ ] #token réel mesuré
+**Critères** : [ ] Chaque étape terminée loggée, [ ] #token réel mesuré, [ ] Fichiers volumineux traités par synthèse de blocs
 
 ---
 
@@ -618,6 +636,12 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 - [ ] Les fichiers de configuration (JSON/YAML) sont valides
 - [ ] Les références croisées entre fichiers sont valides
 
+**E8 — Hook correct-work** (si correct-work >= v2.4.0 est disponible) :
+- [ ] Après validation du plan, lancer `correct-work(cibles, mode=CIBLE)` sur les livrables produits
+- [ ] Si correct-work retourne FAIL, l'exécution est mise en pause jusqu'à correction
+- [ ] Si correct-work retourne PASS AVEC RÉSERVES, les réserves sont loggées et l'exécution continue
+- [ ] Si correct-work retourne PASS, l'exécution passe directement à E9
+
 **E14 — Finalisation** inclut l'intégration écosystème :
 - [ ] Les fichiers Skill sont placés dans `{{SKILLS_ROOT}}<nom>/SKILL.md`
 - [ ] Les fichiers de référence vont dans `{{SKILLS_ROOT}}<nom>/references/`
@@ -634,7 +658,7 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 ### §9.2 `references/grille-token.md`
 
 ```markdown
-# Grille de calibration #token — gen-plan v3.6.0
+# Grille de calibration #token — gen-plan v3.6.1
 
 ## Grille par agent/skill
 
@@ -689,7 +713,7 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 ```markdown
 # Classification des types de tâches — gen-plan E3
 
-## Type 1 — Document Creation
+## Type 1 — Document création
 
 **Indicateurs** :
 - Mots-clés : rapport, document, article, analyse, proposition, PRD, script, manuscrit, présentation, tableur
@@ -771,7 +795,7 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 ### §9.4 `references/profils-ressource.md`
 
 ```markdown
-# Profils ressource — gen-plan v3.6.0
+# Profils ressource — gen-plan v3.6.1
 
 ## NORMAL
 
