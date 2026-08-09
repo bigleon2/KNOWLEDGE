@@ -127,6 +127,27 @@ Stage Summary:
 - Verdict : PASS AVEC RÉSERVES (0 S1, 4 S2 corrigés)
 
 ---
+Task ID: 9
+Agent: correct-work v2.3.0
+Task: Vérification DIRECT de README.md + mise à jour écosystème
+
+Work Log:
+- Mise à jour README.md source :
+  - §2 arborescence : ajout sync-download.py, description download/ précisée
+  - §8 graphe deps : used_at clone-chat « E1-E7, E4, E15 » → « E4, E15 »
+  - §9 tableau CLONE-CHAT : ~520 → ~662 lignes (S2)
+  - §10 ajout Cas E : workflow synchronisation download/
+  - §12 vérifications : note obsolète remplacée, 3 entrées ajoutées (verify-cross 60/60, sync-download PASS, integrate 10/10)
+- correct-work DIRECT : 1 finding (F1 S2 CLONE-CHAT ~520), 1 correction
+- Sync download/ : 1 fichier mis à jour (README.md 339 lignes)
+- verify-cross.py : 60/60 PASS
+
+Stage Summary:
+- 1 S2 corrigé, README.md source à jour
+- Écosystème synchronisé (download/ = source de vérité)
+- Verdict : PASS
+
+---
 Task ID: 8
 Agent: correct-work v2.3.0
 Task: Vérification DIRECT des scripts Python (sync-download.py + verify-cross.py)

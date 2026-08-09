@@ -47,9 +47,10 @@ my-project/
 │   └── [72 autres skills]/             ← Skills métier (docx, pdf, xlsx, pptx, charts, …)
 │       ├── SKILL.md
 │       └── [references/, scripts/, evals/, …]
-├── download/                            ← Copies de référence des prompts maîtres
+├── download/                            ← Copies de référence (sync via sync-download.py)
 └── scripts/
-    └── verify-cross.py                 ← Vérification croisée (60 checks, 6 axes)
+    ├── verify-cross.py                 ← Vérification croisée (60 checks, 6 axes)
+    └── sync-download.py                ← Synchronisation download/ ↔ source de vérité
 ```
 
 ---
@@ -193,7 +194,7 @@ Cette matrice définit quels agents peuvent utiliser quels skills et dans quel c
 ```
 gen-plan v3.6.0
 ├── invoque correct-work >= v2.3.0       (Étape 1 : validation plan)
-├── utilise clone-chat >= v2.0.0          (E1-E7, E4, E15 : calibration + archivage)
+├── utilise clone-chat >= v2.0.0          (E4, E15 : calibration + archivage)
 ├── consulte skills-inventory >= v1.0.0   (E5 : sélection skills)
 └── enrichit KNOWLEDGE.md                 (E15 : mise à jour registre)
 
@@ -237,7 +238,7 @@ Les prompts maîtres sont les **spécifications d'installation** pour les skills
 | `PROMPT-MAITRE-SHARED.md` | ~220 | Socle commun. Contexte, conventions, variables, registre KB, relations inter-skills, matrice agent × skill. |
 | `PROMPT-MAITRE-GEN-PLAN-v3.6.0.md` | ~912 | Spec complète gen-plan. 4 modes, 15 étapes E1-E15, normes N1-N3, YAML frontmatter, instructions d'installation, contenu in extenso des 5 références + evals. |
 | `PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md` | ~490 | Spec complète correct-work. 3 modes, 5 étapes, sévérité S1-S4, checklists unifiées (§10.1-§10.10), historique corrections clone-chat. |
-| `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | ~520 | Spec complète clone-chat. 7+1 étapes, 8 checks validation, 5 types de drift, auto-clonage, grille #token, contenu in extenso du template, historique corrections correct-work.
+| `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | ~662 | Spec complète clone-chat. 7+1 étapes, 8 checks validation, 5 types de drift, auto-clonage, grille #token, contenu in extenso du template, historique corrections correct-work. |
 
 ### Structure des fichiers
 
@@ -295,6 +296,18 @@ Le script valide **6 axes** (60 checks) :
 5. Tailles des SKILL.md conformes au design compact
 6. Synchronisation download/ vs source de vérité
 
+### Cas E — Synchroniser download/
+
+Après toute modification d'un fichier dans `skills/_prompts-maitres/` :
+
+```bash
+python3 scripts/sync-download.py --sync
+```
+
+Le script compare chaque fichier source avec sa copie dans `download/` et ne copie que les fichiers effectivement modifiés. Le mode CHECK (sans `--sync`) affiche un rapport sans rien écrire.
+
+Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle la commande de synchronisation.
+
 ---
 
 ## 11. Skills écosystème — État actuel
@@ -321,4 +334,6 @@ Le script valide **6 axes** (60 checks) :
 | clone-chat post-installation | 16/16 PASS |
 | Cross-refs gen-plan ↔ correct-work ↔ clone-chat | PASS |
 | Interactions 4 fichiers MD + déclencheurs | PASS |
-| `verify-cross.py` (prompts maîtres) | [à relancer — 3 S2 corrigés dans cette session] |
+| `verify-cross.py` (prompts maîtres + sync) | 60/60 PASS (6 axes) |
+| `sync-download.py` (scripts Python) | correct-work DIRECT PASS |
+| `integrate-clone-chat-kb-v3.py` | 10/10 checks PASS |
