@@ -1,0 +1,1032 @@
+    35→    35→    35→import sys
+    36→    36→    36→import os
+    37→    37→    37→import re
+    38→    38→    38→from pathlib import Path
+    39→    39→    39→from datetime import datetime
+    40→    40→    40→
+    41→    41→    41→
+    42→    42→    42→# ─── Constantes ───────────────────────────────────────────────────────────────
+    43→    43→    43→
+    44→    44→    44→CLONE_CHAT_VERSION = "1.2.0"
+    45→    45→    45→CLONE_CHAT_CATEGORY = "ecosystem"
+    46→    46→    46→CLONE_CHAT_LANGUAGE = "fr"
+    47→    47→    47→CLONE_CHAT_TAGS = ["clonage", "discussion", "memoire", "prompt-maitre", "transfert-contexte"]
+    48→    48→    48→
+    49→    49→    49→# Skills de l'écosystème connus (baseline)
+    50→    50→    50→ECOSYSTEM_BASELINE = {
+    51→    51→    51→    "gen-plan": {"version": "3.3.0", "category": "ecosystem", "type": "executable"},
+    52→    52→    52→    "correct-work": {"version": "2.2.0", "category": "ecosystem", "type": "executable"},
+    53→    53→    53→}
+    54→    54→    54→
+    55→    55→    55→
+    56→    56→    56→# ─── Contenu SKILL.md ───────────────────────────────────────────────────────
+    57→    57→    57→
+    58→    58→    58→SKILL_MD = r'''---
+    59→    59→    59→name: clone-chat
+    60→    60→    60→aka: clone-chat-skill, chat-cloner, discussion-clone
+    61→    61→    61→version: 1.2.0
+    62→    62→    62→date: 2026-07-29
+    63→    63→    63→authors: [Francois]
+    64→    64→    64→language: fr
+    65→    65→    65→category: ecosystem
+    66→    66→    66→tags: clonage, discussion, memoire, prompt-maitre, transfert-contexte
+    67→    67→    67→description: >
+    68→    68→    68→  Clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog)
+    69→    69→    69→  dans un fichier Markdown auto-suffisant. En exécutant ce clone dans une nouvelle
+    70→    70→    70→  session, l'assistant IA recrée le contexte complet de la discussion originale.
+    71→    71→    71→---
+    72→    72→    72→
+    73→    73→    73→# clone-chat v1.2.0 — Clonage de Discussions
+    74→    74→    74→
+    75→    75→    75→## Vue d'ensemble
+    76→    76→    76→
+    77→    77→    77→clone-chat est un skill de capture et de transfert de contexte. Exécuté à la fin d'une discussion, il produit un **artefact de clonage** (fichier Markdown) qui contient tout le nécessaire pour recréer cette discussion dans une nouvelle session.
+    78→    78→    78→
+    79→    79→    79→**Cas d'usage** :
+    80→    80→    80→- Poursuivre une discussion longue dans une nouvelle session sans perdre le contexte
+    81→    81→    81→- Transférer le contexte d'un projet à un autre assistant IA
+    82→    82→    82→- Archiver l'état d'une discussion pour la reprendre plus tard
+    83→    83→    83→- Créer un "snapshot" avant une itération risquée
+    84→    84→    84→
+    85→    85→    85→## Format de sortie
+    86→    86→    86→
+    87→    87→    87→**Fichier unique** : `<slug>-clone-<date>.md` dans le répertoire de téléchargement
+    88→    88→    88→
+    89→    89→    89→Le format Markdown est choisi car :
+    90→    90→    90→1. **Universel** — lisible par tout assistant IA, tout éditeur de texte
+    91→    91→    91→2. **Auto-suffisant** — un seul fichier contient tout le contexte
+    92→    92→    92→3. **Exécutable** — l'assistant IA peut interpréter le contenu comme un prompt
+    93→    93→    93→4. **Versionnable** — Git-friendly, diff-friendly
+    94→    94→    94→5. **Pas de dépendance** — pas besoin de ZIP, de scripts, ou d'outils externes
+    95→    95→    95→
+    96→    96→    96→## 7+1 Étapes d'exécution
+    97→    97→    97→
+    98→    98→    98→### Étape 1 — Collecte du worklog
+    99→    99→    99→
+   100→   100→   100→Lire le worklog intégralement. C'est la source primaire de l'historique de la discussion.
+   101→   101→   101→
+   102→   102→   102→**Action** :
+   103→   103→   103→- Lire le worklog complet
+   104→   104→   104→- Identifier chaque Task ID et son résumé
+   105→   105→   105→- Extraire la chronologie des sessions
+   106→   106→   106→
+   107→   107→   107→**Livrable** : Chronologie structurée de la discussion
+   108→   108→   108→
+   109→   109→   109→### Étape 2 — Collecte des artefacts
+   110→   110→   110→
+   111→   111→   111→Scanner les répertoires pour identifier tous les fichiers produits pendant la discussion :
+   112→   112→   112→
+   113→   113→   113→| Répertoire | Ce qu'il contient |
+   114→   114→   114→|------------|-------------------|
+   115→   115→   115→| `skills/` | Skills créés ou modifiés |
+   116→   116→   116→| `scripts/` | Scripts Python persistants |
+   117→   117→   117→| `download/` | Livrables finaux |
+   118→   118→   118→| `upload/` | Fichiers sources |
+   119→   119→   119→
+   120→   120→   120→**Action** :
+   121→   121→   121→- Lister les fichiers pertinents créés/modifiés pendant la discussion
+   122→   122→   122→- Pour chaque fichier SKILL.md, lire le contenu (c'est le cœur du skill)
+   123→   123→   123→- Pour les scripts, noter le nom et la version (pas le contenu complet si > 500 lignes)
+   124→   124→   124→
+   125→   125→   125→**Livrable** : Inventaire des artefacts avec chemins et tailles
+   126→   126→   126→
+   127→   127→   127→### Étape 3 — Extraction des décisions clés
+   128→   128→   128→
+   129→   129→   129→Analyser le worklog et les messages de la discussion pour identifier :
+   130→   130→   130→
+   131→   131→   131→- **Décisions de l'utilisateur** — Ce que l'utilisateur a explicitement choisi ou refusé
+   132→   132→   132→- **Corrections de bugs** — Les problèmes rencontrés et leurs fixes
+   133→   133→   133→- **Conventions établies** — Les règles et standards adoptés pendant la discussion
+   134→   134→   134→- **Arbitrages** — Les choix entre plusieurs options (ex: MD vs DOCX, v2.0 vs v3.5)
+   135→   135→   135→
+   136→   136→   136→**Action** :
+   137→   137→   137→- Pour chaque décision : qui, quoi, pourquoi, conséquence
+   138→   138→   138→- Pour chaque bug : description, cause, fix, résultat
+   139→   139→   139→- Pour chaque convention : nom, règle, exemple
+   140→   140→   140→
+   141→   141→   141→**Livrable** : Table structurée des décisions et conventions
+   142→   142→   142→
+   143→   143→   143→### Étape 3.5 — Détection des évolutions de contexte (Context Drift)
+   144→   144→   144→
+   145→   145→   145→**Objectif** : Identifier chaque fois que le contexte a **changé** durant la discussion — c'est-à-dire quand une décision, une spécification, une convention ou un paramètre a été modifié, inversé, corrigé ou enrichi par rapport à un état antérieur.
+   146→   146→   146→
+   147→   147→   147→**Pourquoi cette étape ?** L'Étape 3 capture les décisions dans leur état **final**. Mais une discussion longue peut contenir des inversions, des corrections, des recalibrages. Sans traçage de ces évolutions, le clone perd l'historique des **pourquoi** et des **comment** le contexte a évolué.
+   148→   148→   148→
+   149→   149→   149→**Méthode de détection** :
+   150→   150→   150→1. Relire le worklog chronologiquement (session par session)
+   151→   151→   151→2. Pour chaque Task ID, comparer les décisions/specs avec les sessions précédentes
+   152→   152→   152→3. Identifier les deltas : quand une valeur A est devenue B
+   153→   153→   153→4. Catégoriser le type de drift
+   154→   154→   154→5. Enregistrer la référence (session #, ligne worklog)
+   155→   155→   155→
+   156→   156→   156→**5 types de drift** :
+   157→   157→   157→
+   158→   158→   158→| Type | Définition | Exemple |
+   159→   159→   159→|------|-----------|---------|
+   160→   160→   160→| INVERSION | Décision renversée | v2.0.0 accepté → refusé (Session 2) |
+   161→   161→   161→| MODIFICATION | Décision ajustée | in extenso < 500 lignes → < 200 lignes |
+   162→   162→   162→| CORRECTION | Spécification ou décision erronée corrigée | convention chemins absolus → relatifs |
+   163→   163→   163→| ENRICHISSEMENT | Décision complétée | grille #token ajoutée |
+   164→   164→   164→| RECALIBRAGE | Paramètre ajusté | seuil -32% → -35% |
+   165→   165→   165→
+   166→   166→   166→**Format de chaque drift** :
+   167→   167→   167→```
+   168→   168→   168→| # | Type | Avant | Après | Session | Ligne worklog | Raison |
+   169→   169→   169→```
+   170→   170→   170→
+   171→   171→   171→**Règles** :
+   172→   172→   172→- Un drift est enregistré **uniquement** si un changement effectif est détecté (pas de drift si la décision est restée stable)
+   173→   173→   173→- La ligne worklog est le numéro de ligne dans le worklog où le changement est documenté
+   174→   174→   174→- Si le worklog ne contient pas de ligne explicite pour le changement, indiquer la session # et la mention « (inféré) »
+   175→   175→   175→- Les bugs corrigés (§3.2) sont exclus du drift — ils ont leur propre section. Le drift capture les **décisions et specs** qui ont évolué, pas les erreurs techniques
+   176→   176→   176→- Si aucun drift n'est détecté, écrire : « Aucune évolution de contexte détectée — toutes les décisions sont restées stables. » Cette mention certifie que l'analyse a été effectuée
+   177→   177→   177→
+   178→   178→   178→**Livrable** : Table §3.5 des évolutions de contexte avec références de lignes
+   179→   179→   179→
+   180→   180→   180→### Étape 4 — Extraction des spécifications techniques
+   181→   181→   181→
+   182→   182→   182→Pour chaque skill, script, ou artefact technique identifié, capturer :
+   183→   183→   183→
+   184→   184→   184→- **Spécification fonctionnelle** — Ce que ça fait, les étapes, les modes
+   185→   185→   185→- **Spécification technique** — Stack, dépendances, formats, structures de données
+   186→   186→   186→- **Données de calibration** — Grilles #token, seuils, ratios ajustés
+   187→   187→   187→- **Structure de fichiers** — Arborescence avec noms de fichiers
+   188→   188→   188→
+   189→   189→   189→**Règle** : Le contenu des SKILL.md est inclus **en résumé structuré** (description, étapes, modes, fichiers). Pour les scripts Python > 500 lignes, inclure uniquement la signature des fonctions/classes et les structures de données clés. L'inclusion in extenso est réservée aux skills < 200 lignes ; au-delà, le résumé structuré garantit un clone lisible et de taille raisonnable.
+   190→   190→   190→
+   191→   191→   191→**Intégration gen-plan** : Si gen-plan est présent dans l'écosystème, utiliser ses données de classification (E1-E7) et de calibration (E15) pour enrichir les spécifications techniques :
+   192→   192→   192→- Profils ressource (NORMAL / ECO / VIEUX PC) détectés
+   193→   193→   193→- Grilles #token calibrées par gen-plan
+   194→   194→   194→- Types de tâche (Type 1-4) déjà classifiés
+   195→   195→   195→- Auto-calibration (estimé vs réel) pour ajuster les données du clone
+   196→   196→   196→
+   197→   197→   197→**Livrable** : Spécifications techniques complètes
+   198→   198→   198→
+   199→   199→   199→### Étape 5 — Assemblage du clone
+   200→   200→   200→
+   201→   201→   201→Assembler l'artefact de clonage en suivant le template `references/clone-template.md`.
+   202→   202→   202→
+   203→   203→   203→**Structure obligatoire du clone** (suivre `references/clone-template.md`) :
+   204→   204→   204→
+   205→   205→   205→```
+   206→   206→   206→En-tête     — Métadonnées (date, source, sessions, participants)
+   207→   207→   207→§0 — RÈGLE ZÉRO — Contexte perdu, tout à recréer
+   208→   208→   208→§1 — CHRONOLOGIE — Sessions résumées (table + détails)
+   209→   209→   209→§2 — ÉCOSYSTÈME — Skills, scripts, artefacts (spécifications incluses)
+   210→   210→   210→§3 — DÉCISIONS — Décisions clés, bugs, conventions, calibration, drifts (§3.5)
+   211→   211→   211→§4 — INSTRUCTIONS — Comment utiliser ce clone
+   212→   212→   212→§5 — AUTO-CLONAGE — Instructions pour que le clone se clone lui-même
+   213→   213→   213→```
+   214→   214→   214→
+   215→   215→   215→**Note** : l'En-tête et les artefacts (§2.3) sont intégrés dans les sections existantes, pas des sections numérotées séparément.
+   216→   216→   216→
+   217→   217→   217→**Règles d'assemblage** :
+   218→   218→   218→- Le clone doit être **auto-suffisant** : aucune dépendance externe
+   219→   219→   219→- Le clone doit être **exécutable** : l'assistant IA peut l'interpréter comme un prompt
+   220→   220→   220→- Le clone doit être **idempotent** : l'exécuter plusieurs fois produit le même résultat
+   221→   221→   221→- Le clone doit être **auto-référentiel** : il contient les instructions pour se régénérer
+   222→   222→   222→
+   223→   223→   223→### Étape 6 — Validation du clone
+   224→   224→   224→
+   225→   225→   225→Vérifier que le clone est complet et fonctionnel :
+   226→   226→   226→
+   227→   227→   227→| # | Vérification | Critère |
+   228→   228→   228→|---|-------------|---------|
+   229→   229→   229→| 1 | Auto-suffisance | Aucune référence à un fichier externe non-inclus |
+   230→   230→   230→| 2 | Complétude worklog | Tous les Task IDs du worklog sont documentés |
+   231→   231→   231→| 3 | Complétude skills | Tous les skills créés/modifiés sont spécifiés |
+   232→   232→   232→| 4 | Complétude décisions | Toutes les décisions utilisateur sont capturées |
+   233→   233→   233→| 5 | Complétude bugs | Tous les bugs corrigés sont documentés |
+   234→   234→   234→| 6 | Complétude drifts | Toutes les évolutions de contexte détectées sont dans §3.5 |
+   235→   235→   235→| 7 | Exécutabilité | Le clone peut être interprété comme un prompt |
+   236→   236→   236→| 8 | Auto-clonage | Le clone contient les instructions pour se régénérer |
+   237→   237→   237→
+   238→   238→   238→**Action** : Cocher chaque vérification. Si une vérification échoue, compléter le clone.
+   239→   239→   239→
+   240→   240→   240→### Étape 7 — Sauvegarde et rapport
+   241→   241→   241→
+   242→   242→   242→1. Sauvegarder le clone dans le répertoire de téléchargement
+   243→   243→   243→2. Mettre à jour le worklog avec le résumé du clonage
+   244→   244→   244→3. Afficher le rapport de validation à l'utilisateur
+   245→   245→   245→
+   246→   246→   246→**Format du nom de fichier** :
+   247→   247→   247→- `<slug>` = résumé de la discussion en 2-3 mots kebab-case (ex: `skills-ecosysteme-dj`)
+   248→   248→   248→- `<date>` = YYYY-MM-DD (ex: `2026-07-29`)
+   249→   249→   249→- Exemple : `skills-ecosysteme-dj-clone-2026-07-29.md`
+   250→   250→   250→
+   251→   251→   251→## Mode d'emploi du clone
+   252→   252→   252→
+   253→   253→   253→### Comment utiliser un clone dans une nouvelle session
+   254→   254→   254→
+   255→   255→   255→1. Ouvrir une nouvelle session avec un assistant IA
+   256→   256→   256→2. Coller le contenu du fichier clone (ou indiquer le chemin)
+   257→   257→   257→3. Dire : **« Exécute le clone de discussion »**
+   258→   258→   258→4. L'assistant recrée le contexte et peut poursuivre le travail
+   259→   259→   259→
+   260→   260→   260→### Ce que l'assistant fait avec le clone
+   261→   261→   261→
+   262→   262→   262→1. Lit la section RÈGLE ZÉRO
+   263→   263→   263→2. Reconstruit les fichiers spécifiés dans ÉCOSYSTÈME
+   264→   264→   264→3. Applique les décisions et conventions de la section DÉCISIONS
+   265→   265→   265→4. Crée les artefacts listés dans ARTEFACTS
+   266→   266→   266→5. Se positionne à l'état exact de la fin de la discussion originale
+   267→   267→   267→
+   268→   268→   268→### Propriété d'auto-clonage
+   269→   269→   269→
+   270→   270→   270→Le clone contient (§5 — AUTO-CLONAGE) les instructions pour se régénérer. Ainsi :
+   271→   271→   271→- À la fin de la nouvelle session, le clone peut être régénéré
+   272→   272→   272→- Le nouveau clone contient le contexte de la discussion originale + la nouvelle discussion
+   273→   273→   273→- Le clone "grandit" à chaque session sans perdre l'historique
+   274→   274→   274→
+   275→   275→   275→## Relation avec l'écosystème
+   276→   276→   276→
+   277→   277→   277→| Skill | Relation | Détail |
+   278→   278→   278→|-------|----------|--------|
+   279→   279→   279→| gen-plan (v3.5.0) | **Orchestration amont** | gen-plan peut invoquer clone-chat comme sous-tâche (Type 4, Python natif). clone-chat utilise les données de classification gen-plan (E1-E7) et de calibration (E15) pour enrichir les spécifications techniques du clone. |
+   280→   280→   280→| gen-plan (v3.3.0 KB) | **Référence de compatibilité** | La v3.3.0 introduit le Registre de Skills KB et le protocole de découverte dynamique. clone-chat exploite ce registre pour documenter les skills KB dans §2. |
+   281→   281→   281→| correct-work | **Validation croisée** | clone-chat peut être vérifié par correct-work (Mode CIBLE). Réciproquement, clone-chat capture les corrections dans §3.5 (Context Drift). |
+   282→   282→   282→| skill-creator | **Conventions** | clone-chat suit les conventions de skill-creator (YAML frontmatter, structure de fichiers, nommage). |
+   283→   283→   283→
+   284→   284→   284→**Flux de données entre gen-plan et clone-chat** :
+   285→   285→   285→
+   286→   286→   286→```
+   287→   287→   287→gen-plan E1-E7 (classification)  →  clone-chat Étape 4 (spécifications enrichies)
+   288→   288→   288→gen-plan E4 (scan KB)            →  clone-chat Étape 2 (artefacts KB détectés)
+   289→   289→   289→gen-plan E15 (auto-calibration)  →  clone-chat Étape 3.5 (drift de recalibrage)
+   290→   290→   290→clone-chat (clone produit)       →  gen-plan E4 (lecture du clone si ré-exécution)
+   291→   291→   291→```
+   292→   292→   292→
+   293→   293→   293→**Dépendance gen-plan** : clone-chat fonctionne **sans** gen-plan (données de calibration absentes), mais **avec** gen-plan les spécifications sont enrichies.
+   294→   294→   294→
+   295→   295→   295→## Grille d'Estimation #token
+   296→   296→   296→
+   297→   297→   297→| Mode d'exécution | #token Estimé | Profil Min. |
+   298→   298→   298→|------------------|---------------|-------------|
+   299→   299→   299→| Discussion courte (< 5 sessions) | 2000-3500 | ECO |
+   300→   300→   300→| Discussion moyenne (5-15 sessions) | 3500-5500 | NORMAL |
+   301→   301→   301→| Discussion longue (> 15 sessions) | 5500-9000 | NORMAL |
+   302→   302→   302→
+   303→   303→   303→**Note v1.2.0** : l'estimation est augmentée de ~10% pour couvrir l'Étape 3.5 (Context Drift) et l'intégration gen-plan.
+   304→   304→   304→
+   305→   305→   305→**Note** : l'estimation couvre les 7+1 étapes de collecte, assemblage et validation. Le clone produit est un fichier Markdown, pas un appel d'agent.
+   306→   306→   306→
+   307→   307→   307→## Limites connues
+   308→   308→   308→
+   309→   309→   309→1. **Pas de capture des messages bruts** — clone-chat capture le contexte, pas le verbatim
+   310→   310→   310→2. **Scripts longs** — Les scripts > 500 lignes sont résumés, pas inclus in extenso
+   311→   311→   311→3. **Fichiers binaires** — Les images, ZIP, PDF ne sont pas inclus dans le clone (chemins uniquement)
+   312→   312→   312→4. **Contexte implicite** — Les sous-entendus non documentés dans le worklog peuvent être perdus
+   313→   313→   313→5. **Taille** — Un clone de discussion très longue peut dépasser 1000 lignes. **Mitigation** : (a) résumer les sessions anciennes, (b) détail §1.3 pour les 5-10 dernières, (c) skills stables en 1 ligne
+   314→   314→   314→6. **Drift inféré** — Si le worklog ne documente pas explicitement un changement, le drift est marqué « (inféré) »
+   315→   315→   315→7. **gen-plan optionnel** — Sans gen-plan, les données de calibration et les drifts de recalibrage ne sont pas détectés
+   316→   316→   316→
+   317→   317→   317→## Structure Fichiers
+   318→   318→   318→
+   319→   319→   319→```
+   320→   320→   320→skills/clone-chat/
+   321→   321→   321→├── SKILL.md                    (ce fichier)
+   322→   322→   322→└── references/
+   323→   323→   323→    └── clone-template.md       (template de structure du clone)
+   324→   324→   324→```
+   325→   325→   325→
+   326→   326→   326→## Historique des Versions
+   327→   327→   327→
+   328→   328→   328→| Version | Date | Changements |
+   329→   329→   329→|---------|------|-------------|
+   330→   330→   330→| v1.0.0 | 2026-07-29 | Version initiale, 7 étapes, format Markdown |
+   331→   331→   331→| v1.1.0 | 2026-07-29 | correct-work : numérotation §0-§5 harmonisée, grille #token ajoutée, règle in extenso clarifiée, mitigation taille, ref section 8 corrigée |
+   332→   332→   332→| v1.2.0 | 2026-07-29 | Étape 3.5 Context Drift (5 types de drift avec réf. lignes worklog), intégration gen-plan v3.5.0+v3.3.0 KB, validation 8 checks, grille #token +10%, limites drift inféré + gen-plan optionnel |
+   333→   333→   333→'''
+   334→   334→   334→
+   335→   335→   335→
+   336→   336→   336→# ─── Contenu clone-template.md ──────────────────────────────────────────────
+   337→   337→   337→
+   338→   338→   338→CLONE_TEMPLATE_MD = r'''# Template de Clone — clone-chat v1.2.0
+   339→   339→   339→
+   340→   340→   340→Ce template définit la structure obligatoire d'un artefact de clonage produit par le skill `clone-chat`.
+   341→   341→   341→
+   342→   342→   342→---
+   343→   343→   343→
+   344→   344→   344→## Structure du fichier clone
+   345→   345→   345→
+   346→   346→   346→```markdown
+   347→   347→   347→# CLONE DE DISCUSSION — <titre>
+   348→   348→   348→
+   349→   349→   349→> **Date du clone** : YYYY-MM-DD
+   350→   350→   350→> **Source** : Discussion entre <utilisateur> et <assistant>
+   351→   351→   351→> **Sessions couvertes** : N sessions (du YYYY-MM-DD au YYYY-MM-DD)
+   352→   352→   352→> **Version clone-chat** : 1.2.0
+   353→   353→   353→
+   354→   354→   354→---
+   355→   355→   355→
+   356→   356→   356→## §0 — RÈGLE ZÉRO — CONTEXTE PERDU
+   357→   357→   357→
+   358→   358→   358→Les fichiers des sessions précédentes n'existent pas dans cette nouvelle session.
+   359→   359→   359→Tu dois **reconstruire** l'intégralité du contexte à partir de ce document.
+   360→   360→   360→Ne jamais utiliser le verbe « conserver » — tout est à recréer.
+   361→   361→   361→
+   362→   362→   362→<Contexte matériel cible si pertinent>
+   363→   363→   363→
+   364→   364→   364→---
+   365→   365→   365→
+   366→   366→   366→## §1 — CHRONOLOGIE DE LA DISCUSSION
+   367→   367→   367→
+   368→   368→   368→### 1.1 Résumé global
+   369→   369→   369→
+   370→   370→   370→<Résumé en 3-5 phrases de la discussion complète>
+   371→   371→   371→
+   372→   372→   372→### 1.2 Table des sessions
+   373→   373→   373→
+   374→   374→   374→| # | Date | Thème | Livrables principaux |
+   375→   375→   375→|---|------|-------|---------------------|
+   376→   376→   376→| 1 | ... | ... | ... |
+   377→   377→   377→
+   378→   378→   378→### 1.3 Détail par session
+   379→   379→   379→
+   380→   380→   380→Pour chaque session :
+   381→   381→   381→- Objectif
+   382→   382→   382→- Actions réalisées
+   383→   383→   383→- Résultats
+   384→   384→   384→- Bugs corrigés (si applicable)
+   385→   385→   385→
+   386→   386→   386→---
+   387→   387→   387→
+   388→   388→   388→## §2 — ÉCOSYSTÈME DE SKILLS
+   389→   389→   389→
+   390→   390→   390→### 2.1 Skills créés ou modifiés
+   391→   391→   391→
+   392→   392→   392→Pour chaque skill :
+   393→   393→   393→- Nom, version, description courte
+   394→   394→   394→- Spécification fonctionnelle (étapes, modes, règles)
+   395→   395→   395→- Spécification technique (stack, dépendances, formats)
+   396→   396→   396→- Structure de fichiers
+   397→   397→   397→- Contenu SKILL.md (in extenso si < 200 lignes, sinon résumé structuré)
+   398→   398→   398→
+   399→   399→   399→### 2.2 Scripts créés ou modifiés
+   400→   400→   400→
+   401→   401→   401→Pour chaque script :
+   402→   402→   402→- Nom, version, description courte
+   403→   403→   403→- Signature des fonctions/classes principales
+   404→   404→   404→- Structures de données clés
+   405→   405→   405→- Chemin d'accès
+   406→   406→   406→
+   407→   407→   407→### 2.3 Artefacts produits
+   408→   408→   408→
+   409→   409→   409→| Fichier | Taille | Description |
+   410→   410→   410→|---------|--------|-------------|
+   411→   411→   411→| ... | ... | ... |
+   412→   412→   412→
+   413→   413→   413→---
+   414→   414→   414→
+   415→   415→   415→## §3 — DÉCISIONS CLÉS
+   416→   416→   416→
+   417→   417→   417→### 3.1 Décisions de l'utilisateur
+   418→   418→   418→
+   419→   419→   419→| # | Décision | Contexte | Conséquence |
+   420→   420→   420→|---|----------|----------|-------------|
+   421→   421→   421→| 1 | ... | ... | ... |
+   422→   422→   422→
+   423→   423→   423→### 3.2 Bugs corrigés
+   424→   424→   424→
+   425→   425→   425→| # | Bug | Cause | Fix | Résultat |
+   426→   426→   426→|---|-----|-------|-----|----------|
+   427→   427→   427→| 1 | ... | ... | ... | ... |
+   428→   428→   428→
+   429→   429→   429→### 3.3 Conventions établies
+   430→   430→   430→
+   431→   431→   431→| Convention | Règle | Exemple |
+   432→   432→   432→|------------|-------|---------|
+   433→   433→   433→| ... | ... | ... |
+   434→   434→   434→
+   435→   435→   435→### 3.4 Données de calibration
+   436→   436→   436→
+   437→   437→   437→<Grilles #token, seuils, ratios ajustés — si applicable>
+   438→   438→   438→
+   439→   439→   439→### 3.5 Évolutions de contexte (Context Drift)
+   440→   440→   440→
+   441→   441→   441→Cette section trace chaque fois que le contexte a **changé** durant la discussion. Chaque évolution est catégorisée et référencée par session et ligne du worklog.
+   442→   442→   442→
+   443→   443→   443→**5 types de drift** :
+   444→   444→   444→
+   445→   445→   445→| Type | Définition |
+   446→   446→   446→|------|-----------|
+   447→   447→   447→| INVERSION | Décision renversée (A accepté → A refusé) |
+   448→   448→   448→| MODIFICATION | Décision ajustée (paramètre X → Y) |
+   449→   449→   449→| CORRECTION | Spécification ou décision erronée corrigée (valeur fausse → valeur correcte) |
+   450→   450→   450→| ENRICHISSEMENT | Décision complétée (ajout d'un élément nouveau) |
+   451→   451→   451→| RECALIBRAGE | Paramètre ajusté (seuil, ratio, estimation recalibré) |
+   452→   452→   452→
+   453→   453→   453→**Table des drifts** :
+   454→   454→   454→
+   455→   455→   455→| # | Type | Avant | Après | Session | Ligne worklog | Raison |
+   456→   456→   456→|---|------|-------|-------|---------|---------------|--------|
+   457→   457→   457→| 1 | ... | ... | ... | ... | ... | ... |
+   458→   458→   458→
+   459→   459→   459→**Règles de remplissage** :
+   460→   460→   460→- Chaque drift DOIT référencer la session # et la ligne du worklog où le changement est documenté
+   461→   461→   461→- Si le worklog ne contient pas de ligne explicite, indiquer la session # et la mention « (inféré) »
+   462→   462→   462→- Les bugs corrigés (§3.2) sont exclus du drift — ils ont leur propre section
+   463→   463→   463→- Le drift capture les **décisions et specs** qui ont évolué, pas les erreurs techniques
+   464→   464→   464→- Si aucun drift n'est détecté, écrire : « Aucune évolution de contexte détectée — toutes les décisions sont restées stables. »
+   465→   465→   465→
+   466→   466→   466→---
+   467→   467→   467→
+   468→   468→   468→## §4 — INSTRUCTIONS D'UTILISATION
+   469→   469→   469→
+   470→   470→   470→### Comment utiliser ce clone
+   471→   471→   471→
+   472→   472→   472→1. Ouvrir une nouvelle session avec un assistant IA
+   473→   473→   473→2. Coller le contenu de ce fichier
+   474→   474→   474→3. Dire : « Exécute le clone de discussion »
+   475→   475→   475→4. L'assistant recrée le contexte et peut poursuivre le travail
+   476→   476→   476→
+   477→   477→   477→### Ce que l'assistant doit faire
+   478→   478→   478→
+   479→   479→   479→1. Lire §0 (Règle zéro)
+   480→   480→   480→2. Reconstruire les fichiers spécifiés dans §2
+   481→   481→   481→3. Appliquer les décisions et conventions de §3
+   482→   482→   482→4. Créer les artefacts listés dans §2.3
+   483→   483→   483→5. Se positionner à l'état exact de la fin de la discussion originale
+   484→   484→   484→
+   485→   485→   485→---
+   486→   486→   486→
+   487→   487→   487→## §5 — AUTO-CLONAGE
+   488→   488→   488→
+   489→   489→   489→Ce clone est auto-référentiel. À la fin de la nouvelle session :
+   490→   490→   490→
+   491→   491→   491→1. Exécuter le skill `clone-chat` sur la discussion en cours
+   492→   492→   492→2. Le nouveau clone contiendra :
+   493→   493→   493→   - Tout le contexte de ce clone (discussion originale)
+   494→   494→   494→   - Tout le nouveau contexte de la discussion en cours
+   495→   495→   495→3. Le nouveau clone remplace ce fichier
+   496→   496→   496→4. Le clone "grandit" à chaque session sans perdre l'historique
+   497→   497→   497→
+   498→   498→   498→**Mécanisme** : les sections §1-§3 (incluant §3.5 Context Drift) sont enrichies avec les nouvelles sessions.
+   499→   499→   499→Les sections §0, §4-§5 sont régénérées à l'identique (auto-référentielles).
+   500→   500→   500→```
+   501→   501→   501→
+   502→   502→   502→---
+   503→   503→   503→
+   504→   504→   504→## Règles de remplissage
+   505→   505→   505→
+   506→   506→   506→| Section | Source principale | Complétude requise |
+   507→   507→   507→|---------|------------------|-------------------|
+   508→   508→   508→| §0 | Fixe (toujours identique) | 100% |
+   509→   509→   509→| §1 | worklog.md | 100% des Task IDs |
+   510→   510→   510→| §2 | skills/, scripts/, download/ | 100% des fichiers créés |
+   511→   511→   511→| §3.1-3.4 | worklog.md + messages | 100% des décisions utilisateur |
+   512→   512→   512→| §3.5 | worklog.md (comparaison chronologique) | 100% des drifts détectés |
+   513→   513→   513→| §4 | Fixe (toujours identique) | 100% |
+   514→   514→   514→| §5 | Fixe (auto-référentiel) | 100% |
+   515→   515→   515→
+   516→   516→   516→## Règles de validation
+   517→   517→   517→
+   518→   518→   518→- Le clone ne doit contenir **aucune référence** à un fichier non-inclus dans le clone
+   519→   519→   519→- Si un contenu est trop long (> 500 lignes), le résumer avec les signatures et structures clés
+   520→   520→   520→- Les chemins de fichiers doivent être **relatifs** (pas de chemins absolus)
+   521→   521→   521→- Les sections fixes (§0, §4, §5) sont identiques à chaque clone
+   522→   522→   522→- La section §3.5 (Context Drift) est obligatoire même si vide — elle certifie que l'analyse de drift a été effectuée
+   523→   523→   523→- Si gen-plan est présent dans l'écosystème, les drifts de recalibrage (E15) sont automatiquement inclus dans §3.5
+   524→   524→   524→'''
+   525→   525→   525→
+   526→   526→   526→
+   527→   527→   527→# ─── Contenu KNOWLEDGE.md ────────────────────────────────────────────────────
+   528→   528→   528→
+   529→   529→   529→KNOWLEDGE_MD_TEMPLATE = r'''# Knowledge Base — Registre de Skills
+   530→   530→   530→
+   531→   531→   531→> **Dernière mise à jour** : {date}
+   532→   532→   532→> **Chemin KB** : `C:\Users\PC\Downloads\knowledge\skills`
+   533→   533→   533→> **Protocole** : gen-plan v3.3.0 — Registre KB avec Protocole de Découverte
+   534→   534→   534→
+   535→   535→   535→---
+   536→   536→   536→
+   537→   537→   537→## Configuration du Registre KB
+   538→   538→   538→
+   539→   539→   539→| Paramètre | Valeur |
+   540→   540→   540→|-----------|--------|
+   541→   541→   541→| **Chemin KB (Windows)** | `C:\Users\PC\Downloads\knowledge\skills` |
+   542→   542→   542→| **Chemin z.ai (Linux)** | `/home/z/my-project/skills/` |
+   543→   543→   543→| **Scan depth** | 2 niveaux (racine + 1 sous-dossier) |
+   544→   544→   544→| **Fichier detect** | `SKILL.md` ou tout `.md` avec YAML frontmatter (name, description) |
+   545→   545→   545→| **Priorité** | Les skills KB sont évalués APRES les skills écosystème z.ai |
+   546→   546→   546→| **Overlap** | Si un skill KB a le même nom qu'un skill écosystème, le skill **écosystème** est prioritaire sauf override explicite |
+   547→   547→   547→
+   548→   548→   548→---
+   549→   549→   549→
+   550→   550→   550→## Skills KB Enregistrés
+   551→   551→   551→
+   552→   552→   552→| Skill | Version | Catégorie | Type | Langue | Dépendances | Compatibilité |
+   553→   553→   553→|-------|---------|-----------|------|--------|-------------|---------------|
+   554→   554→   554→| gen-plan | 3.3.0 | ecosystem | Exécutable | fr | Aucune | OK (orchestrateur) |
+   555→   555→   555→| correct-work | 2.2.0 | ecosystem | Exécutable | fr | gen-plan >=3.1.0 | OK (requiert gen-plan >=3.1.0, intégré Registre KB v3.3.0) |
+   556→   556→   556→| clone-chat | 1.2.0 | ecosystem | Exécutable | fr | gen-plan (optionnel) | OK (enrichi si gen-plan présent, standalone sinon) |
+   557→   557→   557→
+   558→   558→   558→---
+   559→   559→   559→
+   560→   560→   560→## Détail des Skills KB
+   561→   561→   561→
+   562→   562→   562→### gen-plan v3.3.0
+   563→   563→   563→
+   564→   564→   564→**Catégorie** : ecosystem
+   565→   565→   565→**Langue** : fr
+   566→   566→   566→**Description** : Planification et orchestration multi-étapes de tâches complexes. Analyse la conversation/projet, décompose en sous-tâches, sélectionne l'agent ou skill optimal pour chaque phase, et exécute en mode série. V3.3.0 : registre de skills personnalisé (knowledge base), protocole de découverte dynamique, scan automatique des skills externes à l'Étape 4.
+   567→   567→   567→**Chemin** : `skills/gen-plan/SKILL.md`
+   568→   568→   568→**Tags** : planification, orchestration, routage, ressources, execution
+   569→   569→   569→**Déclencheurs** : `gen-plan:`, `plan d'actions`, `orchestre`
+   570→   570→   570→
+   571→   571→   571→### correct-work v2.2.0
+   572→   572→   572→
+   573→   573→   573→**Catégorie** : ecosystem
+   574→   574→   574→**Langue** : fr
+   575→   575→   575→**Description** : Vérification et correction du travail réalisé. 5 étapes systématiques, 3 modes (PROJET/CIBLE/DIRECT). Intégration gen-plan v3.3.0+ avec CoT+Chaining. V2.2.0 : registre KB, protocole de découverte, paramètre kb_path.
+   576→   576→   576→**Chemin** : `skills/correct-work/SKILL.md`
+   577→   577→   577→**Tags** : verification, correction, quality-gate, validation, gen-plan
+   578→   578→   578→**Dépendances** : gen-plan >=3.1.0
+   579→   579→   579→**Déclencheurs** : `vérifie ton travail`, `correct_work`, `verify_work`
+   580→   580→   580→
+   581→   581→   581→### clone-chat v1.2.0
+   582→   582→   582→
+   583→   583→   583→**Catégorie** : ecosystem
+   584→   584→   584→**Langue** : fr
+   585→   585→   585→**Description** : Clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog) dans un fichier Markdown auto-suffisant. En exécutant ce clone dans une nouvelle session, l'assistant IA recrée le contexte complet de la discussion originale.
+   586→   586→   586→**Chemin** : `skills/clone-chat/SKILL.md`
+   587→   587→   587→**Tags** : clonage, discussion, memoire, prompt-maitre, transfert-contexte
+   588→   588→   588→**Dépendances** : gen-plan (optionnel, pour enrichir les spécifications)
+   589→   589→   589→**Relations** : gen-plan v3.5.0 (orchestration amont), gen-plan v3.3.0 KB (Registre KB, protocole de découverte), correct-work (validation croisée), skill-creator (conventions)
+   590→   590→   590→**Déclencheurs** : `clone-chat`, `cloner la discussion`, `exécuter le clone`
+   591→   591→   591→
+   592→   592→   592→---
+   593→   593→   593→
+   594→   594→   594→## Matrice de Compatibilité
+   595→   595→   595→
+   596→   596→   596→| Skill | gen-plan | correct-work | clone-chat |
+   597→   597→   597→|-------|----------|--------------|------------|
+   598→   598→   598→| gen-plan | — | correct-work l'appelle (Étape 1) | clone-chat utilise ses données (E1-E7, E15) |
+   599→   599→   599→| correct-work | requiert >=3.1.0 | — | peut vérifier clone-chat (Mode CIBLE) |
+   600→   600→   600→| clone-chat | optionnel (enrichit specs) | optionnel (validation croisée) | — |
+   601→   601→   601→
+   602→   602→   602→---
+   603→   603→   603→
+   604→   604→   604→## Flux de Données Inter-Skills
+   605→   605→   605→
+   606→   606→   606→```
+   607→   607→   607→gen-plan E1-E7 (classification)  →  clone-chat Étape 4 (spécifications enrichies)
+   608→   608→   608→gen-plan E4 (scan KB)            →  clone-chat Étape 2 (artefacts KB détectés)
+   609→   609→   609→gen-plan E15 (auto-calibration)  →  clone-chat Étape 3.5 (drift de recalibrage)
+   610→   610→   610→clone-chat (clone produit)       →  gen-plan E4 (lecture du clone si ré-exécution)
+   611→   611→   611→correct-work (Mode CIBLE)        →  clone-chat vérifié
+   612→   612→   612→correct-work (corrections)       →  clone-chat §3.5 (Context Drift)
+   613→   613→   613→```
+   614→   614→   614→
+   615→   615→   615→---
+   616→   616→   616→
+   617→   617→   617→## Règle de Priorité
+   618→   618→   618→
+   619→   619→   619→1. Si l'utilisateur spécifie explicitement un skill KB (`gen-plan: utiliser le skill X de ma KB`), le skill KB est prioritaire.
+   620→   620→   620→2. Si un skill KB et un skill écosystème ont le même nom, le skill **écosystème** est prioritaire (sauf override explicite).
+   621→   621→   621→3. Si aucun skill écosystème ne correspond mais un skill KB correspond, le skill KB est utilisé.
+   622→   622→   622→4. Les skills KB sont toujours évalués après les skills écosystème dans la matrice de décision.
+   623→   623→   623→'''
+   624→   624→   624→
+   625→   625→   625→
+   626→   626→   626→# ─── Protocole de Découverte KB ──────────────────────────────────────────────
+   627→   627→   627→
+   628→   628→   628→def extract_yaml_frontmatter(content: str) -> dict:
+   629→   629→   629→    """Extrait le YAML frontmatter d'un contenu Markdown."""
+   630→   630→   630→    match = re.match(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
+   631→   631→   631→    if not match:
+   632→   632→   632→        return {}
+   633→   633→   633→
+   634→   634→   634→    yaml_text = match.group(1)
+   635→   635→   635→    metadata = {}
+   636→   636→   636→    for line in yaml_text.split('\n'):
+   637→   637→   637→        line = line.strip()
+   638→   638→   638→        if ':' in line and not line.startswith('-'):
+   639→   639→   639→            key, _, value = line.partition(':')
+   640→   640→   640→            key = key.strip()
+   641→   641→   641→            value = value.strip()
+   642→   642→   642→            # Nettoyer les guillemets
+   643→   643→   643→            if value.startswith('"') and value.endswith('"'):
+   644→   644→   644→                value = value[1:-1]
+   645→   645→   645→            elif value.startswith("'") and value.endswith("'"):
+   646→   646→   646→                value = value[1:-1]
+   647→   647→   647→            # Nettoyer les listes
+   648→   648→   648→            if value.startswith('[') and value.endswith(']'):
+   649→   649→   649→                value = value[1:-1]
+   650→   650→   650→            # Nettoyer le > YAML
+   651→   651→   651→            if value.startswith('>'):
+   652→   652→   652→                value = value[1:].strip()
+   653→   653→   653→            metadata[key] = value
+   654→   654→   654→
+   655→   655→   655→    return metadata
+   656→   656→   656→
+   657→   657→   657→
+   658→   658→   658→def classify_skill(metadata: dict, content: str) -> str:
+   659→   659→   659→    """Classifie un skill selon son contenu.
+   660→   660→   660→
+   661→   661→   661→    Returns:
+   662→   662→   662→        'executable' — Protocole complet avec étapes et checklist
+   663→   663→   663→        'reference' — Document de référence, template, configuration
+   664→   664→   664→        'agent' — Définit un agent avec capacités spécifiques
+   665→   665→   665→    """
+   666→   666→   666→    content_lower = content.lower()
+   667→   667→   667→
+   668→   668→   668→    # Heuristiques pour classifier
+   669→   669→   669→    has_steps = bool(re.search(r'étape|etape|step|checklist|protocole', content_lower))
+   670→   670→   670→    has_triggers = bool(re.search(r'déclencheur|declencheur|trigger|mot-clé|mot-cle', content_lower))
+   671→   671→   671→    has_agent = bool(re.search(r'agent spécialisé|agent specialise|agent.*capacité|capacit.*agent', content_lower))
+   672→   672→   672→
+   673→   673→   673→    if has_agent:
+   674→   674→   674→        return 'agent'
+   675→   675→   675→    elif has_steps or has_triggers:
+   676→   676→   676→        return 'executable'
+   677→   677→   677→    else:
+   678→   678→   678→        return 'reference'
+   679→   679→   679→
+   680→   680→   680→
+   681→   681→   681→def scan_kb(kb_path: str) -> list:
+   682→   682→   682→    """Scanne le répertoire KB pour découvrir les skills existants.
+   683→   683→   683→
+   684→   684→   684→    Implémente le Protocole de Découverte KB (gen-plan v3.3.0) :
+   685→   685→   685→    1. Scanner le répertoire KB
+   686→   686→   686→    2. Construire la liste de référence (baseline écosystème)
+   687→   687→   687→    3. Extraire les métadonnées (YAML frontmatter)
+   688→   688→   688→    4. Classifier les skills
+   689→   689→   689→    5. Construire le registre dynamique
+   690→   690→   690→    6. Évaluer la compatibilité
+   691→   691→   691→
+   692→   692→   692→    Returns:
+   693→   693→   693→        Liste de dicts avec les métadonnées de chaque skill
+   694→   694→   694→    """
+   695→   695→   695→    kb = Path(kb_path)
+   696→   696→   696→    if not kb.exists():
+   697→   697→   697→        print(f"⚠️  Le répertoire KB n'existe pas : {kb_path}")
+   698→   698→   698→        return []
+   699→   699→   699→
+   700→   700→   700→    skills = []
+   701→   701→   701→
+   702→   702→   702→    # Étape 1 : Scanner le répertoire KB
+   703→   703→   703→    for item in sorted(kb.iterdir()):
+   704→   704→   704→        if not item.is_dir():
+   705→   705→   705→            continue
+   706→   706→   706→
+   707→   707→   707→        # Chercher SKILL.md
+   708→   708→   708→        skill_md = item / "SKILL.md"
+   709→   709→   709→        if not skill_md.exists():
+   710→   710→   710→            # Chercher tout .md avec YAML frontmatter
+   711→   711→   711→            for md_file in item.glob("*.md"):
+   712→   712→   712→                content = md_file.read_text(encoding="utf-8", errors="replace")
+   713→   713→   713→                metadata = extract_yaml_frontmatter(content)
+   714→   714→   714→                if "name" in metadata:
+   715→   715→   715→                    skill_md = md_file
+   716→   716→   716→                    break
+   717→   717→   717→
+   718→   718→   718→        if not skill_md.exists():
+   719→   719→   719→            continue
+   720→   720→   720→
+   721→   721→   721→        # Étape 3 : Extraire les métadonnées
+   722→   722→   722→        content = skill_md.read_text(encoding="utf-8", errors="replace")
+   723→   723→   723→        metadata = extract_yaml_frontmatter(content)
+   724→   724→   724→
+   725→   725→   725→        if not metadata.get("name"):
+   726→   726→   726→            continue
+   727→   727→   727→
+   728→   728→   728→        # Étape 4 : Classifier
+   729→   729→   729→        skill_type = classify_skill(metadata, content)
+   730→   730→   730→
+   731→   731→   731→        # Étape 2 : Tagger écosystème vs KB
+   732→   732→   732→        skill_name = metadata.get("name", "")
+   733→   733→   733→        source = "Ecosysteme" if skill_name in ECOSYSTEM_BASELINE else "KB"
+   734→   734→   734→
+   735→   735→   735→        skill_info = {
+   736→   736→   736→            "name": skill_name,
+   737→   737→   737→            "version": metadata.get("version", "0.0.0"),
+   738→   738→   738→            "category": metadata.get("category", "unknown"),
+   739→   739→   739→            "language": metadata.get("language", "unknown"),
+   740→   740→   740→            "description": metadata.get("description", ""),
+   741→   741→   741→            "tags": metadata.get("tags", ""),
+   742→   742→   742→            "type": skill_type,
+   743→   743→   743→            "source": source,
+   744→   744→   744→            "path": str(skill_md),
+   745→   745→   745→            "requires": metadata.get("requires_gen_plan_version", metadata.get("requires", "")),
+   746→   746→   746→        }
+   747→   747→   747→
+   748→   748→   748→        skills.append(skill_info)
+   749→   749→   749→
+   750→   750→   750→    return skills
+   751→   751→   751→
+   752→   752→   752→
+   753→   753→   753→def evaluate_compatibility(skills: list, new_skill: dict) -> list:
+   754→   754→   754→    """Évalue la compatibilité d'un nouveau skill avec les skills existants.
+   755→   755→   755→
+   756→   756→   756→    Returns:
+   757→   757→   757→        Liste de dicts avec les résultats de compatibilité
+   758→   758→   758→    """
+   759→   759→   759→    results = []
+   760→   760→   760→
+   761→   761→   761→    for skill in skills:
+   762→   762→   762→        compat = {
+   763→   763→   763→            "skill": skill["name"],
+   764→   764→   764→            "version": skill["version"],
+   765→   765→   765→            "compatible": True,
+   766→   766→   766→            "details": "",
+   767→   767→   767→        }
+   768→   768→   768→
+   769→   769→   769→        # Vérifier les dépendances
+   770→   770→   770→        if new_skill["name"] == "clone-chat":
+   771→   771→   771→            # clone-chat dépend optionnellement de gen-plan
+   772→   772→   772→            if skill["name"] == "gen-plan":
+   773→   773→   773→                compat["details"] = "clone-chat utilise gen-plan (optionnel) pour enrichir les spécifications"
+   774→   774→   774→            elif skill["name"] == "correct-work":
+   775→   775→   775→                compat["details"] = "clone-chat peut être vérifié par correct-work (Mode CIBLE)"
+   776→   776→   776→            else:
+   777→   777→   777→                compat["details"] = "Aucune interaction directe"
+   778→   778→   778→
+   779→   779→   779→        elif skill["name"] == "correct-work":
+   780→   780→   780→            if skill.get("requires"):
+   781→   781→   781→                compat["details"] = f"requiert gen-plan {skill['requires']}"
+   782→   782→   782→
+   783→   783→   783→        results.append(compat)
+   784→   784→   784→
+   785→   785→   785→    return results
+   786→   786→   786→
+   787→   787→   787→
+   788→   788→   788→# ─── Installation ─────────────────────────────────────────────────────────────
+   789→   789→   789→
+   790→   790→   790→def install_clone_chat(kb_path: str) -> bool:
+   791→   791→   791→    """Installe clone-chat v1.2.0 dans la KB.
+   792→   792→   792→
+   793→   793→   793→    Returns:
+   794→   794→   794→        True si l'installation a réussi, False sinon
+   795→   795→   795→    """
+   796→   796→   796→    base = Path(kb_path) / "clone-chat"
+   797→   797→   797→    refs = base / "references"
+   798→   798→   798→
+   799→   799→   799→    # Créer les répertoires
+   800→   800→   800→    refs.mkdir(parents=True, exist_ok=True)
+   801→   801→   801→
+   802→   802→   802→    # Écrire SKILL.md
+   803→   803→   803→    skill_path = base / "SKILL.md"
+   804→   804→   804→    skill_path.write_text(SKILL_MD, encoding="utf-8")
+   805→   805→   805→    print(f"✅ Créé : {skill_path}")
+   806→   806→   806→
+   807→   807→   807→    # Écrire clone-template.md
+   808→   808→   808→    template_path = refs / "clone-template.md"
+   809→   809→   809→    template_path.write_text(CLONE_TEMPLATE_MD, encoding="utf-8")
+   810→   810→   810→    print(f"✅ Créé : {template_path}")
+   811→   811→   811→
+   812→   812→   812→    # Vérification de l'installation
+   813→   813→   813→    print("\n--- Vérification de l'installation ---")
+   814→   814→   814→    checks = [
+   815→   815→   815→        ("SKILL.md existe", skill_path.exists()),
+   816→   816→   816→        ("SKILL.md non vide", skill_path.stat().st_size > 0),
+   817→   817→   817→        ("YAML frontmatter", "---" in skill_path.read_text(encoding="utf-8")[:100]),
+   818→   818→   818→        ("Version correcte", f"version: {CLONE_CHAT_VERSION}" in skill_path.read_text(encoding="utf-8")),
+   819→   819→   819→        ("Étape 3.5 présente", "3.5" in skill_path.read_text(encoding="utf-8")),
+   820→   820→   820→        ("clone-template.md existe", template_path.exists()),
+   821→   821→   821→        ("clone-template.md non vide", template_path.stat().st_size > 0),
+   822→   822→   822→        ("Structure répertoires", refs.exists()),
+   823→   823→   823→    ]
+   824→   824→   824→
+   825→   825→   825→    all_pass = True
+   826→   826→   826→    for name, result in checks:
+   827→   827→   827→        status = "✅ PASS" if result else "❌ FAIL"
+   828→   828→   828→        if not result:
+   829→   829→   829→            all_pass = False
+   830→   830→   830→        print(f"  {status} — {name}")
+   831→   831→   831→
+   832→   832→   832→    if all_pass:
+   833→   833→   833→        print(f"\n🎉 clone-chat v{CLONE_CHAT_VERSION} installé avec succès dans : {kb_path}")
+   834→   834→   834→    else:
+   835→   835→   835→        print(f"\n⚠️  Installation incomplète — vérifiez les erreurs ci-dessus")
+   836→   836→   836→
+   837→   837→   837→    # Afficher la structure
+   838→   838→   838→    print(f"\nStructure créée :")
+   839→   839→   839→    print(f"  {base}/")
+   840→   840→   840→    print(f"  ├── SKILL.md               ({skill_path.stat().st_size:,} octets)")
+   841→   841→   841→    print(f"  └── references/")
+   842→   842→   842→    print(f"      └── clone-template.md  ({template_path.stat().st_size:,} octets)")
+   843→   843→   843→
+   844→   844→   844→    return all_pass
+   845→   845→   845→
+   846→   846→   846→
+   847→   847→   847→# ─── Enregistrement dans le Registre KB ──────────────────────────────────────
+   848→   848→   848→
+   849→   849→   849→def register_in_knowledge_md(kb_path: str) -> bool:
+   850→   850→   850→    """Enregistre clone-chat dans le registre KB (KNOWLEDGE.md).
+   851→   851→   851→
+   852→   852→   852→    Si KNOWLEDGE.md n'existe pas, le crée avec le template complet.
+   853→   853→   853→    Si KNOWLEDGE.md existe mais ne contient pas clone-chat, ajoute l'entrée.
+   854→   854→   854→
+   855→   855→   855→    Returns:
+   856→   856→   856→        True si l'enregistrement a réussi, False sinon
+   857→   857→   857→    """
+   858→   858→   858→    kb = Path(kb_path)
+   859→   859→   859→    knowledge_md = kb / "KNOWLEDGE.md"
+   860→   860→   860→
+   861→   861→   861→    if knowledge_md.exists():
+   862→   862→   862→        # Vérifier si clone-chat est déjà enregistré
+   863→   863→   863→        content = knowledge_md.read_text(encoding="utf-8")
+   864→   864→   864→        if "clone-chat" in content:
+   865→   865→   865→            print(f"✅ clone-chat déjà enregistré dans {knowledge_md}")
+   866→   866→   866→            return True
+   867→   867→   867→
+   868→   868→   868→        # Ajouter l'entrée clone-chat au tableau existant
+   869→   869→   869→        # Chercher le tableau des skills KB
+   870→   870→   870→        table_match = re.search(
+   871→   871→   871→            r'(\| clone-chat \|.*\|)',
+   872→   872→   872→            content
+   873→   873→   873→        )
+   874→   874→   874→        if not table_match:
+   875→   875→   875→            # Ajouter une ligne au tableau des skills
+   876→   876→   876→            # Chercher le dernier skill dans le tableau
+   877→   877→   877→            last_row_match = re.findall(r'^\| .+ \| .+ \| .+ \| .+ \| .+ \| .+ \| .+ \|$', content, re.MULTILINE)
+   878→   878→   878→            if last_row_match:
+   879→   879→   879→                # Insérer après la dernière ligne du tableau
+   880→   880→   880→                new_row = f"| clone-chat | {CLONE_CHAT_VERSION} | {CLONE_CHAT_CATEGORY} | Exécutable | {CLONE_CHAT_LANGUAGE} | gen-plan (optionnel) | OK (enrichi si gen-plan présent, standalone sinon) |"
+   881→   881→   881→                # Trouver la position de la dernière ligne
+   882→   882→   882→                last_pos = content.rfind(last_row_match[-1])
+   883→   883→   883→                insert_pos = last_pos + len(last_row_match[-1])
+   884→   884→   884→                content = content[:insert_pos] + "\n" + new_row + content[insert_pos:]
+   885→   885→   885→
+   886→   886→   886→                # Ajouter la section détaillée
+   887→   887→   887→                detail_section = f"""
+   888→   888→   888→
+   889→   889→   889→### clone-chat v{CLONE_CHAT_VERSION}
+   890→   890→   890→
+   891→   891→   891→**Catégorie** : {CLONE_CHAT_CATEGORY}
+   892→   892→   892→**Langue** : {CLONE_CHAT_LANGUAGE}
+   893→   893→   893→**Description** : Clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog) dans un fichier Markdown auto-suffisant. En exécutant ce clone dans une nouvelle session, l'assistant IA recrée le contexte complet de la discussion originale.
+   894→   894→   894→**Chemin** : `skills/clone-chat/SKILL.md`
+   895→   895→   895→**Tags** : {', '.join(CLONE_CHAT_TAGS)}
+   896→   896→   896→**Dépendances** : gen-plan (optionnel, pour enrichir les spécifications)
+   897→   897→   897→**Relations** : gen-plan v3.5.0 (orchestration amont), gen-plan v3.3.0 KB (Registre KB, protocole de découverte), correct-work (validation croisée), skill-creator (conventions)
+   898→   898→   898→**Déclencheurs** : `clone-chat`, `cloner la discussion`, `exécuter le clone`
+   899→   899→   899→"""
+   900→   900→   900→                # Insérer avant la section Matrice de Compatibilité
+   901→   901→   901→                matrice_pos = content.find("## Matrice de Compatibilité")
+   902→   902→   902→                if matrice_pos > 0:
+   903→   903→   903→                    content = content[:matrice_pos] + detail_section + "\n" + content[matrice_pos:]
+   904→   904→   904→                else:
+   905→   905→   905→                    content += detail_section
+   906→   906→   906→
+   907→   907→   907→                # Mettre à jour la date
+   908→   908→   908→                content = re.sub(
+   909→   909→   909→                    r'\*\*Dernière mise à jour\*\* : .+',
+   910→   910→   910→                    f'**Dernière mise à jour** : {datetime.now().strftime("%Y-%m-%d")}',
+   911→   911→   911→                    content
+   912→   912→   912→                )
+   913→   913→   913→
+   914→   914→   914→                knowledge_md.write_text(content, encoding="utf-8")
+   915→   915→   915→                print(f"✅ clone-chat ajouté au registre KB : {knowledge_md}")
+   916→   916→   916→                return True
+   917→   917→   917→
+   918→   918→   918→    # Créer KNOWLEDGE.md depuis le template
+   919→   919→   919→    knowledge_content = KNOWLEDGE_MD_TEMPLATE.format(
+   920→   920→   920→        date=datetime.now().strftime("%Y-%m-%d")
+   921→   921→   921→    )
+   922→   922→   922→    knowledge_md.write_text(knowledge_content, encoding="utf-8")
+   923→   923→   923→    print(f"✅ Registre KB créé : {knowledge_md}")
+   924→   924→   924→
+   925→   925→   925→    return True
+   926→   926→   926→
+   927→   927→   927→
+   928→   928→   928→# ─── Vérification de compatibilité ───────────────────────────────────────────
+   929→   929→   929→
+   930→   930→   930→def verify_compatibility(kb_path: str) -> bool:
+   931→   931→   931→    """Vérifie la compatibilité de clone-chat avec les skills KB existants.
+   932→   932→   932→
+   933→   933→   933→    Returns:
+   934→   934→   934→        True si toutes les compatibilités sont OK, False sinon
+   935→   935→   935→    """
+   936→   936→   936→    print("\n=== Vérification de Compatibilité KB ===\n")
+   937→   937→   937→
+   938→   938→   938→    # Scanner les skills existants
+   939→   939→   939→    skills = scan_kb(kb_path)
+   940→   940→   940→
+   941→   941→   941→    if not skills:
+   942→   942→   942→        print("⚠️  Aucun skill KB existant trouvé — clone-chat fonctionnera en mode standalone")
+   943→   943→   943→        return True
+   944→   944→   944→
+   945→   945→   945→    # Afficher le registre dynamique
+   946→   946→   946→    print("## Skills KB Détectés")
+   947→   947→   947→    print(f"| Skill | Version | Type | Source | Compatibilité |")
+   948→   948→   948→    print(f"|-------|---------|------|--------|---------------|")
+   949→   949→   949→
+   950→   950→   950→    for skill in skills:
+   951→   951→   951→        source_tag = "🌍" if skill["source"] == "Ecosysteme" else "📦"
+   952→   952→   952→        print(f"| {skill['name']} | {skill['version']} | {skill['type']} | {source_tag} {skill['source']} | Évalué |")
+   953→   953→   953→
+   954→   954→   954→    # Évaluer la compatibilité avec clone-chat
+   955→   955→   955→    new_skill = {
+   956→   956→   956→        "name": "clone-chat",
+   957→   957→   957→        "version": CLONE_CHAT_VERSION,
+   958→   958→   958→        "category": CLONE_CHAT_CATEGORY,
+   959→   959→   959→    }
+   960→   960→   960→
+   961→   961→   961→    compat_results = evaluate_compatibility(skills, new_skill)
+   962→   962→   962→
+   963→   963→   963→    print(f"\n## Compatibilité clone-chat v{CLONE_CHAT_VERSION}")
+   964→   964→   964→    print(f"| Skill | Version | Compatible | Détails |")
+   965→   965→   965→    print(f"|-------|---------|------------|---------|")
+   966→   966→   966→
+   967→   967→   967→    all_compatible = True
+   968→   968→   968→    for result in compat_results:
+   969→   969→   969→        status = "✅" if result["compatible"] else "❌"
+   970→   970→   970→        if not result["compatible"]:
+   971→   971→   971→            all_compatible = False
+   972→   972→   972→        print(f"| {result['skill']} | {result['version']} | {status} | {result['details']} |")
+   973→   973→   973→
+   974→   974→   974→    if all_compatible:
+   975→   975→   975→        print(f"\n✅ clone-chat v{CLONE_CHAT_VERSION} est compatible avec tous les skills KB existants")
+   976→   976→   976→    else:
+   977→   977→   977→        print(f"\n⚠️  Des incompatibilités ont été détectées")
+   978→   978→   978→
+   979→   979→   979→    return all_compatible
+   980→   980→   980→
+   981→   981→   981→
+   982→   982→   982→# ─── Main ─────────────────────────────────────────────────────────────────────
+   983→   983→   983→
+   984→   984→   984→def main():
+   985→   985→   985→    import argparse
+   986→   986→   986→
+   987→   987→   987→    parser = argparse.ArgumentParser(
+   988→   988→   988→        description="Intègre clone-chat v1.2.0 dans la base de connaissance (Protocole de Découverte KB v3.3.0)"
+   989→   989→   989→    )
+   990→   990→   990→    parser.add_argument("kb_path", help="Chemin vers la base de connaissance (ex: C:\\Users\\PC\\Downloads\\knowledge\\skills)")
+   991→   991→   991→    parser.add_argument("--register", action="store_true", help="Enregistrer clone-chat dans le registre KB (KNOWLEDGE.md)")
+   992→   992→   992→    parser.add_argument("--verify", action="store_true", help="Vérifier la compatibilité avec les skills KB existants")
+   993→   993→   993→    parser.add_argument("--full", action="store_true", help="Exécuter toutes les étapes (scan + install + register + verify)")
+   994→   994→   994→
+   995→   995→   995→    args = parser.parse_args()
+   996→   996→   996→
+   997→   997→   997→    if not args.full and not args.register and not args.verify:
+   998→   998→   998→        # Mode par défaut : installation uniquement
+   999→   999→   999→        args.full = False
+  1000→  1000→  1000→        print("Mode : installation uniquement (utilisez --full pour toutes les étapes)")
+  1001→  1001→  1001→
+  1002→  1002→  1002→    print(f"clone-chat v{CLONE_CHAT_VERSION} — Intégration dans la base de connaissance")
+  1003→  1003→  1003→    print(f"Chemin cible : {args.kb_path}")
+  1004→  1004→  1004→    print(f"Protocole : gen-plan v3.3.0 — Registre KB avec Protocole de Découverte")
+  1005→  1005→  1005→    print()
+  1006→  1006→  1006→
+  1007→  1007→  1007→    # ─── Étape 1 : Scanner la KB ────────────────────────────────────────────
+  1008→  1008→  1008→    if args.full or args.verify:
+  1009→  1009→  1009→        print("=== Étape 1 : Scan de la Knowledge Base ===\n")
+  1010→  1010→  1010→        skills = scan_kb(args.kb_path)
+  1011→  1011→  1011→
+  1012→  1012→  1012→        if skills:
+  1013→  1013→  1013→            print(f"Skills KB détectés : {len(skills)}")
+  1014→  1014→  1014→            for skill in skills:
+  1015→  1015→  1015→                source_tag = "🌍" if skill["source"] == "Ecosysteme" else "📦"
+  1016→  1016→  1016→                print(f"  {source_tag} {skill['name']} v{skill['version']} ({skill['type']}, {skill['category']})")
+  1017→  1017→  1017→        else:
+  1018→  1018→  1018→            print("Aucun skill KB existant trouvé — clone-chat sera le premier skill KB")
+  1019→  1019→  1019→        print()
+  1020→  1020→  1020→
+  1021→  1021→  1021→    # ─── Étape 2 : Installer clone-chat ─────────────────────────────────────
+  1022→  1022→  1022→    print("=== Étape 2 : Installation de clone-chat ===\n")
+  1023→  1023→  1023→    success = install_clone_chat(args.kb_path)
+  1024→  1024→  1024→    print()
+  1025→  1025→  1025→
+  1026→  1026→  1026→    if not success:
+  1027→  1027→  1027→        print("❌ Installation échouée — arrêt")
+  1028→  1028→  1028→        sys.exit(1)
+  1029→  1029→  1029→
+  1030→  1030→  1030→    # ─── Étape 3 : Enregistrer dans le registre KB ─────────────────────────
+  1031→  1031→  1031→    if args.full or args.register:
+  1032→  1032→  1032→        print("=== Étape 3 : Enregistrement dans le registre KB ===\n")
+  1033→  1033→  1033→        register_in_knowledge_md(args.kb_path)
+  1034→  1034→  1034→        print()
+  1035→  1035→  1035→
+  1036→  1036→  1036→    # ─── Étape 4 : Vérifier la compatibilité ────────────────────────────────
+  1037→  1037→  1037→    if args.full or args.verify:
+  1038→  1038→  1038→        print("=== Étape 4 : Vérification de compatibilité ===")
+  1039→  1039→  1039→        verify_compatibility(args.kb_path)
+  1040→  1040→  1040→        print()
+  1041→  1041→  1041→
+  1042→  1042→  1042→    # ─── Bilan ──────────────────────────────────────────────────────────────
+  1043→  1043→  1043→    print("=" * 60)
+  1044→  1044→  1044→    print(f"clone-chat v{CLONE_CHAT_VERSION} — Intégration terminée")
+  1045→  1045→  1045→    print(f"Chemin : {args.kb_path}/clone-chat/")
+  1046→  1046→  1046→    print()
+  1047→  1047→  1047→    print("Structure créée :")
+  1048→  1048→  1048→    print(f"  {args.kb_path}/clone-chat/")
+  1049→  1049→  1049→    print(f"  ├── SKILL.md               (skill clone-chat v{CLONE_CHAT_VERSION})")
+  1050→  1050→  1050→    print(f"  └── references/")
+  1051→  1051→  1051→    print(f"      └── clone-template.md  (template de structure du clone)")
+  1052→  1052→  1052→
+  1053→  1053→  1053→    if args.full or args.register:
+  1054→  1054→  1054→        print(f"\nRegistre KB : {args.kb_path}/KNOWLEDGE.md")
+  1055→  1055→  1055→
+  1056→  1056→  1056→    print()
+  1057→  1057→  1057→    print("Pour utiliser clone-chat depuis gen-plan :")
+  1058→  1058→  1058→    print("  gen-plan: utiliser le skill clone-chat de ma KB")
+  1059→  1059→  1059→    print()
+  1060→  1060→  1060→    print("Pour vérifier l'installation :")
+  1061→  1061→  1061→    print(f'  python integrate-clone-chat-kb-v2.py "{args.kb_path}" --verify')
+  1062→  1062→  1062→
+  1063→  1063→  1063→
+  1064→  1064→  1064→if __name__ == "__main__":
+  1065→  1065→  1065→    main()
+  1066→  1066→  1066→

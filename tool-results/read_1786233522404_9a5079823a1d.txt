@@ -1,0 +1,534 @@
+     1→   300→   499→   533→   533→   533→> **Protocole** : gen-plan v3.3.0 — Registre KB avec Protocole de Découverte
+     2→   301→   500→   534→   534→   534→
+     3→   302→   501→   535→   535→   535→---
+     4→   303→   502→   536→   536→   536→
+     5→   304→   503→   537→   537→   537→## Configuration du Registre KB
+     6→   305→   504→   538→   538→   538→
+     7→   306→   505→   539→   539→   539→| Paramètre | Valeur |
+     8→   307→   506→   540→   540→   540→|-----------|--------|
+     9→   308→   507→   541→   541→   541→| **Chemin KB (Windows)** | `C:\Users\PC\Downloads\knowledge\skills` |
+    10→   309→   508→   542→   542→   542→| **Chemin z.ai (Linux)** | `/home/z/my-project/skills/` |
+    11→   310→   509→   543→   543→   543→| **Scan depth** | 2 niveaux (racine + 1 sous-dossier) |
+    12→   311→   510→   544→   544→   544→| **Fichier detect** | `SKILL.md` ou tout `.md` avec YAML frontmatter (name, description) |
+    13→   312→   511→   545→   545→   545→| **Priorité** | Les skills KB sont évalués APRES les skills écosystème z.ai |
+    14→   313→   512→   546→   546→   546→| **Overlap** | Si un skill KB a le même nom qu'un skill écosystème, le skill **écosystème** est prioritaire sauf override explicite |
+    15→   314→   513→   547→   547→   547→
+    16→   315→   514→   548→   548→   548→---
+    17→   316→   515→   549→   549→   549→
+    18→   317→   516→   550→   550→   550→## Skills KB Enregistrés
+    19→   318→   517→   551→   551→   551→
+    20→   319→   518→   552→   552→   552→| Skill | Version | Catégorie | Type | Langue | Dépendances | Compatibilité |
+    21→   320→   519→   553→   553→   553→|-------|---------|-----------|------|--------|-------------|---------------|
+    22→   321→   520→   554→   554→   554→| gen-plan | 3.3.0 | ecosystem | Exécutable | fr | Aucune | OK (orchestrateur) |
+    23→   322→   521→   555→   555→   555→| correct-work | 2.2.0 | ecosystem | Exécutable | fr | gen-plan >=3.1.0 | OK (requiert gen-plan >=3.1.0, intégré Registre KB v3.3.0) |
+    24→   323→   522→   556→   556→   556→| clone-chat | 1.2.0 | ecosystem | Exécutable | fr | gen-plan (optionnel) | OK (enrichi si gen-plan présent, standalone sinon) |
+    25→   324→   523→   557→   557→   557→
+    26→   325→   524→   558→   558→   558→---
+    27→   326→   525→   559→   559→   559→
+    28→   327→   526→   560→   560→   560→## Détail des Skills KB
+    29→   328→   527→   561→   561→   561→
+    30→   329→   528→   562→   562→   562→### gen-plan v3.3.0
+    31→   330→   529→   563→   563→   563→
+    32→   331→   530→   564→   564→   564→**Catégorie** : ecosystem
+    33→   332→   531→   565→   565→   565→**Langue** : fr
+    34→   333→   532→   566→   566→   566→**Description** : Planification et orchestration multi-étapes de tâches complexes. Analyse la conversation/projet, décompose en sous-tâches, sélectionne l'agent ou skill optimal pour chaque phase, et exécute en mode série. V3.3.0 : registre de skills personnalisé (knowledge base), protocole de découverte dynamique, scan automatique des skills externes à l'Étape 4.
+    35→   334→   533→   567→   567→   567→**Chemin** : `skills/gen-plan/SKILL.md`
+    36→   335→   534→   568→   568→   568→**Tags** : planification, orchestration, routage, ressources, execution
+    37→   336→   535→   569→   569→   569→**Déclencheurs** : `gen-plan:`, `plan d'actions`, `orchestre`
+    38→   337→   536→   570→   570→   570→
+    39→   338→   537→   571→   571→   571→### correct-work v2.2.0
+    40→   339→   538→   572→   572→   572→
+    41→   340→   539→   573→   573→   573→**Catégorie** : ecosystem
+    42→   341→   540→   574→   574→   574→**Langue** : fr
+    43→   342→   541→   575→   575→   575→**Description** : Vérification et correction du travail réalisé. 5 étapes systématiques, 3 modes (PROJET/CIBLE/DIRECT). Intégration gen-plan v3.3.0+ avec CoT+Chaining. V2.2.0 : registre KB, protocole de découverte, paramètre kb_path.
+    44→   343→   542→   576→   576→   576→**Chemin** : `skills/correct-work/SKILL.md`
+    45→   344→   543→   577→   577→   577→**Tags** : verification, correction, quality-gate, validation, gen-plan
+    46→   345→   544→   578→   578→   578→**Dépendances** : gen-plan >=3.1.0
+    47→   346→   545→   579→   579→   579→**Déclencheurs** : `vérifie ton travail`, `correct_work`, `verify_work`
+    48→   347→   546→   580→   580→   580→
+    49→   348→   547→   581→   581→   581→### clone-chat v1.2.0
+    50→   349→   548→   582→   582→   582→
+    51→   350→   549→   583→   583→   583→**Catégorie** : ecosystem
+    52→   351→   550→   584→   584→   584→**Langue** : fr
+    53→   352→   551→   585→   585→   585→**Description** : Clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog) dans un fichier Markdown auto-suffisant. En exécutant ce clone dans une nouvelle session, l'assistant IA recrée le contexte complet de la discussion originale.
+    54→   353→   552→   586→   586→   586→**Chemin** : `skills/clone-chat/SKILL.md`
+    55→   354→   553→   587→   587→   587→**Tags** : clonage, discussion, memoire, prompt-maitre, transfert-contexte
+    56→   355→   554→   588→   588→   588→**Dépendances** : gen-plan (optionnel, pour enrichir les spécifications)
+    57→   356→   555→   589→   589→   589→**Relations** : gen-plan v3.5.0 (orchestration amont), gen-plan v3.3.0 KB (Registre KB, protocole de découverte), correct-work (validation croisée), skill-creator (conventions)
+    58→   357→   556→   590→   590→   590→**Déclencheurs** : `clone-chat`, `cloner la discussion`, `exécuter le clone`
+    59→   358→   557→   591→   591→   591→
+    60→   359→   558→   592→   592→   592→---
+    61→   360→   559→   593→   593→   593→
+    62→   361→   560→   594→   594→   594→## Matrice de Compatibilité
+    63→   362→   561→   595→   595→   595→
+    64→   363→   562→   596→   596→   596→| Skill | gen-plan | correct-work | clone-chat |
+    65→   364→   563→   597→   597→   597→|-------|----------|--------------|------------|
+    66→   365→   564→   598→   598→   598→| gen-plan | — | correct-work l'appelle (Étape 1) | clone-chat utilise ses données (E1-E7, E15) |
+    67→   366→   565→   599→   599→   599→| correct-work | requiert >=3.1.0 | — | peut vérifier clone-chat (Mode CIBLE) |
+    68→   367→   566→   600→   600→   600→| clone-chat | optionnel (enrichit specs) | optionnel (validation croisée) | — |
+    69→   368→   567→   601→   601→   601→
+    70→   369→   568→   602→   602→   602→---
+    71→   370→   569→   603→   603→   603→
+    72→   371→   570→   604→   604→   604→## Flux de Données Inter-Skills
+    73→   372→   571→   605→   605→   605→
+    74→   373→   572→   606→   606→   606→```
+    75→   374→   573→   607→   607→   607→gen-plan E1-E7 (classification)  →  clone-chat Étape 4 (spécifications enrichies)
+    76→   375→   574→   608→   608→   608→gen-plan E4 (scan KB)            →  clone-chat Étape 2 (artefacts KB détectés)
+    77→   376→   575→   609→   609→   609→gen-plan E15 (auto-calibration)  →  clone-chat Étape 3.5 (drift de recalibrage)
+    78→   377→   576→   610→   610→   610→clone-chat (clone produit)       →  gen-plan E4 (lecture du clone si ré-exécution)
+    79→   378→   577→   611→   611→   611→correct-work (Mode CIBLE)        →  clone-chat vérifié
+    80→   379→   578→   612→   612→   612→correct-work (corrections)       →  clone-chat §3.5 (Context Drift)
+    81→   380→   579→   613→   613→   613→```
+    82→   381→   580→   614→   614→   614→
+    83→   382→   581→   615→   615→   615→---
+    84→   383→   582→   616→   616→   616→
+    85→   384→   583→   617→   617→   617→## Règle de Priorité
+    86→   385→   584→   618→   618→   618→
+    87→   386→   585→   619→   619→   619→1. Si l'utilisateur spécifie explicitement un skill KB (`gen-plan: utiliser le skill X de ma KB`), le skill KB est prioritaire.
+    88→   387→   586→   620→   620→   620→2. Si un skill KB et un skill écosystème ont le même nom, le skill **écosystème** est prioritaire (sauf override explicite).
+    89→   388→   587→   621→   621→   621→3. Si aucun skill écosystème ne correspond mais un skill KB correspond, le skill KB est utilisé.
+    90→   389→   588→   622→   622→   622→4. Les skills KB sont toujours évalués après les skills écosystème dans la matrice de décision.
+    91→   390→   589→   623→   623→   623→'''
+    92→   391→   590→   624→   624→   624→
+    93→   392→   591→   625→   625→   625→
+    94→   393→   592→   626→   626→   626→# ─── Protocole de Découverte KB ──────────────────────────────────────────────
+    95→   394→   593→   627→   627→   627→
+    96→   395→   594→   628→   628→   628→def extract_yaml_frontmatter(content: str) -> dict:
+    97→   396→   595→   629→   629→   629→    """Extrait le YAML frontmatter d'un contenu Markdown."""
+    98→   397→   596→   630→   630→   630→    match = re.match(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
+    99→   398→   597→   631→   631→   631→    if not match:
+   100→   399→   598→   632→   632→   632→        return {}
+   101→   400→   599→   633→   633→   633→
+   102→   401→   600→   634→   634→   634→    yaml_text = match.group(1)
+   103→   402→   601→   635→   635→   635→    metadata = {}
+   104→   403→   602→   636→   636→   636→    for line in yaml_text.split('\n'):
+   105→   404→   603→   637→   637→   637→        line = line.strip()
+   106→   405→   604→   638→   638→   638→        if ':' in line and not line.startswith('-'):
+   107→   406→   605→   639→   639→   639→            key, _, value = line.partition(':')
+   108→   407→   606→   640→   640→   640→            key = key.strip()
+   109→   408→   607→   641→   641→   641→            value = value.strip()
+   110→   409→   608→   642→   642→   642→            # Nettoyer les guillemets
+   111→   410→   609→   643→   643→   643→            if value.startswith('"') and value.endswith('"'):
+   112→   411→   610→   644→   644→   644→                value = value[1:-1]
+   113→   412→   611→   645→   645→   645→            elif value.startswith("'") and value.endswith("'"):
+   114→   413→   612→   646→   646→   646→                value = value[1:-1]
+   115→   414→   613→   647→   647→   647→            # Nettoyer les listes
+   116→   415→   614→   648→   648→   648→            if value.startswith('[') and value.endswith(']'):
+   117→   416→   615→   649→   649→   649→                value = value[1:-1]
+   118→   417→   616→   650→   650→   650→            # Nettoyer le > YAML
+   119→   418→   617→   651→   651→   651→            if value.startswith('>'):
+   120→   419→   618→   652→   652→   652→                value = value[1:].strip()
+   121→   420→   619→   653→   653→   653→            metadata[key] = value
+   122→   421→   620→   654→   654→   654→
+   123→   422→   621→   655→   655→   655→    return metadata
+   124→   423→   622→   656→   656→   656→
+   125→   424→   623→   657→   657→   657→
+   126→   425→   624→   658→   658→   658→def classify_skill(metadata: dict, content: str) -> str:
+   127→   426→   625→   659→   659→   659→    """Classifie un skill selon son contenu.
+   128→   427→   626→   660→   660→   660→
+   129→   428→   627→   661→   661→   661→    Returns:
+   130→   429→   628→   662→   662→   662→        'executable' — Protocole complet avec étapes et checklist
+   131→   430→   629→   663→   663→   663→        'reference' — Document de référence, template, configuration
+   132→   431→   630→   664→   664→   664→        'agent' — Définit un agent avec capacités spécifiques
+   133→   432→   631→   665→   665→   665→    """
+   134→   433→   632→   666→   666→   666→    content_lower = content.lower()
+   135→   434→   633→   667→   667→   667→
+   136→   435→   634→   668→   668→   668→    # Heuristiques pour classifier
+   137→   436→   635→   669→   669→   669→    has_steps = bool(re.search(r'étape|etape|step|checklist|protocole', content_lower))
+   138→   437→   636→   670→   670→   670→    has_triggers = bool(re.search(r'déclencheur|declencheur|trigger|mot-clé|mot-cle', content_lower))
+   139→   438→   637→   671→   671→   671→    has_agent = bool(re.search(r'agent spécialisé|agent specialise|agent.*capacité|capacit.*agent', content_lower))
+   140→   439→   638→   672→   672→   672→
+   141→   440→   639→   673→   673→   673→    if has_agent:
+   142→   441→   640→   674→   674→   674→        return 'agent'
+   143→   442→   641→   675→   675→   675→    elif has_steps or has_triggers:
+   144→   443→   642→   676→   676→   676→        return 'executable'
+   145→   444→   643→   677→   677→   677→    else:
+   146→   445→   644→   678→   678→   678→        return 'reference'
+   147→   446→   645→   679→   679→   679→
+   148→   447→   646→   680→   680→   680→
+   149→   448→   647→   681→   681→   681→def scan_kb(kb_path: str) -> list:
+   150→   449→   648→   682→   682→   682→    """Scanne le répertoire KB pour découvrir les skills existants.
+   151→   450→   649→   683→   683→   683→
+   152→   451→   650→   684→   684→   684→    Implémente le Protocole de Découverte KB (gen-plan v3.3.0) :
+   153→   452→   651→   685→   685→   685→    1. Scanner le répertoire KB
+   154→   453→   652→   686→   686→   686→    2. Construire la liste de référence (baseline écosystème)
+   155→   454→   653→   687→   687→   687→    3. Extraire les métadonnées (YAML frontmatter)
+   156→   455→   654→   688→   688→   688→    4. Classifier les skills
+   157→   456→   655→   689→   689→   689→    5. Construire le registre dynamique
+   158→   457→   656→   690→   690→   690→    6. Évaluer la compatibilité
+   159→   458→   657→   691→   691→   691→
+   160→   459→   658→   692→   692→   692→    Returns:
+   161→   460→   659→   693→   693→   693→        Liste de dicts avec les métadonnées de chaque skill
+   162→   461→   660→   694→   694→   694→    """
+   163→   462→   661→   695→   695→   695→    kb = Path(kb_path)
+   164→   463→   662→   696→   696→   696→    if not kb.exists():
+   165→   464→   663→   697→   697→   697→        print(f"⚠️  Le répertoire KB n'existe pas : {kb_path}")
+   166→   465→   664→   698→   698→   698→        return []
+   167→   466→   665→   699→   699→   699→
+   168→   467→   666→   700→   700→   700→    skills = []
+   169→   468→   667→   701→   701→   701→
+   170→   469→   668→   702→   702→   702→    # Étape 1 : Scanner le répertoire KB
+   171→   470→   669→   703→   703→   703→    for item in sorted(kb.iterdir()):
+   172→   471→   670→   704→   704→   704→        if not item.is_dir():
+   173→   472→   671→   705→   705→   705→            continue
+   174→   473→   672→   706→   706→   706→
+   175→   474→   673→   707→   707→   707→        # Chercher SKILL.md
+   176→   475→   674→   708→   708→   708→        skill_md = item / "SKILL.md"
+   177→   476→   675→   709→   709→   709→        if not skill_md.exists():
+   178→   477→   676→   710→   710→   710→            # Chercher tout .md avec YAML frontmatter
+   179→   478→   677→   711→   711→   711→            for md_file in item.glob("*.md"):
+   180→   479→   678→   712→   712→   712→                content = md_file.read_text(encoding="utf-8", errors="replace")
+   181→   480→   679→   713→   713→   713→                metadata = extract_yaml_frontmatter(content)
+   182→   481→   680→   714→   714→   714→                if "name" in metadata:
+   183→   482→   681→   715→   715→   715→                    skill_md = md_file
+   184→   483→   682→   716→   716→   716→                    break
+   185→   484→   683→   717→   717→   717→
+   186→   485→   684→   718→   718→   718→        if not skill_md.exists():
+   187→   486→   685→   719→   719→   719→            continue
+   188→   487→   686→   720→   720→   720→
+   189→   488→   687→   721→   721→   721→        # Étape 3 : Extraire les métadonnées
+   190→   489→   688→   722→   722→   722→        content = skill_md.read_text(encoding="utf-8", errors="replace")
+   191→   490→   689→   723→   723→   723→        metadata = extract_yaml_frontmatter(content)
+   192→   491→   690→   724→   724→   724→
+   193→   492→   691→   725→   725→   725→        if not metadata.get("name"):
+   194→   493→   692→   726→   726→   726→            continue
+   195→   494→   693→   727→   727→   727→
+   196→   495→   694→   728→   728→   728→        # Étape 4 : Classifier
+   197→   496→   695→   729→   729→   729→        skill_type = classify_skill(metadata, content)
+   198→   497→   696→   730→   730→   730→
+   199→   498→   697→   731→   731→   731→        # Étape 2 : Tagger écosystème vs KB
+   200→   499→   698→   732→   732→   732→        skill_name = metadata.get("name", "")
+   201→   500→   699→   733→   733→   733→        source = "Ecosysteme" if skill_name in ECOSYSTEM_BASELINE else "KB"
+   202→   501→   700→   734→   734→   734→
+   203→   502→   701→   735→   735→   735→        skill_info = {
+   204→   503→   702→   736→   736→   736→            "name": skill_name,
+   205→   504→   703→   737→   737→   737→            "version": metadata.get("version", "0.0.0"),
+   206→   505→   704→   738→   738→   738→            "category": metadata.get("category", "unknown"),
+   207→   506→   705→   739→   739→   739→            "language": metadata.get("language", "unknown"),
+   208→   507→   706→   740→   740→   740→            "description": metadata.get("description", ""),
+   209→   508→   707→   741→   741→   741→            "tags": metadata.get("tags", ""),
+   210→   509→   708→   742→   742→   742→            "type": skill_type,
+   211→   510→   709→   743→   743→   743→            "source": source,
+   212→   511→   710→   744→   744→   744→            "path": str(skill_md),
+   213→   512→   711→   745→   745→   745→            "requires": metadata.get("requires_gen_plan_version", metadata.get("requires", "")),
+   214→   513→   712→   746→   746→   746→        }
+   215→   514→   713→   747→   747→   747→
+   216→   515→   714→   748→   748→   748→        skills.append(skill_info)
+   217→   516→   715→   749→   749→   749→
+   218→   517→   716→   750→   750→   750→    return skills
+   219→   518→   717→   751→   751→   751→
+   220→   519→   718→   752→   752→   752→
+   221→   520→   719→   753→   753→   753→def evaluate_compatibility(skills: list, new_skill: dict) -> list:
+   222→   521→   720→   754→   754→   754→    """Évalue la compatibilité d'un nouveau skill avec les skills existants.
+   223→   522→   721→   755→   755→   755→
+   224→   523→   722→   756→   756→   756→    Returns:
+   225→   524→   723→   757→   757→   757→        Liste de dicts avec les résultats de compatibilité
+   226→   525→   724→   758→   758→   758→    """
+   227→   526→   725→   759→   759→   759→    results = []
+   228→   527→   726→   760→   760→   760→
+   229→   528→   727→   761→   761→   761→    for skill in skills:
+   230→   529→   728→   762→   762→   762→        compat = {
+   231→   530→   729→   763→   763→   763→            "skill": skill["name"],
+   232→   531→   730→   764→   764→   764→            "version": skill["version"],
+   233→   532→   731→   765→   765→   765→            "compatible": True,
+   234→   533→   732→   766→   766→   766→            "details": "",
+   235→   534→   733→   767→   767→   767→        }
+   236→   535→   734→   768→   768→   768→
+   237→   536→   735→   769→   769→   769→        # Vérifier les dépendances
+   238→   537→   736→   770→   770→   770→        if new_skill["name"] == "clone-chat":
+   239→   538→   737→   771→   771→   771→            # clone-chat dépend optionnellement de gen-plan
+   240→   539→   738→   772→   772→   772→            if skill["name"] == "gen-plan":
+   241→   540→   739→   773→   773→   773→                compat["details"] = "clone-chat utilise gen-plan (optionnel) pour enrichir les spécifications"
+   242→   541→   740→   774→   774→   774→            elif skill["name"] == "correct-work":
+   243→   542→   741→   775→   775→   775→                compat["details"] = "clone-chat peut être vérifié par correct-work (Mode CIBLE)"
+   244→   543→   742→   776→   776→   776→            else:
+   245→   544→   743→   777→   777→   777→                compat["details"] = "Aucune interaction directe"
+   246→   545→   744→   778→   778→   778→
+   247→   546→   745→   779→   779→   779→        elif skill["name"] == "correct-work":
+   248→   547→   746→   780→   780→   780→            if skill.get("requires"):
+   249→   548→   747→   781→   781→   781→                compat["details"] = f"requiert gen-plan {skill['requires']}"
+   250→   549→   748→   782→   782→   782→
+   251→   550→   749→   783→   783→   783→        results.append(compat)
+   252→   551→   750→   784→   784→   784→
+   253→   552→   751→   785→   785→   785→    return results
+   254→   553→   752→   786→   786→   786→
+   255→   554→   753→   787→   787→   787→
+   256→   555→   754→   788→   788→   788→# ─── Installation ─────────────────────────────────────────────────────────────
+   257→   556→   755→   789→   789→   789→
+   258→   557→   756→   790→   790→   790→def install_clone_chat(kb_path: str) -> bool:
+   259→   558→   757→   791→   791→   791→    """Installe clone-chat v1.2.0 dans la KB.
+   260→   559→   758→   792→   792→   792→
+   261→   560→   759→   793→   793→   793→    Returns:
+   262→   561→   760→   794→   794→   794→        True si l'installation a réussi, False sinon
+   263→   562→   761→   795→   795→   795→    """
+   264→   563→   762→   796→   796→   796→    base = Path(kb_path) / "clone-chat"
+   265→   564→   763→   797→   797→   797→    refs = base / "references"
+   266→   565→   764→   798→   798→   798→
+   267→   566→   765→   799→   799→   799→    # Créer les répertoires
+   268→   567→   766→   800→   800→   800→    refs.mkdir(parents=True, exist_ok=True)
+   269→   568→   767→   801→   801→   801→
+   270→   569→   768→   802→   802→   802→    # Écrire SKILL.md
+   271→   570→   769→   803→   803→   803→    skill_path = base / "SKILL.md"
+   272→   571→   770→   804→   804→   804→    skill_path.write_text(SKILL_MD, encoding="utf-8")
+   273→   572→   771→   805→   805→   805→    print(f"✅ Créé : {skill_path}")
+   274→   573→   772→   806→   806→   806→
+   275→   574→   773→   807→   807→   807→    # Écrire clone-template.md
+   276→   575→   774→   808→   808→   808→    template_path = refs / "clone-template.md"
+   277→   576→   775→   809→   809→   809→    template_path.write_text(CLONE_TEMPLATE_MD, encoding="utf-8")
+   278→   577→   776→   810→   810→   810→    print(f"✅ Créé : {template_path}")
+   279→   578→   777→   811→   811→   811→
+   280→   579→   778→   812→   812→   812→    # Vérification de l'installation
+   281→   580→   779→   813→   813→   813→    print("\n--- Vérification de l'installation ---")
+   282→   581→   780→   814→   814→   814→    checks = [
+   283→   582→   781→   815→   815→   815→        ("SKILL.md existe", skill_path.exists()),
+   284→   583→   782→   816→   816→   816→        ("SKILL.md non vide", skill_path.stat().st_size > 0),
+   285→   584→   783→   817→   817→   817→        ("YAML frontmatter", "---" in skill_path.read_text(encoding="utf-8")[:100]),
+   286→   585→   784→   818→   818→   818→        ("Version correcte", f"version: {CLONE_CHAT_VERSION}" in skill_path.read_text(encoding="utf-8")),
+   287→   586→   785→   819→   819→   819→        ("Étape 3.5 présente", "3.5" in skill_path.read_text(encoding="utf-8")),
+   288→   587→   786→   820→   820→   820→        ("clone-template.md existe", template_path.exists()),
+   289→   588→   787→   821→   821→   821→        ("clone-template.md non vide", template_path.stat().st_size > 0),
+   290→   589→   788→   822→   822→   822→        ("Structure répertoires", refs.exists()),
+   291→   590→   789→   823→   823→   823→    ]
+   292→   591→   790→   824→   824→   824→
+   293→   592→   791→   825→   825→   825→    all_pass = True
+   294→   593→   792→   826→   826→   826→    for name, result in checks:
+   295→   594→   793→   827→   827→   827→        status = "✅ PASS" if result else "❌ FAIL"
+   296→   595→   794→   828→   828→   828→        if not result:
+   297→   596→   795→   829→   829→   829→            all_pass = False
+   298→   597→   796→   830→   830→   830→        print(f"  {status} — {name}")
+   299→   598→   797→   831→   831→   831→
+   300→   599→   798→   832→   832→   832→    if all_pass:
+   301→   600→   799→   833→   833→   833→        print(f"\n🎉 clone-chat v{CLONE_CHAT_VERSION} installé avec succès dans : {kb_path}")
+   302→   601→   800→   834→   834→   834→    else:
+   303→   602→   801→   835→   835→   835→        print(f"\n⚠️  Installation incomplète — vérifiez les erreurs ci-dessus")
+   304→   603→   802→   836→   836→   836→
+   305→   604→   803→   837→   837→   837→    # Afficher la structure
+   306→   605→   804→   838→   838→   838→    print(f"\nStructure créée :")
+   307→   606→   805→   839→   839→   839→    print(f"  {base}/")
+   308→   607→   806→   840→   840→   840→    print(f"  ├── SKILL.md               ({skill_path.stat().st_size:,} octets)")
+   309→   608→   807→   841→   841→   841→    print(f"  └── references/")
+   310→   609→   808→   842→   842→   842→    print(f"      └── clone-template.md  ({template_path.stat().st_size:,} octets)")
+   311→   610→   809→   843→   843→   843→
+   312→   611→   810→   844→   844→   844→    return all_pass
+   313→   612→   811→   845→   845→   845→
+   314→   613→   812→   846→   846→   846→
+   315→   614→   813→   847→   847→   847→# ─── Enregistrement dans le Registre KB ──────────────────────────────────────
+   316→   615→   814→   848→   848→   848→
+   317→   616→   815→   849→   849→   849→def register_in_knowledge_md(kb_path: str) -> bool:
+   318→   617→   816→   850→   850→   850→    """Enregistre clone-chat dans le registre KB (KNOWLEDGE.md).
+   319→   618→   817→   851→   851→   851→
+   320→   619→   818→   852→   852→   852→    Si KNOWLEDGE.md n'existe pas, le crée avec le template complet.
+   321→   620→   819→   853→   853→   853→    Si KNOWLEDGE.md existe mais ne contient pas clone-chat, ajoute l'entrée.
+   322→   621→   820→   854→   854→   854→
+   323→   622→   821→   855→   855→   855→    Returns:
+   324→   623→   822→   856→   856→   856→        True si l'enregistrement a réussi, False sinon
+   325→   624→   823→   857→   857→   857→    """
+   326→   625→   824→   858→   858→   858→    kb = Path(kb_path)
+   327→   626→   825→   859→   859→   859→    knowledge_md = kb / "KNOWLEDGE.md"
+   328→   627→   826→   860→   860→   860→
+   329→   628→   827→   861→   861→   861→    if knowledge_md.exists():
+   330→   629→   828→   862→   862→   862→        # Vérifier si clone-chat est déjà enregistré
+   331→   630→   829→   863→   863→   863→        content = knowledge_md.read_text(encoding="utf-8")
+   332→   631→   830→   864→   864→   864→        if "clone-chat" in content:
+   333→   632→   831→   865→   865→   865→            print(f"✅ clone-chat déjà enregistré dans {knowledge_md}")
+   334→   633→   832→   866→   866→   866→            return True
+   335→   634→   833→   867→   867→   867→
+   336→   635→   834→   868→   868→   868→        # Ajouter l'entrée clone-chat au tableau existant
+   337→   636→   835→   869→   869→   869→        # Chercher le tableau des skills KB
+   338→   637→   836→   870→   870→   870→        table_match = re.search(
+   339→   638→   837→   871→   871→   871→            r'(\| clone-chat \|.*\|)',
+   340→   639→   838→   872→   872→   872→            content
+   341→   640→   839→   873→   873→   873→        )
+   342→   641→   840→   874→   874→   874→        if not table_match:
+   343→   642→   841→   875→   875→   875→            # Ajouter une ligne au tableau des skills
+   344→   643→   842→   876→   876→   876→            # Chercher le dernier skill dans le tableau
+   345→   644→   843→   877→   877→   877→            last_row_match = re.findall(r'^\| .+ \| .+ \| .+ \| .+ \| .+ \| .+ \| .+ \|$', content, re.MULTILINE)
+   346→   645→   844→   878→   878→   878→            if last_row_match:
+   347→   646→   845→   879→   879→   879→                # Insérer après la dernière ligne du tableau
+   348→   647→   846→   880→   880→   880→                new_row = f"| clone-chat | {CLONE_CHAT_VERSION} | {CLONE_CHAT_CATEGORY} | Exécutable | {CLONE_CHAT_LANGUAGE} | gen-plan (optionnel) | OK (enrichi si gen-plan présent, standalone sinon) |"
+   349→   648→   847→   881→   881→   881→                # Trouver la position de la dernière ligne
+   350→   649→   848→   882→   882→   882→                last_pos = content.rfind(last_row_match[-1])
+   351→   650→   849→   883→   883→   883→                insert_pos = last_pos + len(last_row_match[-1])
+   352→   651→   850→   884→   884→   884→                content = content[:insert_pos] + "\n" + new_row + content[insert_pos:]
+   353→   652→   851→   885→   885→   885→
+   354→   653→   852→   886→   886→   886→                # Ajouter la section détaillée
+   355→   654→   853→   887→   887→   887→                detail_section = f"""
+   356→   655→   854→   888→   888→   888→
+   357→   656→   855→   889→   889→   889→### clone-chat v{CLONE_CHAT_VERSION}
+   358→   657→   856→   890→   890→   890→
+   359→   658→   857→   891→   891→   891→**Catégorie** : {CLONE_CHAT_CATEGORY}
+   360→   659→   858→   892→   892→   892→**Langue** : {CLONE_CHAT_LANGUAGE}
+   361→   660→   859→   893→   893→   893→**Description** : Clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog) dans un fichier Markdown auto-suffisant. En exécutant ce clone dans une nouvelle session, l'assistant IA recrée le contexte complet de la discussion originale.
+   362→   661→   860→   894→   894→   894→**Chemin** : `skills/clone-chat/SKILL.md`
+   363→   662→   861→   895→   895→   895→**Tags** : {', '.join(CLONE_CHAT_TAGS)}
+   364→   663→   862→   896→   896→   896→**Dépendances** : gen-plan (optionnel, pour enrichir les spécifications)
+   365→   664→   863→   897→   897→   897→**Relations** : gen-plan v3.5.0 (orchestration amont), gen-plan v3.3.0 KB (Registre KB, protocole de découverte), correct-work (validation croisée), skill-creator (conventions)
+   366→   665→   864→   898→   898→   898→**Déclencheurs** : `clone-chat`, `cloner la discussion`, `exécuter le clone`
+   367→   666→   865→   899→   899→   899→"""
+   368→   667→   866→   900→   900→   900→                # Insérer avant la section Matrice de Compatibilité
+   369→   668→   867→   901→   901→   901→                matrice_pos = content.find("## Matrice de Compatibilité")
+   370→   669→   868→   902→   902→   902→                if matrice_pos > 0:
+   371→   670→   869→   903→   903→   903→                    content = content[:matrice_pos] + detail_section + "\n" + content[matrice_pos:]
+   372→   671→   870→   904→   904→   904→                else:
+   373→   672→   871→   905→   905→   905→                    content += detail_section
+   374→   673→   872→   906→   906→   906→
+   375→   674→   873→   907→   907→   907→                # Mettre à jour la date
+   376→   675→   874→   908→   908→   908→                content = re.sub(
+   377→   676→   875→   909→   909→   909→                    r'\*\*Dernière mise à jour\*\* : .+',
+   378→   677→   876→   910→   910→   910→                    f'**Dernière mise à jour** : {datetime.now().strftime("%Y-%m-%d")}',
+   379→   678→   877→   911→   911→   911→                    content
+   380→   679→   878→   912→   912→   912→                )
+   381→   680→   879→   913→   913→   913→
+   382→   681→   880→   914→   914→   914→                knowledge_md.write_text(content, encoding="utf-8")
+   383→   682→   881→   915→   915→   915→                print(f"✅ clone-chat ajouté au registre KB : {knowledge_md}")
+   384→   683→   882→   916→   916→   916→                return True
+   385→   684→   883→   917→   917→   917→
+   386→   685→   884→   918→   918→   918→    # Créer KNOWLEDGE.md depuis le template
+   387→   686→   885→   919→   919→   919→    knowledge_content = KNOWLEDGE_MD_TEMPLATE.format(
+   388→   687→   886→   920→   920→   920→        date=datetime.now().strftime("%Y-%m-%d")
+   389→   688→   887→   921→   921→   921→    )
+   390→   689→   888→   922→   922→   922→    knowledge_md.write_text(knowledge_content, encoding="utf-8")
+   391→   690→   889→   923→   923→   923→    print(f"✅ Registre KB créé : {knowledge_md}")
+   392→   691→   890→   924→   924→   924→
+   393→   692→   891→   925→   925→   925→    return True
+   394→   693→   892→   926→   926→   926→
+   395→   694→   893→   927→   927→   927→
+   396→   695→   894→   928→   928→   928→# ─── Vérification de compatibilité ───────────────────────────────────────────
+   397→   696→   895→   929→   929→   929→
+   398→   697→   896→   930→   930→   930→def verify_compatibility(kb_path: str) -> bool:
+   399→   698→   897→   931→   931→   931→    """Vérifie la compatibilité de clone-chat avec les skills KB existants.
+   400→   699→   898→   932→   932→   932→
+   401→   700→   899→   933→   933→   933→    Returns:
+   402→   701→   900→   934→   934→   934→        True si toutes les compatibilités sont OK, False sinon
+   403→   702→   901→   935→   935→   935→    """
+   404→   703→   902→   936→   936→   936→    print("\n=== Vérification de Compatibilité KB ===\n")
+   405→   704→   903→   937→   937→   937→
+   406→   705→   904→   938→   938→   938→    # Scanner les skills existants
+   407→   706→   905→   939→   939→   939→    skills = scan_kb(kb_path)
+   408→   707→   906→   940→   940→   940→
+   409→   708→   907→   941→   941→   941→    if not skills:
+   410→   709→   908→   942→   942→   942→        print("⚠️  Aucun skill KB existant trouvé — clone-chat fonctionnera en mode standalone")
+   411→   710→   909→   943→   943→   943→        return True
+   412→   711→   910→   944→   944→   944→
+   413→   712→   911→   945→   945→   945→    # Afficher le registre dynamique
+   414→   713→   912→   946→   946→   946→    print("## Skills KB Détectés")
+   415→   714→   913→   947→   947→   947→    print(f"| Skill | Version | Type | Source | Compatibilité |")
+   416→   715→   914→   948→   948→   948→    print(f"|-------|---------|------|--------|---------------|")
+   417→   716→   915→   949→   949→   949→
+   418→   717→   916→   950→   950→   950→    for skill in skills:
+   419→   718→   917→   951→   951→   951→        source_tag = "🌍" if skill["source"] == "Ecosysteme" else "📦"
+   420→   719→   918→   952→   952→   952→        print(f"| {skill['name']} | {skill['version']} | {skill['type']} | {source_tag} {skill['source']} | Évalué |")
+   421→   720→   919→   953→   953→   953→
+   422→   721→   920→   954→   954→   954→    # Évaluer la compatibilité avec clone-chat
+   423→   722→   921→   955→   955→   955→    new_skill = {
+   424→   723→   922→   956→   956→   956→        "name": "clone-chat",
+   425→   724→   923→   957→   957→   957→        "version": CLONE_CHAT_VERSION,
+   426→   725→   924→   958→   958→   958→        "category": CLONE_CHAT_CATEGORY,
+   427→   726→   925→   959→   959→   959→    }
+   428→   727→   926→   960→   960→   960→
+   429→   728→   927→   961→   961→   961→    compat_results = evaluate_compatibility(skills, new_skill)
+   430→   729→   928→   962→   962→   962→
+   431→   730→   929→   963→   963→   963→    print(f"\n## Compatibilité clone-chat v{CLONE_CHAT_VERSION}")
+   432→   731→   930→   964→   964→   964→    print(f"| Skill | Version | Compatible | Détails |")
+   433→   732→   931→   965→   965→   965→    print(f"|-------|---------|------------|---------|")
+   434→   733→   932→   966→   966→   966→
+   435→   734→   933→   967→   967→   967→    all_compatible = True
+   436→   735→   934→   968→   968→   968→    for result in compat_results:
+   437→   736→   935→   969→   969→   969→        status = "✅" if result["compatible"] else "❌"
+   438→   737→   936→   970→   970→   970→        if not result["compatible"]:
+   439→   738→   937→   971→   971→   971→            all_compatible = False
+   440→   739→   938→   972→   972→   972→        print(f"| {result['skill']} | {result['version']} | {status} | {result['details']} |")
+   441→   740→   939→   973→   973→   973→
+   442→   741→   940→   974→   974→   974→    if all_compatible:
+   443→   742→   941→   975→   975→   975→        print(f"\n✅ clone-chat v{CLONE_CHAT_VERSION} est compatible avec tous les skills KB existants")
+   444→   743→   942→   976→   976→   976→    else:
+   445→   744→   943→   977→   977→   977→        print(f"\n⚠️  Des incompatibilités ont été détectées")
+   446→   745→   944→   978→   978→   978→
+   447→   746→   945→   979→   979→   979→    return all_compatible
+   448→   747→   946→   980→   980→   980→
+   449→   748→   947→   981→   981→   981→
+   450→   749→   948→   982→   982→   982→# ─── Main ─────────────────────────────────────────────────────────────────────
+   451→   750→   949→   983→   983→   983→
+   452→   751→   950→   984→   984→   984→def main():
+   453→   752→   951→   985→   985→   985→    import argparse
+   454→   753→   952→   986→   986→   986→
+   455→   754→   953→   987→   987→   987→    parser = argparse.ArgumentParser(
+   456→   755→   954→   988→   988→   988→        description="Intègre clone-chat v1.2.0 dans la base de connaissance (Protocole de Découverte KB v3.3.0)"
+   457→   756→   955→   989→   989→   989→    )
+   458→   757→   956→   990→   990→   990→    parser.add_argument("kb_path", help="Chemin vers la base de connaissance (ex: C:\\Users\\PC\\Downloads\\knowledge\\skills)")
+   459→   758→   957→   991→   991→   991→    parser.add_argument("--register", action="store_true", help="Enregistrer clone-chat dans le registre KB (KNOWLEDGE.md)")
+   460→   759→   958→   992→   992→   992→    parser.add_argument("--verify", action="store_true", help="Vérifier la compatibilité avec les skills KB existants")
+   461→   760→   959→   993→   993→   993→    parser.add_argument("--full", action="store_true", help="Exécuter toutes les étapes (scan + install + register + verify)")
+   462→   761→   960→   994→   994→   994→
+   463→   762→   961→   995→   995→   995→    args = parser.parse_args()
+   464→   763→   962→   996→   996→   996→
+   465→   764→   963→   997→   997→   997→    if not args.full and not args.register and not args.verify:
+   466→   765→   964→   998→   998→   998→        # Mode par défaut : installation uniquement
+   467→   766→   965→   999→   999→   999→        args.full = False
+   468→   767→   966→  1000→  1000→  1000→        print("Mode : installation uniquement (utilisez --full pour toutes les étapes)")
+   469→   768→   967→  1001→  1001→  1001→
+   470→   769→   968→  1002→  1002→  1002→    print(f"clone-chat v{CLONE_CHAT_VERSION} — Intégration dans la base de connaissance")
+   471→   770→   969→  1003→  1003→  1003→    print(f"Chemin cible : {args.kb_path}")
+   472→   771→   970→  1004→  1004→  1004→    print(f"Protocole : gen-plan v3.3.0 — Registre KB avec Protocole de Découverte")
+   473→   772→   971→  1005→  1005→  1005→    print()
+   474→   773→   972→  1006→  1006→  1006→
+   475→   774→   973→  1007→  1007→  1007→    # ─── Étape 1 : Scanner la KB ────────────────────────────────────────────
+   476→   775→   974→  1008→  1008→  1008→    if args.full or args.verify:
+   477→   776→   975→  1009→  1009→  1009→        print("=== Étape 1 : Scan de la Knowledge Base ===\n")
+   478→   777→   976→  1010→  1010→  1010→        skills = scan_kb(args.kb_path)
+   479→   778→   977→  1011→  1011→  1011→
+   480→   779→   978→  1012→  1012→  1012→        if skills:
+   481→   780→   979→  1013→  1013→  1013→            print(f"Skills KB détectés : {len(skills)}")
+   482→   781→   980→  1014→  1014→  1014→            for skill in skills:
+   483→   782→   981→  1015→  1015→  1015→                source_tag = "🌍" if skill["source"] == "Ecosysteme" else "📦"
+   484→   783→   982→  1016→  1016→  1016→                print(f"  {source_tag} {skill['name']} v{skill['version']} ({skill['type']}, {skill['category']})")
+   485→   784→   983→  1017→  1017→  1017→        else:
+   486→   785→   984→  1018→  1018→  1018→            print("Aucun skill KB existant trouvé — clone-chat sera le premier skill KB")
+   487→   786→   985→  1019→  1019→  1019→        print()
+   488→   787→   986→  1020→  1020→  1020→
+   489→   788→   987→  1021→  1021→  1021→    # ─── Étape 2 : Installer clone-chat ─────────────────────────────────────
+   490→   789→   988→  1022→  1022→  1022→    print("=== Étape 2 : Installation de clone-chat ===\n")
+   491→   790→   989→  1023→  1023→  1023→    success = install_clone_chat(args.kb_path)
+   492→   791→   990→  1024→  1024→  1024→    print()
+   493→   792→   991→  1025→  1025→  1025→
+   494→   793→   992→  1026→  1026→  1026→    if not success:
+   495→   794→   993→  1027→  1027→  1027→        print("❌ Installation échouée — arrêt")
+   496→   795→   994→  1028→  1028→  1028→        sys.exit(1)
+   497→   796→   995→  1029→  1029→  1029→
+   498→   797→   996→  1030→  1030→  1030→    # ─── Étape 3 : Enregistrer dans le registre KB ─────────────────────────
+   499→   798→   997→  1031→  1031→  1031→    if args.full or args.register:
+   500→   799→   998→  1032→  1032→  1032→        print("=== Étape 3 : Enregistrement dans le registre KB ===\n")
+   501→   800→   999→  1033→  1033→  1033→        register_in_knowledge_md(args.kb_path)
+   502→   801→  1000→  1034→  1034→  1034→        print()
+   503→   802→  1001→  1035→  1035→  1035→
+   504→   803→  1002→  1036→  1036→  1036→    # ─── Étape 4 : Vérifier la compatibilité ────────────────────────────────
+   505→   804→  1003→  1037→  1037→  1037→    if args.full or args.verify:
+   506→   805→  1004→  1038→  1038→  1038→        print("=== Étape 4 : Vérification de compatibilité ===")
+   507→   806→  1005→  1039→  1039→  1039→        verify_compatibility(args.kb_path)
+   508→   807→  1006→  1040→  1040→  1040→        print()
+   509→   808→  1007→  1041→  1041→  1041→
+   510→   809→  1008→  1042→  1042→  1042→    # ─── Bilan ──────────────────────────────────────────────────────────────
+   511→   810→  1009→  1043→  1043→  1043→    print("=" * 60)
+   512→   811→  1010→  1044→  1044→  1044→    print(f"clone-chat v{CLONE_CHAT_VERSION} — Intégration terminée")
+   513→   812→  1011→  1045→  1045→  1045→    print(f"Chemin : {args.kb_path}/clone-chat/")
+   514→   813→  1012→  1046→  1046→  1046→    print()
+   515→   814→  1013→  1047→  1047→  1047→    print("Structure créée :")
+   516→   815→  1014→  1048→  1048→  1048→    print(f"  {args.kb_path}/clone-chat/")
+   517→   816→  1015→  1049→  1049→  1049→    print(f"  ├── SKILL.md               (skill clone-chat v{CLONE_CHAT_VERSION})")
+   518→   817→  1016→  1050→  1050→  1050→    print(f"  └── references/")
+   519→   818→  1017→  1051→  1051→  1051→    print(f"      └── clone-template.md  (template de structure du clone)")
+   520→   819→  1018→  1052→  1052→  1052→
+   521→   820→  1019→  1053→  1053→  1053→    if args.full or args.register:
+   522→   821→  1020→  1054→  1054→  1054→        print(f"\nRegistre KB : {args.kb_path}/KNOWLEDGE.md")
+   523→   822→  1021→  1055→  1055→  1055→
+   524→   823→  1022→  1056→  1056→  1056→    print()
+   525→   824→  1023→  1057→  1057→  1057→    print("Pour utiliser clone-chat depuis gen-plan :")
+   526→   825→  1024→  1058→  1058→  1058→    print("  gen-plan: utiliser le skill clone-chat de ma KB")
+   527→   826→  1025→  1059→  1059→  1059→    print()
+   528→   827→  1026→  1060→  1060→  1060→    print("Pour vérifier l'installation :")
+   529→   828→  1027→  1061→  1061→  1061→    print(f'  python integrate-clone-chat-kb-v2.py "{args.kb_path}" --verify')
+   530→   829→  1028→  1062→  1062→  1062→
+   531→   830→  1029→  1063→  1063→  1063→
+   532→   831→  1030→  1064→  1064→  1064→if __name__ == "__main__":
+   533→   832→  1031→  1065→  1065→  1065→    main()
+   534→   833→  1032→  1066→  1066→  1066→

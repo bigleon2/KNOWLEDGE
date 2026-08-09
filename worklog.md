@@ -31,3 +31,40 @@ Stage Summary:
 - 6 fichiers modifiés : clone-chat/SKILL.md, clone-template.md, KNOWLEDGE.md, SHARED, gen-plan/SKILL.md, correct-work/SKILL.md
 - Cohérence cross-fichier : versions clone-chat >= v2.0.0 partout
 - Écosystème maître respecté comme référence unique
+
+---
+Task ID: 2
+Agent: correct-work v2.3.0
+Task: Vérification CIBLE de clone-chat v2.0.0
+
+Work Log:
+- Étape 1 : Plan de vérification créé (mode CIBLE)
+- Étape 2 : 1 erreur détectée (F1, guillemet non fermé §5)
+- Étape 3 : 1 conflit structurel (F2, correct-work PM encore à v1.2.0)
+- Étape 4 : 5 interactions vérifiées, 1 incohérence (PM correct-work)
+- Étape 5 : 4 points de cohérence vérifiés, tous PASS
+- F1 corrigé : guillemet §5 SKILL.md
+- F2 corrigé : 3 occurrences dans PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md
+
+Stage Summary:
+- 2 problèmes trouvés (1 S3, 1 S2), 2 corrections appliquées
+- Verdict : PASS
+
+---
+Task ID: 3
+Agent: Main (gen-plan v3.6.0)
+Task: Mettre à jour integrate-clone-chat-kb-v2.py aux versions actuelles
+
+Work Log:
+- Analyse du script v2.0.0 (1066 lignes, contenu embedded obsolète)
+- Réécriture complète : v3.0.0 (250 lignes, pas de contenu embedded)
+- Suppression du contenu SKILL.md et template en dur (désormais lus depuis skills/clone-chat/)
+- Versions mises à jour : gen-plan 3.6.0, correct-work 2.3.0, clone-chat 2.0.0
+- Suppression du chemin Windows hardcoded
+- Ajout des checks : dependencies frontmatter, 77 skills, variables SHARED
+- Test --full : 76 skills découverts, 10/10 checks PASS
+
+Stage Summary:
+- Nouveau script : scripts/integrate-clone-chat-kb-v3.py (v3.0.0)
+- 10/10 vérifications passées
+- Compatibilité écosystème confirmée
