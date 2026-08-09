@@ -431,3 +431,5 @@ prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`priority`) AS `_count$priorit
  GET /api/skills?search=chart 200 in 111ms (next.js: 2ms, application-code: 109ms)
  GET / 200 in 67ms (next.js: 5ms, application-code: 63ms)
  GET / 200 in 57ms (next.js: 28ms, application-code: 29ms)
+ GET / 200 in 30ms (next.js: 3ms, application-code: 27ms)
+ GET / 200 in 30ms (next.js: 2ms, application-code: 28ms)
