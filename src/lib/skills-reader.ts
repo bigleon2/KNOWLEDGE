@@ -98,13 +98,16 @@ function parseFrontmatter(content: string): Record<string, unknown> {
         currentKey = keyMatch[1]
         const val = keyMatch[2].replace(/^['"]|['"]$/g, '').trim()
 
-        if (val === '' || val === '|' || val === '>') {
+        if (val === '' || val === '|' || val === '>' || val === '[]' || val === '{}') {
           // Could be a list or object below
-          inList = true
-          currentList = []
-          inObj = true
-          currentObj = {}
+          inList = val === '[]'
+          currentList = val === '[]' ? [] : []
+          inObj = val === '{}' || val === '' || val === '|' || val === '>'
+          currentObj = (val === '{}' || val === '' || val === '|' || val === '>') ? {} : {}
           currentObjKey = ''
+          // For [] or {} on same line, store immediately as empty array/object
+          if (val === '[]') { result[currentKey] = []; inList = false; inObj = false; currentObj = null }
+          if (val === '{}') { result[currentKey] = {}; inList = false; inObj = false; currentObj = null }
         } else {
           result[currentKey] = val
           inList = false
@@ -218,7 +221,7 @@ export function getAllSkills(): Skill[] {
 
     // Dependencies
     let dependencies: string[] = []
-    if (Array.isArray(fm.dependencies)) dependencies = fm.dependencies.filter((t): t is string => typeof t === 'string')
+    if (Array.isArray(fm.dependencies)) dependencies = (fm.dependencies as unknown[]).filter((t): t is string => typeof t === 'string' && t.trim() !== '')
     if (typeof fm.dependencies === 'string') dependencies = fm.dependencies.split(',').map(t => t.trim()).filter(Boolean)
 
     // Directory analysis
@@ -276,7 +279,7 @@ export function getSkillBySlug(slug: string): SkillDetail | null {
   if (typeof fm.tags === 'string') tags = fm.tags.split(',').map(t => t.trim()).filter(Boolean)
 
   let dependencies: string[] = []
-  if (Array.isArray(fm.dependencies)) dependencies = fm.dependencies.filter((t): t is string => typeof t === 'string')
+  if (Array.isArray(fm.dependencies)) dependencies = (fm.dependencies as unknown[]).filter((t): t is string => typeof t === 'string' && t.trim() !== '')
   if (typeof fm.dependencies === 'string') dependencies = fm.dependencies.split(',').map(t => t.trim()).filter(Boolean)
 
   const files = walkDir(skillDir, SKILLS_ROOT).map(f => ({
@@ -358,8 +361,8 @@ export function getRelations() {
   // Dependency relations
   skills.forEach(s => {
     s.dependencies.forEach(dep => {
-      // Normalize dep name to slug
       const depSlug = dep.toLowerCase().replace(/[\s_]+/g, '-')
+      if (!depSlug) return // Skip empty dependencies
       relations.push({ source: s.slug, target: depSlug, type: 'depends_on' })
       relations.push({ source: depSlug, target: s.slug, type: 'used_by' })
     })

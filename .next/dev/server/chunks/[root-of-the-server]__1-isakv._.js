@@ -200,13 +200,26 @@ function parseFrontmatter(content) {
                 }
                 currentKey = keyMatch[1];
                 const val = keyMatch[2].replace(/^['"]|['"]$/g, '').trim();
-                if (val === '' || val === '|' || val === '>') {
+                if (val === '' || val === '|' || val === '>' || val === '[]' || val === '{}') {
                     // Could be a list or object below
-                    inList = true;
-                    currentList = [];
-                    inObj = true;
-                    currentObj = {};
+                    inList = val === '[]';
+                    currentList = val === '[]' ? [] : [];
+                    inObj = val === '{}' || val === '' || val === '|' || val === '>';
+                    currentObj = val === '{}' || val === '' || val === '|' || val === '>' ? {} : {};
                     currentObjKey = '';
+                    // For [] or {} on same line, store immediately as empty array/object
+                    if (val === '[]') {
+                        result[currentKey] = [];
+                        inList = false;
+                        inObj = false;
+                        currentObj = null;
+                    }
+                    if (val === '{}') {
+                        result[currentKey] = {};
+                        inList = false;
+                        inObj = false;
+                        currentObj = null;
+                    }
                 } else {
                     result[currentKey] = val;
                     inList = false;
@@ -321,7 +334,7 @@ function getAllSkills() {
         if (typeof fm.tags === 'string') tags = fm.tags.split(',').map((t)=>t.trim()).filter(Boolean);
         // Dependencies
         let dependencies = [];
-        if (Array.isArray(fm.dependencies)) dependencies = fm.dependencies.filter((t)=>typeof t === 'string');
+        if (Array.isArray(fm.dependencies)) dependencies = fm.dependencies.filter((t)=>typeof t === 'string' && t.trim() !== '');
         if (typeof fm.dependencies === 'string') dependencies = fm.dependencies.split(',').map((t)=>t.trim()).filter(Boolean);
         // Directory analysis
         const skillDir = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].join(SKILLS_ROOT, slug);
@@ -370,7 +383,7 @@ function getSkillBySlug(slug) {
     if (Array.isArray(fm.tags)) tags = fm.tags.filter((t)=>typeof t === 'string');
     if (typeof fm.tags === 'string') tags = fm.tags.split(',').map((t)=>t.trim()).filter(Boolean);
     let dependencies = [];
-    if (Array.isArray(fm.dependencies)) dependencies = fm.dependencies.filter((t)=>typeof t === 'string');
+    if (Array.isArray(fm.dependencies)) dependencies = fm.dependencies.filter((t)=>typeof t === 'string' && t.trim() !== '');
     if (typeof fm.dependencies === 'string') dependencies = fm.dependencies.split(',').map((t)=>t.trim()).filter(Boolean);
     const files = walkDir(skillDir, SKILLS_ROOT).map((f)=>({
             ...f,
@@ -446,8 +459,8 @@ function getRelations() {
     // Dependency relations
     skills.forEach((s)=>{
         s.dependencies.forEach((dep)=>{
-            // Normalize dep name to slug
             const depSlug = dep.toLowerCase().replace(/[\s_]+/g, '-');
+            if (!depSlug) return; // Skip empty dependencies
             relations.push({
                 source: s.slug,
                 target: depSlug,
