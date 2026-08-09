@@ -1,9 +1,10 @@
 # Registre KB — Écosystème Knowledge
 
-> **Date** : 2026-08-09
-> **Version** : 2.0.0
+> **Date** : 2026-08-10
+> **Version** : 2.1.0
 > **Skills** : 77 (6 écosystème + 71 métier)
 > **Relations** : 14 bidirectionnelles
+> **Note** : Le skill `design` est un conteneur-routeur avec 112 sous-skills internes (voir `design/SUB-KB.md`)
 
 ---
 

@@ -411,3 +411,21 @@ Stage Summary:
 - Frontmatter score: 3/10 → 10/10
 - Phase 2 terminée avec succès
 - Prochaine étape: Phase 3 (design/) — session dédiée recommandée
+
+---
+Task ID: 18
+Agent: Main
+Task: Phase 3 — Traitement du conteneur design/ (Option A + sous-registre)
+
+Work Log:
+- 3a: KNOWLEDGE.md mis à jour v2.0.0 → v2.1.0 avec note design/ conteneur-routeur
+- 3b: Créé design/SUB-KB.md — sous-registre complet des 112 sous-skills (76 styles + 36 templates)
+- 3c: Supprimé ui-ux-pro-max/data/ (doublon de assets/data/, 269 KB)
+- Vérification: verify-cross 60/60 PASS
+
+Stage Summary:
+- design/ est maintenant traçable : SUB-KB.md référence les 112 sous-skills
+- KNOWLEDGE.md v2.1.0 documente le conteneur
+- Doublon ui-ux-pro-max résolu (-269 KB)
+- Phase 3 Option A terminée (Option B/C possibles ultérieurement)
+- Prochaine étape: Phase 4 (infra légère)
