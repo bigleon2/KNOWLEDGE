@@ -68,3 +68,37 @@ Stage Summary:
 - Nouveau script : scripts/integrate-clone-chat-kb-v3.py (v3.0.0)
 - 10/10 vérifications passées
 - Compatibilité écosystème confirmée
+
+---
+Task ID: 4
+Agent: Main (gen-plan v3.6.0)
+Task: Trois tâches séquentielles : amélioration gen-plan (v3.4.0), intégration autonomous-agent, correct-work
+
+Work Log:
+- **Tâche A** : Analyse comparative prompt-maitre-gen-plan-5_1.md (v3.4.0) vs gen-plan v3.6.0 actuel
+  - 11 axes comparés, 4 améliorations identifiées
+  - v3.6.0 est supérieur sur 6 axes (KB, auto-calibration, ordre E1-E15, détails refs)
+  - v3.4.0 apporte : signaux de pression, 5 règles VIEUX PC, filtrage #token par profil, downgrade irréversible
+- **Tâche A-bis** : 4 améliorations appliquées à gen-plan :
+  - SKILL.md : ajout §2.4.1 Signaux de pression (table 3 signaux × 2 seuils)
+  - SKILL.md : ajout §2.4.2 Filtrage #token par profil (NORMAL/ECO/VIEUX PC)
+  - SKILL.md : ajout règle downgrade irréversible §2.4
+  - profils-ressource.md : réécriture complète avec 5 règles VIEUX PC + contingence
+  - PM gen-plan : ajout principe #8 (downgrade irréversible)
+- **Tâche B** : Intégration autonomous-agent v1.0.0 dans l'écosystème
+  - Création skills/autonomous-agent/SKILL.md (5 modules, 4 modes, pipeline A-H, mémoire court+long)
+  - Création skills/autonomous-agent/references/agent-format.md (schéma YAML, exemple, règles persistance)
+  - KNOWLEDGE.md : entrée autonomous-agent + 3 relations ajoutées
+  - SHARED §0 : 77 → 78 skills, 5 → 6 écosystème
+  - SHARED §3.1 : 3 relations autonomous-agent ajoutées
+  - Mise à jour « 78 skills » dans 6 fichiers écosystème
+- **Tâche C** : correct-work Mode DIRECT — 16/16 checks PASS
+  - Vérification structurelle (fichiers, frontmatter, contenus)
+  - Vérification cross-references (SHARED, KNOWLEDGE, relations)
+  - Vérification cohérence numérique (78 skills, 6 écosystème)
+
+Stage Summary:
+- gen-plan enrichi (signaux pression, VIEUX PC 5 règles, filtrage #token, downgrade irréversible)
+- Nouveau skill : autonomous-agent v1.0.0 (mémoire court+long, pipeline A-H)
+- Écosystème : 78 skills (6 écosystème + 72 métier), 13 relations bidirectionnelles
+- correct-work : 16/16 PASS, verdict PASS
