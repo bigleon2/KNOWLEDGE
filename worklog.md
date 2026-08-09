@@ -125,3 +125,27 @@ Stage Summary:
 - 9 problèmes trouvés (4 S2, 3 S3, 2 S4), 9 corrections appliquées
 - 6 fichiers modifiés : PM gen-plan, KNOWLEDGE.md, README.md, SHARED
 - Verdict : PASS AVEC RÉSERVES (0 S1, 4 S2 corrigés)
+
+---
+Task ID: 6
+Agent: correct-work v2.3.0
+Task: Vérification PROJET de l'écosystème Knowledge complet (4 PMs, 6 skills, KB, README)
+
+Work Log:
+- Étape 1 : Plan de vérification 8 axes (A-H), #token ~6000
+- Étape 2 : 4 findings (F1 S2 profils-ressource.md vs PM §9.4, F2-F4 S3 line counts, F8 S4 README)
+- Étape 3 : 3 faux positifs analysés (autonomous-agent pas dans §3 gen-plan/correct-work = normal)
+- Étape 4 : 7 interactions vérifiées, I7 correct-work manquant frontmatter autonomous-agent (cohérent)
+- Étape 5 : 7 points de cohérence, 1 finding (F8 README « deux autres » → « trois autres »)
+- F1 corrigé : PM gen-plan §9.4 mis à jour (signaux pression, filtrage #token, 5 règles VIEUX PC, downgrade irréversible)
+- F2 corrigé : README SHARED ~216 → ~220
+- F3 corrigé : README correct-work 130 → 129 lignes
+- F4 corrigé : KNOWLEDGE.md correct-work 130 → 129 lignes
+- F8 corrigé : README « deux autres » → « trois autres »
+- Lignes PM gen-plan mises à jour : ~890 → ~912 (SHARED §5.2, README §5 + §9)
+
+Stage Summary:
+- 5 problèmes trouvés (1 S2, 3 S3, 1 S4), 5 corrections appliquées
+- 4 fichiers modifiés : PM gen-plan, SHARED, README.md, KNOWLEDGE.md
+- PM gen-plan §9.4 désormais conforme au fichier réel profils-ressource.md
+- Verdict : PASS (0 S1, 1 S2 corrigé, 3 S3 corrigés, 1 S4 corrigé)
