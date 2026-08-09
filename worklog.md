@@ -231,3 +231,19 @@ Stage Summary:
 - 4 fichiers modifiés : PM gen-plan, SHARED, README.md, KNOWLEDGE.md
 - PM gen-plan §9.4 désormais conforme au fichier réel profils-ressource.md
 - Verdict : PASS (0 S1, 1 S2 corrigé, 3 S3 corrigés, 1 S4 corrigé)
+
+---
+Task ID: 9
+Agent: Main (correct-work v2.3.0)
+Task: Mettre à jour README.md, correct-work DIRECT, sync écosystème
+
+Work Log:
+- Relecture README.md source (339 lignes), vérification croisées avec fichiers réels (wc -l)
+- 2 corrections appliquées : clone-chat SKILL.md 365→364 lignes, résultat sync-download.py précisé
+- Audit correct-work DIRECT : 27 checks, 0 finding (fichier propre)
+- Sync download/ : 1 fichier mis à jour (README.md), 4 ignorés (identiques)
+- verify-cross.py : 60/60 PASS confirmé post-sync
+
+Stage Summary:
+- README.md source corrigé et synchronisé dans download/
+- Écosystème cohérent : 60/60 checks PASS

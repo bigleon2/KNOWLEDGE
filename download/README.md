@@ -316,7 +316,7 @@ Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle 
 |-------|---------|------|-------------------|
 | gen-plan | v3.6.0 | Planification de tâches (4 modes, 15 étapes) | SKILL.md (~195 lignes), 5 références, 5 evals |
 | correct-work | v2.3.0 | Vérification et correction (3 modes, S1-S4) | SKILL.md (129 lignes) |
-| clone-chat | v2.0.0 | Clonage de discussion en Markdown | SKILL.md (365 lignes), 1 référence, 1 prompt maître |
+| clone-chat | v2.0.0 | Clonage de discussion en Markdown | SKILL.md (364 lignes), 1 référence, 1 prompt maître |
 | skills-inventory | v1.0.0 | Scan et inventaire des skills | SKILL.md, 2 evals, scripts |
 | skill-creator | v1.0.0 | Création et gestion de skills | SKILL.md, 1 référence, 7 scripts, 3 agents |
 | autonomous-agent | v1.0.0 | Agent autonome avec mémoire interne | SKILL.md, 1 référence |
@@ -335,5 +335,5 @@ Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle 
 | Cross-refs gen-plan ↔ correct-work ↔ clone-chat | PASS |
 | Interactions 4 fichiers MD + déclencheurs | PASS |
 | `verify-cross.py` (prompts maîtres + sync) | 60/60 PASS (6 axes) |
-| `sync-download.py` (scripts Python) | correct-work DIRECT PASS |
+| `sync-download.py` (scripts Python) | correct-work DIRECT : 10 findings, 7 corrections appliquées |
 | `integrate-clone-chat-kb-v3.py` | 10/10 checks PASS |
