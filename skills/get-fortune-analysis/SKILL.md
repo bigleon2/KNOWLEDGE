@@ -1,7 +1,13 @@
 ---
 name: get-fortune-analysis
+version: 1.0.0
+category: metier
+language: fr
 description: 生成视觉华丽、内容详实、具有仪式感的流年运势报告（流金星象风格）。
+tags: []
+dependencies: []
 ---
+
 # Skill Name: get-fortune-analysis
 # Version: 4.1.0
 # Description: 生成视觉华丽、内容详实、具有仪式感的流年运势报告（流金星象风格）。

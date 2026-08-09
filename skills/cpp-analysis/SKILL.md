@@ -1,17 +1,15 @@
 ---
 name: cpp-analysis
 version: 1.0.0
-date: 2026-06-21
+category: metier
+language: fr
 description: >
-  Analyse de code C/C++ — Détection de bugs, optimisation de performance, 
-  analyse de complexité, génération de documentation. Supporte C, C++, C++11/14/17/20.
-  Use when the user needs to analyze C/C++ code, find bugs, optimize performance, 
-  or generate documentation.
-description-fr: >
-  Analyse de code C/C++ — Détection de bugs, optimisation de performance,
-  analyse de complexité, génération de documentation. Supporte C, C++, C++11/14/17/20.
-  Utiliser quand l'utilisateur a besoin d'analyser du code C/C++, trouver des bugs,
-  optimiser les performances, ou générer de la documentation.
+  Analyse de code C/C++ — Détection de bugs, optimisation de performance,  analyse de complexité, génération de documentation. Supporte C, C++, C++11/14/17/20. Use when the user needs to analyze C/C++ code, find bugs, optimize performance,  or generate documentation.
+  
+tags: []
+dependencies: []
+date: 2026-06-21
+description-fr: Analyse de code C/C++ — Détection de bugs, optimisation de performance, analyse de complexité, génération de documentation. Supporte C, C++, C++11/14/17/20. Utiliser quand l'utilisateur a besoin d'analyser du code C/C++, trouver des bugs, optimiser les performances, ou générer de la documentation.
 ---
 
 # cpp-analysis

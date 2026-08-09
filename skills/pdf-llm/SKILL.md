@@ -1,15 +1,13 @@
 ---
 name: pdf-llm
+version: 1.0.0
+category: metier
+language: fr
 description: >
-  Extraction documentaire PDF vers Markdown + JSON structuré RAG-ready.
-  Active ce skill chaque fois que l'utilisateur demande d'extraire, analyser,
-  structurer, convertir en Markdown/JSON le contenu d'un PDF, d'un document
-  scanné, ou de toute sortie OCR. Fonctionne en 4 modes : qwen (extraction
-  littérale), glm (structuré RAG-friendly), multi (universel par défaut),
-  ou pipeline (normalisation post-PyMuPDF). Zéro hallucination, fidélité
-  totale au document. Aussi lorsque l'utilisateur parle de RAG, d'indexation
-  de documents, de vectorisation de PDF, de chunking documentaire, d'extraction
-  de tableaux/images, ou d'OCR.
+  Extraction documentaire PDF vers Markdown + JSON structuré RAG-ready. Active ce skill chaque fois que l'utilisateur demande d'extraire, analyser, structurer, convertir en Markdown/JSON le contenu d'un PDF, d'un document scanné, ou de toute sortie OCR. Fonctionne en 4 modes : qwen (extraction littérale), glm (structuré RAG-friendly), multi (universel par défaut), ou pipeline (normalisation post-PyMuPDF). Zéro hallucination, fidélité totale au document. Aussi lorsque l'utilisateur parle de RAG, d'indexation de documents, de vectorisation de PDF, de chunking documentaire, d'extraction de tableaux/images, ou d'OCR.
+  
+tags: []
+dependencies: []
 license: MIT
 ---
 

@@ -1,7 +1,12 @@
 ---
 name: fullstack-dev
+version: 1.0.0
+category: metier
+language: fr
 description: "Fullstack web development with Next.js 16, TypeScript, Tailwind CSS 4, shadcn/ui, Prisma ORM. Use when: building web apps, creating UI components, setting up database schemas, implementing API routes, adding websocket/socket.io support, fullstack project scaffolding, frontend development, backend development, web dev, Next.js app."
-argument-hint: "Describe the fullstack feature or app you want to build"
+tags: []
+dependencies: []
+argument-hint: Describe the fullstack feature or app you want to build
 ---
 
 # Fullstack Web Development Skill

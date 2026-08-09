@@ -393,4 +393,21 @@ Stage Summary:
 - 0 risque — aucun skill écosystème touché
 - verify-cross: 60/60 PASS
 - Phase 1 terminée avec succès
-- Prochaine étape recommandée: Phase 2 (standardisation frontmatter métier)
+
+---
+Task ID: 17
+Agent: Main (fix-frontmatter.py + fix-yaml-cases.py)
+Task: Phase 2 — Standardisation frontmatter des 71 skills métier
+
+Work Log:
+- Scan initial: 71/71 skills métier non conformes au schéma §1.3
+- fix-frontmatter.py: ajout version 1.0.0, category: metier, language: fr, tags: [], dependencies: []
+- 9 name mismatches corrigés (design, pptx, agent-browser, podcast-generate, etc.)
+- 9 YAML cassés (descriptions avec ':' non échappés) réparés via fix-yaml-cases.py
+- Vérification finale: 71/71 compliant, 60/60 verify-cross PASS
+
+Stage Summary:
+- 71 skills métier modifiés, 0 cassé, 0 écosystème touché
+- Frontmatter score: 3/10 → 10/10
+- Phase 2 terminée avec succès
+- Prochaine étape: Phase 3 (design/) — session dédiée recommandée

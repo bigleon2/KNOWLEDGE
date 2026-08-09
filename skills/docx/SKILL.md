@@ -1,10 +1,11 @@
 ---
 name: docx
-metadata:
-  author: Z.AI
-  version: "1.0"
+version: 1.0.0
+category: metier
+language: fr
 description: "Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. When GLM needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks"
-license: Proprietary. LICENSE.txt has complete terms
+tags: []
+dependencies: []
 ---
 
 # DOCX Creation, Editing, and Analysis

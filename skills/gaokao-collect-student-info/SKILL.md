@@ -1,9 +1,11 @@
 ---
 name: gaokao-collect-student-info
-description: >-
-  高考志愿填报信息采集：以考生原生表述为准，收集省份、分数、选科等 API 必填项及兴趣、
-  家庭、就业方向等辅助信息，尽量不做改写与过度归纳，输出结构化 student.json。
-  适用于高考志愿咨询开场、考生信息登记、志愿填报前的信息收集。
+version: 1.0.0
+category: metier
+language: fr
+description: 高考志愿填报信息采集：以考生原生表述为准，收集省份、分数、选科等 API 必填项及兴趣、 家庭、就业方向等辅助信息，尽量不做改写与过度归纳，输出结构化 student.json。 适用于高考志愿咨询开场、考生信息登记、志愿填报前的信息收集。
+tags: []
+dependencies: []
 ---
 
 # 高考考生信息采集

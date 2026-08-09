@@ -1,25 +1,17 @@
 ---
 name: aminer-deep-search
 version: 2.0.0
+category: metier
+language: fr
+description: >
+  Activate this skill when the user wants deep, multi-round academic paper collection for a survey or literature review. The host model (the model running this skill) drives the loop itself: it expands queries, judges relevance, snowballs backward references, and decides when to stop. The bundled scripts are pure tool commands that call documented AMiner Open Platform endpoints and print JSON tool results only — no extra LLM configuration is needed. Use this skill for broad topic exploration, survey bibliography construction, and collecting hundreds of candidate papers with AMiner IDs and titles. Not intended for single-paper lookup or lightweight recommendations; use aminer-free-academic or aminer-daily-paper for those.
+  
+tags: []
+dependencies: []
 author: AMiner
 contact: report@aminer.cn
-description: >
-  Activate this skill when the user wants deep, multi-round academic paper collection for a survey or literature review.
-  The host model (the model running this skill) drives the loop itself: it expands queries, judges relevance, snowballs backward references, and decides when to stop.
-  The bundled scripts are pure tool commands that call documented AMiner Open Platform endpoints and print JSON tool results only — no extra LLM configuration is needed.
-  Use this skill for broad topic exploration, survey bibliography construction, and collecting hundreds of candidate papers with AMiner IDs and titles.
-  Not intended for single-paper lookup or lightweight recommendations; use aminer-free-academic or aminer-daily-paper for those.
 metadata:
-  {
-    "openclaw":
-      {
-        "requires": {
-          "bins": ["python3"],
-          "env": ["AMINER_API_KEY"]
-        },
-        "primaryEnv": "AMINER_API_KEY"
-      }
-  }
+  openclaw: {'requires': {'bins': ['python3'], 'env': ['AMINER_API_KEY']}, 'primaryEnv': 'AMINER_API_KEY'}
 ---
 
 # AMiner Deep Search

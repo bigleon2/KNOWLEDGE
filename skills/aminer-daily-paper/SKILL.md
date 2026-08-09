@@ -1,21 +1,11 @@
 ---
 name: aminer-daily-paper
 version: 1.1.2
+category: metier
+language: fr
 description: "Personalized academic paper recommendation via AMiner rec5 API. Activate this skill whenever the user asks for paper recommendations, whether triggered by /aminer-dp, /skill aminer-dp, or any natural language request such as 'recommend me papers on multimodal agents'. When invoked: extract topics/scholar signals from the input yourself, call handle_trigger.py with structured fields, then present the Markdown in `reply_text` to the user."
-user-invocable: true
-disable-model-invocation: false
-metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "📚",
-        "requires": {
-          "bins": ["python3"],
-          "env": ["AMINER_API_KEY"]
-        },
-        "primaryEnv": "AMINER_API_KEY"
-      }
-  }
+tags: []
+dependencies: []
 ---
 
 # aminer-daily-paper

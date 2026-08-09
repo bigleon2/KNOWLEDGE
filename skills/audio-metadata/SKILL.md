@@ -1,17 +1,15 @@
 ---
 name: audio-metadata
 version: 1.0.0
-date: 2026-06-21
+category: metier
+language: fr
 description: >
-  Gestion avancée des métadonnées audio — Extraction, normalisation, conversion 
-  de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A).
-  Use when the user needs to manage audio metadata, extract tags, or normalize 
-  metadata across a collection.
-description-fr: >
-  Gestion avancée des métadonnées audio — Extraction, normalisation, conversion
-  de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A).
-  Utiliser quand l'utilisateur a besoin de gérer des métadonnées audio, extraire des tags,
-  ou normaliser les métadonnées d'une collection.
+  Gestion avancée des métadonnées audio — Extraction, normalisation, conversion  de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A). Use when the user needs to manage audio metadata, extract tags, or normalize  metadata across a collection.
+  
+tags: []
+dependencies: []
+date: 2026-06-21
+description-fr: Gestion avancée des métadonnées audio — Extraction, normalisation, conversion de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A). Utiliser quand l'utilisateur a besoin de gérer des métadonnées audio, extraire des tags, ou normaliser les métadonnées d'une collection.
 ---
 
 # audio-metadata

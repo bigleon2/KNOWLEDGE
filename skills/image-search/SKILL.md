@@ -1,7 +1,9 @@
 ---
 name: image-search
 version: 1.0.0
-description: |
+category: metier
+language: fr
+description: >
   ZAI in-house image search service, exposed through the z-ai-web-dev-sdk CLI.
   Retrieve real images from the web for any text query, with optional short
   captions, and get back OSS-hosted direct URLs that are guaranteed reachable.
@@ -9,6 +11,8 @@ description: |
   "search for images of X", "find a picture of Y", "I need cover art for Z",
   "give me reference photos of W", "插图", "配图", "找图", "找张图",
   "搜张图", "搜图".
+tags: []
+dependencies: []
 ---
 
 # image-search (ZAI in-house, via z-ai SDK)

@@ -1,6 +1,11 @@
 ---
 name: TTS
+version: 1.0.0
+category: metier
+language: fr
 description: Implement text-to-speech (TTS) capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to convert text into natural-sounding speech, create audio content, build voice-enabled applications, or generate spoken audio files. Supports multiple voices, adjustable speed, and various audio formats.
+tags: []
+dependencies: []
 license: MIT
 ---
 

@@ -1,6 +1,11 @@
 ---
 name: dream-interpreter
+version: 1.0.0
+category: metier
+language: fr
 description: AI 解梦大师。用户描述梦境，智能追问关键细节后，从三个视角（周公解梦/心理分析/赛博神棍）生成解读，输出结构化 JSON 供前端渲染"梦境解析卡"。
+tags: []
+dependencies: []
 ---
 
 # dream-interpreter
