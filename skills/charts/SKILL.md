@@ -1,10 +1,12 @@
 ---
 name: charts
-version: 1.0.0
-category: metier
-language: fr
+metadata:
+  author: Z.AI
+  version: "1.0"
 description: >
-  Professional chart and diagram creation skill. Covers all types of visual data representation and structural diagrams: - **Data charts**: bar charts, line charts, pie charts, scatter plots, heatmaps,
+  Professional chart and diagram creation skill. Covers all types of visual data
+  representation and structural diagrams:
+  - **Data charts**: bar charts, line charts, pie charts, scatter plots, heatmaps,
     radar charts, candlestick charts, boxplots, histograms, area charts, waterfall charts,
     regression plots, distribution plots, and statistical visualizations.
   - **Structural diagrams**: flowcharts, mind maps, tree diagrams, org charts,
@@ -15,13 +17,14 @@ description: >
   - **Design quality**: professional color systems, anti-overlap rules, layout optimization,
     scene-based framework routing (matplotlib, seaborn, ECharts, D3.js, Mermaid, Playwright+CSS),
     and publication-ready output.
-  Applies when the user wants to create, generate, draw, plot, visualize, or improve any chart, graph, diagram, or dashboard. Also applies when the user asks for something more polished, cleaner, or publication-ready. NOT for: PDF document layout (use pdf skill), slide decks (use slides skill), spreadsheets with embedded charts (use xlsx skill), AI image generation (use image_gen), posters / infographics / creative cards (use pdf skill Creative pipeline). FORBIDDEN: Using matplotlib/seaborn to draw mind maps, tree diagrams, org charts, flowcharts, or any structural diagram. These MUST use Playwright+CSS.
-  
-tags: []
-dependencies: []
-metadata:
-  author: Z.AI
-  version: 1.0
+  Applies when the user wants to create, generate, draw, plot, visualize, or improve
+  any chart, graph, diagram, or dashboard. Also applies when the user asks for something
+  more polished, cleaner, or publication-ready.
+  NOT for: PDF document layout (use pdf skill), slide decks (use slides skill),
+  spreadsheets with embedded charts (use xlsx skill), AI image generation (use image_gen),
+  posters / infographics / creative cards (use pdf skill Creative pipeline).
+  FORBIDDEN: Using matplotlib/seaborn to draw mind maps, tree diagrams, org charts,
+  flowcharts, or any structural diagram. These MUST use Playwright+CSS.
 license: Proprietary. LICENSE.txt has complete terms
 ---
 

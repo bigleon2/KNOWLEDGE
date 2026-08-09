@@ -1,11 +1,6 @@
 ---
-name: video-generation
-version: 1.0.0
-category: metier
-language: fr
+name: Video Generation
 description: Implement AI-powered video generation capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to generate videos from text prompts or images, create video content programmatically, or build applications that produce video outputs. Supports asynchronous task management with status polling and result retrieval.
-tags: []
-dependencies: []
 license: MIT
 ---
 

@@ -1,11 +1,6 @@
 ---
 name: gift-evaluator
-version: 1.0.0
-category: metier
-language: fr
 description: The PRIMARY tool for Spring Festival gift analysis and social interaction generation. Use this skill when users upload photos of gifts (alcohol, tea, supplements, etc.) to inquire about their value, authenticity, or how to respond socially. Integrates visual perception, market valuation, and HTML card generation.
-tags: []
-dependencies: []
 license: Internal Tool
 ---
 

@@ -7,7 +7,9 @@ import {
   Database, Users, Zap, Shield, Target, BookOpen, Settings,
   Sparkles, RefreshCw, Tag,
   Minus, Hash, Clock, Star, Cpu,
-  AlertTriangle, Circle, Save, Wrench, Key, Copy, Pencil
+  AlertTriangle, Circle, Save, Wrench, Key, Copy, Pencil,
+  Layers, FileCode, GitBranch, ArrowRight, ArrowLeftRight,
+  FolderOpen, Code2, Eye, Package, Languages
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -83,6 +85,44 @@ const CONFIG_CATEGORIES = [
   { key: 'config', label: 'Config', color: 'text-gray-500' },
 ]
 
+interface Skill {
+  name: string
+  slug: string
+  version: string
+  category: 'ecosystem' | 'metier'
+  language: string
+  description: string
+  tags: string[]
+  dependencies: string[]
+  hasReferences: boolean
+  hasScripts: boolean
+  hasEvals: boolean
+  fileCount: number
+  totalSize: number
+  contentPreview: string
+}
+
+interface SkillStats {
+  total: number
+  ecosystem: number
+  metier: number
+  languages: Record<string, number>
+  totalFiles: number
+  totalSize: number
+  withReferences: number
+  withScripts: number
+  withEvals: number
+  withDeps: number
+  withTags: number
+  dependencyGraph: Record<string, string[]>
+}
+
+interface SkillRelation {
+  source: string
+  target: string
+  type: 'depends_on' | 'used_by' | 'related'
+}
+
 export default function KnowledgePage() {
   const [entries, setEntries] = useState<KnowledgeEntry[]>([])
   const [stats, setStats] = useState<Stats | null>(null)
@@ -94,7 +134,18 @@ export default function KnowledgePage() {
   const [editingEntry, setEditingEntry] = useState<KnowledgeEntry | null>(null)
   const [viewingEntry, setViewingEntry] = useState<KnowledgeEntry | null>(null)
   const [activeTab, setActiveTab] = useState('grid')
-  const [mainTab, setMainTab] = useState<'knowledge' | 'config'>('knowledge')
+  const [mainTab, setMainTab] = useState<'knowledge' | 'skills' | 'config'>('skills')
+
+  // Skills state
+  const [skills, setSkills] = useState<Skill[]>([])
+  const [skillStats, setSkillStats] = useState<SkillStats | null>(null)
+  const [skillSearch, setSkillSearch] = useState('')
+  const [skillCategoryFilter, setSkillCategoryFilter] = useState<'all' | 'ecosystem' | 'metier'>('all')
+  const [skillLangFilter, setSkillLangFilter] = useState('all')
+  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null)
+  const [skillDetail, setSkillDetail] = useState<Skill | null>(null)
+  const [relations, setRelations] = useState<SkillRelation[]>([])
+  const [skillsLoading, setSkillsLoading] = useState(true)
 
   // Config state
   const [configs, setConfigs] = useState<ConfigEntry[]>([])
@@ -197,6 +248,38 @@ export default function KnowledgePage() {
       console.error('Error seeding configs:', err)
     }
   }
+
+  // Skills data loading
+  const loadSkills = async () => {
+    try {
+      setSkillsLoading(true)
+      const params = new URLSearchParams()
+      if (skillCategoryFilter !== 'all') params.set('category', skillCategoryFilter)
+      if (skillLangFilter !== 'all') params.set('lang', skillLangFilter)
+      if (skillSearch) params.set('search', skillSearch)
+
+      const [skillsRes, statsRes, relRes] = await Promise.all([
+        fetch(`/api/skills?${params.toString()}`),
+        fetch('/api/skills?stats=true'),
+        fetch('/api/skills/relations'),
+      ])
+      const skillsData = await skillsRes.json()
+      const statsData = await statsRes.json()
+      const relData = await relRes.json()
+
+      setSkills(skillsData.skills || [])
+      setSkillStats(statsData)
+      setRelations(relData.edges || [])
+    } catch (err) {
+      console.error('Error loading skills:', err)
+    } finally {
+      setSkillsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (mainTab === 'skills') loadSkills()
+  }, [mainTab, skillCategoryFilter, skillLangFilter, skillSearch])
 
   useEffect(() => {
     if (mainTab === 'config') loadConfigs()
@@ -386,11 +469,11 @@ export default function KnowledgePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg">
-                {mainTab === 'knowledge' ? <Brain className="w-6 h-6 text-white" /> : <Wrench className="w-6 h-6 text-white" />}
+                {mainTab === 'knowledge' ? <Brain className="w-6 h-6 text-white" /> : mainTab === 'skills' ? <Layers className="w-6 h-6 text-white" /> : <Wrench className="w-6 h-6 text-white" />}
               </div>
               <div>
                 <h1 className="text-xl font-bold tracking-tight">KNOWLEDGE</h1>
-                <p className="text-xs text-muted-foreground">{mainTab === 'knowledge' ? 'Mémoire persistante — Connaissances' : 'Mémoire persistante — Configs'}</p>
+                <p className="text-xs text-muted-foreground">{mainTab === 'knowledge' ? 'Mémoire persistante — Connaissances' : mainTab === 'skills' ? 'Écosystème Skills — Live' : 'Mémoire persistante — Configs'}</p>
               </div>
             </div>
 
@@ -402,6 +485,12 @@ export default function KnowledgePage() {
                   className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${mainTab === 'knowledge' ? 'bg-background shadow text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                 >
                   <span className="flex items-center gap-1.5"><Brain className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Connaissances</span></span>
+                </button>
+                <button
+                  onClick={() => setMainTab('skills')}
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${mainTab === 'skills' ? 'bg-background shadow text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                >
+                  <span className="flex items-center gap-1.5"><Layers className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Skills</span></span>
                 </button>
                 <button
                   onClick={() => setMainTab('config')}
@@ -539,10 +628,10 @@ export default function KnowledgePage() {
               <div className="rounded-lg bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 p-3">
                 <div className="flex items-center gap-2 mb-1">
                   <Sparkles className="w-4 h-4 text-emerald-500" />
-                  <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">Memoire active</span>
+                  <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">Écosystème live</span>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  12 agents · 71 skills · gen-plan v1.0.0
+                  {skillStats?.total || 75} skills · {skillStats?.ecosystem || 0} éco · {skillStats?.metier || 0} métier
                 </p>
               </div>
             </div>
@@ -550,7 +639,211 @@ export default function KnowledgePage() {
 
           {/* Main Content */}
           <main className="flex-1 overflow-hidden">
-          {mainTab === 'knowledge' ? (
+          {mainTab === 'skills' ? (
+            /* ═══ SKILLS PANEL ═══ */
+            <>
+            {/* Skills search + filters bar */}
+            <div className="border-b border-border bg-card/50 px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <div className="relative flex-1 w-full sm:w-auto">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  placeholder="Rechercher un skill..."
+                  value={skillSearch}
+                  onChange={(e) => setSkillSearch(e.target.value)}
+                  className="pl-9 h-9"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                {(['all', 'ecosystem', 'metier'] as const).map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSkillCategoryFilter(cat)}
+                    className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-colors ${
+                      skillCategoryFilter === cat
+                        ? 'bg-primary text-primary-foreground font-medium'
+                        : 'bg-accent text-foreground'
+                    }`}
+                  >
+                    {cat === 'all' ? 'Tous' : cat === 'ecosystem' ? 'Écosystème' : 'Métier'}
+                  </button>
+                ))}
+                <select
+                  value={skillLangFilter}
+                  onChange={(e) => setSkillLangFilter(e.target.value)}
+                  className="h-8 text-xs border rounded-md px-2 bg-background"
+                >
+                  <option value="all">Toutes langues</option>
+                  <option value="en">EN</option>
+                  <option value="fr">FR</option>
+                  <option value="zh">ZH</option>
+                </select>
+              </div>
+            </div>
+
+            <ScrollArea className="h-[calc(100vh-9rem)] lg:h-[calc(100vh-6.5rem)]">
+              <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-6">
+                {/* Stats Cards */}
+                {skillStats && (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+                      <Card className="border-l-4 border-l-emerald-500">
+                        <CardContent className="p-3">
+                          <div className="flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-emerald-500" /><span className="text-[10px] text-muted-foreground">Total</span></div>
+                          <p className="text-xl font-bold mt-1">{skillStats.total}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.03 }}>
+                      <Card className="border-l-4 border-l-violet-500">
+                        <CardContent className="p-3">
+                          <div className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-violet-500" /><span className="text-[10px] text-muted-foreground">Écosystème</span></div>
+                          <p className="text-xl font-bold mt-1">{skillStats.ecosystem}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.06 }}>
+                      <Card className="border-l-4 border-l-amber-500">
+                        <CardContent className="p-3">
+                          <div className="flex items-center gap-1.5"><Package className="w-3.5 h-3.5 text-amber-500" /><span className="text-[10px] text-muted-foreground">Métier</span></div>
+                          <p className="text-xl font-bold mt-1">{skillStats.metier}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.09 }}>
+                      <Card className="border-l-4 border-l-cyan-500">
+                        <CardContent className="p-3">
+                          <div className="flex items-center gap-1.5"><FileCode className="w-3.5 h-3.5 text-cyan-500" /><span className="text-[10px] text-muted-foreground">Fichiers</span></div>
+                          <p className="text-xl font-bold mt-1">{skillStats.totalFiles}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}>
+                      <Card className="border-l-4 border-l-rose-500">
+                        <CardContent className="p-3">
+                          <div className="flex items-center gap-1.5"><GitBranch className="w-3.5 h-3.5 text-rose-500" /><span className="text-[10px] text-muted-foreground">Dépendances</span></div>
+                          <p className="text-xl font-bold mt-1">{skillStats.withDeps}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
+                      <Card className="border-l-4 border-l-orange-500">
+                        <CardContent className="p-3">
+                          <div className="flex items-center gap-1.5"><Languages className="w-3.5 h-3.5 text-orange-500" /><span className="text-[10px] text-muted-foreground">Langues</span></div>
+                          <p className="text-xl font-bold mt-1">{Object.keys(skillStats.languages).length}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </div>
+                )}
+
+                {/* Results count */}
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold">{skillCategoryFilter === 'all' ? 'Tous les skills' : skillCategoryFilter === 'ecosystem' ? 'Skills écosystème' : 'Skills métier'}</h2>
+                    <p className="text-sm text-muted-foreground">{skills.length} skill{skills.length !== 1 ? 's' : ''} trouvé{skills.length !== 1 ? 's' : ''}</p>
+                  </div>
+                </div>
+
+                {/* Relations mini-graph */}
+                {relations.length > 0 && skillCategoryFilter === 'all' && !skillSearch && (
+                  <Card className="p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <ArrowLeftRight className="w-4 h-4 text-rose-500" />
+                      <h3 className="text-sm font-semibold">Relations ({relations.length})</h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {relations.map((rel, i) => (
+                        <Badge key={i} variant="outline" className="text-xs gap-1">
+                          <span className="font-mono">{rel.source}</span>
+                          <ArrowRight className="w-3 h-3 text-muted-foreground" />
+                          <span className="font-mono">{rel.target}</span>
+                          <span className="text-muted-foreground">({rel.type})</span>
+                        </Badge>
+                      ))}
+                    </div>
+                  </Card>
+                )}
+
+                {/* Skills Grid */}
+                {skillsLoading ? (
+                  <div className="flex items-center justify-center py-16">
+                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} className="w-10 h-10 rounded-full border-4 border-primary border-t-transparent" />
+                  </div>
+                ) : skills.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <AnimatePresence>
+                      {skills.map((skill, i) => (
+                        <motion.div
+                          key={skill.slug}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ delay: Math.min(i * 0.02, 0.5) }}
+                        >
+                          <Card
+                            className="cursor-pointer transition-all hover:shadow-md group"
+                            onClick={async () => {
+                              try {
+                                const res = await fetch(`/api/skills?slug=${skill.slug}`)
+                                if (res.ok) setSkillDetail(await res.json())
+                              } catch {}
+                            }}
+                          >
+                            <CardHeader className="pb-2 px-4 pt-4">
+                              <div className="flex items-start justify-between gap-2">
+                                <div className="flex items-center gap-2 min-w-0">
+                                  <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                    skill.category === 'ecosystem'
+                                      ? 'bg-violet-100 dark:bg-violet-900/30'
+                                      : 'bg-amber-100 dark:bg-amber-900/30'
+                                  }`}>
+                                    {skill.category === 'ecosystem'
+                                      ? <Zap className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
+                                      : <Package className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />}
+                                  </div>
+                                  <CardTitle className="text-sm font-semibold truncate">{skill.name}</CardTitle>
+                                </div>
+                                <div className="flex items-center gap-1.5 flex-shrink-0">
+                                  <Badge variant="outline" className="text-[10px] font-mono">{skill.version}</Badge>
+                                  <Badge variant="secondary" className="text-[10px] uppercase">{skill.language}</Badge>
+                                </div>
+                              </div>
+                            </CardHeader>
+                            <CardContent className="px-4 pb-4 space-y-3">
+                              <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{skill.description}</p>
+                              <div className="flex flex-wrap gap-1.5">
+                                {skill.tags.slice(0, 3).map((tag, ti) => (
+                                  <Badge key={ti} variant="secondary" className="text-[10px]">#{tag}</Badge>
+                                ))}
+                                {skill.tags.length > 3 && (
+                                  <Badge variant="secondary" className="text-[10px]">+{skill.tags.length - 3}</Badge>
+                                )}
+                              </div>
+                              <div className="flex items-center justify-between text-[10px] text-muted-foreground pt-1 border-t border-border">
+                                <div className="flex items-center gap-2">
+                                  {skill.hasScripts && <span className="flex items-center gap-0.5"><Code2 className="w-3 h-3" />Scripts</span>}
+                                  {skill.hasReferences && <span className="flex items-center gap-0.5"><FolderOpen className="w-3 h-3" />Refs</span>}
+                                  {skill.hasEvals && <span className="flex items-center gap-0.5"><Eye className="w-3 h-3" />Evals</span>}
+                                </div>
+                                <span>{skill.fileCount} fichiers</span>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <div className="text-center py-16">
+                    <Layers className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold text-muted-foreground">Aucun skill trouvé</h3>
+                    <p className="text-sm text-muted-foreground mt-1">Essayez une autre recherche ou filtre</p>
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
+            </>
+          ) : mainTab === 'knowledge' ? (
             <>
             {/* Mobile category tabs */}
             <div className="lg:hidden border-b border-border bg-card/50 overflow-x-auto">
@@ -1099,9 +1392,73 @@ export default function KnowledgePage() {
           </DialogContent>
         </Dialog>
 
+        {/* Skill Detail Dialog */}
+        <Dialog open={!!skillDetail} onOpenChange={(open) => { if (!open) setSkillDetail(null) }}>
+          <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
+            {skillDetail && (
+              <>
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-2">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                      skillDetail.category === 'ecosystem' ? 'bg-violet-100 dark:bg-violet-900/30' : 'bg-amber-100 dark:bg-amber-900/30'
+                    }`}>
+                      {skillDetail.category === 'ecosystem' ? <Zap className="w-4 h-4 text-violet-600" /> : <Package className="w-4 h-4 text-amber-600" />}
+                    </div>
+                    {skillDetail.name}
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 py-2">
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline" className="font-mono">v{skillDetail.version}</Badge>
+                    <Badge variant={skillDetail.category === 'ecosystem' ? 'default' : 'secondary'}>
+                      {skillDetail.category === 'ecosystem' ? 'Écosystème' : 'Métier'}
+                    </Badge>
+                    <Badge variant="outline">{skillDetail.language.toUpperCase()}</Badge>
+                  </div>
+                  <div className="bg-muted/50 rounded-lg p-4">
+                    <p className="text-sm leading-relaxed">{skillDetail.fullDescription || skillDetail.contentPreview}</p>
+                  </div>
+                  {skillDetail.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {skillDetail.tags.map((tag, i) => (
+                        <Badge key={i} variant="secondary" className="text-xs gap-1">
+                          <Hash className="w-2.5 h-2.5" />{tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                  {skillDetail.dependencies.length > 0 && (
+                    <div>
+                      <h4 className="text-xs font-semibold text-muted-foreground mb-2">Dépendances</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {skillDetail.dependencies.map((dep, i) => (
+                          <Badge key={i} variant="outline" className="text-xs font-mono">{dep}</Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {('files' in skillDetail) && (
+                    <div>
+                      <h4 className="text-xs font-semibold text-muted-foreground mb-2">Fichiers ({(skillDetail as { files: unknown[] }).files.length})</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {['Scripts', 'References', 'Evaluations', 'Assets'].map((label) => {
+                          const typeMap: Record<string, string> = { Scripts: 'script', References: 'reference', Evaluations: 'eval', Assets: 'asset' }
+                          const count = (skillDetail as { files: { type: string }[] }).files.filter((f) => f.type === typeMap[label]).length
+                          if (!count) return null
+                          return <Badge key={label} variant="secondary" className="text-xs">{label} ({count})</Badge>
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
+
         {/* Footer */}
         <footer className="border-t border-border bg-card/80 py-3 px-4 text-center text-xs text-muted-foreground">
-          KNOWLEDGE v1.0.0 — Memoire persistante pour François — 12 agents · 71 skills · gen-plan
+          KNOWLEDGE v2.0.0 — Memoire persistante pour Francois — {skillStats?.total || 75} skills · {skillStats?.ecosystem || 0} ecosystem · {skillStats?.metier || 0} metier
         </footer>
       </div>
     </TooltipProvider>

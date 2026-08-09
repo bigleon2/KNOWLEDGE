@@ -1,11 +1,6 @@
 ---
 name: LLM
-version: 1.0.0
-category: metier
-language: fr
 description: Implement large language model (LLM) chat completions using the z-ai-web-dev-sdk. Use this skill when the user needs to build conversational AI applications, chatbots, AI assistants, or any text generation features. Supports multi-turn conversations, system prompts, and context management.
-tags: []
-dependencies: []
 license: MIT
 ---
 

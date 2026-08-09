@@ -1,11 +1,8 @@
 ---
 name: gaokao-recommend-majors
-version: 1.0.0
-category: metier
-language: fr
-description: 基于考生画像与 API 志愿列表，由 Agent 分析推荐适合的专业方向、就业出口与具体专业清单， 输出结构化 major_recommendation.json。适用于高考专业推荐、选专业、就业方向分析。
-tags: []
-dependencies: []
+description: >-
+  基于考生画像与 API 志愿列表，由 Agent 分析推荐适合的专业方向、就业出口与具体专业清单，
+  输出结构化 major_recommendation.json。适用于高考专业推荐、选专业、就业方向分析。
 ---
 
 # 推荐专业与就业方向

@@ -1,3 +1,8 @@
 {
+  "/api/knowledge/route": "app/api/knowledge/route.js",
+  "/api/knowledge/seed/route": "app/api/knowledge/seed/route.js",
+  "/api/knowledge/stats/route": "app/api/knowledge/stats/route.js",
+  "/api/skills/relations/route": "app/api/skills/relations/route.js",
+  "/api/skills/route": "app/api/skills/route.js",
   "/page": "app/page.js"
 }

@@ -516,3 +516,31 @@ Stage Summary:
 - Backup 20260809-165538 disponible dans backups/
 - Commit bbf076c prêt à pousser (token GitHub non configuré)
 - Pour pousser: exporter GITHUB_TOKEN ou lancer git-deploy.sh --push-only
+
+---
+Task ID: 21
+Agent: Main (fullstack-dev)
+Task: Intégrer l'écosystème skills dans le projet Next.js
+
+Work Log:
+- Créé src/lib/skills-reader.ts: parseur frontmatter YAML, 14 fonctions (getAllSkills, getSkillBySlug, getSkillsStats, getRelations)
+- Gestion multi-formats frontmatter (standardisé Phase 2, Z.AI original, minimal)
+- Auto-détection catégorie écosystème/métier + langue (fr/en/zh)
+- Créé API /api/skills (GET liste filtrée, GET ?slug= détail, GET ?stats=true statistiques)
+- Créé API /api/skills/relations (graphes de dépendances)
+- Ajouté 3e onglet "Skills" dans page.tsx avec:
+  - Grille responsive de 75 skills (version, langue, tags, fichiers)
+  - 6 cartes statistiques (total, éco, métier, fichiers, deps, langues)
+  - Filtres catégorie (Tous/Écosystème/Métier) + langue (EN/FR/ZH)
+  - Recherche temps réel
+  - Section relations (11 relations affichées)
+  - Dialogue détail skill (description, tags, dépendances, fichiers)
+- Onglet Skills par défaut au démarrage
+- Sidebar et footer mis à jour avec données live
+- Test Agent Browser: 3 onglets fonctionnels, filtre écosystème (5 skills), détail skill OK
+
+Stage Summary:
+- 4 fichiers créés: skills-reader.ts, skills/route.ts, skills/relations/route.ts
+- 1 fichier modifié: page.tsx (+300 lignes pour le panneau Skills)
+- 75 skills lus depuis le filesystem (pas de DB, données live)
+- Aucune régression sur les onglets Connaissances et Config

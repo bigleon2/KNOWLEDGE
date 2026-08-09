@@ -1,11 +1,6 @@
 ---
 name: cheat-sheet
-version: 1.0.0
-category: metier
-language: fr
 description: 将 PDF/Word/Markdown 学习资料转化为精炼的知识浓缩卡文档。支持三种风格（知识点速查卡/思维导图式/Q&A式），输出双栏小字 PDF。当用户说"生成知识浓缩卡"、"生成 Cheatsheet"、"帮我做个速查表"、"把这个资料整理成一页纸"、"做个知识卡片"时触发。**不处理**：基于材料出题（→ quiz-mastery）、长期学习项目（→ study-buddy）。
-tags: []
-dependencies: []
 ---
 
 # Cheatsheet 生成器

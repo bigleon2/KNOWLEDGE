@@ -1,11 +1,6 @@
 ---
 name: resume-builder
-version: 1.0.0
-category: metier
-language: fr
 description: 从零生成或全面优化一份中文简历，并导出 docx / pdf / markdown 多种格式。用 STAR 法则改写经历、做 ATS 关键词覆盖率检查、根据行业（互联网产品 / 技术 / 金融 / 通用）选模板。当用户说"帮我写简历 / 优化简历 / 简历不会写 / 我的简历太弱了 / 简历看起来不专业 / 简历改一改 / 给我做个简历模板 / 简历导出 / 简历加点关键词"，或者上传 .pdf/.docx 简历后说"看看怎么改"时，必须触发本 skill。即使用户只问"我的简历有什么问题"也要触发。
-tags: []
-dependencies: []
 ---
 
 # Resume Builder（简历生成与优化）

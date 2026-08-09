@@ -1,17 +1,16 @@
 ▲ Next.js 16.3.0 (Turbopack)
 - Local:         http://localhost:3000
-- Network:       http://21.0.7.55:3000
+- Network:       http://21.0.13.85:3000
 - Environments: .env
-✓ Ready in 334ms
-✓ Running next.config.ts took 45ms
-Attention: Next.js now collects completely anonymous telemetry regarding usage.
-This information is used to shape Next.js' roadmap and prioritize features.
-You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-https://nextjs.org/telemetry
-
+✓ Ready in 302ms
+✓ Running next.config.ts took 32ms
 
 ○ Compiling / ...
- GET / 200 in 7.1s (next.js: 6.8s, application-code: 256ms)
+ GET / 200 in 3.6s (next.js: 3.4s, application-code: 239ms)
+ GET / 200 in 3.6s (next.js: 3.3s, application-code: 268ms)
+ GET / 200 in 33ms (next.js: 4ms, application-code: 30ms)
+ GET / 200 in 26ms (next.js: 3ms, application-code: 23ms)
+ GET / 200 in 26ms (next.js: 3ms, application-code: 24ms)
 ⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/node_modules_1_f8fy8._.js from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
 Cross-origin access to Next.js dev resources is blocked by default for safety.
 
@@ -34,3 +33,370 @@ module.exports = {
 }
 
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/src_02x0rih._.js from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/node_modules_motion-dom_dist_es_0g6cuzy._.js from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/node_modules_framer-motion_dist_es_1_a7n4k._.js from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/node_modules_tailwind-merge_dist_bundle-mjs_mjs_0q79z23._.js from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/node_modules_1p7-udc._.js from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge 200 in 697ms (next.js: 571ms, application-code: 126ms)
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query BEGIN IMMEDIATE
+prisma:query INSERT INTO `main`.`KnowledgeEntry` (`id`, `title`, `content`, `category`, `tags`, `priority`, `source`, `pinned`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?), (?,?,?,?,?,?,?,?,?,?)
+prisma:query COMMIT
+ POST /api/knowledge/seed 200 in 120ms (next.js: 108ms, application-code: 12ms)
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge? 200 in 9ms (next.js: 2ms, application-code: 6ms)
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE `main`.`KnowledgeEntry`.`pinned` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`category`) AS `_count$category`, `main`.`KnowledgeEntry`.`category` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`category` LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`priority`) AS `_count$priority`, `main`.`KnowledgeEntry`.`priority` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`priority` LIMIT ? OFFSET ?
+ GET /api/knowledge/stats 200 in 140ms (next.js: 113ms, application-code: 27ms)
+⚠ Blocked cross-origin request to Next.js dev resource /__nextjs_font/geist-latin.woff2 from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET / 200 in 99ms (next.js: 66ms, application-code: 32ms)
+ GET / 200 in 18ms (next.js: 3ms, application-code: 14ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 19ms (next.js: 3ms, application-code: 16ms)
+ GET / 200 in 18ms (next.js: 4ms, application-code: 15ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 21ms (next.js: 3ms, application-code: 18ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 17ms (next.js: 3ms, application-code: 14ms)
+ GET / 200 in 20ms (next.js: 3ms, application-code: 17ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 14ms)
+ GET / 200 in 17ms (next.js: 3ms, application-code: 14ms)
+ GET / 200 in 34ms (next.js: 4ms, application-code: 31ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 15ms (next.js: 3ms, application-code: 12ms)
+ GET / 200 in 16ms (next.js: 4ms, application-code: 12ms)
+ GET / 200 in 17ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 26ms (next.js: 5ms, application-code: 21ms)
+ GET / 200 in 98ms (next.js: 74ms, application-code: 24ms)
+ GET / 200 in 17ms (next.js: 3ms, application-code: 14ms)
+ GET / 200 in 17ms (next.js: 3ms, application-code: 14ms)
+ GET / 200 in 29ms (next.js: 3ms, application-code: 26ms)
+ GET / 200 in 18ms (next.js: 3ms, application-code: 15ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 15ms (next.js: 3ms, application-code: 12ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 12ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 15ms (next.js: 3ms, application-code: 12ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 17ms (next.js: 3ms, application-code: 14ms)
+ GET / 200 in 17ms (next.js: 3ms, application-code: 14ms)
+ GET / 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 24ms (next.js: 3ms, application-code: 21ms)
+ GET / 200 in 15ms (next.js: 3ms, application-code: 12ms)
+ GET / 200 in 17ms (next.js: 3ms, application-code: 15ms)
+ GET / 200 in 32ms (next.js: 4ms, application-code: 28ms)
+✓ Compiled in 1002ms
+ GET / 200 in 22ms (next.js: 5ms, application-code: 17ms)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge 200 in 65ms (next.js: 41ms, application-code: 25ms)
+ GET /api/skills? 200 in 282ms (next.js: 185ms, application-code: 97ms)
+ GET /api/skills?stats=true 200 in 281ms (next.js: 191ms, application-code: 90ms)
+ GET /api/skills/relations 200 in 465ms (next.js: 396ms, application-code: 70ms)
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge? 200 in 199ms (next.js: 11ms, application-code: 188ms)
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE `main`.`KnowledgeEntry`.`pinned` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`category`) AS `_count$category`, `main`.`KnowledgeEntry`.`category` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`category` LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`priority`) AS `_count$priority`, `main`.`KnowledgeEntry`.`priority` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`priority` LIMIT ? OFFSET ?
+ GET /api/knowledge/stats 200 in 49ms (next.js: 28ms, application-code: 21ms)
+ GET / 200 in 155ms (next.js: 3ms, application-code: 153ms)
+ GET / 200 in 26ms (next.js: 3ms, application-code: 24ms)
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/node_modules_0214l-n._.js from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+✓ Compiled in 454ms
+[browser] ./src/app/page.tsx:803:36
+Error: Unterminated regexp literal
+  801 |                                       ? <Zap className={`w-3.5 h-3.5 ${skill.category ===...
+  802 |                                       : <Package className={`w-3.5 h-3.5 ${skill.category...
+> 803 |                                   </div>
+      |                                    ^^^^^
+  804 |                                   <CardTitle className="text-sm font-semibold truncate">{...
+  805 |                                 </div>
+  806 |                                 <div className="flex items-center gap-1.5 flex-shrink-0">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+⚠ Blocked cross-origin request to Next.js dev resource /__nextjs_font/geist-mono-latin.woff2 from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[browser] ./src/app/page.tsx:803:36
+Error: Unterminated regexp literal
+  801 |                                       ? <Zap className={`w-3.5 h-3.5 ${skill.category ===...
+  802 |                                       : <Package className={`w-3.5 h-3.5 ${skill.category...
+> 803 |                                   </div>
+      |                                    ^^^^^
+  804 |                                   <CardTitle className="text-sm font-semibold truncate">{...
+  805 |                                 </div>
+  806 |                                 <div className="flex items-center gap-1.5 flex-shrink-0">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/app/page.tsx:803:36
+Error: Unterminated regexp literal
+  801 |                                       ? <Zap className={`w-3.5 h-3.5 ${skill.category ===...
+  802 |                                       : <Package className={`w-3.5 h-3.5 ${skill.category...
+> 803 |                                   </div>
+      |                                    ^^^^^
+  804 |                                   <CardTitle className="text-sm font-semibold truncate">{...
+  805 |                                 </div>
+  806 |                                 <div className="flex items-center gap-1.5 flex-shrink-0">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] Uncaught Error: Could not parse module '[project]/src/app/page.tsx'
+
+Unterminated regexp literal
+    at module evaluation (.next/dev/static/chunks/src_02x0rih._.js:4:9)
+[browser] ./src/app/page.tsx:803:36
+Error: Unterminated regexp literal
+  801 |                                       ? <Zap className={`w-3.5 h-3.5 ${skill.category ===...
+  802 |                                       : <Package className={`w-3.5 h-3.5 ${skill.category...
+> 803 |                                   </div>
+      |                                    ^^^^^
+  804 |                                   <CardTitle className="text-sm font-semibold truncate">{...
+  805 |                                 </div>
+  806 |                                 <div className="flex items-center gap-1.5 flex-shrink-0">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/app/page.tsx:803:36
+Error: Unterminated regexp literal
+  801 |                                       ? <Zap className={`w-3.5 h-3.5 ${skill.category ===...
+  802 |                                       : <Package className={`w-3.5 h-3.5 ${skill.category...
+> 803 |                                   </div>
+      |                                    ^^^^^
+  804 |                                   <CardTitle className="text-sm font-semibold truncate">{...
+  805 |                                 </div>
+  806 |                                 <div className="flex items-center gap-1.5 flex-shrink-0">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/app/page.tsx:803:36
+Error: Unterminated regexp literal
+  801 |                                       ? <Zap className={`w-3.5 h-3.5 ${skill.category ===...
+  802 |                                       : <Package className={`w-3.5 h-3.5 ${skill.category...
+> 803 |                                   </div>
+      |                                    ^^^^^
+  804 |                                   <CardTitle className="text-sm font-semibold truncate">{...
+  805 |                                 </div>
+  806 |                                 <div className="flex items-center gap-1.5 flex-shrink-0">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/app/page.tsx:803:36
+Error: Unterminated regexp literal
+  801 |                                       ? <Zap className={`w-3.5 h-3.5 ${skill.category ===...
+  802 |                                       : <Package className={`w-3.5 h-3.5 ${skill.category...
+> 803 |                                   </div>
+      |                                    ^^^^^
+  804 |                                   <CardTitle className="text-sm font-semibold truncate">{...
+  805 |                                 </div>
+  806 |                                 <div className="flex items-center gap-1.5 flex-shrink-0">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+✓ Compiled in 484ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload when ./src/app/page.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload when ./src/app/page.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 60ms (next.js: 8ms, application-code: 52ms)
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/node_modules_1_4-4ly._.js from "preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['preview-chat-b5eba37b-265b-44ea-9752-04fcb7f4257b.space-z.ai'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+prisma:query SELECT 1
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge 200 in 20ms (next.js: 3ms, application-code: 17ms)
+ GET /api/skills? 200 in 40ms (next.js: 3ms, application-code: 37ms)
+ GET /api/skills?stats=true 200 in 27ms (next.js: 4ms, application-code: 23ms)
+ GET /api/skills/relations 200 in 138ms (next.js: 5ms, application-code: 133ms)
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge? 200 in 8ms (next.js: 1.9ms, application-code: 6ms)
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE `main`.`KnowledgeEntry`.`pinned` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`category`) AS `_count$category`, `main`.`KnowledgeEntry`.`category` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`category` LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`priority`) AS `_count$priority`, `main`.`KnowledgeEntry`.`priority` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`priority` LIMIT ? OFFSET ?
+ GET /api/knowledge/stats 200 in 11ms (next.js: 2ms, application-code: 9ms)
+ GET / 200 in 182ms (next.js: 5ms, application-code: 176ms)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge 200 in 14ms (next.js: 6ms, application-code: 9ms)
+ GET /api/skills? 200 in 63ms (next.js: 10ms, application-code: 53ms)
+ GET /api/skills?stats=true 200 in 95ms (next.js: 68ms, application-code: 27ms)
+ GET /api/skills/relations 200 in 165ms (next.js: 95ms, application-code: 69ms)
+ GET /api/knowledge? 200 in 177ms (next.js: 168ms, application-code: 9ms)
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE `main`.`KnowledgeEntry`.`pinned` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`category`) AS `_count$category`, `main`.`KnowledgeEntry`.`category` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`category` LIMIT ? OFFSET ?
+ GET /api/knowledge/stats 200 in 22ms (next.js: 6ms, application-code: 15ms)
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`priority`) AS `_count$priority`, `main`.`KnowledgeEntry`.`priority` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`priority` LIMIT ? OFFSET ?
+ GET /api/skills?slug=autonomous-agent 200 in 17ms (next.js: 4ms, application-code: 13ms)
+ GET / 200 in 188ms (next.js: 6ms, application-code: 181ms)
+ GET / 200 in 100ms (next.js: 5ms, application-code: 95ms)
+ GET /api/skills? 200 in 56ms (next.js: 8ms, application-code: 48ms)
+ GET /api/skills?stats=true 200 in 85ms (next.js: 59ms, application-code: 26ms)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge 200 in 134ms (next.js: 5ms, application-code: 129ms)
+ GET /api/skills/relations 200 in 149ms (next.js: 10ms, application-code: 139ms)
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+ GET /api/knowledge? 200 in 9ms (next.js: 1.8ms, application-code: 7ms)
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntry`.`id` FROM `main`.`KnowledgeEntry` WHERE `main`.`KnowledgeEntry`.`pinned` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`category`) AS `_count$category`, `main`.`KnowledgeEntry`.`category` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`category` LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`priority`) AS `_count$priority`, `main`.`KnowledgeEntry`.`priority` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`priority` LIMIT ? OFFSET ?
+ GET /api/knowledge/stats 200 in 16ms (next.js: 5ms, application-code: 11ms)
+ GET /api/skills?category=ecosystem 200 in 44ms (next.js: 3ms, application-code: 41ms)
+ GET /api/skills?stats=true 200 in 76ms (next.js: 47ms, application-code: 29ms)
+ GET /api/skills/relations 200 in 78ms (next.js: 3ms, application-code: 75ms)

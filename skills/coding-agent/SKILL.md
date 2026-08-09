@@ -1,16 +1,11 @@
 ---
 name: coding-agent
-version: 1.0.4
-category: metier
-language: fr
-description: Coding workflow with planning, implementation, verification, and testing for clean software development.
-tags: []
-dependencies: []
 slug: code
+version: 1.0.4
 homepage: https://clawic.com/skills/code
+description: Coding workflow with planning, implementation, verification, and testing for clean software development.
 changelog: Improved description for better discoverability
-metadata:
-  clawdbot: {'emoji': '💻', 'requires': {'bins': []}, 'os': ['linux', 'darwin', 'win32']}
+metadata: {"clawdbot":{"emoji":"💻","requires":{"bins":[]},"os":["linux","darwin","win32"]}}
 ---
 
 ## When to Use
