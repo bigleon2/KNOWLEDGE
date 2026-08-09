@@ -1,5 +1,7 @@
 ---
 name: skills-inventory
+version: 1.0.0
+category: ecosystem
 description: >
   Skill inventory scanner and reporter. Activates whenever the user asks to list, inventory,
   catalog, browse, search, or explore available skills — e.g. "quelles sont les skills dispo",

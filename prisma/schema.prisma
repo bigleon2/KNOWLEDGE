@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model KnowledgeEntry {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  category    String   // profile, agent, skill, protocol, trigger, rule, other
+  tags        String   // comma-separated tags
+  priority    String   @default("normal") // critical, important, normal, secondary
+  source      String   @default("manual") // manual, imported, auto
+  pinned      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model MemoryConfig {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  category    String   @default("config")
+  description String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

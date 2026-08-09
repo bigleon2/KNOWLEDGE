@@ -247,3 +247,78 @@ Work Log:
 Stage Summary:
 - README.md source corrigé et synchronisé dans download/
 - Écosystème cohérent : 60/60 checks PASS
+
+---
+Task ID: 10
+Agent: Main (gen-plan v3.6.0)
+Task: Mettre à jour le dépôt GitHub avec les fichiers download/ de l'écosystème
+
+Work Log:
+- Diagnostic post git reset--hard : _prompts-maitres/ et skills écosystème perdus (non tracked), download/ écrasé
+- Récupération de 10 fichiers depuis commit ad39187 (reflog) : 8 dans download/, 2 dans scripts/
+- Vérification intégrité : tailles conformes (220, 912, 490, 662, 338, 179, 144, 435 lignes)
+- Suppression 7 anciens fichiers (KNOWLEDGE.md, 5 PNG, 1 YAML), ajout 8 nouveaux fichiers PMs + scripts
+- Commit 1b2af48 (15 fichiers, +3385/-2853 lignes), push vers origin/main
+- Vérification post-push : git diff HEAD origin/main -- download/ = aucun écart, 8 fichiers confirmés sur remote
+- Token nettoyé du remote URL immédiatement après le push
+
+Stage Summary:
+- Dépôt GitHub mis à jour : download/ contient les 4 PMs + README + 3 scripts Python
+- Vérification pre/post push : 0 écart entre local et remote
+- Token PAT supprimé de la config git après utilisation
+
+---
+Task ID: 11
+Agent: Main (gen-plan v3.6.0)
+Task: Phase A — Reconstruction _prompts-maitres/, gen-plan/, correct-work/
+
+Work Log:
+- A1: Copie 5 fichiers download/ → skills/_prompts-maitres/ (220, 912, 490, 662, 338 lignes)
+- A2: Installation gen-plan/ via agent (structure + extraction §9) → SKILL.md 178L + 5 refs + evals
+- A2 vérification: 7/9 checks PASS (C8/C9 skip — dépendances Phase B/A3)
+- A3: Création correct-work/SKILL.md (161 lignes, compact) depuis PM §1-§5 + SHARED §0
+- A3 vérification: 10/10 checks PASS (C8 KNOWLEDGE.md skip — Phase B)
+- Corrections A3: ajout kb_path explicite + référence checklists §10 PM
+
+Stage Summary:
+- 3 actions complétées: _prompts-maitres/ (5 fichiers), gen-plan/ (7 fichiers), correct-work/ (1 fichier)
+- Total: 13 fichiers créés/restaurés
+- Prochaines étapes: Phase B (KNOWLEDGE.md) puis Phase C (audit GLOBAL)
+
+---
+Task ID: 12
+Agent: Main (gen-plan v3.6.0)
+Task: Phase B — Recréer KNOWLEDGE.md
+
+Work Log:
+- Lecture template SHARED §2.2 + relations §3.1
+- Création skills/KNOWLEDGE.md (91 lignes)
+- 6 entrées skills écosystème avec 6 champs chacune
+- 13 relations bidirectionnelles
+- Vérification: 6 entrées, 13 relations, versions cohérentes
+
+Stage Summary:
+- KNOWLEDGE.md recréé conformément au template SHARED §2.2
+- 91 lignes, 6 skills, 13 relations
+- Prochaine étape: Phase C (audit GLOBAL)
+
+---
+Task ID: 13
+Agent: Main (correct-work v2.3.0 + gen-plan v3.6.0)
+Task: Phase C+D — Audit GLOBAL + corrections
+
+Work Log:
+- C4: verify-cross.py 60/60 PASS (6 axes)
+- C5: sync-download.py SYNC OK (5/5 identiques)
+- C1: Audit 4 skills écosystème intacts → 4 findings (F1 S1, F2 S2, F3-F4 S3)
+- C2: Audit 77 skills métier → 4 findings S4 (ASR/LLM/TTS/VLM majuscules, acceptés)
+- C3: Audit infrastructure → tout OK (scripts 144+179L, worklog 303L, cross-refs)
+- D1: Réinstallation clone-chat SKILL.md v2.0.0 (361 lignes, agent spécialisé)
+- D2: Ajout version: 1.0.0 dans skills-inventory et skill-creator YAML
+- D3: Post-correction: verify-cross 60/60, clone-chat 16/16, tous findings résolus
+
+Stage Summary:
+- Audit GLOBAL: 8 findings (1 S1, 1 S2, 2 S3, 4 S4), 4 corrections appliquées
+- Verdict initial: PASS AVEC RÉSERVES → post-correction: **PASS**
+- 4 S4 acceptés (répertoires ASR/LLM/TTS/VLM)
+- verify-cross.py: 60/60 PASS stable avant et après corrections
