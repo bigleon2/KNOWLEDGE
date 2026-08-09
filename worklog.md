@@ -456,3 +456,24 @@ BILAN GLOBAL REFACTORING (Phases 1-4)
 - Score santé global: 6/10 → 9.5/10
 - verify-cross: 60/60 → 61/61 PASS
 - Aucun skill écosystème modifié, zéro régression
+
+---
+Task ID: 20
+Agent: Main (gen-plan v3.6.1)
+Task: Chaîne correct-work → back-depot.py → test → backup → push
+
+Work Log:
+- correct-work état actuel: 61/61 + 16/16 = 77/77 PASS
+- Créé back-depot.py: backup/restore avec SHA-256, manifeste JSON, registre
+- correct-work(back-depot.py): 11/11 checks (syntaxe, fonctions, SHA-256, exclusions)
+- Test: backup skills-only (1003 fichiers) → modification test → restore → 1003/1003 SHA-256 OK
+- Backup FULL: 1025 fichiers, 57.31 MB (skills+scripts+download+mini-services+worklog)
+- correct-work post-backup: 61/61 PASS
+- Commit back-depot.py + .gitignore (bbf076c)
+- Push GitHub: TOKEN manquant — commit prêt localement
+
+Stage Summary:
+- back-depot.py opérationnel: backup, restore, list, info
+- Backup 20260809-165538 disponible dans backups/
+- Commit bbf076c prêt à pousser (token GitHub non configuré)
+- Pour pousser: exporter GITHUB_TOKEN ou lancer git-deploy.sh --push-only

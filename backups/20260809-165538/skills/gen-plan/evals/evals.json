@@ -1,0 +1,40 @@
+{
+  "skill": "gen-plan",
+  "version": "3.6.0",
+  "evals": [
+    {
+      "id": "E1-classification",
+      "name": "Classification correcte Type 1-4",
+      "input": "Crée un rapport d'analyse",
+      "expected_type": 1,
+      "expected_skill": "docx"
+    },
+    {
+      "id": "E2-token-estimation",
+      "name": "Estimation #token cohérente",
+      "input": "Tâche moyenne, 5-15 sessions",
+      "expected_token_range": [3500, 5500],
+      "expected_profile": "NORMAL"
+    },
+    {
+      "id": "E3-plan-complet",
+      "name": "Plan E1-E15 complet",
+      "input": "Planifier la création d'un dashboard Next.js",
+      "expected_steps": 15,
+      "expected_type": 3
+    },
+    {
+      "id": "E4-auto-calibration",
+      "name": "Auto-calibration E15",
+      "input": "Écart estimé 28%",
+      "expected_action": "Ajustement paramétrage fin"
+    },
+    {
+      "id": "E5-python-only",
+      "name": "Scripts Python uniquement",
+      "input": "Générer un script de traitement",
+      "expected_language": "python",
+      "forbidden": ["bash", "sh", "powershell"]
+    }
+  ]
+}

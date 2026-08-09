@@ -1,0 +1,5142 @@
+{
+  "timestamp": "20260809-165538",
+  "date": "2026-08-09T16:55:39.157287",
+  "mode": "full",
+  "total_files": 1025,
+  "total_size": 60097395,
+  "targets": [
+    "skills/",
+    "scripts/",
+    "download/",
+    "mini-services/",
+    "worklog.md",
+    ".gitignore"
+  ],
+  "files": [
+    {
+      "rel": "skills/KNOWLEDGE.md",
+      "size": 4061,
+      "sha256": "8fd07bc9687f40d9af36e125c9b1391ba6dc89afc2d73e8900ac69c7510c07b9"
+    },
+    {
+      "rel": "skills/cpp-analysis/SKILL.md",
+      "size": 6063,
+      "sha256": "7741d6c0e2fee273d706b9f44c5f38ec086cc5742d80a3d646a9eca26b87ff72"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/tsconfig.json",
+      "size": 323,
+      "sha256": "2c7825a279729e54d678bd42616c70ebd27fb5148568430d8f93fceebdc30c86"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/SKILL.md",
+      "size": 5582,
+      "sha256": "bdae99cc48da1a66f5c779892788fb8527d65ed2a8915fe423170c1286f793a2"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/package.json",
+      "size": 571,
+      "sha256": "9273eadb46036646dc691188e94bf1c54d49f9e0d050e824c46c1be2849e09cb"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/src/rumorScanner.ts",
+      "size": 6914,
+      "sha256": "e904d7a7fb590b076b5a9dfa149aca50563edf60b9414b69d5d4f1a718416f88"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/src/watchlist.ts",
+      "size": 10628,
+      "sha256": "c0d71da2cf8d6245a5719ab28f89619a6004b177ec24524ed075797f7738119d"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/src/dataFetcher.ts",
+      "size": 5522,
+      "sha256": "606d0a300f04120a46c5f587d2ab56f622ac5cde51c2a6f2171c4875db7f6f49"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/src/types.ts",
+      "size": 5114,
+      "sha256": "a1f02da241c6eee29e75e23ddb76c8f224f5a106a7ac17c728e9c653eb240e80"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/src/analyzer.ts",
+      "size": 9347,
+      "sha256": "36768f1cdd77bf4bab599d8633b3333b89f8ecf0bf7e7d65efb555fdd45dc5fc"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/src/index.ts",
+      "size": 14523,
+      "sha256": "a2bf796b6e072c9ee9615d2ccb2fd041abe729e9851fd526c0e4371886edbaee"
+    },
+    {
+      "rel": "skills/stock-analysis-skill/src/dividend.ts",
+      "size": 9904,
+      "sha256": "2e5b579355fc6aa696204dc00c302f78959733fce08cfbac4d2ee6d158c35314"
+    },
+    {
+      "rel": "skills/web-reader/SKILL.md",
+      "size": 28437,
+      "sha256": "83c624a60575d68970dc67dca984d75bc8652acfcbfcb97ef6d3d3e8c3b9e465"
+    },
+    {
+      "rel": "skills/web-reader/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/web-reader/scripts/web-reader.ts",
+      "size": 739,
+      "sha256": "2e92d74e486c4fe3be0478ff21384780067a44f21eaed2c143df4167cdc5ddc5"
+    },
+    {
+      "rel": "skills/literature-survey/SKILL.md",
+      "size": 8283,
+      "sha256": "2ba30340d2695e394a130e55ea686ce694f2fc8f8ccdb16ada85aa5f234a3f5f"
+    },
+    {
+      "rel": "skills/literature-survey/templates/survey/compile.sh",
+      "size": 769,
+      "sha256": "bf1dd37a9a3df483690fcd70d1b497f8778d61ce6a72db31e622d37a98d0f80f"
+    },
+    {
+      "rel": "skills/literature-survey/templates/survey/main.tex",
+      "size": 2030,
+      "sha256": "6a92dfcd7405a7aa57cf7bae77d6ebeb8c2fb098dc1f272746b4c763461dc86d"
+    },
+    {
+      "rel": "skills/literature-survey/templates/survey/figures/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "rel": "skills/literature-survey/templates/survey/sections/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "rel": "skills/literature-survey/references/03-survey-section-playbook.md",
+      "size": 8713,
+      "sha256": "bcc3b84ab664fe487dff849f066dd2879dbd6c95fdcc41ee8a9b58ce102d7b6d"
+    },
+    {
+      "rel": "skills/literature-survey/references/04-layout-discipline.md",
+      "size": 7551,
+      "sha256": "4df2519309b83da5b1f204d7ae0778b06008a25047c2b472548fb49955077ea1"
+    },
+    {
+      "rel": "skills/literature-survey/references/05-quality-gate.md",
+      "size": 13647,
+      "sha256": "164f959858049ddd563f6c5c73946d782d8ef41904ccf1c542d86b3a72d25652"
+    },
+    {
+      "rel": "skills/literature-survey/references/01-bibliography-expansion.md",
+      "size": 12598,
+      "sha256": "6e845306bf3f620d3f95d7ab69856aeb4846f63e23d6acf8248dd607096fdca4"
+    },
+    {
+      "rel": "skills/literature-survey/references/02-survey-figures.md",
+      "size": 20302,
+      "sha256": "be71f7aa0b9ee3e864f6bf71dda27473e952b5d465b7f8c35f247194e2bb9ff1"
+    },
+    {
+      "rel": "skills/literature-survey/references/00-incremental-execution.md",
+      "size": 7712,
+      "sha256": "670860f45650230d911a5a7bf848a4a7bca8a1de4e4ac9cd918700815532e1eb"
+    },
+    {
+      "rel": "skills/gaokao-generate-report/SKILL.md",
+      "size": 2079,
+      "sha256": "9c758766dd4cd834306b962326cdae66601f0c5ffce72c845084a11d6744a199"
+    },
+    {
+      "rel": "skills/gaokao-generate-report/requirements.txt",
+      "size": 31,
+      "sha256": "b946d7f5af641badd2b39ca49fabd06d80623fe82e77d35b4fae0bfbeaf67d76"
+    },
+    {
+      "rel": "skills/gaokao-generate-report/examples/analysis_merged_example.json",
+      "size": 716,
+      "sha256": "4a9f433eeb171cd486af63723fd03d20ea5fa2a09dab5cbe9056e8bdd1bef872"
+    },
+    {
+      "rel": "skills/gaokao-generate-report/scripts/merge_analysis.py",
+      "size": 2080,
+      "sha256": "e25007c34844f9d699f231bb82bd82174408b9f8542c69e186e98d6b10b57b20"
+    },
+    {
+      "rel": "skills/gaokao-generate-report/scripts/generate_html.py",
+      "size": 14159,
+      "sha256": "544deff4876613ef6c209dae449b4382a08d688ee8386940f7cc66671c7780d4"
+    },
+    {
+      "rel": "skills/gaokao-generate-report/templates/volunteer_report.html",
+      "size": 40634,
+      "sha256": "c1e21b6b966376d7db983f2a28a279ab773d57e81b5793ac61c5e0074f34b0a7"
+    },
+    {
+      "rel": "skills/pdf/SKILL.md",
+      "size": 58123,
+      "sha256": "dc849ef607e0929abe5206195dd34ac7c998a2110c69ff7f2d843f7b59dc81e7"
+    },
+    {
+      "rel": "skills/pdf/LICENSE.txt",
+      "size": 745,
+      "sha256": "0e576d5fcab4050e3c34697b6d4ea64195df3212adaa1c47803fc3a26d8100a2"
+    },
+    {
+      "rel": "skills/pdf/env_setup/setup_windows.ps1",
+      "size": 11298,
+      "sha256": "101ca15d5e8738abec309287092bd346025c23e7bd973de5b22d29c7656ce1cd"
+    },
+    {
+      "rel": "skills/pdf/env_setup/setup.md",
+      "size": 7201,
+      "sha256": "519e425a92350fc88ee36854e7285bc7f512ec5198242a00da99087cb3b3cc8e"
+    },
+    {
+      "rel": "skills/pdf/env_setup/font_list.txt",
+      "size": 4811,
+      "sha256": "bb83907b4495b46c9dafc5db72e3d585c8eb1f76a4f804cc58ce9ca1b8b6dc51"
+    },
+    {
+      "rel": "skills/pdf/env_setup/setup_mac_linux.sh",
+      "size": 11440,
+      "sha256": "c1e1d51ee96232870edb7e7fce5b2c3eea7e5f04ec968977dbdb83adb4239c03"
+    },
+    {
+      "rel": "skills/pdf/env_setup/env_check.sh",
+      "size": 1754,
+      "sha256": "96395c991f448656eab2b5eacd1620f1a4f436a2a3fb32a744b1275c682f7a3b"
+    },
+    {
+      "rel": "skills/pdf/scripts/pdf_qa.py",
+      "size": 43083,
+      "sha256": "90c1ad125b6c007230bb4ea49a53385c7eb226dead9eb97daffe4c1d2491ab05"
+    },
+    {
+      "rel": "skills/pdf/scripts/pdf.py",
+      "size": 108028,
+      "sha256": "f4de4f6bff4c3bebb212bc1c430df4b9dc1e8e01e68c919be6b5d71641d2491b"
+    },
+    {
+      "rel": "skills/pdf/scripts/html2poster.js",
+      "size": 8950,
+      "sha256": "ee3d38d6f04c335074ae48781866a534284f97f33e056253f5a0895e76736f54"
+    },
+    {
+      "rel": "skills/pdf/scripts/setup.sh",
+      "size": 11468,
+      "sha256": "ca9d4f4c0d3ce2d0276feebc6145065c074be6aea57bad35007b07c34496b2e9"
+    },
+    {
+      "rel": "skills/pdf/scripts/toc_validate.py",
+      "size": 78811,
+      "sha256": "3f2fbd4b833ba43bf5de76e868da5561cd4448f90b34c942b24acc61688dccf4"
+    },
+    {
+      "rel": "skills/pdf/scripts/cover_validate.js",
+      "size": 22896,
+      "sha256": "13f42529e1131fe7a25932de7a0a158bd2554410a2fdcafacf7943b541c4a5c3"
+    },
+    {
+      "rel": "skills/pdf/scripts/html2pdf-next.js",
+      "size": 34318,
+      "sha256": "e154dddac2431ddd67fd9a662b50525bd1a022a0a4fb5813398735c2da1549d3"
+    },
+    {
+      "rel": "skills/pdf/scripts/poster_validate.py",
+      "size": 62067,
+      "sha256": "ce61fb11cf4e131d94daf185b5a0e282cf5b2dca95b51c5300d9e78269bee233"
+    },
+    {
+      "rel": "skills/pdf/scripts/design_engine.py",
+      "size": 123841,
+      "sha256": "ce112e0fb825e289d94246d97c9c5a2d4214622ef4fa9e876a81f6a164e9daff"
+    },
+    {
+      "rel": "skills/pdf/briefs/poster.md",
+      "size": 33702,
+      "sha256": "f169f644ef15e93e0ece15ab7f1287988e2d5d0e6ce50c8359ba0f46ea9b4c7c"
+    },
+    {
+      "rel": "skills/pdf/briefs/report.md",
+      "size": 76616,
+      "sha256": "7552d86a6209292285fc222bb6f48e9de9c1e566f4fc58f3be3952c22bbc1308"
+    },
+    {
+      "rel": "skills/pdf/briefs/resume.md",
+      "size": 10557,
+      "sha256": "d747f5ed351856b6b8cf1c0f16f562c999de2430a9ad054544ad753ab439475b"
+    },
+    {
+      "rel": "skills/pdf/briefs/process.md",
+      "size": 13923,
+      "sha256": "0d7fd310b4302931cf4700b01a1ee600d57281bbbd3c269f4da683c475ffe4ca"
+    },
+    {
+      "rel": "skills/pdf/briefs/creative-fixed-canvas.md",
+      "size": 49562,
+      "sha256": "c654699b0538479c7339d23ef0e9b4a11de5ac06e266b166975f8a3f29892654"
+    },
+    {
+      "rel": "skills/pdf/briefs/creative.md",
+      "size": 47562,
+      "sha256": "82139a9b1e94a10ab1d184a64e041573e4b08f95454bd6efe4111147e1dfe78b"
+    },
+    {
+      "rel": "skills/pdf/briefs/creative-flow.md",
+      "size": 10733,
+      "sha256": "abd8e583f2d0000090d581bb94ef2dd94a694874ae1af8559f51a8491c934970"
+    },
+    {
+      "rel": "skills/pdf/briefs/academic.md",
+      "size": 47053,
+      "sha256": "f98bc9bdb64e85328c8e5536be2c56ed5509ac21b76af6a8206403acca26c659"
+    },
+    {
+      "rel": "skills/pdf/configs/fonts.md",
+      "size": 4318,
+      "sha256": "dcafc0a1a82b85d29a09cef4b7560950ac3f6305dbfeba4527c54ab496051876"
+    },
+    {
+      "rel": "skills/pdf/configs/visual_framework.md",
+      "size": 12858,
+      "sha256": "f27ba9d4bebb22e8f090d0e34787ac432df780acc0bcc5ada632f90fdbd2df39"
+    },
+    {
+      "rel": "skills/pdf/configs/components.md",
+      "size": 5214,
+      "sha256": "d85fa269bb156dbcbe3fa3a28d972bed28ff2d6bbe5df46a1717d0b264d1ea31"
+    },
+    {
+      "rel": "skills/pdf/typesetting/geometry.md",
+      "size": 5655,
+      "sha256": "5159bb842397dbc88a55eb687276e424b7858c065b5672ca9ffc47a4f8262a8d"
+    },
+    {
+      "rel": "skills/pdf/typesetting/fill-engine.md",
+      "size": 20215,
+      "sha256": "9aa63191c9ec9b7e6eac6e461ba7e9069c10ea8883aa2d77dc5c83882142eadf"
+    },
+    {
+      "rel": "skills/pdf/typesetting/palette.md",
+      "size": 9368,
+      "sha256": "9b80b0c86a741b9226ca9b2dc7ebad10be449170740663e60467fe515eeabc7c"
+    },
+    {
+      "rel": "skills/pdf/typesetting/pagination.md",
+      "size": 13300,
+      "sha256": "cefbde28e273d477cd9680f46ef8d97d5150de211dbc33678f70194e67cfde5d"
+    },
+    {
+      "rel": "skills/pdf/typesetting/cover-backgrounds.md",
+      "size": 16054,
+      "sha256": "e43b378ce10ce3851a832e4bdba0c2891374315a790b58792dec88890f776866"
+    },
+    {
+      "rel": "skills/pdf/typesetting/charts.md",
+      "size": 12538,
+      "sha256": "024b9103e97c49f714264a64f0fcc37565e4c3e6fab4e38bc97d1d9ad9f3c5c1"
+    },
+    {
+      "rel": "skills/pdf/typesetting/overflow.md",
+      "size": 22259,
+      "sha256": "37ef3fcbccde55788c270209b40d9af1d884e023d2adbb8960d5951d829e1dcc"
+    },
+    {
+      "rel": "skills/pdf/typesetting/cover.md",
+      "size": 47503,
+      "sha256": "c13567671ece7616f13b719dbb2d285e205edf72f807dd398cf0822744fdf588"
+    },
+    {
+      "rel": "skills/pdf/typesetting/typography.md",
+      "size": 1054,
+      "sha256": "3f117a67432e936526529a0535962cde7e4b7515519f19c426c4dd2071003bc7"
+    },
+    {
+      "rel": "skills/pdf/references/resume-academic.tex",
+      "size": 4807,
+      "sha256": "004fb82e7720d6a116f5a56a063981584e5da731dfe804d8a3f8c1d8a44f112a"
+    },
+    {
+      "rel": "skills/pdf/references/resume-altacv.tex",
+      "size": 6183,
+      "sha256": "935f931cf2eeecccba930d5df22be30f0bf7791655e1d4fea35d4658448d3a97"
+    },
+    {
+      "rel": "skills/docx/setup.sh",
+      "size": 5709,
+      "sha256": "33aee7c270a118f5f2cf1916429fe6857104e616c72cf965a77a5f0503175f6b"
+    },
+    {
+      "rel": "skills/docx/SKILL.md",
+      "size": 11956,
+      "sha256": "c0eea1b7078fc290ae163f5a471be56f0c1bcb08ad1417581d606445806ddfe0"
+    },
+    {
+      "rel": "skills/docx/LICENSE.txt",
+      "size": 745,
+      "sha256": "0e576d5fcab4050e3c34697b6d4ea64195df3212adaa1c47803fc3a26d8100a2"
+    },
+    {
+      "rel": "skills/docx/scripts/postcheck.py",
+      "size": 31005,
+      "sha256": "2a973f0dde0fa1c701ed35a6fe3cbfb9cb0d170490ce2975f63a2e06715f79d0"
+    },
+    {
+      "rel": "skills/docx/scripts/document.py",
+      "size": 53097,
+      "sha256": "efcdb05ee6f3003df876eb5c46a969fdd2d9fe14583210e82f130dbb92bddf56"
+    },
+    {
+      "rel": "skills/docx/scripts/utilities.py",
+      "size": 13694,
+      "sha256": "62a4b689056501b91e2df2d1f4e6335818e421c7390e48050717ea8f461a0ed0"
+    },
+    {
+      "rel": "skills/docx/scripts/__init__.py",
+      "size": 65,
+      "sha256": "83e262a425814b72add701272b99ddcf9635251c5d4672bf9fc38d2b03f00d85"
+    },
+    {
+      "rel": "skills/docx/scripts/add_toc_placeholders.py",
+      "size": 27963,
+      "sha256": "5bdd82f304281d85c0ce3746adc078bd658034dbbd1afc5ed70bb6dc297daced"
+    },
+    {
+      "rel": "skills/docx/scripts/templates/commentsExtended.xml",
+      "size": 2643,
+      "sha256": "86bf401354c111102033ed147763faccb82479598f17777a3384c2f3e9fa0014"
+    },
+    {
+      "rel": "skills/docx/scripts/templates/commentsExtensible.xml",
+      "size": 2739,
+      "sha256": "af5d057e16462ca172cea845e502bafb4f3e1b474a8d5848ffe92214853a4935"
+    },
+    {
+      "rel": "skills/docx/scripts/templates/comments.xml",
+      "size": 2635,
+      "sha256": "87e218a3a295016ec855f2cd74495c416072f29c4846e86b527aec0a4d93ba21"
+    },
+    {
+      "rel": "skills/docx/scripts/templates/commentsIds.xml",
+      "size": 2651,
+      "sha256": "20168f7b237af091332f8348c548eb7f755f583185bb198359c5978155099d67"
+    },
+    {
+      "rel": "skills/docx/scripts/templates/people.xml",
+      "size": 147,
+      "sha256": "61db9900b579acd4c4f84ff7f40df47e77e9e780c40d5f5ef6a7beba41d62ec5"
+    },
+    {
+      "rel": "skills/docx/routes/format.md",
+      "size": 3323,
+      "sha256": "158cf37a6197afe8b2771f760a4c1a813e0dcbb220396ccd52110ffecad878ab"
+    },
+    {
+      "rel": "skills/docx/routes/edit.md",
+      "size": 3233,
+      "sha256": "e75c0c3511180797bcd742d62d90d6d7278f47a2d7dc48164767b6ee88e5429c"
+    },
+    {
+      "rel": "skills/docx/routes/create.md",
+      "size": 11823,
+      "sha256": "e6b41c02e0b788723e6c8529d37c34f3f51a1759ab3ad989c0d4cf4bf52b9dc0"
+    },
+    {
+      "rel": "skills/docx/routes/read.md",
+      "size": 2787,
+      "sha256": "503c8ea2389b2e8a4df8c5b342c4eb59d5201eac1b6ed03312288efbf682bedc"
+    },
+    {
+      "rel": "skills/docx/routes/comment.md",
+      "size": 2367,
+      "sha256": "590843b0cc619d59e680cfd89bb4de19b7bf0ee78e0846161cba8b319c15b910"
+    },
+    {
+      "rel": "skills/docx/scenes/official-doc.md",
+      "size": 15625,
+      "sha256": "e7c2702b26c6d869cf7fe5c42d3cf4fdf8f702940448e71922c5483890c2cf46"
+    },
+    {
+      "rel": "skills/docx/scenes/copywriting.md",
+      "size": 5504,
+      "sha256": "0cad3fcb0cbf4ee6701c3abcb74c630155837e78d5b52addfe3e3564dbc2dafa"
+    },
+    {
+      "rel": "skills/docx/scenes/report.md",
+      "size": 15051,
+      "sha256": "93306045fff076387e39919612b6580267996bed9862de1b9b81d846b05db31a"
+    },
+    {
+      "rel": "skills/docx/scenes/resume.md",
+      "size": 21683,
+      "sha256": "1ac3669d0b2ce017cf368bc5932b3e3da37dc4deb1c10d4e2c0748319af51e8d"
+    },
+    {
+      "rel": "skills/docx/scenes/contract.md",
+      "size": 20278,
+      "sha256": "d654599c0bebfa595f64e185f753fed4d8a0ecd03aeb0eedad793c36a2c84262"
+    },
+    {
+      "rel": "skills/docx/scenes/exam.md",
+      "size": 25694,
+      "sha256": "fba41f30631965e6ceb0d0454b913d128a71e52c96bcf75ed66aa1b3f08b4085"
+    },
+    {
+      "rel": "skills/docx/scenes/academic.md",
+      "size": 33308,
+      "sha256": "9e4685e7c0679c8872ce46d4e5d853bd766f0d38be2d02088eeed69beae82d41"
+    },
+    {
+      "rel": "skills/docx/references/chart-templates.md",
+      "size": 13319,
+      "sha256": "38abaf161f0cf9033212680bbdf634d169d490536ecbc166f31022b99ee450ba"
+    },
+    {
+      "rel": "skills/docx/references/ooxml.md",
+      "size": 8902,
+      "sha256": "2857bb438ec86b1cb39b19800707f9b134d6b1dbe543b5e08619ec45651712c5"
+    },
+    {
+      "rel": "skills/docx/references/docx-js-core.md",
+      "size": 9731,
+      "sha256": "b54c3cc8216fa343ebcd86f8f4072b47e09c5a2ab02a51daad88bac217a664f1"
+    },
+    {
+      "rel": "skills/docx/references/common-rules.md",
+      "size": 24449,
+      "sha256": "6f59abd233ec73aca8fc1404ed53c7a24ad04e731db5eb45bb4f17cbb5831f44"
+    },
+    {
+      "rel": "skills/docx/references/toc.md",
+      "size": 11062,
+      "sha256": "9faa92483107ce1bcd8dd9c6abc9631d382463630324b0979f1d78a4d69f54fb"
+    },
+    {
+      "rel": "skills/docx/references/faq.md",
+      "size": 11919,
+      "sha256": "4d3d0ff068b525500c0152c3ad2d2f5d509f00efd01996dde71500602c0790ac"
+    },
+    {
+      "rel": "skills/docx/references/math-formulas.md",
+      "size": 7841,
+      "sha256": "82caec1fc7d98fb421be56ef30910af7d01ecd39334fd13aa2a02abbcba86f5c"
+    },
+    {
+      "rel": "skills/docx/references/docx-js-advanced.md",
+      "size": 8359,
+      "sha256": "8f94f8381aa01b4e1994e8b3ad3dd5c4656d8e4c92595fe10f1a27cbe0feca1c"
+    },
+    {
+      "rel": "skills/docx/references/design-system.md",
+      "size": 78731,
+      "sha256": "52a476d7bf94ba8f1f77574cd60876393cac76a32069c5df625d230c6cc7c738"
+    },
+    {
+      "rel": "skills/docx/references/decorations.md",
+      "size": 20009,
+      "sha256": "67f44d220152f0073a6e6674e0233cf2f35a67d36a8c63d4b82277239a33edd6"
+    },
+    {
+      "rel": "skills/quiz-mastery/README.md",
+      "size": 3430,
+      "sha256": "8c65fb679598e318bda118986c29d5de110ea927086c6ff05443d73630343441"
+    },
+    {
+      "rel": "skills/quiz-mastery/skill.yaml",
+      "size": 454,
+      "sha256": "8ccba0bb6488b87099b718da23d1e8d7149df6e70e12e0097462eb1f62406360"
+    },
+    {
+      "rel": "skills/quiz-mastery/SKILL.md",
+      "size": 9386,
+      "sha256": "c9bbe8bc7b73e7dbb318b6b6b1aacee50c3e43be656d97f607cd4a7b6949d1d5"
+    },
+    {
+      "rel": "skills/quiz-mastery/scripts/generate_from_material.py",
+      "size": 1469,
+      "sha256": "a13d698a543009dec9b477f41bfdc0568a1ebafdf3bf4862d1e52f784e3e0028"
+    },
+    {
+      "rel": "skills/quiz-mastery/scripts/run_quiz.py",
+      "size": 1784,
+      "sha256": "2ed27a5f590e79f830fa1b707f7aa4782153be528eba5e325b3bc0f0b111ce50"
+    },
+    {
+      "rel": "skills/quiz-mastery/scripts/import_quiz.py",
+      "size": 1581,
+      "sha256": "bdc0c4ff65c6de3fd3c64b3e3145c8490d05cb8b33ef346d4086c2b9f3edbe17"
+    },
+    {
+      "rel": "skills/quiz-mastery/scripts/submit_answers.py",
+      "size": 1211,
+      "sha256": "636fe6101e0bcf709715d091712a0b032cb5dc6e1d2ca0ec825deda65d50fa47"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/models.py",
+      "size": 2025,
+      "sha256": "7eac281975877967ee8a1b7c3a980e21aecb7587ac4129e691e9947a212c4260"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/mastery_engine.py",
+      "size": 5475,
+      "sha256": "30966e4272f46236ad40d3c3461dc1cf5e2c80103641306029c25b77ce780c22"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/utils.py",
+      "size": 137,
+      "sha256": "58df8bf28f799e18531562ce34cf9844914af5ebcd296b505d21dffe9b01fd79"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/quiz_generator.py",
+      "size": 4708,
+      "sha256": "8a338b03a05f23a73a2febdff0b0953916ef9b67b7e301c42ef285624144c3b9"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/quiz_extractor.py",
+      "size": 3568,
+      "sha256": "aab216e5034958480f20e29e46e9f00c2d8faa932243212622ba4d2094246561"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/evaluator.py",
+      "size": 2699,
+      "sha256": "50dff3ae3e95816b4618673c683ac7d6f08c5eb4a02d04b8dc33185860ba794c"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/file_parser.py",
+      "size": 9223,
+      "sha256": "bbf6dc21e8d93ff6633a6cbbfd935b6b8cdd70d09d5baf6ed65c7055512e7f70"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/repository.py",
+      "size": 1309,
+      "sha256": "464fb842f84f5cd72c0ca2f8d6cd1e8dd021647e550e996cc807d414b10e296b"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/planner.py",
+      "size": 2245,
+      "sha256": "48edc60558a0bbf0818b3ad482592edf6f221939f52f82774a6562960f6f1f2c"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/__init__.py",
+      "size": 74,
+      "sha256": "aa56885e9e103a51fd1cc96d81f388c28ebc3cb802883817a4ad8a40e0f4eb85"
+    },
+    {
+      "rel": "skills/quiz-mastery/src/quiz_mastery/service.py",
+      "size": 11351,
+      "sha256": "73ead8e1dade6bc1c2fec2a7ebc2938bac3e7d6022b5be2cb9c2775ad227354a"
+    },
+    {
+      "rel": "skills/image-edit/SKILL.md",
+      "size": 24845,
+      "sha256": "e88ac95156d29940d129ec3466595b400cbf0ad4943872a48cd7498a9c07f545"
+    },
+    {
+      "rel": "skills/image-edit/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/image-edit/scripts/image-edit.ts",
+      "size": 1158,
+      "sha256": "9988a017dc41e7d700846fd314c69580c9d4df317a0091ec7a270ada18a677fd"
+    },
+    {
+      "rel": "skills/seo-content-writer/SKILL.md",
+      "size": 23949,
+      "sha256": "4a82623e63474bc9bede7b9f012057b4e1c640f8aa0f4cd7de7e40f4e3b2d1c7"
+    },
+    {
+      "rel": "skills/seo-content-writer/_meta.json",
+      "size": 137,
+      "sha256": "96a37f53acb53bcd3f165641ba70ecd21ccf873a1af7e62a797d0c02c529e54a"
+    },
+    {
+      "rel": "skills/seo-content-writer/references/title-formulas.md",
+      "size": 10400,
+      "sha256": "ac4d6d83896e480d2d184b556153ccb626bcd4e3d53741f7eeadee59204c82e6"
+    },
+    {
+      "rel": "skills/seo-content-writer/references/content-structure-templates.md",
+      "size": 17653,
+      "sha256": "5339b35b1e4e10b2fc17a5e9cc39c72c48020c429c3efd4a138574f07f80fb8b"
+    },
+    {
+      "rel": "skills/skill-creator/SKILL.md",
+      "size": 33216,
+      "sha256": "2ba821dc80f6d1c55faa2ae29eb09ed80695a0f4ab04018e82df43c209d24dc7"
+    },
+    {
+      "rel": "skills/skill-creator/LICENSE.txt",
+      "size": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/run_eval.py",
+      "size": 11419,
+      "sha256": "fdaf18baedeb5dc14588b003b9806c6b37ae1718e01f2a39872e22fc41d09f73"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/generate_report.py",
+      "size": 12841,
+      "sha256": "d98ce7bb4b4ecfc931c42b01aa6073447708748a17b2bf3b8d6a9d6cddb4c0cb"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/improve_description.py",
+      "size": 10493,
+      "sha256": "301bc395580292cff125bc0d6dca567c4543b2237c75ea322e27d8a428da25f6"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/utils.py",
+      "size": 1661,
+      "sha256": "3af8ae62c40c73ab712207436a0d9a981e845f25c5a7040229eb189cc8e45bb1"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/quick_validate.py",
+      "size": 3972,
+      "sha256": "67cf5703402013936c8fb75ad6a1afecd8841d45cc5e606b634eb05825fde365"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/run_loop.py",
+      "size": 13605,
+      "sha256": "7bd6f674203168520517eec94c55f493c0d154339b061b4d7c0f0dad187d0f21"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/package_skill.py",
+      "size": 4234,
+      "sha256": "1a33059b0db1ef73375d46d513e5ea81369d2e8838c970597b0d52ddef8d1c0f"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "rel": "skills/skill-creator/scripts/aggregate_benchmark.py",
+      "size": 14386,
+      "sha256": "123ef128ea5ccc01a4b1ac212ef5567f21e9c13d3d240609780beeb3200c49aa"
+    },
+    {
+      "rel": "skills/skill-creator/assets/eval_review.html",
+      "size": 7058,
+      "sha256": "ce477dcc74dc1c0d1d3352646a79167b5a63634e936b1019160025065974e452"
+    },
+    {
+      "rel": "skills/skill-creator/eval-viewer/generate_review.py",
+      "size": 16365,
+      "sha256": "fc9d1b9243fe5ab6012ebd579bd76d0035de1b79fd3b969de114defab26478fb"
+    },
+    {
+      "rel": "skills/skill-creator/eval-viewer/viewer.html",
+      "size": 44989,
+      "sha256": "8b528f4607fbc188f0cfca269963e6088c3263b89eb77285ce215af3a3f94465"
+    },
+    {
+      "rel": "skills/skill-creator/agents/comparator.md",
+      "size": 7287,
+      "sha256": "fe1fc9787c495d864c5d6eada47396478572325fde1b33a96d78bf4b849b7a3e"
+    },
+    {
+      "rel": "skills/skill-creator/agents/analyzer.md",
+      "size": 10376,
+      "sha256": "bf68f4cac5a56c673a928c2e6d619586c5b93ea364026ab37547772cb45a663a"
+    },
+    {
+      "rel": "skills/skill-creator/agents/grader.md",
+      "size": 9049,
+      "sha256": "57134da0c1a4eea33fbd74a1c9c44aa814f07d6bc64de303edb586f941e5d21a"
+    },
+    {
+      "rel": "skills/skill-creator/references/schemas.md",
+      "size": 12047,
+      "sha256": "75b5132ca908aed4278a4b53503bb1f735ba831bba4677d5341cf2024676d045"
+    },
+    {
+      "rel": "skills/multi-search-engine/metadata.json",
+      "size": 239,
+      "sha256": "2199f8bbabb0014745ab8c20bcc37906e6e5f431aea59196348af88b9582cad8"
+    },
+    {
+      "rel": "skills/multi-search-engine/SKILL.md",
+      "size": 2632,
+      "sha256": "8c296338e3a3be9a7b6b36d19a257f6c2e2b7b379b919ac6de48043a4ebcd32f"
+    },
+    {
+      "rel": "skills/multi-search-engine/_meta.json",
+      "size": 138,
+      "sha256": "c519005e390529c64cea5e920e579f2c840dfa6fe3c51d01a752f7cd3a469830"
+    },
+    {
+      "rel": "skills/multi-search-engine/config.json",
+      "size": 898,
+      "sha256": "35dc346fbef0029fffcde09cb207a6437417576257ca086c5ce605bdaaf34cda"
+    },
+    {
+      "rel": "skills/multi-search-engine/CHANGELOG.md",
+      "size": 376,
+      "sha256": "21ed06de8dcb14e477f44b6cc7762e18689c4b2da0006600c9d5a509a32bb17c"
+    },
+    {
+      "rel": "skills/multi-search-engine/CHANNELLOG.md",
+      "size": 1132,
+      "sha256": "e76603f4891c4deb7d81dfb8966218a3705d639bf1f721bccb1626d4fd1aa67e"
+    },
+    {
+      "rel": "skills/multi-search-engine/references/international-search.md",
+      "size": 23161,
+      "sha256": "ee2d742aa59287140b388ca10ab2c9cb7da9c5d86a2b2a991ea06a79916ed390"
+    },
+    {
+      "rel": "skills/gen-plan/SKILL.md",
+      "size": 6847,
+      "sha256": "f5fa196ead3a6eb7de456a0035c2a9ca7ac4fb1aef9f3d1eb30cffacf628a37e"
+    },
+    {
+      "rel": "skills/gen-plan/evals/evals.json",
+      "size": 1083,
+      "sha256": "cd5b9d3a319d789e9c0295fbd83354335f07a045eace9797c1339e67a363b6df"
+    },
+    {
+      "rel": "skills/gen-plan/references/profils-ressource.md",
+      "size": 2984,
+      "sha256": "aa32a26cf6b04c6222d6ee6d19d2bdff1f2de9be29b4943603b7a3d5b126d4bb"
+    },
+    {
+      "rel": "skills/gen-plan/references/grille-token.md",
+      "size": 2246,
+      "sha256": "8d5f4dc749b7ec66f2937a34d19534e8bc8dd7cb6d8674bad4944051229b79b4"
+    },
+    {
+      "rel": "skills/gen-plan/references/guide-selection-agent-skill.md",
+      "size": 2433,
+      "sha256": "99f5610cc96ae65e4380a5de7bccd45d876f061e985c86568e1e80102f848d24"
+    },
+    {
+      "rel": "skills/gen-plan/references/classification-types.md",
+      "size": 2469,
+      "sha256": "0196fb11e86df80886beddabf75fcf19d17c4ff4e53cc059548dd19e6482502b"
+    },
+    {
+      "rel": "skills/gen-plan/references/etapes-detaillees.md",
+      "size": 9533,
+      "sha256": "b077418c6ff19c8604513eb961550f32c900d1f0e558f2392bdd492e90e413b8"
+    },
+    {
+      "rel": "skills/web-shader-extractor/SKILL.md",
+      "size": 6352,
+      "sha256": "1e600a05ca55a85049eba84f209b7809762c4b7bf018b095da7441a1b628352a"
+    },
+    {
+      "rel": "skills/web-shader-extractor/scripts/fetch-rendered-dom.mjs",
+      "size": 5285,
+      "sha256": "69080d0e71f0a4b95991f1a737f6ff90d29df9c824549f2e294e13ba283580ab"
+    },
+    {
+      "rel": "skills/web-shader-extractor/scripts/scan-bundle.sh",
+      "size": 2954,
+      "sha256": "0057ce0e85db9b46c0a5b7f2f58de4ed0a06b830438b5d700a26f829eb0cd4fb"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/tsl-extraction.md",
+      "size": 1600,
+      "sha256": "1e47c18e9046eb49d47b4fb4e4221038f66d94eeedc1e38e062a83753013082f"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/tech-signatures.md",
+      "size": 1721,
+      "sha256": "69d8cf1ecaddf44fe919a4df987883c7debe95e918a891b45fcf9ba467f11f7a"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/shader-injection.md",
+      "size": 4195,
+      "sha256": "990ddf183d7003e4c5ea6f53670ba2e669f1652f6e2bfd1f1d79cfb112e3c5c4"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/extraction-workflow.md",
+      "size": 2583,
+      "sha256": "30a3299ca4d821cf24652948969bf7f2c79e5cee03f64ead2b28cf4c9bf6197f"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/porting-strategy.md",
+      "size": 5858,
+      "sha256": "55f72897fcf3b385c0dec46ac3145659cb8c85f432c7751d0e8f3270625848da"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/shaders-com.md",
+      "size": 6812,
+      "sha256": "c6647024141eb344e7df48f61ec9b7f117e91b9d208db0ec77dafe9cf90c70c3"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/config-extraction.md",
+      "size": 1226,
+      "sha256": "c23a7a0ba1abc105c4b5b84b1b76a3bb910d9ee1dfbbb4611374addcd9ea0076"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/encoded-definitions.md",
+      "size": 1324,
+      "sha256": "8063361b5fde2848bcbcef3b95793c684fabaab8312c13e5323e727e8bbdb5e6"
+    },
+    {
+      "rel": "skills/web-shader-extractor/references/unicorn-studio.md",
+      "size": 12818,
+      "sha256": "40166385fbe7f784c034125bdaa48a5fa4c725ccb71da0d4bdee62b1e3994957"
+    },
+    {
+      "rel": "skills/web-search/SKILL.md",
+      "size": 22640,
+      "sha256": "4a081b72f6bdcf60ad0c45a1b6975eb8b2c86f5ff5426ae1b49318daef1278eb"
+    },
+    {
+      "rel": "skills/web-search/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/web-search/scripts/web_search.ts",
+      "size": 1166,
+      "sha256": "423192e709cbdf78ebd4fc206c55768eeb72f6022cae6ee39c469e431d24fff6"
+    },
+    {
+      "rel": "skills/design/design-system-generation.md",
+      "size": 10169,
+      "sha256": "fada54affcb3aba805d19ceb33faa744de93838915cb4a800967cdce048a49dd"
+    },
+    {
+      "rel": "skills/design/social-card.md",
+      "size": 23123,
+      "sha256": "62a0ffd95657fa23492bf9aed0b25f34a964a985074bb5bc59d57c792c27ef8f"
+    },
+    {
+      "rel": "skills/design/SUB-KB.md",
+      "size": 8193,
+      "sha256": "d586cbd742afb079e1d3ab153f37ca1a6f53e716305b5f4c7d50de6d3363efcc"
+    },
+    {
+      "rel": "skills/design/design-system-reference.md",
+      "size": 16760,
+      "sha256": "19067f83366ba06eb5a8970b83688c89fe7b59badefa9133e511ab1855b8ecdc"
+    },
+    {
+      "rel": "skills/design/portfolio.md",
+      "size": 14662,
+      "sha256": "dfe6c2f299a9f4ecf86c04ff6b70dd88c3359cfd9c95cc183613168c595ffd4d"
+    },
+    {
+      "rel": "skills/design/web-tool.md",
+      "size": 7198,
+      "sha256": "dc7f6aee637a785b1d47f3b6df4fb387947eb7ae24583bccc5b884cf2d9e3ad8"
+    },
+    {
+      "rel": "skills/design/deck.md",
+      "size": 4570,
+      "sha256": "ebb26d2da28418def9a0cedf05b5d4061dd85c181c7b9f9ff58f6287b91e9c05"
+    },
+    {
+      "rel": "skills/design/content-page.md",
+      "size": 15732,
+      "sha256": "838133cdc65ba6bddf25dfe35f76957074fcf821a5f93628b42fe42fec779252"
+    },
+    {
+      "rel": "skills/design/info-interactive.md",
+      "size": 13142,
+      "sha256": "de5ae2c1a26b2973337f1d136be7d0381d54a7e4308ce31934faf9b328fb2f01"
+    },
+    {
+      "rel": "skills/design/export.md",
+      "size": 13203,
+      "sha256": "9581b0d52cb87557e5e45a4ad410ccfc9f41495fdf118388e9e90b76a86605c3"
+    },
+    {
+      "rel": "skills/design/canvas-and-device.md",
+      "size": 11214,
+      "sha256": "81d0a907502709d750b12ce0188a1321dd47a0351363ed432cfef67b1dfcfce1"
+    },
+    {
+      "rel": "skills/design/quality-gate.md",
+      "size": 11497,
+      "sha256": "4103b95691a432adfe126ddc6c970d57c7321208e4a5d7f11e94936c4aef3760"
+    },
+    {
+      "rel": "skills/design/SKILL.md",
+      "size": 41781,
+      "sha256": "adce595cd7afff169dab9f8008dd3f82cf82b42ec51982e9cdf53aed9d5e61d0"
+    },
+    {
+      "rel": "skills/design/prototype.md",
+      "size": 23098,
+      "sha256": "81f0840c741a7b5342fd73888baab83bf1bd73400d96c3be65806fe911a81740"
+    },
+    {
+      "rel": "skills/design/INDEX.md",
+      "size": 6397,
+      "sha256": "3bc5d4e8f5b44e9368d8375593f1621a144f45463a0e370296205a912840d5f4"
+    },
+    {
+      "rel": "skills/design/landing-page.md",
+      "size": 14273,
+      "sha256": "e92f6b189839859101149dd7b954d58b85b98705af294a083282b61479127314"
+    },
+    {
+      "rel": "skills/design/design-systems/TAG-VOCABULARY.md",
+      "size": 2079,
+      "sha256": "1c9c361724a0cb423d5ca3496cb7d52085704d5b20e8763de03162b3741b47c0"
+    },
+    {
+      "rel": "skills/design/design-systems/index.json",
+      "size": 111728,
+      "sha256": "e97447417cea13d268fde4272b2f28350722095b4772beaae9c0e952bf7812d3"
+    },
+    {
+      "rel": "skills/design/design-systems/INDEX.md",
+      "size": 15534,
+      "sha256": "a64c2923cb414c7ffd0b4091236f25e77d1f6f332c1c91a173198712ac5ff9c0"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/index.json",
+      "size": 29323,
+      "sha256": "0eb242898eb29f3d16aaab68537274f96e7462af5586ed61dd0e7f4507eae04b"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/enterprise/DESIGN.md",
+      "size": 1590,
+      "sha256": "082d1cd86843ff8b542d3a289c331f172d454bf9d8c6bd5216e26d8a3d3f6b03"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/enterprise/SKILL.md",
+      "size": 3663,
+      "sha256": "d9ad1dcc36d19b496e2a8d853614637ce294458fc4f587171c6088e5b3bb53c5"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/terracotta/DESIGN.md",
+      "size": 1595,
+      "sha256": "ccd18c9ff4522bffbe9fcae3633295f23f6f54cbdf91db59276611993969eb80"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/terracotta/SKILL.md",
+      "size": 3778,
+      "sha256": "a65615e45cbf15de8724a5d85a1b735079f12cd81aad924a1ef3d355564f8231"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/clean/DESIGN.md",
+      "size": 1534,
+      "sha256": "602622a6de325629ef9d907357d97b99de9c6b0dcb4dc31b2b415e45170ed3c1"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/clean/SKILL.md",
+      "size": 3669,
+      "sha256": "2422a64f5037d8e3c16a04f657d295f82f0bbf528648e703ba32148f3f7d9526"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/vibrant/DESIGN.md",
+      "size": 1530,
+      "sha256": "a937fc7ee115b7244e3174bad70cd15652553ec6e49236cf8d4e16590a346e37"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/vibrant/SKILL.md",
+      "size": 3460,
+      "sha256": "695e0fe7686ee8871853e3127af6a54a44b2536dcd6d91eafe83c5952b31e13f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/editorial/DESIGN.md",
+      "size": 1534,
+      "sha256": "623b3da2e61c5744da42318fd20680bd674a15aa91ba48be36f3e0fed9aaa949"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/editorial/SKILL.md",
+      "size": 3660,
+      "sha256": "132941e9dcc911519004605a49543f93e00dc2dec249790dbbdbe2fa810ed348"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/modern/DESIGN.md",
+      "size": 1557,
+      "sha256": "6694cd9029c6652eebf70549a9e7eb0406d4e8c2ebcfb9b9b3c2b741e4371af1"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/modern/SKILL.md",
+      "size": 3393,
+      "sha256": "e5f9a231783dedcb47724ab49e6a0f3c4a5b4c3ab8ab1e3c82b63aae53243a61"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/impeccable/DESIGN.md",
+      "size": 1555,
+      "sha256": "0ce259240777131471ef3ccbc81841e80bbce47195f2f9e9fa6f3b2ab68c2ff1"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/impeccable/SKILL.md",
+      "size": 3562,
+      "sha256": "8b70782442eacd7bf2fd4cdc60c1a312ef2546d75eb1502ea0e123fe0f58dc1f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/futuristic/DESIGN.md",
+      "size": 1549,
+      "sha256": "22b9eb1d1ecc88886a05f1e1b88ca6c15e2531cc8ae0f43f9e30736ddb98161d"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/futuristic/SKILL.md",
+      "size": 3368,
+      "sha256": "940992fe1fa8fa660d9108752378d6ada7f4261edc9600aab85291c26c9cc997"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/professional/DESIGN.md",
+      "size": 1551,
+      "sha256": "64f6bef3c8c187e9124e96d891c3bfb34d20d621c6dfe0789fdb160896e310a2"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/professional/SKILL.md",
+      "size": 3396,
+      "sha256": "f8d5d46f26797c8adb4ee5ff4fffec624939df76a867738bc1f920a7a360cf91"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/totality-festival/DESIGN.md",
+      "size": 9058,
+      "sha256": "0b334c8a1aeaff1cc72bf5036357d41cdffcefd283b180282592705907964ac6"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/totality-festival/SKILL.md",
+      "size": 3941,
+      "sha256": "19c1bd869fde629de46d0ac73946bf4a15b66a623440215f8867d3a25ea0488e"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/claymorphism/DESIGN.md",
+      "size": 1575,
+      "sha256": "e0d7dffede9abf0c17f422374f29782a27b95096c6815049c92cf89656e3cb1f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/claymorphism/SKILL.md",
+      "size": 3546,
+      "sha256": "4eca069658e2615d3afd7e2bc9844f25fc917d037b6c70cab35a71deda0288c8"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/bold/DESIGN.md",
+      "size": 1527,
+      "sha256": "97e3f6f510f03c3c07e2e52215c51437b5f04193c56931dd0f432a3437278d5e"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/bold/SKILL.md",
+      "size": 3414,
+      "sha256": "0c0a2ae550df2665a7e5d3a02cac2d64a8c417a53371ad7d00726a25345305bc"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/immersive/DESIGN.md",
+      "size": 1538,
+      "sha256": "c3dfbefac7436cdc1cd17096155c2033df97c460a9e91f6188904f3aa3b9eae3"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/immersive/SKILL.md",
+      "size": 4330,
+      "sha256": "ac9f23c3b81fe2bea859b94ce99700f538f952a4775a5f5125a4e32f32c42420"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/cafe/DESIGN.md",
+      "size": 1565,
+      "sha256": "dfed4a4abb4068a5a150afbbcf1e5d5872ad23eca43d5d1a9c03bfe280d8127f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/cafe/SKILL.md",
+      "size": 3497,
+      "sha256": "a1bd11a274ffcddca82d2a5654beea3233cc9244fa130b259b1227de5344fa11"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/expressive/DESIGN.md",
+      "size": 1587,
+      "sha256": "207f18f588a32b83990d76fa9decf0b8b50abdceb63173bcd8e0e0a2f1b68419"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/expressive/SKILL.md",
+      "size": 3636,
+      "sha256": "87b29966074c5147830660bf7b0a8c7c43d7e9dce3b8659cf3135e33b3d41273"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/doodle/DESIGN.md",
+      "size": 1575,
+      "sha256": "edc6b45e083e43706b1386e30a9f6c52a6b8936090d6856a741d53baddaf5c22"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/doodle/SKILL.md",
+      "size": 3557,
+      "sha256": "25b624dde85ac765b67e41e9e40dd6601c5087374a1af73913840cfaeff2382a"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/dashboard/DESIGN.md",
+      "size": 1716,
+      "sha256": "2f130ae49072bb9805b9eb364175be5fa2e0b5fbe8c24a96e7ab9bf400334cba"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/dashboard/SKILL.md",
+      "size": 4202,
+      "sha256": "e8f2942b6c07d1fdcf9479bf238b6bf276fc80569e981c6ef5d6b3227b4e1166"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/shadcn/DESIGN.md",
+      "size": 1479,
+      "sha256": "ba8938229f250c829ef63b445ec1af9a064fd2506b2bf39ec1b84bf336b0496a"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/shadcn/SKILL.md",
+      "size": 3331,
+      "sha256": "1f9379f3e99b23e7e0d6679ec04670574905feba62b2d63c2576e2821854862d"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/sega/DESIGN.md",
+      "size": 1542,
+      "sha256": "25eebea80a8103d3865663bda15171b5930912b6dacc746650d5e268aff20ee5"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/sega/SKILL.md",
+      "size": 3664,
+      "sha256": "898dd663cfc5aa8bef770e3cf8b54bf423e4426fca641a6cc39bc32acdf74714"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/brutalism/DESIGN.md",
+      "size": 1611,
+      "sha256": "10100c484d9e79063690636bebcb3496d34ecd41088bfb29e1e25534b241edc5"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/brutalism/SKILL.md",
+      "size": 3597,
+      "sha256": "42fe15866b7a354bf612648d06a78d0255124b33ba76e88abee769feaf225829"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/dithered/DESIGN.md",
+      "size": 1557,
+      "sha256": "538402153914b387e13e043c95ade599831d3c5dbd325985d00a9760c63bfa94"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/dithered/SKILL.md",
+      "size": 3733,
+      "sha256": "2097b8bdff6828c202856b12e0d3b4d42fb32e2aeca361394d79d10493e08672"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/friendly/DESIGN.md",
+      "size": 1563,
+      "sha256": "4859ea32fa47a545797270d226dbbaef6687f6917f2134635b687310b1cf1268"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/friendly/SKILL.md",
+      "size": 3536,
+      "sha256": "1521b9be47d7d73f311df3922f7cce3fb4ad520e8b09f716115a33c258c7260a"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/agentic/DESIGN.md",
+      "size": 1558,
+      "sha256": "2f9d2d55bdb8426c40e8fcbcaad80ba0878647b0d1a4bab7c29def77449ef773"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/agentic/SKILL.md",
+      "size": 3962,
+      "sha256": "0533b39444aaf29d9d844db0861c7e76a54d6c559cf0eeb738a0f55653c53a80"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/energetic/DESIGN.md",
+      "size": 1371,
+      "sha256": "595ecc80de0691b6113419d9983ea261790820b1af29ffe7a8e77cfb34682d64"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/energetic/SKILL.md",
+      "size": 3914,
+      "sha256": "4800d5fee490c06328ae14877f9525b8944eb7e52f84d4348d9535ec09057a36"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/trading-terminal/DESIGN.md",
+      "size": 6524,
+      "sha256": "6b4ae69f76fb4f697af01e335c61c4b8d4114a36871d134eec62f665c2170f18"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/trading-terminal/SKILL.md",
+      "size": 3874,
+      "sha256": "299e28094eacf8977d3305f0c9453e48445e88bd6a642c6d5bde4d16cb7b2ac1"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/luxury/DESIGN.md",
+      "size": 1533,
+      "sha256": "13c7c90422748923ad3e0d94bdc3539be6c40cb470ccdc2668684da39f01030b"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/luxury/SKILL.md",
+      "size": 3401,
+      "sha256": "3d30fba5cec55257b967864218419dcdd0de2a80cc8a8d0501a7141a1e34496f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/simple/DESIGN.md",
+      "size": 1528,
+      "sha256": "59810e7974723bc4d6cd12df9380428fdc5ffed705ce005f860cea308c59d0e4"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/simple/SKILL.md",
+      "size": 3363,
+      "sha256": "55ba78d7223b98fbb599e209baed4a28bc7f0e3b539b453c6d1cc23afc65ea64"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/perspective/DESIGN.md",
+      "size": 1560,
+      "sha256": "b9378b727541bdcee3e72e7f90b1111e1a9e049dfc19f35684d911e4c77e4483"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/perspective/SKILL.md",
+      "size": 3614,
+      "sha256": "3d90f5e59e453f63d677321ad9cb86d2637dabb6176c962cf3a7896f10e1c8bd"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/sleek/DESIGN.md",
+      "size": 1563,
+      "sha256": "0156360bdc5ddcaafb43c4e2d551b464a8e7ce7a04dce7a26e70334a232684ea"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/sleek/SKILL.md",
+      "size": 3669,
+      "sha256": "09abe15f5258034f374551e4d06754f5443110c4c3bca19b592105a7b45f8c14"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/pacman/DESIGN.md",
+      "size": 1641,
+      "sha256": "8f58df0a04ec087cc2220ed6c02bcfc09382cad44c6da54f549ad23eba54cbbf"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/pacman/SKILL.md",
+      "size": 3675,
+      "sha256": "4af18d80fb6818c69ae1724e4abcd2642edb76a27a053d7ffa69245ae6cbee64"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/artistic/DESIGN.md",
+      "size": 1557,
+      "sha256": "7831a89901608ad2ff3bd64c9b05e807676eca54e83e70e8ac8130353955658f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/artistic/SKILL.md",
+      "size": 3750,
+      "sha256": "e65f4d4c7291bc5cfd1f65e7af8761ab73f6d0b515fa42db2c58f1701168b6e2"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/warm-editorial/DESIGN.md",
+      "size": 4008,
+      "sha256": "d478c0b23c15f0ef6b8863048d7ac809d0627216aa1efd6c303c242c6c470a5d"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/warm-editorial/SKILL.md",
+      "size": 3810,
+      "sha256": "fc61f80bc0d2d71075f3f2b4fa718f8928b654c1faeb00d62911fb3dbdc105cb"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/lingo/DESIGN.md",
+      "size": 1515,
+      "sha256": "91cc28b8448f9c8f2cf4bcd3468414384913227e416946ddbf210a0b66d39488"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/lingo/SKILL.md",
+      "size": 3876,
+      "sha256": "3cb809b09d5b9c70aa78330758658ee27f6a42d212fb2f951e72a701a544f916"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/neon/DESIGN.md",
+      "size": 1505,
+      "sha256": "fb21f03214c23f3707d0c8b4cf69893a0570957be739ed4c113518cb880cbf76"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/neon/SKILL.md",
+      "size": 3342,
+      "sha256": "93a4df28615a8fc894d81a1f5f3d8d5896b89286b72ccb7fec56f0e4dd02f998"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/colorful/DESIGN.md",
+      "size": 1531,
+      "sha256": "e9105f6f674f59d06f879222ca4876a49e8ee5585b788fdf40bdd0eff76a9d00"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/colorful/SKILL.md",
+      "size": 3556,
+      "sha256": "424229021bf637b8267ea1fabebde7b7bd921324b9add51b444a7fda75020c7b"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/glassmorphism/DESIGN.md",
+      "size": 1698,
+      "sha256": "a9ab735bff17d6d2c37e18c10e82904dbe5cd13c26a16f68ae362aa941b9a631"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/glassmorphism/SKILL.md",
+      "size": 3787,
+      "sha256": "aa8057f8e81f8dafa63ef80e5dc4870b4b74229c552a4958623da5bf25fb7b76"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/levels/DESIGN.md",
+      "size": 1520,
+      "sha256": "a559f4d114cbefa1d2fb8c677aecbde8cf92e875a8750b294bdecd56464865f1"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/levels/SKILL.md",
+      "size": 3490,
+      "sha256": "48618f1c13088e6a3b7f3bc784d80512da1660ba9b232928633170bcafcbf776"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/spacious/DESIGN.md",
+      "size": 1550,
+      "sha256": "afa9cd648719e70870153485b8a3679f3fa0f76812d35abbc8fcc2c52d8063dd"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/spacious/SKILL.md",
+      "size": 3930,
+      "sha256": "310641d55a579f0365439921ff5ed85c6c0583f1f69110009a1138a0fa816754"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/neobrutalism/DESIGN.md",
+      "size": 1553,
+      "sha256": "ea1d894156d31c284564bd4708e5283daac514ba97c24f8553a7ceca6a0f5e1c"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/neobrutalism/SKILL.md",
+      "size": 3388,
+      "sha256": "a192e7b45613a95bb8e21931ad86552b0531b111d631d89e5c6a0b1f294f2c4f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/hud/DESIGN.md",
+      "size": 6812,
+      "sha256": "63edbd0d98b521e71a84d32ce7e982740247f5e148dd65d499ea78b9919fcfaa"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/hud/SKILL.md",
+      "size": 3925,
+      "sha256": "5a005dacd5a414c88fa1c03d826655bc21df6d3021f0659e6ffb3211806eb625"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/publication/DESIGN.md",
+      "size": 1558,
+      "sha256": "8eb6555aa4f4fad2dbbd899b85c645cc1f99cde48d8620237fb51429e276b3ae"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/publication/SKILL.md",
+      "size": 3897,
+      "sha256": "7751784cf72081e3edad4769cbb242f7145640e42c490f9633d6d27490691ac9"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/mono/DESIGN.md",
+      "size": 1617,
+      "sha256": "ca3ba0e0253f1f90eebac665a810079e04ebf44972623ef117a7d114c86b5304"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/mono/SKILL.md",
+      "size": 3786,
+      "sha256": "0b7355923e5898e85143126124249d6b75bb813a2773d498e788f1e1c8193bd9"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/parchment/DESIGN.md",
+      "size": 2911,
+      "sha256": "0e8be4fdb7521b10e0aecb6e1f6a2dab8a55ef0e3ab3a9813b2290ca42116e72"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/parchment/SKILL.md",
+      "size": 3560,
+      "sha256": "ef7b720b46fb7441b67815eca0024fb6243fceab14700184f9d3e129c35d0244"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/contemporary/DESIGN.md",
+      "size": 1561,
+      "sha256": "0ff67eab889994601797627fb1972f00f370d6cf244c50286c82e4384e445afc"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/contemporary/SKILL.md",
+      "size": 3678,
+      "sha256": "c9ec1b665d8b5df2eba4875319c46ebd8308de86b0e7701905ac6097a01fa2a4"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/retro/DESIGN.md",
+      "size": 1558,
+      "sha256": "465c7df0a92b6a8ff496fad28650e4b8fa8d685bcdc04d9219e6cfc0673a695d"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/retro/SKILL.md",
+      "size": 3367,
+      "sha256": "71cedf74925dee90d1cf529611ddd9ff2a39c2f16dc3090ee284c7c30ba046d9"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/creative/DESIGN.md",
+      "size": 1538,
+      "sha256": "109446db74faac76602c1dd3b787a8d1fc45de3b27cc6297776dbdec5bcd2f0b"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/creative/SKILL.md",
+      "size": 3400,
+      "sha256": "adb696038742d16f44e44d4873f9b802d05d2cd9ae7ab5e3ac1024af9670380f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/mission-control/DESIGN.md",
+      "size": 12961,
+      "sha256": "ef01d8d00dd8cf417d4250b7af77f98566015730b95d61c9cc8a19ba2f6af272"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/mission-control/SKILL.md",
+      "size": 3957,
+      "sha256": "f9d88830412dc844143868b1dca42cae7ae6cf7c25d7c67513866fdba66f7f3a"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/storytelling/DESIGN.md",
+      "size": 1573,
+      "sha256": "4f08bd3d22f3ae132e6a1c3a54e1a6ba2e5ebeafae92df9624c14bddbcf49475"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/storytelling/SKILL.md",
+      "size": 3635,
+      "sha256": "9d0c58fb57697e004fd2fdb7bbcf784e698eaa291c45bd54a4af8f7d7f362adc"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/claude/DESIGN.md",
+      "size": 1584,
+      "sha256": "060840173d4fbd26c8a9342d618eef94a1dcd19a6e9d0fdac193ef855d90499a"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/claude/SKILL.md",
+      "size": 4220,
+      "sha256": "19822c37ce8f4b89470def80eca6cf588fbd13f0444f89520c3d0da9f91c1548"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/skeumorphism/DESIGN.md",
+      "size": 1554,
+      "sha256": "8f289a6e9b1f688aa68f03598dda12a22ff5b90da1ef84d46300979a430aaec6"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/skeumorphism/SKILL.md",
+      "size": 3552,
+      "sha256": "2071b717d1c97d2e39c98b8bbdd107c408f7fb659460d1856fddcedef155bcb0"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/matrix/DESIGN.md",
+      "size": 1530,
+      "sha256": "ef8e84d5ac0654f3043854b790028abd51f8c83a5a2a7c0dcc37624223f33246"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/matrix/SKILL.md",
+      "size": 3826,
+      "sha256": "699ba27d74a39c4f752f88e0160c511bf2624303779c6f9a805db7b2c0e2e3fc"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/fantasy/DESIGN.md",
+      "size": 1552,
+      "sha256": "57b22a56e861727d8fff4ee5470528df20bf176e0555f0b079d427fef5127fa2"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/fantasy/SKILL.md",
+      "size": 3396,
+      "sha256": "15cf65a5840f21d905a413e1c233e187650a63a3aed4a4c78e6f528fa451dc41"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/paper/DESIGN.md",
+      "size": 1526,
+      "sha256": "c8ef3a4186843a9a27b25df971516f59c286713e8bea8f7ff3478431892b503c"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/paper/SKILL.md",
+      "size": 3382,
+      "sha256": "699fe7970cae2b9cb786da0fac4a2d0dea5506bdc6b91376dfdce2d179264406"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/flat/DESIGN.md",
+      "size": 1536,
+      "sha256": "6caf0d5dd47c3d5fe49eb5ea457d958864d239c01678c22e92463332c254c048"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/flat/SKILL.md",
+      "size": 3912,
+      "sha256": "a1c7b6d33192d434b581b87c7ecb9692cedb238efe93eea6ddbf9616785ec471"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/premium/DESIGN.md",
+      "size": 1524,
+      "sha256": "adfebb15edcb33a45a0931f6a56d5182b5c33244a4d574dc2d19c51ae5486d70"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/premium/SKILL.md",
+      "size": 3366,
+      "sha256": "d58d8ec50a12d48e017bcffc5f52e00ad694bf5640708c816efd4a31705af161"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/elegant/DESIGN.md",
+      "size": 1534,
+      "sha256": "9b04641f0f74916a8619f5935c6a1a0195a1b75ab6adaf88ee64010a8684ac17"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/elegant/SKILL.md",
+      "size": 3365,
+      "sha256": "70389712e4eff8090fd07dd9939be94734aed6096a662955bf1231f626fd167b"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/vintage/DESIGN.md",
+      "size": 1481,
+      "sha256": "611536ca890aa24010c46a6d59b082b6023e40a94b9158b5fcbe03765838ffdb"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/vintage/SKILL.md",
+      "size": 3517,
+      "sha256": "4581e10a639b4f21c8a5f200ca028c444d68e37fb4edca11e5780e33ad45e13f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/ant/DESIGN.md",
+      "size": 1587,
+      "sha256": "4ea44a988dce5032d6d527ca29e156cdb1a37f14ae7599bc6578ecfef2710b79"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/ant/SKILL.md",
+      "size": 3821,
+      "sha256": "fc41a557d73e0d1e099eec8968e20553d08882018367343078e0b7aca9e02bf1"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/application/DESIGN.md",
+      "size": 1603,
+      "sha256": "a36acae80e477a4718282c87a70fd772d709eeec9b92d2fd71ce93b8d19f63bb"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/application/SKILL.md",
+      "size": 3878,
+      "sha256": "5b53817c25c89dcd52799f6d422124f707435239ad2c43d027481f362ed24b8d"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/refined/DESIGN.md",
+      "size": 1564,
+      "sha256": "bbed81ff40bf4b49c2948ab4c9b2cd048814285ad51a577778135aa3206b386f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/refined/SKILL.md",
+      "size": 3392,
+      "sha256": "36f95c9915d43835ecfecb4cc6aee0bbd313655572b7e910349ee1ac94dd2d71"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/bento/DESIGN.md",
+      "size": 1543,
+      "sha256": "d71e545da4ed6cf15b762d2b745aba445344b86a4a0238b65cae12783b1a0b84"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/bento/SKILL.md",
+      "size": 3511,
+      "sha256": "1bc7bc1f8df4effd6053be2255bf640e4ab036f477af3e42f8e5321786fe19f5"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/default/tokens.css",
+      "size": 10963,
+      "sha256": "af18264f698dd2ee30f1227108fd7dee9eb94d08aaa2570d83a5a5bb85d0b321"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/default/components.html",
+      "size": 18979,
+      "sha256": "37a3144a10eb89e143b336902d2c09a209459f52b0b94e9bff7accf238242fc6"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/default/DESIGN.md",
+      "size": 2839,
+      "sha256": "aeba1b5aa9db00f7e08616c0ffb2ee3408ff96edaa2fc26709743eecf13045d7"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/default/SKILL.md",
+      "size": 3912,
+      "sha256": "4f39fa1704de9191f1b8027586ef8988cf1fbd45d8e3ab689324e07d62dc92b9"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/dramatic/DESIGN.md",
+      "size": 1484,
+      "sha256": "1c34081f55b892d54092c49ad60331139cac5227db5d2d2da2ad1662e03d2acd"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/dramatic/SKILL.md",
+      "size": 3522,
+      "sha256": "0eef30bcd6617725e7b4b71b5a03cc555945e2d5785870ca8eec4f9756b15e0f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/cosmic/DESIGN.md",
+      "size": 1445,
+      "sha256": "9a1e8b2003e52906eae15ba427032eedb99f68fb7a15ca63b6e183d2d90f9d67"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/cosmic/SKILL.md",
+      "size": 3447,
+      "sha256": "3393c8503fde6f922b229d86c2d587df5e14a6f5ebabc8527ea8157ba9ae58b7"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/neumorphism/DESIGN.md",
+      "size": 1620,
+      "sha256": "173b515779ea215fe6b27eb19e742003ceabda29caae91ae94accb76dba58665"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/neumorphism/SKILL.md",
+      "size": 3794,
+      "sha256": "febede46065b3ff832f37dc73ee424276825ae83fa228e7cab9ce60e724433b5"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/corporate/DESIGN.md",
+      "size": 1570,
+      "sha256": "be7707ec9ffb9fc3d4149d6b8d686e4bb3a60b77a974fe91c2263f6859cfd991"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/corporate/SKILL.md",
+      "size": 3968,
+      "sha256": "2e4acf8cb18622e121b44d0b010c6c539dccd9cecc06b9c8c8767bee40f928ae"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/gradient/DESIGN.md",
+      "size": 1563,
+      "sha256": "bbbdee75dca2eaa355343bc7fe3050c12fae0442657a30be3f04fa969d3d0f7f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/gradient/SKILL.md",
+      "size": 3471,
+      "sha256": "384734c2c5b049206985b8f5df16dc58e6ed750d0fc97cc14d6e25fe34e5340d"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/atelier-zero/DESIGN.md",
+      "size": 13645,
+      "sha256": "e915f4b9250aeb324fae761b544d04f057572e35a935c4eaed42fb1736c87b25"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/atelier-zero/SKILL.md",
+      "size": 3871,
+      "sha256": "2ca337cfc3f908a81187c94d33ddb98d3d7f560002107b4ac8cb02f737d67ba3"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/codex/DESIGN.md",
+      "size": 1545,
+      "sha256": "ec176bf5e0c421a4b04cb296d31d0b87128a2802f1ae3f9fe4d26aa63a5d029b"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/codex/SKILL.md",
+      "size": 4052,
+      "sha256": "cfbaf5bc5ce1690dc58f5fb0df4a0981889ee22e68fee7d49e2cb81793a9b501"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/tetris/DESIGN.md",
+      "size": 1586,
+      "sha256": "2fd9e5a0df3eeef07da897ab56ea67c8b7fe8073b5eb6d411a8fd6cd216d2519"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/tetris/SKILL.md",
+      "size": 3423,
+      "sha256": "d0e0c8ee0e1ae37caa395a02d17c806528d527a310fe5fceb25f528c6ec85618"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/riso/DESIGN.md",
+      "size": 1530,
+      "sha256": "3c069dc38d8d7c052914828f871fcb4575fb0ecf924e8c51d688bcfdcde15a74"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/riso/SKILL.md",
+      "size": 3641,
+      "sha256": "eccfb1b3f6b077628faff47644b727de0a95ab39fd3a0b89c2605a8b6c41aa01"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/fiction/DESIGN.md",
+      "size": 1547,
+      "sha256": "773fe69bd83141e7bfcc4aecc2745b1214812dca5b8d7c5da00611e8a30c203c"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/fiction/SKILL.md",
+      "size": 3819,
+      "sha256": "cc71b9a48884bed6d468a772fe4bf62b93f584d7b196e9ab62f72008e5a64867"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/minimal/DESIGN.md",
+      "size": 1557,
+      "sha256": "6c3f010e0714593991560a8920f4156c877dd2419066d7f999dc0a9eca1f10cd"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/minimal/SKILL.md",
+      "size": 3387,
+      "sha256": "25d9d5cfc7fdb7ab7854ee039ae88d87e8765ad98cf940c57444adea396e9490"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/urdu/DESIGN.md",
+      "size": 27551,
+      "sha256": "5f081207895f86e1c874ff11322ac1aeec62efba1a18af1fd1592ce33cb414a2"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/urdu/SKILL.md",
+      "size": 3918,
+      "sha256": "b8cd1d51be035a0850c8309dfbbbb0d3ce792d34a8379f888b94e30b18fed9a6"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/sketch/DESIGN.md",
+      "size": 1600,
+      "sha256": "167bc4feff221da398a723e6d4ab0652be6002b977e27c3ce45473c6c4a94a0f"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/sketch/SKILL.md",
+      "size": 3732,
+      "sha256": "abb05d384f8f2410e81767c1b03f289d085b9eef6807a9a9a90176d01f639902"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/material/DESIGN.md",
+      "size": 1542,
+      "sha256": "726023c1de5bd947c113e6278233dab4187c95bf4c30a6f5060d56992ae919c1"
+    },
+    {
+      "rel": "skills/design/design-systems/style-skills/material/SKILL.md",
+      "size": 3675,
+      "sha256": "4f33ec6d758b5269f50e2cbc75049894ab0142c3bdf3df05147438d0eba6fd7e"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/together-ai/DESIGN.md",
+      "size": 14768,
+      "sha256": "8780521caa0ffb7725bb3d05eac6a0f849345fba8fea9bc23af51df7b2d5aecf"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/airbnb/tokens.css",
+      "size": 14846,
+      "sha256": "7ade196b3f8d5d968844094950e0612460c12543861b0eea29e41e453d3511b6"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/airbnb/components.html",
+      "size": 57003,
+      "sha256": "c14679dc85e48335f85e7625c679fafa3b252b100d1d237a971f33b38b59e62b"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/airbnb/DESIGN.md",
+      "size": 30505,
+      "sha256": "139330ac64c0bb48857c73140f62228d371a7b886e4e644a42529ba720820de4"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/spotify/tokens.css",
+      "size": 8005,
+      "sha256": "d3e41ef3e2fdbff7e4297aa75b0780c1bc7e52691291765f99b7c4238ce0ff87"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/spotify/components.html",
+      "size": 14220,
+      "sha256": "88ed7dedc553810e4685bb29a890d580ee7c30e80f5a8adaef7296ec4b4a04b4"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/spotify/DESIGN.md",
+      "size": 13463,
+      "sha256": "dd0c6b1b57005d4e6cb05a95747e09746e04106843510dd8dcf43b7c2339c168"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/ferrari/DESIGN.md",
+      "size": 24351,
+      "sha256": "28ce18221dfa42cf433edfd0c10bf40540c1c69a4c3da21857c542d1515910f0"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/expo/DESIGN.md",
+      "size": 21646,
+      "sha256": "4fa52465f6545d2ef6cb259f47794d794beca77c03357de6f9f05b9d6c2c7f84"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/voltagent/DESIGN.md",
+      "size": 25892,
+      "sha256": "e35beab996b05bb965acba4d0eae3adf63ff083da9635c0a396e26f5b5ccf4ba"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/clickhouse/DESIGN.md",
+      "size": 25972,
+      "sha256": "484bb20dc8b2f387b2cd09e0f95b07975a3d438705a3ee586b15e4944d2c62e2"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/kami/tokens.css",
+      "size": 14850,
+      "sha256": "b1b5d380f9c0b19c7b86e4a89bc9de1d2dbe81bac72da46c4cca1ee418dbbde5"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/kami/components.html",
+      "size": 23087,
+      "sha256": "b26b7f2aa817a032c78b299a7c0ce3dcc67cd3b52e4fa60c1b1d83849a72b187"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/kami/DESIGN.md",
+      "size": 22666,
+      "sha256": "8b149d8a8ec94ae5763ccbb38804b76d4fd0bf32b7f46f1cc5cd5046a7243773"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/cisco/DESIGN.md",
+      "size": 11586,
+      "sha256": "66da83e0719d12293c6dba72c6d4efbbd99b9f57155b9d92668e085764e1c114"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/x-ai/DESIGN.md",
+      "size": 16709,
+      "sha256": "3f8f84d34602fa150adf3ec72f84ecf44eb0f1298824efa3326d5bfcbff965ee"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/elevenlabs/DESIGN.md",
+      "size": 20931,
+      "sha256": "b6d6e98f0f846ce13fff3469ab188f24d103befb1425f4242a3aa8b614f008d0"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/webflow/DESIGN.md",
+      "size": 28156,
+      "sha256": "9829eec4202dbd9a881aab418499407b9c0d1dce700504a1cbc3809ecfe2c5c3"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/bmw-m/DESIGN.md",
+      "size": 30683,
+      "sha256": "5bdd8f28fae27144035839cb10f12f17b22b70a895cb1349d82299bc9e97d9a3"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/composio/DESIGN.md",
+      "size": 20592,
+      "sha256": "925b7f8bb9217886a8733106a4667e5bddee626f663a27d3e126ac21d319470d"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/wise/DESIGN.md",
+      "size": 24563,
+      "sha256": "41f140fe1bd9a56863a1df9a1d117f401dcef8f7e9e07a1e87882f1f4367a890"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/mongodb/DESIGN.md",
+      "size": 32063,
+      "sha256": "c3daea0d0756909358cf805e90c148e307ed856b99ae01fcd62944f3de6af514"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/x.ai/DESIGN.md",
+      "size": 21758,
+      "sha256": "c6fc430867a70a8cbbf120696f98ab0ccb93f05c37813d494845b8d7ab7a1a95"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/lamborghini/DESIGN.md",
+      "size": 21622,
+      "sha256": "85eaa1c42fd09d23928e1961e778e4781c7c5ef7bfef30b678fcdd64016bd1c2"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/discord/tokens.css",
+      "size": 7606,
+      "sha256": "d3519fedf89a9eb08430d93ea6fd36aa712a673c4fb1140881cd4e12251cb9df"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/discord/components.html",
+      "size": 13366,
+      "sha256": "143e619a0134eb09d51e3e61431a55135fb98007941f6ebb471a55812a979b16"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/discord/DESIGN.md",
+      "size": 7775,
+      "sha256": "3da27725247f9dc3b7fdf3e8e697cbf137556ee068533388012dfb1d96290078"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/vercel/tokens.css",
+      "size": 15923,
+      "sha256": "a2482c4941094e1ee2b9ba2698427510f843681b4c3a4ed9ece81a92f9f3173c"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/vercel/components.html",
+      "size": 33451,
+      "sha256": "8b5b55c4a786472a87373d0c7b217e035b0b6bf7fb7f2bc96b43fc03d1ed1d32"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/vercel/DESIGN.md",
+      "size": 41382,
+      "sha256": "db84ede405d99d7fafa44288c912036649962451d71b09103d76b2f788d6fb01"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/arc/DESIGN.md",
+      "size": 7226,
+      "sha256": "fc95f0e000169fce09bd47e4e1b1c596c674aad78fbf2280e3d493b28dd7154d"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/cursor/tokens.css",
+      "size": 13017,
+      "sha256": "6dac6685f91e0dbb262f3fe697442ebaf0bc86c6a8adc7a4915981f7cb3d94aa"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/cursor/components.html",
+      "size": 25145,
+      "sha256": "cb0690e99786c8d9c6a061b21ec11324bf1111de8163218a5d297c133f907257"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/cursor/DESIGN.md",
+      "size": 21757,
+      "sha256": "a3701b17cc170384cf3921cea478e84f0706c5640f3849eb2e0c71220bdda84a"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/hashicorp/DESIGN.md",
+      "size": 28007,
+      "sha256": "d72244b8f6d14c134733106141397d3d1a76443e715c16b650afee2d39d335b1"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/opencode.ai/DESIGN.md",
+      "size": 32631,
+      "sha256": "b2b4e1cb465ce43221af95b17e7ad89de2b8faa96d8762997579f9ea157c739d"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/kraken/DESIGN.md",
+      "size": 4769,
+      "sha256": "fe253063f6ab1ad04df08254d40bf160ad96ae83e9902be12863187db81df1f1"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/posthog/DESIGN.md",
+      "size": 40482,
+      "sha256": "11f48a3e48d5e4dc548501e84157c76925a02ff4e970040bb07248082d285b68"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/perplexity/DESIGN.md",
+      "size": 11857,
+      "sha256": "4d643102189f3e34a5d720c9aa25ab1dd343478a310b8563cf8a38a982434c66"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/cohere/DESIGN.md",
+      "size": 20006,
+      "sha256": "962f137c2612135e70479048ab1697c91d2e112817bd5ff9a4495fb7cb2c5bf0"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/replicate/DESIGN.md",
+      "size": 31479,
+      "sha256": "0acdabc7e6356a3e984d762c2f7dfe9a667c0c0d8ef65d47a2c35d9ee8e7604e"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/vodafone/DESIGN.md",
+      "size": 28083,
+      "sha256": "23c2352a5938c809cc59c28f18c27f55859c799462fbac2a7bf37839c6ccc6f4"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/supabase/DESIGN.md",
+      "size": 21292,
+      "sha256": "7de4019aeb5dcddb06d0a8f43278ec5fdf49dff44a462cd1d9dbd88bce04b641"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/framer/DESIGN.md",
+      "size": 29103,
+      "sha256": "846df812b363df5694995961f26b6d7b529d87f95659d5fcacc2e721e95c7828"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/spacex/DESIGN.md",
+      "size": 19657,
+      "sha256": "480f79b044b3a7a0042ff3e873ef732108a271ee0a2ce4857b0dce3f1a95b5a4"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/ibm/DESIGN.md",
+      "size": 26465,
+      "sha256": "fb6672e8cb559326df356559f636ff1607287de62abb6fccf8509fed38329592"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/lovable/DESIGN.md",
+      "size": 17703,
+      "sha256": "61aa98739b203eb80c5b0cf9a7ac875a38753ea9a7325b3b6c2de055555ef6c9"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/cal/DESIGN.md",
+      "size": 31162,
+      "sha256": "31d03dd868ad98f29b47ec35b8e3e6e0e7efacc40db8b5e2735ae7b3b7afbd23"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/raycast/DESIGN.md",
+      "size": 40296,
+      "sha256": "eaa3f7240e4c2838cf270a19caced2d7773e566c897614f2f6af7312b4e999ba"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/opencode-ai/DESIGN.md",
+      "size": 15978,
+      "sha256": "34a6077fbcf7e3b645f8dd5269eb0eb508f9f614a75f4b241462f1dd5858953b"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/airtable/DESIGN.md",
+      "size": 35252,
+      "sha256": "0e99ffb23a72e4e509366e170f28e966ffca75e3a914c93190a491d16771d1eb"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/playstation/DESIGN.md",
+      "size": 39750,
+      "sha256": "2045537c7cbf5e67ab9b6f0ad229b6e6b0e28b3ead6c768956cbd88deab419d4"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/shopify/tokens.css",
+      "size": 8560,
+      "sha256": "a886c171e7675db1696caa95d589bc7c07cbd29459bb65a1e53583b90c5f4234"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/shopify/components.html",
+      "size": 13107,
+      "sha256": "6d70a3b5198d932c3fb70990cf067c881414af97cc0a2813c6dde714c898c263"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/shopify/DESIGN.md",
+      "size": 27044,
+      "sha256": "ed523dbe4316d433e24aaec7af7ef330c59d9bc47a9de267c0b483e111b345a7"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/binance/DESIGN.md",
+      "size": 39904,
+      "sha256": "c29aeab468639963142b8d89dafe66e6542d5e5dd11ba43e91157baba1570f95"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/notion/tokens.css",
+      "size": 7747,
+      "sha256": "badeeb645158ff0c6ee1669467aa199a9bf3659a07b0b5adeee062212072a9f7"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/notion/components.html",
+      "size": 17519,
+      "sha256": "4db11caedbcc2be1285531e44496d283a2d06d34911ae9808ae9ef8da69be98a"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/notion/DESIGN.md",
+      "size": 35162,
+      "sha256": "f7a2a1a6df9b04e74b373e981cc4f7e3091429f1dc511240540eefc882410ed9"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/github/tokens.css",
+      "size": 7748,
+      "sha256": "1f0e46362f7e1505a9f9eb5d01f5961e3af6678c15fa990591327cd251cea7de"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/github/components.html",
+      "size": 14383,
+      "sha256": "dbc8c8dcd1252ac9cc463d69c41479e674685687065fe6015b7d38d3cc1cffc9"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/github/DESIGN.md",
+      "size": 7610,
+      "sha256": "25bca75f3cc415f35862360d7535fa2603588f9b3c15cae092960b1f1b7e8631"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/ollama/DESIGN.md",
+      "size": 32731,
+      "sha256": "1aab35abb93a43128b1f3d94c5b5ff8718e7c38fdcdc84ffb859191779b92643"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/apple/tokens.css",
+      "size": 16748,
+      "sha256": "656eabbaf792e1614e13ff59336992c4ef0a5622a2ca3e07e13902ce0cf84370"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/apple/components.html",
+      "size": 29086,
+      "sha256": "3985119f3478a7cc11511ecdbd4d9c4e33794d0f7d648d57a190090a7499ec4b"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/apple/DESIGN.md",
+      "size": 37082,
+      "sha256": "cec087488b0b0d52ed9424d7eeb6058f2325194156cf48aec3df909c90abe1b7"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/claude/DESIGN.md",
+      "size": 33574,
+      "sha256": "a7f5b3e438e83edf8a992644181634f4db1accdc3f62c29a8d40cc08a46e254b"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/stripe/tokens.css",
+      "size": 16738,
+      "sha256": "8f06dc8a3fe1c55b6f6a86c8a0cefb0b27d9c7d2a75ecf7d0984c8dbf9183492"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/stripe/components.html",
+      "size": 39558,
+      "sha256": "259b11d5a926ac29bf080af274ca577f53e693731552704c514dada91de4c048"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/stripe/DESIGN.md",
+      "size": 24583,
+      "sha256": "ace9d734abb4b2761d8c555b69a198a23dbc7867105093e5ba5d1e4f5917173e"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/mistral-ai/DESIGN.md",
+      "size": 16086,
+      "sha256": "7b6d6f1ce92cda218cbd3f937acb03daac58889fb054865fe94db24ca14f2cd7"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/resend/DESIGN.md",
+      "size": 31445,
+      "sha256": "adc5ce75f1f78cd82790633c5a47e4619704c2b90ae4677e4852938307aa3f66"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/miro/DESIGN.md",
+      "size": 36528,
+      "sha256": "d983b731248e55d6db740bebd53080f83a2c47bba31496c890d60ebc70ccffba"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/sanity/DESIGN.md",
+      "size": 21680,
+      "sha256": "9cf959edd53140aa3bd047f26d445a75fb52419d2451fc2633b3d50f608ef47a"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/revolut/DESIGN.md",
+      "size": 32018,
+      "sha256": "4307f51490c857d08ba51eb3b1a3c9190b1c0bc4f3c69f8aab220cf776b47203"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/mintlify/DESIGN.md",
+      "size": 44069,
+      "sha256": "2912a52d1e01947ecacd09c58a456797e76c197ab210164ce3fafccedbccf03c"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/renault/DESIGN.md",
+      "size": 30060,
+      "sha256": "1317fe52ab6069656228babc60a50bb2477471f3cdfa47d56e8a6ce365e87821"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/openai/tokens.css",
+      "size": 8078,
+      "sha256": "e9a7a05bcc5bd698f43b62d9c9a3eacc135f20cee8ec9b6e433f0a8766131fec"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/openai/components.html",
+      "size": 14395,
+      "sha256": "7ee5d4c7ca8f4ae64c480fa040dcfe41947d916c8bdfdd0ba066dbfaeb7b26d6"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/openai/DESIGN.md",
+      "size": 6914,
+      "sha256": "bb3665484e5d687436714c183b2408a6c4cbd0c2ce7cad6debb936c79bce1d35"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/duolingo/DESIGN.md",
+      "size": 6955,
+      "sha256": "4ea64f8c919212052ae052d231573d7a6c9bf7e919e146271c23d121d8d90aec"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/meta/DESIGN.md",
+      "size": 37972,
+      "sha256": "827bc16d8b43bc14abb0ac2b7599e1e34a6ff1fcc50c3fdaeeca0345fd2ad031"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/webex/DESIGN.md",
+      "size": 10789,
+      "sha256": "08fb682025e14e198074fce0ab84c2f783049248415ddaaa855843b0fe73ae53"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/theverge/DESIGN.md",
+      "size": 28808,
+      "sha256": "7d38bf50859dbf3621adacf171b2f195708d9f5abdc49e7056dafdbe1df3ae97"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/starbucks/DESIGN.md",
+      "size": 37787,
+      "sha256": "15f99626302dcd68df122338a9e1ef327b6f9fe3bd1c29f104b805555c0d60f8"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/zapier/DESIGN.md",
+      "size": 22972,
+      "sha256": "3034ffeea371488d78d1bfe4708f398fa6720ea9bc2cdee6627d61fccfa6c386"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/sentry/DESIGN.md",
+      "size": 35421,
+      "sha256": "35e26f8e3ce79b9d28bf35b89ccbb9186bbf747a466a8f8885e1d5936525e4b2"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/coinbase/DESIGN.md",
+      "size": 25839,
+      "sha256": "37111a188a92ee74126992f2f82b628a4392010ab24b14e619efe7775ddeb218"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/intercom/DESIGN.md",
+      "size": 23262,
+      "sha256": "1bd4ddddc0ef470faf05b14573d2e66836ed44d4750c872d32884fb78989ebdd"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/tesla/DESIGN.md",
+      "size": 22652,
+      "sha256": "4542868f82aa62ca769b577c6fe31a6411a1b62464480ede84125279c24bd610"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/clay/DESIGN.md",
+      "size": 25691,
+      "sha256": "664578d508d4b7c5db57d9cf02b4ec8dae879101e07849061bfd222446c5e72c"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/slack/tokens.css",
+      "size": 7590,
+      "sha256": "805e01cb0c05e2b591d2c6fbcf065a17075048cfb880719f543f92dbd0e89c6a"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/slack/components.html",
+      "size": 14284,
+      "sha256": "ac5a8fdc317156ac1f36a7bb4636ddfd8e56ac7e3b2b9a2bdd6821a503130208"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/slack/DESIGN.md",
+      "size": 24506,
+      "sha256": "fe519021b95f1fb81bf9c8d6af945c021037d65b1834df27379901123290a657"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/xiaohongshu/DESIGN.md",
+      "size": 25669,
+      "sha256": "936e4ea53bf17755fe5655218ff1959c2d86a6deda5059e6cd4791a8635d21b0"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/wechat/DESIGN.md",
+      "size": 6694,
+      "sha256": "5402e8e9f24052f0d7a85a4ca4a465e777fb55bddf8bd7a9895783b2a55c2dac"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/loom/DESIGN.md",
+      "size": 7831,
+      "sha256": "972e33cae1ff9b6da04e1edbc13d9fbe855dc149d0af151288d05285215717b1"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/superhuman/DESIGN.md",
+      "size": 21854,
+      "sha256": "2796cbd9e850ded690b3fdec91c53cdf3e81fa2fd8b42935f7ff2e635de45eb0"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/pinterest/DESIGN.md",
+      "size": 36376,
+      "sha256": "1c2a57d07bcb3eaf1f1eb92949cbe5b166ba6705ed8d55ebc17538c2ccc39042"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/nvidia/DESIGN.md",
+      "size": 35575,
+      "sha256": "1e16ff99df8fc734b74d80e787e22afa39954b372dff127d7b4d91ccde18d74f"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/bugatti/DESIGN.md",
+      "size": 28521,
+      "sha256": "c62ec50e142f9883c332bde9798bfc451e8581680bf98e9df17bd9c57d6eac84"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/huggingface/DESIGN.md",
+      "size": 6964,
+      "sha256": "e81070a358967e80389a0406bd3a88802461ad9032c54e7ae9c090387a51efbf"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/wired/DESIGN.md",
+      "size": 23638,
+      "sha256": "fcd7d44f8e4eea084a08ac08e978f62d7daad88acf9c7045309108984cad87a6"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/nike/DESIGN.md",
+      "size": 36681,
+      "sha256": "b5da8d046d89d28ad8e84dbc2522eff745ce36ff38545953170e781be600e397"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/figma/tokens.css",
+      "size": 7478,
+      "sha256": "0a16542ee227243d48270cfd58135347517c0ede3caa00f7ee0d45fae1339753"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/figma/components.html",
+      "size": 12989,
+      "sha256": "8764d06119f6ec43c6373ac1a0d6d02577088b8a3fbdbe8ef850301ffc07b86d"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/figma/DESIGN.md",
+      "size": 32300,
+      "sha256": "9732337f9c48ba3e1b484d52c031c50893b564906e35190dcce95111ee3ad1f0"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/canva/DESIGN.md",
+      "size": 7018,
+      "sha256": "586b2958f0bae713a561b76b94b9e3384c8983c174fbe843a11dcf6446b61fce"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/runwayml/DESIGN.md",
+      "size": 14837,
+      "sha256": "fcd2e199fbcba3c02e1ec7154e46395fe75932543394c6fe0c98f4a16f2ec8d0"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/mistral.ai/DESIGN.md",
+      "size": 35496,
+      "sha256": "b28dfe113fd87527bc62748f1f61eeb665f44857280c5317e97824e64494d6c2"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/together.ai/DESIGN.md",
+      "size": 38320,
+      "sha256": "f7892c2be53162326aec0448063bcaeeb3f08497a911f5cd62b4e13e51f82e44"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/bmw/DESIGN.md",
+      "size": 27895,
+      "sha256": "0a3d5c3639f05a8bbc469199822015b39dafed327af743a7d16cd239c19e17a6"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/minimax/DESIGN.md",
+      "size": 37906,
+      "sha256": "fd781158514aa370abd9ac7acda2263fc6caab2582a692282317dfc85751b279"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/linear-app/tokens.css",
+      "size": 7857,
+      "sha256": "9f99cf1b4b799f1871b742542a56fc9dd8c9a179fc452c1e56e7b6e2cdfd022e"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/linear-app/components.html",
+      "size": 14586,
+      "sha256": "bc803dd553c1f967044b74be536cb040676502b53511cabd62ef2d265d33bf87"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/linear-app/DESIGN.md",
+      "size": 22968,
+      "sha256": "94ae29884d3593befe40ee53bfd52946f7e78d01871c7a4f423000621a76c414"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/uber/tokens.css",
+      "size": 8076,
+      "sha256": "451d98f0f5b328b1e1d90d41b9dfcedc2d63308633f9855724ec22fc42acc5dc"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/uber/components.html",
+      "size": 13256,
+      "sha256": "7d9dd9698e927e50ab3d529ce33fe1e543358c042c5757c0caaa9510fd1c6e35"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/uber/DESIGN.md",
+      "size": 34737,
+      "sha256": "ccfe79f3721b0344c0bff370f189ca26b5bb8d1bceefb5c1bd7db32bc32ac781"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/warp/DESIGN.md",
+      "size": 24415,
+      "sha256": "09ec12ede372800c5b47c8e6c730cdebe4a33d265462869e6f973a438967a9cf"
+    },
+    {
+      "rel": "skills/design/design-systems/brand-inspiration/mastercard/DESIGN.md",
+      "size": 27424,
+      "sha256": "7c0dfcccb745a034e6781cbf90067e9ea3b94c47c4993c783e6c9bf0bce456ed"
+    },
+    {
+      "rel": "skills/design/design-templates/INDEX.md",
+      "size": 15534,
+      "sha256": "a64c2923cb414c7ffd0b4091236f25e77d1f6f332c1c91a173198712ac5ff9c0"
+    },
+    {
+      "rel": "skills/design/design-templates/ascii-cosmos/template.html",
+      "size": 42830,
+      "sha256": "d450a05220d37772f8087139e08531c10c8469d896c4ad99b19253d982aa1905"
+    },
+    {
+      "rel": "skills/design/design-templates/ascii-cosmos/styles.md",
+      "size": 6213,
+      "sha256": "4941f91fa277f8005e6948106e676caf997aaf67b3c18531b0759051293cc537"
+    },
+    {
+      "rel": "skills/design/design-templates/ascii-cosmos/reference.html",
+      "size": 43526,
+      "sha256": "2df9d0e12c01de24aedc5213ca720bbb50e42edd0cae2c61948ac911861a276e"
+    },
+    {
+      "rel": "skills/design/design-templates/ascii-cosmos/SKILL.md",
+      "size": 17884,
+      "sha256": "b3656d9b523633ef47a58427d7502d65dde85be9ed0161730f0496238fb51e95"
+    },
+    {
+      "rel": "skills/design/design-templates/pricing-page/pricing-cn.html",
+      "size": 35450,
+      "sha256": "49270a52ba27acddb2bc9a393107510985b7292279d11326002da6483408086e"
+    },
+    {
+      "rel": "skills/design/design-templates/pricing-page/SKILL.md",
+      "size": 3372,
+      "sha256": "80e9500db649b4e70cf3f57673317d6a498e0e74a6425180b2664235dc4ee8d0"
+    },
+    {
+      "rel": "skills/design/design-templates/wechat-cover-pair/pattern.html",
+      "size": 14787,
+      "sha256": "058b722d510481dea7f4b1a7ecc535b703aa6fa996c3c6a6650a1397a0372616"
+    },
+    {
+      "rel": "skills/design/design-templates/wechat-cover-pair/SKILL.md",
+      "size": 2138,
+      "sha256": "c8976e26bdfee6ff35fd55720ec35baf0bad0a0169b3e92f55f9b1fdd490e135"
+    },
+    {
+      "rel": "skills/design/design-templates/riso-product/reference.html",
+      "size": 2759791,
+      "sha256": "ec407977ed8ccab3a9eb2f89711e311d1b44e2abfd9c1320a41dfb88a7e30e57"
+    },
+    {
+      "rel": "skills/design/design-templates/riso-product/SKILL.md",
+      "size": 14988,
+      "sha256": "9a7a8f06faacb99e83c75d112ed7b59233df771b6ebb92d665231252de662e5a"
+    },
+    {
+      "rel": "skills/design/design-templates/industrial-archive/template.html",
+      "size": 48319,
+      "sha256": "07de1f2527dc9a4d77604e933787e2cfac589af22927ef43720e40297f0d03ee"
+    },
+    {
+      "rel": "skills/design/design-templates/industrial-archive/styles.md",
+      "size": 4019,
+      "sha256": "1cf5923fa763849c1604400e4174072b87da2e19cff470adecea9a01333b3753"
+    },
+    {
+      "rel": "skills/design/design-templates/industrial-archive/reference.html",
+      "size": 66174,
+      "sha256": "012c83623020d951597ec090a44a0490929df582960fe77fbc478c8f343249c6"
+    },
+    {
+      "rel": "skills/design/design-templates/industrial-archive/SKILL.md",
+      "size": 13664,
+      "sha256": "fe4d2794256614533ed62864948fb87292fc790de32aea9cd20170156f589bf7"
+    },
+    {
+      "rel": "skills/design/design-templates/dashboard/stack-dashboard-zh.html",
+      "size": 293061,
+      "sha256": "95f448924658d0c12940c4e5514a6ab83d5f7c34adc07a426c009934b65c3e53"
+    },
+    {
+      "rel": "skills/design/design-templates/dashboard/SKILL.md",
+      "size": 5350,
+      "sha256": "42f4a42c8e33b9f5b386dbfb72b05825f0e2603f65f975927ebc0667f20503a8"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-map/pattern.html",
+      "size": 3696,
+      "sha256": "d23f6cf59a81e94fe35866f35ec14aae75964c749d2ec9543eb19fcaf18dcff4"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-map/SKILL.md",
+      "size": 2019,
+      "sha256": "db2ac64857d31be15867e77f67d2762691124e41f0fb97b240ff832148fa9b9e"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/social-carousel.html",
+      "size": 5452518,
+      "sha256": "632ee472d7a749076158104a6a7a1841c169a435054a7caca226c37b9aecd769"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/SKILL.md",
+      "size": 4117,
+      "sha256": "12067901dd30fa6cbc3ad6d1dae3299818b4163b2998989946c608981bb36141"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/index.html",
+      "size": 59882,
+      "sha256": "7fcb06efc057ae076a4261a1ad0dd380bf07bf3ea3e23457daa8a8145b74b45c"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-12-botanical.jpg",
+      "size": 288598,
+      "sha256": "ca588ddd81823a8b2fb55e123a9cd42d966948e99149282c4d89ee94be650479"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-10-urban.jpg",
+      "size": 187214,
+      "sha256": "3d7bc2899fc6b94dc3deac1b7b0473398d8e4b29c985f3800764f0d631083850"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-15-light-motion.jpg",
+      "size": 30693,
+      "sha256": "46170ad51793c111a0f07d8bb0ae7dac01f5aab5f6e61a7a2158430be4194a48"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-08-editorial.jpg",
+      "size": 188493,
+      "sha256": "818f086b1842d85ae21b488198105fbf84e22d446658a1854b69837ef701f431"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-06-studio-portrait.jpg",
+      "size": 72101,
+      "sha256": "1c526c509dd172f081a52343306d5d879d5825128e5e1bd06c65fb205f49f476"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-03-packaging.jpg",
+      "size": 152063,
+      "sha256": "2fa945fd7a0f136a093fd8d81104a1cff3ce3a9bc2a23a56c82e035a132cc555"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-18-magazine.jpg",
+      "size": 255772,
+      "sha256": "65739c75cd1bdd13cd2b783ad96aa7f211fd393d33b4a81c42d038f04dad60af"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-02-typography.jpg",
+      "size": 114254,
+      "sha256": "69a6de711aead0b4d1f957df8a3d7e6167f75e0751a0f0270b13279b688fa8c9"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-14-gallery-wall.jpg",
+      "size": 129059,
+      "sha256": "b2e774afbe9a348cc51b7b997033fa2452971560848fc4ce4eb5d9890561488e"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-05-brand-flatlay.jpg",
+      "size": 158788,
+      "sha256": "17a4b88b6726c77be580a9bcbdbdeec1e27cb4b2acd3c65a2e2ff01bab19deea"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-09-ceramic.jpg",
+      "size": 41250,
+      "sha256": "6b038092180c61cf0eae4889d12534cc8d9a908138063dd4ca87f48556c38778"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-11-ink-paper.jpg",
+      "size": 45743,
+      "sha256": "c220761febbf52e1c640fc96635c1285d5780819836b684a48ba38154fb3e658"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-01-color-macro.jpg",
+      "size": 172145,
+      "sha256": "00f63ab446115ef8e34e29550920da37f1f01cb848e9f4437bb44082072f45ca"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-16-interior.jpg",
+      "size": 55594,
+      "sha256": "7be7f7abe90e31cac239e59115ea438d26e13972107523fa8afba5f4fc1aa093"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-13-risograph.jpg",
+      "size": 45089,
+      "sha256": "1c4dae6dca233b8b7a2632581469f88f9f1287fca83b0031d1a83e50c3d69abe"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-07-gradient.jpg",
+      "size": 31769,
+      "sha256": "042cd576afbce37a186ff9b1e487803129661e43bdff0fd740795475f8be7252"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-17-color-block.jpg",
+      "size": 174431,
+      "sha256": "7d2513fe5fd0579751a260d85c5c70aba36b77e2031b5a022da0a9190a633c10"
+    },
+    {
+      "rel": "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-04-paint-stroke.jpg",
+      "size": 135183,
+      "sha256": "ce26154e901c8b5fa05e6b71daf2257350171d7c68252612862eef6da2eacc69"
+    },
+    {
+      "rel": "skills/design/design-templates/xianying-tool/index.standalone.html",
+      "size": 11534213,
+      "sha256": "62c3d59b43e03c42d8bb77a7d75cd3eadd6c5bdfbabbd603260fe84e4dbe58cc"
+    },
+    {
+      "rel": "skills/design/design-templates/xianying-tool/SKILL.md",
+      "size": 5548,
+      "sha256": "4f0b9ca7202ed1c552b5fa301ca026d7ef98821588432b683d8ce29321922875"
+    },
+    {
+      "rel": "skills/design/design-templates/project-brief/SKILL.md",
+      "size": 3635,
+      "sha256": "4e019b45ac369b30c4b0e22b1e1f194175005427e63aefa0436562e6e267439a"
+    },
+    {
+      "rel": "skills/design/design-templates/project-brief/清言周报-VOL18-notebook.html",
+      "size": 30842,
+      "sha256": "3539983572f46572f46b8fefe4ebfe17f154b4af1f4aea5229e7bb812ce75be5"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/pattern.html",
+      "size": 30311,
+      "sha256": "765665065f7d52089f182ad6728a80bed6c114013a01f0f001265badd95bf229"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/SKILL.md",
+      "size": 2600,
+      "sha256": "e0bd53a9caf9ca297c68c86bfa1b0ea2464f8f9fcce4afef0823a31b21fb176d"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/assets/magazine-bg-webgl.js",
+      "size": 6200,
+      "sha256": "bd446bda0ce32e3e420499ba017631eedd1c226bac39e498b1c49ac40090fe17"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/assets/screenshot-backgrounds/style-b/ikb-dot-gradient.webp",
+      "size": 385692,
+      "sha256": "d0c43b937f1e61031fb5ff9daf5e91fd5032eba3cc72f40abd93b0d93c2fd092"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/assets/screenshot-backgrounds/style-b/lemon-grid.webp",
+      "size": 65512,
+      "sha256": "41391448c19c5d52c7f35e953f0a9172d3272f1934e1c597987014bba2e50cef"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/assets/screenshot-backgrounds/style-b/safety-orange-halftone.webp",
+      "size": 255056,
+      "sha256": "324df63073f53b58a6424f8a56beecc66cfa28aa4831315d7f19e135780579a6"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/assets/screenshot-backgrounds/style-b/lemon-green-dot-shadow.webp",
+      "size": 145062,
+      "sha256": "629eb0b45381d22bbc6a581d37cfc6c4a0e371570b8f8896619562a1420ab81c"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/theme-presets.md",
+      "size": 5036,
+      "sha256": "cecf8ae776fb96628cb3ea96ac979a9b97bd4accd647a52aa0fbb9dd12e16430"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/map-component.md",
+      "size": 7680,
+      "sha256": "91416f46ea5ee35dc20daa230aa20979618addb8e9bdc8f50ebb19c7eeb1b521"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/style-system.md",
+      "size": 11697,
+      "sha256": "d4a76dd6362108e67f1ad601041da11f9fce84a1db9750d83aed91b0b9a7a188"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/portrait-fill.md",
+      "size": 2618,
+      "sha256": "7710a1fd3b0ed09f62ad9962ddc195c28fc1b66c042d7083ac0c2f5ba60a18db"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/layout-recipes.md",
+      "size": 35383,
+      "sha256": "8ee0436c901f8c1e3dc5662cbf6dd3e7cb06a49c061c3912891c48981cbc4f6d"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/title-shortener.md",
+      "size": 6994,
+      "sha256": "c164b746a4a9e093586a005cf746bdf8a3a4bcd1f9bff2f37f5dddeb4eb47d65"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/image-overlay.md",
+      "size": 9595,
+      "sha256": "324afb30185eec3b09d6310a220311624172474714f40faaad52a0ddd8802593"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/screenshot-treatment.md",
+      "size": 10106,
+      "sha256": "6c6f12167736bf7d1004d732dad1dcffdb75dbb6aa5b43e1df70ccdb030d013e"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-swiss/references/platform-specs.md",
+      "size": 3224,
+      "sha256": "07cf566163cbbb5de2048c5891445793f0255dc2a26ff61499a0de13120795ad"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-quote/pattern.html",
+      "size": 2494,
+      "sha256": "ae18b077c51ab91e40aac5c134eee45e8bbd4c1b32f170fde289d1447c415c3e"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-quote/SKILL.md",
+      "size": 2092,
+      "sha256": "8d4ebd1f65a1e774c14bda7456ab5c8245549dc48c2e45e99687dad9c6a28483"
+    },
+    {
+      "rel": "skills/design/design-templates/waitlist-page/SKILL.md",
+      "size": 3740,
+      "sha256": "0e81481c39ce21a113d9ac72949fc1b06f0821a781dc6ebb52ac529b4409a7db"
+    },
+    {
+      "rel": "skills/design/design-templates/waitlist-page/层云-waitlist.html",
+      "size": 20339759,
+      "sha256": "c6e397d1b3b3266d67ba80db238b2c775ed88a998966947804fd98e95c2439e5"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-screenshot-explainer/pattern.html",
+      "size": 4958,
+      "sha256": "764f04ff7bc5b8e84ee57537bae4d14bb4ae02e0debdaf49400dc083e4d09d97"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-screenshot-explainer/SKILL.md",
+      "size": 2424,
+      "sha256": "97ae032b9445468416869b8321a9e59f0ace203f0e19bc1508bce7bb0f7fe972"
+    },
+    {
+      "rel": "skills/design/design-templates/saas-landing/reference.html",
+      "size": 61844,
+      "sha256": "6bc800700f5c0146b55f904304b8ee7c7b832c736ff8db62832b1b432a9703fc"
+    },
+    {
+      "rel": "skills/design/design-templates/saas-landing/SKILL.md",
+      "size": 3806,
+      "sha256": "77e294bd9fddc34edaa11b99c4a7ac5a86f0afe1b81eea2d40b040fac8d3e662"
+    },
+    {
+      "rel": "skills/design/design-templates/video-shortform/video-shortform.html",
+      "size": 23807,
+      "sha256": "e6d85f2060ab17050c53dc89f5f91fd78c0d874733ab81ed284d0a26a636ac6f"
+    },
+    {
+      "rel": "skills/design/design-templates/video-shortform/SKILL.md",
+      "size": 10937,
+      "sha256": "649cc96966e01ca909db2f5728f016937beab91b128b334196a0a4dc6eca01c2"
+    },
+    {
+      "rel": "skills/design/design-templates/portfolio-detail/template.html",
+      "size": 39694,
+      "sha256": "e29ed942b9975d9ae82078713dab223ab0142bf29581eea5f02be62630396817"
+    },
+    {
+      "rel": "skills/design/design-templates/portfolio-detail/reference.html",
+      "size": 57130,
+      "sha256": "7765904c9651308e684a31899857c24b56b72767849fc76c6f4ac73e1fa33b09"
+    },
+    {
+      "rel": "skills/design/design-templates/portfolio-detail/SKILL.md",
+      "size": 13716,
+      "sha256": "164ac0a3f3358660c51684cf4a6465bfec4847ab247539f496b17636602a6898"
+    },
+    {
+      "rel": "skills/design/design-templates/blog-post/肌肤专题｜关于屏障的一次重读.html",
+      "size": 1399659,
+      "sha256": "235b66625647bfffe874c3dcd846de579aedf2adda75ca7712a2afbcc6ec5045"
+    },
+    {
+      "rel": "skills/design/design-templates/blog-post/qiye-wildstay.html",
+      "size": 14056,
+      "sha256": "77cbdf563e0fe5229a1f34d7c643e4b107a74dce4224dc77dafedbaa8f7131a2"
+    },
+    {
+      "rel": "skills/design/design-templates/blog-post/SKILL.md",
+      "size": 3448,
+      "sha256": "dadbc57df9f62c8d12d960a2ebcb5fa258f11b222eb9ffd74a5f83c3698918d4"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-data-kpi/pattern.html",
+      "size": 3730,
+      "sha256": "211c5949160c1bacac781711768edfcb80d223b1131caec74ad48bdb9559e7b4"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-data-kpi/SKILL.md",
+      "size": 2058,
+      "sha256": "0c868d8cec3ed39737a683ec7b2efe2e0fc333aee04e344c660ef7e443f2537e"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-image-led/pattern.html",
+      "size": 2893,
+      "sha256": "b7d70894d2bafa523d7e74eb7da05d91c2e37d877fa965340cd310634dc82791"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-image-led/SKILL.md",
+      "size": 2271,
+      "sha256": "25c098c0b9e7ce1c70bcb1078d98164f3d8c29dfa3312747a599304b08668f19"
+    },
+    {
+      "rel": "skills/design/design-templates/team-okrs/activity-stream.html",
+      "size": 56777,
+      "sha256": "363495f6be011f182388663559c063a1ed1ddf2fdf625c22d909d654961fc479"
+    },
+    {
+      "rel": "skills/design/design-templates/team-okrs/SKILL.md",
+      "size": 5419,
+      "sha256": "35151886f1162dd10f9f6224622cba58480f36e9b2fbb11f861d70a522751d8b"
+    },
+    {
+      "rel": "skills/design/design-templates/social-carousel/scroll-gallery.html",
+      "size": 12247,
+      "sha256": "d98c904d3a76bb3a17b151025b75aefc136802cda0a6252272cf2cb63f7285ac"
+    },
+    {
+      "rel": "skills/design/design-templates/social-carousel/SKILL.md",
+      "size": 3891,
+      "sha256": "b3a59080ea81341744cae04113aa32a569ca2128337c806867deab26523361cd"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/pattern.html",
+      "size": 28495,
+      "sha256": "a68e3f30f0f5cb2342e85933f72117af7208381b6219a883db1ba7e0ac2f9499"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/SKILL.md",
+      "size": 2925,
+      "sha256": "100da15f76535f13d381008d3640fcfc0fec0253278f1302d40bd719b52c133c"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/assets/magazine-bg-webgl.js",
+      "size": 6200,
+      "sha256": "bd446bda0ce32e3e420499ba017631eedd1c226bac39e498b1c49ac40090fe17"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/assets/screenshot-backgrounds/style-a/forest-ink.webp",
+      "size": 237774,
+      "sha256": "e6f9df859806344533b7425c64aed82e3dfbe1450ccb5fccbecdca9be0e3cfd2"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/assets/screenshot-backgrounds/style-a/monocle-classic.webp",
+      "size": 184520,
+      "sha256": "96c4edc98c1facb6c5f4d636f2c80d2bfd073f8b510075a4a4959f3c55accdf0"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/assets/screenshot-backgrounds/style-a/kraft-paper.webp",
+      "size": 256352,
+      "sha256": "0637a027068c2f14facbfca802efe98ed9bd35fd15bdfc47b65cddd53a054d9a"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/assets/screenshot-backgrounds/style-a/dune.webp",
+      "size": 160742,
+      "sha256": "6456386ea5b98bdd43fbef7e3c80b2527131f5580c3972aaff3d9a7a596031c0"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/assets/screenshot-backgrounds/style-a/indigo-porcelain.webp",
+      "size": 130840,
+      "sha256": "bb935571900303ae9d5febd04e1598e091bdf5bbdabd8766f8b108baaa5638f8"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/theme-presets.md",
+      "size": 5036,
+      "sha256": "cecf8ae776fb96628cb3ea96ac979a9b97bd4accd647a52aa0fbb9dd12e16430"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/map-component.md",
+      "size": 7680,
+      "sha256": "91416f46ea5ee35dc20daa230aa20979618addb8e9bdc8f50ebb19c7eeb1b521"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/style-system.md",
+      "size": 11697,
+      "sha256": "d4a76dd6362108e67f1ad601041da11f9fce84a1db9750d83aed91b0b9a7a188"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/portrait-fill.md",
+      "size": 2618,
+      "sha256": "7710a1fd3b0ed09f62ad9962ddc195c28fc1b66c042d7083ac0c2f5ba60a18db"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/layout-recipes.md",
+      "size": 35383,
+      "sha256": "8ee0436c901f8c1e3dc5662cbf6dd3e7cb06a49c061c3912891c48981cbc4f6d"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/title-shortener.md",
+      "size": 6994,
+      "sha256": "c164b746a4a9e093586a005cf746bdf8a3a4bcd1f9bff2f37f5dddeb4eb47d65"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/image-overlay.md",
+      "size": 9595,
+      "sha256": "324afb30185eec3b09d6310a220311624172474714f40faaad52a0ddd8802593"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/screenshot-treatment.md",
+      "size": 10106,
+      "sha256": "6c6f12167736bf7d1004d732dad1dcffdb75dbb6aa5b43e1df70ccdb030d013e"
+    },
+    {
+      "rel": "skills/design/design-templates/social-card-editorial/references/platform-specs.md",
+      "size": 3224,
+      "sha256": "07cf566163cbbb5de2048c5891445793f0255dc2a26ff61499a0de13120795ad"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/INDEX.md",
+      "size": 2464,
+      "sha256": "477b2b0e8d399b31e14b84e01392e83ab28e89160e4fe988f92d8e01f0f36260"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/AGENTS.md",
+      "size": 517,
+      "sha256": "95b8d3ccfaafb0d7c9525393e87a242d75503ce95367e3bf7d732d7d824b97aa"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/LICENSE",
+      "size": 1067,
+      "sha256": "6d3011c008b1b4290f4f5713d86550bcc4b57ab477d9ed5eb893c6a7042add57"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/template.json",
+      "size": 1719,
+      "sha256": "87eeeae04b9e735fc3c0e57d13a5aa8c86ded762b9c48a6b428a17675c515e48"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/pattern.html",
+      "size": 48923,
+      "sha256": "fa2416b0fd5e00d903b8a8acb33899dc9e749f92716ab8e4cabfe9c24318c3b9"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/SKILL.md",
+      "size": 3672,
+      "sha256": "410cd48ea581dcfa42b94a5aedd16ca8a7e99570b2da4e8b4379e3357185dc86"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-zine/LICENSE",
+      "size": 1067,
+      "sha256": "6d3011c008b1b4290f4f5713d86550bcc4b57ab477d9ed5eb893c6a7042add57"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-zine/template.json",
+      "size": 1750,
+      "sha256": "f1cbde6695d642fb408be083c2e2f4288f8dbebc7b7845a2603e3bf831597cc3"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-zine/pattern.html",
+      "size": 33235,
+      "sha256": "504c5798bed5a157ccf3a5b227089fc36b1cb87f5da1a320f3383d84c2fccb64"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-zine/SKILL.md",
+      "size": 3802,
+      "sha256": "75f2959ffc92a7f1a09594230429b58fd920453abc410c41dff92c913cdfd671"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/LICENSE",
+      "size": 1075,
+      "sha256": "2b33f1f1d11c7bc2dc2985f4a7f014338323ff58a1cd6ae91c16b727275a3df3"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/README.pt-BR.md",
+      "size": 6546,
+      "sha256": "bc2e6b405dab1839d267eec77e18ef8c37785c46948b57f8cafa8326d5679cba"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/README.md",
+      "size": 5330,
+      "sha256": "64e0e3a13ee3fe5f04cbf41612b3fae4b5ddd6a9a707667d934f8271910f536a"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/SKILL.md",
+      "size": 15915,
+      "sha256": "99370102692f6624d9f1dd9080605a50c846874d242eeba5d97f03578f019dd1"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/README.en.md",
+      "size": 5675,
+      "sha256": "161f195b640376c4ee1043fb19acb6fd648fb5a26af6caa0ce73bf463414e67c"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/assets/template.html",
+      "size": 30636,
+      "sha256": "6ed2474ed9e5857c5eb317056359d5e518c8ebe65e7e723ec3d85d939d77a4b8"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/assets/pattern-slides.html",
+      "size": 11931,
+      "sha256": "1c7f9de18227ca5a3db3f288833d0cfd34efdc5a68f256d0e3df661287b99dcb"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/references/styles.md",
+      "size": 8967,
+      "sha256": "6449b0f79b652e05c8b3f5e2691024bdd8eff1bd1e2fd28d5d6b768e7c231996"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/references/checklist.md",
+      "size": 11792,
+      "sha256": "f07b6e0235dfe80cf30d8a2b17aca2b8ef3129e94b40bdfb207f13115c3de69f"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/references/themes.md",
+      "size": 3554,
+      "sha256": "a4bee3ef7b22d56fb904b0643a117368d85f0265ceccdf5111ad497fe22cc656"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/references/layouts.md",
+      "size": 24525,
+      "sha256": "06ff9cdf38af181e97b45dbe72d8cbba4c4f3a06a097ed9fdca6979eae1aa785"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/guizang-ppt/references/components.md",
+      "size": 11424,
+      "sha256": "4f7f35827a112958ef908f63e4f5855d0942412363edb67c59beb6454b50fdae"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-grove/LICENSE",
+      "size": 1067,
+      "sha256": "6d3011c008b1b4290f4f5713d86550bcc4b57ab477d9ed5eb893c6a7042add57"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-grove/template.json",
+      "size": 1841,
+      "sha256": "2e073f42ee4dc0ae34fd07289ad8c61c4655c1781c44e0bb31116e17c10a744f"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-grove/pattern.html",
+      "size": 66372,
+      "sha256": "9e7493cc779bcab293cce644fd9ad010902d9036b3cd9099cfbea353638a5392"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-grove/SKILL.md",
+      "size": 3793,
+      "sha256": "83e417f5bccbb9484513c80262225711900c12db5eafced1463cef9ce4fe3017"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/ib-pitch-book/pattern.html",
+      "size": 69668,
+      "sha256": "4f092bec7d9322125d8afed60c3013c6e5c809c72e4fe29410fd0c3ab298f057"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/ib-pitch-book/SKILL.md",
+      "size": 7381,
+      "sha256": "452c4d3a4dd508bc7f390d84158d54b58f1cc3fb98126f7c7a1d14137d96dcb1"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/ib-pitch-book/assets/template.html",
+      "size": 12906,
+      "sha256": "097e8d0841f7048ceec906c61e205524aeda71a742cb49436ff0c13904eaabc0"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/ib-pitch-book/references/checklist.md",
+      "size": 2076,
+      "sha256": "dc70e8cc02a34f8108c4065cd373efe72338f164f241fa1bf2bd2666a477ba8c"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/ib-pitch-book/references/attribution.md",
+      "size": 1489,
+      "sha256": "1ac6b67d5676d5b8cf9ad944a2022e28df807451d214b84ec35677eec7078c3c"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/ib-pitch-book/references/compliance.md",
+      "size": 3025,
+      "sha256": "e1148caf54447bf9c55aff6ea57a99edba1b29f270c5ecbfa4ebf1aa57933224"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/ib-pitch-book/references/conventions.md",
+      "size": 1264,
+      "sha256": "a459037b6f8a85cd2da40a9865ad0d717b0052d0ef96c4cabbf9beeecca3d774"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-windows/LICENSE",
+      "size": 1067,
+      "sha256": "6d3011c008b1b4290f4f5713d86550bcc4b57ab477d9ed5eb893c6a7042add57"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-windows/template.json",
+      "size": 1670,
+      "sha256": "7a622cd7872e1071a41a4b6dcb51ca5d7d135396d2e58c4cddbb38b090737f43"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-windows/pattern.html",
+      "size": 48695,
+      "sha256": "be02b9ae4a7414103616d012b142ef3d0d5965269e8c79d44014a15cc4f646b1"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-windows/SKILL.md",
+      "size": 3757,
+      "sha256": "fcb9023991af83a8397e565dca6b09e8ab90bdc8bb8114018a935594efa4dbca"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/LICENSE",
+      "size": 1067,
+      "sha256": "6d3011c008b1b4290f4f5713d86550bcc4b57ab477d9ed5eb893c6a7042add57"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/template.json",
+      "size": 1763,
+      "sha256": "790dfb5d5b21afd7174af982f96cd6e18e6cee309758fbc6727a89bbaeb2ddc7"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/pattern.html",
+      "size": 21618,
+      "sha256": "1f68b61c9089b527334021d39b92cc74cc19e5f9406b236d0ecd028364697cd6"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/SKILL.md",
+      "size": 4345,
+      "sha256": "617a26410afb37cbd600f6875f196199711f8fdffa65e8490c9bd844575f27b3"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/assets/deck-stage.js",
+      "size": 22748,
+      "sha256": "ad1c016a6256c979c896241e2d890083f79c1624728b82b9800a2b17d87778b6"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/assets/styles.css",
+      "size": 22878,
+      "sha256": "72eb8f23357b9760347b9cf9d7eaf33ab616766eb018352b365dbff155ff7982"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-biennale-yellow/LICENSE",
+      "size": 1067,
+      "sha256": "6d3011c008b1b4290f4f5713d86550bcc4b57ab477d9ed5eb893c6a7042add57"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-biennale-yellow/template.json",
+      "size": 1972,
+      "sha256": "f3332cbad7642039fa1d57a0a49d66f30fe668e7b0d1a06a3fd939ec0402cfd6"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-biennale-yellow/pattern.html",
+      "size": 37484,
+      "sha256": "cdee6011e6851d814fd16d2021dc41792476649bab7171f42ed5e7ae3c125dc2"
+    },
+    {
+      "rel": "skills/design/design-templates/ppt/html-ppt-zhangzara-biennale-yellow/SKILL.md",
+      "size": 3904,
+      "sha256": "af0a41b804ddf7c098b9e66f42de397a52b4e4aa927faf470cbcae57c7a44538"
+    },
+    {
+      "rel": "skills/design/design-templates/audio-jingle/music-player.html",
+      "size": 18513,
+      "sha256": "8d403d8e0c2756c3d80e4896764f6fe5985d87164128f17cbec6be9dc6ce6469"
+    },
+    {
+      "rel": "skills/design/design-templates/audio-jingle/SKILL.md",
+      "size": 3280,
+      "sha256": "4812a520f949f64d7544474ea6bda7a0780e9d8973fabfa6a81f56f657d17101"
+    },
+    {
+      "rel": "skills/design/design-templates/wireframe-sketch/foolscap-wireframe.html",
+      "size": 54394,
+      "sha256": "18f4d9375ee1e983afbd27a6fb765b2409945bb48d531e2de01c316751ca1772"
+    },
+    {
+      "rel": "skills/design/design-templates/wireframe-sketch/SKILL.md",
+      "size": 12111,
+      "sha256": "8e99c9c56de59a4ba3bc1d5562f058396a0dde51bc4c3fa5eacc1cf64bcc4854"
+    },
+    {
+      "rel": "skills/design/design-templates/html-ppt-xhs-post/xhs-cover-typography.html",
+      "size": 9416,
+      "sha256": "97d99f872ed2738832a98bca40a64f9f60c2769ab7ec084f6b90af478b6d0ccd"
+    },
+    {
+      "rel": "skills/design/design-templates/html-ppt-xhs-post/SKILL.md",
+      "size": 3981,
+      "sha256": "cd8f0f7b142fa2a36abff79a7ebc2078e1200b35f52aa610bb53fb52ac32bccc"
+    },
+    {
+      "rel": "skills/design/design-templates/html-ppt-xhs-post/xhs-cover-spring.html",
+      "size": 12059,
+      "sha256": "ed4f8dc81965e97c935e12f4a06893b8c06d9028c16fce57a7f29f302b01a82b"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/template.html",
+      "size": 61856,
+      "sha256": "0cc108f290ba7f7e78ef3610027fff9f60ae300db9a1ab55c902c182eeaa1a35"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/reference.html",
+      "size": 58435,
+      "sha256": "1f528266cc6f9ffd5a240fe529b9bc8e143b91cbca6355f2afee48beede101a1"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/SKILL.md",
+      "size": 11129,
+      "sha256": "c90644b3834b4f54fcd2872a3bf857407adfb7f8fd72c66c306c6a2956b38608"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-12-botanical.jpg",
+      "size": 288598,
+      "sha256": "ca588ddd81823a8b2fb55e123a9cd42d966948e99149282c4d89ee94be650479"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-10-urban.jpg",
+      "size": 187214,
+      "sha256": "3d7bc2899fc6b94dc3deac1b7b0473398d8e4b29c985f3800764f0d631083850"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-15-light-motion.jpg",
+      "size": 30693,
+      "sha256": "46170ad51793c111a0f07d8bb0ae7dac01f5aab5f6e61a7a2158430be4194a48"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-08-editorial.jpg",
+      "size": 188493,
+      "sha256": "818f086b1842d85ae21b488198105fbf84e22d446658a1854b69837ef701f431"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-06-studio-portrait.jpg",
+      "size": 72101,
+      "sha256": "1c526c509dd172f081a52343306d5d879d5825128e5e1bd06c65fb205f49f476"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-03-packaging.jpg",
+      "size": 152063,
+      "sha256": "2fa945fd7a0f136a093fd8d81104a1cff3ce3a9bc2a23a56c82e035a132cc555"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-18-magazine.jpg",
+      "size": 255772,
+      "sha256": "65739c75cd1bdd13cd2b783ad96aa7f211fd393d33b4a81c42d038f04dad60af"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-02-typography.jpg",
+      "size": 114254,
+      "sha256": "69a6de711aead0b4d1f957df8a3d7e6167f75e0751a0f0270b13279b688fa8c9"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-14-gallery-wall.jpg",
+      "size": 129059,
+      "sha256": "b2e774afbe9a348cc51b7b997033fa2452971560848fc4ce4eb5d9890561488e"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-05-brand-flatlay.jpg",
+      "size": 158788,
+      "sha256": "17a4b88b6726c77be580a9bcbdbdeec1e27cb4b2acd3c65a2e2ff01bab19deea"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-09-ceramic.jpg",
+      "size": 41250,
+      "sha256": "6b038092180c61cf0eae4889d12534cc8d9a908138063dd4ca87f48556c38778"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-11-ink-paper.jpg",
+      "size": 45743,
+      "sha256": "c220761febbf52e1c640fc96635c1285d5780819836b684a48ba38154fb3e658"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-01-color-macro.jpg",
+      "size": 172145,
+      "sha256": "00f63ab446115ef8e34e29550920da37f1f01cb848e9f4437bb44082072f45ca"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-16-interior.jpg",
+      "size": 55594,
+      "sha256": "7be7f7abe90e31cac239e59115ea438d26e13972107523fa8afba5f4fc1aa093"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-13-risograph.jpg",
+      "size": 45089,
+      "sha256": "1c4dae6dca233b8b7a2632581469f88f9f1287fca83b0031d1a83e50c3d69abe"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-07-gradient.jpg",
+      "size": 31769,
+      "sha256": "042cd576afbce37a186ff9b1e487803129661e43bdff0fd740795475f8be7252"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-17-color-block.jpg",
+      "size": 174431,
+      "sha256": "7d2513fe5fd0579751a260d85c5c70aba36b77e2031b5a022da0a9190a633c10"
+    },
+    {
+      "rel": "skills/design/design-templates/vr-canvas/images/p-04-paint-stroke.jpg",
+      "size": 135183,
+      "sha256": "ce26154e901c8b5fa05e6b71daf2257350171d7c68252612862eef6da2eacc69"
+    },
+    {
+      "rel": "skills/design/design-templates/dot-matrix-xhs/点阵.html",
+      "size": 219935,
+      "sha256": "98749b32eb7a866609f558c4cf63db89517a5b1feeb8dbb2c3acbe57ac4a4846"
+    },
+    {
+      "rel": "skills/design/design-templates/dot-matrix-xhs/SKILL.md",
+      "size": 16098,
+      "sha256": "51fc36919cc48ee611bae14c4fbe907432105209251c8e8a47dd255ba241d765"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/technique-library.md",
+      "size": 11985,
+      "sha256": "c38eab51d7dfaf72b7d44d265fe373f49afd234229a5157de5f9d19fa6f038ee"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/visual-explanation.md",
+      "size": 10734,
+      "sha256": "2c0adfe59a5752dbeb44df23b8efe10f807cf61ad1fd2fb7f5d0b17748c80d47"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/anti-ai-slop.md",
+      "size": 8882,
+      "sha256": "fcc1ebd32bb80d352a327c1f3bf0c37cef320c68f0861b99030adcd24f9410ca"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/color.md",
+      "size": 3118,
+      "sha256": "896a24f3e3d3c1548e89c0102b0f46c275b2c27ef26e28a65f9170468ef613bf"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/accessibility.md",
+      "size": 3956,
+      "sha256": "06aebb21392e420dfeafa1b44cd70dfb18bc61a49a7b3069abb2bf26acaa74be"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/link-and-proof.md",
+      "size": 3481,
+      "sha256": "f855ac3d4355c0cbd234ee5198162c2b2f60952c3e65019dabaab026c3de38c3"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/README.md",
+      "size": 5372,
+      "sha256": "5096f176eb2c6cb6f17555f1457e1835b300d693d70746a2a83d630e680683b0"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/icon-system.md",
+      "size": 7412,
+      "sha256": "a5ea137801b9754d8e980be8ef45808f619c014da1a87d0c7a8de27c05fcd791"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/laws-of-ux.md",
+      "size": 17309,
+      "sha256": "546999fec470cebb69baeb12668f9826f7489b0d323c78c95f2e941add3f9e54"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/chinese-typography.md",
+      "size": 19397,
+      "sha256": "56f2a715b9aba822152773ebccdc89455b685fed5edd4e7e6912d8a83c05910c"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/form-validation.md",
+      "size": 17150,
+      "sha256": "95332c230d4cc6ea198f4a265fba1d08e61ef386a55763465e090b90b9d89294"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/data-integrity.md",
+      "size": 3324,
+      "sha256": "597299bca774fa9f482023a8bd3693b29098564c490648ca2086d1dd4be31ff1"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/animation-discipline.md",
+      "size": 11793,
+      "sha256": "1ae1ea89712a0eaa32c729f555391bec447afe66a5f0f4cd9f6f7f4626c9fe0b"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/state-coverage.md",
+      "size": 4868,
+      "sha256": "5f73ced9adb70d0a72f36c66a22c3f32b7dfd0514a80742a252cfbd8879a733d"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/reference/punctuation.md",
+      "size": 15884,
+      "sha256": "daafc4dd9233453e46c1107e225be4349155b2deb6c62473f86b1f017ef0b65d"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/reference/title-and-breaking.md",
+      "size": 11861,
+      "sha256": "10dfa468361d2f64c81921e5787cdbfe149aa8c381beb8e970e043fefe092ddb"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/reference/fonts.md",
+      "size": 68716,
+      "sha256": "f34e103a18f127dc2a0f13c55a8affd1c72c0102e71292b8fb8fe0c8b7aea812"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/reference/grid-system.md",
+      "size": 11470,
+      "sha256": "145ff07598354a42b8bcebd8593cfbb77e573b7ca6cdf8e310dc7ab59633612d"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/reference/text-detail.md",
+      "size": 13033,
+      "sha256": "5fceeda4bf305cce74dfa6dda1cc3e2cda8d58d12a627ccfd64f0733e77c8a0e"
+    },
+    {
+      "rel": "skills/design/horizontal-craft/reference/directions.md",
+      "size": 12110,
+      "sha256": "ac71ffa8311c30ed8ac5a5e6dc5475f560a051c28ba4a55235d72f10d56cbb76"
+    },
+    {
+      "rel": "skills/anti-pua/SKILL.md",
+      "size": 9601,
+      "sha256": "0b7a6c82db366809cfbda3561534eee68124ce24466983dbfe341fc57bf26ec8"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/README.md",
+      "size": 1596,
+      "sha256": "000ab8ed256d41641150a1d62160b47838e87c0855d80386f97b6e70017a57d3"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/SKILL.md",
+      "size": 9278,
+      "sha256": "0f28e52e2d69e01b3ff0de99719cf3473a2d8b38c17c793cfc810594ae5c1891"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/requirements.txt",
+      "size": 12,
+      "sha256": "71749243f84428fee225bfaa796dca5ef6c1e83a98f6d2a407df615b0390d6fb"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/scripts/common.py",
+      "size": 722,
+      "sha256": "d1114040ba47e8995d43f4a211cbf8d603e9e45338fbda2af9496d281bb381ca"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/scripts/run_pipeline.py",
+      "size": 7997,
+      "sha256": "c0a4af3aa8a0c56ed849a16d3cb62610bf58e320dc27b141cce54487735af272"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/scripts/handle_trigger.py",
+      "size": 20284,
+      "sha256": "0c90beefb0f86930ecb08049146da574a6619f9922dc8ab8297f6606e6a1c830"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/scripts/rec5_api.py",
+      "size": 7960,
+      "sha256": "1edb1211b92746b178cd56b9dfe95797ec6251a11787a1660381a3e2c6a34e0b"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/scripts/constants.py",
+      "size": 292,
+      "sha256": "e46127d08bf35dff25fdda00850646ac1c5b553b9602eede9b00da7259ae6596"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/scripts/__init__.py",
+      "size": 35,
+      "sha256": "1d26a3005d2a222035c9142672d077d7af90589e1c48643f6811638a1c42a904"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/commands/aminer-dp.md",
+      "size": 2440,
+      "sha256": "e0090b975b1d5638b679ae57630e591b004da0d6dfdac5d9f73d5e491b360403"
+    },
+    {
+      "rel": "skills/aminer-daily-paper/prompts/enrich.md",
+      "size": 1561,
+      "sha256": "063113310b2ccd8f383a46bb8675f0fa73f55075133ab14cd89c1d60e4b980f9"
+    },
+    {
+      "rel": "skills/video-understand/SKILL.md",
+      "size": 24938,
+      "sha256": "28b7565579859a784377b71eda621925c2d85fb6a83681e43e149d2a805b7c97"
+    },
+    {
+      "rel": "skills/video-understand/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/video-understand/scripts/video-understand.ts",
+      "size": 1047,
+      "sha256": "90f718cb8efbec5315ea0ba5a06b9cdb0cba91ba56cbc08ba249ec8c4c24b334"
+    },
+    {
+      "rel": "skills/jd-resume-tailor/SKILL.md",
+      "size": 5665,
+      "sha256": "5da66c5fff29aebe511b721c86b0f95ec4e7cda769a50e6e63774861ab805c1e"
+    },
+    {
+      "rel": "skills/jd-resume-tailor/scripts/jd_gap.py",
+      "size": 6055,
+      "sha256": "8569858a3ddd04e13093e9ce8ccbe6b3c83f51f63d966a57ddf7e8be713d0b05"
+    },
+    {
+      "rel": "skills/jd-resume-tailor/scripts/parse_jd.py",
+      "size": 6914,
+      "sha256": "39c913f9266fc75321597f1bc6f19b68b95ba3931ba34a589b64974447b2bb60"
+    },
+    {
+      "rel": "skills/jd-resume-tailor/references/jd_parsing_signals.md",
+      "size": 2497,
+      "sha256": "7d9e12e9d830151eaae17cf43b99c5347e96983fab59780ae22bb350c055a284"
+    },
+    {
+      "rel": "skills/jd-resume-tailor/references/rewrite_principles.md",
+      "size": 2652,
+      "sha256": "ed01a87e9697812be581451ac4109f430b18536d663a28e0587826d7e78c24df"
+    },
+    {
+      "rel": "skills/study-buddy/SKILL.md",
+      "size": 30135,
+      "sha256": "125b8b55a4f12f4dd0dfa2308a4c3d3fa73c0278007d2fabf89218f3e9b5cae4"
+    },
+    {
+      "rel": "skills/pptx/html2pptx1.js",
+      "size": 261326,
+      "sha256": "30675009f8244946ac2425b30bc84c0250f602b258cf4f530a8bbe9b8d8c9613"
+    },
+    {
+      "rel": "skills/pptx/SKILL.md",
+      "size": 38723,
+      "sha256": "eb14fa5eebeb3cb236a72c597641b4a40b172c8f86b3269f20978503a5224938"
+    },
+    {
+      "rel": "skills/pptx/batch_html2pptx.js",
+      "size": 7781,
+      "sha256": "3ff6d3c804804b415ebfbe4647f1150090d954ad34bcb409dfcb65a5b4a2c709"
+    },
+    {
+      "rel": "skills/pptx/ooxml/scripts/unpack.py",
+      "size": 1497,
+      "sha256": "438bc763c1f31373381fad7ded0e87ba4a4863004cddbd95c1f6d59ca1dabd51"
+    },
+    {
+      "rel": "skills/pptx/ooxml/scripts/pack.py",
+      "size": 5596,
+      "sha256": "6fe762f45aff8c63fd95b9fcb1337b28921d6fa454e18a0e8158d4c8708d6d00"
+    },
+    {
+      "rel": "skills/pptx/ooxml/scripts/validate.py",
+      "size": 1997,
+      "sha256": "08b1c15e8faf0f6a822622aabd85476d913a2fbe30c82204f80fd5f08bcb4014"
+    },
+    {
+      "rel": "skills/pptx/ooxml/scripts/validation/docx.py",
+      "size": 9996,
+      "sha256": "e65d6cda0525866a24cc847b2e883bd2416ae6f87b3f5b9e2784dfbb0ec13093"
+    },
+    {
+      "rel": "skills/pptx/ooxml/scripts/validation/base.py",
+      "size": 39848,
+      "sha256": "8d94d7d394bdb448fd7d2e05f8390e43633cb1cf8c04780892b569b03794f3a0"
+    },
+    {
+      "rel": "skills/pptx/ooxml/scripts/validation/redlining.py",
+      "size": 11130,
+      "sha256": "c9794a1c50a678629eb6749a8f7102bdcd53450e7af59295e434ab7ee5e94529"
+    },
+    {
+      "rel": "skills/pptx/ooxml/scripts/validation/__init__.py",
+      "size": 336,
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987"
+    },
+    {
+      "rel": "skills/pptx/ooxml/scripts/validation/pptx.py",
+      "size": 12238,
+      "sha256": "4567de8745b506ac02c66bdd0446f282c3601af91b9713542c38369610872485"
+    },
+    {
+      "rel": "skills/pptx/scripts/extract_html_style.py",
+      "size": 1781,
+      "sha256": "e8750b4d8b285b5124258a73d80861c59335920723cdaffb33459ab5b877541a"
+    },
+    {
+      "rel": "skills/pptx/scripts/extract_pptx_style.py",
+      "size": 9332,
+      "sha256": "26ab0bd350a091f3e7ce9bc2704056b441806c3ae1d8a95348d5ceda05376ece"
+    },
+    {
+      "rel": "skills/pptx/scripts/check_slides.py",
+      "size": 32936,
+      "sha256": "452ccd14a2577b7fb8170703f2fb3ed22df4b2ee2f2f12b9d4aedfc2f8be6c37"
+    },
+    {
+      "rel": "skills/xlsx/xlsx.py",
+      "size": 51963,
+      "sha256": "0e5955bb3f4e17cf9c3461e856a0f27d220c400916cfc4d74334b50478a8185d"
+    },
+    {
+      "rel": "skills/xlsx/setup.sh",
+      "size": 4468,
+      "sha256": "78529027935c60188faeacef3161f827b59669a8a5ab601509d011297eb711d4"
+    },
+    {
+      "rel": "skills/xlsx/SKILL.md",
+      "size": 10436,
+      "sha256": "bf2b33f9b777fbda9a784fe152192fed194f3bc2f64f3ec445a35dce22bc6e13"
+    },
+    {
+      "rel": "skills/xlsx/LICENSE.txt",
+      "size": 745,
+      "sha256": "0e576d5fcab4050e3c34697b6d4ea64195df3212adaa1c47803fc3a26d8100a2"
+    },
+    {
+      "rel": "skills/xlsx/engines/chart-templates.md",
+      "size": 4799,
+      "sha256": "8198b7b396fed310e0b2ce83a8a1d8df99ad9af33d0fa636a5eac7ef575d7443"
+    },
+    {
+      "rel": "skills/xlsx/engines/vba-templates.md",
+      "size": 13390,
+      "sha256": "d6cbf6c9f9657ef8cc4f503c7520678f6bccc862f3b9a3912b47e73db1803fba"
+    },
+    {
+      "rel": "skills/xlsx/engines/chart.md",
+      "size": 3234,
+      "sha256": "53408c80bb84a3857d09e9f591d73c9c9549609ae3b34b0c569d49f0b5317475"
+    },
+    {
+      "rel": "skills/xlsx/engines/design.md",
+      "size": 20906,
+      "sha256": "9b8d06e99426bf81176bc65c64ac31c0b3f20e1c6c1852040cb6f175c005c731"
+    },
+    {
+      "rel": "skills/xlsx/quality/pipeline.md",
+      "size": 9302,
+      "sha256": "d5ef5e9c8760cea104555f31eaa119c17044e00443eaad2dee149350927323de"
+    },
+    {
+      "rel": "skills/xlsx/templates/base.py",
+      "size": 21964,
+      "sha256": "0c03e44e87a8e24d1b7f274b35764a0659cf3eeb058c7fdcb7df2b8715da1bf6"
+    },
+    {
+      "rel": "skills/xlsx/templates/palettes.py",
+      "size": 16609,
+      "sha256": "88323f71eaf603ecaa37bf39f31f6e30645ebb1b5bc392ae8f31b21f4ee5d9a9"
+    },
+    {
+      "rel": "skills/xlsx/scenes/convert.md",
+      "size": 3934,
+      "sha256": "74103abb3fd192de1442e62dd87d5c34d4e52e0877688104e0c507eeaf18081c"
+    },
+    {
+      "rel": "skills/xlsx/scenes/finance.md",
+      "size": 9669,
+      "sha256": "22502aff110524eb5e16ff86aa9895628abf92f5b48a96b94b6c4e97af08fb02"
+    },
+    {
+      "rel": "skills/xlsx/scenes/analyze.md",
+      "size": 3690,
+      "sha256": "5cbdf5a38c0f90c3a8025bf322c07db1b416bac09eab2b95f889e2483250bf4b"
+    },
+    {
+      "rel": "skills/xlsx/scenes/finance_lite.md",
+      "size": 5252,
+      "sha256": "4b34bbcde90e49ca06254cd78450e2f0475ed820354ddaec63ecf8ee33030f14"
+    },
+    {
+      "rel": "skills/xlsx/scenes/edit.md",
+      "size": 6820,
+      "sha256": "1febf89f721f32351cc9895ed456249ae6c8656f06a8101d22a8813689eb7308"
+    },
+    {
+      "rel": "skills/xlsx/scenes/create.md",
+      "size": 3060,
+      "sha256": "2609cdecbeeca271836a040fde1903ceb34ced7f5485b1a7a7ed27629535dc68"
+    },
+    {
+      "rel": "skills/xlsx/scenes/analyze-recipes.md",
+      "size": 6484,
+      "sha256": "69aaa878a392d386381c0d6854ea4f7ea37083a9c1f65a7c109f44a49cf2d5a2"
+    },
+    {
+      "rel": "skills/xlsx/scenes/advanced.md",
+      "size": 6762,
+      "sha256": "567e113d678e4dec1794d85dd643f6180b3ad49f170790976c5629747937919c"
+    },
+    {
+      "rel": "skills/xlsx/scenes/vba.md",
+      "size": 7930,
+      "sha256": "949fde2bb874fbdc6251c98358885df3cd1301035992ccf5932d167a0de245ef"
+    },
+    {
+      "rel": "skills/xlsx/scenes/edit-patterns.md",
+      "size": 7180,
+      "sha256": "d2d938f60974cb894c7d604851c8f643370efa7f42ee542bb341cdf9ad8acabf"
+    },
+    {
+      "rel": "skills/mindfulness-meditation/SKILL.md",
+      "size": 3091,
+      "sha256": "1c90d41cf0d6fbd25ec0a555920da7ac1eb064b13f6a86b511175ef7cc1e05f2"
+    },
+    {
+      "rel": "skills/mindfulness-meditation/_meta.json",
+      "size": 141,
+      "sha256": "7afef5c9007c97ef802ddbd1cdad03f6d0b46a757c09c8ef36d343a7ed32642d"
+    },
+    {
+      "rel": "skills/quiz-html/README.md",
+      "size": 3728,
+      "sha256": "6796c14069361db546d0164196589f640fdb6ad7acf0b75d6990466ea8407d0d"
+    },
+    {
+      "rel": "skills/quiz-html/skill.yaml",
+      "size": 1369,
+      "sha256": "5a095b5143ce62a1b4a3810956ece8aa4c6448409bdec525d174ea22f72cb4e9"
+    },
+    {
+      "rel": "skills/quiz-html/SKILL.md",
+      "size": 8077,
+      "sha256": "dba10bc42184e2f8036897bcc62fc0c092548054b9e684340060939b308ade09"
+    },
+    {
+      "rel": "skills/quiz-html/examples/demo.html",
+      "size": 67350,
+      "sha256": "e4e7a71cbae2d36a84fb7850ab4dd2f19c0e3327c44007ef7d72be3906c403ea"
+    },
+    {
+      "rel": "skills/quiz-html/scripts/build_quiz_html.py",
+      "size": 7849,
+      "sha256": "c3d41ea87d937c8c264611b138e7fe58b3a465f8932a0b5a1a928721ce949a6f"
+    },
+    {
+      "rel": "skills/quiz-html/templates/quiz_template.html",
+      "size": 66922,
+      "sha256": "117522693de02ed2b3f2db65ec81442d0296369a149b0da86ea031e97c0740af"
+    },
+    {
+      "rel": "skills/dream-interpreter/skill.json",
+      "size": 325,
+      "sha256": "3eccfc7c069cc53b2172477ee949a898917b16baf56988eb295258fa92d472cc"
+    },
+    {
+      "rel": "skills/dream-interpreter/SKILL.md",
+      "size": 3052,
+      "sha256": "e4045c1bd4a823073f25cb8689f9ce986ec2e6640557aa446e2f0fc0491a4108"
+    },
+    {
+      "rel": "skills/dream-interpreter/scripts/example.py",
+      "size": 593,
+      "sha256": "27a0e676743f2d5234ee4a9ad28af2568c5d4e04bd95c69a973dafa19b3dd24a"
+    },
+    {
+      "rel": "skills/dream-interpreter/assets/example_asset.txt",
+      "size": 865,
+      "sha256": "3410b1e7d80c9431ac98834d98da8214e0a658fef14d32b86a75ddf2bbe6e2d4"
+    },
+    {
+      "rel": "skills/dream-interpreter/references/output-schema.md",
+      "size": 2225,
+      "sha256": "56027e79b6f2488646d64a2edbcd0af7283d77ce687fcaef9477e34368ee67d4"
+    },
+    {
+      "rel": "skills/dream-interpreter/references/questioning-strategy.md",
+      "size": 1782,
+      "sha256": "6f591c1dc7c462603e91b537b45379d0eb8fddf1e6bd96b06f5599567530bcdd"
+    },
+    {
+      "rel": "skills/dream-interpreter/references/interpretation-guide.md",
+      "size": 2583,
+      "sha256": "13540f16bfa0cbb9282d66c7c4ec251b103c70c4972a2c14b5e3f020a6be00d3"
+    },
+    {
+      "rel": "skills/dream-interpreter/references/api_reference.md",
+      "size": 968,
+      "sha256": "3242f4f50d84b8b4b2c7a2d92fa7690714a256b26f59c27c081ac50ec01db0b5"
+    },
+    {
+      "rel": "skills/dream-interpreter/references/visual-mapping.md",
+      "size": 3523,
+      "sha256": "1d2e43fb2d6eca5860c25f9954788545fa864f05644a8d1c9534675df846aece"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/reference.md",
+      "size": 6645,
+      "sha256": "56e6f1f3aa4649a99e978b7b103a88110adb8411acde9a60f7c7ddab2ed6d2d6"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/SKILL.md",
+      "size": 6217,
+      "sha256": "da051de542398ca8fc2703dbc0980ad68a93c25fa13a7b36a3b955af0ab02b53"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/preference_mapping.md",
+      "size": 3712,
+      "sha256": "4bda93700ccd836077460b184a6ffbb714a8204b103df85dc70aec006422309f"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/requirements.txt",
+      "size": 31,
+      "sha256": "b946d7f5af641badd2b39ca49fabd06d80623fe82e77d35b4fae0bfbeaf67d76"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/examples/api_request_template.json",
+      "size": 398,
+      "sha256": "10fa7f4b9b3cb3129811ac248ff8cf859ba2d0e61f099823579de15a11d7e6a6"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/examples/api_request_shandong.json",
+      "size": 543,
+      "sha256": "0845aef5d6ab4b3f87d256c3d43bb596d14aa8fa9b084ca373cce5a12dd82fce"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/scripts/test_batch_api.py",
+      "size": 6166,
+      "sha256": "305e1611f445e07e5c3f2c40c25db806b0e096d848fb46886165198df429e2d5"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/scripts/build_api_request.py",
+      "size": 5940,
+      "sha256": "dcce89e4e4df9746f4818e2a190f33d5aaa118f257912c01531b099608914b21"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/scripts/fetch_volunteers.py",
+      "size": 20618,
+      "sha256": "baacfbfcefa744821a58eb29635e879a2f61d1add4cf4d507c9aa810e127f83d"
+    },
+    {
+      "rel": "skills/gaokao-fetch-volunteers/scripts/province_config.py",
+      "size": 8214,
+      "sha256": "857d377a15177875df72e99bc4f42605e20ef8d552180eaf62ad6fce67eeabb1"
+    },
+    {
+      "rel": "skills/interview-prep/SKILL.md",
+      "size": 5653,
+      "sha256": "1f9a6644d831c787298750f91c76b1181dd5c5890886be87eca6e6c19abfe76b"
+    },
+    {
+      "rel": "skills/interview-prep/scripts/star_story_builder.py",
+      "size": 6649,
+      "sha256": "8968dbeb6994c6c0cd44a29c42e135962bc8433af8a3689cb5e9f7d6acf598d0"
+    },
+    {
+      "rel": "skills/interview-prep/references/hr_round.md",
+      "size": 4457,
+      "sha256": "941ffaf22fed73846caa89921e67f66798dd7325631667ed47e7f0bdfdf0973e"
+    },
+    {
+      "rel": "skills/interview-prep/references/technical.md",
+      "size": 4131,
+      "sha256": "6528364806a9194744efc6e9b2f4c8f54df3b91706528e1e9edc0be8383fd5d3"
+    },
+    {
+      "rel": "skills/interview-prep/references/role_internet.md",
+      "size": 3196,
+      "sha256": "29277cdcc650e00b838887c1388c921d4a3ad4b1fc2925403220035fa7cc1cb1"
+    },
+    {
+      "rel": "skills/interview-prep/references/case.md",
+      "size": 3464,
+      "sha256": "2f31314fd6ad3763e0ddb0dba908aca0d6c6bcaed63f568f1fe8a1c09c822975"
+    },
+    {
+      "rel": "skills/interview-prep/references/role_tech.md",
+      "size": 3345,
+      "sha256": "22a6e03002b938bdccf6545b41050782f4ced9cf352807c177391ebaf4786a55"
+    },
+    {
+      "rel": "skills/interview-prep/references/salary_negotiation.md",
+      "size": 3979,
+      "sha256": "471b081ab44793ac5368c1230ac0a27698b21affd01f75c49a914c24b1c28e4d"
+    },
+    {
+      "rel": "skills/interview-prep/references/behavioral.md",
+      "size": 4036,
+      "sha256": "b74e668e4fc195b171e4f51d6f54aa801b075a7f061a59899449eda124d89e34"
+    },
+    {
+      "rel": "skills/interview-prep/references/answer_frameworks.md",
+      "size": 2925,
+      "sha256": "862477b80636105a3b22ee94569b6f0a9ff6f80b3e42b8cceae311aa5a5dfe7f"
+    },
+    {
+      "rel": "skills/interview-prep/references/role_finance.md",
+      "size": 3526,
+      "sha256": "91cc11697232e2dee87787020c0b49d396f96add9f6ae6efde12f8c6c0dbf253"
+    },
+    {
+      "rel": "skills/marketing-mode/mode-prompt.md",
+      "size": 1643,
+      "sha256": "e6260530dfc9d274abc1b293b4860c41886562d2757b120e158a5c61fffd5ccf"
+    },
+    {
+      "rel": "skills/marketing-mode/skill.json",
+      "size": 1302,
+      "sha256": "148a832812f3677a315d240c44b72464ab99b654d5b3f2db218ef32c7a799ddc"
+    },
+    {
+      "rel": "skills/marketing-mode/README.md",
+      "size": 1245,
+      "sha256": "b4397c9a88f74294ee1d5ea7a77a7617b3ceb97d19a5da47b6593fd9b16243c0"
+    },
+    {
+      "rel": "skills/marketing-mode/SKILL.md",
+      "size": 17332,
+      "sha256": "a054325f0d82962af683ec16e9f193f064bd0a6239a2eb949573ec818810a69b"
+    },
+    {
+      "rel": "skills/marketing-mode/_meta.json",
+      "size": 133,
+      "sha256": "26784ae7e4e8dd53a080a77b1cbdf4de827032fb6487b4996b69881a9b5eb96c"
+    },
+    {
+      "rel": "skills/gaokao-recommend-schools/career_reference.md",
+      "size": 6029,
+      "sha256": "1ba63c2be03d7231470c82ad5426a76b78703cd5ad6e93465649a89d25c67728"
+    },
+    {
+      "rel": "skills/gaokao-recommend-schools/SKILL.md",
+      "size": 2462,
+      "sha256": "2bccaa1782e77c0d6ac245f41337b1580179b9fdbb839f9f99765ce850d33d96"
+    },
+    {
+      "rel": "skills/gaokao-recommend-schools/examples/school_recommendation_template.json",
+      "size": 622,
+      "sha256": "ea06549bbcf92e47c94d5fb74b090a1572efa7284b1082766c871cf08448ee8e"
+    },
+    {
+      "rel": "skills/job-intent-tracker/SKILL.md",
+      "size": 6681,
+      "sha256": "5ea9855ae1e54e21d62788962a48fa17ae372629c117b1e841c19e669f439275"
+    },
+    {
+      "rel": "skills/job-intent-tracker/scripts/init_tracker.py",
+      "size": 6142,
+      "sha256": "3aac397310a47f6d748e9b1f1fcf92f606bff8f65da316e394378b14c311d7e5"
+    },
+    {
+      "rel": "skills/job-intent-tracker/scripts/profile_match.py",
+      "size": 4499,
+      "sha256": "927fc6da925e307a2d288fff9b3660d6c9bc1a56d8d4cd98eac4f3a4db8cc73f"
+    },
+    {
+      "rel": "skills/job-intent-tracker/references/keywords_general.md",
+      "size": 1367,
+      "sha256": "981a4024d6e0fdfd3cb74077da2c502c1ab572d09eabb611a21deb8d8bbb36c3"
+    },
+    {
+      "rel": "skills/job-intent-tracker/references/keywords_tech.md",
+      "size": 3162,
+      "sha256": "63ad6089b75dc085331447971b67812608e3c5e5fda0a4f5cb40ffc9380459aa"
+    },
+    {
+      "rel": "skills/job-intent-tracker/references/keywords_internet.md",
+      "size": 1942,
+      "sha256": "cc54c8c9d90f6111c4a7101270a8489b32da510a0a64ca74d6826b776dee660f"
+    },
+    {
+      "rel": "skills/job-intent-tracker/references/target_profile_template.md",
+      "size": 2623,
+      "sha256": "23284344035d0276cea6e9d14e8e2b2d72bf126eb0ce46ce4082f4b6d67b1c73"
+    },
+    {
+      "rel": "skills/job-intent-tracker/references/keywords_finance.md",
+      "size": 2872,
+      "sha256": "1fbcd3d88677dafb58ab180c0ed326958e19994372ac22ca9bcda4554c6cb9fa"
+    },
+    {
+      "rel": "skills/experiment-suite/SKILL.md",
+      "size": 11861,
+      "sha256": "2462c407a7e81fe9e88fe30a5c6dafabbb041c28ceba454de18723b6a968e909"
+    },
+    {
+      "rel": "skills/experiment-suite/figure_examples/make_fig_03_heatmap.py",
+      "size": 1658,
+      "sha256": "09566216bbc41e806d863934b7d62462e8fe2f0993c8252ec4b875438a477c0f"
+    },
+    {
+      "rel": "skills/experiment-suite/figure_examples/FIGURE_CONTRACT_TEMPLATE.md",
+      "size": 249,
+      "sha256": "d8ebdc0af4ce740f1134393ca8ae8814ccf1aa2776559980ad9266fb22d0fa2c"
+    },
+    {
+      "rel": "skills/experiment-suite/figure_examples/make_fig_04_ablation.py",
+      "size": 2182,
+      "sha256": "f76a17db2bdf6958cb0933d76382f485c69f449aea8b4ca8093f65eb4cab4ba0"
+    },
+    {
+      "rel": "skills/experiment-suite/figure_examples/style_kit.py",
+      "size": 2650,
+      "sha256": "2be903faf80a3c9c363062ec38c63b01974681b881372e579d6cf5ba404a9768"
+    },
+    {
+      "rel": "skills/experiment-suite/figure_examples/README.md",
+      "size": 1316,
+      "sha256": "1166cdda841e834e021fb0352287198cefed549cfbeabab246a1c947817eff9b"
+    },
+    {
+      "rel": "skills/experiment-suite/figure_examples/make_fig_02_horizon_sweep.py",
+      "size": 1338,
+      "sha256": "3506003c284710a3ad6249d68738c23f4aa6902e671ea213c150d871583e3dd6"
+    },
+    {
+      "rel": "skills/experiment-suite/figure_examples/requirements.txt",
+      "size": 145,
+      "sha256": "724d8780e503a9f3ac4bc4f8b1d1bb0033c76acf32b587278c8d34314afd0355"
+    },
+    {
+      "rel": "skills/experiment-suite/references/04-publication-figures.md",
+      "size": 7082,
+      "sha256": "1fe82ce260f8d27451e891c1c35a33a24921438b5975a5dee3e7db073dc08b3a"
+    },
+    {
+      "rel": "skills/experiment-suite/references/06-quality-gate.md",
+      "size": 6466,
+      "sha256": "29e9901995fe8fdee139344e14637d860df1d2da2fdde4028b6f78d09701b0a1"
+    },
+    {
+      "rel": "skills/experiment-suite/references/01a-data-contract.md",
+      "size": 3056,
+      "sha256": "484fa245442747bf32807b9012767281214a8091120d328da12fd6071f3ca7ac"
+    },
+    {
+      "rel": "skills/experiment-suite/references/01-design-depth.md",
+      "size": 6022,
+      "sha256": "5c5e3911f8c79efdd6256881f71f56240d5efae272b667fc5530f0b94708a62d"
+    },
+    {
+      "rel": "skills/experiment-suite/references/02-code-quality.md",
+      "size": 8468,
+      "sha256": "fb89735254f71b2bf9b42c98a9b98e34a03da4c6cfdc4c5e74e9ab9d4c58bbb6"
+    },
+    {
+      "rel": "skills/experiment-suite/references/03-results-protocol.md",
+      "size": 7233,
+      "sha256": "3e2a7e7e8cd3a040e91d171dcde8bea071baf1a3cd5ea5a2472225c9f67c2a8f"
+    },
+    {
+      "rel": "skills/experiment-suite/references/04a-figure-contract.md",
+      "size": 1596,
+      "sha256": "1ecad88750b38160660787a9c87fe67c331f3c1862f46ad5841bf7857ef40422"
+    },
+    {
+      "rel": "skills/experiment-suite/references/05-report-structure.md",
+      "size": 5880,
+      "sha256": "d11dd6606ebf9014c4ab82fb4aafa7396a06c791567a92defa8e993b79fc265b"
+    },
+    {
+      "rel": "skills/experiment-suite/references/04b-figure-qa.md",
+      "size": 1475,
+      "sha256": "94a2afdb48109e5e0c9083d9215b410a5197dfed6f5e890b4167a2c28334bd54"
+    },
+    {
+      "rel": "skills/experiment-suite/references/00-incremental-execution.md",
+      "size": 4638,
+      "sha256": "1647b9cb1a8b671376ae4ecaf26d5cc30517b945787a16e9bacfd65b1af9558b"
+    },
+    {
+      "rel": "skills/aminer-deep-search/SKILL.zh.md",
+      "size": 5902,
+      "sha256": "1c6c3c65dfbf67794fb0d4452ed8bc373ed8012670f7345357cbe52401c616af"
+    },
+    {
+      "rel": "skills/aminer-deep-search/.gitignore",
+      "size": 37,
+      "sha256": "86388295e2331547a151ec385c7030a14770e410e2141145a3ae44fdf54c8349"
+    },
+    {
+      "rel": "skills/aminer-deep-search/SKILL.md",
+      "size": 6285,
+      "sha256": "e333c8f10e50e1c2d309b4a78d4e40f3fbf87afd18b9ea6bc985bec28b75d595"
+    },
+    {
+      "rel": "skills/aminer-deep-search/scripts/paper_set.py",
+      "size": 6390,
+      "sha256": "81fb7704fd4b7f0425ac651b13b0adbc733a616a6dafdce26aaa9398e00c381b"
+    },
+    {
+      "rel": "skills/aminer-deep-search/scripts/aminer_api.py",
+      "size": 17092,
+      "sha256": "f523064b85b057d529db3ff4c1a7cd472a358f3b0b23fef903b10deeb448c856"
+    },
+    {
+      "rel": "skills/aminer-deep-search/tests/test_paper_set.py",
+      "size": 4256,
+      "sha256": "b4719d9d41a7e4696a49e59ff0e839e0485bc6c917565653ad5698b663a9cf67"
+    },
+    {
+      "rel": "skills/aminer-deep-search/tests/test_aminer_api.py",
+      "size": 9376,
+      "sha256": "05c393a673f6d0068905e012929d321f204c151fd9b1e5adde9a9ca36a600ca3"
+    },
+    {
+      "rel": "skills/aminer-deep-search/commands/aminer-deep-search.md",
+      "size": 2275,
+      "sha256": "d19fb74efaee1649b3ab99239a9ce43344997b5c65e8a12e8bbbd68784c6c68d"
+    },
+    {
+      "rel": "skills/qingyan-research/generate_html.py",
+      "size": 1027,
+      "sha256": "484d761a1204b5afe54f0436b76c0ce48a4db8534a4fd99e068fdef2cf4338ae"
+    },
+    {
+      "rel": "skills/qingyan-research/SKILL.md",
+      "size": 12168,
+      "sha256": "17846e25d192a72b626f7c8ab024a2bb21f067e2b85a2ee167b4b6ec6b3fd49c"
+    },
+    {
+      "rel": "skills/image-understand/SKILL.md",
+      "size": 22511,
+      "sha256": "d0d660f5c14f192d7d6b921acce15e4a64cb9f61e3653439f0a8ca2fdcc4e49e"
+    },
+    {
+      "rel": "skills/image-understand/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/image-understand/scripts/image-understand.ts",
+      "size": 1018,
+      "sha256": "e17fef756e1fff4df7a9bc0910de8d404bd0428dfcb643142479bdb504d405e0"
+    },
+    {
+      "rel": "skills/video-generation/SKILL.md",
+      "size": 29892,
+      "sha256": "3fc8061596ec204c280464ac5f7282cc6b965954ba4614e8f656a7b359c5c84e"
+    },
+    {
+      "rel": "skills/video-generation/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/video-generation/scripts/video.ts",
+      "size": 5415,
+      "sha256": "be87dff4a0d14dcaa8811afe11110fa0ec6a30832425908bc14f73c0ff6f579f"
+    },
+    {
+      "rel": "skills/podcast-generate/readme.md",
+      "size": 4164,
+      "sha256": "6f3aeaa5e9c607e0a490106759224fe2523e73e406eda1b15528b52c4b1466e3"
+    },
+    {
+      "rel": "skills/podcast-generate/tsconfig.json",
+      "size": 530,
+      "sha256": "5412d2255d4ae62df7619e4077c0df9cc2854d9baaadce360d9c3042845a1505"
+    },
+    {
+      "rel": "skills/podcast-generate/SKILL.md",
+      "size": 5598,
+      "sha256": "921a85333951252dcc2d6210046d63cd25ce31805a3d069782a95e5bde56875e"
+    },
+    {
+      "rel": "skills/podcast-generate/package.json",
+      "size": 585,
+      "sha256": "0eec3ba854b395a2728a0ce56fb5d9cbd5f2eef6605dafec3970ac9f3db47c31"
+    },
+    {
+      "rel": "skills/podcast-generate/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/podcast-generate/generate.ts",
+      "size": 22174,
+      "sha256": "709728b31cf6b062f17e4d1f90c093dff297ddb2fc0a906cb8cce95339711ace"
+    },
+    {
+      "rel": "skills/podcast-generate/test_data/segments.jsonl",
+      "size": 322,
+      "sha256": "192c22526517664b7e1e856b718d0afdf03f0960d4dabd481c771dae2952ba98"
+    },
+    {
+      "rel": "skills/skills-inventory/SKILL.md",
+      "size": 5358,
+      "sha256": "52b40f573bcb256ffb8f642176022c06a59efa5288b6b69c34bb582c8020f7fe"
+    },
+    {
+      "rel": "skills/skills-inventory/scripts/generate_skills_md.py",
+      "size": 13378,
+      "sha256": "7e79a09bf72f9e9db1f8942b51cf16eeffe32a30a358cb723d97a26cfdddd030"
+    },
+    {
+      "rel": "skills/skills-inventory/evals/evals.json",
+      "size": 1222,
+      "sha256": "b3b7ad619e442bfdf84072b4dc61378404cdf016e17fe2986189a39ac264dc13"
+    },
+    {
+      "rel": "skills/skills-inventory/evals/trigger_evals.json",
+      "size": 2557,
+      "sha256": "05a7f65dbc77f20789e2fd20e244ab04b5fdc4f731476562a172a4ac7995af50"
+    },
+    {
+      "rel": "skills/finance/Finance_API_Doc.md",
+      "size": 11654,
+      "sha256": "fc681b475bbcb69cd22f931d917ce3b0c7a8d95631cbd3d12330fbccd8eccc22"
+    },
+    {
+      "rel": "skills/finance/SKILL.md",
+      "size": 2511,
+      "sha256": "5457fa4de1d93ae2085e4e36630664c321c792726274acd1d6353476e799d5b2"
+    },
+    {
+      "rel": "skills/aminer-free-academic/SKILL.md",
+      "size": 10613,
+      "sha256": "6bb84bb45c8733e9be841458f161dc32d70fd9f891558eb4abb492647b2f3ca2"
+    },
+    {
+      "rel": "skills/aminer-free-academic/evals/evals.json",
+      "size": 5064,
+      "sha256": "b2c1fd74ae5b3d0ec179e7f647b89bf796d5ab036b7a189c6e3b5305f11992c4"
+    },
+    {
+      "rel": "skills/aminer-free-academic/references/api-catalog.md",
+      "size": 7487,
+      "sha256": "8ddd90814dcb33aa2d1ead76154d2018b87c3dff0f648c32bd85b0c3bfe92cd1"
+    },
+    {
+      "rel": "skills/TTS/tts.ts",
+      "size": 656,
+      "sha256": "f14aab3505c8fa3a80b21e4076ec060cd4d31f7ca43fa1385a80d588e7dda680"
+    },
+    {
+      "rel": "skills/TTS/SKILL.md",
+      "size": 20125,
+      "sha256": "3985ea1faebd32c28efc4bb007701dadec70df77bd5e3801aa3e421805405271"
+    },
+    {
+      "rel": "skills/TTS/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/research-explorer/SKILL.md",
+      "size": 6055,
+      "sha256": "9c6ff861aa576bf0c64ccf095de536028ac15bac54f072dc59186881bb12cc42"
+    },
+    {
+      "rel": "skills/_prompts-maitres/PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",
+      "size": 35884,
+      "sha256": "ff6a6633487b943297c6a08dde7e26a2184350a983684f0721766e0c793ace21"
+    },
+    {
+      "rel": "skills/_prompts-maitres/README.md",
+      "size": 16788,
+      "sha256": "4ea1ad89d9ab6bd5c72061bdd4c344b065bb27bf9bcff4cb4ab53fa91cde9c6d"
+    },
+    {
+      "rel": "skills/_prompts-maitres/PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+      "size": 29977,
+      "sha256": "d356387e1c927d2d25bb48237986a366f9d56f4d8430ce8e2f68d04a19d89dce"
+    },
+    {
+      "rel": "skills/_prompts-maitres/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md",
+      "size": 23367,
+      "sha256": "4e87094acf5977d861749cf89226628aa0c4d883c1a4f4cfc2656ccad7159922"
+    },
+    {
+      "rel": "skills/_prompts-maitres/PROMPT-MAITRE-SHARED.md",
+      "size": 9310,
+      "sha256": "15b369076653f82fd154b43f7ce98d083c1413cced235d0dc7acc8fb311985d6"
+    },
+    {
+      "rel": "skills/autonomous-agent/SKILL.md",
+      "size": 6731,
+      "sha256": "b499e0f25ebbac2a86199acd186090d9725d1e55aaf14a601561d06054a95549"
+    },
+    {
+      "rel": "skills/autonomous-agent/references/agent-format.md",
+      "size": 4651,
+      "sha256": "f026703901d05304b8c6654258760fb5103041383c378d16cb6fda3d05869ddc"
+    },
+    {
+      "rel": "skills/visual-design-foundations/SKILL.md",
+      "size": 7289,
+      "sha256": "93043b462fef1c34ee1fca76268092223488be62352415d068998fe4b04c389b"
+    },
+    {
+      "rel": "skills/visual-design-foundations/references/typography-systems.md",
+      "size": 8895,
+      "sha256": "93be8eeb9c2a5e26205f657ea13a34bb832ba686c0458ee3db2877e6b4b066fc"
+    },
+    {
+      "rel": "skills/visual-design-foundations/references/spacing-iconography.md",
+      "size": 10691,
+      "sha256": "04835fad7ba356d9d10b46a9f6911a6b535095964a238f39f100b0dd1c4d90b5"
+    },
+    {
+      "rel": "skills/visual-design-foundations/references/color-systems.md",
+      "size": 10744,
+      "sha256": "9ba288fbead974f0b6424ca04acee68e6ede07be62c5121142084e6afa82f871"
+    },
+    {
+      "rel": "skills/get-fortune-analysis/lunar_python.py",
+      "size": 4131,
+      "sha256": "9e78a8143d38b9fe3612bc0ada1a18a35aa7550a44ec74e2b2708895108c2c53"
+    },
+    {
+      "rel": "skills/get-fortune-analysis/SKILL.md",
+      "size": 16850,
+      "sha256": "19fb6c48c1e33787cb34b449853004eace54f193119c8f1995aa8c9d2c92df68"
+    },
+    {
+      "rel": "skills/ai-news-collectors/SKILL.md",
+      "size": 5366,
+      "sha256": "ba6acbcd38c7aefb3e462c7d6f428d75d7f50b23bb57d0d8160153d8938fe44d"
+    },
+    {
+      "rel": "skills/ai-news-collectors/_meta.json",
+      "size": 137,
+      "sha256": "d7e4ff5dec7a555f8372541f59c30078e2bcc3fdc88c62faef4dcc1907e6ec81"
+    },
+    {
+      "rel": "skills/ai-news-collectors/references/sources.md",
+      "size": 5141,
+      "sha256": "2ed62b30bd1513356f36b388123cea89efad4b723bf6e11e0e35f911b077325c"
+    },
+    {
+      "rel": "skills/image-generation/SKILL.md",
+      "size": 15205,
+      "sha256": "bebfd2822721109fe37b015a45456d02978da26d344d100218e6cb8a33b890f6"
+    },
+    {
+      "rel": "skills/image-generation/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/image-generation/scripts/image-generation.ts",
+      "size": 813,
+      "sha256": "3ef4f0df4c292b76bf5bca40ead345f6d1128c7e7227258efc3d40e4745b7fcb"
+    },
+    {
+      "rel": "skills/ASR/SKILL.md",
+      "size": 15541,
+      "sha256": "aa5d113f5ae74f8816899911b5e177a932d338c11b981b7e90481e0b773ee41e"
+    },
+    {
+      "rel": "skills/ASR/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/ASR/scripts/asr.ts",
+      "size": 650,
+      "sha256": "dd8dfd5db5d88935b068e449f94a3a08f3be4e1c09d81e83c17596155a6f46ba"
+    },
+    {
+      "rel": "skills/contentanalysis/SKILL.md",
+      "size": 635,
+      "sha256": "c7aa42fe7fd636d0fe6b85e30771cdbee4c37dbe7e9fc77939bc79edfa43ddf8"
+    },
+    {
+      "rel": "skills/contentanalysis/ExtractWisdom/SKILL.md",
+      "size": 13804,
+      "sha256": "ef3f8462b9d4edacdffdba86bf4a369c67ecb530424767c88d827f266ddba8a9"
+    },
+    {
+      "rel": "skills/contentanalysis/ExtractWisdom/Workflows/Extract.md",
+      "size": 1872,
+      "sha256": "fa40bd2940663110dd3f6977d4356f21462c79287785eebeeb61ded4da09ef56"
+    },
+    {
+      "rel": "skills/charts/setup.sh",
+      "size": 7509,
+      "sha256": "5ee149b6e73f9c9eaa41d744506376b247ad135917117bcc409fcbdffd1b4f9f"
+    },
+    {
+      "rel": "skills/charts/SKILL.md",
+      "size": 22641,
+      "sha256": "3c7bed354d634f41659fe915b093325064612452824b700d591d158c92d46b28"
+    },
+    {
+      "rel": "skills/charts/LICENSE.txt",
+      "size": 745,
+      "sha256": "0e576d5fcab4050e3c34697b6d4ea64195df3212adaa1c47803fc3a26d8100a2"
+    },
+    {
+      "rel": "skills/charts/references/radial-grid.md",
+      "size": 20026,
+      "sha256": "765d76d55b9cd0625df8904fad778baf1d0b01e0411aa8d6a64696a06baa69f1"
+    },
+    {
+      "rel": "skills/charts/references/seaborn.md",
+      "size": 10562,
+      "sha256": "30b720ebbfb09b9caa7240af51dd7ff97c61d42d78c48e168b5b472aab06df55"
+    },
+    {
+      "rel": "skills/charts/references/playwright-css.md",
+      "size": 30450,
+      "sha256": "19ee700044f560fbe4a412e52880a9915c4e0708d015c780abbc2d7085bf3fea"
+    },
+    {
+      "rel": "skills/charts/references/_rules.md",
+      "size": 2006,
+      "sha256": "538ccc5f30167229d604690f70e4513023031e64e82e597a386848010e1ade42"
+    },
+    {
+      "rel": "skills/charts/references/d3.md",
+      "size": 6286,
+      "sha256": "de65d66c29e5c062fc2c0f01c9a81bd24cbffb8ceb0094b70fb29b0b69b91595"
+    },
+    {
+      "rel": "skills/charts/references/echarts.md",
+      "size": 19317,
+      "sha256": "020777eb3dce567477bd640ec044555cecd6171e76fe70706996de61528a8f60"
+    },
+    {
+      "rel": "skills/charts/references/mindmap-css.md",
+      "size": 36773,
+      "sha256": "0bd0a9164f440d5e9c7a5cdf8d7b8d21b10c8f13989275751c24e37254c30a5d"
+    },
+    {
+      "rel": "skills/charts/references/mermaid.md",
+      "size": 25621,
+      "sha256": "5155308cdab2b3af394174c0ce20febc7b8af816630563ada57605bdc88a2a0a"
+    },
+    {
+      "rel": "skills/charts/references/matplotlib.md",
+      "size": 20882,
+      "sha256": "8cee6d70d33cbcc47a4db58ffe2a029c2ec6cfabe68121603ee0fbeaac4a4e30"
+    },
+    {
+      "rel": "skills/cheat-sheet/SKILL.md",
+      "size": 6125,
+      "sha256": "88e520f3a92f9b45136cbf95fb43268d638f317c70f750e262035287a156aa4b"
+    },
+    {
+      "rel": "skills/writing-plans/SKILL.md",
+      "size": 3335,
+      "sha256": "cb3c40f376743689ca27d6c8da084a354b847344fcb0398e77a43497426aa776"
+    },
+    {
+      "rel": "skills/writing-plans/_meta.json",
+      "size": 132,
+      "sha256": "cf0b087fae5fdd433a890853ac04b856dbadd875b0db13026158d1ceb364aac5"
+    },
+    {
+      "rel": "skills/agent-browser/SKILL.md",
+      "size": 10299,
+      "sha256": "17d2f8e31d6df96375bc8de46858d74b46f780451424c5989d5d0dc1fe1f25c0"
+    },
+    {
+      "rel": "skills/gift-evaluator/SKILL.md",
+      "size": 4933,
+      "sha256": "940f2a44b9fb37db9bbcff8902f7d8434d9e33d4db00f013ed13e33c04ccdc46"
+    },
+    {
+      "rel": "skills/gift-evaluator/html_tools.py",
+      "size": 13689,
+      "sha256": "49eeb130a8a65282dcfe7f0590dbd4dd696883a4b214a352949363dd3f1f0bd4"
+    },
+    {
+      "rel": "skills/content-strategy/SKILL.md",
+      "size": 9428,
+      "sha256": "714247457fc4c0476523a8403d1f3a7b88137c993f30d70273a9b856ce12ad76"
+    },
+    {
+      "rel": "skills/content-strategy/_meta.json",
+      "size": 135,
+      "sha256": "1a93269907d3e9376a82cf67f9277b8de37a70971027a516fa6bbdbf6355715a"
+    },
+    {
+      "rel": "skills/coding-agent/verification.md",
+      "size": 874,
+      "sha256": "350148370baf9823d8886d0f9106a4f716eba85ffb2ccd8df2d9c05c3773fc9d"
+    },
+    {
+      "rel": "skills/coding-agent/state.md",
+      "size": 1342,
+      "sha256": "3e2451947af895ce2f1f9df99f0308f65bed491327021b02b35c05ac57366785"
+    },
+    {
+      "rel": "skills/coding-agent/memory-template.md",
+      "size": 877,
+      "sha256": "c46139090925509acec4bded58e6bb4d202938541de711556df327bbf02e5cb6"
+    },
+    {
+      "rel": "skills/coding-agent/execution.md",
+      "size": 857,
+      "sha256": "da81c0a72ef9240881d2c974a6917bfd2d7e7cc526b14cfc3fc93b94cf44c337"
+    },
+    {
+      "rel": "skills/coding-agent/criteria.md",
+      "size": 1108,
+      "sha256": "20d5332856656e571d6c1c73d1512125af38449bd79c2b239c96454479a7a187"
+    },
+    {
+      "rel": "skills/coding-agent/SKILL.md",
+      "size": 3276,
+      "sha256": "8de95e09d3940de813f57065703094bc94d795b4405f367ea8b61dfd50da6e8a"
+    },
+    {
+      "rel": "skills/coding-agent/_meta.json",
+      "size": 123,
+      "sha256": "85eee13d53d9b8e84ea07939aa2500f3ecea27979d37fd1f3b5c3495de8656a7"
+    },
+    {
+      "rel": "skills/coding-agent/planning.md",
+      "size": 633,
+      "sha256": "25675d904cc7d84f97b7e491ad9fda3684f9111c55711766b02826a921735948"
+    },
+    {
+      "rel": "skills/task-review/SKILL.md",
+      "size": 2046,
+      "sha256": "1ff685c6fd5fc5547f7a77303ec82b9f850ea91f6b27b4f5630b403d06a9dc0a"
+    },
+    {
+      "rel": "skills/VLM/SKILL.md",
+      "size": 14455,
+      "sha256": "ed7d036603d39299ae13f8fa4f9bdbe8ca549fec4ab7921161b7cd1d515976a1"
+    },
+    {
+      "rel": "skills/VLM/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/VLM/scripts/vlm.ts",
+      "size": 1431,
+      "sha256": "e0b70c420010b5887a851d58f8a311d8ce72bcf61abd4fdd88f752324f97cb24"
+    },
+    {
+      "rel": "skills/audio-metadata/SKILL.md",
+      "size": 8087,
+      "sha256": "d2ebfb57ac8bdeeeef5ac20f2c63442405c9f1eee8f831a97cfbd530699f989c"
+    },
+    {
+      "rel": "skills/market-research-reports/SKILL.md",
+      "size": 28769,
+      "sha256": "c96caba22576f843e275c6d7eb7a899cc2860647c123e519170d9728c0625db9"
+    },
+    {
+      "rel": "skills/market-research-reports/scripts/generate_market_visuals.py",
+      "size": 20423,
+      "sha256": "6c259c5fe7980d568e1d2f0960cb1092c7cb43a644d35481993bc09ef733230f"
+    },
+    {
+      "rel": "skills/market-research-reports/assets/FORMATTING_GUIDE.md",
+      "size": 10110,
+      "sha256": "a15c4ee95bca602482cc95ac60a20b830876aac95fc758f65c61f9fa946bc2c0"
+    },
+    {
+      "rel": "skills/market-research-reports/assets/market_report_template.tex",
+      "size": 50218,
+      "sha256": "c4f6ed9361261a7937f611c6533040c0c8e6aca1bac03150c8312c827278ebc9"
+    },
+    {
+      "rel": "skills/market-research-reports/assets/market_research.sty",
+      "size": 15617,
+      "sha256": "2ea9075ece5537be7a43fe8cc50a2c9782a107f653594bd3f51995162a38adff"
+    },
+    {
+      "rel": "skills/market-research-reports/references/report_structure_guide.md",
+      "size": 23572,
+      "sha256": "9c676e4b9d5e25dd65bc9d8f714622c55357e6e9d2b8b1c7dfa744333e600da6"
+    },
+    {
+      "rel": "skills/market-research-reports/references/data_analysis_patterns.md",
+      "size": 17690,
+      "sha256": "ed19d12f1c6650272282b79e8afa7d36bc79e6d011c8d68e96dd9a0d890ec328"
+    },
+    {
+      "rel": "skills/market-research-reports/references/visual_generation_guide.md",
+      "size": 37281,
+      "sha256": "7e78bb69955177ec4d46fff9195c7f406f43f1ed7141bdafe8cf19a7f3987f87"
+    },
+    {
+      "rel": "skills/storyboard-manager/index.js",
+      "size": 261,
+      "sha256": "a73726c06e497e101939bad275eb72c046a527a7b68df7087a58516b8871302c"
+    },
+    {
+      "rel": "skills/storyboard-manager/SKILL.md",
+      "size": 18632,
+      "sha256": "225890188e2c32d0723d4ef3ac298d31f5f175c93236c7cc484f9e9e609e8a2d"
+    },
+    {
+      "rel": "skills/storyboard-manager/package.json",
+      "size": 226,
+      "sha256": "c0b29034076c7c805934a7a906ebb236031b5b63afba48d6387404a29c6fca0e"
+    },
+    {
+      "rel": "skills/storyboard-manager/scripts/timeline_tracker.py",
+      "size": 13068,
+      "sha256": "2eb23ed657d863a698717ffa182eddf4abcfdaa4535d0cb7fe7ddd4c5f326cf4"
+    },
+    {
+      "rel": "skills/storyboard-manager/scripts/consistency_checker.py",
+      "size": 16222,
+      "sha256": "ea25eb6edd58f30b73b7fa0338906b834faf6be6a838db9258e7bc9d2cf09c81"
+    },
+    {
+      "rel": "skills/storyboard-manager/references/story_structures.md",
+      "size": 5843,
+      "sha256": "2560b23f9f3b3c92315bd2bb4fe9563c08258295680e327be3aed1f1d21761ed"
+    },
+    {
+      "rel": "skills/storyboard-manager/references/character_development.md",
+      "size": 7969,
+      "sha256": "e8f0cb8222c4c9dfd2dac6a3dcddc13354735ad34f7bb51453d90838c58058dc"
+    },
+    {
+      "rel": "skills/blog-writer/2024-02-17-short-form-content-marketing.md",
+      "size": 5125,
+      "sha256": "c0db69d205a1ad77c0d6d117861372bf4f2ea710bca7874da8c8a02163dca188"
+    },
+    {
+      "rel": "skills/blog-writer/2024-02-17-radical-transparency-sales.md",
+      "size": 3543,
+      "sha256": "c166b58ffa9bc647766e7e6f7ed5064ef9087c8792d3bba220fc0933abf668f4"
+    },
+    {
+      "rel": "skills/blog-writer/style-guide.md",
+      "size": 6323,
+      "sha256": "5536121bcb17b61848ab06e79f07ce27a5146d5dd76575e59c7e7b6180bfdd85"
+    },
+    {
+      "rel": "skills/blog-writer/2024-02-17-raycast-spotlight-superpowers.md",
+      "size": 2984,
+      "sha256": "e294c6c3f7914161b3a5edd9d83c88ed548b3ac0c49b365e05064b0dc7b2c194"
+    },
+    {
+      "rel": "skills/blog-writer/README.md",
+      "size": 189,
+      "sha256": "b5362bb0cb00fc233a4691b74f991ba227f43dba5cf25b2c9b987b0bc1f4bd5d"
+    },
+    {
+      "rel": "skills/blog-writer/manage_examples.py",
+      "size": 2643,
+      "sha256": "b879665b2cb1aae3f7ad7438212f7694834ba494535465e52573206f63cfb966"
+    },
+    {
+      "rel": "skills/blog-writer/2024-02-17-typing-speed-benefits.md",
+      "size": 3453,
+      "sha256": "a428f8530ca46992acac5e1bcecc99003c4a000e09939084475090e5d85a9a57"
+    },
+    {
+      "rel": "skills/blog-writer/2025-11-12-why-ai-art-is-useless.md",
+      "size": 5783,
+      "sha256": "20244737af79193961e0e6e3aab413a9921c3a0be4548b7b3b1bc5061bc0ff5a"
+    },
+    {
+      "rel": "skills/blog-writer/SKILL.md",
+      "size": 6995,
+      "sha256": "2532bcd2beccef06c392b4930252dec73473928524ce84bea91c47206c52c8e6"
+    },
+    {
+      "rel": "skills/blog-writer/_meta.json",
+      "size": 130,
+      "sha256": "c1ceb805f64516bf6832a5163ef43d7c3f27350ad59ef0e75a2bd9a972b80ea6"
+    },
+    {
+      "rel": "skills/blog-writer/2024-03-14-effective-ai-prompts.md",
+      "size": 3524,
+      "sha256": "258f9888102735cc957523f529f9735b4a084b0c1e6f32b5d1a35d5449b44e6e"
+    },
+    {
+      "rel": "skills/blog-writer/2024-11-08-ai-revolutionizing-entry-level-sales.md",
+      "size": 5317,
+      "sha256": "65f6c00a98649623c5fd5a2adca34a9f9efeac63eab61c76a6475117fd95cdf6"
+    },
+    {
+      "rel": "skills/image-search/SKILL.md",
+      "size": 6776,
+      "sha256": "d2440dd38c09c39c901d68109a39f72de9a0e0034e07fe2d3e8a03e802758605"
+    },
+    {
+      "rel": "skills/skill-finder-cn/SKILL.md",
+      "size": 1333,
+      "sha256": "0a16825b7110504b54b146f45ec5fc72259479a3f2e437756091e0bfd80bea13"
+    },
+    {
+      "rel": "skills/skill-finder-cn/_meta.json",
+      "size": 134,
+      "sha256": "462530538a9b5f3979809f68d15e4550a34f61271b627fc1729d301e3f547085"
+    },
+    {
+      "rel": "skills/skill-finder-cn/package.json",
+      "size": 108,
+      "sha256": "9245c1c9472bc37d6ad55ac2f50c4c636320c9f3afc23bb95bec65a31b9f46da"
+    },
+    {
+      "rel": "skills/skill-finder-cn/scripts/search.sh",
+      "size": 262,
+      "sha256": "47d7986b5d6163944af5e7ae656eba6446da671c4adb13fe1c98ef1b44cddda2"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/SKILL.md",
+      "size": 2706,
+      "sha256": "bc380b87ec5831ae1c8bc6bb1997f7b888a716f3672f607141bc496ba88477de"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/_meta.json",
+      "size": 132,
+      "sha256": "4e177779eb5db460d17c69a74b2e638378481b7367fc4452df541fa04ff7efb6"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/scripts/design_system.py",
+      "size": 43778,
+      "sha256": "1f8d1961c9166fe4772522d6458f6a1ec13a7c00ebfd5effa41c47e1c7cc9e7a"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/scripts/search.py",
+      "size": 5383,
+      "sha256": "8ef258d6aed922f4b813b5ac21e8f484dec71fede9409f949224d75adbd82df5"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/scripts/core.py",
+      "size": 10227,
+      "sha256": "5459d1f04eea03dfb913742d0c03edc5065ac67f6227e4807fa87699662588cb"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/scripts/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/react-performance.csv",
+      "size": 14822,
+      "sha256": "904c8afcda229629545912dde0e8ac37503757131f0169f80b016f1f58c4fd3f"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/colors.csv",
+      "size": 9713,
+      "sha256": "4cc0df2785f340b8bd0ace50bd4068dc13a7c4c6fa4d9d2723271244ce904614"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/charts.csv",
+      "size": 7654,
+      "sha256": "b754c0efffcf54cb889114a9314be1d5af6ceebe65c4c436d713b52018e752c9"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/ui-reasoning.csv",
+      "size": 31071,
+      "sha256": "58fc52fff69f62709f8c7dd460de6f6693699ea820f24287f3301a427c2b554e"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/typography.csv",
+      "size": 31877,
+      "sha256": "64695e05ac335ba534aff396c4ba9241c642f80ea53b424251d2669b71c4772b"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/ux-guidelines.csv",
+      "size": 18766,
+      "sha256": "1870ee048f2a2bdd60709f8f7adf7f3b6dcad560bc005c8b2915a8ac8639820d"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/products.csv",
+      "size": 29790,
+      "sha256": "5359e3037dcb84e99c792ea13dd44f5b78ab6a53557afb309cf19140512aaf5b"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/icons.csv",
+      "size": 13384,
+      "sha256": "351fe61ba45b8146c66de6ea7d67297654639d79a94f537b4d0bad570058c28f"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/styles.csv",
+      "size": 96553,
+      "sha256": "ad3c3236134d833bda01a2faf31ddeaaa1dbd5005fa430dec571fa91b26e5fea"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/web-interface.csv",
+      "size": 7472,
+      "sha256": "10bfc24e09a6a15db8309e6ef9b6881e1d4af97dffb7c99418aefb8e30df7d54"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/landing.csv",
+      "size": 14390,
+      "sha256": "010e1e46db271b94e0af6f18973bea86ddba62feeccd62aeeaa6ed40e2ae2db1"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/astro.csv",
+      "size": 11868,
+      "sha256": "ad18dae3ab6d148d37d144592df80dc1825b6c9e86d9d2d68fdda77434206a37"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/react.csv",
+      "size": 13016,
+      "sha256": "b6e3eb0e4c9c01bd00ffb951d5ca224a19d488b4544c75436f48cf92ff12bf45"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/shadcn.csv",
+      "size": 15921,
+      "sha256": "395c2e415ef6f48a474acccdc8eb2c7258a6ed751a5037ba171a2d8823e02ded"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/html-tailwind.csv",
+      "size": 11361,
+      "sha256": "1f004891dd189f6bc2a7717401e3100244326e7e2f3963a79bf7b2349d85e091"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/vue.csv",
+      "size": 11056,
+      "sha256": "9b793c3f4eec85f77a758c09322f2b62f3b3ca549bb713ccf0849ef885934395"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/nuxtjs.csv",
+      "size": 16539,
+      "sha256": "f7a3f2d9542856d00199f85c6c023b7c284cc698e2e6e12d61afce2edacb24d6"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/svelte.csv",
+      "size": 11063,
+      "sha256": "bc8d158994a8bdf412830a9dd5e5a5534edd2f367a6e50e0ebd4d76f592dfa3f"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/react-native.csv",
+      "size": 10035,
+      "sha256": "a08ca77fcf6b6d9531982dce465366296013bfcf12d2938ac72ad57cf0c4f085"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/jetpack-compose.csv",
+      "size": 8195,
+      "sha256": "6c8fd4b0391c342c12b0af15610cd5becbeccaef0bbe8dcfc01d928c3195d93e"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/nuxt-ui.csv",
+      "size": 14010,
+      "sha256": "05d6e74501b2b6a636faed32450622759f49a5bcafad971f5f4e7eba0eb7be71"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/nextjs.csv",
+      "size": 12546,
+      "sha256": "06a8e8c13bd44696c6ebb4cb6c4d8dea440e3de8cce77616512529ed29258f0c"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/flutter.csv",
+      "size": 10469,
+      "sha256": "e470e6bc2bcd8562667cc764d1e1afb0be0a30ca4dc9ec12fa18b19d46f156bd"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/assets/data/stacks/swiftui.csv",
+      "size": 10872,
+      "sha256": "e87cb9eee208bb753bdab96d4a261c7f830c4317ee90ec098316b248fc32be85"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/references/upstream-skill-content.md",
+      "size": 10051,
+      "sha256": "4e495d54b006e2132248f21a7886e8c5400a2d09cddf478c0525582519a5ad3b"
+    },
+    {
+      "rel": "skills/ui-ux-pro-max/references/upstream-README.md",
+      "size": 23615,
+      "sha256": "b8cca8dbb183bcf81c03a66a7ca5ad8b7259cd38bee2232cabb65c1b4acf435b"
+    },
+    {
+      "rel": "skills/LLM/SKILL.md",
+      "size": 21984,
+      "sha256": "981c3d2db57fe275849214b45a6d0f2de8ce1909a1c1eef42a59f9466da1645c"
+    },
+    {
+      "rel": "skills/LLM/LICENSE.txt",
+      "size": 1080,
+      "sha256": "1b98e51cad503b3b01af8f36359aad1cf9813ce0431d282a50cc5109bc9a9055"
+    },
+    {
+      "rel": "skills/LLM/scripts/chat.ts",
+      "size": 758,
+      "sha256": "634076214aef5292dac003a7af284c72541b2dd157ccaef0979cae265dce17c2"
+    },
+    {
+      "rel": "skills/version-management/SKILL.md",
+      "size": 31466,
+      "sha256": "1aad751b495816f0689af91fbda16ef8b6be5329f11a28d38704f8b8a74828f6"
+    },
+    {
+      "rel": "skills/pdf-llm/SKILL.md",
+      "size": 18624,
+      "sha256": "167fc7df8bc8ae094e556d51399f0436634b16140544dd4cb33af69e81cce10a"
+    },
+    {
+      "rel": "skills/pdf-llm/scripts/extract_pdf.py",
+      "size": 22161,
+      "sha256": "0725dba83174627778762a6f14a45d304864a441266e569ead19b19891407c6a"
+    },
+    {
+      "rel": "skills/pdf-llm/evals/evals.json",
+      "size": 11570,
+      "sha256": "bff39d1001e036670c598d2ba8d70a732833db6f5e487091b9417fcf466c045f"
+    },
+    {
+      "rel": "skills/pdf-llm/references/mode-glm.md",
+      "size": 3875,
+      "sha256": "d792d3799b7253bd879f1fe0ae29556d22ea0876318b683725eb85a2e71c0bc6"
+    },
+    {
+      "rel": "skills/pdf-llm/references/json-schema.md",
+      "size": 5831,
+      "sha256": "114d9f001eac1f260644253281ea4326b573d85dad2d8b136ffc1fbeab2992e1"
+    },
+    {
+      "rel": "skills/pdf-llm/references/mode-qwen.md",
+      "size": 3490,
+      "sha256": "800eb781860f74a7d8942f51f73738217f1ab6cd6468e6a43f72a601cff6f665"
+    },
+    {
+      "rel": "skills/pdf-llm/references/mode-pipeline.md",
+      "size": 6297,
+      "sha256": "6764c2015d83f228a26b2f56721972caa19da198666a8b1b84b8c41ccb83eb58"
+    },
+    {
+      "rel": "skills/pdf-llm/references/mode-multi.md",
+      "size": 4091,
+      "sha256": "9ebe76132ac0065626aa5565ce2b49598d20f489b80286ae925123e320739ce5"
+    },
+    {
+      "rel": "skills/correct-work/SKILL.md",
+      "size": 12749,
+      "sha256": "604a2269132a7db7bebe5bc9772c37deda2e7d746e700b54dacfcab6a7c71422"
+    },
+    {
+      "rel": "skills/correct-work/scripts/verify-correct-work.py",
+      "size": 10732,
+      "sha256": "7075d7adee5c4341062b07a53c67da49cf7a882c543b16491ec8c807701752f2"
+    },
+    {
+      "rel": "skills/auto-target-tracker/SKILL.md",
+      "size": 7962,
+      "sha256": "377380655b60bc045ce8bd4dcbca88e14603b4d501114888a16aa118f453d025"
+    },
+    {
+      "rel": "skills/clone-chat/SKILL.md",
+      "size": 17093,
+      "sha256": "5ca770cca569ae16b58fb24a7d9da6c3852a6b8439ad586a84ce95cd84f482d9"
+    },
+    {
+      "rel": "skills/clone-chat/references/clone-template.md",
+      "size": 5386,
+      "sha256": "0374bc1d008a30636ca66940bec6429c09a2e9826f6beba70f0004632bea266e"
+    },
+    {
+      "rel": "skills/gaokao-recommend-majors/career_reference.md",
+      "size": 6029,
+      "sha256": "1ba63c2be03d7231470c82ad5426a76b78703cd5ad6e93465649a89d25c67728"
+    },
+    {
+      "rel": "skills/gaokao-recommend-majors/SKILL.md",
+      "size": 2568,
+      "sha256": "35fd4b829a40ac5f4009c264b306b5f19f05037b7561e0b138a83b604b617fa3"
+    },
+    {
+      "rel": "skills/gaokao-recommend-majors/examples/major_recommendation_template.json",
+      "size": 1301,
+      "sha256": "18365befd7c25e732f43a90f96bcc58fa4fbc1cdea3357d427bff08d4c30976f"
+    },
+    {
+      "rel": "skills/interview-designer/README.md",
+      "size": 3134,
+      "sha256": "589d3d94f31dbf994c41f60d502b270cf0b03e9b7fd87ba8847d182b531d5cfa"
+    },
+    {
+      "rel": "skills/interview-designer/SKILL.md",
+      "size": 3868,
+      "sha256": "594c9438b7c85f877de36f3b9087704f3060c24a86ca9d1ed53ce8b6eb3c2aa4"
+    },
+    {
+      "rel": "skills/interview-designer/_meta.json",
+      "size": 137,
+      "sha256": "a34cba0ab39ae94486b1c27a3eb907cc19f12f229bbb50c0b2827829ba806137"
+    },
+    {
+      "rel": "skills/interview-designer/templates/interview_guide_template.md",
+      "size": 1732,
+      "sha256": "6243d60f4a6752ce009fcf70ead611d1759da0ea7fcb22fe6fa6d2bb3e622fa1"
+    },
+    {
+      "rel": "skills/interview-designer/references/design_rationale.md",
+      "size": 3206,
+      "sha256": "6a0c144b7888e92ff1564f0ce235f1868fe5c8b54857f8eb22971d99ce92abcd"
+    },
+    {
+      "rel": "skills/resume-builder/SKILL.md",
+      "size": 5662,
+      "sha256": "ee2c26da010333cee5004f03fab0ece4976ea074f00af6e3a45d9b6b25d989b5"
+    },
+    {
+      "rel": "skills/resume-builder/scripts/ats_check.py",
+      "size": 9303,
+      "sha256": "dbe1f82e36b750daf71d6d01881e8778ab1f50855be8aa8885874fc39a9cdc6d"
+    },
+    {
+      "rel": "skills/resume-builder/references/star_rewrite_guide.md",
+      "size": 2827,
+      "sha256": "6cdf04b8b27e5e40137238d702703ed5b21001c308d357b8f5878b988a094aaa"
+    },
+    {
+      "rel": "skills/resume-builder/references/intake_questions.md",
+      "size": 2019,
+      "sha256": "5fee993704f799495b41be64fcaf30fb2f96b5235355b1c5cf70ba0e616ee04f"
+    },
+    {
+      "rel": "skills/resume-builder/references/export_guide.md",
+      "size": 1904,
+      "sha256": "cbef33cfe96e0a0d15ef0cb68b48c0600ef83d52f572e01527986b00c4fd8eeb"
+    },
+    {
+      "rel": "skills/resume-builder/references/templates/finance.md",
+      "size": 2917,
+      "sha256": "6f7aa14501e04dce78bb5d2a17210f39bd79ddf817382e8253125ebeffdf7d67"
+    },
+    {
+      "rel": "skills/resume-builder/references/templates/general.md",
+      "size": 1885,
+      "sha256": "41b495788e3eb9715ea3b7df3df57f631eebe636176528103002b5ea22714cd5"
+    },
+    {
+      "rel": "skills/resume-builder/references/templates/internet.md",
+      "size": 1551,
+      "sha256": "4238b4ac2cf6a3f3879c50491729edfcdf301daaf258f564d0834ddbda48eb39"
+    },
+    {
+      "rel": "skills/resume-builder/references/templates/tech.md",
+      "size": 2268,
+      "sha256": "d419f06032f6bead40d1d2be4eaa903b3837b2c4451a8e14b1e89e1f783bb677"
+    },
+    {
+      "rel": "skills/resume-builder/references/keywords/finance.txt",
+      "size": 380,
+      "sha256": "32346095e6190a83cbbecbacc6d84099d687a6385ea435e340be814c09d7b83f"
+    },
+    {
+      "rel": "skills/resume-builder/references/keywords/internet.txt",
+      "size": 374,
+      "sha256": "f18a495bb3596450cbc12be22a18882d265e22af0bfd0ae3c2d5d5e6d689d957"
+    },
+    {
+      "rel": "skills/resume-builder/references/keywords/general.txt",
+      "size": 209,
+      "sha256": "912ec822dda21558f2fa15a92606f1ac9a6b7bcd053c83f81627aec85fee6472"
+    },
+    {
+      "rel": "skills/resume-builder/references/keywords/tech.txt",
+      "size": 539,
+      "sha256": "8ce4bfe17e64672a4a3bfb0fce64200ff9e8a2504abfabc97946977b21ad9b46"
+    },
+    {
+      "rel": "skills/fullstack-dev/SKILL.md",
+      "size": 11879,
+      "sha256": "3aef589049c4bbf0bd706057ea5b76ce9bbc772baa76970a41a0e7ebc9aa046a"
+    },
+    {
+      "rel": "skills/gaokao-collect-student-info/reference.md",
+      "size": 3158,
+      "sha256": "171682fc6957fd3dc0fc8359af0e8447c6054172a2e5806d54a4ebebee8b138f"
+    },
+    {
+      "rel": "skills/gaokao-collect-student-info/SKILL.md",
+      "size": 7021,
+      "sha256": "ccbc631bf578c5c97783799cb5cc998784f6198c55d93d49ec992d6c1a7fc99c"
+    },
+    {
+      "rel": "skills/gaokao-collect-student-info/examples/student_template.json",
+      "size": 843,
+      "sha256": "b970a1de0acb51db303110487bf58ecbb2993f16151be38cd85d4b482d152354"
+    },
+    {
+      "rel": "skills/gaokao-collect-student-info/examples/student_shandong.json",
+      "size": 1053,
+      "sha256": "a034a7c3f6dba65ae5cebbd449535e11a361902a7822e377ff46b56b775c4b59"
+    },
+    {
+      "rel": "skills/aminer-academic-search/SKILL.md",
+      "size": 14053,
+      "sha256": "aa60bff53ab8641d90dd48161938bc5f31070d33a8b78ae8a5790711b1771c14"
+    },
+    {
+      "rel": "skills/aminer-academic-search/scripts/aminer_client.py",
+      "size": 50210,
+      "sha256": "f95fd2c08d136328c776a769a0f03540edd7aa9312ef1dc06ba2a625891d7b54"
+    },
+    {
+      "rel": "skills/aminer-academic-search/evals/evals.json",
+      "size": 9771,
+      "sha256": "6e25a3bc3ce0df27b6b5067139aee80c1619e73482652c81923bd8a786f0b31a"
+    },
+    {
+      "rel": "skills/aminer-academic-search/references/api-catalog.md",
+      "size": 36574,
+      "sha256": "33645d05f5b8fd021b63398c035e0ab1614e9a625411c571b2d2a97d53a3542e"
+    },
+    {
+      "rel": "scripts/git-deploy.sh",
+      "size": 4698,
+      "sha256": "7b4ff40864818a519d8db35c6c52dd9a1e9fc3b84cf9726d3ecc25d9d990db6b"
+    },
+    {
+      "rel": "scripts/back-depot.py",
+      "size": 9712,
+      "sha256": "0dc87de226cb3605f7c9e30cac002ea51e9d06a3e5366552d90e3e989241988c"
+    },
+    {
+      "rel": "scripts/spell-check.py",
+      "size": 36292,
+      "sha256": "52ac2d27b5067e8de12e615ace63334d367b04a833051169ef2c5f45a1502d5b"
+    },
+    {
+      "rel": "scripts/fix-yaml-cases.py",
+      "size": 4203,
+      "sha256": "c8d3837a5f70fca69862b735e18b4bcd9e55adfff1e96517fc9c228ee71a64de"
+    },
+    {
+      "rel": "scripts/sync-download.py",
+      "size": 6784,
+      "sha256": "5f2eca376b0f02dd1fad25d50f6347e22f4dd50fd23d6cd8469df383f0a7b882"
+    },
+    {
+      "rel": "scripts/lexique-domain.json",
+      "size": 8297,
+      "sha256": "9b67c5b5d7c44897837876072b75ffd1382e6fe684d0f7f23aa046c5dce6a70b"
+    },
+    {
+      "rel": "scripts/phase1-nettoyage.py",
+      "size": 5120,
+      "sha256": "44091030cb9af93a040b5b297463e217d32ead8ac20439938e363743aca61927"
+    },
+    {
+      "rel": "scripts/fix-frontmatter.py",
+      "size": 8078,
+      "sha256": "1b1a8086e33e8b91bcc52a6512cb1c72c450a44f56c1cc3fb43d4e1ce468be0b"
+    },
+    {
+      "rel": "scripts/verify-cross.py",
+      "size": 11995,
+      "sha256": "ce1e09c0173ac1320e26300ee075d62f539105d9dc04f83c5ccaf6d51b541646"
+    },
+    {
+      "rel": "scripts/_archive/generate-clone-genplan.py",
+      "size": 32000,
+      "sha256": "7d6d28209e9d892ea5c8342878988ef38819dde4e402887879aa245817814c35"
+    },
+    {
+      "rel": "scripts/_archive/generate-knowledge-v3.py",
+      "size": 49247,
+      "sha256": "f3abb228825aaf9423dc97ce0ba6b499573b2429f3364a2d85e8d9c98921980d"
+    },
+    {
+      "rel": "download/GEN-PLAN-REFACTORIZING-KNOWLEDGE.md",
+      "size": 12074,
+      "sha256": "203ccc0b17d6fe8f87e91ffcc24dac5cd64052bcf856cb14d411ac864f085e8e"
+    },
+    {
+      "rel": "download/PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",
+      "size": 35884,
+      "sha256": "ff6a6633487b943297c6a08dde7e26a2184350a983684f0721766e0c793ace21"
+    },
+    {
+      "rel": "download/README.md",
+      "size": 16788,
+      "sha256": "4ea1ad89d9ab6bd5c72061bdd4c344b065bb27bf9bcff4cb4ab53fa91cde9c6d"
+    },
+    {
+      "rel": "download/PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+      "size": 29977,
+      "sha256": "d356387e1c927d2d25bb48237986a366f9d56f4d8430ce8e2f68d04a19d89dce"
+    },
+    {
+      "rel": "download/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md",
+      "size": 23367,
+      "sha256": "4e87094acf5977d861749cf89226628aa0c4d883c1a4f4cfc2656ccad7159922"
+    },
+    {
+      "rel": "download/PROMPT-MAITRE-SHARED.md",
+      "size": 9310,
+      "sha256": "15b369076653f82fd154b43f7ce98d083c1413cced235d0dc7acc8fb311985d6"
+    },
+    {
+      "rel": "mini-services/integrate-knowledge.py",
+      "size": 51927,
+      "sha256": "d768fb298b90e4d093b22cbbb3b7c515f2080bb37745dce70262dd38129aac86"
+    },
+    {
+      "rel": "mini-services/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "rel": "mini-services/compile-yaml.py",
+      "size": 3247,
+      "sha256": "8124b2d7a34aed843f3470a7cf7055a1507edc4265b643d07ebe1f78a8601001"
+    },
+    {
+      "rel": "worklog.md",
+      "size": 22695,
+      "sha256": "755bcfb16c01b9e3da4fa0d9e850117d1fd83eb8a7d65f02942c8256fd4569ef"
+    },
+    {
+      "rel": ".gitignore",
+      "size": 160,
+      "sha256": "9b254f529ae27a8fce56d098d69a3e03aef673bf3f47ecf1bbda67c09548bfed"
+    }
+  ]
+}
