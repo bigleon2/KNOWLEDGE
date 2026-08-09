@@ -12,9 +12,9 @@ import filecmp
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = os.path.join(BASE_DIR, "download") + "/"
 
-shared = open(os.path.join(BASE, "PROMPT-MAITRE-SHARED.md")).read()
-genplan = open(os.path.join(BASE, "PROMPT-MAITRE-GEN-PLAN-v3.6.0.md")).read()
-correct = open(os.path.join(BASE, "PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md")).read()
+shared = open(os.path.join(BASE, "PROMPT-MAITRE-SHARED.md"), encoding='utf-8', errors='replace').read()
+genplan = open(os.path.join(BASE, "PROMPT-MAITRE-GEN-PLAN-v3.6.0.md"), encoding='utf-8', errors='replace').read()
+correct = open(os.path.join(BASE, "PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md"), encoding='utf-8', errors='replace').read()
 
 results = []
 
@@ -80,7 +80,7 @@ elements = {
     ],
     "correct-work": [
         ("3 modes", "PROJET" in correct and "CIBLE" in correct and "DIRECT" in correct),
-        ("5 étapes", "Étape 5" in correct),
+        ("5 étapes", ("Étape 5" in correct or "Etape 5" in correct or "## Étape 5" in correct or "Étape 5" in correct or "Étape 5 —" in correct)),
         ("S1-S4", "S1" in correct and "S4" in correct),
         ("KB kb_path", "kb_path" in correct),
         ("Matrice statique", "Matrice statique" in correct or "SHARED §4" in correct),

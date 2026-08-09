@@ -894,8 +894,3 @@ type: system-prompt
 version: 3.0.0
 tags: [knowledge, mémoire, orchestration, dj, gen-plan, écosystème, meta-prompt, maître]
 # ═══════════════════════════════════════════════════════════════
-## Skills officiels ajout�s (2026-08-09)
-
-- gen-plan � v3.6.0 � skills/gen-plan/SKILL.md 
-- correct-work � v2.3.0 � skills/correct-work/SKILL.md
-

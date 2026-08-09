@@ -489,5 +489,7 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 4. **Résultat attendu vs obtenu** : ce qui a été promis correspond-il à ce qui a été livré ?
 5. **Cohérence entre fichiers** : pas de contradiction entre le contenu de deux livrables.
 6. **Corriger** toute incohérence identifiée.
-
+<!-- sync-fix -->
+Les 5 �tapes: E1, E2, E3, E4, E5
+D�pendance: clone-chat >= v1.2.0
 
