@@ -443,3 +443,10 @@ prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`KnowledgeEntr
 prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`category`) AS `_count$category`, `main`.`KnowledgeEntry`.`category` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`category` LIMIT ? OFFSET ?
 prisma:query SELECT COUNT(`main`.`KnowledgeEntry`.`priority`) AS `_count$priority`, `main`.`KnowledgeEntry`.`priority` FROM `main`.`KnowledgeEntry` WHERE 1=1 GROUP BY `main`.`KnowledgeEntry`.`priority` LIMIT ? OFFSET ?
  GET /api/knowledge/stats 200 in 10ms (next.js: 1.9ms, application-code: 8ms)
+ GET / 200 in 61ms (next.js: 2ms, application-code: 59ms)
+ GET / 200 in 36ms (next.js: 3ms, application-code: 32ms)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge 200 in 10ms (next.js: 2.0ms, application-code: 8ms)
+prisma:query SELECT `main`.`KnowledgeEntry`.`id`, `main`.`KnowledgeEntry`.`title`, `main`.`KnowledgeEntry`.`content`, `main`.`KnowledgeEntry`.`category`, `main`.`KnowledgeEntry`.`tags`, `main`.`KnowledgeEntry`.`priority`, `main`.`KnowledgeEntry`.`source`, `main`.`KnowledgeEntry`.`pinned`, `main`.`KnowledgeEntry`.`createdAt`, `main`.`KnowledgeEntry`.`updatedAt` FROM `main`.`KnowledgeEntry` WHERE 1=1 ORDER BY `main`.`KnowledgeEntry`.`pinned` DESC, `main`.`KnowledgeEntry`.`priority` ASC, `main`.`KnowledgeEntry`.`updatedAt` DESC LIMIT ? OFFSET ?
+ GET /api/knowledge 200 in 10ms (next.js: 3ms, application-code: 8ms)
