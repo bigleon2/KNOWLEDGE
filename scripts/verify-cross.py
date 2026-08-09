@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """vérification croisée des prompts maîtres + sync download/.
 
-Checks 1-5 : validation du contenu des PMs (source = download/).
-Check 6   : rappel de synchronisation download/ vs skills/_prompts-maitres/.
---mode correct-work : 8 checks supplementaires (scan KB dynamique).
+Checks 1-6 : validation du contenu des PMs (source = download/).
+Check 7   : Mode correct-work (scan KB dynamique).
+Check 8   : Conformité frontmatter métier (toujours actif).
 """
 
 import re
@@ -213,6 +213,54 @@ if MODE == "correct-work":
                 check(f"écosystème '{sk}' dans KB", in_kb, "" if in_kb else "MANQUANT")
 
     print(f"\n  Mode : correct-work ({MODE})")
+
+# ==========================================================================
+# CHECK 8 : Conformité frontmatter métier (toujours actif)
+# ==========================================================================
+
+print("\n=== CHECK 8 : Conformité frontmatter métier ===")
+import yaml
+
+ECOSYSTEM = {"gen-plan", "correct-work", "clone-chat", "skills-inventory", "skill-creator", "autonomous-agent"}
+REQUIRED_FIELDS = ("version", "category", "language", "tags", "dependencies")
+fm_pass = 0
+fm_fail = 0
+fm_missing_list = []
+
+for d in sorted(os.listdir(SKILLS_DIR)):
+    sp = os.path.join(SKILLS_DIR, d)
+    if not os.path.isdir(sp) or d.startswith("_") or d in ECOSYSTEM:
+        continue
+    sk_path = os.path.join(sp, "SKILL.md")
+    if not os.path.isfile(sk_path):
+        continue
+    with open(sk_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    if not content.startswith("---"):
+        fm_fail += 1
+        fm_missing_list.append(f"{d}:NO_FRONTMATTER")
+        continue
+    try:
+        end = content.index("---", 3)
+        fm = yaml.safe_load(content[3:end]) or {}
+    except Exception:
+        fm_fail += 1
+        fm_missing_list.append(f"{d}:YAML_PARSE_ERROR")
+        continue
+    missing = [k for k in REQUIRED_FIELDS if k not in fm]
+    if missing:
+        fm_fail += 1
+        fm_missing_list.append(f"{d}:missing={missing}")
+    else:
+        fm_pass += 1
+
+total_fm = fm_pass + fm_fail
+check(f"Frontmatter metier conforme", fm_fail == 0, f"{fm_pass}/{total_fm} OK")
+if fm_missing_list:
+    for entry in fm_missing_list[:10]:
+        print(f"    - {entry}")
+    if len(fm_missing_list) > 10:
+        print(f"    ... et {len(fm_missing_list) - 10} autres")
 
 # ==========================================================================
 # RESUME
