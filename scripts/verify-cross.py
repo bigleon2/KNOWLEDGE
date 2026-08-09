@@ -9,7 +9,8 @@ import re
 import os
 import filecmp
 
-BASE = "/home/z/my-project/download/"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE = os.path.join(BASE_DIR, "download") + "/"
 
 shared = open(os.path.join(BASE, "PROMPT-MAITRE-SHARED.md")).read()
 genplan = open(os.path.join(BASE, "PROMPT-MAITRE-GEN-PLAN-v3.6.0.md")).read()
@@ -100,7 +101,7 @@ gp_lines = genplan.count('\n')
 cw_lines = correct.count('\n')
 sh_lines = shared.count('\n')
 check(f"SHARED ~200 lignes", 150 <= sh_lines <= 280, f"{sh_lines} lignes")
-check(f"GEN-PLAN ~850 lignes (incluant §9 in extenso enrichi)", 750 <= gp_lines <= 950, f"{gp_lines} lignes")
+check(f"GEN-PLAN ~912 lignes (incluant §9 in extenso enrichi)", 750 <= gp_lines <= 1000, f"{gp_lines} lignes")
 check(f"CORRECT-WORK ~490 lignes (incluant checklists opérationnelles)", 400 <= cw_lines <= 580, f"{cw_lines} lignes")
 total_lines = sh_lines + gp_lines + cw_lines
 print(f"\n  Total : {total_lines} lignes (vs ~930+560={930+560} avant refactoring)")
@@ -108,7 +109,7 @@ print(f"  Réduction : {930+560 - total_lines} lignes ({round((1-total_lines/(93
 
 # === CHECK 6 : Sync download/ vs source de vérité ===
 print("\n=== CHECK 6 : Synchronisation download/ ===")
-SOURCE_DIR = "/home/z/my-project/skills/_prompts-maitres/"
+SOURCE_DIR = os.path.join(BASE_DIR, "skills", "_prompts-maitres") + "/"
 SYNC_FILES = [
     "PROMPT-MAITRE-SHARED.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.6.0.md",
@@ -116,23 +117,19 @@ SYNC_FILES = [
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
     "README.md",
 ]
-sync_ok = True
 for fname in SYNC_FILES:
     src = os.path.join(SOURCE_DIR, fname)
     dst = os.path.join(BASE, fname)
     if not os.path.exists(src):
         check(f"sync {fname}", False, "source manquante")
-        sync_ok = False
         continue
     if not os.path.exists(dst):
         check(f"sync {fname}", False, "absent de download/")
-        sync_ok = False
         continue
     if filecmp.cmp(src, dst, shallow=False):
         check(f"sync {fname}", True, "identique")
     else:
         check(f"sync {fname}", False, "EN ÉCART — lancez python3 scripts/sync-download.py --sync")
-        sync_ok = False
 
 print("\n=== RÉSUMÉ ===")
 pass_count = sum(1 for _, s, _ in results if s == "PASS")

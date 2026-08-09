@@ -127,6 +127,39 @@ Stage Summary:
 - Verdict : PASS AVEC RÉSERVES (0 S1, 4 S2 corrigés)
 
 ---
+Task ID: 8
+Agent: correct-work v2.3.0
+Task: Vérification DIRECT des scripts Python (sync-download.py + verify-cross.py)
+
+Work Log:
+- Étape 2 : 5 findings (2 S2, 3 S3)
+  - F1 S3 : file_hash() jamais appelée, hashlib inutile (sync-download.py)
+  - F2 S2 : chemins absolus /home/z/my-project/ en dur (verify-cross.py)
+  - F3 S3 : variable sync_ok assignée mais jamais lue (verify-cross.py)
+  - F4 S2 : README dit 55 checks mais script en fait 60 (incohérence numérique)
+  - F5 S3 : label CHECK 5 « ~850 lignes » trompeur pour gen-plan (réel 912)
+- Étape 3 : 5 findings (F6-F10)
+  - F6 S3 : code mort file_hash + import hashlib
+  - F7 S4 : open() sans try/except (acceptable CLI)
+  - F8 S4 : SYNC_FILES dupliqué entre les 2 scripts (acceptable)
+  - F9 S4 : pas de if __name__ (acceptable standalone)
+  - F10 S3 : do_sync copie même les fichiers identiques
+- Étape 4 : 1 écart (I4 : README 55 vs réel 60)
+- Corrections appliquées :
+  - F1+F6 : suppression file_hash() + import hashlib (sync-download.py)
+  - F2 : chemins dynamiques os.path.dirname (verify-cross.py)
+  - F3 : suppression variable sync_ok (verify-cross.py)
+  - F4 : README 55→60 checks, 5→6 axes (source + sync)
+  - F5 : CHECK 5 label ~850→~912, plage 750-1000 (verify-cross.py)
+  - F10 : skip fichiers identiques dans do_sync (sync-download.py)
+- Vérification finale : 60/60 PASS, sync OK
+
+Stage Summary:
+- 10 findings (2 S2, 5 S3, 3 S4), 7 corrections appliquées (3 S4 acceptés tels quels)
+- 3 fichiers modifiés : sync-download.py, verify-cross.py, README.md (source)
+- Verdict : PASS (0 S1, 2 S2 corrigés, 5 S3 dont 4 corrigés)
+
+---
 Task ID: 7
 Agent: Main (gen-plan v3.6.0)
 Task: Option C — Script de synchronisation download/ + rappel automatique

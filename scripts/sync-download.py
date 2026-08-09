@@ -9,7 +9,6 @@ Usage:
 
 import os
 import sys
-import hashlib
 import filecmp
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,15 +28,6 @@ SYNC_MAP = [
 
 # Fichiers attendus dans download/ mais HORS sync (à surveiller séparément)
 EXCLUDED_FROM_SYNC = ["integrate-clone-chat-kb-v3.py"]
-
-
-def file_hash(filepath):
-    """SHA-256 d'un fichier."""
-    h = hashlib.sha256()
-    with open(filepath, "rb") as f:
-        for chunk in iter(lambda: f.read(8192), b""):
-            h.update(chunk)
-    return h.hexdigest()[:16]
 
 
 def line_count(filepath):
@@ -150,13 +140,17 @@ def do_sync(force=False):
             print("  Annulé.")
             return 1
 
-    # Exécuter la copie
+    # Exécuter la copie (uniquement les fichiers différents)
     copied = 0
+    skipped = 0
     for src_name, dst_name in SYNC_MAP:
         src_path = os.path.join(SOURCE_DIR, src_name)
         dst_path = os.path.join(DEST_DIR, dst_name)
         if not os.path.exists(src_path):
             print(f"  [ERREUR] Source manquante : {src_name}")
+            continue
+        if os.path.exists(dst_path) and filecmp.cmp(src_path, dst_path, shallow=False):
+            skipped += 1
             continue
         with open(src_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -166,7 +160,9 @@ def do_sync(force=False):
         print(f"  [SYNC] {dst_name} → {lines} lignes")
         copied += 1
 
-    print(f"\n  {copied} fichier(s) synchronisé(s).")
+    if skipped > 0:
+        print(f"  {skipped} fichier(s) déjà à jour (ignorés).")
+    print(f"  {copied} fichier(s) synchronisé(s).")
     return 0
 
 

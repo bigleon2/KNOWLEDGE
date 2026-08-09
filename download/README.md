@@ -2,7 +2,7 @@
 
 > **Date** : 2026-08-09
 > **Version** : 2.0.0
-> **Vérification** : 55/55 checks PASS (`scripts/verify-cross.py`)
+> **Vérification** : 60/60 checks PASS (`scripts/verify-cross.py`)
 
 ---
 
@@ -49,7 +49,7 @@ my-project/
 │       └── [references/, scripts/, evals/, …]
 ├── download/                            ← Copies de référence des prompts maîtres
 └── scripts/
-    └── verify-cross.py                 ← Vérification croisée (55 checks, 5 axes)
+    └── verify-cross.py                 ← Vérification croisée (60 checks, 6 axes)
 ```
 
 ---
@@ -287,12 +287,13 @@ Les prompts maîtres sont les **spécifications d'installation** pour les skills
 python3 scripts/verify-cross.py
 ```
 
-Le script valide **5 axes** (55 checks) :
+Le script valide **6 axes** (60 checks) :
 1. Pas de duplication entre SHARED et les spécifiques
 2. Références SHARED cohérentes dans les fichiers spécifiques
 3. Relations bidirectionnelles respectées
 4. Aucune information perdue par rapport à la v1
 5. Tailles des SKILL.md conformes au design compact
+6. Synchronisation download/ vs source de vérité
 
 ---
 
