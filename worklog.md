@@ -350,4 +350,26 @@ Stage Summary:
 - 7 findings (6 S2, 1 S3), 7 corrections appliquées
 - Verdict initial: PASS AVEC RÉSERVES → post-correction: **PASS**
 - 81/81 checks automatisés PASS après correction
+
+---
+Task ID: 15
+Agent: Main (gen-plan v3.6.1)
+Task: Analyse de refactoring du dépôt Knowledge — « penses-tu qu'on doit le refactoriser ? »
+
+Work Log:
+- E1-E2: Collecte de données via 4 agents Explore en parallèle + lectures directes
+- E3: Classification Type 4 (analyse/data processing), mode M1
+- E4: Estimation #token ~12 000
+- E5-E6: Aucun skill supplémentaire, profil NORMAL
+- E7-E8: Synthèse des 4 analyses en plan de décision structuré
+
+Stage Summary:
+- Verdict: OUI, refactoring chirurgical en 4 phases progressives
+- 7 findings majeurs identifiés (F1 design/ méga-conteneur, F2 frontmatter 70% non conforme, F3 KB racine obsolète, F4 69 READMEs morts, F5 scripts doublons download/, F6 2 scripts obsolètes, F7 README download/ stale)
+- Score santé global: 6/10 (noyau 9/10, périphérie 2-5/10)
+- Phase 1 (nettoyage) priorité haute, risque zéro, #token ~3 000
+- Phase 2 (frontmatter) priorité moyenne, #token ~15 000
+- Phase 3 (design/) priorité basse, session dédiée, #token ~25 000
+- Phase 4 (infra) priorité basse, #token ~5 000
+- Livrable: download/GEN-PLAN-REFACTORIZING-KNOWLEDGE.md
 - Count réel : 77 skills (6 écosystème + 71 métier), 14 relations bidirectionnelles
