@@ -15,3 +15,4 @@ upload/
 Thumbs.db
 
 *.zip
+__pycache__/
