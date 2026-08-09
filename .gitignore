@@ -16,3 +16,6 @@ Thumbs.db
 
 *.zip
 __pycache__/
+
+# Backups (gérés par back-depot.py)
+backups/

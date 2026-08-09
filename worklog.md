@@ -460,6 +460,45 @@ BILAN GLOBAL REFACTORING (Phases 1-4)
 ---
 Task ID: 20
 Agent: Main (gen-plan v3.6.1)
+Task: Chaîne correct-work → back-depot.py v2.0.0 → test → backup → correct-work → push
+
+Work Log:
+- correct-work état actuel: 61/61 PASS (dépôt propre)
+- Créé back-depot.py v2.0.0 (516 lignes, 14 fonctions) :
+  - Auto-détection PROJECT_ROOT (plus de chemin hardcodé)
+  - Commands: backup, restore, verify, list, info, clean
+  - --dry-run pour backup et restore
+  - SHA-256 par fichier dans manifeste JSON
+  - Validation pre-flight avant restauration
+  - Nettoyage anciens backups (clean --keep N)
+  - Compatibilité v1.x (sauvegarde existante lue correctement)
+- correct-work(back-depot.py): help, dry-run, list, info, verify, AST parse = OK
+- Test restore dry-run sur backup v1: 1025/1025 fichiers présents, validation OK
+- Test vérification intégrité v1: 1025/1025 SHA-256 conformes
+- Bug cosmétique corrigé: backtick parasite dans message clean
+- Sauvegarde finale 20260809-171542: 1025 fichiers, 57.32 MB, v2.0.0
+- Vérification intégrité: 1025/1025 SHA-256 OK
+- correct-work final: 61/61 PASS, 0 régression
+
+Stage Summary:
+- back-depot.py v2.0.0: 6 commandes, --dry-run, auto-detect, SHA-256, clean
+- Backup 20260809-171542 dans backups/ (57.32 MB, 1025 fichiers)
+- verify-cross: 61/61 PASS stable
+- Prêt pour push GitHub (token fourni par utilisateur)
+
+---
+BILAN GLOBAL REFACTORING (Phases 1-4)
+- Phase 1: -71 fichiers, 2 archivés, 2 corrigés (nettoyage)
+- Phase 2: 71 frontmatters standardisés, 9 YAML réparés, 9 noms corrigés
+- Phase 3: KB v2.1.0, SUB-KB.md (112 sous-skills), doublon ui-ux-pro-max résolu
+- Phase 4: 2 scripts relocalisés, CHECK 8 ajouté à verify-cross (61/61 PASS)
+- Score santé global: 6/10 → 9.5/10
+- verify-cross: 60/60 → 61/61 PASS
+- Aucun skill écosystème modifié, zéro régression
+
+---
+Task ID: 20 (originel)
+Agent: Main (gen-plan v3.6.1)
 Task: Chaîne correct-work → back-depot.py → test → backup → push
 
 Work Log:
