@@ -22,6 +22,9 @@ dependencies:
     version: ">=2.0.0"
     used_at: "Persistance État Long entre sessions"
     optional: true
+  - skill: correct-work
+    version: ">=2.4.0"
+    used_at: "Validation cohérence de l'agent"
 ---
 
 # AUTONOMOUS-AGENT v1.0.0
@@ -179,7 +182,7 @@ F → Finalisation
 | gen-plan | Utilisation | Planification de tâches complexes, version >= v3.6.0 |
 | clone-chat | Persistance | Sauvegarde État Long entre sessions, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation | Découverte des agents disponibles |
-| correct-work | Vérification | Validation de la cohérence de l'agent, version >= v2.3.0 |
+| correct-work | Vérification | Validation de la cohérence de l'agent, version >= v2.4.0 |
 
 ---
 
