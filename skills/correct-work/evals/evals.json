@@ -1,0 +1,36 @@
+{
+  "skill": "correct-work",
+  "version": "2.4.0",
+  "evals": [
+    {
+      "id": "CW-mode-projet",
+      "name": "Mode PROJET",
+      "input": "Prompt maitre",
+      "expected_mode": "PROJET"
+    },
+    {
+      "id": "CW-mode-cible",
+      "name": "Mode CIBLE",
+      "input": "Verifie ce skill",
+      "expected_mode": "CIBLE"
+    },
+    {
+      "id": "CW-verdict-fail",
+      "name": "FAIL si S1",
+      "input": "Erreur S1",
+      "expected_verdict": "FAIL"
+    },
+    {
+      "id": "CW-verdict-pass",
+      "name": "PASS si 0 S1-S2",
+      "input": "Aucun S1-S2",
+      "expected_verdict": "PASS"
+    },
+    {
+      "id": "CW-multi-cible",
+      "name": "Multi-cibles",
+      "input": "Verifie A et B",
+      "expected_targets": 2
+    }
+  ]
+}
