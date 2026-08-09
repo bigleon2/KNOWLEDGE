@@ -102,3 +102,26 @@ Stage Summary:
 - Nouveau skill : autonomous-agent v1.0.0 (mémoire court+long, pipeline A-H)
 - Écosystème : 78 skills (6 écosystème + 72 métier), 13 relations bidirectionnelles
 - correct-work : 16/16 PASS, verdict PASS
+
+---
+Task ID: 5
+Agent: correct-work v2.3.0
+Task: Vérification CIBLE de gen-plan v3.6.0 + correct-work v2.3.0 (cross-references écosystème)
+
+Work Log:
+- Étape 1 : Plan de vérification créé (mode CIBLE, cible double gen-plan + correct-work)
+- Étape 2 : 4 erreurs détectées (S2-1 used_at incohérent, S2-2 PM incomplet, S2-3 cross-réf fausse, S2-4 KNOWLEDGE.md incomplet)
+- Étape 3 : 3 conflits structurels (ligne count, graphe README, §10 dupliqué)
+- Étape 4 : 6 interactions vérifiées, 2 manquantes (autonomous-agent non reflété dans gen-plan/correct-work)
+- Étape 5 : 4 points de cohérence vérifiés, 2 incohérences (README compte relations, contradiction vérification)
+- S2-1 corrigé : used_at clone-chat "E1-E7, E4, E15" → "E4, E15" (PM gen-plan §3 + §4)
+- S2-2 corrigé : §2.4.1 (Signaux de pression) + §2.4.2 (Filtrage #token) ajoutés au PM gen-plan
+- S2-3 corrigé : cross-référence §2.4 "§8.4" → "§8.2" (PM gen-plan)
+- S2-4 corrigé : autonomous-agent ajouté dans « Utilisé par » gen-plan et correct-work (KNOWLEDGE.md)
+- S3 corrigés : README.md (13 relations, tableau 6 skills, graphe deps, arborescence lignes, vérification)
+- S3 corrigés : cible ~195 lignes gen-plan (PM §6, SHARED §5.2, README §5 + §11 + arborescence)
+
+Stage Summary:
+- 9 problèmes trouvés (4 S2, 3 S3, 2 S4), 9 corrections appliquées
+- 6 fichiers modifiés : PM gen-plan, KNOWLEDGE.md, README.md, SHARED
+- Verdict : PASS AVEC RÉSERVES (0 S1, 4 S2 corrigés)
