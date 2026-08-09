@@ -113,7 +113,7 @@ Détailler les fichiers principaux créés ou modifiés. Le niveau de détail d�
 Pour chaque fichier : description, signature (fonctions/modules), chemin relatif, taille.
 
 **Intégration gen-plan (optionnelle)** :
-- Si gen-plan v3.6.0+ est présent : enrichir avec les données de calibration E15 et les étapes E1-E7
+- Si gen-plan v3.6.1+ est présent : enrichir avec les données de calibration E15 et les étapes E1-E7
 - Si `{{KB_ENABLED}}` est `true` : enrichir §2 avec les descriptions du Registre KB (`{{KB_PATH}}`) pour les skills de l'écosystème
 
 ### §1.8 Détail de l'Étape 5 — Assemblage
@@ -129,7 +129,7 @@ Combiner toutes les sections collectées en un document Markdown unique et cohé
 7. §4 — Instructions d'utilisation
 8. §5 — Auto-clonage
 
-Voir `references/clone-template.md` pour la structure complète du template.
+Voir `références/clone-template.md` pour la structure complète du template.
 
 ### §1.9 Détail de l'Étape 6 — Validation (8 checks)
 
@@ -192,7 +192,7 @@ Si `{{KB_ENABLED}}` est `true` :
 | Discussion moyenne (5-15 sessions) | 4500 | NORMAL | 3500-5500 |
 | Discussion longue (> 15 sessions) | 7250 | NORMAL | 5500-9000 |
 
-**Note v2.0.0** : estimation recalibrée pour couvrir l'Étape 3.5 Context Drift, l'intégration gen-plan v3.6.0+ KB, et la section historique des interactions.
+**Note v2.0.0** : estimation recalibrée pour couvrir l'Étape 3.5 Context Drift, l'intégration gen-plan v3.6.1+ KB, et la section historique des interactions.
 
 ### §2.4 Profils ressource
 
@@ -213,21 +213,21 @@ Pour les clones de discussions longues (> 15 sessions), appliquer :
 
 ### §2.6 Intégration gen-plan (optionnelle)
 
-Clone-chat fonctionne **standalone** sans gen-plan. Si gen-plan v3.6.0+ est présent, les enrichissements suivants sont appliqués :
+Clone-chat fonctionne **standalone** sans gen-plan. Si gen-plan v3.6.1+ est présent, les enrichissements suivants sont appliqués :
 
 | Composant gen-plan | Enrichissement clone-chat |
 |--------------------|------------------------|
-| v3.6.0+ (calibration E15) | Étape 1 : données E15, grille #token |
-| v3.6.0+ (étapes E1-E7) | Étape 4 : structure de planification |
-| v3.6.0+ (Registre KB) | §2 : descriptions skills depuis `{{KB_PATH}}` |
-| v3.6.0+ (kb_path) | §4 : liens vers skills du Registre |
+| v3.6.1+ (calibration E15) | Étape 1 : données E15, grille #token |
+| v3.6.1+ (étapes E1-E7) | Étape 4 : structure de planification |
+| v3.6.1+ (Registre KB) | §2 : descriptions skills depuis `{{KB_PATH}}` |
+| v3.6.1+ (kb_path) | §4 : liens vers skills du Registre |
 
 ### §2.7 Structure des fichiers
 
 ```
 {{SKILLS_ROOT}}clone-chat/
 ├── SKILL.md
-└── references/
+└── références/
     └── clone-template.md
 ```
 
@@ -267,8 +267,8 @@ Relations directes de clone-chat (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| gen-plan | Archivé par | Sessions longues, optionnel, version >= v3.6.0 |
-| correct-work | Vérifié par | Validation croisée, §3.5 Context Drift, version >= v2.3.0 |
+| gen-plan | Archivé par | Sessions longues, optionnel, version >= v3.6.1 |
+| correct-work | Vérifié par | Validation croisée, §3.5 Context Drift, version >= v2.4.0 |
 | skill-creator | Conventions par | Conventions structurelles, version >= v1.0.0 |
 | KNOWLEDGE.md | Lecture seule | Consultation du registre KB pour enrichissement §2 |
 
@@ -293,15 +293,15 @@ tags:
 description: >
   Clone l'intégralité d'une discussion (contexte, décisions, artefacts,
   worklog) dans un fichier Markdown auto-suffisant. 7+1 étapes, Étape 3.5
-  Context Drift, intégration gen-plan v3.6.0+ KB. Format Markdown unique,
+  Context Drift, intégration gen-plan v3.6.1+ KB. Format Markdown unique,
   propriété auto-clonage.
 dependencies:
   - skill: gen-plan
-    version: ">=3.6.0"
+    version: ">=3.6.1"
     used_at: "Calibration E15, archivage sessions longues"
     optional: true
   - skill: correct-work
-    version: ">=2.3.0"
+    version: ">=2.4.0"
     used_at: "Validation croisée (Mode CIBLE, §3.5)"
 ---
 ```
@@ -313,7 +313,7 @@ dependencies:
 ### §5.1 Créer la structure
 
 ```bash
-mkdir -p {{SKILLS_ROOT}}clone-chat/references
+mkdir -p {{SKILLS_ROOT}}clone-chat/références
 ```
 
 ### §5.2 Créer le fichier SKILL.md
@@ -341,8 +341,8 @@ Ajouter l'entrée clone-chat au registre KB (format SHARED §2.2) :
 ## clone-chat v2.0.0
 
 - **Category** : ecosystem
-- **Description** : Clonage de discussion en Markdown auto-suffisant. 7+1 étapes, intégration gen-plan v3.6.0+ KB.
-- **Dépend de** : gen-plan >= v3.6.0 (optionnel), correct-work >= v2.3.0 (validation croisée)
+- **Description** : Clonage de discussion en Markdown auto-suffisant. 7+1 étapes, intégration gen-plan v3.6.1+ KB.
+- **Dépend de** : gen-plan >= v3.6.1 (optionnel), correct-work >= v2.4.0 (validation croisée)
 - **Utilisé par** : gen-plan (E4, E15), correct-work (Mode CIBLE, §3.5)
 - **Dernière calibration** : [date]
 - **Statut** : stable
@@ -368,7 +368,7 @@ Vérifier que (SHARED §3.2) :
 | 5 | 8 checks validation | Table complète en Étape 6 | 8 checks |
 | 6 | 5 types de drift | INVERSION, MODIFICATION, CORRECTION, ENRICHISSEMENT, RECALIBRAGE | All present |
 | 7 | Auto-clonage §5 | Mécanisme de croissance documenté | Present |
-| 8 | Template présent | `references/clone-template.md` | File exists |
+| 8 | Template présent | `références/clone-template.md` | File exists |
 | 9 | Template version | « 2.0.0 » dans le template | Present |
 | 10 | Chemins relatifs | Aucun chemin absolu dans SKILL.md ni template | No absolute paths |
 | 11 | Dependencies frontmatter | gen-plan >=3.6.0 (optional), correct-work >=2.3.0 | Correct |
@@ -425,9 +425,9 @@ Les 8 checks couvrent toutes les dimensions critiques d'un clone valide : auto-s
 
 ## §9 — CONTENU IN EXTENSO DES FICHIERS RÉFÉRENCE
 
-Le fichier référence suivant doit être créé dans `{{SKILLS_ROOT}}clone-chat/references/`. Voici son contenu intégral.
+Le fichier référence suivant doit être créé dans `{{SKILLS_ROOT}}clone-chat/références/`. Voici son contenu intégral.
 
-### §9.1 `references/clone-template.md`
+### §9.1 `références/clone-template.md`
 
 ```markdown
 # CLONE DE DISCUSSION — [TITRE DU PROJET]

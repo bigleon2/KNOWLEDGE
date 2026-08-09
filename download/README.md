@@ -20,18 +20,21 @@ Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : i
 my-project/
 ├── skills/                              ← Racine de l'écosystème (78 skills)
 │   ├── KNOWLEDGE.md                    ← Registre central (source de vérité)
-│   ├── _prompts-maitres/               ← Specs d'installation des skills écosystème
+│   ├── _prompts-maitres/               ← Specs d'installation des skills écosystème (préfixe « _ » = infrastructure, pas un skill)
 │   │   ├── PROMPT-MAITRE-SHARED.md     ← Socle commun (conventions, KB, matrice)
-│   │   ├── PROMPT-MAITRE-GEN-PLAN-v3.6.0.md
-│   │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md
+│   │   ├── PROMPT-MAITRE-GEN-PLAN-v3.6.1.md
+│   │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md
 │   │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
-│   │   └── README.md
+│   │   ├── README.md
+│   │   └── _archive/                      ← Anciennes versions de PMs (historique)
 │   ├── gen-plan/                       ← Skill écosystème
-│   │   ├── SKILL.md                    (~195 lignes, version compacte)
+│   │   ├── SKILL.md                    (~180 lignes, version compacte)
 │   │   ├── references/                 (5 fichiers)
 │   │   └── evals/evals.json            (5 evals)
 │   ├── correct-work/                   ← Skill écosystème
-│   │   └── SKILL.md                    (129 lignes, version compacte)
+│   │   ├── SKILL.md                    (~315 lignes)
+│   │   ├── scripts/                    (1 script)
+│   │   └── evals/                      (1 fichier)
 │   ├── clone-chat/                     ← Skill écosystème
 │   │   ├── SKILL.md
 │   │   └── references/                 (1 fichier)
@@ -123,10 +126,10 @@ skills/[nom-skill]/
 
 ### Tailles cibles (design compact)
 
-| Type de skill | Lignes SKILL.md | Fichiers references | Note |
+| Type de skill | Lignes SKILL.md | Fichiers références | Note |
 |---------------|-----------------|-------------------|-------|
-| Complexe (gen-plan) | ~195 lignes | 5 fichiers | Le prompt maître (~912 lignes) contient la spec complète et le contenu in extenso des références |
-| Moyen (correct-work) | ~130 lignes | 0 fichier | Le prompt maître (490 lignes) contient les checklists complètes (§10) |
+| Complexe (gen-plan) | ~180 lignes | 5 fichiers | Le prompt maître (~937 lignes) contient la spec complète et le contenu in extenso des références |
+| Moyen (correct-work) | ~315 lignes | scripts/ + evals/ | Le prompt maître (~500 lignes) contient les checklists complètes (§10), historique et notes de conception |
 | Simple | < 100 lignes | 0-1 fichier | Pas de prompt maître ; tout le contenu tient dans le SKILL.md |
 
 ---
@@ -137,7 +140,7 @@ skills/[nom-skill]/
 
 - **Répertoires** : kebab-case (`gen-plan`, `correct-work`, `clone-chat`)
 - **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`, `evals.json`)
-- **Versions** : format semver (`3.6.0`, `2.3.0`)
+- **Versions** : format semver (`3.6.1`, `2.4.0`)
 - **Tags budget** : préfixe `#` pour les tokens (`#token 3500`)
 - **Variables** : double accolades (`{{SKILLS_ROOT}}`)
 - **Sections** : préfixe `§` pour toutes les sections (`§1.2`, `§3.1`)
@@ -192,14 +195,14 @@ Cette matrice définit quels agents peuvent utiliser quels skills et dans quel c
 ### Graphique de dépendances
 
 ```
-gen-plan v3.6.0
-├── invoque correct-work >= v2.3.0       (Étape 1 : validation plan)
+gen-plan v3.6.1
+├── invoque correct-work >= v2.4.0       (Étape 1 : validation plan + E8 hook)
 ├── utilise clone-chat >= v2.0.0          (E4, E15 : calibration + archivage)
 ├── consulte skills-inventory >= v1.0.0   (E5 : sélection skills)
 └── enrichit KNOWLEDGE.md                 (E15 : mise à jour registre)
 
-correct-work v2.3.0
-├── utilise gen-plan >= v3.6.0           (Étape 1 : plan de vérification)
+correct-work v2.4.0
+├── utilise gen-plan >= v3.6.0           (Étape 1 : plan de vérification, optionnel)
 ├── vérifie clone-chat >= v2.0.0          (Mode CIBLE : §3.5 Context Drift)
 └── vérifie fullstack-dev                 (Projets web : structure et dépendances)
 
@@ -211,7 +214,7 @@ clone-chat v2.0.0
 autonomous-agent v1.0.0
 ├── utilise gen-plan >= v3.6.0             (Tâches complexes, planification)
 ├── persist via clone-chat >= v2.0.0       (État Long, inter-sessions, optionnel)
-└── vérifié par correct-work >= v2.3.0     (Cohérence agent)
+└── vérifié par correct-work >= v2.4.0     (Cohérence agent)
 ```
 
 ### Règles de cross-references
@@ -236,8 +239,8 @@ Les prompts maîtres sont les **spécifications d'installation** pour les skills
 | Fichier | Lignes | Description |
 |---------|--------|-------------|
 | `PROMPT-MAITRE-SHARED.md` | ~220 | Socle commun. Contexte, conventions, variables, registre KB, relations inter-skills, matrice agent × skill. |
-| `PROMPT-MAITRE-GEN-PLAN-v3.6.0.md` | ~912 | Spec complète gen-plan. 4 modes, 15 étapes E1-E15, normes N1-N3, YAML frontmatter, instructions d'installation, contenu in extenso des 5 références + evals. |
-| `PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md` | ~490 | Spec complète correct-work. 3 modes, 5 étapes, sévérité S1-S4, checklists unifiées (§10.1-§10.10), historique corrections clone-chat. |
+| `PROMPT-MAITRE-GEN-PLAN-v3.6.1.md` | ~937 | Spec complète gen-plan. 4 modes, 15 étapes E1-E15, normes N1-N3, YAML frontmatter, instructions d'installation, contenu in extenso des 5 références + evals. |
+| `PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md` | ~500 | Spec complète correct-work. 3 modes, 5 étapes, multi-cibles, découplage gen-plan, métriques, checklists unifiées (§10.1-§10.10), historique corrections clone-chat. |
 | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | ~662 | Spec complète clone-chat. 7+1 étapes, 8 checks validation, 5 types de drift, auto-clonage, grille #token, contenu in extenso du template, historique corrections correct-work. |
 
 ### Structure des fichiers
@@ -314,8 +317,8 @@ Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle 
 
 | Skill | Version | Rôle | Fichiers installés |
 |-------|---------|------|-------------------|
-| gen-plan | v3.6.0 | Planification de tâches (4 modes, 15 étapes) | SKILL.md (~195 lignes), 5 références, 5 evals |
-| correct-work | v2.3.0 | Vérification et correction (3 modes, S1-S4) | SKILL.md (129 lignes) |
+| gen-plan | v3.6.1 | Planification de tâches (4 modes, 15 étapes) | SKILL.md (~180 lignes), 5 références, 5 evals |
+| correct-work | v2.4.0 | Vérification et correction (3 modes, S1-S4, multi-cibles) | SKILL.md (~315 lignes), scripts/, evals/ |
 | clone-chat | v2.0.0 | Clonage de discussion en Markdown | SKILL.md (364 lignes), 1 référence, 1 prompt maître |
 | skills-inventory | v1.0.0 | Scan et inventaire des skills | SKILL.md, 2 evals, scripts |
 | skill-creator | v1.0.0 | Création et gestion de skills | SKILL.md, 1 référence, 7 scripts, 3 agents |
@@ -335,5 +338,5 @@ Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle 
 | Cross-refs gen-plan ↔ correct-work ↔ clone-chat | PASS |
 | Interactions 4 fichiers MD + déclencheurs | PASS |
 | `verify-cross.py` (prompts maîtres + sync) | 60/60 PASS (6 axes) |
-| `sync-download.py` (scripts Python) | correct-work DIRECT : 10 findings, 7 corrections appliquées |
+| `sync-download.py` (scripts Python) | SYNC OK (5/5 fichiers identiques) |
 | `integrate-clone-chat-kb-v3.py` | 10/10 checks PASS |

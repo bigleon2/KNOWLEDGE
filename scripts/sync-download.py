@@ -20,8 +20,8 @@ DEST_DIR = os.path.join(BASE_DIR, "download")
 # de scripts/ qui ne relève pas des prompts maîtres.
 SYNC_MAP = [
     ("PROMPT-MAITRE-SHARED.md",              "PROMPT-MAITRE-SHARED.md"),
-    ("PROMPT-MAITRE-GEN-PLAN-v3.6.0.md",     "PROMPT-MAITRE-GEN-PLAN-v3.6.0.md"),
-    ("PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md", "PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md"),
+    ("PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",     "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md"),
+    ("PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md", "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md"),
     ("PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",   "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md"),
     ("README.md",                             "README.md"),
 ]

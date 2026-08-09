@@ -32,9 +32,9 @@ L'écosystème Knowledge est un ensemble de 78 skills conçus pour un assistant 
 
 ### §1.2 Conventions de nommage
 
-- **Répertoires** : kebab-case (`gen-plan`, `correct-work`, `clone-chat`)
+- **Répertoires** : kebab-case (`gen-plan`, `correct-work`, `clone-chat`). Exception : le préfixe `_` est réservé aux dossiers d'infrastructure (`_prompts-maitres/` = pas un skill, pas de `SKILL.md`).
 - **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`, `evals.json`)
-- **Versions** : format semver (`3.6.0`, `2.3.0`)
+- **Versions** : format semver (`3.6.1`, `2.4.0`)
 - **Tags** : préfixe `#` pour les tokens (`#token 3500`)
 - **Variables** : double accolades (`{{SKILLS_ROOT}}`)
 
@@ -119,7 +119,7 @@ Quand un skill doit identifier les skills pertinents pour une tâche :
 
 | Skill A | Relation | Skill B | Nature | Détails |
 |---------|----------|---------|--------|--------|
-| gen-plan | invoque | correct-work | Étape 1 | Validation plan initial, >= v2.3.0 |
+| gen-plan | invoque | correct-work | Étape 1 | Validation plan initial, >= v2.4.0 |
 | gen-plan | utilise | clone-chat | Calibration + archivage | E4, E15, optionnel, >= v2.0.0 |
 | gen-plan | consulte | skills-inventory | Sélection skills | E5, >= v1.0.0 |
 | gen-plan | enrichit | KNOWLEDGE.md | Calibration | E15, mise à jour registre |
@@ -131,7 +131,7 @@ Quand un skill doit identifier les skills pertinents pour une tâche :
 | clone-chat | conventions par | skill-creator | Conventions structurelles | >= v1.0.0 |
 | autonomous-agent | utilise | gen-plan | Planification | Tâches complexes, >= v3.6.0 |
 | autonomous-agent | persist via | clone-chat | État Long | Inter-sessions, optionnel, >= v2.0.0 |
-| autonomous-agent | vérifié par | correct-work | Validation | Cohérence agent, >= v2.3.0 |
+| autonomous-agent | vérifié par | correct-work | Validation | Cohérence agent, >= v2.4.0 |
 
 ### §3.2 Règles de cross-references
 
@@ -186,10 +186,10 @@ Tout `SKILL.md` suit cette structure :
 
 ### §5.2 Tailles cibles
 
-| Type de skill | Lignes SKILL.md | Fichiers references | Note |
+| Type de skill | Lignes SKILL.md | Fichiers références | Note |
 |---------------|-----------------|-------------------|-------|
-| Complexe (gen-plan) | ~195 lignes | 5 fichiers | Version compacte ; le prompt maître (~912 lignes) contient la spec complète et le contenu in extenso des références |
-| Moyen (correct-work) | ~130 lignes | 0 fichier | Version compacte ; le prompt maître (490 lignes) contient les checklists complètes (§10) |
+| Complexe (gen-plan) | ~180 lignes | 5 fichiers | Version compacte ; le prompt maître (~937 lignes) contient la spec complète et le contenu in extenso des références |
+| Moyen (correct-work) | ~280 lignes | scripts/ + evals/ | Version compacte avec checklists op. integrees ; le prompt maître (~490 lignes) contient la spec, checklists detaillees et historique |
 | Simple | < 100 lignes | 0-1 fichier | |
 
 ---
@@ -201,8 +201,8 @@ Tout `SKILL.md` suit cette structure :
 | Fichier | Rôle | Version skill |
 |---------|------|---------------|
 | `PROMPT-MAITRE-SHARED.md` | Socle commun (ce fichier) | — |
-| `PROMPT-MAITRE-GEN-PLAN-v3.6.0.md` | Spécification gen-plan | v3.6.0 |
-| `PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md` | Spécification correct-work | v2.3.0 |
+| `PROMPT-MAITRE-GEN-PLAN-v3.6.1.md` | Spécification gen-plan | v3.6.1 |
+| `PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md` | Spécification correct-work | v2.4.0 |
 | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | Spécification clone-chat | v2.0.0 |
 
 ### §6.2 Workflow d'utilisation
