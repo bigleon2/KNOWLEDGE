@@ -373,3 +373,24 @@ Stage Summary:
 - Phase 4 (infra) priorité basse, #token ~5 000
 - Livrable: download/GEN-PLAN-REFACTORIZING-KNOWLEDGE.md
 - Count réel : 77 skills (6 écosystème + 71 métier), 14 relations bidirectionnelles
+
+---
+Task ID: 16
+Agent: Main (phase1-nettoyage.py)
+Task: Phase 1 — Nettoyage rapide du dépôt Knowledge (6 actions, risque zéro)
+
+Work Log:
+- 1.1: Supprimé 69 READMEs stubs morts (brand-inspiration getdesign.md redirects)
+- 1.2: Supprimé clone-chat.zip (116 KB) + ajouté *.zip au .gitignore
+- 1.3: Supprimé verify-cross.py et sync-download.py doublons de download/
+- 1.4: Archivé generate-knowledge-v3.py et generate-clone-genplan.py dans scripts/_archive/
+- 1.5: Supprimé KNOWLEDGE.md racine (895 lignes, v3.0.0 obsolète)
+- 1.6: Corrigé _prompts-maitres/README.md (78→77, 72→71, supprimé _archive/) + sync download/
+- Vérification: verify-cross.py 60/60 PASS, sync-download.py 5/5 identiques
+
+Stage Summary:
+- 71 fichiers supprimés, 2 déplacés, 2 modifiés
+- 0 risque — aucun skill écosystème touché
+- verify-cross: 60/60 PASS
+- Phase 1 terminée avec succès
+- Prochaine étape recommandée: Phase 2 (standardisation frontmatter métier)

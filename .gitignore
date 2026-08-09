@@ -13,3 +13,5 @@ upload/
 # OS
 .DS_Store
 Thumbs.db
+
+*.zip

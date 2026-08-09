@@ -8,7 +8,7 @@
 
 ## 1. Vue d'ensemble
 
-L'écosystème Knowledge est un ensemble de **78 skills** conçus pour un assistant IA (6 skills écosystème + 72 skills métier). Chaque skill est auto-contenu dans son répertoire sous `skills/`, dispose d'un fichier `SKILL.md` principal, et peut inclure des références, scripts, évaluations et modèles.
+L'écosystème Knowledge est un ensemble de **77 skills** conçus pour un assistant IA (6 skills écosystème + 71 skills métier). Chaque skill est auto-contenu dans son répertoire sous `skills/`, dispose d'un fichier `SKILL.md` principal, et peut inclure des références, scripts, évaluations et modèles.
 
 Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : ils sont utilisés dans toutes les discussions pour planifier les tâches et vérifier/corriger le travail produit. Leur cycle d'interaction (gen-plan produit un plan, correct-work le valide) forme le moteur opérationnel de l'écosystème.
 
@@ -18,7 +18,7 @@ Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : i
 
 ```
 my-project/
-├── skills/                              ← Racine de l'écosystème (78 skills)
+├── skills/                              ← Racine de l'écosystème (77 skills)
 │   ├── KNOWLEDGE.md                    ← Registre central (source de vérité)
 │   ├── _prompts-maitres/               ← Specs d'installation des skills écosystème (préfixe « _ » = infrastructure, pas un skill)
 │   │   ├── PROMPT-MAITRE-SHARED.md     ← Socle commun (conventions, KB, matrice)
@@ -26,7 +26,6 @@ my-project/
 │   │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md
 │   │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
 │   │   ├── README.md
-│   │   └── _archive/                      ← Anciennes versions de PMs (historique)
 │   ├── gen-plan/                       ← Skill écosystème
 │   │   ├── SKILL.md                    (~180 lignes, version compacte)
 │   │   ├── references/                 (5 fichiers)
@@ -47,7 +46,7 @@ my-project/
 │   │   ├── references/
 │   │   ├── scripts/
 │   │   └── agents/
-│   └── [72 autres skills]/             ← Skills métier (docx, pdf, xlsx, pptx, charts, …)
+│   └── [71 autres skills]/             ← Skills métier (docx, pdf, xlsx, pptx, charts, …)
 │       ├── SKILL.md
 │       └── [references/, scripts/, evals/, …]
 ├── download/                            ← Copies de référence (sync via sync-download.py)
@@ -324,7 +323,7 @@ Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle 
 | skill-creator | v1.0.0 | Création et gestion de skills | SKILL.md, 1 référence, 7 scripts, 3 agents |
 | autonomous-agent | v1.0.0 | Agent autonome avec mémoire interne | SKILL.md, 1 référence |
 
-**Registre KB** : `skills/KNOWLEDGE.md` — 6 skills écosystème, 13 relations bidirectionnelles
+**Registre KB** : `skills/KNOWLEDGE.md` — 6 skills écosystème, 14 relations bidirectionnelles
 
 ---
 
