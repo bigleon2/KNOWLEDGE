@@ -32,6 +32,8 @@ Résumé des variables utiles (SHARED §1.1) :
 - `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
 - `{{KB_ENABLED}}` = `true`
 
+Fonction héritée (SHARED §7) : correct-work détient la méthode **prompt-engineering** (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que **fonction héritée**, pour la lecture et la validation de ses artefacts (specs, SKILL.md, rapports).
+
 ---
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
@@ -90,7 +92,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 
 | Dépendance | Version minimale | Utilisation | Optionnelle |
 |------------|-----------------|-------------|-------------|
-| gen-plan | >= v3.6.0 | Étape 1 (plan d'actions) | Oui (autonome sinon) |
+| gen-plan | >= v3.7.0 | Étape 1 (plan d'actions) | Oui (autonome sinon) |
 | clone-chat | >= v2.0.0 | Mode CIBLE (§3.5 Context Drift) | Oui |
 | fullstack-dev | >= v1.0.0 | Vérification de projets web | Oui |
 
@@ -200,7 +202,7 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| gen-plan | Invocation à E1 | Plan de vérification (optionnel, autonome sinon), version >= v3.6.0 |
+| gen-plan | Invocation à E1 | Plan de vérification (optionnel, autonome sinon), version >= v3.7.0 |
 | clone-chat | Vérification Mode CIBLE | §3.5 Context Drift, version >= v2.0.0 |
 | fullstack-dev | Vérification | Projets web : structure et dépendances, version >= v1.0.0 |
 | knowledge.md | Scan dynamique | Découverte versions et dépendances |
@@ -230,7 +232,7 @@ description: >
   métriques de performance.
 dependencies:
   - skill: gen-plan
-    version: ">=3.6.0"
+    version: ">=3.7.0"
     used_at: "Étape 1 (optionnel, mode PROJET)"
   - skill: clone-chat
     version: ">=2.0.0"
@@ -280,11 +282,11 @@ Le fichier `SKILL.md` (~315 lignes, version compacte avec checklists intégrées
 | 8 | Matrice dynamique KB | Description du scan | Present |
 | 9 | Critères de sévérité | S1-S4 | All present |
 | 10 | Format rapport | Structure 5 sections, support multi-cibles | Present |
-| 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.6.0 | Present |
+| 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.7.0 | Present |
 | 12 | Cross-ref clone-chat | Mention Mode CIBLE, §3.5 | Present |
 | 13 | KNOWLEDGE.md | Entrée correct-work (SHARED §2.2) | Present |
 | 14 | Logging worklog | Format documenté | Present |
-| 15 | Dépendances frontmatter | gen-plan >=3.6.0, clone-chat >=2.0.0, fullstack-dev >=1.0.0 | Correct |
+| 15 | Dépendances frontmatter | gen-plan >=3.7.0, clone-chat >=2.0.0, fullstack-dev >=1.0.0 | Correct |
 | 16 | Compatibilité écosystème | 16/16 checks PASS | All PASS |
 
 ---

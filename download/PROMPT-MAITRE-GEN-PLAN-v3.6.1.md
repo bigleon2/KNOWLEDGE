@@ -173,7 +173,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| correct-work | Invocation à E1 | Validation du plan initial, version >= v2.4.0 |
+| correct-work | Invocation à E1 + hook E8 | Validation du plan initial + vérification post-plan, version >= v2.4.0 |
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
@@ -706,6 +706,11 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 | 2 | 2026-07-18 | Test E2E gen-plan | 3000 | 3600 | +20.0% | Aucune (seuil) |
 | 3 | 2026-07-29 | clone-chat v1.1.0 | 4000 | 5200 | +30.0% | Ajustement grille |
 | 4 | 2026-07-29 | clone-chat v1.2.0 (historique) | 4400 | 4600 | +4.5% | Aucune (0-20%) |
+| 5 | 2026-08-29 | correct-work PROJET écosystème | 12000 | ~11000 | -8.3% | Aucune (0-20%) |
+| 6 | 2026-08-29 | Frontmatters + clone-chat 08-29 | 10000 | ~9500 | -5.0% | Aucune (0-20%) |
+| 7 | 2026-08-29 | QA clone GML + spell-check | 11000 | ~9800 | -10.9% | Aucune (0-20%) |
+| 8 | 2026-08-30 | ZIP v1.1.0 + réconciliation | 9000 | ~8800 | -2.2% | Aucune (0-20%) |
+| 9 | 2026-08-30 | correct-work PROJET + archéologie versions + lignée clones | 9500 | ~9800 | +3.2% | Aucune (0-20%) |
 ```
 
 ### §9.3 `references/classification-types.md`

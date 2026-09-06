@@ -1,6 +1,7 @@
 # PROMPT MAÎTRE — Installation du skill clone-chat v2.0.0
 
-> **Version du prompt** : 1.0.0
+> **Version du prompt** : 1.0.2
+> **Révision prompt** : 2026-09-05 — 1.0.1 : toilettage §6 #11 (planchers alignés) ; 1.0.2 : références internes de la note §7 en numérotation 1-index — aucun changement du skill
 > **Skill cible** : clone-chat v2.0.0
 > **Date** : 2026-08-09
 > **Source** : Écosystème Knowledge — Clone de discussion
@@ -27,6 +28,8 @@ Résumé des variables utiles (SHARED §1.1) :
 - `{{SKILLS_ROOT}}` = `skills/`
 - `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
 - `{{KB_ENABLED}}` = `true`
+
+Fonction héritée (SHARED §7) : clone-chat détient la méthode **prompt-engineering** (méthode-mère : gen-plan ; définitions et registre : SHARED §7, session A11) en tant que **fonction héritée**, pour l'assemblage des documents-clones qu'il produit.
 
 ---
 
@@ -321,7 +324,7 @@ mkdir -p {{SKILLS_ROOT}}clone-chat/références
 Le fichier `SKILL.md` (~365 lignes) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
-2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention 78 skills, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
+2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention 80 skills, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
 3. **§1 — Spécification fonctionnelle** : objectif, 7+1 étapes (détail de chaque), profils ressource
 4. **§2 — Spécification technique** : format sortie, stack, grille #token, intégration gen-plan, mitigation taille, structure fichiers
 5. **§3 — Conventions** : nommage (SHARED §1.2), chemins relatifs, règle in extenso, numérotation §0-§5, Context Drift obligatoire
@@ -363,7 +366,7 @@ Vérifier que (SHARED §3.2) :
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}clone-chat/SKILL.md` | File exists |
 | 2 | YAML frontmatter valide | name, version, category, language, tags, description, dependencies | All present |
-| 3 | §0 Règle zéro | 78 skills mentionnés, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}` | Present |
+| 3 | §0 Règle zéro | 80 skills mentionnés, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}` | Present |
 | 4 | 7+1 étapes | Étapes 1-7 + Étape 3.5 documentées | All present |
 | 5 | 8 checks validation | Table complète en Étape 6 | 8 checks |
 | 6 | 5 types de drift | INVERSION, MODIFICATION, CORRECTION, ENRICHISSEMENT, RECALIBRAGE | All present |
@@ -371,7 +374,7 @@ Vérifier que (SHARED §3.2) :
 | 8 | Template présent | `références/clone-template.md` | File exists |
 | 9 | Template version | « 2.0.0 » dans le template | Present |
 | 10 | Chemins relatifs | Aucun chemin absolu dans SKILL.md ni template | No absolute paths |
-| 11 | Dependencies frontmatter | gen-plan >=3.6.0 (optional), correct-work >=2.3.0 | Correct |
+| 11 | Dependencies frontmatter | gen-plan >= v3.6.1 (optional), correct-work >= v2.4.0 | Correct |
 | 12 | Variables SHARED | `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}` utilisées | Present |
 | 13 | Kebab-case | `clone-chat`, `clone-template` | Correct |
 | 14 | Worklog SHARED §1.4 | Référencé en §1.1 et §1.7 | Present |
@@ -389,6 +392,19 @@ Vérifier que (SHARED §3.2) :
 | v1.2.0 | 2026-07-29 | Étape 3.5 Context Drift, 5 types, 8 checks, gen-plan KB |
 | v2.0.0 | 2026-08-09 | Harmonisation écosystème maître : gen-plan v3.6.0, correct-work v2.3.0, 78 skills, variables SHARED, dependencies frontmatter, worklog SHARED §1.4, prompt maître |
 
+Révision documentaire 2026-09-06 (session A11, sans changement de version ni de contrat) : §B — pointeur de définition des disciplines actualisé (source de vérité : SHARED §7, réimplantation des disciplines) ; la mention historique PM v3.7.0 §1.9 reste valable comme lignage méthode-mère.
+
+> **Révision 1.0.1 du prompt (2026-09-05)** — toilettage de cohérence : le critère #11 de §6 est aligné sur les planchers courants du skill (frontmatter l.346 et table des relations l.271-272 : `gen-plan >= v3.6.1` optionnel, `correct-work >= v2.4.0`, harmonisation du 30-08 Task 8, convention SHARED §3.2-5). Aucun changement fonctionnel du skill clone-chat : la version du skill reste v2.0.0.
+> **Révision 1.0.2 du prompt (2026-09-05)** — correction des références internes de la note de révision 1.0.1 ci-dessus (« frontmatter l.345 » → l.346, « table des relations l.270-271 » → l.271-272 ; numérotation 1-index), constatée par la vérification correct-work Mode CIBLE (Task 21, observation S4). Aucun changement fonctionnel du skill clone-chat : la version du skill reste v2.0.0.
+
+> **Révision 1.0.3 du prompt (2026-09-06)** — complétude du template §9.1 : ajout du bloc
+> « §1.0 Héritage — chaîne de clonage » au template (protocole d'héritage documenté au
+> tableau 4 du PDF « Analyse récursive des discussions Knowledge » — « protocole d'héritage
+> §1.0 », mouvement v1.2.0 → v2.0.0 — et pratiqué par tous les clones de la lignée depuis le
+> maillon D du 2026-08-30) et explicitation de la compatibilité ascendante en §8 (Annexe D du
+> PDF, démontrée Task 23). Aucun changement fonctionnel du skill clone-chat : la version du
+> skill reste v2.0.0.
+
 ---
 
 ## §8 — NOTES DE CONCEPTION
@@ -404,6 +420,12 @@ Les discussions longues génèrent inévitablement des changements de contexte :
 ### §8.3 Pourquoi l'auto-clonage ?
 
 La propriété d'auto-clonage résout un problème fondamental : la perte de contexte entre sessions. Un clone contient dans son §5 les instructions pour se cloner lui-même. Quand une nouvelle session prolonge la discussion, le nouveau clone incorpore tout le contexte du clone précédent plus les nouvelles sessions. Les sections §1-§3 (données historiques) sont enrichies, tandis que §0, §4-§5 (auto-référentielles) sont régénérées à l'identique. Ce mécanisme permet une chaîne de clonage théoriquement infinie sans perte d'information.
+
+**Compatibilité ascendante** : tout clone produit sous une révision antérieure du prompt est
+reconnu et absorbé sans perte par les révisions suivantes (démontré le 2026-09-05, Task 23 —
+absorption du 6ᵉ clone re-scellé sous la révision 1.0.2 ; Annexe D du PDF « Analyse récursive
+des discussions Knowledge », tableau D2). Les révisions du prompt n'altèrent jamais le format
+des sections : les clonages antérieurs restent lisibles et enrichissables.
 
 ### §8.4 Pourquoi 3 profils ressource ?
 
@@ -450,6 +472,13 @@ Contexte matériel cible : [DESCRIPTION DE L'ENVIRONNEMENT CIBLE]
 ---
 
 ## §1 — CHRONOLOGIE DE LA DISCUSSION
+
+### §1.0 Héritage — chaîne de clonage ([N] sessions cumulées, [AAAA-MM-JJ] → [AAAA-MM-JJ])
+
+La lignée de clones cumule [N] sessions avant le présent document (détail complet aux §1.0
+des clones prédécesseurs [FICHIERS PRÉDÉCESSEURS, SHAs scellées]).
+La présente session ajoute [M] entrées worklog. L'état de l'écosystème à la clôture du
+prédécesseur direct (SHA scellée [SHA_64_HEX]…) est le point de départ connu.
 
 ### §1.1 Résumé global
 
