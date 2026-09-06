@@ -1,6 +1,7 @@
+```markdown
 # Classification des types de tâches — gen-plan E3
 
-## Type 1 — Document Création
+## Type 1 — Document création
 
 **Indicateurs** :
 - Mots-clés : rapport, document, article, analyse, proposition, PRD, script, manuscrit, présentation, tableur
@@ -77,3 +78,4 @@
 | "Visualisation" dans un document | Finalité = document | Type 1 (charts embarqués) |
 | "Visualisation" autonome | Finalité = visuel | Type 2 |
 | Mention Next.js/React | Toujours web dev | Type 3 |
+```

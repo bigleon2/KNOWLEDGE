@@ -40,13 +40,13 @@ LEXIQUE_PATH = os.path.join(ROOT, "scripts", "lexique-domain.json")
 
 ECOSYSTEM_FILES = [
     # Prompts maîtres (source de vérité)
-    "skills/_prompts-maitres/PROMPT-MAITRE-SHARED.md",
-    "skills/_prompts-maitres/PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",
-    "skills/_prompts-maitres/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md",
-    "skills/_prompts-maitres/PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
-    "skills/_prompts-maitres/README.md",
+    "skills/mon-ecosysteme/PROMPT-MAITRE-SHARED.md",
+    "skills/mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",
+    "skills/mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md",
+    "skills/mon-ecosysteme/PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+    "skills/mon-ecosysteme/README.md",
     # Archive
-    "skills/_prompts-maitres/_archive/PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md",
+    "skills/mon-ecosysteme/_archive/PROMPT-MAITRE-CORRECT-WORK-v2.3.0.md",
     # Registre KB
     "skills/KNOWLEDGE.md",
     # Skills écosystème
@@ -709,7 +709,7 @@ class TestSpellCheck(unittest.TestCase):
     # --- Tests sur fichiers réels ---
     def test_scan_real_file_shared(self):
         """SHARED.md doit passer le scan (0 finding)."""
-        fp = os.path.join(ROOT, "skills/_prompts-maitres/PROMPT-MAITRE-SHARED.md")
+        fp = os.path.join(ROOT, "skills/mon-ecosysteme/PROMPT-MAITRE-SHARED.md")
         findings = scan_file(fp, self.lexicon)
         real = [f for f in findings if f[1] not in ("ERREUR", "INFO_ZH")]
         # SHARED a été corrigé, donc 0 finding attendu
@@ -717,14 +717,14 @@ class TestSpellCheck(unittest.TestCase):
 
     def test_scan_real_file_pm_correct_work(self):
         """PM correct-work doit passer le scan (0 finding)."""
-        fp = os.path.join(ROOT, "skills/_prompts-maitres/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md")
+        fp = os.path.join(ROOT, "skills/mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md")
         findings = scan_file(fp, self.lexicon)
         real = [f for f in findings if f[1] not in ("ERREUR", "INFO_ZH")]
         self.assertLessEqual(len(real), 5, f"PM correct-work a {len(real)} finding(s): {real}")
 
     def test_scan_real_file_readme(self):
-        """README.md _prompts-maitres doit passer le scan (0 finding)."""
-        fp = os.path.join(ROOT, "skills/_prompts-maitres/README.md")
+        """README.md mon-ecosysteme doit passer le scan (0 finding)."""
+        fp = os.path.join(ROOT, "skills/mon-ecosysteme/README.md")
         findings = scan_file(fp, self.lexicon)
         real = [f for f in findings if f[1] not in ("ERREUR", "INFO_ZH")]
         self.assertLessEqual(len(real), 10, f"README.md a {len(real)} finding(s): {real}")

@@ -1,38 +1,12 @@
----
-name: correct-work
-version: 2.5.1
-category: ecosystem
-language: fr
-tags:
-  - vérification
-  - correction
-  - quality-assurance
-  - ecosystem
-  - kb-integration
-description: >
-  Skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences).
-  5 étapes, 3 modes (PROJET/CIBLE/DIRECT),
-  support multi-cibles, découplage gen-plan optionnel,
-  intégration KB (Registre, kb_path, --kb-skill),
-  matrice de décision agent/skill (statique + dynamique KB),
-  métriques de performance.
-dependencies:
-  - skill: gen-plan
-    version: ">=3.7.0"
-    used_at: "Étape 1 (optionnel, mode PROJET)"
-  - skill: clone-chat
-    version: ">=2.0.0"
-    used_at: "Mode CIBLE, §3.5 Context Drift"
-  - skill: fullstack-dev
-    version: ">=1.0.0"
-    used_at: "Vérification projets web"
----
+# PROMPT MAÎTRE — Installation du skill correct-work v2.4.0
 
-## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
+> **Version du prompt** : 1.1.0
+> **Skill cible** : correct-work v2.4.0
+> **Date** : 2026-08-09
+> **Source** : Écosystème Knowledge
+> **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
 
-Les fichiers des sessions précédentes n'existent pas dans une nouvelle session : tout est
-à reconstruire à partir des documents de la lignée. Ne jamais utiliser le verbe « conserver ».
-Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
+---
 
 ## §A — DÉCLENCHEURS
 
@@ -49,6 +23,18 @@ Options avancées (gen-plan >= v3.6.0) :
 - `correct-work(projet, kb_path=/chemin/KB)` — vérification avec scan des skills KB
 - `correct-work(cible, --kb-skill=<name>)` — forcer l'utilisation d'un skill KB spécifique
 
+## §B — PRÉREQUIS
+
+Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
+
+Résumé des variables utiles (SHARED §1.1) :
+- `{{SKILLS_ROOT}}` = `skills/`
+- `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
+- `{{KB_ENABLED}}` = `true`
+
+Fonction héritée (SHARED §7) : correct-work détient la méthode **prompt-engineering** (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que **fonction héritée**, pour la lecture et la validation de ses artefacts (specs, SKILL.md, rapports).
+
+---
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
@@ -94,7 +80,6 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 
 ---
 
-
 ## §2 — SPÉCIFICATION TECHNIQUE
 
 ### §2.1 Stack technique
@@ -119,8 +104,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 ├── scripts/
 │   └── verify-correct-work.py  # 16 checks post-install automatisés
 └── evals/
-    ├── evals.json             # Cas de test (schéma skill-creator)
-    └── trigger_evals.json     # Cas de déclenchement (Description Optimization)
+    └── evals.json        # Cas de test d'évaluation
 ```
 
 ### §2.4 Format du rapport de vérification
@@ -131,7 +115,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 ## Métadonnées
 - **Date** : YYYY-MM-DD
 - **Mode** : PROJET | CIBLE | DIRECT
-- **Version correct-work** : 2.5.1
+- **Version correct-work** : 2.4.0
 - **Cible** : [nom du skill/fichier] (ou multi-cibles)
 
 ## Étape 1 — Plan d'actions
@@ -210,7 +194,6 @@ Les métriques suivantes sont collectées pour chaque exécution de correct-work
 
 ---
 
-
 ## §3 — RELATIONS
 
 Voir `PROMPT-MAITRE-SHARED.md §3` pour le registre complet des relations inter-skills.
@@ -226,6 +209,162 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 
 ---
 
+## §4 — YAML FRONTMATTER
+
+```yaml
+---
+name: correct-work
+version: 2.4.0
+category: ecosystem
+language: fr
+tags:
+  - vérification
+  - correction
+  - quality-assurance
+  - ecosystem
+  - kb-integration
+description: >
+  Skill de vérification et correction du travail réalisé.
+  5 étapes, 3 modes (PROJET/CIBLE/DIRECT),
+  support multi-cibles, découplage gen-plan optionnel,
+  intégration KB (Registre, kb_path, --kb-skill),
+  matrice de décision agent/skill (statique + dynamique KB),
+  métriques de performance.
+dependencies:
+  - skill: gen-plan
+    version: ">=3.7.0"
+    used_at: "Étape 1 (optionnel, mode PROJET)"
+  - skill: clone-chat
+    version: ">=2.0.0"
+    used_at: "Mode CIBLE, §3.5 Context Drift"
+  - skill: fullstack-dev
+    version: ">=1.0.0"
+    used_at: "Vérification projets web"
+---
+```
+
+---
+
+## §5 — INSTRUCTIONS D'INSTALLATION
+
+### §5.1 Créer la structure
+
+```bash
+mkdir -p {{SKILLS_ROOT}}correct-work/scripts
+mkdir -p {{SKILLS_ROOT}}correct-work/evals
+```
+
+### §5.2 Créer le fichier SKILL.md
+
+Le fichier `SKILL.md` (~315 lignes, version compacte avec checklists intégrées) doit contenir :
+
+1. **YAML frontmatter** (voir §4)
+2. **§0 — Règle zéro** (voir SHARED §0)
+3. **§1 — Spécification fonctionnelle** : 3 modes, 5 étapes, multi-cibles, découplage gen-plan, intégration KB
+4. **§2 — Spécification technique** : Stack, dépendances, rapport (§2.4), matrice (§2.5), logging (§2.6), sévérité (§2.7), métriques (§2.8)
+5. **§3 — Relations** : Voir SHARED §3 (résumé des relations directes)
+6. **§4 — Checklists** : Par mode (§4.1-§4.3), sélection (§4.4), verdicts (§4.5), types projet (§4.6), détail étapes 2-5 (§4.7-§4.10)
+7. **§5 — Conventions** : Nommage (SHARED §1.2), format rapport, verdicts
+
+---
+
+## §6 — VÉRIFICATION POST-INSTALLATION
+
+| # | Check | Critère | Résultat attendu |
+|---|-------|---------|------------------|
+| 1 | SKILL.md existe | `{{SKILLS_ROOT}}correct-work/SKILL.md` | File exists |
+| 2 | Taille SKILL.md | 200-350 lignes | Within range |
+| 3 | YAML frontmatter valide | name, version, category, language, tags, dependencies | All present |
+| 4 | 3 modes documentés | PROJET, CIBLE, DIRECT | All present |
+| 5 | 5 étapes documentées | E1-E5 | All present |
+| 6 | Intégration KB | Mention kb_path, --kb-skill | Present |
+| 7 | Matrice statique | Voir SHARED §4 | Referenced |
+| 8 | Matrice dynamique KB | Description du scan | Present |
+| 9 | Critères de sévérité | S1-S4 | All present |
+| 10 | Format rapport | Structure 5 sections, support multi-cibles | Present |
+| 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.7.0 | Present |
+| 12 | Cross-ref clone-chat | Mention Mode CIBLE, §3.5 | Present |
+| 13 | KNOWLEDGE.md | Entrée correct-work (SHARED §2.2) | Present |
+| 14 | Logging worklog | Format documenté | Present |
+| 15 | Dépendances frontmatter | gen-plan >=3.7.0, clone-chat >=2.0.0, fullstack-dev >=1.0.0 | Correct |
+| 16 | Compatibilité écosystème | 16/16 checks PASS | All PASS |
+
+---
+
+## §7 — HISTORIQUE DES VERSIONS
+
+| Version | Date | Changements |
+|---------|------|-------------|
+| v1.0.0 | 2026-07-18 | Version initiale, vérification basique |
+| v2.0.0 | 2026-07-29 | Ajout Mode CIBLE, amélioration du rapport |
+| v2.1.0 | 2026-07-29 | Intégration gen-plan pour Étape 1 |
+| v2.2.0 | 2026-07-29 | Registre KB (gen-plan >=3.3.0), kb_path, --kb-skill, matrice dynamique |
+| v2.3.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
+| v2.4.0 | 2026-08-09 | Support multi-cibles, découplage gen-plan (autonome), métriques de performance, checklists opérationnelles (§4.6-§4.10), scripts/ + evals/, hook gen-plan E8, verify-cross --mode correct-work (8 checks KB) |
+
+---
+
+## §8 — HISTORIQUE DES CORRECTIONS (clone-chat)
+
+### §8.1 Round 1 (Session 17 → clone-chat v1.1.0)
+
+| # | Problème | Sévérité | Correction |
+|---|----------|----------|------------|
+| 1 | Seuil in extenso < 500 lignes trop haut | S2 | Réduit à < 200 lignes |
+| 2 | Chemins absolus dans §3.3 | S1 | Remplacés par chemins relatifs |
+| 3-8 | Corrections structurelles | S2-S3 | Alignement SKILL.md ↔ template |
+
+**Bilan** : 8 corrections.
+
+### §8.2 Round 2 (Sessions 21-22)
+
+| # | Problème | Sévérité | Correction |
+|---|----------|----------|------------|
+| 1 | Template §5 ne mentionnait pas §0 | S2 | Ajout référence §0 |
+| 2 | Règle « drift vide » absente | S2 | Ajout règle obligatoire |
+| 3 | Décision #12 absente | S3 | Ajout décision intégration v2.2.0 |
+| 4-9 | Autres problèmes | S2-S4 | Corrections diverses |
+
+**Bilan** : 9 problèmes, 7 corrections.
+
+### §8.3 Round 3 (Session 23 → stabilisation)
+
+| # | Problème | Sévérité | Correction |
+|---|----------|----------|------------|
+| 1 | « 7 étapes » vs « 7+1 étapes » | S2 | Unification en « 7+1 étapes » |
+| 2 | Template §5 incomplet | S3 | Enrichissement |
+
+**Bilan** : 2 problèmes, 2 corrections → **stabilisation atteinte**.
+
+---
+
+## §9 — NOTES DE CONCEPTION
+
+### §9.1 Pourquoi 3 modes ?
+
+Les 3 modes couvrent 3 niveaux de vérification : PROJET (lourd mais exhaustif, utilise le prompt maître comme référence), CIBLE (équilibre précision/effort, vérifie un skill précis), DIRECT (léger mais immédiat, correction rapide d'un fichier isolé). Le mode par défaut est CIBLE si l'utilisateur ne précise pas.
+
+### §9.2 Pourquoi 5 étapes ?
+
+Progression logique du plus évident au plus subtil : plan (via gen-plan ou autonome) → contenu factuel → structure formelle → interactions entre composants → cohérence globale des raisonnements. Cette séquence garantit que les erreurs grossières (S1) sont détectées avant les problèmes subtils (S3-S4).
+
+### §9.3 Pourquoi l'intégration KB ?
+
+Sans KB, correct-work vérifie uniquement la matrice statique (SHARED §4). Avec KB, il découvre dynamiquement les skills disponibles, leurs versions réelles et leurs dépendances. La matrice dynamique est construite en temps réel via le Protocole de Découverte (SHARED §2.3), offrant une vérification plus précise et à jour.
+
+### §9.4 Pourquoi la double matrice ?
+
+La matrice statique garantit un fonctionnement minimum sans KB (fallback). La matrice dynamique enrichit la vérification quand KB est disponible. Ce pattern « statique + dynamique » assure la résilience : si KNOWLEDGE.md est absent ou corrompu, correct-work peut encore fonctionner avec la matrice intégrée.
+
+### §9.5 Pourquoi le découplage gen-plan ?
+
+gen-plan est un skill lourd (15 étapes). Pour les vérifications simples (modes CIBLE et DIRECT), correct-work n'a pas besoin de gen-plan. Le mode PROJET l'utilise à l'Étape 1, mais si gen-plan est indisponible, correct-work bascule en mode autonome avec un plan simplifié. Cela réduit les dépendances et améliore la résilience.
+
+### §9.6 Pourquoi le support multi-cibles ?
+
+Une session de travail peut produire plusieurs livrables (ex : un SKILL.md + un script + un evals.json). Le support multi-cibles permet de tous les vérifier dans une seule exécution, avec un sous-rapport par cible et un verdict global.
+
+---
 
 ## §10 — CHECKLISTS (SKILL.md)
 
@@ -390,10 +529,3 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 4. **Résultat attendu vs obtenu** : ce qui a été promis correspond-il à ce qui a été livré ?
 5. **Cohérence entre fichiers** : pas de contradiction entre le contenu de deux livrables.
 6. **Corriger** toute incohérence identifiée.
-
-## §11 — CONVENTIONS
-
-- Nommage kebab-case, sections préfixées « § », budgets préfixés « #token » (SHARED §1.2)
-- Worklog format SHARED §1.4 — une entrée par tâche, verdicts et preuves JSON
-- Planchers directionnels plutôt qu'égalité stricte (leçon E21) pour tout critère couplant
-  une valeur à un artefact vivant

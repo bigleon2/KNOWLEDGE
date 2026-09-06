@@ -1,36 +1,63 @@
 {
-  "skill": "correct-work",
-  "version": "2.4.0",
+  "skill_name": "correct-work",
+  "version": "2.5.1",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Schéma unifié skill-creator (révision PM v2.5.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 5 evals v2.4.0 préservée (modes PROJET/CIBLE, verdicts, multi-cibles).",
   "evals": [
     {
-      "id": "CW-mode-projet",
-      "name": "Mode PROJET",
-      "input": "Prompt maitre",
-      "expected_mode": "PROJET"
+      "id": 1,
+      "name": "CW-mode-projet — Mode PROJET",
+      "prompt": "Vérifie l'écosystème complet décrit par le prompt maître de ce projet",
+      "expected_output": "Le mode PROJET est sélectionné et les 5 phases de vérification sont exécutées sur l'ensemble des fichiers",
+      "files": [],
+      "expectations": [
+        "Le mode PROJET est détecté (vérification d'un projet entier)",
+        "Les 5 phases (plan, erreurs/omissions, structure, interactions, cohérence) sont exécutées"
+      ]
     },
     {
-      "id": "CW-mode-cible",
-      "name": "Mode CIBLE",
-      "input": "Verifie ce skill",
-      "expected_mode": "CIBLE"
+      "id": 2,
+      "name": "CW-mode-cible — Mode CIBLE",
+      "prompt": "Vérifie ce skill",
+      "expected_output": "Le mode CIBLE est sélectionné : une seule cible, vérification approfondie",
+      "files": [],
+      "expectations": [
+        "Le mode CIBLE est détecté (cible unique désignée)",
+        "La vérification reste confinée à la cible désignée"
+      ]
     },
     {
-      "id": "CW-verdict-fail",
-      "name": "FAIL si S1",
-      "input": "Erreur S1",
-      "expected_verdict": "FAIL"
+      "id": 3,
+      "name": "CW-verdict-fail — FAIL si S1",
+      "prompt": "La vérification détecte une erreur de sévérité S1 (critique)",
+      "expected_output": "Verdict FAIL remonté avec la sévérité S1 documentée",
+      "files": [],
+      "expectations": [
+        "Le verdict global est FAIL",
+        "La sévérité S1 est explicitement consignée dans le rapport"
+      ]
     },
     {
-      "id": "CW-verdict-pass",
-      "name": "PASS si 0 S1-S2",
-      "input": "Aucun S1-S2",
-      "expected_verdict": "PASS"
+      "id": 4,
+      "name": "CW-verdict-pass — PASS si 0 S1-S2",
+      "prompt": "Aucune sévérité S1 ni S2 n'a été détectée lors de la vérification",
+      "expected_output": "Verdict PASS (les S3/S4 éventuelles sont journalisées sans bloquer)",
+      "files": [],
+      "expectations": [
+        "Le verdict global est PASS",
+        "Toute S3/S4 est journalisée mais ne dégrade pas le verdict"
+      ]
     },
     {
-      "id": "CW-multi-cible",
-      "name": "Multi-cibles",
-      "input": "Verifie A et B",
-      "expected_targets": 2
+      "id": 5,
+      "name": "CW-multi-cible — Multi-cibles",
+      "prompt": "Vérifie le fichier A et le fichier B",
+      "expected_output": "Deux cibles sont vérifiées dans la même exécution, chacune avec son rapport",
+      "files": [],
+      "expectations": [
+        "Les 2 cibles sont traitées",
+        "Chaque cible obtient un verdict distinct"
+      ]
     }
   ]
 }

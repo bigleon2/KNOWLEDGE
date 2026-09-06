@@ -1,14 +1,14 @@
 # Écosystème Knowledge — Architecture & Guide de référence
 
-> **Date** : 2026-08-09
-> **Version** : 2.0.0
-> **Vérification** : 60/60 checks PASS (`scripts/verify-cross.py`)
+> **Date** : 2026-08-30
+> **Version** : 2.1.0
+> **Vérification** : 60/60 checks PASS (`scripts/verify-cross.py`, 6 axes — état courant 2026-09-06) · état historique v2.1.0 (30-08) : 68/68
 
 ---
 
 ## 1. Vue d'ensemble
 
-L'écosystème Knowledge est un ensemble de **77 skills** conçus pour un assistant IA (6 skills écosystème + 71 skills métier). Chaque skill est auto-contenu dans son répertoire sous `skills/`, dispose d'un fichier `SKILL.md` principal, et peut inclure des références, scripts, évaluations et modèles.
+L'écosystème Knowledge est un ensemble de **80 skills** conçus pour un assistant IA (9 skills écosystème + 71 skills métier). Chaque skill est auto-contenu dans son répertoire sous `skills/`, dispose d'un fichier `SKILL.md` principal, et peut inclure des références, scripts, évaluations et modèles.
 
 Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : ils sont utilisés dans toutes les discussions pour planifier les tâches et vérifier/corriger le travail produit. Leur cycle d'interaction (gen-plan produit un plan, correct-work le valide) forme le moteur opérationnel de l'écosystème.
 
@@ -18,22 +18,49 @@ Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : i
 
 ```
 my-project/
-├── skills/                              ← Racine de l'écosystème (77 skills)
+├── mon-ecosysteme/                      ← Prompts maîtres — dossier canonique (renommé depuis _prompts-maitres le 2026-08-28)
+│   ├── README.md                        ← Le présent guide
+│   ├── INSTALL-ECOSYSTEME.md            ← Procédure d'installation (8 phases P0-P7)
+│   ├── PROMPT-MAITRE-SHARED.md          ← Socle commun
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.10.0.md ← Version courante
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.9.0.md
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.8.1.md
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.8.0.md
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.7.0.md
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.6.1.md ← Version intermédiaire conservée
+│   ├── PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md ← Version courante
+│   ├── PROMPT-MAITRE-CORRECT-WORK-v2.5.0.md
+│   ├── PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md
+│   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
+│   └── _archive/                        ← Versions obsolètes (8 fichiers, voir _archive/README.md)
+├── skills/                              ← Racine de l'écosystème (80 skills)
 │   ├── KNOWLEDGE.md                    ← Registre central (source de vérité)
-│   ├── _prompts-maitres/               ← Specs d'installation des skills écosystème (préfixe « _ » = infrastructure, pas un skill)
+│   ├── _prompts-maitres/               ← Miroir byte-identique de mon-ecosysteme/ (22 fichiers — préfixe « _ » = infrastructure, pas un skill)
 │   │   ├── PROMPT-MAITRE-SHARED.md     ← Socle commun (conventions, KB, matrice)
-│   │   ├── PROMPT-MAITRE-GEN-PLAN-v3.6.1.md
+│   │   ├── PROMPT-MAITRE-GEN-PLAN-v3.7.0.md
 │   │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md
 │   │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
 │   │   ├── README.md
+│   ├── context-engineering/            ← Skill discipline (socle SHARED §7 — déclenchement automatique)
+│   │   ├── SKILL.md                    (~130 lignes, version compacte)
+│   │   └── evals/                      (evals.json 4 evals + trigger_evals.json 4 cas)
+│   ├── loop-engineering/               ← Skill discipline (socle SHARED §7 — déclenchement automatique)
+│   │   ├── SKILL.md                    (~130 lignes, version compacte)
+│   │   └── evals/                      (evals.json 4 evals + trigger_evals.json 4 cas)
+│   ├── graph-engineering/              ← Skill discipline (socle SHARED §7 — déclenchement automatique)
+│   │   ├── SKILL.md                    (~130 lignes, version compacte)
+│   │   └── evals/                      (evals.json 4 evals + trigger_evals.json 4 cas)
+│   ├── harness-engineering/            ← Skill discipline (socle SHARED §7 — déclenchement automatique)
+│   │   ├── SKILL.md                    (~130 lignes, version compacte)
+│   │   └── evals/                      (evals.json 4 evals + trigger_evals.json 4 cas)
 │   ├── gen-plan/                       ← Skill écosystème
-│   │   ├── SKILL.md                    (~180 lignes, version compacte)
+│   │   ├── SKILL.md                    (~232 lignes, version compacte — plancher 180-260)
 │   │   ├── references/                 (5 fichiers)
-│   │   └── evals/evals.json            (5 evals)
+│   │   └── evals/                      (evals.json 6 evals + trigger_evals.json 9 cas)
 │   ├── correct-work/                   ← Skill écosystème
-│   │   ├── SKILL.md                    (~315 lignes)
+│   │   ├── SKILL.md                    (~400 lignes)
 │   │   ├── scripts/                    (1 script)
-│   │   └── evals/                      (1 fichier)
+│   │   └── evals/                      (evals.json 5 evals + trigger_evals.json 8 cas)
 │   ├── clone-chat/                     ← Skill écosystème
 │   │   ├── SKILL.md
 │   │   └── references/                 (1 fichier)
@@ -51,7 +78,7 @@ my-project/
 │       └── [references/, scripts/, evals/, …]
 ├── download/                            ← Copies de référence (sync via sync-download.py)
 └── scripts/
-    ├── verify-cross.py                 ← Vérification croisée (60 checks, 6 axes)
+    ├── verify-cross.py                 ← Vérification croisée (84 checks, 9 axes)
     └── sync-download.py                ← Synchronisation download/ ↔ source de vérité
 ```
 
@@ -194,19 +221,19 @@ Cette matrice définit quels agents peuvent utiliser quels skills et dans quel c
 ### Graphique de dépendances
 
 ```
-gen-plan v3.6.1
-├── invoque correct-work >= v2.4.0       (Étape 1 : validation plan + E8 hook)
+gen-plan v3.10.0
+├── invoque correct-work >= v2.4.0       (Étape 1 : validation plan + E8 hook + contrôle par phase)
 ├── utilise clone-chat >= v2.0.0          (E4, E15 : calibration + archivage)
 ├── consulte skills-inventory >= v1.0.0   (E5 : sélection skills)
 └── enrichit KNOWLEDGE.md                 (E15 : mise à jour registre)
 
-correct-work v2.4.0
-├── utilise gen-plan >= v3.6.0           (Étape 1 : plan de vérification, optionnel)
+correct-work v2.5.1
+├── utilise gen-plan >= v3.7.0           (Étape 1 : plan de vérification, optionnel)
 ├── vérifie clone-chat >= v2.0.0          (Mode CIBLE : §3.5 Context Drift)
 └── vérifie fullstack-dev                 (Projets web : structure et dépendances)
 
 clone-chat v2.0.0
-├── archivé par gen-plan >= v3.6.0          (Sessions longues, optionnel)
+├── archivé par gen-plan >= v3.6.1          (Sessions longues, optionnel)
 ├── vérifié par correct-work              (Validation croisée, §3.5 drift)
 └── conventions par skill-creator         (Conventions structurelles)
 
@@ -225,7 +252,7 @@ autonomous-agent v1.0.0
 
 ---
 
-## 9. Prompts maîtres — Architecture en 4 fichiers
+## 9. Prompts maîtres — Architecture en 6 fichiers
 
 Les prompts maîtres sont les **spécifications d'installation** pour les skills écosystème. Ils permettent de recréer un skill complet à partir de zéro, de façon autonome.
 
@@ -237,14 +264,16 @@ Les prompts maîtres sont les **spécifications d'installation** pour les skills
 
 | Fichier | Lignes | Description |
 |---------|--------|-------------|
-| `PROMPT-MAITRE-SHARED.md` | ~220 | Socle commun. Contexte, conventions, variables, registre KB, relations inter-skills, matrice agent × skill. |
-| `PROMPT-MAITRE-GEN-PLAN-v3.6.1.md` | ~937 | Spec complète gen-plan. 4 modes, 15 étapes E1-E15, normes N1-N3, YAML frontmatter, instructions d'installation, contenu in extenso des 5 références + evals. |
-| `PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md` | ~500 | Spec complète correct-work. 3 modes, 5 étapes, multi-cibles, découplage gen-plan, métriques, checklists unifiées (§10.1-§10.10), historique corrections clone-chat. |
-| `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | ~662 | Spec complète clone-chat. 7+1 étapes, 8 checks validation, 5 types de drift, auto-clonage, grille #token, contenu in extenso du template, historique corrections correct-work. |
+| `PROMPT-MAITRE-SHARED.md` | ~260 | Socle commun. Contexte, conventions, variables, registre KB, 22 relations inter-skills, matrice agent × skill, disciplines d'ingénierie de prompts (source de vérité §7 : 5 disciplines, registre d'assignation, matérialisations). |
+| `PROMPT-MAITRE-GEN-PLAN-v3.10.0.md` | ~1113 | Spec complète gen-plan version courante. 4 modes, 15 étapes E1-E15, règles d'or §1.8 (n°1 adaptation autonome, n°2 régénération post-installation, n°3 mise à jour à chaque nouvelle demande), disciplines d'ingénierie §1.9 (orchestration gen-plan — source de vérité : SHARED §7 ; matérialisation : 4 skills à déclenchement automatique), pipeline d'optimisation Z0-Z6 (§1.10), idempotence R1-R6 (§1.11), hook correct-work par phase E9-E14, normes N1-N3, YAML frontmatter, instructions d'installation, evals schéma skill-creator (§5.4-§5.6), contenu in extenso des 5 références + evals. |
+| `PROMPT-MAITRE-GEN-PLAN-v3.6.1.md` | ~941 | Spec complète gen-plan version intermédiaire conservée (identique au corpus figé — Annexe B du PDF). |
+| `PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md` | ~631 | Spec complète correct-work version courante. 3 modes, 5 étapes, multi-cibles, découplage gen-plan, métriques, checklists unifiées (§10.1-§10.10), evals schéma skill-creator (§5.3-§5.5), historique corrections clone-chat. Versions intermédiaires (v2.4.0, v2.5.0) conservées dans le dossier. |
+| `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | ~688 | Spec complète clone-chat. 7+1 étapes, 8 checks validation, 5 types de drift, auto-clonage, protocole d'héritage §1.0, compatibilité ascendante, grille #token, contenu in extenso du template, historique corrections correct-work. |
+| `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` | ~135 | Pipeline d'installation de l'écosystème (v1.0.0) : ordre d'exécution optimal en 10 étapes (corpus → miroir → gen-plan → correct-work → clone-chat → KB → outillage → certification → publication → clôture), principes de dépendance, critères de passage et arbitres par étape. |
 
 ### Structure des fichiers
 
-**SHARED** : §0 (Règle zéro) · §1 (Conventions : variables, nommage, YAML, worklog) · §2 (Registre KB : rôle, template, Protocole de Découverte) · §3 (Relations inter-skills : tableau complet + règles) · §4 (Matrice agent × skill) · §5 (Format SKILL.md) · §6 (Workflow PMs)
+**SHARED** : §0 (Règle zéro) · §1 (Conventions : variables, nommage, YAML, worklog) · §2 (Registre KB : rôle, template, Protocole de Découverte) · §3 (Relations inter-skills : tableau complet + règles) · §4 (Matrice agent × skill) · §5 (Format SKILL.md) · §6 (Workflow PMs) · §7 (Disciplines d'ingénierie — source de vérité)
 
 **GEN-PLAN** : §A (Déclencheurs) · §B (Prérequis SHARED) · §1-§2 (Spec fonctionnelle + technique) · §3 (Relations) · §4 (YAML frontmatter) · §5 (Installation) · §6 (Vérification 9 checks) · §7 (Historique) · §8 (Notes conception) · §9 (Contenu in extenso 5 références + evals)
 
@@ -300,13 +329,13 @@ Le script valide **6 axes** (60 checks) :
 
 ### Cas E — Synchroniser download/
 
-Après toute modification d'un fichier dans `skills/_prompts-maitres/` :
+Après toute modification d'un fichier dans `mon-ecosysteme/` (source canonique) :
 
 ```bash
 python3 scripts/sync-download.py --sync
 ```
 
-Le script compare chaque fichier source avec sa copie dans `download/` et ne copie que les fichiers effectivement modifiés. Le mode CHECK (sans `--sync`) affiche un rapport sans rien écrire.
+Le script compare chaque fichier source avec sa copie dans `download/` et ne copie que les fichiers effectivement modifiés. Le mode CHECK (sans `--sync`) affiche un rapport sans rien écrire. Le miroir `skills/_prompts-maitres/` est ensuite resynchronisé byte-identique depuis la source canonique (le CHECK 6 de `verify-cross.py` signale tout écart).
 
 Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle la commande de synchronisation.
 
@@ -316,14 +345,19 @@ Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle 
 
 | Skill | Version | Rôle | Fichiers installés |
 |-------|---------|------|-------------------|
-| gen-plan | v3.6.1 | Planification de tâches (4 modes, 15 étapes) | SKILL.md (~180 lignes), 5 références, 5 evals |
-| correct-work | v2.4.0 | Vérification et correction (3 modes, S1-S4, multi-cibles) | SKILL.md (~315 lignes), scripts/, evals/ |
-| clone-chat | v2.0.0 | Clonage de discussion en Markdown | SKILL.md (364 lignes), 1 référence, 1 prompt maître |
+| gen-plan | v3.10.0 | Planification de tâches (4 modes, 15 étapes, gestion du plan d'actions de session) | SKILL.md (~232 lignes), 5 références, 6 evals + 9 triggers |
+| correct-work | v2.5.1 | Vérification et correction (3 modes, S1-S4, multi-cibles) | SKILL.md (~400 lignes), scripts/, 5 evals + 8 triggers |
+| clone-chat | v2.0.0 | Clonage de discussion en Markdown | SKILL.md (~310 lignes), 1 référence, 1 prompt maître |
 | skills-inventory | v1.0.0 | Scan et inventaire des skills | SKILL.md, 2 evals, scripts |
 | skill-creator | v1.0.0 | Création et gestion de skills | SKILL.md, 1 référence, 7 scripts, 3 agents |
+| agent-prompt-engineering | v1.0.1 | Optimisation fine des prompts complexes (4 modes) | SKILL.md, 5 evals + 7 triggers, 1 référence |
+| context-engineering | v1.0.0 | Discipline context engineering (curation de contexte, compaction, mémoire externe) | SKILL.md, 4 evals + 4 triggers |
+| loop-engineering | v1.0.0 | Discipline loop engineering (boucles exécution / vérification / externe) | SKILL.md, 4 evals + 4 triggers |
+| graph-engineering | v1.0.0 | Discipline graph engineering (graphe de connaissances, anti-hallucination) | SKILL.md, 4 evals + 4 triggers |
+| harness-engineering | v1.0.0 | Discipline harness engineering (harnais d'exécution, gardes-fous, arbitres) | SKILL.md, 4 evals + 4 triggers |
 | autonomous-agent | v1.0.0 | Agent autonome avec mémoire interne | SKILL.md, 1 référence |
 
-**Registre KB** : `skills/KNOWLEDGE.md` — 6 skills écosystème, 14 relations bidirectionnelles
+**Registre KB** : `skills/KNOWLEDGE.md` — 14 entrées : 12 skills écosystème (dont 4 matérialisations skills des disciplines, session A12) + 2 infrastructure (script-mon-ecosysteme-infrastructure v1.0.0, verify-by-sha v1.0.0), 22 relations (SHARED §3.1)
 
 ---
 
@@ -339,3 +373,51 @@ Le CHECK 6 de `verify-cross.py` signale automatiquement tout écart et rappelle 
 | `verify-cross.py` (prompts maîtres + sync) | 60/60 PASS (6 axes) |
 | `sync-download.py` (scripts Python) | SYNC OK (5/5 fichiers identiques) |
 | `integrate-clone-chat-kb-v3.py` | 10/10 checks PASS |
+
+---
+
+## 13. Canal de vérification byte-identique pour tiers (R-1)
+
+Pour permettre à un tiers non-authentifié de vérifier l'authenticité d'un clone de la lignée Knowledge (sans accès au storage endpoint authentifié de la plateforme), un canal de vérification public a été mis en place.
+
+### Principe
+
+1. **Manifeste public** (`data/public-verify/manifest.json`) : indexe tous les clones scellés avec leurs SHAs (brute, scellée, déclarée), tailles, et URLs publiques.
+2. **Copies publiques** (`data/public-verify/clones/<name>.md`) : miroir byte-identique des clones scellés, accessible sans authentification.
+3. **Script verify-by-sha.py** (`scripts/verify-by-sha.py`) : script Python autonome qui télécharge un clone, applique la méthode de scellement « ligne neutralisée », et compare le SHA scellé calculé à la valeur déclarée.
+
+### Méthode de scellement (rappel)
+
+La méthode « ligne neutralisée » consiste à :
+1. Localiser la ligne `**SHA-256** : <64 hex>` dans le clone
+2. Remplacer cette ligne par `**SHA-256** : <64 zeros>` (64 zeros exactement)
+3. Calculer sha256 du contenu ainsi neutralisé
+4. Le résultat doit correspondre au SHA declared dans le fichier ET dans le manifeste
+
+Cette méthode, formalisée à l'Annexe D du PDF « Analyse récursive des discussions Knowledge », élimine la circularité du scellement (un fichier contenant son propre SHA ne peut pas être vérifié byte-identique sans cette neutralisation).
+
+### Usage
+
+```bash
+# Vérifier un clone spécifique (par filename)
+python3 scripts/verify-by-sha.py ecosysteme-knowledge-clone-2026-09-05-4.md
+
+# Vérifier tous les clones du manifeste
+python3 scripts/verify-by-sha.py --manifest data/public-verify/manifest.json
+
+# Vérifier par SHA-256 scellé
+python3 scripts/verify-by-sha.py 62dce02fede75cce20ba5fedd6464293da6c26fe450eae2eeefef654ebba0e1c
+```
+
+### État au 2026-09-06
+
+- 9 clones indexés dans le manifeste — lignée préservée complète, du GML 2026-08-09
+  (`clone-de-gen-plan-3.6-et-ecosystem.md`) au 10ᵉ clone 2026-09-05
+  (`ecosystem-knowledge-clone-2026-09-05-5.md`) ; le maillon 0 (322 lignes, 09-08) reste
+  perdu, statut assumé et documenté
+- 5 AUTHENTIC (6ᵉ → 10ᵉ — scellés après enrichissement, SHA déclarée ≡ recalcul neutral-line)
+- 3 HISTORICAL_ENRICHED (GML, C, D — SHA déclarée calculée sur la version initiale scellée,
+  fichier enrichi ensuite ; artefact documenté, non défaut de sécurité — convention §3.3-30)
+- 1 UNKNOWN (B — pré-protocole de scellement, aucune ligne neutral-line ; identité ancrée par
+  la SHA brute e05587ea…, documentée worklog A2 et 10ᵉ clone §3.4)
+- Recalcul neutral-line conforme aux valeurs du manifeste pour les 9 (méthode Annexe D du PDF)

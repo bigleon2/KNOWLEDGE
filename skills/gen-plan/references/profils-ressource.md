@@ -1,4 +1,5 @@
-# Profils ressource — gen-plan v3.6.1
+```markdown
+# Profils ressource — gen-plan v3.7.0
 
 ## NORMAL
 
@@ -82,3 +83,4 @@ Le profil ne remonte jamais automatiquement au cours d'une session :
 - NORMAL → VIEUX PC : définitif pour la session
 
 Le profil initial est NORMAL sauf détection de signaux de pression dès E2.
+```

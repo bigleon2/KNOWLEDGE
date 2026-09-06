@@ -1,0 +1,56 @@
+{
+  "skill_name": "harness-engineering",
+  "version": "1.0.1",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation skill de la discipline harness engineering (session A12, 2026-09-07) — source de vérité SHARED §7.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "HE-ressource — Profilage et pressions",
+      "prompt": "Configure le profil ressource d'une tâche et définis les réactions aux signaux de pression",
+      "expected_output": "Un harnais d'exécution avec profils, signaux et downgrade irréversible",
+      "files": [],
+      "expectations": [
+        "Les profils NORMAL/ECO/VIEUX PC sont définis avec critères",
+        "Chaque signal de pression a une action documentée",
+        "Le downgrade est irréversible (jamais de remontée automatique)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "HE-resserrage — Dérive vers nouveau check",
+      "prompt": "Resserre le harnais après une dérive détectée par un arbitre",
+      "expected_output": "Un nouveau check ou une correction documentée, avec cause et effet",
+      "files": [],
+      "expectations": [
+        "L'écart est transformé en check régressif ou en correction",
+        "Aucun contournement silencieux n'est appliqué",
+        "Le resserrage est journalisé avec preuve avant/après"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "HE-preuves — Journalisation certifiée",
+      "prompt": "Journalise une exécution et produis les preuves nécessaires à la certification",
+      "expected_output": "Un worklog SHARED §1.4 + preuves JSON datées et exploitables",
+      "files": [],
+      "expectations": [
+        "Le worklog contient cause, solution et coût #token",
+        "Les preuves sont stockées sous data/audit/",
+        "Aucun livrable non certifié n'est déclaré publié"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "HE-securite — Règle 0 et R2",
+      "prompt": "Exécute une publication locale avec les garanties de sécurité",
+      "expected_output": "Une publication conforme : règle 0, anti-rétrogradation, scellement",
+      "files": [],
+      "expectations": [
+        "Aucune écriture GitHub n'est effectuée",
+        "Les versions antérieures ne sont pas rétrogradées",
+        "Le scellement est prouvé par SHA byte-identique"
+      ]
+    }
+  ]
+}

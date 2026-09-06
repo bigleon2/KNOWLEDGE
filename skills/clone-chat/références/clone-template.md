@@ -1,9 +1,10 @@
+```markdown
 # CLONE DE DISCUSSION — [TITRE DU PROJET]
 
 > **Date du clone** : [AAAA-MM-JJ]
 > **Source** : Discussion entre [Utilisateur] et [Assistant]
 > **Sessions couvertes** : [N] sessions (du [DATE_DÉBUT] au [DATE_FIN])
-> **Version clone-chat** : 1.2.0
+> **Version clone-chat** : 2.0.0
 
 ---
 
@@ -19,7 +20,14 @@ Contexte matériel cible : [DESCRIPTION DE L'ENVIRONNEMENT CIBLE]
 
 ## §1 — CHRONOLOGIE DE LA DISCUSSION
 
-### 1.1 Résumé global
+### §1.0 Héritage — chaîne de clonage ([N] sessions cumulées, [AAAA-MM-JJ] → [AAAA-MM-JJ])
+
+La lignée de clones cumule [N] sessions avant le présent document (détail complet aux §1.0
+des clones prédécesseurs [FICHIERS PRÉDÉCESSEURS, SHAs scellées]).
+La présente session ajoute [M] entrées worklog. L'état de l'écosystème à la clôture du
+prédécesseur direct (SHA scellée [SHA_64_HEX]…) est le point de départ connu.
+
+### §1.1 Résumé global
 
 [Paragraphe de 3-5 phrases résumant l'ensemble de la discussion :
 - Le sujet principal
@@ -27,7 +35,7 @@ Contexte matériel cible : [DESCRIPTION DE L'ENVIRONNEMENT CIBLE]
 - L'évolution de la complexité
 - L'état final atteint]
 
-### 1.2 Table des sessions
+### §1.2 Table des sessions
 
 | # | Date | Thème | Livrables principaux |
 |---|------|-------|---------------------|
@@ -36,7 +44,7 @@ Contexte matériel cible : [DESCRIPTION DE L'ENVIRONNEMENT CIBLE]
 | ... | ... | ... | ... |
 | N | [DATE] | [THÈME] | [LIVRABLES] |
 
-### 1.3 Détail par session
+### §1.3 Détail par session
 
 [Groupement par période avec résumé des sessions.
 Exemple :]
@@ -52,7 +60,7 @@ actions principales, skills utilisés, décisions clés.]
 
 ## §2 — ÉCOSYSTÈME DE SKILLS
 
-### 2.1 Skills créés ou modifiés
+### §2.1 Skills créés ou modifiés
 
 [Pour chaque skill écosystème créé ou modifié :]
 
@@ -65,7 +73,7 @@ actions principales, skills utilisés, décisions clés.]
 - **Spécification technique** : [Stack, dépendances, structure fichiers]
 - **Relations** : [Autres skills avec lesquels il interagit]
 
-### 2.2 Scripts créés ou modifiés
+### §2.2 Scripts créés ou modifiés
 
 [Pour chaque script :]
 
@@ -75,44 +83,51 @@ actions principales, skills utilisés, décisions clés.]
 - **Signature** : [Modules, fonctions principales, nb tests]
 - **Chemin** : `scripts/[nom-script].py` ([taille])
 
-### 2.3 Artefacts produits
+### §2.3 Artefacts produits
 
 | Fichier | Taille | Description |
 |---------|--------|-------------|
 | [chemin/relatif] | [X Ko] | [Description] |
 | ... | ... | ... |
 
+### §2.4 Historique des interactions
+
+[Si le registre KB est disponible, reproduire ici l'historique
+des interactions clés entre skills au cours de la discussion :
+quels skills ont été invoqués, dans quel ordre, avec quels résultats.
+Tableau chronologique si possible.]
+
 ---
 
 ## §3 — DÉCISIONS CLÉS
 
-### 3.1 Décisions de l'utilisateur
+### §3.1 Décisions de l'utilisateur
 
 | # | Décision | Contexte | Conséquence |
 |---|----------|----------|-------------|
 | 1 | [Décision] | [Pourquoi cette décision] | [Ce qui a changé] |
 | ... | ... | ... | ... |
 
-### 3.2 Bugs corrigés
+### §3.2 Bugs corrigés
 
 | # | Bug | Cause | Fix | Résultat |
 |---|-----|-------|-----|----------|
 | 1 | [Description du bug] | [Cause racine] | [Solution] | [Résultat] |
 | ... | ... | ... | ... | ... |
 
-### 3.3 Conventions établies
+### §3.3 Conventions établies
 
 | Convention | Règle | Exemple |
 |------------|-------|---------|
 | [Nom] | [Règle] | [Exemple concret] |
 | ... | ... | ... |
 
-### 3.4 Données de calibration
+### §3.4 Données de calibration
 
 [Grilles #token, métriques, historique de calibration.
 Tableaux avec chiffres concrets.]
 
-### 3.5 Évolutions de contexte (Context Drift)
+### §3.5 Évolutions de contexte (Context Drift)
 
 Cette section trace chaque fois que le contexte a **changé** durant la discussion.
 
@@ -177,3 +192,4 @@ Ce clone est auto-référentiel. À la fin de la nouvelle session :
 **Mécanisme** : les sections §1-§3 (incluant §3.5 Context Drift) sont
 enrichies avec les nouvelles sessions. Les sections §0, §4-§5 sont
 régénérées à l'identique (auto-référentielles).
+```

@@ -1,0 +1,18 @@
+[
+  {
+    "query": "organise l'exécution en boucle avec vérification et feedback exploitable",
+    "should_trigger": true
+  },
+  {
+    "query": "mets en place des graders déterministes et relance jusqu'à PASS",
+    "should_trigger": true
+  },
+  {
+    "query": "transforme ce cycle en boucle externe et consigne les gains mesurés",
+    "should_trigger": true
+  },
+  {
+    "query": "traduis ce document en anglais",
+    "should_trigger": false
+  }
+]

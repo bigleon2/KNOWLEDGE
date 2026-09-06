@@ -1,0 +1,75 @@
+{
+  "skill_name": "clone-chat",
+  "version": "2.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Créé via skill-creator (T1c, session A8) : clone-chat ne possédait AUCUN eval. 6 evals couvrant le protocole 7+1 étapes, les 8 checks, les 5 types de drift, le template, la validation croisée et l'auto-clonage.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "CC-clone-complet — Protocole 7+1 étapes",
+      "prompt": "Clone intégralement cette discussion dans un fichier Markdown auto-suffisant",
+      "expected_output": "Un fichier clone Markdown scellé (SHA-256) couvrant contexte, décisions, artefacts et worklog",
+      "files": [],
+      "expectations": [
+        "Le protocole 7+1 étapes est appliqué dans l'ordre",
+        "Le clone embarque les 8 checks de validation S1-S8",
+        "Le scellement SHA-256 est idempotent (recalcul ≡ déclaré)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "CC-drift — Étape 3.5 Context Drift",
+      "prompt": "Le contexte de la discussion a dérivé depuis son début : traite ce drift avant de sceller le clone",
+      "expected_output": "Le drift est identifié, classé parmi les 5 types documentés et traité à l'Étape 3.5",
+      "files": [],
+      "expectations": [
+        "L'Étape 3.5 Context Drift est déclenchée",
+        "Le type de drift appartient aux 5 types documentés (MODIFICATION, ENRICHISSEMENT, etc.)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "CC-template — Utilisation du template officiel",
+      "prompt": "Clone la discussion en réutilisant le squelette officiel de clone",
+      "expected_output": "Le clone est assemblé depuis références/clone-template.md",
+      "files": [],
+      "expectations": [
+        "références/clone-template.md est utilisé comme squelette",
+        "La structure §0-§5 du template est respectée"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "CC-genplan — Intégration gen-plan E4/E15",
+      "prompt": "Archive cette session longue planifiée par gen-plan",
+      "expected_output": "Le clone est produit comme archivage E15 de la session",
+      "files": [],
+      "expectations": [
+        "L'intégration gen-plan (E4/E15, optionnelle) est mobilisée",
+        "La calibration éventuelle est consignée dans le clone"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "CC-validation — Validation croisée correct-work",
+      "prompt": "Un second agent a produit un clone : valide-le",
+      "expected_output": "La validation croisée correct-work Mode CIBLE (§3.5) est exécutée sur le clone",
+      "files": [],
+      "expectations": [
+        "correct-work Mode CIBLE est invoqué pour la validation",
+        "Les drifts éventuels sont vérifiés selon §3.5"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "CC-autoclone — Propriété d'auto-clonage",
+      "prompt": "Vérifie que le clone produit peut être cloné à son tour sans perte",
+      "expected_output": "La propriété d'auto-clonage est démontrée : le clone contient son propre protocole",
+      "files": [],
+      "expectations": [
+        "Le clone contient le protocole de clonage (auto-référentiel)",
+        "Un clone du clone reste scellé et vérifiable"
+      ]
+    }
+  ]
+}

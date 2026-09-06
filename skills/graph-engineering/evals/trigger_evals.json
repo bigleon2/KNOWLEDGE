@@ -1,0 +1,18 @@
+[
+  {
+    "query": "mets à jour le graphe de connaissances avec une nouvelle relation bidirectionnelle",
+    "should_trigger": true
+  },
+  {
+    "query": "ancrer la sélection des skills dans le registre KB avant de décider",
+    "should_trigger": true
+  },
+  {
+    "query": "vérifie les arêtes orphelines du graphe et corrige les cross-references",
+    "should_trigger": true
+  },
+  {
+    "query": "génère un CV moderne",
+    "should_trigger": false
+  }
+]

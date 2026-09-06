@@ -1,0 +1,34 @@
+[
+  {
+    "query": "vérifie le travail qui vient d'être fait",
+    "should_trigger": true
+  },
+  {
+    "query": "corrige les erreurs de ce livrable",
+    "should_trigger": true
+  },
+  {
+    "query": "contrôle la cohérence de tout le projet",
+    "should_trigger": true
+  },
+  {
+    "query": "passe correct-work en mode CIBLE sur ce fichier",
+    "should_trigger": true
+  },
+  {
+    "query": "y a-t-il des omissions ou des incohérences dans ce rapport ?",
+    "should_trigger": true
+  },
+  {
+    "query": "planifie cette nouvelle tâche",
+    "should_trigger": false
+  },
+  {
+    "query": "clone cette discussion",
+    "should_trigger": false
+  },
+  {
+    "query": "bonjour",
+    "should_trigger": false
+  }
+]

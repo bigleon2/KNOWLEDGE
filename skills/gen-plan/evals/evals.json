@@ -1,40 +1,74 @@
 {
-  "skill": "gen-plan",
-  "version": "3.6.0",
+  "skill_name": "gen-plan",
+  "version": "3.10.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Schéma unifié skill-creator (révision PM v3.8.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 6 evals v3.7.0 préservée (5 d'origine + hook correct-work E9-E14).",
   "evals": [
     {
-      "id": "E1-classification",
-      "name": "Classification correcte Type 1-4",
-      "input": "Crée un rapport d'analyse",
-      "expected_type": 1,
-      "expected_skill": "docx"
+      "id": 1,
+      "name": "E1-classification — Classification correcte Type 1-4",
+      "prompt": "Crée un rapport d'analyse",
+      "expected_output": "Le plan identifie la tâche comme Type 1 (document) et sélectionne le skill cible docx",
+      "files": [],
+      "expectations": [
+        "La tâche est classée Type 1 (document)",
+        "Le skill cible identifié est docx"
+      ]
     },
     {
-      "id": "E2-token-estimation",
-      "name": "Estimation #token cohérente",
-      "input": "Tâche moyenne, 5-15 sessions",
-      "expected_token_range": [3500, 5500],
-      "expected_profile": "NORMAL"
+      "id": 2,
+      "name": "E2-token-estimation — Estimation #token cohérente",
+      "prompt": "Planifie cette tâche : travail moyen estimé entre 5 et 15 sessions",
+      "expected_output": "Une estimation #token entre 3500 et 5500 avec le profil ressource NORMAL",
+      "files": [],
+      "expectations": [
+        "L'estimation #token tombe dans l'intervalle [3500, 5500]",
+        "Le profil ressource retenu est NORMAL"
+      ]
     },
     {
-      "id": "E3-plan-complet",
-      "name": "Plan E1-E15 complet",
-      "input": "Planifier la création d'un dashboard Next.js",
-      "expected_steps": 15,
-      "expected_type": 3
+      "id": 3,
+      "name": "E3-plan-complet — Plan E1-E15 complet",
+      "prompt": "Planifie la création d'un dashboard Next.js",
+      "expected_output": "Un plan contenant les 15 étapes E1-E15, classé Type 3 (développement web)",
+      "files": [],
+      "expectations": [
+        "Le plan contient les 15 étapes E1-E15",
+        "La tâche est classée Type 3 (développement web)"
+      ]
     },
     {
-      "id": "E4-auto-calibration",
-      "name": "Auto-calibration E15",
-      "input": "Écart estimé 28%",
-      "expected_action": "Ajustement paramétrage fin"
+      "id": 4,
+      "name": "E4-auto-calibration — Auto-calibration E15",
+      "prompt": "À la clôture E15, l'écart entre l'estimation initiale et le réel est de 28%",
+      "expected_output": "Un ajustement du paramétrage fin (calibration E15) réduit l'écart des estimations suivantes",
+      "files": [],
+      "expectations": [
+        "E15 déclenche un ajustement du paramétrage fin",
+        "La calibration est journalisée (grille #token mise à jour)"
+      ]
     },
     {
-      "id": "E5-python-only",
-      "name": "Scripts Python uniquement",
-      "input": "Générer un script de traitement",
-      "expected_language": "python",
-      "forbidden": ["bash", "sh", "powershell"]
+      "id": 5,
+      "name": "E5-python-only — Scripts Python uniquement",
+      "prompt": "Génère un script de traitement de données pour cette étape du plan",
+      "expected_output": "Un script Python ; aucun script bash/sh/powershell",
+      "files": [],
+      "expectations": [
+        "Le script généré est en Python",
+        "Aucun script bash, sh ni powershell n'est produit"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "E6-hook-correctwork — Hooks correct-work par phase (spécifique v3.7.0)",
+      "prompt": "Planifie une tâche en plusieurs phases et vérifie chaque phase après exécution",
+      "expected_output": "Le hook correct-work >= v2.4.0 est invoqué par phase (E9-E14) et son verdict est consigné",
+      "files": [],
+      "expectations": [
+        "Le hook correct-work est invoqué pour chaque phase E9-E14",
+        "Le plan référence correct-work >= v2.4.0 dans ses relations"
+      ]
     }
   ]
 }

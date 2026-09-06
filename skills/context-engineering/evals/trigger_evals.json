@@ -1,0 +1,18 @@
+[
+  {
+    "query": "assemble le contexte pour cette session avec provenance",
+    "should_trigger": true
+  },
+  {
+    "query": "applique la compaction sur ce fichier trop long et maintiens le budget d'attention",
+    "should_trigger": true
+  },
+  {
+    "query": "reconstruis le contexte perdu après le wipe depuis les sources scellées",
+    "should_trigger": true
+  },
+  {
+    "query": "traduis cette page en anglais",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "query": "planifie cette tâche pour moi",
+    "should_trigger": true
+  },
+  {
+    "query": "crée-moi un plan d'exécution détaillé",
+    "should_trigger": true
+  },
+  {
+    "query": "organise ce travail en étapes avec une estimation d'effort",
+    "should_trigger": true
+  },
+  {
+    "query": "quelle est ton estimation de #tokens pour cette tâche ?",
+    "should_trigger": true
+  },
+  {
+    "query": "quel profil ressource (LIGHT/NORMAL/HEAVY) pour cette demande ?",
+    "should_trigger": true
+  },
+  {
+    "query": "classe cette tâche : document, analyse ou développement web ?",
+    "should_trigger": true
+  },
+  {
+    "query": "vérifie le travail que tu viens de faire",
+    "should_trigger": false
+  },
+  {
+    "query": "traduis ce document en anglais",
+    "should_trigger": false
+  },
+  {
+    "query": "bonjour",
+    "should_trigger": false
+  }
+]

@@ -13,8 +13,8 @@ import sys
 
 SKILLS_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SKILL_PATH = os.path.join(SKILLS_ROOT, "correct-work", "SKILL.md")
-PM_PATH = os.path.join(SKILLS_ROOT, "_prompts-maitres", "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md")
-SHARED_PATH = os.path.join(SKILLS_ROOT, "_prompts-maitres", "PROMPT-MAITRE-SHARED.md")
+PM_PATH = os.path.join(SKILLS_ROOT, "mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md")
+SHARED_PATH = os.path.join(SKILLS_ROOT, "mon-ecosysteme", "PROMPT-MAITRE-SHARED.md")
 KB_PATH = os.path.join(SKILLS_ROOT, "KNOWLEDGE.md")
 
 EXPECTED_VERSION = "2.4.0"

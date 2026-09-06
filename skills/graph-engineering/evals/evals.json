@@ -1,0 +1,56 @@
+{
+  "skill_name": "graph-engineering",
+  "version": "1.0.1",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation skill de la discipline graph engineering (session A12, 2026-09-07) — source de vérité SHARED §7.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "GE-requete — Sélection ancrée",
+      "prompt": "Sélectionne les skills pertinents pour une tâche via le registre KB",
+      "expected_output": "Une liste de candidats fondée sur le graphe KB, avec références d'entrée",
+      "files": [],
+      "expectations": [
+        "La sélection applique le Protocole de Découverte (SHARED §2.3)",
+        "Chaque candidat est ancré à une entrée KB",
+        "Aucune décision de routage n'est produite sans ancrage"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "GE-ecriture — Arête bidirectionnelle",
+      "prompt": "Ajoute une relation entre un nouveau skill et gen-plan",
+      "expected_output": "Une arête déclarée dans les deux sens, conforme au template KB",
+      "files": [],
+      "expectations": [
+        "L'arête existe dans les deux entrées (SHARED §3.2)",
+        "Le schéma SHARED §2.2 est respecté",
+        "La relation est vérifiée par verify-cross"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "GE-coherence — Anti-arête-orpheline",
+      "prompt": "Détecte les relations orphelines du registre et corrige-les",
+      "expected_output": "Un rapport de cohérence avec corrections bidirectionnelles documentées",
+      "files": [],
+      "expectations": [
+        "Les arêtes orphelines sont détectées",
+        "Les corrections respectent les planchers de version",
+        "Le verdict du graphe est consigné avec preuve"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "GE-enrichissement — E15",
+      "prompt": "Enrichis le registre après une nouvelle matérialisation",
+      "expected_output": "Une entrée KB complète avec calibration et historique",
+      "files": [],
+      "expectations": [
+        "L'entrée suit le template SHARED §2.2",
+        "La calibration est datée et mesurée",
+        "L'historique des interactions est conservé"
+      ]
+    }
+  ]
+}

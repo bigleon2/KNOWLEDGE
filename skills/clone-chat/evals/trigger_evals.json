@@ -1,0 +1,10 @@
+[
+  {"query": "clone cette discussion dans un markdown auto-suffisant", "should_trigger": true},
+  {"query": "archive cette session complète avec ses décisions et artefacts", "should_trigger": true},
+  {"query": "sauvegarde le contexte de la conversation pour la reprendre plus tard", "should_trigger": true},
+  {"query": "produis le clone scellé de cette session (SHA-256)", "should_trigger": true},
+  {"query": "le contexte a dérivé, traite ce drift dans le clone", "should_trigger": true},
+  {"query": "clone ce dépôt git sur ma machine", "should_trigger": false},
+  {"query": "vérifie les erreurs de ce fichier", "should_trigger": false},
+  {"query": "bonjour", "should_trigger": false}
+]

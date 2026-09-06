@@ -1,0 +1,18 @@
+[
+  {
+    "query": "renforce le harnais après cette dérive et ajoute un check régressif",
+    "should_trigger": true
+  },
+  {
+    "query": "configure le profil ressource et les gardes-fous avant l'exécution",
+    "should_trigger": true
+  },
+  {
+    "query": "passe par les arbitres et journalise les preuves JSON avant publication",
+    "should_trigger": true
+  },
+  {
+    "query": "optimise mon site web",
+    "should_trigger": false
+  }
+]

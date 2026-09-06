@@ -1,0 +1,9 @@
+[
+  {"query": "optimise ce prompt maître, il contient des duplications", "should_trigger": true},
+  {"query": "évalue ce SKILL.md selon la grille et propose des ajustements", "should_trigger": true},
+  {"query": "restructure la section §5 de ce PM sans perdre de sémantique", "should_trigger": true},
+  {"query": "valide les déclencheurs (trigger_evals) de ce skill", "should_trigger": true},
+  {"query": "planifie la migration de ces données", "should_trigger": false},
+  {"query": "vérifie le travail que tu viens de faire", "should_trigger": false},
+  {"query": "clone cette discussion", "should_trigger": false}
+]

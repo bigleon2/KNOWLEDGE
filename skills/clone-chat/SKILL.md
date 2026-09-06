@@ -26,108 +26,85 @@ dependencies:
     used_at: "Validation croisée (Mode CIBLE, §3.5)"
 ---
 
-# CLONE-CHAT v2.0.0
+## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
 
-## §0 — RÈGLE ZÉRO
+Les fichiers des sessions précédentes n'existent pas dans une nouvelle session : tout est
+à reconstruire à partir des documents de la lignée. Ne jamais utiliser le verbe « conserver ».
+Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
 
-L'écosystème Knowledge comprend **77 skills** (6 écosystème + 71 métier),
-chacun auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}` avec un
-fichier `SKILL.md` principal, un frontmatter YAML, et des références
-optionnelles dans `references/`. Le registre KB (`{{KB_PATH}}`) est la
-source de vérité pour l'état de l'écosystème (`{{KB_ENABLED}}`).
+## §A — DÉCLENCHEURS
 
-**Principes fondamentaux** :
-- Chaque skill est versionné sémantiquement (MAJEUR.MINEUR.PATCH)
-- Les dépendances inter-skills sont déclarées dans le frontmatter YAML
-  avec versions minimales
-- Les cross-references entre skills doivent être maintenues
-  bidirectionnellement
-- Le registre KB (`KNOWLEDGE.md`) est la source de vérité pour l'état
-  de l'écosystème
+- `clone-chat` ou `clone_chat`
+- `clone la discussion` ou `clone cette session`
+- `clone-chat:` suivi d'une description de session
+- `archiver la discussion` — archivage complet d'une session multi-sessions
+- `sauvegarde de contexte` — sauvegarde du contexte pour reprise dans une nouvelle session
+- `crée un clone` — demande explicite de clonage
+- Toute demande de capturer l'intégralité d'une discussion en vue d'une reprise ultérieure
+- Fin de session longue avec demande de préservation du contexte
 
----
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
-### §1.1 Objectif
+### §1.1 Description
 
-clone-chat produit un fichier Markdown **auto-suffisant** capturant
-l'intégralité du contexte d'une discussion multi-sessions : décisions,
-artefacts, spécifications techniques, évolutions de contexte (drifts), et
-instructions de reprise. Le clone permet à un assistant IA dans une
-nouvelle session de reconstruire l'état exact et poursuivre le travail
-sans perte d'information.
+clone-chat est un skill de **clonage de discussion** pour assistant IA. Il produit un fichier Markdown auto-suffisant qui capture l'intégralité du contexte d'une discussion multi-sessions : les décisions, les artefacts produits, les spécifications techniques, les évolution de contexte (drifts), et les instructions de reprise. Le clone permet à un assistant IA dans une nouvelle session de reconstruire l'état exact de la discussion et de poursuivre le travail sans perte d'information.
 
 ### §1.2 Les 7+1 étapes
 
-Le numbering « 7+1 » (et non « 8 étapes ») souligne que l'Étape 3.5 est
-une analyse transversale insérée entre l'extraction des décisions et les
-spécifications techniques, et non une étape séquentielle indépendante.
+| Étape | Nom | Description |
+|-------|------|-------------|
+| **1** | Collecte du worklog | Lire le fichier `worklog.md` (format SHARED §1.4), identifier les sessions distinctes, produire un tableau chronologique |
+| **2** | Collecte des artefacts | Scanner l'arborescence pour identifier fichiers créés/modifiés, grouper par catégorie |
+| **3** | Extraction des décisions | Identifier décisions utilisateur, bugs corrigés, conventions établies, données de calibration |
+| **3.5** | Context Drift | Tracer chaque changement de contexte (5 types : INVERSION, MODIFICATION, CORRECTION, ENRICHISSEMENT, RECALIBRAGE) |
+| **4** | Spécifications techniques | Détailler les fichiers principaux avec niveau de détail selon taille (in extenso / condensé / résumé) |
+| **5** | Assemblage | Combiner toutes les sections en un document Markdown unique et cohérent (ordre imposé §0-§5) |
+| **6** | Validation (8 checks) | Exécuter les 8 checks de validation (auto-suffisance, complétude worklog/skills/décisions/bugs/drifts, exécutabilité, auto-clonage) |
+| **7** | Sauvegarde | Sauvegarder le clone dans `download/` avec nom descriptif, enregistrer dans le worklog |
 
-| # | Étape | Description |
-|---|-------|-------------|
-| 1 | Collecte du worklog | Lire `worklog.md` (SHARED §1.4), identifier sessions, produire tableau chronologique |
-| 2 | Collecte des artefacts | Scanner l'arborescence, identifier fichiers créés/modifiés, grouper par catégorie |
-| 3 | Extraction des décisions | Identifier décisions utilisateur, bugs, conventions, données de calibration |
-| 3.5 | Context Drift | Tracer chaque changement de contexte (5 types : INVERSION, MODIFICATION, CORRECTION, ENRICHISSEMENT, RECALIBRAGE) |
-| 4 | Spécifications techniques | Détailler fichiers principaux selon taille (in extenso / condensé / résumé) |
-| 5 | Assemblage | Combiner en document Markdown unique, ordre imposé §0-§5 |
-| 6 | Validation (8 checks) | Exécuter 8 checks de validation binaire (PASS/FAIL) |
-| 7 | Sauvegarde | Sauvegarder dans `download/`, enregistrer dans le worklog |
+### §1.3 Détail de l'Étape 1 — Collecte du worklog
 
-### §1.3 Détail des étapes
+Lire le fichier `worklog.md` à la racine du projet (format SHARED §1.4). Identifier les sessions distinctes (séparées par des lignes `---`). Extraire pour chaque session :
+- Le Task ID et le nom de l'agent
+- La tâche effectuée
+- Les actions concrètes réalisées
+- Les résultats et livrables produits
 
-**Étape 1 — Collecte du worklog** : Lire `worklog.md` à la racine du
-projet (format SHARED §1.4). Identifier les sessions distinctes (séparées
-par `---`). Extraire pour chaque session : Task ID, agent, tâche, actions
-concrètes, résultats. Produire un tableau chronologique.
+Produire un tableau chronologique des sessions.
 
-**Étape 2 — Collecte des artefacts** : Scanner l'arborescence pour
-identifier tous les fichiers créés ou modifiés. Pour chaque artefact :
-chemin relatif (kebab-case), taille (Ko), description. Grouper par
-catégorie : skills, scripts, documents, charts, archives.
+### §1.4 Détail de l'Étape 2 — Collecte des artefacts
 
-**Étape 3 — Extraction des décisions** : Parcourir le worklog et le
-contexte pour extraire : (1) décisions utilisateur avec contexte et
-conséquences, (2) bugs corrigés avec cause/fix/résultat, (3) conventions
-établies avec règle et exemple, (4) données de calibration (grilles #token,
-métriques). Produire des tableaux structurés.
+Scanner l'arborescence du projet pour identifier tous les fichiers **créés ou modifiés** durant la discussion. Pour chaque artefact :
+- Le chemin relatif (convention SHARED §1.2 : kebab-case)
+- La taille (Ko)
+- Une description de son contenu et rôle
 
-**Étape 3.5 — Context Drift** : Étape d'analyse critique qui trace chaque
-fois que le contexte a changé durant la discussion. Voir §1.4 pour les 5
-types. Produire une table avec colonnes : #, Type, Avant, Après, Session,
-Ligne worklog, Raison. **Règle obligatoire** : même si aucun drift n'est
-détecté, écrire « Aucune évolution de contexte détectée » — ne jamais
-laisser cette section vide.
+Grouper par catégorie : skills, scripts, documents, charts, archives.
 
-**Étape 4 — Spécifications techniques** : Détailler les fichiers principaux.
-Niveau de détail selon taille (convention in extenso, voir §2.5). Pour chaque
-fichier : description, signature (fonctions/modules), chemin relatif,
-taille. Si gen-plan v3.6.1+ présent : enrichir avec données calibration E15
-et étapes E1-E7.
+### §1.5 Détail de l'Étape 3 — Extraction des décisions
 
-**Étape 5 — Assemblage** : Combiner toutes les sections en un document
-Markdown unique et cohérent. L'ordre est imposé : §0 (Règle zéro), §1
-(Chronologie), §2 (Écosystème skills), §2.4 (Historique interactions si
-`{{KB_ENABLED}}`), §3 (Décisions clés), §3.5 (Context Drift), §4
-(Instructions), §5 (Auto-clonage). Voir `references/clone-template.md`.
+Parcourir le worklog et le contexte pour identifier :
 
-**Étape 6 — Validation (8 checks)** : Exécuter les 8 checks de validation.
-Chaque check est binaire (PASS/FAIL). Le clone est valide si 8/8 PASS.
-Si un check échoue, corriger avant l'étape 7. Voir §1.5 pour le détail.
+1. **Décisions de l'utilisateur** : chaque choix explicite avec son contexte et ses conséquences
+2. **Bugs corrigés** : chaque bug avec cause, fix et résultat
+3. **Conventions établies** : chaque règle avec sa formulation et un exemple
+4. **Données de calibration** : grilles #token, métriques, historique
 
-**Étape 7 — Sauvegarde** : Sauvegarder le clone dans `download/` avec un
-nom descriptif incluant date et sujet. Format : `<sujet>-clone-<AAAA-MM-JJ>.md`.
-Enregistrer dans le worklog (format SHARED §1.4, voir §2.4).
+Produire des tableaux structurés pour chaque catégorie.
 
-### §1.4 5 types de drift
+### §1.6 Détail de l'Étape 3.5 — Context Drift
+
+Cette étape **trace chaque fois que le contexte a changé** durant la discussion. C'est une étape d'analyse critique qui certifie que les évolutions ont été détectées.
+
+**5 types de drift** :
 
 | Type | Définition | Exemple |
 |------|-----------|--------|
 | INVERSION | Décision renversée (A accepté puis A refusé) | « Version v2.0.0 » acceptée puis refusée au profit de v3.1.0 |
 | MODIFICATION | Décision ajustée (paramètre X remplacé par Y) | Export DOCX remplacé par export MD par défaut |
 | CORRECTION | Spécification ou décision erronée corrigée | Chemins absolus corrigés en chemins relatifs |
-| ENRICHISSEMENT | Décision complétée par ajout d'un élément nouveau | Ajout Étape 3.5 Context Drift à clone-chat v1.1.0→v1.2.0 |
+| ENRICHISSEMENT | Décision complétée par ajout d'un élément nouveau | Ajout Étape 3.5 Context Drift à clone-chat v1.1.0→v1.2.0 (historique) |
 | RECALIBRAGE | Paramètre ajusté (seuil, ratio, estimation recalibrée) | Grille #token ajustée de -32% après calibration E15 |
 
 **Format de la table des drifts** :
@@ -135,14 +112,49 @@ Enregistrer dans le worklog (format SHARED §1.4, voir §2.4).
 | # | Type | Avant | Après | Session | Ligne worklog | Raison |
 |---|------|-------|-------|---------|---------------|--------|
 
-### §1.5 8 checks de validation
+**Règle obligatoire** : Même si aucun drift n'est détecté, écrire « Aucune évolution de contexte détectée » pour certifier que l'analyse a bien été effectuée. Ne jamais laisser cette section vide.
+
+### §1.7 Détail de l'Étape 4 — Spécifications techniques
+
+Détailler les fichiers principaux créés ou modifiés. Le niveau de détail dépend de la taille du fichier (convention in extenso) :
+
+| Taille | Traitement |
+|--------|------------|
+| < 200 lignes | In extenso (contenu complet) |
+| 200-500 lignes | In extenso avec sections condensées |
+| > 500 lignes | Résumé structuré : objectifs, structure, modules clés |
+
+Pour chaque fichier : description, signature (fonctions/modules), chemin relatif, taille.
+
+**Intégration gen-plan (optionnelle)** :
+- Si gen-plan v3.6.1+ est présent : enrichir avec les données de calibration E15 et les étapes E1-E7
+- Si `{{KB_ENABLED}}` est `true` : enrichir §2 avec les descriptions du Registre KB (`{{KB_PATH}}`) pour les skills de l'écosystème
+
+### §1.8 Détail de l'Étape 5 — Assemblage
+
+Combiner toutes les sections collectées en un document Markdown unique et cohérent. L'ordre des sections est imposé :
+
+1. §0 — Règle zéro (contexte perdu)
+2. §1 — Chronologie de la discussion
+3. §2 — Écosystème de skills (fichiers, scripts, artefacts)
+4. §2.4 — Historique des interactions (si `{{KB_ENABLED}}`)
+5. §3 — Décisions clés (décisions, bugs, conventions, calibration)
+6. §3.5 — Évolutions de contexte (Context Drift)
+7. §4 — Instructions d'utilisation
+8. §5 — Auto-clonage
+
+Voir `références/clone-template.md` pour la structure complète du template.
+
+### §1.9 Détail de l'Étape 6 — Validation (8 checks)
+
+Exécuter les **8 checks de validation**. Chaque check est binaire (PASS/FAIL). Le clone est valide si 8/8 PASS.
 
 | # | Check | Critère principal | Sous-critères de validation |
 |---|-------|-------------------|--------------------------|
-| 1 | Auto-suffisance | Clone lisible et exécutable sans fichier externe | (a) Pas de « voir fichier X », (b) Pas de dépendance externe, (c) Assistant neuf peut le lire et agir |
+| 1 | Auto-suffisance | Le clone est lisible et exécutable sans fichier externe | (a) Pas de « voir fichier X », (b) Pas de dépendance externe, (c) Un assistant neuf peut le lire et agir |
 | 2 | Complétude worklog | Chaque session du worklog est représentée en §1 | (a) Table §1.2 complète, (b) Chaque session a au moins 1 ligne en §1.3, (c) Sessions manquantes = FAIL |
 | 3 | Complétude skills | Chaque skill créé/modifié est détaillé en §2 | (a) Version présente, (b) Description fonctionnelle, (c) Spécifications techniques, (d) Relations listées |
-| 4 | Complétude décisions | Chaque décision, bug, convention est en §3 | (a) Décisions avec contexte + conséquence, (b) Bugs avec cause + fix + résultat, (c) Conventions avec règle + exemple |
+| 4 | Complétude décisions | Chaque décision, bug, convention est en §3 | (a) Décisions utilisateur avec contexte + conséquence, (b) Bugs avec cause + fix + résultat, (c) Conventions avec règle + exemple |
 | 5 | Complétude bugs | Chaque bug corrigé a cause + fix + résultat | (a) Cause racine identifiée, (b) Fix décrit, (c) Résultat vérifié, (d) Pas de bug sans résolution |
 | 6 | Complétude drifts | Chaque drift identifié est dans la table §3.5 | (a) Type correct parmi les 5, (b) Avant/Après explicites, (c) Session et ligne worklog référencées, (d) Section présente même si vide |
 | 7 | Exécutabilité | Un assistant IA peut reconstruire le contexte | (a) §4 instructions claires, (b) Fichiers prioritaires listés, (c) In extenso pour fichiers < 200 lignes, (d) Résumé structuré pour > 500 lignes |
@@ -150,7 +162,44 @@ Enregistrer dans le worklog (format SHARED §1.4, voir §2.4).
 
 Si un check échoue, corriger avant de passer à l'étape 7.
 
-### §1.6 Grille #token
+### §1.10 Détail de l'Étape 7 — Sauvegarde
+
+Sauvegarder le clone dans `download/` avec un nom descriptif incluant la date et le sujet.
+
+Format du nom : `<sujet>-clone-<AAAA-MM-JJ>.md`
+
+Enregistrer la sauvegarde dans le worklog (format SHARED §1.4).
+
+### §1.11 Intégration KB
+
+Si `{{KB_ENABLED}}` est `true` :
+
+- **`kb_path`** : chemin vers `{{KB_PATH}}`
+- **Registre KB** : enrichir la section §2 du clone avec les descriptions des skills depuis le registre
+- **Historique des interactions** : reproduire en §2.4 l'historique des interactions clés entre skills
+- **Protocole de Découverte** : voir SHARED §2.3
+
+---
+
+
+## §2 — SPÉCIFICATION TECHNIQUE
+
+### §2.1 Stack technique
+
+- **Langage** : Markdown pur (CommonMark compatible)
+- **Environnement** : `{{SKILLS_ROOT}}clone-chat/`
+- **Pas de dépendance externe** (aucun ZIP, aucune image embed, aucun outil spécifique requis)
+- Le fichier doit être lisible avec n'importe quel éditeur de texte
+
+### §2.2 Format de sortie
+
+- Fichier Markdown unique, auto-suffisant
+- Aucune dépendance externe
+- Tout le contexte est contenu dans le fichier
+- Tableaux Markdown pour les données structurées
+- Code fences pour les extraits de code
+
+### §2.3 Grille #token
 
 | Mode | #token estimé | Profil min. | Plage |
 |------|--------------|-------------|-------|
@@ -158,10 +207,9 @@ Si un check échoue, corriger avant de passer à l'étape 7.
 | Discussion moyenne (5-15 sessions) | 4500 | NORMAL | 3500-5500 |
 | Discussion longue (> 15 sessions) | 7250 | NORMAL | 5500-9000 |
 
-Estimation recalibrée v2.0.0 pour couvrir l'Étape 3.5 Context Drift,
-l'intégration gen-plan v3.6.1+ KB et la section historique des interactions.
+**Note v2.0.0** : estimation recalibrée pour couvrir l'Étape 3.5 Context Drift, l'intégration gen-plan v3.6.1+ KB, et la section historique des interactions.
 
-### §1.7 Profils ressource
+### §2.4 Profils ressource
 
 | Profil | Comportement pour le clone |
 |--------|--------------------------|
@@ -169,22 +217,18 @@ l'intégration gen-plan v3.6.1+ KB et la section historique des interactions.
 | **ECO** | Clone condensé, sections §3 regroupées |
 | **VIEUX PC** | Clone minimal, §3.5 et §5 uniquement |
 
-Le profil est automatiquement déterminé par la grille #token (§1.6).
+Le profil est déterminé par la longueur de la discussion (voir grille #token en §2.3).
 
-- **NORMAL** : profil par défaut pour discussions moyennes et longues.
-  Toutes les sections sont détaillées, fichiers < 200 lignes in extenso.
-- **ECO** : profil pour discussions courtes (< 5 sessions). Sections §3
-  regroupées, skills stables décrits en 1 ligne.
-- **VIEUX PC** : pour environnements avec contraintes de tokens sévères.
-  Clone réduit au strict minimum : §3.5 (Context Drift) et §5 (Auto-clonage).
+### §2.5 Mitigation taille
 
-**Mitigation taille** (> 15 sessions) : résumer sessions anciennes en 1
-ligne, détailler §1.3 pour les 5-10 dernières sessions seulement.
+Pour les clones de discussions longues (> 15 sessions), appliquer :
+1. Résumer les sessions anciennes en 1 ligne
+2. Détailler §1.3 pour les 5-10 dernières sessions seulement
+3. Skills stables décrits en 1 ligne
 
-### §1.8 Intégration gen-plan
+### §2.6 Intégration gen-plan (optionnelle)
 
-Clone-chat fonctionne **standalone** sans gen-plan. Si gen-plan v3.6.1+
-est présent, les enrichissements suivants sont appliqués :
+Clone-chat fonctionne **standalone** sans gen-plan. Si gen-plan v3.6.1+ est présent, les enrichissements suivants sont appliqués :
 
 | Composant gen-plan | Enrichissement clone-chat |
 |--------------------|------------------------|
@@ -193,60 +237,18 @@ est présent, les enrichissements suivants sont appliqués :
 | v3.6.1+ (Registre KB) | §2 : descriptions skills depuis `{{KB_PATH}}` |
 | v3.6.1+ (kb_path) | §4 : liens vers skills du Registre |
 
-### §1.9 Intégration KB
-
-Si `{{KB_ENABLED}}` est `true` :
-- **`kb_path`** : chemin vers `{{KB_PATH}}`
-- **Registre KB** : enrichir §2 du clone avec les descriptions des skills
-  depuis le registre (format SHARED §2.2)
-- **Historique des interactions** : reproduire en §2.4 l'historique des
-  interactions clés entre skills (tableau chronologique)
-- **Protocole de Découverte** : voir SHARED §2.3
-
-Si `{{KB_ENABLED}}` est `false` : les sections §2.4 et les enrichissements
-KB sont omis. Le clone reste fonctionnel et auto-suffisant sans le registre.
-
----
-
-## §2 — SPÉCIFICATION TECHNIQUE
-
-### §2.1 Stack
-
-- **Langage** : Markdown pur (CommonMark compatible)
-- **Environnement** : `{{SKILLS_ROOT}}clone-chat/`
-- **Dépendances** : aucune (aucun ZIP, aucune image embed, aucun outil spécifique)
-- Le fichier doit être lisible avec n'importe quel éditeur de texte
-
-### §2.2 Format de sortie
-
-- Fichier Markdown unique, auto-suffisant, aucune dépendance externe
-- Tableaux Markdown pour données structurées, code fences pour extraits
-- Le fichier est versionnable avec git et interprétable par tout assistant IA
-
-**Structure imposée du clone (§0-§5)** :
-
-| Section | Contenu | Détails |
-|---------|---------|---------|
-| **§0** | Règle zéro | Contexte perdu, tout à reconstruire, environnement cible |
-| **§1** | Chronologie | Résumé global, table des sessions, détail par session |
-| **§2** | Écosystème skills | Skills créés/modifiés, scripts, artefacts, historique interactions si KB |
-| **§3** | Décisions clés | Décisions utilisateur, bugs, conventions, données calibration |
-| **§3.5** | Context Drift | 5 types de drift, table avec avant/après/session/raison |
-| **§4** | Instructions | Comment utiliser le clone, fichiers à reconstruire en priorité |
-| **§5** | Auto-clonage | Mécanisme de croissance, référence au template |
-
-### §2.3 Structure des fichiers
+### §2.7 Structure des fichiers
 
 ```
 {{SKILLS_ROOT}}clone-chat/
 ├── SKILL.md
-└── references/
+└── références/
     └── clone-template.md
 ```
 
-### §2.4 Logging worklog
+### §2.8 Logging worklog
 
-Format SHARED §1.4. Spécifiquement pour clone-chat :
+Voir SHARED §1.4 pour le format. Spécifiquement pour clone-chat :
 
 ```markdown
 ---
@@ -270,92 +272,80 @@ Stage Summary:
 - Profil : [NORMAL|ECO|VIEUX PC]
 ```
 
-### §2.5 Règle in extenso
-
-| Taille fichier | Traitement dans le clone |
-|----------------|------------------------|
-| < 200 lignes | Contenu complet (in extenso) |
-| 200-500 lignes | In extenso avec sections condensées |
-| > 500 lignes | Résumé structuré (objectifs, structure, modules clés) |
-
-Le contenu in extenso généré dans le clone doit rester < 200 lignes.
-Ce seuil (200 lignes, et non 500) a été recalibré en v1.1.0 suite à
-une correction correct-work.
-
 ---
 
+
 ## §3 — RELATIONS
+
+Voir `PROMPT-MAITRE-SHARED.md §3` pour le registre complet des relations inter-skills.
+
+Relations directes de clone-chat (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
 | gen-plan | Archivé par | Sessions longues, optionnel, version >= v3.6.1 |
 | correct-work | Vérifié par | Validation croisée, §3.5 Context Drift, version >= v2.4.0 |
-| skill-creator | Conventions par | Conventions structurelles (YAML, §0-§5), version >= v1.0.0 |
+| skill-creator | Conventions par | Conventions structurelles, version >= v1.0.0 |
 | KNOWLEDGE.md | Lecture seule | Consultation du registre KB pour enrichissement §2 |
 
-**gen-plan** : clone-chat utilise les données de calibration E15 et la
-structure E1-E7 de gen-plan pour enrichir l'Étape 1 et l'Étape 4.
-Le Registre KB (gen-plan v3.6.1+) alimente les descriptions de skills
-en §2 du clone. Clone-chat fonctionne **standalone** sans gen-plan.
+---
 
-**correct-work** : en mode CIBLE, correct-work peut auditer un clone
-produit par clone-chat et identifier des drifts non détectés (§3.5).
-Les corrections génèrent des drifts de type CORRECTION dans le clone.
 
-**skill-creator** : clone-chat suit les conventions de formatage établies
-par skill-creator (YAML frontmatter, structure §0-§5).
+## §5 — INSTRUCTIONS D'INSTALLATION
+
+### §5.1 Créer la structure
+
+```bash
+mkdir -p {{SKILLS_ROOT}}clone-chat/références
+```
+
+### §5.2 Créer le fichier SKILL.md
+
+Le fichier `SKILL.md` (~365 lignes) doit contenir :
+
+1. **YAML frontmatter** (voir §4)
+2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention 80 skills, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
+3. **§1 — Spécification fonctionnelle** : objectif, 7+1 étapes (détail de chaque), profils ressource
+4. **§2 — Spécification technique** : format sortie, stack, grille #token, intégration gen-plan, mitigation taille, structure fichiers
+5. **§3 — Conventions** : nommage (SHARED §1.2), chemins relatifs, règle in extenso, numérotation §0-§5, Context Drift obligatoire
+6. **§4 — Relations** : gen-plan (§4.1), correct-work (§4.2), skill-creator (§4.3)
+7. **§5 — Auto-clonage** : mécanisme de croissance, fichiers de référence
+8. **HISTORIQUE DES VERSIONS**
+
+### §5.3 Créer le fichier de référence
+
+Le contenu in extenso du template est en §9.
+
+### §5.4 Mettre à jour KNOWLEDGE.md
+
+Ajouter l'entrée clone-chat au registre KB (format SHARED §2.2) :
+
+```markdown
+## clone-chat v2.0.0
+
+- **Category** : ecosystem
+- **Description** : Clonage de discussion en Markdown auto-suffisant. 7+1 étapes, intégration gen-plan v3.6.1+ KB.
+- **Dépend de** : gen-plan >= v3.6.1 (optionnel), correct-work >= v2.4.0 (validation croisée)
+- **Utilisé par** : gen-plan (E4, E15), correct-work (Mode CIBLE, §3.5)
+- **Dernière calibration** : [date]
+- **Statut** : stable
+```
+
+### §5.5 Mettre à jour les cross-references
+
+Vérifier que (SHARED §3.2) :
+1. gen-plan mentionne clone-chat dans ses dépendances (déjà fait)
+2. correct-work mentionne clone-chat dans ses dépendances (déjà fait)
+3. KNOWLEDGE.md mentionne clone-chat dans les entrées « Utilisé par » de gen-plan et correct-work
 
 ---
 
-## §4 — CONVENTIONS
+## §6 — CONVENTIONS
 
-- **kebab-case** : tous les noms de fichiers et répertoires en kebab-case
-  (`clone-chat`, `clone-template`)
-- **Chemins relatifs** : tous les chemins dans le clone sont relatifs,
-  jamais absolus. Exemple correct : `skills/clone-chat/SKILL.md`
-- **Numérotation §0-§5** : les sections du clone utilisent la numérotation
-  §0-§5 (pas 1-8)
-- **§3.5 Context Drift obligatoire** : la section §3.5 doit toujours être
-  présente dans le clone, même si aucun drift n'est détecté. Écrire
-  « Aucune évolution de contexte détectée » certifie l'analyse
-- **Règle in extenso < 200 lignes** : le contenu généré in extenso dans
-  le clone ne doit pas dépasser 200 lignes
-- **YAML frontmatter** : chaque SKILL.md commence par un bloc YAML
-  (name, version, category, language, tags, description, dependencies)
-- **Worklog SHARED §1.4** : référencé pour le format de logging
-- **Cross-references bidirectionnelles** : les relations inter-skills
-  sont maintenues dans les deux sens (frontmatter + §3 Relations)
-- **Pas de contenu externe** : aucun « voir fichier X », le clone est
-  l'unique source de vérité pour la reprise
-
----
-
-## §5 — AUTO-CLONAGE
-
-Ce skill est **auto-référentiel**. Le clone contient dans son §5 les
-instructions pour se cloner lui-même. À la fin d'une nouvelle session :
-
-1. Exécuter `clone-chat` sur la discussion en cours
-2. Le nouveau clone incorpore tout le contexte du clone précédent
-   plus les nouvelles sessions
-3. Les sections §1-§3 (données historiques) sont **enrichies**, tandis que
-   §0, §4-§5 (auto-référentielles) sont **régénérées à l'identique**
-4. Le nouveau clone remplace le précédent — le clone « grandit » à chaque
-   session sans perte d'information (chaîne de clonage théoriquement infinie)
-
-**Propriété fondamentale** : un clone peut se cloner lui-même. Le §5
-décrit cette propriété, et le template inclut toujours le §5 pour
-permettre la chaîne de clonage infinie sans perte d'information.
-
-Fichier de référence : `references/clone-template.md`
-
----
-
-## HISTORIQUE DES VERSIONS
-
-| Version | Date | Changements |
-|---------|------|-------------|
-| v1.0.0 | 2026-07-29 | Version initiale, 7 étapes, template, auto-clonage |
-| v1.1.0 | 2026-07-29 | 8 corrections correct-work (§0-§5, #token, chemins) |
-| v1.2.0 | 2026-07-29 | Étape 3.5 Context Drift, 5 types, 8 checks, gen-plan KB |
-| v2.0.0 | 2026-08-09 | Harmonisation écosystème maître : gen-plan v3.6.0, correct-work v2.3.0, 78 skills, variables SHARED, dependencies frontmatter, worklog SHARED §1.4, prompt maître |
+- Nommage kebab-case ; sections de clone préfixées « § » (§0 règle zéro, §1.0 héritage,
+  §3.5 Context Drift, §5 auto-clonage)
+- Worklog format SHARED §1.4
+- Clonage en DERNIER dans l'ordonnancement (leçon E23) : l'instantané de clôture absorbe
+  l'état le plus frais
+- Scellement APRÈS enrichissement final (méthode neutral-line, Annexe D du PDF) pour que la
+  SHA déclarée reste vérifiable byte-identique

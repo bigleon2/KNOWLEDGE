@@ -1,0 +1,56 @@
+{
+  "skill_name": "context-engineering",
+  "version": "1.0.1",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation skill de la discipline context engineering (session A12, 2026-09-07) — source de vérité SHARED §7.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "CE-composition-contexte — Assemblage avec provenance",
+      "prompt": "Assemble le contexte d'une session à partir du socle SHARED, du registre KB et de la demande courante",
+      "expected_output": "Un contexte assemblé, compact et provenancé, dans le budget d'attention",
+      "files": [],
+      "expectations": [
+        "Le socle SHARED est lu en premier (SHARED §0)",
+        "Chaque information porte sa provenance (fichier, section)",
+        "Le contexte tient dans le budget d'attention ou est compacté avec synthèses"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "CE-compaction — Lecture bloc par bloc",
+      "prompt": "Traite un fichier de plus de 500 lignes sans dépasser le budget d'attention",
+      "expected_output": "Des synthèses intermédiaires par bloc et une synthèse finale opérationnelle",
+      "files": [],
+      "expectations": [
+        "La lecture est organisée par blocs (seuil > 500 lignes respecté)",
+        "Chaque bloc produit une synthèse intermédiaire",
+        "Aucune donnée n'est inventée : les synthèses restent provenancées"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "CE-memoire — Contexte court vs long",
+      "prompt": "Répartis les informations de cette tâche entre mémoire courte et mémoire longue",
+      "expected_output": "Une répartition EC/EL justifiée, cohérente avec SHARED et le registre KB",
+      "files": [],
+      "expectations": [
+        "La mémoire courte contient la demande courante et l'état d'avancement",
+        "La mémoire longue contient le socle, le registre KB et le worklog",
+        "La répartition est justifiée par l'usage futur de chaque information"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "CE-reparation — Reconstruction post-wipe",
+      "prompt": "Reconstruis le contexte perdu après un wipe inter-sessions",
+      "expected_output": "Un contexte reconstruit depuis les sources scellées, avec écarts documentés",
+      "files": [],
+      "expectations": [
+        "La reconstruction utilise mon-ecosysteme/, le miroir et le dépôt",
+        "Aucun contenu n'est improvisé hors source scellée",
+        "La réparation est journalisée au worklog (SHARED §1.4)"
+      ]
+    }
+  ]
+}

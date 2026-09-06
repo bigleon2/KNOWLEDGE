@@ -20,7 +20,7 @@ Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : i
 my-project/
 ├── skills/                              ← Racine de l'écosystème (77 skills)
 │   ├── KNOWLEDGE.md                    ← Registre central (source de vérité)
-│   ├── _prompts-maitres/               ← Specs d'installation des skills écosystème (préfixe « _ » = infrastructure, pas un skill)
+│   ├── mon-ecosysteme/                 ← Prompts maîtres de l'écosystème (dossier canonique local ; renommé depuis _prompts-maitres)
 │   │   ├── PROMPT-MAITRE-SHARED.md     ← Socle commun (conventions, KB, matrice)
 │   │   ├── PROMPT-MAITRE-GEN-PLAN-v3.6.1.md
 │   │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md
@@ -300,7 +300,7 @@ Le script valide **6 axes** (60 checks) :
 
 ### Cas E — Synchroniser download/
 
-Après toute modification d'un fichier dans `skills/_prompts-maitres/` :
+Après toute modification d'un fichier dans `skills/mon-ecosysteme/` :
 
 ```bash
 python3 scripts/sync-download.py --sync

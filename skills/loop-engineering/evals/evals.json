@@ -1,0 +1,56 @@
+{
+  "skill_name": "loop-engineering",
+  "version": "1.0.1",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation skill de la discipline loop engineering (session A12, 2026-09-07) — source de vérité SHARED §7.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "LE-criteres — Rubrique de vérification",
+      "prompt": "Définis une rubrique de vérification pour une tâche à livrable certifié",
+      "expected_output": "Une rubrique avec critères mesurables, verdicts et feedback exploitable",
+      "files": [],
+      "expectations": [
+        "Chaque critère est mesurable ou scriptable",
+        "Les verdicts suivent PASS / PASS AVEC RÉSERVES / FAIL",
+        "Le feedback fournit le delta exact et la cause d'échec"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "LE-boucle — Exécuter, vérifier, corriger",
+      "prompt": "Organise l'exécution de cette tâche en boucle avec vérification par grader",
+      "expected_output": "Une boucle exécution → grader → ajustement → re-vérification jusqu'à PASS",
+      "files": [],
+      "expectations": [
+        "Un verdict non-PASS déclenche un ajustement avant re-vérification",
+        "La boucle ne passe en force jamais un verdict FAIL",
+        "Chaque itération produit un delta mesuré"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "LE-calibration — Boucle externe",
+      "prompt": "Compare le temps prévu et réel de cette phase puis recalibre la grille",
+      "expected_output": "Un bilan E15 avec seuils 20 % / 35 % et recalibration journalisée",
+      "files": [],
+      "expectations": [
+        "Les écarts sont mesurés avant et après",
+        "Le recalibration respecte les seuils E15",
+        "Les gains sont consignés au worklog et en KB"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "LE-limites — Itérations contrôlées",
+      "prompt": "Poursuis cette boucle jusqu'à la réussite",
+      "expected_output": "Une exécution contrôlée : max 3 itérations sans progrès mesuré puis pause explicite",
+      "files": [],
+      "expectations": [
+        "Le nombre d'itérations sans progrès est suivi",
+        "Une pause explicite et motivée est déclenchée au seuil",
+        "La règle d'or n°1 est appliquée sans arrêt implicite"
+      ]
+    }
+  ]
+}

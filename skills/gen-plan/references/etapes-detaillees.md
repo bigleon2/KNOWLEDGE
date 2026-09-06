@@ -1,3 +1,4 @@
+```markdown
 # Détail des 15 étapes gen-plan
 
 ## E1 — Analyse de la demande
@@ -297,6 +298,13 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 - [ ] Si correct-work retourne PASS AVEC RÉSERVES, les réserves sont loggées et l'exécution continue
 - [ ] Si correct-work retourne PASS, l'exécution passe directement à E9
 
+**Hook correct-work par phase (E9-E14)** (si correct-work >= v2.4.0 est disponible) :
+- [ ] Dès qu'une phase du plan d'actions vient de se terminer, lancer `correct-work(livrables de la phase, mode=CIBLE)` AVANT d'entamer la phase suivante
+- [ ] Si correct-work retourne FAIL, l'exécution est mise en pause jusqu'à correction de la phase, puis re-vérification
+- [ ] Si correct-work retourne PASS AVEC RÉSERVES, les réserves sont loggées dans le worklog et l'exécution continue
+- [ ] Si correct-work retourne PASS, la phase suivante démarre
+- [ ] Le hook E8 (fin de plan) reste inchangé et constitue la vérification finale
+
 **E14 — Finalisation** inclut l'intégration écosystème :
 - [ ] Les fichiers Skill sont placés dans `{{SKILLS_ROOT}}<nom>/SKILL.md`
 - [ ] Les fichiers de référence vont dans `{{SKILLS_ROOT}}<nom>/references/`
@@ -308,3 +316,4 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 - [ ] Si le SKILL.md de gen-plan a été modifié pendant l'exécution, les tâches restantes sont réévaluées
 - [ ] Les tâches affectées sont marquées `[REEVALUER]` avec la raison et les sections impactées
 - [ ] Chaque réévaluation est documentée dans le worklog
+```

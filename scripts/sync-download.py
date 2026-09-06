@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Synchronisation download/ depuis skills/_prompts-maitres/ (source de vérité).
+"""Synchronisation download/ depuis skills/mon-ecosysteme/ (source de vérité).
 
 Usage:
     python3 scripts/sync-download.py              # mode CHECK (dry-run, affiche les écarts)
@@ -12,7 +12,7 @@ import sys
 import filecmp
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SOURCE_DIR = os.path.join(BASE_DIR, "skills", "_prompts-maitres")
+SOURCE_DIR = os.path.join(BASE_DIR, "skills", "mon-ecosysteme")
 DEST_DIR = os.path.join(BASE_DIR, "download")
 
 # Mapping source → destination (fichiers à synchroniser)
@@ -37,7 +37,7 @@ def line_count(filepath):
 
 def check_sync():
     """Mode CHECK : compare source et dest, affiche un rapport."""
-    print("=== SYNC CHECK : download/ vs skills/_prompts-maitres/ ===\n")
+    print("=== SYNC CHECK : download/ vs skills/mon-ecosysteme/ ===\n")
 
     all_ok = True
     diffs = []
@@ -100,7 +100,7 @@ def check_sync():
 
 def do_sync(force=False):
     """Mode SYNC : copie les fichiers source vers download/."""
-    print("=== SYNC : skills/_prompts-maitres/ → download/ ===\n")
+    print("=== SYNC : skills/mon-ecosysteme/ → download/ ===\n")
 
     # D'abord, afficher l'état
     needs_sync = False
