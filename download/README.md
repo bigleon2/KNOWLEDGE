@@ -1,7 +1,7 @@
 # Écosystème Knowledge — Architecture & Guide de référence
 
 > **Date** : 2026-08-30
-> **Version** : 2.1.0
+> **Version** : 2.1.1
 > **Vérification** : 60/60 checks PASS (`scripts/verify-cross.py`, 6 axes — état courant 2026-09-06) · état historique v2.1.0 (30-08) : 68/68
 
 ---
@@ -18,7 +18,7 @@ Deux skills — **gen-plan** et **correct-work** — jouent un rôle central : i
 
 ```
 my-project/
-├── mon-ecosysteme/                      ← Prompts maîtres — dossier canonique (renommé depuis _prompts-maitres le 2026-08-28)
+├── @mon-ecosysteme/                     ← Prompts maîtres — dossier canonique (préfixe « @ » le 2026-09-07 : tri GitHub premier plan ; renommé depuis _prompts-maitres le 2026-08-28)
 │   ├── README.md                        ← Le présent guide
 │   ├── INSTALL-ECOSYSTEME.md            ← Procédure d'installation (8 phases P0-P7)
 │   ├── PROMPT-MAITRE-SHARED.md          ← Socle commun
@@ -35,7 +35,7 @@ my-project/
 │   └── _archive/                        ← Versions obsolètes (8 fichiers, voir _archive/README.md)
 ├── skills/                              ← Racine de l'écosystème (80 skills)
 │   ├── KNOWLEDGE.md                    ← Registre central (source de vérité)
-│   ├── _prompts-maitres/               ← Miroir byte-identique de mon-ecosysteme/ (22 fichiers — préfixe « _ » = infrastructure, pas un skill)
+│   ├── _prompts-maitres/               ← Miroir byte-identique de @mon-ecosysteme/ (22 fichiers — préfixe « _ » = infrastructure, pas un skill)
 │   │   ├── PROMPT-MAITRE-SHARED.md     ← Socle commun (conventions, KB, matrice)
 │   │   ├── PROMPT-MAITRE-GEN-PLAN-v3.7.0.md
 │   │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md
@@ -329,7 +329,7 @@ Le script valide **6 axes** (60 checks) :
 
 ### Cas E — Synchroniser download/
 
-Après toute modification d'un fichier dans `mon-ecosysteme/` (source canonique) :
+Après toute modification d'un fichier dans `@mon-ecosysteme/` (source canonique) :
 
 ```bash
 python3 scripts/sync-download.py --sync
