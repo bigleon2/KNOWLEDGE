@@ -1,0 +1,63 @@
+{
+  "skill_name": "autonomous-agent",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Créé via skill-creator (T1c, session A8) : autonomous-agent ne possédait AUCUN eval. 5 evals couvrant les 5 modules, les 4 modes, le pipeline A-H, la mémoire EC/EL et la persistance .agent — conformément à sa propre spécification §1-§2.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "AA-pipeline — Pipeline A-H en mode M3",
+      "prompt": "Analyse cette requête complexe et exécute-la de bout en bout",
+      "expected_output": "Le pipeline A-H est suivi dans l'ordre avec le mode M3 (Pipeline) activé",
+      "files": [],
+      "expectations": [
+        "Les étapes A à H apparaissent dans l'ordre",
+        "Le mode M3 (Pipeline) est déterminé à l'étape D"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "AA-memoire — Consultation de l'État Long",
+      "prompt": "Rappelle-moi tes règles permanentes et tes préférences avant de traiter ma demande",
+      "expected_output": "L'État Long est consulté (étape C) et ses règles respectées",
+      "files": [],
+      "expectations": [
+        "L'État Long est consulté avant exécution",
+        "Aucune règle de l'État Long n'est modifiée depuis l'État Court (règle de sécurité §2.5)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "AA-persistance — Persistance .agent / clone-chat",
+      "prompt": "Persiste ton état pour la prochaine session",
+      "expected_output": "L'État Long est sauvegardé via clone-chat (si disponible) ou dans un fichier .agent YAML",
+      "files": [],
+      "expectations": [
+        "Le format .agent §2.3 est respecté (memoire: {court, long})",
+        "La persistance est vérifiable en re-lecture du fichier"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "AA-simulation — Mode M4 Simulation",
+      "prompt": "Simule ton comportement sur ce cas sans l'exécuter réellement",
+      "expected_output": "Le mode M4 est activé : comportement simulé + vérification de cohérence",
+      "files": [],
+      "expectations": [
+        "Le mode M4 (Simulation) est déterminé à l'étape D",
+        "Une vérification de cohérence est produite (étape G)"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "AA-delegation — Délégation multi-agents",
+      "prompt": "Délègue cette sous-tâche spécialisée à un agent expert",
+      "expected_output": "La délégation est conforme à l'intégration multi-LLM §5 (agents spécialisés, orchestration)",
+      "files": [],
+      "expectations": [
+        "La sous-tâche est déléguée à un agent expert identifié",
+        "Le résultat délégué est intégré puis vérifié (étape G) avant synthèse"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {"query": "exécute cette tâche complexe de façon autonome", "should_trigger": true},
+  {"query": "persiste ton état pour la prochaine session", "should_trigger": true},
+  {"query": "active ton pipeline et traite cette requête de bout en bout", "should_trigger": true},
+  {"query": "simule ton comportement sur ce cas", "should_trigger": true},
+  {"query": "crée-moi un agent autonome avec mémoire", "should_trigger": true},
+  {"query": "planifie cette tâche en étapes", "should_trigger": false},
+  {"query": "clone cette discussion", "should_trigger": false},
+  {"query": "bonjour", "should_trigger": false}
+]
