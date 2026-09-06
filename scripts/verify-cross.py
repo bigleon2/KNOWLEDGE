@@ -129,7 +129,7 @@ print(f"\n  Total : {total_lines} lignes (vs ~930+560={930+560} avant refactorin
 print(f"  Reduction : {930+560 - total_lines} lignes ({round((1-total_lines/(930+560))*100,1)}%)")
 
 print("\n=== CHECK 6 : Synchronisation download/ ===")
-SOURCE_DIR = os.path.join(BASE_DIR, "skills", "mon-ecosysteme") + "/"
+SOURCE_DIR = os.path.join(BASE_DIR, "skills", "@mon-ecosysteme") + "/"
 SYNC_FILES = [
     "PROMPT-MAITRE-SHARED.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",

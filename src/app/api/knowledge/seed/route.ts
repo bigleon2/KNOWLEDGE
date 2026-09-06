@@ -211,7 +211,7 @@ export async function POST() {
       },
       {
         title: 'Outils d\'Intégration',
-        content: 'Scripts de l\'écosystème :\n- scripts/git-deploy.sh : automatisation commit+push (4 modes : --status, --auto, --push-only, interactif)\n- scripts/sync-download.py : synchronisation mon-ecosysteme/ ↔ download/\n- scripts/verify-cross.py : 60 checks de cohérence cross-fichiers\n- scripts/spell-check.py : vérification orthographique avec lexique dynamique\n- scripts/generate-clone-genplan.py : génération de clone-chat.zip\n- download/clone-chat.zip : archive complète de l\'écosystème (23 fichiers)',
+        content: 'Scripts de l\'écosystème :\n- scripts/git-deploy.sh : automatisation commit+push (4 modes : --status, --auto, --push-only, interactif)\n- scripts/sync-download.py : synchronisation @mon-ecosysteme/ ↔ download/\n- scripts/verify-cross.py : 60 checks de cohérence cross-fichiers\n- scripts/spell-check.py : vérification orthographique avec lexique dynamique\n- scripts/generate-clone-genplan.py : génération de clone-chat.zip\n- download/clone-chat.zip : archive complète de l\'écosystème (23 fichiers)',
         category: 'protocol',
         tags: 'outils,scripts,git-deploy,sync,verify,spell-check,clone-chat-zip',
         priority: 'important',
