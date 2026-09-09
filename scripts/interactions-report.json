@@ -1,0 +1,282 @@
+{
+  "phase": "B5 (correctifs frontmatter Phase 2 + publication)",
+  "generateur": "gen-plan v3.11.0 — session B5",
+  "checks": [
+    {
+      "statut": "PASS",
+      "section": "1",
+      "check": "Corpus = 15 fichiers (15 attendus — v3.11.0)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "1",
+      "check": "Byte-identité corpus/miroir",
+      "detail": "15/15 identiques + 0 miroir orphelin"
+    },
+    {
+      "statut": "PASS",
+      "section": "2",
+      "check": "Registre parsé : 11 entrées (11 attendues)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "2",
+      "check": "Versions KB <-> SKILL.md",
+      "detail": "11/11 alignées (skill-creator en convention KB_ONLY_VERSION)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Arêtes bidirectionnelles dépandance↔usage : 14",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "correct-work → fullstack-dev (hors registre : skill plateforme)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "agent-prompt-engineering ← install-ecosystem (référence externe documentée : agent/PM/session)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "context-engineering ← gen-plan (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "context-engineering ← sessions (référence externe documentée : agent/PM/session)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "loop-engineering ← correct-work (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "loop-engineering ← gen-plan (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "loop-engineering ← sessions (référence externe documentée : agent/PM/session)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "graph-engineering ← correct-work (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "graph-engineering ← gen-plan (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "graph-engineering ← sessions (référence externe documentée : agent/PM/session)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "harness-engineering ← arbitres (référence externe documentée : agent/PM/session)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "harness-engineering ← correct-work (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "harness-engineering ← gen-plan (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "4",
+      "check": "Contrats semver frontmatter",
+      "detail": "12/12 contrats semver vérifiés et satisfaits"
+    },
+    {
+      "statut": "PASS",
+      "section": "5",
+      "check": "Arbre §2.2 : 6 références résolues",
+      "detail": "PEK présent = intégration v3.11.0"
+    },
+    {
+      "statut": "PASS",
+      "section": "5",
+      "check": "evals/evals.json (6 évals, intact R2)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "5",
+      "check": "PM PROMPT-MAITRE-GEN-PLAN-v3.11.0.md résolu (corpus+miroir)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "5",
+      "check": "SKILL.md ↔ PM v3.11.0 alignés en version",
+      "detail": "8 mentions v3.11.0 dans SKILL.md"
+    },
+    {
+      "statut": "PASS",
+      "section": "5",
+      "check": "Référence PEK §1.6/§2.2 ↔ references/",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "6",
+      "check": "check-ecosysteme-integrity.py calibré (ECO_SKILLS 11 entrées) sur l'état KB réel",
+      "detail": "aligné sur l'état réel (Phase 1 : 33/33 PASS)"
+    },
+    {
+      "statut": "PASS",
+      "section": "7",
+      "check": "download/ synchronisé (6/6, byte-identiques au corpus — v3.6.1 scellé + PM v3.11.0 publié B3)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "8",
+      "check": "evals/ présents pour les 10 skills écosystème évaluables",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "9",
+      "check": "py_compile 5/5 scripts (portée E8 étendue)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "10",
+      "check": "Worklog : 5 sections ---, 5 Task ID (SHARED §1.4)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "SKILL.md gen-plan : frontmatter 3.11.0",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "SKILL.md gen-plan : zéro mention stale 3.10.0",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "PM v3.11.0 (corpus) : en-tête version + plage 1200-1350 lignes",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "PM v3.11.0 : 6e référence PEK (§2.2) + section §9.6",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "Miroir : PM v3.11.0 byte-identique au corpus",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "KB : entrée « ## gen-plan v3.11.0 »",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "KB : calibration B1 documentée (PEK, 2026-09-10)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "Arbitre local ECO_SKILLS : gen-plan 3.11.0",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "Référence PEK : fichier présent (v4.1)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "Worklog : session B1 (v3.11.0 + PEK) journalisée",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11b",
+      "check": "Corpus historique 14/14 byte-identiques au dépôt (a8ffb5f)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11b",
+      "check": "gen-plan : 6 fichiers originaux (5 références + evals) intacts (R2)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11b",
+      "check": "12 répertoires skills intacts — seule divergence documentée : verify-correct-work.py (calibration v2.5.1, arbitre 16/16)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11b",
+      "check": "KB : 8 entrées hors divergences documentées identiques au dépôt (gen-plan B1/PEK, correct-work+clone-chat B3/harmonisation)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11c",
+      "check": "Aucune référence stale — l'état courant est uniformément v3.11.0",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11d",
+      "check": "download/ : canal de publication (v3.6.1 scellé dépôt + PM v3.11.0 local B3)",
+      "detail": "PM v3.11.0 publié (extension SYNC_MAP B3 — 6 fichiers)"
+    }
+  ],
+  "bilan": {
+    "pass": 45,
+    "warn": 0,
+    "fail": 0,
+    "total": 45
+  }
+}

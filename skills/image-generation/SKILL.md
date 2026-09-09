@@ -1,6 +1,11 @@
 ---
 name: image-generation
+version: 1.0.0
+category: metier
+language: fr
 description: Implement AI image generation capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to create images from text descriptions, generate visual content, create artwork, design assets, or build applications with AI-powered image creation. Supports multiple image sizes and returns base64 encoded images. Also includes CLI tool for quick image generation.
+tags: []
+dependencies: []
 license: MIT
 ---
 

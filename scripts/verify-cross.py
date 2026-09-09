@@ -4,6 +4,11 @@
 Checks 1-6 : validation du contenu des PMs (source = download/).
 Check 7   : Mode correct-work (scan KB dynamique).
 Check 8   : Conformité frontmatter métier (toujours actif).
+
+Calibration B4 (recommandation 3 du rapport de cohérence B2) : CHECK 7.6 parse
+le format LISTE du registre KB (template SHARED §2.2, KB v2.1.1+) — l'ancienne
+regex pipe-table ne lisait aucune relation (0/0, échec hérité S4 du dépôt).
+Divergence intentionnelle documentée vs dépôt a8ffb5f (cf. worklog Task ID 5).
 """
 
 import re
@@ -195,10 +200,40 @@ if MODE == "correct-work":
                 check("'Utilise par' mentionne gen-plan", has_gp, "" if has_gp else "manquant")
                 check("'Utilise par' mentionne autonomous-agent", has_aa, "" if has_aa else "manquant")
 
-        # 7.6 : Relations bidirectionnelles dans KB
+        # 7.6 : Relations bidirectionnelles dans KB (format liste — calibré B4)
+        # Deux passes : (1) noms des entrées "## name vX.Y.Z", (2) par entrée,
+        # "Dépend de" = jetons suivis de ">=", "Utilisé par" = jetons filtrés
+        # sur les noms d'entrées connues (exclut mots français et refs externes).
+        # PASS si >= 3 arêtes internes et aucune asymétrie (dép non réciproquée).
         if kb_content:
-            rels = re.findall(r'correct-work.*?\|.*?\|', kb_content)
-            check(f"Relations dans KB ({len(rels)}/{len(rels)})", len(rels) >= 3, f"{len(rels)} relations trouvées")
+            kb_entries = re.findall(r"^## ([a-z0-9-]+) v[\d.]+\s*$", kb_content, re.M)
+            kb_names = set(kb_entries)
+            kb_graph = {}
+            for em in re.finditer(r"^## ([a-z0-9-]+) v[\d.]+\s*$", kb_content, re.M):
+                ename = em.group(1)
+                eend = kb_content.find("\n## ", em.end())
+                eblock = kb_content[em.end():eend if eend != -1 else len(kb_content)]
+                dpm = re.search(r"\*\*Dépend de\*\* :(.*)", eblock)
+                upm = re.search(r"\*\*Utilisé par\*\* :(.*)", eblock)
+                edeps = re.findall(r"([a-z][a-z0-9-]*)\s*>=", dpm.group(1)) if dpm else []
+                eusers = []
+                if upm and "—" not in upm.group(1)[:3]:
+                    eusers = [u for u in re.findall(r"([a-z][a-z0-9-]*)", upm.group(1))
+                              if u in kb_names]
+                kb_graph[ename] = (edeps, eusers)
+            total_edges, bidir, asym = 0, 0, []
+            for ename, (edeps, _eusers) in kb_graph.items():
+                for dep in edeps:
+                    if dep in kb_graph:
+                        total_edges += 1
+                        if ename in kb_graph[dep][1]:
+                            bidir += 1
+                        else:
+                            asym.append(f"{ename}->{dep}")
+            check(f"Relations dans KB ({bidir}/{total_edges}, format liste)",
+                  total_edges >= 3 and not asym,
+                  f"{total_edges} arêtes, {bidir} bidirectionnelles"
+                  + (f", asymétriques : {asym}" if asym else ", 0 asymétrique"))
 
         # 7.7 : verify-correct-work.py existe et fonctionne
         vcw_path = os.path.join(SKILLS_DIR, "correct-work", "scripts", "verify-correct-work.py")

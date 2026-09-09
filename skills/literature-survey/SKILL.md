@@ -1,6 +1,11 @@
 ---
 name: literature-survey
+version: 1.0.0
+category: metier
+language: fr
 description: Use when the user wants a comprehensive literature survey on a specific research topic. Outputs a complete PDF survey (6–20 pages, 60+ real citations, 100+ recommended) with LaTeX source, taxonomy figures, and a classified literature table. Single-stage, no Python runtime.
+tags: []
+dependencies: []
 ---
 
 # Literature Survey

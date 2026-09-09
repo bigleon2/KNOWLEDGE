@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Vérification post-installation correct-work v2.4.0
+"""Vérification post-installation correct-work v2.5.1
 
-16 checks automatisés correspondant au tableau §6 du Prompt Maître.
+16 checks automatisés correspondant au tableau §6 du Prompt Maître v2.5.1.
+Calibrage v2.5.1 (2026-09-10) : plage ~400 L, PM v2.5.1, dép gen-plan >= v3.7.0,
+regex étapes insensible à la casse (Étape/étape), valeur de version vérifiée.
 Usage:
     python verify-correct-work.py
     python verify-correct-work.py --skills-root /chemin/skills
@@ -13,16 +15,16 @@ import sys
 
 SKILLS_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SKILL_PATH = os.path.join(SKILLS_ROOT, "correct-work", "SKILL.md")
-PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md")
+PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md")
 SHARED_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-SHARED.md")
 KB_PATH = os.path.join(SKILLS_ROOT, "KNOWLEDGE.md")
 
-EXPECTED_VERSION = "2.4.0"
+EXPECTED_VERSION = "2.5.1"
 EXPECTED_LINES_MIN = 200
-EXPECTED_LINES_MAX = 350
+EXPECTED_LINES_MAX = 450
 EXPECTED_MODES = {"PROJET", "CIBLE", "DIRECT"}
 EXPECTED_STEPS = {"1", "2", "3", "4", "5"}
-REQUIRED_DEPS = {"gen-plan": ">=3.6.0", "clone-chat": ">=2.0.0"}
+REQUIRED_DEPS = {"gen-plan": ">=3.7.0", "clone-chat": ">=2.0.0"}
 REQUIRED_FRONTMATTER = ["name", "version", "category", "language", "tags", "dependencies"]
 # Sections du PM (utilisées pour référence, pas de check dedie)
 
@@ -120,15 +122,22 @@ def run_checks():
     else:
         results.append(("Check 2", "Taille SKILL.md", "SKIP (fichier absent)"))
 
-    # Check 3 : YAML frontmatter valide
+    # Check 3 : YAML frontmatter valide (champs + version)
     content = read_file(SKILL_PATH)
     if content:
         fm = extract_frontmatter(content)
         missing = [f for f in REQUIRED_FRONTMATTER if f not in fm]
-        status = "PASS" if not missing else "FAIL"
-        détail = f"{len(REQUIRED_FRONTMATTER)}/{len(REQUIRED_FRONTMATTER)}" if not missing else f"manquant: {', '.join(missing)}"
+        ver_match = re.search(r"^version:\s*([\d.]+)", content, re.MULTILINE)
+        ver_ok = ver_match is not None and ver_match.group(1) == EXPECTED_VERSION
+        status = "PASS" if (not missing and ver_ok) else "FAIL"
+        if not missing and ver_ok:
+            détail = f"{len(REQUIRED_FRONTMATTER)}/{len(REQUIRED_FRONTMATTER)} champs, version {EXPECTED_VERSION}"
+        elif not ver_ok:
+            détail = f"version {ver_match.group(1) if ver_match else 'absente'} != {EXPECTED_VERSION}"
+        else:
+            détail = f"manquant: {', '.join(missing)}"
         results.append(("Check 3", f"YAML frontmatter {détail}", status))
-        if not missing:
+        if not missing and ver_ok:
             passed += 1
     else:
         results.append(("Check 3", "YAML frontmatter", "SKIP"))
@@ -145,9 +154,9 @@ def run_checks():
     else:
         results.append(("Check 4", "3 modes documentes", "SKIP"))
 
-    # Check 5 : 5 étapes documentees
+    # Check 5 : 5 étapes documentees (insensible a la casse : Étape/étape)
     if content:
-        step_matches = set(re.findall(r"étape\s*(\d)|\bE(\d)\b", content))
+        step_matches = set(re.findall(r"[éÉ]tape\s*(\d)|\bE([1-5])\b", content))
         steps_flat = {s[0] or s[1] for s in step_matches}
         all_steps = EXPECTED_STEPS.issubset(steps_flat)
         status = "PASS" if all_steps else "FAIL"
@@ -207,10 +216,10 @@ def run_checks():
     else:
         results.append(("Check 10", "Format rapport", "SKIP"))
 
-    # Check 11 : Cross-ref gen-plan >= v3.6.0
+    # Check 11 : Cross-ref gen-plan >= v3.7.0 (contrat v2.5.1)
     if content:
-        has_gp = "gen-plan" in content and (">= v3.6.0" in content or ">=v3.6.0" in content or ">= 3.6.0" in content)
-        results.append(("Check 11", "Cross-ref gen-plan >= v3.6.0", "PASS" if has_gp else "FAIL"))
+        has_gp = "gen-plan" in content and (">= v3.7.0" in content or ">=v3.7.0" in content or ">= 3.7.0" in content)
+        results.append(("Check 11", "Cross-ref gen-plan >= v3.7.0", "PASS" if has_gp else "FAIL"))
         if has_gp:
             passed += 1
     else:

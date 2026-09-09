@@ -1,6 +1,11 @@
 ---
 name: auto-target-tracker
+version: 1.0.0
+category: metier
+language: fr
 description: 自动目标进度追踪器。在对话中检测到目标相关图片（笔记、进度、截图、记录）时，自动调用 VLM 识别关键信息并记录到目标日记。适用于学习管理、健身追踪、工作进度、习惯养成、创作记录等所有目标管理场景。
+tags: []
+dependencies: []
 ---
 
 # 自动目标进度追踪器

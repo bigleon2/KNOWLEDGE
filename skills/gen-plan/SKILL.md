@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.10.0
+version: 3.11.0
 category: ecosystem
 language: fr
 tags:
@@ -89,11 +89,11 @@ dependencies:
 **Règle d'or n°1 — Adaptation autonome** : tout blocage (timeout répété, ressource épuisée, fichier absent, wipe inter-sessions, dépendance indisponible, sortie d'outil perdue) est traité comme un signal d'adaptation, jamais comme un arrêt implicite. Le contournement reste conforme aux conventions (SHARED §1) et à la philosophie §1.4 ; chaque adaptation est journalisée au worklog (cause, solution retenue, coût #token) ; l'objectif final ne change pas, seuls les moyens s'ajustent — si l'objectif devient inatteignable, la pause est explicite et motivée.
 
 
-**Règle d'or n°2 — Régénération du plan après installation d'un écosystème** (PM v3.10.0 §1.8) : dès qu'un nouvel écosystème est installé, le plan d'actions actuel est régénéré de façon cohérente via le nouveau skill gen-plan — modes, étapes, règles d'or et hooks réalignés sur la version installée, tags #token recalculés si la grille a évolué, régénération journalisée au worklog ; l'objectif final est inchangé (non-régression R2 des étapes terminées).
+**Règle d'or n°2 — Régénération du plan après installation d'un écosystème** (PM v3.11.0 §1.8) : dès qu'un nouvel écosystème est installé, le plan d'actions actuel est régénéré de façon cohérente via le nouveau skill gen-plan — modes, étapes, règles d'or et hooks réalignés sur la version installée, tags #token recalculés si la grille a évolué, régénération journalisée au worklog ; l'objectif final est inchangé (non-régression R2 des étapes terminées).
 
-**Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (PM v3.10.0 §1.8) : toute nouvelle demande utilisateur pendant l'exécution d'un plan déclenche la mise à jour cohérente du plan d'actions actuel via gen-plan (E13) — demandes intégrées comme étapes/priorités, ré-estimation #token des étapes affectées, re-validation E8 si le périmètre change matériellement, journalisation au worklog ; extension du plan, jamais réécriture destructrice (R2).
+**Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (PM v3.11.0 §1.8) : toute nouvelle demande utilisateur pendant l'exécution d'un plan déclenche la mise à jour cohérente du plan d'actions actuel via gen-plan (E13) — demandes intégrées comme étapes/priorités, ré-estimation #token des étapes affectées, re-validation E8 si le périmètre change matériellement, journalisation au worklog ; extension du plan, jamais réécriture destructrice (R2).
 
-### §1.6 Disciplines d'ingénierie de prompts (PM v3.10.0 §1.9)
+### §1.6 Disciplines d'ingénierie de prompts (PM v3.11.0 §1.9)
 
 | Discipline | Mécanisme gen-plan |
 |------------|--------------------|
@@ -104,13 +104,15 @@ dependencies:
 
 L'optimisation fine des prompts complexes est déléguée au skill `agent-prompt-engineering` (SHARED §3.1).
 
-**Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode prompt-engineering (définitions : SHARED §7 ; orchestration : PM v3.10.0 §1.9) ; les autres skills de l'écosystème la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
+**Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode prompt-engineering (définitions : SHARED §7 ; orchestration : PM v3.11.0 §1.9) ; les autres skills de l'écosystème la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
 
-**Matérialisation des disciplines (état A12, mise à jour session A13)** : les 4 disciplines d'exécution sont matérialisées en skills complets à déclenchement automatique (`context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering` — SKILL.md + evals + trigger_evals ; les matérialisations agent intermédiaires `_disciplines/` A11 et `gen-plan.agent` A9 sont retirées, SHA prouvés) et la discipline prompt-engineering en skill (`agent-prompt-engineering`). Source de vérité des disciplines : SHARED §7 ; orchestration : PM v3.10.0 §1.9.
+**Méthode de raisonnement adaptative PEK (v3.11.0, PM §1.9)** : gen-plan mobilise le Prompt Engineering Kit v4.1 (méthode pure) comme couche de raisonnement opérationnelle — 3 modes d'exécution (CoT 7 étapes / Chaining 4 étapes / Hybride à bascule automatique selon la complexité E1-E3) alignés sur la philosophie §1.4 #6 et calibrés par les profils §2.4 ; blocs de sortie adaptatifs A-J mappés sur les Types 1-4 (E3) ; 9 règles critiques + 12 checks de validation (scoring 25 pts, seuil 22/25) intégrés aux hooks correct-work par phase (E9-E14). Contenu opérationnel : `references/prompt-engineering-kit.md`.
+
+**Matérialisation des disciplines (état A12, mise à jour session A13)** : les 4 disciplines d'exécution sont matérialisées en skills complets à déclenchement automatique (`context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering` — SKILL.md + evals + trigger_evals ; les matérialisations agent intermédiaires `_disciplines/` A11 et `gen-plan.agent` A9 sont retirées, SHA prouvés) et la discipline prompt-engineering en skill (`agent-prompt-engineering`). Source de vérité des disciplines : SHARED §7 ; orchestration : PM v3.11.0 §1.9.
 
 ---
 
-### §1.7 Pipeline d'optimisation écosystème Z0-Z6 (PM v3.10.0 §1.10)
+### §1.7 Pipeline d'optimisation écosystème Z0-Z6 (PM v3.11.0 §1.10)
 
 | Phase | Nom | Règles clés |
 |-------|-----|-------------|
@@ -122,7 +124,7 @@ L'optimisation fine des prompts complexes est déléguée au skill `agent-prompt
 | Z5 | Journalisation | Worklog (SHARED §1.4) |
 | Z6 | Idempotence | R1-R6 (§1.8) |
 
-### §1.8 Règles d'idempotence R1-R6 (PM v3.10.0 §1.11)
+### §1.8 Règles d'idempotence R1-R6 (PM v3.11.0 §1.11)
 
 R1 vérifier présence avant insertion · R2 ne jamais rétrograder · R3 fusionner les frontmatters ·
 R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
@@ -147,7 +149,8 @@ skills/gen-plan/
 │   ├── grille-token.md               # Grille de calibration #token
 │   ├── classification-types.md       # Routage Type 1-4
 │   ├── profils-ressource.md          # NORMAL / ECO / VIEUX PC
-│   └── guide-selection-agent-skill.md # Arbre de décision + tableau
+│   ├── guide-selection-agent-skill.md # Arbre de décision + tableau
+│   └── prompt-engineering-kit.md     # PEK v4.1 — raisonnement adaptatif (CoT/Chaining/Hybride, blocs A-J, 9 règles, 12 checks)
 └── evals/
     └── evals.json                    # Cas de test d'évaluation (6 evals)
 ```

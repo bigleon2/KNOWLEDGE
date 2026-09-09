@@ -1,6 +1,11 @@
 ---
-name: Podcast Generate
+name: podcast-generate
+version: 1.0.0
+category: metier
+language: fr
 description: Generate podcast episodes from user-provided content or by searching the web for specified topics. If user uploads a text file/article, creates a dual-host dialogue podcast (or single-host upon request). If no content is provided, searches the web for information about the user-specified topic and generates a podcast. Duration scales with content size (3-20 minutes, ~240 chars/min). Uses z-ai-web-dev-sdk for LLM script generation and TTS audio synthesis. Outputs both a podcast script (Markdown) and a complete audio file (WAV).
+tags: []
+dependencies: []
 license: MIT
 ---
 

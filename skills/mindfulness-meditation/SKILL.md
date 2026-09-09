@@ -1,14 +1,18 @@
 ---
 name: mindfulness-meditation
-description: Build a meditation practice with guided sessions, streaks, and mindfulness reminders
-author: clawd-team
 version: 1.0.0
+category: metier
+language: fr
+description: Build a meditation practice with guided sessions, streaks, and mindfulness reminders
+tags: []
+dependencies: []
+author: clawd-team
 triggers:
-  - "meditate now"
-  - "mindfulness practice"
-  - "guided meditation"
-  - "meditation streak"
-  - "be present"
+  - meditate now
+  - mindfulness practice
+  - guided meditation
+  - meditation streak
+  - be present
 ---
 
 # Mindfulness & Meditation

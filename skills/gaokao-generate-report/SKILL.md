@@ -1,8 +1,11 @@
 ---
 name: gaokao-generate-report
-description: >-
-  合并考生信息、志愿列表、专业推荐与院校推荐，生成融合分析与冲稳保志愿列表的 HTML 志愿填报报告。
-  适用于高考志愿报告生成、志愿填报方案输出、志愿表可视化。
+version: 1.0.0
+category: metier
+language: fr
+description: 合并考生信息、志愿列表、专业推荐与院校推荐，生成融合分析与冲稳保志愿列表的 HTML 志愿填报报告。 适用于高考志愿报告生成、志愿填报方案输出、志愿表可视化。
+tags: []
+dependencies: []
 ---
 
 # 生成志愿填报报告

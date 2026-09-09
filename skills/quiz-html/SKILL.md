@@ -1,6 +1,11 @@
 ---
 name: quiz-html
+version: 1.0.0
+category: metier
+language: fr
 description: 把题目数组生成一个**可独立运行的网页练习页**（HTML 文件）。当用户完成 quiz-mastery 的「从资料出题」或「从文件提取题目」流程后，应主动询问是否需要"在网页里练习"，确认后调用本 skill 把题目注入模板，生成 HTML 给用户。也支持用户直接说"把这些题做成网页/HTML/练习页"时触发。**不处理**：出题（→ quiz-mastery）、评分（→ quiz-mastery）、长期复习计划（→ study-buddy）。
+tags: []
+dependencies: []
 ---
 
 # 网页题库生成器 (Quiz HTML Builder)

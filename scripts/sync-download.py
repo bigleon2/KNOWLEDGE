@@ -18,9 +18,13 @@ DEST_DIR = os.path.join(BASE_DIR, "download")
 # Mapping source → destination (fichiers à synchroniser)
 # Le script integrate-clone-chat-kb-v3.py est EXCLU : c'est un doublon
 # de scripts/ qui ne relève pas des prompts maîtres.
+# Extension B3 (recommandation 2, session B3) : le canal publice désormais aussi
+# le PM v3.11.0 (évolution locale B1/PEK) aux côtés de la version scellée
+# v3.6.1 (publiée par le dépôt) — versions historiques jamais retirées.
 SYNC_MAP = [
     ("PROMPT-MAITRE-SHARED.md",              "PROMPT-MAITRE-SHARED.md"),
     ("PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",     "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md"),
+    ("PROMPT-MAITRE-GEN-PLAN-v3.11.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.11.0.md"),
     ("PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md", "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md"),
     ("PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",   "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md"),
     ("README.md",                             "README.md"),

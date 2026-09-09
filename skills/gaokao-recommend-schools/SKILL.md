@@ -1,8 +1,11 @@
 ---
 name: gaokao-recommend-schools
-description: >-
-  基于推荐专业列表、考生画像与志愿列表，由 Agent 分析推荐院校并给出个性化理由，
-  输出结构化 school_recommendation.json。适用于高考院校推荐、选大学、冲稳保院校布局。
+version: 1.0.0
+category: metier
+language: fr
+description: 基于推荐专业列表、考生画像与志愿列表，由 Agent 分析推荐院校并给出个性化理由， 输出结构化 school_recommendation.json。适用于高考院校推荐、选大学、冲稳保院校布局。
+tags: []
+dependencies: []
 ---
 
 # 推荐院校与理由
