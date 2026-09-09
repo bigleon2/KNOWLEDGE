@@ -225,3 +225,23 @@ Stage Summary:
 - Certification B7 : 5/5 arbitres ALL PASS via l'orchestrateur lui-même (self-certification), rapport déterministe (2 exécutions byte-identiques), zéro régression.
 - Divergences vs a8ffb5f (cumul B1-B7) : couches B1-B5 (cfaeddf + 501bb87), B6 (8dfb823 + b9bf6ba + 924b69c) publiées ; couche B7 locale non publiée (scripts/certification-complete.py + scripts/certification-report.json + présente entrée).
 - Sécurité : jeton B6 réutilisé tel quel pour le push Task 9 (identique — non roté à ce jour) ; rotation toujours recommandée côté utilisateur.
+
+---
+Task ID: 11
+Agent: Main [Super Z — gen-plan v3.11.0, session B7 (publication + nettoyage)]
+Task: (1) Publication de la couche B7 (instruction « pousse B7 ») ; (2) nettoyage du legs distant (instruction « nettoyer la branche distante obsolète add/gen-plan-correct-work-v3.6-v2.3 + refs/pull/1 ») — jeton fourni en session (éphémère, jamais persisté ; identique depuis B6 : non roté à ce jour).
+
+Work Log:
+- Publication B7 : overlay rsync → delta chirurgical (2 créations scripts/certification-complete.py + scripts/certification-report.json, worklog Task 10 +19 L, interactions-report 7→10 Task ID — l'arbitre §10 comptant les Task ID du worklog, artefact attendu et cohérent avec le worklog poussé) ; certification du véhicule AVANT commit via l'orchestrateur B7 lui-même (premier usage opérationnel) : 5/5 arbitres ALL PASS, exit 0 — environnement : clone [OK] pristine, véhicule [ATTENTION] statut sale (delta en attente de commit, état attendu pré-commit comme en Task 8), distant [OK] 924b69c ; re-sync du rapport régénéré (§11b → BASE sandbox) avant commit.
+- Commit 0b95929 « chore(écosystème): orchestrateur de certification complète — session B7 (…) » (4 fichiers, 371 insertions, 1 suppression) ; push HTTPS auth x-access-token (jeton en variable d'environnement éphémère, sortie masquée, unset immédiat) → 924b69c..0b95929 main→main rc=0 ; vérification distante anonyme : HEAD = 0b95929 ; audit anti-persistance (fragment distinctif) : zéro occurrence dans le véhicule et le sandbox.
+- Nettoyage (recon) : ls-remote complet — refs = main (0b95929), add/gen-plan-correct-work-v3.6-v2.3 (a395f4e), refs/pull/1/head (a395f4e) ; API pulls/1 (jeton éphémère, header Authorization Bearer, aucune persistance) : PR #1 « Add gen-plan v3.6.0 and correct-work v2.3.0 prompt masters and integration tools », état CLOSED (non fusionnée), head = la branche obsolète, base = main, créée 2026-08-09 — legs caduc (main = gen-plan v3.11.0 / correct-work v2.5.1).
+- Nettoyage (actions) : suppression de la branche distante add/gen-plan-correct-work-v3.6-v2.3 (git push --delete, rc=0) ; PR #1 étant déjà fermée, aucune clôture nécessaire ; tentative de suppression de refs/pull/1/head rejetée par GitHub (« deny updating a hidden ref », rc=1) — comportement documenté : les refs pull sont gérées par GitHub en lecture seule, liées à la PR fermée, invisibles dans la liste des branches, sans impact sur main.
+- ls-remote final : refs/heads = main uniquement (0b95929) + refs/pull/1/head (ref cachée, inerte) — le dépôt est nettoyé.
+- Aucun impact local : véhicule et clone de référence ne référencent pas la branche supprimée (créés depuis le clone pristine a8ffb5f) ; véhicule resté propre pendant les opérations distantes.
+- E15 : pas de matérialisation de skill ; journalisation Task 11 locale non publiée — le distant inclut B7 (0b95929).
+
+Stage Summary:
+- B7 publié : distant main = 0b95929 (924b69c → 0b95929) — orchestrateur certification-complete.py + rapport déterministe + worklog Task 10 ; certification du véhicule par l'orchestrateur lui-même (premier usage opérationnel, 5/5 ALL PASS avant commit).
+- Legs distant nettoyé : branche obsolète add/gen-plan-correct-work-v3.6-v2.3 supprimée (PR #1 fermée non fusionnée = son origine) ; refs/pull/1/head subsiste comme ref cachée gérée par GitHub (non supprimable via git, sans impact) — la liste des branches du dépôt se réduit à main.
+- Cumul publié : a8ffb5f → cfaeddf → 501bb87 → 8dfb823 → b9bf6ba → 924b69c → 0b95929 (couches B1-B7) ; seule divergence locale restante = la présente entrée Task 11.
+- Sécurité : jeton identique depuis B6 (non roté) utilisé en éphémère pour push, API et suppression de branche (jamais persisté, audits zéro occurrence) ; rotation toujours recommandée côté utilisateur.
