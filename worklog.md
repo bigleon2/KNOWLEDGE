@@ -206,3 +206,22 @@ Stage Summary:
 - Clone de référence /tmp/KNOWLEDGE_CHECK confirmé pristine a8ffb5f — les vérifications §11b restent valides pour toute couche future (B7+).
 - Rotation du jeton GitHub : reste à effectuer côté utilisateur (dernière action de sécurité en attente).
 - Couche locale non publiée : la présente entrée Task 9 uniquement (le worklog ne diverge du distant que sur cette journalisation).
+
+---
+Task ID: 10
+Agent: Main [Super Z — gen-plan v3.11.0, session B7]
+Task: (1) Publication de la journalisation Task 9 (instruction « pousse cette journalisation ») ; (2) exécution de la couche suivante B7 (instruction « puis enchaine sur la couche suivante ») — jeton fourni en session (éphémère, jamais persisté ; identique à B6 : non roté à ce jour).
+
+Work Log:
+- Publication Task 9 : rsync worklog → véhicule, commit 924b69c « chore(écosystème): worklog session post-B6 — contrôle 5 arbitres ALL PASS sur l'état publié b9bf6ba (…) » (18 insertions, delta = worklog seul), push HTTPS auth x-access-token (jeton en variable d'environnement éphémère, sortie masquée, unset immédiat) → b9bf6ba..924b69c main→main rc=0 ; vérification distante anonyme : HEAD = 924b69c ; audit anti-persistance (fragment distinctif du jeton) : zéro occurrence dans le véhicule et le sandbox.
+- B7 (diagnostic de trajectoire) : B4 a calibré verify-cross, B5 a exécuté la Phase 2 + scripts de réparation, B6 a livré le scanner de versions réelles — la pièce d'outillage manquante = la chaîne de certification gen-plan:correct-work(projet) relancée manuellement à chaque session (B5-B9). Couche B7 = orchestrateur.
+- B7 (réalisation) : création scripts/certification-complete.py (275 L) — orchestre les 5 arbitres dans l'ordre canonique (verify-cross mode défaut, verify-cross mode correct-work, verify-correct-work v2.5.1, check-ecosysteme-integrity, test-coherence-interactions §11b) ; parsing des RESUME/BILAN (formats stables B4-B9), verdict consolidé, code retour 0 si et seulement si 5/5 verts ; chemins relatifs à __file__ (fonctionne dans le sandbox comme dans le véhicule de publication) ; option --verbose (sortie complète affichée par défaut uniquement en échec, à des fins de diagnostic) ; option --environnement (pré-vol : clone §11b pristine a8ffb5f, véhicule de publication, HEAD distant ls-remote anonyme — dégradé en ATTENTION, jamais comptabilisé dans le verdict).
+- B7 (certification) : py_compile OK ; exécution = CERTIFICATION COMPLÈTE : ALL PASS (5/5) — 62/62, 76/76, 16/16, 34/34, 45/45, exit 0 ; l'exécution incluant check-ecosysteme-integrity, l'ajout du script est certifié non-régressif (self-certification) ; déterminisme vérifié : scripts/certification-report.json byte-identique entre deux exécutions (sha256 égal, empreinte d8382ee721b71fca — aucun horodatage, clés triées, propriété « drift zéro » des artefacts préservée) ; mode --environnement validé : clone [OK] HEAD a8ffb5f 0 fichier modifié, véhicule [OK] HEAD 924b69c propre, distant [OK] main = 924b69c synchronisé.
+- E15 : pas de matérialisation de skill ; couche B7 locale NON publiée (push non demandé — protocole Task 7) ; le distant reste à 924b69c.
+
+Stage Summary:
+- Journalisation Task 9 publiée : distant main = 924b69c (b9bf6ba → 924b69c), drift zéro, jeton jamais persisté (audit passé).
+- Couche B7 livrée en local : orchestrateur de certification complète — une commande unique remplace la chaîne manuelle des sessions B5-B9 (5 arbitres + verdict consolidé + code retour exploitable en CI), avec pré-vol d'environnement optionnel (clone §11b, véhicule, distant anonyme).
+- Certification B7 : 5/5 arbitres ALL PASS via l'orchestrateur lui-même (self-certification), rapport déterministe (2 exécutions byte-identiques), zéro régression.
+- Divergences vs a8ffb5f (cumul B1-B7) : couches B1-B5 (cfaeddf + 501bb87), B6 (8dfb823 + b9bf6ba + 924b69c) publiées ; couche B7 locale non publiée (scripts/certification-complete.py + scripts/certification-report.json + présente entrée).
+- Sécurité : jeton B6 réutilisé tel quel pour le push Task 9 (identique — non roté à ce jour) ; rotation toujours recommandée côté utilisateur.

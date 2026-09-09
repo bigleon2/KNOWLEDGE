@@ -1,0 +1,76 @@
+{
+  "arbitres": [
+    {
+      "avertissements": 0,
+      "cle": "cross_defaut",
+      "echecs": 0,
+      "nom": "verify-cross (axes 1-6)",
+      "pass": 62,
+      "total": 62,
+      "verdict": "ALL PASS",
+      "vert": true
+    },
+    {
+      "avertissements": 0,
+      "cle": "cross_correct_work",
+      "echecs": 0,
+      "nom": "verify-cross (mode correct-work)",
+      "pass": 76,
+      "total": 76,
+      "verdict": "ALL PASS",
+      "vert": true
+    },
+    {
+      "avertissements": 0,
+      "cle": "correct_work",
+      "echecs": 0,
+      "nom": "verify-correct-work v2.5.1",
+      "pass": 16,
+      "total": 16,
+      "verdict": "ALL PASS",
+      "vert": true
+    },
+    {
+      "avertissements": 0,
+      "cle": "integrite",
+      "echecs": 0,
+      "nom": "check-ecosysteme-integrity",
+      "pass": 34,
+      "total": 34,
+      "verdict": "ALL PASS",
+      "vert": true
+    },
+    {
+      "avertissements": 0,
+      "cle": "interactions",
+      "echecs": 0,
+      "nom": "test-coherence-interactions (§11b)",
+      "pass": 45,
+      "total": 45,
+      "verdict": "COHÉRENCE DES INTERACTIONS : PASS STRICT",
+      "vert": true
+    }
+  ],
+  "consolide": {
+    "arbitres_total": 5,
+    "arbitres_verts": 5,
+    "verdict": "CERTIFICATION COMPLÈTE : ALL PASS"
+  },
+  "environnement": [
+    {
+      "detail": "HEAD a8ffb5f, 0 fichier modifié",
+      "statut": "OK",
+      "verifiant": "clone de référence §11b (pristine a8ffb5f)"
+    },
+    {
+      "detail": "HEAD 924b69c, statut propre",
+      "statut": "OK",
+      "verifiant": "véhicule de publication /tmp/KNOWLEDGE_PUSH"
+    },
+    {
+      "detail": "main = 924b69c",
+      "statut": "OK",
+      "verifiant": "dépôt distant (ls-remote anonyme)"
+    }
+  ]
+}
