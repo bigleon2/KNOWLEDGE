@@ -167,3 +167,24 @@ Stage Summary:
 - Item 3c appliqué : sur les 61 versions « 1.0.0 Phase 2 », 21 portent désormais une vraie version prouvée (13 confirmées = 1.0.0 réel + 8 enrichies de leurs sources), 40 restent 1.0.0 comme convention documentée (aucune version déclarée dans les sources locales).
 - Divergences vs a8ffb5f : couches B1-B5 (publiées dans cfaeddf + 501bb87) + couche B6 locale non publiée (8 SKILL.md métier, scanner, rapport JSON, worklog).
 - Le clone de référence /tmp/KNOWLEDGE_CHECK reste pristine (a8ffb5f) — les vérifications §11b futures restent valides.
+
+---
+Task ID: 8
+Agent: Main [Super Z — gen-plan v3.11.0, session B6 (publication)]
+Task: Publication de la couche B6 vers GitHub — « Pousser la couche B6 (8 SKILL.md + scanner + worklog) vers GitHub » (instruction utilisateur ; jeton fourni en session — éphémère, jamais persisté ; procédé B5 : Git Push HTTPS auth x-access-token).
+
+Work Log:
+- Recon : worklog Tasks 1-7 relus ; distant main = 501bb87 (ls-remote anonyme) = HEAD du véhicule /tmp/KNOWLEDGE_PUSH (statut git propre) ; clone de référence /tmp/KNOWLEDGE_CHECK vérifié pristine (a8ffb5f) ; couche B6 locale confirmée : 8 SKILL.md enrichis (blog-writer 0.1.0, content-strategy 0.1.0, multi-search-engine 2.0.1, quiz-html 0.1.0, quiz-mastery 0.2.0, seo-content-writer 2.0.0, ui-ux-pro-max 0.1.0, writing-plans 0.1.0) + scripts/scan-versions-reelles.py (343 L) + scripts/versions-reelles-report.json (32 Ko).
+- Certification sandbox (pré-overlay) : test-coherence-interactions = 45 PASS / 0 WARN / 0 FAIL PASS STRICT — interactions-report.json rafraîchi avant l'overlay (les 4 autres arbitres étant relatifs à __file__, ils certifient le véhicule directement).
+- Overlay véhicule (pattern B5) : rsync -rc sans suppression — skills/ + scripts/ + download/ + worklog.md (exclusions .git, .gitignore, .env, upload/, tool-results/, __pycache__) → delta chirurgical : 10 M (8 SKILL.md ligne version:, worklog Task 7, interactions-report régénéré) + 2 créations (scanner, rapport) ; git diff --summary vide (modes HEAD préservés, blobs 755 intacts) ; créations normalisées 100644 (convention B5).
+- Certification véhicule (avant commit, 4 arbitres relatifs __file__) : verify-cross axes 1-6 = 62 PASS / 0 FAIL ALL PASS ; --mode correct-work = 76 PASS / 0 FAIL ALL PASS ; verify-correct-work v2.5.1 = 16/16 ; check-ecosysteme-integrity = 34/34 — avec l'arbitre sandbox : 5/5 verts.
+- Commit 8dfb823 « chore(écosystème): versions réelles 8 skills métier — session B6 (scan-versions-reelles.py, 5 arbitres ALL PASS) » — 12 fichiers, 1442 insertions, 9 suppressions, 0 fichier supprimé, 0 fichier plateforme (corps détaillé format B5).
+- Publication : git push HTTPS auth x-access-token (jeton en variable d'environnement éphémère, sortie masquée, unset immédiat après usage) → 501bb87..8dfb823 main→main, rc=0 ; vérification remote anonyme : HEAD distant = 8dfb823.
+- Audit anti-persistance du jeton : git grep github_pat_ sur HEAD + recherche récursive arbres véhicule/sandbox = zéro occurrence ; credential.helper absent du véhicule ; .git/config inchangé (origin = URL propre, sans jeton) ; le présent worklog ne cite jamais la valeur du jeton.
+- Journalisation : second commit de worklog (pattern B5 « cfaeddf puis 501bb87 ») — la présente entrée Task 8 poussée après 8dfb823.
+
+Stage Summary:
+- Couche B6 publiée : distant main = 8dfb823 (501bb87 → 8dfb823) — 8 SKILL.md enrichis (vraies versions), scanner scan-versions-reelles.py, rapport versions-reelles-report.json, worklog Task 7, interactions-report régénéré ; drift local ↔ distant = zéro après le commit de journalisation.
+- Certification complète à la publication : 5 arbitres ALL PASS dans le sandbox ET le véhicule (62/0, 76/0, 16/16, 34/34, 45/0/0) — zéro régression, l'état publié = l'état certifié.
+- Sécurité : jeton GitHub utilisé uniquement en variable d'environnement éphémère (jamais écrit dans un fichier, jamais poussé, jamais cité dans le worklog) ; audit anti-persistance passé (zéro occurrence github_pat_ dans le dépôt et le sandbox) ; rotation recommandée côté utilisateur.
+- Divergences vs a8ffb5f (cumul B1-B6) : toutes publiées — couches B1-B5 (cfaeddf + 501bb87) + couche B6 (8dfb823 + présent commit de journalisation).
