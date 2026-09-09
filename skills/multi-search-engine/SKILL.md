@@ -1,6 +1,6 @@
 ---
 name: multi-search-engine
-version: 1.0.0
+version: 2.0.1
 category: metier
 language: fr
 description: Multi search engine integration with 8 domestic (CN) search engines. Supports advanced search operators, time filters, site search, and WeChat article search. No API keys required.
