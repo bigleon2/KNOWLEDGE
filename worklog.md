@@ -188,3 +188,21 @@ Stage Summary:
 - Certification complète à la publication : 5 arbitres ALL PASS dans le sandbox ET le véhicule (62/0, 76/0, 16/16, 34/34, 45/0/0) — zéro régression, l'état publié = l'état certifié.
 - Sécurité : jeton GitHub utilisé uniquement en variable d'environnement éphémère (jamais écrit dans un fichier, jamais poussé, jamais cité dans le worklog) ; audit anti-persistance passé (zéro occurrence github_pat_ dans le dépôt et le sandbox) ; rotation recommandée côté utilisateur.
 - Divergences vs a8ffb5f (cumul B1-B6) : toutes publiées — couches B1-B5 (cfaeddf + 501bb87) + couche B6 (8dfb823 + présent commit de journalisation).
+
+---
+Task ID: 9
+Agent: Main [Super Z — gen-plan v3.11.0, session post-B6 (contrôle)]
+Task: Exécution des suggestions post-publication B6 (instruction « fais les deux suggestions que tu m'as proposés ») : (2) vérification du clone de référence §11b, (3) gen-plan:correct-work(projet) de contrôle sur l'état publié ; la suggestion (1) rotation du jeton GitHub étant strictement côté utilisateur, procédure communiquée en réponse.
+
+Work Log:
+- Suggestion 2 (clone de référence) : /tmp/KNOWLEDGE_CHECK vérifié pristine — HEAD = a8ffb5fd72ba143f5cb8b0800b33aba48d6e20ba, statut git vide (0 fichier modifié) ; le check §11b (corpus historique byte-identique) est consommé et PASS par l'arbitre 5 ci-dessous ; véhicule /tmp/KNOWLEDGE_PUSH propre à b9bf6ba = distant (ls-remote anonyme) ; drift sandbox ↔ publié = zéro (rsync -rcn, skills/ + scripts/ + download/ + worklog.md).
+- Suggestion 3 (gen-plan:correct-work(projet)) : certification de contrôle des 5 arbitres — verify-cross axes 1-6 = 62 PASS / 0 FAIL ALL PASS ; --mode correct-work = 76 PASS / 0 FAIL ALL PASS ; verify-correct-work v2.5.1 = 16/16 ALL PASS ; check-ecosysteme-integrity = 34/34 PASS ; test-coherence-interactions = 45 PASS / 0 WARN / 0 FAIL PASS STRICT. Résultats strictement identiques aux certifications B6 (Task 7) et à la publication (Task 8) — zéro régression.
+- Contrôle post-certification : drift re-vérifié = zéro — artefacts régénérés (interactions-report.json, ecosysteme-integrity.json) byte-identiques aux versions poussées (arbitres déterministes) ; l'état publié b9bf6ba est certifié de bout en bout (sandbox == véhicule == distant).
+- Suggestion 1 (rotation du jeton) : non exécutable par l'agent (aucune API d'auto-révocation d'un PAT ; gestion dans les paramètres du compte GitHub) — procédure communiquée à l'utilisateur (Settings → Developer settings → Personal access tokens → révoquer/régénérer).
+- E15 : pas de matérialisation de skill ; présente entrée worklog locale non poussée (push non demandé — protocole Task 7).
+
+Stage Summary:
+- État publié b9bf6ba certifié de bout en bout : 5 arbitres ALL PASS (62/0, 76/0, 16/16, 34/34, 45/0/0) sur un contenu byte-identique au distant (drift zéro, arbitres déterministes).
+- Clone de référence /tmp/KNOWLEDGE_CHECK confirmé pristine a8ffb5f — les vérifications §11b restent valides pour toute couche future (B7+).
+- Rotation du jeton GitHub : reste à effectuer côté utilisateur (dernière action de sécurité en attente).
+- Couche locale non publiée : la présente entrée Task 9 uniquement (le worklog ne diverge du distant que sur cette journalisation).
