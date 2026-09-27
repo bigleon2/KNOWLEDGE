@@ -69,7 +69,9 @@ METIER_SKILLS = ["audio-metadata", "cpp-analysis", "pdf-llm"]
 # [N14-c] SYNC_MAP canal 8 courants — voir bloc SYNC_MAP ci-dessous
 # SYNC_MAP canal Architecture v2.0 — 8 fichiers COURANTS (cible A7) ;
 # CORPUS_ATTENDU — invariant canonique du corpus (dérivation L003) [N28]
-CORPUS_ATTENDU = 20
+# Recalibrage L004 (Task 56) : 20 → 21 — ajout clone -f (directive utilisateur
+# « push le clone dans @mon-ecosysteme/ » ; miroir + archive alignés).
+CORPUS_ATTENDU = 21
 SYNC_MAP = [
     "PROMPT-MAITRE-SHARED.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
@@ -106,7 +108,7 @@ def main():
 
     print("=== 1. Corpus canonique @mon-ecosysteme (SHA-256) ===")
     corpus_files = sorted(os.listdir(CORPUS)) if os.path.isdir(CORPUS) else []
-    check("20 fichiers présents (Architecture v2.0 — N28)", len(corpus_files) == CORPUS_ATTENDU,
+    check(f"{CORPUS_ATTENDU} fichiers présents (Architecture v2.0 — N28, recalibré L004 Task 56)", len(corpus_files) == CORPUS_ATTENDU,
           f"{len(corpus_files)} fichiers")
     for fname in corpus_files:
         digest = sha256(os.path.join(CORPUS, fname))

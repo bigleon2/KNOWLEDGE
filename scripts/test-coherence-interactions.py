@@ -300,9 +300,11 @@ if m_eco:
     cal = dict(re.findall(r'"([a-z0-9-]+)":\s*"([\d.]+)"', m_eco.group(1)))
 cal_mism = [f"{k}: arbitre={v} / KB={entries[k]['version']}"
             for k, v in cal.items() if entries.get(k, {}).get("version") != v]
-ok6 = (len(cal) == 16 and not cal_mism and len(corpus_files) == 20)
+# Recalibrage L004 (Task 56) : ok6 lit l'invariant canonique CORPUS_ATTENDU de
+# l'arbitre integrity via _expected_corpus (regex, l. 128) — plus de codage en dur.
+ok6 = (len(cal) == 16 and not cal_mism and len(corpus_files) == _expected_corpus)
 record("PASS" if ok6 else "FAIL", "6",
-       "check-ecosysteme-integrity.py calibré (ECO_SKILLS 16 entrées, corpus 20) sur l'état KB réel",
+       "check-ecosysteme-integrity.py calibré (ECO_SKILLS 16 entrées, corpus = CORPUS_ATTENDU) sur l'état KB réel",
        "aligné sur l'état réel v2.0/B13-r6" if ok6 else "; ".join(cal_mism))
 
 # ============================================================================
