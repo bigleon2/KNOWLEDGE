@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Crée un script Python qui compte les entrées du registre KB.",
+    "should_trigger": true
+  },
+  {
+    "query": "Modifie le script monitor.py pour ajouter un indicateur de budget.",
+    "should_trigger": true
+  },
+  {
+    "query": "Je veux un arbitre local exécutable pour ce check certifiable.",
+    "should_trigger": true
+  },
+  {
+    "query": "Persiste ce code en script réexécutable sous scripts/.",
+    "should_trigger": true
+  },
+  {
+    "query": "Lance la certification complète de l'écosystème.",
+    "should_trigger": false
+  },
+  {
+    "query": "Crée un nouveau skill avec evals et trigger_evals.",
+    "should_trigger": false
+  },
+  {
+    "query": "Traduis le contenu de ce SKILL.md en français.",
+    "should_trigger": false
+  }
+]

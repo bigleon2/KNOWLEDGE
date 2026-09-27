@@ -12,6 +12,14 @@ date: 2026-06-21
 description-fr: Gestion avancée des métadonnées audio — Extraction, normalisation, conversion de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A). Utiliser quand l'utilisateur a besoin de gérer des métadonnées audio, extraire des tags, ou normaliser les métadonnées d'une collection.
 ---
 
+## §0 — Contexte Système (SHARED v1.5.2)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 # audio-metadata
 
 ## Description

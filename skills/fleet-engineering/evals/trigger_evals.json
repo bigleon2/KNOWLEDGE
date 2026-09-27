@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill fleet-engineering pour orchestrer une flotte d'agents.",
+    "should_trigger": true
+  },
+  {
+    "query": "Lance plusieurs agents en parallèle avec un supervisor et agrège les résultats.",
+    "should_trigger": true
+  },
+  {
+    "query": "Choisis le bon pattern multi-agents : fan-out, pipeline, debate, supervisor ou swarm.",
+    "should_trigger": true
+  },
+  {
+    "query": "Coordonne une équipe d'instances avec Task IDs, bornes de coût et arbitrage des divergences.",
+    "should_trigger": true
+  },
+  {
+    "query": "Scale cette exécution en flotte managée : découplage cerveau/exécution, assignation, fusion.",
+    "should_trigger": true
+  },
+  {
+    "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps.",
+    "should_trigger": false
+  },
+  {
+    "query": "Rédige la spécification exécutable et les critères d'acceptation avant d'implémenter.",
+    "should_trigger": false
+  }
+]

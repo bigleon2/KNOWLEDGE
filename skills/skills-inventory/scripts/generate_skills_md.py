@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """
 generate_skills_md.py — Scan /home/z/my-project/skills/ and generate skills inventory.
 

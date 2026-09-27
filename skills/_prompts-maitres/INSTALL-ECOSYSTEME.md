@@ -1,7 +1,42 @@
 PROMPT MAÎTRE — Installation complète de l'écosystème
 Version : 1.0.0
-Dépend : PROMPT-MAITRE-SHARED.md
+Dépend : CONTEXTE SYSTÈME (embarqué ci-dessous)
 Ordre d'exécution et critères de passage : voir PROMPT-MAITRE-INSTALL-ECOSYSTEME.md
+
+---
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.5.2)
+> **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
+
+### Règle Zéro (§0)
+L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA.
+
+### Variables d'installation (§1.1)
+| Variable | Défaut | Description |
+|----------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Registre KB |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case
+- **Fichiers** : kebab-case avec extension
+- **Versions** : format semver
+
+---
+-------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
+| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
+| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case (`gen-plan`, `correct-work`). Exception : `@mon-ecosysteme/` (dossier des prompts maîtres).
+- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`).
+- **Versions** : format semver (`3.11.0`, `2.5.1`).
+- **Tags** : préfixe `#` pour les tokens (`#token 3500`).
+- **Variables** : double accolades (`{{SKILLS_ROOT}}`).
+
+---
+
 
 §1.2 Périmètre : 26 fichiers répartis sur 4 zones.
 
@@ -16,10 +51,10 @@ bootstrap install-ecosystem.py couvre P0-P3, P5-P7.
 ## clone-chat v2.0.0
 ## skills-inventory v1.0.0
 ## skill-creator v1.0.0
-## autonomous-agent v1.0.0
+## agent-creator v1.0.0
 ## script-mon-ecosysteme-infrastructure v1.0.0
 ## install-ecosystem v1.0.0
-## agent-prompt-engineering v1.0.1
+## prompt-engineering v1.0.1
 ## verify-by-sha v1.0.0
 ## context-engineering v1.0.1
 ## loop-engineering v1.0.1

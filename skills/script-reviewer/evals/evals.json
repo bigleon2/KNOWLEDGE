@@ -1,0 +1,56 @@
+{
+  "skill_name": "script-reviewer",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation (session B13-r5) au schéma exact skill-creator — couvrent la grille de relecture G1-G8 (§1.2) et les garde-fous (§1.3).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "SR-relecture-avant-adoption — grille G1-G8 sur un script entrant",
+      "prompt": "Relis ce script nouvellement créé avant son adoption comme livrable d'écosystème et rends un verdict",
+      "expected_output": "Un arbitre de relecture persisté sous scripts/ exécutant G1-G8 (syntaxe, stdlib, docstring/JSON, code de retour, idempotence ×2, R9/kebab-case, worklog, cas limites) avec verdict explicite",
+      "files": [],
+      "expectations": [
+        "Chaque check G1-G8 est exécuté avec sa preuve mécanique ou marqué n/a justifié",
+        "Le verdict est PASS / PASS AVEC RÉSERVES / FAIL avec sévérités S1-S4 listées",
+        "Le relecteur ne modifie aucun artefact audité (lecture seule)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "SR-idempotence-preuve — rejeu ×2 d'un arbitre",
+      "prompt": "Vérifie que cet arbitre de vérification est idempotent (rejeu ×2 à l'identique)",
+      "expected_output": "Deux exécutions consécutives du script audité, comparaison des sorties/hachages, verdict idempotence PASS ou FAIL S1",
+      "files": [],
+      "expectations": [
+        "Les deux passes sont exécutées réellement (pas de simulation)",
+        "Toute divergence de sortie est classée S1 (bloquant) pour un arbitre de vérification",
+        "La preuve est consignée au worklog (règle d'or n°1)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "SR-escalade-correct-work — réserve non résoluble localement",
+      "prompt": "Un script audité présente une réserve S2 que tu ne peux pas résoudre en relecture seule : que fais-tu ?",
+      "expected_output": "La réserve est documentée (S2, preuve), le script n'est PAS déclaré fiable, et l'escalade correct-work (mode CIBLE) est déclenchée avec le verdict de relecture joint",
+      "files": [],
+      "expectations": [
+        "Aucune réécriture du script par le relecteur (frontière avec script-creator étape 5)",
+        "Le verdict FAIL/réserve est journalisé, jamais étouffé",
+        "L'escalade cite correct-work v2.6.0 et joint les preuves mécaniques"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "SR-convergence — relecture de delta avant certification globale",
+      "prompt": "Avant la certification complète, relis les scripts modifiés depuis la dernière certification",
+      "expected_output": "Le delta est extrait du worklog (sessions post-certification), chaque script du delta passe la grille G1-G8, un rapport de convergence récapitule les verdicts avant le RÉVERDICT global",
+      "files": [],
+      "expectations": [
+        "Le delta est tracé (worklog SHARED §1.4 comme source)",
+        "Un script du delta non relu bloque la convergence (S2)",
+        "Le rapport de convergence est idempotent (rejeu ×2 identique)"
+      ]
+    }
+  ]
+}

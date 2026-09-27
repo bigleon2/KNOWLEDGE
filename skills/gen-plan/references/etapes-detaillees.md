@@ -5,6 +5,8 @@
 
 **Objectif** : Décortiquer la demande utilisateur pour en extraire les livrables, contraintes et critères de succès.
 
+**Disciplines mobilisées** (v3.12.0) : prompt-engineering (PEK — interprétation CoT/Chaining/Hybride), context-engineering (lecture SHARED/KB préalable). Voir table de mobilisation §1.6.
+
 **Inputs** :
 - Message ou demande brute de l'utilisateur
 - Contexte de session (worklog, artefacts précédents)
@@ -108,6 +110,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 
 **Objectif** : Identifier les skills pertinents pour la tâche.
 
+**Disciplines mobilisées** (v3.12.0) : graph-engineering (graphe KB, matrice agent × skill), context-engineering (Protocole de Découverte, lecture bloc par bloc). Voir table de mobilisation §1.6.
+
 **Inputs** :
 - Type de tâche (E3)
 - Ressources disponibles (E2)
@@ -151,6 +155,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 
 **Objectif** : Assembler le plan d'exécution structuré.
 
+**Disciplines mobilisées** (v3.12.0) : loop-engineering (boucles R3 prédéfinies — règle d'or n°1), context-engineering (plan auto-suffisant), harness-engineering (hooks par phase E9-E14, worklog structuré). Voir table de mobilisation §1.6.
+
 **Inputs** :
 - Livrables (E1), Skills (E5), Profil (E6), #token (E4)
 
@@ -170,6 +176,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 ## E8 — Validation du plan
 
 **Objectif** : Vérifier cohérence, complétude et faisabilité.
+
+**Disciplines mobilisées** (v3.12.0) : harness-engineering (hook correct-work — 3 verdicts), prompt-engineering (12 checks PEK — scoring 22/25). Voir table de mobilisation §1.6.
 
 **Inputs** :
 - Plan brut (E7), Contraintes (E1)

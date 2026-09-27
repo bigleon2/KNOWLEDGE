@@ -1,18 +1,30 @@
 [
   {
-    "query": "assemble le contexte pour cette session avec provenance",
+    "query": "Utilise le skill context-engineering pour appliquer la discipline context engineering (curation, compaction).",
     "should_trigger": true
   },
   {
-    "query": "applique la compaction sur ce fichier trop long et maintiens le budget d'attention",
+    "query": "Applique la discipline context engineering sur ce gros dossier.",
     "should_trigger": true
   },
   {
-    "query": "reconstruis le contexte perdu après le wipe depuis les sources scellées",
+    "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps, mémoire externe.",
     "should_trigger": true
   },
   {
-    "query": "traduis cette page en anglais",
+    "query": "Réduis ce contexte saturé sans perdre les informations critiques.",
+    "should_trigger": true
+  },
+  {
+    "query": "Construis la boucle : exécution → grader → feedback exploitable → itération jusqu'au critère de sortie.",
+    "should_trigger": false
+  },
+  {
+    "query": "Planifie d'abord la tâche avec le skill de planification.",
+    "should_trigger": false
+  },
+  {
+    "query": "Compresse ce dossier ZIP pour libérer de l'espace.",
     "should_trigger": false
   }
 ]

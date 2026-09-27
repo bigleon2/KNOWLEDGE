@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Surveille la consommation des ressources pendant cette exécution et alerte-moi si la pression monte.",
+    "should_trigger": true
+  },
+  {
+    "query": "resource-monitor : quel est le verdict ressources actuel et le mode recommandé ?",
+    "should_trigger": true
+  },
+  {
+    "query": "Collecte les indicateurs système (disque, mémoire, budget, timeouts) et rends un verdict.",
+    "should_trigger": true
+  },
+  {
+    "query": "Peux-tu surveiller les ressources en continu et recommander parallèle ou série ?",
+    "should_trigger": true
+  },
+  {
+    "query": "Crée-moi un plan d'actions structuré pour ce projet.",
+    "should_trigger": false
+  },
+  {
+    "query": "Vérifie les livrables et rends un verdict correct-work.",
+    "should_trigger": false
+  }
+]

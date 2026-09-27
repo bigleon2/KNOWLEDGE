@@ -1,0 +1,55 @@
+{
+  "skill_name": "resource-monitor",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Cas de test v1.0.0 (matérialisation v3.16.0, session B13-r1) : verdicts, recommandation de mode, et bascule adaptative.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "F1-F4-verdict-OK — collecte complète sans pression",
+      "prompt": "Exécute le collecteur resource-monitor dans un état sain (disque > 5 Go, budget 25 % consommé, aucun timeout) et retourne le verdict",
+      "expected_output": "JSON avec verdict OK, mode_recommande PARALLELE, causes vides, code retour 0",
+      "files": ["scripts/monitor.py"],
+      "expectations": [
+        "Le verdict retourné est OK",
+        "Le mode recommandé est PARALLELE",
+        "La liste causes est vide"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "F2-seuil-pression — budget > 80 %",
+      "prompt": "Exécute le collecteur avec --budget-tokens 3500 --used-tokens 3000 et retourne le verdict",
+      "expected_output": "JSON avec verdict PRESSION, mode_recommande PARALLELE_REDUIT, une cause budget_tokens_pct niveau PRESSION, code retour 1",
+      "files": ["scripts/monitor.py"],
+      "expectations": [
+        "Le verdict retourné est PRESSION",
+        "Le mode recommandé est PARALLELE_REDUIT",
+        "L'indicateur budget_tokens_pct est au niveau PRESSION"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "F3-F4-verdict-critique — 2 signaux PRESSION cumulés",
+      "prompt": "Exécute le collecteur avec un fichier d'état contenant timeouts_consecutifs=2 et erreurs_429=1, plus budget > 80 %, et retourne le verdict",
+      "expected_output": "JSON avec verdict CRITIQUE (2+ signaux PRESSION ou 1 critique), mode_recommande SERIE, code retour 2",
+      "files": ["scripts/monitor.py"],
+      "expectations": [
+        "Le verdict retourné est CRITIQUE",
+        "Le mode recommandé est SERIE",
+        "Chaque cause listée identifie l'indicateur fautif"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Stagnation — tâche bloquée détectée",
+      "prompt": "Exécute le collecteur avec un fichier d'état dont derniere_progression_epoch date de plus de 40 minutes et tache_courante renseignée",
+      "expected_output": "L'indicateur stagnation_min est au niveau CRITIQUE et le verdict est CRITIQUE",
+      "files": ["scripts/monitor.py"],
+      "expectations": [
+        "L'indicateur stagnation_min franchit le seuil critique (> 40 min)",
+        "Le verdict global est CRITIQUE"
+      ]
+    }
+  ]
+}

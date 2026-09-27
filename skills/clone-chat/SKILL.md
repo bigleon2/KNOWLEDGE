@@ -26,6 +26,14 @@ dependencies:
     used_at: "Validation croisée (Mode CIBLE, §3.5)"
 ---
 
+## §0 — Contexte Système (SHARED v1.5.2)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 ## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
 
 Les fichiers des sessions précédentes n'existent pas dans une nouvelle session : tout est

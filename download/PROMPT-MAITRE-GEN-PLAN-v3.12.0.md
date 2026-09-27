@@ -1,8 +1,8 @@
-# PROMPT MAÎTRE — Installation du skill gen-plan v3.6.1
+# PROMPT MAÎTRE — Installation du skill gen-plan v3.12.0
 
-> **Version du prompt** : 1.1.0
-> **Skill cible** : gen-plan v3.6.1
-> **Date** : 2026-08-09
+> **Version du prompt** : 1.5.2
+> **Skill cible** : gen-plan v3.12.0
+> **Date** : 2026-09-19
 > **Source** : Écosystème Knowledge — Clone de discussion
 > **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
 
@@ -61,7 +61,7 @@ gen-plan est un skill de **planification de tâches** pour assistant IA. Il four
 | E10 | Suivi d'étape | Monitoring de chaque étape, log worklog | M2/M3 |
 | E11 | Checkpoint intermédiaire | Vérification à mi-parcours, ajustements mineurs | M3 |
 | E12 | Détection d'écart | Comparaison réel vs estimé, alertes | M3 |
-| E13 | Ajustement | Modification du plan si nécessaire | M4 |
+| E13 | Ajustement | Modification du plan si nécessaire (règles d'or n°2-n°3 : §1.8) | M4 |
 | E14 | Finalisation | Achèvement des étapes restantes | M2 |
 | E15 | Bilan et auto-calibration | Retour d'expérience, mise à jour des grilles, enrichment KNOWLEDGE.md | M1/M4 |
 
@@ -88,6 +88,92 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 7. **Lecture bloc par bloc** — Les fichiers volumineux (> 500 lignes) sont lus par blocs successifs avec une synthèse intermédiaire à chaque bloc, évitant la surcharge de contexte et garantissant une couverture totale.
 8. **Downgrade irréversible** — Le profil ressource ne remonte jamais automatiquement. Si la détection des signaux de pression (disque < 5 Go, timeout 2+, tokens > 80 %) force un passage de NORMAL à ECO ou VIEUX PC, ce downgrade est définitif pour la session.
 
+### §1.8 Règles d'or
+
+**Règle d'or n°1 — Adaptation autonome** (ajoutée à la demande de l'utilisateur, 2026-08-30) :
+
+> « Si tu rencontres des problèmes qui te bloquent (ex : trop de consommation de ressources, etc.), tu dois t'adapter de façon autonome en trouvant des solutions cohérentes de façon à atteindre ton objectif final. »
+
+Opérationnalisation dans gen-plan :
+
+1. **Détection** — tout blocage (timeout répété, ressource épuisée, fichier absent, wipe inter-sessions, dépendance indisponible, sortie d'outil perdue) est traité comme un signal d'adaptation, jamais comme un arrêt implicite.
+2. **Contournement cohérent** — la solution de repli reste conforme aux conventions écosystème (SHARED §1) et aux philosophies §1.7 (séquentialité, lecture bloc par bloc, Python N3).
+3. **Journalisation** — chaque adaptation est documentée dans le worklog (SHARED §1.4) avec la cause, la solution retenue et son coût (#token).
+4. **Continuité de l'objectif** — l'objectif final ne change pas ; seuls les moyens s'ajustent. Si l'objectif devient inatteignable, la pause est explicite et motivée (jamais silencieuse).
+
+Exemples appliqués (historique) : wipe inter-sessions réparé depuis download/ + knowledge-repo/ + zip-extract/ (session 2026-08-30) ; layout ZIP absent re-stagé en sources/ ; sortie d'outil perdue régénérée par re-exécution idempotente du script.
+
+
+**Règle d'or n°2 — Régénération du plan après installation d'un écosystème** (ajoutée à la demande de l'utilisateur, 2026-09-07) :
+
+> « À chaque fois qu'un nouvel écosystème est installé, il faut régénérer de façon cohérente le plan d'actions actuel via le nouveau skill gen-plan. »
+
+Opérationnalisation dans gen-plan :
+
+1. **Déclencheur** — la fin de toute installation d'écosystème (pipeline INSTALL-ECOSYSTEME P0-P7, ou pipeline P3-P6 équivalent) déclenche la régénération du plan d'actions en cours.
+2. **Cohérence** — le plan régénéré réaligne ses modes, étapes (E1-E15), règles d'or et hooks sur la version du skill gen-plan fraîchement installée ; les tags #token sont recalculés si la grille a évolué.
+3. **Journalisation** — la régénération est documentée au worklog (SHARED §1.4) avec la version installée et les écarts de structure corrigés.
+4. **Continuité de l'objectif** — l'objectif final du plan ne change pas ; seuls la structure et les moyens sont mis en cohérence, sans rétrogradation des étapes déjà terminées (R2).
+
+**Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (ajoutée à la demande de l'utilisateur, 2026-09-07) :
+
+> « À chaque fois que l'utilisateur fait des nouvelles demandes lorsqu'un plan d'actions est déjà en cours d'exécution, il faut mettre à jour de façon cohérente le plan d'actions actuel via le skill gen-plan. »
+
+Opérationnalisation dans gen-plan :
+
+1. **Déclencheur** — toute nouvelle demande utilisateur pendant l'exécution d'un plan (E9-E14) déclenche la mise à jour du plan via E13 (Ajustement, mode M4).
+2. **Cohérence** — les nouvelles demandes sont intégrées comme étapes ou priorités, avec ré-estimation #token des étapes affectées ; si le périmètre change matériellement, re-validation E8.
+3. **Journalisation** — la mise à jour est documentée au worklog (cause = nouvelle demande, étapes ajoutées ou modifiées, coût #token).
+4. **Non-régression** — les étapes déjà terminées et leurs livrables restent intouchés (R2) ; la mise à jour est une extension du plan, jamais une réécriture destructrice.
+
+### §1.9 Disciplines d'ingénierie de prompts
+
+**Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode du **prompt-engineering** — il l'applique à toutes ses étapes (E1-E15) via les 4 disciplines ci-dessous. Depuis la session A11 (2026-09-06), la **source de vérité des 5 disciplines est implantée dans le socle SHARED §7** (informations communes, règle de non-duplication §6.3) ; le présent §1.9 enregistre l'**orchestration gen-plan** des disciplines. Les autres skills de l'écosystème qui en ont besoin la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
+
+gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (formalisées avec le skill `agent-prompt-engineering`, 2026-08-30) :
+
+| Discipline | Mécanisme gen-plan | Localisation |
+|------------|--------------------|--------------|
+| **Context engineering** | Socle SHARED lu en premier (contexte commun, variables, relations), Protocole de Découverte KB, lecture bloc par bloc avec synthèses intermédiaires (contexte contrôlé) | SHARED §1-§3 ; §1.7 #7 ; §2.5 |
+| **Loop engineering** | Boucle Exécution → Surveillance → Détection d'écart → Ajustement (E10-E13) ; auto-calibration E15 (prévu → réel → recalibrage de la grille) | §1.3 ; §2.3 |
+| **Graph engineering** | Registre KB = graphe de relations bidirectionnelles versionnées ; matrice agent × skill ; dépendances YAML inter-skills | SHARED §3, §4 ; frontmatter |
+| **Harness engineering** | Harnais d'exécution : profils ressource + signaux de pression, hook E8 correct-work (3 verdicts) + contrôle correct-work à chaque phase terminée (E9-E14), arbitres (verify-cross, verify-correct-work, spell-check, sync-download), worklog structuré | §2.4 ; E8 ; E9-E14 ; SHARED §1.4 |
+
+L'optimisation fine des prompts complexes (rédaction, restructuration, évaluation, itération) est déléguée au skill `agent-prompt-engineering` (voir SHARED §3.1).
+
+**Matérialisation des disciplines (mise à jour session A13, 2026-09-07 — alignement état A12)** : les 4 disciplines d'exécution (context, loop, graph, harness engineering) sont matérialisées en **skills complets à déclenchement automatique** (`{{SKILLS_ROOT}}context-engineering/`, `loop-engineering/`, `graph-engineering/`, `harness-engineering/` — SKILL.md + evals/evals.json + evals/trigger_evals.json ; SHARED §7 v1.4.0). La matérialisation intermédiaire en agents autonomes (`{{SKILLS_ROOT}}_disciplines/*.agent`, session A11) est **retirée** (SHA-256 prouvés avant retrait) ; la matérialisation antérieure `references/gen-plan.agent` (session A9) l'avait été dès la session A11 pour la même raison de fond : elle matérialisait gen-plan lui-même au lieu des disciplines. La discipline prompt-engineering demeure matérialisée en skill spécialisé (`agent-prompt-engineering`). gen-plan demeure un skill ; sa couche d'exécution disciplinaire est assurée par les 4 skills de discipline qu'il mobilise à déclenchement automatique et par sa couche evals.
+
+**Méthode de raisonnement adaptative PEK (v3.11.0, session B1)** : gen-plan mobilise le Prompt Engineering Kit v4.1 (méthode pure) comme couche de raisonnement opérationnelle de la méthode-mère — 3 modes d'exécution (CoT 7 étapes / Chaining 4 étapes / Hybride à bascule automatique selon la complexité détectée à E1-E3) alignés sur la philosophie §1.7 #6 (« CoT + Chaining avec auto-correction ») et calibrés par les profils §2.4 ; blocs de sortie adaptatifs A-J mappés sur la classification Type 1-4 (E3) ; 9 règles critiques et 12 checks de validation (scoring 25 pts, seuil 22/25) intégrés aux hooks correct-work par phase (E9-E14). Contenu opérationnel : `references/prompt-engineering-kit.md` (in extenso §9.6). Provenance : PEK v4.1-META-PROMPT-EDITED (upload utilisateur 2026-09-10), intégrée par assemblage — modules d'implémentation web écartés (règle zéro : skill auto-contenu, zéro dépendance d'infrastructure).
+
+---
+
+### §1.10 Pipeline d'optimisation écosystème (Z0-Z6)
+
+Transféré de la directive utilisateur « Pipeline optimisation écosystème » (2026-09-06) ; formalisé en v3.8.0. Ce pipeline définit les opérations de maintenance et d'optimisation du corpus : gen-plan le mobilise pour toute tâche d'optimisation de l'écosystème (l'opérationnalisation disciplinaire est assurée par les 4 skills de discipline à déclenchement automatique, cf. §1.9). Les vérifications Z4 mobilisent les arbitres existants (verify-cross, verify-correct-work, spell-check, sync-download) et les hooks correct-work.
+
+| Phase | Nom | Objectif | Règles clés |
+|-------|-----|----------|-------------|
+| **Z0** | Inventaire | Scanner le dossier cible et identifier les fichiers | Règle zéro (SHARED §0) |
+| **Z1** | Normalisation | Garantir des frontmatters YAML complets et conformes | SHARED §1.3 |
+| **Z2** | Optimisation par fichier | Règles d'or, disciplines d'ingénierie (§1.9), dépendances, cohérence interne, auto-adaptation | §1.7-§1.9 |
+| **Z3** | Optimisation des scripts Python | Syntaxe, convention N3, arbitres du dépôt | N3 ; arbitres §2.4 |
+| **Z4** | Vérifications croisées | Cohérence versions, sections, frontmatters, règles d'or, dépendances | SHARED §3.2 ; E8 et E9-E14 |
+| **Z5** | Journalisation | Tracer chaque optimisation (cause, solution, coût #token) | SHARED §1.4 (worklog) |
+| **Z6** | Idempotence | Garantir la ré-exécutabilité sans effet de bord | Règles R1-R6 (§1.11) |
+
+### §1.11 Règles d'idempotence (R1-R6)
+
+| Règle | Énoncé |
+|-------|--------|
+| **R1** | Vérifier la présence avant insertion |
+| **R2** | Ne jamais rétrograder (version ni contenu) |
+| **R3** | Fusionner les frontmatters au lieu de les dupliquer |
+| **R4** | Ne jamais dupliquer (sections, entrées KB, relations) |
+| **R5** | Journaliser toute modification (worklog) |
+| **R6** | Auto-adaptation sans duplication |
+
+Ces règles s'appliquent à toute ré-exécution du présent pipeline d'installation (§5) et à toute passe Z0-Z6 sur un corpus déjà traité.
+
 ---
 
 ## §2 — SPÉCIFICATION TECHNIQUE
@@ -108,9 +194,11 @@ gen-plan peut générer des snippets de code réutilisables pendant l'exécution
 │   ├── grille-token.md               # Grille de calibration #token
 │   ├── classification-types.md       # Routage Type 1-4
 │   ├── profils-ressource.md          # NORMAL / ECO / VIEUX PC
-│   └── guide-selection-agent-skill.md # Arbre de décision + tableau
+│   ├── guide-selection-agent-skill.md # Arbre de décision + tableau
+│   └── prompt-engineering-kit.md     # PEK v4.1 — raisonnement adaptatif (CoT/Chaining/Hybride, blocs A-J, 9 règles, 12 checks)
 └── evals/
-    └── evals.json                    # Cas de test d'évaluation
+    ├── evals.json                    # Cas de test (schéma skill-creator)
+    └── trigger_evals.json            # Cas de déclenchement (Description Optimization)
 ```
 
 ### §2.3 Auto-calibration E15
@@ -173,9 +261,14 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| correct-work | Invocation à E1 + hook E8 | Validation du plan initial + vérification post-plan, version >= v2.4.0 |
+| correct-work | Invocation à E1 + hook E8 + contrôle par phase | Validation du plan initial + vérification post-plan et à chaque phase terminée (E9-E14), version >= v2.4.0 |
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
+| agent-prompt-engineering | Délégation (§1.9) | Optimisation des prompts complexes, version >= v1.0.0 |
+| context-engineering | Mobilisation (§1.6) | Socle SHARED, Protocole de Découverte KB, lecture bloc par bloc — déclenchement automatique (SHARED §7) |
+| loop-engineering | Mobilisation (§1.6) | Boucle E10-E13 + auto-calibration E15 — déclenchement automatique (SHARED §7) |
+| graph-engineering | Mobilisation (§1.6) | Registre KB graphe bidirectionnel versionné, matrice agent × skill — déclenchement automatique (SHARED §7) |
+| harness-engineering | Mobilisation (§1.6) | Profils ressource, hooks E8 + E9-E14, arbitres, worklog — déclenchement automatique (SHARED §7) |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
 
 ---
@@ -185,7 +278,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 ```yaml
 ---
 name: gen-plan
-version: 3.6.1
+version: 3.10.0
 category: ecosystem
 language: fr
 tags:
@@ -197,12 +290,13 @@ tags:
 description: >
   Skill de planification de tâches pour assistant IA.
   4 modes (Planification, Exécution, Surveillance, Adaptation),
-  15 étapes (E1-E15), 3 profils ressource (NORMAL/ECO/VIEUX PC),
-  tagging #token, snippets, scripts Python uniquement.
+  15 étapes (E1-E15), classification Type 1-4 (documents, analyse, développement web, data), 3 profils ressource (NORMAL/ECO/VIEUX PC),
+  tagging #token, snippets, scripts Python uniquement,
+  règles d'or d'adaptation autonome, disciplines d'ingénierie de prompts
 dependencies:
   - skill: correct-work
     version: ">=2.4.0"
-    used_at: "E1, E8 hook"
+    used_at: "E1, E8 hook, contrôle par phase"
   - skill: clone-chat
     version: ">=2.0.0"
     used_at: "E4, E15"
@@ -226,11 +320,11 @@ mkdir -p {{SKILLS_ROOT}}gen-plan/evals
 
 ### §5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (~180 lignes, version compacte) doit contenir :
+Le fichier `SKILL.md` (~236 lignes, version compacte) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
 2. **§0 — Règle zéro** (voir SHARED §0)
-3. **§1 — Spécification fonctionnelle** : 4 modes, 15 étapes, normes N1-N3
+3. **§1 — Spécification fonctionnelle** : 4 modes, 15 étapes, normes N1-N3, règles d'or (§1.8), disciplines d'ingénierie (§1.9), pipeline d'optimisation Z0-Z6 (§1.10), idempotence (§1.11)
 4. **§2 — Spécification technique** : Stack, structure, auto-calibration, profils, KB
 5. **§3 — Relations** : Voir SHARED §3 (résumé des relations directes)
 6. **§4 — Grille #token** : Résumé de §8.2
@@ -240,66 +334,128 @@ Le fichier `SKILL.md` (~180 lignes, version compacte) doit contenir :
 
 Le contenu in extenso de chaque fichier est en §8.
 
-### §5.4 Créer evals/evals.json
+### §5.4 Créer evals/evals.json (schéma skill-creator)
+
+Schéma EXACT skill-creator (`skill_name` ; evals : `id` entier, `prompt`, `expected_output`, `files`, `expectations`) — unifié en v3.8.0 (révision recommandée par le clone 2026-09-06, §5) :
 
 ```json
 {
-  "skill": "gen-plan",
-  "version": "3.6.1",
+  "skill_name": "gen-plan",
+  "version": "3.10.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Schéma unifié skill-creator (révision PM v3.8.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 6 evals v3.7.0 préservée (5 d'origine + hook correct-work E9-E14).",
   "evals": [
     {
-      "id": "E1-classification",
-      "name": "Classification correcte Type 1-4",
-      "input": "Crée un rapport d'analyse",
-      "expected_type": 1,
-      "expected_skill": "docx"
+      "id": 1,
+      "name": "E1-classification — Classification correcte Type 1-4",
+      "prompt": "Crée un rapport d'analyse",
+      "expected_output": "Le plan identifie la tâche comme Type 1 (document) et sélectionne le skill cible docx",
+      "files": [],
+      "expectations": [
+        "La tâche est classée Type 1 (document)",
+        "Le skill cible identifié est docx"
+      ]
     },
     {
-      "id": "E2-token-estimation",
-      "name": "Estimation #token cohérente",
-      "input": "Tâche moyenne, 5-15 sessions",
-      "expected_token_range": [3500, 5500],
-      "expected_profile": "NORMAL"
+      "id": 2,
+      "name": "E2-token-estimation — Estimation #token cohérente",
+      "prompt": "Planifie cette tâche : travail moyen estimé entre 5 et 15 sessions",
+      "expected_output": "Une estimation #token entre 3500 et 5500 avec le profil ressource NORMAL",
+      "files": [],
+      "expectations": [
+        "L'estimation #token tombe dans l'intervalle [3500, 5500]",
+        "Le profil ressource retenu est NORMAL"
+      ]
     },
     {
-      "id": "E3-plan-complet",
-      "name": "Plan E1-E15 complet",
-      "input": "Planifier la création d'un dashboard Next.js",
-      "expected_steps": 15,
-      "expected_type": 3
+      "id": 3,
+      "name": "E3-plan-complet — Plan E1-E15 complet",
+      "prompt": "Planifie la création d'un dashboard Next.js",
+      "expected_output": "Un plan contenant les 15 étapes E1-E15, classé Type 3 (développement web)",
+      "files": [],
+      "expectations": [
+        "Le plan contient les 15 étapes E1-E15",
+        "La tâche est classée Type 3 (développement web)"
+      ]
     },
     {
-      "id": "E4-auto-calibration",
-      "name": "Auto-calibration E15",
-      "input": "Écart estimé 28%",
-      "expected_action": "Ajustement paramétrage fin"
+      "id": 4,
+      "name": "E4-auto-calibration — Auto-calibration E15",
+      "prompt": "À la clôture E15, l'écart entre l'estimation initiale et le réel est de 28%",
+      "expected_output": "Un ajustement du paramétrage fin (calibration E15) réduit l'écart des estimations suivantes",
+      "files": [],
+      "expectations": [
+        "E15 déclenche un ajustement du paramétrage fin",
+        "La calibration est journalisée (grille #token mise à jour)"
+      ]
     },
     {
-      "id": "E5-python-only",
-      "name": "Scripts Python uniquement",
-      "input": "Générer un script de traitement",
-      "expected_language": "python",
-      "forbidden": ["bash", "sh", "powershell"]
+      "id": 5,
+      "name": "E5-python-only — Scripts Python uniquement",
+      "prompt": "Génère un script de traitement de données pour cette étape du plan",
+      "expected_output": "Un script Python ; aucun script bash/sh/powershell",
+      "files": [],
+      "expectations": [
+        "Le script généré est en Python",
+        "Aucun script bash, sh ni powershell n'est produit"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "E6-hook-correctwork — Hooks correct-work par phase (spécifique v3.7.0)",
+      "prompt": "Planifie une tâche en plusieurs phases et vérifie chaque phase après exécution",
+      "expected_output": "Le hook correct-work >= v2.4.0 est invoqué par phase (E9-E14) et son verdict est consigné",
+      "files": [],
+      "expectations": [
+        "Le hook correct-work est invoqué pour chaque phase E9-E14",
+        "Le plan référence correct-work >= v2.4.0 dans ses relations"
+      ]
     }
   ]
 }
 ```
 
+### §5.5 Créer evals/trigger_evals.json (Description Optimization)
+
+Format `[{"query": "...", "should_trigger": true|false}]` : valider que la description du frontmatter déclenche gen-plan sur les demandes de planification (true) et PAS sur les demandes hors périmètre (false) :
+
+```json
+[
+  {"query": "planifie cette tâche pour moi", "should_trigger": true},
+  {"query": "crée-moi un plan d'exécution détaillé", "should_trigger": true},
+  {"query": "organise ce travail en étapes avec une estimation d'effort", "should_trigger": true},
+  {"query": "quelle est ton estimation de #tokens pour cette tâche ?", "should_trigger": true},
+  {"query": "quel profil ressource (LIGHT/NORMAL/HEAVY) pour cette demande ?", "should_trigger": true},
+  {"query": "classe cette tâche : document, analyse ou développement web ?", "should_trigger": true},
+  {"query": "vérifie le travail que tu viens de faire", "should_trigger": false},
+  {"query": "traduis ce document en anglais", "should_trigger": false},
+  {"query": "bonjour", "should_trigger": false}
+]
+```
+
+### §5.6 Exécution des évaluations en workspaces skill-creator
+
+Les evals §5.4 sont exécutés dans `{{SKILLS_ROOT}}gen-plan-workspace/iteration-N/eval-M/` : chaque eval M reçoit deux exécutions — `with_skill/` (skill chargé) et `baseline/` (sans skill ou version antérieure) — puis une notation `grading.json` (champs `text`, `passed`, `evidence`). Une itération = un cycle complet ; la comparaison with_skill vs baseline fonde les corrections de l'itération suivante. Les exécutions sont journalisées dans le worklog (SHARED §1.4).
+
 ---
 
 ## §6 — VÉRIFICATION POST-INSTALLATION
 
+
+
 | # | Check | Critère | Résultat attendu |
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}gen-plan/SKILL.md` | File exists |
-| 2 | Taille SKILL.md | ~180 lignes (version compacte) | Within range |
+| 2 | Taille SKILL.md | ~232 lignes (version compacte) | Within range |
 | 3 | YAML frontmatter valide | name, version, category, language, tags | All present |
 | 4 | 5 fichiers référence | `references/` contient 5 fichiers | 5 files |
-| 5 | evals.json valide | JSON parsable, 5 evals | Valid JSON |
+| 5 | evals.json valide | JSON parsable (schéma skill-creator), 6 evals | Valid JSON |
 | 6 | Norme N3 (Python) | Aucune mention shell/bash | No shell refs |
 | 7 | Intégration KB | Mention kb_path, --kb-skill | Present |
 | 8 | KNOWLEDGE.md | Entrée gen-plan présente (SHARED §2.2) | Present |
 | 9 | Cross-refs | correct-work et clone-chat mis à jour (SHARED §3.2) | Present |
+| 10 | trigger_evals.json | JSON parsable, cas true et false présents | Valid JSON |
+| 11 | Workspaces skill-creator | §5.6 documenté (with_skill vs baseline) | Present |
 
 ---
 
@@ -313,6 +469,15 @@ Le contenu in extenso de chaque fichier est en §8.
 | v3.5.0 | 2026-07-29 | Intégration clone-chat, calibration #token, normes N1-N3 |
 | v3.6.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
 | v3.6.1 | 2026-08-09 | Méthode lecture bloc par bloc (philosophie #7, E2/E9/E10), correct-work >= v2.4.0 avec hook E8, chemins references/ sans accent, description enrichie, count ~180L |
+| v3.7.0 | 2026-08-30 | Règles d'or (§1.8 : adaptation autonome sur blocage, à la demande utilisateur) ; disciplines d'ingénierie de prompts (§1.9 : context/loop/graph/harness engineering) ; lien agent-prompt-engineering ; hook correct-work par phase (E9-E14 : chaque phase terminée est vérifiée par correct-work CIBLE avant la suivante) |
+| v3.8.0 | 2026-09-06 | Unification du schéma evals (skill-creator) au §5 : §5.4 evals.json (id entier/prompt/expected_output/expectations), §5.5 trigger_evals.json, §5.6 workspaces d'évaluation (with_skill vs baseline) ; §1.9 matérialisation agent (references/gen-plan.agent v1.0.0) ; §1.10 pipeline d'optimisation écosystème Z0-Z6 et §1.11 idempotence R1-R6 (directive utilisateur, DOCX « Pipeline optimisation écosystème »). Aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+| v3.8.1 | 2026-09-06 | Description Optimization (itération-3 workspaces skill-creator, session A10) : enrichissement de la description frontmatter §4 avec « classification Type 1-4 (documents, analyse, développement web, data) » — réserve du cas déclencheur « classe cette tâche : document, analyse ou développement web ? » levée (trigger 8/9 → 9/9). Sémantique E3/§8.3 inchangée ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+| v3.9.0 | 2026-09-06 | Réimplantation des disciplines (directive utilisateur, session A11) : §1.9 devient l'orchestration gen-plan des 5 disciplines, la source de vérité méthodologique est déplacée vers SHARED §7 (SHARED v1.3.0) ; matérialisation des 4 disciplines d'exécution en agents ({{SKILLS_ROOT}}_disciplines/, format §2.3 autonomous-agent) et retrait de la matérialisation erronée references/gen-plan.agent (A9 — matérialisait gen-plan au lieu des disciplines) ; §1.10 actualisé ; evals version 3.9.0. Description frontmatter inchangée ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+| v3.10.0 | 2026-09-07 | Gestion du plan d'actions de session (directive utilisateur, session A12) : §1.8 enrichi de la règle d'or n°2 (régénération cohérente du plan d'actions actuel via le nouveau skill gen-plan à chaque installation d'un nouvel écosystème) et de la règle d'or n°3 (mise à jour cohérente du plan d'actions actuel via gen-plan à chaque nouvelle demande utilisateur pendant l'exécution) ; E13 renvoi aux règles d'or n°2-n°3 ; evals version 3.10.0. Description frontmatter inchangée (non-régression triggers 9/9) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+| v3.11.0 | 2026-09-10 | Intégration du Prompt Engineering Kit v4.1 (directive utilisateur, session B1) : couche de raisonnement adaptative — 3 modes d'exécution (CoT 7 étapes / Chaining 4 étapes / Hybride, bascule selon complexité E1-E3, calibrage profils §2.4), blocs de sortie adaptatifs A-J mappés sur les Types 1-4 (E3), 9 règles critiques, 12 checks + scoring 25 pts (seuil 22/25) alignés sur les hooks correct-work E9-E14 ; §1.9 enrichi de l'orchestration PEK ; 6e référence `references/prompt-engineering-kit.md` (in extenso §9.6) ; §2.2 actualisée. Description frontmatter inchangée (non-régression triggers 9/9) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+| v3.12.0 | 2026-09-19 | Mobilisation disciplinaire complète de la planification (audit N5-a, session B12 r19-bis ; re-montée N14-b r32 après incident B-15) : §1.9 enrichi de la table de mobilisation E1-E8 (disciplines × étapes de planification — interprétation PEK E1-E3 conforme, génération E4-E8 explicitée) ; §3 relations étendues aux 4 disciplines d'exécution (déclenchement automatique, SHARED §7) ; E1/E5/E7/E8 (§9.1) enrichies de leurs disciplines mobilisées ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+
+Révision documentaire 2026-09-06 (sans changement de version ni de contrat) : §1.9 explicité comme détenteur de la méthode prompt-engineering (méthode-mère) ; assignation en fonction héritée enregistrée en SHARED §7, avec déclarations correspondantes dans les §B des PM correct-work v2.4.0 et clone-chat v2.0.0.
 
 ---
 
@@ -348,6 +513,8 @@ Les 5 fichiers référence suivants doivent être créés dans `{{SKILLS_ROOT}}g
 ## E1 — Analyse de la demande
 
 **Objectif** : Décortiquer la demande utilisateur pour en extraire les livrables, contraintes et critères de succès.
+
+**Disciplines mobilisées** (v3.12.0) : prompt-engineering (PEK — interprétation CoT/Chaining/Hybride), context-engineering (lecture SHARED/KB préalable). Voir table de mobilisation §1.6.
 
 **Inputs** :
 - Message ou demande brute de l'utilisateur
@@ -452,6 +619,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 
 **Objectif** : Identifier les skills pertinents pour la tâche.
 
+**Disciplines mobilisées** (v3.12.0) : graph-engineering (graphe KB, matrice agent × skill), context-engineering (Protocole de Découverte, lecture bloc par bloc). Voir table de mobilisation §1.6.
+
 **Inputs** :
 - Type de tâche (E3)
 - Ressources disponibles (E2)
@@ -495,6 +664,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 
 **Objectif** : Assembler le plan d'exécution structuré.
 
+**Disciplines mobilisées** (v3.12.0) : loop-engineering (boucles R3 prédéfinies — règle d'or n°1), context-engineering (plan auto-suffisant), harness-engineering (hooks par phase E9-E14, worklog structuré). Voir table de mobilisation §1.6.
+
 **Inputs** :
 - Livrables (E1), Skills (E5), Profil (E6), #token (E4)
 
@@ -514,6 +685,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 ## E8 — Validation du plan
 
 **Objectif** : Vérifier cohérence, complétude et faisabilité.
+
+**Disciplines mobilisées** (v3.12.0) : harness-engineering (hook correct-work — 3 verdicts), prompt-engineering (12 checks PEK — scoring 22/25). Voir table de mobilisation §1.6.
 
 **Inputs** :
 - Plan brut (E7), Contraintes (E1)
@@ -642,6 +815,13 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 - [ ] Si correct-work retourne PASS AVEC RÉSERVES, les réserves sont loggées et l'exécution continue
 - [ ] Si correct-work retourne PASS, l'exécution passe directement à E9
 
+**Hook correct-work par phase (E9-E14)** (si correct-work >= v2.4.0 est disponible) :
+- [ ] Dès qu'une phase du plan d'actions vient de se terminer, lancer `correct-work(livrables de la phase, mode=CIBLE)` AVANT d'entamer la phase suivante
+- [ ] Si correct-work retourne FAIL, l'exécution est mise en pause jusqu'à correction de la phase, puis re-vérification
+- [ ] Si correct-work retourne PASS AVEC RÉSERVES, les réserves sont loggées dans le worklog et l'exécution continue
+- [ ] Si correct-work retourne PASS, la phase suivante démarre
+- [ ] Le hook E8 (fin de plan) reste inchangé et constitue la vérification finale
+
 **E14 — Finalisation** inclut l'intégration écosystème :
 - [ ] Les fichiers Skill sont placés dans `{{SKILLS_ROOT}}<nom>/SKILL.md`
 - [ ] Les fichiers de référence vont dans `{{SKILLS_ROOT}}<nom>/references/`
@@ -658,7 +838,7 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 ### §9.2 `references/grille-token.md`
 
 ```markdown
-# Grille de calibration #token — gen-plan v3.6.1
+# Grille de calibration #token — gen-plan v3.7.0
 
 ## Grille par agent/skill
 
@@ -711,6 +891,8 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 | 7 | 2026-08-29 | QA clone GML + spell-check | 11000 | ~9800 | -10.9% | Aucune (0-20%) |
 | 8 | 2026-08-30 | ZIP v1.1.0 + réconciliation | 9000 | ~8800 | -2.2% | Aucune (0-20%) |
 | 9 | 2026-08-30 | correct-work PROJET + archéologie versions + lignée clones | 9500 | ~9800 | +3.2% | Aucune (0-20%) |
+| 10 | 2026-08-30 | correct-work PROJET + alignement gen-plan v3.7.0 au sein de correct-work | 9000 | ~9200 | +2.2% | Aucune (0-20%) |
+| 11 | 2026-08-30 | Propagation knowledge-repo (Tasks 8-9, commit c79fdb6) | 4500 | ~4700 | +4.4% | Aucune (0-20%) |
 ```
 
 ### §9.3 `references/classification-types.md`
@@ -800,7 +982,7 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 ### §9.4 `references/profils-ressource.md`
 
 ```markdown
-# Profils ressource — gen-plan v3.6.1
+# Profils ressource — gen-plan v3.7.0
 
 ## NORMAL
 
@@ -939,4 +1121,168 @@ Le profil initial est NORMAL sauf détection de signaux de pression dès E2.
 | Architecture/planif | — | Plan | Agent seul |
 | Styling CSS | — | frontend-styling-expert | Agent seul |
 | Vérification correction | correct-work | general-purpose | BON |
+```
+
+### §9.6 `references/prompt-engineering-kit.md`
+
+```markdown
+# Prompt Engineering Kit (PEK) v4.1 — Méthode de raisonnement adaptative
+
+> **Rôle dans gen-plan** : matérialisation opérationnelle de la philosophie §1.4.6 (« CoT + Chaining avec auto-correction »). La sélection du mode de raisonnement s'effectue à E3 (complexité) et se combine avec le profil ressource (§2.4). Les blocs adaptatifs A-J structurent les livrables de sortie selon le Type 1-4.
+> **Provenance** : PEK v4.1-META-PROMPT-EDITED (upload 2026-09-10, édition 2025-07-13) — intégrée par assemblage (§3.2 PM-INSTALL) ; modules d'implémentation web éliminés. Sources secondaires : V4.0-Consolidated (méta-prompt auto-suffisant), kits v3.0.0/v3.0.1 (blocs A-J).
+
+---
+
+## §1 — Les 3 modes d'exécution
+
+| Mode | Pipeline | Complexité cible | Équivalent gen-plan |
+|------|----------|------------------|---------------------|
+| **CoT** (défaut) | 7 étapes séquentielles | moyenne à complexe | Profil NORMAL — plan complet E1-E15 |
+| **Chaining** | 4 étapes pipeline | simple, linéaire | Profil ECO — étapes réduites, 1 checkpoint |
+| **Hybride** (auto) | Bascule dynamique | détectée à l'étape 1 | Règle §2.4 signaux de pression → ECO/VIEUX PC |
+
+**Règle de bascule (mode Hybride)** : complexité `simple` → Chaining ; complexité `moyen`/`complexe` → CoT. La complexité est déterminée à la première étape (Compréhension) — jamais recalculée en cours d'exécution (cohérent avec §1.4.8 : downgrade irréversible).
+
+---
+
+## §2 — Pipeline CoT (7 étapes)
+
+| # | Étape | Durée indicative | Livrable |
+|---|-------|------------------|----------|
+| 1 | **Compréhension** | 5-10 min | Résumé exécutif : type de projet, objectif en une phrase, contraintes majeures, niveau de complexité |
+| 2 | **Décomposition** | 5 min | Carte des composants + dépendances + patterns + sélection des blocs A-J |
+| 3 | **Extraction** | 10-15 min | Liste exhaustive : objectifs, règles absolues, étapes, format de sortie, style, stack |
+| 4 | **Structuration** | 10 min | Plan de mapping éléments → architecture du livrable (blocs sélectionnés) |
+| 5 | **Génération** | 20-30 min | Livrable complet, blocs générés dans l'ordre |
+| 6 | **Validation** | 10 min | Score qualité (§6) + rapport de validation |
+| 7 | **Amélioration** | 5 min | 3 points d'amélioration concrets + cas limites non couverts + tests additionnels |
+
+**Contrainte C1** : séquence stricte 1→7, aucun saut, aucune fusion d'étapes. Revenir en arrière est autorisé (cohérent avec E12-E13 détection d'écart → ajustement).
+
+---
+
+## §3 — Pipeline Chaining (4 étapes)
+
+| # | Étape | Livrable |
+|---|-------|----------|
+| 1 | **Préparation** | Inventaire structuré des composants, métadonnées, patterns, blocs pertinents |
+| 2 | **Traitement** | Contenu détaillé de chaque bloc (versions intermédiaires) |
+| 3 | **Vérification** | Auto-évaluation (cohérence, complétude, exemples 4+ domaines) + corrections appliquées |
+| 4 | **Optimisation** | Livrable final en 3 versions : Pro (annoté), Clean (prêt à l'emploi), Compacte (synthèse) |
+
+---
+
+## §4 — Blocs de sortie adaptatifs (A-J)
+
+La structure de sortie n'est **pas figée** : elle s'adapte au livrable produit.
+
+### Hiérarchie de priorité
+
+- **Niveau 1 (obligatoires)** : `A` Résumé exécutif (toujours premier) · `H` Recommandations (toujours dernier)
+- **Niveau 2 (fortement recommandés)** : `C` Prompt/Instructions · `E` Contraintes & règles · `G` Guide d'utilisation
+- **Niveau 3 (contextuels)** : `B` Architecture · `D` Données & schemas · `F` Résultats & outputs · `I` Tests & validation · `J` Glossaire & références
+
+### Correspondance Type de tâche (E3) → blocs
+
+| Type gen-plan | Blocs recommandés |
+|---------------|-------------------|
+| Type 1 (documents) | A + C + D + E + G + H + J |
+| Type 2 (visualisation) | A + C + D + F + G + H |
+| Type 3 (développement web) | A + B + C + D + E + G + H + I |
+| Type 4 (traitement données) | A + B + D + E + F + G + H + I |
+| Méta-outil / écosystème | A + B + C + D + E + F + G + H + I + J |
+
+### Règles de composition
+
+1. Bloc `A` toujours en premier, bloc `H` toujours en dernier.
+2. Ordre des blocs contextuels libre (enchaînement le plus logique).
+3. Chaque bloc autonome — compréhensible sans lire les autres.
+4. Cohérence inter-blocs — aucune contradiction ni redondance (hook correct-work E9-E14).
+5. Nombre total recommandé : **5 à 9 blocs** selon la complexité.
+
+---
+
+## §5 — Les 9 règles critiques
+
+| # | Règle | Priorité | Autorisé / Interdit |
+|---|-------|----------|---------------------|
+| 1 | **Préservation de l'original** | CRITICAL | Structurer, clarifier, organiser / inventer, modifier les décisions, dénaturer |
+| 2 | **Complétude des livrables** | CRITICAL | Contenu minimal avec `[À COMPLÉTER]` / omettre un livrable, vide silencieux |
+| 3 | **Cohérence des références** | CRITICAL | Chemins relatifs, liens valides / référencer l'inexistant, chemins absolus, liens brisés |
+| 4 | **Respect des schemas** | CRITICAL | Valider la conformité, signaler les écarts / output non conforme, champs ignorés |
+| 5 | **Application du pipeline** | CRITICAL | Prendre le temps, revenir en arrière / sauter ou mélanger les étapes |
+| 6 | **Qualité des exemples** | CRITICAL | Cas limites, 4+ domaines / exemples génériques, mono-domaine, doublons |
+| 7 | **Automatisation et versionnage** | CRITICAL | Outils automatisés, traçage VERSION / générer manuellement si script existe |
+| 8 | **Détection de contenu trompeur** | HIGH | Vérifier les allégations / greenwashing, fausses promesses, statistiques inventées |
+| 9 | **Boucle de feedback itérative** | HIGH | Intégrer les métriques A/B / ignorer les données quantitatives disponibles |
+
+Les règles 1-7 héritent des contraintes absolues V4.0 ; les règles 8-9 sont les ajouts v4.1.
+
+---
+
+## §6 — Contrôle qualité (12 checks, scoring 25 pts)
+
+**Structure du score** : Complétude 10 pts · Cohérence 8 pts · Qualité 7 pts. **Seuil minimum : 22/25 (88%)** — cohérent avec les verdicts correct-work (S1-S4) et l'arbitre verify-cross.
+
+| # | Check | Axe |
+|---|-------|-----|
+| 1 | Tous les livrables présents et non vides | Complétude |
+| 2 | Références croisées valides | Complétude |
+| 3 | Livrable directement utilisable (zéro placeholder non signalé) | Complétude |
+| 4 | Exemples pertinents, 4+ domaines variés | Cohérence |
+| 5 | Structure de sortie adaptée au type de tâche | Cohérence |
+| 6 | Format d'entrée correctement pris en compte | Cohérence |
+| 7 | Version tracée (registre KB / VERSION) | Complétude |
+| 8 | Pas de contenu trompeur détecté | Qualité |
+| 9 | Mécanismes de feedback prévus | Qualité |
+| 10 | Variables et placeholders définis | Qualité |
+| 11 | Cas d'erreur couverts | Cohérence |
+| 12 | Instructions claires et non ambigües | Qualité |
+
+**Verdicts** : 25/25 PARFAIT · 22-24 EXCELLENT · 20-21 ACCEPTABLE · <20 À REPRENDRE. Score < 22 → corriger puis re-valider (boucle E12-E13).
+
+### Cas limites (edge cases)
+
+| Cas | Conduite |
+|-----|----------|
+| Données manquantes | Signaler les champs requis, proposer les formats, NE PAS générer |
+| Contexte incomplet | Livrable partiel avec `[À COMPLÉTER]`, aucun contenu inventé |
+| Contraintes contradictoires | Identifier chaque contradiction, proposer une résolution |
+| Auto-référence | Détecter la circularité → rapport d'auto-analyse, pas de génération imbriquée |
+| Génération circulaire | Détecter et interrompre, recommander correction directe |
+| Input corrompu | Signaler l'erreur, proposer alternative de format |
+
+---
+
+## §7 — Mapping gen-plan ↔ PEK
+
+| gen-plan (E1-E15) | Étape PEK correspondante |
+|--------------------|--------------------------|
+| E1 Analyse de la demande | 1 Compréhension (objectif, contraintes, complexité) |
+| E2 Inventaire des ressources | 1 Compréhension (fin) — signaux de pression = données manquantes |
+| E3 Classification Type 1-4 | 1 Compréhension — type de projet + sélection mode (CoT/Chaining/Hybride) |
+| E4 Estimation #token | (spécifique gen-plan — grille §4, coeffs mode PEK applicables) |
+| E5 Sélection des skills | 2 Décomposition (blocs A-J) |
+| E6 Profilage ressource | 1 Compréhension — calibre le mode d'exécution (cf. §1) |
+| E7 Création du plan | 4 Structuration (mapping éléments → blocs) |
+| E8 Validation du plan | 6 Validation (pré-validation du plan, hook correct-work) |
+| E9-E14 Exécution + hooks | 5 Génération (blocs) + 6 Validation par phase (mode CIBLE) |
+| E15 Bilan et auto-calibration | 7 Amélioration (3 points concrets + calibration grille) |
+
+**Règle d'usage** : le PEK ne remplace PAS les 15 étapes — il fournit le **mode de raisonnement** (§1) et la **structure de sortie** (§4) mobilisés par les étapes. Les livrables des plans génèrent leurs blocs selon le Type ; la validation par phase applique les 12 checks ; le score 22/25 s'ajoute aux critères correct-work.
+
+---
+
+## §8 — Provenance et historique
+
+| Version | Nature | Apport |
+|---------|--------|--------|
+| v1.0 | Kit standalone (structure XML) | Structure modulaire initiale |
+| v2.0 | Templates complets | Modules 00-07 |
+| v3.0 | Fusion XML + Markdown | 8 modules prompts, build assemblé |
+| v3.1 | Universel multi-format | Blocs A-J adaptatifs, 10 tests, structure adaptative |
+| v4.0 | Consolidé auto-suffisant | 7 contraintes CRITICAL, edge cases, scoring 25 pts, quickstart zéro placeholder |
+| v4.1 | Interface web + 3 modes | Modes CoT/Chaining/Hybride, règles 8-9, 12 checks, buildSystemPrompt() |
+
+**Note d'intégration** : la présente référence est la forme « méthode pure » du PEK v4.1 édité — les modules d'implémentation web (stack Next.js 16, interface 5 onglets, Prisma/SQLite, pipeline temps réel, z-ai-web-dev-sdk, buildSystemPrompt) ont été écartés lors de l'assemblage : ils relèvent d'une matérialisation applicative, pas de la méthode mobilisable par gen-plan (skill prompt pur, auto-contenu, zéro dépendance d'infrastructure — §0 règle zéro). L'implémentation de référence reste documentée dans l'archive source (upload/pek-v4.1.zip).
 ```

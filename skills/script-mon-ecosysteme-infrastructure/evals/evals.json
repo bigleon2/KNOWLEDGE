@@ -1,0 +1,17 @@
+{
+  "skill_name": "script-mon-ecosysteme-infrastructure",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Génère un nouveau SKILL.md pour ma skill « suivi-deploys » en respectant l'infrastructure de mon écosystème : Contexte Système à 3 niveaux, conventions SHARED, idempotence.",
+      "expected_output": "SKILL.md avec frontmatter complet (name/version/category/language: fr), section §0 Contexte Système (N2), corps en français, conventions kebab-case/semver/#token respectées, gardes d'intégrité appliquées.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Vérifie que le script scripts/mon-nouveau-arbitre.py respecte la norme N3 de mon écosystème (Python uniquement, Contexte Système N3) et corrige-le si besoin.",
+      "expected_output": "Vérification de la norme (shebang, en-tête Contexte Système N3, docstring), correction idempotente si écart, aucune réécriture destructrice, rapport des changements.",
+      "files": []
+    }
+  ]
+}

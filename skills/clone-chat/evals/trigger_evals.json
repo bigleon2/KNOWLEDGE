@@ -1,10 +1,30 @@
 [
-  {"query": "clone cette discussion dans un markdown auto-suffisant", "should_trigger": true},
-  {"query": "archive cette session complète avec ses décisions et artefacts", "should_trigger": true},
-  {"query": "sauvegarde le contexte de la conversation pour la reprendre plus tard", "should_trigger": true},
-  {"query": "produis le clone scellé de cette session (SHA-256)", "should_trigger": true},
-  {"query": "le contexte a dérivé, traite ce drift dans le clone", "should_trigger": true},
-  {"query": "clone ce dépôt git sur ma machine", "should_trigger": false},
-  {"query": "vérifie les erreurs de ce fichier", "should_trigger": false},
-  {"query": "bonjour", "should_trigger": false}
+  {
+    "query": "Utilise le skill clone-chat pour cloner et archiver une conversation en Markdown auto-suffisant.",
+    "should_trigger": true
+  },
+  {
+    "query": "Clone cette discussion en un document autonome.",
+    "should_trigger": true
+  },
+  {
+    "query": "Produis un Markdown auto-suffisant de la conversation (protocole 7+1 étapes) avec héritage et drifts documentés.",
+    "should_trigger": true
+  },
+  {
+    "query": "Archive cette session pour qu'une nouvelle session puisse en hériter proprement.",
+    "should_trigger": true
+  },
+  {
+    "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",
+    "should_trigger": false
+  },
+  {
+    "query": "Vérifie maintenant l'archive que tu viens de produire.",
+    "should_trigger": false
+  },
+  {
+    "query": "Exporte mes contacts au format CSV.",
+    "should_trigger": false
+  }
 ]

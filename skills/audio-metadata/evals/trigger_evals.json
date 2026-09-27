@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill audio-metadata pour lire et corriger les métadonnées de fichiers audio.",
+    "should_trigger": true
+  },
+  {
+    "query": "Nettoie les tags ID3 de ma bibliothèque MP3 (titre, artiste, pochette).",
+    "should_trigger": true
+  },
+  {
+    "query": "Lis, corrige et normalise les métadonnées (tags, pochettes, numéros de piste) de mes fichiers audio.",
+    "should_trigger": true
+  },
+  {
+    "query": "Organise ma playlist par album en corrigeant les métadonnées manquantes.",
+    "should_trigger": true
+  },
+  {
+    "query": "J'ai un fichier WAV d'une réunion d'une heure, il me faut la transcription complète avec les tours de parole séparés.",
+    "should_trigger": false
+  },
+  {
+    "query": "Transcris le contenu parlé de ce fichier audio.",
+    "should_trigger": false
+  },
+  {
+    "query": "Convertis mes FLAC en MP3 320 kbps.",
+    "should_trigger": false
+  }
+]

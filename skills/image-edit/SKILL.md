@@ -1,11 +1,6 @@
 ---
 name: image-edit
-version: 1.0.0
-category: metier
-language: fr
 description: Implement AI image editing and modification capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to edit existing images, create variations, modify visual content, redesign assets, or transform images based on text descriptions. Supports multiple image sizes and returns base64 encoded results. Also includes CLI tool for quick image editing.
-tags: []
-dependencies: []
 license: MIT
 ---
 

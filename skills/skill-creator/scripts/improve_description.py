@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """Improve a skill description based on eval results.
 
 Takes eval results (from run_eval.py) and generates an improved description

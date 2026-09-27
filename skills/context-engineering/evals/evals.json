@@ -1,6 +1,6 @@
 {
   "skill_name": "context-engineering",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Évals créées à la matérialisation skill de la discipline context engineering (session A12, 2026-09-07) — source de vérité SHARED §7.",
   "evals": [

@@ -1,18 +1,30 @@
 [
   {
-    "query": "mets à jour le graphe de connaissances avec une nouvelle relation bidirectionnelle",
+    "query": "Utilise le skill graph-engineering pour appliquer la discipline graph engineering (graphe de connaissances).",
     "should_trigger": true
   },
   {
-    "query": "ancrer la sélection des skills dans le registre KB avant de décider",
+    "query": "Structure ces données en graphe de connaissances versionné.",
     "should_trigger": true
   },
   {
-    "query": "vérifie les arêtes orphelines du graphe et corrige les cross-references",
+    "query": "Modélise en graphe : nœuds/arêtes versionnés, requêtes ancrées, traçabilité des relations.",
     "should_trigger": true
   },
   {
-    "query": "génère un CV moderne",
+    "query": "Interroge le graphe pour retrouver les dépendances entre ces entités.",
+    "should_trigger": true
+  },
+  {
+    "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps, mémoire externe.",
+    "should_trigger": false
+  },
+  {
+    "query": "Dessine juste un organigramme en PNG.",
+    "should_trigger": false
+  },
+  {
+    "query": "Ajoute un nœud de subdivision dans mon modèle Blender.",
     "should_trigger": false
   }
 ]

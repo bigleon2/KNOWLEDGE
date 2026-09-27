@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill prompt-engineering pour optimiser les prompts complexes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Améliore ce prompt système pour réduire les hallucinations.",
+    "should_trigger": true
+  },
+  {
+    "query": "Ingénierie de prompt : analyse, itérations comparées, critères mesurables, garde-fous anti-erreurs.",
+    "should_trigger": true
+  },
+  {
+    "query": "Restructure mon mega-prompt en modules plus fiables et testables.",
+    "should_trigger": true
+  },
+  {
+    "query": "Conçois un skill complet : SKILL.md, frontmatter, evals, trigger_evals, puis itère avec les evals.",
+    "should_trigger": false
+  },
+  {
+    "query": "Crée carrément un nouveau skill à partir de ce prompt.",
+    "should_trigger": false
+  },
+  {
+    "query": "Traduis cette consigne en anglais pour mon collègue.",
+    "should_trigger": false
+  }
+]

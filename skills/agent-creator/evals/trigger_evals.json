@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill agent-creator pour créer et orchestrer des agents autonomes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Crée un agent autonome pour surveiller et traiter mes mails.",
+    "should_trigger": true
+  },
+  {
+    "query": "Conçois un agent persistant : fichier .agent, boucles d'exécution, matrice agent×skill, reprise d'état.",
+    "should_trigger": true
+  },
+  {
+    "query": "Orchestre plusieurs agents spécialisés sur ce flux de travail complexe.",
+    "should_trigger": true
+  },
+  {
+    "query": "Ingénierie de prompt : analyse, itérations comparées, critères mesurables, garde-fous anti-erreurs.",
+    "should_trigger": false
+  },
+  {
+    "query": "Optimise simplement le prompt système de mon assistant.",
+    "should_trigger": false
+  },
+  {
+    "query": "Automatise ce workflow avec Zapier plutôt qu'avec un agent.",
+    "should_trigger": false
+  }
+]

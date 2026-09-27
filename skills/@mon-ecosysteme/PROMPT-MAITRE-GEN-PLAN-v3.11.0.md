@@ -4,7 +4,39 @@
 > **Skill cible** : gen-plan v3.11.0
 > **Date** : 2026-09-10
 > **Source** : Écosystème Knowledge — Clone de discussion
-> **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
+> **Dépend** : `CONTEXTE SYSTÈME` (embarqué ci-dessous)
+
+---
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.5.2)
+> **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
+
+### Règle Zéro (§0)
+L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA.
+
+### Variables d'installation (§1.1)
+| Variable | Défaut | Description |
+|----------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Registre KB |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case
+- **Fichiers** : kebab-case avec extension
+- **Versions** : format semver
+
+---
+-------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
+| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
+| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case (`gen-plan`, `correct-work`). Exception : `@mon-ecosysteme/` (dossier des prompts maîtres).
+- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`).
+- **Versions** : format semver (`3.11.0`, `2.5.1`).
+- **Tags** : préfixe `#` pour les tokens (`#token 3500`).
+- **Variables** : double accolades (`{{SKILLS_ROOT}}`).
 
 ---
 
@@ -18,17 +50,6 @@
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
-## §B — PRÉREQUIS
-
-Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
-
-Résumé des variables utiles (SHARED §1.1) :
-- `{{SKILLS_ROOT}}` = `skills/`
-- `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
-- `{{KB_ENABLED}}` = `true`
-- `{{PROFILE_DEFAULT}}` = `NORMAL`
-
----
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
@@ -130,7 +151,7 @@ Opérationnalisation dans gen-plan :
 
 **Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode du **prompt-engineering** — il l'applique à toutes ses étapes (E1-E15) via les 4 disciplines ci-dessous. Depuis la session A11 (2026-09-06), la **source de vérité des 5 disciplines est implantée dans le socle SHARED §7** (informations communes, règle de non-duplication §6.3) ; le présent §1.9 enregistre l'**orchestration gen-plan** des disciplines. Les autres skills de l'écosystème qui en ont besoin la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
 
-gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (formalisées avec le skill `agent-prompt-engineering`, 2026-08-30) :
+gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (formalisées avec le skill `prompt-engineering`, 2026-08-30) :
 
 | Discipline | Mécanisme gen-plan | Localisation |
 |------------|--------------------|--------------|
@@ -139,9 +160,9 @@ gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (f
 | **Graph engineering** | Registre KB = graphe de relations bidirectionnelles versionnées ; matrice agent × skill ; dépendances YAML inter-skills | SHARED §3, §4 ; frontmatter |
 | **Harness engineering** | Harnais d'exécution : profils ressource + signaux de pression, hook E8 correct-work (3 verdicts) + contrôle correct-work à chaque phase terminée (E9-E14), arbitres (verify-cross, verify-correct-work, spell-check, sync-download), worklog structuré | §2.4 ; E8 ; E9-E14 ; SHARED §1.4 |
 
-L'optimisation fine des prompts complexes (rédaction, restructuration, évaluation, itération) est déléguée au skill `agent-prompt-engineering` (voir SHARED §3.1).
+L'optimisation fine des prompts complexes (rédaction, restructuration, évaluation, itération) est déléguée au skill `prompt-engineering` (voir SHARED §3.1).
 
-**Matérialisation des disciplines (mise à jour session A13, 2026-09-07 — alignement état A12)** : les 4 disciplines d'exécution (context, loop, graph, harness engineering) sont matérialisées en **skills complets à déclenchement automatique** (`{{SKILLS_ROOT}}context-engineering/`, `loop-engineering/`, `graph-engineering/`, `harness-engineering/` — SKILL.md + evals/evals.json + evals/trigger_evals.json ; SHARED §7 v1.4.0). La matérialisation intermédiaire en agents autonomes (`{{SKILLS_ROOT}}_disciplines/*.agent`, session A11) est **retirée** (SHA-256 prouvés avant retrait) ; la matérialisation antérieure `references/gen-plan.agent` (session A9) l'avait été dès la session A11 pour la même raison de fond : elle matérialisait gen-plan lui-même au lieu des disciplines. La discipline prompt-engineering demeure matérialisée en skill spécialisé (`agent-prompt-engineering`). gen-plan demeure un skill ; sa couche d'exécution disciplinaire est assurée par les 4 skills de discipline qu'il mobilise à déclenchement automatique et par sa couche evals.
+**Matérialisation des disciplines (mise à jour session A13, 2026-09-07 — alignement état A12)** : les 4 disciplines d'exécution (context, loop, graph, harness engineering) sont matérialisées en **skills complets à déclenchement automatique** (`{{SKILLS_ROOT}}context-engineering/`, `loop-engineering/`, `graph-engineering/`, `harness-engineering/` — SKILL.md + evals/evals.json + evals/trigger_evals.json ; SHARED §7 v1.4.0). La matérialisation intermédiaire en agents autonomes (`{{SKILLS_ROOT}}_disciplines/*.agent`, session A11) est **retirée** (SHA-256 prouvés avant retrait) ; la matérialisation antérieure `references/gen-plan.agent` (session A9) l'avait été dès la session A11 pour la même raison de fond : elle matérialisait gen-plan lui-même au lieu des disciplines. La discipline prompt-engineering demeure matérialisée en skill spécialisé (`prompt-engineering`). gen-plan demeure un skill ; sa couche d'exécution disciplinaire est assurée par les 4 skills de discipline qu'il mobilise à déclenchement automatique et par sa couche evals.
 
 **Méthode de raisonnement adaptative PEK (v3.11.0, session B1)** : gen-plan mobilise le Prompt Engineering Kit v4.1 (méthode pure) comme couche de raisonnement opérationnelle de la méthode-mère — 3 modes d'exécution (CoT 7 étapes / Chaining 4 étapes / Hybride à bascule automatique selon la complexité détectée à E1-E3) alignés sur la philosophie §1.7 #6 (« CoT + Chaining avec auto-correction ») et calibrés par les profils §2.4 ; blocs de sortie adaptatifs A-J mappés sur la classification Type 1-4 (E3) ; 9 règles critiques et 12 checks de validation (scoring 25 pts, seuil 22/25) intégrés aux hooks correct-work par phase (E9-E14). Contenu opérationnel : `references/prompt-engineering-kit.md` (in extenso §9.6). Provenance : PEK v4.1-META-PROMPT-EDITED (upload utilisateur 2026-09-10), intégrée par assemblage — modules d'implémentation web écartés (règle zéro : skill auto-contenu, zéro dépendance d'infrastructure).
 
@@ -264,7 +285,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 | correct-work | Invocation à E1 + hook E8 + contrôle par phase | Validation du plan initial + vérification post-plan et à chaque phase terminée (E9-E14), version >= v2.4.0 |
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
-| agent-prompt-engineering | Délégation (§1.9) | Optimisation des prompts complexes, version >= v1.0.0 |
+| prompt-engineering | Délégation (§1.9) | Optimisation des prompts complexes, version >= v1.0.0 |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
 
 ---
@@ -465,10 +486,10 @@ Les evals §5.4 sont exécutés dans `{{SKILLS_ROOT}}gen-plan-workspace/iteratio
 | v3.5.0 | 2026-07-29 | Intégration clone-chat, calibration #token, normes N1-N3 |
 | v3.6.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
 | v3.6.1 | 2026-08-09 | Méthode lecture bloc par bloc (philosophie #7, E2/E9/E10), correct-work >= v2.4.0 avec hook E8, chemins references/ sans accent, description enrichie, count ~180L |
-| v3.7.0 | 2026-08-30 | Règles d'or (§1.8 : adaptation autonome sur blocage, à la demande utilisateur) ; disciplines d'ingénierie de prompts (§1.9 : context/loop/graph/harness engineering) ; lien agent-prompt-engineering ; hook correct-work par phase (E9-E14 : chaque phase terminée est vérifiée par correct-work CIBLE avant la suivante) |
+| v3.7.0 | 2026-08-30 | Règles d'or (§1.8 : adaptation autonome sur blocage, à la demande utilisateur) ; disciplines d'ingénierie de prompts (§1.9 : context/loop/graph/harness engineering) ; lien prompt-engineering ; hook correct-work par phase (E9-E14 : chaque phase terminée est vérifiée par correct-work CIBLE avant la suivante) |
 | v3.8.0 | 2026-09-06 | Unification du schéma evals (skill-creator) au §5 : §5.4 evals.json (id entier/prompt/expected_output/expectations), §5.5 trigger_evals.json, §5.6 workspaces d'évaluation (with_skill vs baseline) ; §1.9 matérialisation agent (references/gen-plan.agent v1.0.0) ; §1.10 pipeline d'optimisation écosystème Z0-Z6 et §1.11 idempotence R1-R6 (directive utilisateur, DOCX « Pipeline optimisation écosystème »). Aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
 | v3.8.1 | 2026-09-06 | Description Optimization (itération-3 workspaces skill-creator, session A10) : enrichissement de la description frontmatter §4 avec « classification Type 1-4 (documents, analyse, développement web, data) » — réserve du cas déclencheur « classe cette tâche : document, analyse ou développement web ? » levée (trigger 8/9 → 9/9). Sémantique E3/§8.3 inchangée ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
-| v3.9.0 | 2026-09-06 | Réimplantation des disciplines (directive utilisateur, session A11) : §1.9 devient l'orchestration gen-plan des 5 disciplines, la source de vérité méthodologique est déplacée vers SHARED §7 (SHARED v1.3.0) ; matérialisation des 4 disciplines d'exécution en agents ({{SKILLS_ROOT}}_disciplines/, format §2.3 autonomous-agent) et retrait de la matérialisation erronée references/gen-plan.agent (A9 — matérialisait gen-plan au lieu des disciplines) ; §1.10 actualisé ; evals version 3.9.0. Description frontmatter inchangée ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+| v3.9.0 | 2026-09-06 | Réimplantation des disciplines (directive utilisateur, session A11) : §1.9 devient l'orchestration gen-plan des 5 disciplines, la source de vérité méthodologique est déplacée vers SHARED §7 (SHARED v1.3.0) ; matérialisation des 4 disciplines d'exécution en agents ({{SKILLS_ROOT}}_disciplines/, format §2.3 agent-creator) et retrait de la matérialisation erronée references/gen-plan.agent (A9 — matérialisait gen-plan au lieu des disciplines) ; §1.10 actualisé ; evals version 3.9.0. Description frontmatter inchangée ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
 | v3.10.0 | 2026-09-07 | Gestion du plan d'actions de session (directive utilisateur, session A12) : §1.8 enrichi de la règle d'or n°2 (régénération cohérente du plan d'actions actuel via le nouveau skill gen-plan à chaque installation d'un nouvel écosystème) et de la règle d'or n°3 (mise à jour cohérente du plan d'actions actuel via gen-plan à chaque nouvelle demande utilisateur pendant l'exécution) ; E13 renvoi aux règles d'or n°2-n°3 ; evals version 3.10.0. Description frontmatter inchangée (non-régression triggers 9/9) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
 | v3.11.0 | 2026-09-10 | Intégration du Prompt Engineering Kit v4.1 (directive utilisateur, session B1) : couche de raisonnement adaptative — 3 modes d'exécution (CoT 7 étapes / Chaining 4 étapes / Hybride, bascule selon complexité E1-E3, calibrage profils §2.4), blocs de sortie adaptatifs A-J mappés sur les Types 1-4 (E3), 9 règles critiques, 12 checks + scoring 25 pts (seuil 22/25) alignés sur les hooks correct-work E9-E14 ; §1.9 enrichi de l'orchestration PEK ; 6e référence `references/prompt-engineering-kit.md` (in extenso §9.6) ; §2.2 actualisée. Description frontmatter inchangée (non-régression triggers 9/9) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
 

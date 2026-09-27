@@ -1,0 +1,43 @@
+{
+  "skill_name": "memory-engineering",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals de matérialisation N34 (n°54, session B12-r56) — sources de vérité SHARED §7 ; structure miroir des 4 disciplines (graph/context/loop/harness).",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Utilise le skill memory-engineering pour gouverner la mémoire de l'agent.",
+      "expected_behavior": "déclenchement du skill memory-engineering"
+    },
+    {
+      "id": 2,
+      "query": "Décide quoi écrire en État Long : worklog, KB, answer key — et quoi jeter.",
+      "expected_behavior": "déclenchement du skill memory-engineering"
+    },
+    {
+      "id": 3,
+      "query": "Compacte cette session longue en conservant les ancres de reprise mécanique.",
+      "expected_behavior": "déclenchement du skill memory-engineering"
+    },
+    {
+      "id": 4,
+      "query": "Isoler les contextes par tâche : prompts auto-contenus, pas de fuite inter-tâches.",
+      "expected_behavior": "déclenchement du skill memory-engineering"
+    },
+    {
+      "id": 5,
+      "query": "Récupère l'information par retrieval ancré dans le registre versionné, sans hallucination.",
+      "expected_behavior": "déclenchement du skill memory-engineering"
+    },
+    {
+      "id": 6,
+      "query": "Structure ces données en graphe de connaissances versionné avec nœuds et arêtes.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    },
+    {
+      "id": 7,
+      "query": "Lance plusieurs agents en parallèle et agrège leurs résultats avec un supervisor.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    }
+  ]
+}

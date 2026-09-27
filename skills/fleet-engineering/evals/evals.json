@@ -1,0 +1,43 @@
+{
+  "skill_name": "fleet-engineering",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals de matérialisation N34 (n°54, session B12-r56) — sources de vérité SHARED §7 ; structure miroir des 4 disciplines (graph/context/loop/harness).",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Utilise le skill fleet-engineering pour orchestrer une flotte d'agents.",
+      "expected_behavior": "déclenchement du skill fleet-engineering"
+    },
+    {
+      "id": 2,
+      "query": "Lance plusieurs agents en parallèle avec un supervisor et agrège les résultats.",
+      "expected_behavior": "déclenchement du skill fleet-engineering"
+    },
+    {
+      "id": 3,
+      "query": "Choisis le bon pattern multi-agents : fan-out, pipeline, debate, supervisor ou swarm.",
+      "expected_behavior": "déclenchement du skill fleet-engineering"
+    },
+    {
+      "id": 4,
+      "query": "Coordonne une équipe d'instances avec Task IDs, bornes de coût et arbitrage des divergences.",
+      "expected_behavior": "déclenchement du skill fleet-engineering"
+    },
+    {
+      "id": 5,
+      "query": "Scale cette exécution en flotte managée : découplage cerveau/exécution, assignation, fusion.",
+      "expected_behavior": "déclenchement du skill fleet-engineering"
+    },
+    {
+      "id": 6,
+      "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    },
+    {
+      "id": 7,
+      "query": "Rédige la spécification exécutable et les critères d'acceptation avant d'implémenter.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Audite la provenance des artefacts de mon écosystème.",
+    "should_trigger": true
+  },
+  {
+    "query": "D'où vient ce script ? Trace son lignage et sa session d'origine.",
+    "should_trigger": true
+  },
+  {
+    "query": "Nous avons restauré après le wipe : vérifie que chaque artefact a une provenance avant le clone.",
+    "should_trigger": true
+  },
+  {
+    "query": "Corrige les provenances manquantes de manière idempotente.",
+    "should_trigger": true
+  },
+  {
+    "query": "Crée un nouveau skill de création de skills.",
+    "should_trigger": false
+  },
+  {
+    "query": "Relis et valide ce script avec la grille G1-G8.",
+    "should_trigger": false
+  },
+  {
+    "query": "Lance la certification complète de l'écosystème.",
+    "should_trigger": false
+  }
+]

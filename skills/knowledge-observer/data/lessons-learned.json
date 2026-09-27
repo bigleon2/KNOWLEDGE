@@ -1,0 +1,108 @@
+{
+  "lessons": [
+    {
+      "id": "L001",
+      "pattern": "Quota API 429 persistant : les boucles d'attente en-tour sont fauchées entre les appels d'outils (démons d'arrière-plan de session non résidentiels — constat expérimental R3-A17-bis) ; le martèlement de l'API n'accélère jamais la fenêtre",
+      "occurrences": 29,
+      "sources": [
+        "worklog Tasks 11-42 : sondes R3-A11 successives 429 PERSISTANT (~15,7 h), 13 x DEMON_ARME"
+      ],
+      "proposition": "Règle KO-L001 — une seule sonde par message utilisateur (R3-A11), travail local 100% entre les sondes, armement automatique des suites a QUOTA_OK (flag + pre-checks + runner 429-aware --skip-done), fenêtres candidates documentées, boucle d'attente en-tour interdite",
+      "marqueur": "PATTERN:KO-L001-v1.0.0",
+      "cible_application": "skills/gen-plan/SKILL.md §1.14",
+      "statut": "appliqué",
+      "session": "B13",
+      "verdict_correct_work": "PASS"
+    },
+    {
+      "id": "L002",
+      "pattern": "Montage d'un écosystème sans snapshot de sécurité préalable : en cas de wipe ou de corruption pendant le montage, aucun état antérieur restaurable — coût de restauration multiplié (remontée complète depuis archive + lignage perdu)",
+      "occurrences": 2,
+      "sources": [
+        "incident B-17 (download/ vidé, skills/ -6 éléments) ; wipe inter-sessions constaté trace 1a0dfa2dd2163ed5"
+      ],
+      "proposition": "Règle KO-L002 — zip de l'état courant (skills/ + scripts/ + download/ + worklog) sous tmp/<cycle>-snapshot/ AVANT tout montage, pattern N20 PHASE 1",
+      "marqueur": "aucun (proposée, mode M3 sans verdict)",
+      "cible_application": "skills/gen-plan/SKILL.md (bloc non créé)",
+      "statut": "proposé",
+      "session": "B13",
+      "verdict_correct_work": null
+    },
+    {
+      "id": "L003",
+      "pattern": "Faux verdicts d'arbitres à invariants figés : faux négatif (@mon-ecosysteme classé PLATEFORME hors set CORE), faux positif (pgrep -f auto-matché par sa propre ligne de commande), état attendu figé (« uniformément v3.11.0 ») divergent de la réalité installée",
+      "occurrences": 3,
+      "sources": [
+        "arbitres N4-c/N5-a/N15 : 3 faux verdicts corrigés en dynamisant les invariants (frontmatter installé = source de vérité, dérivation dynamique, garde anti-auto-match)"
+      ],
+      "proposition": "Règle KO-L003 — tout arbitre dérive ses invariants de l'état courant (frontmatter installé, registre KB, comptage réel), jamais d'un état figé ; divergence arbitre <-> réalité corrigée en dynamisant l'arbitre avec re-verdict honnête obligatoire — jamais en ajustant la réalité",
+      "marqueur": "PATTERN:KO-L003-v1.0.0",
+      "cible_application": "skills/gen-plan/SKILL.md §1.14",
+      "statut": "appliqué",
+      "session": "B13",
+      "verdict_correct_work": "PASS"
+    },
+    {
+      "id": "L004",
+      "pattern": "Recalibrage oublié lors des montées de version : les arbitres (verify-cross, verify-correct-work, test-coherence-interactions, check-ecosysteme-integrity, answer-key-checker), pre-checks (n8-a-precheck-a2), skills-meta.json, run-order, SYNC_MAP, miroir et archive valident l'état PRÉCÉDENT après une montée — verdicts inopérants",
+      "occurrences": 2,
+      "sources": [
+        "N20 PHASE 9 (re-calibrage x3 voies post v3.13.0) ; B13-r5 : integrity figé a 18 fichiers/ECO_SKILLS v3.13.0 pendant que le corpus montait a 19/v3.16.0"
+      ],
+      "proposition": "Règle KO-L004 — toute montée de version déclenche le recalibrage mécanique des outils dépendants AVANT la certification ; l'application M4 de toute leçon intègre d'office la liste des outils à recalibrer (garde post-édition)",
+      "marqueur": "PATTERN:KO-L004-v1.0.0",
+      "cible_application": "skills/gen-plan/SKILL.md §1.15",
+      "statut": "appliqué",
+      "session": "B13",
+      "verdict_correct_work": "PASS"
+    },
+    {
+      "id": "L005",
+      "pattern": "Plan d'actions obsolète après montée de version de gen-plan : un plan généré par une version antérieure (modes, étapes E1-E15, hooks §1.2bis, grille #token) reste en vigueur alors que le skill a évolué — les décisions et hooks de la nouvelle version sont inopérants pour l'exécution en cours",
+      "occurrences": 2,
+      "sources": [
+        "règle d'or n°2 §1.5 gen-plan (lignée PM v3.11.0) — re-génération du plan après installation d'un écosystème",
+        "directive utilisateur trace 1a0dfe43940ae0c5 (B13-r5) — généralisation : re-génération à CHAQUE version modifiée et jugée valide ; application immédiate : download/plan-b13-r5.md régénéré via v3.16.0 après verdict n60 10/10 + certification 5/5"
+      ],
+      "proposition": "Règle KO-L005 — toute version de gen-plan modifiée et jugée valide (verdict d'arbitres mécaniques, jamais la présomption) déclenche la re-génération du plan d'actions actuel via cette version avant la reprise d'exécution ; la validité est re-vérifiée avant chaque re-génération (L003) et le recalibrage croisé précède la certification (L004) ; matérialisation M4 proposée : extension additive R2 de la règle d'or n°2 §1.5 (bloc PATTERN:KO-L005-v1.0.0) puis montée v3.17.0 — phase N23-b du plan B13-r5",
+      "marqueur": "aucun (statut validé — matérialisation M4 armée phase N23-b)",
+      "cible_application": "skills/gen-plan/SKILL.md §1.5 (règle d'or n°2 — extension R2 proposée, montée v3.17.0 N23-b)",
+      "statut": "validé",
+      "session": "B13-r5",
+      "verdict_correct_work": null
+    },
+    {
+      "id": "L006",
+      "pattern": "Artefacts orphelins apres wipe/restauration : des artefacts vivants de l'ecosysteme (scripts de la chaine d'installation, evals, SKILL.md, corpus) ne portent aucun marqueur de provenance — leur origine (session, directive, clone epingle) est perdue du point de vue du fichier lui-meme ; le travail interrompu sans append worklog aggrave l'orphelinat (constat Task 44 : le tour interrompu N26 n'avait laisse aucune trace worklog)",
+      "occurrences": 3,
+      "sources": [
+        "incident B-17 (B12-r40) — wipe de download/ + skills/ : restauration N18 depuis clone B9 + archive (provenances partielles)",
+        "wipe inter-sessions (B13-r4/r5) — reconstitution T1-T4 avec mentions « reconstitue post-wipe » tracées",
+        "tour interrompu N26 (B13-r6, constat Task 44) — calibrage integrity v2.1 + archive homologues realises SANS append worklog ; deteces puis re-prouves a la reprise (honetete R3)"
+      ],
+      "proposition": "Lecon KO-L006 — tout artefact cree ou modifie porte une provenance traçable (session, directive, contexte) ; l'audit de provenance (skill dedie) est execute apres chaque wipe/restauration, avant chaque clone-chat et avant chaque installation (INSTALL-ECOSYSTEME.md) ; materielsation M4 executee : skill audit-provenance v1.0.0 + collecteur scripts/audit-provenance.py (heuristique declarative, --fix idempotent, 25 artefacts documentes, no-op au 2e passage)",
+      "marqueur": "PATTERN:KO-L006-v1.0.0 materiels (skill audit-provenance v1.0.0 + evals 4+7)",
+      "cible_application": "processus de session (wipe/restauration, pre-clone, pre-installation) ; skills/audit-provenance/ ; journal knowledge-observer",
+      "statut": "applique",
+      "session": "B13-r6",
+      "verdict_correct_work": null
+    }
+  ],
+  "schema": "Task Observer (gen-plan/references/observation-patterns.md §4) — phase N20, session B12-r41",
+  "champs": {
+    "id": "L001, L002, … (séquentiel, jamais réutilisé)",
+    "pattern": "description du pattern récurrent",
+    "occurrences": "nombre d'occurrences documentées (récurrence à 3, 2 si S1)",
+    "proposition": "mise à jour idempotente proposée (marqueur + rejeu sans effet)",
+    "statut": "proposé | validé | appliqué | rejeté",
+    "session": "identifiant session (ex : B12-r41)",
+    "verdict_correct_work": "PASS | PASS AVEC RÉSERVES | FAIL | null"
+  },
+  "note": "Journal restitué en B13-r5 (trace 1a0dfca3a0ffe13d) après wipe inter-sessions : les entrées L001-L004 (sessions B13) sont reconstituées d'après les blocs PATTERN:KO-L001/L003/L004 installés dans gen-plan v3.16.0 (§1.14/§1.15), la note de provenance du SKILL.md et le lignage worklog ; les champs sources (occurrences, sources) reflètent les Tasks 11-42 du worklog survivant. Le journal initial vide (N20) est remplacé par la restitution — aucune migration destructrice d'artefact tiers (R2). L002 reste au statut proposé (pas de bloc PATTERN associé, jamais validée par correct-work).",
+  "provenance_restoration": {
+    "cycle": "B13-r5",
+    "trace": "1a0dfca3a0ffe13d",
+    "date": "2026-09-26",
+    "methode": "reconstitution d'après les marqueurs PATTERN installés et le worklog — jamais d'invention hors artefacts présents"
+  }
+}

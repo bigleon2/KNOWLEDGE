@@ -29,19 +29,11 @@ dependencies:
 
 # AUTONOMOUS-AGENT v1.0.0
 
-## §0 — Règle zéro
+## §0 — Contexte Système (SHARED v1.5.2)
 
-L'écosystème Knowledge est un ensemble de **77 skills** conçus pour un
-assistant IA (6 skills écosystème + 71 skills métier). Chaque skill est
-auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un
-fichier `SKILL.md` principal, d'un frontmatter YAML, et de références
-optionnelles dans `references/`.
-
-Le registre KB (`{{KB_PATH}}`) est la source de vérité pour l'état de
-l'écosystème. Voir `PROMPT-MAITRE-SHARED.md` pour le détail complet.
-
----
-
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 ## §1 — Spécification fonctionnelle
 
 ### §1.1 Objectif

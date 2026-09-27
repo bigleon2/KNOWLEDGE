@@ -1,0 +1,1287 @@
+{
+  "commit_depot": "d9ff9fb5411985282bdb2bbc5ccaf284c18d971f",
+  "zones": {
+    "skills/@mon-ecosysteme": {
+      "fichiers_depot": 15,
+      "fichiers_local": 20,
+      "identiques": 8,
+      "differents": [
+        "skills/@mon-ecosysteme/INSTALL-ECOSYSTEME.md",
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.11.0.md",
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-SHARED.md",
+        "skills/@mon-ecosysteme/README.md"
+      ],
+      "absents_local": [],
+      "absents_depot": [
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
+        "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",
+        "skills/@mon-ecosysteme/SYNC-CONTEXT.md"
+      ],
+      "zone_absente_du_depot": false
+    },
+    "skills": {
+      "skills/@mon-ecosysteme": {
+        "fichiers_depot": 15,
+        "fichiers_local": 20,
+        "identiques": 8,
+        "differents": [
+          "skills/@mon-ecosysteme/INSTALL-ECOSYSTEME.md",
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.11.0.md",
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-SHARED.md",
+          "skills/@mon-ecosysteme/README.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
+          "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",
+          "skills/@mon-ecosysteme/SYNC-CONTEXT.md"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/ASR": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/ASR/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/KNOWLEDGE.md": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/KNOWLEDGE.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/LLM": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/LLM/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/TTS": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/TTS/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/VLM": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/VLM/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/_prompts-maitres": {
+        "fichiers_depot": 15,
+        "fichiers_local": 20,
+        "identiques": 8,
+        "differents": [
+          "skills/_prompts-maitres/INSTALL-ECOSYSTEME.md",
+          "skills/_prompts-maitres/PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+          "skills/_prompts-maitres/PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
+          "skills/_prompts-maitres/PROMPT-MAITRE-GEN-PLAN-v3.11.0.md",
+          "skills/_prompts-maitres/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
+          "skills/_prompts-maitres/PROMPT-MAITRE-SHARED.md",
+          "skills/_prompts-maitres/README.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [
+          "skills/_prompts-maitres/PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
+          "skills/_prompts-maitres/PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
+          "skills/_prompts-maitres/PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
+          "skills/_prompts-maitres/PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",
+          "skills/_prompts-maitres/SYNC-CONTEXT.md"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/agent-browser": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/agent-browser/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/agent-prompt-engineering": {
+        "fichiers_depot": 4,
+        "fichiers_local": 4,
+        "identiques": 4,
+        "differents": [],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/ai-news-collectors": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/ai-news-collectors/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/aminer-academic-search": {
+        "fichiers_depot": 4,
+        "fichiers_local": 4,
+        "identiques": 3,
+        "differents": [
+          "skills/aminer-academic-search/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/aminer-daily-paper": {
+        "fichiers_depot": 11,
+        "fichiers_local": 11,
+        "identiques": 10,
+        "differents": [
+          "skills/aminer-daily-paper/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/aminer-deep-search": {
+        "fichiers_depot": 8,
+        "fichiers_local": 8,
+        "identiques": 7,
+        "differents": [
+          "skills/aminer-deep-search/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/aminer-free-academic": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/aminer-free-academic/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/anti-pua": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/anti-pua/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/audio-metadata": {
+        "fichiers_depot": 1,
+        "fichiers_local": 2,
+        "identiques": 0,
+        "differents": [
+          "skills/audio-metadata/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [
+          "skills/audio-metadata/evals/trigger_evals.json"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/auto-target-tracker": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/auto-target-tracker/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/autonomous-agent": {
+        "fichiers_depot": 5,
+        "fichiers_local": 5,
+        "identiques": 3,
+        "differents": [
+          "skills/autonomous-agent/SKILL.md",
+          "skills/autonomous-agent/references/autonomous-agent.agent"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/blog-writer": {
+        "fichiers_depot": 12,
+        "fichiers_local": 12,
+        "identiques": 11,
+        "differents": [
+          "skills/blog-writer/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/charts": {
+        "fichiers_depot": 12,
+        "fichiers_local": 12,
+        "identiques": 11,
+        "differents": [
+          "skills/charts/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/cheat-sheet": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/cheat-sheet/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/clone-chat": {
+        "fichiers_depot": 4,
+        "fichiers_local": 4,
+        "identiques": 1,
+        "differents": [
+          "skills/clone-chat/SKILL.md",
+          "skills/clone-chat/evals/trigger_evals.json"
+        ],
+        "absents_local": [
+          "\"skills/clone-chat/r\\303\\251f\\303\\251rences/clone-template.md\""
+        ],
+        "absents_depot": [
+          "skills/clone-chat/références/clone-template.md"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/coding-agent": {
+        "fichiers_depot": 8,
+        "fichiers_local": 8,
+        "identiques": 7,
+        "differents": [
+          "skills/coding-agent/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/content-strategy": {
+        "fichiers_depot": 2,
+        "fichiers_local": 2,
+        "identiques": 1,
+        "differents": [
+          "skills/content-strategy/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/contentanalysis": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/contentanalysis/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/context-engineering": {
+        "fichiers_depot": 3,
+        "fichiers_local": 5,
+        "identiques": 0,
+        "differents": [
+          "skills/context-engineering/SKILL.md",
+          "skills/context-engineering/evals/evals.json",
+          "skills/context-engineering/evals/trigger_evals.json"
+        ],
+        "absents_local": [],
+        "absents_depot": [
+          "skills/context-engineering/scripts/context-utils.js",
+          "skills/context-engineering/scripts/filter-utils.js"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/correct-work": {
+        "fichiers_depot": 6,
+        "fichiers_local": 7,
+        "identiques": 3,
+        "differents": [
+          "skills/correct-work/SKILL.md",
+          "skills/correct-work/evals/trigger_evals.json",
+          "skills/correct-work/scripts/verify-correct-work.py"
+        ],
+        "absents_local": [],
+        "absents_depot": [
+          "skills/correct-work/references/verification-protocol.md"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/cpp-analysis": {
+        "fichiers_depot": 1,
+        "fichiers_local": 2,
+        "identiques": 0,
+        "differents": [
+          "skills/cpp-analysis/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [
+          "skills/cpp-analysis/evals/trigger_evals.json"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/design": {
+        "fichiers_depot": 561,
+        "fichiers_local": 561,
+        "identiques": 537,
+        "differents": [
+          "skills/design/SKILL.md"
+        ],
+        "absents_local": [
+          "\"skills/design/design-templates/blog-post/\\350\\202\\214\\350\\202\\244\\344\\270\\223\\351\\242\\230\\357\\275\\234\\345\\205\\263\\344\\272\\216\\345\\261\\217\\351\\232\\234\\347\\232\\204\\344\\270\\200\\346\\254\\241\\351\\207\\215\\350\\257\\273.html\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-01-color-macro.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-02-typography.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-03-packaging.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-04-paint-stroke.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-05-brand-flatlay.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-06-studio-portrait.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-07-gradient.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-08-editorial.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-09-ceramic.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-10-urban.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-11-ink-paper.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-12-botanical.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-13-risograph.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-14-gallery-wall.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-15-light-motion.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-16-interior.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-17-color-block.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/images/p-18-magazine.jpg\"",
+          "\"skills/design/design-templates/digital-eguide/case\\357\\274\\210\\346\\227\\240\\351\\231\\220\\347\\224\\273\\345\\270\\203\\357\\274\\232\\344\\275\\234\\345\\223\\201\\351\\233\\206\\357\\274\\211/case/index.html\"",
+          "\"skills/design/design-templates/dot-matrix-xhs/\\347\\202\\271\\351\\230\\265.html\"",
+          "\"skills/design/design-templates/project-brief/\\346\\270\\205\\350\\250\\200\\345\\221\\250\\346\\212\\245-VOL18-notebook.html\"",
+          "\"skills/design/design-templates/waitlist-page/\\345\\261\\202\\344\\272\\221-waitlist.html\""
+        ],
+        "absents_depot": [
+          "skills/design/design-templates/blog-post/肌肤专题｜关于屏障的一次重读.html",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-01-color-macro.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-02-typography.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-03-packaging.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-04-paint-stroke.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-05-brand-flatlay.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-06-studio-portrait.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-07-gradient.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-08-editorial.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-09-ceramic.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-10-urban.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-11-ink-paper.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-12-botanical.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-13-risograph.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-14-gallery-wall.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-15-light-motion.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-16-interior.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-17-color-block.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/images/p-18-magazine.jpg",
+          "skills/design/design-templates/digital-eguide/case（无限画布：作品集）/case/index.html",
+          "skills/design/design-templates/dot-matrix-xhs/点阵.html",
+          "skills/design/design-templates/project-brief/清言周报-VOL18-notebook.html",
+          "skills/design/design-templates/waitlist-page/层云-waitlist.html"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/docx": {
+        "fichiers_depot": 35,
+        "fichiers_local": 35,
+        "identiques": 34,
+        "differents": [
+          "skills/docx/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/dream-interpreter": {
+        "fichiers_depot": 9,
+        "fichiers_local": 9,
+        "identiques": 8,
+        "differents": [
+          "skills/dream-interpreter/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/experiment-suite": {
+        "fichiers_depot": 18,
+        "fichiers_local": 18,
+        "identiques": 17,
+        "differents": [
+          "skills/experiment-suite/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/finance": {
+        "fichiers_depot": 2,
+        "fichiers_local": 2,
+        "identiques": 1,
+        "differents": [
+          "skills/finance/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/fullstack-dev": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/fullstack-dev/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/gaokao-collect-student-info": {
+        "fichiers_depot": 4,
+        "fichiers_local": 4,
+        "identiques": 3,
+        "differents": [
+          "skills/gaokao-collect-student-info/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/gaokao-fetch-volunteers": {
+        "fichiers_depot": 10,
+        "fichiers_local": 10,
+        "identiques": 9,
+        "differents": [
+          "skills/gaokao-fetch-volunteers/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/gaokao-generate-report": {
+        "fichiers_depot": 6,
+        "fichiers_local": 6,
+        "identiques": 5,
+        "differents": [
+          "skills/gaokao-generate-report/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/gaokao-recommend-majors": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/gaokao-recommend-majors/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/gaokao-recommend-schools": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/gaokao-recommend-schools/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/gen-plan": {
+        "fichiers_depot": 9,
+        "fichiers_local": 14,
+        "identiques": 6,
+        "differents": [
+          "skills/gen-plan/SKILL.md",
+          "skills/gen-plan/evals/trigger_evals.json",
+          "skills/gen-plan/references/etapes-detaillees.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [
+          "skills/gen-plan/references/answer-key-b12.md",
+          "skills/gen-plan/references/answer-key-template.md",
+          "skills/gen-plan/references/graph-diamond-pattern.md",
+          "skills/gen-plan/references/observation-patterns.md",
+          "skills/gen-plan/references/patterns-avances-qwen.md"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/get-fortune-analysis": {
+        "fichiers_depot": 2,
+        "fichiers_local": 2,
+        "identiques": 1,
+        "differents": [
+          "skills/get-fortune-analysis/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/gift-evaluator": {
+        "fichiers_depot": 2,
+        "fichiers_local": 2,
+        "identiques": 1,
+        "differents": [
+          "skills/gift-evaluator/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/graph-engineering": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 1,
+        "differents": [
+          "skills/graph-engineering/SKILL.md",
+          "skills/graph-engineering/evals/trigger_evals.json"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/harness-engineering": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 1,
+        "differents": [
+          "skills/harness-engineering/SKILL.md",
+          "skills/harness-engineering/evals/trigger_evals.json"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/image-edit": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/image-edit/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/image-generation": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/image-generation/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/image-search": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/image-search/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/image-understand": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/image-understand/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/interview-designer": {
+        "fichiers_depot": 5,
+        "fichiers_local": 5,
+        "identiques": 4,
+        "differents": [
+          "skills/interview-designer/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/interview-prep": {
+        "fichiers_depot": 11,
+        "fichiers_local": 11,
+        "identiques": 10,
+        "differents": [
+          "skills/interview-prep/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/jd-resume-tailor": {
+        "fichiers_depot": 5,
+        "fichiers_local": 5,
+        "identiques": 4,
+        "differents": [
+          "skills/jd-resume-tailor/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/job-intent-tracker": {
+        "fichiers_depot": 8,
+        "fichiers_local": 8,
+        "identiques": 7,
+        "differents": [
+          "skills/job-intent-tracker/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/literature-survey": {
+        "fichiers_depot": 11,
+        "fichiers_local": 11,
+        "identiques": 10,
+        "differents": [
+          "skills/literature-survey/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/loop-engineering": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 1,
+        "differents": [
+          "skills/loop-engineering/SKILL.md",
+          "skills/loop-engineering/evals/trigger_evals.json"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/market-research-reports": {
+        "fichiers_depot": 8,
+        "fichiers_local": 8,
+        "identiques": 7,
+        "differents": [
+          "skills/market-research-reports/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/marketing-mode": {
+        "fichiers_depot": 5,
+        "fichiers_local": 5,
+        "identiques": 4,
+        "differents": [
+          "skills/marketing-mode/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/mindfulness-meditation": {
+        "fichiers_depot": 2,
+        "fichiers_local": 2,
+        "identiques": 1,
+        "differents": [
+          "skills/mindfulness-meditation/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/multi-search-engine": {
+        "fichiers_depot": 7,
+        "fichiers_local": 7,
+        "identiques": 6,
+        "differents": [
+          "skills/multi-search-engine/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/pdf": {
+        "fichiers_depot": 38,
+        "fichiers_local": 38,
+        "identiques": 37,
+        "differents": [
+          "skills/pdf/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/pdf-llm": {
+        "fichiers_depot": 8,
+        "fichiers_local": 9,
+        "identiques": 7,
+        "differents": [
+          "skills/pdf-llm/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [
+          "skills/pdf-llm/evals/trigger_evals.json"
+        ],
+        "zone_absente_du_depot": false
+      },
+      "skills/podcast-generate": {
+        "fichiers_depot": 7,
+        "fichiers_local": 7,
+        "identiques": 6,
+        "differents": [
+          "skills/podcast-generate/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/pptx": {
+        "fichiers_depot": 14,
+        "fichiers_local": 14,
+        "identiques": 13,
+        "differents": [
+          "skills/pptx/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/qingyan-research": {
+        "fichiers_depot": 2,
+        "fichiers_local": 2,
+        "identiques": 1,
+        "differents": [
+          "skills/qingyan-research/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/quiz-html": {
+        "fichiers_depot": 6,
+        "fichiers_local": 6,
+        "identiques": 5,
+        "differents": [
+          "skills/quiz-html/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/quiz-mastery": {
+        "fichiers_depot": 19,
+        "fichiers_local": 19,
+        "identiques": 18,
+        "differents": [
+          "skills/quiz-mastery/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/research-explorer": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/research-explorer/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/resume-builder": {
+        "fichiers_depot": 13,
+        "fichiers_local": 13,
+        "identiques": 12,
+        "differents": [
+          "skills/resume-builder/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/seo-content-writer": {
+        "fichiers_depot": 4,
+        "fichiers_local": 4,
+        "identiques": 3,
+        "differents": [
+          "skills/seo-content-writer/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/skill-creator": {
+        "fichiers_depot": 18,
+        "fichiers_local": 18,
+        "identiques": 7,
+        "differents": [
+          "skills/skill-creator/SKILL.md",
+          "skills/skill-creator/eval-viewer/generate_review.py",
+          "skills/skill-creator/scripts/__init__.py",
+          "skills/skill-creator/scripts/aggregate_benchmark.py",
+          "skills/skill-creator/scripts/generate_report.py",
+          "skills/skill-creator/scripts/improve_description.py",
+          "skills/skill-creator/scripts/package_skill.py",
+          "skills/skill-creator/scripts/quick_validate.py",
+          "skills/skill-creator/scripts/run_eval.py",
+          "skills/skill-creator/scripts/run_loop.py",
+          "skills/skill-creator/scripts/utils.py"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/skill-finder-cn": {
+        "fichiers_depot": 4,
+        "fichiers_local": 4,
+        "identiques": 3,
+        "differents": [
+          "skills/skill-finder-cn/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/skills-inventory": {
+        "fichiers_depot": 4,
+        "fichiers_local": 4,
+        "identiques": 1,
+        "differents": [
+          "skills/skills-inventory/SKILL.md",
+          "skills/skills-inventory/evals/trigger_evals.json",
+          "skills/skills-inventory/scripts/generate_skills_md.py"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/stock-analysis-skill": {
+        "fichiers_depot": 10,
+        "fichiers_local": 10,
+        "identiques": 9,
+        "differents": [
+          "skills/stock-analysis-skill/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/storyboard-manager": {
+        "fichiers_depot": 7,
+        "fichiers_local": 7,
+        "identiques": 6,
+        "differents": [
+          "skills/storyboard-manager/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/study-buddy": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/study-buddy/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/task-review": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/task-review/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/ui-ux-pro-max": {
+        "fichiers_depot": 56,
+        "fichiers_local": 56,
+        "identiques": 55,
+        "differents": [
+          "skills/ui-ux-pro-max/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/version-management": {
+        "fichiers_depot": 1,
+        "fichiers_local": 1,
+        "identiques": 0,
+        "differents": [
+          "skills/version-management/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/video-generation": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/video-generation/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/video-understand": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/video-understand/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/visual-design-foundations": {
+        "fichiers_depot": 4,
+        "fichiers_local": 4,
+        "identiques": 3,
+        "differents": [
+          "skills/visual-design-foundations/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/web-reader": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/web-reader/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/web-search": {
+        "fichiers_depot": 3,
+        "fichiers_local": 3,
+        "identiques": 2,
+        "differents": [
+          "skills/web-search/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/web-shader-extractor": {
+        "fichiers_depot": 12,
+        "fichiers_local": 12,
+        "identiques": 11,
+        "differents": [
+          "skills/web-shader-extractor/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/writing-plans": {
+        "fichiers_depot": 2,
+        "fichiers_local": 2,
+        "identiques": 1,
+        "differents": [
+          "skills/writing-plans/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      },
+      "skills/xlsx": {
+        "fichiers_depot": 21,
+        "fichiers_local": 21,
+        "identiques": 20,
+        "differents": [
+          "skills/xlsx/SKILL.md"
+        ],
+        "absents_local": [],
+        "absents_depot": [],
+        "zone_absente_du_depot": false
+      }
+    },
+    "scripts": {
+      "fichiers_depot": 23,
+      "fichiers_local": 118,
+      "identiques": 4,
+      "differents": [
+        "scripts/back-depot.py",
+        "scripts/certification-complete.py",
+        "scripts/certification-report.json",
+        "scripts/check-corps-phase2.py",
+        "scripts/check-ecosysteme-integrity.py",
+        "scripts/create-pm-genplan-v3.11.0.py",
+        "scripts/ecosysteme-integrity.json",
+        "scripts/fix-frontmatter.py",
+        "scripts/fix-yaml-cases.py",
+        "scripts/install-ecosystem-skills.py",
+        "scripts/interactions-report.json",
+        "scripts/phase1-nettoyage.py",
+        "scripts/repair-frontmatter-yaml.py",
+        "scripts/scan-versions-reelles.py",
+        "scripts/spell-check.py",
+        "scripts/sync-download.py",
+        "scripts/test-coherence-interactions.py",
+        "scripts/verify-cross.py",
+        "scripts/versions-reelles-report.json"
+      ],
+      "absents_local": [],
+      "absents_depot": [
+        "scripts/_archive/verify-cross-v1.5-legacy.py",
+        "scripts/answer-key-checker.py",
+        "scripts/applique-description-xlsx.py",
+        "scripts/arbitre-negatifs-c2-b12.py",
+        "scripts/arbitre-negatifs-e15-b12.py",
+        "scripts/arbitre-negatifs-trigger-evals.py",
+        "scripts/audit-provenance.py",
+        "scripts/b17-restauration-ecosysteme.sh",
+        "scripts/b19-extraction-qwen.py",
+        "scripts/clone-checks-8-b13-r7-b.py",
+        "scripts/controle-descriptions-originale.py",
+        "scripts/corrige-phase-b.py",
+        "scripts/corrige-phase-c.py",
+        "scripts/corrige-phase-d.py",
+        "scripts/corrige-phase-f.py",
+        "scripts/corrige-phase-g.py",
+        "scripts/corrige-phase-gbis.py",
+        "scripts/corrige-phase-h.py",
+        "scripts/corrige-phase-i1.py",
+        "scripts/finalise-arbitrage-b10.py",
+        "scripts/fix-get-fortune-analysis.py",
+        "scripts/francise-finalise.py",
+        "scripts/francise-skills.py",
+        "scripts/genere-rapport-trigger-evals-b10.py",
+        "scripts/genere-rapport-trigger-evals-b12.py",
+        "scripts/install-corpus-miroir-b13r4.py",
+        "scripts/install-ecosystem.py",
+        "scripts/install-ecosysteme-local.py",
+        "scripts/inventaire-cjk-skills.py",
+        "scripts/n14c-recuration-canal.py",
+        "scripts/n15-verif-orchestrateurs-a-jour.py",
+        "scripts/n20-assemble-pm-gen-plan-3130.py",
+        "scripts/n21-assemble-pm-gen-plan-3160.py",
+        "scripts/n22-recalibrage-b13r5.py",
+        "scripts/n22b-append-l005.py",
+        "scripts/n23-correctif-idempotence-b13r5.py",
+        "scripts/n24-kb-b13r5.py",
+        "scripts/n25-correctif-idempotence-kb.py",
+        "scripts/n25-verif-marqueurs-pm3160.py",
+        "scripts/n26-build-archive-homologues.py",
+        "scripts/n26-correctif-idempotence-kb2.py",
+        "scripts/n27-append-l006.py",
+        "scripts/n27-publication-b13r5.py",
+        "scripts/n28-assemble-pm-gen-plan-3170.py",
+        "scripts/n28-consolidation-b13r5.py",
+        "scripts/n29-recalibrage-certif-b13r5.py",
+        "scripts/n30-installation-b13-r7.py",
+        "scripts/n30-restauration-finale-b13r5.py",
+        "scripts/n4-a2-runner-429aware.sh",
+        "scripts/n4-a4-sha-reference.py",
+        "scripts/n4-batterie-10-scenarios-b12.py",
+        "scripts/n5a-genplan-disciplines.py",
+        "scripts/n5a-r3-propagation-v312-b.py",
+        "scripts/n5a-r3-propagation-v312.py",
+        "scripts/n5b-veille-disciplines.js",
+        "scripts/n60-genplan-3160.py",
+        "scripts/n60b-genplan-3170.py",
+        "scripts/n62-1-completude.py",
+        "scripts/n62-2-coherence.py",
+        "scripts/n63-1.py",
+        "scripts/n63-2.py",
+        "scripts/n7a-completion-propagation-v312.py",
+        "scripts/n8-a-precheck-a2.py",
+        "scripts/normalise-frontmatter-bloques.py",
+        "scripts/propagate-context.py",
+        "scripts/reinjecte-d5-correct-work.py",
+        "scripts/reinstalle-ecosysteme-corrige.py",
+        "scripts/renomme-skills-ecosysteme.py",
+        "scripts/restore-miroir.py",
+        "scripts/retraire-baseline-arbitres.py",
+        "scripts/run-rebaseline-c2val.sh",
+        "scripts/sha-etat-skills.py",
+        "scripts/sha-reference-n4.json",
+        "scripts/sonde-2h-loop.sh",
+        "scripts/sonde-quota-rapide.js",
+        "scripts/sync-context-block.py",
+        "scripts/sync-skills-communs.py",
+        "scripts/t50-charts.py",
+        "scripts/t50-clone-e.py",
+        "scripts/t50-covers.py",
+        "scripts/t50-grafcets.py",
+        "scripts/t50-rapports.py",
+        "scripts/t50-test1-disciplines-parallele.py",
+        "scripts/t50-test2-pipeline-e1-e15.py",
+        "scripts/t50-test3-pression-ressources.py",
+        "scripts/t50_harnais_exec.py",
+        "scripts/t50_harnais_genplan.py",
+        "scripts/t51-consolidation.py",
+        "scripts/t51-figures.py",
+        "scripts/t51_contenus.py",
+        "scripts/t51_contenus2.py",
+        "scripts/t51_style.py",
+        "scripts/t52-prepush-compare.py",
+        "scripts/verify-correct-work.py",
+        "scripts/verify-qwen-truth.py"
+      ],
+      "zone_absente_du_depot": false
+    }
+  },
+  "meta": {
+    "task_id": "52",
+    "date": "2026-09-27",
+    "commit_depot_cible": "d9ff9fb5411985282bdb2bbc5ccaf284c18d971f",
+    "commit_est_head_de_main": true,
+    "commits_distants_apres_cible": 0,
+    "push_execute": false,
+    "exclusions_comparaison": [
+      "__pycache__",
+      "*.pyc",
+      ".git",
+      ".next",
+      "node_modules"
+    ]
+  },
+  "corrections": [
+    {
+      "fichier": "skills/clone-chat/références/clone-template.md",
+      "type": "faux_positif_leve",
+      "explication": "ls-tree git quotait les octets UTF-8 (core.quotepath) ; avec quotepath off : présent des deux côtés, SHA-256 IDENTIQUE."
+    }
+  ],
+  "arbitres_locaux": {
+    "check-ecosysteme-integrity.py": "49/49 PASS, 0 FAIL (manifeste régénéré)",
+    "verify-cross.py (6 axes)": "98,2 % — 0 ERROR, 1 WARNING hérité (frontmatter plateforme S3)",
+    "verify-cross.py --mode correct-work": "98,2 % — 0 ERROR",
+    "verify-correct-work.py": "16/16 ALL PASS",
+    "test-coherence-interactions.py": "43 PASS / 3 WARN stables P5 / 0 FAIL — PASS AVEC RÉSERVES"
+  },
+  "scripts_byte_identiques": [
+    "scripts/_archive/generate-clone-genplan.py",
+    "scripts/_archive/generate-knowledge-v3.py",
+    "scripts/git-deploy.sh",
+    "scripts/lexique-domain.json"
+  ],
+  "synthese_ecosysteme": {
+    "corpus": {
+      "local": 20,
+      "depot": 15,
+      "identiques": 8,
+      "differents": 7,
+      "absents_local": 0,
+      "absents_depot_a_pousser": 5
+    },
+    "miroir_prompts_maitres": "même profil que le corpus (8/7/5) — cohérence corpus↔miroir",
+    "skills_ecosysteme_commun_depot": 9,
+    "skills_ecosysteme_nouveaux_a_pousser": [
+      "knowledge-observer",
+      "agent-creator",
+      "script-creator",
+      "script-reviewer",
+      "audit-provenance",
+      "prompt-engineering",
+      "script-mon-ecosysteme-infrastructure"
+    ],
+    "skills_ecosysteme_divergents": [
+      "gen-plan (SKILL.md + trigger_evals + etapes-detaillees + 5 references locaux)",
+      "correct-work (SKILL.md + trigger_evals + verify-correct-work.py + 1 reference)",
+      "clone-chat (SKILL.md + trigger_evals ; evals.json et clone-template.md identiques)",
+      "skills-inventory (SKILL.md + trigger_evals + generate_skills_md.py)",
+      "skill-creator (11 fichiers — forme plateforme évolutive)",
+      "context-engineering (3 fichiers + 2 scripts locaux)",
+      "loop-engineering (SKILL.md + trigger_evals)",
+      "graph-engineering (SKILL.md + trigger_evals)",
+      "harness-engineering (SKILL.md + trigger_evals)"
+    ],
+    "registre_KB": "divergent = versions locales v3.12→v3.17 + 2 entrées (15 vs 13 attendues dépôt)",
+    "plateforme": "74 répertoires comparés : 976 fichiers identiques, 73 répertoires divergents (évolutions plateforme Z.ai post-installation — hors périmètre écosystème, héritage S3 documenté)",
+    "scripts": {
+      "local": 118,
+      "depot": 23,
+      "identiques": 4,
+      "differents": 19,
+      "absents_depot_a_pousser": 95,
+      "absents_local": 0
+    }
+  },
+  "verdict": {
+    "fichiers_attendus_tous_presents_local": true,
+    "fichiers_tous_a_jour_local": true,
+    "compatibilite": "COMPATIBLE — local = sur-ensemble strict du dépôt@d9ff9fb (aucun fichier du dépôt absent du local ; divergences = évolutions locales versionnées documentées KB/worklog) ; d9ff9fb = HEAD de main, 0 commit en aval → push fast-forward possible sans rebasage.",
+    "preconisation_perimetre": "pousser les zones écosystème (corpus, miroir, KB, 16 skills, scripts) ; décider explicitement du sort des 73 répertoires plateforme divergents avant tout push."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "skill_name": "spec-driven-development",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals de matérialisation N34 (n°54, session B12-r56) — sources de vérité SHARED §7 ; structure miroir des 4 disciplines (graph/context/loop/harness).",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Utilise le skill spec-driven-development pour cadrer cette tâche par une spec.",
+      "expected_behavior": "déclenchement du skill spec-driven-development"
+    },
+    {
+      "id": 2,
+      "query": "Rédige la spécification exécutable : exigences, contraintes, critères d'acceptation mécaniques.",
+      "expected_behavior": "déclenchement du skill spec-driven-development"
+    },
+    {
+      "id": 3,
+      "query": "Décompose la spec en plan puis en tâches atomiques avec preuves attendues.",
+      "expected_behavior": "déclenchement du skill spec-driven-development"
+    },
+    {
+      "id": 4,
+      "query": "Le code a dérivé de la spécification : amende la spec d'abord, puis réaligne l'implémentation.",
+      "expected_behavior": "déclenchement du skill spec-driven-development"
+    },
+    {
+      "id": 5,
+      "query": "Applique le workflow inversé : la spec comme contrat, le code comme artefact généré et vérifié.",
+      "expected_behavior": "déclenchement du skill spec-driven-development"
+    },
+    {
+      "id": 6,
+      "query": "Orchestre une flotte d'agents en patterns fan-out ou supervisor.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    },
+    {
+      "id": 7,
+      "query": "Compacte l'historique de session et sélectionne le plus petit contexte à fort signal.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    }
+  ]
+}

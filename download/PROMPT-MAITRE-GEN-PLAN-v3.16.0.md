@@ -1,8 +1,8 @@
-# PROMPT MAÎTRE — Installation du skill gen-plan v3.11.0
+# PROMPT MAÎTRE — Installation du skill gen-plan v3.16.0
 
-> **Version du prompt** : 1.5.1
-> **Skill cible** : gen-plan v3.11.0
-> **Date** : 2026-09-10
+> **Version du prompt** : 1.7.0
+> **Skill cible** : gen-plan v3.16.0
+> **Date** : 2026-09-26
 > **Source** : Écosystème Knowledge — Clone de discussion
 > **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
 
@@ -174,7 +174,62 @@ Transféré de la directive utilisateur « Pipeline optimisation écosystème »
 
 Ces règles s'appliquent à toute ré-exécution du présent pipeline d'installation (§5) et à toute passe Z0-Z6 sur un corpus déjà traité.
 
+### §1.12 Hooks patterns avancés (v3.13.0, phase N20)
+
+<!-- PATTERN:PM-GEN-PLAN-HOOKS-PATTERNS-v1.0.0 -->
+
+Intégration obligatoire des patterns de `propositions-qwen.md` (montée v3.12.0 → v3.13.0, demande n°34, session B12-r41) — détail complet : SKILL.md §1.2bis ; source de vérité des mécanismes : les références dédiées ci-dessous.
+
+| Hook | Étape | Mécanisme | Référence |
+|------|-------|-----------|------------|
+| **Answer key obligatoire** | **E1** | Chaque décision E1 devient une entrée `D0NN` de l'answer key (criterion, verification exécutable, source, priority S1-S4, status pending) | `references/answer-key-template.md` |
+| **Arbitre answer-key-checker** | **E7/E8** | Le plan référence l'answer key ; à E8, l'arbitre mécanique `scripts/answer-key-checker.py` (16 checks) valide structure, fonctionnalité, idempotence et intégration — verdict PASS requis pour S1/S2 | `scripts/answer-key-checker.py` |
+| **Graph Diamond** | **E9-E14** | Parallélisation exceptionnelle des actions indépendantes (défaut : série, philosophie #4) — tracée au worklog | `references/graph-diamond-pattern.md` |
+| **Observer** | **E15** | Invoque knowledge-observer en modes M1-M2 (observation + analyse post-session) ; les modes M3-M4 exigent un verdict correct-work | `references/observation-patterns.md` |
+
+Fichiers installés par la v3.13.0 (au-delà de la v3.12.0) : `references/answer-key-template.md`, `references/answer-key-b12.md` (N19), `references/graph-diamond-pattern.md`, `references/observation-patterns.md` ; skills ajoutés : `knowledge-observer` v1.0.0 ; skills modifiés : `correct-work` >= v2.6.0 (mode AVEUGLE), `prompt-engineering` >= v2.1.0 (mode M5).
+
+<!-- FIN-PATTERN:PM-GEN-PLAN-HOOKS-PATTERNS-v1.0.0 -->
+
 ---
+
+### §1.12bis Leçons knowledge-observer v3.16.0 (re-curation B13, modes M3-M4)
+
+<!-- PATTERN:PM-GEN-PLAN-KO-LECONS-v1.0.0 -->
+
+Re-curation des leçons L001-L004 du journal `{{SKILLS_ROOT}}knowledge-observer/data/lessons-learned.json`
+(cycle A-H, modes M3-M4, sessions B13 ; hook E15). Reconstitution post-wipe B13-r5 d'après les
+marqueurs et le lignage documentés — les contenus exacts de v3.14.0/v3.15.0, non documentés,
+restent perdus au wipe inter-sessions.
+
+**KO-L001 — Économie API face à un quota 429 persistant** (leçon L001, appliquée) : en cas de
+blocage 429 persistant, ne jamais marteler l'API — une seule sonde par message utilisateur
+(R3-A11), travail local 100 % entre les sondes, armement automatique des suites à QUOTA_OK
+(flag + pré-checks + runner 429-aware `--skip-done`), fenêtres candidates documentées. Toute
+boucle d'attente en-tour est interdite : les démons d'arrière-plan de session sont fauchés entre
+les appels d'outils (constat expérimental R3-A17-bis — le mécanisme honnête reste la sonde
+immédiate à chaque tour, ré-armement best-effort seulement).
+
+**KO-L003 — Arbitres à invariants dynamisés** (leçon L003, appliquée) : tout arbitre mécanique
+dérive ses invariants de l'état courant (frontmatter installé = source de vérité, registre KB,
+comptage réel), jamais d'un état figé. Un invariant figé produit des faux verdicts (faux négatif
+`@mon-ecosysteme` classé PLATEFORME hors set CORE, faux positif `pgrep -f` par auto-match de la
+ligne de commande, état « uniformément v3.11.0 » figé). Toute divergence arbitre ↔ réalité se
+corrige en dynamisant l'arbitre, avec re-verdict honnête obligatoire après correction — jamais
+en ajustant la réalité pour coller au verdict.
+
+**KO-L004 — Recalibrage croisé** (leçon L004, appliquée) : toute montée de version d'un skill de
+l'écosystème déclenche le recalibrage mécanique des outils dépendants AVANT la certification :
+arbitres (`verify-cross.py`, `verify-correct-work.py`, `test-coherence-interactions.py`,
+`check-ecosysteme-integrity.py`, `answer-key-checker.py`), pre-checks (`n8-a-precheck-a2.py`),
+`skills-meta.json`, run-order, SYNC_MAP, miroir et archive. Un outil non recalibré valide l'état
+précédent — verdict inopérant. L'application M4 de toute leçon knowledge-observer intègre donc
+d'office la liste des outils à recalibrer (garde post-édition).
+
+Leçon L002 (snapshot de sécurité avant tout montage) : **proposée**, non appliquée (mode M3 sans
+verdict correct-work) — aucun bloc PATTERN associé ; le pattern reste documenté au journal.
+
+<!-- FIN-PATTERN:PM-GEN-PLAN-KO-LECONS-v1.0.0 -->
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 
@@ -265,7 +320,13 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
 | agent-prompt-engineering | Délégation (§1.9) | Optimisation des prompts complexes, version >= v1.0.0 |
+| context-engineering | Mobilisation (§1.6) | Socle SHARED, Protocole de Découverte KB, lecture bloc par bloc — déclenchement automatique (SHARED §7) |
+| loop-engineering | Mobilisation (§1.6) | Boucle E10-E13 + auto-calibration E15 — déclenchement automatique (SHARED §7) |
+| graph-engineering | Mobilisation (§1.6) | Registre KB graphe bidirectionnel versionné, matrice agent × skill — déclenchement automatique (SHARED §7) |
+| harness-engineering | Mobilisation (§1.6) | Profils ressource, hooks E8 + E9-E14, arbitres, worklog — déclenchement automatique (SHARED §7) |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
+| knowledge-observer | Invocation à E15 (§1.12) | Observation post-session (modes M1-M2), version >= v1.0.0 |
+| answer-key | Arbitrage E7/E8 (§1.12) | Décisions E1 vérifiables mécaniquement — arbitre answer-key-checker.py (16 checks) |
 
 ---
 
@@ -316,7 +377,7 @@ mkdir -p {{SKILLS_ROOT}}gen-plan/evals
 
 ### §5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (~232 lignes, version compacte) doit contenir :
+Le fichier `SKILL.md` (~236 lignes, version compacte) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
 2. **§0 — Règle zéro** (voir SHARED §0)
@@ -459,6 +520,8 @@ Les evals §5.4 sont exécutés dans `{{SKILLS_ROOT}}gen-plan-workspace/iteratio
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v3.13.0 | 2026-09-19 | Phase N20 (demande n°34) : hooks patterns avancés obligatoires (§1.12 : E1 answer key, E7/E8 arbitre answer-key-checker 16 checks, E9-E14 Graph Diamond, E15 knowledge-observer) ; 4 nouvelles références patterns ; dépendance knowledge-observer >= v1.0.0 |
+| v3.16.0 | 2026-09-26 | Re-curation B13 (modes M3-M4 knowledge-observer, hook E15) : §1.12bis leçons KO-L001 (économie API 429) / KO-L003 (arbitres à invariants dynamisés) / KO-L004 (recalibrage croisé) ; arbitres n60-genplan-3160, n62-1-completude, n62-2-coherence, n63-1, n63-2 ; reconstitution post-wipe B13-r5 |
 | v2.0.0 | 2026-07-18 | Version initiale (refusée par l'utilisateur) |
 | v3.1.0 | 2026-07-18 | Refactoring complet suite refus v2.0.0 |
 | v3.3.0 | 2026-07-29 | Ajout Registre KB, Protocole de Découverte |
@@ -471,6 +534,7 @@ Les evals §5.4 sont exécutés dans `{{SKILLS_ROOT}}gen-plan-workspace/iteratio
 | v3.9.0 | 2026-09-06 | Réimplantation des disciplines (directive utilisateur, session A11) : §1.9 devient l'orchestration gen-plan des 5 disciplines, la source de vérité méthodologique est déplacée vers SHARED §7 (SHARED v1.3.0) ; matérialisation des 4 disciplines d'exécution en agents ({{SKILLS_ROOT}}_disciplines/, format §2.3 autonomous-agent) et retrait de la matérialisation erronée references/gen-plan.agent (A9 — matérialisait gen-plan au lieu des disciplines) ; §1.10 actualisé ; evals version 3.9.0. Description frontmatter inchangée ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
 | v3.10.0 | 2026-09-07 | Gestion du plan d'actions de session (directive utilisateur, session A12) : §1.8 enrichi de la règle d'or n°2 (régénération cohérente du plan d'actions actuel via le nouveau skill gen-plan à chaque installation d'un nouvel écosystème) et de la règle d'or n°3 (mise à jour cohérente du plan d'actions actuel via gen-plan à chaque nouvelle demande utilisateur pendant l'exécution) ; E13 renvoi aux règles d'or n°2-n°3 ; evals version 3.10.0. Description frontmatter inchangée (non-régression triggers 9/9) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
 | v3.11.0 | 2026-09-10 | Intégration du Prompt Engineering Kit v4.1 (directive utilisateur, session B1) : couche de raisonnement adaptative — 3 modes d'exécution (CoT 7 étapes / Chaining 4 étapes / Hybride, bascule selon complexité E1-E3, calibrage profils §2.4), blocs de sortie adaptatifs A-J mappés sur les Types 1-4 (E3), 9 règles critiques, 12 checks + scoring 25 pts (seuil 22/25) alignés sur les hooks correct-work E9-E14 ; §1.9 enrichi de l'orchestration PEK ; 6e référence `references/prompt-engineering-kit.md` (in extenso §9.6) ; §2.2 actualisée. Description frontmatter inchangée (non-régression triggers 9/9) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+| v3.12.0 | 2026-09-19 | Mobilisation disciplinaire complète de la planification (audit N5-a, session B12 r19-bis ; re-montée N14-b r32 après incident B-15) : §1.9 enrichi de la table de mobilisation E1-E8 (disciplines × étapes de planification — interprétation PEK E1-E3 conforme, génération E4-E8 explicitée) ; §3 relations étendues aux 4 disciplines d'exécution (déclenchement automatique, SHARED §7) ; E1/E5/E7/E8 (§9.1) enrichies de leurs disciplines mobilisées ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
 
 Révision documentaire 2026-09-06 (sans changement de version ni de contrat) : §1.9 explicité comme détenteur de la méthode prompt-engineering (méthode-mère) ; assignation en fonction héritée enregistrée en SHARED §7, avec déclarations correspondantes dans les §B des PM correct-work v2.4.0 et clone-chat v2.0.0.
 
@@ -508,6 +572,8 @@ Les 5 fichiers référence suivants doivent être créés dans `{{SKILLS_ROOT}}g
 ## E1 — Analyse de la demande
 
 **Objectif** : Décortiquer la demande utilisateur pour en extraire les livrables, contraintes et critères de succès.
+
+**Disciplines mobilisées** (v3.12.0) : prompt-engineering (PEK — interprétation CoT/Chaining/Hybride), context-engineering (lecture SHARED/KB préalable). Voir table de mobilisation §1.6.
 
 **Inputs** :
 - Message ou demande brute de l'utilisateur
@@ -612,6 +678,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 
 **Objectif** : Identifier les skills pertinents pour la tâche.
 
+**Disciplines mobilisées** (v3.12.0) : graph-engineering (graphe KB, matrice agent × skill), context-engineering (Protocole de Découverte, lecture bloc par bloc). Voir table de mobilisation §1.6.
+
 **Inputs** :
 - Type de tâche (E3)
 - Ressources disponibles (E2)
@@ -655,6 +723,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 
 **Objectif** : Assembler le plan d'exécution structuré.
 
+**Disciplines mobilisées** (v3.12.0) : loop-engineering (boucles R3 prédéfinies — règle d'or n°1), context-engineering (plan auto-suffisant), harness-engineering (hooks par phase E9-E14, worklog structuré). Voir table de mobilisation §1.6.
+
 **Inputs** :
 - Livrables (E1), Skills (E5), Profil (E6), #token (E4)
 
@@ -674,6 +744,8 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 ## E8 — Validation du plan
 
 **Objectif** : Vérifier cohérence, complétude et faisabilité.
+
+**Disciplines mobilisées** (v3.12.0) : harness-engineering (hook correct-work — 3 verdicts), prompt-engineering (12 checks PEK — scoring 22/25). Voir table de mobilisation §1.6.
 
 **Inputs** :
 - Plan brut (E7), Contraintes (E1)

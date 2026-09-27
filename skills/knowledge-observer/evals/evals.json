@@ -1,0 +1,56 @@
+{
+  "skill_name": "knowledge-observer",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation (phase N20, session B12-r41) au schéma exact skill-creator — couvrent le cycle A-H (§1.2), les 4 modes (§1.3) et les garde-fous (§1.4).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "KO-observation-passive — M1 ne modifie rien",
+      "prompt": "Observe cette session en mode M1 et journalise les patterns d'erreur détectés",
+      "expected_output": "Un journal d'observation avec les patterns détectés, et data/lessons-learned.json mis à jour — aucun autre fichier modifié",
+      "files": [],
+      "expectations": [
+        "Le mode M1 n'écrit que dans data/lessons-learned.json",
+        "Chaque pattern détecté cite au moins une occurrence concrète",
+        "Aucun artefact d'écosystème n'est modifié en M1"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "KO-analyse-post-session — M2 à E15",
+      "prompt": "Effectue l'analyse post-session de cette discussion (mode M2, étapes C-D)",
+      "expected_output": "Un rapport d'analyse post-session listant les lessons enregistrées et leurs occurrences",
+      "files": [],
+      "expectations": [
+        "Les lessons sont enregistrées au format schéma §4 (id, pattern, occurrences, statut)",
+        "Le rapport d'analyse distingue récurrences (>= 3 occurrences, 2 si S1) et faits isolés",
+        "Aucune proposition n'est appliquée en M2"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "KO-proposition-validee — M3 exige verdict correct-work",
+      "prompt": "Propose des mises à jour de skills à partir des lessons détectées (mode M3)",
+      "expected_output": "Des propositions idempotentes (marqueurs, rejeu sans effet) avec demande de validation correct-work",
+      "files": [],
+      "expectations": [
+        "Chaque proposition porte un marqueur d'idempotence",
+        "Aucune proposition n'est appliquée sans verdict correct-work (étape F)",
+        "Les propositions respectent R2 (extension, jamais réécriture destructrice)"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "KO-application-tracee — M4 applique et trace",
+      "prompt": "Applique la lesson validée L001 et mets à jour le registre (mode M4, étapes G-H)",
+      "expected_output": "Correctif appliqué avec marqueur, worklog et KB mis à jour (entrée + Décisions)",
+      "files": [],
+      "expectations": [
+        "L'application suit un verdict correct-work PASS (ou PASS AVEC RÉSERVES journalisé)",
+        "Le worklog et le KB sont mis à jour (étape H)",
+        "La garde anti-boucle (max 2 rounds par artefact) est respectée"
+      ]
+    }
+  ]
+}

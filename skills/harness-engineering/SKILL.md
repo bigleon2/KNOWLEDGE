@@ -15,6 +15,14 @@ description: >-
 dependencies: []
 ---
 
+## §0 — Contexte Système (SHARED v1.5.2)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 ## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
 
 Les fichiers des sessions précédentes n'existent pas dans une nouvelle session : tout est
@@ -106,7 +114,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 ## §6 — TRAÇABILITÉ
 
-- **Origine** : session A11 — matérialisation intermédiaire en agent `_disciplines/` (format §2.3 autonomous-agent).
+- **Origine** : session A11 — matérialisation intermédiaire en agent `_disciplines/` (format §2.3 agent-creator).
 - **Matérialisation skill** : session A12, 2026-09-07 — levée de la réserve A11 « agents sans trigger_evals ».
 - **Preuve de retrait** : SHA-256 des agents `_disciplines/` consignés avant suppression ; contenu normatif repris ici et en SHARED §7.
 - **Statut** : stable ; déclenchement automatique requis.
@@ -116,6 +124,20 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 - `PROMPT-MAITRE-SHARED.md §7` — source de vérité de la discipline, registre d'assignation et ancrage état de l'art.
 - `PROMPT-MAITRE-GEN-PLAN-v3.10.0.md §1.9` — orchestration gen-plan des disciplines.
-- `skills/agent-prompt-engineering/SKILL.md` — modèle de matérialisation skill (évals + triggers).
+- `skills/prompt-engineering/SKILL.md` — modèle de matérialisation skill (évals + triggers).
 - `skills/KNOWLEDGE.md` — entrée du registre et relations bidirectionnelles.
 
+---
+
+## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
+
+> 📎 Les définitions des disciplines restent dans `PROMPT-MAITRE-SHARED.md §7` (source de vérité conservée) ; le registre d'assignation est copié ici pour l'autonomie du skill (Architecture v2.0).
+
+| Détenteur | Mode de détention | Usage |
+|-----------|-------------------|-------|
+| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.11.0 §1.9 | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
+| `correct-work` | **Fonction héritée** | Lecture et validation d'artefacts de prompts (specs, SKILL.md, rapports de vérification) |
+| `clone-chat` | **Fonction héritée** | Assemblage de documents-clones, produits d'ingénierie de prompts |
+| `prompt-engineering` | Compétence spécialisée (matérialisé v1.0.1) | Optimisation fine des prompts complexes (délégation gen-plan) |
+| `agent-creator` | Fonction héritée (auto-définition : `references/agent-creator.agent` §2.3) | Contexte (mémoire EC/EL) et boucles (pipeline A-H) |
+| `context-engineering` / `loop-engineering` / `graph-engineering` / `harness-engineering` | **Matérialisations skills des disciplines** (déclenchement automatique) | Application dédiée de leur discipline respective ; socle normatif : SHARED §7 |

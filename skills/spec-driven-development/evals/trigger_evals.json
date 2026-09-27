@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill spec-driven-development pour cadrer cette tâche par une spec.",
+    "should_trigger": true
+  },
+  {
+    "query": "Rédige la spécification exécutable : exigences, contraintes, critères d'acceptation mécaniques.",
+    "should_trigger": true
+  },
+  {
+    "query": "Décompose la spec en plan puis en tâches atomiques avec preuves attendues.",
+    "should_trigger": true
+  },
+  {
+    "query": "Le code a dérivé de la spécification : amende la spec d'abord, puis réaligne l'implémentation.",
+    "should_trigger": true
+  },
+  {
+    "query": "Applique le workflow inversé : la spec comme contrat, le code comme artefact généré et vérifié.",
+    "should_trigger": true
+  },
+  {
+    "query": "Orchestre une flotte d'agents en patterns fan-out ou supervisor.",
+    "should_trigger": false
+  },
+  {
+    "query": "Compacte l'historique de session et sélectionne le plus petit contexte à fort signal.",
+    "should_trigger": false
+  }
+]

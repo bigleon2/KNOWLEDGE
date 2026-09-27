@@ -1,34 +1,30 @@
 [
   {
-    "query": "vérifie le travail qui vient d'être fait",
+    "query": "Utilise le skill correct-work pour vérifier et corriger un travail réalisé.",
     "should_trigger": true
   },
   {
-    "query": "corrige les erreurs de ce livrable",
+    "query": "correct-work(projet) : vérifie tout le projet avant livraison.",
     "should_trigger": true
   },
   {
-    "query": "contrôle la cohérence de tout le projet",
+    "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",
     "should_trigger": true
   },
   {
-    "query": "passe correct-work en mode CIBLE sur ce fichier",
+    "query": "Contrôle la cohérence de ce que tu viens de produire avant que je livre.",
     "should_trigger": true
   },
   {
-    "query": "y a-t-il des omissions ou des incohérences dans ce rapport ?",
-    "should_trigger": true
-  },
-  {
-    "query": "planifie cette nouvelle tâche",
+    "query": "Élabore le plan d'action structuré de ce projet : classification, estimation de coût, sélection de skills, jalons.",
     "should_trigger": false
   },
   {
-    "query": "clone cette discussion",
+    "query": "On n'a encore rien produit : commence par planifier la tâche.",
     "should_trigger": false
   },
   {
-    "query": "bonjour",
+    "query": "Sauvegarde cette conversation en Markdown autonome.",
     "should_trigger": false
   }
 ]

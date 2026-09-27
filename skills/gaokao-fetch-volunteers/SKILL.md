@@ -1,11 +1,8 @@
 ---
 name: gaokao-fetch-volunteers
-version: 1.0.0
-category: metier
-language: fr
-description: 调用高考智能推荐志愿表 API，根据考生基本信息及专业/城市/院校倾向（映射为 API 选填参数） 获取冲稳保志愿列表，解析为 parsed.json。适用于获取推荐院校、冲稳保志愿表、志愿 API 调用。
-tags: []
-dependencies: []
+description: >-
+  调用高考智能推荐志愿表 API，根据考生基本信息及专业/城市/院校倾向（映射为 API 选填参数）
+  获取冲稳保志愿列表，解析为 parsed.json。适用于获取推荐院校、冲稳保志愿表、志愿 API 调用。
 ---
 
 # 获取推荐志愿表

@@ -1,0 +1,56 @@
+{
+  "skill_name": "script-creator",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation (session B13-r4) au schéma exact skill-creator — couvrent le processus 7 étapes (§1.2) et les garde-fous (§1.3).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "SC-creation-simple — script stdlib avec critères et test",
+      "prompt": "Crée un script Python stdlib qui vérifie un critère simple de l'écosystème, teste-le et prouve son idempotence",
+      "expected_output": "Un script persisté sous scripts/ (docstring, main, JSON déterministe, code de retour), un test exécuté et une preuve de rejeu ×2 à l'identique",
+      "files": [],
+      "expectations": [
+        "Le script est écrit sous scripts/ avant exécution (R9)",
+        "La sortie est déterministe (rejeu ×2 identique)",
+        "Aucune dépendance externe non justifiée (N3)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "SC-modification-idempotente — édition ciblée, jamais réécriture",
+      "prompt": "Modifie le script existant pour corriger le bug signalé, sans réécrire le fichier entier",
+      "expected_output": "Un patch ciblé de la ligne fautive, les autres sections inchangées (hachage ou diff), rejeu ×2",
+      "files": [],
+      "expectations": [
+        "L'édition est ciblée (R-F3 : lire avant d'écrire)",
+        "Le reste du fichier est inchangé",
+        "Le rejeu après correction reste à l'identique"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "SC-arbitre-lecture-seule — arbitre avec auto-test cas limites",
+      "prompt": "Crée un arbitre générique de vérification avec auto-test de ses cas limites",
+      "expected_output": "Un arbitre en lecture seule, sortie JSON, verdict explicite, auto-test intégré des cas limites et preuve ×2",
+      "files": [],
+      "expectations": [
+        "L'arbitre ne modifie aucun artefact (lecture seule)",
+        "Les cas limites connus sont couverts par l'auto-test (P2, gen-plan §1.14)",
+        "Deux exécutions consécutives produisent le même verdict"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "SC-tracabilite — persistance, worklog et verdict journalisés",
+      "prompt": "Produis un script livrable d'écosystème et trace sa livraison",
+      "expected_output": "Script persisté, passage correct-work (mode CIBLE) consigné, entrée worklog (règle d'or n°1)",
+      "files": [],
+      "expectations": [
+        "Le script est persisté sous scripts/ (jamais inline)",
+        "La validation correct-work est journalisée",
+        "L'entrée worklog cite le script, son verdict et sa preuve d'idempotence"
+      ]
+    }
+  ]
+}

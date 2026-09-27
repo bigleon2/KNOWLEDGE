@@ -9,45 +9,55 @@ tags:
   - catalog
   - ecosystem
 description: >
-  Skill inventory scanner and reporter. Activates whenever the user asks to list, inventory,
-  catalog, browse, search, or explore available skills — e.g. "quelles sont les skills dispo",
-  "list all skills", "show me what skills I have", "inventory of skills", "what skills are
-  installed", "génère l'inventaire des skills", "skills.md", "skill browser", "find a skill for X",
-  "which skill should I use for Y", "is there a skill that does Z", "what tools and capabilities
-  do I have", "how many skills in category X". Also triggers when the user mentions "skills-inventory"
-  explicitly or asks about skill categories, counts, statistics, or comparisons between skills.
-  Use this skill whenever you need to scan /home/z/my-project/skills/, generate a skills inventory
-  document, find the right skill for a task, or answer questions about the skill ecosystem — even
-  if the user doesn't explicitly say "skill inventory".
+  Scanner et rapporteur d'inventaire des skills. S'active dès que l'utilisateur demande de
+  lister, d'inventorier, de cataloguer, de parcourir, de chercher ou d'explorer les skills
+  disponibles — p. ex. "quelles sont les skills dispo", "list all skills", "montre-moi tes
+  skills", "inventaire des skills", "quelles skills sont installées", "génère l'inventaire
+  des skills", "skills.md", "skill browser", "trouve une skill pour X", "quelle skill
+  utiliser pour Y", "existe-t-il une skill qui fait Z", "quels outils et capacités
+  ai-je", "combien de skills dans la catégorie X". Se déclenche également quand
+  l'utilisateur mentionne "skills-inventory" explicitement ou s'interroge sur les catégories,
+  les effectifs, les statistiques ou les comparaisons de skills. Utilise ce skill dès qu'il
+  faut scanner /home/z/my-project/skills/, produire un document d'inventaire des skills,
+  trouver la bonne skill pour une tâche, ou répondre à des questions sur l'écosystème de
+  skills — même si l'utilisateur ne dit pas explicitement "inventaire des skills".
 dependencies: []
 ---
 
-# Skills Inventory
+## §0 — Contexte Système (SHARED v1.5.2)
 
-Scan the local skills directory, build a structured inventory, and present it to the user.
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 
-## Overview
 
-This skill provides a complete inventory of all installed skills in `/home/z/my-project/skills/`.
-It reads every `SKILL.md` frontmatter, extracts metadata (name, version, description, category),
-and produces a rich markdown inventory that can be displayed inline, saved as a file, or used to
-answer skill-related questions.
+
+# Skills Inventory (Inventaire des Skills)
+
+Scanne le répertoire local des skills, construit un inventaire structuré et le présente à l'utilisateur.
+
+## Vue d'ensemble
+
+Ce skill fournit un inventaire complet de toutes les skills installées dans `/home/z/my-project/skills/`.
+Il lit le frontmatter de chaque `SKILL.md`, extrait les métadonnées (nom, version, description, catégorie)
+et produit un inventaire markdown riche qui peut être affiché en ligne, sauvegardé dans un fichier, ou
+utilisé pour répondre aux questions liées aux skills.
 
 ## Workflow
 
-1. **Run the scanner script** to get the current state of all skills.
-2. **Parse the output** into a structured summary.
-3. **Present results** in the format the user requested (inline summary, full file, or targeted answer).
+1. **Exécuter le script scanner** pour obtenir l'état courant de toutes les skills.
+2. **Analyser la sortie** pour en tirer un résumé structuré.
+3. **Présenter les résultats** dans le format demandé par l'utilisateur (résumé en ligne, fichier complet, ou réponse ciblée).
 
-## Step 1 — Run the Scanner
+## Étape 1 — Exécuter le scanner
 
-Execute the bundled scanner script:
+Exécute le script scanner fourni avec le skill :
 
 ```bash
 python /home/z/my-project/skills/skills-inventory/scripts/generate_skills_md.py --json
 ```
 
-This outputs a JSON array to stdout with one entry per skill:
+La sortie est un tableau JSON sur stdout avec une entrée par skill :
 
 ```json
 [
@@ -65,19 +75,19 @@ This outputs a JSON array to stdout with one entry per skill:
 ]
 ```
 
-Flags:
-- `--json` — output raw JSON (for programmatic use)
-- `--output /path/to/file.md` — write full markdown inventory to a file
-- `--category "IA & Media"` — filter to a single category
-- `--search "chart"` — filter skills whose name or description contains the search term
+Options :
+- `--json` — sortie JSON brute (pour usage programmatique)
+- `--output /path/to/file.md` — écrit l'inventaire markdown complet dans un fichier
+- `--category "IA & Media"` — filtre sur une seule catégorie
+- `--search "chart"` — filtre les skills dont le nom ou la description contient le terme recherché
 
-## Step 2 — Present Results
+## Étape 2 — Présenter les résultats
 
-Choose the presentation based on what the user asked for:
+Choisis la présentation en fonction de la demande de l'utilisateur :
 
-### Inline summary (default when user asks "list skills" or "what skills do you have")
+### Résumé en ligne (par défaut quand l'utilisateur demande "lister les skills" ou "quelles skills as-tu")
 
-Show a compact table grouped by category with skill counts:
+Affiche un tableau compact groupé par catégorie avec les effectifs :
 
 ```
 ### Skills installées (66 skills, 12 catégories)
@@ -89,56 +99,83 @@ Show a compact table grouped by category with skill counts:
 | ... | ... |
 ```
 
-### Full inventory (when user asks to "generate skills.md" or "export inventory")
+### Inventaire complet (quand l'utilisateur demande de "générer skills.md" ou "exporter l'inventaire")
 
-Run with `--output` to write the complete markdown file:
+Exécute avec `--output` pour écrire le fichier markdown complet :
 
 ```bash
 python /home/z/my-project/skills/skills-inventory/scripts/generate_skills_md.py \
   --output /home/z/my-project/download/skills.md
 ```
 
-### Targeted search (when user asks "find a skill for X" or "which skill does Y")
+### Recherche ciblée (quand l'utilisateur demande "trouve une skill pour X" ou "quelle skill fait Y")
 
-Run with `--search` and present matching results:
+Exécute avec `--search` et présente les résultats correspondants :
 
 ```bash
 python /home/z/my-project/skills/skills-inventory/scripts/generate_skills_md.py \
   --search "chart" --json
 ```
 
-## Category Reference
+## Référentiel des catégories
 
-The scanner classifies skills into these 12 categories:
+Le scanner classe les skills dans ces 12 catégories :
 
-| Category | Typical Skills |
+| Catégorie | Skills typiques |
 |---|---|
-| Autres | Miscellaneous skills not fitting other categories |
-| Carrière & Emploi | Resume, interview, job tracking |
-| Contenu & Marketing | Blog, SEO, content strategy, marketing |
+| Autres | Skills diverses ne rentrant dans aucune autre catégorie |
+| Carrière & Emploi | CV, entretiens, suivi des candidatures |
+| Contenu & Marketing | Blog, SEO, stratégie de contenu, marketing |
 | Documents & Contenu | PDF, DOCX, PPTX, XLSX, cheat-sheet |
-| Développement | Fullstack, coding agent, version management |
-| Finance & Recherche | Finance, stock analysis, academic search, market research |
-| IA & Media | ASR, TTS, LLM, VLM, image/video generation & understanding |
-| Lifestyle & Bien-être | Wellness, dream interpreter, fortune analysis |
-| Méta (Skills & Plans) | Skill creator, skill finder, writing plans, task review |
-| Visualisation & Design | Charts, design, UI/UX, visual foundations |
-| Web & Recherche | Web search, web reader, multi-search, agent browser |
-| Éducation | Quiz, study buddy, gaokao (college entrance exam) tools |
+| Développement | Fullstack, agent de codage, gestion de versions |
+| Finance & Recherche | Finance, analyse boursière, recherche académique, étude de marché |
+| IA & Media | ASR, TTS, LLM, VLM, génération/compréhension d'images et vidéos |
+| Lifestyle & Bien-être | Bien-être, interprétation des rêves, analyse de fortune |
+| Méta (Skills & Plans) | Créateur de skills, recherche de skills, plans rédactionnels, revue de tâches |
+| Visualisation & Design | Charts, design, UI/UX, fondations visuelles |
+| Web & Recherche | Recherche web, lecture web, multi-recherche, navigateur d'agent |
+| Éducation | Quiz, study buddy, outils gaokao (concours d'entrée universitaire) |
 
-## Output Format
+## Format de sortie
 
-The full markdown inventory (`skills.md`) contains:
-- Header with generation date, total skill count, category count
-- Clickable table of contents linking to each category section
-- Per-category tables: Name, Version, AKA, Date, Size, Lines, Description
-- Detailed per-skill section with full description
-- Footer with file metadata
+L'inventaire markdown complet (`skills.md`) contient :
+- Un en-tête avec la date de génération, le nombre total de skills et de catégories
+- Une table des matières cliquable vers chaque section de catégorie
+- Des tableaux par catégorie : Nom, Version, AKA, Date, Taille, Lignes, Description
+- Une section détaillée par skill avec la description complète
+- Un pied de page avec les métadonnées du fichier
 
 ## Notes
 
-- The scanner reads YAML frontmatter from each `SKILL.md`. If a skill has no frontmatter,
-  it falls back to `_meta.json`, then to keyword-based heuristic classification.
-- Skills without a `SKILL.md` in their directory are silently skipped.
-- The inventory is a point-in-time snapshot. Re-run the scanner to refresh.
-- This skill replaces the old manual `generate_skills_md.py` that was in `/scripts/`.
+- Le scanner lit le frontmatter YAML de chaque `SKILL.md`. Si une skill n'a pas de frontmatter,
+  il retombe sur `_meta.json`, puis sur une classification heuristique par mots-clés.
+- Les skills sans `SKILL.md` dans leur répertoire sont silencieusement ignorées.
+- L'inventaire est un instantané à un instant donné. Relance le scanner pour l'actualiser.
+- Ce skill remplace l'ancien `generate_skills_md.py` manuel qui était dans `/scripts/`.
+
+---
+
+## Écosystème Knowledge — Registre KB (décentralisé, Architecture v2.0)
+
+> 📎 Contenu décentralisé depuis `PROMPT-MAITRE-SHARED.md` (corrige-ecosysteme v2.0.0).
+
+### §2.1 Format d'une entrée KNOWLEDGE.md (décentralisé du SHARED §2.2)
+
+```markdown
+## [nom-skill] v[X.Y.Z]
+
+- **Category** : [category]
+- **Description** : [description courte]
+- **Dépend de** : [liste des skills et versions min]
+- **Utilisé par** : [liste des skills qui utilisent celui-ci]
+- **Dernière calibration** : [date ou N/A]
+- **Statut** : [stable | expérimental | en cours]
+```
+
+### §2.2 Protocole de Découverte (décentralisé du SHARED §2.3)
+
+Quand un skill doit identifier les skills pertinents pour une tâche :
+1. Scanner les entrées de `KNOWLEDGE.md` par catégorie et tags
+2. Filtrer par compatibilité de version
+3. Vérifier les dépendances croisées
+4. Produire une liste ordonnée des skills candidats

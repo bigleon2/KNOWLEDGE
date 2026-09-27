@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill script-mon-ecosysteme-infrastructure pour générer les fichiers d'infrastructure de l'écosystème (3 niveaux de contexte).",
+    "should_trigger": true
+  },
+  {
+    "query": "Génère le script d'infrastructure de l'écosystème avec l'en-tête Contexte Système.",
+    "should_trigger": true
+  },
+  {
+    "query": "Produis les fichiers d'infrastructure écosystème avec injection automatique du Contexte Système (3 niveaux) et règles INFRA.",
+    "should_trigger": true
+  },
+  {
+    "query": "Régénère un script d'arbitre conforme aux règles INFRA-1 à INFRA-3.",
+    "should_trigger": true
+  },
+  {
+    "query": "Conçois un skill complet : SKILL.md, frontmatter, evals, trigger_evals, puis itère avec les evals.",
+    "should_trigger": false
+  },
+  {
+    "query": "Crée un nouveau skill de A à Z.",
+    "should_trigger": false
+  },
+  {
+    "query": "Lance l'installation complète de l'écosystème sur ce profil.",
+    "should_trigger": false
+  }
+]

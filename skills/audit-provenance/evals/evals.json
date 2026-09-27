@@ -1,0 +1,56 @@
+{
+  "skill_name": "audit-provenance",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation (session B13-r6, phase N27, directive trace 1a0df36f356c3add) au schéma exact skill-creator — couvrent le processus 6 étapes (§1.2) et les garde-fous (§1.3). Matérialisation de la leçon L006.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "AP-audit-simple — rapport de provenance lecture seule",
+      "prompt": "Audite la provenance des artefacts de l'écosystème et produit un rapport JSON sans rien modifier",
+      "expected_output": "Un rapport JSON (tmp/b13r5-install/) listant n_scanned, with_provenance, without_provenance et les artefacts orphelins ; aucun fichier modifié ; code retour 0",
+      "files": [],
+      "expectations": [
+        "Le collecteur scripts/audit-provenance.py est exécuté sans --fix (lecture seule, GF-1)",
+        "Le rapport est persisté sous tmp/ (R9) et contient la liste des marqueurs utilisés",
+        "Le code retour est 0 et la sortie JSON est déterministe"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "AP-rewrite-idempotent — correction des orphelins avec preuve ×2",
+      "prompt": "Corrige les artefacts sans provenance puis prouve que le second passage est un no-op",
+      "expected_output": "En-têtes PROVENANCE: insérés dans les artefacts orphelins choisis, second exécution sans nouveau delta (rapports identiques), preuve ×2 documentée",
+      "files": [],
+      "expectations": [
+        "L'insertion est gardée par le marqueur PROVENANCE: (GF-2)",
+        "Aucune réécriture totale : seul l'en-tête est ajouté (GF-5 script-creator)",
+        "Les deux rapports consécutifs post-fix sont identiques (idempotence prouvée)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "AP-lignage-wipe — audit après restauration",
+      "prompt": "Nous avons restauré l'écosystème après un wipe : audite le lignage des artefacts avant le clone de la discussion",
+      "expected_output": "Rapport couvrant skills écosystème, scripts, corpus, rapports et plans ; artefacts « reconstitué post-wipe » identifiés ; orphelins listés avec recommandation (archiver ou documenter)",
+      "files": [],
+      "expectations": [
+        "Le périmètre couvre les artefacts vivants de l'écosystème (étape 1 §1.2)",
+        "Les mentions de reconstitution (reconstitué, restaur, épinglé, wipe) sont reconnues par l'heuristique",
+        "Le rapport distingue les artefacts scellés (PATTERN:, SYNC-CONTEXT) des artefacts documentés par session"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "AP-rollback-safe — aucun artefact corrompu par le fix",
+      "prompt": "Corrige les provenances manquantes sans casser les scripts ni les arbitres",
+      "expected_output": "Après --fix, tous les arbitres mécaniques (integrity, interactions, verify-cross, verify-correct-work, certification) restent PASS ; les scripts corrigés restent compilables",
+      "files": [],
+      "expectations": [
+        "Le fix n'insère que des commentaires/lignes d'en-tête syntaxe-safes",
+        "La garde post-écriture (arbitres ×2) est exécutée et PASS (GF-4)",
+        "Le worklog est appendé avec le détail des artefacts corrigés (règle d'or n°1)"
+      ]
+    }
+  ]
+}

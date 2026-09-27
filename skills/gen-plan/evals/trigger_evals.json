@@ -1,38 +1,30 @@
 [
   {
-    "query": "planifie cette tâche pour moi",
+    "query": "Utilise le skill gen-plan pour planifier une tâche (modes, étapes E1-E15, estimation de coût).",
     "should_trigger": true
   },
   {
-    "query": "crée-moi un plan d'exécution détaillé",
+    "query": "gen-plan : organise l'exécution de cette demande complexe.",
     "should_trigger": true
   },
   {
-    "query": "organise ce travail en étapes avec une estimation d'effort",
+    "query": "Élabore le plan d'action structuré de ce projet : classification, estimation de coût, sélection de skills, jalons.",
     "should_trigger": true
   },
   {
-    "query": "quelle est ton estimation de #tokens pour cette tâche ?",
+    "query": "Analyse ma demande et produis un plan avec étapes, priorités et points de contrôle.",
     "should_trigger": true
   },
   {
-    "query": "quel profil ressource (LIGHT/NORMAL/HEAVY) pour cette demande ?",
-    "should_trigger": true
-  },
-  {
-    "query": "classe cette tâche : document, analyse ou développement web ?",
-    "should_trigger": true
-  },
-  {
-    "query": "vérifie le travail que tu viens de faire",
+    "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",
     "should_trigger": false
   },
   {
-    "query": "traduis ce document en anglais",
+    "query": "Vérifie plutôt le travail qui a déjà été fait.",
     "should_trigger": false
   },
   {
-    "query": "bonjour",
+    "query": "Résume l'historique complet de cette conversation.",
     "should_trigger": false
   }
 ]

@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill cpp-analysis pour analyser du code C++ (structure, qualité, dépendances).",
+    "should_trigger": true
+  },
+  {
+    "query": "Analyse l'architecture de ce gros projet C++ et ses dépendances.",
+    "should_trigger": true
+  },
+  {
+    "query": "Cartographie le code C++ : modules, dépendances, complexité, points de dette technique.",
+    "should_trigger": true
+  },
+  {
+    "query": "Évalue la qualité et la sûreté de cette base C++ avant la migration.",
+    "should_trigger": true
+  },
+  {
+    "query": "Exécute le cycle de développement : plan, implémentation propre, vérification, tests automatisés.",
+    "should_trigger": false
+  },
+  {
+    "query": "Refactors directement ce fichier C++.",
+    "should_trigger": false
+  },
+  {
+    "query": "Configure CMake pour compiler mon projet.",
+    "should_trigger": false
+  }
+]

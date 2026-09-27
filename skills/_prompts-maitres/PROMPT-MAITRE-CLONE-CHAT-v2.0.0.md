@@ -5,7 +5,39 @@
 > **Skill cible** : clone-chat v2.0.0
 > **Date** : 2026-08-09
 > **Source** : Écosystème Knowledge — Clone de discussion
-> **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
+> **Dépend** : `CONTEXTE SYSTÈME` (embarqué ci-dessous)
+
+---
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.5.2)
+> **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
+
+### Règle Zéro (§0)
+L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA.
+
+### Variables d'installation (§1.1)
+| Variable | Défaut | Description |
+|----------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Registre KB |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case
+- **Fichiers** : kebab-case avec extension
+- **Versions** : format semver
+
+---
+-------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
+| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
+| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case (`gen-plan`, `correct-work`). Exception : `@mon-ecosysteme/` (dossier des prompts maîtres).
+- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`).
+- **Versions** : format semver (`3.11.0`, `2.5.1`).
+- **Tags** : préfixe `#` pour les tokens (`#token 3500`).
+- **Variables** : double accolades (`{{SKILLS_ROOT}}`).
 
 ---
 
@@ -20,18 +52,6 @@
 - Toute demande de capturer l'intégralité d'une discussion en vue d'une reprise ultérieure
 - Fin de session longue avec demande de préservation du contexte
 
-## §B — PRÉREQUIS
-
-Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
-
-Résumé des variables utiles (SHARED §1.1) :
-- `{{SKILLS_ROOT}}` = `skills/`
-- `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
-- `{{KB_ENABLED}}` = `true`
-
-Fonction héritée (SHARED §7) : clone-chat détient la méthode **prompt-engineering** (méthode-mère : gen-plan ; définitions et registre : SHARED §7, session A11) en tant que **fonction héritée**, pour l'assemblage des documents-clones qu'il produit.
-
----
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 

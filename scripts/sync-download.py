@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.5.2)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}}
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 """Synchronisation download/ depuis skills/@mon-ecosysteme/ (source de vérité).
 
 Usage:
@@ -21,13 +28,20 @@ DEST_DIR = os.path.join(BASE_DIR, "download")
 # Extension B3 (recommandation 2, session B3) : le canal publice désormais aussi
 # le PM v3.11.0 (évolution locale B1/PEK) aux côtés de la version scellée
 # v3.6.1 (publiée par le dépôt) — versions historiques jamais retirées.
+# Extension corrige-ecosysteme v2.0.0 (Architecture v2.0) : le canal download/
+# publie l'intégralité du corpus @mon-ecosysteme/ (16 fichiers) — versions
+# historiques jamais retirées (R2), SYNC-CONTEXT.md et INSTALL-ECOSYSTEME.md inclus.
 SYNC_MAP = [
-    ("PROMPT-MAITRE-SHARED.md",              "PROMPT-MAITRE-SHARED.md"),
-    ("PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",     "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md"),
-    ("PROMPT-MAITRE-GEN-PLAN-v3.11.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.11.0.md"),
-    ("PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md", "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md"),
-    ("PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",   "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md"),
-    ("README.md",                             "README.md"),
+    ("PROMPT-MAITRE-SHARED.md",    "PROMPT-MAITRE-SHARED.md"),
+    ("PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.13.0.md"),
+    ("PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.16.0.md"),
+    ("PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md"),
+    ("PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",    "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md"),
+    ("PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",    "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md"),
+    ("PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md"),
+    ("INSTALL-ECOSYSTEME.md",    "INSTALL-ECOSYSTEME.md"),
+    ("SYNC-CONTEXT.md",    "SYNC-CONTEXT.md"),
+    ("README.md",    "README.md"),
 ]
 
 # Fichiers attendus dans download/ mais HORS sync (à surveiller séparément)

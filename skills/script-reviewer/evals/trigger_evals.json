@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Relis ce script avant de l'adopter comme livrable.",
+    "should_trigger": true
+  },
+  {
+    "query": "Vérifie l'idempotence de cet arbitre avec un rejeu double.",
+    "should_trigger": true
+  },
+  {
+    "query": "J'ai modifié le script de vérification, il faut le revalider avant livraison.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fais une relecture de convergence des scripts modifiés depuis la dernière certification.",
+    "should_trigger": true
+  },
+  {
+    "query": "Crée un nouveau script qui compte les entrées de la KB.",
+    "should_trigger": false
+  },
+  {
+    "query": "Lance la certification complète de l'écosystème.",
+    "should_trigger": false
+  },
+  {
+    "query": "Planifie la session avec gen-plan en mode parallèle.",
+    "should_trigger": false
+  }
+]

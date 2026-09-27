@@ -1,11 +1,6 @@
 ---
 name: task-review
-version: 1.0.0
-category: metier
-language: fr
 description: 当用户指令为高复杂度任务时触发，用于将刚完成的任务路径保存为可复用技能，生成相关的SKILL.md文档。
-tags: []
-dependencies: []
 ---
 
 ## 触发时机

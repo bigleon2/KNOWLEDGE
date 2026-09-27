@@ -1,10 +1,42 @@
-# PROMPT MAÎTRE — Installation du skill correct-work v2.4.0
+# PROMPT MAÎTRE — Installation du skill correct-work v2.5.1
 
-> **Version du prompt** : 1.1.0
-> **Skill cible** : correct-work v2.4.0
-> **Date** : 2026-08-09
+> **Version du prompt** : 1.2.0
+> **Skill cible** : correct-work v2.5.1
+> **Date** : 2026-09-06
 > **Source** : Écosystème Knowledge
-> **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
+> **Dépend** : `CONTEXTE SYSTÈME` (embarqué ci-dessous)
+
+---
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.5.2)
+> **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
+
+### Règle Zéro (§0)
+L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA.
+
+### Variables d'installation (§1.1)
+| Variable | Défaut | Description |
+|----------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Registre KB |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case
+- **Fichiers** : kebab-case avec extension
+- **Versions** : format semver
+
+---
+-------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
+| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
+| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case (`gen-plan`, `correct-work`). Exception : `@mon-ecosysteme/` (dossier des prompts maîtres).
+- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`).
+- **Versions** : format semver (`3.11.0`, `2.5.1`).
+- **Tags** : préfixe `#` pour les tokens (`#token 3500`).
+- **Variables** : double accolades (`{{SKILLS_ROOT}}`).
 
 ---
 
@@ -23,18 +55,6 @@ Options avancées (gen-plan >= v3.6.0) :
 - `correct-work(projet, kb_path=/chemin/KB)` — vérification avec scan des skills KB
 - `correct-work(cible, --kb-skill=<name>)` — forcer l'utilisation d'un skill KB spécifique
 
-## §B — PRÉREQUIS
-
-Lire `PROMPT-MAITRE-SHARED.md` avant de continuer. Ce fichier contient le contexte commun, les conventions écosystème, les variables d'installation et le registre des relations.
-
-Résumé des variables utiles (SHARED §1.1) :
-- `{{SKILLS_ROOT}}` = `skills/`
-- `{{KB_PATH}}` = `skills/KNOWLEDGE.md`
-- `{{KB_ENABLED}}` = `true`
-
-Fonction héritée (SHARED §7) : correct-work détient la méthode **prompt-engineering** (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que **fonction héritée**, pour la lecture et la validation de ses artefacts (specs, SKILL.md, rapports).
-
----
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
@@ -104,7 +124,8 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 ├── scripts/
 │   └── verify-correct-work.py  # 16 checks post-install automatisés
 └── evals/
-    └── evals.json        # Cas de test d'évaluation
+    ├── evals.json             # Cas de test (schéma skill-creator)
+    └── trigger_evals.json     # Cas de déclenchement (Description Optimization)
 ```
 
 ### §2.4 Format du rapport de vérification
@@ -115,7 +136,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 ## Métadonnées
 - **Date** : YYYY-MM-DD
 - **Mode** : PROJET | CIBLE | DIRECT
-- **Version correct-work** : 2.4.0
+- **Version correct-work** : 2.5.1
 - **Cible** : [nom du skill/fichier] (ou multi-cibles)
 
 ## Étape 1 — Plan d'actions
@@ -214,7 +235,7 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 ```yaml
 ---
 name: correct-work
-version: 2.4.0
+version: 2.5.1
 category: ecosystem
 language: fr
 tags:
@@ -224,7 +245,7 @@ tags:
   - ecosystem
   - kb-integration
 description: >
-  Skill de vérification et correction du travail réalisé.
+  Skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences).
   5 étapes, 3 modes (PROJET/CIBLE/DIRECT),
   support multi-cibles, découplage gen-plan optionnel,
   intégration KB (Registre, kb_path, --kb-skill),
@@ -268,7 +289,102 @@ Le fichier `SKILL.md` (~315 lignes, version compacte avec checklists intégrées
 
 ---
 
+### §5.3 Créer evals/evals.json (schéma skill-creator)
+
+Schéma EXACT skill-creator (`skill_name` ; evals : `id` entier, `prompt`, `expected_output`, `files`, `expectations`) — unifié en v2.5.0 :
+
+```json
+{
+  "skill_name": "correct-work",
+  "version": "2.5.1",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Schéma unifié skill-creator (révision PM v2.5.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 5 evals v2.4.0 préservée (modes PROJET/CIBLE, verdicts, multi-cibles).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "CW-mode-projet — Mode PROJET",
+      "prompt": "Vérifie l'écosystème complet décrit par le prompt maître de ce projet",
+      "expected_output": "Le mode PROJET est sélectionné et les 5 phases de vérification sont exécutées sur l'ensemble des fichiers",
+      "files": [],
+      "expectations": [
+        "Le mode PROJET est détecté (vérification d'un projet entier)",
+        "Les 5 phases (plan, erreurs/omissions, structure, interactions, cohérence) sont exécutées"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "CW-mode-cible — Mode CIBLE",
+      "prompt": "Vérifie ce skill",
+      "expected_output": "Le mode CIBLE est sélectionné : une seule cible, vérification approfondie",
+      "files": [],
+      "expectations": [
+        "Le mode CIBLE est détecté (cible unique désignée)",
+        "La vérification reste confinée à la cible désignée"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "CW-verdict-fail — FAIL si S1",
+      "prompt": "La vérification détecte une erreur de sévérité S1 (critique)",
+      "expected_output": "Verdict FAIL remonté avec la sévérité S1 documentée",
+      "files": [],
+      "expectations": [
+        "Le verdict global est FAIL",
+        "La sévérité S1 est explicitement consignée dans le rapport"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "CW-verdict-pass — PASS si 0 S1-S2",
+      "prompt": "Aucune sévérité S1 ni S2 n'a été détectée lors de la vérification",
+      "expected_output": "Verdict PASS (les S3/S4 éventuelles sont journalisées sans bloquer)",
+      "files": [],
+      "expectations": [
+        "Le verdict global est PASS",
+        "Toute S3/S4 est journalisée mais ne dégrade pas le verdict"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "CW-multi-cible — Multi-cibles",
+      "prompt": "Vérifie le fichier A et le fichier B",
+      "expected_output": "Deux cibles sont vérifiées dans la même exécution, chacune avec son rapport",
+      "files": [],
+      "expectations": [
+        "Les 2 cibles sont traitées",
+        "Chaque cible obtient un verdict distinct"
+      ]
+    }
+  ]
+}
+```
+
+### §5.4 Créer evals/trigger_evals.json (Description Optimization)
+
+Format `[{"query": "...", "should_trigger": true|false}]` : valider que la description déclenche correct-work sur les demandes de vérification/correction (true) et PAS sur les demandes hors périmètre (false) :
+
+```json
+[
+  {"query": "vérifie le travail qui vient d'être fait", "should_trigger": true},
+  {"query": "corrige les erreurs de ce livrable", "should_trigger": true},
+  {"query": "contrôle la cohérence de tout le projet", "should_trigger": true},
+  {"query": "passe correct-work en mode CIBLE sur ce fichier", "should_trigger": true},
+  {"query": "y a-t-il des omissions ou des incohérences dans ce rapport ?", "should_trigger": true},
+  {"query": "planifie cette nouvelle tâche", "should_trigger": false},
+  {"query": "clone cette discussion", "should_trigger": false},
+  {"query": "bonjour", "should_trigger": false}
+]
+```
+
+### §5.5 Exécution des évaluations en workspaces skill-creator
+
+Les evals §5.3 sont exécutés dans `{{SKILLS_ROOT}}correct-work-workspace/iteration-N/eval-M/` : chaque eval M reçoit deux exécutions — `with_skill/` (skill chargé) et `baseline/` (sans skill ou version antérieure) — puis une notation `grading.json` (champs `text`, `passed`, `evidence`). La comparaison with_skill vs baseline fonde les corrections de l'itération suivante ; les exécutions sont journalisées dans le worklog (SHARED §1.4).
+
+---
+
 ## §6 — VÉRIFICATION POST-INSTALLATION
+
+
 
 | # | Check | Critère | Résultat attendu |
 |---|-------|---------|------------------|
@@ -288,6 +404,9 @@ Le fichier `SKILL.md` (~315 lignes, version compacte avec checklists intégrées
 | 14 | Logging worklog | Format documenté | Present |
 | 15 | Dépendances frontmatter | gen-plan >=3.7.0, clone-chat >=2.0.0, fullstack-dev >=1.0.0 | Correct |
 | 16 | Compatibilité écosystème | 16/16 checks PASS | All PASS |
+| 17 | evals.json valide | JSON parsable (schéma skill-creator), 5 evals | Valid JSON |
+| 18 | trigger_evals.json | JSON parsable, cas true et false présents | Valid JSON |
+| 19 | Workspaces skill-creator | §5.5 documenté (with_skill vs baseline) | Present |
 
 ---
 
@@ -301,6 +420,10 @@ Le fichier `SKILL.md` (~315 lignes, version compacte avec checklists intégrées
 | v2.2.0 | 2026-07-29 | Registre KB (gen-plan >=3.3.0), kb_path, --kb-skill, matrice dynamique |
 | v2.3.0 | 2026-08-09 | Refactoring prompt maître : extraction du socle commun SHARED, suppression de la duplication |
 | v2.4.0 | 2026-08-09 | Support multi-cibles, découplage gen-plan (autonome), métriques de performance, checklists opérationnelles (§4.6-§4.10), scripts/ + evals/, hook gen-plan E8, verify-cross --mode correct-work (8 checks KB) |
+| v2.5.0 | 2026-09-06 | Unification du schéma evals (skill-creator) au §5 : §5.3 evals.json (id entier/prompt/expected_output/expectations), §5.4 trigger_evals.json, §5.5 workspaces d'évaluation (with_skill vs baseline). Aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+| v2.5.1 | 2026-09-06 | Description Optimization (itération-3 workspaces skill-creator, session A10) : enrichissement de la description frontmatter §4 avec « erreurs, omissions, incohérences » — réserves des cas déclencheurs « corrige les erreurs de ce livrable » (couverture lexicale de la racine correction) et « y a-t-il des omissions ou des incohérences dans ce rapport ? » levées (trigger 6/8 → 8/8). Sémantique Étape 2 (§10.7) inchangée ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) |
+
+Révision documentaire 2026-09-06 (session A11, sans changement de version ni de contrat) : §B — pointeur de définition des disciplines actualisé (source de vérité : SHARED §7, réimplantation des disciplines) ; la mention historique PM v3.7.0 §1.9 reste valable comme lignage méthode-mère.
 
 ---
 

@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 """
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.5.2)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}}
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
+"""
 spell-check.py — Vérification orthographique pour l'écosystème Knowledge
 
 Lexique dynamique construit depuis le dépôt (FR domaine + EN tech).

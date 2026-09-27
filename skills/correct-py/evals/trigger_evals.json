@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Vérifie la conformité PEP 8 de ce script Python que je viens de créer.",
+    "should_trigger": true
+  },
+  {
+    "query": "Corrige les commentaires sans espace et les blancs parasites de monitor.py.",
+    "should_trigger": true
+  },
+  {
+    "query": "Normalise ce script Python aux normes du langage (docstrings PEP 257 incluses).",
+    "should_trigger": true
+  },
+  {
+    "query": "Applique le post-traitement correct-py au script produit par script-creator.",
+    "should_trigger": true
+  },
+  {
+    "query": "Crée un nouveau script d'arbitre pour ce check certifiable.",
+    "should_trigger": false
+  },
+  {
+    "query": "Relis ce script avec la grille G1-G8 avant adoption.",
+    "should_trigger": false
+  },
+  {
+    "query": "Traduis le contenu de ce SKILL.md en français.",
+    "should_trigger": false
+  }
+]

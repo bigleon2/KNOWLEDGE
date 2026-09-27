@@ -12,6 +12,14 @@ date: 2026-06-21
 description-fr: Analyse de code C/C++ — Détection de bugs, optimisation de performance, analyse de complexité, génération de documentation. Supporte C, C++, C++11/14/17/20. Utiliser quand l'utilisateur a besoin d'analyser du code C/C++, trouver des bugs, optimiser les performances, ou générer de la documentation.
 ---
 
+## §0 — Contexte Système (SHARED v1.5.2)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 # cpp-analysis
 
 ## Description

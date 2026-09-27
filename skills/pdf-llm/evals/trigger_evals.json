@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill pdf-llm pour interroger et analyser des PDF via LLM.",
+    "should_trigger": true
+  },
+  {
+    "query": "Pose des questions sur ce PDF de 300 pages et cite les pages.",
+    "should_trigger": true
+  },
+  {
+    "query": "Charge ce PDF technique et réponds à mes questions en citant les sections, avec extraction des tableaux.",
+    "should_trigger": true
+  },
+  {
+    "query": "Résume ce contrat PDF clause par clause avec référence aux pages.",
+    "should_trigger": true
+  },
+  {
+    "query": "Produis un rapport PDF paginé avec couverture, sommaire, tableaux et graphiques à partir de ces données.",
+    "should_trigger": false
+  },
+  {
+    "query": "Génère un nouveau PDF à partir de mes données de vente.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fusionne ces 5 PDF en un seul fichier ordonné.",
+    "should_trigger": false
+  }
+]

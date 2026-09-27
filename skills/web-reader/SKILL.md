@@ -1,11 +1,6 @@
 ---
 name: web-reader
-version: 1.0.0
-category: metier
-language: fr
 description: Implement web page content extraction capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to scrape web pages, extract article content, retrieve page metadata, or build applications that process web content. Supports automatic content extraction with title, HTML, and publication time retrieval.
-tags: []
-dependencies: []
 license: MIT
 ---
 

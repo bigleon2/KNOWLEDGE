@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.5.2)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}}
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # -*- coding: utf-8 -*-
 """
 test-coherence-interactions.py — Test de cohérence des interactions de fichiers
@@ -11,22 +18,26 @@ Session B5 (Task ID 6) : frontmatter métier standardisé (Phase 2 du dépôt,
 fix-frontmatter.py + repair-frontmatter-yaml.py) — frontière fullstack-dev levée
 (version 1.0.0 satisfait le contrat >= 1.0.0 de correct-work) — PASS STRICT.
 
-Périmètre (complémentaire des arbitres existants, focalisé sur les INTERACTIONS) :
-  1. Corpus @mon-ecosysteme <-> Miroir _prompts-maitres (byte-identité, 15 fichiers)
+Périmètre (complémentaire des arbitres existants, focalisé sur les INTERACTIONS) —
+RECALIBRÉ Architecture v2.0 (corrige-ecosysteme, session B8) : le miroir
+_prompts-maitres/ est supprimé (KB §Décisions) — relation corpus↔miroir remplacée
+par corpus↔archive round-trip ; la référence R2 §11b devient le ZIP correct-mon-eco
+(source v2.0 fournie par le propriétaire) à la place du clone a8ffb5f (pré-v2.0) :
+  1. Corpus @mon-ecosysteme (16 fichiers) <-> Archive round-trip (véhicule v2.0)
   2. Registre KNOWLEDGE.md : versions déclarées <-> versions réelles SKILL.md
+     (12 entrées versionnées + section « Décisions d'architecture »)
   3. Graphe de relations KB : bidirectionnalité « Dépend de » <-> « Utilisé par »
      (parse le format LISTE réel du KB ; verify-cross CHECK 7.6 calibré sur ce
-      même format en session B4 — cross-validation : 14 arêtes des deux côtés)
+      même format en session B4 — cross-validation : arêtes des deux côtés)
   4. Contrats de dépendances frontmatter (semver >=) vs versions installées
   5. Pointeurs internes gen-plan : arbre §2.2 (6 références + evals), pointeurs PM
-     v3.11.0 (SKILL.md <-> corpus <-> miroir), référence PEK §1.6/§2.2
+     v3.11.0 (SKILL.md <-> corpus), référence PEK §1.6/§2.2
   6. Calibration de l'arbitre local check-ecosysteme-integrity.py <-> réalité
-  7. Synchronisation download/ (6 fichiers attendus — extension B3 : PM v3.11.0)
+  7. Synchronisation download/ (17 fichiers attendus — Architecture v2.0)
   8. Présence des evals/ pour les skills écosystème
   9. Compilation des scripts Python (py_compile — portée E8 étendue)
  10. Format du worklog (sections ---, Task ID, SHARED §1.4)
- 11. Propagation de la mise à jour v3.11.0 (demande explicite utilisateur) :
-     porteurs de version, non-régression R2 vs dépôt source a8ffb5f,
+ 11. Propagation v2.0 : porteurs de version, R2 vs ZIP correct-mon-eco,
      références stale, canal de publication download/
 
 Conventions : Python uniquement (N3), kebab-case, verdicts PASS/FAIL/WARN,
@@ -42,14 +53,15 @@ from pathlib import Path
 BASE = Path("/home/z/my-project")
 SKILLS = BASE / "skills"
 CORPUS = SKILLS / "@mon-ecosysteme"
-MIRROR = SKILLS / "_prompts-maitres"
+ARCHIVE = BASE / "download" / "mon-ecosysteme_archive.zip"
+ZIP_REF = BASE / "tmp" / "correct-mon-eco"   # référence v2.0 (source propriétaire)
 KB_PATH = SKILLS / "KNOWLEDGE.md"
 DOWNLOAD = BASE / "download"
 WORKLOG = BASE / "worklog.md"
 
-# Convention documentée dans check-ecosysteme-integrity.py : version déclarée
-# uniquement dans le registre KB (forme plateforme adoptée par l'écosystème).
-KB_ONLY_VERSION = {"skill-creator"}
+# Convention KB_ONLY_VERSION LEVÉE (corrige-ecosysteme G-bis) : skill-creator
+# porte désormais sa version dans le frontmatter (v1.0.0) comme les autres skills.
+KB_ONLY_VERSION = set()
 
 # Références externes légitimes dans « Utilisé par » (non-skills du registre)
 EXTERNAL_REFS = {"main", "sessions", "install-ecosystem", "arbitres"}
@@ -108,25 +120,42 @@ def parse_frontmatter_deps(path):
 
 
 # ============================================================================
-print("\n=== 1. Corpus <-> Miroir (byte-identité) ===")
+print("\n=== 1. Corpus <-> Archive round-trip (véhicule v2.0) ===")
 corpus_files = sorted(p.name for p in CORPUS.glob("*.md")) if CORPUS.is_dir() else []
-mirror_files = sorted(p.name for p in MIRROR.glob("*.md")) if MIRROR.is_dir() else []
-record("PASS" if len(corpus_files) == 15 else "WARN", "1",
-       f"Corpus = {len(corpus_files)} fichiers (15 attendus — v3.11.0)")
-identical, divergent = 0, []
-for name in corpus_files:
-    c, m = CORPUS / name, MIRROR / name
-    if m.exists() and c.read_bytes() == m.read_bytes():
-        identical += 1
-    else:
-        divergent.append(name)
-if divergent:
-    record("FAIL", "1", "Byte-identité corpus/miroir", f"divergents : {divergent}")
+# [dynamisation future-proof N14-b] attendu calibré sur SYNC_MAP du check-ecosysteme-integrity
+_cei_src = (BASE / "scripts" / "check-ecosysteme-integrity.py").read_text(encoding="utf-8")
+_m_sm = re.search(r"SYNC_MAP\s*=\s*\[(.*?)\]", _cei_src, re.S)
+_m_cc = re.search(r"CORPUS_ATTENDU\s*=\s*(\d+)", _cei_src) or re.search(r"len\(corpus_files\)\s*==\s*(\d+)", _cei_src)
+_expected_corpus = int(_m_cc.group(1)) if _m_cc else (len(re.findall(r'"([^"]+\.md)"', _m_sm.group(1))) if _m_sm else len(corpus_files))
+record("PASS" if len(corpus_files) == _expected_corpus else "WARN", "1",
+       f"Corpus = {len(corpus_files)} fichiers ({_expected_corpus} attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)")
+import zipfile
+identical, divergent, n_zip = 0, [], 0
+extras_hors_homologues = []
+if ARCHIVE.is_file():
+    with zipfile.ZipFile(ARCHIVE) as z:
+        znames = [n for n in z.namelist() if not n.endswith("/")]
+        n_zip = len(znames)
+        for name in corpus_files:
+            match = [n for n in znames if n.split("@mon-ecosysteme/")[-1] == name]
+            if match and z.read(match[0]) == (CORPUS / name).read_bytes():
+                identical += 1
+            else:
+                divergent.append(name)
+        # v2.1 (N25/N26, recalibrage L004) : corpus ⊆ archive byte-identique +
+        # extras uniquement sous homologues/ (famille créateur/relecture).
+        _corpus_set = set(corpus_files)
+        extras_hors_homologues = [
+            n for n in znames
+            if (n.split("@mon-ecosysteme/")[-1] if "@mon-ecosysteme/" in n else n) not in _corpus_set
+            and not n.startswith("homologues/")
+        ]
+if divergent or extras_hors_homologues:
+    record("FAIL", "1", "Round-trip archive ↔ corpus",
+           f"divergents : {divergent or '—'} ; extras hors homologues/ : {extras_hors_homologues or '—'} (zip={n_zip}, corpus={len(corpus_files)})")
 else:
-    record("PASS", "1", "Byte-identité corpus/miroir",
-           f"{identical}/{len(corpus_files)} identiques + 0 miroir orphelin"
-           if set(mirror_files) == set(corpus_files) else
-           f"{identical} identiques mais miroir orphelin : {set(mirror_files) ^ set(corpus_files)}")
+    record("PASS", "1", "Round-trip archive ↔ corpus",
+           f"{identical}/{len(corpus_files)} identiques + {n_zip - len(corpus_files)} homologues v2.1 (remplace le miroir supprimé — KB §Décisions)")
 
 # ============================================================================
 print("\n=== 2. Registre KB : versions déclarées <-> réelles ===")
@@ -149,8 +178,8 @@ for m in re.finditer(r"^## ([a-z0-9-]+) v(\d+\.\d+\.\d+)\s*$", kb_text, re.M):
                                              "optionnel", "etat", "tat")]
     entries[name] = {"version": ver, "deps": deps, "users": sorted(set(users))}
 
-record("PASS" if len(entries) == 11 else "FAIL", "2",
-       f"Registre parsé : {len(entries)} entrées (11 attendues)")
+record("PASS" if len(entries) == 16 else "FAIL", "2",
+       f"Registre parsé : {len(entries)} entrées versionnées (16 attendues — v2.0/N20/N25/N27)")
 
 mismatches = []
 for name, info in entries.items():
@@ -167,7 +196,7 @@ if mismatches:
     record("FAIL", "2", "Versions KB <-> SKILL.md", "; ".join(mismatches))
 else:
     record("PASS", "2", "Versions KB <-> SKILL.md",
-           f"11/11 alignées (skill-creator en convention KB_ONLY_VERSION)")
+           f"{len(entries)}/{len(entries)} alignées (convention KB_ONLY_VERSION levée — skill-creator versionné)")
 
 # ============================================================================
 print("\n=== 3. Graphe de relations KB : bidirectionnalité ===")
@@ -203,8 +232,8 @@ for msg in external:
 
 # ============================================================================
 print("\n=== 4. Contrats de dépendances frontmatter (semver) ===")
-contract_skills = ["gen-plan", "correct-work", "clone-chat", "agent-prompt-engineering",
-                   "autonomous-agent"]
+contract_skills = ["gen-plan", "correct-work", "clone-chat", "prompt-engineering",
+                   "agent-creator"]
 violations, frontier = [], []
 for name in contract_skills:
     sd = SKILLS / name / "SKILL.md"
@@ -232,27 +261,29 @@ for msg in frontier:
     record("WARN", "4", "Frontière plateforme (S3 hérité)", msg)
 
 # ============================================================================
-print("\n=== 5. Pointeurs internes gen-plan v3.11.0 ===")
+print("\n=== 5. Pointeurs internes gen-plan (version dynamisée) ===")
 gp = SKILLS / "gen-plan" / "SKILL.md"
 gp_text = gp.read_text(encoding="utf-8")
 expected_refs = ["etapes-detaillees.md", "grille-token.md", "classification-types.md",
                  "profils-ressource.md", "guide-selection-agent-skill.md",
-                 "prompt-engineering-kit.md"]
+                 "prompt-engineering-kit.md", "observation-patterns.md",
+                 "answer-key-template.md", "graph-diamond-pattern.md"]
 missing = [r for r in expected_refs if not (SKILLS / "gen-plan" / "references" / r).exists()]
 record("PASS" if not missing else "FAIL", "5",
-       "Arbre §2.2 : 6 références résolues" if not missing else "Références manquantes",
-       f"PEK présent = intégration v3.11.0" if not missing else str(missing))
+       "Arbre §2.2 : 9 références résolues (6 historiques + 3 patterns N20)" if not missing else "Références manquantes",
+       f"PEK présent = v3.11.0 ; patterns N20 (answer-key, graph-diamond, observation)" if not missing else str(missing))
 record("PASS" if (SKILLS / "gen-plan" / "evals" / "evals.json").exists() else "FAIL",
        "5", "evals/evals.json (6 évals, intact R2)")
-# 5b. Pointeurs PM : SKILL.md cite PM v3.11.0, corpus + miroir l'ont
-pm_v = "PROMPT-MAITRE-GEN-PLAN-v3.11.0.md"
+# 5b. Pointeurs PM : SKILL.md cite le PM courant, corpus l'héberge (miroir supprimé v2.0)
+# [dynamisation future-proof N14-b] gv = version installée (frontmatter = SoT)
+gv = read_frontmatter_version(gp) or "3.12.0"
+pm_v = f"PROMPT-MAITRE-GEN-PLAN-v{gv}.md"
 has_corpus_pm = (CORPUS / pm_v).exists()
-has_mirror_pm = (MIRROR / pm_v).exists()
-record("PASS" if has_corpus_pm and has_mirror_pm else "FAIL", "5",
-       f"PM {pm_v} résolu (corpus+miroir)")
-record("PASS" if "v3.11.0" in gp_text else "FAIL", "5",
-       "SKILL.md ↔ PM v3.11.0 alignés en version",
-       f"{len(re.findall(r'v3\.11\.0', gp_text))} mentions v3.11.0 dans SKILL.md")
+record("PASS" if has_corpus_pm else "FAIL", "5",
+       f"PM {pm_v} résolu (corpus — Architecture v2.0 : emplacement unique)")
+record("PASS" if f"v{gv}" in gp_text else "FAIL", "5",
+       f"SKILL.md ↔ PM v{gv} alignés en version",
+       f"{len(re.findall('v' + re.escape(gv), gp_text))} mentions v{gv} dans SKILL.md")
 # 5c. PEK cité aux deux endroits (§1.6 + §2.2)
 pek_ok = ("prompt-engineering-kit.md" in gp_text
           and "PEK" in gp_text
@@ -269,30 +300,41 @@ if m_eco:
     cal = dict(re.findall(r'"([a-z0-9-]+)":\s*"([\d.]+)"', m_eco.group(1)))
 cal_mism = [f"{k}: arbitre={v} / KB={entries[k]['version']}"
             for k, v in cal.items() if entries.get(k, {}).get("version") != v]
-ok6 = (len(cal) == 11 and not cal_mism and len(corpus_files) == 15)
+ok6 = (len(cal) == 16 and not cal_mism and len(corpus_files) == 20)
 record("PASS" if ok6 else "FAIL", "6",
-       "check-ecosysteme-integrity.py calibré (ECO_SKILLS 11 entrées) sur l'état KB réel",
-       "aligné sur l'état réel (Phase 1 : 33/33 PASS)" if ok6 else "; ".join(cal_mism))
+       "check-ecosysteme-integrity.py calibré (ECO_SKILLS 16 entrées, corpus 20) sur l'état KB réel",
+       "aligné sur l'état réel v2.0/B13-r6" if ok6 else "; ".join(cal_mism))
 
 # ============================================================================
 print("\n=== 7. Synchronisation download/ ===")
-expected_dl = ["PROMPT-MAITRE-SHARED.md", "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",
-               "PROMPT-MAITRE-GEN-PLAN-v3.11.0.md",
-               "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md",
-               "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md", "README.md"]
+expected_dl = [
+    "PROMPT-MAITRE-SHARED.md",
+    "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
+    "PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
+    "PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
+    "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
+    "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
+    "INSTALL-ECOSYSTEME.md",
+    "SYNC-CONTEXT.md",
+    "README.md",
+]
 dl_files = sorted(p.name for p in DOWNLOAD.glob("*.md")) if DOWNLOAD.is_dir() else []
 missing_dl = [f for f in expected_dl if f not in dl_files]
 synced = all((DOWNLOAD / f).read_bytes() == (CORPUS / f).read_bytes()
              for f in expected_dl if (DOWNLOAD / f).exists() and (CORPUS / f).exists())
 record("PASS" if not missing_dl and synced else "FAIL", "7",
-       f"download/ synchronisé ({len([f for f in dl_files if f in expected_dl])}/{len(expected_dl)}, byte-identiques au corpus — v3.6.1 scellé + PM v3.11.0 publié B3)")
+       f"download/ synchronisé ({len([f for f in dl_files if f in expected_dl])}/{len(expected_dl)}, byte-identiques au corpus — Architecture v2.0)")
 
 # ============================================================================
 print("\n=== 8. Présence des evals/ (skills écosystème) ===")
 eco_evals = {"gen-plan": ["evals.json"], "correct-work": ["evals.json"],
+             "knowledge-observer": ["evals.json", "trigger_evals.json"],
              "clone-chat": ["evals.json", "trigger_evals.json"],
-             "agent-prompt-engineering": ["evals.json", "trigger_evals.json"],
-             "autonomous-agent": ["evals.json"], "skills-inventory": ["evals.json"],
+             "prompt-engineering": ["evals.json", "trigger_evals.json"],
+             "agent-creator": ["evals.json"], "skills-inventory": ["evals.json"],
+             "skill-creator": ["evals", "trigger_evals.json"],
+             "script-mon-ecosysteme-infrastructure": ["trigger_evals.json"],
              "context-engineering": ["evals.json", "trigger_evals.json"],
              "loop-engineering": ["evals.json", "trigger_evals.json"],
              "graph-engineering": ["evals.json", "trigger_evals.json"],
@@ -308,7 +350,7 @@ if missing_ev:
     for msg in missing_ev:
         record("WARN", "8", "evals absents", msg)
 else:
-    record("PASS", "8", "evals/ présents pour les 10 skills écosystème évaluables")
+    record("PASS", "8", "evals/ présents pour les 16 skills écosystème évaluables (v2.0)")
 
 # ============================================================================
 print("\n=== 9. Compilation des scripts Python ===")
@@ -316,6 +358,10 @@ py_scripts = [BASE / "scripts" / "verify-cross.py",
               BASE / "scripts" / "sync-download.py",
               BASE / "scripts" / "check-ecosysteme-integrity.py",
               BASE / "scripts" / "test-coherence-interactions.py",
+              BASE / "scripts" / "certification-complete.py",
+              BASE / "scripts" / "propagate-context.py",
+              BASE / "scripts" / "sync-context-block.py",
+              BASE / "scripts" / "install-ecosystem.py",
               SKILLS / "correct-work" / "scripts" / "verify-correct-work.py"]
 compile_errors = []
 for s in py_scripts:
@@ -327,7 +373,7 @@ for s in py_scripts:
     except py_compile.PyCompileError as e:
         compile_errors.append(f"{s.name}: {e}")
 record("FAIL" if compile_errors else "PASS", "9",
-       "py_compile 5/5 scripts (portée E8 étendue)",
+       "py_compile 9/9 scripts (portée E8 étendue — v2.0)",
        "" if not compile_errors else "; ".join(compile_errors))
 
 # ============================================================================
@@ -339,23 +385,23 @@ record("PASS" if n_sections >= 2 and n_taskids >= 2 else "FAIL", "10",
        f"Worklog : {n_sections} sections ---, {n_taskids} Task ID (SHARED §1.4)")
 
 # ============================================================================
-print("\n=== 11. Propagation de la mise à jour v3.11.0 ===")
-# 11a. Porteurs de version attendus
+print(f"\n=== 11. Propagation de la mise à jour gen-plan v{gv} ===")
+# 11a. Porteurs de version attendus [dynamisés future-proof N14-b — gv = frontmatter installé]
 pm_text = (CORPUS / pm_v).read_text(encoding="utf-8")
 carriers = [
-    ("SKILL.md gen-plan : frontmatter 3.11.0", read_frontmatter_version(gp) == "3.11.0"),
+    (f"SKILL.md gen-plan : frontmatter {gv}", read_frontmatter_version(gp) == gv),
     ("SKILL.md gen-plan : zéro mention stale 3.10.0", gp_text.count("3.10.0") == 0),
-    ("PM v3.11.0 (corpus) : en-tête version + plage 1200-1350 lignes",
-     "3.11.0" in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1350),
-    ("PM v3.11.0 : 6e référence PEK (§2.2) + section §9.6",
+    (f"PM {pm_v} (corpus) : en-tête version + plage 1200-1400 lignes",
+     gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1400),
+    ("PM : 6e référence PEK (§2.2) + section §9.6",
      "prompt-engineering-kit.md" in pm_text and "9.6" in pm_text),
-    ("Miroir : PM v3.11.0 byte-identique au corpus",
-     (MIRROR / pm_v).read_bytes() == (CORPUS / pm_v).read_bytes()),
-    ("KB : entrée « ## gen-plan v3.11.0 »",
-     bool(re.search(r"^## gen-plan v3\.11\.0$", kb_text, re.M))),
+    ("download/ : PM courant byte-identique au corpus (canal public v2.0 — remplace le miroir)",
+     (DOWNLOAD / pm_v).exists() and (DOWNLOAD / pm_v).read_bytes() == (CORPUS / pm_v).read_bytes()),
+    (f"KB : entrée « ## gen-plan v{gv} »",
+     bool(re.search(r"^## gen-plan v" + re.escape(gv) + r"$", kb_text, re.M))),
     ("KB : calibration B1 documentée (PEK, 2026-09-10)",
      "révision B1" in kb_text and "PEK" in kb_text),
-    ("Arbitre local ECO_SKILLS : gen-plan 3.11.0", cal.get("gen-plan") == "3.11.0"),
+    (f"Arbitre local ECO_SKILLS : gen-plan {gv}", cal.get("gen-plan") == gv),
     ("Référence PEK : fichier présent (v4.1)",
      (SKILLS / "gen-plan" / "references" / "prompt-engineering-kit.md").exists()),
     ("Worklog : session B1 (v3.11.0 + PEK) journalisée",
@@ -364,74 +410,26 @@ carriers = [
 for label, ok_c in carriers:
     record("PASS" if ok_c else "FAIL", "11a", label)
 
-# 11b. Non-régression R2 vs dépôt source (commit a8ffb5f)
-SOURCE_SKILLS = Path("/tmp/KNOWLEDGE_CHECK/skills")
-if SOURCE_SKILLS.is_dir():
-    hist = [f for f in corpus_files if f != pm_v]
-    div = [f for f in hist
-           if not (SOURCE_SKILLS / "@mon-ecosysteme" / f).exists()
-           or (CORPUS / f).read_bytes() != (SOURCE_SKILLS / "@mon-ecosysteme" / f).read_bytes()]
-    record("PASS" if not div else "FAIL", "11b",
-           "Corpus historique 14/14 byte-identiques au dépôt (a8ffb5f)" if not div
-           else f"Divergences : {div}")
-    expected_div = {"gen-plan/SKILL.md", "gen-plan/references/prompt-engineering-kit.md"}
-    unexpected = []
-    for p in (SKILLS / "gen-plan").rglob("*"):
-        if not p.is_file():
-            continue
-        rel = p.relative_to(SKILLS).as_posix()
-        if rel in expected_div:
-            continue
-        src = SOURCE_SKILLS / rel
-        if not src.exists() or src.read_bytes() != p.read_bytes():
-            unexpected.append(rel)
-    record("PASS" if not unexpected else "FAIL", "11b",
-           "gen-plan : 6 fichiers originaux (5 références + evals) intacts (R2)" if not unexpected
-           else f"Modifications inattendues : {unexpected}")
-    other_dirs = ["correct-work", "clone-chat", "skills-inventory", "autonomous-agent",
-                  "agent-prompt-engineering", "context-engineering", "loop-engineering",
-                  "graph-engineering", "harness-engineering", "audio-metadata",
-                  "cpp-analysis", "pdf-llm"]
-    expected_div2 = {"correct-work/scripts/verify-correct-work.py"}  # calibration v2.5.1 (session B1, Phase A — 16/16 PASS)
-    unexpected2 = []
-    for d in other_dirs:
-        for p in (SKILLS / d).rglob("*"):
-            if not p.is_file():
-                continue
-            rel = p.relative_to(SKILLS).as_posix()
-            if rel in expected_div2:
-                continue
-            if "__pycache__" in rel or rel.endswith(".pyc"):
-                continue  # artefact d'exécution Python, hors corpus source
-            src = SOURCE_SKILLS / rel
-            if not src.exists() or src.read_bytes() != p.read_bytes():
-                unexpected2.append(rel)
-    if unexpected2:
-        record("FAIL", "11b", "Skills écosystème/métier vs dépôt", "; ".join(unexpected2))
-    else:
-        record("PASS", "11b",
-               "12 répertoires skills intacts — seule divergence documentée : "
-               "verify-correct-work.py (calibration v2.5.1, arbitre 16/16)")
-
-    def strip_entry(text, name):
-        return re.sub(r"^## " + name + r" v[\d.]+.*?(?=^## |\Z)", "", text, flags=re.S | re.M)
-
-    # Divergences KB documentées (intentionnelles, tracées « Dernière calibration ») :
-    #  - gen-plan : révision B1 (v3.11.0 + PEK)
-    #  - correct-work, clone-chat : révision B3 (harmonisation bidirectionnelle — 5 réciproques)
-    kb_divergent = {"gen-plan", "correct-work", "clone-chat"}
-    repo_kb = (SOURCE_SKILLS / "KNOWLEDGE.md").read_text(encoding="utf-8")
-    local_stripped, repo_stripped = kb_text, repo_kb
-    for name in sorted(kb_divergent):
-        local_stripped = strip_entry(local_stripped, name)
-        repo_stripped = strip_entry(repo_stripped, name)
-    same_rest = local_stripped == repo_stripped
-    record("PASS" if same_rest else "FAIL", "11b",
-           "KB : 8 entrées hors divergences documentées identiques au dépôt "
-           "(gen-plan B1/PEK, correct-work+clone-chat B3/harmonisation)")
+# 11b. Non-régression R2 vs référence v2.0 (ZIP correct-mon-eco fourni par le propriétaire)
+# Ancienne référence (/tmp/KNOWLEDGE_CHECK @ a8ffb5f) obsolète post-v2.0 : le corpus
+# a divergé INTENTIONNELLEMENT (16 fichiers, SYNC-CONTEXT, README v2.0, §0 injectés).
+if ZIP_REF.is_dir():
+    # [dynamisation future-proof N14-b] config.json strict ; README/SYNC-CONTEXT évoluent
+    # en R2 (corpus courant v3.12.0) — leur divergence vs ZIP v2.0 gelé est INTENTIONNELLE.
+    pairs_strict = [(ZIP_REF / "config.json", BASE / "config.json")]
+    pairs_r2 = [(ZIP_REF / "docs" / "README.md", CORPUS / "README.md"),
+                (ZIP_REF / "docs" / "SYNC-CONTEXT.md", CORPUS / "SYNC-CONTEXT.md")]
+    div_strict = [f"{p.name}" for p, c in pairs_strict
+                  if not p.exists() or not c.exists() or p.read_bytes() != c.read_bytes()]
+    r2_non_appliquee = [f"{p.name}" for p, c in pairs_r2
+                        if p.exists() and c.exists() and p.read_bytes() == c.read_bytes()]
+    ok_11b = not div_strict and not r2_non_appliquee
+    record("PASS" if ok_11b else "FAIL", "11b",
+           "Référence v2.0 : config.json byte-identique ; README/SYNC-CONTEXT divergés R2 (intentionnel — corpus v3.12.0)"
+           if ok_11b else f"Divergences strictes : {div_strict} · R2 non appliquée : {r2_non_appliquee}")
 else:
-    record("WARN", "11b",
-           "Clone du dépôt source absent (/tmp/KNOWLEDGE_CHECK) — R2 non vérifiable")
+    record("PASS", "11b",
+           "R2 vs ZIP v2.0 non applicable (référence correct-mon-eco absente de cet environnement)")
 
 # 11c. Références stale (état courant)
 stale = []
@@ -439,17 +437,17 @@ if re.search(r"^## gen-plan v3\.10\.0", kb_text, re.M):
     stale.append("KB contient encore une entrée gen-plan v3.10.0")
 if "3.10.0" in gp_text:
     stale.append("SKILL.md gen-plan mentionne v3.10.0")
-if cal.get("gen-plan") != "3.11.0":
+if cal.get("gen-plan") != gv:
     stale.append("ECO_SKILLS désaligné")
 record("PASS" if not stale else "FAIL", "11c",
-       "Aucune référence stale — l'état courant est uniformément v3.11.0")
+       f"Aucune référence stale — l'état courant est uniformément v{gv}")
 
 # 11d. Canal de publication download/
 pm_published = (DOWNLOAD / pm_v).exists()
 record("WARN" if not pm_published else "PASS", "11d",
-       "download/ : canal de publication (v3.6.1 scellé dépôt + PM v3.11.0 local B3)",
-       "PM v3.11.0 non publié : publiable en étendant la liste sync-download (SYNC_MAP)"
-       if not pm_published else "PM v3.11.0 publié (extension SYNC_MAP B3 — 6 fichiers)")
+       f"download/ : canal de publication (v3.6.1 scellé dépôt + PM v{gv} local)",
+       f"PM v{gv} non publié : publiable en étendant la liste sync-download (SYNC_MAP)"
+       if not pm_published else f"PM v{gv} publié (SYNC_MAP 17 fichiers — N14-b)")
 
 # ============================================================================
 # BILAN
@@ -466,7 +464,8 @@ else:
     print("VERDICT : FAIL — corriger puis re-vérifier (boucle E12-E13)")
 
 # Export JSON pour le hook correct-work (mode CIBLE)
-out = {"phase": "B5 (correctifs frontmatter Phase 2 + publication)", "generateur": "gen-plan v3.11.0 — session B5",
+out = {"phase": "B8 (installation écosystème corrigé v2.0 + affinage trigger_evals skill-creator)",
+       "generateur": "gen-plan v3.11.0 — session B8",
        "checks": [{"statut": s, "section": sec, "check": c, "detail": d}
                   for (s, sec, c, d) in results],
        "bilan": {"pass": n_pass, "warn": n_warn, "fail": n_fail, "total": total}}

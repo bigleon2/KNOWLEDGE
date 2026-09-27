@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill memory-engineering pour gouverner la mémoire de l'agent.",
+    "should_trigger": true
+  },
+  {
+    "query": "Décide quoi écrire en État Long : worklog, KB, answer key — et quoi jeter.",
+    "should_trigger": true
+  },
+  {
+    "query": "Compacte cette session longue en conservant les ancres de reprise mécanique.",
+    "should_trigger": true
+  },
+  {
+    "query": "Isoler les contextes par tâche : prompts auto-contenus, pas de fuite inter-tâches.",
+    "should_trigger": true
+  },
+  {
+    "query": "Récupère l'information par retrieval ancré dans le registre versionné, sans hallucination.",
+    "should_trigger": true
+  },
+  {
+    "query": "Structure ces données en graphe de connaissances versionné avec nœuds et arêtes.",
+    "should_trigger": false
+  },
+  {
+    "query": "Lance plusieurs agents en parallèle et agrège leurs résultats avec un supervisor.",
+    "should_trigger": false
+  }
+]

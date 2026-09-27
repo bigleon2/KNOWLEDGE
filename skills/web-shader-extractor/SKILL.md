@@ -1,14 +1,9 @@
 ---
 name: web-shader-extractor
-version: 1.0.0
-category: metier
-language: fr
-description: >
+description: |
   从网页中提取 WebGL/Canvas/Shader 视觉特效代码，反混淆后移植为独立原生 JS 项目。
   触发条件：用户提供网址并要求提取 shader、提取特效、提取动画效果、提取 canvas 效果、
   复刻某网站的视觉效果、"把这个网站的背景效果扒下来" 等。
-tags: []
-dependencies: []
 ---
 
 # Web Shader Extractor

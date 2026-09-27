@@ -2,9 +2,41 @@
 
 Version : 1.0.0
 Date : 2026-09-06
-Dépend : PROMPT-MAITRE-SHARED.md (socle commun, à lire EN PREMIER)
+Dépend : CONTEXTE SYSTÈME (embarqué ci-dessous)
 Complète : INSTALL-ECOSYSTEME.md (périmètre P0-P7) — le présent fichier définit l'ORDRE D'EXÉCUTION OPTIMAL et les critères de passage.
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
+
+---
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.5.2)
+> **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
+
+### Règle Zéro (§0)
+L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA.
+
+### Variables d'installation (§1.1)
+| Variable | Défaut | Description |
+|----------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Registre KB |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case
+- **Fichiers** : kebab-case avec extension
+- **Versions** : format semver
+
+---
+-------|--------|-------------|
+| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
+| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
+| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
+
+### Conventions de nommage (§1.2)
+- **Répertoires** : kebab-case (`gen-plan`, `correct-work`). Exception : `@mon-ecosysteme/` (dossier des prompts maîtres).
+- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`).
+- **Versions** : format semver (`3.11.0`, `2.5.1`).
+- **Tags** : préfixe `#` pour les tokens (`#token 3500`).
+- **Variables** : double accolades (`{{SKILLS_ROOT}}`).
 
 ---
 
@@ -45,7 +77,7 @@ L'ordre dérive du graphe d'interactions cartographié (README §8, SHARED §3.1
 | 9 | **Publication** | `sync-download.py --sync` (download/) + archive zip (round-trip) + worklog | Vérif round-trip byte-identique | 15/15 round-trip OK |
 | 10 | **Clôture** | clone-chat (archivage session) + mise à jour KNOWLEDGE.md si nouveau skill | 8 checks S1-S8 clone-chat | Clone scellé, idempotent |
 
-Note (correct-work CIBLE, 2026-09-06, S3 ; révisée session A9, 2026-09-06) : les skills sans prompt maître propre — `skills-inventory`, `skill-creator`, `autonomous-agent`, `fullstack-dev` — n'ont pas de forme installée locale : ils existent comme entrées du registre KB (étape 6) et sont mobilisés à l'exécution, pas à l'installation. `agent-prompt-engineering` est désormais MATÉRIALISÉ (forme installée `agent-prompt-engineering/` : SKILL.md + evals/evals.json + evals/trigger_evals.json + references/grille-evaluation-prompt.md ; recommandation clone 2026-09-06 §5.2 exécutée).
+Note (correct-work CIBLE, 2026-09-06, S3 ; révisée session A9, 2026-09-06) : les skills sans prompt maître propre — `skills-inventory`, `skill-creator`, `agent-creator`, `fullstack-dev` — n'ont pas de forme installée locale : ils existent comme entrées du registre KB (étape 6) et sont mobilisés à l'exécution, pas à l'installation. `prompt-engineering` est désormais MATÉRIALISÉ (forme installée `prompt-engineering/` : SKILL.md + evals/evals.json + evals/trigger_evals.json + references/grille-evaluation-prompt.md ; recommandation clone 2026-09-06 §5.2 exécutée).
 
 ## §3 — Détail des points de contrôle critiques
 
@@ -72,7 +104,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 | clone-chat —enrichit→ KNOWLEDGE.md | 6, 10 | Descriptions §2 |
 | skills-inventory —scanne→ KNOWLEDGE.md | 6 | Registre source |
 | install-ecosystem —utilise→ infrastructure | 2-7 | Déploiement P6-P7 |
-| gen-plan —délègue→ agent-prompt-engineering | 0-10 | Optimisation fine des prompts |
+| gen-plan —délègue→ prompt-engineering | 0-10 | Optimisation fine des prompts |
 
 ## §5 — Relations
 

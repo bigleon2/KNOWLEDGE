@@ -1,11 +1,6 @@
 ---
-name: design
-version: 1.0.0
-category: metier
-language: fr
+name: Design Skill
 description: Route design-related HTML artifact tasks (landing pages, portfolios, prototypes, decks, content pages, web tools, social cards, info-interactive) to the right artifact skill, and decide whether to use design-system-reference, design-system-generation, or export. Use for any UI/visual/HTML design work.
-tags: []
-dependencies: []
 ---
 
 # Design Skill（设计技能）

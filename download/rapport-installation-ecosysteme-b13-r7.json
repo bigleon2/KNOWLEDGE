@@ -1,0 +1,116 @@
+{
+  "etapes": {
+    "0_contexte": {
+      "details": {
+        "fichiers_socle": {
+          "INSTALL-ECOSYSTEME.md": true,
+          "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": true,
+          "PROMPT-MAITRE-SHARED.md": true
+        }
+      },
+      "verdict": "PASS"
+    },
+    "10_cloture": {
+      "details": {
+        "clone": "download/clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-b.md (8/8 ×2)",
+        "kb_a_jour": true,
+        "worklog": "Task 47 appendée après ce rapport (R3)"
+      },
+      "verdict": "PASS"
+    },
+    "1_corpus": {
+      "details": {
+        "arbitre": "check-ecosysteme-integrity.py",
+        "extrait": "Manifeste écrit : /home/z/my-project/scripts/ecosysteme-integrity.json"
+      },
+      "verdict": "PASS"
+    },
+    "2_miroir": {
+      "details": {
+        "couvert_par": "check-ecosysteme-integrity.py",
+        "invariant": "miroir byte-identique au corpus (integrity)"
+      },
+      "verdict": "PASS"
+    },
+    "3-6_formes_installees": {
+      "details": {
+        "ecarts": [],
+        "eco_skills": {
+          "agent-creator": "2.0.0",
+          "audit-provenance": "1.0.0",
+          "clone-chat": "2.0.0",
+          "context-engineering": "1.1.0",
+          "correct-work": "2.6.0",
+          "gen-plan": "3.17.0",
+          "graph-engineering": "1.0.1",
+          "harness-engineering": "1.0.1",
+          "knowledge-observer": "1.0.0",
+          "loop-engineering": "1.0.1",
+          "prompt-engineering": "2.1.0",
+          "script-creator": "1.0.0",
+          "script-mon-ecosysteme-infrastructure": "1.1.0",
+          "script-reviewer": "1.0.0",
+          "skill-creator": "1.0.0",
+          "skills-inventory": "1.0.0"
+        },
+        "kb_entrees_versionnees": 16,
+        "kb_present": true,
+        "skills_metier_presents": 3
+      },
+      "verdict": "PASS"
+    },
+    "7_outillage": {
+      "details": {
+        "attendus": 11,
+        "py_compile_rc": 0,
+        "scripts_presents": 11
+      },
+      "verdict": "PASS"
+    },
+    "8_certification": {
+      "details": {
+        "a_verify_cross_defaut": "🎯 Score de conformité : 98.2%",
+        "a_verify_cross_mode_cw": "🎯 Score de conformité : 98.2%",
+        "b_correct_work_projet": "PASS (round 2 — tmp/b13r5-install/rapport-correct-work-projet-b13-r7-round2.md)",
+        "c_verify_by_sha": "N/A — canal R-1 non exporté (S4 documenté depuis Task 1, substitution integrity)",
+        "certification_complete_5sur5_x2": "ALL PASS ×2 (pre-step, ce tour)"
+      },
+      "verdict": "PASS"
+    },
+    "9_publication": {
+      "details": {
+        "archive_presente": true,
+        "canal_md": [
+          "INSTALL-ECOSYSTEME.md",
+          "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+          "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
+          "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
+          "PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
+          "PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
+          "PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",
+          "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
+          "PROMPT-MAITRE-SHARED.md",
+          "README.md",
+          "SYNC-CONTEXT.md",
+          "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-b.md",
+          "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7.md",
+          "plan-b13-r5.md",
+          "plan-b13-r7.md",
+          "rapport-correct-work-script-creator.md"
+        ],
+        "integrity_couvre": "SYNC_MAP + round-trip archive v2.1"
+      },
+      "verdict": "PASS"
+    }
+  },
+  "genere_le": "2026-09-27T00:36:13Z",
+  "pipeline": "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md §2 (10 étapes, mode vérification idempotente)",
+  "prealables": {
+    "correct_work_projet": "PASS round 2 (pré-étape 8b, ordre directive)",
+    "g_res": "OK/PARALLELE",
+    "snapshot_l002": "tmp/n30-snapshot/snapshot-avant-n30-0033.zip (43 Mo)"
+  },
+  "session": "B13-r7 — Task 47 (directive 1a0e03969df8da69, étape N30)",
+  "source_installation_initiale": "bigleon2/KNOWLEDGE@99f2759 (Task 1) — état courant: v3.17.0 / corpus 20 / ECO_SKILLS 16",
+  "verdict": "11/11 ALL PASS"
+}

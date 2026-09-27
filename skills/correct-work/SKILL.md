@@ -1,6 +1,6 @@
 ---
 name: correct-work
-version: 2.5.1
+version: 2.6.0
 category: ecosystem
 language: fr
 tags:
@@ -11,7 +11,7 @@ tags:
   - kb-integration
 description: >
   Skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences).
-  5 étapes, 3 modes (PROJET/CIBLE/DIRECT),
+  5 étapes, 4 modes (PROJET/CIBLE/DIRECT/AVEUGLE),
   support multi-cibles, découplage gen-plan optionnel,
   intégration KB (Registre, kb_path, --kb-skill),
   matrice de décision agent/skill (statique + dynamique KB),
@@ -27,6 +27,14 @@ dependencies:
     version: ">=1.0.0"
     used_at: "Vérification projets web"
 ---
+
+## §0 — Contexte Système (SHARED v1.5.2)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
 
 ## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
 
@@ -44,6 +52,7 @@ Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
 - `correct-work(projet)` — vérification complète du projet
 - `correct-work(<cible>)` — vérification ciblée sur un livrable
 - `correct-work()` — vérification rapide sans analyse approfondie
+- `correct-work(aveugle)` — re-vérification aveugle (Second Opinion) sans accès au premier verdict
 
 Options avancées (gen-plan >= v3.6.0) :
 - `correct-work(projet, kb_path=/chemin/KB)` — vérification avec scan des skills KB
@@ -54,15 +63,16 @@ Options avancées (gen-plan >= v3.6.0) :
 
 ### §1.1 Description
 
-correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 3 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session. Supporte le multi-cibles, le découplage gen-plan optionnel, et les métriques de performance.
+correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 4 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session. Supporte le multi-cibles, le découplage gen-plan optionnel, et les métriques de performance.
 
-### §1.2 Les 3 modes
+### §1.2 Les 4 modes
 
 | Mode | Nom | Description | Cas d'usage |
 |------|-----|-------------|-------------|
 | **PROJET** | Prompt-maître | Vérification complète d'un projet via son prompt maître | Validation finale d'un projet complexe |
 | **CIBLE** | Ciblé | Vérification ciblée d'un skill ou fichier spécifique (défaut) | Vérification d'un skill (ex: clone-chat) |
 | **DIRECT** | Rapide | Vérification directe sans plan préalable | Correction rapide d'un fichier |
+| **AVEUGLE** | Second Opinion | Re-vérification sans accès au premier verdict (élimine le biais de confirmation) | Divergence ou FAIL persistant à l'Étape 5 ; déclencheur `correct-work(aveugle)` |
 
 ### §1.3 Les 5 étapes
 
@@ -73,6 +83,8 @@ correct-work est un skill de **vérification et correction** du travail réalis�
 | **3** | Structure et conflits | Vérification de la structure, conflits entre sections, cohérence du format |
 | **4** | Vérification des interactions | Inspection des relations inter-skills, dépendances, interfaces |
 | **5** | Cohérence des raisonnements | Vérification de la logique globale, cohérence argumentaire, décisions |
+
+**Hook Second Opinion à l'Étape 5 (v2.6.0, phase N20)** : en cas de FAIL ou de divergence persistante à l'Étape 5 (Cohérence des raisonnements), une re-vérification **AVEUGLE** est lancée (**2nd opinion agent-driven**, déclencheur `correct-work(aveugle)`) : le vérificateur rejoue les étapes 2-5 sans accès au premier verdict, avec les inputs filtrés (`references/verification-protocol.md`). Maximum 2 rounds de correction par artefact (SHARED §4.4) ; le verdict final retenu est celui de la re-vérification aveugle.
 
 ### §1.4 Support multi-cibles
 
@@ -115,7 +127,9 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 
 ```
 {{SKILLS_ROOT}}correct-work/
-├── SKILL.md              # Skill opérationnel (~315 lignes)
+├── SKILL.md              # Skill opérationnel (~330 lignes)
+├── references/
+│   └── verification-protocol.md  # Second Opinion — inputs filtrés, 4 étapes (v2.6.0)
 ├── scripts/
 │   └── verify-correct-work.py  # 16 checks post-install automatisés
 └── evals/
@@ -131,7 +145,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 ## Métadonnées
 - **Date** : YYYY-MM-DD
 - **Mode** : PROJET | CIBLE | DIRECT
-- **Version correct-work** : 2.5.1
+- **Version correct-work** : 2.6.0
 - **Cible** : [nom du skill/fichier] (ou multi-cibles)
 
 ## Étape 1 — Plan d'actions
@@ -226,6 +240,20 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 
 ---
 
+
+### §3.2 Règles de cross-references (décentralisé du SHARED §3.2)
+
+> 📎 Décentralisé depuis `PROMPT-MAITRE-SHARED.md` (corrige-ecosysteme v2.0.0).
+
+Quand un skill A référence un skill B :
+1. La référence dans A doit inclure la version minimale requise de B
+2. Le fichier de B doit mentionner A dans sa section « Utilisé par » de KNOWLEDGE.md
+3. Si A modifie le comportement de B (ex : correct-work modifie clone-chat), la relation doit être documentée dans les deux sens
+4. Les mises à jour de version d'un skill doivent déclencher une vérification des dépendances
+5. **Plancher de version = version d'intégration validée** : lorsqu'un changement de contrat d'intégration survient (nouveau hook, nouvelle étape, nouveau mode), le plancher de la dépendance concernée est élevé à la version installée validée (ex : correct-work → gen-plan >= v3.7.0, suite au hook « contrôle par phase » E9-E14, 2026-08-30) ; sans changement de contrat, le plancher minimal historique demeure valide. Les arbitres (verify-cross, verify-correct-work) vérifient le plancher déclaré.
+6. **Planchers gradués assumés** : un plancher d'option peut demeurer inférieur au plancher d'intégration lorsqu'aucun changement de contrat ne l'affecte — cas assumé du PM correct-work v2.4.0, §A « Options avancées (gen-plan >= v3.6.0) » (options KB de scan antérieures au hook E9-E14), à ne pas confondre avec le plancher d'intégration >= v3.7.0 porté par la matrice des dépendances, le plan de vérification et l'auto-contrôle n°11. Un contrôle automatique de cohérence doit lire cette règle avant de signaler une divergence de plancher entre deux occurrences.
+
+---
 
 ## §10 — CHECKLISTS (SKILL.md)
 
@@ -326,6 +354,8 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 | L'utilisateur ne précise pas | CIBLE (défaut) |
 | Vérification complète + historique | PROJET |
 | Le skill a déjà été vérifié (round 2+) | CIBLE |
+| Un FAIL ou une divergence persiste à l'Étape 5 | AVEUGLE |
+| Déclencheur explicite `correct-work(aveugle)` | AVEUGLE |
 
 ### §10.5 Verdicts
 

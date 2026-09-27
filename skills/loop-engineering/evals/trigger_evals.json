@@ -1,18 +1,30 @@
 [
   {
-    "query": "organise l'exécution en boucle avec vérification et feedback exploitable",
+    "query": "Utilise le skill loop-engineering pour appliquer la discipline loop engineering (boucles exécution-vérification).",
     "should_trigger": true
   },
   {
-    "query": "mets en place des graders déterministes et relance jusqu'à PASS",
+    "query": "Mets en place la boucle d'exécution-vérification avec graders sur ce pipeline.",
     "should_trigger": true
   },
   {
-    "query": "transforme ce cycle en boucle externe et consigne les gains mesurés",
+    "query": "Construis la boucle : exécution → grader → feedback exploitable → itération jusqu'au critère de sortie.",
     "should_trigger": true
   },
   {
-    "query": "traduis ce document en anglais",
+    "query": "Définis les graders et les critères d'arrêt de ce processus itératif.",
+    "should_trigger": true
+  },
+  {
+    "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps, mémoire externe.",
+    "should_trigger": false
+  },
+  {
+    "query": "Vérifie simplement le travail une fois, à la fin.",
+    "should_trigger": false
+  },
+  {
+    "query": "Écris une boucle for en Python qui parcourt ma liste.",
     "should_trigger": false
   }
 ]

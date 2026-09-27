@@ -1,0 +1,56 @@
+{
+  "skill_name": "correct-py",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation (session B13-r8) au schéma exact skill-creator — couvrent le processus 5 étapes (§1.2) et les garde-fous (§1.3).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "CP-verif-conformite — mode VÉRIF lecture seule",
+      "prompt": "Vérifie la conformité PEP 8/PEP 257 du script scripts/exemple.py sans le modifier",
+      "expected_output": "Un rapport JSON déterministe (catégories P8/P25/CM/SR), verdict CONFORME ou NON_CONFORME, aucun artefact modifié, code retour explicite",
+      "files": [],
+      "expectations": [
+        "Le mode VÉRIF ne modifie aucun artefact (lecture seule)",
+        "Le rapport est déterministe (rejeu ×2 identique)",
+        "Chaque écart est classé par catégorie (P8, P25, CM, SR) avec sa ligne"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "CP-correct-idempotent — corrections mécaniques ×2",
+      "prompt": "Corrige les blancs parasites et les commentaires sans espace de ce script Python, puis prouve l'idempotence",
+      "expected_output": "Corrections mécaniques ciblées appliquées (zones chaînes/docstrings protégées), rejeu du mode CORRECT = 0 modification, preuve ×2",
+      "files": [],
+      "expectations": [
+        "Les corrections sont mécaniques et ciblées (jamais de réécriture totale)",
+        "Les chaînes de caractères et docstrings existantes ne sont jamais retouchées",
+        "Le rejeu du mode CORRECT produit 0 modification (idempotence ×2)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "CP-post-traitement-creator — hook après script-creator",
+      "prompt": "Tu viens de créer un script via script-creator : applique le post-traitement correct-py avant de le déclarer terminé",
+      "expected_output": "Le script passe le processus 5 étapes de correct-py (scan, rapport, verdict, corrections si besoin, re-verdict ×2 + traçabilité worklog)",
+      "files": [],
+      "expectations": [
+        "Le post-traitement suit script-creator (garde-fou 6 §1.3)",
+        "Le re-verdict est exécuté ×2 à l'identique",
+        "L'intervention est tracée au worklog (règle d'or n°1)"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "CP-escalade-ecart-non-mecanique — docstring à rédiger",
+      "prompt": "Le script n'a aucune docstring de module : corrige-la mécaniquement",
+      "expected_output": "Aucune docstring inventée mécaniquement : l'écart P25 est rapporté (NON_CONFORME) et escaladé au processus script-creator — la rédaction d'une docstring est du contenu, pas une correction mécanique",
+      "files": [],
+      "expectations": [
+        "L'écart non corrigeable mécaniquement est rapporté, jamais étouffé",
+        "L'escalade suit §1.3 GF-5 (script-creator puis script-reviewer/correct-work)",
+        "La logique du script reste inchangée"
+      ]
+    }
+  ]
+}

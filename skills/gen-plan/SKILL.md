@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.11.0
+version: 3.17.0
 category: ecosystem
 language: fr
 tags:
@@ -14,7 +14,9 @@ description: >
   4 modes (Planification, Exécution, Surveillance, Adaptation),
   15 étapes (E1-E15), classification Type 1-4 (documents, analyse, développement web, data), 3 profils ressource (NORMAL/ECO/VIEUX PC),
   tagging #token, snippets, scripts Python uniquement,
-  règles d'or d'adaptation autonome, disciplines d'ingénierie de prompts
+  règles d'or d'adaptation autonome, disciplines d'ingénierie de prompts,
+  hooks patterns avancés (answer key E1, arbitre answer-key-checker E7/E8,
+  Graph Diamond E9-E14, knowledge-observer E15)
 dependencies:
   - skill: correct-work
     version: ">=2.4.0"
@@ -26,14 +28,16 @@ dependencies:
   - skill: skills-inventory
     version: ">=1.0.0"
     used_at: "E5"
+  - skill: knowledge-observer
+    version: ">=1.0.0"
+    used_at: "E15 (analyse post-session, modes M1-M2)"
 ---
 
-## §0 — Règle zéro
+## §0 — Contexte Système (SHARED v1.5.2)
 
-Écosystème Knowledge : skills auto-contenus sous `{{SKILLS_ROOT}}`, versionnés semver, avec registre KB (`{{KB_PATH}}`) comme source de vérité (SHARED §0). Dépendances inter-skills déclarées en YAML, cross-references bidirectionnelles maintenues. Conventions de nommage SHARED §1.2 : répertoires kebab-case, sections préfixées `§`, tags budget préfixés `#`.
-
----
-
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 ## §1 — Spécification fonctionnelle
 
 ### §1.1 Les 4 modes
@@ -67,6 +71,25 @@ dependencies:
 
 > Détail complet de chaque étape : `references/etapes-detaillees.md`
 
+### §1.2bis Hooks patterns avancés (v3.13.0, phase N20)
+
+<!-- PATTERN:GEN-PLAN-HOOKS-PATTERNS-v1.0.0 -->
+
+| Hook | Étape | Mécanisme | Référence |
+|------|-------|-----------|-----------|
+| **Answer key obligatoire** | **E1** | Chaque décision E1 devient une entrée `D0NN` de l'answer key (criterion, verification exécutable, source, priority S1-S4, status pending) | `references/answer-key-template.md` |
+| **Arbitre answer-key-checker** | **E7/E8** | Le plan référence l'answer key ; à E8, l'arbitre mécanique `scripts/answer-key-checker.py` (16 checks) valide structure, fonctionnalité, idempotence et intégration — verdict PASS requis pour S1/S2 | `scripts/answer-key-checker.py` |
+| **Graph Diamond** | **E9-E14** | Parallélisation exceptionnelle des actions indépendantes (défaut : série, philosophie #4) — tracée au worklog | `references/graph-diamond-pattern.md` |
+| **Observer** | **E15** | Invoque knowledge-observer en modes M1-M2 (observation + analyse post-session) ; les modes M3-M4 exigent un verdict correct-work | `references/observation-patterns.md` |
+
+<!-- FIN-PATTERN:GEN-PLAN-HOOKS-PATTERNS-v1.0.0 -->
+
+<!-- PATTERN:GEN-PLAN-HOOKS-E1-RES-v1.0.0 -->
+
+**Hook E1-RES — ouverture de session (n67-1, reconstitué post-wipe — v3.17.0, N28)** : l'étape E1 ouvre par trois vérifications préalables, AVANT toute analyse : (1) **lecture seule préalable B-11** (règle D008 — état du worklog, du plan et des arbitres fait foi) ; (2) **collecte G-RES** via `skills/resource-monitor/scripts/monitor.py --state-file tmp/resource-monitor-state.json` (fonction de surveillance permanente §1.14 — verdict OK/PRESSION/CRITIQUE → mode d'exécution, décision journalisée) ; (3) **contrôle de fraîcheur du plan** (règle L005/D012 — si gen-plan a été modifiée et jugée valide depuis la génération du plan courant, le plan est re-généré AVANT toute reprise). Provenance : le hook n67-1 de la session B12 est PERDU au wipe inter-sessions (constat d'honnêteté Task 44) ; cette reconstitution est tracée comme telle (B13-r6, N28 — aucun faux lignage).
+
+<!-- FIN-PATTERN:GEN-PLAN-HOOKS-E1-RES-v1.0.0 -->
+
 ### §1.3 Normes
 
 - **N1 — Tagging #token** : chaque étape et skill reçoit un tag `#token` avec le coût estimé. Grille auto-calibrée après exécutions.
@@ -91,9 +114,15 @@ dependencies:
 
 **Règle d'or n°2 — Régénération du plan après installation d'un écosystème** (PM v3.11.0 §1.8) : dès qu'un nouvel écosystème est installé, le plan d'actions actuel est régénéré de façon cohérente via le nouveau skill gen-plan — modes, étapes, règles d'or et hooks réalignés sur la version installée, tags #token recalculés si la grille a évolué, régénération journalisée au worklog ; l'objectif final est inchangé (non-régression R2 des étapes terminées).
 
+<!-- PATTERN:KO-L005-v1.0.0 -->
+
+**Règle KO-L005 — Généralisation de la règle d'or n°2 : re-génération à chaque version de gen-plan modifiée et jugée valide** (leçon L005, validée — v3.17.0, N23-b/N28) : chaque fois que gen-plan est modifié et jugé valide par arbitres mécaniques AVANT toute action (jamais par présomption — L003), le plan d'actions actuel est re-généré via la nouvelle version ; la boucle complète est : arbitres → montée de version → recalibrage croisé (L004) → re-certification → re-génération du plan via la nouvelle version → re-validation E8. Première application : plan B13-r5 via v3.16.0 (directive trace `1a0dfe43940ae0c5`) ; matérialisation : ce bloc (montée v3.17.0, session B13-r6).
+
+<!-- FIN-PATTERN:KO-L005-v1.0.0 -->
+
 **Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (PM v3.11.0 §1.8) : toute nouvelle demande utilisateur pendant l'exécution d'un plan déclenche la mise à jour cohérente du plan d'actions actuel via gen-plan (E13) — demandes intégrées comme étapes/priorités, ré-estimation #token des étapes affectées, re-validation E8 si le périmètre change matériellement, journalisation au worklog ; extension du plan, jamais réécriture destructrice (R2).
 
-### §1.6 Disciplines d'ingénierie de prompts (PM v3.11.0 §1.9)
+### §1.6 Disciplines d'ingénierie de prompts (PM v3.12.0 §1.9)
 
 | Discipline | Mécanisme gen-plan |
 |------------|--------------------|
@@ -102,13 +131,26 @@ dependencies:
 | **Graph engineering** | Registre KB = graphe de relations bidirectionnelles versionnées ; matrice agent × skill |
 | **Harness engineering** | Profils ressource + signaux de pression ; hook E8 correct-work + contrôle par phase (E9-E14) ; worklog structuré |
 
-L'optimisation fine des prompts complexes est déléguée au skill `agent-prompt-engineering` (SHARED §3.1).
+**Table de mobilisation E1-E8 (v3.12.0)** — disciplines mobilisées par étape de planification (audit N5-a : interprétation PEK E1-E3 conforme, génération E4-E8 explicitée) :
 
-**Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode prompt-engineering (définitions : SHARED §7 ; orchestration : PM v3.11.0 §1.9) ; les autres skills de l'écosystème la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
+| Étape | Disciplines mobilisées | Mécanisme |
+|--------|------------------------|-----------|
+| E1 | prompt-engineering (PEK) ; context-engineering | Interprétation CoT/Chaining/Hybride (E1-E3) ; lecture SHARED/KB préalable |
+| E2 | context-engineering ; graph-engineering | Lecture bloc par bloc + synthèses intermédiaires ; Protocole de Découverte KB |
+| E3 | prompt-engineering (PEK) | Blocs de sortie adaptatifs A-J mappés sur les Types 1-4 |
+| E4 | harness-engineering | Grille #token, budgets, filtrage par profil |
+| E5 | graph-engineering ; context-engineering | Graphe KB (matrice agent × skill) ; scan du registre |
+| E6 | harness-engineering | Profils NORMAL/ECO/VIEUX PC, signaux de pression |
+| E7 | loop-engineering ; context-engineering ; harness-engineering | Boucles R3 prédéfinies (règle d'or n°1) ; plan auto-suffisant ; hooks par phase E9-E14 |
+| E8 | harness-engineering ; prompt-engineering (PEK) | Hook correct-work (3 verdicts) ; 12 checks PEK (scoring 22/25) |
+
+L'optimisation fine des prompts complexes est déléguée au skill `prompt-engineering` (SHARED §3.1).
+
+**Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode prompt-engineering (définitions : SHARED §7 ; orchestration : PM v3.12.0 §1.9) ; les autres skills de l'écosystème la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
 
 **Méthode de raisonnement adaptative PEK (v3.11.0, PM §1.9)** : gen-plan mobilise le Prompt Engineering Kit v4.1 (méthode pure) comme couche de raisonnement opérationnelle — 3 modes d'exécution (CoT 7 étapes / Chaining 4 étapes / Hybride à bascule automatique selon la complexité E1-E3) alignés sur la philosophie §1.4 #6 et calibrés par les profils §2.4 ; blocs de sortie adaptatifs A-J mappés sur les Types 1-4 (E3) ; 9 règles critiques + 12 checks de validation (scoring 25 pts, seuil 22/25) intégrés aux hooks correct-work par phase (E9-E14). Contenu opérationnel : `references/prompt-engineering-kit.md`.
 
-**Matérialisation des disciplines (état A12, mise à jour session A13)** : les 4 disciplines d'exécution sont matérialisées en skills complets à déclenchement automatique (`context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering` — SKILL.md + evals + trigger_evals ; les matérialisations agent intermédiaires `_disciplines/` A11 et `gen-plan.agent` A9 sont retirées, SHA prouvés) et la discipline prompt-engineering en skill (`agent-prompt-engineering`). Source de vérité des disciplines : SHARED §7 ; orchestration : PM v3.11.0 §1.9.
+**Matérialisation des disciplines (état A12, mise à jour session A13)** : les 4 disciplines d'exécution sont matérialisées en skills complets à déclenchement automatique (`context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering` — SKILL.md + evals + trigger_evals ; les matérialisations agent intermédiaires `_disciplines/` A11 et `gen-plan.agent` A9 sont retirées, SHA prouvés) et la discipline prompt-engineering en skill (`prompt-engineering`). Source de vérité des disciplines : SHARED §7 ; orchestration : PM v3.12.0 §1.9.
 
 ---
 
@@ -129,6 +171,30 @@ L'optimisation fine des prompts complexes est déléguée au skill `agent-prompt
 R1 vérifier présence avant insertion · R2 ne jamais rétrograder · R3 fusionner les frontmatters ·
 R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
+### §1.14 Leçons knowledge-observer — économie API et arbitres (re-curation B13, modes M3-M4)
+
+<!-- PATTERN:KO-L001-v1.0.0 -->
+
+**Règle KO-L001 — Économie API face à un quota 429 persistant** (leçon L001, appliquée) : en cas de blocage 429 persistant, ne jamais marteler l'API — une seule sonde par message utilisateur (R3-A11), travail local 100 % entre les sondes, armement automatique des suites à QUOTA_OK (flag + pré-checks + runner 429-aware `--skip-done`), fenêtres candidates documentées. Toute boucle d'attente en-tour est interdite : les démons d'arrière-plan de session sont fauchés entre les appels d'outils (constat expérimental R3-A17-bis — le mécanisme honnête reste la sonde immédiate à chaque tour, ré-armement best-effort seulement).
+
+<!-- FIN-PATTERN:KO-L001-v1.0.0 -->
+
+<!-- PATTERN:KO-L003-v1.0.0 -->
+
+**Règle KO-L003 — Arbitres à invariants dynamisés** (leçon L003, appliquée) : tout arbitre mécanique dérive ses invariants de l'état courant (frontmatter installé = source de vérité, registre KB, comptage réel), jamais d'un état figé. Un invariant figé produit des faux verdicts (faux négatif `@mon-ecosysteme` classé PLATEFORME hors set CORE, faux positif `pgrep -f` par auto-match de la ligne de commande, état « uniformément v3.11.0 » figé). Toute divergence arbitre ↔ réalité se corrige en dynamisant l'arbitre, avec re-verdict honnête obligatoire après correction — jamais en ajustant la réalité pour coller au verdict.
+
+<!-- FIN-PATTERN:KO-L003-v1.0.0 -->
+
+### §1.15 Leçons knowledge-observer — recalibrage croisé (re-curation B13, modes M3-M4)
+
+<!-- PATTERN:KO-L004-v1.0.0 -->
+
+**Règle KO-L004 — Recalibrage croisé** (leçon L004, appliquée) : toute montée de version d'un skill de l'écosystème déclenche le recalibrage mécanique des outils dépendants AVANT la certification : arbitres (`verify-cross.py`, `verify-correct-work.py`, `test-coherence-interactions.py`, `check-ecosysteme-integrity.py`, `answer-key-checker.py`), pre-checks (`n8-a-precheck-a2.py`), `skills-meta.json`, run-order, SYNC_MAP, miroir et archive. Un outil non recalibré valide l'état précédent — verdict inopérant. L'application M4 de toute leçon knowledge-observer intègre donc d'office la liste des outils à recalibrer (garde post-édition).
+
+<!-- FIN-PATTERN:KO-L004-v1.0.0 -->
+
+> Provenance : règles KO-L001/L003/L004 issues des leçons L001-L004 du journal `knowledge-observer` (sessions B13), reconstituées post-wipe (B13-r4, complété B13-r5) d'après les marqueurs et le lignage documentés — installées dans gen-plan v3.16.0 ; les contenus exacts de v3.14.0/v3.15.0, non documentés, restent perdus au wipe inter-sessions.
+
 ---
 
 ## §2 — Spécification technique
@@ -143,16 +209,22 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 ```
 skills/gen-plan/
-├── SKILL.md                          # Skill opérationnel compact (~232 lignes)
+├── SKILL.md                          # Skill opérationnel compact (~300 lignes)
 ├── references/
 │   ├── etapes-detaillees.md          # Détail des 15 étapes
 │   ├── grille-token.md               # Grille de calibration #token
 │   ├── classification-types.md       # Routage Type 1-4
 │   ├── profils-ressource.md          # NORMAL / ECO / VIEUX PC
 │   ├── guide-selection-agent-skill.md # Arbre de décision + tableau
-│   └── prompt-engineering-kit.md     # PEK v4.1 — raisonnement adaptatif (CoT/Chaining/Hybride, blocs A-J, 9 règles, 12 checks)
+│   ├── prompt-engineering-kit.md     # PEK v4.1 — raisonnement adaptatif (CoT/Chaining/Hybride, blocs A-J, 9 règles, 12 checks)
+│   ├── patterns-avances-qwen.md      # 5 patterns avancés (N19) — Answer Key, Graph Diamond, ToT, Second Opinion, Task Observer
+│   ├── answer-key-b12.md             # Premier registre réel des décisions (N19, D001-D010)
+│   ├── answer-key-template.md        # Schéma + règles Answer Key (N20)
+│   ├── graph-diamond-pattern.md      # Parallélisation exceptionnelle (N20)
+│   └── observation-patterns.md       # Task Observer — cycle A-H (N20)
 └── evals/
-    └── evals.json                    # Cas de test d'évaluation (6 evals)
+    ├── evals.json                    # Cas de test d'évaluation (6 evals)
+    └── trigger_evals.json            # Description Optimization (9 cas)
 ```
 
 ### §2.3 Auto-calibration E15
@@ -194,7 +266,13 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 | correct-work | Invocation à E1 + hook E8 + contrôle par phase | Validation du plan initial + vérification post-plan et à chaque phase terminée (E9-E14), version >= v2.4.0 |
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
-| agent-prompt-engineering | Délégation (§1.6) | Optimisation des prompts complexes, version >= v1.0.0 |
+| prompt-engineering | Délégation (§1.6) | Optimisation des prompts complexes, version >= v1.0.0 |
+| context-engineering | Mobilisation (§1.6) | Socle SHARED, Protocole de Découverte KB, lecture bloc par bloc — déclenchement automatique (SHARED §7) |
+| loop-engineering | Mobilisation (§1.6) | Boucle E10-E13 + auto-calibration E15 — déclenchement automatique (SHARED §7) |
+| graph-engineering | Mobilisation (§1.6) | Registre KB graphe bidirectionnel versionné, matrice agent × skill — déclenchement automatique (SHARED §7) |
+| harness-engineering | Mobilisation (§1.6) | Profils ressource, hooks E8 + E9-E14, arbitres, worklog — déclenchement automatique (SHARED §7) |
+| knowledge-observer | Invocation à E15 (§1.2bis) | Observation post-session (modes M1-M2) ; les modes M3-M4 exigent un verdict correct-work — version >= v1.0.0 |
+| answer-key | Arbitrage E7/E8 (§1.2bis) | Décisions E1 vérifiables mécaniquement — arbitre answer-key-checker.py (16 checks) |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
 
 ---

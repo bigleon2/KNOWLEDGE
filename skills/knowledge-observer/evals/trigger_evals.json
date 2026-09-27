@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Observe cette session et journalise les patterns d'erreur récurrents (lessons learned).",
+    "should_trigger": true
+  },
+  {
+    "query": "Lance knowledge-observer pour détecter les récurrences d'erreurs de cette discussion.",
+    "should_trigger": true
+  },
+  {
+    "query": "Analyse post-session : quels patterns d'erreur reviennent et que proposer pour améliorer les skills ?",
+    "should_trigger": true
+  },
+  {
+    "query": "Observation automatique : surveille les sessions pour détecter les patterns avant incident.",
+    "should_trigger": true
+  },
+  {
+    "query": "Corrige cette erreur de frontmatter immédiatement.",
+    "should_trigger": false
+  },
+  {
+    "query": "Crée un nouveau skill de planification avec evals et trigger_evals.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fais la certification complète de l'écosystème.",
+    "should_trigger": false
+  }
+]

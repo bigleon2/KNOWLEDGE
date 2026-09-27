@@ -1,11 +1,6 @@
 ---
 name: experiment-suite
-version: 1.0.0
-category: metier
-language: fr
 description: Use when the user has a research question and needs a complete experiment package — design document, runnable code, results (measured or simulated with honest provenance), publication-grade figures, structured report. Single-stage, no Python runtime.
-tags: []
-dependencies: []
 ---
 
 # Experiment Suite

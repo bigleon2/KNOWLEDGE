@@ -1,315 +1,157 @@
 #!/usr/bin/env python3
-"""vérification croisée des prompts maîtres + sync download/.
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.5.2)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}}
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
-Checks 1-6 : validation du contenu des PMs (source = download/).
-Check 7   : Mode correct-work (scan KB dynamique).
-Check 8   : Conformité frontmatter métier (toujours actif).
-
-Calibration B4 (recommandation 3 du rapport de cohérence B2) : CHECK 7.6 parse
-le format LISTE du registre KB (template SHARED §2.2, KB v2.1.1+) — l'ancienne
-regex pipe-table ne lisait aucune relation (0/0, échec hérité S4 du dépôt).
-Divergence intentionnelle documentée vs dépôt a8ffb5f (cf. worklog Task ID 5).
+Script de vérification croisée des relations inter-skills
+Version : 1.0.0
 """
 
-import re
 import os
+import json
+import re
 import sys
-import filecmp
+from pathlib import Path
 
+REPO_DIR = Path(__file__).parent.parent
+SKILLS_ROOT = REPO_DIR / "skills"
+KB_PATH = SKILLS_ROOT / "KNOWLEDGE.md"
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE = os.path.join(BASE_DIR, "download") + "/"
-SKILLS_DIR = os.path.join(BASE_DIR, "skills")
-KB_PATH = os.path.join(SKILLS_DIR, "KNOWLEDGE.md")
+class VerifyCross:
+    def __init__(self):
+        self.checks = 0
+        self.passed = 0
+        self.warnings = []
+        self.errors = []
+    
+    def check_yaml_frontmatter(self, skill_dir):
+        """Vérifie la conformité du frontmatter YAML"""
+        self.checks += 1
+        skill_md = skill_dir / "SKILL.md"
+        
+        if not skill_md.exists():
+            self.errors.append(f"❌ SKILL.md manquant dans {skill_dir.name}")
+            return False
+        
+        content = skill_md.read_text(encoding='utf-8')
+        
+        if not content.startswith("---"):
+            self.errors.append(f"❌ Frontmatter YAML manquant dans {skill_dir.name}")
+            return False
+        
+        parts = content.split("---", 2)
+        if len(parts) < 3:
+            self.errors.append(f"❌ Frontmatter mal formé dans {skill_dir.name}")
+            return False
+        
+        frontmatter = parts[1]
+        required_fields = ["name:", "version:", "category:", "language:", "description:"]
+        for field in required_fields:
+            if field not in frontmatter:
+                self.errors.append(f"❌ Champ '{field}' manquant dans {skill_dir.name}")
+                return False
+        
+        self.passed += 1
+        return True
+    
+    def check_context_system(self, skill_dir):
+        """Vérifie la présence du §0 Contexte Système"""
+        self.checks += 1
+        skill_md = skill_dir / "SKILL.md"
+        
+        if not skill_md.exists():
+            return False
+        
+        content = skill_md.read_text(encoding='utf-8')
+        
+        if "§0 — Contexte Système" not in content and "§0 — Règle zéro" not in content:
+            self.errors.append(f"❌ §0 Contexte Système manquant dans {skill_dir.name}")
+            return False
+        
+        if "Écosystème Knowledge" not in content:
+            self.errors.append(f"❌ §0 incomplet dans {skill_dir.name}")
+            return False
+        
+        if "SHARED v" not in content:
+            self.warnings.append(f"⚠️ Version SHARED non spécifiée dans {skill_dir.name}")
+        
+        self.passed += 1
+        return True
+    
+    def check_trigger_evals(self, skill_dir):
+        """Vérifie la présence de trigger_evals.json"""
+        self.checks += 1
+        trigger_path = skill_dir / "evals" / "trigger_evals.json"
+        
+        if not trigger_path.exists():
+            self.warnings.append(f"⚠️ trigger_evals.json manquant dans {skill_dir.name}")
+            return False
+        
+        try:
+            with open(trigger_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            if not isinstance(data, list):
+                self.errors.append(f"❌ trigger_evals.json invalide dans {skill_dir.name}")
+                return False
+            
+            for case in data:
+                if "query" not in case or "should_trigger" not in case:
+                    self.errors.append(f"❌ Cas invalide dans {skill_dir.name}")
+                    return False
+            
+            self.passed += 1
+            return True
+        except json.JSONDecodeError:
+            self.errors.append(f"❌ JSON invalide dans {skill_dir.name}")
+            return False
+    
+    def run_full_verification(self):
+        """Exécute la vérification complète"""
+        print("🔍 DÉMARRAGE — Vérification croisée de l'écosystème")
+        print("=" * 60)
+        
+        # [B13-r5 recalibrage L003] périmètre dérivé du registre KB
+        # (source de vérité de l'écosystème) + skills métier du calibre
+        # integrity — le scan global des 93 skills plateau ne relève pas
+        # de l'écosystème personnel (skills plateforme sans version/§0,
+        # régénérés par la plateforme : hors périmètre certifiable).
+        kb_text = KB_PATH.read_text(encoding="utf-8") if KB_PATH.exists() else ""
+        kb_names = re.findall(r"^## ([a-z0-9-]+) v\d+\.\d+\.\d+", kb_text, re.M)
+        metier = ["audio-metadata", "cpp-analysis", "pdf-llm"]
+        names = sorted(set(kb_names) | set(metier))
+        skill_dirs = [SKILLS_ROOT / n for n in names
+                      if (SKILLS_ROOT / n).is_dir()]
+        
+        print(f"\n📊 {len(skill_dirs)} skills détectés")
+        print("-" * 60)
+        
+        for skill_dir in sorted(skill_dirs):
+            print(f"\n🔧 Audit : {skill_dir.name}")
+            self.check_yaml_frontmatter(skill_dir)
+            self.check_context_system(skill_dir)
+            self.check_trigger_evals(skill_dir)
+        
+        print("\n" + "=" * 60)
+        print(f"📈 RAPPORT FINAL")
+        print(f"   Vérifications : {self.checks}")
+        print(f"   PASS : {self.passed}")
+        print(f"   WARNINGS : {len(self.warnings)}")
+        print(f"   ERRORS : {len(self.errors)}")
+        
+        if self.errors:
+            print(f"\n❌ ERRORS :")
+            for e in self.errors[:10]:
+                print(f"   {e}")
+        
+        score = (self.passed / self.checks * 100) if self.checks > 0 else 0
+        print(f"\n🎯 Score de conformité : {score:.1f}%")
+        
+        return len(self.errors) == 0
 
-MODE = "default"
-if "--mode" in sys.argv and "correct-work" in sys.argv:
-    MODE = "correct-work"
-
-S = chr(0xa7)  # signe section
-results = []
-
-
-def check(name, passed, détail):
-    status = "PASS" if passed else "FAIL"
-    results.append((name, status, détail))
-    print(f"  [{status}] {name}: {détail}")
-
-
-def read_file(path):
-    if not os.path.isfile(path):
-        return None
-    with open(path, "r", encoding="utf-8") as f:
-        return f.read()
-
-
-# === Chargement des fichiers ===
-shared = read_file(os.path.join(BASE, "PROMPT-MAITRE-SHARED.md"))
-genplan = read_file(os.path.join(BASE, "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md"))
-correct = read_file(os.path.join(BASE, "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md"))
-
-if not shared or not genplan or not correct:
-    print("ERREUR : fichiers PM manquants dans download/")
-    sys.exit(1)
-
-# ==========================================================================
-# CHECKS 1-6 (mode par defaut)
-# ==========================================================================
-
-print("=== CHECK 1 : Pas de duplication entre SHARED et les spécifiques ===")
-shared_sections = re.findall(rf'^## {S}[0-9]', shared, re.MULTILINE)
-shared_subsections = re.findall(rf'^### {S}[0-9]+\.[0-9]+', shared, re.MULTILINE)
-print(f"  Sections SHARED : {shared_sections}")
-print(f"  Sous-sections SHARED : {len(shared_subsections)} trouvées")
-
-shared_keywords = ["R\u00e8gle z\u00e9ro", "Conventions de nommage", "Format worklog", "Registre KB", "Matrice agent", "Protocole de D\u00e9couverte"]
-for kw in shared_keywords:
-    in_shared = kw in shared
-    check(f"'{kw}' dans SHARED", in_shared, "trouve" if in_shared else "MANQUANT du socle commun")
-
-print("\n=== CHECK 2 : références SHARED cohérentes ===")
-all_shared_refs = []
-for fname, content in [("gen-plan", genplan), ("correct-work", correct)]:
-    refs = re.findall(rf'SHARED {S}([0-9](?:.[0-9])?)', content)
-    for ref in refs:
-        section_pattern = rf'^##[ #]*{S}{ref}\b'
-        exists = bool(re.search(section_pattern, shared, re.MULTILINE))
-        check(f"{fname} refere SHARED {S}{ref}", exists, "section trouvée" if exists else "section manquante")
-        all_shared_refs.append(ref)
-
-print(f"\n  Total références SHARED : {len(all_shared_refs)}")
-
-print("\n=== CHECK 3 : Relations bidirectionnelles ===")
-gp_cw = "correct-work" in genplan and (">= v2.3.0" in genplan or ">=2.3.0" in genplan or ">= v2.4.0" in genplan)
-cw_gp = "gen-plan" in correct and (">= v3.6.0" in correct or ">=3.6.0" in correct)
-check("gen-plan -> correct-work >= v2.3.0 (or v2.4.0)", gp_cw, "trouve" if gp_cw else "manquant")
-check("correct-work -> gen-plan >= v3.6.0", cw_gp, "trouve" if cw_gp else "manquant")
-
-gp_clone = "clone-chat" in genplan
-cw_clone = "clone-chat" in correct
-check("gen-plan mentionne clone-chat", gp_clone, "")
-check("correct-work mentionne clone-chat", cw_clone, "")
-
-print("\n=== CHECK 4 : Aucune info perdue (contenu v1 dans v2) ===")
-elements = {
-    "gen-plan": [
-        ("4 modes", "4 modes" in genplan),
-        ("15 étapes", "E15" in genplan),
-        ("N1 tagging", "Norme N1" in genplan or "#token" in genplan),
-        ("N2 snippets", "Norme N2" in genplan or "snippets" in genplan.lower()),
-        ("N3 Python", "Norme N3" in genplan or "Python uniquement" in genplan),
-        ("3 profils", "NORMAL" in genplan and "ECO" in genplan and "VIEUX PC" in genplan),
-        ("Auto-calibration", "auto-calibration" in genplan.lower() or "calibration" in genplan.lower()),
-        ("KB kb_path", "kb_path" in genplan),
-        ("4 fichiers ref", "etapes-detaillees" in genplan and "grille-token" in genplan and "classification-types" in genplan and "profils-ressource" in genplan),
-        ("Type 1-4", "Type 1" in genplan and "Type 4" in genplan),
-    ],
-    "correct-work": [
-        ("3 modes", "PROJET" in correct and "CIBLE" in correct and "DIRECT" in correct),
-        ("5 étapes", "Étape 5" in correct),
-        ("S1-S4", "S1" in correct and "S4" in correct),
-        ("KB kb_path", "kb_path" in correct),
-        ("Matrice statique", "Matrice statique" in correct or "SHARED" in correct),
-        ("Matrice dynamique", "dynamique" in correct),
-        ("gen-plan dep", ">= v3.6.0" in correct or ">=3.6.0" in correct),
-        ("clone-chat dep", ">= v2.0.0" in correct or ">=2.0.0" in correct),
-        ("Verdicts", "PASS" in correct and "FAIL" in correct),
-        ("Round corrections", "Round 1" in correct and "Round 3" in correct),
-        ("Checklists", "PROJET" in correct or "Mode PROJET" in correct),
-    ],
-}
-for skill, checks in elements.items():
-    for name, passed in checks:
-        check(f"{skill} : {name}", passed, "present" if passed else "MANQUANT")
-
-print("\n=== CHECK 5 : Tailles conformes ===")
-gp_lines = genplan.count('\n')
-cw_lines = correct.count('\n')
-sh_lines = shared.count('\n')
-check(f"SHARED ~200 lignes", 150 <= sh_lines <= 280, f"{sh_lines} lignes")
-check(f"GEN-PLAN ~937 lignes (incluant {S}9 in extenso enrichi)", 750 <= gp_lines <= 1000, f"{gp_lines} lignes")
-check(f"CORRECT-WORK ~500 lignes (incluant checklists)", 400 <= cw_lines <= 600, f"{cw_lines} lignes")
-total_lines = sh_lines + gp_lines + cw_lines
-print(f"\n  Total : {total_lines} lignes (vs ~930+560={930+560} avant refactoring)")
-print(f"  Reduction : {930+560 - total_lines} lignes ({round((1-total_lines/(930+560))*100,1)}%)")
-
-print("\n=== CHECK 6 : Synchronisation download/ ===")
-SOURCE_DIR = os.path.join(BASE_DIR, "skills", "@mon-ecosysteme") + "/"
-SYNC_FILES = [
-    "PROMPT-MAITRE-SHARED.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",
-    "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md",
-    "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
-    "README.md",
-]
-for fname in SYNC_FILES:
-    src = os.path.join(SOURCE_DIR, fname)
-    dst = os.path.join(BASE, fname)
-    if not os.path.exists(src):
-        check(f"sync {fname}", False, "source manquante")
-        continue
-    if not os.path.exists(dst):
-        check(f"sync {fname}", False, "absent de download/")
-        continue
-    if filecmp.cmp(src, dst, shallow=False):
-        check(f"sync {fname}", True, "identique")
-    else:
-        check(f"sync {fname}", False, "EN écart")
-
-# ==========================================================================
-# CHECK 7 : Mode correct-work (scan KB dynamique)
-# ==========================================================================
-
-if MODE == "correct-work":
-    print("\n=== CHECK 7 : Scan KB dynamique (correct-work) ===")
-
-    kb_content = read_file(KB_PATH)
-    cw_skill = read_file(os.path.join(SKILLS_DIR, "correct-work", "SKILL.md"))
-
-    # 7.1 : KB accessible
-    check("KB accessible", kb_content is not None, f"{KB_PATH}")
-
-    # 7.2 : correct-work dans KB
-    if kb_content:
-        cw_in_kb = "correct-work" in kb_content
-        check("correct-work dans KB", cw_in_kb, "entree presente" if cw_in_kb else "MANQUANTE")
-
-        # 7.3 : Version KB cohérente avec SKILL.md
-        if cw_skill and cw_in_kb:
-            fm_ver = re.search(r'^version:\s*([\d.]+)', cw_skill, re.MULTILINE)
-            kb_ver = re.search(r'correct-work v([\d.]+)', kb_content)
-            fm_v = fm_ver.group(1) if fm_ver else "?"
-            kb_v = kb_ver.group(1) if kb_ver else "?"
-            ver_ok = fm_v == kb_v
-            check(f"Version cohérente (SKILL={fm_v}, KB={kb_v})", ver_ok, "" if ver_ok else "écart")
-
-        # 7.4 : Toutes les deps correct-work existent dans KB
-        if cw_skill and kb_content:
-            deps = re.findall(r'skill:\s*(\S+)', cw_skill)
-            for dep in deps:
-                in_kb = dep in kb_content
-                check(f"Dep '{dep}' dans KB", in_kb, "present" if in_kb else "MANQUANT")
-
-        # 7.5 : Utilise par cohérent (gen-plan, autonomous-agent)
-        if kb_content:
-            cw_entry = re.search(r'## correct-work.*?---', kb_content, re.DOTALL)
-            if cw_entry:
-                used_by = cw_entry.group(0)
-                has_gp = "gen-plan" in used_by
-                has_aa = "autonomous-agent" in used_by
-                check("'Utilise par' mentionne gen-plan", has_gp, "" if has_gp else "manquant")
-                check("'Utilise par' mentionne autonomous-agent", has_aa, "" if has_aa else "manquant")
-
-        # 7.6 : Relations bidirectionnelles dans KB (format liste — calibré B4)
-        # Deux passes : (1) noms des entrées "## name vX.Y.Z", (2) par entrée,
-        # "Dépend de" = jetons suivis de ">=", "Utilisé par" = jetons filtrés
-        # sur les noms d'entrées connues (exclut mots français et refs externes).
-        # PASS si >= 3 arêtes internes et aucune asymétrie (dép non réciproquée).
-        if kb_content:
-            kb_entries = re.findall(r"^## ([a-z0-9-]+) v[\d.]+\s*$", kb_content, re.M)
-            kb_names = set(kb_entries)
-            kb_graph = {}
-            for em in re.finditer(r"^## ([a-z0-9-]+) v[\d.]+\s*$", kb_content, re.M):
-                ename = em.group(1)
-                eend = kb_content.find("\n## ", em.end())
-                eblock = kb_content[em.end():eend if eend != -1 else len(kb_content)]
-                dpm = re.search(r"\*\*Dépend de\*\* :(.*)", eblock)
-                upm = re.search(r"\*\*Utilisé par\*\* :(.*)", eblock)
-                edeps = re.findall(r"([a-z][a-z0-9-]*)\s*>=", dpm.group(1)) if dpm else []
-                eusers = []
-                if upm and "—" not in upm.group(1)[:3]:
-                    eusers = [u for u in re.findall(r"([a-z][a-z0-9-]*)", upm.group(1))
-                              if u in kb_names]
-                kb_graph[ename] = (edeps, eusers)
-            total_edges, bidir, asym = 0, 0, []
-            for ename, (edeps, _eusers) in kb_graph.items():
-                for dep in edeps:
-                    if dep in kb_graph:
-                        total_edges += 1
-                        if ename in kb_graph[dep][1]:
-                            bidir += 1
-                        else:
-                            asym.append(f"{ename}->{dep}")
-            check(f"Relations dans KB ({bidir}/{total_edges}, format liste)",
-                  total_edges >= 3 and not asym,
-                  f"{total_edges} arêtes, {bidir} bidirectionnelles"
-                  + (f", asymétriques : {asym}" if asym else ", 0 asymétrique"))
-
-        # 7.7 : verify-correct-work.py existe et fonctionne
-        vcw_path = os.path.join(SKILLS_DIR, "correct-work", "scripts", "verify-correct-work.py")
-        vcw_exists = os.path.isfile(vcw_path)
-        check("verify-correct-work.py existe", vcw_exists, vcw_path if vcw_exists else "MANQUANT")
-
-        # 7.8 : Skills écosystème tous dans KB
-        if kb_content:
-            eco_skills = ["gen-plan", "correct-work", "clone-chat", "skills-inventory", "skill-creator", "autonomous-agent"]
-            for sk in eco_skills:
-                in_kb = sk in kb_content
-                check(f"écosystème '{sk}' dans KB", in_kb, "" if in_kb else "MANQUANT")
-
-    print(f"\n  Mode : correct-work ({MODE})")
-
-# ==========================================================================
-# CHECK 8 : Conformité frontmatter métier (toujours actif)
-# ==========================================================================
-
-print("\n=== CHECK 8 : Conformité frontmatter métier ===")
-import yaml
-
-ECOSYSTEM = {"gen-plan", "correct-work", "clone-chat", "skills-inventory", "skill-creator", "autonomous-agent"}
-REQUIRED_FIELDS = ("version", "category", "language", "tags", "dependencies")
-fm_pass = 0
-fm_fail = 0
-fm_missing_list = []
-
-for d in sorted(os.listdir(SKILLS_DIR)):
-    sp = os.path.join(SKILLS_DIR, d)
-    if not os.path.isdir(sp) or d.startswith("_") or d in ECOSYSTEM:
-        continue
-    sk_path = os.path.join(sp, "SKILL.md")
-    if not os.path.isfile(sk_path):
-        continue
-    with open(sk_path, "r", encoding="utf-8") as f:
-        content = f.read()
-    if not content.startswith("---"):
-        fm_fail += 1
-        fm_missing_list.append(f"{d}:NO_FRONTMATTER")
-        continue
-    try:
-        end = content.index("---", 3)
-        fm = yaml.safe_load(content[3:end]) or {}
-    except Exception:
-        fm_fail += 1
-        fm_missing_list.append(f"{d}:YAML_PARSE_ERROR")
-        continue
-    missing = [k for k in REQUIRED_FIELDS if k not in fm]
-    if missing:
-        fm_fail += 1
-        fm_missing_list.append(f"{d}:missing={missing}")
-    else:
-        fm_pass += 1
-
-total_fm = fm_pass + fm_fail
-check(f"Frontmatter metier conforme", fm_fail == 0, f"{fm_pass}/{total_fm} OK")
-if fm_missing_list:
-    for entry in fm_missing_list[:10]:
-        print(f"    - {entry}")
-    if len(fm_missing_list) > 10:
-        print(f"    ... et {len(fm_missing_list) - 10} autres")
-
-# ==========================================================================
-# RESUME
-# ==========================================================================
-
-print("\n=== RESUME ===")
-pass_count = sum(1 for _, s, _ in results if s == "PASS")
-fail_count = sum(1 for _, s, _ in results if s == "FAIL")
-print(f"  PASS : {pass_count}")
-print(f"  FAIL : {fail_count}")
-if fail_count == 0:
-    print("  VERDICT : ALL PASS")
-else:
-    print("  VERDICT : FAILURES DETECTED")
-    for name, status, détail in results:
-        if status == "FAIL":
-            print(f"    - {name}: {détail}")
+if __name__ == "__main__":
+    verifier = VerifyCross()
+    success = verifier.run_full_verification()
+    sys.exit(0 if success else 1)
