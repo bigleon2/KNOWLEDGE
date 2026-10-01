@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.1.0
+Version : 1.1.1
 Date : 2026-10-02
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -109,6 +109,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 | PM gen-plan le plus récent | Spécification | Étape 3 (méthode-mère prompt-engineering, §1.9) |
 | PM correct-work le plus récent | Spécification | Étape 4 + arbitre étape 8(b) |
 | PM clone-chat v2.0.0 | Spécification | Étape 5 + clôture étape 10 |
+| PROMPT-ULTRA-MAITRE-ORCHESTRATION.md | Route à l'usage (généré idempotent) | Point d'entrée d'orchestration globale — route chaque demande vers les PMs/skills sans dupliquer leur contenu (v1.0.0, 2026-10-02) ; ce fichier reste la source d'INSTALLATION, l'orchestrateur ne remplace aucun PM |
 | README.md | Documentation | §9 architecture, §10 workflows, §12 verify-cross, §13 canal R-1 |
 
 ## §6 — Maintenance
@@ -121,6 +122,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.1.1 | 2026-10-02 | Cross-ref §5 : PROMPT-ULTRA-MAITRE-ORCHESTRATION.md v1.0.0 (route à l'usage, généré idempotent) — complément de cohérence suite à vérification propriétaire « garder un prompt maître et le mettre à jour » : ce fichier EST le prompt maître d'installation conservé, mis à jour selon les demandes du jour (source unique, miroir supprimé, gen-plan obligatoire v2.7.0, périmètre §A absorbé) |
 | v1.1.0 | 2026-10-02 | Fusion directive utilisateur : absorption du périmètre d'INSTALL-ECOSYSTEME.md v1.0.0 (supprimé) en §A — source d'installation unique ; réparation du bloc CONTEXTE SYSTÈME corrompu (table dupliquée cassée, contenu restauré depuis git @1519bbe) ; étape 2 « Miroir » révisée « Archive » (exécution décision d'architecture v2.0 : miroir skills/_prompts-maitres/ supprimé, round-trip archive v2.1 fait foi) ; invariants dynamiques recalibrés (KO-L003) : « PM le plus récent », CORPUS_ATTENDU, verdicts arbitres courants ; §A.3 versions dynamiques (anti-drift) ; criterion correct-work étape 1 : gen-plan obligatoire (couplage v2.7.0) |
 | v1.0.0 | 2026-09-06 | Création (directive utilisateur) : pipeline 10 étapes issu de la cartographie des interactions ; principes de dépendance §1 ; critères de passage et arbitres §3 ; intégration règle d'or n°1 et canal R-1. Certification correct-work Mode CIBLE : PASS 31/31, 0 S1-S2, 1 S3 corrigée (note skills sans PM) |
 
