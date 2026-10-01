@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.17.0
+version: 3.17.1
 category: ecosystem
 language: fr
 tags:

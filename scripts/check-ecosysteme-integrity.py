@@ -12,7 +12,9 @@ Recalibré Architecture v2.0 (corrige-ecosysteme, session B8) ; re-calibré B13-
 (gen-plan v3.16.0, knowledge-observer 13e entrée, corpus 19 fichiers) ;
 re-calibré B13-r6 (N25 : script-creator + script-reviewer au registre — ECO_SKILLS 15,
 check 5, archive homologues v2.1 ; N27 : audit-provenance — ECO_SKILLS 16 ;
-N28 : gen-plan v3.17.0 — PM v3.17.0 assemblé 1362 L, corpus 20 fichiers) : le miroir
+N28 : gen-plan v3.17.0 — PM v3.17.0 assemblé 1362 L, corpus 20 fichiers) ;
+re-calibré 2026-10-02 (montée gen-plan v3.17.1 — propagation renommage
+prompt-engineering : PM v3.17.1 assemblé, corpus 22 fichiers, SYNC_MAP 12) : le miroir
 skills/_prompts-maitres/ est SUPPRIMÉ par décision d'architecture (KB §Décisions)
 — sa vérification est remplacée par le round-trip de l'archive
 download/mon-ecosysteme_archive.zip (véhicule d'intégrité v2.0).
@@ -45,7 +47,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.17.0",
+    "gen-plan": "3.17.1",
     "knowledge-observer": "1.0.0",
     "correct-work": "2.6.0",
     "clone-chat": "2.0.0",
@@ -71,13 +73,14 @@ METIER_SKILLS = ["audio-metadata", "cpp-analysis", "pdf-llm"]
 # CORPUS_ATTENDU — invariant canonique du corpus (dérivation L003) [N28]
 # Recalibrage L004 (Task 56) : 20 → 21 — ajout clone -f (directive utilisateur
 # « push le clone dans @mon-ecosysteme/ » ; miroir + archive alignés).
-CORPUS_ATTENDU = 21
+CORPUS_ATTENDU = 22
 SYNC_MAP = [
     "PROMPT-MAITRE-SHARED.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",
+    "PROMPT-MAITRE-GEN-PLAN-v3.17.1.md",
     "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
