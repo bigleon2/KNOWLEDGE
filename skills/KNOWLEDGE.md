@@ -7,7 +7,7 @@
 
 - **Category** : ecosystem
 - **Description** : Planification structurée des tâches — 4 modes, 15 étapes E1-E15, classification Type 1-4 (E3), règles d'or §1.5 (n°1 adaptation autonome, n°2 régénération post-installation, n°3 mise à jour à chaque nouvelle demande — déclencheur verbatim « intègre dans le plan d'actions » v3.17.2), disciplines d'ingénierie §1.6 (source de vérité : SHARED §7 ; mobilisation E1-E8), méthode de raisonnement adaptative PEK v4.1 (3 modes, blocs A-J, 9 règles, 12 checks), hooks patterns avancés §1.2bis (answer key obligatoire E1, arbitre answer-key-checker E7/E8, Graph Diamond E9-E14, knowledge-observer E15), leçons knowledge-observer §1.14/§1.15 (KO-L001 économie API, KO-L003 arbitres à invariants dynamisés, KO-L004 recalibrage croisé, KO-L005 généralisation règle d'or n°2 — §1.5) ; hook E1-RES §1.2bis (n67-1 reconstitué post-wipe : B-11 + collecte G-RES + fraîcheur du plan)
-- **Dépend de** : correct-work >= v2.4.0 (hooks E9-E14), clone-chat >= v2.0.0 (E4, E15, optionnel), skills-inventory >= v1.0.0 (E5), prompt-engineering >= v1.0.0 (délégation §1.9), context-engineering (mobilisation §1.6), loop-engineering (mobilisation §1.6), graph-engineering (mobilisation §1.6), harness-engineering (mobilisation §1.6), knowledge-observer >= v1.0.0 (E15)
+- **Dépend de** : correct-work >= v2.4.0 (hooks E9-E14), clone-chat >= v2.0.0 (E4, E15, optionnel), skills-inventory >= v1.0.0 (E5), prompt-engineering >= v1.0.0 (délégation §1.9), resource-monitor >= v1.0.0 (hook E1-RES — collecte G-RES, v3.17.2), context-engineering (mobilisation §1.6), loop-engineering (mobilisation §1.6), graph-engineering (mobilisation §1.6), harness-engineering (mobilisation §1.6), knowledge-observer >= v1.0.0 (E15)
 - **Utilisé par** : correct-work (Étape 1, OBLIGATOIRE — dernière version installée, v2.7.0), clone-chat (optionnel), agent-creator, Main (planification complète), prompt-engineering (contexte écosystème, E1-E8), knowledge-observer (invoqué à E15, modes M1-M2)
 - **Dernière calibration** : 2026-09-10 (révision B3 : harmonisation bidirectionnelle du registre — réciproques « Utilisé par » clone-chat, prompt-engineering ; révision B1 : intégration PEK v4.1 par assemblage — couche de raisonnement adaptative, 6e référence prompt-engineering-kit.md, PM v3.11.0 ; A12 : règles d'or n°2-n°3, directive utilisateur ; A11 : disciplines implantées en SHARED §7, triggers 9/9) ; N14-b (2026-09-19) : re-montée v3.12.0 — table de mobilisation E1-E8 §1.6, relations §3 étendues aux 4 disciplines, E1/E5/E7/E8, porteurs propagés) ; B13-r5 (2026-09-26) : re-curation leçons KO (§1.14/§1.15), hooks §1.2bis, reconstitution post-wipe (trace 1a0dfca3a0ffe13d) ; N23-b/N28 (2026-09-27, B13-r6) : montée v3.17.0 — §1.5 bloc PATTERN:KO-L005-v1.0.0 (leçon L005 validée), §1.2bis hook E1-RES (n67-1 reconstitué, provenance tracée), PM v3.17.0 assemblé 1362 L déployé ×3, arbitre n60b 12/12 ×2 ; montée v3.17.1 (2026-10-02, trace a91dd80) : propagation renommage prompt-engineering — patterns-avances-qwen.md (mode M5), PM v3.17.1 assemblé et déployé ×3, recalibrage KO-L004 (integrité, corpus 22, SYNC_MAP 12), arbitres re-certifiés ; montée v3.17.2 (2026-10-02) : déclencheur verbatim « intègre dans le plan d'actions » (§A PM + règle d'or n°3 + trigger_evals 8 cas), correction E1 → PM-INSTALL v1.1.0 (fusion installateurs), recalibrage KO-L004 (CORPUS_ATTENDU 22, SYNC_MAP 12)
 - **Statut** : stable
@@ -159,6 +159,51 @@
 - **Utilisé par** : —
 - **Dernière calibration** : 2026-09-27 (N27, B13-r6 : matérialisation — SKILL.md + evals 4+7 + collecteur scripts/audit-provenance.py ; audit exécuté : 214 scannés, 189 tracés, 25 scripts documentés, idempotence ×2 no-op prouvée)
 - **Note N27 (B13-r6)** : déclencheurs systématiques — après wipe/restauration, avant clone-chat, avant installation ; périmètre écosystème strict (ECO_SKILLS dynamique) ; heuristique déclarative extensible (--markers) ; orphelins résiduels 33 assumés v1.0.0 (GF-3 — listés au rapport).
+- **Statut** : stable
+
+## audio-metadata v1.0.0
+
+- **Category** : metier
+- **Description** : Gestion avancée des métadonnées audio — extraction, normalisation, conversion de tags ID3v2, MP4, FLAC, Vorbis ; formats DJ (MP3, FLAC, WAV, AIFF, M4A)
+- **Dépend de** : —
+- **Utilisé par** : Main (gestion de collections audio)
+- **Note P-H (2026-10-02)** : entrée créée pour compléter la bidirectionnalité registre↔skills (gap S3 préexistant à 68ff91d, résolu)
+- **Statut** : stable
+
+## cpp-analysis v1.0.0
+
+- **Category** : metier
+- **Description** : Analyse de code C/C++ — détection de bugs, optimisation de performance, analyse de complexité, génération de documentation ; support C à C++20
+- **Dépend de** : —
+- **Utilisé par** : Main (analyse de code C/C++)
+- **Note P-H (2026-10-02)** : entrée créée pour compléter la bidirectionnalité registre↔skills (gap S3 préexistant à 68ff91d, résolu)
+- **Statut** : stable
+
+## pdf-llm v1.0.0
+
+- **Category** : metier
+- **Description** : Extraction documentaire PDF vers Markdown + JSON structuré RAG-ready — 4 modes (qwen/glm/multi/pipeline), zéro hallucination ; déclencheurs RAG, vectorisation, OCR
+- **Dépend de** : —
+- **Utilisé par** : Main (extraction documentaire PDF)
+- **Note P-H (2026-10-02)** : entrée créée pour compléter la bidirectionnalité registre↔skills (gap S3 préexistant à 68ff91d, résolu)
+- **Statut** : stable
+
+## resource-monitor v1.0.0
+
+- **Category** : ecosystem
+- **Description** : Surveillance permanente des ressources de l'écosystème — collecte des indicateurs critiques (budget #token, timeouts consécutifs, disque, RAM), verdicts OK/PRESSION/CRITIQUE → mode d'exécution
+- **Dépend de** : —
+- **Utilisé par** : gen-plan (hook E1-RES — collecte G-RES, §1.2bis), Main (surveillance permanente §1.14)
+- **Note P-H (2026-10-02)** : entrée créée pour fermer la boucle bidirectionnelle E1-RES : gen-plan « Dépend de » resource-monitor ↔ resource-monitor « Utilisé par » gen-plan (réciprocité SHARED §3.1)
+- **Statut** : stable
+
+## version-management v1.0.0
+
+- **Category** : metier
+- **Description** : Gestion du cycle de vie complet des projets front-end (versionnement par send_file/meta.json, historique, restauration, bascule de projets) — skill brut d'origine (description en chinois), version normalisée Z1 au frontmatter
+- **Dépend de** : —
+- **Utilisé par** : Main (projets web front-end)
+- **Note P-H (2026-10-02)** : entrée créée pour compléter la bidirectionnalité registre↔skills ; frontmatter normalisé minimale (version: 1.0.0 ajoutée — le corps reste inchangé, R2)
 - **Statut** : stable
 
 ## Décisions d'architecture (corrige-ecosysteme v2.0.0)

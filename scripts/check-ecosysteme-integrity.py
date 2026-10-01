@@ -34,8 +34,8 @@ Vérifications (pipeline PM-INSTALL étapes 1-2, 8 — périmètre v1.1.0) :
   1. SHA-256 des fichiers du corpus canonique skills/@mon-ecosysteme/
   2. Round-trip byte-identité archive download/mon-ecosysteme_archive.zip ↔ corpus
   3. Synchronisation download/ (SYNC_MAP 11 fichiers — recalibré fusion v1.1.0)
-  4. Structure des 16 skills écosystème + 3 skills métier installés
-  5. Cohérence versions SKILL.md ↔ registre KNOWLEDGE.md (16 entrées versionnées
+  4. Structure des 21 skills écosystème installés (16 + 5 au registre P-H)
+  5. Cohérence versions SKILL.md ↔ registre KNOWLEDGE.md (21 entrées versionnées
      + section « Décisions d'architecture »)
 
 Usage :
@@ -74,11 +74,16 @@ ECO_SKILLS = {
     "graph-engineering": "1.0.1",
     "harness-engineering": "1.0.1",
     "script-mon-ecosysteme-infrastructure": "1.1.0",
+    "audio-metadata": "1.0.0",
+    "cpp-analysis": "1.0.0",
+    "pdf-llm": "1.0.0",
+    "resource-monitor": "1.0.0",
+    "version-management": "1.0.0",
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.
 KB_ONLY_VERSION = set()
-METIER_SKILLS = ["audio-metadata", "cpp-analysis", "pdf-llm"]
+METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au registre — check 4bis vidé
 # [N14-c] SYNC_MAP canal 8 courants — voir bloc SYNC_MAP ci-dessous
 # SYNC_MAP canal Architecture v2.0 — 8 fichiers COURANTS (cible A7) ;
 # CORPUS_ATTENDU — invariant canonique du corpus (dérivation L003) [N28]
@@ -190,8 +195,8 @@ def main():
             kb = f.read()
         entries = re.findall(r"^## ([\w-]+) v([\d.]+)", kb, re.MULTILINE)
         has_decisions = "## Décisions d'architecture" in kb
-        check("16 entrées KB versionnées + Décisions d'architecture",
-              len(entries) == 16 and has_decisions,
+        check("21 entrées KB versionnées + Décisions d'architecture",
+              len(entries) == 21 and has_decisions,
               f"{len(entries)} entrées versionnées, Décisions={'oui' if has_decisions else 'non'}")
         for skill, expected_ver in ECO_SKILLS.items():
             match = [e for e in entries if e[0] == skill]

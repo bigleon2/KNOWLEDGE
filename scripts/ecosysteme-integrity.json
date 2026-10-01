@@ -17,9 +17,9 @@
     "PROMPT-MAITRE-GEN-PLAN-v3.8.0.md": "25ee244df6a790c02366a57617f2b5ee8ba80b2e3b931d963b7e06b53beef190",
     "PROMPT-MAITRE-GEN-PLAN-v3.8.1.md": "69addcc9b1ef060ed348022b4753eccf2a160c6b66b38d946b8f5e49dd144ad9",
     "PROMPT-MAITRE-GEN-PLAN-v3.9.0.md": "a3c2fafaae6167b7a971a3120029349fca53f3d77c9eb9c3451108c597d82aee",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "b5ad56282a5f152e3089b88a227aca24d639c5d5f59632ff92c98bd660add066",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "c141a7ab636bcdf634ef1ec56ce6c2f745b12aebcff807bcbb8c46a1e6acd169",
     "PROMPT-MAITRE-SHARED.md": "f695902f959b3695fb687a5f1a56fe30cfab738b8f73eb4335032c11a0cb2334",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "a120c6ef7c2745f498ee71abd17cad628a8378fe677815405ebfa69c7e98a743",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "c3cf6d63dddd4d26e6ca4f02fd13b69a7a5e5a8b9071ed759407ce57b035dc2a",
     "README.md": "9d276dfd9e3979845459bbc499abe0d303b326939d99184a3800365b384d45d4",
     "SYNC-CONTEXT.md": "973b1ca82f1a92dba35ef52ddc207fb1ac1b6df13d60b30cf4d3829356972ce2",
     "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-f.md": "74f055f7795621c03ac4f41463240342579f75d44d789da5366f4491d1e270ef"
@@ -42,9 +42,9 @@
     "PROMPT-MAITRE-GEN-PLAN-v3.8.0.md": "25ee244df6a790c02366a57617f2b5ee8ba80b2e3b931d963b7e06b53beef190",
     "PROMPT-MAITRE-GEN-PLAN-v3.8.1.md": "69addcc9b1ef060ed348022b4753eccf2a160c6b66b38d946b8f5e49dd144ad9",
     "PROMPT-MAITRE-GEN-PLAN-v3.9.0.md": "a3c2fafaae6167b7a971a3120029349fca53f3d77c9eb9c3451108c597d82aee",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "b5ad56282a5f152e3089b88a227aca24d639c5d5f59632ff92c98bd660add066",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "c141a7ab636bcdf634ef1ec56ce6c2f745b12aebcff807bcbb8c46a1e6acd169",
     "PROMPT-MAITRE-SHARED.md": "f695902f959b3695fb687a5f1a56fe30cfab738b8f73eb4335032c11a0cb2334",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "a120c6ef7c2745f498ee71abd17cad628a8378fe677815405ebfa69c7e98a743",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "c3cf6d63dddd4d26e6ca4f02fd13b69a7a5e5a8b9071ed759407ce57b035dc2a",
     "README.md": "9d276dfd9e3979845459bbc499abe0d303b326939d99184a3800365b384d45d4",
     "SYNC-CONTEXT.md": "973b1ca82f1a92dba35ef52ddc207fb1ac1b6df13d60b30cf4d3829356972ce2",
     "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-f.md": "74f055f7795621c03ac4f41463240342579f75d44d789da5366f4491d1e270ef"
@@ -58,9 +58,9 @@
     "PROMPT-MAITRE-GEN-PLAN-v3.17.0.md": "1188c0ea067de8fbaa6e420268464f021014948a2cecfa1cb8ebdb1300d3b692",
     "PROMPT-MAITRE-GEN-PLAN-v3.17.1.md": "31139a0738dcdc4faf513a28626d60a789dd2db88493e5931ccc99e645cda44d",
     "PROMPT-MAITRE-GEN-PLAN-v3.17.2.md": "45f7e71989f44b85530a689580b969c78b6b33d009d9ab5e910c839f86d5dbe6",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "b5ad56282a5f152e3089b88a227aca24d639c5d5f59632ff92c98bd660add066",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "c141a7ab636bcdf634ef1ec56ce6c2f745b12aebcff807bcbb8c46a1e6acd169",
     "PROMPT-MAITRE-SHARED.md": "f695902f959b3695fb687a5f1a56fe30cfab738b8f73eb4335032c11a0cb2334",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "a120c6ef7c2745f498ee71abd17cad628a8378fe677815405ebfa69c7e98a743",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "c3cf6d63dddd4d26e6ca4f02fd13b69a7a5e5a8b9071ed759407ce57b035dc2a",
     "README.md": "9d276dfd9e3979845459bbc499abe0d303b326939d99184a3800365b384d45d4",
     "SYNC-CONTEXT.md": "973b1ca82f1a92dba35ef52ddc207fb1ac1b6df13d60b30cf4d3829356972ce2"
   },
@@ -68,6 +68,10 @@
     "agent-creator": {
       "sha256": "11a9e557ebdb3654c18488884a9b19d35dc6cf6e51f7417dbd49230d2fe1b162",
       "version": "2.0.0"
+    },
+    "audio-metadata": {
+      "sha256": "e7d6df6df998ed0c60d4fe40518901945605260f8f7f2a19d177b5898ca738fc",
+      "version": "1.0.0"
     },
     "audit-provenance": {
       "sha256": "d367a9833afd9026fe97669db2d44eb9c0be2b2a9a89ffd822cba1298f5d0424",
@@ -85,8 +89,12 @@
       "sha256": "ca8a37d41163b21fdc6e916f59b8dad081010ebdbd79700c1ab7548c4d9b38ee",
       "version": "2.7.0"
     },
+    "cpp-analysis": {
+      "sha256": "6223903e2aa0015e28e02bc5b341099086eb36ed58793317bb22d8399ef631c9",
+      "version": "1.0.0"
+    },
     "gen-plan": {
-      "sha256": "a9a225e82e1381f2aa3045da23f16d78002602ebafa2ca3e9001744ae0b21bec",
+      "sha256": "a6bde74d111b86c8f8c92e8ba8ed83bf539cfd0dd718efb20a3295a240c78499",
       "version": "3.17.2"
     },
     "graph-engineering": {
@@ -105,9 +113,17 @@
       "sha256": "27b2c0b4ec7519044a5945d017d078cc6f00d4779882aa4fdd26e09f8266b8d8",
       "version": "1.0.1"
     },
+    "pdf-llm": {
+      "sha256": "789229588ce4086d921e3a962bf81e0c71e5bfd24a89dff4a67f5926c69013b7",
+      "version": "1.0.0"
+    },
     "prompt-engineering": {
       "sha256": "96f98a303ab219945a1eace83881539a6fcfb814333eede8a226d609adc2461a",
       "version": "2.1.0"
+    },
+    "resource-monitor": {
+      "sha256": "a70205ac6a68cb07c2078927e3c2acb852d46f42dcceb5904ebadbae96211f70",
+      "version": "1.0.0"
     },
     "script-creator": {
       "sha256": "8fb6f1cbf506f9da9da04e02b8c6183e386cd3cc798fb1c5ec63a498dc26de54",
@@ -127,6 +143,10 @@
     },
     "skills-inventory": {
       "sha256": "af335995e66780786be8c95a74da17aad1b7507c9a033b404a9a966576215649",
+      "version": "1.0.0"
+    },
+    "version-management": {
+      "sha256": "4907b6260e3d4f34725aef3c03b267196f9bd766311468c91fada01f99d6f5a7",
       "version": "1.0.0"
     }
   }

@@ -179,8 +179,13 @@ for m in re.finditer(r"^## ([a-z0-9-]+) v(\d+\.\d+\.\d+)\s*$", kb_text, re.M):
                                              "optionnel", "etat", "tat")]
     entries[name] = {"version": ver, "deps": deps, "users": sorted(set(users))}
 
-record("PASS" if len(entries) == 16 else "FAIL", "2",
-       f"Registre parsé : {len(entries)} entrées versionnées (16 attendues — v2.0/N20/N25/N27)")
+# Attendu dérivé dynamiquement de ECO_SKILLS du checker (KO-L004, 2026-10-02) — plus de 16 en dur
+_cei_src2 = (BASE / "scripts" / "check-ecosysteme-integrity.py").read_text(encoding="utf-8") if (BASE / "scripts" / "check-ecosysteme-integrity.py").exists() else ""
+_m_eco2 = re.search(r"ECO_SKILLS\s*=\s*\{(.*?)\}", _cei_src2, re.S)
+cal_ref = dict(re.findall(r'"([a-z0-9-]+)":\s*"([\d.]+)"', _m_eco2.group(1))) if _m_eco2 else {}
+
+record("PASS" if len(entries) == len(cal_ref) else "FAIL", "2",
+       f"Registre parsé : {len(entries)} entrées versionnées ({len(cal_ref)} attendues — dérivé ECO_SKILLS du checker, dynamisé KO-L004)")
 
 mismatches = []
 for name, info in entries.items():
@@ -307,10 +312,10 @@ cal_mism = [f"{k}: arbitre={v} / KB={entries[k]['version']}"
             for k, v in cal.items() if entries.get(k, {}).get("version") != v]
 # Recalibrage L004 (Task 56) : ok6 lit l'invariant canonique CORPUS_ATTENDU de
 # l'arbitre integrity via _expected_corpus (regex, l. 128) — plus de codage en dur.
-ok6 = (len(cal) == 16 and not cal_mism and len(corpus_files) == _expected_corpus)
+ok6 = (len(cal) > 0 and not cal_mism and len(corpus_files) == _expected_corpus and len(cal) == len(entries))
 record("PASS" if ok6 else "FAIL", "6",
-       "check-ecosysteme-integrity.py calibré (ECO_SKILLS 16 entrées, corpus = CORPUS_ATTENDU) sur l'état KB réel",
-       "aligné sur l'état réel v2.0/B13-r6" if ok6 else "; ".join(cal_mism))
+       f"check-ecosysteme-integrity.py calibré (ECO_SKILLS {len(cal)} entrées, corpus = CORPUS_ATTENDU) sur l'état KB réel",
+       "dynamisé KO-L004 (l'arbitre couvre exactement les entrées KB versionnées)" if ok6 else "; ".join(cal_mism))
 
 # ============================================================================
 print("\n=== 7. Synchronisation download/ ===")

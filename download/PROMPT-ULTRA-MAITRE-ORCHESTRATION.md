@@ -38,7 +38,7 @@
 | CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md (la plus récente) | 2.4.0, 2.5.0 |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.6.1 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.1.0 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.6.1 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.1.1 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
@@ -60,13 +60,18 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.6.1 (lire en premier). Installateur : `PROM
 | `harness-engineering` | 1.0.1 |
 | `knowledge-observer` | 1.0.0 |
 | `script-mon-ecosysteme-infrastructure` | 1.1.0 |
+| `audio-metadata` | 1.0.0 |
+| `cpp-analysis` | 1.0.0 |
+| `pdf-llm` | 1.0.0 |
+| `resource-monitor` | 1.0.0 |
+| `version-management` | 1.0.0 |
 
-Registre KB : 16 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.7.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
+Registre KB : 21 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.7.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 
 ## §4 — Points d'entrée et ordre de lecture
 
 1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.6.1) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.1.0) — périmètre §A + pipeline 10 étapes + critères §3.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.1.1) — périmètre §A + pipeline 10 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
 5. **Publication** : `scripts/sync-download.py --sync` + archive `download/mon-ecosysteme_archive.zip` (round-trip v2.1).

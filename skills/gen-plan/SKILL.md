@@ -32,6 +32,9 @@ dependencies:
   - skill: knowledge-observer
     version: ">=1.0.0"
     used_at: "E15 (analyse post-session, modes M1-M2)"
+  - skill: resource-monitor
+    version: ">=1.0.0"
+    used_at: "Hook E1-RES (collecte G-RES, ouverture de session)"
 ---
 
 ## §0 — Contexte Système (SHARED v1.5.2)
@@ -273,6 +276,7 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 | graph-engineering | Mobilisation (§1.6) | Registre KB graphe bidirectionnel versionné, matrice agent × skill — déclenchement automatique (SHARED §7) |
 | harness-engineering | Mobilisation (§1.6) | Profils ressource, hooks E8 + E9-E14, arbitres, worklog — déclenchement automatique (SHARED §7) |
 | knowledge-observer | Invocation à E15 (§1.2bis) | Observation post-session (modes M1-M2) ; les modes M3-M4 exigent un verdict correct-work — version >= v1.0.0 |
+| resource-monitor | Mobilisation hook E1-RES (§1.2bis) | Collecte G-RES à l'ouverture de session — verdict OK/PRESSION/CRITIQUE → mode d'exécution, version >= v1.0.0 |
 | answer-key | Arbitrage E7/E8 (§1.2bis) | Décisions E1 vérifiables mécaniquement — arbitre answer-key-checker.py (16 checks) |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
 

@@ -37,7 +37,9 @@ ECO_SKILLS = ["gen-plan", "correct-work", "clone-chat", "skills-inventory",
               "script-reviewer", "audit-provenance", "prompt-engineering",
               "context-engineering", "loop-engineering", "graph-engineering",
               "harness-engineering", "knowledge-observer",
-              "script-mon-ecosysteme-infrastructure"]
+              "script-mon-ecosysteme-infrastructure",
+              "audio-metadata", "cpp-analysis", "pdf-llm",
+              "resource-monitor", "version-management"]
 
 ROUTING = [
     ("Planifier une tâche / un projet", "gen-plan (dernière version)", "PM gen-plan le plus récent", "E1-E15, 4 modes"),

@@ -17,19 +17,19 @@
     {
       "statut": "PASS",
       "section": "2",
-      "check": "Registre parsé : 16 entrées versionnées (16 attendues — v2.0/N20/N25/N27)",
+      "check": "Registre parsé : 21 entrées versionnées (21 attendues — dérivé ECO_SKILLS du checker, dynamisé KO-L004)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "2",
       "check": "Versions KB <-> SKILL.md",
-      "detail": "16/16 alignées (convention KB_ONLY_VERSION levée — skill-creator versionné)"
+      "detail": "21/21 alignées (convention KB_ONLY_VERSION levée — skill-creator versionné)"
     },
     {
       "statut": "PASS",
       "section": "3",
-      "check": "Arêtes bidirectionnelles dépandance↔usage : 27",
+      "check": "Arêtes bidirectionnelles dépandance↔usage : 28",
       "detail": ""
     },
     {
@@ -126,7 +126,7 @@
       "statut": "PASS",
       "section": "4",
       "check": "Contrats semver frontmatter",
-      "detail": "12/13 contrats semver vérifiés et satisfaits"
+      "detail": "13/14 contrats semver vérifiés et satisfaits"
     },
     {
       "statut": "WARN",
@@ -167,8 +167,8 @@
     {
       "statut": "PASS",
       "section": "6",
-      "check": "check-ecosysteme-integrity.py calibré (ECO_SKILLS 16 entrées, corpus = CORPUS_ATTENDU) sur l'état KB réel",
-      "detail": "aligné sur l'état réel v2.0/B13-r6"
+      "check": "check-ecosysteme-integrity.py calibré (ECO_SKILLS 21 entrées, corpus = CORPUS_ATTENDU) sur l'état KB réel",
+      "detail": "dynamisé KO-L004 (l'arbitre couvre exactement les entrées KB versionnées)"
     },
     {
       "statut": "PASS",
