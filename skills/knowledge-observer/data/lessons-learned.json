@@ -31,9 +31,10 @@
     {
       "id": "L003",
       "pattern": "Faux verdicts d'arbitres à invariants figés : faux négatif (@mon-ecosysteme classé PLATEFORME hors set CORE), faux positif (pgrep -f auto-matché par sa propre ligne de commande), état attendu figé (« uniformément v3.11.0 ») divergent de la réalité installée",
-      "occurrences": 3,
+      "occurrences": 4,
       "sources": [
-        "arbitres N4-c/N5-a/N15 : 3 faux verdicts corrigés en dynamisant les invariants (frontmatter installé = source de vérité, dérivation dynamique, garde anti-auto-match)"
+        "arbitres N4-c/N5-a/N15 : 3 faux verdicts corrigés en dynamisant les invariants (frontmatter installé = source de vérité, dérivation dynamique, garde anti-auto-match)",
+        "E15 cycle v3.17.1 (Task 8, trace scripts/outputs/correct-work-e15-recertification.json) : recomptage naïf du manifeste intégrité (34/72) divergent de l'arbitre réel dynamique (50/50) — les fichiers non matérialisés du sparse-checkout étaient comptés comme échecs ; arbitre d'audit dynamisé (verdict dérivé du checker réel), re-verdict honnête 13 PASS / 0 FAIL"
       ],
       "proposition": "Règle KO-L003 — tout arbitre dérive ses invariants de l'état courant (frontmatter installé, registre KB, comptage réel), jamais d'un état figé ; divergence arbitre <-> réalité corrigée en dynamisant l'arbitre avec re-verdict honnête obligatoire — jamais en ajustant la réalité",
       "marqueur": "PATTERN:KO-L003-v1.0.0",
@@ -45,9 +46,10 @@
     {
       "id": "L004",
       "pattern": "Recalibrage oublié lors des montées de version : les arbitres (verify-cross, verify-correct-work, test-coherence-interactions, check-ecosysteme-integrity, answer-key-checker), pre-checks (n8-a-precheck-a2), skills-meta.json, run-order, SYNC_MAP, miroir et archive valident l'état PRÉCÉDENT après une montée — verdicts inopérants",
-      "occurrences": 2,
+      "occurrences": 3,
       "sources": [
-        "N20 PHASE 9 (re-calibrage x3 voies post v3.13.0) ; B13-r5 : integrity figé a 18 fichiers/ECO_SKILLS v3.13.0 pendant que le corpus montait a 19/v3.16.0"
+        "N20 PHASE 9 (re-calibrage x3 voies post v3.13.0) ; B13-r5 : integrity figé a 18 fichiers/ECO_SKILLS v3.13.0 pendant que le corpus montait a 19/v3.16.0",
+        "Task 7 P-C (cycle v3.17.1, commit a91dd80 -> 1bb0d77) : après le commit de renommage, scripts/ecosysteme-integrity.json restait épinglé au SHA du PM v3.17.0 pré-renommage (régression réelle de recalibrage oublié) — détectée au recalibrage croisé KO-L004, manifeste régénéré PAR le checker : 50/50 PASS"
       ],
       "proposition": "Règle KO-L004 — toute montée de version déclenche le recalibrage mécanique des outils dépendants AVANT la certification ; l'application M4 de toute leçon intègre d'office la liste des outils à recalibrer (garde post-édition)",
       "marqueur": "PATTERN:KO-L004-v1.0.0",
@@ -85,6 +87,23 @@
       "cible_application": "processus de session (wipe/restauration, pre-clone, pre-installation) ; skills/audit-provenance/ ; journal knowledge-observer",
       "statut": "applique",
       "session": "B13-r6",
+      "verdict_correct_work": null
+    },
+    {
+      "id": "L007",
+      "pattern": "Pièges du sparse-checkout lors des opérations dépôt : fichiers présents au commit mais non matérialisés sur disque — git add refuse les chemins hors patterns (résolu par sparse-checkout add), arbitres/audits naïfs comptent des échecs fantômes (gaps/ghosts « attendus sparse », recomptages 34/72), travail impossible sans matérialisation préalable",
+      "occurrences": 4,
+      "sources": [
+        "Task 4 (worklog) : verify-registry-sync 14 sync/2 GAP/2 GHOST attribués au sparse (« attendus sparse »)",
+        "Task 6 (worklog) : matérialisation sparse préalable obligatoire avant suppression/propagation (4 fichiers anciens + 22 PM + JSON)",
+        "Task 7 P-C (worklog) : git add refusait le PM v3.17.1 du canal download/ hors patterns — résolu par sparse-checkout add (piège contourné, consigné)",
+        "E15 cycle v3.17.1 (Task 8) : recomptage naïf 34/72 causé par les zones non matérialisées du manifeste ; plans download/plan-*.md lisibles uniquement via git show (non matérialisés)"
+      ],
+      "proposition": "Règle KO-L007 (candidate, non appliquée) — tout travail sur un clone sparse commence par l'établissement des faits de matérialisation : `git sparse-checkout list` + test d'existence des fichiers cibles AVANT toute écriture (git add / git rm) et AVANT tout verdict d'arbitre naïf ; un audit dérive de l'état matérielisé réel (L003) et consigne « non matérialisé » comme statut distinct de « échec »",
+      "marqueur": "aucun (proposée, mode M3 sans verdict — application soumise à validation étape F)",
+      "cible_application": "skills/gen-plan/SKILL.md §1.14/§1.15 (bloc non créé — M4 fermé)",
+      "statut": "proposé",
+      "session": "v3.17.1",
       "verdict_correct_work": null
     }
   ],
