@@ -102,7 +102,7 @@ Détail d'usage : `references/grille-evaluation-prompt.md`.
 |------|--------|---------|
 | gen-plan | consulte | Contexte écosystème, planification E1-E8, méthode-mère (SHARED §7), version >= v3.7.0 |
 | gen-plan | délégué par | Optimisation fine des prompts complexes (SHARED §3.1) |
-| install-ecosystem | utilisé par | Bootstrap P6-P7 (INSTALL-ECOSYSTEME §9.1) |
+| install-ecosystem | utilisé par | Bootstrap P6-P7 (PROMPT-MAITRE-INSTALL-ECOSYSTEME.md §A.3 — source d'installation unique v1.1.0) |
 | correct-work | vérifié par | Conformité des artefacts produits, version >= v2.5.0 |
 
 ## §4 — CONVENTIONS

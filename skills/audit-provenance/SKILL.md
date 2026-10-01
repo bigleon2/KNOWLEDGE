@@ -9,7 +9,7 @@ description: >
   reconstitution post-wipe), lignage des wipes/restaurations, détection des
   artefacts sans provenance et réécriture idempotente des en-têtes manquants.
   Utiliser après chaque wipe ou restauration, avant chaque clone de discussion
-  (clone-chat), avant chaque installation (INSTALL-ECOSYSTEME.md), ou lorsque
+  (clone-chat), avant chaque installation (PROMPT-MAITRE-INSTALL-ECOSYSTEME.md), ou lorsque
   l'utilisateur demande un audit de provenance / un contrôle de traçabilité.
   Matérialise la leçon L006 (knowledge-observer) ; dépend de script-creator pour
   les conventions des scripts produits ; validé par correct-work (mode CIBLE).
@@ -83,7 +83,7 @@ provenance est exécuté après chaque wipe/restauration et avant chaque clone �
 - Manuel : « audite la provenance », « d'où vient cet artefact », « trace le lignage »,
   « corrige les provenances manquantes ».
 - Systématique : après chaque wipe/restauration ; avant chaque clone-chat ; avant
-  chaque installation (INSTALL-ECOSYSTEME.md étape d'audit).
+  chaque installation (PROMPT-MAITRE-INSTALL-ECOSYSTEME.md étape d'audit).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 
@@ -112,7 +112,7 @@ provenance est exécuté après chaque wipe/restauration et avant chaque clone �
 | script-creator | hérite de | Conventions des scripts produits (R9, stdlib, idempotence ×2, correct-py — >= 1.0.0) |
 | correct-work | valide via | Mode CIBLE sur le skill et les artefacts corrigés (>= 2.6.0, GF-4) |
 | clone-chat | précondition | Audit de provenance exécuté avant tout clone de discussion |
-| install-ecosysteme | précondition | Audit exécuté avant installation (INSTALL-ECOSYSTEME.md) |
+| install-ecosysteme | précondition | Audit exécuté avant installation (PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — source d'installation unique v1.1.0) |
 
 ## §4 — CONVENTIONS
 

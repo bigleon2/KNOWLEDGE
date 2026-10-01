@@ -92,7 +92,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 - Markdown (SKILL.md), YAML (frontmatter), JSON (evals), Python (scripts de vérification).
 - JavaScript (Node) : couche utilitaire context-engineering (`scripts/context-utils.js`, `scripts/filter-utils.js` — v2.0.0) ; exception N3 documentée (D-r59-2, demande explicite utilisateur, Task 59) ; tous les arbitres de conformité restent Python (N3 inchangé).
 - Environnement : `{{SKILLS_ROOT}}context-engineering/`.
-- Sources scellées de réparation : `mon-ecosysteme/`, `skills/_prompts-maitres/`, `data/knowledge-repo/`, `_archive/`.
+- Sources scellées de réparation : `@mon-ecosysteme/`, `data/knowledge-repo/`, `_archive/`, `download/mon-ecosysteme_archive.zip` (miroir `skills/_prompts-maitres/` supprimé 2026-10-02, décision d'architecture v2.0 exécutée — fusion installateurs v1.1.0).
 - Sorties : contexte assemblé avec provenance, synthèses intermédiaires, rapport de réparation post-wipe.
 
 ## §3 — RELATIONS (extrait de SHARED §3.1)
