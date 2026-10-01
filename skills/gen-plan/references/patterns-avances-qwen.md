@@ -70,7 +70,7 @@ chaque idée (Novelty/Viability/Fit, 1-10) et la shortlist retient N+V+F >= 20.
 
 Anti-patterns : ne pas lancer le ToT pour des problèmes fermés ; ne pas partager le
 contexte entre agents ; ne pas s'arrêter aux 3 premières réponses.
-Intégration : mode M5 Idéation (agent-prompt-engineering), déclencheurs
+Intégration : mode M5 Idéation (prompt-engineering), déclencheurs
 « génère des idées », « brainstorm », « explore les options ».
 
 ## §1.4 — Second Opinion (vérification aveugle)

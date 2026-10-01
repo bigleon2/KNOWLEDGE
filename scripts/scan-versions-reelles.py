@@ -47,7 +47,7 @@ REPORT = Path("/home/z/my-project/scripts/versions-reelles-report.json")
 ECOSYSTEM = {"gen-plan", "correct-work", "clone-chat", "skills-inventory",
              "skill-creator", "autonomous-agent"}
 CONTRACT_SKILLS = ["gen-plan", "correct-work", "clone-chat",
-                   "agent-prompt-engineering", "autonomous-agent"]
+                   "prompt-engineering", "autonomous-agent"]
 
 APPLY = "--apply" in sys.argv
 

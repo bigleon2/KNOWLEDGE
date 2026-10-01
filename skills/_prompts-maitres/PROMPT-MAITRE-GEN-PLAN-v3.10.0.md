@@ -130,7 +130,7 @@ Opérationnalisation dans gen-plan :
 
 **Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode du **prompt-engineering** — il l'applique à toutes ses étapes (E1-E15) via les 4 disciplines ci-dessous. Depuis la session A11 (2026-09-06), la **source de vérité des 5 disciplines est implantée dans le socle SHARED §7** (informations communes, règle de non-duplication §6.3) ; le présent §1.9 enregistre l'**orchestration gen-plan** des disciplines. Les autres skills de l'écosystème qui en ont besoin la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
 
-gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (formalisées avec le skill `agent-prompt-engineering`, 2026-08-30) :
+gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (formalisées avec le skill `prompt-engineering`, 2026-08-30) :
 
 | Discipline | Mécanisme gen-plan | Localisation |
 |------------|--------------------|--------------|
@@ -139,9 +139,9 @@ gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (f
 | **Graph engineering** | Registre KB = graphe de relations bidirectionnelles versionnées ; matrice agent × skill ; dépendances YAML inter-skills | SHARED §3, §4 ; frontmatter |
 | **Harness engineering** | Harnais d'exécution : profils ressource + signaux de pression, hook E8 correct-work (3 verdicts) + contrôle correct-work à chaque phase terminée (E9-E14), arbitres (verify-cross, verify-correct-work, spell-check, sync-download), worklog structuré | §2.4 ; E8 ; E9-E14 ; SHARED §1.4 |
 
-L'optimisation fine des prompts complexes (rédaction, restructuration, évaluation, itération) est déléguée au skill `agent-prompt-engineering` (voir SHARED §3.1).
+L'optimisation fine des prompts complexes (rédaction, restructuration, évaluation, itération) est déléguée au skill `prompt-engineering` (voir SHARED §3.1).
 
-**Matérialisation des disciplines (mise à jour session A13, 2026-09-07 — alignement état A12)** : les 4 disciplines d'exécution (context, loop, graph, harness engineering) sont matérialisées en **skills complets à déclenchement automatique** (`{{SKILLS_ROOT}}context-engineering/`, `loop-engineering/`, `graph-engineering/`, `harness-engineering/` — SKILL.md + evals/evals.json + evals/trigger_evals.json ; SHARED §7 v1.4.0). La matérialisation intermédiaire en agents autonomes (`{{SKILLS_ROOT}}_disciplines/*.agent`, session A11) est **retirée** (SHA-256 prouvés avant retrait) ; la matérialisation antérieure `references/gen-plan.agent` (session A9) l'avait été dès la session A11 pour la même raison de fond : elle matérialisait gen-plan lui-même au lieu des disciplines. La discipline prompt-engineering demeure matérialisée en skill spécialisé (`agent-prompt-engineering`). gen-plan demeure un skill ; sa couche d'exécution disciplinaire est assurée par les 4 skills de discipline qu'il mobilise à déclenchement automatique et par sa couche evals.
+**Matérialisation des disciplines (mise à jour session A13, 2026-09-07 — alignement état A12)** : les 4 disciplines d'exécution (context, loop, graph, harness engineering) sont matérialisées en **skills complets à déclenchement automatique** (`{{SKILLS_ROOT}}context-engineering/`, `loop-engineering/`, `graph-engineering/`, `harness-engineering/` — SKILL.md + evals/evals.json + evals/trigger_evals.json ; SHARED §7 v1.4.0). La matérialisation intermédiaire en agents autonomes (`{{SKILLS_ROOT}}_disciplines/*.agent`, session A11) est **retirée** (SHA-256 prouvés avant retrait) ; la matérialisation antérieure `references/gen-plan.agent` (session A9) l'avait été dès la session A11 pour la même raison de fond : elle matérialisait gen-plan lui-même au lieu des disciplines. La discipline prompt-engineering demeure matérialisée en skill spécialisé (`prompt-engineering`). gen-plan demeure un skill ; sa couche d'exécution disciplinaire est assurée par les 4 skills de discipline qu'il mobilise à déclenchement automatique et par sa couche evals.
 
 ---
 
@@ -261,7 +261,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 | correct-work | Invocation à E1 + hook E8 + contrôle par phase | Validation du plan initial + vérification post-plan et à chaque phase terminée (E9-E14), version >= v2.4.0 |
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
-| agent-prompt-engineering | Délégation (§1.9) | Optimisation des prompts complexes, version >= v1.0.0 |
+| prompt-engineering | Délégation (§1.9) | Optimisation des prompts complexes, version >= v1.0.0 |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
 
 ---

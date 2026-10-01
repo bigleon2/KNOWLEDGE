@@ -107,7 +107,7 @@ Exemples appliqués (historique) : wipe inter-sessions réparé depuis download/
 
 **Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode du **prompt-engineering** — il l'applique à toutes ses étapes (E1-E15) via les 4 disciplines ci-dessous, dont le présent fichier (§1.9) est la source de vérité. Les autres skills de l'écosystème qui en ont besoin la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
 
-gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (formalisées avec le skill `agent-prompt-engineering`, 2026-08-30) :
+gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (formalisées avec le skill `prompt-engineering`, 2026-08-30) :
 
 | Discipline | Mécanisme gen-plan | Localisation |
 |------------|--------------------|--------------|
@@ -116,7 +116,7 @@ gen-plan intègre explicitement les 4 disciplines de l'ingénierie de prompts (f
 | **Graph engineering** | Registre KB = graphe de relations bidirectionnelles versionnées ; matrice agent × skill ; dépendances YAML inter-skills | SHARED §3, §4 ; frontmatter |
 | **Harness engineering** | Harnais d'exécution : profils ressource + signaux de pression, hook E8 correct-work (3 verdicts) + contrôle correct-work à chaque phase terminée (E9-E14), arbitres (verify-cross, verify-correct-work, spell-check, sync-download), worklog structuré | §2.4 ; E8 ; E9-E14 ; SHARED §1.4 |
 
-L'optimisation fine des prompts complexes (rédaction, restructuration, évaluation, itération) est déléguée au skill `agent-prompt-engineering` (voir SHARED §3.1).
+L'optimisation fine des prompts complexes (rédaction, restructuration, évaluation, itération) est déléguée au skill `prompt-engineering` (voir SHARED §3.1).
 
 ---
 
@@ -206,7 +206,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 | correct-work | Invocation à E1 + hook E8 + contrôle par phase | Validation du plan initial + vérification post-plan et à chaque phase terminée (E9-E14), version >= v2.4.0 |
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
 | skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
-| agent-prompt-engineering | Délégation (§1.9) | Optimisation des prompts complexes, version >= v1.0.0 |
+| prompt-engineering | Délégation (§1.9) | Optimisation des prompts complexes, version >= v1.0.0 |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
 
 ---
