@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.17.1
+version: 3.17.2
 category: ecosystem
 language: fr
 tags:
@@ -16,7 +16,8 @@ description: >
   tagging #token, snippets, scripts Python uniquement,
   règles d'or d'adaptation autonome, disciplines d'ingénierie de prompts,
   hooks patterns avancés (answer key E1, arbitre answer-key-checker E7/E8,
-  Graph Diamond E9-E14, knowledge-observer E15)
+  Graph Diamond E9-E14, knowledge-observer E15),
+  déclencheur verbatim « intègre dans le plan d'actions » (E13 — règle d'or n°3)
 dependencies:
   - skill: correct-work
     version: ">=2.4.0"
@@ -120,7 +121,7 @@ dependencies:
 
 <!-- FIN-PATTERN:KO-L005-v1.0.0 -->
 
-**Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (PM v3.11.0 §1.8) : toute nouvelle demande utilisateur pendant l'exécution d'un plan déclenche la mise à jour cohérente du plan d'actions actuel via gen-plan (E13) — demandes intégrées comme étapes/priorités, ré-estimation #token des étapes affectées, re-validation E8 si le périmètre change matériellement, journalisation au worklog ; extension du plan, jamais réécriture destructrice (R2).
+**Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (PM v3.11.0 §1.8) : toute nouvelle demande utilisateur pendant l'exécution d'un plan déclenche la mise à jour cohérente du plan d'actions actuel via gen-plan (E13) — demandes intégrées comme étapes/priorités, ré-estimation #token des étapes affectées, re-validation E8 si le périmètre change matériellement, journalisation au worklog ; extension du plan, jamais réécriture destructrice (R2). **Déclencheur verbatim (v3.17.2, directive propriétaire 2026-10-02)** : la formulation « intègre dans le plan d'actions » (et variantes directes : « intègre ça au plan », « ajoute au plan d'actions ») déclenche ce mode E13 sans ambiguïté.
 
 ### §1.6 Disciplines d'ingénierie de prompts (PM v3.12.0 §1.9)
 
@@ -224,7 +225,7 @@ skills/gen-plan/
 │   └── observation-patterns.md       # Task Observer — cycle A-H (N20)
 └── evals/
     ├── evals.json                    # Cas de test d'évaluation (6 evals)
-    └── trigger_evals.json            # Description Optimization (9 cas)
+    └── trigger_evals.json            # Description Optimization (8 cas — déclencheur verbatim v3.17.2)
 ```
 
 ### §2.3 Auto-calibration E15
