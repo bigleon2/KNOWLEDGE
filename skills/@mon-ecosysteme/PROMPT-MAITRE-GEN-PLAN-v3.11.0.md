@@ -7,7 +7,7 @@
 > **Dépend** : `CONTEXTE SYSTÈME` (embarqué ci-dessous)
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.5.2)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.1)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
 ### Règle Zéro (§0)
@@ -25,18 +25,6 @@ L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant 
 - **Versions** : format semver
 
 ---
--------|--------|-------------|
-| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
-| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
-| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
-| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
-
-### Conventions de nommage (§1.2)
-- **Répertoires** : kebab-case (`gen-plan`, `correct-work`). Exception : `@mon-ecosysteme/` (dossier des prompts maîtres).
-- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`).
-- **Versions** : format semver (`3.11.0`, `2.5.1`).
-- **Tags** : préfixe `#` pour les tokens (`#token 3500`).
-- **Variables** : double accolades (`{{SKILLS_ROOT}}`).
 
 ---
 

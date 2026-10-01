@@ -9,7 +9,7 @@ Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — 
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.5.2)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.1)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
 ### Règle Zéro (§0)
@@ -18,17 +18,15 @@ L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant 
 ### Variables d'installation (§1.1)
 | Variable | Défaut | Description |
 |----------|--------|-------------|
-| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
-| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
-| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
-| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
+| `{{SKILLS_ROOT}}` | `skills/` | Racine |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Registre KB |
 
 ### Conventions de nommage (§1.2)
-- **Répertoires** : kebab-case (`gen-plan`, `correct-work`). Exception : `@mon-ecosysteme/` (dossier des prompts maîtres).
-- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`).
-- **Versions** : format semver (`3.11.0`, `2.5.1`).
-- **Tags** : préfixe `#` pour les tokens (`#token 3500`).
-- **Variables** : double accolades (`{{SKILLS_ROOT}}`).
+- **Répertoires** : kebab-case
+- **Fichiers** : kebab-case avec extension
+- **Versions** : format semver
+
+---
 
 ---
 

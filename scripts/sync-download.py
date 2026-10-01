@@ -32,10 +32,15 @@ DEST_DIR = os.path.join(BASE_DIR, "download")
 # publie l'intégralité du corpus @mon-ecosysteme/ — versions historiques jamais
 # retirées (R2), SYNC-CONTEXT.md inclus. Recalibrage fusion v1.1.0 (2026-10-02) :
 # INSTALL-ECOSYSTEME.md retiré (source d'installation unique, R4).
+# Recalibrage test-avant-push (2026-10-02) : paires v3.17.0 et v3.17.1 ajoutées —
+# SYNC_MAP alignée sur le checker (14 paires == 14 entrées, invariant KO-L004) ;
+# les 2 paires manquantes laissaient sync-download silencieusement incomplet.
 SYNC_MAP = [
     ("PROMPT-MAITRE-SHARED.md",    "PROMPT-MAITRE-SHARED.md"),
     ("PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.13.0.md"),
     ("PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.16.0.md"),
+    ("PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.17.0.md"),
+    ("PROMPT-MAITRE-GEN-PLAN-v3.17.1.md",    "PROMPT-MAITRE-GEN-PLAN-v3.17.1.md"),
     ("PROMPT-MAITRE-GEN-PLAN-v3.17.2.md",    "PROMPT-MAITRE-GEN-PLAN-v3.17.2.md"),
     ("PROMPT-MAITRE-GEN-PLAN-v3.18.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.18.0.md"),
     ("PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md"),
