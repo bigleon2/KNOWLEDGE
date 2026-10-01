@@ -29,8 +29,9 @@ DEST_DIR = os.path.join(BASE_DIR, "download")
 # le PM v3.11.0 (évolution locale B1/PEK) aux côtés de la version scellée
 # v3.6.1 (publiée par le dépôt) — versions historiques jamais retirées.
 # Extension corrige-ecosysteme v2.0.0 (Architecture v2.0) : le canal download/
-# publie l'intégralité du corpus @mon-ecosysteme/ (16 fichiers) — versions
-# historiques jamais retirées (R2), SYNC-CONTEXT.md et INSTALL-ECOSYSTEME.md inclus.
+# publie l'intégralité du corpus @mon-ecosysteme/ — versions historiques jamais
+# retirées (R2), SYNC-CONTEXT.md inclus. Recalibrage fusion v1.1.0 (2026-10-02) :
+# INSTALL-ECOSYSTEME.md retiré (source d'installation unique, R4).
 SYNC_MAP = [
     ("PROMPT-MAITRE-SHARED.md",    "PROMPT-MAITRE-SHARED.md"),
     ("PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",    "PROMPT-MAITRE-GEN-PLAN-v3.13.0.md"),
@@ -39,7 +40,6 @@ SYNC_MAP = [
     ("PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",    "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md"),
     ("PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",    "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md"),
     ("PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md"),
-    ("INSTALL-ECOSYSTEME.md",    "INSTALL-ECOSYSTEME.md"),
     ("SYNC-CONTEXT.md",    "SYNC-CONTEXT.md"),
     ("README.md",    "README.md"),
 ]

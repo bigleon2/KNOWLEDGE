@@ -1,35 +1,35 @@
 {
-  "phase": "B5 (correctifs frontmatter Phase 2 + publication)",
-  "generateur": "gen-plan v3.11.0 — session B5",
+  "phase": "B8 (installation écosystème corrigé v2.0 + affinage trigger_evals skill-creator)",
+  "generateur": "gen-plan v3.11.0 — session B8",
   "checks": [
     {
       "statut": "PASS",
       "section": "1",
-      "check": "Corpus = 15 fichiers (15 attendus — v3.11.0)",
+      "check": "Corpus = 21 fichiers (21 attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "1",
-      "check": "Byte-identité corpus/miroir",
-      "detail": "15/15 identiques + 0 miroir orphelin"
+      "check": "Round-trip archive ↔ corpus",
+      "detail": "21/21 identiques + 0 homologues v2.1 (remplace le miroir supprimé — KB §Décisions)"
     },
     {
       "statut": "PASS",
       "section": "2",
-      "check": "Registre parsé : 11 entrées (11 attendues)",
+      "check": "Registre parsé : 16 entrées versionnées (16 attendues — v2.0/N20/N25/N27)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "2",
       "check": "Versions KB <-> SKILL.md",
-      "detail": "11/11 alignées (skill-creator en convention KB_ONLY_VERSION)"
+      "detail": "16/16 alignées (convention KB_ONLY_VERSION levée — skill-creator versionné)"
     },
     {
       "statut": "PASS",
       "section": "3",
-      "check": "Arêtes bidirectionnelles dépandance↔usage : 14",
+      "check": "Arêtes bidirectionnelles dépandance↔usage : 27",
       "detail": ""
     },
     {
@@ -42,7 +42,13 @@
       "statut": "PASS",
       "section": "3",
       "check": "Frontière plateforme documentée",
-      "detail": "agent-prompt-engineering ← install-ecosystem (référence externe documentée : agent/PM/session)"
+      "detail": "script-creator → correct-py (hors registre : skill plateforme)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "prompt-engineering ← install-ecosystem (référence externe documentée : agent/PM/session)"
     },
     {
       "statut": "PASS",
@@ -112,15 +118,27 @@
     },
     {
       "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "script-mon-ecosysteme-infrastructure ← install-ecosystem (référence externe documentée : agent/PM/session)"
+    },
+    {
+      "statut": "PASS",
       "section": "4",
       "check": "Contrats semver frontmatter",
-      "detail": "12/12 contrats semver vérifiés et satisfaits"
+      "detail": "12/13 contrats semver vérifiés et satisfaits"
+    },
+    {
+      "statut": "WARN",
+      "section": "4",
+      "check": "Frontière plateforme (S3 hérité)",
+      "detail": "correct-work → fullstack-dev >= 1.0.0 : skill plateforme non matérialisé (existence documentée — check 3)"
     },
     {
       "statut": "PASS",
       "section": "5",
-      "check": "Arbre §2.2 : 6 références résolues",
-      "detail": "PEK présent = intégration v3.11.0"
+      "check": "Arbre §2.2 : 9 références résolues (6 historiques + 3 patterns N20)",
+      "detail": "PEK présent = v3.11.0 ; patterns N20 (answer-key, graph-diamond, observation)"
     },
     {
       "statut": "PASS",
@@ -131,14 +149,14 @@
     {
       "statut": "PASS",
       "section": "5",
-      "check": "PM PROMPT-MAITRE-GEN-PLAN-v3.11.0.md résolu (corpus+miroir)",
+      "check": "PM PROMPT-MAITRE-GEN-PLAN-v3.17.1.md résolu (corpus — Architecture v2.0 : emplacement unique)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "5",
-      "check": "SKILL.md ↔ PM v3.11.0 alignés en version",
-      "detail": "8 mentions v3.11.0 dans SKILL.md"
+      "check": "SKILL.md ↔ PM v3.17.1 alignés en version",
+      "detail": "1 mentions de 3.17.1 dans SKILL.md (frontmatter sans préfixe v accepté)"
     },
     {
       "statut": "PASS",
@@ -149,37 +167,49 @@
     {
       "statut": "PASS",
       "section": "6",
-      "check": "check-ecosysteme-integrity.py calibré (ECO_SKILLS 11 entrées) sur l'état KB réel",
-      "detail": "aligné sur l'état réel (Phase 1 : 33/33 PASS)"
+      "check": "check-ecosysteme-integrity.py calibré (ECO_SKILLS 16 entrées, corpus = CORPUS_ATTENDU) sur l'état KB réel",
+      "detail": "aligné sur l'état réel v2.0/B13-r6"
     },
     {
       "statut": "PASS",
       "section": "7",
-      "check": "download/ synchronisé (6/6, byte-identiques au corpus — v3.6.1 scellé + PM v3.11.0 publié B3)",
+      "check": "download/ synchronisé (9/9, byte-identiques au corpus — Architecture v2.0)",
       "detail": ""
     },
     {
-      "statut": "PASS",
+      "statut": "WARN",
       "section": "8",
-      "check": "evals/ présents pour les 10 skills écosystème évaluables",
-      "detail": ""
+      "check": "evals absents",
+      "detail": "skill-creator/evals/"
+    },
+    {
+      "statut": "WARN",
+      "section": "8",
+      "check": "evals absents",
+      "detail": "skill-creator/evals/"
     },
     {
       "statut": "PASS",
       "section": "9",
-      "check": "py_compile 5/5 scripts (portée E8 étendue)",
+      "check": "py_compile 6/9 scripts présents",
       "detail": ""
+    },
+    {
+      "statut": "WARN",
+      "section": "9",
+      "check": "Scripts référencés absents (perdus au wipe — règle d'or n°1, non reconstitués)",
+      "detail": "certification-complete.py, propagate-context.py, install-ecosystem.py"
     },
     {
       "statut": "PASS",
       "section": "10",
-      "check": "Worklog : 11 sections ---, 11 Task ID (SHARED §1.4)",
+      "check": "Worklog present : 8 sections ---, 8 Task ID (SHARED §1.4)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "SKILL.md gen-plan : frontmatter 3.11.0",
+      "check": "SKILL.md gen-plan : frontmatter 3.17.1",
       "detail": ""
     },
     {
@@ -191,25 +221,25 @@
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "PM v3.11.0 (corpus) : en-tête version + plage 1200-1350 lignes",
+      "check": "PM PROMPT-MAITRE-GEN-PLAN-v3.17.1.md (corpus) : en-tête version + plage 1200-1400 lignes",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "PM v3.11.0 : 6e référence PEK (§2.2) + section §9.6",
+      "check": "PM : 6e référence PEK (§2.2) + section §9.6",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "Miroir : PM v3.11.0 byte-identique au corpus",
+      "check": "download/ : PM courant byte-identique au corpus (canal public v2.0 — remplace le miroir)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "KB : entrée « ## gen-plan v3.11.0 »",
+      "check": "KB : entrée « ## gen-plan v3.17.1 »",
       "detail": ""
     },
     {
@@ -221,7 +251,7 @@
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "Arbitre local ECO_SKILLS : gen-plan 3.11.0",
+      "check": "Arbitre local ECO_SKILLS : gen-plan 3.17.1",
       "detail": ""
     },
     {
@@ -231,52 +261,34 @@
       "detail": ""
     },
     {
-      "statut": "PASS",
+      "statut": "WARN",
       "section": "11a",
-      "check": "Worklog : session B1 (v3.11.0 + PEK) journalisée",
-      "detail": ""
+      "check": "Worklog : historique B1 (v3.11.0 + PEK) — artefact historique propriétaire",
+      "detail": "worklog de session courant ne porte pas l'historique B1 (non cloné)"
     },
     {
       "statut": "PASS",
       "section": "11b",
-      "check": "Corpus historique 14/14 byte-identiques au dépôt (a8ffb5f)",
-      "detail": ""
-    },
-    {
-      "statut": "PASS",
-      "section": "11b",
-      "check": "gen-plan : 6 fichiers originaux (5 références + evals) intacts (R2)",
-      "detail": ""
-    },
-    {
-      "statut": "PASS",
-      "section": "11b",
-      "check": "12 répertoires skills intacts — seule divergence documentée : verify-correct-work.py (calibration v2.5.1, arbitre 16/16)",
-      "detail": ""
-    },
-    {
-      "statut": "PASS",
-      "section": "11b",
-      "check": "KB : 8 entrées hors divergences documentées identiques au dépôt (gen-plan B1/PEK, correct-work+clone-chat B3/harmonisation)",
+      "check": "R2 vs ZIP v2.0 non applicable (référence correct-mon-eco absente de cet environnement)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "11c",
-      "check": "Aucune référence stale — l'état courant est uniformément v3.11.0",
+      "check": "Aucune référence stale — l'état courant est uniformément v3.17.1",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "11d",
-      "check": "download/ : canal de publication (v3.6.1 scellé dépôt + PM v3.11.0 local B3)",
-      "detail": "PM v3.11.0 publié (extension SYNC_MAP B3 — 6 fichiers)"
+      "check": "download/ : canal de publication (v3.6.1 scellé dépôt + PM v3.17.1 local)",
+      "detail": "PM v3.17.1 publié (SYNC_MAP 17 fichiers — N14-b)"
     }
   ],
   "bilan": {
-    "pass": 45,
-    "warn": 0,
+    "pass": 42,
+    "warn": 5,
     "fail": 0,
-    "total": 45
+    "total": 47
   }
 }

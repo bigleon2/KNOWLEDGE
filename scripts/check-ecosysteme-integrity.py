@@ -14,15 +14,19 @@ re-calibré B13-r6 (N25 : script-creator + script-reviewer au registre — ECO_S
 check 5, archive homologues v2.1 ; N27 : audit-provenance — ECO_SKILLS 16 ;
 N28 : gen-plan v3.17.0 — PM v3.17.0 assemblé 1362 L, corpus 20 fichiers) ;
 re-calibré 2026-10-02 (montée gen-plan v3.17.1 — propagation renommage
-prompt-engineering : PM v3.17.1 assemblé, corpus 22 fichiers, SYNC_MAP 12) : le miroir
+prompt-engineering : PM v3.17.1 assemblé, corpus 22 fichiers, SYNC_MAP 12) ;
+re-calibré 2026-10-02 (fusion installateurs PM-INSTALL v1.1.0 — directive
+source d'installation unique : INSTALL-ECOSYSTEME.md supprimé, miroir
+skills/_prompts-maitres/ supprimé (exécution décision d'architecture v2.0),
+corpus 21 fichiers, SYNC_MAP 11) : le miroir
 skills/_prompts-maitres/ est SUPPRIMÉ par décision d'architecture (KB §Décisions)
 — sa vérification est remplacée par le round-trip de l'archive
 download/mon-ecosysteme_archive.zip (véhicule d'intégrité v2.0).
 
-Vérifications (pipeline PM-INSTALL étapes 1-2, 8 — périmètre v2.0) :
-  1. SHA-256 des 20 fichiers du corpus canonique skills/@mon-ecosysteme/
+Vérifications (pipeline PM-INSTALL étapes 1-2, 8 — périmètre v1.1.0) :
+  1. SHA-256 des fichiers du corpus canonique skills/@mon-ecosysteme/
   2. Round-trip byte-identité archive download/mon-ecosysteme_archive.zip ↔ corpus
-  3. Synchronisation download/ (16 fichiers du SYNC_MAP — Architecture v2.0)
+  3. Synchronisation download/ (SYNC_MAP 11 fichiers — recalibré fusion v1.1.0)
   4. Structure des 16 skills écosystème + 3 skills métier installés
   5. Cohérence versions SKILL.md ↔ registre KNOWLEDGE.md (16 entrées versionnées
      + section « Décisions d'architecture »)
@@ -73,7 +77,7 @@ METIER_SKILLS = ["audio-metadata", "cpp-analysis", "pdf-llm"]
 # CORPUS_ATTENDU — invariant canonique du corpus (dérivation L003) [N28]
 # Recalibrage L004 (Task 56) : 20 → 21 — ajout clone -f (directive utilisateur
 # « push le clone dans @mon-ecosysteme/ » ; miroir + archive alignés).
-CORPUS_ATTENDU = 22
+CORPUS_ATTENDU = 21
 SYNC_MAP = [
     "PROMPT-MAITRE-SHARED.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
@@ -84,7 +88,7 @@ SYNC_MAP = [
     "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
-    "INSTALL-ECOSYSTEME.md",
+    # INSTALL-ECOSYSTEME.md retiré — fusion installateurs v1.1.0 (2026-10-02, R4)
     "SYNC-CONTEXT.md",
     "README.md",
 ]

@@ -25,12 +25,11 @@ L'écosystème Knowledge est un ensemble de **84 skills** conçus pour un assist
 KNOWLEDGE/
 ├── @mon-ecosysteme/                     ← Prompts maîtres (Niveau 1)
 │   ├── README.md                        ← Ce guide
-│   ├── INSTALL-ECOSYSTEME.md            ← Procédure d'installation
 │   ├── PROMPT-MAITRE-SHARED.md          ← Socle commun (source de vérité)
 │   ├── PROMPT-MAITRE-GEN-PLAN-v3.12.0.md
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
-│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md
+│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.1.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │
 ├── skills/                              ← Skills métier (Niveau 2)

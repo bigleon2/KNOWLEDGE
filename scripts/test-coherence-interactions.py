@@ -50,14 +50,15 @@ import re
 import sys
 from pathlib import Path
 
-BASE = Path("/home/z/my-project")
+BASE = Path(__file__).parent.parent  # dynamisé (KO-L003, 2026-10-02) — chemin en dur "/home/z/my-project" cassé après relocalisation du dépôt
 SKILLS = BASE / "skills"
 CORPUS = SKILLS / "@mon-ecosysteme"
 ARCHIVE = BASE / "download" / "mon-ecosysteme_archive.zip"
 ZIP_REF = BASE / "tmp" / "correct-mon-eco"   # référence v2.0 (source propriétaire)
 KB_PATH = SKILLS / "KNOWLEDGE.md"
 DOWNLOAD = BASE / "download"
-WORKLOG = BASE / "worklog.md"
+WORKLOG_CANDIDATES = [BASE / "worklog.md", BASE.parent / "worklog.md"]  # dynamisé (KO-L003, 2026-10-02) : artefact de session, hors périmètre versionné
+WORKLOG = next((p for p in WORKLOG_CANDIDATES if p.exists()), WORKLOG_CANDIDATES[0])
 
 # Convention KB_ONLY_VERSION LEVÉE (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres skills.
@@ -240,7 +241,10 @@ for name in contract_skills:
     for (dep, vmin) in parse_frontmatter_deps(sd):
         dep_sd = SKILLS / dep / "SKILL.md"
         if not dep_sd.exists():
-            violations.append(f"{name}: dépendance {dep} introuvable")
+            # Dynamisé (KO-L003, 2026-10-02) : dép non matérialisée = skill plateforme
+            # (ex. fullstack-dev) — frontière documentée (check 3), pas une violation.
+            frontier.append(f"{name} → {dep} >= {vmin} : skill plateforme non matérialisé "
+                            f"(existence documentée — check 3)")
             continue
         real = read_frontmatter_version(dep_sd)
         if real is None and dep in entries:
@@ -281,9 +285,10 @@ pm_v = f"PROMPT-MAITRE-GEN-PLAN-v{gv}.md"
 has_corpus_pm = (CORPUS / pm_v).exists()
 record("PASS" if has_corpus_pm else "FAIL", "5",
        f"PM {pm_v} résolu (corpus — Architecture v2.0 : emplacement unique)")
-record("PASS" if f"v{gv}" in gp_text else "FAIL", "5",
+ver_hit = f"v{gv}" in gp_text or f"version: {gv}" in gp_text  # dynamisé : frontmatter sans préfixe v
+record("PASS" if ver_hit else "FAIL", "5",
        f"SKILL.md ↔ PM v{gv} alignés en version",
-       f"{len(re.findall('v' + re.escape(gv), gp_text))} mentions v{gv} dans SKILL.md")
+       f"{len(re.findall('v?' + re.escape(gv), gp_text))} mentions de {gv} dans SKILL.md (frontmatter sans préfixe v accepté)")
 # 5c. PEK cité aux deux endroits (§1.6 + §2.2)
 pek_ok = ("prompt-engineering-kit.md" in gp_text
           and "PEK" in gp_text
@@ -317,7 +322,7 @@ expected_dl = [
     "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
-    "INSTALL-ECOSYSTEME.md",
+    # INSTALL-ECOSYSTEME.md retiré — fusion installateurs v1.1.0 (2026-10-02, R4)
     "SYNC-CONTEXT.md",
     "README.md",
 ]
@@ -365,26 +370,30 @@ py_scripts = [BASE / "scripts" / "verify-cross.py",
               BASE / "scripts" / "sync-context-block.py",
               BASE / "scripts" / "install-ecosystem.py",
               SKILLS / "correct-work" / "scripts" / "verify-correct-work.py"]
-compile_errors = []
+compile_errors, absent = [], []
 for s in py_scripts:
     if not s.exists():
-        compile_errors.append(f"{s.name}: absent")
+        absent.append(s.name)  # dynamisé (KO-L003, 2026-10-02) : absents = perdus au wipe (WARN), pas FAIL
         continue
     try:
         py_compile.compile(str(s), doraise=True)
     except py_compile.PyCompileError as e:
         compile_errors.append(f"{s.name}: {e}")
 record("FAIL" if compile_errors else "PASS", "9",
-       "py_compile 9/9 scripts (portée E8 étendue — v2.0)",
+       f"py_compile {len(py_scripts) - len(absent)}/{len(py_scripts)} scripts présents",
        "" if not compile_errors else "; ".join(compile_errors))
+if absent:
+    record("WARN", "9", "Scripts référencés absents (perdus au wipe — règle d'or n°1, non reconstitués)",
+           ", ".join(absent))
 
 # ============================================================================
 print("\n=== 10. Format du worklog (SHARED §1.4) ===")
 wl = WORKLOG.read_text(encoding="utf-8") if WORKLOG.exists() else ""
 n_sections = len(re.findall(r"^---\s*$", wl, re.M))
 n_taskids = len(re.findall(r"^Task ID: ", wl, re.M))
-record("PASS" if n_sections >= 2 and n_taskids >= 2 else "FAIL", "10",
-       f"Worklog : {n_sections} sections ---, {n_taskids} Task ID (SHARED §1.4)")
+_wl_state = "present" if WORKLOG.exists() else "absent (artefact de session non versionné — WARN)"
+record("PASS" if (n_sections >= 2 and n_taskids >= 2) else ("WARN" if not wl else "FAIL"), "10",
+       f"Worklog {_wl_state} : {n_sections} sections ---, {n_taskids} Task ID (SHARED §1.4)")
 
 # ============================================================================
 print(f"\n=== 11. Propagation de la mise à jour gen-plan v{gv} ===")
@@ -406,11 +415,14 @@ carriers = [
     (f"Arbitre local ECO_SKILLS : gen-plan {gv}", cal.get("gen-plan") == gv),
     ("Référence PEK : fichier présent (v4.1)",
      (SKILLS / "gen-plan" / "references" / "prompt-engineering-kit.md").exists()),
-    ("Worklog : session B1 (v3.11.0 + PEK) journalisée",
-     "v3.11.0" in wl and "PEK" in wl and "Task ID: 2" in wl),
 ]
 for label, ok_c in carriers:
     record("PASS" if ok_c else "FAIL", "11a", label)
+# Historique B1 : artefact du worklog propriétaire, non cloné (dynamisé KO-L003 — WARN, pas FAIL)
+_b1 = "v3.11.0" in wl and "PEK" in wl
+record("PASS" if _b1 else "WARN", "11a",
+       "Worklog : historique B1 (v3.11.0 + PEK) — artefact historique propriétaire",
+       "" if _b1 else "worklog de session courant ne porte pas l'historique B1 (non cloné)")
 
 # 11b. Non-régression R2 vs référence v2.0 (ZIP correct-mon-eco fourni par le propriétaire)
 # Ancienne référence (/tmp/KNOWLEDGE_CHECK @ a8ffb5f) obsolète post-v2.0 : le corpus

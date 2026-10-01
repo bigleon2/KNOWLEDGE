@@ -83,7 +83,7 @@ def collect_paths():
                     paths.append(os.path.join(dirpath, fn))
     for extra in (os.path.join(SKILLS, "KNOWLEDGE.md"),):
         paths.append(extra)
-    for root in (CORPUS, os.path.join(SKILLS, "_prompts-maitres")):
+    for root in (CORPUS,):
         if os.path.isdir(root):
             for dirpath, _d, filenames in os.walk(root):
                 for fn in filenames:

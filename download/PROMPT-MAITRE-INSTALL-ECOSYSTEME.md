@@ -1,9 +1,11 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.0.0
-Date : 2026-09-06
+Version : 1.1.0
+Date : 2026-10-02
+Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
+Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
 Dépend : CONTEXTE SYSTÈME (embarqué ci-dessous)
-Complète : INSTALL-ECOSYSTEME.md (périmètre P0-P7) — le présent fichier définit l'ORDRE D'EXÉCUTION OPTIMAL et les critères de passage.
+Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — périmètre (§A) + ordre d'exécution optimal (§2) + critères de passage (§3).
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
@@ -16,16 +18,6 @@ L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant 
 ### Variables d'installation (§1.1)
 | Variable | Défaut | Description |
 |----------|--------|-------------|
-| `{{SKILLS_ROOT}}` | `skills/` | Racine |
-| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Registre KB |
-
-### Conventions de nommage (§1.2)
-- **Répertoires** : kebab-case
-- **Fichiers** : kebab-case avec extension
-- **Versions** : format semver
-
----
--------|--------|-------------|
 | `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
 | `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
 | `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
@@ -42,7 +34,7 @@ L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant 
 
 ## §0 — Objet et règle zéro
 
-Ce fichier est la **source de vérité de l'ordre d'exécution** pour installer l'écosystème Knowledge de façon optimale, reproductible et vérifiable, à partir du seul contenu du répertoire `mon-ecosysteme/`. Il synthétise le pipeline complet en une référence unique.
+Ce fichier est la **source de vérité unique de l'installation** — périmètre et ordre — pour installer l'écosystème Knowledge de façon optimale, reproductible et vérifiable, à partir du seul contenu du répertoire `@mon-ecosysteme/`. Il synthétise le pipeline complet en une référence unique et fusionne le contenu du fichier `INSTALL-ECOSYSTEME.md` v1.0.0 (périmètre, §A ci-dessous), supprimé le 2026-10-02 pour mettre fin à la double source d'installation (R4 anti-duplication).
 
 Règle zéro (SHARED §0) : skills auto-contenus sous `{{SKILLS_ROOT}}`, registre KB (`{{KB_PATH}}`) comme source de vérité, cross-references bidirectionnelles, conventions de nommage SHARED §1.2. Aucune étape ne produit d'effet public avant le passage des arbitres (§4).
 
@@ -54,8 +46,8 @@ L'ordre dérive du graphe d'interactions cartographié (README §8, SHARED §3.1
 
 1. **Rien ne s'interprète sans le socle** — chaque fichier spécifique ouvre par « Lire SHARED en premier » (§B) → SHARED est l'étape 1.
 2. **Rien ne s'installe depuis un corpus non authentifié** — les formes installées sont assemblées DEPUIS les PMs ; si le corpus est corrompu, tout le reste l'est → intégrité en étape 2.
-3. **Le miroir précède l'installation** — `skills/_prompts-maitres/` garantit la byte-identité de la source avant toute transformation → étape 3.
-4. **gen-plan avant les skills qu'il orchestre** — correct-work (Étape 1 : « gen-plan si dispo ») et clone-chat (§2.6 : intégration optionnelle) s'enregistrent auprès d'un gen-plan présent → étape 4.
+3. **L'archive garantit la byte-identité** — l'intégrité du corpus est vérifiée par le round-trip de `download/mon-ecosysteme_archive.zip` (véhicule d'intégrité v2.1, décision d'architecture v2.0 : le miroir local `skills/_prompts-maitres/` est supprimé) → étape 2.
+4. **gen-plan avant les skills qu'il orchestre** — correct-work (Étape 1 : gen-plan obligatoire) et clone-chat (§2.6 : intégration optionnelle) s'enregistrent auprès d'un gen-plan présent → étape 4.
 5. **correct-work et clone-chat après gen-plan** — l'ordre P4-b/P4-c respecte le précédent validé (worklog A2/A3) et la direction de dépendance dominante (gen-plan —invoque→ correct-work) → étapes 5-6.
 6. **Le registre KB après les skills** — KNOWLEDGE.md décrit les skills installés ; une entrée sans skill installé est une référence morte → étape 7.
 7. **L'outillage avant la certification** — les arbitres vérifient l'état installé, ils ne le précèdent pas → étape 8.
@@ -65,33 +57,35 @@ L'ordre dérive du graphe d'interactions cartographié (README §8, SHARED §3.1
 
 | # | Étape | Source → Destination | Arbitre | Critère de passage |
 |---|-------|----------------------|---------|--------------------|
-| 0 | **Contexte** | Lire PROMPT-MAITRE-SHARED.md (§0-§7) + INSTALL-ECOSYSTEME.md | — | Conventions, variables, 22 relations connues |
-| 1 | **Corpus** | Vérifier `mon-ecosysteme/` : 7 fichiers cœur + 8 `_archive/` | SHAs cœur vs clones scellés (verify-by-sha.py) | 15/15 présents, byte-identité cœur OK |
-| 2 | **Miroir** | `mon-ecosysteme/` → `skills/_prompts-maitres/` (15 fichiers) | SHA src = SHA miroir | 15/15 byte-identiques |
-| 3 | **gen-plan** | PM v3.7.0 §5 → `skills/gen-plan/` : SKILL.md (~202 L) + 5 `references/` (extraction §9, fences incluses) + `evals/evals.json` (6 evals) | Checks §6 du PM | 202 L ±tolérance ; 5 refs ; JSON valide |
-| 4 | **correct-work** | PM v2.4.0 §5 → `skills/correct-work/SKILL.md` (assemblage §4+§A+§1+§2+§3+§10) | Checks §6 du PM | ~200-400 L ; 3 modes ; 5 étapes |
-| 5 | **clone-chat** | PM v2.0.0 §5 → `skills/clone-chat/SKILL.md` (assemblage §4+§A+§1+§2+§3+§5) + `références/clone-template.md` (§9.1) | Checks §6 du PM | ~300-450 L ; 7+1 étapes ; template présent |
-| 6 | **Registre KB** | INSTALL-ECOSYSTEME §9.1 → `skills/KNOWLEDGE.md` (9 entrées écosystème + verify-by-sha = 10) | Compte d'entrées + formats §2.2 SHARED | ≥ 9 entrées, versions exactes |
-| 7 | **Outillage** | Déployer `scripts/` : verify-cross.py, sync-download.py, verify-by-sha.py, install/p4_install_skills.py | python -c import (syntaxe) | 4 scripts exécutables |
-| 8 | **Certification** | Exécuter dans l'ordre : (a) verify-cross.py → (b) correct-work Mode PROJET → (c) verify-by-sha.py --manifest | Les 3 arbitres eux-mêmes | 60/60 ; 0 S1-S4 ; N/N authentiques |
-| 9 | **Publication** | `sync-download.py --sync` (download/) + archive zip (round-trip) + worklog | Vérif round-trip byte-identique | 15/15 round-trip OK |
+| 0 | **Contexte** | Lire PROMPT-MAITRE-SHARED.md (§0-§7) | — | Conventions, variables, relations connues |
+| 1 | **Corpus** | Vérifier `@mon-ecosysteme/` (corpus canonique, invariant `CORPUS_ATTENDU` du checker) | SHAs corpus vs archive scellée (check-ecosysteme-integrity.py) | N/N présents, byte-identité corpus OK |
+| 2 | **Archive** | Round-trip `download/mon-ecosysteme_archive.zip` ↔ corpus (miroir supprimé, décision d'architecture v2.0) | check-ecosysteme-integrity.py §2 | corpus ⊆ archive byte-identique + extras homologues/ |
+| 3 | **gen-plan** | PM gen-plan le plus récent §5 → `skills/gen-plan/` : SKILL.md + `references/` (extraction §9, fences incluses) + `evals/` | Checks §6 du PM | Lignes ±tolérance ; refs présentes ; JSON valide |
+| 4 | **correct-work** | PM correct-work le plus récent §5 → `skills/correct-work/SKILL.md` (assemblage §4+§A+§1+§2+§3+§10) | Checks §6 du PM | ~200-400 L ; 3 modes ; 5 étapes |
+| 5 | **clone-chat** | PM clone-chat v2.0.0 §5 → `skills/clone-chat/SKILL.md` (assemblage §4+§A+§1+§2+§3+§5) + `références/clone-template.md` (§9.1) | Checks §6 du PM | ~300-450 L ; 7+1 étapes ; template présent |
+| 6 | **Registre KB** | §A.3 (ce fichier) → `skills/KNOWLEDGE.md` (14 entrées écosystème cibles) | Compte d'entrées + formats §2.2 SHARED | ≥ 14 entrées, versions = règle §A.3 |
+| 7 | **Outillage** | Déployer `scripts/` : verify-cross.py, sync-download.py, check-ecosysteme-integrity.py, arbitres dédiés | python -c import (syntaxe) | scripts exécutables |
+| 8 | **Certification** | Exécuter dans l'ordre : (a) verify-cross.py → (b) correct-work Mode PROJET → (c) check-ecosysteme-integrity.py | Les 3 arbitres eux-mêmes | 0 FAIL ; 0 S1-S2 ; N/N byte-identique |
+| 9 | **Publication** | `sync-download.py --sync` (download/) + archive zip (round-trip) + worklog | Vérif round-trip byte-identique | N/N round-trip OK |
 | 10 | **Clôture** | clone-chat (archivage session) + mise à jour KNOWLEDGE.md si nouveau skill | 8 checks S1-S8 clone-chat | Clone scellé, idempotent |
 
 Note (correct-work CIBLE, 2026-09-06, S3 ; révisée session A9, 2026-09-06) : les skills sans prompt maître propre — `skills-inventory`, `skill-creator`, `agent-creator`, `fullstack-dev` — n'ont pas de forme installée locale : ils existent comme entrées du registre KB (étape 6) et sont mobilisés à l'exécution, pas à l'installation. `prompt-engineering` est désormais MATÉRIALISÉ (forme installée `prompt-engineering/` : SKILL.md + evals/evals.json + evals/trigger_evals.json + references/grille-evaluation-prompt.md ; recommandation clone 2026-09-06 §5.2 exécutée).
 
+Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fichiers, 7 fichiers cœur, PM gen-plan v3.7.0, arbitres 60/60) sont remplacés par des invariants dynamiques (KO-L003) : l'invariant `CORPUS_ATTENDU` du checker fait foi pour la taille du corpus ; « PM le plus récent » se dérive du listing réel du corpus ; les critères numériques sont les verdicts des arbitres courants.
+
 ## §3 — Détail des points de contrôle critiques
 
 ### §3.1 Étape 1 — Intégrité du corpus
-Comparer les SHAs SHA-256 des 7 fichiers cœur aux valeurs scellées dans les clones de référence (méthode neutral-line, Annexe D du PDF source ; canal R-1 = README §13). Toute divergence = STOP : restaurer depuis `download/mon-ecosysteme_archive.zip` ou le stockage versionné avant de reprendre au contrôle 1.
+Comparer les SHAs SHA-256 des fichiers du corpus aux valeurs scellées dans l'archive de référence (méthode neutral-line, Annexe D du PDF source ; canal R-1 = README §13). Toute divergence = STOP : restaurer depuis `download/mon-ecosysteme_archive.zip` ou le stockage versionné avant de reprendre au contrôle 1.
 
 ### §3.2 Étapes 3-5 — Assemblage des formes installées
 Les SKILL.md sont ASSEMBLÉS depuis les PMs (jamais copiés à l'aveugle) : YAML frontmatter (§4 du PM) + règle zéro + spécifications (§1-§2) + relations (§3) + sections spécifiques. Les fichiers de référence sont extraits des blocs ```` ```markdown ```` du §9 avec fences incluses (round-trip déterministe, leçon A2) — l'extraction doit être insensible aux titres internes des blocs (logique de balance des fences).
 
 ### §3.3 Étape 8 — Arbitres et sévérité
-L'ordre (a)→(b)→(c) est contraint : verify-cross valide la structure (rapide, déterministe), correct-work valide le raisonnement (coûteux, ne s'exécute que si la structure est saine), verify-by-sha valide l'authenticité historique. Toute sévérité S1 (critique) ou S2 (majeure) à l'étape 8 = retour à l'étape correspondante du pipeline ; S3/S4 = journalisation au worklog + reprise.
+L'ordre (a)→(b)→(c) est contraint : verify-cross valide la structure (rapide, déterministe), correct-work valide le raisonnement (coûteux, ne s'exécute que si la structure est saine), check-ecosysteme-integrity valide l'authenticité (corpus ↔ archive ↔ registre). Toute sévérité S1 (critique) ou S2 (majeure) à l'étape 8 = retour à l'étape correspondante du pipeline ; S3/S4 = journalisation au worklog + reprise.
 
 ### §3.4 Incidents (règle d'or n°1, PM gen-plan §1.8)
-Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adaptation, jamais un arrêt : contournement conforme aux conventions, journalisation au worklog (cause, solution, coût #token), reprise à l'étape en échec. Le wipe inter-sessions est un cas documenté : ré-exécuter ce pipeline depuis l'étape 2 (le corpus `mon-ecosysteme/` est la source de vérité restaurable).
+Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adaptation, jamais un arrêt : contournement conforme aux conventions, journalisation au worklog (cause, solution, coût #token), reprise à l'étape en échec. Le wipe inter-sessions est un cas documenté : ré-exécuter ce pipeline depuis l'étape 2 (le corpus `@mon-ecosysteme/` est la source de vérité restaurable).
 
 ## §4 — Interactions mobilisées par le pipeline (cartographie T2)
 
@@ -99,7 +93,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 |-------------|----------------------|--------|
 | gen-plan —invoque→ correct-work | 3, 8(b) | E1 + hook E8 + contrôle par phase |
 | gen-plan —utilise→ clone-chat | 3, 10 | E4, E15 (optionnel) |
-| correct-work —utilise→ gen-plan | 4, 8(b) | Plan de vérification |
+| correct-work —utilise→ gen-plan | 4, 8(b) | Plan de vérification (obligatoire, dernière version) |
 | correct-work —vérifie→ clone-chat | 5, 10 | Mode CIBLE (drifts) |
 | clone-chat —enrichit→ KNOWLEDGE.md | 6, 10 | Descriptions §2 |
 | skills-inventory —scanne→ KNOWLEDGE.md | 6 | Registre source |
@@ -111,20 +105,51 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 | Avec | Nature | Détails |
 |------|--------|---------|
 | PROMPT-MAITRE-SHARED.md | Socle | Conventions, variables, registre relations (§3.1), méthode prompt-engineering (§7) |
-| INSTALL-ECOSYSTEME.md | Périmètre | Ce fichier définit l'ORDRE et les critères ; INSTALL définit le PÉRIMÈTRE (26 fichiers, 4 zones, P0-P7) |
-| PM gen-plan v3.7.0 | Spécification | Étape 3 (méthode-mère prompt-engineering, §1.9) |
-| PM correct-work v2.4.0 | Spécification | Étape 4 + arbitre étape 8(b) |
+| (fusion v1.1.0) | Périmètre absorbé | INSTALL-ECOSYSTEME.md v1.0.0 supprimé 2026-10-02 — son périmètre est porté par le §A de ce fichier ; recréer un second installateur est interdit (R4) |
+| PM gen-plan le plus récent | Spécification | Étape 3 (méthode-mère prompt-engineering, §1.9) |
+| PM correct-work le plus récent | Spécification | Étape 4 + arbitre étape 8(b) |
 | PM clone-chat v2.0.0 | Spécification | Étape 5 + clôture étape 10 |
 | README.md | Documentation | §9 architecture, §10 workflows, §12 verify-cross, §13 canal R-1 |
 
 ## §6 — Maintenance
 
-- Toute évolution du périmètre (nouveau PM, nouveau skill) se traduit par : mise à jour de la table §2 + entrée KNOWLEDGE.md + cross-references bidirectionnelles (SHARED §3.2).
+- Toute évolution du périmètre (nouveau PM, nouveau skill) se traduit par : mise à jour de la table §2 + du §A + entrée KNOWLEDGE.md + cross-references bidirectionnelles (SHARED §3.2).
 - L'ordre des étapes 3-5 suit le précédent P4-a/P4-b/P4-c ; il ne doit être modifié qu'avec un changement de contrat documenté (SHARED §3.2 règle 5).
-- Ce fichier est documentaire et orchestration : il ne détient pas la méthode prompt-engineering (fonction héritée, SHARED §7) et ne remplace ni INSTALL-ECOSYSTEME.md ni les §5 des PMs.
+- Ce fichier est l'UNIQUE source d'installation (documentaire et orchestration) : il ne détient pas la méthode prompt-engineering (fonction héritée, SHARED §7), ne remplace pas les §5 des PMs, et la recréation d'un fichier d'installation parallèle est interdite (R4 anti-duplication — leçon de la fusion v1.1.0).
 
 ## §7 — Historique
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.1.0 | 2026-10-02 | Fusion directive utilisateur : absorption du périmètre d'INSTALL-ECOSYSTEME.md v1.0.0 (supprimé) en §A — source d'installation unique ; réparation du bloc CONTEXTE SYSTÈME corrompu (table dupliquée cassée, contenu restauré depuis git @1519bbe) ; étape 2 « Miroir » révisée « Archive » (exécution décision d'architecture v2.0 : miroir skills/_prompts-maitres/ supprimé, round-trip archive v2.1 fait foi) ; invariants dynamiques recalibrés (KO-L003) : « PM le plus récent », CORPUS_ATTENDU, verdicts arbitres courants ; §A.3 versions dynamiques (anti-drift) ; criterion correct-work étape 1 : gen-plan obligatoire (couplage v2.7.0) |
 | v1.0.0 | 2026-09-06 | Création (directive utilisateur) : pipeline 10 étapes issu de la cartographie des interactions ; principes de dépendance §1 ; critères de passage et arbitres §3 ; intégration règle d'or n°1 et canal R-1. Certification correct-work Mode CIBLE : PASS 31/31, 0 S1-S2, 1 S3 corrigée (note skills sans PM) |
+
+## §A — Périmètre d'installation (absorbé d'INSTALL-ECOSYSTEME.md v1.0.0)
+
+### §A.1 Périmètre général
+26 fichiers répartis sur 4 zones (sommaire d'époque v1.0.0 conservé tel que documenté ; le détail zone-par-zone n'a jamais été développé dans le fichier source). Zones attestées par les référents : corpus prompts maîtres (`@mon-ecosysteme/`), formes installées (`skills/<skill>/`), registre KB (`skills/KNOWLEDGE.md`), outillage (`scripts/`).
+
+### §A.2 Les 8 phases P0-P7
+Note P4 : les SKILL.md + références des 4 skills sont créés en suivant le §5 de chaque prompt maître (ou via gen-plan). Le bootstrap install-ecosystem.py couvre P0-P3, P5-P7.
+
+### §A.3 Registre KB cible (14 entrées)
+Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
+
+| Entrée KNOWLEDGE.md | Version d'époque |
+|---------------------|------------------|
+| gen-plan | v3.10.0 |
+| correct-work | v2.5.1 |
+| clone-chat | v2.0.0 |
+| skills-inventory | v1.0.0 |
+| skill-creator | v1.0.0 |
+| agent-creator | v1.0.0 |
+| script-mon-ecosysteme-infrastructure | v1.0.0 |
+| install-ecosystem | v1.0.0 |
+| prompt-engineering | v1.0.1 |
+| verify-by-sha | v1.0.0 |
+| context-engineering | v1.0.1 |
+| loop-engineering | v1.0.1 |
+| graph-engineering | v1.0.1 |
+| harness-engineering | v1.0.1 |
+
+Catégorie (attestée) : ecosystem — les 4 dernières matérialisations sont les skills des disciplines d'exécution (socle SHARED §7, session A12) : forme installée `<discipline>/` — SKILL.md + evals/evals.json + evals/trigger_evals.json, déclenchement automatique ; matérialisations agent `_disciplines/` retirées, SHA prouvés ; « Utilisé par » : gen-plan (couche disciplines), sessions d'ingénierie ; matérialisées 2026-09-07.

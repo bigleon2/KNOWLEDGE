@@ -24,8 +24,9 @@ PROMPT_FILES = [
     "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
-    "INSTALL-ECOSYSTEME.md",
 ]
+# Recalibrage fusion v1.1.0 (2026-10-02) : INSTALL-ECOSYSTEME.md supprimé —
+# source d'installation unique PROMPT-MAITRE-INSTALL-ECOSYSTEME.md (R4).
 
 class SyncContextBlock:
     def __init__(self):
