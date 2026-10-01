@@ -58,7 +58,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.17.2",
+    "gen-plan": "3.18.0",
     "knowledge-observer": "1.0.0",
     "correct-work": "2.7.0",
     "clone-chat": "2.0.0",
@@ -89,7 +89,7 @@ METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au r
 # CORPUS_ATTENDU — invariant canonique du corpus (dérivation L003) [N28]
 # Recalibrage L004 (Task 56) : 20 → 21 — ajout clone -f (directive utilisateur
 # « push le clone dans @mon-ecosysteme/ » ; miroir + archive alignés).
-CORPUS_ATTENDU = 23
+CORPUS_ATTENDU = 24
 SYNC_MAP = [
     "PROMPT-MAITRE-SHARED.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
@@ -98,6 +98,7 @@ SYNC_MAP = [
     "PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.17.1.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.17.2.md",
+    "PROMPT-MAITRE-GEN-PLAN-v3.18.0.md",
     "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",

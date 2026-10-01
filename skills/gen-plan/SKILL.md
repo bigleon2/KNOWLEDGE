@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.17.2
+version: 3.18.0
 category: ecosystem
 language: fr
 tags:
@@ -197,7 +197,13 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 <!-- FIN-PATTERN:KO-L004-v1.0.0 -->
 
-> Provenance : règles KO-L001/L003/L004 issues des leçons L001-L004 du journal `knowledge-observer` (sessions B13), reconstituées post-wipe (B13-r4, complété B13-r5) d'après les marqueurs et le lignage documentés — installées dans gen-plan v3.16.0 ; les contenus exacts de v3.14.0/v3.15.0, non documentés, restent perdus au wipe inter-sessions.
+<!-- PATTERN:KO-L007-v1.0.0 -->
+
+**Règle KO-L007 — Matérialisation d'abord sur clone sparse** (leçon L007, appliquée — v3.18.0, verdict correct-work étape F PASS 2026-10-02, cycle fusion installateurs) : tout travail sur un clone sparse commence par l'établissement des faits de matérialisation — `git sparse-checkout list` + test d'existence des fichiers cibles AVANT toute écriture (`git add` / `git rm`) et AVANT tout verdict d'arbitre naïf ; un audit dérive de l'état matérielisé réel (L003) et consigne « non matérialisé » comme statut distinct de « échec ». 4 occurrences documentées (Tasks 4/6/7/E15 v3.17.1) avant application.
+
+<!-- FIN-PATTERN:KO-L007-v1.0.0 -->
+
+> Provenance : règles KO-L001/L003/L004 issues des leçons L001-L004 du journal `knowledge-observer` (sessions B13), reconstituées post-wipe (B13-r4, complété B13-r5) d'après les marqueurs et le lignage documentés — installées dans gen-plan v3.16.0 ; KO-L007 installée dans gen-plan v3.18.0 (leçon L007, verdict correct-work étape F PASS — cycle fusion installateurs 2026-10-02) ; les contenus exacts de v3.14.0/v3.15.0, non documentés, restent perdus au wipe inter-sessions.
 
 ---
 

@@ -30,11 +30,11 @@
 
 ## §2 — Registre dynamique des prompts maîtres (dérivé du corpus réel)
 
-État réel de `skills/@mon-ecosysteme/` : **22 fichiers canoniques + cet orchestrateur** (invariant `CORPUS_ATTENDU` du checker).
+État réel de `skills/@mon-ecosysteme/` : **23 fichiers canoniques + cet orchestrateur** (invariant `CORPUS_ATTENDU` du checker).
 
 | Famille | PM le plus récent (source d'assemblage) | Versions historiques figées (R2) |
 |---------|------------------------------------------|----------------------------------|
-| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.17.2.md (la plus récente) | 3.6.1, 3.7.0, 3.8.0, 3.8.1, 3.9.0, 3.10.0, 3.11.0, 3.12.0, 3.13.0, 3.16.0, 3.17.0, 3.17.1 |
+| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.18.0.md (la plus récente) | 3.6.1, 3.7.0, 3.8.0, 3.8.1, 3.9.0, 3.10.0, 3.11.0, 3.12.0, 3.13.0, 3.16.0, 3.17.0, 3.17.1, 3.17.2 |
 | CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md (la plus récente) | 2.4.0, 2.5.0 |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md (la plus récente) | — |
 
@@ -44,7 +44,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.6.1 (lire en premier). Installateur : `PROM
 
 | Skill | Version |
 |-------|---------|
-| `gen-plan` | 3.17.2 |
+| `gen-plan` | 3.18.0 |
 | `correct-work` | 2.7.0 |
 | `clone-chat` | 2.0.0 |
 | `skills-inventory` | 1.0.0 |

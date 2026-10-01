@@ -100,11 +100,11 @@
         "E15 cycle v3.17.1 (Task 8) : recomptage naïf 34/72 causé par les zones non matérialisées du manifeste ; plans download/plan-*.md lisibles uniquement via git show (non matérialisés)"
       ],
       "proposition": "Règle KO-L007 (candidate, non appliquée) — tout travail sur un clone sparse commence par l'établissement des faits de matérialisation : `git sparse-checkout list` + test d'existence des fichiers cibles AVANT toute écriture (git add / git rm) et AVANT tout verdict d'arbitre naïf ; un audit dérive de l'état matérielisé réel (L003) et consigne « non matérialisé » comme statut distinct de « échec »",
-      "marqueur": "aucun (proposée, mode M3 sans verdict — application soumise à validation étape F)",
-      "cible_application": "skills/gen-plan/SKILL.md §1.14/§1.15 (bloc non créé — M4 fermé)",
-      "statut": "proposé",
+      "marqueur": "PATTERN:KO-L007-v1.0.0 (SKILL.md §1.15) + PATTERN:PM-GEN-PLAN-KO-L007-v1.0.0 (PM v3.18.0 §1.12bis)",
+      "cible_application": "installée — gen-plan v3.18.0 (SKILL.md §1.15 PATTERN:KO-L007-v1.0.0 + PM v3.18.0 §1.12bis PATTERN:PM-GEN-PLAN-KO-L007-v1.0.0)",
+      "statut": "appliqué",
       "session": "v3.17.1",
-      "verdict_correct_work": null
+      "verdict_correct_work": "PASS (2026-10-02, cycle fusion installateurs — étape F, arbitres 29/29 + battery complète)"
     }
   ],
   "schema": "Task Observer (gen-plan/references/observation-patterns.md §4) — phase N20, session B12-r41",

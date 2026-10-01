@@ -5,14 +5,14 @@
     {
       "statut": "PASS",
       "section": "1",
-      "check": "Corpus = 23 fichiers (23 attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)",
+      "check": "Corpus = 24 fichiers (24 attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "1",
       "check": "Round-trip archive ↔ corpus",
-      "detail": "23/23 identiques + 0 homologues v2.1 (remplace le miroir supprimé — KB §Décisions)"
+      "detail": "24/24 identiques + 0 homologues v2.1 (remplace le miroir supprimé — KB §Décisions)"
     },
     {
       "statut": "PASS",
@@ -149,14 +149,14 @@
     {
       "statut": "PASS",
       "section": "5",
-      "check": "PM PROMPT-MAITRE-GEN-PLAN-v3.17.2.md résolu (corpus — Architecture v2.0 : emplacement unique)",
+      "check": "PM PROMPT-MAITRE-GEN-PLAN-v3.18.0.md résolu (corpus — Architecture v2.0 : emplacement unique)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "5",
-      "check": "SKILL.md ↔ PM v3.17.2 alignés en version",
-      "detail": "3 mentions de 3.17.2 dans SKILL.md (frontmatter sans préfixe v accepté)"
+      "check": "SKILL.md ↔ PM v3.18.0 alignés en version",
+      "detail": "3 mentions de 3.18.0 dans SKILL.md (frontmatter sans préfixe v accepté)"
     },
     {
       "statut": "PASS",
@@ -209,7 +209,7 @@
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "SKILL.md gen-plan : frontmatter 3.17.2",
+      "check": "SKILL.md gen-plan : frontmatter 3.18.0",
       "detail": ""
     },
     {
@@ -221,7 +221,7 @@
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "PM PROMPT-MAITRE-GEN-PLAN-v3.17.2.md (corpus) : en-tête version + plage 1200-1400 lignes",
+      "check": "PM PROMPT-MAITRE-GEN-PLAN-v3.18.0.md (corpus) : en-tête version + plage 1200-1400 lignes",
       "detail": ""
     },
     {
@@ -239,7 +239,7 @@
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "KB : entrée « ## gen-plan v3.17.2 »",
+      "check": "KB : entrée « ## gen-plan v3.18.0 »",
       "detail": ""
     },
     {
@@ -251,7 +251,7 @@
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "Arbitre local ECO_SKILLS : gen-plan 3.17.2",
+      "check": "Arbitre local ECO_SKILLS : gen-plan 3.18.0",
       "detail": ""
     },
     {
@@ -275,14 +275,14 @@
     {
       "statut": "PASS",
       "section": "11c",
-      "check": "Aucune référence stale — l'état courant est uniformément v3.17.2",
+      "check": "Aucune référence stale — l'état courant est uniformément v3.18.0",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "11d",
-      "check": "download/ : canal de publication (v3.6.1 scellé dépôt + PM v3.17.2 local)",
-      "detail": "PM v3.17.2 publié (SYNC_MAP 17 fichiers — N14-b)"
+      "check": "download/ : canal de publication (v3.6.1 scellé dépôt + PM v3.18.0 local)",
+      "detail": "PM v3.18.0 publié (SYNC_MAP 17 fichiers — N14-b)"
     }
   ],
   "bilan": {
