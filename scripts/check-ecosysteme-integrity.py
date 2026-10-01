@@ -53,7 +53,7 @@ MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 ECO_SKILLS = {
     "gen-plan": "3.17.1",
     "knowledge-observer": "1.0.0",
-    "correct-work": "2.6.0",
+    "correct-work": "2.7.0",
     "clone-chat": "2.0.0",
     "skills-inventory": "1.0.0",
     "skill-creator": "1.0.0",

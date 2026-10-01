@@ -1,6 +1,6 @@
 ---
 name: correct-work
-version: 2.6.0
+version: 2.7.0
 category: ecosystem
 language: fr
 tags:
@@ -12,14 +12,14 @@ tags:
 description: >
   Skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences).
   5 étapes, 4 modes (PROJET/CIBLE/DIRECT/AVEUGLE),
-  support multi-cibles, découplage gen-plan optionnel,
+  support multi-cibles, couplage gen-plan OBLIGATOIRE (dernière version installée) à l'Étape 1,
   intégration KB (Registre, kb_path, --kb-skill),
   matrice de décision agent/skill (statique + dynamique KB),
   métriques de performance.
 dependencies:
   - skill: gen-plan
     version: ">=3.7.0"
-    used_at: "Étape 1 (optionnel, mode PROJET)"
+    used_at: "Étape 1 (obligatoire — dernière version installée, mode PROJET)"
   - skill: clone-chat
     version: ">=2.0.0"
     used_at: "Mode CIBLE, §3.5 Context Drift"
@@ -63,7 +63,7 @@ Options avancées (gen-plan >= v3.6.0) :
 
 ### §1.1 Description
 
-correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 4 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session. Supporte le multi-cibles, le découplage gen-plan optionnel, et les métriques de performance.
+correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 4 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session. Supporte le multi-cibles, le couplage obligatoire à gen-plan (dernière version installée) pour le plan de vérification, et les métriques de performance.
 
 ### §1.2 Les 4 modes
 
@@ -78,7 +78,7 @@ correct-work est un skill de **vérification et correction** du travail réalis�
 
 | Étape | Nom | Description |
 |-------|------|-------------|
-| **1** | Plan d'actions | Création du plan de vérification (gen-plan si dispo, sinon autonome) |
+| **1** | Plan d'actions | Création du plan de vérification via gen-plan (obligatoire — dernière version installée) |
 | **2** | Erreurs et omissions | Détection des erreurs factuelles, omissions, incohérences logiques |
 | **3** | Structure et conflits | Vérification de la structure, conflits entre sections, cohérence du format |
 | **4** | Vérification des interactions | Inspection des relations inter-skills, dépendances, interfaces |
@@ -90,9 +90,9 @@ correct-work est un skill de **vérification et correction** du travail réalis�
 
 correct-work peut vérifier plusieurs artefacts dans une même session. Chaque cible reçoit un sous-rapport indépendant, et le rapport final agrège les résultats. Les verdicts sont calculés par cible puis globalement (le verdict global est le pire des verdicts individuels).
 
-### §1.5 Découplage gen-plan
+### §1.5 Couplage gen-plan (obligatoire — v2.7.0)
 
-Le mode PROJET utilise gen-plan à l'Étape 1 pour créer le plan de vérification. Si gen-plan n'est pas disponible, correct-work fonctionne en mode autonome : il génère un plan simplifié (sections à vérifier dans l'ordre logique) sans estimation #token ni sélection de skills. Les modes CIBLE et DIRECT n'utilisent jamais gen-plan.
+Le mode PROJET utilise gen-plan à l'Étape 1 pour créer le plan de vérification — ce recours est **OBLIGATOIRE** (changement de contrat v2.7.0, directive propriétaire 2026-10-02 : fin du mode autonome). La version mobilisée est **TOUJOURS LA DERNIÈRE VERSION INSTALLÉE**, résolue dynamiquement dans cet ordre : (1) frontmatter de `skills/gen-plan/SKILL.md` (source de vérité installée) ; (2) entrée du registre KB. Aucune version épinglée n'est admise ; le plancher `>= v3.7.0` demeure le plancher d'intégration minimal (SHARED §3.2 règle 5). Si gen-plan est indisponible ou corrompu : **ARRÊT EXPLICITE** (règle d'or n°1 — pause motivée, cause et solution journalisées au worklog), jamais un plan de substitution autonome. Les modes CIBLE et DIRECT n'utilisent pas gen-plan.
 
 ### §1.6 Intégration KB
 
@@ -119,7 +119,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 
 | Dépendance | Version minimale | Utilisation | Optionnelle |
 |------------|-----------------|-------------|-------------|
-| gen-plan | >= v3.7.0 | Étape 1 (plan d'actions) | Oui (autonome sinon) |
+| gen-plan | >= v3.7.0 (dernière installée OBLIGATOIRE) | Étape 1 (plan d'actions) | Non (obligatoire) |
 | clone-chat | >= v2.0.0 | Mode CIBLE (§3.5 Context Drift) | Oui |
 | fullstack-dev | >= v1.0.0 | Vérification de projets web | Oui |
 
@@ -145,11 +145,11 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 ## Métadonnées
 - **Date** : YYYY-MM-DD
 - **Mode** : PROJET | CIBLE | DIRECT
-- **Version correct-work** : 2.6.0
+- **Version correct-work** : 2.7.0
 - **Cible** : [nom du skill/fichier] (ou multi-cibles)
 
 ## Étape 1 — Plan d'actions
-[Plan généré via gen-plan ou autonome]
+[Plan généré via gen-plan — dernière version installée, OBLIGATOIRE]
 
 ## Étape 2 — Erreurs et omissions
 | # | Sévérité | Description | Emplacement | Correction proposée |
@@ -190,7 +190,7 @@ Agent: correct-work v2.4.0
 Task: Vérification [mode] de [cible]
 
 Work Log:
-- Étape 1 : Plan d'actions créé (gen-plan ou autonome)
+- Étape 1 : Plan d'actions créé via gen-plan (dernière version installée)
 - Étape 2 : N erreurs détectées
 - Étape 3 : N conflits structurels
 - Étape 4 : N interactions vérifiées
@@ -233,7 +233,7 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| gen-plan | Invocation à E1 | Plan de vérification (optionnel, autonome sinon), version >= v3.7.0 |
+| gen-plan | Invocation à E1 (OBLIGATOIRE) | Plan de vérification — dernière version installée, plancher >= v3.7.0 |
 | clone-chat | Vérification Mode CIBLE | §3.5 Context Drift, version >= v2.0.0 |
 | fullstack-dev | Vérification | Projets web : structure et dépendances, version >= v1.0.0 |
 | knowledge.md | Scan dynamique | Découverte versions et dépendances |
