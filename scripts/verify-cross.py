@@ -145,7 +145,12 @@ class VerifyCross:
             print(f"\n❌ ERRORS :")
             for e in self.errors[:10]:
                 print(f"   {e}")
-        
+
+        if self.warnings:
+            print(f"\n⚠️ WARNINGS détaillés :")
+            for w in self.warnings:
+                print(f"   {w}")
+
         score = (self.passed / self.checks * 100) if self.checks > 0 else 0
         print(f"\n🎯 Score de conformité : {score:.1f}%")
         
