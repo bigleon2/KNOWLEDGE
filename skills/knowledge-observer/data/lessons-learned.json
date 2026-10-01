@@ -31,10 +31,11 @@
     {
       "id": "L003",
       "pattern": "Faux verdicts d'arbitres à invariants figés : faux négatif (@mon-ecosysteme classé PLATEFORME hors set CORE), faux positif (pgrep -f auto-matché par sa propre ligne de commande), état attendu figé (« uniformément v3.11.0 ») divergent de la réalité installée",
-      "occurrences": 4,
+      "occurrences": 5,
       "sources": [
         "arbitres N4-c/N5-a/N15 : 3 faux verdicts corrigés en dynamisant les invariants (frontmatter installé = source de vérité, dérivation dynamique, garde anti-auto-match)",
-        "E15 cycle v3.17.1 (Task 8, trace scripts/outputs/correct-work-e15-recertification.json) : recomptage naïf du manifeste intégrité (34/72) divergent de l'arbitre réel dynamique (50/50) — les fichiers non matérialisés du sparse-checkout étaient comptés comme échecs ; arbitre d'audit dynamisé (verdict dérivé du checker réel), re-verdict honnête 13 PASS / 0 FAIL"
+        "E15 cycle v3.17.1 (Task 8, trace scripts/outputs/correct-work-e15-recertification.json) : recomptage naïf du manifeste intégrité (34/72) divergent de l'arbitre réel dynamique (50/50) — les fichiers non matérialisés du sparse-checkout étaient comptés comme échecs ; arbitre d'audit dynamisé (verdict dérivé du checker réel), re-verdict honnête 13 PASS / 0 FAIL",
+        "Cycle fusion installateurs (Task 9, 2026-10-02) : 4 contrôles d'audit en échec fantôme par motifs à sous-chaînes naïves (fichier supprimé matché via la sous-chaîne de PROMPT-MAITRE-INSTALL-ECOSYSTEME.md, « fragment cassé » sous-chaîne du séparateur valide, census sans lookbehind, casse du verbatim « Intègre ») — arbitre corrigé in-session (chemin exact, compteurs de table, lookbehind, casse insensible), re-verdict honnête 29/29 ×2"
       ],
       "proposition": "Règle KO-L003 — tout arbitre dérive ses invariants de l'état courant (frontmatter installé, registre KB, comptage réel), jamais d'un état figé ; divergence arbitre <-> réalité corrigée en dynamisant l'arbitre avec re-verdict honnête obligatoire — jamais en ajustant la réalité",
       "marqueur": "PATTERN:KO-L003-v1.0.0",
