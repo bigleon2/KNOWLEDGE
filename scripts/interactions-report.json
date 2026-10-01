@@ -5,14 +5,14 @@
     {
       "statut": "PASS",
       "section": "1",
-      "check": "Corpus = 22 fichiers (22 attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)",
+      "check": "Corpus = 23 fichiers (23 attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "1",
       "check": "Round-trip archive ↔ corpus",
-      "detail": "22/22 identiques + 0 homologues v2.1 (remplace le miroir supprimé — KB §Décisions)"
+      "detail": "23/23 identiques + 0 homologues v2.1 (remplace le miroir supprimé — KB §Décisions)"
     },
     {
       "statut": "PASS",

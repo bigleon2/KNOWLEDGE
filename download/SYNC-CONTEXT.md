@@ -1,6 +1,6 @@
 # Procédure de Synchronisation du Contexte Système
 
-> **Version** : 1.2.0
+> **Version** : 1.3.0
 > **Date** : 2026-10-02
 > **Objet** : Maintenir la cohérence entre `PROMPT-MAITRE-SHARED.md` (source de vérité) et les blocs `## ⚙️ CONTEXTE SYSTÈME` embarqués dans les prompts maîtres.
 
@@ -10,12 +10,12 @@ Le bloc `## ⚙️ CONTEXTE SYSTÈME` présent dans chaque prompt maître actif 
 
 Si le SHARED évolue (nouvelles conventions, nouvelles variables, correction de règles), les blocs embarqués doivent être resynchronisés.
 
-### État du corpus (mis à jour 2026-10-02 — fusion installateurs v1.1.0)
+### État du corpus (mis à jour 2026-10-02 — v1.3.0 : fusion installateurs + ultra-PM)
 
-- **Corpus canonique `skills/@mon-ecosysteme/`** : l'invariant `CORPUS_ATTENDU` de `scripts/check-ecosysteme-integrity.py` fait foi (dérivation dynamique — KO-L003) ; dernier recalibrage : **21 fichiers** (fusion installateurs PM-INSTALL v1.1.0 — historique : 21 @6ea0e0c, 22 @v3.17.1, 21 après fusion).
-- Dernier changement : fusion installateurs PM-INSTALL v1.1.0 (directive utilisateur « source d'installation unique ») — `INSTALL-ECOSYSTEME.md` supprimé (R4) ; miroir `skills/_prompts-maitres/` supprimé (exécution décision d'architecture v2.0 — le script `restore-miroir.py` avait disparu au wipe inter-sessions et n'est pas reconstitué ; la voie de restauration est l'archive).
+- **Corpus canonique `skills/@mon-ecosysteme/`** : l'invariant `CORPUS_ATTENDU` de `scripts/check-ecosysteme-integrity.py` fait foi (dérivation dynamique — KO-L003) ; dernier recalibrage : **23 fichiers** (orchestrateur ultra-PM ajouté — historique : 21 @6ea0e0c, 22 @v3.17.1, 21 après fusion, 22 avec PM v3.17.2, 23 avec ultra-PM).
+- Dernier changement : directive « prompt ultra maître » — `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md` ajouté au corpus (généré idempotent par `scripts/gen-ultra-maitre.py`, dérivation dynamique KO-L003, idempotence ×2 prouvée) ; les PMs existants ne sont PAS convertis (R4 duplication / R2 corpus figé / KO-L004 drift).
 - **Deux voies de diffusion byte-identiques** (le corpus fait foi, sens de réplication corpus → canaux) :
-  1. **Canal download/** — SYNC_MAP de 11 fichiers courants (ci-dessous), répliqué par `scripts/sync-download.py --sync` ;
+  1. **Canal download/** — SYNC_MAP de 13 fichiers courants (ci-dessous), répliqué par `scripts/sync-download.py --sync` ;
   2. **Archive** `download/mon-ecosysteme_archive.zip` — véhicule d'intégrité v2.1 (corpus byte-identique + extras sous `homologues/` uniquement).
 
 ## Fichiers concernés par la synchronisation

@@ -24,7 +24,11 @@ skills/_prompts-maitres/ est SUPPRIMÉ par décision d'architecture (KB §Décis
 download/mon-ecosysteme_archive.zip (véhicule d'intégrité v2.0) ;
 re-calibré 2026-10-02 (montée gen-plan v3.17.2 — déclencheur verbatim
 « intègre dans le plan d'actions » + correction E1 → PM-INSTALL v1.1.0 :
-PM v3.17.2 assemblé, corpus 22 fichiers, SYNC_MAP 12).
+PM v3.17.2 assemblé, corpus 22 fichiers, SYNC_MAP 12) ;
+re-calibré 2026-10-02 (directive « prompt ultra maître » — orchestrateur léger
+généré idempotent : PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ajouté au corpus via
+scripts/gen-ultra-maitre.py — dérivation dynamique KO-L003, idempotence ×2
+prouvée, corpus 23 fichiers, SYNC_MAP 13).
 
 Vérifications (pipeline PM-INSTALL étapes 1-2, 8 — périmètre v1.1.0) :
   1. SHA-256 des fichiers du corpus canonique skills/@mon-ecosysteme/
@@ -80,7 +84,7 @@ METIER_SKILLS = ["audio-metadata", "cpp-analysis", "pdf-llm"]
 # CORPUS_ATTENDU — invariant canonique du corpus (dérivation L003) [N28]
 # Recalibrage L004 (Task 56) : 20 → 21 — ajout clone -f (directive utilisateur
 # « push le clone dans @mon-ecosysteme/ » ; miroir + archive alignés).
-CORPUS_ATTENDU = 22
+CORPUS_ATTENDU = 23
 SYNC_MAP = [
     "PROMPT-MAITRE-SHARED.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
@@ -92,6 +96,7 @@ SYNC_MAP = [
     "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md",
     # INSTALL-ECOSYSTEME.md retiré — fusion installateurs v1.1.0 (2026-10-02, R4)
     "SYNC-CONTEXT.md",
     "README.md",

@@ -146,6 +146,7 @@ Cette matrice définit quels agents peuvent utiliser quels skills et dans quel c
 | `PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md` | Spécification correct-work | v2.5.1 |
 | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | Spécification clone-chat | v2.0.0 |
 | `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` | Pipeline d'installation — SOURCE UNIQUE (périmètre §A + ordre optimal 10 étapes ; fusion v1.1.0) | v1.1.0 |
+| `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md` | Orchestration à l'usage — routeur dérivé dynamiquement (généré idempotent gen-ultra-maitre.py) | v1.0.0 |
 
 ### §6.2 Workflow d'utilisation
 

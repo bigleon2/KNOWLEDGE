@@ -30,6 +30,7 @@ KNOWLEDGE/
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
 │   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.1.0)
+│   ├── PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ← Orchestration à l'usage (généré idempotent v1.0.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │
 ├── skills/                              ← Skills métier (Niveau 2)
