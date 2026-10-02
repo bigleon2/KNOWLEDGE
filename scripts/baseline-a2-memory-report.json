@@ -1,0 +1,229 @@
+{
+  "date": "2026-10-03",
+  "session": "Task 18 — matérialisation baseline A2 memory-engineering (hors périmètre suggestion (c)), QUOTA_OK levé",
+  "seuil": 0.5,
+  "confirm_runs": 3,
+  "skills": {
+    "memory-engineering": {
+      "description": "Skill discipline memory engineering : mémoire des agents — État Court/État Long, écriture sélective, budget d'attention fini, compaction paramétrable long-horizon, compaction de sessions longues avec ",
+      "tags": [
+        "memory-engineering",
+        "mémoire",
+        "etat-long",
+        "compaction",
+        "retrieval",
+        "contexte"
+      ],
+      "n_keywords": 46,
+      "cases": [
+        {
+          "query": "Utilise le skill memory-engineering pour gouverner la mémoire de l'agent.",
+          "expected": true,
+          "voie_m": {
+            "score": 0.5,
+            "trigger": true,
+            "hits": [
+              "agent",
+              "engineering",
+              "memoir",
+              "memory"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Décide quoi écrire en État Long : worklog, KB, answer key — et quoi jeter.",
+          "expected": true,
+          "voie_m": {
+            "score": 0.222,
+            "trigger": true,
+            "hits": [
+              "etat",
+              "long"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Compacte cette session longue en conservant les ancres de reprise mécanique.",
+          "expected": true,
+          "voie_m": {
+            "score": 0.667,
+            "trigger": true,
+            "hits": [
+              "ancr",
+              "compact",
+              "longu",
+              "mecan",
+              "repris",
+              "sess"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Isoler les contextes par tâche : prompts auto-contenus, pas de fuite inter-tâches.",
+          "expected": true,
+          "voie_m": {
+            "score": 0.727,
+            "trigger": true,
+            "hits": [
+              "auto",
+              "contenu",
+              "context",
+              "fuit",
+              "inter",
+              "isoler",
+              "prompt",
+              "tach"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Récupère l'information par retrieval ancré dans le registre versionné, sans hallucination.",
+          "expected": true,
+          "voie_m": {
+            "score": 0.7,
+            "trigger": true,
+            "hits": [
+              "ancr",
+              "hallucin",
+              "inform",
+              "recuper",
+              "registr",
+              "retrieval",
+              "versionn"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Structure ces données en graphe de connaissances versionné avec nœuds et arêtes.",
+          "expected": false,
+          "voie_m": {
+            "score": 0.111,
+            "trigger": false,
+            "hits": [
+              "versionn"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Lance plusieurs agents en parallèle et agrège leurs résultats avec un supervisor.",
+          "expected": false,
+          "voie_m": {
+            "score": 0.111,
+            "trigger": false,
+            "hits": [
+              "agent"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        }
+      ],
+      "score_baseline": "7/7",
+      "derive": false,
+      "description_optimization_required": false
+    }
+  }
+}

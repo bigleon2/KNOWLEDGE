@@ -96,7 +96,7 @@
       "version": "1.0.0"
     },
     "fleet-engineering": {
-      "sha256": "bff4e74687e6a11579818bdd8c3ea615ee56a88a9aef3344476441f7c0c9174f",
+      "sha256": "1c55b953304ff74942e3f1e3b1427f8f98252c5481ba0eed9112517fa16a9d4b",
       "version": "1.0.0"
     },
     "gen-plan": {
@@ -120,8 +120,8 @@
       "version": "1.0.1"
     },
     "memory-engineering": {
-      "sha256": "195e9296377a27b892c8e7b21dee871ba8329810db72e7ae2604723d1d4706c9",
-      "version": "1.0.0"
+      "sha256": "ac8c5fceadfa0567d6dbd33b3dc6979b03364e0cb19cb084004adcbd3eafd22e",
+      "version": "1.1.0"
     },
     "pdf-llm": {
       "sha256": "789229588ce4086d921e3a962bf81e0c71e5bfd24a89dff4a67f5926c69013b7",
@@ -156,7 +156,7 @@
       "version": "1.0.0"
     },
     "spec-driven-development": {
-      "sha256": "d8809097fb7b9b5b909d7f1d58ffb30f726cdb4798918cda5d0b3b54517def26",
+      "sha256": "9bb75b27749fd97650496ba615bf5f9adfbcc2b8835c9a8337052f26a62204de",
       "version": "1.0.0"
     },
     "version-management": {

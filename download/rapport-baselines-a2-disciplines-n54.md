@@ -63,3 +63,13 @@ Portée de l'écart : nulle sur le verdict de baseline — la voie mécanique SH
 ## 5. Bénéfice (objectif de la suggestion (c))
 
 Les disciplines que gen-plan mobilise à E5/E7 (patterns de flotte, cadrage spec-first) sont désormais **mesurées** : leur routage ne repose plus sur des triggers jamais baselinés mais sur une baseline exécutée, tracée et re-jouable. La couche fleet/spec de l'écosystème passe du statut « armé non mesuré » au statut « mesuré et certifié » — complétant la matérialisation de la détention effectuée par la suggestion (a) (Task 16 / reconstituée Task 17).
+## 4bis. Levée du confirm LLM (Task 18, 2026-10-03 — directive « boucle QUOTA »)
+
+La composante résiduelle documentée au §4 a été **levée** le 2026-10-03 (session web-bbbeab47, directive propriétaire : « FAIS TANT QUE (QUOTA_OK==FALSE) … ré-exécute pour lever le confirm LLM (dernière composante armée) ») :
+
+- **QUOTA_OK** : sonde unique (KO-L001) à 00:18 UTC — réponse API valide (2 tokens complétés) ; parsing `"content"` du CLI vérifié sur la sortie réelle ;
+- **Re-exécution idempotente** `python3 scripts/task17-baseline-a2.py` au premier plan (les démons d'arrière-plan sont fauchés entre les appels d'outils — constat R3-A17-bis) : 42 appels à cadence polie (4 s inter-appels), voie M re-déterministe à l'identique, voie L votée réellement ;
+- **Résultats** : fleet-engineering **7/7** et spec-driven-development **7/7** sur les DEUX voies — 42/42 votes LLM réels (zéro null), ratios voie L = 1.0 sur les 5 cas positifs et 0.0 sur les 2 contrôles négatifs de chaque skill, **conformes à la voie mécanique — zéro dérive 2 voies** (preuves : `scripts/baseline-a2-report.json` régénéré, colonnes voie L + evidence OUI/NON) ;
+- **Conséquence** : Description Optimization définitivement NON REQUISE pour les deux disciplines n°54 (c) ; les colonnes « Confirm LLM : ARMÉ (quota) » des tables du §2 sont remplacées, à lire, par « MESURÉ (Task 18) » — consignation complète dans les §5 des SKILL.md fleet/spec et les entrées KB correspondantes.
+
+**Plus aucune composante armée résiduelle sur le périmètre de la suggestion (c).**

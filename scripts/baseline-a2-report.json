@@ -32,19 +32,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Lance plusieurs agents en parallèle avec un supervisor et agrège les résultats.",
@@ -61,19 +61,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Choisis le bon pattern multi-agents : fan-out, pipeline, debate, supervisor ou swarm.",
@@ -93,19 +93,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Coordonne une équipe d'instances avec Task IDs, bornes de coût et arbitrage des divergences.",
@@ -121,19 +121,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Scale cette exécution en flotte managée : découplage cerveau/exécution, assignation, fusion.",
@@ -150,19 +150,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps.",
@@ -174,16 +174,16 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              false,
+              false,
+              false
             ],
             "ratio": 0.0,
             "trigger": false,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "NON",
+              "NON",
+              "NON"
             ]
           },
           "baseline_ok": true
@@ -200,24 +200,24 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              false,
+              false,
+              false
             ],
             "ratio": 0.0,
             "trigger": false,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "NON",
+              "NON",
+              "NON"
             ]
           },
           "baseline_ok": true
         }
       ],
-      "score_baseline": "2/7",
-      "derive": true,
-      "description_optimization_required": true
+      "score_baseline": "7/7",
+      "derive": false,
+      "description_optimization_required": false
     },
     "spec-driven-development": {
       "description": "Skill discipline spec-driven development : la spécification comme contrat exécutable — spec AVANT code (workflow inversé), décomposition plan→tâches, critères d'acceptation mécaniques, constitution (g",
@@ -246,19 +246,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Rédige la spécification exécutable : exigences, contraintes, critères d'acceptation mécaniques.",
@@ -276,19 +276,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Décompose la spec en plan puis en tâches atomiques avec preuves attendues.",
@@ -304,19 +304,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Le code a dérivé de la spécification : amende la spec d'abord, puis réaligne l'implémentation.",
@@ -333,19 +333,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Applique le workflow inversé : la spec comme contrat, le code comme artefact généré et vérifié.",
@@ -363,19 +363,19 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              true,
+              true,
+              true
             ],
-            "ratio": 0.0,
-            "trigger": false,
+            "ratio": 1.0,
+            "trigger": true,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "OUI",
+              "OUI",
+              "OUI"
             ]
           },
-          "baseline_ok": false
+          "baseline_ok": true
         },
         {
           "query": "Orchestre une flotte d'agents en patterns fan-out ou supervisor.",
@@ -387,16 +387,16 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              false,
+              false,
+              false
             ],
             "ratio": 0.0,
             "trigger": false,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "NON",
+              "NON",
+              "NON"
             ]
           },
           "baseline_ok": true
@@ -411,24 +411,24 @@
           },
           "voie_l": {
             "votes": [
-              null,
-              null,
-              null
+              false,
+              false,
+              false
             ],
             "ratio": 0.0,
             "trigger": false,
             "evidence": [
-              "pas de contenu",
-              "pas de contenu",
-              "pas de contenu"
+              "NON",
+              "NON",
+              "NON"
             ]
           },
           "baseline_ok": true
         }
       ],
-      "score_baseline": "2/7",
-      "derive": true,
-      "description_optimization_required": true
+      "score_baseline": "7/7",
+      "derive": false,
+      "description_optimization_required": false
     }
   }
 }

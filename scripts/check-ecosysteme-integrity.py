@@ -95,7 +95,7 @@ ECO_SKILLS = {
     "autonomous-agent": "1.0.0",
     "correct-py": "1.0.0",
     "fleet-engineering": "1.0.0",
-    "memory-engineering": "1.0.0",
+    "memory-engineering": "1.1.0",  # Task 18 (2026-10-03) : Description Optimization A10/A14 — recalibrage L004
     "spec-driven-development": "1.0.0",
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator

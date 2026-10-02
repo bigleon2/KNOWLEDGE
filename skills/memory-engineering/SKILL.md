@@ -1,6 +1,6 @@
 ---
 name: memory-engineering
-version: "1.0.0"
+version: "1.1.0"
 category: ecosystem
 language: fr
 tags:
@@ -11,7 +11,7 @@ tags:
   - retrieval
   - contexte
 description: >-
- Skill discipline memory engineering : mémoire des agents — État Court/État Long, écriture sélective, budget d'attention fini, compaction paramétrable long-horizon, mémoire externe par retrieval (IR/RAG), isolation des contextes. Spécialise la discipline memory engineering (source de vérité : SHARED §7). Opérationnalisation 2026 : AgeMem (arXiv 2026, 110+ citations), Memory in the Age of AI Agents (survey), checkpointing LangGraph/Redis. Fondements documentés : references/fondements-academiques.md.
+ Skill discipline memory engineering : mémoire des agents — État Court/État Long, écriture sélective, budget d'attention fini, compaction paramétrable long-horizon, compaction de sessions longues avec ancres de reprise mécanique, mémoire externe par retrieval (IR/RAG) — récupération de l'information par retrieval ancré dans le registre versionné, sans hallucination, isolation des contextes : savoir isoler les contextes par tâche (prompts auto-contenus, pas de fuite inter-tâches). Spécialise la discipline memory engineering (source de vérité : SHARED §7). Opérationnalisation 2026 : AgeMem (arXiv 2026, 110+ citations), Memory in the Age of AI Agents (survey), checkpointing LangGraph/Redis. Fondements documentés : references/fondements-academiques.md.
 dependencies: []
 ---
 
@@ -79,10 +79,10 @@ Répliques de l'État Long : worklog (unique), KB (unique), answer key (unique),
 Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}}` pour les variables de contexte ; journalisation au worklog (`Task ID` + preuves) pour toute exécution réelle ; aucune fabrication de résultats (R3).
 
 ## §5 — ÉVALUATIONS ET DÉCLENCHEURS
-`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs) ; déclenchement sur les demandes mémoire/état/compaction/reprise ; seuil 0.5 (confirm 3 runs armé — QUOTA_OK). Baseline A2 : EN ATTENTE (`baseline-pending-n34.json`).
+`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs) ; déclenchement sur les demandes mémoire/état/compaction/reprise ; seuil 0.5 (confirm 3 runs armé — QUOTA_OK). Baseline A2 : MESURÉE 4/7 puis **7/7 POST-OPTIMISATION** (Task 18, 2026-10-03 — voie mécanique SHARED §7 v2 : 3 cas positifs sous le seuil en A2 → dérive établie → Description Optimization appliquée v1.1.0 (protocole A10/A14) ; re-mesure complète post-optimisation au QUOTA_OK (fenêtre 30 min, directive) : **7/7 sur les DEUX voies, 21/21 votes LLM réels zéro null, ratios 1.0×5 positifs / 0.0×2 contrôles, zéro dérive, Description Optimization requise : NON** ; rapports `download/rapport-baseline-a2-memory-engineering.md`, JSON `scripts/baseline-a2-memory-report.json`).
 
 ## §6 — TRAÇABILITÉ
-- v1.0.0 (N34, 2026-09-21, session B12-r56) : matérialisation de la discipline approuvée n°54 (proposition N31 — AgeMem 110+ citations) ; sources N31 ; intégration gen-plan v3.15.0 §1.9 ; baseline en attente QUOTA (D017).
+- v1.1.0 (Task 18, 2026-10-03, session web-bbbeab47) : Description Optimization (protocole A10/A14 — dérive A2 établie sur 3 cas positifs de la voie mécanique) — description frontmatter étendue des radicaux discriminants (compaction de sessions longues/ancres de reprise ; isoler les contextes par tâche/prompts auto-contenus/fuite ; récupération de l'information/registre versionné/sans hallucination) ; contrôles négatifs préservés (graphe 1 radical, flotte inchangée) ; v1.0.0 (N34, 2026-09-21, session B12-r56) : matérialisation de la discipline approuvée n°54 (proposition N31 — AgeMem 110+ citations) ; sources N31 ; intégration gen-plan v3.15.0 §1.9 ; baseline en attente QUOTA (D017).
 
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
