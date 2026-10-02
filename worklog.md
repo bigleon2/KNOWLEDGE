@@ -402,3 +402,9 @@ Stage Summary:
 - **Plus aucune composante armée résiduelle** : les 3 disciplines n°54 (fleet-engineering, spec-driven-development, memory-engineering) sont MESURÉES et CERTIFIÉES sur les 2 voies (voie mécanique SHARED §7 v2 + confirm LLM 3 runs).
 - Amélioration structurelle : détection 429 stderr (scripts Task 18) ; runner 429-aware --skip-done opérationnalisé (KO-L001) ; constats d'honnêteté tracés (baseline-pending non matérialisé — KO-L007 ; démons arrière-plan fauchés — R3-A17-bis).
 - Publication : protocole Task 7/14 (commit de couche + commit de journalisation, jeton éphémère, audit anti-persistance).
+
+Journalisation (addendum Task 18 — pattern B5 « commit de couche puis commit de journalisation ») :
+- Publication exécutée : 26c4f2a → 565c978 (main → main, push HTTPS auth x-access-token — jeton éphémère en variable d'environnement, sortie masquée, unset immédiat après usage) ; vérification distante anonyme : HEAD = 565c9788d7dcd637d88aded51fcb3e30ae747877.
+- Audit anti-persistance : fragment distinctif du jeton — 0 occurrence dans le véhicule (fichiers), 0 occurrence dans l'historique git (git log -S), 0 occurrence dans .git/config (origin = URL propre), 0 occurrence dans l'environnement.
+- Le dépôt distant porte désormais : la couche Task 18 complète (correct-work PROJET + levée confirm LLM 42/42 + memory-engineering v1.1.0 baselinée 7/7 2 voies), l'entrée décision Task 18 au registre KB, les 4 rapports/plan de session download/, les 2 arbitres de baseline (task17 idempotent, task18 429-aware), le worklog Tasks 1-18.
+- Directive 2026-10-03 : ENTIÈREMENT EXÉCUTÉE. Aucune composante armée résiduelle sur l'écosystème.
