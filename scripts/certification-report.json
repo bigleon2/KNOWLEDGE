@@ -5,8 +5,8 @@
       "cle": "cross_defaut",
       "echecs": 0,
       "nom": "verify-cross (axes 1-6)",
-      "pass": 62,
-      "total": 62,
+      "pass": 63,
+      "total": 63,
       "verdict": "ALL PASS",
       "vert": true
     },
@@ -15,8 +15,8 @@
       "cle": "cross_correct_work",
       "echecs": 0,
       "nom": "verify-cross (mode correct-work)",
-      "pass": 76,
-      "total": 76,
+      "pass": 63,
+      "total": 63,
       "verdict": "ALL PASS",
       "vert": true
     },
@@ -35,42 +35,25 @@
       "cle": "integrite",
       "echecs": 0,
       "nom": "check-ecosysteme-integrity",
-      "pass": 34,
-      "total": 34,
+      "pass": 46,
+      "total": 46,
       "verdict": "ALL PASS",
       "vert": true
     },
     {
-      "avertissements": 0,
+      "avertissements": 1,
       "cle": "interactions",
       "echecs": 0,
       "nom": "test-coherence-interactions (§11b)",
       "pass": 45,
-      "total": 45,
-      "verdict": "COHÉRENCE DES INTERACTIONS : PASS STRICT",
+      "total": 46,
+      "verdict": "COHÉRENCE DES INTERACTIONS : PASS AVEC RÉSERVES",
       "vert": true
     }
   ],
   "consolide": {
     "arbitres_total": 5,
     "arbitres_verts": 5,
-    "verdict": "CERTIFICATION COMPLÈTE : ALL PASS"
-  },
-  "environnement": [
-    {
-      "detail": "HEAD a8ffb5f, 0 fichier modifié",
-      "statut": "OK",
-      "verifiant": "clone de référence §11b (pristine a8ffb5f)"
-    },
-    {
-      "detail": "HEAD 924b69c, statut propre",
-      "statut": "OK",
-      "verifiant": "véhicule de publication /tmp/KNOWLEDGE_PUSH"
-    },
-    {
-      "detail": "main = 924b69c",
-      "statut": "OK",
-      "verifiant": "dépôt distant (ls-remote anonyme)"
-    }
-  ]
+    "verdict": "CERTIFICATION COMPLÈTE : PASS AVEC RÉSERVES (1 avertissement(s), 0 échec)"
+  }
 }

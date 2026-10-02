@@ -1,8 +1,9 @@
 # Écosystème Knowledge — Architecture & Guide de référence
 
-> **Date** : 2026-09-14
-> **Version** : 2.0.0
-> **Architecture** : v2.0 — SHARED v1.5.2 — Contexte Système 3 niveaux
+> **Date** : 2026-10-02
+> **Version** : 2.1.0
+> **Architecture** : v2.2 — SHARED v1.6.3 — Contexte Système 3 niveaux
+> **Révision v2.1.0 (Task 14)** : décision d'architecture v2.2 — canal de fichiers `download/` supprimé (déduplication, le corpus est publié uniquement via l'archive d'intégrité `download/mon-ecosysteme_archive.zip`) ; `sync-download.py` retiré de l'outillage, remplacé par la garde `scripts/task14-scan-doublons.py` ; arborescence et commandes recalibrées (certification-complete.py ajouté) ; drift SHARED §6.1 (GEN-PLAN v3.12.0 → v3.18.0) résorbé au passage.
 
 ---
 
@@ -29,7 +30,7 @@ KNOWLEDGE/
 │   ├── PROMPT-MAITRE-GEN-PLAN-v3.12.0.md
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
-│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.1.0)
+│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.3.0)
 │   ├── PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ← Orchestration à l'usage (généré idempotent v1.0.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │
@@ -50,7 +51,9 @@ KNOWLEDGE/
 │   ├── verify-correct-work.py
 │   ├── verify-by-sha.py
 │   ├── spell-check.py
-│   ├── sync-download.py
+│   ├── check-ecosysteme-integrity.py
+│   ├── certification-complete.py
+│   ├── task14-scan-doublons.py
 │   ├── sync-context-block.py
 │   ├── propagate-context.py
 │   ├── install-ecosystem.py
@@ -158,8 +161,11 @@ python scripts/sync-context-block.py --level all
 # Installation complète de l'écosystème
 python scripts/install-ecosystem.py
 
-# Synchronisation du cache download
-python scripts/sync-download.py
+# Certification complète (orchestrateur des 5 arbitres)
+python scripts/certification-complete.py
+
+# Garde anti-doublons download/ (décision v2.2 — 0 doublon attendu)
+python scripts/task14-scan-doublons.py
 
 # Backup du dépôt
 python scripts/back-depot.py
@@ -236,4 +242,4 @@ corrige-ecosysteme:phase-I
 
 ---
 
-*Fin du README.md v2.0.0*
+*Fin du README.md v2.1.0*

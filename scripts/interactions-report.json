@@ -132,7 +132,7 @@
       "statut": "WARN",
       "section": "4",
       "check": "Frontière plateforme (S3 hérité)",
-      "detail": "correct-work → fullstack-dev >= 1.0.0 : skill plateforme non matérialisé (existence documentée — check 3)"
+      "detail": "correct-work → fullstack-dev >= 1.0.0 : skill plateforme sans version frontmatter (S3 hérité) — existence vérifiée"
     },
     {
       "statut": "PASS",
@@ -173,37 +173,25 @@
     {
       "statut": "PASS",
       "section": "7",
-      "check": "download/ synchronisé (9/9, byte-identiques au corpus — Architecture v2.0)",
+      "check": "download/ sans doublon du corpus (24 fichiers corpus absents — décision v2.2, Task 14)",
       "detail": ""
     },
     {
-      "statut": "WARN",
+      "statut": "PASS",
       "section": "8",
-      "check": "evals absents",
-      "detail": "skill-creator/evals/"
-    },
-    {
-      "statut": "WARN",
-      "section": "8",
-      "check": "evals absents",
-      "detail": "skill-creator/evals/"
+      "check": "evals/ présents pour les 26 skills écosystème évaluables (recalibré Task 14 — compte dynamique KO-L003)",
+      "detail": ""
     },
     {
       "statut": "PASS",
       "section": "9",
-      "check": "py_compile 6/9 scripts présents",
+      "check": "py_compile 9/9 scripts présents",
       "detail": ""
-    },
-    {
-      "statut": "WARN",
-      "section": "9",
-      "check": "Scripts référencés absents (perdus au wipe — règle d'or n°1, non reconstitués)",
-      "detail": "certification-complete.py, propagate-context.py, install-ecosystem.py"
     },
     {
       "statut": "PASS",
       "section": "10",
-      "check": "Worklog present : 16 sections ---, 16 Task ID (SHARED §1.4)",
+      "check": "Worklog present : 14 sections ---, 14 Task ID (SHARED §1.4)",
       "detail": ""
     },
     {
@@ -233,7 +221,13 @@
     {
       "statut": "PASS",
       "section": "11a",
-      "check": "download/ : PM courant byte-identique au corpus (canal public v2.0 — remplace le miroir)",
+      "check": "download/ sans copie du PM courant (décision v2.2 — canal de fichiers supprimé)",
+      "detail": ""
+    },
+    {
+      "statut": "PASS",
+      "section": "11a",
+      "check": "Archive : PM v3.18.0 byte-identique au corpus (véhicule v2.2 — unique voie de diffusion)",
       "detail": ""
     },
     {
@@ -261,10 +255,10 @@
       "detail": ""
     },
     {
-      "statut": "WARN",
+      "statut": "PASS",
       "section": "11a",
       "check": "Worklog : historique B1 (v3.11.0 + PEK) — artefact historique propriétaire",
-      "detail": "worklog de session courant ne porte pas l'historique B1 (non cloné)"
+      "detail": ""
     },
     {
       "statut": "PASS",
@@ -281,14 +275,14 @@
     {
       "statut": "PASS",
       "section": "11d",
-      "check": "download/ : canal de publication (v3.6.1 scellé dépôt + PM v3.18.0 local)",
-      "detail": "PM v3.18.0 publié (SYNC_MAP 17 fichiers — N14-b)"
+      "check": "download/ sans doublon du PM courant (décision v2.2 — canal de fichiers supprimé ; le PM v3.18.0 est publié via l'archive uniquement)",
+      "detail": ""
     }
   ],
   "bilan": {
-    "pass": 42,
-    "warn": 5,
+    "pass": 45,
+    "warn": 1,
     "fail": 0,
-    "total": 47
+    "total": 46
   }
 }

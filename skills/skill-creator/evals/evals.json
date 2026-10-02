@@ -1,0 +1,68 @@
+{
+  "skill_name": "skill-creator",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Créé via skill-creator (Task 14, correct-work PROJET — résorption des réserves héritées du dépôt 42c2a41) : skill-creator ne possédait AUCUN eval alors que verify-cross l'auditait (registre KB). 5 evals couvrant le cycle de création complet — draft, test prompts, évaluation qualitative/quantitative, itération, optimisation du déclenchement. Rédigé en anglais, langue du corps du SKILL.md.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "SC-create — Create a skill from scratch",
+      "prompt": "I want to build a new skill that generates release notes from git commits. Create it for me.",
+      "expected_output": "The skill-creation process is followed: decide purpose, draft the SKILL.md, propose test prompts before any benchmarking",
+      "files": [],
+      "expectations": [
+        "The skill's purpose and rough behavior are stated before writing",
+        "A draft SKILL.md with frontmatter is produced",
+        "Test prompts are drafted before running evaluations"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "SC-edit — Improve an existing skill",
+      "prompt": "Modify my existing skill to handle edge cases better and re-test it.",
+      "expected_output": "The existing skill is read, flaws identified, rewritten based on feedback, then re-tested",
+      "files": [],
+      "expectations": [
+        "The current skill content is examined before editing",
+        "The rewrite is driven by evaluation feedback",
+        "The improved skill is re-tested with the same or expanded prompts"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "SC-evals — Draft quantitative evals",
+      "prompt": "Run glm-with-access-to-the-skill on these test prompts and set up quantitative evals while the runs happen in the background.",
+      "expected_output": "Background runs are launched, quantitative evals are drafted in parallel, then results explained",
+      "files": [],
+      "expectations": [
+        "The runs happen in the background while evals are drafted",
+        "Quantitative metrics accompany the qualitative review",
+        "The eval-viewer/generate_review.py script is proposed to display results"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "SC-benchmark — Benchmark with variance analysis",
+      "prompt": "Benchmark this skill's performance and tell me if the changes I made actually improved it.",
+      "expected_output": "A benchmark with variance analysis compares runs and supports a keep/revert decision",
+      "files": [],
+      "expectations": [
+        "Multiple runs are compared, not a single sample",
+        "Variance is accounted for in the verdict",
+        "A clear keep / iterate / revert recommendation is given"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "SC-trigger — Optimize description for triggering",
+      "prompt": "My skill doesn't trigger when users ask about meal planning. Optimize its description.",
+      "expected_output": "The description is rewritten for better triggering accuracy, validated against trigger evals",
+      "files": [],
+      "expectations": [
+        "The description is identified as the triggering surface",
+        "Trigger evals (should_trigger cases) are used to validate the rewrite",
+        "The optimized description is tested against positive and negative queries"
+      ]
+    }
+  ]
+}

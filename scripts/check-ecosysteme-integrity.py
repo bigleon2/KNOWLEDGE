@@ -28,12 +28,18 @@ PM v3.17.2 assemblé, corpus 22 fichiers, SYNC_MAP 12) ;
 re-calibré 2026-10-02 (directive « prompt ultra maître » — orchestrateur léger
 généré idempotent : PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ajouté au corpus via
 scripts/gen-ultra-maitre.py — dérivation dynamique KO-L003, idempotence ×2
-prouvée, corpus 23 fichiers, SYNC_MAP 13).
+prouvée, corpus 23 fichiers, SYNC_MAP 13) ;
+re-calibré 2026-10-02 (Task 14, déduplication — décision d'architecture v2.2 :
+canal de fichiers download/ SUPPRIMÉ, les 14 fichiers corpus répliqués dans
+download/ sont effacés, sync-download.py retiré — le check 3 devient la garde
+anti-doublons : AUCUN fichier du corpus ne doit exister en copie dans download/
+(l'archive d'intégrité v2.2 est l'unique voie de diffusion) ; corpus 24 fichiers
+avec le clone -f, garde calibrée sur le listing réel du corpus).
 
-Vérifications (pipeline PM-INSTALL étapes 1-2, 8 — périmètre v1.1.0) :
+Vérifications (pipeline PM-INSTALL étapes 1-2, 8 — périmètre v1.3.0) :
   1. SHA-256 des fichiers du corpus canonique skills/@mon-ecosysteme/
   2. Round-trip byte-identité archive download/mon-ecosysteme_archive.zip ↔ corpus
-  3. Synchronisation download/ (SYNC_MAP 11 fichiers — recalibré fusion v1.1.0)
+  3. Garde anti-doublons download/ (décision v2.2 — 0 fichier du corpus en copie)
   4. Structure des 21 skills écosystème installés (16 + 5 au registre P-H)
   5. Cohérence versions SKILL.md ↔ registre KNOWLEDGE.md (21 entrées versionnées
      + section « Décisions d'architecture »)
@@ -84,29 +90,13 @@ ECO_SKILLS = {
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.
 KB_ONLY_VERSION = set()
 METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au registre — check 4bis vidé
-# [N14-c] SYNC_MAP canal 8 courants — voir bloc SYNC_MAP ci-dessous
-# SYNC_MAP canal Architecture v2.0 — 8 fichiers COURANTS (cible A7) ;
+# [N14-c] SYNC_MAP — HISTORIQUE : bloc supprimé Task 14 (décision v2.2, déduplication) —
+# le canal de fichiers download/ n'existe plus ; le check 3 applique la garde
+# anti-doublons sur le listing RÉEL du corpus (dérivation dynamique — KO-L003).
 # CORPUS_ATTENDU — invariant canonique du corpus (dérivation L003) [N28]
 # Recalibrage L004 (Task 56) : 20 → 21 — ajout clone -f (directive utilisateur
 # « push le clone dans @mon-ecosysteme/ » ; miroir + archive alignés).
 CORPUS_ATTENDU = 24
-SYNC_MAP = [
-    "PROMPT-MAITRE-SHARED.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.17.1.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.17.2.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.18.0.md",
-    "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
-    "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md",
-    # INSTALL-ECOSYSTEME.md retiré — fusion installateurs v1.1.0 (2026-10-02, R4)
-    "SYNC-CONTEXT.md",
-    "README.md",
-]
 
 results = []
 
@@ -158,19 +148,21 @@ def main():
             ok = (n_ident == len(corpus_files)
                   and all(e.startswith("homologues/") for e in extras)
                   and n_ident + len(extras) == len(znames))
-    check("Archive byte-identique au corpus + homologues (v2.1)", ok,
-          f"{n_ident}/{len(corpus_files)} + {n_homologues} homologues (N26 — recalibrage L004)")
+    check("Archive byte-identique au corpus + homologues (v2.2)", ok,
+          f"{n_ident}/{len(corpus_files)} + {n_homologues} homologues (N26 — recalibrage L004 ; véhicule v2.2, décision déduplication Task 14)")
 
-    print("\n=== 3. Synchronisation download/ ===")
-    for fname in SYNC_MAP:
+    print("\n=== 3. Garde anti-doublons download/ (décision v2.2) ===")
+    n_dup = 0
+    for fname in sorted(corpus_files):
         d = os.path.join(DOWNLOAD, fname)
-        c = os.path.join(CORPUS, fname)
-        if os.path.isfile(d) and os.path.isfile(c):
-            digest = sha256(d)
-            manifest["download"][fname] = digest
-            check(f"sync {fname}", digest == manifest["corpus"].get(fname))
-        else:
-            check(f"sync {fname}", False, "fichier manquant")
+        if os.path.isfile(d):
+            n_dup += 1
+            check(f"doublon {fname}", False,
+                  "copie du corpus dans download/ — à supprimer (déduplication v2.2)")
+    if n_dup == 0:
+        check(f"download/ sans doublon du corpus ({len(corpus_files)} fichiers corpus absents)", True)
+    if os.path.isfile(ARCHIVE):
+        manifest["download"]["mon-ecosysteme_archive.zip"] = sha256(ARCHIVE)
 
     print("\n=== 4. Skills écosystème installés ===")
     for skill, expected_ver in ECO_SKILLS.items():

@@ -14,7 +14,7 @@
 - **Règle Zéro (SHARED §0)** : skills auto-contenus, versionnés semver, registre KB source de vérité, cross-references bidirectionnelles.
 - **Idempotence (R1-R6)** : vérifier présence avant insertion ; ne jamais rétrograder ; fusionner les frontmatters ; ne jamais dupliquer ; journaliser ; auto-adaptation sans duplication.
 - **Arbitres dynamisés (KO-L003)** : tout invariant dérive de l'état courant — jamais d'état figé ; re-verdict honnête après correction.
-- **Recalibrage croisé (KO-L004)** : toute montée de version recalibre arbitres, miroirs-canaux, SYNC_MAP et CET orchestrateur (régénération = recalibrage).
+- **Recalibrage croisé (KO-L004)** : toute montée de version recalibre arbitres, archive et CET orchestrateur (régénération = recalibrage).
 
 ## §1 — Routage demande → prompt maître / skill (table T1)
 
@@ -22,7 +22,7 @@
 |---------|----------------|---------------|-------|
 | Planifier une tâche / un projet | gen-plan (dernière version) | PM gen-plan le plus récent | E1-E15, 4 modes |
 | Vérifier / corriger un travail | correct-work v2.7.0 (gen-plan OBLIGATOIRE à l'Étape 1) | PM correct-work le plus récent | 5 étapes, 4 modes |
-| Archiver une session / clone | clone-chat | PM clone-chat v2.0.0 | 7+1 étapes, 8 checks |
+| Archiver une session / clone | clone-chat | PM clone-chat le plus récent | 7+1 étapes, 8 checks |
 | Installer / réinstaller l'écosystème | PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — SOURCE UNIQUE | ce fichier (§A + pipeline 10 étapes) | corpus -> registre -> arbitres |
 | Synchroniser contexte / canaux | SYNC-CONTEXT.md + scripts de sync | — | 2 voies byte-identiques |
 | Auditer la provenance | audit-provenance | — | L006, avant clone/install |
@@ -38,7 +38,7 @@
 | CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md (la plus récente) | 2.4.0, 2.5.0 |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.6.1 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.1.1 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.6.3 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.3.0 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
@@ -70,11 +70,11 @@ Registre KB : 21 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.
 
 ## §4 — Points d'entrée et ordre de lecture
 
-1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.6.1) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.1.1) — périmètre §A + pipeline 10 étapes + critères §3.
+1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.6.3) — toujours en premier.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.3.0) — périmètre §A + pipeline 10 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
-5. **Publication** : `scripts/sync-download.py --sync` + archive `download/mon-ecosysteme_archive.zip` (round-trip v2.1).
+5. **Publication** : archive `download/mon-ecosysteme_archive.zip` (round-trip v2.2) — unique voie de diffusion du corpus (décision v2.2 : canal de fichiers download/ supprimé, garde `scripts/task14-scan-doublons.py`).
 
 ## §5 — Interactions clés (extrait graphe KB)
 
@@ -89,6 +89,6 @@ Registre KB : 21 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.
 
 ## §6 — Maintenance
 
-- Toute évolution du corpus/skills : `python3 scripts/gen-ultra-maitre.py` PUIS recalibrage KO-L004 (checker, SYNC_MAP, archive) — la régénération de ce fichier fait partie du recalibrage.
+- Toute évolution du corpus/skills : `python3 scripts/gen-ultra-maitre.py` PUIS recalibrage KO-L004 (checker, archive, garde anti-doublons) — la régénération de ce fichier fait partie du recalibrage.
 - Ce fichier NE remplace AUCUN prompt maître : il ROUTE. Il ne détient ni méthode ni spécification (fonction héritée SHARED §7).
 - Recréer un second installateur ou un second orchestrateur est interdit (R4).

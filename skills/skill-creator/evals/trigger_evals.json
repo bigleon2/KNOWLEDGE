@@ -1,0 +1,10 @@
+[
+  {"query": "Create a new skill for generating release notes from git commits.", "should_trigger": true},
+  {"query": "Help me improve my existing skill — it fails on edge cases.", "should_trigger": true},
+  {"query": "Run evals on this skill and benchmark its performance with variance analysis.", "should_trigger": true},
+  {"query": "Optimize my skill's description so it triggers more accurately.", "should_trigger": true},
+  {"query": "I want to iterate on this skill: test it, evaluate the results, then rewrite it.", "should_trigger": true},
+  {"query": "Write me a Python script that parses git logs.", "should_trigger": false},
+  {"query": "Plan this complex task with milestones and cost estimates.", "should_trigger": false},
+  {"query": "hello", "should_trigger": false}
+]

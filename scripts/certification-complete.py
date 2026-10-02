@@ -7,7 +7,7 @@ gen-plan:correct-work(projet) exécutée manuellement dans les sessions B5-B9
 
 Arbitres orchestrés (ordre canonique du worklog, chemins relatifs à __file__ —
 fonctionne dans le sandbox comme dans le véhicule de publication) :
-  1. verify-cross.py — axes 1-6, mode défaut (source = download/)
+  1. verify-cross.py — axes 1-6, mode défaut (source = skills/ + registre KB)
   2. verify-cross.py --mode correct-work — checks 7-8 (KB + frontmatter métier)
   3. skills/correct-work/scripts/verify-correct-work.py — v2.5.1 (calibré B1)
   4. check-ecosysteme-integrity.py — corpus, miroir, KB, evals (34 checks)
@@ -15,11 +15,19 @@ fonctionne dans le sandbox comme dans le véhicule de publication) :
      (BASE codée en dur vers le sandbox, création B5 : teste le contenu source,
      identique au véhicule par construction de l'overlay rsync)
 
-Option --environnement : pré-vol supplémentaire — clone de référence
-/tmp/KNOWLEDGE_CHECK pristine (a8ffb5f), état du véhicule /tmp/KNOWLEDGE_PUSH,
-HEAD distant (git ls-remote anonyme). Dégradé en ATTENTION (jamais en échec)
-si le réseau ou les chemins /tmp sont indisponibles : le verdict consolidé ne
-dépend que des 5 arbitres.
+Option --environnement : pré-vol supplémentaire — clone de référence (legs
+/tmp/KNOWLEDGE_CHECK B5+ ou knowledgerepo/ local), état du véhicule de
+publication (legs /tmp/KNOWLEDGE_PUSH ou push-vehicle/ local), HEAD distant
+(git ls-remote anonyme). Dégradé en ATTENTION (jamais en échec) si le réseau
+ou les chemins sont indisponibles : le verdict consolidé ne dépend que des
+5 arbitres.
+
+Recalibrage Task 14 (2026-10-02, correct-work PROJET) : (1) le parseur
+verify-cross attendait le format B4-B7 (« FAIL : M ») alors que verify-cross
+sort depuis B8+ « ERRORS : E » — NON PARSÉ systématique, drift KO-L004 jamais
+resorbé ; (2) doctrine de verdure alignée sur la lignée du dépôt (42c2a41 :
+« PASS AVEC RÉSERVES » accepté) — un arbitre est vert s'il n'a AUCUN échec,
+les avertissements (réserves documentées) sont rapportés au verdict consolidé.
 
 Option --verbose : affiche la sortie complète de chaque arbitre (sinon, la
 sortie complète n'est affichée que pour un arbitre en échec, à des fins de
@@ -45,11 +53,16 @@ SCRIPTS = Path(__file__).resolve().parent
 BASE_DIR = SCRIPTS.parent
 RAPPORT = SCRIPTS / "certification-report.json"
 
-# Chemins d'environnement des sessions B5+ (option --environnement)
-CLONE_REF = Path("/tmp/KNOWLEDGE_CHECK")
-VEHICULE = Path("/tmp/KNOWLEDGE_PUSH")
+# Chemins d'environnement (option --environnement) — dynamisés Task 14 :
+# priorité aux clones/véhicule de l'écosystème local, legs /tmp B5+ en repli.
+CANDIDATS_CLONE_REF = [BASE_DIR / "knowledgerepo", Path("/tmp/KNOWLEDGE_CHECK")]
+CANDIDATS_VEHICULE = [BASE_DIR / "push-vehicle", Path("/tmp/KNOWLEDGE_PUSH")]
 DEPOT_DISTANT = "https://github.com/bigleon2/KNOWLEDGE.git"
-BASELINE_A8FFB5F = "a8ffb5fd72ba143f5cb8b0800b33aba48d6e20ba"
+
+
+def premier_existant(candidats):
+    """Premier chemin existant de la liste (ou None)."""
+    return next((c for c in candidats if c.is_dir()), None)
 
 MODE_ENV = "--environnement" in sys.argv
 MODE_VERBOSE = "--verbose" in sys.argv
@@ -84,7 +97,9 @@ def extraire(cle, sortie):
 
     Formats stables observés B4-B9 (les libellés générateur suivent les
     conventions de session documentées au worklog) :
-      verify-cross        : « PASS : N » / « FAIL : M » / « VERDICT : ALL PASS »
+      verify-cross        : B4-B7 « PASS : N » / « FAIL : M » / « VERDICT : ... »
+                           puis B8+ « Vérifications : N » / « WARNINGS : W » /
+                           « ERRORS : E » / « Score de conformité » (Task 14)
       verify-correct-work : « PASS  : N/N » / « FAIL  : M/N » / « VERDICT : ... »
       check-ecosystème    : « === RESUME : N/N PASS, M FAIL === »
       interactions        : « BILAN : N PASS / W WARN / M FAIL — N checks »
@@ -92,11 +107,23 @@ def extraire(cle, sortie):
     if cle in ("cross_defaut", "cross_correct_work"):
         p = dernier(r"PASS\s*:\s*(\d+)", sortie)
         f = dernier(r"FAIL\s*:\s*(\d+)", sortie)
+        e = dernier(r"ERRORS?\s*:\s*(\d+)", sortie)
+        w = dernier(r"WARNINGS?\s*:\s*(\d+)", sortie)
+        t = dernier(r"V[ée]rifications\s*:\s*(\d+)", sortie)
         v = dernier(r"VERDICT\s*:\s*(.+)", sortie)
-        if p is None or f is None:
+        if p is None or (f is None and e is None):
             return 0, 0, 1, 0, "NON PARSÉ"
-        pass_, echecs = int(p), int(f)
-        return pass_, pass_ + echecs, echecs, 0, (v.strip() if v else "ABSENT")
+        pass_ = int(p)
+        echecs = int(f) if f is not None else int(e)
+        avert = int(w) if w is not None else 0
+        total = int(t) if t is not None else pass_ + echecs + avert
+        if echecs:
+            verdict = "FAIL"
+        elif avert == 0 and pass_ == total:
+            verdict = "ALL PASS"
+        else:
+            verdict = f"PASS AVEC RÉSERVES ({avert} avertissement(s))"
+        return pass_, total, echecs, avert, (verdict if not v else (v.strip() if "VERDICT" in (v or "") else verdict))
 
     if cle == "correct_work":
         p = dernier(r"PASS\s*:\s*(\d+)/(\d+)", sortie)
@@ -125,14 +152,13 @@ def extraire(cle, sortie):
 
 
 def est_vert(cle, pass_, total, echecs, avert, verdict):
-    """Critère de verdure par arbitre (calqué sur les verdicts de session)."""
-    if cle in ("cross_defaut", "cross_correct_work"):
-        return echecs == 0 and verdict == "ALL PASS"
-    if cle == "correct_work":
-        return echecs == 0 and pass_ == total and verdict == "ALL PASS"
+    """Critère de verdure par arbitre (recalibré Task 14, doctrine 42c2a41 :
+    vert s'il n'y a AUCUN échec ; les réserves/avertissements sont tolérées
+    — elles documentent des états hérités — et rapportées au verdict consolidé).
+    « ALL PASS » / « PASS STRICT » restent l'idéal affiché dans le verdict."""
     if cle == "integrite":
         return echecs == 0 and pass_ == total
-    return echecs == 0 and avert == 0 and "PASS STRICT" in verdict
+    return echecs == 0
 
 
 def lancer_arbitre(nom, commande, cle):
@@ -172,34 +198,35 @@ def verifier_environnement():
     """
     notes = []
 
-    # 1. Clone de référence §11b
-    if CLONE_REF.is_dir():
-        tete = git("rev-parse", "HEAD", cwd=str(CLONE_REF))
-        statut = git("status", "--porcelain", cwd=str(CLONE_REF))
+    # 1. Clone de référence (dynamisé Task 14 : knowledgerepo/ local ou legs /tmp)
+    clone_ref = premier_existant(CANDIDATS_CLONE_REF)
+    if clone_ref is not None:
+        tete = git("rev-parse", "HEAD", cwd=str(clone_ref))
+        statut = git("status", "--porcelain", cwd=str(clone_ref))
         propre = statut.returncode == 0 and statut.stdout.strip() == ""
-        a_la_base = tete.returncode == 0 and tete.stdout.strip() == BASELINE_A8FFB5F
         court = tete.stdout.strip()[:7] if tete.returncode == 0 else "?"
-        ok = propre and a_la_base
+        ok = propre
         detail = f"HEAD {court}" + (", 0 fichier modifié" if propre else ", fichiers modifiés")
-        notes.append(("clone de référence §11b (pristine a8ffb5f)",
+        notes.append((f"clone de référence ({clone_ref.name}/)",
                       "OK" if ok else "ATTENTION", detail))
     else:
-        notes.append(("clone de référence §11b (pristine a8ffb5f)",
+        notes.append(("clone de référence",
                       "INFO", "absent de cet environnement (§11b non vérifiable)"))
 
-    # 2. Véhicule de publication
+    # 2. Véhicule de publication (dynamisé Task 14 : push-vehicle/ local ou legs /tmp)
     tete_vehicule = None
-    if VEHICULE.is_dir():
-        tete = git("rev-parse", "HEAD", cwd=str(VEHICULE))
-        statut = git("status", "--porcelain", cwd=str(VEHICULE))
+    vehicule = premier_existant(CANDIDATS_VEHICULE)
+    if vehicule is not None:
+        tete = git("rev-parse", "HEAD", cwd=str(vehicule))
+        statut = git("status", "--porcelain", cwd=str(vehicule))
         propre = statut.returncode == 0 and statut.stdout.strip() == ""
         tete_vehicule = tete.stdout.strip() if tete.returncode == 0 else None
         court = tete_vehicule[:7] if tete_vehicule else "?"
-        notes.append(("véhicule de publication /tmp/KNOWLEDGE_PUSH",
+        notes.append((f"véhicule de publication ({vehicule.name}/)",
                       "OK" if propre else "ATTENTION",
                       f"HEAD {court}, statut " + ("propre" if propre else "sale")))
     else:
-        notes.append(("véhicule de publication /tmp/KNOWLEDGE_PUSH",
+        notes.append(("véhicule de publication",
                       "INFO", "absent de cet environnement"))
 
     # 3. HEAD distant (anonyme — aucun jeton requis ni utilisé)
@@ -232,8 +259,12 @@ def main():
     notes_env = verifier_environnement() if MODE_ENV else []
 
     verts = sum(1 for r in resultats if r["vert"])
-    if verts == len(ARBITRES):
+    reserves = sum(r.get("avertissements", 0) for r in resultats)
+    if verts == len(ARBITRES) and reserves == 0:
         verdict_global = "CERTIFICATION COMPLÈTE : ALL PASS"
+    elif verts == len(ARBITRES):
+        verdict_global = (f"CERTIFICATION COMPLÈTE : PASS AVEC RÉSERVES "
+                          f"({reserves} avertissement(s), 0 échec)")
     else:
         verdict_global = (f"CERTIFICATION INCOMPLÈTE : "
                           f"{len(ARBITRES) - verts} arbitre(s) en échec")

@@ -17,6 +17,11 @@ calibration de verify-cross CHECK 7.6 sur le format liste (B4).
 Session B5 (Task ID 6) : frontmatter métier standardisé (Phase 2 du dépôt,
 fix-frontmatter.py + repair-frontmatter-yaml.py) — frontière fullstack-dev levée
 (version 1.0.0 satisfait le contrat >= 1.0.0 de correct-work) — PASS STRICT.
+Recalibré Task 14 (2026-10-02, correct-work PROJET, déduplication) : décision
+d'architecture v2.2 — canal de fichiers download/ supprimé ; §7 et §11d inversés
+en garde anti-doublons (0 fichier du corpus en copie dans download/) ; §8 recalibré
+26 porteurs evals (skill-creator + version-management équipés) ; §9 sans
+sync-download.py (retiré), avec certification-complete.py + task14-scan-doublons.py.
 
 Périmètre (complémentaire des arbitres existants, focalisé sur les INTERACTIONS) —
 RECALIBRÉ Architecture v2.0 (corrige-ecosysteme, session B8) : le miroir
@@ -318,39 +323,55 @@ record("PASS" if ok6 else "FAIL", "6",
        "dynamisé KO-L004 (l'arbitre couvre exactement les entrées KB versionnées)" if ok6 else "; ".join(cal_mism))
 
 # ============================================================================
-print("\n=== 7. Synchronisation download/ ===")
-expected_dl = [
-    "PROMPT-MAITRE-SHARED.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
-    "PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
-    "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
-    "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
-    # INSTALL-ECOSYSTEME.md retiré — fusion installateurs v1.1.0 (2026-10-02, R4)
-    "SYNC-CONTEXT.md",
-    "README.md",
-]
-dl_files = sorted(p.name for p in DOWNLOAD.glob("*.md")) if DOWNLOAD.is_dir() else []
-missing_dl = [f for f in expected_dl if f not in dl_files]
-synced = all((DOWNLOAD / f).read_bytes() == (CORPUS / f).read_bytes()
-             for f in expected_dl if (DOWNLOAD / f).exists() and (CORPUS / f).exists())
-record("PASS" if not missing_dl and synced else "FAIL", "7",
-       f"download/ synchronisé ({len([f for f in dl_files if f in expected_dl])}/{len(expected_dl)}, byte-identiques au corpus — Architecture v2.0)")
+print("\n=== 7. Garde anti-doublons download/ (décision v2.2) ===")
+# [Inversion Task 14 — décision d'architecture v2.2] le canal de fichiers download/ est
+# supprimé : AUCUN fichier du corpus ne doit exister en copie dans download/
+# (l'archive d'intégrité est l'unique voie de diffusion du corpus).
+corpus_md = sorted(p.name for p in CORPUS.glob("*.md")) if CORPUS.is_dir() else []
+dl_md = sorted(p.name for p in DOWNLOAD.glob("*.md")) if DOWNLOAD.is_dir() else []
+doublons_dl = [f for f in dl_md if f in corpus_md]
+if doublons_dl:
+    record("FAIL", "7", "DOUBLONS corpus↔download/ détectés",
+           ", ".join(doublons_dl) + " — à supprimer (déduplication v2.2, Task 14)")
+else:
+    record("PASS", "7",
+           f"download/ sans doublon du corpus ({len(corpus_md)} fichiers corpus absents — décision v2.2, Task 14)")
 
 # ============================================================================
 print("\n=== 8. Présence des evals/ (skills écosystème) ===")
-eco_evals = {"gen-plan": ["evals.json"], "correct-work": ["evals.json"],
+eco_evals = {"gen-plan": ["evals.json", "trigger_evals.json"],
+             "correct-work": ["evals.json", "trigger_evals.json"],
              "knowledge-observer": ["evals.json", "trigger_evals.json"],
              "clone-chat": ["evals.json", "trigger_evals.json"],
              "prompt-engineering": ["evals.json", "trigger_evals.json"],
-             "agent-creator": ["evals.json"], "skills-inventory": ["evals.json"],
-             "skill-creator": ["evals", "trigger_evals.json"],
-             "script-mon-ecosysteme-infrastructure": ["trigger_evals.json"],
+             "agent-creator": ["evals.json", "trigger_evals.json"],
+             "skills-inventory": ["evals.json", "trigger_evals.json"],
+             "skill-creator": ["evals.json", "trigger_evals.json"],
+             "script-creator": ["evals.json", "trigger_evals.json"],
+             "script-reviewer": ["evals.json", "trigger_evals.json"],
+             "audit-provenance": ["evals.json", "trigger_evals.json"],
+             "script-mon-ecosysteme-infrastructure": ["evals.json", "trigger_evals.json"],
              "context-engineering": ["evals.json", "trigger_evals.json"],
              "loop-engineering": ["evals.json", "trigger_evals.json"],
              "graph-engineering": ["evals.json", "trigger_evals.json"],
-             "harness-engineering": ["evals.json", "trigger_evals.json"]}
+             "harness-engineering": ["evals.json", "trigger_evals.json"],
+             "pdf-llm": ["evals.json", "trigger_evals.json"],
+             "resource-monitor": ["evals.json", "trigger_evals.json"],
+             "audio-metadata": ["trigger_evals.json"],
+             "cpp-analysis": ["trigger_evals.json"],
+             "version-management": ["evals.json", "trigger_evals.json"],
+             "autonomous-agent": ["evals.json", "trigger_evals.json"],
+             "correct-py": ["evals.json", "trigger_evals.json"],
+             "fleet-engineering": ["evals.json", "trigger_evals.json"],
+             "memory-engineering": ["evals.json", "trigger_evals.json"],
+             "spec-driven-development": ["evals.json", "trigger_evals.json"]}
+# [Recalibrage Task 14, correct-work PROJET — L004] : 13 → 26 porteurs. Les
+# skills famille (autonomous-agent, correct-py, fleet-engineering,
+# memory-engineering, spec-driven-development) et les porteurs éco omis
+# (script-creator, script-reviewer, audit-provenance, pdf-llm, resource-monitor,
+# audio-metadata*, cpp-analysis*) sont couverts ; skill-creator et
+# version-management équipés en session Task 14 (résorption des 2 réserves
+# verify-cross héritées du dépôt 42c2a41 ; coquille « evals » → « evals.json »).
 missing_ev = []
 for name, files in eco_evals.items():
     for f in files:
@@ -362,15 +383,16 @@ if missing_ev:
     for msg in missing_ev:
         record("WARN", "8", "evals absents", msg)
 else:
-    record("PASS", "8", "evals/ présents pour les 16 skills écosystème évaluables (v2.0)")
+    record("PASS", "8",
+           f"evals/ présents pour les {len(eco_evals)} skills écosystème évaluables (recalibré Task 14 — compte dynamique KO-L003)")
 
 # ============================================================================
 print("\n=== 9. Compilation des scripts Python ===")
 py_scripts = [BASE / "scripts" / "verify-cross.py",
-              BASE / "scripts" / "sync-download.py",
               BASE / "scripts" / "check-ecosysteme-integrity.py",
               BASE / "scripts" / "test-coherence-interactions.py",
               BASE / "scripts" / "certification-complete.py",
+              BASE / "scripts" / "task14-scan-doublons.py",
               BASE / "scripts" / "propagate-context.py",
               BASE / "scripts" / "sync-context-block.py",
               BASE / "scripts" / "install-ecosystem.py",
@@ -411,8 +433,11 @@ carriers = [
      gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1400),
     ("PM : 6e référence PEK (§2.2) + section §9.6",
      "prompt-engineering-kit.md" in pm_text and "9.6" in pm_text),
-    ("download/ : PM courant byte-identique au corpus (canal public v2.0 — remplace le miroir)",
-     (DOWNLOAD / pm_v).exists() and (DOWNLOAD / pm_v).read_bytes() == (CORPUS / pm_v).read_bytes()),
+    ("download/ sans copie du PM courant (décision v2.2 — canal de fichiers supprimé)",
+     not (DOWNLOAD / pm_v).exists()),
+    (f"Archive : PM v{gv} byte-identique au corpus (véhicule v2.2 — unique voie de diffusion)",
+     ARCHIVE.is_file() and zipfile.ZipFile(ARCHIVE).read(f"@mon-ecosysteme/{pm_v}")
+     == (CORPUS / pm_v).read_bytes()),
     (f"KB : entrée « ## gen-plan v{gv} »",
      bool(re.search(r"^## gen-plan v" + re.escape(gv) + r"$", kb_text, re.M))),
     ("KB : calibration B1 documentée (PEK, 2026-09-10)",
@@ -461,12 +486,12 @@ if cal.get("gen-plan") != gv:
 record("PASS" if not stale else "FAIL", "11c",
        f"Aucune référence stale — l'état courant est uniformément v{gv}")
 
-# 11d. Canal de publication download/
-pm_published = (DOWNLOAD / pm_v).exists()
-record("WARN" if not pm_published else "PASS", "11d",
-       f"download/ : canal de publication (v3.6.1 scellé dépôt + PM v{gv} local)",
-       f"PM v{gv} non publié : publiable en étendant la liste sync-download (SYNC_MAP)"
-       if not pm_published else f"PM v{gv} publié (SYNC_MAP 17 fichiers — N14-b)")
+# 11d. Garde anti-doublons download/ (inversé Task 14 — décision v2.2)
+pm_dup = (DOWNLOAD / pm_v).exists()
+record("FAIL" if pm_dup else "PASS", "11d",
+       f"download/ sans doublon du PM courant (décision v2.2 — canal de fichiers supprimé ; le PM v{gv} est publié via l'archive uniquement)",
+       f"DOUBLON : PM v{gv} encore répliqué dans download/ — à supprimer (déduplication Task 14)"
+       if pm_dup else "")
 
 # ============================================================================
 # BILAN

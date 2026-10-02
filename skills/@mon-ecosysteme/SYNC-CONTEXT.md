@@ -1,8 +1,9 @@
 # Procédure de Synchronisation du Contexte Système
 
-> **Version** : 1.3.0
+> **Version** : 1.4.0
 > **Date** : 2026-10-02
 > **Objet** : Maintenir la cohérence entre `PROMPT-MAITRE-SHARED.md` (source de vérité) et les blocs `## ⚙️ CONTEXTE SYSTÈME` embarqués dans les prompts maîtres.
+> **Révision v1.4.0 (2026-10-02, Task 14)** : décision d'architecture v2.2 — le canal de fichiers `download/` est supprimé (déduplication : les fichiers corpus répliqués dans `download/` étaient des doublons byte-identiques de `skills/`). L'archive d'intégrité devient l'UNIQUE voie de diffusion du corpus ; `scripts/sync-download.py` est retiré (périmètre disparu) et remplacé par la garde `scripts/task14-scan-doublons.py` (0 doublon attendu).
 
 ## Contexte
 
@@ -10,13 +11,13 @@ Le bloc `## ⚙️ CONTEXTE SYSTÈME` présent dans chaque prompt maître actif 
 
 Si le SHARED évolue (nouvelles conventions, nouvelles variables, correction de règles), les blocs embarqués doivent être resynchronisés.
 
-### État du corpus (mis à jour 2026-10-02 — v1.3.0 : fusion installateurs + ultra-PM)
+### État du corpus (mis à jour 2026-10-02 — v1.4.0 : déduplication download/, décision v2.2)
 
 - **Corpus canonique `skills/@mon-ecosysteme/`** : l'invariant `CORPUS_ATTENDU` de `scripts/check-ecosysteme-integrity.py` fait foi (dérivation dynamique — KO-L003) ; dernier recalibrage : **23 fichiers** (orchestrateur ultra-PM ajouté — historique : 21 @6ea0e0c, 22 @v3.17.1, 21 après fusion, 22 avec PM v3.17.2, 23 avec ultra-PM).
-- Dernier changement : directive « prompt ultra maître » — `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md` ajouté au corpus (généré idempotent par `scripts/gen-ultra-maitre.py`, dérivation dynamique KO-L003, idempotence ×2 prouvée) ; les PMs existants ne sont PAS convertis (R4 duplication / R2 corpus figé / KO-L004 drift).
-- **Deux voies de diffusion byte-identiques** (le corpus fait foi, sens de réplication corpus → canaux) :
-  1. **Canal download/** — SYNC_MAP de 13 fichiers courants (ci-dessous), répliqué par `scripts/sync-download.py --sync` ;
-  2. **Archive** `download/mon-ecosysteme_archive.zip` — véhicule d'intégrité v2.1 (corpus byte-identique + extras sous `homologues/` uniquement).
+- Dernier changement : directive « déduplication download/ » — canal de fichiers `download/` supprimé (décision d'architecture v2.2) : les 14 fichiers corpus répliqués dans `download/` sont effacés, `scripts/sync-download.py` retiré ; le corpus est publié UNIQUEMENT via l'archive (garde anti-doublons `scripts/task14-scan-doublons.py`).
+- **Une voie de diffusion byte-identique** (le corpus fait foi, sens de réplication corpus → archive) :
+  1. **Archive** `download/mon-ecosysteme_archive.zip` — véhicule d'intégrité v2.2 (corpus byte-identique + extras sous `homologues/` uniquement).
+- **Rappel anti-doublons (v2.2)** : aucun fichier du corpus `@mon-ecosysteme/` ne doit exister en copie dans `download/` — un fichier y résidant sous le même nom avec un contenu byte-identique est un doublon (critère « même nom, même contexte, idempotent ») ; vérification : `python3 scripts/task14-scan-doublons.py` (0 doublon attendu). Les artefacts de session NON corpus (clones, rapports, plans — noms distincts) restent légitimes dans `download/`.
 
 ## Fichiers concernés par la synchronisation
 
@@ -48,11 +49,11 @@ python scripts/sync-context-block.py --level all   # bloc figé N1 (4 porteurs)
 python scripts/propagate-context.py                # N2 skills + N3 scripts
 ```
 
-### Étape 4 : Répliquer sur les deux voies
+### Étape 4 : Resceller l'archive (unique voie de diffusion)
 ```bash
-python scripts/sync-download.py --sync --force     # canal download/ (SYNC_MAP 11)
+python3 scripts/task14-scan-doublons.py   # garde anti-doublons download/ (0 attendu)
 ```
-Puis régénérer l'archive si le corpus lui-même a changé (round-trip v2.1 vérifié par l'arbitre integrity).
+Puis régénérer l'archive dès que le corpus lui-même a changé (round-trip v2.2 vérifié par l'arbitre integrity).
 
 ### Étape 5 : Vérifier
 ```bash
@@ -71,7 +72,7 @@ git push origin main
 ## Fréquence recommandée
 
 - **À chaque modification du SHARED** : Synchronisation immédiate requise.
-- **À chaque changement du corpus** (ajout/retrait de fichier, montée de version) : recalibrage L004 des arbitres (`CORPUS_ATTENDU`, SYNC_MAP) + mise à jour de la présente section « État du corpus ».
+- **À chaque changement du corpus** (ajout/retrait de fichier, montée de version) : recalibrage L004 des arbitres (`CORPUS_ATTENDU`, garde anti-doublons) + mise à jour de la présente section « État du corpus ».
 - **Audit trimestriel** : Vérifier que les blocs embarqués correspondent toujours à la version courante du SHARED.
 
 ## Commandes rapides
@@ -83,9 +84,8 @@ python scripts/sync-context-block.py --level all
 # Synchroniser uniquement les skills (Niveau 2)
 python scripts/propagate-context.py
 
-# Répliquer le corpus sur le miroir et le canal download/
-python scripts/restore-miroir.py
-python scripts/sync-download.py --sync --force
+# Garde anti-doublons du canal download/ (décision v2.2 — 0 doublon attendu)
+python3 scripts/task14-scan-doublons.py
 ```
 
 ## En cas de conflit

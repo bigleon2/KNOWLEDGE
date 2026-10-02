@@ -1,0 +1,10 @@
+[
+  {"query": "帮我写一个个人主页 index.html", "should_trigger": true},
+  {"query": "看看这个项目都有哪些历史版本", "should_trigger": true},
+  {"query": "恢复到 V2，刚才那版改坏了", "should_trigger": true},
+  {"query": "切回我上次的那个项目", "should_trigger": true},
+  {"query": "给我做一个数据可视化仪表盘页面", "should_trigger": true},
+  {"query": "分析这个 CSV 文件并输出统计摘要", "should_trigger": false},
+  {"query": "clone cette discussion", "should_trigger": false},
+  {"query": "bonjour", "should_trigger": false}
+]

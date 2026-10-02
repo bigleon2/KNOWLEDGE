@@ -1,0 +1,68 @@
+{
+  "skill_name": "version-management",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Créé via skill-creator (Task 14, correct-work PROJET — résorption des réserves héritées du dépôt 42c2a41) : version-management ne possédait AUCUN eval alors que verify-cross l'auditait (registre KB). 5 evals couvrant le cycle de vie complet — sauvegarde avant première écriture, carte de version send_file, consultation d'historique, restauration, bascule de projet. Rédigé en chinois, langue du corps du SKILL.md (skill brut d'origine, normalisé Z1).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "VM-save — 首个文件写出前保存版本",
+      "prompt": "帮我写一个带有轮播图的单页网站 index.html。",
+      "expected_output": "在写出第一个 .html 文件之前确定项目目录与落盘路径，然后保存为 V1 并通过 send_file 吐出版本卡片",
+      "files": [],
+      "expectations": [
+        "第一个文件写出之前读取并遵循本 skill（确定落盘路径与项目目录）",
+        "版本保存后仅向用户展示生成结果 + 版本卡片（如「已保存为 V1」）",
+        "不向用户暴露 git 命令、meta.json 更新等内部技术细节"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "VM-history — 查看版本历史",
+      "prompt": "看看这个项目到现在都有哪些版本。",
+      "expected_output": "读取 meta.json 版本流水，以版本卡片形式展示历史，不展示底层 git 操作",
+      "files": [],
+      "expectations": [
+        "历史以清晰的版本列表/卡片形式呈现",
+        "内部执行过程（git、版本号计算）不向用户提及",
+        "版本信息包含可识别的版本号与对应改动"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "VM-restore — 恢复历史版本",
+      "prompt": "恢复到上一版，刚才改坏了。",
+      "expected_output": "执行版本恢复，恢复后重新 send_file 吐出文件，并告知当前版本状态",
+      "files": [],
+      "expectations": [
+        "恢复目标版本被正确解析（上一版 / 指定版本号）",
+        "恢复后的文件通过 send_file 交付给用户",
+        "版本流水更新一致，不出现版本回退错乱"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "VM-switch — 切换项目",
+      "prompt": "我不做这个项目了，切回我上次的那个待办清单应用。",
+      "expected_output": "定位目标项目目录并切换上下文，恢复该项目当前状态后继续工作",
+      "files": [],
+      "expectations": [
+        "项目切换基于已登记的项目（meta.json / 项目目录）",
+        "切换后上下文指向目标项目的当前版本",
+        "不与旧项目的版本历史发生混淆"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "VM-implicit — 未提「项目」二字也触发",
+      "prompt": "给我做一个数据可视化仪表盘页面。",
+      "expected_output": "任务可能写出 .html 入口文件，因此 skill 在写出第一个文件之前即被读取并遵循（隐式触发）",
+      "files": [],
+      "expectations": [
+        "即使用户没提到「项目」或「版本」，落盘路径仍按本 skill 确定",
+        "首个文件写出前完成目录与版本初始化",
+        "首版保存后用户收到生成结果 + 版本卡片"
+      ]
+    }
+  ]
+}
