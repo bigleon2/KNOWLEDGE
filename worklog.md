@@ -375,3 +375,9 @@ Stage Summary:
 - La couche Task 15/16 (jamais publiée, perdue au wipe) est reconstituée depuis les artefacts certifiés de la conversation partagée et désormais PUBLIÉE — le dépôt porte l'état complet : corpus 26 fichiers (lignée CORRECT-WORK v2.4.0 → v2.7.0), KB 26 entrées, gouvernance v1.6.4/v1.3.1/v1.4.1, arbitres recalibrés, rapports de session.
 - Certification : 5/5 arbitres verts (78/78, 78/78, 16/16, 56/56, 48/49 — 1 avertissement structurel hérité D013) ×2 passes, garde anti-doublons 0, round-trip archive 26/26.
 - Composante résiduelle ARMÉE : confirm LLM 3 runs des baselines A2 (quota API plateforme) — re-exécution : python3 scripts/task17-baseline-a2.py au prochain QUOTA_OK.
+
+Journalisation (addendum Task 17 — pattern B5 « commit de couche puis commit de journalisation ») :
+- Publication exécutée : 9c9d0d0 → 5ca77eb (main → main, push HTTPS auth x-access-token — jeton éphémère, sortie masquée, unset immédiat après usage) ; vérification distante anonyme : HEAD = 5ca77eb2cf37f37715eda2ae8677d4d9f2e9ddd5.
+- Audit anti-persistance : fragment distinctif du jeton — 0 occurrence dans le véhicule (fichiers), 0 occurrence dans l'historique git (git log -S), 0 occurrence dans .git/config (origin = URL propre).
+- Le dépôt distant porte désormais l'état complet certifié : corpus 26 fichiers, registre KB 26 entrées, gouvernance SHARED v1.6.4 / PM-INSTALL v1.3.1 / SYNC-CONTEXT v1.4.1 / ULTRA SHA 24c48900, arbitres recalibrés, rapports de session (aveugle + baselines A2 + analyses Task 15/16), worklog Tasks 1-17.
+- Suggestions ③②① : TOUTES EXÉCUTÉES. Composante résiduelle armée : confirm LLM 3 runs des baselines A2 (python3 scripts/task17-baseline-a2.py au prochain QUOTA_OK).
