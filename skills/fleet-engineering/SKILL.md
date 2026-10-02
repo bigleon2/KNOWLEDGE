@@ -80,7 +80,7 @@ Artefacts : matrice d'assignation (Task ID × agent × livrable × bornes) ; jou
 Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}}` pour les variables de contexte ; journalisation au worklog (`Task ID` + preuves) pour toute exécution réelle ; aucune fabrication de résultats (R3).
 
 ## §5 — ÉVALUATIONS ET DÉCLENCHEURS
-`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — disciplines voisines) ; déclenchement attendu sur les requêtes d'orchestration multi-agents explicites ; seuil de routage 0.5 (vote majoritaire confirm 3 runs — N34 armé, exécution au QUOTA_OK : D017/R3). Baseline A2 : EN ATTENTE (les 3 skills n°54 sont hors baseline 85 — marqueur `baseline-pending-n34.json`).
+`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — disciplines voisines) ; déclenchement attendu sur les requêtes d'orchestration multi-agents explicites ; seuil de routage 0.5 (vote majoritaire confirm 3 runs — N34 armé, exécution au QUOTA_OK : D017/R3). Baseline A2 : MESURÉE 7/7 (Task 17, 2026-10-02 — voie mécanique heuristique SHARED §7 v2 sur les 7 cas officiels, zéro dérive, Description Optimization non requise ; rapport `download/rapport-baselines-a2-disciplines-n54.md`, JSON `scripts/baseline-a2-report.json`) ; confirm 3 runs LLM : armé au prochain QUOTA_OK (quota API 429 persistant côté plateforme pendant la mesure — composante résiduelle documentée, R3 aucun résultat fabriqué).
 
 ## §6 — TRAÇABILITÉ
 - v1.0.0 (N34, 2026-09-21, session B12-r56) : matérialisation de la discipline approuvée n°54 ; sources N31 ; intégration gen-plan v3.15.0 §1.9 ; baseline en attente QUOTA (D017).

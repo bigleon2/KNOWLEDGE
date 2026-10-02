@@ -5,31 +5,31 @@
     {
       "statut": "PASS",
       "section": "1",
-      "check": "Corpus = 24 fichiers (24 attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)",
+      "check": "Corpus = 26 fichiers (26 attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "1",
       "check": "Round-trip archive ↔ corpus",
-      "detail": "24/24 identiques + 0 homologues v2.1 (remplace le miroir supprimé — KB §Décisions)"
+      "detail": "26/26 identiques + 0 homologues v2.1 (remplace le miroir supprimé — KB §Décisions)"
     },
     {
       "statut": "PASS",
       "section": "2",
-      "check": "Registre parsé : 21 entrées versionnées (21 attendues — dérivé ECO_SKILLS du checker, dynamisé KO-L004)",
+      "check": "Registre parsé : 26 entrées versionnées (26 attendues — dérivé ECO_SKILLS du checker, dynamisé KO-L004)",
       "detail": ""
     },
     {
       "statut": "PASS",
       "section": "2",
       "check": "Versions KB <-> SKILL.md",
-      "detail": "21/21 alignées (convention KB_ONLY_VERSION levée — skill-creator versionné)"
+      "detail": "26/26 alignées (convention KB_ONLY_VERSION levée — skill-creator versionné)"
     },
     {
       "statut": "PASS",
       "section": "3",
-      "check": "Arêtes bidirectionnelles dépandance↔usage : 28",
+      "check": "Arêtes bidirectionnelles dépandance↔usage : 36",
       "detail": ""
     },
     {
@@ -42,7 +42,7 @@
       "statut": "PASS",
       "section": "3",
       "check": "Frontière plateforme documentée",
-      "detail": "script-creator → correct-py (hors registre : skill plateforme)"
+      "detail": "clone-chat ← sessions (référence externe documentée : agent/PM/session)"
     },
     {
       "statut": "PASS",
@@ -124,6 +124,24 @@
     },
     {
       "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "fleet-engineering ← gen-plan (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "memory-engineering ← gen-plan (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
+      "section": "3",
+      "check": "Frontière plateforme documentée",
+      "detail": "spec-driven-development ← gen-plan (déclenchement automatique SHARED §7 — design documenté)"
+    },
+    {
+      "statut": "PASS",
       "section": "4",
       "check": "Contrats semver frontmatter",
       "detail": "13/14 contrats semver vérifiés et satisfaits"
@@ -167,13 +185,13 @@
     {
       "statut": "PASS",
       "section": "6",
-      "check": "check-ecosysteme-integrity.py calibré (ECO_SKILLS 21 entrées, corpus = CORPUS_ATTENDU) sur l'état KB réel",
+      "check": "check-ecosysteme-integrity.py calibré (ECO_SKILLS 26 entrées, corpus = CORPUS_ATTENDU) sur l'état KB réel",
       "detail": "dynamisé KO-L004 (l'arbitre couvre exactement les entrées KB versionnées)"
     },
     {
       "statut": "PASS",
       "section": "7",
-      "check": "download/ sans doublon du corpus (24 fichiers corpus absents — décision v2.2, Task 14)",
+      "check": "download/ sans doublon du corpus (26 fichiers corpus absents — décision v2.2, Task 14)",
       "detail": ""
     },
     {
@@ -191,7 +209,7 @@
     {
       "statut": "PASS",
       "section": "10",
-      "check": "Worklog present : 14 sections ---, 14 Task ID (SHARED §1.4)",
+      "check": "Worklog present : 16 sections ---, 16 Task ID (SHARED §1.4)",
       "detail": ""
     },
     {
@@ -280,9 +298,9 @@
     }
   ],
   "bilan": {
-    "pass": 45,
+    "pass": 48,
     "warn": 1,
     "fail": 0,
-    "total": 46
+    "total": 49
   }
 }

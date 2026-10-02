@@ -5,8 +5,8 @@
       "cle": "cross_defaut",
       "echecs": 0,
       "nom": "verify-cross (axes 1-6)",
-      "pass": 63,
-      "total": 63,
+      "pass": 78,
+      "total": 78,
       "verdict": "ALL PASS",
       "vert": true
     },
@@ -15,8 +15,8 @@
       "cle": "cross_correct_work",
       "echecs": 0,
       "nom": "verify-cross (mode correct-work)",
-      "pass": 63,
-      "total": 63,
+      "pass": 78,
+      "total": 78,
       "verdict": "ALL PASS",
       "vert": true
     },
@@ -35,8 +35,8 @@
       "cle": "integrite",
       "echecs": 0,
       "nom": "check-ecosysteme-integrity",
-      "pass": 46,
-      "total": 46,
+      "pass": 56,
+      "total": 56,
       "verdict": "ALL PASS",
       "vert": true
     },
@@ -45,8 +45,8 @@
       "cle": "interactions",
       "echecs": 0,
       "nom": "test-coherence-interactions (§11b)",
-      "pass": 45,
-      "total": 46,
+      "pass": 48,
+      "total": 49,
       "verdict": "COHÉRENCE DES INTERACTIONS : PASS AVEC RÉSERVES",
       "vert": true
     }

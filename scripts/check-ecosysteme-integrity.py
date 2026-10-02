@@ -34,14 +34,20 @@ canal de fichiers download/ SUPPRIMÉ, les 14 fichiers corpus répliqués dans
 download/ sont effacés, sync-download.py retiré — le check 3 devient la garde
 anti-doublons : AUCUN fichier du corpus ne doit exister en copie dans download/
 (l'archive d'intégrité v2.2 est l'unique voie de diffusion) ; corpus 24 fichiers
-avec le clone -f, garde calibrée sur le listing réel du corpus).
+avec le clone -f, garde calibrée sur le listing réel du corpus) ;
+re-calibré 2026-10-02 (Task 16, suggestions (a)/(b) — résorption F1/F2/F4 :
+ECO_SKILLS 21 → 26 (5 skills famille inscrits au registre KB), CORPUS_ATTENDU
+24 → 26 (PMs CORRECT-WORK v2.6.0/v2.7.0 matérialisés au corpus, méthode B1,
+provenance tracée), check 5 « 26 entrées KB versionnées » ; reconstitué Task 17
+session suivante — couche Task 16 récupérée via l'archive certifiée de la
+discussion partagée, round-trip 26/26 byte-identique).
 
 Vérifications (pipeline PM-INSTALL étapes 1-2, 8 — périmètre v1.3.0) :
   1. SHA-256 des fichiers du corpus canonique skills/@mon-ecosysteme/
   2. Round-trip byte-identité archive download/mon-ecosysteme_archive.zip ↔ corpus
   3. Garde anti-doublons download/ (décision v2.2 — 0 fichier du corpus en copie)
-  4. Structure des 21 skills écosystème installés (16 + 5 au registre P-H)
-  5. Cohérence versions SKILL.md ↔ registre KNOWLEDGE.md (21 entrées versionnées
+  4. Structure des 26 skills écosystème installés (21 + 5 skills famille Task 16)
+  5. Cohérence versions SKILL.md ↔ registre KNOWLEDGE.md (26 entrées versionnées
      + section « Décisions d'architecture »)
 
 Usage :
@@ -85,6 +91,12 @@ ECO_SKILLS = {
     "pdf-llm": "1.0.0",
     "resource-monitor": "1.0.0",
     "version-management": "1.0.0",
+    # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
+    "autonomous-agent": "1.0.0",
+    "correct-py": "1.0.0",
+    "fleet-engineering": "1.0.0",
+    "memory-engineering": "1.0.0",
+    "spec-driven-development": "1.0.0",
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.
@@ -96,7 +108,9 @@ METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au r
 # CORPUS_ATTENDU — invariant canonique du corpus (dérivation L003) [N28]
 # Recalibrage L004 (Task 56) : 20 → 21 — ajout clone -f (directive utilisateur
 # « push le clone dans @mon-ecosysteme/ » ; miroir + archive alignés).
-CORPUS_ATTENDU = 24
+# Recalibrage L004 (Task 16, suggestion (b)) : 24 → 26 — PMs CORRECT-WORK
+# v2.6.0/v2.7.0 matérialisés au corpus (méthode B1, provenance tracée).
+CORPUS_ATTENDU = 26
 
 results = []
 
@@ -188,8 +202,8 @@ def main():
             kb = f.read()
         entries = re.findall(r"^## ([\w-]+) v([\d.]+)", kb, re.MULTILINE)
         has_decisions = "## Décisions d'architecture" in kb
-        check("21 entrées KB versionnées + Décisions d'architecture",
-              len(entries) == 21 and has_decisions,
+        check("26 entrées KB versionnées + Décisions d'architecture",
+              len(entries) == 26 and has_decisions,
               f"{len(entries)} entrées versionnées, Décisions={'oui' if has_decisions else 'non'}")
         for skill, expected_ver in ECO_SKILLS.items():
             match = [e for e in entries if e[0] == skill]

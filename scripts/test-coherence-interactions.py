@@ -22,6 +22,10 @@ d'architecture v2.2 — canal de fichiers download/ supprimé ; §7 et §11d inv
 en garde anti-doublons (0 fichier du corpus en copie dans download/) ; §8 recalibré
 26 porteurs evals (skill-creator + version-management équipés) ; §9 sans
 sync-download.py (retiré), avec certification-complete.py + task14-scan-doublons.py.
+Recalibré Task 16 (2026-10-02, suggestions (a)/(b) — résorption F1/F2/F4) :
+BY_DESIGN_AUTOTRIGGER étendu aux 3 disciplines n°54 (fleet-engineering,
+spec-driven-development, memory-engineering — déclenchement automatique SHARED §7,
+même design documenté que context/loop/graph/harness).
 
 Périmètre (complémentaire des arbitres existants, focalisé sur les INTERACTIONS) —
 RECALIBRÉ Architecture v2.0 (corrige-ecosysteme, session B8) : le miroir
@@ -74,8 +78,11 @@ EXTERNAL_REFS = {"main", "sessions", "install-ecosystem", "arbitres"}
 
 # Skills à déclenchement automatique (SHARED §7) : « Utilisé par » sans réciproque
 # « Dépend de » est un choix de design documenté (SKILL.md gen-plan §1.6), pas une asymétrie.
+# Task 16 (résorption F4) : les 3 disciplines n°54 détenues par gen-plan rejoignent
+# l'ensemble — même design documenté (détention §1.9, sans plancher versionné).
 BY_DESIGN_AUTOTRIGGER = {"context-engineering", "loop-engineering", "graph-engineering",
-                         "harness-engineering"}
+                         "harness-engineering", "fleet-engineering",
+                         "spec-driven-development", "memory-engineering"}
 
 results = []  # (statut, section, check, détail)
 

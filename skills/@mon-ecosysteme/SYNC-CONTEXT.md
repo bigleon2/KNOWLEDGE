@@ -1,8 +1,9 @@
 # Procédure de Synchronisation du Contexte Système
 
-> **Version** : 1.4.0
+> **Version** : 1.4.1
 > **Date** : 2026-10-02
 > **Objet** : Maintenir la cohérence entre `PROMPT-MAITRE-SHARED.md` (source de vérité) et les blocs `## ⚙️ CONTEXTE SYSTÈME` embarqués dans les prompts maîtres.
+> **Révision v1.4.1 (2026-10-02, Task 16)** : suggestions (a)/(b) — résorption F1/F2/F4 : état du corpus porté à **26 fichiers** (PMs CORRECT-WORK v2.6.0/v2.7.0 matérialisés par diffs chirurgicaux méthode B1, provenance de reconstitution tracée) ; les PMs reconstitués v2.6.0/v2.7.0 portent le bloc CONTEXTE SYSTÈME figé hérité de v2.5.1 et ne sont PAS des cibles de resynchronisation (même statut que les versions historiques — bloc gelé R2).
 > **Révision v1.4.0 (2026-10-02, Task 14)** : décision d'architecture v2.2 — le canal de fichiers `download/` est supprimé (déduplication : les fichiers corpus répliqués dans `download/` étaient des doublons byte-identiques de `skills/`). L'archive d'intégrité devient l'UNIQUE voie de diffusion du corpus ; `scripts/sync-download.py` est retiré (périmètre disparu) et remplacé par la garde `scripts/task14-scan-doublons.py` (0 doublon attendu).
 
 ## Contexte
@@ -11,10 +12,10 @@ Le bloc `## ⚙️ CONTEXTE SYSTÈME` présent dans chaque prompt maître actif 
 
 Si le SHARED évolue (nouvelles conventions, nouvelles variables, correction de règles), les blocs embarqués doivent être resynchronisés.
 
-### État du corpus (mis à jour 2026-10-02 — v1.4.0 : déduplication download/, décision v2.2)
+### État du corpus (mis à jour 2026-10-02 — v1.4.1 : PMs CORRECT-WORK v2.6.0/v2.7.0, Task 16)
 
-- **Corpus canonique `skills/@mon-ecosysteme/`** : l'invariant `CORPUS_ATTENDU` de `scripts/check-ecosysteme-integrity.py` fait foi (dérivation dynamique — KO-L003) ; dernier recalibrage : **23 fichiers** (orchestrateur ultra-PM ajouté — historique : 21 @6ea0e0c, 22 @v3.17.1, 21 après fusion, 22 avec PM v3.17.2, 23 avec ultra-PM).
-- Dernier changement : directive « déduplication download/ » — canal de fichiers `download/` supprimé (décision d'architecture v2.2) : les 14 fichiers corpus répliqués dans `download/` sont effacés, `scripts/sync-download.py` retiré ; le corpus est publié UNIQUEMENT via l'archive (garde anti-doublons `scripts/task14-scan-doublons.py`).
+- **Corpus canonique `skills/@mon-ecosysteme/`** : l'invariant `CORPUS_ATTENDU` de `scripts/check-ecosysteme-integrity.py` fait foi (dérivation dynamique — KO-L003) ; dernier recalibrage : **26 fichiers** (PMs CORRECT-WORK v2.6.0/v2.7.0 matérialisés — historique : 21 @6ea0e0c, 22 @v3.17.1, 21 après fusion, 22 avec PM v3.17.2, 23 avec ultra-PM, 24 avec le clone -f, 26 avec la lignée CORRECT-WORK complétée).
+- Dernier changement : directive « appliquer (a) puis (b) pour résorber les écarts F1/F2/F4 » (Task 16, session web-8a7e5653) — suggestion (b) : PMs CORRECT-WORK v2.6.0/v2.7.0 reconstitués par diffs chirurgicaux depuis v2.5.1 (méthode B1 — `scripts/materialise-pm-correct-work.py`, gardes d'unicité 24+22 motifs, provenance tracée en-tête + §7 de chaque PM) ; le corpus porte désormais la forme certifiée v2.7.0 (garde R2 du PM-INSTALL v1.3.1 §3.2).
 - **Une voie de diffusion byte-identique** (le corpus fait foi, sens de réplication corpus → archive) :
   1. **Archive** `download/mon-ecosysteme_archive.zip` — véhicule d'intégrité v2.2 (corpus byte-identique + extras sous `homologues/` uniquement).
 - **Rappel anti-doublons (v2.2)** : aucun fichier du corpus `@mon-ecosysteme/` ne doit exister en copie dans `download/` — un fichier y résidant sous le même nom avec un contenu byte-identique est un doublon (critère « même nom, même contexte, idempotent ») ; vérification : `python3 scripts/task14-scan-doublons.py` (0 doublon attendu). Les artefacts de session NON corpus (clones, rapports, plans — noms distincts) restent légitimes dans `download/`.
@@ -32,7 +33,7 @@ Si le SHARED évolue (nouvelles conventions, nouvelles variables, correction de 
 | 7 | Scripts `.py` porteurs du bloc en docstring (78 fichiers sur 106 dans `scripts/`) | N3 | Docstring en en-tête |
 
 > **Note N1** : les prompts maîtres GEN-PLAN postérieurs à la v3.11.0 (v3.12.0 → v3.17.x) ne portent plus le bloc figé — ils s'appuient sur la dépendance externe au registre KB (`skills/KNOWLEDGE.md`, Règle Zéro : KB source de vérité). Le dernier porteur N1 est donc la v3.11.0 ; `scripts/sync-context-block.py` cible exactement les 4 fichiers du tableau (INSTALL-ECOSYSTEME.md retiré — fusion installateurs v1.1.0, R4).
-> **Rétro-compatibilité R2** : les versions antérieures (PM GEN-PLAN v3.6.1 → v3.10.0, PM CORRECT-WORK v2.4.0/v2.5.0) sont conservées byte-identité historique assumée (§11b) — elles ne sont PAS des cibles de resynchronisation.
+> **Rétro-compatibilité R2** : les versions antérieures (PM GEN-PLAN v3.6.1 → v3.10.0, PM CORRECT-WORK v2.4.0/v2.5.0) sont conservées byte-identité historique assumée (§11b) — elles ne sont PAS des cibles de resynchronisation. Les PMs CORRECT-WORK v2.6.0/v2.7.0 (reconstitués Task 16, méthode B1) portent le bloc figé hérité byte-identique de v2.5.1 — mêmes statut et traitement (non-cibles, bloc gelé R2, divergence documentée au §7 de chaque PM).
 
 ## Procédure étape par étape
 
