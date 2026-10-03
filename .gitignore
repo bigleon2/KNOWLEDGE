@@ -19,3 +19,9 @@ __pycache__/
 
 # Backups (gérés par back-depot.py)
 backups/
+
+# Sorties runtime de certification à état dépendant (Task 22-b2/22-ter — dé-suivies :
+# décrivent l'état courant vs HEAD, donc ne peuvent être un point-fixe committé)
+certification-report.json
+interactions-report.json
+tool-routing-report.json
