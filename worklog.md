@@ -468,3 +468,20 @@ Stage Summary:
 - Outillage dédié : gen-plan (plan), correct-work (rapport PROJET 8/8), skill-creator (réécritures skills), agent-creator (PM-INSTALL v1.4.0), script-creator (ensure-installed.py, task23-*.py), prompt-engineering (descriptions), skills-inventory (scanner + registre), knowledge-observer (leçon élisions + KO-L003 ×3), audit-provenance (contrôle cybersécurité au fallback §1.16).
 - Réserves : voie L des 2 équipés francisés → re-mesure armée QUOTA_OK (R3) ; PM gen-plan corpus v3.18.0 antérieur toléré R2 ; CJK d'exemple verbatim non traduits (identifiants).
 - PUSH NON exécuté (directive muette ; jeton toujours requis — Task 22 et 23 empilées sur le push armé).
+
+---
+Task ID: 24 (gen-plan : vérif idempotence post-Task 23 → correct-work(projet) → clone-chat → PUSH)
+Agent: Main [Super Z — gen-plan v3.19.0, session web-bbbeab47]
+Task: Directive 2026-10-04, ordre imposé : (1) « vérifie que mon écosystème est resté idempotent malgré tes modifications » ; (2) correct-work(projet) ; (3) clone-chat ; (4) push (PAT fourni).
+
+Work Log:
+- (1) Re-certification B2 de b145fe6 (harnais scripts/task24-b2-idempotence.py, périmètre point-fixe = suivi git) : 107 éléments non-skill M0=M1=M2 → 107 PASS / 0 RE-STABILISÉ / 0 FAIL ; py_compile 26/26 ; C1≡C2 (10 producteurs déterministes) ; ULTRA --check no-op (SHA 7774994a) ; installation fe1b6975 ×2 ; empreinte 184bdb85b2c1507e…
+- (1-bis) Diagnostic KO-L003 d'un échec transitoire tool-routing rc=1 : ARTEFACT d'invocation (--plan explicite court-circuite le fallback worklog du contrôle N2 — le plan task23 cite skill-creator/skills-inventory mais pas agent-creator/script-creator/infrastructure, présents au worklog de session) ; correction limitée au harnais (--worklog en complément du plan), arbitre certifié et plan task23 INTACTS ; re-run rc=0 aux deux cycles.
+- (2) correct-work PROJET v2.7.0 (couplage §1.5 : gen-plan v3.19.0 installée ; plan download/plan-task24-idempotence-correctwork-clone-push.md, answer key D001-D008) : verify-correct-work 16/16 ALL PASS ; rapport download/rapport-correct-work-projet-task24.md — verdict PASS AVEC RÉSERVES (push imminent tracé B5 ; révocation PAT au propriétaire).
+- (3) clone-chat v2.0.0 : 7+1 étapes, §0-§5 ordonnés, Étape 3.5 drifts ×6 (1 INVERSION, 2 ENRICHISSEMENT, 1 CORRECTION, 1 RECALIBRAGE, 1 MODIFICATION), 8/8 checks ; clone download/clone-discussion-task22-24-idempotence-publication-2026-10-04.md (convention dépôt, committé et poussé).
+- (4) PUSH armé puis exécuté (pattern B5, 2 commits / 2 pushes) : commit couche Task 24 → push #1 (9+ commits empilés Task 15/16 → 24) → journal B5 → commit → push #2 ; jeton éphémère x-access-token en URL d'invocation UNIQUEMENT — jamais persisté (fichier suivi, remote, config) ; audit anti-persistance post-push = 0 occurrence github_pat dans l'arbre suivi.
+
+Stage Summary:
+- Écosystème RESTÉ IDEMPOTENT malgré les modifications Task 23 : preuve par élément 107/107 (M0=M1=M2, C1≡C2), 0 régression V6, empreintes stables.
+- correct-work 16/16 ALL PASS ; clone-chat 8/8 checks ; publication conforme anti-persistance.
+- PAT exposé au canal de discussion : révocation/régénération recommandée (consigné Tasks 18/22/24).
