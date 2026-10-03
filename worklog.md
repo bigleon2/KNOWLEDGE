@@ -485,3 +485,17 @@ Stage Summary:
 - Écosystème RESTÉ IDEMPOTENT malgré les modifications Task 23 : preuve par élément 107/107 (M0=M1=M2, C1≡C2), 0 régression V6, empreintes stables.
 - correct-work 16/16 ALL PASS ; clone-chat 8/8 checks ; publication conforme anti-persistance.
 - PAT exposé au canal de discussion : révocation/régénération recommandée (consigné Tasks 18/22/24).
+
+---
+Task ID: 24-push (journal B5 — post-push Task 24)
+Agent: Main [Super Z — gen-plan v3.19.0, session web-bbbeab47]
+Task: Journalisation post-push (pattern B5) — publication des couches Task 18 → 24 après verdict d'idempotence PASS.
+
+Work Log:
+- Push #1 exécuté : 4328d66..7459d00 main -> main (9 commits empilés : Task 18 → couche Task 24 ; remote github.com/bigleon2/KNOWLEDGE) — jeton éphémère x-access-token en URL d'invocation uniquement, jamais écrit dans un fichier.
+- Audit anti-persistance post-push : motif de VALEUR de jeton (github_pat_ + 20+ caractères) = 0 occurrence dans l'arbre suivi ; les 2 occurrences « x-access-token: » sont des interpolations runtime depuis variables (ensure-installed.py:81, git-deploy.sh:39 — mécanisme sanctionné, aucun secret en dur) ; remote -v sans jeton ; git config locale sans secret ; mentions « github_pat » = prose d'audit uniquement.
+- Commit journal + push #2 (2 commits / 2 pushes — pattern B5 complet).
+
+Stage Summary:
+- origin/main synchronisé sur la couche Task 24 (7459d00) puis le présent journal.
+- PAT exposé au canal de discussion : révocation/régénération recommandée (consigné Tasks 18/22/24).
