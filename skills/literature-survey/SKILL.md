@@ -1,54 +1,61 @@
 ---
 name: literature-survey
-description: Use when the user wants a comprehensive literature survey on a specific research topic. Outputs a complete PDF survey (6–20 pages, 60+ real citations, 100+ recommended) with LaTeX source, taxonomy figures, and a classified literature table. Single-stage, no Python runtime.
+version: "1.0.0"
+category: "Autres"
+tags:
+  - literature
+  - survey
+description: À utiliser quand l'utilisateur veut une revue de littérature complète sur un sujet de recherche précis. Produit un PDF de revue complet (6–20 pages, 60+ citations réelles, 100+ recommandé) avec source LaTeX, figures de taxonomie et table de littérature classée. Monotraitement, sans runtime Python.
+language: fr
+
 ---
 
 # Literature Survey
 
-## Overview
+## Vue d'ensemble
 
-End-to-end literature survey builder. **Single stage, full quality from the start.** The agent (Claude Code / Cursor / Aider / Codex / …) does the entire build using its own tools (WebFetch, WebSearch, Write, Bash). This SKILL is procedure + reference playbooks + LaTeX template — no Python runtime, no LLM SDK.
+Générateur de revue de littérature de bout en bout. **Une seule étape, qualité complète dès le départ.** L'agent (Claude Code / Cursor / Aider / Codex / …) réalise toute la construction avec ses propres outils (WebFetch, WebSearch, Write, Bash). Ce SKILL est procédure + playbooks de référence + template LaTeX — pas de runtime Python, pas de SDK LLM.
 
-The substantive work is decomposed into reference playbooks under `references/`:
+Le travail de fond est décomposé en playbooks de référence sous `references/` :
 
-| Reference | Topic |
+| Référence | Sujet |
 |---|---|
-| `references/00-incremental-execution.md` | how to actually do this without losing work: batch sizes, persistence, resume — **read first** |
-| `references/01-bibliography-expansion.md` | grow `bibliography.bib` to 60+ real entries (100+ recommended) via WebFetch (no memory) |
-| `references/02-survey-figures.md` | taxonomy / timeline / coverage-matrix / area-map figures |
-| `references/03-survey-section-playbook.md` | per-section structure for survey-shaped papers |
-| `references/04-layout-discipline.md` | tables, figures, floats, cross-refs, author + disclosure footnote |
-| `references/05-quality-gate.md` | self-check before delivery |
+| `references/00-incremental-execution.md` | comment faire concrètement sans perdre son travail : tailles de lots, persistance, reprise — **à lire en premier** |
+| `references/01-bibliography-expansion.md` | porter `bibliography.bib` à 60+ entrées réelles (100+ recommandé) via WebFetch (sans mémoire) |
+| `references/02-survey-figures.md` | figures de taxonomie / frise chronologique / matrice de couverture / carte des domaines |
+| `references/03-survey-section-playbook.md` | structure section par section pour des articles au format revue |
+| `references/04-layout-discipline.md` | tableaux, figures, flottants, renvois croisés, auteur + note de divulgation |
+| `references/05-quality-gate.md` | autocontrôle avant livraison |
 
-**Read the relevant reference _before_ writing, not after.** The full pass does not fit in a single turn — `references/00-incremental-execution.md` is the only execution mode that completes.
+**Lire la référence pertinente _avant_ d'écrire, pas après.** Le passage complet ne tient pas en un seul tour — `references/00-incremental-execution.md` est le seul mode d'exécution qui va au bout.
 
-## When to Use
+## Quand l'utiliser
 
-- User asks for a "survey" / "review" on a specific topic.
-- User has a research topic and wants a structured map of the field with citations.
-- User needs background reading curated for a thesis chapter or grant section.
+- L'utilisateur demande une « revue » / un « état de l'art » sur un sujet précis.
+- L'utilisateur a un sujet de recherche et veut une carte structurée du domaine avec citations.
+- L'utilisateur a besoin d'une lecture de fond pour un chapitre de thèse ou une section de demande de financement.
 
-## When NOT to Use
+## Quand ne pas l'utiliser
 
-- User wants original research with experiments → `paper-writer`.
-- User wants only an outline / topic exploration → `research-explorer`.
-- User wants experiment code → `experiment-suite`.
-- Topic is too broad (e.g., "all of AI") — narrow it before starting.
+- L'utilisateur veut de la recherche originale avec expériences → `paper-writer`.
+- L'utilisateur ne veut qu'un plan / une exploration de sujet → `research-explorer`.
+- L'utilisateur veut du code d'expériences → `experiment-suite`.
+- Le sujet est trop vaste (p. ex. « toute l'IA ») — le restreindre avant de commencer.
 
-## Workflow
+## Flux de travail
 
-### Step 1 — Understand the topic and scope
+### Étape 1 — Comprendre le sujet et le périmètre
 
-Confirm with the user:
+Confirmer avec l'utilisateur :
 
-- **Topic** — specific research area (e.g., "federated learning in healthcare"). If too broad, narrow it first.
-- **Scope** — broad survey of a field vs. focused review of a sub-area.
-- **Citation budget** — minimum 60 unique entries; aim for 100+ (push higher for a broad survey).
-- **Language** — default Chinese in conversation; the LaTeX paper is English unless requested otherwise.
+- **Sujet** — domaine de recherche précis (p. ex. « l'apprentissage fédéré en santé »). Si trop vaste, le restreindre d'abord.
+- **Périmètre** — revue large d'un domaine vs revue ciblée d'un sous-domaine.
+- **Budget de citations** — minimum 60 entrées uniques ; viser 100+ (plus pour une revue large).
+- **Langue** — chinois par défaut en conversation ; l'article LaTeX est en anglais sauf demande contraire.
 
-Always tell the user that human review by a domain expert is recommended before publication or production use.
+Toujours indiquer à l'utilisateur qu'une relecture humaine par un expert du domaine est recommandée avant publication ou usage en production.
 
-### Step 2 — Set up the run directory
+### Étape 2 — Préparer le répertoire d'exécution
 
 ```bash
 TOPIC="<topic>"
@@ -61,65 +68,65 @@ cp -r literature-survey/templates/survey/. "$RUN/"
 ln -sfn "$TS" "output/literature-survey/$SLUG/latest"
 ```
 
-In commands below `$RUN` = `output/literature-survey/<slug>/latest/survey_paper`.
+Dans les commandes ci-dessous, `$RUN` = `output/literature-survey/<slug>/latest/survey_paper`.
 
-### Step 3 — Build the survey (REQUIRED — this is the whole job)
+### Étape 3 — Construire la revue (OBLIGATOIRE — c'est tout le travail)
 
-Open `references/00-incremental-execution.md` first. Then carry out the five tracks below across many turns, persisting state to `$RUN/` after every batch.
+Ouvrir d'abord `references/00-incremental-execution.md`. Puis mener les cinq chantiers ci-dessous sur de nombreux tours, en persistant l'état dans `$RUN/` après chaque lot.
 
-#### 3.1 Bibliography — 60+ real entries (100+ recommended)
+#### 3.1 Bibliographie — 60+ entrées réelles (100+ recommandé)
 
-**Open:** `references/01-bibliography-expansion.md`.
+**Ouvrir :** `references/01-bibliography-expansion.md`.
 
-**First (§0 of that reference): read the topic's temporal/scope intent and pick a search posture.** If the topic names a year or says "latest/recent" (e.g. "OpenSource LLM **2026**"), go *recency-led* — date-sorted arXiv queries carrying the explicit year, canon only as context. Otherwise span the timeline. This is what prevents "asked for 2026, got all 2024".
+**D'abord (§0 de cette référence) : lire l'intention temporelle/de périmètre du sujet et choisir une posture de recherche.** Si le sujet nomme une année ou dit « dernières/récent » (p. ex. « OpenSource LLM **2026** »), adopter une posture *récence-d'abord* — requêtes arXiv triées par date portant l'année explicite, le canon servant seulement de contexte. Sinon, couvrir toute la période. C'est ce qui évite « demandé 2026, obtenu du 2024 ».
 
-Then plan **12–20** query angles, weighted by the posture. For each angle, use **AMiner academic search first, web search as supplement**:
+Puis planifier **12 à 20** angles de requête, pondérés selon la posture. Pour chaque angle, utiliser **AMiner academic search d'abord, la recherche web en complément** :
 
-- **AMiner `search_papers`** — Use this FIRST for every query angle. It returns
-  papers with structured metadata (title, authors, year, venue, DOI, citations,
-  abstract) that is far more reliable than web-scraped results. Example:
+- **AMiner `search_papers`** — l'utiliser EN PREMIER pour chaque angle de requête. Il renvoie
+  des articles avec des métadonnées structurées (titre, auteurs, année, venue, DOI, citations,
+  abstract) bien plus fiables que les résultats scrapés sur le web. Exemple :
   `search_papers(query="federated learning survey", max_results=20, sort_by_citation=true)`.
-- **AMiner `get_paper_details`** — For key papers, fetch full details (abstract,
-  citations, references) by their AMiner IDs.
-- **`web_search`** — Use when AMiner returns insufficient results, or for
-  non-academic sources (blogs, benchmarks, datasets, tool documentation).
+- **AMiner `get_paper_details`** — pour les articles clés, récupérer les détails complets (abstract,
+  citations, références) via leurs identifiants AMiner.
+- **`web_search`** — à utiliser quand AMiner renvoie des résultats insuffisants, ou pour des
+  sources non académiques (blogs, benchmarks, jeux de données, documentation d'outils).
 
-For each kept candidate: extract canonical title/authors/year/venue/url/citations
-from the AMiner response directly. For web-search-only results, WebFetch the
-abstract URL to extract metadata. Append a BibTeX entry to
-`$RUN/bibliography.bib`. **Every entry must originate from a URL fetched in this
-session or from an AMiner search result.** Memory entries forbidden.
+Pour chaque candidat retenu : extraire directement du retour AMiner le titre/auteurs/année/venue/url/citations
+canoniques. Pour les résultats issus uniquement de la recherche web, faire un WebFetch de l'URL d'abstract
+pour extraire les métadonnées. Ajouter une entrée BibTeX à
+`$RUN/bibliography.bib`. **Chaque entrée doit provenir d'une URL récupérée dans cette
+session ou d'un résultat de recherche AMiner.** Les entrées tirées de la mémoire sont interdites.
 
-**Hard stop:** do not draft prose until `grep -c "^@" $RUN/bibliography.bib` ≥ 60 (aim for 100+).
+**Arrêt ferme :** ne pas rédiger la prose avant que `grep -c "^@" $RUN/bibliography.bib` ≥ 60 (viser 100+).
 
-#### 3.2 Figures — 6–10 survey-shaped
+#### 3.2 Figures — 6 à 10 figures au format revue
 
-**Open:** `references/02-survey-figures.md`.
+**Ouvrir :** `references/02-survey-figures.md`.
 
-A survey is defined by how well it organises a field; figures carry that organisation:
+Une revue se juge à sa capacité à organiser un domaine ; les figures portent cette organisation :
 
-- 1 taxonomy / classification diagram (TikZ hierarchy)
-- 1 chronological timeline of major works
-- 1 area / capability matrix (coverage heatmap)
-- 1–2 representative architecture / mechanism diagrams
-- 1–2 quantitative trend plots (matplotlib publication style)
-- Optional: citation network, paradigm comparison
+- 1 diagramme de taxonomie / classification (hiérarchie TikZ)
+- 1 frise chronologique des travaux majeurs
+- 1 matrice de domaines / capacités (heatmap de couverture)
+- 1–2 diagrammes d'architecture / mécanisme représentatifs
+- 1–2 tracés de tendances quantitatifs (style publication matplotlib)
+- Optionnel : réseau de citations, comparaison de paradigmes
 
-Save each into `$RUN/figures/` with reproducible source alongside.
+Sauvegarder chaque figure dans `$RUN/figures/` avec sa source reproductible à côté.
 
-#### 3.3 Sections — survey-shaped prose
+#### 3.3 Sections — prose au format revue
 
-**Open:** `references/03-survey-section-playbook.md`.
+**Ouvrir :** `references/03-survey-section-playbook.md`.
 
-Survey sections differ in shape from research-paper sections. Order: introduction → background → methods (themed survey) → discussion → conclusion → related work → **abstract last**.
+Les sections d'une revue diffèrent en forme de celles d'un article de recherche. Ordre : introduction → contexte → méthodes (revue thématique) → discussion → conclusion → travaux liés → **abstract en dernier**.
 
-#### 3.4 Layout discipline
+#### 3.4 Discipline de mise en page
 
-**Open:** `references/04-layout-discipline.md`.
+**Ouvrir :** `references/04-layout-discipline.md`.
 
-Wrap every table in `\begin{table}[!t]` with booktabs; every figure in `\begin{figure}[!t]`. Use `~\cite{}` and `~\ref{}`. Set `\author{AI4S Agent}` with a `\thanks` footnote that **always** recommends human review. Surveys carry no simulated numerical experiments, so do **not** include a simulated clause.
+Encadrer chaque tableau dans `\begin{table}[!t]` avec booktabs ; chaque figure dans `\begin{figure}[!t]`. Utiliser `~\cite{}` et `~\ref{}`. Définir `\author{AI4S Agent}` avec une note `\thanks` qui **recommande toujours** une relecture humaine. Les revues ne comportent pas d'expériences numériques simulées, donc **ne pas** inclure de clause simulée.
 
-#### 3.5 Compile + quality gate
+#### 3.5 Compilation + contrôle qualité
 
 ```bash
 cd "$RUN"
@@ -129,28 +136,28 @@ pdflatex -interaction=nonstopmode main.tex
 pdflatex -interaction=nonstopmode main.tex
 ```
 
-**Open:** `references/05-quality-gate.md`. Survey-specific targets: ≥ 60 bib entries (100+ recommended), ≥ 6 pages, ≥ 1 taxonomy figure, ≥ 1 timeline.
+**Ouvrir :** `references/05-quality-gate.md`. Cibles propres aux revues : ≥ 60 entrées bib (100+ recommandé), ≥ 6 pages, ≥ 1 figure de taxonomie, ≥ 1 frise chronologique.
 
-If a gate cannot honestly be met (e.g., the field is genuinely small), say so explicitly. Do not pad.
+Si un contrôle ne peut pas être atteint honnêtement (p. ex. domaine réellement très petit), le dire explicitement. Pas de remplissage.
 
-### Step 4 — Deliver
+### Étape 4 — Livrer
 
-Report:
+Rapporter :
 
 1. `output/literature-survey/<slug>/latest/survey_paper/main.pdf`
-2. `output/literature-survey/<slug>/latest/survey_paper/` — complete LaTeX project (reproducible)
-3. `output/literature-survey/<slug>/latest/literature_table.md` — classified literature table (write this alongside the bib build)
-4. Stats per the report format in `references/05-quality-gate.md`.
+2. `output/literature-survey/<slug>/latest/survey_paper/` — projet LaTeX complet (reproductible)
+3. `output/literature-survey/<slug>/latest/literature_table.md` — table de littérature classée (à écrire en parallèle de la constitution de la bib)
+4. Statistiques selon le format de rapport de `references/05-quality-gate.md`.
 
-## Cross-skill data flow (path convention)
+## Flux de données inter-skills (convention de chemins)
 
-A downstream skill (e.g., `paper-writer`) computing the same slug for the same topic will look here:
+Un skill en aval (p. ex. `paper-writer`) calculant le même slug pour le même sujet viendra chercher ici :
 
-- `output/literature-survey/<slug>/latest/survey_paper/bibliography.bib` — bib starting point.
+- `output/literature-survey/<slug>/latest/survey_paper/bibliography.bib` — point de départ bib.
 
-## Important rules
+## Règles importantes
 
-- **No LLM SDK in this skill.** No `import anthropic` / `import openai`. The skill is SKILL.md + references + LaTeX template only.
-- **No fabricated citations.** Every BibTeX entry must trace back to a URL fetched this session. Real or weaker claim — never fake reference.
-- **Honest stop > padding.** If the field is too small for 60 real citations, say so to the user instead of inventing entries.
-- **Survey scope** is 6–20 pages with 60–150 references (100+ recommended). For longer or shorter formats, adjust scope explicitly with the user up front.
+- **Pas de SDK LLM dans ce skill.** Pas de `import anthropic` / `import openai`. Le skill se limite à SKILL.md + références + template LaTeX.
+- **Aucune citation fabriquée.** Chaque entrée BibTeX doit remonter à une URL récupérée dans la session. Affirmation réelle ou plus prudente — jamais de fausse référence.
+- **Arrêt honnête > remplissage.** Si le domaine est trop petit pour 60 citations réelles, le dire à l'utilisateur au lieu d'inventer des entrées.
+- **Périmètre de revue** : 6–20 pages avec 60–150 références (100+ recommandé). Pour des formats plus longs ou plus courts, ajuster explicitement le périmètre avec l'utilisateur au départ.

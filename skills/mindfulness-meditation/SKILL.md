@@ -1,65 +1,75 @@
 ---
 name: mindfulness-meditation
-description: Build a meditation practice with guided sessions, streaks, and mindfulness reminders
+category: "Lifestyle & Bien-être"
+tags:
+  - mindfulness
+  - meditation
+description: Se construire une pratique de méditation avec des séances guidées, des séries de pratique (streaks) et des rappels de pleine conscience
 author: clawd-team
-version: 1.0.0
+version: 1.1.0
+category: "Lifestyle & Bien-être"
+tags:
+  - mindfulness
+  - meditation
+language: fr
 triggers:
   - "meditate now"
   - "mindfulness practice"
   - "guided meditation"
   - "meditation streak"
   - "be present"
+
 ---
 
-# Mindfulness & Meditation
+# Pleine conscience & Méditation
 
-Build a consistent meditation practice with guided sessions, progress tracking, and daily mindfulness reminders.
+Construis une pratique de méditation régulière avec des séances guidées, un suivi de progression et des rappels quotidiens de pleine conscience.
 
-## What it does
+## Ce que fait ce skill
 
-This skill transforms your device into a personal meditation coach. It guides you through structured meditation sessions, tracks your practice streaks, logs sessions for long-term insights, and sends mindfulness reminders to keep you anchored throughout your day.
+Ce skill transforme ton appareil en coach de méditation personnel. Il te guide à travers des séances de méditation structurées, suit tes séries de pratique, enregistre les séances pour des analyses à long terme et envoie des rappels de pleine conscience pour te garder ancré tout au long de la journée.
 
-## Usage
+## Utilisation
 
-### Start Meditation
-Initiate a guided meditation session. Choose your meditation type and duration, then follow along with step-by-step guidance.
+### Démarrer une méditation
+Lance une séance de méditation guidée. Choisis ton type de méditation et sa durée, puis suis les instructions pas à pas.
 
-### Quick Mindfulness
-Take a 2-5 minute breathing pause. Perfect for stressful moments or transitions between tasks. No commitment, just presence.
+### Pleine conscience express
+Prends une pause respiratoire de 2 à 5 minutes. Parfait pour les moments stressants ou les transitions entre tâches. Aucun engagement, juste de la présence.
 
-### Check Streak
-View your current meditation streak and session history. See weekly/monthly breakdowns of your practice consistency and total minutes logged.
+### Vérifier la série
+Consulte ta série de méditation en cours et ton historique de séances. Visualise les bilans hebdomadaires/mensuels de ta régularité et le total de minutes enregistrées.
 
-### Set Reminders
-Configure daily or custom mindfulness reminders. Get gentle notifications to pause, breathe, and check in with yourself.
+### Définir des rappels
+Configure des rappels de pleine conscience quotidiens ou personnalisés. Reçois des notifications douces pour faire une pause, respirer et revenir à toi.
 
-### Session Log
-Review detailed logs of past sessions: type, duration, date, and personal notes. Export your practice data for reflection or sharing.
+### Journal des séances
+Consulte les journaux détaillés des séances passées : type, durée, date et notes personnelles. Exporte tes données de pratique pour réflexion ou partage.
 
-## Meditation Types
+## Types de méditation
 
-**Body Scan** — Systematically observe sensations from head to toe, releasing tension and building bodily awareness.
+**Scan corporel** — Observe systématiquement les sensations de la tête aux pieds, relâche les tensions et développe la conscience de ton corps.
 
-**Breath Focus** — Anchor attention to the natural rhythm of your breath. Redirect your mind gently when it wanders.
+**Focus sur la respiration** — Ancre ton attention sur le rythme naturel de ton souffle. Ramène doucement ton esprit quand il s'égare.
 
-**Loving-Kindness** — Cultivate compassion by sending well-wishes to yourself and others in expanding circles.
+**Bienveillance** — Cultive la compassion en envoyant des vœux de bien-être à toi-même et aux autres, dans des cercles de plus en plus larges.
 
-**Walking** — Meditate while moving. Synchronize breath with steps and notice your surroundings with full attention.
+**Marche** — Médite en mouvement. Synchronise le souffle avec les pas et observe ton environnement avec une attention totale.
 
-**Open Awareness** — Observe thoughts and sensations without judgment. Develop witness consciousness and mental spaciousness.
+**Ouverture de conscience** — Observe pensées et sensations sans jugement. Développe une conscience témoin et de l'espace mental.
 
-## Session Lengths
+## Durées de séance
 
-- **2 min** — Micro-practice. Reset focus in the middle of your day.
-- **5 min** — Short sits. Build the habit without time friction.
-- **10 min** — Standard practice. Enough depth to settle your mind.
-- **20 min** — Deep work. Move beyond the surface chatter.
-- **Custom** — Set your own duration. Practice at your pace.
+- **2 min** — Micro-pratique. Remets le focus au milieu de la journée.
+- **5 min** — Séances courtes. Installe l'habitude sans friction de temps.
+- **10 min** — Pratique standard. Assez de profondeur pour poser l'esprit.
+- **20 min** — Travail en profondeur. Va au-delà du brouhaha de surface.
+- **Personnalisée** — Choisis ta propre durée. Pratique à ton rythme.
 
-## Tips
+## Conseils
 
-- **Start small:** 2-3 minutes daily beats sporadic hour-long sessions. Consistency compounds over time.
-- **Pick one type:** Master breath focus before exploring other techniques. Foundation first.
-- **Meditate at the same time:** Morning sits anchor your day. Neural pathways strengthen with repetition.
-- **Don't aim for blank mind:** Thoughts are normal. The skill is noticing them without judgment—that's the practice.
-- **All data stays local on your machine:** Your meditation history, preferences, and reminders are stored securely on your device. Nothing leaves your control.
+- **Commence petit :** 2-3 minutes par jour valent mieux que des séances d'une heure sporadiques. La régularité s'accumule avec le temps.
+- **Choisis un seul type :** Maîtrise le focus sur la respiration avant d'explorer d'autres techniques. D'abord la fondation.
+- **Médite au même moment :** Une séance matinale ancre ta journée. Les circuits neuronaux se renforcent par la répétition.
+- **Ne vise pas l'esprit vide :** Les pensées sont normales. Le skill consiste à les remarquer sans jugement — c'est ça, la pratique.
+- **Toutes les données restent en local sur ta machine :** Ton historique de méditation, tes préférences et tes rappels sont stockés en sécurité sur ton appareil. Rien ne sort de ton contrôle.

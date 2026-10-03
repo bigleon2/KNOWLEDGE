@@ -1,69 +1,76 @@
 ---
 name: resume-builder
-description: 从零生成或全面优化一份中文简历，并导出 docx / pdf / markdown 多种格式。用 STAR 法则改写经历、做 ATS 关键词覆盖率检查、根据行业（互联网产品 / 技术 / 金融 / 通用）选模板。当用户说"帮我写简历 / 优化简历 / 简历不会写 / 我的简历太弱了 / 简历看起来不专业 / 简历改一改 / 给我做个简历模板 / 简历导出 / 简历加点关键词"，或者上传 .pdf/.docx 简历后说"看看怎么改"时，必须触发本 skill。即使用户只问"我的简历有什么问题"也要触发。
----
-
-# Resume Builder（简历生成与优化）
-
-这个 skill 干三件事：
-
-1. **结构化生成**：从用户经历产出一份符合中文求职市场审美的简历
-2. **STAR 法则改写**：把"参与了 X"这种弱句子，改写成"通过 X 实现 Y，结果 Z"
-3. **ATS 关键词优化 + 多模板导出**：保证简历能过自动筛选，并支持 docx/pdf/md
-
-不做：JD 定向改写（那是 jd-resume-tailor 的事，请在那里做"针对某 JD 改简历"）
+version: "1.0.0"
+category: "Carrière & Emploi"
+tags:
+  - resume
+  - builder
+description: Génère à partir de zéro ou optimise en profondeur un CV, puis l'exporte en plusieurs formats (docx / pdf / markdown). Réécrit les expériences avec la méthode STAR, vérifie la couverture en mots-clés ATS, choisit le template selon le secteur (internet produit / tech / finance / général). Déclenchez ce skill dès que l'utilisateur dit « aide-moi à rédiger un CV / optimiser mon CV / je ne sais pas écrire un CV / mon CV est trop faible / mon CV manque de professionnalisme / corrige mon CV / fais-moi un template de CV / exporte mon CV / ajoute des mots-clés à mon CV », ou qu'il téléverse un CV .pdf/.docx en demandant « vois comment l'améliorer ». Même si l'utilisateur se contente de demander « quels sont les défauts de mon CV », déclenchez-le.
+language: fr
 
 ---
 
-## 何时触发
+# Resume Builder (génération et optimisation de CV)
 
-- "帮我写一份简历"
-- "我的简历太弱了 / 没有亮点 / 看起来不专业"
-- "把这段经历用 STAR 改一下"
-- "简历里关键词够不够"
-- "导出 PDF / docx 简历"
-- 用户上传简历但没明确说"针对某 JD 改" → 触发本 skill；如果说了"针对 X 公司 / X 岗位改" → 调用 jd-resume-tailor
+Ce skill fait trois choses :
+
+1. **Génération structurée** : produit à partir des expériences de l'utilisateur un CV conforme aux standards du marché de l'emploi
+2. **Réécriture STAR** : transforme des phrases faibles du type « j'ai participé à X » en « via X, réalisé Y, avec le résultat Z »
+3. **Optimisation des mots-clés ATS + export multi-templates** : garantit que le CV passe les filtres automatiques, avec export docx/pdf/md
+
+Ne fait pas : la réécriture orientée fiche de poste (c'est l'affaire de jd-resume-tailor ; faites-y les demandes « adapter le CV à telle fiche de poste »)
 
 ---
 
-## 工作流
+## Quand se déclenche
 
-### Step 1: 摸清简历当前状态
+- « aide-moi à rédiger un CV »
+- « mon CV est trop faible / sans points forts / manque de professionnalisme »
+- « réécris cette expérience avec la méthode STAR »
+- « est-ce qu'il y a assez de mots-clés dans mon CV »
+- « exporter le CV en PDF / docx »
+- L'utilisateur téléverse un CV sans préciser « adapter à une fiche de poste » → déclenchez ce skill ; s'il dit « adapter pour l'entreprise X / le poste X » → appelez jd-resume-tailor
 
-如果用户**有简历文件**（.pdf / .docx / .md / .txt）：
-- pdf 走 pdf skill 解析
-- docx 走 docx skill 解析
-- 提取出：基本信息、教育、工作经历、项目经历、技能、其他
+---
 
-如果用户**没有简历**：
-- 用 AskUserQuestion 收集信息（参考 `references/intake_questions.md` 里的问题清单）
-- 一次问 3~4 个问题，分轮收集，避免劝退
+## Workflow
 
-### Step 2: 选模板
+### Étape 1 : établir l'état actuel du CV
 
-读取 `references/templates/` 决定结构：
+Si l'utilisateur **a un fichier de CV** (.pdf / .docx / .md / .txt) :
+- le pdf est parsé via le skill pdf
+- le docx est parsé via le skill docx
+- extrayez : informations de base, formation, expérience professionnelle, projets, compétences, divers
 
-- 互联网产品 / 运营 / PM → `templates/internet.md`
-- 技术 / 研发 / 数据 → `templates/tech.md`
-- 金融 / 咨询 / 商科 → `templates/finance.md`
-- 通用 / 跨行业 → `templates/general.md`
+Si l'utilisateur **n'a pas de CV** :
+- collectez les informations avec AskUserQuestion (voir la liste de questions dans `references/intake_questions.md`)
+- posez 3 à 4 questions à la fois, collectez en plusieurs rounds pour ne pas décourager
 
-如果用户没指定方向，用通用模板，但**询问一句**："你下一步主要往什么方向投？我可以用更适合那个方向的版式。"
+### Étape 2 : choisir le template
 
-### Step 3: 用 STAR 改写每段经历
+Lisez `references/templates/` pour décider de la structure :
 
-读取 `references/star_rewrite_guide.md`，对每条工作 / 项目经历做 STAR 改写。
+- Internet produit / opérations / PM → `templates/internet.md`
+- Tech / développement / data → `templates/tech.md`
+- Finance / conseil / commerce → `templates/finance.md`
+- Général / tous secteurs → `templates/general.md`
 
-**STAR 不是死板的四段式**，而是确保每条 bullet 都有：
-- **背景信号**（一句话点出问题大小或情境）
-- **动作**（你具体做了什么，要有动词）
-- **结果**（数字 / 百分比 / 排名 / 规模）
+Si l'utilisateur n'a pas précisé d'orientation, utilisez le template général, mais **posez la question** : « Vers quel type de poste comptes-tu candidater ensuite ? Je peux utiliser une mise en page mieux adaptée à cette direction. »
 
-如果用户提供的信息里**没有数字**，要主动追问："这个项目用户量大概是多少？""这个优化大概提了多少？记不准的话给个量级也行。"
+### Étape 3 : réécrire chaque expérience avec STAR
 
-### Step 4: ATS 关键词检查
+Lisez `references/star_rewrite_guide.md` et appliquez la réécriture STAR à chaque expérience professionnelle / de projet.
 
-调用脚本：
+**STAR n'est pas une structure rigide en quatre paragraphes**, c'est l'assurance que chaque puce contient :
+- **un signal de contexte** (une phrase sur l'ampleur du problème ou de la situation)
+- **une action** (ce que tu as concrètement fait, avec des verbes)
+- **un résultat** (chiffres / pourcentages / classement / échelle)
+
+Si les informations fournies par l'utilisateur **ne contiennent aucun chiffre**, relancez activement : « quelle est environ la taille de la base d'utilisateurs de ce projet ? », « cette optimisation a apporté à peu près combien ? Une estimation d'ordre de grandeur suffit si tu ne te rappelles plus. »
+
+### Étape 4 : vérification des mots-clés ATS
+
+Appelez le script :
 
 ```bash
 python scripts/ats_check.py --resume <resume.md> \
@@ -71,40 +78,40 @@ python scripts/ats_check.py --resume <resume.md> \
     [--jd <jd.txt>]
 ```
 
-脚本会：
-1. 抽取简历里的关键词
-2. 对照行业关键词库（来自 job-intent-tracker 或本 skill 的 `references/keywords/`）
-3. 输出"已覆盖 / 建议补充"两个清单
-4. 给出 ATS 友好度评分（字体单一性、表格使用、特殊符号、图片等）
+Le script va :
+1. extraire les mots-clés du CV
+2. les comparer à la base de mots-clés sectorielle (provenant de job-intent-tracker ou du `references/keywords/` de ce skill)
+3. sortir deux listes : « déjà couvert / suggéré en complément »
+4. attribuer un score de compatibilité ATS (unicité de la police, usage de tableaux, symboles spéciaux, images, etc.)
 
-**ATS 友好的硬规则**：
-- 不要用 word 表格放经历（很多 ATS 解析不了）
-- 不要把日期放在装饰性图片里
-- 不要写两栏布局（有些 ATS 会按列读，导致顺序混乱）
-- 不要插图标 / emoji 在标题里
-- 字体用宋体 / 思源宋体 / Arial / Helvetica 之一
+**Règles strictes de compatibilité ATS** :
+- ne mettez pas les expériences dans un tableau Word (beaucoup d'ATS ne savent pas les parser)
+- ne placez pas les dates dans une image décorative
+- pas de mise en page à deux colonnes (certains ATS lisent par colonne et mélangent l'ordre)
+- pas d'icônes / emojis dans les titres
+- police au choix parmi SimSun / Source Han Serif / Arial / Helvetica
 
-### Step 5: 多格式导出
+### Étape 5 : export multi-formats
 
-读取 `references/export_guide.md`，按用户需求选择：
+Lisez `references/export_guide.md` et choisissez selon le besoin de l'utilisateur :
 
-**docx 导出**（最通用，国内 HR 优先要 docx）：
-- 调用 docx skill
-- 用 `assets/resume_template.docx` 作为模板（如果存在）
+**Export docx** (le plus universel ; les recruteurs le demandent en priorité) :
+- appelez le skill docx
+- utilisez `assets/resume_template.docx` comme template (si présent)
 
-**pdf 导出**（最终投递版）：
-- 推荐流程：先 docx → 再用 word/libreoffice 转 pdf
-- 直接生成 pdf 用 reportlab 比较丑，不推荐
-- 调用 pdf skill 做后处理（加密 / 元数据清理）
+**Export pdf** (version finale d'envoi) :
+- flux recommandé : d'abord docx → puis conversion pdf via word/libreoffice
+- la génération directe en pdf via reportlab donne un rendu médiocre, non recommandé
+- appelez le skill pdf pour le post-traitement (chiffrement / nettoyage des métadonnées)
 
-**markdown 导出**（备份 + GitHub）：
-- 直接写 .md 文件即可
+**Export markdown** (sauvegarde + GitHub) :
+- écrivez simplement le fichier .md
 
-**默认行为**：除非用户指定，同时输出 docx + md 两个版本。
+**Comportement par défaut** : sauf indication de l'utilisateur, produisez à la fois les versions docx + md.
 
-### Step 6: 自检 & 反馈
+### Étape 6 : auto-vérification & retour
 
-输出后做一次自检（写到聊天里给用户看，不用单独存文件）：
+Après la sortie, faites une auto-vérification (à afficher dans la conversation, sans fichier séparé) :
 
 ```
 ✓ 长度：< 1 页（应届）/ ≤ 2 页（社招）
@@ -117,17 +124,17 @@ python scripts/ats_check.py --resume <resume.md> \
 
 ---
 
-## 反模式（不要做）
+## Anti-patterns (à ne pas faire)
 
-- ❌ 帮用户编数字（说"提升 30%"但用户根本没说过）—— 必须基于用户提供的信息，不知道就标 `[待补充：具体数字]`
-- ❌ 用形容词堆砌（"具有出色的沟通能力" "认真负责" "有上进心"）—— 删掉
-- ❌ 一段经历写超过 5 条 bullet —— 太密会被 HR 跳过
-- ❌ 写"自我评价"长篇 —— 国内现在不流行，1~2 行 summary 即可
-- ❌ 把所有公司都写一样的 bullet 数 —— 重要的多写，次要的少写
-- ❌ 把"熟悉 / 了解 / 会用"当能力描述 —— 改成"用 X 做了 Y"
+- ❌ Inventer des chiffres pour l'utilisateur (dire « +30 % » alors qu'il n'a jamais rien dit) — il faut s'appuyer uniquement sur les informations fournies ; à défaut, marquez `[à compléter : chiffre précis]`
+- ❌ Empiler les adjectifs (« excellente capacité de communication », « consciencieux et rigoureux », « très motivé ») — supprimez
+- ❌ Plus de 5 puces pour une seule expérience — trop dense, le recruteur saute
+- ❌ Une longue « auto-évaluation » — ce n'est plus la mode ; un résumé de 1 à 2 lignes suffit
+- ❌ Le même nombre de puces pour toutes les entreprises — plus pour les importantes, moins pour les secondaires
+- ❌ Décrire ses capacités avec « connaît / a des notions / sait utiliser » — reformulez en « réalisé Y avec X »
 
-## 与其他 skill 的协作
+## Coopération avec les autres skills
 
-- 用户接着说"针对这家公司改一下" → 转 `jd-resume-tailor`
-- 用户接着说"准备面试" → 转 `interview-prep`
-- 用户没确定方向就来改简历 → 先反问"你打算投什么方向？"，必要时转 `job-intent-tracker`
+- L'utilisateur enchaîne avec « adapte-le pour cette entreprise » → basculez vers `jd-resume-tailor`
+- L'utilisateur enchaîne avec « prépare l'entretien » → basculez vers `interview-prep`
+- L'utilisateur veut retoucher son CV sans direction définie → demandez d'abord « vers quel type de poste vises-tu ? », et si besoin basculez vers `job-intent-tracker`

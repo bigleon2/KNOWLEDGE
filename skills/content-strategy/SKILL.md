@@ -1,60 +1,67 @@
 ---
 name: content-strategy
-description: Build and execute a content marketing strategy for a solopreneur business. Use when planning what content to create, deciding on content formats and channels, building a content calendar, measuring content performance, or systematizing content production. Covers audience research for content, content pillars, distribution strategy, repurposing workflows, and metrics. Trigger on "content strategy", "content marketing", "what content should I create", "content plan", "content calendar", "content ideas", "content distribution", "grow through content".
+version: "1.0.0"
+category: "Contenu & Marketing"
+tags:
+  - content
+  - strategy
+description: Construire et exécuter une stratégie de marketing de contenu pour une activité de solopreneur. À utiliser pour planifier le contenu à créer, choisir les formats et canaux de contenu, bâtir un calendrier éditorial, mesurer la performance du contenu ou systématiser la production de contenu. Couvre la recherche d'audience pour le contenu, les piliers de contenu, la stratégie de distribution, les flux de recyclage et les métriques. Trigger on "content strategy", "content marketing", "what content should I create", "content plan", "content calendar", "content ideas", "content distribution", "grow through content".
+language: fr
+
 ---
 
 # Content Strategy
 
-## Overview
-Content marketing is how solopreneurs build authority, attract customers, and grow without paid ads. But random content doesn't work — you need a strategy. This playbook builds a repeatable system for creating content that actually drives business results, not just likes.
+## Vue d'ensemble
+Le marketing de contenu est la manière dont les solopreneurs construisent leur autorité, attirent des clients et grandissent sans publicité payante. Mais un contenu aléatoire ne fonctionne pas — il faut une stratégie. Ce playbook met en place un système répétable pour créer du contenu qui produit de vrais résultats commerciaux, et pas seulement des likes.
 
 ---
 
-## Step 1: Define Your Content Goals
+## Étape 1 : définir vos objectifs de contenu
 
-Content without a goal is just noise. Before you create anything, answer: what is this content supposed to DO?
+Du contenu sans objectif n'est que du bruit. Avant de créer quoi que ce soit, répondez à la question : que doit FAIRE ce contenu ?
 
-**Common solopreneur content goals:**
-- **Generate awareness** (new people discover you exist)
-- **Build trust** (people see you as credible and knowledgeable)
-- **Drive leads** (people give you their email or book a call)
-- **Enable sales** (content answers objections and shortens sales cycles)
-- **Retain customers** (existing customers stay engaged and see ongoing value)
+**Objectifs de contenu courants pour un solopreneur :**
+- **Générer de la notoriété** (de nouvelles personnes découvrent votre existence)
+- **Construire la confiance** (on vous perçoit comme crédible et compétent)
+- **Générer des prospects** (les gens vous laissent leur e-mail ou réservent un appel)
+- **Faciliter la vente** (le contenu répond aux objections et raccourcit les cycles de vente)
+- **Fidéliser les clients** (les clients existants restent engagés et perçoivent une valeur continue)
 
-**Rule:** Pick ONE primary goal per piece of content. You can have secondary benefits, but clarity on the main goal determines format, channel, and CTA.
+**Règle :** choisir UN objectif principal par contenu. Des bénéfices secondaires sont possibles, mais la clarté sur l'objectif principal détermine le format, le canal et le CTA.
 
-Example: A tutorial blog post might have the primary goal of "generate awareness" (via SEO) and a secondary goal of "drive leads" (with an email signup CTA at the end).
-
----
-
-## Step 2: Research Your Audience's Content Needs
-
-Great content solves a specific problem for a specific person. Bad content talks about what YOU want to talk about.
-
-**Research workflow (spend 2-3 hours on this before creating anything):**
-
-1. **Mine customer conversations.** Go through support tickets, sales calls, discovery calls. What questions do prospects and customers ask repeatedly? Those are your content topics.
-
-2. **Check competitor content.** What are the top 3-5 players in your space publishing? Look for gaps — topics they're NOT covering or covering poorly.
-
-3. **Keyword research (if doing SEO).** Use free tools (Google autocomplete, AnswerThePublic, or "People Also Ask" in Google results) to see what people are actually searching for related to your niche.
-
-4. **Community mining.** Go to Reddit, Slack communities, Facebook groups, or forums in your space. What questions get asked over and over? Those are high-value topics.
-
-**Output:** A list of 20-30 content ideas ranked by: (a) relevance to your ICP, (b) search volume or community demand, (c) your unique perspective or experience on the topic.
+Exemple : un article de blog tutoriel peut avoir pour objectif principal « générer de la notoriété » (via le SEO) et pour objectif secondaire « générer des prospects » (avec un CTA d'inscription par e-mail à la fin).
 
 ---
 
-## Step 3: Build Content Pillars
+## Étape 2 : étudier les besoins de contenu de votre audience
 
-Content pillars are 3-5 broad topic areas that all your content falls under. They keep you focused and prevent random one-off content that doesn't build momentum.
+Un bon contenu résout un problème précis pour une personne précise. Un mauvais contenu parle de ce que VOUS avez envie de dire.
 
-**How to define pillars:**
-- Each pillar should map to a core problem your product/service solves or a key interest area of your ICP.
-- Pillars should be broad enough to generate dozens of pieces of content but specific enough to be relevant.
-- Aim for 3-5 pillars max. More than that dilutes focus.
+**Flux de recherche (consacrer 2-3 heures à cela avant de créer quoi que ce soit) :**
 
-**Example (for an n8n automation consultant):**
+1. **Exploitez les conversations clients.** Parcourez les tickets de support, les appels de vente, les appels de découverte. Quelles questions les prospects et clients posent-ils de façon répétée ? Ce sont vos sujets de contenu.
+
+2. **Examinez le contenu des concurrents.** Que publient les 3-5 acteurs principaux de votre secteur ? Cherchez les manques — les sujets qu'ils ne traitent PAS ou qu'ils traitent mal.
+
+3. **Recherche de mots-clés (si vous faites du SEO).** Utilisez des outils gratuits (autocomplétion Google, AnswerThePublic, ou « Autres questions posées » dans les résultats Google) pour voir ce que les gens recherchent réellement dans votre niche.
+
+4. **Exploitez les communautés.** Allez sur Reddit, dans les communautés Slack, les groupes Facebook ou les forums de votre secteur. Quelles questions reviennent sans cesse ? Ce sont des sujets à forte valeur.
+
+**Livrable :** une liste de 20 à 30 idées de contenu classées selon : (a) la pertinence pour votre ICP, (b) le volume de recherche ou la demande communautaire, (c) votre perspective ou expérience unique sur le sujet.
+
+---
+
+## Étape 3 : construire vos piliers de contenu
+
+Les piliers de contenu sont 3 à 5 grands domaines thématiques sous lesquels tout votre contenu se range. Ils vous gardent concentré et évitent le contenu isolé aléatoire qui ne crée pas de dynamique.
+
+**Comment définir les piliers :**
+- Chaque pilier doit correspondre à un problème central que votre produit/service résout ou à un centre d'intérêt clé de votre ICP.
+- Les piliers doivent être assez larges pour générer des dizaines de contenus, mais assez précis pour rester pertinents.
+- Visez 3 à 5 piliers maximum. Au-delà, la concentration se dilue.
+
+**Exemple (pour un consultant en automatisation n8n) :**
 ```
 Pillar 1: Workflow Automation Fundamentals
 Pillar 2: No-Code Tool Comparisons
@@ -62,120 +69,120 @@ Pillar 3: Business Process Optimization
 Pillar 4: Real Client Case Studies
 ```
 
-Every piece of content you create should fit under one of these pillars. If it doesn't, don't create it.
+Chaque contenu que vous créez doit se ranger sous l'un de ces piliers. Sinon, ne le créez pas.
 
 ---
 
-## Step 4: Choose Your Content Formats and Channels
+## Étape 4 : choisir vos formats et canaux de contenu
 
-Solopreneurs can't do everything. Pick 1-2 primary formats and 1-2 primary channels. Go deep, not wide.
+Un solopreneur ne peut pas tout faire. Choisissez 1-2 formats principaux et 1-2 canaux principaux. Allez en profondeur, pas en largeur.
 
-**Content formats:**
-| Format | Best For | Time Investment | Longevity |
+**Formats de contenu :**
+| Format | Idéal pour | Investissement en temps | Durée de vie |
 |---|---|---|---|
-| **Blog posts** | SEO, teaching, depth | 2-4 hrs/post | High (evergreen) |
-| **Videos (YouTube)** | Visual topics, personality-driven brands | 3-6 hrs/video | High (evergreen) |
-| **Podcasts** | Thought leadership, interviews | 2-3 hrs/episode | Medium |
-| **Twitter/X threads** | Quick insights, community building | 30 min/thread | Low (24-48hr shelf life) |
-| **LinkedIn posts** | B2B, professional content | 30-60 min/post | Low-medium |
-| **Email newsletters** | Relationship building, owned audience | 1-2 hrs/newsletter | Medium (subscribers keep it) |
-| **Short-form video (TikTok, Reels)** | Viral potential, younger demos | 1-2 hrs/video | Low (algorithmic churn) |
+| **Articles de blog** | SEO, enseignement, profondeur | 2-4 h/article | Élevée (intemporel) |
+| **Vidéos (YouTube)** | Sujets visuels, marques axées personnalité | 3-6 h/vidéo | Élevée (intemporel) |
+| **Podcasts** | Leadership d'opinion, interviews | 2-3 h/épisode | Moyenne |
+| **Threads Twitter/X** | Insights rapides, création de communauté | 30 min/thread | Faible (visibilité de 24-48 h) |
+| **Publications LinkedIn** | B2B, contenu professionnel | 30-60 min/publication | Faible à moyenne |
+| **Newsletters par e-mail** | Création de relation, audience possédée | 1-2 h/newsletter | Moyenne (les abonnés la conservent) |
+| **Vidéos courtes (TikTok, Reels)** | Potentiel viral, publics jeunes | 1-2 h/vidéo | Faible (usure algorithmique) |
 
-**Selection criteria:**
-- Where does your ICP hang out? (B2B = LinkedIn. Developers = Twitter. Visual products = Instagram.)
-- What format do you NOT hate creating? (If you hate being on camera, don't pick YouTube.)
-- What has the best ROI for your goals? (Lead gen = blog + email. Brand building = Twitter + LinkedIn.)
+**Critères de sélection :**
+- Où se trouve votre ICP ? (B2B = LinkedIn. Développeurs = Twitter. Produits visuels = Instagram.)
+- Quel format n'avez-vous PAS en horreur de produire ? (Si être devant la caméra vous rebute, ne choisissez pas YouTube.)
+- Quoi offre le meilleur ROI pour vos objectifs ? (Génération de leads = blog + e-mail. Construction de marque = Twitter + LinkedIn.)
 
-**Recommended solopreneur starting stack:**
-- **Primary format:** Blog posts or long-form LinkedIn posts (depending on B2B vs B2C)
-- **Secondary format:** Email newsletter (this is your owned channel — never skip this)
+**Stack de départ recommandée pour un solopreneur :**
+- **Format principal :** articles de blog ou publications LinkedIn longues (selon B2B ou B2C)
+- **Format secondaire :** newsletter par e-mail (c'est votre canal possédé — ne le sautez jamais)
 
 ---
 
-## Step 5: Build a Content Calendar
+## Étape 5 : construire un calendrier de contenu
 
-A content calendar prevents the "what should I post today?" panic. Plan 2-4 weeks ahead.
+Un calendrier de contenu évite la panique du « qu'est-ce que je publie aujourd'hui ? ». Planifiez 2 à 4 semaines à l'avance.
 
-**Calendar structure:**
+**Structure du calendrier :**
 ```
 DATE | PILLAR | TOPIC | FORMAT | CHANNEL | CTA | STATUS
 ```
 
-**Example:**
+**Exemple :**
 ```
 Feb 10 | Automation | "5 n8n workflows every SaaS founder needs" | Blog | Website + LinkedIn | Email signup | Draft
 Feb 13 | Case Study | "How we saved Client X 20hrs/week" | LinkedIn post | LinkedIn | Book a call | Scheduled
 Feb 17 | Tool Comparison | "Zapier vs n8n: Which is right for you?" | Blog | Website + Twitter | Free guide download | Outline
 ```
 
-**Cadence recommendations:**
-- Blog: 1-2x/week (minimum 2x/month to maintain SEO momentum)
-- Newsletter: 1x/week or biweekly (consistency matters more than frequency)
-- Social (LinkedIn/Twitter): 3-5x/week
+**Recommandations de cadence :**
+- Blog : 1-2 fois/semaine (minimum 2 fois/mois pour maintenir la dynamique SEO)
+- Newsletter : 1 fois/semaine ou toutes les deux semaines (la régularité compte plus que la fréquence)
+- Réseaux sociaux (LinkedIn/Twitter) : 3-5 fois/semaine
 
-**Rule:** Batch creation. Write 4 posts in one sitting rather than 1 post four different days. Batching is 3x faster and produces better quality.
-
----
-
-## Step 6: Distribution and Amplification
-
-Creating content is 30% of the work. Distribution is the other 70%.
-
-**Distribution checklist for every piece:**
-- [ ] Publish on primary channel (blog, YouTube, etc.)
-- [ ] Share on 2-3 social channels with unique captions per platform (don't just copy-paste the same message)
-- [ ] Send to email list (if it's a high-value piece)
-- [ ] Post in 1-2 relevant communities (but add value to the discussion, don't just drop links)
-- [ ] DM it to 3-5 people who you think would find it genuinely useful
-- [ ] Repurpose into 2-3 other formats (see next step)
-
-**Timing:** Publish early in the week (Tuesday-Thursday) for best engagement. Avoid Fridays and weekends unless your audience is specifically active then.
+**Règle :** produire par lots. Rédigez 4 articles en une seule session plutôt que 1 article quatre jours différents. Le travail par lots est 3 fois plus rapide et produit une meilleure qualité.
 
 ---
 
-## Step 7: Repurpose Everything
+## Étape 6 : distribution et amplification
 
-One piece of long-form content can become 5-10 smaller pieces. This is how solopreneurs produce high volume without burning out.
+Créer du contenu représente 30 % du travail. La distribution, c'est les 70 % restants.
 
-**Repurposing workflow (example: one blog post):**
-1. Original: 1,500-word blog post
-2. Repurpose into: LinkedIn post (first 3 paragraphs + a hook)
-3. Repurpose into: Twitter thread (key points broken into 8-10 tweets)
-4. Repurpose into: Email newsletter (add a personal intro, link to full post)
-5. Repurpose into: Carousel post (main points as slides on LinkedIn or Instagram)
-6. Repurpose into: Short video (you on camera summarizing the key takeaway in 60 seconds)
+**Checklist de distribution pour chaque contenu :**
+- [ ] Publier sur le canal principal (blog, YouTube, etc.)
+- [ ] Partager sur 2-3 réseaux sociaux avec des légendes uniques par plateforme (ne pas se contenter de copier-coller le même message)
+- [ ] Envoyer à la liste e-mail (si c'est un contenu à forte valeur)
+- [ ] Publier dans 1-2 communautés pertinentes (mais apportez de la valeur à la discussion, ne déposez pas seulement des liens)
+- [ ] L'envoyer en DM à 3-5 personnes qui le trouveraient vraiment utile
+- [ ] Le recycler en 2-3 autres formats (voir étape suivante)
 
-**Rule:** Repurpose the high-performers. If a blog post gets good traffic or a LinkedIn post gets strong engagement, milk it — turn it into 5 more formats.
+**Timing :** publier en début de semaine (mardi-jeudi) pour un meilleur engagement. Évitez vendredis et week-ends, sauf si votre audience y est spécifiquement active.
 
 ---
 
-## Step 8: Measure What Matters
+## Étape 7 : tout recycler
 
-Track content performance so you can double down on what works and stop doing what doesn't.
+Un contenu long peut devenir 5 à 10 contenus plus petits. C'est ainsi que les solopreneurs produisent en volume sans s'épuiser.
 
-**Metrics by goal:**
+**Flux de recyclage (exemple : un article de blog) :**
+1. Original : article de blog de 1 500 mots
+2. Recyclé en : publication LinkedIn (les 3 premiers paragraphes + un hook)
+3. Recyclé en : thread Twitter (points clés découpés en 8-10 tweets)
+4. Recyclé en : newsletter (ajout d'une intro personnelle, lien vers l'article complet)
+5. Recyclé en : carrousel (points principaux en slides sur LinkedIn ou Instagram)
+6. Recyclé en : vidéo courte (vous face caméra résumant l'idée clé en 60 secondes)
 
-| Goal | Metrics to Track |
+**Règle :** recyclez les contenus qui performent. Si un article de blog génère du trafic ou qu'une publication LinkedIn fait un fort engagement, exploitez-la — déclinez-la en 5 formats supplémentaires.
+
+---
+
+## Étape 8 : mesurer ce qui compte
+
+Suivez la performance du contenu pour renforcer ce qui fonctionne et arrêter ce qui ne fonctionne pas.
+
+**Métriques par objectif :**
+
+| Objectif | Métriques à suivre |
 |---|---|
-| Awareness | Impressions, reach, new visitors, social followers |
-| Trust | Engagement rate (comments, shares), time on page, repeat visitors |
-| Lead generation | Email signups, CTA clicks, lead magnet downloads |
-| Sales enablement | Content assists (how many deals involved this content?), proposal open rates (if content is attached) |
+| Notoriété | Impressions, portée, nouveaux visiteurs, abonnés sociaux |
+| Confiance | Taux d'engagement (commentaires, partages), temps passé sur la page, visiteurs récurrents |
+| Génération de leads | Inscriptions e-mail, clics sur les CTA, téléchargements de lead magnets |
+| Facilitation des ventes | Assistance du contenu (combien de transactions ont impliqué ce contenu ?), taux d'ouverture des propositions (si le contenu y est joint) |
 
-**Dashboard (monthly check-in):**
-- Top 5 performing pieces (by traffic or engagement)
-- Traffic source breakdown (organic, social, direct, referral)
-- Conversion rate (visitors → email signups or leads)
-- Time investment vs results (which content type has the best ROI?)
+**Tableau de bord (revue mensuelle) :**
+- Top 5 des contenus performants (par trafic ou engagement)
+- Répartition des sources de trafic (organique, social, direct, referral)
+- Taux de conversion (visiteurs → inscriptions e-mail ou leads)
+- Investissement en temps vs résultats (quel type de contenu a le meilleur ROI ?)
 
-**Iteration rule:** Every month, identify the top-performing content type and topic. Do 2x more of that next month. Identify the worst performer. Stop doing that format or adjust the approach.
+**Règle d'itération :** chaque mois, identifiez le type et le sujet de contenu les plus performants. Refaites-en deux fois plus le mois suivant. Identifiez le moins performant. Arrêtez ce format ou ajustez l'approche.
 
 ---
 
-## Content Strategy Mistakes to Avoid
-- Creating content without a goal. Every piece should have a purpose tied to a business outcome.
-- Not researching what your audience actually wants. Your assumptions are often wrong — validate with real data.
-- Trying to be on every platform. Pick 1-2 and dominate them before expanding.
-- Publishing inconsistently. One post a month doesn't build momentum. Consistency compounds.
-- Not repurposing. Creating 10 original pieces is 5x harder than creating 2 original pieces and repurposing them into 8 more.
-- Ignoring metrics. If you don't measure, you can't improve. Check your numbers monthly at minimum.
+## Erreurs de stratégie de contenu à éviter
+- Créer du contenu sans objectif. Chaque contenu doit avoir un but lié à un résultat commercial.
+- Ne pas rechercher ce que votre audience veut réellement. Vos hypothèses sont souvent fausses — validez avec des données réelles.
+- Essayer d'être sur toutes les plateformes. Choisissez-en 1-2 et dominez-les avant de vous étendre.
+- Publier de façon irrégulière. Une publication par mois ne crée pas de dynamique. La régularité se cumule.
+- Ne pas recycler. Créer 10 contenus originaux est 5 fois plus difficile que d'en créer 2 et de les décliner en 8 autres.
+- Ignorer les métriques. Ce qu'on ne mesure pas, on ne peut pas l'améliorer. Consultez vos chiffres au minimum chaque mois.

@@ -1,37 +1,43 @@
 ---
 name: xlsx
+version: "1.1.0"
+category: "Documents & Contenu"
+tags:
+  - xlsx
 metadata:
   author: Z.AI
-  version: "1.0"
-description: "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file; create a new spreadsheet from scratch or from other data sources; analyze data and output results as an Excel file with charts; convert between tabular file formats (CSV/JSON/PDF → XLSX or vice versa); clean, merge, pivot, or transform tabular data. Trigger especially when the user references a spreadsheet file by name or path, says 'make a table/report/model', mentions Excel/CSV/数据分析/报表/汇总, or wants data visualization inside a spreadsheet."
+  version: "1.1"
+description: "Utilise ce skill chaque fois qu'un fichier tableur est l'entrée ou la sortie principale. Cela couvre toute tâche où l'utilisateur souhaite : ouvrir, lire, modifier ou réparer un fichier .xlsx, .xlsm, .csv ou .tsv existant ; créer un nouveau tableur de zéro ou à partir d'autres sources de données ; analyser des données et produire les résultats dans un fichier Excel avec graphiques ; convertir entre formats tabulaires (CSV/JSON/PDF → XLSX ou inversement) ; nettoyer, fusionner, pivoter ou transformer des données tabulaires. Déclenchement tout particulièrement lorsque l'utilisateur mentionne un fichier tableur par nom ou chemin, dit « fais un tableau/un rapport/un modèle », mentionne Excel/CSV/analyse de données/rapports/synthèse, ou souhaite une visualisation de données dans un tableur."
 license: Proprietary. LICENSE.txt has complete terms
+language: fr
+
 ---
 
-# XLSX — Scene-Driven Spreadsheet Workbench
+# XLSX — Atelier de tableurs piloté par scénarios
 
-## Quick Setup
+## Configuration rapide
 
 ```bash
 bash "$XLSX_SKILL_DIR/setup.sh"    # Interactive environment check + install
 ```
-## Pre-Flight: Intent Gate
+## Pré-flight : filtre d'intention
 
-Before touching any code, confirm the user actually needs a spreadsheet:
+Avant d'écrire la moindre ligne de code, confirmez que l'utilisateur a réellement besoin d'un tableur :
 
-- Report / analysis summary (述职, 调研报告) → **docx skill**
-- Presentation (汇报, 演示, pitch deck) → **pptx skill**
-- Formal print document (合同, 证书, "PDF") → **pdf skill**
-- Charts only, no data table needed → **charts skill**
-- User explicitly says a format → respect it
+- Rapport / synthèse d'analyse (compte rendu, rapport d'étude) → **skill docx**
+- Présentation (compte rendu, exposé, pitch deck) → **skill pptx**
+- Document imprimé formel (contrat, certificat, « PDF ») → **skill pdf**
+- Graphiques uniquement, sans tableau de données → **skill charts**
+- L'utilisateur indique explicitement un format → le respecter
 
-If confirmed xlsx → proceed to Scene Router below.
+Si c'est bien du xlsx → passez au Scene Router ci-dessous.
 
-**Request Decomposition** (do this every time):
-- **Explicit needs**: sheets, columns, formulas, metrics the user stated
-- **Implicit needs**: business context, downstream use (filter? sort? input?)
-- **Multi-part requests**: generate ALL parts — never silently drop a component
+**Décomposition de la demande** (à faire à chaque fois) :
+- **Besoins explicites** : feuilles, colonnes, formules, métriques énoncées par l'utilisateur
+- **Besoins implicites** : contexte métier, usage en aval (filtrer ? trier ? saisir ?)
+- **Demandes en plusieurs parties** : générez TOUTES les parties — n'abandonnez jamais silencieusement un composant
 
-**Multi-Intent Detection** — some requests combine multiple scenes:
+**Détection multi-intentions** — certaines demandes combinent plusieurs scénarios :
 
 ```
 "Create a financial model with charts and export a PDF summary"
@@ -47,13 +53,13 @@ If confirmed xlsx → proceed to Scene Router below.
  → scenes/convert.md + scenes/create.md (for summary)
 ```
 
-When multiple intents detected, load all matching files and execute in logical order: data preparation → analysis → visualization → styling → QA.
+Lorsque plusieurs intentions sont détectées, chargez tous les fichiers correspondants et exécutez dans l'ordre logique : préparation des données → analyse → visualisation → style → QA.
 
 ---
 
-## Complexity Gate (evaluate BEFORE Scene Router)
+## Complexity Gate (à évaluer AVANT le Scene Router)
 
-Determine task complexity to control file loading depth:
+Déterminez la complexité de la tâche pour contrôler la profondeur de chargement des fichiers :
 
 ```
 User Request
@@ -71,90 +77,90 @@ User Request
    → Target: load recipes/templates only when stuck on implementation
 ```
 
-**LITE triggers**: single groupby, one chart, format conversion, inspect/audit/validate, simple pivot
-**FULL triggers**: correlation matrix, multi-sheet dashboard, statistical analysis, financial model, KANO/funnel/cohort
+**Déclencheurs LITE** : un seul groupby, un graphique, conversion de format, inspect/audit/validate, pivot simple
+**Déclencheurs FULL** : matrice de corrélation, tableau de bord multi-feuilles, analyse statistique, modèle financier, KANO/funnel/cohort
 
 ---
 
 ## Scene Router
 
 ```
-User Request
+Demande de l'utilisateur
 │
-├─ Involves an existing file?
-│  ├─ Yes → Modify content or structure?
-│  │         ├─ Yes ──────────────────── → scenes/edit.md
-│  │         └─ No (read/analyze only) ─ → scenes/analyze.md
+├─ Concerne un fichier existant ?
+│  ├─ Oui → Modifier le contenu ou la structure ?
+│  │         ├─ Oui ──────────────────── → scenes/edit.md
+│  │         └─ Non (lecture/analyse seule) ─ → scenes/analyze.md
 │  │
-│  └─ Format conversion (CSV↔XLSX, JSON, PDF tables)?
-│     └─ Yes ────────────────────────── → scenes/convert.md
+│  └─ Conversion de format (CSV↔XLSX, JSON, tableaux PDF) ?
+│     └─ Oui ────────────────────────── → scenes/convert.md
 │
-├─ Create from scratch?
-│  ├─ Financial / budget / forecast / cost tracking?
-│  │  ├─ Complex (DCF / LBO / three-statement linkage (三表联动) / sensitivity / IB model)?
-│  │  │  └─ Yes ─────────────────────── → scenes/finance.md
-│  │  └─ Simple (budget table (预算表) / expense report (费用报表) / revenue vs cost (收支对比) / project cost (项目成本) / personal finance (个人记账))?
-│  │     └─ Yes ─────────────────────── → scenes/finance_lite.md
-│  └─ General table / report / template
+├─ Créer de zéro ?
+│  ├─ Financier / budget / prévisionnel / suivi de coûts ?
+│  │  ├─ Complexe (DCF / LBO / trois états liés / sensitivity / modèle IB) ?
+│  │  │  └─ Oui ─────────────────────── → scenes/finance.md
+│  │  └─ Simple (tableau de budget / note de frais / recettes vs dépenses / coût de projet / comptabilité personnelle) ?
+│  │     └─ Oui ─────────────────────── → scenes/finance_lite.md
+│  └─ Tableau général / rapport / modèle
 │     └─ ──────────────────────────── → scenes/create.md
 │
-├─ Batch processing / large files / protection / validation?
-│  └─ Yes ───────────────────────────── → scenes/advanced.md
+├─ Traitement par lots / gros fichiers / protection / validation ?
+│  └─ Oui ───────────────────────────── → scenes/advanced.md
 │
-├─ VBA / macros / automation inside Excel?
-│  └─ Yes ───────────────────────────── → scenes/vba.md + engines/vba-templates.md
+├─ VBA / macros / automatisation dans Excel ?
+│  └─ Oui ───────────────────────────── → scenes/vba.md + engines/vba-templates.md
 │
-├─ Needs charts or data visualization?
-│  └─ Yes ───────────── append ────────→ engines/chart.md
+├─ Besoin de graphiques ou de visualisation de données ?
+│  └─ Oui ───────────── ajouter ────────→ engines/chart.md
 │
-└─ Needs styling / design system?
-   └─ Yes ───────────── append ────────→ engines/design.md
+└─ Besoin de style / design system ?
+   └─ Oui ───────────── ajouter ────────→ engines/design.md
 ```
 
-**Mixed requests**: load all matching files. Engine files always **append** to a scene.
+**Demandes mixtes** : chargez tous les fichiers correspondants. Les fichiers engine s'ajoutent toujours (**append**) à un scénario.
 
-**Finance detection**:
-- **finance.md** (complex): DCF, LBO, P&L, 利润表, 资产负债, valuation, 估值, IRR, 三表联动, sensitivity, scenario
-- **finance_lite.md** (simple): 预算, budget, 费用, expense, 收支, 记账, 项目成本, cost tracking, 报销, ROI
+**Détection finance** :
+- **finance.md** (complexe) : DCF, LBO, P&L, compte de résultat, bilan, valuation, valorisation, IRR, trois états financiers liés, sensitivity, scenario
+- **finance_lite.md** (simple) : budget, prévisionnel, dépenses, expense, recettes/dépenses, comptabilité, coût de projet, cost tracking, notes de frais, ROI
 
-**VBA detection**: 宏, macro, VBA, 自动化, automation, .xlsm, 按钮, button, auto-run, 批量处理脚本
-
----
-
-## Design Principles
-
-### 1. Live Formula Guarantee
-Every derived value SHOULD be an Excel formula so the spreadsheet stays dynamic.
-
-**Exception — Programmatic Verification**: When the output file will be verified by Python (not opened in Excel), TOTAL/SUM rows should write **computed values** instead of formulas, because openpyxl cannot evaluate formulas and `data_only=True` returns `None` for newly-written formulas. Optionally add the formula as a cell comment for reference.
-
-### 2. Zero Error Tolerance
-Deliverables must have zero formula errors. All divisions wrapped with `IFERROR` or `IF(denom=0,...)`. Absolute references (`$C$42`) for shared denominators.
-
-### 3. Compatibility First
-No dynamic array functions (`FILTER`, `UNIQUE`, `XLOOKUP`, `SORT`, `SORTBY`, `XMATCH`, `SEQUENCE`, `LET`, `LAMBDA`, `RANDARRAY`). No implicit array formulas — use `SUMPRODUCT` alternatives.
-
-### 4. Preserve & Match
-When editing existing files: study and exactly match format, style, conventions. Existing patterns always override defaults. Text starting with `=` must be prefixed with `'`.
-
-### 5. Language Mirror
-Output language (sheet names, headers, labels) matches user's input language.
-
-### 6. Data Consistency Over Instructions
-When user instructions conflict with the actual data patterns in the existing file:
-- **First priority**: match the existing data pattern (e.g., if existing data uses `0` for empty, don't switch to `-`)
-- **Second priority**: follow user instructions literally
-- Always flag the conflict to the user
-
-Example: User says "show hyphen for zero" but existing data and answer key use numeric `0` → Use `0` and notify user of the discrepancy.
+**Détection VBA** : macro, VBA, automatisation, automation, .xlsm, bouton, button, auto-run, script de traitement par lots
 
 ---
 
-## Toolchain
+## Principes de conception
 
-### Script Path Setup (MANDATORY before any script call)
+### 1. Garantie de formules vivantes
+Chaque valeur dérivée DEVRAIT être une formule Excel afin que le tableur reste dynamique.
 
-All CLI tools live relative to this skill's directory. Before calling any script, resolve the absolute path once:
+**Exception — vérification programmatique** : lorsque le fichier de sortie sera vérifié par Python (sans être ouvert dans Excel), les lignes TOTAL/SUM doivent écrire des **valeurs calculées** au lieu de formules, car openpyxl ne peut pas évaluer les formules et `data_only=True` renvoie `None` pour les formules fraîchement écrites. Ajoutez éventuellement la formule en commentaire de cellule pour référence.
+
+### 2. Tolérance zéro erreur
+Les livrables ne doivent contenir aucune erreur de formule. Toutes les divisions enveloppées avec `IFERROR` ou `IF(denom=0,...)`. Références absolues (`$C$42`) pour les dénominateurs partagés.
+
+### 3. Compatibilité d'abord
+Pas de fonctions de tableaux dynamiques (`FILTER`, `UNIQUE`, `XLOOKUP`, `SORT`, `SORTBY`, `XMATCH`, `SEQUENCE`, `LET`, `LAMBDA`, `RANDARRAY`). Pas de formules de tableau implicites — utilisez des alternatives avec `SUMPRODUCT`.
+
+### 4. Préserver et reproduire
+Lors de la modification de fichiers existants : étudiez et reproduisez exactement le format, le style, les conventions. Les motifs existants l'emportent toujours sur les valeurs par défaut. Le texte commençant par `=` doit être préfixé par `'`.
+
+### 5. Miroir de langue
+La langue de sortie (noms de feuilles, en-têtes, libellés) correspond à la langue d'entrée de l'utilisateur.
+
+### 6. Cohérence des données avant les instructions
+Lorsque les instructions de l'utilisateur contredisent les motifs de données réels du fichier existant :
+- **Priorité 1** : respecter le motif de données existant (ex. si les données existantes utilisent `0` pour vide, ne pas passer à `-`)
+- **Priorité 2** : suivre littéralement les instructions de l'utilisateur
+- Toujours signaler le conflit à l'utilisateur
+
+Exemple : l'utilisateur dit « afficher un tiret pour zéro » mais les données existantes et la clé de réponse utilisent le numérique `0` → utilisez `0` et signalez l'écart à l'utilisateur.
+
+---
+
+## Chaîne d'outils
+
+### Configuration du chemin des scripts (OBLIGATOIRE avant tout appel de script)
+
+Tous les outils CLI se situent par rapport au répertoire de ce skill. Avant d'appeler un script, résolvez une fois pour toutes le chemin absolu :
 
 ```bash
 XLSX_SKILL_DIR="<skill_directory>"   # ← parent directory of this SKILL.md
@@ -165,7 +171,7 @@ python3 "$XLSX_SKILL_DIR/xlsx.py" pivot data.xlsx output.xlsx --rows Region --va
 python3 "$XLSX_SKILL_DIR/xlsx.py" validate output.xlsx
 ```
 
-**For Python imports** (when generation code needs to import skill modules):
+**Pour les imports Python** (lorsque le code de génération doit importer les modules du skill) :
 
 ```python
 import sys, os
@@ -175,56 +181,56 @@ for sub in [XLSX_SKILL_DIR, os.path.join(XLSX_SKILL_DIR, "templates")]:
         sys.path.insert(0, sub)
 ```
 
-**⚠️ NEVER use bare `python3 xlsx.py ...`** — it only works if cwd happens to be the skill directory. Always use the absolute path.
+**⚠️ N'utilisez JAMAIS un `python3 xlsx.py ...` nu** — cela ne fonctionne que si le répertoire courant (cwd) se trouve être celui du skill. Utilisez toujours le chemin absolu.
 
-### Tool Reference
+### Référence des outils
 
-| Tool | Use |
+| Outil | Usage |
 |------|-----|
-| **openpyxl** | Formulas, formatting, charts, cell-level control |
-| **pandas** | Data analysis, bulk operations, CSV/TSV |
-| `load_workbook(read_only=True)` | Large file reads |
-| `Workbook(write_only=True)` | Large file writes |
-| **templates/base.py** | Design tokens, font resolution, style factories, utilities (single source of truth) |
-| **xlsx.py** | QA commands (see `quality/pipeline.md`) |
+| **openpyxl** | Formules, formatage, graphiques, contrôle au niveau cellule |
+| **pandas** | Analyse de données, opérations en masse, CSV/TSV |
+| `load_workbook(read_only=True)` | Lectures de gros fichiers |
+| `Workbook(write_only=True)` | Écritures de gros fichiers |
+| **templates/base.py** | Design tokens, résolution des polices, fabriques de styles, utilitaires (source unique de vérité) |
+| **xlsx.py** | Commandes QA (voir `quality/pipeline.md`) |
 
-Workbook metadata: `wb.properties.creator = "Z.ai"`
+Métadonnées du classeur : `wb.properties.creator = "Z.ai"`
 
-> **All code must import from `templates/base.py`** for colors, fonts, and style helpers. Never hardcode hex values or font names.
+> **Tout le code doit importer depuis `templates/base.py`** pour les couleurs, les polices et les helpers de style. Ne codez jamais en dur de valeurs hexadécimales ni de noms de polices.
 
 ---
 
-## Quality Gate
+## Porte qualité
 
-Every deliverable must pass the full integrity pipeline before delivery.
+Chaque livrable doit passer le pipeline complet d'intégrité avant livraison.
 
-→ **Load `quality/pipeline.md` for the role-based integrity workflow.**
+→ **Chargez `quality/pipeline.md` pour le workflow d'intégrité basé sur les rôles.**
 
-Quick reference:
+Référence rapide :
 ```
 Blueprint → Build & Self-check (per-sheet) → Inspect → Pivot (if needed) → Release
 ```
 
 ---
 
-## Capability Matrix
+## Matrice de capacités
 
-| Capability | Supported | Scene/Engine |
+| Capacité | Pris en charge | Scénario/Engine |
 |-----------|-----------|-------------|
-| Create from scratch | ✅ | scenes/create |
-| Edit existing file | ✅ | scenes/edit |
-| Data analysis & EDA | ✅ | scenes/analyze |
-| Format conversion | ✅ | scenes/convert |
-| Financial models (DCF/LBO/P&L) | ✅ | scenes/finance |
-| Simple budgets & expenses | ✅ | scenes/finance_lite |
-| VBA macros & automation | ✅ | scenes/vba + engines/vba-templates |
-| Batch processing | ✅ | scenes/advanced |
-| Embedded charts | ✅ | engines/chart |
-| Smart chart recommendation | ✅ | engines/chart |
-| Design system & styling | ✅ | engines/design |
-| PivotTable creation | ✅ | quality/pipeline (pivot cmd) |
-| Formula validation | ✅ | quality/pipeline |
-| Structural validation | ✅ | quality/pipeline |
-| Data provenance tracking | ✅ | scenes/analyze |
-| Large file handling | ✅ | scenes/advanced |
-| Data protection & locking | ✅ | scenes/advanced |
+| Créer de zéro | ✅ | scenes/create |
+| Modifier un fichier existant | ✅ | scenes/edit |
+| Analyse de données et EDA | ✅ | scenes/analyze |
+| Conversion de format | ✅ | scenes/convert |
+| Modèles financiers (DCF/LBO/P&L) | ✅ | scenes/finance |
+| Budgets et dépenses simples | ✅ | scenes/finance_lite |
+| Macros VBA et automatisation | ✅ | scenes/vba + engines/vba-templates |
+| Traitement par lots | ✅ | scenes/advanced |
+| Graphiques intégrés | ✅ | engines/chart |
+| Recommandation intelligente de graphiques | ✅ | engines/chart |
+| Design system et style | ✅ | engines/design |
+| Création de tableaux croisés (pivot) | ✅ | quality/pipeline (pivot cmd) |
+| Validation des formules | ✅ | quality/pipeline |
+| Validation structurelle | ✅ | quality/pipeline |
+| Traçabilité de la provenance des données | ✅ | scenes/analyze |
+| Gestion de gros fichiers | ✅ | scenes/advanced |
+| Protection et verrouillage des données | ✅ | scenes/advanced |

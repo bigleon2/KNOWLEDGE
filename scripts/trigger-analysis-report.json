@@ -65,7 +65,7 @@
       "n_cases": 7
     },
     "gen-plan": {
-      "version": "3.18.0",
+      "version": "3.19.0",
       "score_officiel": "8/8",
       "derive_m": false,
       "n_cases": 8
@@ -137,7 +137,7 @@
       "n_cases": 7
     },
     "skill-creator": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "score_officiel": "8/8",
       "derive_m": false,
       "n_cases": 8
@@ -155,7 +155,7 @@
       "n_cases": 7
     },
     "version-management": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "score_officiel": "3/8",
       "derive_m": true,
       "n_cases": 8

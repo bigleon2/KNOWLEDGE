@@ -1,49 +1,56 @@
 ---
 name: task-review
-description: 当用户指令为高复杂度任务时触发，用于将刚完成的任务路径保存为可复用技能，生成相关的SKILL.md文档。
+version: "1.0.0"
+category: "Méta (Skills & Plans)"
+tags:
+  - task
+  - review
+description: "Se déclenche quand la demande de l'utilisateur correspond à une tâche de haute complexité ; sert à sauvegarder le chemin de la tâche qui vient d'être accomplie sous forme de skill réutilisable, et à générer la documentation SKILL.md associée."
+language: fr
+
 ---
 
-## 触发时机
+## Moment de déclenchement
 
-每次任务完成、准备向用户交付结果时，先执行以下检查。不要告诉用户你在做这个检查。
+À chaque fin de tâche, avant de livrer le résultat à l'utilisateur, exécute d'abord les vérifications suivantes. Ne dis pas à l'utilisateur que tu effectues cette vérification.
 
-## 执行步骤
+## Étapes d'exécution
 
-1. 快速判断本次任务是否满足以下任一条件：
-   - 调用了 5 次及以上的工具
-   - 执行过程中遇到了错误或死胡同，最终找到了正确路径
-   - 任务包含 3 个及以上的明确步骤
+1. Déterminer rapidement si la tâche remplit au moins une des conditions suivantes :
+   - cinq appels d'outils ou plus
+   - des erreurs ou des impasses rencontrées en cours d'exécution, avant de finalement trouver le bon chemin
+   - trois étapes explicites ou plus dans la tâche
 
-2. 如果不满足以上任何条件，跳过，不做任何操作。
+2. Si aucune condition n'est remplie, passer, sans aucune action.
 
-3. 如果满足，继续评估：
-   - 这个任务未来是否可能被重复或有类似变体？
-   - 这次执行过程中，是否有可复用的流程、结构、注意事项？
+3. Si une condition est remplie, poursuivre l'évaluation :
+   - cette tâche risque-t-elle d'être refaite à l'avenir, ou d'avoir des variantes similaires ?
+   - cette exécution a-t-elle produit des processus, structures ou points de vigilance réutilisables ?
 
-4. 如果任意一个为"是"，则沉淀为技能：
-   - 先检查 skills/ 目录下是否已有匹配的技能文件
-   - 如果有：将新经验、踩坑记录**追加更新**到原文件，不要新建
-   - 如果没有：新建 `skills/SKILL-{技能名称}/SKILL.md`，格式如下：
+4. Si l'une des réponses est « oui », capitaliser en skill :
+   - vérifier d'abord si un fichier de skill correspondant existe déjà dans le répertoire skills/
+   - si oui : **ajouter et mettre à jour** le fichier existant avec les nouvelles expériences et les pièges relevés, ne pas en créer un nouveau
+   - si non : créer `skills/SKILL-{nom-du-skill}/SKILL.md` avec le format suivant :
 
 ```
 ---
-name: 技能名称
-description: 一句话描述适用场景，要具体到能让 agent 自动匹配任务
+name: nom-du-skill
+description: description des cas d'usage en une phrase, assez concrète pour que l'agent associe automatiquement les tâches
 ---
 
-（执行步骤、质量标准、踩坑记录）
+(étapes d'exécution, critères de qualité, journal des pièges)
 ```
 
-5. 沉淀了新技能时，必须在回复末尾简短提一句，例如"💡 本次经验已沉淀为新技能：{技能名称}"。
-6. 更新了已有技能时，必须在回复末尾简短提一句，例如"💡 本次经验已更新到技能中：{技能名称}"。
-7. 未沉淀或者更新时，不提及任何关于此检查的内容。
+5. Quand un nouveau skill a été capitalisé, mentionner brièvement à la fin de la réponse, par ex. « 💡 Cette expérience a été capitalisée dans un nouveau skill : {nom du skill} ».
+6. Quand un skill existant a été mis à jour, mentionner brièvement à la fin de la réponse, par ex. « 💡 Cette expérience a été intégrée au skill : {nom du skill} ».
+7. Si rien n'a été capitalisé ni mis à jour, ne rien mentionner au sujet de cette vérification.
 
-## 质量标准
+## Critères de qualité
 
-- description 必须具体，写成用户会说的话。好的例子："监测全球AI新闻并生成HTML简报"。坏的例子："处理信息相关任务"。
-- 执行步骤必须具体到照着做就能复现的程度。
-- 踩坑记录只记真正踩过的坑，不要编造。
+- La description doit être concrète, formulée comme le parlerait l'utilisateur. Bon exemple : « surveiller l'actualité IA mondiale et générer un briefing HTML ». Mauvais exemple : « traiter des tâches liées à l'information ».
+- Les étapes d'exécution doivent être assez précises pour permettre la reproduction rien qu'en les suivant.
+- Le journal des pièges ne consigne que les pièges réellement rencontrés, sans rien inventer.
 
-## 踩坑记录
+## Journal des pièges
 
-（暂无，随使用积累）
+(Rien pour l'instant, à enrichir au fil de l'usage)

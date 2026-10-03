@@ -300,8 +300,33 @@ record("PASS" if (SKILLS / "gen-plan" / "evals" / "evals.json").exists() else "F
 gv = read_frontmatter_version(gp) or "3.12.0"
 pm_v = f"PROMPT-MAITRE-GEN-PLAN-v{gv}.md"
 has_corpus_pm = (CORPUS / pm_v).exists()
-record("PASS" if has_corpus_pm else "FAIL", "5",
-       f"PM {pm_v} résolu (corpus — Architecture v2.0 : emplacement unique)")
+
+
+def _sv(p):
+    m = re.search(r"v([\d.]+)\.md$", p.name)
+    return [int(x) for x in m.group(1).split(".")] if m else [0]
+
+
+if has_corpus_pm:
+    record("PASS", "5",
+           f"PM {pm_v} résolu (corpus — Architecture v2.0 : emplacement unique)")
+else:
+    # Garde R2 (PM-INSTALL §3.2, dynamisé KO-L004 — Task 23) : la forme installée
+    # fait foi ; un PM corpus ANTÉRIEUR est toléré (écart journalisé), un PM
+    # corpus POSTÉRIEUR est un risque de rétrogradation réel.
+    fams = sorted(CORPUS.glob("PROMPT-MAITRE-GEN-PLAN-v*.md"))
+    if fams:
+        latest = max(fams, key=_sv)
+        lv, iv = _sv(latest), [int(x) for x in gv.split(".")]
+        if lv <= iv:
+            record("PASS", "5",
+                   f"PM exact {pm_v} absent du corpus — garde R2 : forme installée v{gv} fait foi, "
+                   f"PM corpus antérieur toléré ({latest.name}, écart KO-L004 journalisé)")
+        else:
+            record("FAIL", "5",
+                   f"PM corpus {latest.name} POSTÉRIEUR à l'installé v{gv} — risque de rétrogradation (R2)")
+    else:
+        record("FAIL", "5", f"Aucun PM GEN-PLAN au corpus (attendu {pm_v})")
 ver_hit = f"v{gv}" in gp_text or f"version: {gv}" in gp_text  # dynamisé : frontmatter sans préfixe v
 record("PASS" if ver_hit else "FAIL", "5",
        f"SKILL.md ↔ PM v{gv} alignés en version",
@@ -432,19 +457,30 @@ record("PASS" if (n_sections >= 2 and n_taskids >= 2) else ("WARN" if not wl els
 # ============================================================================
 print(f"\n=== 11. Propagation de la mise à jour gen-plan v{gv} ===")
 # 11a. Porteurs de version attendus [dynamisés future-proof N14-b — gv = frontmatter installé]
-pm_text = (CORPUS / pm_v).read_text(encoding="utf-8")
+# Garde R2 (Task 23) : si le PM exact v{gv} est absent du corpus, le PM le plus récent
+# de la famille fait foi pour la lecture corpus (forme installée = source de vérité).
+pm_exact = (CORPUS / pm_v)
+if pm_exact.exists():
+    pm_file = pm_exact
+else:
+    _fams = sorted(CORPUS.glob("PROMPT-MAITRE-GEN-PLAN-v*.md"))
+    pm_file = max(_fams, key=_sv) if _fams else None
+pm_name = pm_file.name if pm_file else "(PM absent du corpus)"
+pm_gv = (re.search(r"v([0-9]+(?:\.[0-9]+)*)", pm_name).group(1) if pm_file else gv)
+pm_text = pm_file.read_text(encoding="utf-8") if pm_file else ""
+pm_ok = bool(pm_file) and pm_gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1400
 carriers = [
     (f"SKILL.md gen-plan : frontmatter {gv}", read_frontmatter_version(gp) == gv),
     ("SKILL.md gen-plan : zéro mention stale 3.10.0", gp_text.count("3.10.0") == 0),
-    (f"PM {pm_v} (corpus) : en-tête version + plage 1200-1400 lignes",
-     gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1400),
+    (f"PM {pm_name} (corpus) : en-tête version + plage 1200-1400 lignes", pm_ok),
     ("PM : 6e référence PEK (§2.2) + section §9.6",
      "prompt-engineering-kit.md" in pm_text and "9.6" in pm_text),
     ("download/ sans copie du PM courant (décision v2.2 — canal de fichiers supprimé)",
      not (DOWNLOAD / pm_v).exists()),
-    (f"Archive : PM v{gv} byte-identique au corpus (véhicule v2.2 — unique voie de diffusion)",
-     ARCHIVE.is_file() and zipfile.ZipFile(ARCHIVE).read(f"@mon-ecosysteme/{pm_v}")
-     == (CORPUS / pm_v).read_bytes()),
+    (f"Archive : {pm_name} byte-identique au corpus (véhicule v2.2 — unique voie de diffusion ; garde R2 : PM le plus récent de la famille)",
+     ARCHIVE.is_file() and pm_file is not None
+     and zipfile.ZipFile(ARCHIVE).read(f"@mon-ecosysteme/{pm_name}")
+     == pm_file.read_bytes()),
     (f"KB : entrée « ## gen-plan v{gv} »",
      bool(re.search(r"^## gen-plan v" + re.escape(gv) + r"$", kb_text, re.M))),
     ("KB : calibration B1 documentée (PEK, 2026-09-10)",

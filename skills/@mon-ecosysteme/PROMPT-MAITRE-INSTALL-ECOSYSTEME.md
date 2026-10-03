@@ -1,11 +1,11 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.3.1
-Date : 2026-10-02
+Version : 1.4.0
+Date : 2026-10-03
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
 Dépend : CONTEXTE SYSTÈME (embarqué ci-dessous)
-Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — périmètre (§A) + ordre d'exécution optimal (§2) + critères de passage (§3).
+Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — périmètre (§A) + ordre d'exécution optimal (§2) + étendue d'installation COMPLET/MINIMALE (§2bis, v1.4.0) + critères de passage (§3).
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
@@ -71,6 +71,18 @@ Note (correct-work CIBLE, 2026-09-06, S3 ; révisée session A9, 2026-09-06) : l
 
 Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fichiers, 7 fichiers cœur, PM gen-plan v3.7.0, arbitres 60/60) sont remplacés par des invariants dynamiques (KO-L003) : l'invariant `CORPUS_ATTENDU` du checker fait foi pour la taille du corpus ; « PM le plus récent » se dérive du listing réel du corpus ; les critères numériques sont les verdicts des arbitres courants.
 
+## §2bis — Étendue d'installation : profils COMPLET (défaut) et MINIMALE (v1.4.0, Task 23)
+
+**Objet (directive propriétaire « gagner de la place sur le disque dur »)** : le profil MINIMALE n'installe que les éléments nécessaires au fonctionnement de `gen-plan`, `correct-work` et `skills-inventory` (et de leurs éléments liés), ainsi que des agents `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md`, `PROMPT-MAITRE-SHARED.md` et `SYNC-CONTEXT.md`.
+
+**Fermeture MINIMALE (définition normative)** — l'union de :
+- les 3 skills fonctionnelles : `gen-plan/`, `correct-work/`, `skills-inventory/` (formes installées complètes : SKILL.md + `references/` + `evals/` + `scripts/`) ;
+- leurs éléments liés, dérivés MÉCANIQUEMENT au moment de l'installation (jamais figés — KO-L003) : dépendances déclarées (frontmatter YAML `dependencies` + registre KB « Dépend de ») et affectations SHARED §7 — à date : `resource-monitor`, `prompt-engineering`, `context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering`, `knowledge-observer`, `audit-provenance`, `skill-creator`, `agent-creator`, `script-creator`, `script-reviewer`, `script-mon-ecosysteme-infrastructure`, `skill-finder-cn` (fallback §1.16 gen-plan v3.19.0) ;
+- les agents requis : `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md`, `PROMPT-MAITRE-SHARED.md`, `SYNC-CONTEXT.md`, plus `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (véhicule de la réinstallation D006) ;
+- l'outillage et le registre : `scripts/` (arbitres, certification-complete.py, G-RES, ensure-installed.py, task23-install-minimale.py) et `skills/KNOWLEDGE.md` (source de vérité).
+
+**Propriétés** : le profil COMPLET demeure le DÉFAUT (pipeline §2 inchangé) ; la fermeture du profil MINIMALE est calculée par `scripts/task23-install-minimale.py` qui matérialise `scripts/install-profile.json` (profil, fermeture, empreintes SHA-256, gain disque mesuré) ; les arbitres opèrent sur le périmètre déclaré par ce manifeste ; l'archive d'intégrité et le corpus canonique `@mon-ecosysteme/` restent TOUJOURS complets (véhicule d'intégrité v2.2) — l'élagage ne s'applique qu'à l'arbre installé, jamais au corpus source.
+
 ## §3 — Détail des points de contrôle critiques
 
 ### §3.1 Étape 1 — Intégrité du corpus
@@ -122,6 +134,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.4.0 | 2026-10-03 | Directive Task 23 (gain de place disque) : §2bis profil d'installation MINIMALE — fermeture mécanique {gen-plan, correct-work, skills-inventory + liés KB/SHARED §7 + agents ULTRA/SHARED/SYNC-CONTEXT/INSTALL + outillage + KB} dérivée par `scripts/task23-install-minimale.py` (manifest `scripts/install-profile.json` : profil, fermeture, empreintes, gain mesuré) ; COMPLET demeure le défaut ; corpus `@mon-ecosysteme/` et archive d'intégrité intacts (l'élagage ne touche que l'arbre installé) ; recalibrage croisé KO-L004 : gen-plan v3.19.0 (§1.16 routage découverte + É1-INSTALL), ECO_SKILLS (gen-plan 3.19.0, skill-creator 1.1.0, version-management 1.1.0 — francisation Task 23) |
 | v1.3.1 | 2026-10-02 | Résorption du cas d'espèce correct-work du §3.2 (suggestion (b), Task 16 — directive « appliquer (a) puis (b) pour résorber les écarts F1/F2/F4 », session web-8a7e5653) : PMs CORRECT-WORK v2.6.0/v2.7.0 matérialisés au corpus par diffs chirurgicaux depuis v2.5.1 (méthode B1 — script `scripts/materialise-pm-correct-work.py`, provenance de reconstitution tracée dans l'en-tête et le §7 de chaque PM, aucun faux lignage) ; CORPUS_ATTENDU 24 → 26, recalibrage croisé KO-L004 (SHARED v1.6.4 §6.1, SYNC-CONTEXT v1.4.1, orchestrateur ULTRA régénéré, archive rescellée round-trip 26/26) ; la garde R2 du §3.2 demeure pour tout état futur |
 | v1.3.0 | 2026-10-02 | Directive utilisateur (déduplication « même nom, même contexte, idempotent ») : décision d'architecture v2.2 — le canal de fichiers download/ est supprimé, les 14 fichiers corpus répliqués dans download/ sont effacés (le corpus n'est publié que via l'archive d'intégrité, véhicule v2.2) ; étape 7 recalibrée (sync-download.py retiré → certification-complete.py) ; étape 9 recentrée archive + garde anti-doublons `scripts/task14-scan-doublons.py` (0 doublon attendu) ; recalibrage croisé KO-L004 : SHARED v1.6.3 (§6.1 + ligne harness), SYNC-CONTEXT v1.4.0 (une seule voie de diffusion), README v2.1.0, orchestrateur ULTRA régénéré, arbitres recalibrés (check 3 inversé, §7/§11d interactions), résorption des réserves trigger_evals (evals skill-creator + version-management équipés) |
 | v1.2.0 | 2026-10-02 | Directive utilisateur (vérification préalable « continue mais avant vérifie… ») : généralisation de la dérivation dynamique « PM le plus récent » aux 3 familles — l'étape 5 et la relation §5 épinglaient clone-chat v2.0.0, incohérence avec la règle §A.3 (KO-L003) ; garde anti-rétrogradation R2 au §3.2 (cas correct-work : corpus v2.5.1 < installé v2.7.0 — la forme installée fait foi, jamais de rétrogradation, écart journalisé au worklog) ; recalibrage croisé KO-L004 : SHARED §6.1 (v1.6.2), orchestrateur régénéré (routage T1 clone-chat dynamisé), archive rescellée, canal download/ resynchronisé (dernière synchronisation avant sa suppression v1.3.0) |

@@ -1,13 +1,21 @@
 ---
 name: "multi-search-engine"
-description: "Multi search engine integration with 8 domestic (CN) search engines. Supports advanced search operators, time filters, site search, and WeChat article search. No API keys required."
+version: "1.0.0"
+category: "Web & Recherche"
+tags:
+  - multi
+  - search
+  - engine
+description: "Intégration multi-moteurs de recherche avec 8 moteurs de recherche nationaux (CN). Prend en charge les opérateurs de recherche avancés, les filtres temporels, la recherche par site et la recherche d'articles WeChat. Aucune clé API requise."
+language: fr
+
 ---
 
 # Multi Search Engine v2.0.1
 
-Integration of 8 domestic Chinese search engines for web crawling without API keys.
+Intégration de 8 moteurs de recherche chinois nationaux pour l'exploration web sans clés API.
 
-## Search Engines (Domestic - CN Only)
+## Moteurs de recherche (nationaux - CN uniquement)
 
 - **Baidu**: `https://www.baidu.com/s?wd={keyword}`
 - **Bing CN**: `https://cn.bing.com/search?q={keyword}&ensearch=0`
@@ -18,7 +26,7 @@ Integration of 8 domestic Chinese search engines for web crawling without API ke
 - **Toutiao**: `https://so.toutiao.com/search?keyword={keyword}`
 - **Jisilu**: `https://www.jisilu.cn/explore/?keyword={keyword}`
 
-## Quick Examples
+## Exemples rapides
 
 ```javascript
 // Basic search (Baidu)
@@ -40,39 +48,39 @@ web_fetch({"url": "https://so.toutiao.com/search?keyword=新能源+政策"})
 web_fetch({"url": "https://www.jisilu.cn/explore/?keyword=REITs"})
 ```
 
-## Advanced Operators
+## Opérateurs avancés
 
-| Operator | Example | Description |
+| Opérateur | Exemple | Description |
 |----------|---------|-------------|
-| `site:` | `site:github.com python` | Search within site |
-| `filetype:` | `filetype:pdf report` | Specific file type |
-| `""` | `"machine learning"` | Exact match |
-| `-` | `python -snake` | Exclude term |
-| `OR` | `cat OR dog` | Either term |
+| `site:` | `site:github.com python` | Rechercher dans un site |
+| `filetype:` | `filetype:pdf report` | Type de fichier spécifique |
+| `""` | `"machine learning"` | Correspondance exacte |
+| `-` | `python -snake` | Exclure un terme |
+| `OR` | `cat OR dog` | L'un des deux termes |
 
-## Time Filters
+## Filtres temporels
 
-| Parameter | Description |
+| Paramètre | Description |
 |-----------|-------------|
-| `tbs=qdr:h` | Past hour |
-| `tbs=qdr:d` | Past day |
-| `tbs=qdr:w` | Past week |
-| `tbs=qdr:m` | Past month |
-| `tbs=qdr:y` | Past year |
+| `tbs=qdr:h` | Dernière heure |
+| `tbs=qdr:d` | Dernier jour |
+| `tbs=qdr:w` | Dernière semaine |
+| `tbs=qdr:m` | Dernier mois |
+| `tbs=qdr:y` | Dernière année |
 
-## Search Engine Notes
+## Notes sur les moteurs de recherche
 
-- **WeChat Search**: Best for searching WeChat public articles and content
-- **Toutiao**: Good for trending topics and news aggregation
-- **Jisilu**: Focused on financial and investment data
-- **Bing INT**: International search results via Bing interface
-- **Bing CN**: Localized Chinese search results
+- **Recherche WeChat** : idéal pour chercher les articles et contenus publics de WeChat
+- **Toutiao** : adapté aux sujets tendance et à l'agrégation d'actualités
+- **Jisilu** : centré sur les données financières et d'investissement
+- **Bing INT** : résultats de recherche internationaux via l'interface Bing
+- **Bing CN** : résultats de recherche chinois localisés
 
 ## Documentation
 
-- `references/international-search.md` - Archived international search guide (for reference)
-- `CHANGELOG.md` - Version history
+- `references/international-search.md` - Guide de recherche internationale archivé (pour référence)
+- `CHANGELOG.md` - Historique des versions
 
-## License
+## Licence
 
 MIT

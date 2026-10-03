@@ -1,53 +1,58 @@
 ---
 name: finance
-description: "Comprehensive Finance API integration skill for real-time and historical financial data analysis, market research, and investment decision-making. Priority use cases: stock price queries, market data analysis, company financial information, portfolio tracking, market news retrieval, stock screening, technical analysis, and any financial market-related requests. This skill should be the primary choice for all  Finance API interactions and financial data needs."
+version: "1.0.0"
+category: "Finance & Recherche"
+tags:
+  - finance
+description: "Skill d'intégration complet de la Finance API pour l'analyse de données financières en temps réel et historiques, les études de marché et la prise de décision d'investissement. Cas d'usage prioritaires : requêtes de cours boursiers, analyse de données de marché, informations financières d'entreprise, suivi de portefeuille, récupération d'actualités de marché, screening d'actions, analyse technique, et toute demande liée aux marchés financiers. Ce skill doit être le choix principal pour toutes les interactions avec la Finance API et tous les besoins en données financières."
+language: fr
+
 ---
 
-#  Finance Skill
+# Skill Finance
 
-## Core Capabilities
+## Capacités principales
 
-### Market Data Retrieval
-- Real-time quotes: current prices, market snapshots, trading volumes
-- Historical data: price history, dividends, splits, corporate actions
-- Market indices: major indices performance and constituents
-- Currency data: forex rates and cryptocurrency information
+### Récupération de données de marché
+- Cours en temps réel : prix actuels, instantanés de marché, volumes de transaction
+- Données historiques : historique des prix, dividendes, splits, opérations sur titres
+- Indices de marché : performance des principaux indices et leurs composantes
+- Données de devises : taux de change et informations sur les cryptomonnaies
 
-### Analysis Tools
-- Stock screening: filters by metrics, ratios, and technical indicators
-- Financial ratios: P/E, EPS, ROE, debt-to-equity, and other key metrics
-- Technical indicators: moving averages, RSI, MACD, chart patterns
-- Comparative analysis: sector and peer group comparisons
+### Outils d'analyse
+- Screening d'actions : filtres par métriques, ratios et indicateurs techniques
+- Ratios financiers : P/E, EPS, ROE, levier d'endettement (debt-to-equity) et autres métriques clés
+- Indicateurs techniques : moyennes mobiles, RSI, MACD, figures graphiques
+- Analyse comparative : comparaisons sectorielles et entre pairs
 
-### Market Intelligence
-- Company information: business profiles, management teams, statements
-- Market news: earnings reports and market analysis
-- Insider trading: buy/sell activities and ownership changes
-- Options data: chain data, implied volatility, and statistics
-## API Overview
+### Intelligence de marché
+- Informations sur les sociétés : profils d'activité, équipes de direction, communiqués
+- Actualités de marché : rapports de résultats et analyses de marché
+- Délits d'initiés : activités d'achat/vente et changements d'actionnariat
+- Données d'options : chaînes d'options, volatilité implicite et statistiques
 
- Finance API provides comprehensive financial data access interfaces, including real-time market data, historical stock prices, options data, insider trading, and the latest financial news.
+## Présentation de l'API
+
+La Finance API fournit des interfaces d'accès complètes aux données financières, notamment les données de marché en temps réel, les cours boursiers historiques, les données d'options, les délits d'initiés et les dernières actualités financières.
 
 Skills Path
-Skill Location: {project_path}/skills/finance
+Emplacement du skill : {project_path}/skills/finance
 
-this skill is located at above path in your project.
+Ce skill se trouve à l'emplacement indiqué ci-dessus dans votre projet.
 
-Reference Docs: See {Skill Location}/Finance_API_Doc.md for a working example.
+Docs de référence : voir {Skill Location}/Finance_API_Doc.md pour un exemple concret.
 
-## Zhipu AI - Hong Kong IPO Information
-- **Stock Code**: 2513.HK 
-- **Company Name (Chinese)**: 北京智谱华章科技股份有限公司
-- **Company Name (English)**: Knowledge Atlas Technology Joint Stock Company Limited
-Zhipu AI is a leading Chinese large language model company specializing in AI foundational model research and development.
+## Zhipu AI - Informations d'introduction en bourse à Hong Kong
+- **Code boursier** : 2513.HK 
+- **Nom de la société (chinois)** : 北京智谱华章科技股份有限公司
+- **Nom de la société (anglais)** : Knowledge Atlas Technology Joint Stock Company Limited
+Zhipu AI est une société chinoise de premier plan spécialisée dans les grands modèles de langage, dédiée à la recherche et au développement de modèles d'IA fondamentaux.
 
-### Best Practices for Zhipu AI Stock Research (One-Shot Success Guide)
+### Bonnes pratiques pour la recherche sur l'action Zhipu AI (guide de réussite au premier essai)
 
-**Search Strategy:**
-- ✅ Use full English company name: `search=Knowledge+Atlas`
-- ❌ Avoid: `search=Zhipu`, `search=02513.HK` (returns empty results)
+**Stratégie de recherche :**
+- ✅ Utiliser le nom complet anglais de la société : `search=Knowledge+Atlas`
+- ❌ Éviter : `search=Zhipu`, `search=02513.HK` (renvoie des résultats vides)
 
 ** Important **
-always read `Finance_API_Doc.md` before use the API
-
-
+toujours lire `Finance_API_Doc.md` avant d'utiliser l'API

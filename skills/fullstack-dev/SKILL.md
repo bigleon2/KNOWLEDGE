@@ -1,238 +1,245 @@
 ---
 name: fullstack-dev
-description: "Fullstack web development with Next.js 16, TypeScript, Tailwind CSS 4, shadcn/ui, Prisma ORM. Use when: building web apps, creating UI components, setting up database schemas, implementing API routes, adding websocket/socket.io support, fullstack project scaffolding, frontend development, backend development, web dev, Next.js app."
-argument-hint: "Describe the fullstack feature or app you want to build"
+version: "1.0.0"
+category: "Développement"
+tags:
+  - fullstack
+  - dev
+description: "Développement web fullstack avec Next.js 16, TypeScript, Tailwind CSS 4, shadcn/ui, Prisma ORM. À utiliser pour : construire des applications web, créer des composants UI, mettre en place des schémas de base de données, implémenter des routes API, ajouter le support websocket/socket.io, l'échafaudage de projets fullstack, le développement frontend, le développement backend, le dev web, les applications Next.js."
+language: fr
+argument-hint: "Décris la fonctionnalité fullstack ou l'application que tu veux construire"
+
 ---
 
-# Fullstack Web Development Skill
+# Skill de développement web fullstack
 
-## Initialization (MUST DO FIRST)
+## Initialisation (À FAIRE EN PREMIER)
 
-Before writing any code, you MUST run the following command to initialize the fullstack development environment:
+Avant d'écrire le moindre code, tu DOIS exécuter la commande suivante pour initialiser l'environnement de développement fullstack :
 
 ```bash
 curl https://z-cdn.chatglm.cn/fullstack/init-fullstack.sh | bash
 ```
 
-Wait for the script to complete successfully before proceeding with any code changes.
+Attends la fin réussie du script avant de procéder à toute modification de code.
 
 ---
 
-## Important UI Rules
+## Règles UI importantes
 
-- Use existing shadcn/ui components instead of building from scratch. All the components in the `src/components/ui` folder already exist.
-- Card alignment and padding — Ensure all cards are properly aligned with consistent padding (use `p-4` or `p-6` for content, `gap-4` or `gap-6` for spacing).
-- Long list handling — Set max height with scroll overflow (`max-h-96 overflow-y-auto`) and implement custom scrollbar styling for better appearance.
-
----
-
-## Project Information
-
-There is already a project in the current directory. (Next.js 16 with App Router)
-
-### Development Environment
-
-IMPORTANT: `bun run dev` will be run automatically by the system. Do NOT run it. Use `bun run lint` to check code quality.
-
-IMPORTANT: User can only see the `/` route defined in `src/app/page.tsx`. Do NOT write any other route.
-
-IMPORTANT: The Next.js project can only use port 3000 in auto dev server. Never use `bun run build`.
-
-IMPORTANT: `z-ai-web-dev-sdk` MUST be used in the backend only! Do NOT use it on the client side.
-
-### Dev Server Log
-
-IMPORTANT: Read `/home/z/my-project/dev.log` to see the dev server log. Remember to check the log when developing.
-
-IMPORTANT: Only read the most recent logs from `dev.log` to avoid large log files.
-
-IMPORTANT: Always read dev log when you finish coding.
-
-### Bash Commands
-
-- `bun run lint` — Run ESLint to check code quality and Next.js rules
+- Utilise les composants shadcn/ui existants plutôt que de construire à partir de zéro. Tous les composants du dossier `src/components/ui` existent déjà.
+- Alignement et padding des cartes — s'assurer que toutes les cartes sont correctement alignées avec un padding cohérent (utiliser `p-4` ou `p-6` pour le contenu, `gap-4` ou `gap-6` pour l'espacement).
+- Gestion des longues listes — fixer une hauteur maximale avec défilement (`max-h-96 overflow-y-auto`) et styliser une barre de défilement personnalisée pour un meilleur rendu.
 
 ---
 
-## Technology Stack Requirements
+## Informations sur le projet
 
-### Core Framework (NON-NEGOTIABLE)
+Il y a déjà un projet dans le répertoire courant. (Next.js 16 avec App Router)
 
-- **Framework**: Next.js 16 with App Router (REQUIRED — cannot be changed)
-- **Language**: TypeScript 5 (REQUIRED — cannot be changed)
+### Environnement de développement
 
-### Standard Technology Stack
+IMPORTANT : `bun run dev` est lancé automatiquement par le système. Ne le lance PAS. Utilise `bun run lint` pour vérifier la qualité du code.
 
-When users don't specify preferences, use this complete stack:
+IMPORTANT : l'utilisateur ne peut voir que la route `/` définie dans `src/app/page.tsx`. N'écris aucune autre route.
 
-- **Styling**: Tailwind CSS 4 with shadcn/ui component library
-- **Database**: Prisma ORM (SQLite client only) with Prisma Client
-- **Caching**: Local memory caching, no additional middleware (MySQL, Redis, etc.)
-- **UI Components**: Complete shadcn/ui component set (New York style) with Lucide icons
-- **Authentication**: NextAuth.js v4 available
-- **State Management**: Zustand for client state, TanStack Query for server state
+IMPORTANT : le projet Next.js ne peut utiliser que le port 3000 dans le serveur de dev automatique. N'utilise jamais `bun run build`.
 
-Other packages can be found in `package.json`. You can install new packages if needed.
+IMPORTANT : `z-ai-web-dev-sdk` doit être utilisé UNIQUEMENT côté backend ! Ne l'utilise pas côté client.
 
-### Library Usage Policy
+### Journal du serveur de dev
 
-- **ALWAYS use Next.js 16 and TypeScript** — these are non-negotiable requirements.
-- **When users request external libraries not in our stack**: Politely redirect them to use our built-in alternatives.
-- **Explain the benefits** of using our predefined stack (consistency, optimization, support).
-- **Provide equivalent solutions** using our available libraries.
+IMPORTANT : lis `/home/z/my-project/dev.log` pour consulter le journal du serveur de dev. Pense à vérifier le journal pendant le développement.
 
----
+IMPORTANT : ne lis que les entrées les plus récentes de `dev.log` pour éviter les fichiers de log volumineux.
 
-## Prisma and Database
+IMPORTANT : lis toujours le journal de dev quand tu as fini de coder.
 
-IMPORTANT: `prisma` is already installed and configured. Use it when you need the database.
+### Commandes Bash
 
-To use prisma and database:
-
-1. Edit `prisma/schema.prisma` to define the database schema.
-2. Run `bun run db:push` to push the schema to the database.
-3. Use `import { db } from '@/lib/db'` to get the database client and use it.
+- `bun run lint` — Exécute ESLint pour vérifier la qualité du code et les règles Next.js
 
 ---
 
-## Mini Service
+## Exigences de la pile technologique
 
-You can create mini services if needed (e.g., websocket service). All mini services should be in the `mini-services` folder. For each mini service:
+### Framework central (NON NÉGOCIABLE)
 
-- Must be a new and independent bun project with its own port and `package.json`.
-- Must define `index.ts` or `index.js` as the entry file, e.g., `mini-services/chat-service/index.ts`.
-- Must define a specific port if needed, instead of using the `PORT` environment variable.
-- Must start each mini service by running `bun run dev` in the background.
-- The command executed by `bun run dev` should support auto restart when files change (prefer `bun --hot`).
-- Make sure every service is started.
+- **Framework** : Next.js 16 avec App Router (OBLIGATOIRE — ne peut pas être changé)
+- **Langage** : TypeScript 5 (OBLIGATOIRE — ne peut pas être changé)
 
----
+### Pile technologique standard
 
-## Gateway and API Requests
+Quand les utilisateurs ne précisent pas de préférences, utiliser cette pile complète :
 
-This machine can only expose one port externally, so a built-in gateway (config at `Caddyfile`) is included with the following limitations:
+- **Styling** : Tailwind CSS 4 avec la bibliothèque de composants shadcn/ui
+- **Base de données** : Prisma ORM (client SQLite uniquement) avec Prisma Client
+- **Cache** : cache en mémoire locale, sans middleware supplémentaire (MySQL, Redis, etc.)
+- **Composants UI** : jeu complet de composants shadcn/ui (style New York) avec icônes Lucide
+- **Authentification** : NextAuth.js v4 disponible
+- **Gestion d'état** : Zustand pour l'état client, TanStack Query pour l'état serveur
 
-- For API requests involving different ports, the port must be specified in the URL query named `XTransformPort`. Example: `/api/test?XTransformPort=3030`.
-- All API requests must use **relative paths only**. Do NOT write absolute paths in the API request URL (including WebSocket). Examples:
-  - **Prohibited**: `fetch('http://localhost:3030/api/test')`
-  - **Allowed**: `fetch('/api/test?XTransformPort=3030')`
-  - **Prohibited**: `io('/:3030')`
-  - **Allowed**: `io('/?XTransformPort=3030')`
-- When requesting to different services, directly make cross-origin requests without using a proxy.
+Les autres paquets se trouvent dans `package.json`. Tu peux installer de nouveaux paquets si nécessaire.
 
-IMPORTANT: Do NOT write port in the API request URL, even in WebSocket. Only write `XTransformPort` in the URL query.
+### Politique d'utilisation des bibliothèques
 
----
-
-## WebSocket / Socket.io Support
-
-IMPORTANT: Use websocket/socket.io to support real-time communication. Do NOT use any other method. There is already a websocket demo for reference in the `examples` folder.
-
-- Backend logic (via socket.io) must be a new mini service with another port (e.g., 3003).
-- Frontend request should ALWAYS be `io("/?XTransformPort={Port}")`, and the path ALWAYS be `/` so that Caddy can forward to the correct port.
-- NEVER use `io("http://localhost:{Port}")` or any direct port-based connection.
+- **TOUJOURS utiliser Next.js 16 et TypeScript** — exigences non négociables.
+- **Quand les utilisateurs demandent des bibliothèques externes absentes de notre pile** : les rediriger poliment vers nos alternatives intégrées.
+- **Expliquer les avantages** de notre pile prédéfinie (cohérence, optimisation, support).
+- **Proposer des solutions équivalentes** avec les bibliothèques disponibles.
 
 ---
 
-## Code Style
+## Prisma et base de données
 
-- Prefer to use existing components and hooks.
-- TypeScript throughout with strict typing.
-- ES6+ import/export syntax.
-- shadcn/ui components preferred over custom implementations.
-- Use `'use client'` and `'use server'` for client and server side code.
-- The Prisma schema primitive type cannot be a list.
-- Put the Prisma schema in the `prisma` folder.
-- Put the db file in the `db` folder.
+IMPORTANT : `prisma` est déjà installé et configuré. Utilise-le quand tu as besoin de la base de données.
+
+Pour utiliser prisma et la base de données :
+
+1. Édite `prisma/schema.prisma` pour définir le schéma de la base de données.
+2. Lance `bun run db:push` pour pousser le schéma vers la base de données.
+3. Utilise `import { db } from '@/lib/db'` pour obtenir le client de base de données et l'utiliser.
+
+---
+
+## Mini services
+
+Tu peux créer des mini services si nécessaire (p. ex. service websocket). Tous les mini services doivent se trouver dans le dossier `mini-services`. Pour chaque mini service :
+
+- Doit être un nouveau projet bun indépendant, avec son propre port et son propre `package.json`.
+- Doit définir `index.ts` ou `index.js` comme fichier d'entrée, p. ex. `mini-services/chat-service/index.ts`.
+- Doit définir un port spécifique si nécessaire, au lieu d'utiliser la variable d'environnement `PORT`.
+- Doit démarrer chaque mini service en lançant `bun run dev` en arrière-plan.
+- La commande exécutée par `bun run dev` doit supporter le redémarrage automatique quand les fichiers changent (préférer `bun --hot`).
+- S'assurer que chaque service est démarré.
+
+---
+
+## Passerelle et requêtes API
+
+Cette machine ne peut exposer qu'un seul port vers l'extérieur ; une passerelle intégrée (configuration dans `Caddyfile`) est donc fournie, avec les limitations suivantes :
+
+- Pour les requêtes API impliquant des ports différents, le port doit être précisé dans le paramètre d'URL nommé `XTransformPort`. Exemple : `/api/test?XTransformPort=3030`.
+- Toutes les requêtes API doivent utiliser **uniquement des chemins relatifs**. N'écris PAS de chemins absolus dans l'URL des requêtes API (WebSocket incluse). Exemples :
+  - **Interdit** : `fetch('http://localhost:3030/api/test')`
+  - **Autorisé** : `fetch('/api/test?XTransformPort=3030')`
+  - **Interdit** : `io('/:3030')`
+  - **Autorisé** : `io('/?XTransformPort=3030')`
+- Pour requêter différents services, faire directement des requêtes cross-origin sans utiliser de proxy.
+
+IMPORTANT : n'écris PAS de port dans l'URL des requêtes API, même en WebSocket. Écris uniquement `XTransformPort` dans le paramètre d'URL.
+
+---
+
+## Support WebSocket / Socket.io
+
+IMPORTANT : utilise websocket/socket.io pour supporter la communication temps réel. N'utilise aucune autre méthode. Une démo websocket de référence existe déjà dans le dossier `examples`.
+
+- La logique backend (via socket.io) doit être un nouveau mini service avec un autre port (p. ex. 3003).
+- La requête frontend doit TOUJOURS être `io("/?XTransformPort={Port}")`, et le chemin TOUJOURS `/` pour que Caddy puisse transmettre au bon port.
+- N'utilise JAMAIS `io("http://localhost:{Port}")` ni une connexion directe basée sur le port.
+
+---
+
+## Style de code
+
+- Préférer l'utilisation des composants et hooks existants.
+- TypeScript partout, avec typage strict.
+- Syntaxe d'import/export ES6+.
+- Composants shadcn/ui préférés aux implémentations personnalisées.
+- Utiliser `'use client'` et `'use server'` pour le code côté client et côté serveur.
+- Le type primitif du schéma Prisma ne peut pas être une liste.
+- Placer le schéma Prisma dans le dossier `prisma`.
+- Placer le fichier db dans le dossier `db`.
 
 ---
 
 ## Styling
 
-1. Use the shadcn/ui library unless the user specifies otherwise.
-2. Avoid using indigo or blue colors unless specified in the user's request.
-3. MUST generate responsive designs.
-4. The Code Project is rendered on top of a white background. If a different background color is needed, use a wrapper element with a background color Tailwind class.
+1. Utiliser la bibliothèque shadcn/ui sauf indication contraire de l'utilisateur.
+2. Éviter les couleurs indigo ou bleues sauf si la demande de l'utilisateur le précise.
+3. Tu DOIS générer des designs responsives.
+4. Le Code Project est rendu sur un fond blanc. Si une couleur de fond différente est nécessaire, utiliser un élément englobant avec une classe Tailwind de couleur de fond.
 
 ---
 
-## UI/UX Design Standards
+## Standards de design UI/UX
 
-### Visual Design
+### Design visuel
 
-- **Color System**: Use Tailwind CSS built-in variables (`bg-primary`, `text-primary-foreground`, `bg-background`).
-- **Color Restriction**: NO indigo or blue colors unless explicitly requested.
-- **Theme Support**: Implement light/dark mode with `next-themes`.
-- **Typography**: Consistent hierarchy with proper font weights and sizes.
+- **Système de couleurs** : utiliser les variables intégrées de Tailwind CSS (`bg-primary`, `text-primary-foreground`, `bg-background`).
+- **Restriction de couleurs** : PAS d'indigo ni de bleu sauf demande explicite.
+- **Support des thèmes** : implémenter le mode clair/sombre avec `next-themes`.
+- **Typographie** : hiérarchie cohérente avec des graisses et tailles de police appropriées.
 
-### Responsive Design (MANDATORY)
+### Design responsive (OBLIGATOIRE)
 
-- **Mobile-First**: Design for mobile, then enhance for desktop.
-- **Breakpoints**: Use Tailwind responsive prefixes (`sm:`, `md:`, `lg:`, `xl:`).
-- **Touch-Friendly**: Minimum 44px touch targets for interactive elements.
+- **Mobile-First** : concevoir pour mobile, puis enrichir pour desktop.
+- **Breakpoints** : utiliser les préfixes responsive de Tailwind (`sm:`, `md:`, `lg:`, `xl:`).
+- **Tactile** : cibles tactiles de 44 px minimum pour les éléments interactifs.
 
-### Layout (MANDATORY)
+### Mise en page (OBLIGATOIRE)
 
-- **Sticky Footer Required**: If a `footer` exists, it MUST stick to the bottom of the viewport when content is shorter than one screen height (no floating/empty gap below).
-- **Natural Push on Overflow**: When content exceeds the viewport height, the footer MUST be pushed down naturally (never overlay or cover content).
-- **Recommended Implementation (Tailwind)**: Use a root wrapper with `min-h-screen flex flex-col`, and apply `mt-auto` to the `footer`.
-- **Mobile Safe Area**: On devices with safe areas (e.g., iOS), the footer MUST respect bottom safe area insets when applicable.
+- **Pied de page collant requis** : si un `footer` existe, il DOIT rester collé au bas du viewport quand le contenu est plus court qu'une hauteur d'écran (pas d'espace flottant/vide en dessous).
+- **Poussée naturelle en cas de dépassement** : quand le contenu dépasse la hauteur du viewport, le footer DOIT être poussé vers le bas naturellement (jamais de superposition ni de recouvrement du contenu).
+- **Implémentation recommandée (Tailwind)** : utiliser un conteneur racine avec `min-h-screen flex flex-col`, et appliquer `mt-auto` au `footer`.
+- **Zone de sécurité mobile** : sur les appareils dotés de zones de sécurité (p. ex. iOS), le footer DOIT respecter les insets de la zone de sécurité basse le cas échéant.
 
-### Accessibility (MANDATORY)
+### Accessibilité (OBLIGATOIRE)
 
-- **Semantic HTML**: Use `main`, `header`, `nav`, `section`, `article`.
-- **ARIA Support**: Proper roles, labels, and descriptions.
-- **Screen Readers**: Use `sr-only` class for screen reader content.
-- **Alt Text**: Descriptive alt text for all images.
-- **Keyboard Navigation**: Ensure all elements are keyboard accessible.
+- **HTML sémantique** : utiliser `main`, `header`, `nav`, `section`, `article`.
+- **Support ARIA** : rôles, libellés et descriptions appropriés.
+- **Lecteurs d'écran** : utiliser la classe `sr-only` pour le contenu destiné aux lecteurs d'écran.
+- **Texte alternatif** : texte alt descriptif pour toutes les images.
+- **Navigation clavier** : garantir que tous les éléments sont accessibles au clavier.
 
-### Interactive Elements
+### Éléments interactifs
 
-- **Loading States**: Show spinners/skeletons during async operations.
-- **Error Handling**: Clear, actionable error messages.
-- **Feedback**: Toast notifications for user actions.
-- **Animations**: Subtle Framer Motion transitions (hover, focus, page transitions).
-- **Hover Effects**: Interactive feedback on all clickable elements.
+- **États de chargement** : afficher des spinners/skeletons pendant les opérations asynchrones.
+- **Gestion d'erreurs** : messages d'erreur clairs et actionnables.
+- **Feedback** : notifications toast pour les actions de l'utilisateur.
+- **Animations** : transitions Framer Motion subtiles (survol, focus, transitions de page).
+- **Effets de survol** : feedback interactif sur tous les éléments cliquables.
 
-### Sandbox Preview Instructions (CRITICAL)
+### Instructions d'aperçu sandbox (CRITIQUE)
 
-This project runs in a restricted cloud sandbox environment.
+Ce projet s'exécute dans un environnement sandbox cloud restreint.
 
-- **NEVER** instruct the user to visit `http://localhost:3000`, `127.0.0.1`, or any local ports directly. These addresses are internal and not accessible to the user.
-- **ALWAYS** direct the user to preview the application using the **Preview Panel** located on the right side of the interface.
-- **ALWAYS** inform the user about how to view the application externally based on their platform:
-  - If they are using the web interface, tell them they can click the **"Open in New Tab"** button above the Preview Panel to view it in a separate browser tab.
-  - If they are communicating through an IM (Instant Messaging) platform, provide them directly with the generated preview link.
+- **NE JAMAIS** demander à l'utilisateur de visiter `http://localhost:3000`, `127.0.0.1` ou tout port local directement. Ces adresses sont internes et inaccessibles pour l'utilisateur.
+- **TOUJOURS** orienter l'utilisateur vers l'aperçu de l'application via le **Panneau d'aperçu** situé à droite de l'interface.
+- **TOUJOURS** indiquer à l'utilisateur comment consulter l'application en externe selon sa plateforme :
+  - S'il utilise l'interface web, lui dire qu'il peut cliquer sur le bouton **« Ouvrir dans un nouvel onglet »** au-dessus du Panneau d'aperçu pour l'afficher dans un onglet séparé du navigateur.
+  - S'il communique via une plateforme de messagerie instantanée, lui fournir directement le lien d'aperçu généré.
 
-### Post-Launch Self-Verification with Agent Browser (MANDATORY)
+### Auto-vérification post-lancement avec Agent Browser (OBLIGATOIRE)
 
-When the Next.js project has started successfully (dev server running on port 3000 without fatal errors in `/home/z/my-project/dev.log`), you MUST NOT consider the task complete based on a clean build alone. A passing lint and a running server do **not** prove the website actually works for the user.
+Quand le projet Next.js a démarré correctement (serveur de dev actif sur le port 3000 sans erreurs fatales dans `/home/z/my-project/dev.log`), tu ne DOIS PAS considérer la tâche comme terminée sur la seule base d'un build propre. Un lint qui passe et un serveur qui tourne ne prouvent **pas** que le site fonctionne réellement pour l'utilisateur.
 
-You MUST use **Agent Browser** to perform end-to-end self-verification before reporting completion:
+Tu DOIS utiliser **Agent Browser** pour effectuer une auto-vérification de bout en bout avant d'annoncer la fin :
 
-1. **Open the page**
-   - Use Agent Browser to navigate to the `/` route (the only user-visible route).
-   - Wait for the page to fully load and capture the rendered result.
+1. **Ouvrir la page**
+   - Utiliser Agent Browser pour naviguer vers la route `/` (la seule route visible par l'utilisateur).
+   - Attendre le chargement complet de la page et capturer le résultat rendu.
 
-2. **Verify it renders, not just responds**
-   - Confirm the page is visually rendered (no blank/white screen, no error boundary, no hydration crash).
-   - Cross-check against `/home/z/my-project/dev.log` for any runtime errors, failed API calls, or hydration mismatches that appeared during the visit.
+2. **Vérifier le rendu, pas seulement la réponse**
+   - Confirmer que la page est visuellement rendue (pas d'écran blanc, pas d'erreur boundary, pas de crash d'hydratation).
+   - Recouper avec `/home/z/my-project/dev.log` pour détecter d'éventuelles erreurs runtime, appels API en échec ou incohérences d'hydratation apparues pendant la visite.
 
-3. **Verify core interactivity (the golden path)**
-   - Exercise the primary user flows you just built: click the main buttons, submit the key forms, trigger navigation/tabs/modals, and confirm each produces the expected result.
-   - For data-driven features, confirm the frontend actually receives and displays backend/API data (not just an empty skeleton or a loading spinner that never resolves).
-   - For real-time features (WebSocket/socket.io), confirm messages flow end-to-end.
+3. **Vérifier l'interactivité principale (le chemin critique)**
+   - Exercer les flux utilisateurs principaux que tu viens de construire : cliquer sur les boutons principaux, soumettre les formulaires clés, déclencher navigation/onglets/modales, et confirmer que chacun produit le résultat attendu.
+   - Pour les fonctionnalités pilotées par les données, confirmer que le frontend reçoit et affiche réellement les données backend/API (pas seulement un squelette vide ou un spinner de chargement sans fin).
+   - Pour les fonctionnalités temps réel (WebSocket/socket.io), confirmer que les messages circulent de bout en bout.
 
-4. **Check responsiveness and the sticky footer**
-   - Verify the layout holds on both mobile and desktop widths.
-   - Confirm the footer sticks to the bottom on short pages and is pushed down naturally on long pages (no overlap, no floating gap).
+4. **Vérifier le responsive et le pied de page collant**
+   - Vérifier que la mise en page tient aussi bien en largeur mobile qu'en desktop.
+   - Confirmer que le footer reste collé en bas sur les pages courtes et est poussé vers le bas naturellement sur les pages longues (pas de chevauchement, pas d'espace flottant).
 
-5. **Fix and re-verify**
-   - If Agent Browser surfaces any broken interaction, console/runtime error, missing data, or layout defect, you MUST fix the root cause and re-run the self-verification loop.
-   - Repeat until the page loads cleanly **and** every core interaction works.
+5. **Corriger et re-vérifier**
+   - Si Agent Browser révèle une interaction cassée, une erreur console/runtime, des données manquantes ou un défaut de mise en page, tu DOIS corriger la cause racine et relancer la boucle d'auto-vérification.
+   - Répéter jusqu'à ce que la page se charge proprement **et** que chaque interaction principale fonctionne.
 
-6. **Report honestly**
-   - Only after Agent Browser confirms the site is interactive and runnable may you report the task as done.
-   - If a specific flow genuinely cannot be verified in the browser, say so explicitly rather than claiming success.
+6. **Rapporter honnêtement**
+   - Ce n'est qu'après qu'Agent Browser a confirmé que le site est interactif et exécutable que tu peux déclarer la tâche terminée.
+   - Si un flux précis ne peut réellement pas être vérifié dans le navigateur, dis-le explicitement plutôt que de revendiquer un succès.
 
-**CRITICAL:** "It compiles" / "the server is up" is never sufficient evidence of completion. Browser-verified interactivity is the required standard of done.
+**CRITIQUE :** « ça compile » / « le serveur est lancé » n'est jamais une preuve suffisante d'achèvement. L'interactivité vérifiée dans le navigateur est le standard requis pour considérer le travail comme fait.

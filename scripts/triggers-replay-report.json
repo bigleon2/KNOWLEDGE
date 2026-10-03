@@ -926,7 +926,7 @@
       ]
     },
     "gen-plan": {
-      "version": "3.18.0",
+      "version": "3.19.0",
       "n_cases": 8,
       "n_keywords": 50,
       "score_officiel": "8/8",
@@ -2011,9 +2011,9 @@
       ]
     },
     "skill-creator": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "n_cases": 8,
-      "n_keywords": 25,
+      "n_keywords": 35,
       "score_officiel": "8/8",
       "ok": true,
       "derive_m": false,
@@ -2022,10 +2022,9 @@
           "query": "Create a new skill for generating release notes from git commits.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.3,
+          "score": 0.2,
           "hits": [
             "creat",
-            "from",
             "skill"
           ],
           "ok": true
@@ -2034,10 +2033,8 @@
           "query": "Help me improve my existing skill — it fails on edge cases.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.429,
+          "score": 0.143,
           "hits": [
-            "existing",
-            "improv",
             "skill"
           ],
           "ok": true
@@ -2046,15 +2043,12 @@
           "query": "Run evals on this skill and benchmark its performance with variance analysis.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.636,
+          "score": 0.364,
           "hits": [
-            "analysi",
-            "benchmark",
             "eval",
             "perform",
             "skill",
-            "vari",
-            "with"
+            "vari"
           ],
           "ok": true
         },
@@ -2062,10 +2056,9 @@
           "query": "Optimize my skill's description so it triggers more accurately.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.5,
+          "score": 0.333,
           "hits": [
             "descript",
-            "optimiz",
             "skill"
           ],
           "ok": true
@@ -2074,11 +2067,9 @@
           "query": "I want to iterate on this skill: test it, evaluate the results, then rewrite it.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.3,
+          "score": 0.1,
           "hits": [
-            "skill",
-            "test",
-            "want"
+            "skill"
           ],
           "ok": true
         },
@@ -2094,10 +2085,8 @@
           "query": "Plan this complex task with milestones and cost estimates.",
           "expected": false,
           "trigger_m": false,
-          "score": 0.111,
-          "hits": [
-            "with"
-          ],
+          "score": 0.0,
+          "hits": [],
           "ok": true
         },
         {
@@ -2293,9 +2282,9 @@
       ]
     },
     "version-management": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "n_cases": 8,
-      "n_keywords": 6,
+      "n_keywords": 50,
       "score_officiel": "3/8",
       "ok": false,
       "derive_m": true,

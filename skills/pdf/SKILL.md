@@ -1,23 +1,29 @@
 ---
 name: pdf
+version: "1.1.0"
+category: "Documents & Contenu"
+tags:
+  - pdf
 metadata:
   author: Z.AI
-  version: "1.0"
-description: "Professional PDF toolkit with four production lines:(1) Report - structured documents via ReportLab (reports, proposals, contracts, white papers); (2) Creative - visual design via JSON Blueprint → design_engine.py → Playwright snapshot (posters, infographics, invitations, dashboards). The LLM acts as Art Director outputting ONLY JSON spatial blueprints; convert.blueprint compiles to pixel-perfect PDF. (3) Academic - scholarly work via LaTeX/Tectonic (papers, theses, math-heavy documents); (4) Process - manipulate existing PDFs (extract, merge, split, fill forms, convert);Auto-routes based on document type. Includes ATS/creative/academic resume sub-paths."
+  version: "1.1"
+description: "Boîte à outils PDF professionnelle avec quatre lignes de production : (1) Report - documents structurés via ReportLab (rapports, propositions, contrats, livres blancs) ; (2) Creative - design visuel via JSON Blueprint → design_engine.py → capture Playwright (posters, infographies, invitations, dashboards). Le LLM agit comme directeur artistique et ne produit QUE des blueprints spatiaux JSON ; convert.blueprint compile en un PDF au pixel près. (3) Academic - travaux académiques via LaTeX/Tectonic (articles, thèses, documents très mathématiques) ; (4) Process - manipuler des PDFs existants (extraire, fusionner, découper, remplir des formulaires, convertir) ; routage automatique selon le type de document. Inclut des sous-chemins de CV ATS/creative/academic."
 license: Proprietary. LICENSE.txt has complete terms
+language: fr
+
 ---
 
-# PDF - Document Production Workbench
+# PDF - Atelier de production de documents
 
-## Script Path Setup (MANDATORY before any script call)
+## Configuration des chemins de scripts (OBLIGATOIRE avant tout appel de script)
 
-All paths are relative to `$PDF_SKILL_DIR`. Resolve it once before calling any script:
+Tous les chemins sont relatifs à `$PDF_SKILL_DIR`. Résolvez-le une fois avant d'appeler tout script :
 
 ```bash
 PDF_SKILL_DIR="<skill_directory>"   # ← parent directory of this SKILL.md
 ```
 
-**For Python imports** (when generation code needs to import skill modules):
+**Pour les imports Python** (quand le code de génération doit importer les modules du skill) :
 
 ```python
 import sys, os
@@ -27,27 +33,27 @@ if _scripts not in sys.path:
     sys.path.insert(0, _scripts)
 ```
 
-## Triage
+## Tri
 
-Determine task weight to control how much context to load:
+Déterminez le poids de la tâche pour contrôler la quantité de contexte à charger :
 
-| Weight | Triggers | What to Load |
+| Poids | Déclencheurs | À charger |
 |--------|----------|--------------|
-| **Light** | Format conversion, form fill, text extract, merge/split, simple certificate | SKILL.md + `briefs/process.md` only |
-| **Standard** | Multi-page report, poster, academic paper, resume, reformat - any document with design decisions | SKILL.md + `configs/fonts.md` + matched brief + **ALL files referenced by the brief** (typesetting, configs, etc.) |
- 
-### ⚠️ Pre-Routing Checks (run BEFORE matching brief)
+| **Léger** | Conversion de format, remplissage de formulaire, extraction de texte, fusion/découpe, certificat simple | SKILL.md + `briefs/process.md` uniquement |
+| **Standard** | Rapport multi-pages, poster, article académique, CV, reformatage - tout document impliquant des décisions de design | SKILL.md + `configs/fonts.md` + brief correspondant + **TOUS les fichiers référencés par le brief** (typesetting, configs, etc.) |
 
-1. **Emoji Check** - Scan user content for intentional emoji (decorative 📊🎯🔥, not OS-level emoji input). If found → **force Creative pipeline** (Fixed-Canvas or Flow depending on document type) regardless of original routing. ReportLab renders emoji as □ squares; LaTeX drops them entirely.
-2. **CJK Check** - Chinese/Japanese/Korean content needs font coverage. Report brief must register CJK fonts - **probe first** with `ls /usr/share/fonts/truetype/chinese/` (Linux) or check `$FONT_DIR` (macOS) to confirm which fonts exist, then register accordingly (prefer NotoSerifSC > Noto Sans SC; never hardcode a font name without verifying it exists). Creative Fixed-Canvas and Creative Flow briefs must load Google Fonts Noto Sans SC with `font-display: swap`; Academic brief must use `\usepackage{ctex}`.
-3. **Size Check** - Non-standard page sizes (not A4/Letter/A3) → prefer Creative brief (Playwright handles any dimension). ReportLab can do custom sizes but pagination is manual.
-4. **Character Safety Check** - Before writing any content string, scan for Japanese kana (の、が、は etc.), unusual Unicode symbols, or non-CJK characters that may corrupt during encoding transit ( Especially when code is written via heredoc/base64/LLM output). Replace with plain Chinese equivalents: `の`→`之/的/缔`, `々`→omit or write full character. **If content must preserve Japanese, use only standard CJK Unified Ideographs (U+4E00-U+9FFF) and common kana; avoid rare/private-use codepoints.**
+### ⚠️ Vérifications pré-routage (à exécuter AVANT de choisir le brief)
+
+1. **Vérification emoji** - Scannez le contenu de l'utilisateur à la recherche d'emojis intentionnels (décoratifs 📊🎯🔥, pas des emojis saisis au niveau OS). Si trouvés → **forcez le pipeline Creative** (Fixed-Canvas ou Flow selon le type de document) quel que soit le routage initial. ReportLab rend les emojis en carrés □ ; LaTeX les supprime purement et simplement.
+2. **Vérification CJK** - Le contenu chinois/japonais/coréen nécessite une couverture de polices. Le brief Report doit enregistrer des polices CJK - **sondez d'abord** avec `ls /usr/share/fonts/truetype/chinese/` (Linux) ou vérifiez `$FONT_DIR` (macOS) pour confirmer quelles polices existent, puis enregistrez en conséquence (préférez NotoSerifSC > Noto Sans SC ; ne codez jamais en dur un nom de police sans vérifier son existence). Les briefs Creative Fixed-Canvas et Creative Flow doivent charger la police Google Fonts Noto Sans SC avec `font-display: swap` ; le brief Academic doit utiliser `\usepackage{ctex}`.
+3. **Vérification des dimensions** - Tailles de page non standard (autres que A4/Letter/A3) → préférez le brief Creative (Playwright gère toute dimension). ReportLab peut faire des tailles personnalisées mais la pagination est manuelle.
+4. **Vérification de sécurité des caractères** - Avant d'écrire toute chaîne de contenu, scannez les kana japonais (の、が、は etc.), les symboles Unicode inhabituels ou les caractères non-CJK susceptibles d'être corrompus pendant le transit d'encodage (surtout quand le code est écrit via heredoc/base64/sortie LLM). Remplacez par des équivalents chinois simples : `の`→`之/的/缔`, `々`→omis ou écrire le caractère complet. **Si le contenu doit préserver le japonais, utilisez uniquement les idéogrammes CJK unifiés standards (U+4E00-U+9FFF) et les kana courants ; évitez les points de code rares/à usage privé.**
 
 ---
 
 ## Briefing
 
-Match the user's intent to a production brief. Each brief contains the full workflow, tech stack specifics, and references to shared typesetting assets.
+Faites correspondre l'intention de l'utilisateur à un brief de production. Chaque brief contient le workflow complet, les spécificités de la pile technique et les références aux ressources de mise en page partagées.
 
 ```
 User Request
@@ -86,264 +92,264 @@ User Request
    └─ Academic CV / publications ────── → briefs/academic.md   (resume sub-section)
 ```
 
-### Detection Keywords
+### Mots-clés de détection
 
-| Brief | Keywords |
+| Brief | Mots-clés |
 |-------|----------|
-| Report | 报告, report, 分析, analysis, 白皮书, white paper, 提案, proposal, 合同, contract, 方案, 规划, 发票, invoice, 收据, receipt, 试卷, exam, quiz, test paper, 练习, exercise, worksheet, 考试, 测验 |
-| Creative Fixed-Canvas | 海报, poster, 邀请函, invitation, 信息图, infographic, 仪表盘, dashboard, 传单, flyer, 证书, certificate, 菜单, menu, 名片, business card, 奖状, award, 标签, label, 信封, envelope, 贺卡, greeting card → `briefs/creative-fixed-canvas.md` |
-| Creative (Poster) | 海报, poster, 传单, flyer, 宣传页, 宣传单 → additionally load `briefs/poster.md` scene layer rules on top of creative-fixed-canvas.md |
-| Creative Flow | 图鉴, guide, 手册, handbook, 目录, catalog, 介绍, introduction, 合集, collection → `briefs/creative-flow.md` |
-| Academic | 论文, paper, 学术, academic, LaTeX, 数学, math, IEEE, ACM, 毕业, thesis, 研究, research, Beamer, slides, 开题报告, 学位, dissertation, proposal |
-| Process | 提取, extract, 合并, merge, 拆分, split, 填写, fill, 转换, convert, OCR, 重排, reformat, 重新排版, redesign, 模板, template, 参照, 照着这个做, match this style, 压缩, compress, 水印, watermark, 加密, encrypt, 签名, sign |
+| Report | rapport, report, analyse, analysis, livre blanc, white paper, proposition, proposal, contrat, contract, plan, planning, facture, invoice, reçu, receipt, examen, exam, quiz, test paper, exercice, exercise, feuille d'exercices, worksheet, test, interrogation |
+| Creative Fixed-Canvas | poster, poster, invitation, invitation, infographie, infographic, tableau de bord, dashboard, flyer, flyer, certificat, certificate, menu, menu, carte de visite, business card, distinction, award, étiquette, label, enveloppe, envelope, carte de vœux, greeting card → `briefs/creative-fixed-canvas.md` |
+| Creative (Poster) | poster, poster, flyer, flyer, prospectus, leaflet → charger en plus les règles de scène `briefs/poster.md` par-dessus creative-fixed-canvas.md |
+| Creative Flow | guide, guide, manuel, handbook, catalogue, catalog, introduction, introduction, collection, collection → `briefs/creative-flow.md` |
+| Academic | article, paper, académique, academic, LaTeX, mathématiques, math, IEEE, ACM, thèse, thesis, recherche, research, Beamer, slides, rapport de projet, diplôme, dissertation, proposal |
+| Process | extraire, extract, fusionner, merge, découper, split, remplir, fill, convertir, convert, OCR, reformater, reformat, redesign, template, template, suis ce style, match this style, compresser, compress, filigrane, watermark, chiffrer, encrypt, signer, sign |
 
-### Complete Scenario Routing Matrix
+### Matrice complète de routage des scénarios
 
-Below is an exhaustive map of every known PDF request type to its handling strategy. If a scenario is not listed, route to the closest match or ask the user.
+Voici une cartographie exhaustive de chaque type de demande PDF connue vers sa stratégie de traitement. Si un scénario n'est pas listé, routez vers la correspondance la plus proche ou demandez à l'utilisateur.
 
-#### Creation (Generate PDF from scratch)
+#### Création (Générer un PDF à partir de zéro)
 
-| Scenario | Route | Notes |
+| Scénario | Route | Notes |
 |----------|-------|-------|
-| Report / white paper / analysis | report.md | ReportLab structured document |
-| Report with emoji | **creative-fixed-canvas.md** |  Emoji rule override |
-| Business proposal | report.md | Structured + data tables |
-| Contract / legal document | report.md | Add signature placeholders (dotted line + label) |
-| Invoice / receipt | report.md | Table-heavy, precision alignment |
-| Exam / quiz / test paper / worksheet | report.md | Indented options, answer space reservation, structured numbering (see Exam Paper Rules in report.md) |
-| Math exam / math worksheet (with formulas/equations) | academic.md | LaTeX for proper math typesetting. See §Exam Paper Rules in academic.md |
-| Poster / flyer | creative-fixed-canvas.md + **poster.md** | Visual design + poster density/sizing rules |
-| Invitation / greeting card | creative-fixed-canvas.md | Non-standard size, decorative |
-| Certificate / award | creative-fixed-canvas.md | Single page, centered layout, decorative border |
-| Business card | creative-fixed-canvas.md | Tiny size (90×54mm), Playwright native support |
-| Envelope / label | creative-fixed-canvas.md | Non-standard size, simple layout |
-| Menu / price list | creative-fixed-canvas.md | Visual layout + may contain emoji |
-| Resume (ATS) | resume.md | Plain text structure |
-| Resume (creative) | creative-fixed-canvas.md | Visual design |
-| Resume (academic CV) | academic.md | Publication list + BibTeX |
-| Academic paper | academic.md | LaTeX/Tectonic |
-| Math-heavy document | academic.md | LaTeX typesetting |
-| Presentation / PPT-style | creative-fixed-canvas.md | Landscape (1280×720), one topic per page |
-| Book / long document | report.md | Add TOC + chapter numbering, validate with toc_validate.py |
-| CJK vertical text | creative-fixed-canvas.md | HTML `writing-mode: vertical-rl` + `text-orientation: upright` + `white-space: nowrap` + Playwright |
-| RTL document (Arabic/Hebrew) | creative-fixed-canvas.md | HTML `dir="rtl"` + Playwright |
-| Batch generation (mail merge) | report.md | Python loop + template variable substitution |
-| Infographic | creative-fixed-canvas.md | Data visualization + design |
-| Calendar / schedule | creative-fixed-canvas.md | Grid layout + custom dimensions |
-| Guide / handbook / catalog / introduction / collection | creative-flow.md | Flowing-document mode — text-heavy with design flair, content flows across pages naturally |
+| Rapport / livre blanc / analyse | report.md | Document structuré ReportLab |
+| Rapport avec emojis | **creative-fixed-canvas.md** | Priorité à la règle emoji |
+| Proposition commerciale | report.md | Structuré + tableaux de données |
+| Contrat / document juridique | report.md | Ajouter des emplacements de signature (ligne pointillée + libellé) |
+| Facture / reçu | report.md | Lourd en tableaux, alignement précis |
+| Examen / quiz / sujet de test / feuille d'exercices | report.md | Options en retrait, réservation d'espace réponse, numérotation structurée (voir Exam Paper Rules dans report.md) |
+| Examen de maths / feuille de maths (avec formules/équations) | academic.md | LaTeX pour une composition mathématique correcte. Voir §Exam Paper Rules dans academic.md |
+| Poster / flyer | creative-fixed-canvas.md + **poster.md** | Design visuel + règles de densité/dimensionnement poster |
+| Invitation / carte de vœux | creative-fixed-canvas.md | Taille non standard, décoratif |
+| Certificat / distinction | creative-fixed-canvas.md | Page unique, mise en page centrée, bordure décorative |
+| Carte de visite | creative-fixed-canvas.md | Très petit format (90×54 mm), support natif Playwright |
+| Enveloppe / étiquette | creative-fixed-canvas.md | Taille non standard, mise en page simple |
+| Menu / liste de prix | creative-fixed-canvas.md | Mise en page visuelle + peut contenir des emojis |
+| CV (ATS) | resume.md | Structure en texte brut |
+| CV (créatif) | creative-fixed-canvas.md | Design visuel |
+| CV (académique) | academic.md | Liste de publications + BibTeX |
+| Article académique | academic.md | LaTeX/Tectonic |
+| Document très mathématique | academic.md | Composition LaTeX |
+| Présentation / style PPT | creative-fixed-canvas.md | Paysage (1280×720), un sujet par page |
+| Livre / document long | report.md | Ajouter sommaire + numérotation des chapitres, valider avec toc_validate.py |
+| Texte CJK vertical | creative-fixed-canvas.md | HTML `writing-mode: vertical-rl` + `text-orientation: upright` + `white-space: nowrap` + Playwright |
+| Document RTL (arabe/hébreu) | creative-fixed-canvas.md | HTML `dir="rtl"` + Playwright |
+| Génération par lot (fusion de courriers) | report.md | Boucle Python + substitution de variables de template |
+| Infographie | creative-fixed-canvas.md | Visualisation de données + design |
+| Calendrier / planning | creative-fixed-canvas.md | Mise en page en grille + dimensions personnalisées |
+| Guide / manuel / catalogue / introduction / collection | creative-flow.md | Mode document fluide — riche en texte avec une touche de design, le contenu s'écoule naturellement sur les pages |
 
-#### Processing (Manipulate existing PDF)
+#### Traitement (Manipuler un PDF existant)
 
-| Scenario | Route | Command / Method |
+| Scénario | Route | Commande / Méthode |
 |----------|-------|------------------|
-| Merge multiple PDFs | process.md | `pages.merge a.pdf b.pdf -o out.pdf` |
-| Split PDF | process.md | `pages.split input.pdf -o ./output/` |
-| Extract text | process.md | `extract.text input.pdf` |
-| Extract tables | process.md | `extract.table input.pdf` |
-| Extract images | process.md | `extract.image input.pdf` |
-| Fill forms | process.md | `form.fill input.pdf` |
+| Fusionner plusieurs PDFs | process.md | `pages.merge a.pdf b.pdf -o out.pdf` |
+| Découper un PDF | process.md | `pages.split input.pdf -o ./output/` |
+| Extraire le texte | process.md | `extract.text input.pdf` |
+| Extraire les tableaux | process.md | `extract.table input.pdf` |
+| Extraire les images | process.md | `extract.image input.pdf` |
+| Remplir des formulaires | process.md | `form.fill input.pdf` |
 | Office → PDF | process.md | `convert.office input.docx` |
-| HTML → PDF (documents) | process.md | `convert.html input.html` or `node html2pdf-next.js` |
+| HTML → PDF (documents) | process.md | `convert.html input.html` ou `node html2pdf-next.js` |
 | HTML → PDF (posters) | poster.md | `node html2poster.js poster.html` |
-| Image → PDF | process.md | pikepdf: one image per page, embed as XObject |
-| PDF → image | process.md | pypdfium2 render each page to PNG |
-| Encrypt / decrypt | process.md | qpdf / pypdf encryption |
-| Add watermark | process.md | pikepdf overlay: create watermark page → merge onto each page |
-| Compress PDF | process.md | Ghostscript: `gs -sDEVICE=pdfwrite -dPDFSETTINGS=/screen` |
-| OCR scanned PDF | process.md | pytesseract + pdf2image |
-| Rotate pages | process.md | `pages.rotate input.pdf 90 -o out.pdf` |
-| Crop pages | process.md | `pages.crop input.pdf l,b,r,t -o out.pdf` |
-| Remove blank pages | process.md | `pages.clean input.pdf` |
-| Reformat by template | process.md → delegate | Extract content → regenerate via report/creative |
-| PDF diff / compare | process.md | `diff-pdf` CLI or Python per-page text comparison |
-| Digital signature | process.md | `pyhanko` library (requires extra install) |
-| Edit metadata | process.md | `meta.set input.pdf -o out.pdf -d '{...}'` |
+| Image → PDF | process.md | pikepdf : une image par page, intégrée comme XObject |
+| PDF → image | process.md | pypdfium2 rend chaque page en PNG |
+| Chiffrer / déchiffrer | process.md | chiffrement qpdf / pypdf |
+| Ajouter un filigrane | process.md | superposition pikepdf : créer la page filigrane → fusionner sur chaque page |
+| Compresser un PDF | process.md | Ghostscript : `gs -sDEVICE=pdfwrite -dPDFSETTINGS=/screen` |
+| OCR d'un PDF scanné | process.md | pytesseract + pdf2image |
+| Pivoter des pages | process.md | `pages.rotate input.pdf 90 -o out.pdf` |
+| Rogner des pages | process.md | `pages.crop input.pdf l,b,r,t -o out.pdf` |
+| Supprimer les pages blanches | process.md | `pages.clean input.pdf` |
+| Reformater selon un template | process.md → délégation | Extraire le contenu → régénérer via report/creative |
+| Diff / comparaison de PDFs | process.md | CLI `diff-pdf` ou comparaison de texte page par page en Python |
+| Signature numérique | process.md | bibliothèque `pyhanko` (installation supplémentaire requise) |
+| Modifier les métadonnées | process.md | `meta.set input.pdf -o out.pdf -d '{...}'` |
 
-### Special Routing Rules
+### Règles de routage spéciales
 
-** Emoji rule (CRITICAL - check FIRST)**: Content with intentional emoji (📊🎯🔥💡 etc.) → force **Creative pipeline** (use `briefs/creative-fixed-canvas.md` for visual-first designs, `briefs/creative-flow.md` for text-heavy documents) regardless of original routing. ReportLab renders emoji as □ squares; LaTeX silently drops them. This rule overrides Report/Academic routing. Even if the user says "report" - if the content has emoji, use a Creative brief.
+** Règle emoji (CRITIQUE - à vérifier EN PREMIER)** : contenu avec emojis intentionnels (📊🎯🔥💡 etc.) → forcer le **pipeline Creative** (utilisez `briefs/creative-fixed-canvas.md` pour les designs visuels d'abord, `briefs/creative-flow.md` pour les documents riches en texte) quel que soit le routage initial. ReportLab rend les emojis en carrés □ ; LaTeX les supprime silencieusement. Cette règle prime sur le routage Report/Academic. Même si l'utilisateur dit « rapport » - si le contenu contient des emojis, utilisez un brief Creative.
 
-**Non-standard page size rule**: Dimensions other than A4/Letter/A3 → strongly prefer **Creative pipeline** (`briefs/creative-fixed-canvas.md` or `briefs/creative-flow.md`). Playwright handles any arbitrary page size natively. ReportLab requires manual pagination math.
+**Règle des tailles de page non standard** : dimensions autres que A4/Letter/A3 → préférez fortement le **pipeline Creative** (`briefs/creative-fixed-canvas.md` ou `briefs/creative-flow.md`). Playwright gère nativement toute taille de page arbitraire. ReportLab exige des calculs de pagination manuels.
 
-**Academic auto-detect**: Papers, theses, or heavy math → **briefs/academic.md** even without explicit "LaTeX" mention.
+**Détection automatique Academic** : articles, thèses ou maths lourdes → **briefs/academic.md** même sans mention explicite de « LaTeX ».
 
-**Template-guided rule**: When the user uploads a PDF and says "match this template" / "follow this style" / "reformat like this" → **briefs/process.md** Template-Guided Reformat section. This is a Standard triage (not Light), because it involves design decisions.
+**Règle guidée par template** : quand l'utilisateur téléverse un PDF et dit « suis ce template » / « suis ce style » / « reformate comme ça » → section Template-Guided Reformat de **briefs/process.md**. C'est un triage Standard (pas Léger), car cela implique des décisions de design.
 
-**Resume routing**: Default to Resume brief (ATS-safe). Creative industry → Creative brief. Academic CV with publications → Academic brief.
+**Routage CV** : par défaut, brief Resume (compatible ATS). Industrie créative → brief Creative. CV académique avec publications → brief Academic.
 
 ---
 
-## Shared Assets
+## Ressources partagées
 
-These are referenced by multiple briefs. Each brief tells you when and what to load.
+Ces ressources sont référencées par plusieurs briefs. Chaque brief indique quand et quoi charger.
 
-| Asset | Path | Used By | Purpose |
+| Ressource | Chemin | Utilisé par | Objectif |
 |-------|------|---------|---------|
-| Palette & Typography | `typesetting/palette.md` | Report, Fixed-Canvas, Flow | Color system, font rules, anti-patterns, spacing |
-| Cover Layout System V2.1 | `typesetting/cover.md` | **Report + Fixed-Canvas + Flow + Academic** | 5 industrial-grade templates with absolute anchor grid, Z-index layers, typography weight system, mandatory Summary Block, code-level safety (5 checks), base unit `U = W*0.05`. **Unified HTML/Playwright cover system for all routes.** |
-| Chart Styling & Anti-Stacking | `typesetting/charts.md` | Report, Fixed-Canvas, Flow, Academic | Chart defaults, collision prevention, axis/grid/legend rules |
-| Overflow Prevention | `typesetting/overflow.md` | Report, Fixed-Canvas, Flow, Academic | Bounding box system, text/image/table overflow prevention, fallback strategies |
-| **Fill Engine (Anti-Void)** | `typesetting/fill-engine.md` | **Report, Fixed-Canvas, Academic** | **Anti-Void Engine V2.0: font floor enforcement, fill ratio calculation, paragraph inflation, component elevation, Y-axis golden-ratio anchoring** |
-| Pagination & Flow Control | `typesetting/pagination.md` | Report, Fixed-Canvas, Flow | Cross-page integrity, orphan/widow control, CJK punctuation rules |
-| Typography System | `typesetting/typography.md` | Report, Fixed-Canvas, Flow | Font size scale, line-height, spacing hierarchy |
-| Geometric Anchors | `typesetting/geometry.md` | Creative + Report | Decorative geometric elements, anchor placement rules |
-| Cover Backgrounds | `typesetting/cover-backgrounds.md` | **Report + Fixed-Canvas + Flow + Academic** | Cover background rendering, transparency constraints |
-| Visual Framework | `configs/visual_framework.md` | Fixed-Canvas | Palette mode, color harmony, SVG background params |
-| Components Library | `configs/components.md` | Fixed-Canvas | Non-grid composition components (floating cards, oversized text, etc.) |
-| Font Stacks | `configs/fonts.md` | All pipelines | Font families per pipeline (Google Fonts, ReportLab, LaTeX) |
+| Palette & typographie | `typesetting/palette.md` | Report, Fixed-Canvas, Flow | Système de couleurs, règles de polices, anti-patterns, espacement |
+| Système de mise en page de couverture V2.1 | `typesetting/cover.md` | **Report + Fixed-Canvas + Flow + Academic** | 5 templates de qualité industrielle avec grille d'ancrage absolue, couches Z-index, système de graisse typographique, Summary Block obligatoire, sécurité au niveau code (5 vérifications), unité de base `U = W*0.05`. **Système de couverture HTML/Playwright unifié pour toutes les routes.** |
+| Style des graphiques & anti-superposition | `typesetting/charts.md` | Report, Fixed-Canvas, Flow, Academic | Valeurs par défaut des graphiques, prévention des collisions, règles axes/grille/légende |
+| Prévention du débordement | `typesetting/overflow.md` | Report, Fixed-Canvas, Flow, Academic | Système de bounding box, prévention du débordement texte/image/tableau, stratégies de repli |
+| **Fill Engine (Anti-Vide)** | `typesetting/fill-engine.md` | **Report, Fixed-Canvas, Academic** | **Anti-Void Engine V2.0 : respect du plancher de police, calcul du taux de remplissage, inflation de paragraphes, élévation de composants, ancrage Y au nombre d'or** |
+| Pagination & contrôle du flux | `typesetting/pagination.md` | Report, Fixed-Canvas, Flow | Intégrité inter-pages, contrôle orphelines/veuves, règles de ponctuation CJK |
+| Système typographique | `typesetting/typography.md` | Report, Fixed-Canvas, Flow | Échelle de tailles de police, interligne, hiérarchie d'espacement |
+| Ancres géométriques | `typesetting/geometry.md` | Creative + Report | Éléments géométriques décoratifs, règles de placement des ancres |
+| Fonds de couverture | `typesetting/cover-backgrounds.md` | **Report + Fixed-Canvas + Flow + Academic** | Rendu des fonds de couverture, contraintes de transparence |
+| Framework visuel | `configs/visual_framework.md` | Fixed-Canvas | Mode palette, harmonie des couleurs, paramètres de fond SVG |
+| Bibliothèque de composants | `configs/components.md` | Fixed-Canvas | Composants de composition hors grille (cartes flottantes, etc.) |
+| Piles de polices | `configs/fonts.md` | Tous les pipelines | Familles de polices par pipeline (Google Fonts, ReportLab, LaTeX) |
 
 ---
 
-## Content Rules
+## Règles de contenu
 
-- **Language**: Match user's query language. Chinese query → Chinese PDF.
-- **Page/word count**: Respect explicit constraints (±20%). Unspecified → completeness over brevity.
-- **Outline**: User-provided outlines are sacred. No reordering without asking.
-- **Citations**: No fabrication. Chinese → GB/T 7714, English → APA. Search to verify.
-- **Multi-part requests**: Generate ALL parts - never silently drop a component.
+- **Langue** : répondez dans la langue de la requête de l'utilisateur. Requête en français → PDF en français.
+- **Nombre de pages/mots** : respectez les contraintes explicites (±20 %). Non spécifié → privilégier la complétude plutôt que la concision.
+- **Plan** : les plans fournis par l'utilisateur sont sacrés. Pas de réorganisation sans demander.
+- **Citations** : aucune fabrication. Chinois → GB/T 7714, anglais → APA. Recherchez pour vérifier.
+- **Demandes multi-parties** : générez TOUTES les parties - ne supprimez jamais silencieusement un composant.
 
-### Content Depth and Richness Standards (Anti-Shallow Writing)
+### Normes de profondeur et de richesse du contenu (anti-rédaction superficielle)
 
-**PROBLEM TO AVOID**: Shallow content with paragraphs containing only 1-2 sentences, or sections with minimal text under headings.
+**PROBLÈME À ÉVITER** : un contenu superficiel avec des paragraphes de 1-2 phrases seulement, ou des sections avec un texte minimal sous les titres.
 
-#### Minimum Content Standards
+#### Normes minimales de contenu
 
-1. **Paragraph Depth**
-   - Each paragraph MUST contain at least 3-5 sentences
-   - Single-sentence paragraphs are FORBIDDEN (except for transitional statements)
-   - Each paragraph should develop ONE complete idea with supporting details
+1. **Profondeur de paragraphe**
+   - Chaque paragraphe DOIT contenir au moins 3 à 5 phrases
+   - Les paragraphes d'une seule phrase sont INTERDITS (sauf phrases de transition)
+   - Chaque paragraphe doit développer UNE idée complète avec des détails à l'appui
 
-2. **Section Completeness**
-   - Each section heading MUST be followed by substantial content (minimum 150-200 words)
-   - NEVER create a section with only 1-2 short sentences
-   - If a section cannot meet minimum length, merge it with related sections
+2. **Complétude des sections**
+   - Chaque titre de section DOIT être suivi d'un contenu substantiel (minimum 150-200 mots)
+   - Ne créez JAMAIS une section avec seulement 1-2 phrases courtes
+   - Si une section ne peut pas atteindre la longueur minimale, fusionnez-la avec les sections liées
 
-3. **Content Enrichment Techniques**
-   - Include specific examples, data points, or case studies
-   - Provide context and background information
-   - Explain the "why" and "how", not just the "what"
-   - Add comparisons, contrasts, or alternative perspectives where relevant
-   - Include implications, consequences, or recommendations
+3. **Techniques d'enrichissement du contenu**
+   - Incluez des exemples concrets, des points de données ou des études de cas
+   - Fournissez le contexte et les informations d'arrière-plan
+   - Expliquez le « pourquoi » et le « comment », pas seulement le « quoi »
+   - Ajoutez des comparaisons, contrastes ou perspectives alternatives quand c'est pertinent
+   - Incluez implications, conséquences ou recommandations
 
-#### Writing Quality Checklist
+#### Liste de contrôle qualité de rédaction
 
-Before finalizing ANY written document, verify:
-- [ ] No paragraph has fewer than 3 sentences
-- [ ] No section has fewer than 150 words of body content
-- [ ] Each main point is supported by examples or evidence
-- [ ] Technical terms are explained when first introduced
-- [ ] Transitions connect ideas between paragraphs and sections
+Avant de finaliser TOUT document rédigé, vérifiez :
+- [ ] Aucun paragraphe ne compte moins de 3 phrases
+- [ ] Aucune section ne compte moins de 150 mots de corps de texte
+- [ ] Chaque point principal est soutenu par des exemples ou des preuves
+- [ ] Les termes techniques sont expliqués à leur première occurrence
+- [ ] Des transitions relient les idées entre paragraphes et sections
 
-#### Content Expansion Strategies
+#### Stratégies d'expansion du contenu
 
-When writing feels thin, apply these techniques:
+Quand la rédaction semble maigre, appliquez ces techniques :
 
-**For Analysis/Reports:**
-- Add background context (history, current state, trends)
-- Include multiple perspectives or stakeholder views
-- Provide specific metrics, statistics, or quantitative data
-- Discuss limitations, challenges, or counterarguments
-- Offer actionable recommendations with rationale
+**Pour analyses/rapports :**
+- Ajoutez du contexte d'arrière-plan (histoire, état actuel, tendances)
+- Incluez plusieurs perspectives ou points de vue des parties prenantes
+- Fournissez des métriques, statistiques ou données quantitatives précises
+- Discutez des limites, défis ou contre-arguments
+- Proposez des recommandations actionnables avec leur justification
 
-**For Explanatory Content:**
-- Use analogies to clarify complex concepts
-- Provide step-by-step breakdowns where applicable
-- Include real-world applications or use cases
-- Address common questions or misconceptions
-- Add visual descriptions or diagram explanations
+**Pour du contenu explicatif :**
+- Utilisez des analogies pour clarifier les concepts complexes
+- Fournissez des décompositions étape par étape quand c'est applicable
+- Incluez des applications réelles ou des cas d'usage
+- Traitez les questions fréquentes ou les idées reçues
+- Ajoutez des descriptions visuelles ou des explications de diagrammes
 
-**FORBIDDEN PATTERNS:**
-- Section with heading followed by only 1-3 sentences
-- Bullet lists without explanatory context
-- Conclusions that merely restate the introduction
-- Sections that say "as mentioned above" without adding new value
+**PATTERNS INTERDITS :**
+- Section dont le titre n'est suivi que de 1 à 3 phrases
+- Listes à puces sans contexte explicatif
+- Conclusions qui se contentent de reformuler l'introduction
+- Sections qui disent « comme mentionné ci-dessus » sans apporter de valeur nouvelle
 
-### Language Consistency Rule
+### Règle de cohérence linguistique
 
-Always use the same language as the user's input language for:
-- The response and document content
-- Any generated report, PDF, or plot/diagram
-- **Cover page**: All text on the cover (title, subtitle, tags, author, footer) MUST match the user's prompt language. Chinese prompt → Chinese cover; English prompt → English cover. Mixing is forbidden.
-- **Charts and figures**: Before generating any chart or figure, determine the user's language. Ensure that the title, legend, labels, and other textual elements are consistent with the user's language. If any element cannot use the user's language, explicitly explain the reason.
+Utilisez toujours la même langue que celle de l'utilisateur pour :
+- La réponse et le contenu du document
+- Tout rapport, PDF ou graphique/diagramme généré
+- **Page de couverture** : tout texte de la couverture (titre, sous-titre, tags, auteur, pied de page) DOIT être dans la langue de la requête de l'utilisateur. Requête en français → couverture en français ; requête en anglais → couverture en anglais. Le mélange est interdit.
+- **Graphiques et figures** : avant de générer tout graphique ou figure, déterminez la langue de l'utilisateur. Assurez-vous que le titre, la légende, les libellés et les autres éléments textuels sont cohérents avec la langue de l'utilisateur. Si un élément ne peut pas utiliser la langue de l'utilisateur, expliquez explicitement la raison.
 
-### HTML Image Source Path Rules
+### Règles de chemins pour les sources d'images HTML
 
-When embedding images in HTML documents (Creative pipeline, Playwright-rendered diagrams, or any HTML→PDF flow):
+Lors de l'intégration d'images dans des documents HTML (pipeline Creative, diagrammes rendus par Playwright, ou tout flux HTML→PDF) :
 
-| Image location | `<img src>` value | Example |
+| Emplacement de l'image | Valeur `<img src>` | Exemple |
 |---|---|---|
-| **Local file** | **Relative path** from the HTML file's directory | `<img src="images/chart.png">` or `<img src="./diagram.png">` |
-| **Remote URL** | Full URL (no change needed) | `<img src="https://example.com/photo.jpg">` |
+| **Fichier local** | **Chemin relatif** au répertoire du fichier HTML | `<img src="images/chart.png">` ou `<img src="./diagram.png">` |
+| **URL distante** | URL complète (aucun changement nécessaire) | `<img src="https://example.com/photo.jpg">` |
 
-**Iron rules:**
-1. **NEVER use absolute paths** for local files in HTML `<img>`, `<source>`, CSS `url()`, or any other asset reference (e.g. `/Users/alice/project/img.png`). Absolute paths break portability across machines and environments.
-2. **Always use relative paths** anchored to the HTML file's own directory. If the image lives in a subdirectory, use `images/foo.png` or `./images/foo.png`.
-3. **Remote URLs (`http://` / `https://`) are fine as-is** - do not convert them to local paths.
-4. When generating HTML from a script or blueprint, ensure all referenced assets are either (a) in the same directory as the output HTML, or (b) in a clearly named subdirectory (e.g. `assets/`, `images/`), and referenced with relative paths.
-5. If a build script needs to resolve paths programmatically, compute relative paths at generation time (e.g. `os.path.relpath(image_path, html_dir)`) rather than embedding absolute filesystem paths.
+**Règles de fer :**
+1. **N'utilisez JAMAIS de chemins absolus** pour les fichiers locaux dans les `<img>` HTML, `<source>`, `url()` CSS ou toute autre référence de ressource (ex. `/Users/alice/project/img.png`). Les chemins absolus cassent la portabilité entre machines et environnements.
+2. **Utilisez toujours des chemins relatifs** ancrés au répertoire propre du fichier HTML. Si l'image vit dans un sous-répertoire, utilisez `images/foo.png` ou `./images/foo.png`.
+3. **Les URLs distantes (`http://` / `https://`) restent telles quelles** - ne les convertissez pas en chemins locaux.
+4. Quand vous générez du HTML depuis un script ou un blueprint, assurez-vous que toutes les ressources référencées sont soit (a) dans le même répertoire que le HTML de sortie, soit (b) dans un sous-répertoire clairement nommé (ex. `assets/`, `images/`), et référencées avec des chemins relatifs.
+5. Si un script de build doit résoudre des chemins par programme, calculez des chemins relatifs au moment de la génération (ex. `os.path.relpath(image_path, html_dir)`) plutôt que d'embarquer des chemins de système de fichiers absolus.
 
 ---
 
-## Figure & Diagram Embedding (All Briefs)
+## Intégration de figures et diagrammes (tous les briefs)
 
-### Iron Rule: Figures Are Block-Level
+### Règle de fer : les figures sont de niveau bloc
 
-Figures, diagrams, and charts MUST be independent block elements occupying full width. **Never** float/wrap figures alongside body text - this causes the text-diagram overlap badcase.
+Les figures, diagrammes et graphiques DOIVENT être des éléments de bloc indépendants occupant toute la largeur. **Ne faites jamais** flotter/envelopper les figures avec le texte du corps - cela provoque le badcase de chevauchement texte-diagramme.
 
-| Brief | Correct embedding | Forbidden |
+| Brief | Intégration correcte | Interdit |
 |-------|-------------------|-----------|
-| Report (ReportLab) | `story.append(Image(...))` as standalone Flowable | Placing images inside Paragraph text, simulating float |
-| Creative (Playwright) | `<figure style="display:block; width:100%; margin:2em auto">` | `float:right`, `display:flex` with text, `wrapfigure`-style CSS |
-| Academic (LaTeX) | `\begin{figure}[t] ... \end{figure}` | Bare `\includegraphics` in text body (no figure env), bare `tikzpicture` in multi-column |
+| Report (ReportLab) | `story.append(Image(...))` comme Flowable autonome | Placer des images dans le texte d'un Paragraph, simuler un float |
+| Creative (Playwright) | `<figure style="display:block; width:100%; margin:2em auto">` | `float:right`, `display:flex` avec le texte, CSS façon `wrapfigure` |
+| Academic (LaTeX) | `\begin{figure}[t] ... \end{figure}` | `\includegraphics` nu dans le corps du texte (pas d'environnement figure), `tikzpicture` nu en multi-colonnes |
 
-### Complex Diagram Strategy
+### Stratégie pour diagrammes complexes
 
-When a diagram has **>12 nodes, >3 subgroups, or intricate connections**, do NOT try to render it as one giant figure. Instead:
+Quand un diagramme compte **>12 nœuds, >3 sous-groupes ou des connexions complexes**, n'essayez PAS de le rendre comme une figure géante unique. À la place :
 
-1. **Table for details** - structured data (phases, components, specs) goes into a proper table
-2. **Simplified overview diagram** - a stripped-down flowchart/Mermaid showing only the top-level flow (≤8 nodes)
-3. **Cross-reference** - table caption + diagram caption reference each other
+1. **Tableau pour les détails** - les données structurées (phases, composants, specs) vont dans un vrai tableau
+2. **Diagramme d'ensemble simplifié** - un flowchart/Mermaid épuré ne montrant que le flux de haut niveau (≤8 nœuds)
+3. **Références croisées** - la légende du tableau et celle du diagramme se référencent mutuellement
 
-This "table + simple diagram" pattern prevents:
-- Diagrams overflowing page boundaries
-- Text becoming unreadably small to fit everything
-- Layout engines mishandling oversized graphics
+Ce pattern « tableau + diagramme simple » prévient :
+- Les diagrammes débordant des limites de page
+- Un texte devenant trop petit pour être lisible afin de tout faire tenir
+- Les moteurs de mise en page maltraitant les graphiques surdimensionnés
 
-### Diagram Content Quality Rules (Cross-reference: charts)
+### Règles de qualité du contenu des diagrammes (référence croisée : charts)
 
-The rules above handle **how** to embed diagrams in PDF. For **what the diagram itself looks like** (node layout, connector routing, color, readability), follow the `charts` skill rules:
+Les règles ci-dessus traitent **comment** intégrer des diagrammes dans un PDF. Pour **l'apparence du diagramme lui-même** (disposition des nœuds, routage des connecteurs, couleurs, lisibilité), suivez les règles du skill `charts` :
 
-**Before generating ANY flowchart/diagram for PDF embedding, check these:**
+**Avant de générer TOUT flowchart/diagramme pour intégration PDF, vérifiez ceci :**
 
-1. **Connectors must not pass through nodes** - If 3+ layers exist, connect adjacent layers only (top→mid, mid→bottom). Never draw top→bottom lines through middle nodes. Use detour paths if cross-layer links are needed.
-2. **Multiple arrows into one node must not pile up** - Distribute entry points evenly along target edge, or use merge-then-enter pattern (sources converge to a vertical merge line, then single arrow to target).
-3. **Low-saturation fills only** - Node backgrounds must be pale (`#EFF6FF`, `#F0FDF4`). High-saturation colors (`#3B82F6`, `#10B981`) only for borders or small accents. No children's-art color schemes.
-4. **Phase titles vs sub-steps must be visually distinct** - Different background color, font size, and font weight. Never same-style boxes for both.
-5. **Font sizes must be readable at final output size** - Sizes depend on the embedding context:
-   | Output context | Node title min | Description min | Label min |
+1. **Les connecteurs ne doivent pas traverser les nœuds** - S'il y a 3 couches ou plus, connectez uniquement les couches adjacentes (haut→milieu, milieu→bas). Ne tracez jamais de lignes haut→bas traversant les nœuds du milieu. Utilisez des chemins de détour si des liens inter-couches sont nécessaires.
+2. **Plusieurs flèches vers un même nœud ne doivent pas s'empiler** - Répartissez les points d'entrée uniformément le long du bord cible, ou utilisez le pattern fusion-puis-entrée (les sources convergent vers une ligne de fusion verticale, puis une seule flèche vers la cible).
+3. **Remplissages à faible saturation uniquement** - Les fonds des nœuds doivent être pâles (`#EFF6FF`, `#F0FDF4`). Les couleurs à haute saturation (`#3B82F6`, `#10B981`) uniquement pour les bordures ou petits accents. Pas de palettes dignes d'un dessin d'enfant.
+4. **Titres de phase vs sous-étapes doivent être visuellement distincts** - Couleur de fond, taille de police et graisse différentes. Jamais le même style de boîtes pour les deux.
+5. **Les tailles de police doivent rester lisibles à la taille finale de sortie** - Les tailles dépendent du contexte d'intégration :
+   | Contexte de sortie | Titre de nœud min | Description min | Libellé min |
    |---------------|----------------|-----------------|-----------|
-   | Standalone PNG (web/presentation, ≥1200px wide) | 14px | 12px | 11px |
-   | Embedded in A4 PDF (ReportLab/LaTeX, ~450pt content width) | 10pt | 8pt | 7pt |
-   | Embedded in slide deck (landscape, ~720pt wide) | 12pt | 10pt | 9pt |
+   | PNG autonome (web/présentation, ≥1200px de large) | 14px | 12px | 11px |
+   | Intégré dans un PDF A4 (ReportLab/LaTeX, ~450pt de largeur de contenu) | 10pt | 8pt | 7pt |
+   | Intégré dans un diaporama (paysage, ~720pt de large) | 12pt | 10pt | 9pt |
 
-   **Principle**: After embedding, the smallest text in the diagram must still be legible when the document is viewed at 100% zoom. If the diagram is scaled down to fit page width, recalculate: `effective_size = original_size × (display_width / canvas_width)`. If effective size drops below the minimum, either increase original font size or reduce diagram complexity.
-6. **Legend/annotations must not overlap content** - Separate container, ≥ 40px gap from last node, fully within canvas bounds.
+   **Principe** : après intégration, le plus petit texte du diagramme doit rester lisible quand le document est consulté à un zoom de 100 %. Si le diagramme est réduit pour tenir dans la largeur de page, recalculez : `effective_size = original_size × (display_width / canvas_width)`. Si la taille effective passe sous le minimum, augmentez la taille de police d'origine ou réduisez la complexité du diagramme.
+6. **Légende/annotations ne doivent pas chevaucher le contenu** - Conteneur séparé, écart ≥ 40px du dernier nœud, entièrement dans les limites du canevas.
 
-**For Playwright-rendered diagrams**: Use low-saturation fills (`#EFF6FF`, `#F0FDF4`), CSS flexbox/grid for node layout, SVG `<line>`/`<path>` for connectors, and verify no overlap at final render size.
-**For ReportLab-drawn diagrams**: Same principles apply - use `Drawing()` with explicit coordinates, check node bounding boxes for overlap before finalizing.
+**Pour les diagrammes rendus par Playwright** : utilisez des remplissages à faible saturation (`#EFF6FF`, `#F0FDF4`), CSS flexbox/grid pour la disposition des nœuds, SVG `<line>`/`<path>` pour les connecteurs, et vérifiez l'absence de chevauchement à la taille de rendu finale.
+**Pour les diagrammes dessinés par ReportLab** : mêmes principes - utilisez `Drawing()` avec des coordonnées explicites, vérifiez l'absence de chevauchement des bounding boxes des nœuds avant de finaliser.
 
-### Diagram Generation Strategy (Per-Brief)
+### Stratégie de génération des diagrammes (par brief)
 
-Diagram rendering depends on the target brief - **NOT** a one-size-fits-all TikZ pipeline.
+Le rendu des diagrammes dépend du brief cible - **PAS** un pipeline TikZ universel.
 
-| Target Brief | Diagram Method | Rationale |
+| Brief cible | Méthode de diagramme | Justification |
 |---|---|---|
-| **Report** (ReportLab) | Playwright+CSS → PNG → `Image()` | No LaTeX compiler in this route; HTML/CSS handles any layout natively |
-| **Creative** (Playwright) | Directly in HTML (CSS flexbox/grid + JS connectors) | Already in browser context |
-| **Academic** (Tectonic) - simple (≤6 nodes) | TikZ native `tikzpicture` | Vector output, font consistency, LaTeX-native |
-| **Academic** (Tectonic) - complex (>6 nodes) | Playwright+CSS → PNG @2× → `\includegraphics` | TikZ branch logic is error-prone for models; 300dpi PNG is publication-ready |
+| **Report** (ReportLab) | Playwright+CSS → PNG → `Image()` | Pas de compilateur LaTeX dans cette route ; HTML/CSS gère nativement toute mise en page |
+| **Creative** (Playwright) | Directement en HTML (CSS flexbox/grid + connecteurs JS) | Déjà en contexte navigateur |
+| **Academic** (Tectonic) - simple (≤6 nœuds) | `tikzpicture` TikZ natif | Sortie vectorielle, cohérence des polices, natif LaTeX |
+| **Academic** (Tectonic) - complexe (>6 nœuds) | Playwright+CSS → PNG @2× → `\includegraphics` | La logique de branches TikZ est source d'erreurs pour les modèles ; un PNG 300dpi est prêt pour publication |
 
-**Playwright+CSS diagram pipeline (Report & Academic-complex):**
+**Pipeline diagramme Playwright+CSS (Report & Academic-complexe) :**
 
 ```bash
 # 1. Write diagram HTML (CSS grid/flexbox + connectors)
@@ -365,65 +371,65 @@ story.append(img)
 # \includegraphics[width=\columnwidth]{diagram.png}
 ```
 
-**🚫 FORBIDDEN for Report/Creative briefs:** Do NOT use TikZ standalone → compile → pdftoppm → PNG pipeline. This route has no LaTeX compiler and the extra compilation steps are error-prone.
+**🚫 INTERDIT pour les briefs Report/Creative :** n'utilisez PAS le pipeline TikZ standalone → compilation → pdftoppm → PNG. Cette route n'a pas de compilateur LaTeX et les étapes de compilation supplémentaires sont sources d'erreurs.
 
-**TikZ remains valid ONLY for:**
-- Academic brief with simple diagrams (≤6 nodes, linear/hierarchical)
-- Direct `tikzpicture` embedding in LaTeX documents
-- Math-annotated diagrams where LaTeX math rendering matters
+**TikZ reste valide UNIQUEMENT pour :**
+- Le brief Academic avec des diagrammes simples (≤6 nœuds, linéaire/hiérarchique)
+- L'intégration directe de `tikzpicture` dans des documents LaTeX
+- Les diagrammes annotés de maths où le rendu mathématique LaTeX compte
 
-See `briefs/academic.md` Scenario B for TikZ templates (simple diagrams only).
+Voir le Scénario B de `briefs/academic.md` pour les templates TikZ (diagrammes simples uniquement).
 
 ---
 
-## Vector Rendering Iron Rule
+## Règle de fer du rendu vectoriel
 
-**The final PDF MUST be generated via `page.pdf()` (Playwright) or ReportLab/LaTeX native output - NEVER via screenshot-to-PDF.**
+**Le PDF final DOIT être généré via `page.pdf()` (Playwright) ou la sortie native ReportLab/LaTeX - JAMAIS via screenshot-to-PDF.**
 
-| Scenario | Correct Method | Forbidden |
+| Scénario | Méthode correcte | Interdit |
 |----------|---------------|-----------|
-| Creative pipeline (single/multi-page) | `page.pdf()` via `convert.blueprint` or `html2pdf-next.js` | `page.screenshot()` → image → wrap as PDF |
-| Report cover (HTML/Playwright) | `page.pdf()` → merge via pypdf | Screenshot cover → embed as image |
-| Academic cover | `page.pdf()` → merge via pypdf | Screenshot → `\includegraphics` for cover |
-| Full-page posters/infographics | `html2poster.js` (auto overflow:hidden + height measurement + `page.pdf()`) | Any raster pipeline for the final output |
+| Pipeline Creative (mono/multi-pages) | `page.pdf()` via `convert.blueprint` ou `html2pdf-next.js` | `page.screenshot()` → image → empaquetage en PDF |
+| Couverture Report (HTML/Playwright) | `page.pdf()` → fusion via pypdf | Capture d'écran de couverture → intégration en image |
+| Couverture Academic | `page.pdf()` → fusion via pypdf | Capture d'écran → `\includegraphics` pour la couverture |
+| Posters/infographies pleine page | `html2poster.js` (overflow:hidden auto + mesure de hauteur + `page.pdf()`) | Tout pipeline raster pour la sortie finale |
 
-**Why:** `page.pdf()` produces vector text + vector shapes. Text remains selectable, sharp at any zoom, and file size is smaller. Screenshot-based PDFs are raster images - blurry when zoomed, unsearchable, and 3-5× larger.
+**Pourquoi :** `page.pdf()` produit du texte vectoriel + des formes vectorielles. Le texte reste sélectionnable, net à tout zoom, et la taille de fichier est plus petite. Les PDFs basés sur capture d'écran sont des images raster - flous au zoom, non cherchables, et 3 à 5 fois plus gros.
 
-**The ONLY place screenshot/PNG embedding is acceptable:**
-- **Diagrams** embedded as sub-elements inside a larger document (e.g., flowcharts in a Report). These use `page.screenshot()` at 2× device scale factor for 300dpi print quality, then embed via `Image()` (ReportLab) or `\includegraphics` (LaTeX).
-- **Chart images** generated by matplotlib/plotly saved as PNG, then embedded.
+**Le SEUL endroit où l'intégration de capture d'écran/PNG est acceptable :**
+- Les **diagrammes** intégrés comme sous-éléments dans un document plus grand (ex. flowcharts dans un Report). Ils utilisent `page.screenshot()` à un facteur d'échelle device de 2× pour une qualité d'impression 300dpi, puis s'intègrent via `Image()` (ReportLab) ou `\includegraphics` (LaTeX).
+- Les **images de graphiques** générées par matplotlib/plotly, enregistrées en PNG puis intégrées.
 
-These are sub-elements, not the document itself. The document-level PDF output must always be vector.
+Ce sont des sous-éléments, pas le document lui-même. La sortie PDF au niveau du document doit toujours être vectorielle.
 
-**Quick test:** Open the generated PDF, zoom to 400%. If text is blurry, you used a screenshot pipeline. Fix it.
+**Test rapide :** ouvrez le PDF généré, zoomez à 400 %. Si le texte est flou, vous avez utilisé un pipeline de capture d'écran. Corrigez.
 
-### HTML→PDF Engine Selection Rules
+### Règles de sélection du moteur HTML→PDF
 
-There are **two dedicated scripts** for HTML→PDF. Choose based on document type:
+Il existe **deux scripts dédiés** pour HTML→PDF. Choisissez selon le type de document :
 
-| Document type | Script | Reason |
+| Type de document | Script | Raison |
 |---------------|--------|--------|
-| **Posters, infographics, long-image single-page designs** | `html2poster.js` | Auto overflow:hidden, auto height measurement, zero margin, single-page output |
-| **Cover pages (Report/Academic route)** | `html2poster.js` | Covers are single-page fixed layouts with absolute positioning - same nature as posters. `html2pdf-next.js` would convert absolute→static and destroy the layout |
-| **Multi-page documents, reports, academic papers, resumes** | `html2pdf-next.js` | Paged.js pagination, A4/custom size, pdf-lib metadata. `--nopaged` for Chromium native fallback |
-| **Creative pipeline (Blueprint → HTML → PDF)** | `html2pdf-next.js` via `convert.blueprint` | Called internally by design_engine pipeline |
+| **Posters, infographies, designs d'image longue en page unique** | `html2poster.js` | overflow:hidden auto, mesure de hauteur auto, marge zéro, sortie monopage |
+| **Pages de couverture (routes Report/Academic)** | `html2poster.js` | Les couvertures sont des mises en page fixes monopages en positionnement absolu - même nature que les posters. `html2pdf-next.js` convertirait absolute→static et détruirait la mise en page |
+| **Documents multi-pages, rapports, articles académiques, CV** | `html2pdf-next.js` | Pagination Paged.js, taille A4/personnalisée, métadonnées pdf-lib. `--nopaged` pour le repli natif Chromium |
+| **Pipeline Creative (Blueprint → HTML → PDF)** | `html2pdf-next.js` via `convert.blueprint` | Appelé en interne par le pipeline design_engine |
 
-#### Poster / Single-Page Long-Image → `html2poster.js`
+#### Poster / image longue monopage → `html2poster.js`
 
 ```bash
 node "$PDF_SKILL_DIR/scripts/html2poster.js" poster.html --output poster.pdf --width 720px
 ```
 
-`html2poster.js` automatically:
-- Forces `overflow: hidden` on `.poster` / `.page` containers (clips decorative overflow)
-- Injects `@page { margin: 0 }` (zero margins always)
-- Syncs `html/body` background with poster background color
-- Measures `.poster` scrollHeight and uses it as PDF height
-- Generates a single-page vector PDF with exact content dimensions
+`html2poster.js` automatiquement :
+- Force `overflow: hidden` sur les conteneurs `.poster` / `.page` (rognage du débordement décoratif)
+- Injecte `@page { margin: 0 }` (marges zéro toujours)
+- Synchronise le fond `html/body` avec la couleur de fond du poster
+- Mesure le scrollHeight de `.poster` et l'utilise comme hauteur du PDF
+- Génère un PDF vectoriel monopage aux dimensions exactes du contenu
 
-**Use this for ANY fixed-width, dynamic-height, single-page design.**
+**Utilisez ceci pour TOUT design monopage à largeur fixe et hauteur dynamique.**
 
-#### Documents / Multi-Page → `html2pdf-next.js`
+#### Documents / multi-pages → `html2pdf-next.js`
 
 ```bash
 node "$PDF_SKILL_DIR/scripts/html2pdf-next.js" input.html --output output.pdf --width 210mm --height 297mm
@@ -431,39 +437,39 @@ node "$PDF_SKILL_DIR/scripts/html2pdf-next.js" input.html --output output.pdf --
 python3 "$PDF_SKILL_DIR/scripts/pdf.py" convert.html input.html --output output.pdf
 ```
 
-Pre-render hooks auto-handle Mermaid/KaTeX rendering, overflow detection, and font loading. **Paged.js polyfill** is injected for pagination (break-inside/before/after, orphans/widows, named pages). Use `--nopaged` flag to fall back to Chromium native @page pagination if needed.
+Les hooks de pré-rendu gèrent automatiquement le rendu Mermaid/KaTeX, la détection de débordement et le chargement des polices. Le **polyfill Paged.js** est injecté pour la pagination (break-inside/before/after, orphelines/veuves, pages nommées). Utilisez le drapeau `--nopaged` pour revenir à la pagination @page native de Chromium si nécessaire.
 
-#### ⚠️ Iron Rule: No Hand-Written Playwright Scripts
+#### ⚠️ Règle de fer : pas de scripts Playwright écrits à la main
 
-Common issues with hand-written Python `page.pdf()` (the dedicated scripts handle these automatically):
-1. **Missing `@page` rule** → browser default margin causes content overflow to second page or white edges
-2. **Oversized elements not fixed** → large elements with `break-inside: avoid` block pagination, content gets truncated
-3. **Rendering before fonts are loaded** → Chinese text displays as squares or falls back to wrong font
-4. **No overflow detection** → content exceeds page boundary without awareness
-5. **No metadata** → PDF title, author, and other info missing
+Problèmes courants avec un `page.pdf()` Python écrit à la main (les scripts dédiés les gèrent automatiquement) :
+1. **Règle `@page` manquante** → la marge par défaut du navigateur provoque un débordement du contenu sur une seconde page ou des bords blancs
+2. **Éléments surdimensionnés non corrigés** → les grands éléments avec `break-inside: avoid` bloquent la pagination, le contenu est tronqué
+3. **Rendu avant le chargement des polices** → le texte chinois s'affiche en carrés ou retombe sur une mauvaise police
+4. **Pas de détection de débordement** → le contenu dépasse les limites de page sans que personne ne s'en aperçoive
+5. **Pas de métadonnées** → titre, auteur et autres infos du PDF manquants
 
-**Iron rule: Posters and cover pages use `html2poster.js`, multi-page documents use `html2pdf-next.js`. Do not write hand-written Python Playwright scripts.**
+**Règle de fer : les posters et pages de couverture utilisent `html2poster.js`, les documents multi-pages utilisent `html2pdf-next.js`. N'écrivez pas de scripts Python Playwright à la main.**
 
-> **⚠️ Cover page gotcha:** Cover HTML uses `position: absolute` for layout. Always use `html2poster.js` for cover pages — `html2pdf-next.js` + Paged.js would re-layout absolute-positioned elements into flow, destroying the cover design.
+> **⚠️ Piège de la page de couverture :** le HTML de couverture utilise `position: absolute` pour la mise en page. Utilisez toujours `html2poster.js` pour les couvertures — `html2pdf-next.js` + Paged.js remettrait en flux les éléments en position absolue, détruisant le design de la couverture.
 
-### No overflow:hidden on Fixed-Size Pages
+### Pas de overflow:hidden sur les pages à taille fixe
 
-**NEVER set `overflow: hidden` on `html`, `body`, `.page`, or the main container** in HTML intended for PDF conversion. Paged.js handles content chunking and pagination natively — it does not need overflow clipping.
+**Ne réglez JAMAIS `overflow: hidden` sur `html`, `body`, `.page` ou le conteneur principal** dans un HTML destiné à la conversion PDF. Paged.js gère nativement le découpage du contenu et la pagination — il n'a pas besoin de rognage par débordement.
 
-> **Note:** This rule does NOT apply to posters rendered via `html2poster.js` - that script automatically adds `overflow: hidden` to `.poster`/`.page` containers to clip decorative overflow.
+> **Note :** cette règle ne s'applique PAS aux posters rendus via `html2poster.js` - ce script ajoute automatiquement `overflow: hidden` aux conteneurs `.poster`/`.page` pour rogner le débordement décoratif.
 
-| Problem | Cause | Fix |
+| Problème | Cause | Correctif |
 |---------|-------|-----|
-| Content silently clipped at page boundaries | `overflow: hidden` on container hides content exceeding bounds | Remove `overflow: hidden`; Paged.js handles pagination |
-| Decorative elements inflate scrollWidth | `width > 100%` or negative offsets on absolutely-positioned elements | Constrain within page bounds (see creative-fixed-canvas.md §0.75) |
+| Contenu rogné silencieusement aux limites de page | `overflow: hidden` sur le conteneur masque le contenu dépassant les limites | Retirez `overflow: hidden` ; Paged.js gère la pagination |
+| Éléments décoratifs gonflant le scrollWidth | `width > 100%` ou décalages négatifs sur des éléments en position absolue | Contraindre dans les limites de page (voir creative-fixed-canvas.md §0.75) |
 
-**Always pair fixed-size pages with `@media screen` auto-scale** so the full page is visible in any browser window without scrolling. See `briefs/creative-fixed-canvas.md` § 0.5 for the CSS pattern.
+**Associez toujours les pages à taille fixe à une auto-échelle `@media screen`** pour que la page entière soit visible dans toute fenêtre de navigateur sans défilement. Voir le pattern CSS dans `briefs/creative-fixed-canvas.md` § 0.5.
 
-### Full-Bleed Rule (No White Margins)
+### Règle full-bleed (aucune marge blanche)
 
-When generating HTML for Playwright `page.pdf()`, the content **MUST fill the entire page** with zero margins. White side margins = broken layout.
+Quand vous générez du HTML pour `page.pdf()` Playwright, le contenu **DOIT remplir toute la page** avec zéro marge. Des marges blanches latérales = mise en page cassée.
 
-**Mandatory CSS for any HTML → PDF:**
+**CSS obligatoire pour tout HTML → PDF :**
 ```css
 @page {
   size: <width> <height>;  /* e.g., 720px 960px, or A4 */
@@ -475,23 +481,23 @@ html, body {
 }
 ```
 
-**Common causes of white margins:**
-1. Missing `@page { margin: 0 }` - browser default margins kick in (~1cm each side)
-2. Content width doesn't match page width - e.g., canvas is 720px but page is A4 (794px)
-3. Missing `@page { size }` declaration in the HTML
-4. Content has explicit `max-width` that's narrower than the page
+**Causes courantes de marges blanches :**
+1. `@page { margin: 0 }` manquant - les marges par défaut du navigateur s'appliquent (~1cm de chaque côté)
+2. La largeur du contenu ne correspond pas à la largeur de page - ex. le canevas fait 720px mais la page est A4 (794px)
+3. Déclaration `@page { size }` manquante dans le HTML
+4. Le contenu a un `max-width` explicite plus étroit que la page
 
-**For blueprint pipeline:** `design_engine.py` now injects `@page { size: var(--canvas-w) var(--canvas-h); margin: 0; }` automatically.
-**For raw HTML:** YOU must include the `@page` rule. No exceptions.
-**For direct Playwright:** Pass `margin: { top: 0, right: 0, bottom: 0, left: 0 }` to `page.pdf()`.
+**Pour le pipeline blueprint :** `design_engine.py` injecte désormais automatiquement `@page { size: var(--canvas-w) var(--canvas-h); margin: 0; }`.
+**Pour du HTML brut :** VOUS devez inclure la règle `@page`. Aucune exception.
+**Pour Playwright direct :** passez `margin: { top: 0, right: 0, bottom: 0, left: 0 }` à `page.pdf()`.
 
-### Background Color Consistency (No Color Mismatch)
+### Cohérence de la couleur de fond (pas de décalage de couleur)
 
-**`html` / `body` background color must match the content canvas background color.**
+**La couleur de fond de `html` / `body` doit correspondre à la couleur de fond du canevas de contenu.**
 
-Playwright `page.pdf({ printBackground: true })` renders the body background color. If body is white while the content area is gray/colored, color-inconsistent borders/gaps will appear in the PDF.
+`page.pdf({ printBackground: true })` de Playwright rend la couleur de fond du body. Si le body est blanc alors que la zone de contenu est grise/colorée, des bords/écarts aux couleurs incohérentes apparaîtront dans le PDF.
 
-#### Single-color documents (all pages same background)
+#### Documents monochromes (toutes les pages avec le même fond)
 
 ```css
 /* MANDATORY: body background = content background */
@@ -502,11 +508,11 @@ html, body {
 }
 ```
 
-#### Multi-page documents with mixed backgrounds (e.g. dark cover + white body pages)
+#### Documents multi-pages à fonds mixtes (ex. couverture sombre + pages du corps blanches)
 
-**Root cause:** Playwright resolves `.page { width: 210mm }` and `@page { size: 210mm }` to slightly different sub-pixel values (e.g. 793.688px vs 793.701px). This creates a <1px gap at the right/bottom edge of each `.page` div where `body`'s background shows through. On dark pages, a white `body` background makes this gap visible as a white edge.
+**Cause racine :** Playwright résout `.page { width: 210mm }` et `@page { size: 210mm }` en valeurs sous-pixel légèrement différentes (ex. 793.688px vs 793.701px). Cela crée un écart <1px au bord droit/bas de chaque div `.page` où le fond du `body` transparaît. Sur les pages sombres, un fond `body` blanc rend cet écart visible sous forme de bord blanc.
 
-**Fix - set `body` background to the document's dominant dark color:**
+**Correctif - réglez le fond du `body` sur la couleur sombre dominante du document :**
 
 ```css
 :root {
@@ -520,127 +526,127 @@ html, body {
 }
 ```
 
-**Why this works and doesn't break white pages:**
-- Dark pages: sub-pixel gap reveals dark `body` → gap invisible.
-- White pages: `.page-white { background: #ffffff }` fully covers `body` → dark body never visible.
-- The gap is <1px - even on white pages, the dark body at the extreme pixel edge is imperceptible after anti-aliasing.
+**Pourquoi cela fonctionne sans casser les pages blanches :**
+- Pages sombres : l'écart sous-pixel révèle un `body` sombre → écart invisible.
+- Pages blanches : `.page-white { background: #ffffff }` couvre entièrement le `body` → le body sombre n'est jamais visible.
+- L'écart est <1px - même sur les pages blanches, le body sombre au bord extrême du pixel est imperceptible après anticrénelage.
 
-**Rule: when generating multi-page HTML with mixed backgrounds, always set `html, body { background }` to the darkest page's background color.** If all pages are light/white, use the lightest content background (e.g. `#f8fafc`). Never leave `body` background unset (browser default = white = guaranteed white edges on dark pages).
+**Règle : en générant un HTML multi-pages à fonds mixtes, réglez toujours `html, body { background }` sur la couleur de fond de la page la plus sombre.** Si toutes les pages sont claires/blanches, utilisez le fond de contenu le plus clair (ex. `#f8fafc`). Ne laissez jamais le fond du `body` non défini (défaut navigateur = blanc = bords blancs garantis sur les pages sombres).
 ```
 
-### Content Centering (No Left/Right Drift)
+### Centrage du contenu (pas de décalage gauche/droite)
 
-**After HTML-to-PDF conversion, content must be centered, no left or right drift allowed.**
+**Après la conversion HTML→PDF, le contenu doit être centré, aucun décalage gauche/droite toléré.**
 
-Common drift causes:
-1. `@page { margin }` not 0 - browser default margin causes drift
-2. `.safe-zone` or content container `inset` / `padding` left-right asymmetric
-3. Content container has `max-width` but no `margin: 0 auto`
-4. Grid components only occupy partial column width (e.g. `1/1 → X/7` only uses left half)
-5. **Decorative elements overflow page boundary** - elements with `width > 100%` or negative offsets (e.g. glow circles, gradient overlays) inflate `scrollWidth` beyond page width. Playwright shrinks all content to fit, causing left-shift. **Fix: constrain decorative elements within page bounds** (`width` ≤ 100%, no negative `left`/`right` offsets). See `briefs/creative-fixed-canvas.md` §0.75 and `typesetting/overflow.md` §3.5 for details.
+Causes courantes de décalage :
+1. `@page { margin }` différent de 0 - la marge par défaut du navigateur provoque un décalage
+2. `.safe-zone` ou conteneur de contenu avec `inset` / `padding` asymétrique gauche-droite
+3. Le conteneur de contenu a un `max-width` mais pas de `margin: 0 auto`
+4. Les composants en grille n'occupent qu'une largeur de colonne partielle (ex. `1/1 → X/7` n'utilise que la moitié gauche)
+5. **Éléments décoratifs débordant des limites de page** - les éléments avec `width > 100%` ou décalages négatifs (ex. cercles lumineux, superpositions de dégradé) gonflent le `scrollWidth` au-delà de la largeur de page. Playwright réduit tout le contenu pour l'ajuster, provoquant un décalage à gauche. **Correctif : contraindre les éléments décoratifs dans les limites de page** (`width` ≤ 100 %, pas de décalages `left`/`right` négatifs). Voir `briefs/creative-fixed-canvas.md` §0.75 et `typesetting/overflow.md` §3.5 pour les détails.
 
-### Anti-Void Edges (No Large Blank Margins)
+### Bords anti-vide (pas de grandes marges vides)
 
-**Content should not have large meaningless whitespace at page edges, top, or bottom.**
+**Le contenu ne doit pas présenter de grands espaces blancs dénués de sens aux bords de page, en haut ou en bas.**
 
-- Content should make full use of page area; do not cram all content in the top half while leaving the bottom blank
-- For multi-page documents, each page's fill rate should be ≥ 60% (see `pagination.md` last page ≥ 40% rule)
-- For single-page posters/infographics, fill rate should be ≥ 70%
+- Le contenu doit exploiter pleinement la zone de page ; ne tassez pas tout le contenu dans la moitié supérieure en laissant le bas vide
+- Pour les documents multi-pages, le taux de remplissage de chaque page doit être ≥ 60 % (voir la règle dernière page ≥ 40 % de `pagination.md`)
+- Pour les posters/infographies monopages, le taux de remplissage doit être ≥ 70 %
 
 ---
 
-## Preflight (Quality Assurance)
+## Preflight (assurance qualité)
 
-Every PDF must pass preflight checks before delivery. Each brief specifies the exact commands.
+Chaque PDF doit passer les vérifications preflight avant livraison. Chaque brief précise les commandes exactes.
 
-### HTML Pre-Render Validation (MANDATORY for ALL HTML→PDF paths)
+### Validation HTML pré-rendu (OBLIGATOIRE pour tous les chemins HTML→PDF)
 
-**Before** calling `html2pdf-next.js`, `html2poster.js`, `convert.blueprint`, or any Playwright `page.pdf()`, run:
+**Avant** d'appeler `html2pdf-next.js`, `html2poster.js`, `convert.blueprint` ou tout `page.pdf()` Playwright, exécutez :
 
 ```bash
 python3 "$PDF_SKILL_DIR/scripts/poster_validate.py" check-html <your_file>.html
 ```
 
-| Result | Action |
+| Résultat | Action |
 |--------|--------|
-| **PASS** (no errors) | Proceed to PDF generation |
-| **ERROR** items | Must fix before generating PDF. Use `--fix --output <file>.html` for auto-repair |
-| **WARNING** items | Review; non-blocking but should be addressed |
+| **PASS** (aucune erreur) | Passez à la génération du PDF |
+| Éléments **ERROR** | À corriger avant de générer le PDF. Utilisez `--fix --output <file>.html` pour la réparation automatique |
+| Éléments **WARNING** | À examiner ; non bloquant mais à traiter |
 
-**Key checks:**
-- `OVERFLOW_HIDDEN_CONTAINER` (error): `overflow:hidden` on html/body/.page clips content and hides layout bugs. Paged.js handles pagination without needing overflow clipping
-- `FIXED_SIZE_NO_SCREEN_ADAPT` (warning): fixed-size page without `@media screen` auto-scale - browser preview requires scrolling
-- `SCREEN_ADAPT_NO_SCALE` (warning): `@media screen` exists but lacks scale/transform/zoom
-- `FONT_NO_FALLBACK` (error): font-family without generic fallback
-- `COLOR_CONTRAST` (warning): text/background contrast ratio < 3:1
-- Plus: remote images, absolute paths, missing margin reset, tiny fonts, background mismatch, etc.
+**Vérifications clés :**
+- `OVERFLOW_HIDDEN_CONTAINER` (erreur) : `overflow:hidden` sur html/body/.page rogne le contenu et masque les bugs de mise en page. Paged.js gère la pagination sans avoir besoin de rognage par débordement
+- `FIXED_SIZE_NO_SCREEN_ADAPT` (avertissement) : page à taille fixe sans auto-échelle `@media screen` - l'aperçu navigateur exige un défilement
+- `SCREEN_ADAPT_NO_SCALE` (avertissement) : `@media screen` présent mais sans scale/transform/zoom
+- `FONT_NO_FALLBACK` (erreur) : font-family sans repli générique
+- `COLOR_CONTRAST` (avertissement) : rapport de contraste texte/fond < 3:1
+- Plus : images distantes, chemins absolus, reset de marge manquant, polices minuscules, fond incohérent, etc.
 
-This applies to **all three HTML routes**: Creative blueprint pipeline, Report HTML covers, and bypass/custom HTML.
+Ceci s'applique aux **trois routes HTML** : pipeline blueprint Creative, couvertures HTML Report, et HTML personnalisé/bypass.
 
-### Overflow Prevention System
+### Système de prévention du débordement
 
-**→ Full spec: `typesetting/overflow.md`** - read it for any document with tables, images, or multi-column layouts.
+**→ Spécification complète : `typesetting/overflow.md`** - lisez-la pour tout document avec tableaux, images ou mises en page multi-colonnes.
 
-Core principles:
-1. **Measure first, draw second** - never render content without pre-calculating its dimensions
-2. **Bounding Box constraint** - every element's width ≤ its parent container's `Max_Width`
-3. **Text: use font metrics**, not character count, for width calculation
-4. **Images: proportional scaling** - never insert at original size
-5. **Tables: weight-based column width** + `Paragraph()` wrapping (never plain strings)
-6. **Fallback ladder**: wrap → shrink font (max -3pt) → reduce padding → split element → log warning
-7. **Vertical: KeepTogether** for heading+body, chart+caption; `repeatRows=1` for long tables
+Principes fondamentaux :
+1. **Mesurer d'abord, dessiner ensuite** - ne rendez jamais le contenu sans avoir précalculé ses dimensions
+2. **Contrainte de bounding box** - la largeur de chaque élément ≤ `Max_Width` de son conteneur parent
+3. **Texte : utilisez les métriques de police**, pas le nombre de caractères, pour le calcul de largeur
+4. **Images : mise à l'échelle proportionnelle** - n'insérez jamais à la taille d'origine
+5. **Tableaux : largeur de colonne pondérée** + enveloppement `Paragraph()` (jamais de chaînes brutes)
+6. **Échelle de repli** : envelopper → réduire la police (max -3pt) → réduire le padding → scinder l'élément → journaliser un avertissement
+7. **Vertical : KeepTogether** pour titre+corps, graphique+légende ; `repeatRows=1` pour les longs tableaux
 
-### Table Overflow Prevention (ReportLab)
-**Most common layout bug: table columns exceed page margins.**
+### Prévention du débordement de tableaux (ReportLab)
+**Bug de mise en page le plus courant : les colonnes de tableau dépassent les marges de page.**
 
-Before building any ReportLab Table:
-1. Calculate `available_width = page_width - left_margin - right_margin`
-2. Use proportional colWidths (`[0.25, 0.40, 0.20, 0.15]` × available_width) or fixed+flex pattern
-3. `sum(colWidths)` must be ≤ `available_width` - **verify this in code**
-4. Long text columns must use `Paragraph()` wrapping, not plain strings (plain strings don't wrap)
-5. CJK text is wider: budget ~12pt per character at 10pt font size
+Avant de construire tout Table ReportLab :
+1. Calculez `available_width = page_width - left_margin - right_margin`
+2. Utilisez des colWidths proportionnels (`[0.25, 0.40, 0.20, 0.15]` × available_width) ou le pattern fixe+flex
+3. `sum(colWidths)` doit être ≤ `available_width` - **vérifiez-le dans le code**
+4. Les colonnes de texte long doivent utiliser l'enveloppement `Paragraph()`, pas des chaînes brutes (les chaînes brutes ne se replient pas)
+5. Le texte CJK est plus large : prévoyez ~12pt par caractère à une taille de police de 10pt
 
-See `briefs/report.md` § "Table Width Management" for code patterns.
+Voir `briefs/report.md` § « Table Width Management » pour les patterns de code.
 
-### Table Overflow Prevention (LaTeX/Academic)
-**Most common bug in dual-column papers: wide tables overflow single-column width.**
+### Prévention du débordement de tableaux (LaTeX/Academic)
+**Bug le plus courant dans les articles à double colonne : les tableaux larges débordent de la largeur de colonne.**
 
-Before writing any LaTeX table:
-1. Count data columns - ≤ 4 fits single column; 5-6 needs `\small`; 7-8 needs `\resizebox`; ≥ 9 use `table*` (full width)
-2. Use `tabular*{\columnwidth}` or `tabularx{\columnwidth}` instead of plain `tabular` for 5+ columns
-3. Never use plain `tabular` with 8+ columns in twocolumn layout - guaranteed overflow
-4. `\resizebox{\columnwidth}{!}` as last resort - verify smallest text ≥ 6pt after scaling
+Avant d'écrire tout tableau LaTeX :
+1. Comptez les colonnes de données - ≤ 4 tient en une colonne ; 5-6 exigent `\small` ; 7-8 exigent `\resizebox` ; ≥ 9 utilisez `table*` (pleine largeur)
+2. Utilisez `tabular*{\columnwidth}` ou `tabularx{\columnwidth}` au lieu de `tabular` brut pour 5 colonnes ou plus
+3. N'utilisez jamais `tabular` brut avec 8 colonnes ou plus en mise en page twocolumn - débordement garanti
+4. `\resizebox{\columnwidth}{!}` en dernier recours - vérifiez que le plus petit texte reste ≥ 6pt après mise à l'échelle
 
-See `briefs/academic.md` § "Table width management" for LaTeX patterns.
+Voir `briefs/academic.md` § « Table width management » pour les patterns LaTeX.
 
-### Playwright PDF CSS Blacklist
-These CSS properties **silently break** in Playwright's PDF renderer:
-- `backdrop-filter` / `-webkit-backdrop-filter` - **drops entire element content**. Use solid `rgba()` backgrounds.
-- `overflow: hidden` on content containers - clips content. Only safe on small decorative elements (< 200px).
+### Liste noire CSS du PDF Playwright
+Ces propriétés CSS **cassent silencieusement** dans le moteur de rendu PDF de Playwright :
+- `backdrop-filter` / `-webkit-backdrop-filter` - **supprime tout le contenu de l'élément**. Utilisez des fonds `rgba()` solides.
+- `overflow: hidden` sur les conteneurs de contenu - rogne le contenu. Sûr uniquement sur les petits éléments décoratifs (< 200px).
 
-After generating any Playwright PDF, **verify every page has content** (pypdf text extraction, check non-empty).
+Après avoir généré tout PDF Playwright, **vérifiez que chaque page a du contenu** (extraction de texte pypdf, vérification non vide).
 
-### PDF Metadata (all briefs)
-ALL PDFs must have: Title, Author (default "Z.ai"), Creator, Subject.
+### Métadonnées PDF (tous les briefs)
+TOUS les PDFs doivent avoir : Title, Author (défaut « Z.ai »), Creator, Subject.
 
-### Delivery Summary (all briefs)
-Report to user: file path, size, page count. Academic adds word/image count. Creative adds per-page verification.
+### Résumé de livraison (tous les briefs)
+Rapportez à l'utilisateur : chemin du fichier, taille, nombre de pages. Academic ajoute le nombre de mots/images. Creative ajoute la vérification page par page.
 
-**HTML→PDF route deliverables (MANDATORY - applies to ALL briefs that use Playwright/HTML to generate PDF):**
-Whenever the HTML→PDF pipeline is used (Creative route, Report cover bypass, Direct HTML Flow posters, or any Playwright `page.pdf()` path), you MUST deliver **both files** to the user:
-1. **HTML** - the source HTML file, so the user can edit and reuse the design
-2. **PDF** - the final vector PDF (`page.pdf()` output)
+**Livrables de la route HTML→PDF (OBLIGATOIRE - s'applique à TOUS les briefs qui utilisent Playwright/HTML pour générer un PDF) :**
+Chaque fois que le pipeline HTML→PDF est utilisé (route Creative, bypass de couverture Report, posters Direct HTML Flow, ou tout chemin `page.pdf()` Playwright), vous DEVEZ livrer **les deux fichiers** à l'utilisateur :
+1. **HTML** - le fichier HTML source, pour que l'utilisateur puisse modifier et réutiliser le design
+2. **PDF** - le PDF vectoriel final (sortie de `page.pdf()`)
 
-Optionally also provide:
-3. **Image** - a full-page screenshot/preview image (PNG or JPG) for quick sharing on chat/social media
+Fournissez aussi, en option :
+3. **Image** - une capture d'écran/image d'aperçu pleine page (PNG ou JPG) pour un partage rapide sur messagerie/réseaux sociaux
 
-All file paths must be reported to the user. **Never deliver only the PDF without the HTML source.**
+Tous les chemins de fichiers doivent être rapportés à l'utilisateur. **Ne livrez jamais seulement le PDF sans la source HTML.**
 
 ---
 
-## Tooling Reference
+## Référence des outils
 
-### CLI: `python3 "$PDF_SKILL_DIR/scripts/pdf.py" <command>`
+### CLI : `python3 "$PDF_SKILL_DIR/scripts/pdf.py" <command>`
 
 ```bash
 # Environment
@@ -674,7 +680,7 @@ meta.get <pdf>
 meta.set <pdf> -o out.pdf -d '{"Title": "..."}'
 ```
 
-### Poster/HTML/LaTeX Validator: `python3 "$PDF_SKILL_DIR/scripts/poster_validate.py"`
+### Validateur Poster/HTML/LaTeX : `python3 "$PDF_SKILL_DIR/scripts/poster_validate.py"`
 ```bash
 check-html <html>                              # Pre-render validation (overflow:hidden, @media screen, fonts, contrast, etc.)
 check-html <html> --fix --output <fixed.html>  # Auto-fix errors (remove overflow:hidden, add font fallback)
@@ -683,34 +689,34 @@ check-pdf <pdf> --poster                       # Poster mode: suppress ORPHAN_PA
 check-tex <tex>                                # LaTeX source validation (table overflow, image width, etc.)
 ```
 
-**check-html checks include:**
-- `OVERFLOW_HIDDEN_CONTAINER` (error): overflow:hidden on html/body/.page/.poster - clips content
-- `FIXED_SIZE_NO_SCREEN_ADAPT` (warning): fixed-size page without @media screen auto-scale
-- `SCREEN_ADAPT_NO_SCALE` (warning): @media screen exists but lacks scale/transform/zoom
-- `FONT_NO_FALLBACK` (error): font-family without generic fallback (sans-serif/serif)
-- `COLOR_CONTRAST` (warning): text/background contrast ratio < 3:1
-- `BG_COLOR_MISMATCH` (warning): body background differs from .canvas/.poster background
-- `SCREEN_BG_MISMATCH` (warning): @media screen html background differs from body/canvas background
-- `MULTIPAGE_BODY_BG_MISSING` (warning): multi-page document with dark `.page` backgrounds but no `html/body` background color. Sub-pixel gaps at page edges reveal white body, causing visible white edges on dark pages. Resolves `var()` references via `:root` variables.
-- `SCREEN_NO_BG` (warning): fixed-size page's @media screen block lacks html background color
-- `OVERFLOW_DECORATION` (warning): negative position values may cause black edges
+**Les vérifications de check-html incluent :**
+- `OVERFLOW_HIDDEN_CONTAINER` (erreur) : overflow:hidden sur html/body/.page/.poster - rogne le contenu
+- `FIXED_SIZE_NO_SCREEN_ADAPT` (avertissement) : page à taille fixe sans auto-échelle @media screen
+- `SCREEN_ADAPT_NO_SCALE` (avertissement) : @media screen présent mais sans scale/transform/zoom
+- `FONT_NO_FALLBACK` (erreur) : font-family sans repli générique (sans-serif/serif)
+- `COLOR_CONTRAST` (avertissement) : rapport de contraste texte/fond < 3:1
+- `BG_COLOR_MISMATCH` (avertissement) : le fond du body diffère de celui de .canvas/.poster
+- `SCREEN_BG_MISMATCH` (avertissement) : le fond html du @media screen diffère de celui du body/canevas
+- `MULTIPAGE_BODY_BG_MISSING` (avertissement) : document multi-pages avec fonds `.page` sombres mais sans couleur de fond `html/body`. Les écarts sous-pixel aux bords de page révèlent un body blanc, provoquant des bords blancs visibles sur les pages sombres. Résout les références `var()` via les variables `:root`.
+- `SCREEN_NO_BG` (avertissement) : le bloc @media screen d'une page à taille fixe n'a pas de couleur de fond html
+- `OVERFLOW_DECORATION` (avertissement) : des valeurs de position négatives peuvent provoquer des bords noirs
 - `NO_PAGE_SIZE` / `MISSING_MARGIN_RESET` / `WHITE_BACKGROUND` / `TINY_FONT` / etc.
 
-**check-tex checks include:**
-- `BARE_TABULAR_OVERFLOW` (error): `\begin{tabular}` with 5+ columns in two-column layout, not wrapped in resizebox/adjustbox/table*
-- `RESIZEBOX_TEXTWIDTH` (error): `\resizebox{\textwidth}` used inside single-column float in two-column layout. `\textwidth` = full page width, but `table` float is one column. Fix: use `\resizebox{\columnwidth}` or `table*`
-- `TABULAR_OVERFLOW_RISK` (warning): 4-column tabular in two-column layout without width constraint
-- `TABULAR_WIDE` (warning): 7+ column tabular in single-column layout without width constraint
-- `TABULAR_NO_FLOAT` (warning): tabular not inside table/table* float environment
-- `TABULARX_NOT_LOADED` (warning): document has tabular but tabularx package not loaded
-- `IMAGE_NO_WIDTH` (warning): `\includegraphics` without width/height/scale constraint
-- `EQUATION_DUAL_ON_LINE` (warning): `equation` environment has 2+ equations joined by `\quad` without line breaks. Guaranteed overflow in dual-column
-- `EQUATION_OVERFLOW_RISK` (warning): equation body has >80 math characters. Likely overflows single column
-- `ALGORITHM_NO_SMALL_FONT` (warning): `algorithm` environment in dual-column without `\SetAlFnt{\small}`
-- `ALGORITHM_LONG_IO` (warning): Algorithm Input/Output line >120 chars. Will overflow narrow column
-- `CJK_ASCII_QUOTES` (error): ASCII `"` found adjacent to CJK characters. LaTeX interprets `"` as right double quote, so `"北漂"` renders incorrectly. Skips verbatim/lstlisting/minted environments and `\texttt{}`/`\url{}`/`\href{}{}`/`\verb||` inline commands.
+**Les vérifications de check-tex incluent :**
+- `BARE_TABULAR_OVERFLOW` (erreur) : `\begin{tabular}` avec 5 colonnes ou plus en mise en page double colonne, non enveloppé dans resizebox/adjustbox/table*
+- `RESIZEBOX_TEXTWIDTH` (erreur) : `\resizebox{\textwidth}` utilisé dans un float à colonne unique en mise en page double colonne. `\textwidth` = pleine largeur de page, mais le float `table` est une colonne. Correctif : utiliser `\resizebox{\columnwidth}` ou `table*`
+- `TABULAR_OVERFLOW_RISK` (avertissement) : tabular à 4 colonnes en double colonne sans contrainte de largeur
+- `TABULAR_WIDE` (avertissement) : tabular à 7 colonnes ou plus en colonne unique sans contrainte de largeur
+- `TABULAR_NO_FLOAT` (avertissement) : tabular hors environnement float table/table*
+- `TABULARX_NOT_LOADED` (avertissement) : le document a du tabular mais le package tabularx n'est pas chargé
+- `IMAGE_NO_WIDTH` (avertissement) : `\includegraphics` sans contrainte width/height/scale
+- `EQUATION_DUAL_ON_LINE` (avertissement) : environnement `equation` avec 2 équations ou plus jointes par `\quad` sans sauts de ligne. Débordement garanti en double colonne
+- `EQUATION_OVERFLOW_RISK` (avertissement) : corps d'équation de plus de 80 caractères mathématiques. Déborde probablement d'une colonne
+- `ALGORITHM_NO_SMALL_FONT` (avertissement) : environnement `algorithm` en double colonne sans `\SetAlFnt{\small}`
+- `ALGORITHM_LONG_IO` (avertissement) : ligne Input/Output d'algorithm de plus de 120 caractères. Débordera d'une colonne étroite
+- `CJK_ASCII_QUOTES` (erreur) : guillemet ASCII `"` trouvé adjacent à des caractères CJK. LaTeX interprète `"` comme guillemet double fermant, donc `"北漂"` se rend incorrectement. Ignore les environnements verbatim/lstlisting/minted et les commandes en ligne `\texttt{}`/`\url{}`/`\href{}{}`/`\verb||`.
 
-### Design Engine: `python3 "$PDF_SKILL_DIR/scripts/design_engine.py"`
+### Design Engine : `python3 "$PDF_SKILL_DIR/scripts/design_engine.py"`
 ```bash
 compile --blueprint <json_file> --output poster.html  # CRITICAL: Compile JSON blueprint to HTML
 derive "document title or description"         # Auto-derive intent from content
@@ -721,7 +727,7 @@ full --intent energy --mode dark --dimensions 720x960 --output-dir ./assets/
 audit --palette-json palette.json              # Check palette constraints
 ```
 
-### Palette Generator (for Report route): `python3 "$PDF_SKILL_DIR/scripts/pdf.py" palette.generate`
+### Générateur de palette (pour la route Report) : `python3 "$PDF_SKILL_DIR/scripts/pdf.py" palette.generate`
 ```bash
 palette.generate --title "document title" --mode minimal   # Output: ready-to-paste ReportLab Python code
 palette.generate --title "..." --format json               # Output: raw JSON
@@ -729,35 +735,35 @@ palette.generate --title "..." --format css                # Output: CSS custom 
 palette.generate --title "..." --mode dark --harmony complementary --seed 42
 ```
 
-### Cascade Palette (V2 - Preferred): `python3 "$PDF_SKILL_DIR/scripts/pdf.py" palette.cascade`
+### Palette cascade (V2 - préférée) : `python3 "$PDF_SKILL_DIR/scripts/pdf.py" palette.cascade`
 ```bash
 palette.cascade --title "document title" --mode minimal    # Output: summary table with all 12 roles
 palette.cascade --title "..." --format json                # Full structured JSON (roles + cover + body + charts + semantic)
 palette.cascade --title "..." --format css                 # CSS custom properties by tier
 palette.cascade --title "..." --format reportlab           # Ready-to-paste ReportLab Python code
 ```
-**⚠️ Cascade palette is the preferred palette system.** It enforces area ∝ 1/saturation (larger areas = lower saturation) and outputs unified color subsets for cover, body, and charts from one base hue. Use `palette.cascade` instead of `palette.generate` for new documents.
+**⚠️ La palette cascade est le système de palette préféré.** Elle impose aire ∝ 1/saturation (grandes aires = saturation plus faible) et produit des sous-ensembles de couleurs unifiés pour la couverture, le corps et les graphiques à partir d'une teinte de base. Utilisez `palette.cascade` plutôt que `palette.generate` pour les nouveaux documents.
 
-**⚠️ Report route MUST call `palette.cascade` (or `palette.generate`) before writing any ReportLab code.** The output is copy-paste ready - no manual hex picking allowed.
+**⚠️ La route Report DOIT appeler `palette.cascade` (ou `palette.generate`) avant d'écrire tout code ReportLab.** La sortie est prête à copier-coller - aucune sélection manuelle d'hex autorisée.
 
-> **Note**: `design_engine.py compile` produces **HTML** from a JSON blueprint. To get a **PDF**, use `pdf.py convert.blueprint` which internally calls `compile` → Playwright render → PDF output. In the Creative pipeline, always use `convert.blueprint` for the final PDF.
+> **Note** : `design_engine.py compile` produit du **HTML** à partir d'un blueprint JSON. Pour obtenir un **PDF**, utilisez `pdf.py convert.blueprint` qui appelle en interne `compile` → rendu Playwright → sortie PDF. Dans le pipeline Creative, utilisez toujours `convert.blueprint` pour le PDF final.
 
-### Tech Stack per Brief
+### Pile technique par brief
 
-| Brief | Primary Tool | Secondary | Emoji Support | Custom Page Size |
+| Brief | Outil principal | Secondaire | Support emoji | Taille de page personnalisée |
 |-------|-------------|-----------|---------------|-----------------|
-| Report | ReportLab + pypdf | **Playwright (cover)** | ❌ (tofu □) | Manual pagination |
-| Creative | Playwright | html2pdf-next.js (Paged.js + pdf-lib) | ✅ native | ✅ any size |
-| Academic | Tectonic + pypdf | **Playwright (cover)** | ❌ (dropped) | Template-dependent |
+| Report | ReportLab + pypdf | **Playwright (couverture)** | ❌ (tofu □) | Pagination manuelle |
+| Creative | Playwright | html2pdf-next.js (Paged.js + pdf-lib) | ✅ natif | ✅ toute taille |
+| Academic | Tectonic + pypdf | **Playwright (couverture)** | ❌ (supprimés) | Dépend du template |
 | Process | pikepdf, pdfplumber | LibreOffice (soffice) | N/A | N/A |
 
-> **Unified Cover System**: All routes generate covers via HTML/Playwright. Report uses Template 01, Academic uses Templates 03-04 (dark backgrounds, scholarly typography), Creative generates cover + body in one HTML document. Cover PDFs are merged with body PDFs via pypdf.
+> **Système de couverture unifié** : toutes les routes génèrent les couvertures via HTML/Playwright. Report utilise le Template 01, Academic les Templates 03-04 (fonds sombres, typographie savante), Creative génère couverture + corps dans un seul document HTML. Les PDFs de couverture sont fusionnés avec les PDFs du corps via pypdf.
 >
-> **Fallback**: If Report brief content has emoji → reroute to Creative.
+> **Repli** : si le contenu du brief Report contient des emojis → re-router vers Creative.
 
 ---
 
-## File Map
+## Carte des fichiers
 
 ```
 SKILL.md                            ← You are here
@@ -797,41 +803,41 @@ references/
   resume-academic.tex               ← Academic CV template (PhD/academic)
 ```
 
-### Loading Protocol
+### Protocole de chargement
 
-> **⚠️ DO NOT SKIP FILES. DO NOT SKIM.**
+> **⚠️ NE SAUTEZ AUCUN FICHIER. NE LISEZ PAS EN DIAGONALE.**
 >
-> Every rule in these files exists because a previous generation failed without it. "I already know how to make a PDF" is not a valid reason to skip reading. You don't — these files contain hundreds of engine-specific pitfalls (font registration order, overflow:hidden restrictions, cover rendering tools, page-break interactions) that you cannot guess correctly.
+> Chaque règle de ces fichiers existe parce qu'une génération précédente a échoué sans elle. « Je sais déjà faire un PDF » n'est pas une raison valable pour sauter la lecture. Vous ne le savez pas — ces fichiers contiennent des centaines de pièges spécifiques aux moteurs (ordre d'enregistrement des polices, restrictions overflow:hidden, outils de rendu de couverture, interactions de saut de page) que vous ne pouvez pas deviner correctement.
 
-**Step 1 — ALWAYS read (every task):**
-- This file (SKILL.md) — routing + iron rules
-- `configs/fonts.md` — font stacks per pipeline (wrong font = garbled CJK)
+**Étape 1 — à lire TOUJOURS (chaque tâche) :**
+- Ce fichier (SKILL.md) — routage + règles de fer
+- `configs/fonts.md` — piles de polices par pipeline (mauvaise police = CJK illisible)
 
-**Step 2 — Read the matched brief (every task):**
-- ONE brief file from `briefs/` based on routing
-- Read it **completely, top to bottom** — do not stop at the first code example
+**Étape 2 — lire le brief correspondant (chaque tâche) :**
+- UN fichier de brief dans `briefs/` selon le routage
+- Lisez-le **entièrement, de haut en bas** — ne vous arrêtez pas au premier exemple de code
 
-**Step 3 — Read every file the brief references (MANDATORY, not optional):**
-- When the brief says "see `typesetting/cover.md`" or "see `typesetting/overflow.md`" → you **MUST** open and read that file before writing any code
-- When a typesetting file references another file → follow that link too
-- **There is no "on demand" or "only if needed".** If the brief mentions a file, read it. Period.
+**Étape 3 — lire chaque fichier référencé par le brief (OBLIGATOIRE, pas optionnel) :**
+- Quand le brief dit « voir `typesetting/cover.md` » ou « voir `typesetting/overflow.md` » → vous **DEVEZ** ouvrir et lire ce fichier avant d'écrire tout code
+- Quand un fichier de typesetting référence un autre fichier → suivez ce lien aussi
+- **Il n'y a pas de « à la demande » ni de « seulement si nécessaire ».** Si le brief mentionne un fichier, lisez-le. Point.
 
-**Step 4 — Cover page? Read these BEFORE generating cover HTML:**
-- `typesetting/cover.md` — template system, layer architecture, anti-overflow rules
-- Run `cover_validate.js` after generating cover HTML (before PDF conversion)
-- Use `html2poster.js` for cover rendering — **NEVER write hand-written Playwright scripts**
+**Étape 4 — page de couverture ? Lisez ceci AVANT de générer le HTML de couverture :**
+- `typesetting/cover.md` — système de templates, architecture en couches, règles anti-débordement
+- Exécutez `cover_validate.js` après avoir généré le HTML de couverture (avant la conversion PDF)
+- Utilisez `html2poster.js` pour le rendu de la couverture — **n'écrivez JAMAIS de scripts Playwright à la main**
 
-**Checkpoint before writing code:** Can you name the exact rendering tool (html2poster.js vs html2pdf-next.js), font stack, cover template ID, and post-generation validators for this task? If not, you haven't read enough. Go back.
+**Point de contrôle avant d'écrire le code :** pouvez-vous nommer l'outil de rendu exact (html2poster.js vs html2pdf-next.js), la pile de polices, l'ID du template de couverture et les validateurs post-génération pour cette tâche ? Sinon, vous n'avez pas assez lu. Retournez en arrière.
 
 ---
 
-## 8. Quality Checklist (Mandatory after every PDF generation)
+## 8. Liste de contrôle qualité (obligatoire après chaque génération de PDF)
 
-> ⚠️ **正文才是第一章。** 封面/目录/摘要不计入编号，正文编号永远从 1 开始。详见 `report.md` Step 3.5。
+> ⚠️ **Le corps du texte constitue le premier chapitre.** Couverture/sommaire/résumé ne comptent pas dans la numérotation ; la numérotation du corps commence toujours à 1. Voir `report.md` étape 3.5.
 
-> The following checks come from the `typesetting/` spec files and are **mandatory** quality gates.
+> Les vérifications suivantes proviennent des fichiers de spécification `typesetting/` et constituent des **portes de qualité obligatoires**.
 
-### Automated Detection (Must Run)
+### Détection automatisée (à exécuter obligatoirement)
 
 ```bash
 # 1. PDF quality check (all pipelines)
@@ -849,31 +855,31 @@ node "$PDF_SKILL_DIR/scripts/cover_validate.js" cover.html
 node "$PDF_SKILL_DIR/scripts/cover_validate.js" cover.html --min-gap 30   # custom min gap in px
 ```
 
-> **Dependencies**: `pymupdf` (`pip install pymupdf`) for pdf_qa.py; `playwright` or `playwright-core` for cover_validate.js. If not installed, skip the respective check and use the manual checklist below.
+> **Dépendances** : `pymupdf` (`pip install pymupdf`) pour pdf_qa.py ; `playwright` ou `playwright-core` pour cover_validate.js. Si non installées, sautez la vérification correspondante et utilisez la liste de contrôle manuelle ci-dessous.
 
-Run `pdf_qa.py` after generating a PDF. It auto-detects: metadata completeness, page size consistency, blank pages, CJK punctuation placement, color count, font embedding status, content overflow, content fill ratio, cover full-bleed, margin symmetry, table centering, formula overflow.
-- **`--poster` mode**: skips content fill ratio check (poster last page naturally has less content), checks ALL pages for full-bleed (not just cover)
-- **`--skip-cover`**: skips page 1 when checking margin symmetry (for documents with separately-generated covers)
-- **`--no-tables`**: disables table centering check (for creative/poster documents that rarely have traditional tables)
-- **`--formulas`**: enables formula overflow detection (checks if formula-like content extends past right content margin)
-- Result PASS → deliver directly
-- Result WARN → evaluate whether fix is needed, non-blocking
-- Result FAIL → **must fix and regenerate**
+Exécutez `pdf_qa.py` après avoir généré un PDF. Il détecte automatiquement : complétude des métadonnées, cohérence des tailles de page, pages blanches, placement de la ponctuation CJK, nombre de couleurs, statut d'incorporation des polices, débordement de contenu, taux de remplissage du contenu, full-bleed de la couverture, symétrie des marges, centrage des tableaux, débordement de formules.
+- **Mode `--poster`** : saute la vérification du taux de remplissage du contenu (la dernière page d'un poster contient naturellement moins de contenu), vérifie le full-bleed sur TOUTES les pages (pas seulement la couverture)
+- **`--skip-cover`** : saute la page 1 lors de la vérification de symétrie des marges (pour les documents à couverture générée séparément)
+- **`--no-tables`** : désactive la vérification de centrage des tableaux (pour les documents créatifs/posters qui ont rarement des tableaux classiques)
+- **`--formulas`** : active la détection de débordement de formules (vérifie si le contenu ressemblant à des formules dépasse la marge de contenu droite)
+- Résultat PASS → livrez directement
+- Résultat WARN → évaluez si un correctif est nécessaire, non bloquant
+- Résultat FAIL → **corriger et régénérer obligatoirement**
 
-### Brief-Specific Quality Checklists
+### Listes de contrôle qualité spécifiques aux briefs
 
-Detailed checklist items have been moved into each brief to reduce context size:
+Les éléments détaillés de contrôle ont été déplacés dans chaque brief pour réduire la taille du contexte :
 
-- **Report** → `briefs/report.md` § "Quality Checklist — Report-Specific Items" (pagination, overflow, color, cover, charts, exam rules, layout, design restraint)
-- **Academic** → `briefs/academic.md` § "Quality Checklist — Academic-Specific Items" (pagination, LaTeX-specific)
-- **Creative Fixed-Canvas** → `briefs/creative-fixed-canvas.md` § "Quality Checklist — Creative-Specific Items" (color, geometric anchors, layout, design restraint)
-- **Creative Flow** → `briefs/creative-flow.md` § "Quality Checklist — Creative Flow" (layout & pagination, full-bleed, design quality)
+- **Report** → `briefs/report.md` § « Quality Checklist — Report-Specific Items » (pagination, débordement, couleur, couverture, graphiques, règles d'examen, mise en page, retenue de design)
+- **Academic** → `briefs/academic.md` § « Quality Checklist — Academic-Specific Items » (pagination, spécifique LaTeX)
+- **Creative Fixed-Canvas** → `briefs/creative-fixed-canvas.md` § « Quality Checklist — Creative-Specific Items » (couleur, ancres géométriques, mise en page, retenue de design)
+- **Creative Flow** → `briefs/creative-flow.md` § « Quality Checklist — Creative Flow » (mise en page & pagination, full-bleed, qualité de design)
 
-After loading your brief, review its quality checklist before delivering.
+Après avoir chargé votre brief, relisez sa liste de contrôle qualité avant de livrer.
 
-### Output Cleanliness (All Pipelines)
+### Propreté de la sortie (tous les pipelines)
 
-- [ ] **No process artifacts in output**: NEVER include version numbers ("V3"), iteration markers, draft labels ("DRAFT"), "CONFIDENTIAL"/"机密" stamps, "Generated by AI"/"本文档由AI生成", or internal comments in the final PDF unless the user explicitly requested them
-- [ ] **No auto-generated boilerplate labels**: Do not add ANY watermarks, generation notices, version numbers, timestamps, or tool names that the user didn't ask for
-- [ ] **No debug output in content**: Console logs, file paths, generation timestamps, tool names, or error messages must never appear in the PDF body
-- [ ] **Clean metadata only**: PDF metadata (author, title, subject) should reflect the document content, not the generation process
+- [ ] **Aucun artefact de processus dans la sortie** : n'incluez JAMAIS de numéros de version (« V3 »), marqueurs d'itération, libellés de brouillon (« DRAFT »), tampons « CONFIDENTIAL »/« 机密 », « Generated by AI »/« 本文档由AI生成 », ni commentaires internes dans le PDF final, sauf demande explicite de l'utilisateur
+- [ ] **Aucun libellé boilerplate auto-généré** : n'ajoutez AUCUN filigrane, avis de génération, numéro de version, horodatage ou nom d'outil non demandé par l'utilisateur
+- [ ] **Aucune sortie de debug dans le contenu** : les logs console, chemins de fichiers, horodatages de génération, noms d'outils ou messages d'erreur ne doivent jamais apparaître dans le corps du PDF
+- [ ] **Métadonnées propres uniquement** : les métadonnées PDF (auteur, titre, sujet) doivent refléter le contenu du document, pas le processus de génération

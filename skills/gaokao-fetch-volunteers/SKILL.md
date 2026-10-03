@@ -1,20 +1,31 @@
 ---
 name: gaokao-fetch-volunteers
+version: "1.0.0"
+category: "Éducation"
+tags:
+  - gaokao
+  - fetch
+  - volunteers
 description: >-
-  调用高考智能推荐志愿表 API，根据考生基本信息及专业/城市/院校倾向（映射为 API 选填参数）
-  获取冲稳保志愿列表，解析为 parsed.json。适用于获取推荐院校、冲稳保志愿表、志愿 API 调用。
+  Appeler l'API de recommandation intelligente de vœux du Gaokao pour obtenir, à partir des
+  informations de base du candidat et de ses préférences de filières/villes/établissements
+  (mappées vers les paramètres API optionnels), la liste de vœux répartie en ambitieux/sûrs/de
+  repli, puis l'analyser en parsed.json. Convient pour obtenir des établissements recommandés,
+  des listes de vœux ambitieux/sûrs/de repli et l'appel de l'API de vœux.
+language: fr
+
 ---
 
-# 获取推荐志愿表
+# Récupérer la liste de vœux recommandée
 
-本 Skill 是流水线的**第二步**：读取 `student.json`，**提取并映射考生倾向到 API 选填参数**，调用志愿接口，输出 `parsed.json`。
+Ce skill est la **deuxième étape** du pipeline : il lit `student.json`, **extrait et mappe les préférences du candidat vers les paramètres API optionnels**, appelle l'API de vœux et produit `parsed.json`.
 
-## 上下游
+## Amont / aval
 
-- **上游**：[gaokao-collect-student-info](../gaokao-collect-student-info/SKILL.md) → `student.json`
-- **下游**：[gaokao-recommend-majors](../gaokao-recommend-majors/SKILL.md)、[gaokao-recommend-schools](../gaokao-recommend-schools/SKILL.md)、[gaokao-generate-report](../gaokao-generate-report/SKILL.md)
+- **Amont** : [gaokao-collect-student-info](../gaokao-collect-student-info/SKILL.md) → `student.json`
+- **Aval** : [gaokao-recommend-majors](../gaokao-recommend-majors/SKILL.md), [gaokao-recommend-schools](../gaokao-recommend-schools/SKILL.md), [gaokao-generate-report](../gaokao-generate-report/SKILL.md)
 
-## 环境准备
+## Préparation de l'environnement
 
 ```bash
 cd gaokao-fetch-volunteers
@@ -22,24 +33,24 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 执行步骤
+## Étapes d'exécution
 
-### 1. 从辅助信息提取倾向（Agent 必做）
+### 1. Extraire les préférences depuis les informations auxiliaires (obligatoire pour l'agent)
 
-读取 `student.json`，根据 [preference_mapping.md](preference_mapping.md) 将考生倾向补全/写入以下字段：
+Lire `student.json` et, selon [preference_mapping.md](preference_mapping.md), compléter/écrire les préférences du candidat dans les champs suivants :
 
-| 字段 | 映射到 API |
+| Champ | Mappé vers l'API |
 |------|-----------|
 | `preferred_universities` | `universitys` |
 | `preferred_provinces` / `preferred_cities` | `provinces` |
 | `preferred_tags` | `tags` |
 | `preferred_major_classes` | `majorClass` |
 
-提取来源：`interests`、`career_direction`、`preferred_cities`、`notes` 及对话中的院校/专业/层次偏好。
+Sources d'extraction : `interests`, `career_direction`, `preferred_cities`, `notes` et les préférences d'établissements/filières/niveaux exprimées dans la conversation.
 
-若 Step1 已结构化写入，本步核对并补全；**调用 API 前倾向字段不得为空数组**（考生无偏好时除外）。
+Si l'étape 1 de la collecte a déjà structuré ces données, se contenter de vérifier et compléter ; **les champs de préférences ne doivent pas être des tableaux vides avant l'appel API** (sauf si le candidat n'a aucune préférence).
 
-### 2. 构建 API 请求
+### 2. Construire la requête API
 
 ```bash
 python3 scripts/build_api_request.py \
@@ -48,26 +59,26 @@ python3 scripts/build_api_request.py \
   --summary output/preference_summary.json
 ```
 
-脚本将 `preferred_*` 转为 API 选填参数；`preferred_cities` 会自动推导 `provinces`（见 `preference_mapping.md`）。
+Le script convertit les `preferred_*` en paramètres API optionnels ; `preferred_cities` permet de déduire automatiquement `provinces` (voir `preference_mapping.md`).
 
-`build_api_request.py` 会调用 `province_config.validate_classify` 校验 `classify` 是否与省份模式匹配。
+`build_api_request.py` appelle `province_config.validate_classify` pour vérifier que `classify` correspond au régime de la province.
 
-### 2.5 调用前参数核对（必做）
+### 2.5 Vérification des paramètres avant l'appel (obligatoire)
 
-在调用 API 前，对照 [reference.md](reference.md) 核对 `student.json` / `api_request.json`：
+Avant d'appeler l'API, vérifier `student.json` / `api_request.json` à l'aide de [reference.md](reference.md) :
 
-| 检查项 | 规则 |
+| Point de contrôle | Règle |
 |--------|------|
-| `classify` | 新疆→文科/理科；3+1+2 省→物理/历史；3+3 省→综合。**传错会导致批次列表为空** |
-| `subjects` | 3+1+2：**完整三科**（首选+两门再选，如 `物理,化学,生物`）；3+3：完整三科；新疆不传；京沪津专科由脚本处理 |
-| `gradeType` | **仅北京/上海/天津**填本科或专科；其他省必须为 `null` 或不传 |
-| `score` | 新疆**必传**（无一分一段表，仅 rank 无效） |
-| `batch` | 可填泛称「本科批」/「专科批」，由 batch/list 解析为各省具体批次名 |
-| 西藏 | 测试环境不支持，应退回采集环节说明 |
+| `classify` | Xinjiang → `文科`/`理科` ; provinces 3+1+2 → `物理`/`历史` ; provinces 3+3 → `综合`. **Une erreur rend la liste des lots vide** |
+| `subjects` | 3+1+2 : **les trois matières complètes** (matière principale + deux secondaires, p. ex. `物理,化学,生物`) ; 3+3 : trois matières complètes ; Xinjiang : ne pas transmettre ; filière courte Pékin/Shanghai/Tianjin gérée par le script |
+| `gradeType` | **Uniquement Pékin/Shanghai/Tianjin** : `本科` ou `专科` ; pour toutes les autres provinces : `null` ou ne pas transmettre |
+| `score` | Xinjiang : **obligatoire** (pas de table de classement ; le rang seul est invalide) |
+| `batch` | On peut saisir une appellation générique telle que `本科批` / `专科批`, résolue par batch/list vers le nom de lot spécifique de chaque province |
+| Tibet | Non supporté par l'environnement de test ; renvoyer à l'étape de collecte pour en informer l'utilisateur |
 
-**批次 batch**：用户侧可填泛称 `本科批` / `专科批`，脚本通过 batch/list 解析为各省具体批次名（如山东 → `普通类一段`）。接口失败时使用 [reference.md](reference.md) 中的静态兜底表。
+**Lot (batch)** : côté utilisateur on peut saisir l'appellation générique `本科批` / `专科批` ; le script la résout via batch/list vers le nom de lot spécifique de chaque province (p. ex. Shandong → `普通类一段`). En cas d'échec de l'interface, utiliser la table de repli statique de [reference.md](reference.md).
 
-### 3. 调用志愿 API（两阶段：批次 → 志愿列表）
+### 3. Appeler l'API de vœux (en deux phases : lots → liste de vœux)
 
 ```bash
 python3 scripts/fetch_volunteers.py \
@@ -75,7 +86,7 @@ python3 scripts/fetch_volunteers.py \
   -o output/parsed.json
 ```
 
-或一步完成（内置构建逻辑）：
+Ou en une seule fois (logique de construction intégrée) :
 
 ```bash
 python3 scripts/fetch_volunteers.py \
@@ -83,62 +94,62 @@ python3 scripts/fetch_volunteers.py \
   -o output/parsed.json
 ```
 
-脚本会先调用 `batch/list` 根据分数与选科解析具体 `batch` 和 `volunteerType`，再请求志愿推荐接口。参数规范化由 `scripts/province_config.py` 自动完成。可用 `--no-auto-batch` 关闭自动解析。
+Le script appelle d'abord `batch/list` pour résoudre le `batch` et le `volunteerType` précis à partir du score et des matières, puis interroge l'interface de recommandation de vœux. La normalisation des paramètres est faite automatiquement par `scripts/province_config.py`. On peut désactiver la résolution automatique avec `--no-auto-batch`.
 
-**两阶段 SOP**：
+**SOP en deux phases** :
 
 ```
 1. GET  batch/list  →  得到各省可选批次 + volunteerType
 2. POST intelligenceVolunteer  →  用选中批次的 batch / volunteerType 拉志愿
 ```
 
-京沪津在步骤 1 还需传 `gradeType`（脚本按 score / batch 自动推断）。
+Pour Pékin/Shanghai/Tianjin, il faut aussi transmettre `gradeType` à l'étape 1 (le script le déduit automatiquement du score / du batch).
 
-### 4. 向用户说明
+### 4. Expliquer à l'utilisateur
 
-结合 `preference_summary.json` 与 `parsed.json` 的 `stats`，说明：
+En s'appuyant sur `preference_summary.json` et le `stats` de `parsed.json`, expliquer :
 
-- 传入了哪些倾向参数（院校/省份/层次/专业类）
-- 冲/稳/保各多少所
+- quels paramètres de préférences ont été transmis (établissements/provinces/niveaux/familles de filières)
+- combien d'établissements dans chaque catégorie : ambitieux / sûrs / de repli
 
-## API 选填参数说明
+## Paramètres API optionnels
 
-| API 字段 | 含义 | 来源 |
+| Champ API | Signification | Source |
 |----------|------|------|
-| `universitys` | 心仪高校 | `preferred_universities` |
-| `provinces` | 省份意向 | `preferred_provinces` 或由城市推导 |
-| `tags` | 院校属性 | `preferred_tags`（985/211 等） |
-| `majorClass` | 专业类意向 | `preferred_major_classes` |
+| `universitys` | Établissements convoités | `preferred_universities` |
+| `provinces` | Provinces souhaitées | `preferred_provinces` ou déduites des villes |
+| `tags` | Attributs d'établissement | `preferred_tags` (985/211, etc.) |
+| `majorClass` | Familles de filières souhaitées | `preferred_major_classes` |
 
-完整 API 文档见 [reference.md](reference.md)。
+Documentation API complète : voir [reference.md](reference.md).
 
-## 输出结构（parsed.json）
+## Structure de sortie (parsed.json)
 
-| 字段 | 说明 |
+| Champ | Description |
 |------|------|
-| `profile` | 含传入的选填参数回显 |
-| `stats` | 冲/稳/保数量 |
-| `schools_by_type` | 分组院校列表 |
-| `request` | 实际 API 请求体（含倾向参数） |
-| `batch_resolution` | 批次解析来源、选中项与可选项 |
+| `profile` | Contient l'écho des paramètres optionnels transmis |
+| `stats` | Nombres d'établissements ambitieux/sûrs/de repli |
+| `schools_by_type` | Listes d'établissements groupés |
+| `request` | Corps de requête API réel (avec les paramètres de préférences) |
+| `batch_resolution` | Source de résolution du lot, choix retenu et options disponibles |
 
-## 故障排查
+## Dépannage
 
-| 现象 | 处理 |
+| Symptôme | Traitement |
 |------|------|
-| 推荐结果与倾向不符 | 检查 `api_request.json` 中选填参数是否正确 |
-| 没有可填报的批次 | 查 [reference.md](reference.md)；确认 classify 与省份模式一致 |
-| 批次列表为空 | classify 错误（如 3+3 省传了物理）— 脚本会明确报错 |
-| 西藏考生 | 测试环境不支持，需换省份或等待平台接入 |
-| 志愿接口 500 | 查 reference：gradeType/subjects 是否按省传对 |
-| 缺少 subjects | 3+3/3+1+2 必填选科；新疆/京沪津专科除外 |
-| subjects 只有两门 | 3+1+2 须传**完整三科**（含物理/历史），不能只传化学,生物 |
-| 倾向未传入 | 确认 Step1/本步已填写 `preferred_*` 字段 |
+| Recommandations non conformes aux préférences | Vérifier que les paramètres optionnels dans `api_request.json` sont corrects |
+| Aucun lot disponible pour candidater | Consulter [reference.md](reference.md) ; confirmer que `classify` correspond au régime de la province |
+| Liste des lots vide | `classify` erroné (p. ex. `物理` transmis pour une province 3+3) — le script renvoie une erreur explicite |
+| Candidats du Tibet | Non supporté par l'environnement de test ; changer de province ou attendre l'intégration de la plateforme |
+| Erreur 500 de l'interface de vœux | Consulter reference : `gradeType`/`subjects` correctement transmis selon la province |
+| `subjects` manquant | Les matières sont obligatoires en 3+3/3+1+2 ; sauf Xinjiang et filière courte Pékin/Shanghai/Tianjin |
+| `subjects` limité à deux matières | En 3+1+2, il faut transmettre **les trois matières complètes** (avec `物理`/`历史`), pas seulement chimie-biologie |
+| Préférences non transmises | Confirmer que les champs `preferred_*` ont bien été remplis à l'étape 1/2 |
 
-## 附加资源
+## Ressources annexes
 
-- [preference_mapping.md](preference_mapping.md) — 倾向 → API 参数映射规则
-- [reference.md](reference.md) — API、选科模式、批次接口踩坑速查
-- [scripts/province_config.py](scripts/province_config.py) — 各省 classify/subjects/gradeType 校验与规范化
-- [scripts/test_batch_api.py](scripts/test_batch_api.py) — 31 省批次接口回归测试
-- [examples/api_request_shandong.json](examples/api_request_shandong.json) — 含选填参数示例
+- [preference_mapping.md](preference_mapping.md) — règles de mappage préférences → paramètres API
+- [reference.md](reference.md) — API, régimes de matières, pièges des interfaces de lots : aide-mémoire
+- [scripts/province_config.py](scripts/province_config.py) — validation et normalisation de classify/subjects/gradeType par province
+- [scripts/test_batch_api.py](scripts/test_batch_api.py) — tests de régression de l'interface des lots pour 31 provinces
+- [examples/api_request_shandong.json](examples/api_request_shandong.json) — exemple avec paramètres optionnels

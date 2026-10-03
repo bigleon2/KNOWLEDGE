@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.18.0
+version: 3.19.0
 category: ecosystem
 language: fr
 tags:
@@ -209,6 +209,17 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 ---
 
+### §1.16 Routage de découverte des skills + garde d'installation (v3.19.0, Task 23)
+
+**É1-INSTALL — garde d'installation (décision D006)** : à l'ouverture de session, AVANT E1, exécuter `python3 scripts/ensure-installed.py --check` — rc=0 : écosystème installé (no-op, jamais de réinstallation d'un état à jour) ; rc≠0 : écosystème absent ou dérivé → exécuter `python3 scripts/ensure-installed.py --reinstall` (pipeline PM-INSTALL §2/§2bis ; clone éphémère SANS persistance de jeton — anti-persistance Task 8/14) avant toute autre étape. La garde est idempotente (f(f(x))=f(x)) et journalise toute réinstallation au worklog.
+
+**Routage de découverte (décision D004)** — quand gen-plan doit trouver, sélectionner ou inventorier des skills (E5, §3) :
+
+1. **skills-inventory en PRIORITÉ** : scanner `{{SKILLS_ROOT}}` via son script (`generate_skills_md.py --json` / `--search` / `--category`). Les performances des éléments trouvés sont comparées aux éléments natifs (couverture, fraîcheur, pertinence des métadonnées) et la comparaison est MÉMORISÉE au registre KB (section Décisions d'architecture) — la mémoire évite de re-comparer à chaque session et alimente le choix du routeur.
+2. **skill-finder-cn en FALLBACK** : UNIQUEMENT si skills-inventory échoue (script absent, arbre vide, erreur d'exécution). Tout élément trouvé par le fallback passe un **contrôle cybersécurité `audit-provenance`** (provenance, permissions, contenu dangereux) AVANT adoption ; un échec du contrôle disqualifie l'élément et est consigné au KB. La bascule est unidirectionnelle au cours d'une même recherche : pas de retour à skills-inventory après activation du fallback.
+
+---
+
 ## §2 — Spécification technique
 
 ### §2.1 Stack
@@ -277,7 +288,8 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 |------|--------|--------|
 | correct-work | Invocation à E1 + hook E8 + contrôle par phase | Validation du plan initial + vérification post-plan et à chaque phase terminée (E9-E14), version >= v2.4.0 |
 | clone-chat | Calibration + archivage | E4, E15, optionnel, version >= v2.0.0 |
-| skills-inventory | Consultation à E5 | Sélection des skills, version >= v1.0.0 |
+| skills-inventory | Routage prioritaire de découverte (§1.16) + consultation à E5 | Sélection des skills, version >= v1.1.0 |
+| skill-finder-cn | Fallback de découverte (§1.16) | Recherche externe UNIQUEMENT si skills-inventory échoue — contrôle cybersécurité audit-provenance obligatoire avant adoption |
 | prompt-engineering | Délégation (§1.6) | Optimisation des prompts complexes, version >= v1.0.0 |
 | context-engineering | Mobilisation (§1.6) | Socle SHARED, Protocole de Découverte KB, lecture bloc par bloc — déclenchement automatique (SHARED §7) |
 | loop-engineering | Mobilisation (§1.6) | Boucle E10-E13 + auto-calibration E15 — déclenchement automatique (SHARED §7) |

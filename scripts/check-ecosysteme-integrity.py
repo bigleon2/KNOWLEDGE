@@ -70,12 +70,12 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.18.0",
+    "gen-plan": "3.19.0",
     "knowledge-observer": "1.0.0",
     "correct-work": "2.7.0",
     "clone-chat": "2.0.0",
     "skills-inventory": "1.1.0",
-    "skill-creator": "1.0.0",
+    "skill-creator": "1.1.0",
     "agent-creator": "2.1.0",
     "script-creator": "1.1.0",
     "script-reviewer": "1.0.0",
@@ -90,7 +90,8 @@ ECO_SKILLS = {
     "cpp-analysis": "1.1.0",
     "pdf-llm": "1.0.0",
     "resource-monitor": "1.0.0",
-    "version-management": "1.0.0",
+    "version-management": "1.1.0",
+    "skill-finder-cn": "1.0.0",  # Task 23 : fallback §1.16 inscrit au registre
     # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
     "autonomous-agent": "1.1.0",
     "correct-py": "1.1.0",
@@ -202,9 +203,10 @@ def main():
             kb = f.read()
         entries = re.findall(r"^## ([\w-]+) v([\d.]+)", kb, re.MULTILINE)
         has_decisions = "## Décisions d'architecture" in kb
-        check("26 entrées KB versionnées + Décisions d'architecture",
-              len(entries) == 26 and has_decisions,
-              f"{len(entries)} entrées versionnées, Décisions={'oui' if has_decisions else 'non'}")
+        # Dynamisé KO-L004 (Task 23) : l'attendu = len(ECO_SKILLS), jamais un chiffre figé
+        check(f"{len(ECO_SKILLS)} entrées KB versionnées + Décisions d'architecture",
+              len(entries) == len(ECO_SKILLS) and has_decisions,
+              f"{len(entries)} entrées versionnées (attendu {len(ECO_SKILLS)}), Décisions={'oui' if has_decisions else 'non'}")
         for skill, expected_ver in ECO_SKILLS.items():
             match = [e for e in entries if e[0] == skill]
             check(f"KB {skill}", bool(match) and match[0][1] == expected_ver,

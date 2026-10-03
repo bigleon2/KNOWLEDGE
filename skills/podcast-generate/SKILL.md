@@ -1,114 +1,121 @@
 ---
 name: Podcast Generate
-description: Generate podcast episodes from user-provided content or by searching the web for specified topics. If user uploads a text file/article, creates a dual-host dialogue podcast (or single-host upon request). If no content is provided, searches the web for information about the user-specified topic and generates a podcast. Duration scales with content size (3-20 minutes, ~240 chars/min). Uses z-ai-web-dev-sdk for LLM script generation and TTS audio synthesis. Outputs both a podcast script (Markdown) and a complete audio file (WAV).
+version: "1.0.0"
+category: "Autres"
+tags:
+  - podcast
+  - generate
+description: Génère des épisodes de podcast à partir de contenu fourni par l'utilisateur ou en recherchant sur le web le sujet demandé (podcast generate). Si l'utilisateur téléverse un fichier texte/article, crée un podcast dialogue à double animateur (ou à animateur unique sur demande). Si aucun contenu n'est fourni, recherche sur le web des informations sur le sujet spécifié et génère un podcast. La durée s'ajuste à la taille du contenu (3-20 minutes, ~240 caractères/min). Utilise z-ai-web-dev-sdk pour la génération de script LLM et la synthèse audio TTS. Produit à la fois un script de podcast (Markdown) et un fichier audio complet (WAV).
 license: MIT
----
-
-# Podcast Generate Skill（TypeScript 版本）
-
-根据用户提供的资料或联网搜索结果，自动生成播客脚本与音频。
-
-该 Skill 适用于：
-- 长文内容的快速理解和播客化
-- 知识型内容的音频化呈现
-- 热点话题的深度解读和讨论
-- 实时信息的搜索和播客制作
+language: fr
 
 ---
 
-## 能力说明
+# Podcast Generate Skill (version TypeScript)
 
-### 本 Skill 可以做什么
-- **从文件生成**：接收一篇资料（txt/md/docx/pdf等文本格式），生成对谈播客脚本和音频
-- **联网搜索生成**：根据用户指定的主题，联网搜索最新信息，生成播客脚本和音频
-- 自动控制时长，根据内容长度自动调整（3-20 分钟）
-- 生成 Markdown 格式的播客脚本（可人工编辑）
-- 使用 z-ai TTS 合成高质量音频并拼接为最终播客
+Génère automatiquement des scripts et de l'audio de podcast à partir de documents fournis par l'utilisateur ou de résultats de recherche sur le web.
 
-### 本 Skill 当前不做什么
-- 不生成 mp3 / 字幕 / 时间戳
-- 不支持三人及以上播客角色
-- 不加入背景音乐或音效
+Ce Skill est adapté à :
+- La compréhension rapide de contenus longs et leur transformation en podcast
+- La mise en forme audio de contenus à vocation pédagogique
+- L'analyse approfondie et la discussion de sujets d'actualité
+- La recherche d'informations en temps réel et la production de podcast
 
 ---
 
-## 文件与职责说明
+## Capacités
 
-本 Skill 由以下文件组成：
+### Ce que ce Skill peut faire
+- **Génération depuis un fichier** : reçoit un document (txt/md/docx/pdf et autres formats texte) et produit un script et un audio de podcast sous forme de dialogue
+- **Génération par recherche web** : à partir du thème demandé par l'utilisateur, recherche les informations les plus récentes sur le web et produit un script et un audio de podcast
+- Contrôle automatique de la durée, ajustée à la longueur du contenu (3-20 minutes)
+- Génère un script de podcast au format Markdown (modifiable à la main)
+- Utilise le TTS z-ai pour synthétiser un audio de qualité et l'assembler en podcast final
+
+### Ce que ce Skill ne fait pas actuellement
+- Ne génère pas de mp3 / sous-titres / horodatages
+- Ne prend pas en charge trois rôles de podcast ou plus
+- N'ajoute pas de musique de fond ni d'effets sonores
+
+---
+
+## Fichiers et responsabilités
+
+Ce Skill se compose des fichiers suivants :
 
 - `generate.ts`
-  统一入口（支持文件模式和搜索模式）
-  - **文件模式**：读取用户上传的文本文件 → 生成播客
-  - **搜索模式**：调用 web-search skill 获取资料 → 生成播客
-  - 使用 z-ai-web-dev-sdk 进行 LLM 脚本生成
-  - 使用 z-ai-web-dev-sdk 进行 TTS 音频生成
-  - 自动拼接音频片段
-  - 只输出最终文件
+  Point d'entrée unifié (mode fichier et mode recherche)
+  - **Mode fichier** : lit le fichier texte téléversé par l'utilisateur → génère le podcast
+  - **Mode recherche** : appelle le skill web-search pour obtenir de la documentation → génère le podcast
+  - Utilise z-ai-web-dev-sdk pour la génération de script par LLM
+  - Utilise z-ai-web-dev-sdk pour la génération audio TTS
+  - Assemble automatiquement les segments audio
+  - Ne produit que les fichiers finaux
 
 - `readme.md`
-  使用说明文档
+  Documentation d'utilisation
 
 - `SKILL.md`
-  当前文件，描述 Skill 能力、边界与使用约定
+  Fichier courant, décrit les capacités, les limites et les conventions d'usage du Skill
 
 - `package.json`
-  Node.js 项目配置与依赖
+  Configuration et dépendances du projet Node.js
 
 - `tsconfig.json`
-  TypeScript 编译配置
+  Configuration de compilation TypeScript
 
 ---
 
-## 输入与输出约定
+## Conventions d'entrée et de sortie
 
-### 输入（二选一）
+### Entrées (au choix, une seule)
 
-**方式 1：文件上传**
-- 一篇资料文件（txt / md / docx / pdf 等文本格式）
-- 资料长度不限，Skill 会自动压缩为合适长度
+**Méthode 1 : téléversement de fichier**
+- Un fichier document (txt / md / docx / pdf et autres formats texte)
+- Longueur libre, le Skill compresse automatiquement à la bonne longueur
 
-**方式 2：联网搜索**
-- 用户指定一个搜索主题
-- 自动调用 web-search skill 获取相关内容
-- 整合多个搜索结果作为资料来源
+**Méthode 2 : recherche web**
+- L'utilisateur spécifie un thème de recherche
+- Le skill web-search est appelé automatiquement pour récupérer le contenu pertinent
+- Plusieurs résultats de recherche sont consolidés comme sources
 
-### 输出（只输出 2 个文件）
+### Sorties (2 fichiers seulement)
 
 - `podcast_script.md`
-  播客脚本（Markdown 格式，可人工编辑）
+  Script du podcast (format Markdown, modifiable à la main)
 
 - `podcast.wav`
-  最终拼接完成的播客音频
+  Audio final du podcast, assemblé
 
-**不输出中间文件**（如 segments.jsonl、meta.json 等）
+**Aucun fichier intermédiaire en sortie** (segments.jsonl, meta.json, etc.)
 
 ---
 
-## 运行方式
+## Exécution
 
-### 依赖环境
+### Environnement requis
 - Node.js 18+
-- z-ai-web-dev-sdk（已安装）
-- web-search skill（用于联网搜索模式）
+- z-ai-web-dev-sdk (déjà installé)
+- skill web-search (pour le mode recherche web)
 
-**不需要** z-ai CLI
+**Pas besoin** du z-ai CLI
 
-### 安装依赖
+### Installation des dépendances
 ```bash
 npm install
 ```
 
 ---
 
-## 使用示例
+## Exemples d'utilisation
 
-### 从文件生成播客
+### Générer un podcast depuis un fichier
 
 ```bash
 npm run generate -- --input=test_data/material.txt --out_dir=out
 ```
 
-### 联网搜索生成播客
+### Générer un podcast par recherche web
 
 ```bash
 # 根据主题搜索并生成播客
@@ -123,66 +130,66 @@ npm run generate -- --topic="气候变化影响" --out_dir=out --mode=single-mal
 
 ---
 
-## 参数说明
+## Paramètres
 
-| 参数 | 说明 | 默认值 |
+| Paramètre | Description | Valeur par défaut |
 |------|------|--------|
-| `--input` | 输入资料文件路径（与 --topic 二选一） | - |
-| `--topic` | 搜索主题关键词（与 --input 二选一） | - |
-| `--out_dir` | 输出目录（必需） | - |
-| `--mode` | 播客模式：dual / single-male / single-female | dual |
-| `--duration` | 手动指定分钟数（3-20）；0 表示自动 | 0 |
-| `--host_name` | 主持人/主播名称 | 小谱 |
-| `--guest_name` | 嘉宾名称 | 锤锤 |
-| `--voice_host` | 主持音色 | xiaochen |
-| `--voice_guest` | 嘉宾音色 | chuichui |
-| `--speed` | 语速（0.5-2.0） | 1.0 |
-| `--pause_ms` | 段间停顿毫秒数 | 200 |
+| `--input` | Chemin du fichier document en entrée (à choisir avec --topic) | - |
+| `--topic` | Mots-clés du thème de recherche (à choisir avec --input) | - |
+| `--out_dir` | Répertoire de sortie (obligatoire) | - |
+| `--mode` | Mode de podcast : dual / single-male / single-female | dual |
+| `--duration` | Durée en minutes imposée (3-20) ; 0 = automatique | 0 |
+| `--host_name` | Nom de l'animateur | 小谱 |
+| `--guest_name` | Nom de l'invité | 锤锤 |
+| `--voice_host` | Voix de l'animateur | xiaochen |
+| `--voice_guest` | Voix de l'invité | chuichui |
+| `--speed` | Débit de parole (0.5-2.0) | 1.0 |
+| `--pause_ms` | Pause inter-segments en millisecondes | 200 |
 
 ---
 
-## 可用音色
+## Voix disponibles
 
-| 音色 | 特点 |
+| Voix | Caractéristiques |
 |------|------|
-| xiaochen | 沉稳专业 |
-| chuichui | 活泼可爱 |
-| tongtong | 温暖亲切 |
-| jam | 英音绅士 |
-| kazi | 清晰标准 |
-| douji | 自然流畅 |
-| luodo | 富有感染力 |
+| xiaochen | Posée et professionnelle |
+| chuichui | Vive et attachante |
+| tongtong | Chaleureuse et bienveillante |
+| jam | Accent britannique raffiné |
+| kazi | Claire et standard |
+| douji | Naturelle et fluide |
+| luodo | Pleine d'énergie |
 
 ---
 
-## 技术架构
+## Architecture technique
 
-### generate.ts（统一入口）
-- **文件模式**：读取用户上传文件 → 生成播客
-- **搜索模式**：调用 web-search skill → 获取资料 → 生成播客
-- **LLM**：使用 `z-ai-web-dev-sdk` (`chat.completions.create`)
-- **TTS**：使用 `z-ai-web-dev-sdk` (`audio.tts.create`)
-- **不需要** z-ai CLI
-- 自动拼接音频片段
-- 只输出最终文件，中间文件自动清理
+### generate.ts (point d'entrée unifié)
+- **Mode fichier** : lit le fichier téléversé par l'utilisateur → génère le podcast
+- **Mode recherche** : appelle le skill web-search → récupère la documentation → génère le podcast
+- **LLM** : utilise `z-ai-web-dev-sdk` (`chat.completions.create`)
+- **TTS** : utilise `z-ai-web-dev-sdk` (`audio.tts.create`)
+- **Pas besoin** du z-ai CLI
+- Assemble automatiquement les segments audio
+- Ne produit que les fichiers finaux ; les fichiers intermédiaires sont nettoyés automatiquement
 
-### LLM 调用
-- System prompt：播客脚本编剧角色
-- User prompt：包含资料 + 硬性约束 + 呼吸感要求
-- 输出校验：字数、结构、角色标签
-- 自动重试：最多 3 次
+### Appels LLM
+- System prompt : rôle de scénariste de podcast
+- User prompt : documentation + contraintes strictes + exigences de respiration du dialogue
+- Validation de la sortie : nombre de mots, structure, étiquettes de rôles
+- Nouvelle tentative automatique : 3 fois maximum
 
-### TTS 调用
-- 使用 `zai.audio.tts.create()`
-- 支持自定义音色、语速
-- 自动拼接多个 wav 片段
-- 临时文件自动清理
+### Appels TTS
+- Utilise `zai.audio.tts.create()`
+- Prend en charge voix et débit personnalisés
+- Assemble automatiquement plusieurs segments wav
+- Nettoyage automatique des fichiers temporaires
 
 ---
 
-## 输出示例
+## Exemple de sortie
 
-### podcast_script.md（片段）
+### podcast_script.md (extrait)
 ```markdown
 **小谱**：大家好，欢迎收听今天的播客。今天我们来聊一个有趣的话题……
 

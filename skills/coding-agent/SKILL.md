@@ -1,82 +1,92 @@
 ---
 name: coding-agent
+category: "Développement"
+tags:
+  - coding
+  - agent
 slug: code
-version: 1.0.4
+version: 1.0.5
+category: "Développement"
+tags:
+  - coding
+  - agent
 homepage: https://clawic.com/skills/code
-description: Coding workflow with planning, implementation, verification, and testing for clean software development.
+description: Workflow de développement avec planification, implémentation, vérification et tests pour un développement logiciel propre.
 changelog: Improved description for better discoverability
+language: fr
 metadata: {"clawdbot":{"emoji":"💻","requires":{"bins":[]},"os":["linux","darwin","win32"]}}
+
 ---
 
-## When to Use
+## Quand l'utiliser
 
-User explicitly requests code implementation. Agent provides planning, execution guidance, and verification workflows.
+L'utilisateur demande explicitement une implémentation de code. L'agent fournit la planification, le guidage d'exécution et les workflows de vérification.
 
 ## Architecture
 
-User preferences stored in `~/code/` when user explicitly requests.
+Les préférences de l'utilisateur sont stockées dans `~/code/` quand il le demande explicitement.
 
 ```
 ~/code/
   - memory.md    # User-provided preferences only
 ```
 
-Create on first use: `mkdir -p ~/code`
+Créer lors de la première utilisation : `mkdir -p ~/code`
 
-## Quick Reference
+## Référence rapide
 
-| Topic | File |
+| Sujet | Fichier |
 |-------|------|
-| Memory setup | `memory-template.md` |
-| Task breakdown | `planning.md` |
-| Execution flow | `execution.md` |
-| Verification | `verification.md` |
-| Multi-task state | `state.md` |
-| User criteria | `criteria.md` |
+| Configuration mémoire | `memory-template.md` |
+| Découpage des tâches | `planning.md` |
+| Flux d'exécution | `execution.md` |
+| Vérification | `verification.md` |
+| État multi-tâches | `state.md` |
+| Critères utilisateur | `criteria.md` |
 
-## Scope
+## Périmètre
 
-This skill ONLY:
-- Provides coding workflow guidance
-- Stores preferences user explicitly provides in `~/code/`
-- Reads included reference files
+Ce skill fait UNIQUEMENT :
+- Fournir des consignes de workflow de développement
+- Stocker les préférences explicitement fournies par l'utilisateur dans `~/code/`
+- Lire les fichiers de référence inclus
 
-This skill NEVER:
-- Executes code automatically
-- Makes network requests
-- Accesses files outside `~/code/` and the user's project
-- Modifies its own SKILL.md or auxiliary files
-- Takes autonomous action without user awareness
+Ce skill ne fait JAMAIS :
+- Exécuter du code automatiquement
+- Faire des requêtes réseau
+- Accéder à des fichiers hors de `~/code/` et du projet de l'utilisateur
+- Modifier son propre SKILL.md ou ses fichiers auxiliaires
+- Agir de façon autonome sans que l'utilisateur le sache
 
-## Core Rules
+## Règles de base
 
-### 1. Check Memory First
-Read `~/code/memory.md` for user's stated preferences if it exists.
+### 1. Consulter d'abord la mémoire
+Lire `~/code/memory.md` pour connaître les préférences déclarées de l'utilisateur, si le fichier existe.
 
-### 2. User Controls Execution
-- This skill provides GUIDANCE, not autonomous execution
-- User decides when to proceed to next step
-- Sub-agent delegation requires user's explicit request
+### 2. L'utilisateur contrôle l'exécution
+- Ce skill fournit des CONSEILS, pas une exécution autonome
+- L'utilisateur décide du passage à l'étape suivante
+- La délégation à un sous-agent exige une demande explicite de l'utilisateur
 
-### 3. Plan Before Code
-- Break requests into testable steps
-- Each step independently verifiable
-- See `planning.md` for patterns
+### 3. Planifier avant de coder
+- Découper les demandes en étapes testables
+- Chaque étape vérifiable indépendamment
+- Voir `planning.md` pour les schémas
 
-### 4. Verify Everything
-| After | Do |
+### 4. Tout vérifier
+| Après | Faire |
 |-------|-----|
-| Each function | Suggest running tests |
-| UI changes | Suggest taking screenshot |
-| Before delivery | Suggest full test suite |
+| Chaque fonction | Suggérer de lancer les tests |
+| Changements UI | Suggérer de prendre une capture d'écran |
+| Avant la livraison | Suggérer la suite de tests complète |
 
-### 5. Store Preferences on Request
-| User says | Action |
+### 5. Enregistrer les préférences sur demande
+| L'utilisateur dit | Action |
 |-----------|--------|
-| "Remember I prefer X" | Add to memory.md |
-| "Never do Y again" | Add to memory.md Never section |
+| « retiens que je préfère X » | Ajouter à memory.md |
+| « ne fais plus jamais Y » | Ajouter à la section Never de memory.md |
 
-Only store what user explicitly asks to save.
+N'enregistrez que ce que l'utilisateur demande explicitement de sauvegarder.
 
 ## Workflow
 
@@ -84,37 +94,37 @@ Only store what user explicitly asks to save.
 Request -> Plan -> Execute -> Verify -> Deliver
 ```
 
-## Common Traps
+## Pièges courants
 
-- **Delivering untested code** -> always verify first
-- **Huge PRs** -> break into testable chunks
-- **Ignoring preferences** -> check memory.md first
+- **Livrer du code non testé** -> toujours vérifier d'abord
+- **PR énormes** -> découper en morceaux testables
+- **Ignorer les préférences** -> consulter d'abord memory.md
 
-## Self-Modification
+## Auto-modification
 
-This skill NEVER modifies its own SKILL.md or auxiliary files.
-User data stored only in `~/code/memory.md` after explicit request.
+Ce skill ne modifie JAMAIS son propre SKILL.md ni ses fichiers auxiliaires.
+Les données utilisateur sont stockées uniquement dans `~/code/memory.md`, après demande explicite.
 
-## External Endpoints
+## Points d'accès externes
 
-This skill makes NO network requests.
+Ce skill ne fait AUCUNE requête réseau.
 
-| Endpoint | Data Sent | Purpose |
+| Endpoint | Données envoyées | Objectif |
 |----------|-----------|---------|
-| None | None | N/A |
+| Aucun | Aucune | N/A |
 
-## Security & Privacy
+## Sécurité et confidentialité
 
-**Data that stays local:**
-- Only preferences user explicitly asks to save
-- Stored in `~/code/memory.md`
+**Données qui restent en local :**
+- Uniquement les préférences que l'utilisateur demande explicitement d'enregistrer
+- Stockées dans `~/code/memory.md`
 
-**Data that leaves your machine:**
-- None. This skill makes no network requests.
+**Données qui quittent votre machine :**
+- Aucune. Ce skill ne fait aucune requête réseau.
 
-**This skill does NOT:**
-- Execute code automatically
-- Access network or external services  
-- Access files outside `~/code/` and user's project
-- Take autonomous actions without user awareness
-- Delegate to sub-agents without user's explicit request
+**Ce skill ne fait PAS :**
+- Exécuter du code automatiquement
+- Accéder au réseau ou à des services externes  
+- Accéder à des fichiers hors de `~/code/` et du projet de l'utilisateur
+- Agir de façon autonome sans que l'utilisateur le sache
+- Déléguer à des sous-agents sans demande explicite de l'utilisateur

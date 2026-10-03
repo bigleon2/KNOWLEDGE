@@ -1,52 +1,59 @@
 ---
 name: quiz-html
-description: 把题目数组生成一个**可独立运行的网页练习页**（HTML 文件）。当用户完成 quiz-mastery 的「从资料出题」或「从文件提取题目」流程后，应主动询问是否需要"在网页里练习"，确认后调用本 skill 把题目注入模板，生成 HTML 给用户。也支持用户直接说"把这些题做成网页/HTML/练习页"时触发。**不处理**：出题（→ quiz-mastery）、评分（→ quiz-mastery）、长期复习计划（→ study-buddy）。
+version: "1.0.0"
+category: "Éducation"
+tags:
+  - quiz
+  - html
+description: Transforme un tableau de questions en une **page d'exercice web autonome** (fichier HTML). Lorsque l'utilisateur vient de terminer le flux « générer des questions à partir d'un document » ou « extraire des questions d'un fichier » de quiz-mastery, proposez proactivement de « s'entraîner dans une page web » ; après confirmation, appelez ce skill pour injecter les questions dans le template et générer un HTML à l'utilisateur. Se déclenche aussi quand l'utilisateur dit directement « fais-moi une page web / HTML / d'exercice avec ces questions ». **Ne gère pas** : la génération de questions (→ quiz-mastery), la notation (→ quiz-mastery), les plans de révision long terme (→ study-buddy).
+language: fr
+
 ---
 
-# 网页题库生成器 (Quiz HTML Builder)
+# Générateur de banque de questions web (Quiz HTML Builder)
 
-把一组题目 JSON → 一个**单文件 HTML 练习网页**，包含：
-- 📂 分类筛选（学科 / 子模块）+ 学习状态筛选（已掌握 / 未做 / 错题）
-- 🎯 4 种题型支持：选择 / 判断 / 填空 / 简答
-- 🤖 答题自动标记，错题自动归入错题本（首次错误给一次重试机会）
-- ⌨️ 完整键盘快捷键（A/B/C/D · Enter · 方向键 · Space）
-- 📝 模拟考模式（限时 + 一次性提交 + 成绩页）
-- 🌓 明暗主题切换 · localStorage 持久化 · 移动端适配
+Transforme un tableau JSON de questions → une **page web d'exercice HTML en fichier unique**, comprenant :
+- 📂 Filtres par catégorie (matière / sous-module) + filtres par statut d'apprentissage (maîtrisé / non traité / erreurs)
+- 🎯 Prise en charge de 4 types de questions : QCM / vrai-faux / texte à trous / réponse courte
+- 🤖 Marquage automatique des réponses, les erreurs partent automatiquement dans le cahier d'erreurs (une seconde chance au premier échec)
+- ⌨️ Raccourcis clavier complets (A/B/C/D · Entrée · flèches · Espace)
+- 📝 Mode examen simulé (temps limité + soumission unique + page de résultats)
+- 🌓 Bascule thème clair/sombre · persistance localStorage · adaptation mobile
 
-## 核心触发场景
+## Scénarios de déclenchement principaux
 
-### 场景 1：quiz-mastery 出题/导入完成后主动询问 ⭐
-这是本 skill 的**主要入口**。当 `quiz-mastery` 完成以下任一流程：
-- 「从资料出题」：`generate_from_material.py` → 生成题目 JSON → `service.import_questions()` 入库
-- 「从题目文件提取」：`import_quiz.py` → 解析出题目 JSON → 入库
+### Scénario 1 : proposition proactive après génération/import par quiz-mastery ⭐
+C'est **l'entrée principale** de ce skill. Quand `quiz-mastery` vient de terminer l'un des flux suivants :
+- « Générer des questions à partir d'un document » : `generate_from_material.py` → génère le JSON de questions → `service.import_questions()` enregistre en base
+- « Extraire depuis un fichier de questions » : `import_quiz.py` → parse le JSON de questions → enregistre en base
 
-quiz-mastery 出题完成、向用户展示题目前，**主动问一句**：
-> "题目准备好啦～ 要不要我把它们生成一个网页练习页？你可以在浏览器里慢慢做，错题会自动记下来，还能切换主题、模拟考试 🎯"
+Après la génération par quiz-mastery et avant de présenter les questions à l'utilisateur, **posez spontanément la question** :
+> « Les questions sont prêtes ! Veux-tu que je les transforme en page d'exercice web ? Tu peux les faire tranquillement dans le navigateur, les erreurs sont notées automatiquement, et tu peux changer de thème ou passer un examen simulé 🎯 »
 
-用户说"要 / 好 / 生成网页 / 来一个 / 嗯"任一肯定意思 → 调用本 skill。
-用户说"不用 / 算了 / 直接在这里做" → 走原本的对话练习流程。
+Si l'utilisateur répond par l'affirmative (« oui », « d'accord », « vas-y », « génère la page »…) → appelez ce skill.
+Si l'utilisateur refuse (« non », « pas la peine », « faisons-le ici ») → suivez le flux habituel d'exercice en conversation.
 
-### 场景 2：用户直接要求生成网页
-触发关键词：
-- "把这些题做成网页"、"做个 HTML 练习页"、"生成一个题库网页"
-- "我想在浏览器里练"、"做个网页版"
-- "把题目导出成 HTML"
+### Scénario 2 : l'utilisateur demande directement une page web
+Mots-clés déclencheurs :
+- « transforme ces questions en page web », « fais une page d'exercice HTML », « génère une page de banque de questions »
+- « je veux m'entraîner dans le navigateur », « fais une version web »
+- « exporte les questions en HTML »
 
-## 调用方式
+## Comment l'appeler
 
-### 一句话总结
+### En une phrase
 ```bash
 python3 scripts/build_quiz_html.py <题目JSON文件> [--title "..." --open]
 ```
 
-### 标准流程
+### Flux standard
 
-1. **拿到题目 JSON**（数组，每项是一道题）
-   - 来源 A：quiz-mastery 出题后的 LLM 输出（系统已是标准格式）
-   - 来源 B：用户直接粘贴的题目数组
-   - 来源 C：从数据库读取的题目（quiz-mastery 的 `data/sessions/<sid>/questions.json`）
+1. **Obtenir le JSON de questions** (tableau ; chaque élément est une question)
+   - Source A : sortie LLM de quiz-mastery après génération (déjà au format standard côté système)
+   - Source B : tableau de questions collé directement par l'utilisateur
+   - Source C : questions lues depuis la base (quiz-mastery, `data/sessions/<sid>/questions.json`)
 
-2. **写到临时 JSON 文件**：
+2. **Écrire dans un fichier JSON temporaire** :
    ```python
    import json, tempfile
    from pathlib import Path
@@ -54,7 +61,7 @@ python3 scripts/build_quiz_html.py <题目JSON文件> [--title "..." --open]
    tmp.write_text(json.dumps(questions, ensure_ascii=False), encoding="utf-8")
    ```
 
-3. **调用脚本**：
+3. **Appeler le script** :
    ```bash
    python3 ~/Desktop/studybuddy_4.0/skills/quiz-html/scripts/build_quiz_html.py \
        /tmp/xxx/questions.json \
@@ -63,7 +70,7 @@ python3 scripts/build_quiz_html.py <题目JSON文件> [--title "..." --open]
        --open
    ```
 
-4. **解析返回 JSON**：
+4. **Parser le JSON retourné** :
    ```json
    {
      "success": true,
@@ -76,25 +83,25 @@ python3 scripts/build_quiz_html.py <题目JSON文件> [--title "..." --open]
    }
    ```
 
-5. **告诉用户**：把 HTML 路径报给用户，提示「已经在浏览器打开了，可以开始练啦 ✨」
+5. **Informer l'utilisateur** : indiquez le chemin du HTML et précisez « la page est déjà ouverte dans le navigateur, tu peux commencer ✨ »
 
-## 题目 JSON 字段标准
+## Standard des champs JSON des questions
 
-完全兼容 quiz-mastery 输出格式，**新增可选字段** `category` / `memory_tip`：
+Totalement compatible avec le format de sortie de quiz-mastery, **champs optionnels ajoutés** : `category` / `memory_tip` :
 
-| 字段 | 必填 | 说明 |
+| Champ | Obligatoire | Description |
 |---|---|---|
 | `type` | ✅ | `single_choice` / `true_false` / `fill_blank` / `short_answer` |
-| `prompt` | ✅ | 题干。也兼容 `question` 字段（自动转换） |
-| `options` | 选择题必填 | `["A. xxx", "B. yyy", ...]` |
-| `answer` | ✅ | 选择题填字母；判断题填 `"True"`/`"False"`；填空/简答填文本 |
-| `explanation` | 推荐 | 解析（强烈建议填，K12 学生需要） |
-| `knowledge_point` | 推荐 | 知识点名（侧边栏二级分组用） |
-| `category` | 推荐 | 分类路径，**用"学科 / 子模块"格式**：`"物理 / 电学"`、`"数学 / 分数"` |
-| `level` | 可选 | 难度 1-3 |
-| `memory_tip` | 可选 | 记忆口诀，会用橙色卡片高亮显示（K12 神器） |
+| `prompt` | ✅ | Énoncé. Le champ `question` est aussi accepté (conversion automatique) |
+| `options` | Obligatoire pour les QCM | `["A. xxx", "B. yyy", ...]` |
+| `answer` | ✅ | Lettre pour les QCM ; `"True"`/`"False"` pour vrai-faux ; texte pour trous/réponse courte |
+| `explanation` | Recommandé | Corrigé (fortement recommandé, indispensable pour les élèves du primaire/secondaire) |
+| `knowledge_point` | Recommandé | Nom du point de connaissance (utilisé pour le regroupement secondaire de la barre latérale) |
+| `category` | Recommandé | Chemin de catégorie, **au format « matière / sous-module »** : `"物理 / 电学"`, `"数学 / 分数"` |
+| `level` | Optionnel | Difficulté 1-3 |
+| `memory_tip` | Optionnel | Astuce mnémotechnique, mise en évidence par une carte orange (arme fatale K12) |
 
-### 示例
+### Exemple
 ```json
 [
   {
@@ -116,24 +123,24 @@ python3 scripts/build_quiz_html.py <题目JSON文件> [--title "..." --open]
 ]
 ```
 
-## 设计原则
+## Principes de conception
 
-### 1. 自动 category，让筛选有意义
-如果题目缺 `category` 字段，最好补上（哪怕基于学科推断）。否则所有题都堆到"通用"分类下，分类筛选就废了。
+### 1. Category automatique, pour que les filtres aient du sens
+Si le champ `category` manque, ajoutez-le autant que possible (même par déduction de la matière). Sinon toutes les questions s'entassent dans la catégorie « général » et le filtre par catégorie devient inutile.
 
-### 2. category 用"学科 / 子模块"
-- ✅ `"物理 / 电学"`、`"物理 / 热学"` → 顶部出 4 个细分类 chip
-- ❌ `"物理"` → 只出 1 个，子模块在侧栏体现，但筛选粒度变粗
+### 2. Category au format « matière / sous-module »
+- ✅ `"物理 / 电学"`, `"物理 / 热学"` → 4 chips de sous-catégories apparaissent en haut de page
+- ❌ `"物理"` → une seule puce ; les sous-modules apparaissent dans la barre latérale, mais la granularité du filtrage devient grossière
 
-### 3. 知识点和分类不是同一层
-- `category` = 横向分类（哪个学科/章节），用于**顶部 chips 筛选**
-- `knowledge_point` = 细粒度知识点，用于**左侧栏二级分组**
+### 3. Points de connaissance et catégories ne sont pas le même niveau
+- `category` = catégorie horizontale (quelle matière / quel chapitre), pour le **filtrage par chips en haut de page**
+- `knowledge_point` = point de connaissance à granularité fine, pour le **regroupement secondaire de la barre latérale gauche**
 
-### 4. 输出文件命名
-默认输出到题目 JSON 同目录，文件名 `quiz_<title_slug>_<时间戳>.html`。
-**建议显式传 `--output`**，放到 `~/Desktop/` 或一个固定目录方便用户找。
+### 4. Nommage du fichier de sortie
+Par défaut, la sortie va dans le même répertoire que le JSON de questions, avec un nom `quiz_<title_slug>_<horodatage>.html`.
+**Il est conseillé de passer explicitement `--output`**, vers `~/Desktop/` ou un répertoire fixe pour que l'utilisateur le retrouve facilement.
 
-## 工作示例（quiz-mastery 衔接全流程）
+## Exemple de travail (chaîne complète avec quiz-mastery)
 
 ```python
 # 1. quiz-mastery 已完成出题，拿到题目数组
@@ -169,23 +176,23 @@ info = json.loads(result.stdout)
 # info["output_path"] = "/Users/.../Desktop/quiz_物理电学.html"
 ```
 
-然后告诉用户：
-> 「已经做好啦～ 网页已自动打开 ✨
-> 路径：`~/Desktop/quiz_物理电学.html`
-> 慢慢做，做完会自动记录错题，下次可以筛"错题"专门攻克 💪」
+Puis informez l'utilisateur :
+> « C'est prêt ! La page s'est ouverte automatiquement ✨
+> Chemin : `~/Desktop/quiz_物理电学.html`
+> Fais les questions tranquillement ; les erreurs seront enregistrées automatiquement, et tu pourras filtrer sur « erreurs » la prochaine fois pour les retravailler 💪 »
 
-## 与其他 skill 的边界
+## Frontières avec les autres skills
 
-| 任务 | 用谁 |
+| Tâche | Qui s'en charge |
 |---|---|
-| 从资料出题 | **quiz-mastery** |
-| 从文件提取题目 | **quiz-mastery** |
-| 评分、掌握度追踪、艾宾浩斯安排 | **quiz-mastery** |
-| 把题目做成网页给用户在浏览器练 | **quiz-html**（本 skill） |
-| 学习计划、长期跟进 | **study-buddy** |
+| Générer des questions à partir d'un document | **quiz-mastery** |
+| Extraire des questions d'un fichier | **quiz-mastery** |
+| Notation, suivi de maîtrise, planification Ebbinghaus | **quiz-mastery** |
+| Transformer les questions en page web à faire dans le navigateur | **quiz-html** (ce skill) |
+| Plan d'apprentissage, suivi long terme | **study-buddy** |
 
-## 失败处理
+## Gestion des échecs
 
-- `exit 1`：参数错误 / 文件不存在 / 模板缺失 → 报错给用户，让用户检查路径
-- `exit 2`：JSON 格式问题 / 题目数据非法 → 告诉用户哪几题被跳过，提示检查字段
-- 部分题被 skip 但有合法题：仍会成功生成，但 stderr 会列出被跳过的题，需要在回复里告知用户「跳过了 N 题，原因 XXX」
+- `exit 1` : erreur de paramètres / fichier inexistant / template manquant → signalez l'erreur à l'utilisateur et faites vérifier les chemins
+- `exit 2` : problème de format JSON / données de question invalides → indiquez quelles questions ont été ignorées et faites vérifier les champs
+- Des questions ignorées mais des questions valides présentes : la génération réussit quand même, mais stderr liste les questions sautées ; il faut mentionner dans la réponse « N questions ignorées, raison : XXX »

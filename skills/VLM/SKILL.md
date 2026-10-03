@@ -1,36 +1,42 @@
 ---
 name: VLM
-description: Implement vision-based AI chat capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to analyze images, describe visual content, or create applications that combine image understanding with conversational AI. Supports image URLs and base64 encoded images for multimodal interactions.
+version: "1.0.0"
+category: "IA & Media"
+tags:
+  - VLM
+description: Implémente des capacités de chat visuel (IA basée sur la vision) à l'aide du z-ai-web-dev-sdk. Utilisez ce skill lorsque l'utilisateur doit analyser des images, décrire du contenu visuel ou créer des applications combinant compréhension d'image et IA conversationnelle. Prend en charge les URLs d'images et les images encodées en base64 pour les interactions multimodales.
+language: fr
 license: MIT
+
 ---
 
-# VLM(Vision Chat) Skill
+# Skill VLM (Vision Chat)
 
-This skill guides the implementation of vision chat functionality using the z-ai-web-dev-sdk package, enabling AI models to understand and respond to images combined with text prompts.
+Ce skill guide l'implémentation de la fonctionnalité de chat visuel à l'aide du package z-ai-web-dev-sdk, permettant aux modèles d'IA de comprendre et de répondre à des images combinées à des prompts textuels.
 
-## Skills Path
+## Emplacement du skill
 
-**Skill Location**: `{project_path}/skills/VLM`
+**Emplacement du skill** : `{project_path}/skills/VLM`
 
-this skill is located at above path in your project.
+Ce skill se trouve à l'emplacement ci-dessus dans votre projet.
 
-**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/vlm.ts` for a working example.
+**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/vlm.ts` pour un exemple fonctionnel.
 
-## Overview
+## Vue d'ensemble
 
-Vision Chat allows you to build applications that can analyze images, extract information from visual content, and answer questions about images through natural language conversation.
+Le chat visuel permet de créer des applications capables d'analyser des images, d'extraire des informations d'un contenu visuel et de répondre à des questions sur les images via une conversation en langage naturel.
 
-**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
+**IMPORTANT** : le z-ai-web-dev-sdk doit être utilisé exclusivement dans du code backend. Ne l'utilisez jamais dans du code côté client.
 
-## Prerequisites
+## Prérequis
 
-The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
+Le package z-ai-web-dev-sdk est déjà installé. Importez-le comme montré dans les exemples ci-dessous.
 
-## CLI Usage (For Simple Tasks)
+## Utilisation du CLI (pour les tâches simples)
 
-For simple image analysis tasks, you can use the z-ai CLI instead of writing code. This is ideal for quick image descriptions, testing vision capabilities, or simple automation.
+Pour des tâches simples d'analyse d'images, vous pouvez utiliser le CLI z-ai au lieu d'écrire du code. C'est idéal pour des descriptions d'images rapides, tester les capacités de vision ou une automatisation simple.
 
-### Basic Image Analysis
+### Analyse d'image de base
 
 ```bash
 # Describe an image from URL
@@ -40,7 +46,7 @@ z-ai vision --prompt "What's in this image?" --image "https://example.com/photo.
 z-ai vision -p "Describe this image" -i "https://example.com/image.png"
 ```
 
-### Analyze Local Images
+### Analyser des images locales
 
 ```bash
 # Analyze a local image file
@@ -50,7 +56,7 @@ z-ai vision -p "What objects are in this photo?" -i "./photo.jpg"
 z-ai vision -p "Describe the scene" -i "./landscape.png" -o description.json
 ```
 
-### Multiple Images
+### Plusieurs images
 
 ```bash
 # Analyze multiple images at once
@@ -67,7 +73,7 @@ z-ai vision \
   --image "https://example.com/after.jpg"
 ```
 
-### With Thinking (Chain of Thought)
+### Avec réflexion (Chain of Thought)
 
 ```bash
 # Enable thinking for complex visual reasoning
@@ -78,22 +84,22 @@ z-ai vision \
   -o analysis.json
 ```
 
-### Streaming Output
+### Sortie en streaming
 
 ```bash
 # Stream the vision analysis
 z-ai vision -p "Describe this image in detail" -i "./photo.jpg" --stream
 ```
 
-### CLI Parameters
+### Paramètres du CLI
 
-- `--prompt, -p <text>`: **Required** - Question or instruction about the image(s)
-- `--image, -i <URL or path>`: Optional - Image URL or local file path (can be used multiple times)
-- `--thinking, -t`: Optional - Enable chain-of-thought reasoning (default: disabled)
-- `--output, -o <path>`: Optional - Output file path (JSON format)
-- `--stream`: Optional - Stream the response in real-time
+- `--prompt, -p <text>` : **Obligatoire** - question ou instruction à propos de la ou des images
+- `--image, -i <URL or path>` : Optionnel - URL de l'image ou chemin de fichier local (utilisable plusieurs fois)
+- `--thinking, -t` : Optionnel - activer le raisonnement pas à pas (désactivé par défaut)
+- `--output, -o <path>` : Optionnel - chemin du fichier de sortie (format JSON)
+- `--stream` : Optionnel - streame la réponse en temps réel
 
-### Supported Image Formats
+### Formats d'image pris en charge
 
 - PNG (.png)
 - JPEG (.jpg, .jpeg)
@@ -101,30 +107,30 @@ z-ai vision -p "Describe this image in detail" -i "./photo.jpg" --stream
 - WebP (.webp)
 - BMP (.bmp)
 
-### When to Use CLI vs SDK
+### Quand utiliser le CLI ou le SDK
 
-**Use CLI for:**
-- Quick image analysis
-- Testing vision model capabilities
-- One-off image descriptions
-- Simple automation scripts
+**Utilisez le CLI pour :**
+- Une analyse d'images rapide
+- Tester les capacités du modèle de vision
+- Des descriptions d'images ponctuelles
+- Des scripts d'automatisation simples
 
-**Use SDK for:**
-- Multi-turn conversations with images
-- Dynamic image analysis in applications
-- Batch processing with custom logic
-- Production applications with complex workflows
+**Utilisez le SDK pour :**
+- Des conversations multi-tours avec images
+- L'analyse dynamique d'images dans des applications
+- Le traitement par lots avec logique personnalisée
+- Des applications de production aux workflows complexes
 
-## Recommended Approach
+## Approche recommandée
 
-For better performance and reliability, use base64 encoding to pass images to the model instead of image URLs.
+Pour de meilleures performances et plus de fiabilité, transmettez les images au modèle en encodage base64 plutôt que par URLs d'images.
 
-## Supported Content Types
+## Types de contenu pris en charge
 
-The Vision Chat API supports three types of media content:
+L'API de chat visuel prend en charge trois types de contenu média :
 
-### 1. **image_url** - For Image Files
-Use this type for static images (PNG, JPEG, GIF, WebP, etc.)
+### 1. **image_url** - pour les fichiers image
+Utilisez ce type pour les images statiques (PNG, JPEG, GIF, WebP, etc.)
 ```typescript
 {
     role: 'user',
@@ -135,8 +141,8 @@ Use this type for static images (PNG, JPEG, GIF, WebP, etc.)
 }
 ```
 
-### 2. **video_url** - For Video Files
-Use this type for video content (MP4, AVI, MOV, etc.)
+### 2. **video_url** - pour les fichiers vidéo
+Utilisez ce type pour le contenu vidéo (MP4, AVI, MOV, etc.)
 ```typescript
 {
     role: 'user',
@@ -147,8 +153,8 @@ Use this type for video content (MP4, AVI, MOV, etc.)
 }
 ```
 
-### 3. **file_url** - For Document Files
-Use this type for document files (PDF, DOCX, TXT, etc.)
+### 3. **file_url** - pour les fichiers documents
+Utilisez ce type pour les fichiers documents (PDF, DOCX, TXT, etc.)
 ```typescript
 {
     role: 'user',
@@ -159,11 +165,11 @@ Use this type for document files (PDF, DOCX, TXT, etc.)
 }
 ```
 
-**Note**: You can combine multiple content types in a single message. For example, you can include both text and multiple images, or text with both an image and a document.
+**Remarque** : vous pouvez combiner plusieurs types de contenu dans un même message. Par exemple, du texte avec plusieurs images, ou du texte avec à la fois une image et un document.
 
-## Basic Vision Chat Implementation
+## Implémentation de base du chat visuel
 
-### Single Image Analysis
+### Analyse d'une seule image
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -203,7 +209,7 @@ const result = await analyzeImage(
 console.log('Analysis:', result);
 ```
 
-### Multiple Images Analysis
+### Analyse de plusieurs images
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -245,7 +251,7 @@ const comparison = await compareImages(
 );
 ```
 
-### Base64 Image Support
+### Prise en charge des images base64
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -284,9 +290,9 @@ async function analyzeLocalImage(imagePath, question) {
 }
 ```
 
-## Advanced Use Cases
+## Cas d'usage avancés
 
-### Conversational Vision Chat
+### Chat visuel conversationnel
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -363,7 +369,7 @@ const followup = await session.followUp('What are the key trends?');
 console.log('Follow-up:', followup);
 ```
 
-### Image Classification and Tagging
+### Classification et étiquetage d'images
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -408,7 +414,7 @@ Format your response as JSON.`;
 }
 ```
 
-### OCR and Text Extraction
+### OCR et extraction de texte
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -439,19 +445,19 @@ async function extractText(imageUrl) {
 }
 ```
 
-## Best Practices
+## Bonnes pratiques
 
-### 1. Image Quality and Size
-- Use high-quality images for better analysis results
-- Optimize image size to balance quality and processing speed
-- Supported formats: JPEG, PNG, WebP
+### 1. Qualité et taille des images
+- Utilisez des images de haute qualité pour de meilleurs résultats d'analyse
+- Optimisez la taille des images pour équilibrer qualité et vitesse de traitement
+- Formats pris en charge : JPEG, PNG, WebP
 
-### 2. Prompt Engineering
-- Be specific about what information you need from the image
-- Structure complex requests with numbered lists or bullet points
-- Provide context about the image type (photo, diagram, chart, etc.)
+### 2. Ingénierie des prompts
+- Soyez précis sur les informations que vous attendez de l'image
+- Structurez les requêtes complexes avec des listes numérotées ou à puces
+- Donnez le contexte du type d'image (photo, schéma, graphique, etc.)
 
-### 3. Error Handling
+### 3. Gestion des erreurs
 ```javascript
 async function safeVisionChat(imageUrl, question) {
   try {
@@ -484,30 +490,30 @@ async function safeVisionChat(imageUrl, question) {
 }
 ```
 
-### 4. Performance Optimization
-- Cache SDK instance creation when processing multiple images
-- Use appropriate image formats (JPEG for photos, PNG for diagrams)
-- Consider image preprocessing for large batches
+### 4. Optimisation des performances
+- Mettez en cache la création de l'instance du SDK lors du traitement de plusieurs images
+- Utilisez des formats d'image adaptés (JPEG pour les photos, PNG pour les schémas)
+- Envisagez un prétraitement des images pour les gros lots
 
-### 5. Security Considerations
-- Validate image URLs before processing
-- Sanitize user-provided image data
-- Implement rate limiting for public-facing APIs
-- Never expose SDK credentials in client-side code
+### 5. Considérations de sécurité
+- Validez les URLs d'images avant traitement
+- Assainissez les données d'image fournies par l'utilisateur
+- Implémentez une limitation de débit pour les API exposées au public
+- N'exposez jamais les identifiants du SDK dans du code côté client
 
-## Common Use Cases
+## Cas d'usage courants
 
-1. **Product Analysis**: Analyze product images for e-commerce applications
-2. **Document Understanding**: Extract information from receipts, invoices, forms
-3. **Medical Imaging**: Assist in preliminary analysis (with appropriate disclaimers)
-4. **Quality Control**: Detect defects or anomalies in manufacturing
-5. **Content Moderation**: Analyze images for policy compliance
-6. **Accessibility**: Generate alt text for images automatically
-7. **Visual Search**: Understand and categorize images for search functionality
+1. **Analyse de produits** : analyser des images de produits pour des applications e-commerce
+2. **Compréhension de documents** : extraire des informations de reçus, factures, formulaires
+3. **Imagerie médicale** : assister une analyse préliminaire (avec les avertissements appropriés)
+4. **Contrôle qualité** : détecter des défauts ou anomalies dans la fabrication
+5. **Modération de contenu** : analyser des images pour vérifier le respect des règles
+6. **Accessibilité** : générer automatiquement du texte alternatif pour les images
+7. **Recherche visuelle** : comprendre et catégoriser des images pour une fonctionnalité de recherche
 
-## Integration Examples
+## Exemples d'intégration
 
-### Express.js API Endpoint
+### Point d'accès API Express.js
 
 ```javascript
 import express from 'express';
@@ -565,24 +571,24 @@ initZAI().then(() => {
 });
 ```
 
-## Troubleshooting
+## Dépannage
 
-**Issue**: "SDK must be used in backend"
-- **Solution**: Ensure z-ai-web-dev-sdk is only imported and used in server-side code
+**Problème** : « le SDK doit être utilisé côté backend »
+- **Solution** : assurez-vous que z-ai-web-dev-sdk n'est importé et utilisé que dans du code côté serveur
 
-**Issue**: Image not loading or being analyzed
-- **Solution**: Verify the image URL is accessible and returns a valid image format
+**Problème** : image qui ne se charge pas ou n'est pas analysée
+- **Solution** : vérifiez que l'URL de l'image est accessible et renvoie un format d'image valide
 
-**Issue**: Poor analysis quality
-- **Solution**: Provide more specific prompts and ensure image quality is sufficient
+**Problème** : qualité d'analyse médiocre
+- **Solution** : donnez des prompts plus spécifiques et assurez-vous que la qualité de l'image est suffisante
 
-**Issue**: Slow response times
-- **Solution**: Optimize image size and consider caching frequently analyzed images
+**Problème** : temps de réponse lents
+- **Solution** : optimisez la taille des images et envisagez de mettre en cache les images fréquemment analysées
 
-## Remember
+## À retenir
 
-- Always use z-ai-web-dev-sdk in backend code only
-- The SDK is already installed - import as shown in examples
-- Structure prompts clearly for best results
-- Handle errors gracefully in production applications
-- Consider user privacy when processing images
+- Utilisez toujours z-ai-web-dev-sdk uniquement dans du code backend
+- Le SDK est déjà installé - importez-le comme montré dans les exemples
+- Structurez clairement les prompts pour de meilleurs résultats
+- Gérez les erreurs avec soin dans les applications de production
+- Respectez la vie privée des utilisateurs lors du traitement des images

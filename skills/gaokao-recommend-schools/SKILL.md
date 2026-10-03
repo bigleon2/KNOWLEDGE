@@ -1,46 +1,56 @@
 ---
 name: gaokao-recommend-schools
+version: "1.0.0"
+category: "Éducation"
+tags:
+  - gaokao
+  - recommend
+  - schools
 description: >-
-  基于推荐专业列表、考生画像与志愿列表，由 Agent 分析推荐院校并给出个性化理由，
-  输出结构化 school_recommendation.json。适用于高考院校推荐、选大学、冲稳保院校布局。
+  À partir de la liste de filières recommandées, du profil du candidat et de la liste de vœux,
+  l'agent analyse et recommande des établissements en donnant des raisons personnalisées, et
+  produit un school_recommendation.json structuré. Convient pour la recommandation d'établissements
+  du Gaokao, le choix d'université et la répartition ambitieux/sûrs/de repli des établissements.
+language: fr
+
 ---
 
-# 推荐院校与理由
+# Recommander les établissements et justifier
 
-本 Skill 是流水线的**第四步**：在已确定专业方向的基础上，从 `parsed.json` 中推荐院校并说明理由。
+Ce skill est la **quatrième étape** du pipeline : une fois les orientations de filières déterminées, recommander des établissements depuis `parsed.json` et en expliquer les raisons.
 
-## 上下游
+## Amont / aval
 
-- **上游**：`student.json` + `parsed.json` + `major_recommendation.json`
-- **下游**：[gaokao-generate-report](../gaokao-generate-report/SKILL.md)
+- **Amont** : `student.json` + `parsed.json` + `major_recommendation.json`
+- **Aval** : [gaokao-generate-report](../gaokao-generate-report/SKILL.md)
 
-## 输入
+## Entrées
 
-1. `student.json` — 意向城市、家庭、就业方向等
-2. `parsed.json` — 院校标签、城市、冲稳保档位、录取概率
-3. `major_recommendation.json` — 已推荐专业及方向，用于判断院校专业契合度
+1. `student.json` — villes souhaitées, situation familiale, orientation professionnelle, etc.
+2. `parsed.json` — étiquettes des établissements, villes, niveaux ambitieux/sûrs/de repli, probabilités d'admission
+3. `major_recommendation.json` — filières déjà recommandées et leurs orientations, pour juger de l'adéquation établissements/filières
 
-## Agent 分析任务
+## Tâches d'analyse de l'agent
 
-1. 优先推荐**包含已推荐专业**或**优势学科与专业方向契合**的院校。
-2. 结合 `preferred_cities`、城市产业机会（可参考 [career_reference.md](career_reference.md) 城市表）、院校层次（985/211/双一流等）。
-3. 兼顾冲/稳/保布局：核心目标放稳档，冲顶名校与保底院校均需有代表。
-4. 挑选 **6–12 所**院校，每所撰写个性化 `modal` 推荐理由。
+1. Recommander en priorité les établissements **qui proposent les filières déjà recommandées** ou dont **les disciplines d'excellence correspondent aux orientations de filières**.
+2. Croiser `preferred_cities`, les opportunités industrielles des villes (se référer à la table des villes de [career_reference.md](career_reference.md)) et le niveau des établissements (985/211/double première classe, etc.).
+3. Équilibrer la répartition ambitieux/sûrs/de repli : les objectifs principaux en niveau « sûr », avec au moins un représentant pour les établissements de premier plan ambitieux et pour les établissements de repli.
+4. Sélectionner **6 à 12** établissements et rédiger pour chacun une raison de recommandation `modal` personnalisée.
 
-## 推荐理由应覆盖
+## Ce que les raisons de recommandation doivent couvrir
 
-- **地域优势**：城市产业与实习就业资源
-- **院校层次**：标签与社会认可度
-- **专业契合**：与 `major_recommendation.json` 的关联
-- **录取性价比**：档位与概率是否匹配考生诉求
+- **Atout géographique** : industries de la ville et ressources de stages/emplois
+- **Niveau de l'établissement** : étiquettes et reconnaissance sociale
+- **Adéquation des filières** : lien avec `major_recommendation.json`
+- **Rapport qualité/probabilité d'admission** : adéquation du niveau et de la probabilité aux attentes du candidat
 
-## 硬性约束
+## Contraintes strictes
 
-`recommended_schools` 每项的 `university_name`、`university_code` 必须与 `parsed.json` **完全一致**。
+Pour chaque élément de `recommended_schools`, `university_name`, `university_code` doivent être **strictement identiques** à `parsed.json`.
 
-## 输出
+## Sortie
 
-保存为 `output/school_recommendation.json`，结构见 [examples/school_recommendation_template.json](examples/school_recommendation_template.json)。
+Enregistrer sous `output/school_recommendation.json`, structure voir [examples/school_recommendation_template.json](examples/school_recommendation_template.json).
 
 ```json
 {
@@ -58,11 +68,11 @@ description: >-
 }
 ```
 
-## 向用户交付
+## Livraison à l'utilisateur
 
-- 保存 JSON 绝对路径
-- 用自然语言解读院校推荐逻辑与梯度布局
+- Enregistrer le JSON et fournir le chemin absolu
+- Commenter en langage naturel la logique de recommandation des établissements et la répartition en paliers
 
-## 附加资源
+## Ressources annexes
 
-- [career_reference.md](career_reference.md) — 城市产业与院校层次参考
+- [career_reference.md](career_reference.md) — référence industries des villes et niveaux d'établissements

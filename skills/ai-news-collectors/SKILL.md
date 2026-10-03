@@ -1,42 +1,50 @@
 ---
 name: ai-news-collector
-description: AI 新闻聚合与热度排序工具。当用户询问 AI 领域最新动态时触发，如："今天有什么 AI 新闻？""总结一下这周的 AI 动态""最近有什么火的 AI 产品？""AI 圈最近在讨论什么？"。覆盖：新产品发布、研究论文、行业动态、融资新闻、开源项目更新、社区病毒传播现象、AI 工具/Agent 热门项目。输出中文摘要列表，按热度排序，附带原文链接。
+version: "1.0.0"
+category: "Autres"
+tags:
+  - ai
+  - news
+  - collectors
+description: Agrégateur d'actualités IA avec tri par popularité. Se déclenche lorsque l'utilisateur demande les dernières actualités du domaine de l'IA, par exemple : « Quelles nouvelles IA aujourd'hui ? », « Résume l'actu IA de la semaine », « Quels produits IA font le buzz en ce moment ? », « De quoi parle-t-on dans le monde de l'IA ? ». Couvre : lancements de produits, articles de recherche, actualités du secteur, levées de fonds, mises à jour de projets open source, phénomènes viraux de communauté, projets IA/Agent populaires. Produit une liste de résumés triée par popularité, avec les liens vers les sources d'origine.
+language: fr
+
 ---
 
 # AI News Collector
 
-收集、聚合并按热度排序 AI 领域新闻。
+Collecter, agréger et trier par popularité les actualités du domaine de l'IA.
 
-## 核心原则
+## Principe fondamental
 
-**不要只搜"AI news today"。** 泛搜索返回的是 SEO 聚合页和趋势预测文章，会系统性遗漏社区级病毒传播现象（如开源工具爆火、Meme 级事件）。必须用多维度、分层搜索策略。
+**Ne faites pas seulement une recherche « AI news today ».** Les recherches génériques renvoient des pages d'agrégation SEO et des articles de prévisions, qui passent systématiquement à côté des phénomènes viraux issus des communautés (outils open source devenus viraux, événements de niveau mème, etc.). Une stratégie de recherche multi-dimensionnelle et par niveaux est indispensable.
 
-## 工作流程
+## Workflow
 
-### 1. 多维度分层搜索（最少 8 次，建议 10-12 次）
+### 1. Recherche multi-dimensionnelle par niveaux (au minimum 8 requêtes, 10-12 recommandées)
 
-按以下 **6 个维度** 依次执行搜索，每个维度至少 1 次：
+Exécutez les recherches selon les **6 dimensions** suivantes, au moins 1 requête par dimension :
 
-#### 维度 A：周报/Newsletter 聚合（最优先 🔑）
+#### Dimension A : agrégateurs hebdomadaires / Newsletter (priorité maximale 🔑)
 
-这是信息密度最高的来源，一篇文章可覆盖 10+ 条新闻。
+C'est la source la plus dense en informations : un seul article peut couvrir plus de 10 actualités.
 
 ```
-搜索词：
-- "last week in AI" [当前月份年份]
-- "AI weekly roundup" [当前月份年份]
+Requêtes :
+- "last week in AI" [mois et année en cours]
+- "AI weekly roundup" [mois et année en cours]
 - "the batch AI newsletter"
-- site:substack.com AI news [当前月份]
+- site:substack.com AI news [mois en cours]
 ```
 
-发现周报后，用 web_fetch 获取全文，从中提取所有新闻线索。
+Après avoir trouvé une newsletter hebdomadaire, utilisez web_fetch pour récupérer le texte intégral et en extraire toutes les pistes d'actualités.
 
-#### 维度 B：社区热度/病毒传播（关键维度 🔑）
+#### Dimension B : popularité communautaire / viralité (dimension clé 🔑)
 
-捕捉自下而上的社区爆款，这类信息泛搜索几乎无法触达。
+Capter les succès venus d'en bas, presque inatteignables par une recherche générique.
 
 ```
-搜索词：
+Requêtes :
 - "viral AI tool" OR "viral AI agent"
 - "AI trending" site:reddit.com OR site:news.ycombinator.com
 - "GitHub trending AI" OR "AI open source trending"
@@ -44,114 +52,114 @@ description: AI 新闻聚合与热度排序工具。当用户询问 AI 领域最
 - "most popular AI" this week
 ```
 
-#### 维度 C：产品发布与模型更新
+#### Dimension C : lancements de produits et mises à jour de modèles
 
 ```
-搜索词：
-- "AI model release" OR "LLM launch" [当前月份]
-- "AI product launch" [当前月份年份]
+Requêtes :
+- "AI model release" OR "LLM launch" [mois en cours]
+- "AI product launch" [mois et année en cours]
 - OpenAI OR Anthropic OR Google OR Meta AI announcement
 - "大模型 发布" OR "AI 新产品"
 ```
 
-#### 维度 D：融资与商业
+#### Dimension D : financement et business
 
 ```
-搜索词：
-- "AI startup funding" [当前月份年份]
+Requêtes :
+- "AI startup funding" [mois et année en cours]
 - "AI acquisition" OR "AI IPO"
 - "AI 融资" OR "人工智能投资"
 ```
 
-#### 维度 E：研究突破
+#### Dimension E : percées de recherche
 
 ```
-搜索词：
-- "AI breakthrough" OR "AI paper" [当前月份]
+Requêtes :
+- "AI breakthrough" OR "AI paper" [mois en cours]
 - "state of the art" machine learning
 - "AI 论文" OR "机器学习突破"
 ```
 
-#### 维度 F：监管与政策
+#### Dimension F : régulation et politiques publiques
 
 ```
-搜索词：
-- "AI regulation" OR "AI policy" [当前月份年份]
+Requêtes :
+- "AI regulation" OR "AI policy" [mois et année en cours]
 - "AI law" OR "AI governance" 
 - "AI 监管" OR "人工智能法案"
 ```
 
-### 2. 交叉验证与补漏
+### 2. Recoupement et comblement des manques
 
-初轮搜索完成后，检查是否有遗漏：
+À la fin de la première série de recherches, vérifiez qu'il ne manque rien :
 
-- 如果 Newsletter 中提到了某个项目/事件但初轮搜索未覆盖 → 对该项目专项搜索
-- 如果同一事件被 3+ 个不同来源提及 → 大概率是热点，深入搜索获取更多细节
-- 如果中文媒体和英文媒体的热点完全不同 → 两边都要覆盖
+- Si une newsletter mentionne un projet/événement non couvert par la première série → recherche ciblée sur ce projet
+- Si le même événement est mentionné par 3+ sources différentes → très probablement un sujet chaud ; approfondissez pour obtenir plus de détails
+- Si les sujets chauds des médias francophones et anglophones diffèrent complètement → couvrez les deux côtés
 
-### 3. 搜索关键词设计原则（反模式清单）
+### 3. Principes de conception des requêtes (liste des anti-patterns)
 
-| ❌ 不要这样搜 | ✅ 应该这样搜 | 原因 |
+| ❌ Ne pas faire cette recherche | ✅ Faire plutôt cette recherche | Raison |
 |---|---|---|
-| "AI news today February 2026" | "AI weekly roundup February 2026" | 前者返回聚合页，后者返回策划内容 |
-| "AI news today" | "viral AI tool" + "AI model release" 分开搜 | 泛搜无法覆盖社区现象 |
-| "artificial intelligence breaking news" | 按维度分类搜索 | 过于宽泛，返回噪音 |
-| 搜索词中加具体年月日 | 用 "this week" "today" "latest" | 日期反而会偏向预测/展望文章 |
-| 只搜 3 次就开始写 | 至少 8 次，覆盖 6 个维度 | 3 次搜索覆盖率不到 30% |
+| "AI news today February 2026" | "AI weekly roundup February 2026" | La première renvoie des pages d'agrégation, la seconde du contenu éditorialisé |
+| "AI news today" | "viral AI tool" + "AI model release" recherchés séparément | Une recherche générique ne couvre pas les phénomènes communautaires |
+| "artificial intelligence breaking news" | Rechercher par dimension | Trop large, renvoie du bruit |
+| Ajouter une date précise dans la requête | Utiliser "this week" "today" "latest" | Les dates orientent vers des articles de prévisions/perspectives |
+| Faire 3 recherches et commencer à rédiger | Au moins 8 recherches, couvrant les 6 dimensions | 3 recherches couvrent moins de 30 % du terrain |
 
-### 4. 热度综合判断
+### 4. Évaluation globale de la popularité
 
-基于以下信号评估每条新闻热度（1-5 星）：
+Évaluez la popularité de chaque actualité (1 à 5 étoiles) à partir des signaux suivants :
 
-| 信号 | 权重 | 说明 |
+| Signal | Poids | Commentaire |
 |------|------|------|
-| 多家媒体报道同一事件 | ⭐⭐⭐ 高 | 3+ 来源 = 确认热点 |
-| 社区病毒传播证据 | ⭐⭐⭐ 高 | GitHub star 暴涨、Twitter 刷屏、HN 首页 |
-| 来自权威来源（顶会、大厂官宣） | ⭐⭐⭐ 高 | 但注意大厂 PR 不等于真热点 |
-| 实际用户体验分享 | ⭐⭐ 中 | 有人真的在用 > 只是发布了 |
-| 技术突破性/影响范围 | ⭐⭐ 中 | |
-| 争议性（安全、伦理讨论） | ⭐⭐ 中 | 争议往往说明影响力大 |
-| 时效性（越新越热） | ⭐ 中低 | 辅助排序 |
+| Plusieurs médias rapportent le même événement | ⭐⭐⭐ élevé | 3+ sources = sujet chaud confirmé |
+| Preuves de viralité communautaire | ⭐⭐⭐ élevé | Étoiles GitHub en flèche, Twitter saturé, page d'accueil HN |
+| Source faisant autorité (conférences majeures, annonces officielles des grands acteurs) | ⭐⭐⭐ élevé | Mais attention : la com d'un grand acteur n'est pas un vrai sujet chaud |
+| Retours d'expérience d'utilisateurs réels | ⭐⭐ moyen | Des gens l'utilisent vraiment > c'est juste sorti |
+| Rupture technologique / périmètre d'impact | ⭐⭐ moyen | |
+| Caractère controversé (débats sécurité, éthique) | ⭐⭐ moyen | Une controverse révèle souvent une forte influence |
+| Fraîcheur (plus c'est récent, plus c'est chaud) | ⭐ moyen/faible | Sert au tri secondaire |
 
-### 5. 输出格式
+### 5. Format de sortie
 
-按热度降序排列，输出 **15-25 条**新闻：
+Triées par popularité décroissante, sortez **15 à 25** actualités :
 
 ```
-## 🔥 AI 新闻速递（YYYY-MM-DD）
+## 🔥 À la une IA (YYYY-MM-DD)
 
-### ⭐⭐⭐⭐⭐ 热度最高
+### ⭐⭐⭐⭐⭐ Popularité maximale
 
-1. **[新闻标题]**
-   > 一句话摘要（不超过 50 字）
-   > 🔗 [来源名称](URL)
+1. **[Titre de l'actualité]**
+   > Résumé en une phrase (50 caractères maximum)
+   > 🔗 [Nom de la source](URL)
 
-### ⭐⭐⭐⭐ 高热度
+### ⭐⭐⭐⭐ Forte popularité
 
 2. ...
 
-### ⭐⭐⭐ 中等热度
+### ⭐⭐⭐ Popularité moyenne
 
 ...
 
 ---
-📊 本次共收集 XX 条新闻 | 搜索 XX 次 | 覆盖维度：A/B/C/D/E/F | 更新时间：HH:MM
+📊 Total de cette collecte : XX actualités | XX recherches | Dimensions couvertes : A/B/C/D/E/F | Mise à jour : HH:MM
 ```
 
-### 6. 去重与合并
+### 6. Déduplication et fusion
 
-- 同一事件被多家报道时，合并为一条，选择最权威/详细的来源
-- 在摘要中注明"多家媒体报道"以体现热度
-- 改名/更名的项目视为同一事件（如 Clawdbot → Moltbot → OpenClaw）
+- Quand le même événement est rapporté par plusieurs médias, fusionnez-le en une seule entrée en retenant la source la plus fiable/détaillée
+- Mentionnez « rapporté par plusieurs médias » dans le résumé pour traduire la popularité
+- Les projets renommés comptent comme un même événement (ex. Clawdbot → Moltbot → OpenClaw)
 
-## 推荐新闻源
+## Sources d'actualités recommandées
 
-详见 [references/sources.md](references/sources.md)。
+Voir [references/sources.md](references/sources.md).
 
-## 注意事项
+## Points d'attention
 
-- 优先使用 HTTPS 链接
-- 遇到付费墙/无法访问的内容，标注"需订阅"
-- 保持客观，不对新闻内容做主观评价
-- 搜索不足 8 次不要开始输出
-- 如果某个维度搜索结果为空，换关键词再搜一次
+- Privilégiez les liens HTTPS
+- En cas de paywall/contenu inaccessible, indiquez « sur abonnement »
+- Restez objectif : pas d'évaluation subjective du contenu des actualités
+- Ne commencez pas à rédiger avant d'avoir fait au moins 8 recherches
+- Si une dimension ne donne aucun résultat, reformulez les mots-clés et relancez

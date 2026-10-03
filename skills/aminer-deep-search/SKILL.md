@@ -1,14 +1,25 @@
 ---
 name: aminer-deep-search
-version: 2.0.0
+category: "Finance & Recherche"
+tags:
+  - aminer
+  - deep
+  - search
+version: 2.0.1
+category: "Finance & Recherche"
+tags:
+  - aminer
+  - deep
+  - search
 author: AMiner
 contact: report@aminer.cn
 description: >
-  Activate this skill when the user wants deep, multi-round academic paper collection for a survey or literature review.
-  The host model (the model running this skill) drives the loop itself: it expands queries, judges relevance, snowballs backward references, and decides when to stop.
-  The bundled scripts are pure tool commands that call documented AMiner Open Platform endpoints and print JSON tool results only — no extra LLM configuration is needed.
-  Use this skill for broad topic exploration, survey bibliography construction, and collecting hundreds of candidate papers with AMiner IDs and titles.
-  Not intended for single-paper lookup or lightweight recommendations; use aminer-free-academic or aminer-daily-paper for those.
+  Activez ce skill lorsque l'utilisateur veut une collecte approfondie et multi-passes d'articles académiques pour un état de l'art ou une revue de littérature.
+  Le modèle hôte (le modèle qui exécute ce skill) pilote lui-même la boucle : il étend les requêtes, juge la pertinence, fait du « snowballing » sur les références en amont et décide quand s'arrêter.
+  Les scripts fournis sont de purs outils en ligne de commande qui appellent les endpoints documentés de la plateforme ouverte AMiner et n'impriment que des résultats JSON d'outils — aucune configuration LLM supplémentaire n'est nécessaire.
+  Utilisez ce skill pour l'exploration large d'un sujet, la constitution d'une bibliographie d'état de l'art, et la collecte de centaines d'articles candidats avec leurs identifiants et titres AMiner.
+  Non adapté à la recherche d'un article unique ou à des recommandations légères ; utilisez aminer-free-academic ou aminer-daily-paper pour cela.
+language: fr
 metadata:
   {
     "openclaw":
@@ -20,47 +31,48 @@ metadata:
         "primaryEnv": "AMINER_API_KEY"
       }
   }
+
 ---
 
 # AMiner Deep Search
 
-Host-model-driven survey paper collection. You (the model reading this) are the controller: run the tool scripts, read their JSON output, judge relevance yourself, and iterate until the collection target is met.
+Collecte d'articles pour état de l'art pilotée par le modèle hôte. Vous (le modèle qui lit ceci) êtes le contrôleur : exécutez les scripts outils, lisez leur sortie JSON, jugez vous-même la pertinence et itérez jusqu'à atteindre l'objectif de collecte.
 
-## Scope
+## Périmètre
 
-- Use for: survey bibliography collection (hundreds of papers), keyword expansion, backward-citation snowballing.
-- Do not use for: single-paper lookup or Q&A (route to `aminer-free-academic`), personalized recommendations (route to `aminer-daily-paper`).
+- À utiliser pour : la constitution d'une bibliographie d'état de l'art (des centaines d'articles), l'expansion de mots-clés, le snowballing de citations en amont.
+- Ne pas utiliser pour : la recherche d'un article unique ou du Q&A (routez vers `aminer-free-academic`), les recommandations personnalisées (routez vers `aminer-daily-paper`).
 
-## Pre-flight
+## Pré-vol
 
-1. Check the key without printing it:
+1. Vérifiez la clé sans l'afficher :
 
 ```bash
 [ -z "${AMINER_API_KEY:-}" ] && echo "AMINER_API_KEY missing" || echo "AMINER_API_KEY exists"
 ```
 
-If missing, stop and ask the user to set `AMINER_API_KEY` (console: https://open.aminer.cn/open/board?tab=control). Never print the key.
+Si absent, arrêtez-vous et demandez à l'utilisateur de définir `AMINER_API_KEY` (console : https://open.aminer.cn/open/board?tab=control). N'affichez jamais la clé.
 
-2. Confirm the `topic` and the `target-size` (default 400). If your round plan is estimated to cost ¥5 or more, tell the user the estimate and get confirmation before starting.
+2. Confirmez le `topic` et le `target-size` (défaut 400). Si votre plan de passes est estimé à 5 ¥ ou plus, donnez l'estimation à l'utilisateur et obtenez sa confirmation avant de démarrer.
 
-## Tools
+## Outils
 
-Both scripts live in `scripts/` under this skill directory. They print exactly one JSON document to stdout (the tool result); diagnostics and a `[cost]` line go to stderr. They never score relevance — that is your job.
+Les deux scripts vivent dans `scripts/` sous le répertoire de ce skill. Ils impriment exactement un document JSON sur stdout (le résultat de l'outil) ; les diagnostics et une ligne `[cost]` vont sur stderr. Ils n'évaluent jamais la pertinence — c'est votre travail.
 
-### `scripts/aminer_api.py` — AMiner API calls
+### `scripts/aminer_api.py` — appels API AMiner
 
-| Subcommand | Endpoint | Price |
+| Sous-commande | Endpoint | Prix |
 |---|---|---|
-| `search --query Q [--size 20] [--year YYYY] [--order n_citation\|year] [--max-pages 3]` | GET `/api/paper/search/pro` + free `paper/info` enrichment | ¥0.01/page |
-| `qa-search [--query "natural language question"] [--topic-high '[["termA","termB"],["termC"]]'] [--size 20] [--year-from Y] [--year-to Y] [--citation-sort]` | POST `/api/paper/qa/search` (always `use_topic=true`; the backend ignores `query` when `use_topic=false`) + free enrichment | ¥0.05/call |
-| `info --ids id1 id2 ...` | POST `/api/paper/info` (batched ≤100 ids) | Free |
-| `references --ids id1 id2 ... [--per-seed 20]` | GET `/api/paper/relation` per seed + free enrichment | ¥0.10/seed |
+| `search --query Q [--size 20] [--year YYYY] [--order n_citation\|year] [--max-pages 3]` | GET `/api/paper/search/pro` + enrichissement gratuit `paper/info` | ¥0.01/page |
+| `qa-search [--query "natural language question"] [--topic-high '[["termA","termB"],["termC"]]'] [--size 20] [--year-from Y] [--year-to Y] [--citation-sort]` | POST `/api/paper/qa/search` (toujours `use_topic=true` ; le backend ignore `query` quand `use_topic=false`) + enrichissement gratuit | ¥0.05/appel |
+| `info --ids id1 id2 ...` | POST `/api/paper/info` (par lots ≤100 ids) | Gratuit |
+| `references --ids id1 id2 ... [--per-seed 20]` | GET `/api/paper/relation` par graine + enrichissement gratuit | ¥0.10/graine |
 
-Output shape: `search`/`qa-search`/`info` print `[{id, title, year?, venue?, abstract_slice?}]`; `references` additionally includes `source_paper_ids` (which seeds cited the paper). Seeds themselves are excluded from `references` output.
+Forme de la sortie : `search`/`qa-search`/`info` impriment `[{id, title, year?, venue?, abstract_slice?}]` ; `references` inclut en plus `source_paper_ids` (les graines qui ont cité l'article). Les graines elles-mêmes sont exclues de la sortie de `references`.
 
-### `scripts/paper_set.py` — cross-round state file (no network)
+### `scripts/paper_set.py` — fichier d'état inter-passes (sans réseau)
 
-State file defaults to `outputs/paper_set.json` relative to the working directory.
+Fichier d'état par défaut : `outputs/paper_set.json`, relatif au répertoire de travail.
 
 ```bash
 # Merge kept results (pipe the filtered JSON array in), dedupe by id
@@ -72,40 +84,40 @@ python3 scripts/paper_set.py mark-expanded --ids id1 id2   # record snowballed s
 python3 scripts/paper_set.py export -o outputs/final_papers.json
 ```
 
-`add` also accepts `--ids id1 id2 ...` for bare IDs. Items carrying `source_paper_ids` (from `references`) automatically mark those seeds as expanded.
+`add` accepte aussi `--ids id1 id2 ...` pour des IDs nus. Les éléments portant `source_paper_ids` (issus de `references`) marquent automatiquement ces graines comme étendues.
 
-If you want to filter before adding, read the search output first, then pipe only the kept items:
+Si vous voulez filtrer avant d'ajouter, lisez d'abord la sortie de recherche, puis ne redirigez que les éléments conservés :
 
 ```bash
 printf '%s' '[{"id":"...","title":"..."}]' | python3 scripts/paper_set.py add
 ```
 
-## Round Protocol (core)
+## Protocole de passe (cœur)
 
-### Round 0 — plan
+### Passe 0 — plan
 
-- Derive 4–8 seed queries from the topic: synonyms, subfields, method names, datasets/benchmarks, common English abbreviations.
-- Estimate rounds and cost (searches ≈ ¥0.01–0.05 each, references ≈ ¥0.10/seed). If the estimate is ≥¥5, confirm with the user first.
+- Dérivez 4 à 8 requêtes graines du sujet : synonymes, sous-domaines, noms de méthodes, jeux de données/benchmarks, abréviations anglaises courantes.
+- Estimez le nombre de passes et le coût (recherches ≈ 0,01–0,05 ¥ chacune, références ≈ 0,10 ¥/graine). Si l'estimation est ≥ 5 ¥, obtenez d'abord la confirmation de l'utilisateur.
 
-### Each round (default budget: 12 rounds), five fixed steps
+### Chaque passe (budget par défaut : 12 passes), cinq étapes fixes
 
-1. **Search**: run 1–4 `search` / `qa-search` calls from the pending query queue. Prefer `search` (cheaper); use `qa-search` when the query is a natural-language question.
-2. **Filter & add**: read the stdout results, judge relevance to the topic yourself, and pipe only the kept items into `paper_set.py add`. Never add papers you consider off-topic.
-3. **Check**: run `stats` to see the total and this round's increment.
-4. **Snowball**: from this round's relevant additions pick ≤5 strong seeds (highly relevant, ranked high under `--order n_citation`, not in `expanded_seeds`) and run `references --ids ...`. Filter the output for relevance, then add it. Run `mark-expanded` for seeds that yielded nothing addable.
-5. **Decide**: choose the next move —
-   - a search returned <5 results or poor quality → replace it with a reformulated query (max 2 variants per direction, then switch to snowballing);
-   - references are yielding many relevant papers → keep snowballing from fresh seeds;
-   - reached `target-size`, or results are exhausted, or 2 consecutive rounds added <5 papers → terminate.
+1. **Rechercher** : exécutez 1 à 4 appels `search` / `qa-search` depuis la file de requêtes en attente. Privilégiez `search` (moins cher) ; utilisez `qa-search` quand la requête est une question en langage naturel.
+2. **Filtrer et ajouter** : lisez les résultats de stdout, jugez vous-même la pertinence par rapport au sujet et ne redirigez que les éléments conservés vers `paper_set.py add`. N'ajoutez jamais d'articles que vous jugez hors sujet.
+3. **Vérifier** : lancez `stats` pour voir le total et l'incrément de la passe.
+4. **Snowball** : parmi les ajouts pertinents de cette passe, choisissez ≤5 graines fortes (très pertinentes, bien classées avec `--order n_citation`, absentes de `expanded_seeds`) et lancez `references --ids ...`. Filtrez la sortie pour la pertinence, puis ajoutez-la. Lancez `mark-expanded` pour les graines qui n'ont rien donné d'ajoutable.
+5. **Décider** : choisissez le mouvement suivant —
+   - une recherche a renvoyé <5 résultats ou des résultats de mauvaise qualité → remplacez-la par une requête reformulée (max 2 variantes par direction, puis passez au snowballing) ;
+   - les références donnent beaucoup d'articles pertinents → continuez le snowballing à partir de nouvelles graines ;
+   - `target-size` atteint, ou résultats épuisés, ou 2 passes consécutives avec <5 articles ajoutés → terminer.
 
-### Wrap-up
+### Conclusion
 
-Run `export`, then report: final paper count, total cost (sum the `[cost]` stderr lines), and the output path.
+Lancez `export`, puis rapportez : le nombre final d'articles, le coût total (sommez les lignes `[cost]` de stderr) et le chemin du fichier de sortie.
 
-## Rules
+## Règles
 
-1. Never fabricate paper IDs or titles; only cite data actually returned by the tools.
-2. Free first: metadata always comes from the free `paper/info` (the scripts already do this); never call the paid `paper/detail` for bulk metadata.
-3. Keep the raw tool output out of your final answer; report counts and the exported file path instead.
-4. Never print or log `AMINER_API_KEY`.
-5. If AMiner returns fewer papers than the target, report the real count instead of inventing papers.
+1. Ne fabriquez jamais d'IDs ni de titres d'articles ; ne citez que des données réellement renvoyées par les outils.
+2. Gratuit d'abord : les métadonnées viennent toujours du `paper/info` gratuit (les scripts le font déjà) ; n'appelez jamais le `paper/detail` payant pour des métadonnées en masse.
+3. Gardez la sortie brute des outils hors de votre réponse finale ; rapportez plutôt les compteurs et le chemin du fichier exporté.
+4. N'imprimez et ne journalisez jamais `AMINER_API_KEY`.
+5. Si AMiner renvoie moins d'articles que la cible, rapportez le nombre réel au lieu d'inventer des articles.

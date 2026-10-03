@@ -1,34 +1,41 @@
 ---
 name: writing-plans
-description: Use when you have a spec or requirements for a multi-step task, before touching code
+version: "1.0.0"
+category: "Méta (Skills & Plans)"
+tags:
+  - writing
+  - plans
+description: À utiliser lorsque vous disposez d'un cahier des charges ou d'exigences pour une tâche en plusieurs étapes, avant de toucher au code
+language: fr
+
 ---
 
 # Writing Plans
 
-## Overview
+## Vue d'ensemble
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+Rédigez des plans d'implémentation complets en supposant que l'ingénieur n'a aucun contexte sur notre base de code et un goût discutable. Documentez tout ce qu'il doit savoir : quels fichiers modifier pour chaque tâche, le code, les tests, la documentation qu'il pourrait consulter, comment tester. Donnez-leur l'intégralité du plan sous forme de tâches de petite taille. DRY. YAGNI. TDD. Commits fréquents.
 
-Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
+Supposez que c'est un développeur compétent, mais qui ne connaît presque rien à notre outillage ni à notre domaine métier. Supposez qu'il ne maîtrise pas bien la conception de bons tests.
 
-**Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
+**Annoncez au démarrage :** « J'utilise le skill writing-plans pour créer le plan d'implémentation. »
 
-**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
+**Contexte :** ceci doit être exécuté dans un worktree dédié (créé par le skill brainstorming).
 
-**Save plans to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
+**Enregistrez les plans dans :** `docs/plans/YYYY-MM-DD-<nom-de-la-fonctionnalite>.md`
 
-## Bite-Sized Task Granularity
+## Granularité des tâches en petites unités
 
-**Each step is one action (2-5 minutes):**
-- "Write the failing test" - step
-- "Run it to make sure it fails" - step
-- "Implement the minimal code to make the test pass" - step
-- "Run the tests and make sure they pass" - step
-- "Commit" - step
+**Chaque étape est une seule action (2 à 5 minutes) :**
+- « Écrire le test qui échoue » — une étape
+- « L'exécuter pour vérifier qu'il échoue » — une étape
+- « Implémenter le code minimal pour faire passer le test » — une étape
+- « Exécuter les tests et vérifier qu'ils passent » — une étape
+- « Committer » — une étape
 
-## Plan Document Header
+## En-tête du document de plan
 
-**Every plan MUST start with this header:**
+**Chaque plan DOIT commencer par cet en-tête :**
 
 ```markdown
 # [Feature Name] Implementation Plan
@@ -44,7 +51,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 ---
 ```
 
-## Task Structure
+## Structure des tâches
 
 ```markdown
 ### Task N: [Component Name]
@@ -87,30 +94,30 @@ git commit -m "feat: add specific feature"
 ```
 ```
 
-## Remember
-- Exact file paths always
-- Complete code in plan (not "add validation")
-- Exact commands with expected output
-- Reference relevant skills with @ syntax
-- DRY, YAGNI, TDD, frequent commits
+## À retenir
+- Toujours des chemins de fichiers exacts
+- Du code complet dans le plan (pas « ajouter la validation »)
+- Des commandes exactes avec la sortie attendue
+- Référencer les skills pertinents avec la syntaxe @
+- DRY, YAGNI, TDD, commits fréquents
 
-## Execution Handoff
+## Transfert d'exécution
 
-After saving the plan, offer execution choice:
+Après avoir enregistré le plan, proposez un choix d'exécution :
 
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
+**« Plan terminé et enregistré dans `docs/plans/<filename>.md`. Deux options d'exécution :**
 
-**1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
+**1. Piloté par sous-agents (cette session)** — je dispatche un sous-agent neuf par tâche, revue entre les tâches, itération rapide
 
-**2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
+**2. Session parallèle (séparée)** — ouvrir une nouvelle session avec executing-plans, exécution par lots avec points de contrôle
 
-**Which approach?"**
+**Quelle approche ? »**
 
-**If Subagent-Driven chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
-- Stay in this session
-- Fresh subagent per task + code review
+**Si « Piloté par sous-agents » est choisi :**
+- **SKILL REQUIS :** utiliser superpowers:subagent-driven-development
+- Rester dans cette session
+- Sous-agent neuf par tâche + revue de code
 
-**If Parallel Session chosen:**
-- Guide them to open new session in worktree
-- **REQUIRED SUB-SKILL:** New session uses superpowers:executing-plans
+**Si « Session parallèle » est choisi :**
+- Guider l'utilisateur pour ouvrir une nouvelle session dans le worktree
+- **SKILL REQUIS :** la nouvelle session utilise superpowers:executing-plans

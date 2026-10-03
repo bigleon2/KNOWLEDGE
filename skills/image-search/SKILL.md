@@ -1,44 +1,51 @@
 ---
 name: image-search
-version: 1.0.0
+category: "IA & Media"
+tags:
+  - image
+  - search
+version: 1.0.1
+category: "IA & Media"
+tags:
+  - image
+  - search
 description: |
-  ZAI in-house image search service, exposed through the z-ai-web-dev-sdk CLI.
-  Retrieve real images from the web for any text query, with optional short
-  captions, and get back OSS-hosted direct URLs that are guaranteed reachable.
-  Use when the user wants to find, fetch, illustrate, or embed images — e.g.
-  "search for images of X", "find a picture of Y", "I need cover art for Z",
-  "give me reference photos of W", "插图", "配图", "找图", "找张图",
+  Service de recherche d'images maison de ZAI, exposé via le CLI du z-ai-web-dev-sdk.
+  Récupère de vraies images du web pour n'importe quelle requête textuelle, avec des
+  légendes courtes en option, et renvoie des URLs directes hébergées sur OSS garanties
+  accessibles. À utiliser quand l'utilisateur veut trouver, récupérer, illustrer ou
+  intégrer des images — p. ex. « cherche des images de X », « trouve une photo de Y »,
+  « il me faut une couverture pour Z », « donne-moi des photos de référence de W »,
+  "插图", "配图", "找图", "找张图",
   "搜张图", "搜图".
+language: fr
+
 ---
 
-# image-search (ZAI in-house, via z-ai SDK)
+# image-search (service maison ZAI, via le SDK z-ai)
 
-Searches public web images for a natural-language query, re-hosts each hit on
-OSS so the link is embeddable, and (optionally) attaches a short caption. The
-backend is **ZAI's own self-developed image search service**.
+Recherche des images du web public pour une requête en langage naturel, réhéberge chaque résultat sur OSS pour que le lien soit intégrable, et (optionnellement) joint une légende courte. Le backend est le **service de recherche d'images développé en propre par ZAI**.
 
-You **do not call the backend directly**, and you **do not call the gateway
-HTTP API directly**. Always go through the `z-ai image-search` subcommand
-from the `z-ai-web-dev-sdk` CLI — that's the only supported entry point.
+Vous **n'appelez pas le backend directement**, et vous **n'appelez pas directement l'API HTTP de la passerelle**. Passez toujours par la sous-commande `z-ai image-search` du CLI `z-ai-web-dev-sdk` — c'est le seul point d'entrée supporté.
 
-## When to activate
+## Quand activer
 
-Trigger this skill when the user wants to:
+Déclenchez ce skill quand l'utilisateur veut :
 
-- Find images for an article, slide deck, PPT, blog post, or report.
-- Get reference photos / inspiration for a topic.
-- Embed pictures into generated documents with stable URLs.
-- Caption a set of images in Chinese or English.
+- Trouver des images pour un article, un diaporama, un PPT, un billet de blog ou un rapport.
+- Obtenir des photos de référence / de l'inspiration sur un sujet.
+- Intégrer des images dans des documents générés avec des URLs stables.
+- Légendrer un lot d'images en chinois ou en anglais.
 
-Do **not** use this skill for:
+**N'utilisez pas** ce skill pour :
 
-- Generating new images from scratch — use `z-ai image` (image generation).
-- Reverse image search ("what is this image of?").
-- Searching images inside a private corpus — this hits public web sources.
+- Générer de nouvelles images à partir de zéro — utilisez `z-ai image` (génération d'images).
+- La recherche d'image inversée (« qu'est-ce que cette image ? »).
+- Rechercher des images dans un corpus privé — ce skill interroge des sources web publiques.
 
-## Prerequisites
+## Prérequis
 
-**`z-ai-web-dev-sdk` installed**, providing the `z-ai` binary:
+**`z-ai-web-dev-sdk` installé**, fournissant le binaire `z-ai` :
 
 ```bash
 npm install -g z-ai-web-dev-sdk
@@ -51,21 +58,20 @@ npm install -g z-ai-web-dev-sdk
 z-ai image-search --query "<natural-language sentence>" [flags]
 ```
 
-The CLI prints the JSON response (pretty-formatted) to stdout, or writes it
-to `--output <path>` if supplied.
+Le CLI imprime la réponse JSON (mise en forme) sur stdout, ou l'écrit dans `--output <path>` si fourni.
 
-### Flags
+### Options
 
-| Flag                | Default | Notes |
+| Option              | Défaut  | Notes |
 |---------------------|---------|-------|
-| `--query`, `-q`     | —       | Required. Natural-language sentence describing what should be in the image. Prefer one coherent concept; avoid mixing unrelated keywords. |
-| `--count`, `-c`     | 5       | Number of images to return. Range 1–20. |
-| `--gl`              | `cn`    | Region code for localization. Common: `cn`, `us`, `jp`, `kr`. |
-| `--no-rank`         | —       | Disable captioning for a faster, caption-less response (default is on). |
-| `--output`, `-o`    | —       | Optional: write the full JSON response to this path. |
-| `--help`, `-h`      | —       | Show CLI help. |
+| `--query`, `-q`     | —       | Obligatoire. Phrase en langage naturel décrivant ce que l'image doit contenir. Préférer un concept cohérent unique ; éviter de mélanger des mots-clés sans rapport. |
+| `--count`, `-c`     | 5       | Nombre d'images à renvoyer. Plage 1–20. |
+| `--gl`              | `cn`    | Code de région pour la localisation. Courants : `cn`, `us`, `jp`, `kr`. |
+| `--no-rank`         | —       | Désactive les légendes pour une réponse plus rapide, sans légendes (activé par défaut). |
+| `--output`, `-o`    | —       | Optionnel : écrit la réponse JSON complète dans ce chemin. |
+| `--help`, `-h`      | —       | Affiche l'aide du CLI. |
 
-### Examples
+### Exemples
 
 ```bash
 # Default search (5 images, cn region, captions on).
@@ -78,21 +84,21 @@ z-ai image-search -q "vintage red sports car on a mountain road" --count 5 --gl 
 z-ai image-search -q "中国传统水墨山水画" --count 5 -o results.json
 ```
 
-## Choosing parameters
+## Choisir les paramètres
 
-- **`--query`**: use a descriptive sentence, not a keyword list. The service
-  is tuned for natural language and returns more on-topic results that way.
-  Match the language to the audience: Chinese queries produce Chinese
-  captions, English queries produce English captions.
-- **`--count`**: default to `5` for most asset-gathering tasks. Drop to
-  `1`–`3` when the user only needs one finalist; raise toward `10`–`20`
-  when building a moodboard or browsing options. Stay within `1`–`20`.
-- **`--no-rank`**: turn captions off for moodboards or when latency matters;
-  leave them on when the user will pick images by reading the captions.
-- **One concept per call**: for two unrelated subjects, fire two separate
-  invocations rather than concatenating keywords.
+- **`--query`** : utiliser une phrase descriptive, pas une liste de mots-clés. Le service
+  est optimisé pour le langage naturel et renvoie des résultats plus pertinents ainsi.
+  Adapter la langue à l'audience : les requêtes chinoises produisent des légendes
+  chinoises, les requêtes anglaises des légendes anglaises.
+- **`--count`** : rester à `5` par défaut pour la plupart des tâches de collecte d'assets.
+  Descendre à `1`–`3` quand l'utilisateur n'a besoin que d'un choix final ; monter vers
+  `10`–`20` pour construire un moodboard ou explorer des options. Rester dans `1`–`20`.
+- **`--no-rank`** : couper les légendes pour les moodboards ou quand la latence compte ;
+  les laisser activées quand l'utilisateur choisira les images en lisant les légendes.
+- **Un concept par appel** : pour deux sujets sans rapport, lancer deux invocations
+  distinctes plutôt que de concaténer des mots-clés.
 
-## Response shape
+## Forme de la réponse
 
 ```json
 {
@@ -112,7 +118,7 @@ z-ai image-search -q "中国传统水墨山水画" --count 5 -o results.json
 }
 ```
 
-Failure response (HTTP is still 200; check `success`):
+Réponse d'échec (le HTTP reste 200 ; vérifier `success`) :
 
 ```json
 {
@@ -125,39 +131,39 @@ Failure response (HTTP is still 200; check `success`):
 }
 ```
 
-### Field reference
+### Référence des champs
 
-| Field                       | Type    | Notes |
+| Champ                       | Type    | Notes |
 |-----------------------------|---------|-------|
-| `success`                   | boolean | Always check this before reading `results`. |
-| `query`                     | string  | Echo of the input query. |
-| `count`                     | integer | Number of images actually returned. |
-| `ranked`                    | boolean | Whether captioning was applied. |
-| `results[].original_url`    | string  | OSS-hosted direct image URL. Stable and embeddable. |
-| `results[].caption`         | string  | Short caption. Present only when `ranked` is `true`. |
-| `results[].source`          | string  | Original source site (e.g. `Unsplash`, `Pinterest`). |
-| `results[].original_width`  | string  | Image width as `"NNNpx"`. |
-| `results[].original_height` | string  | Image height as `"NNNpx"`. |
-| `error`                     | string  | Present only on failure. |
+| `success`                   | boolean | Toujours le vérifier avant de lire `results`. |
+| `query`                     | string  | Écho de la requête d'entrée. |
+| `count`                     | integer | Nombre d'images effectivement renvoyées. |
+| `ranked`                    | boolean | Indique si les légendes ont été appliquées. |
+| `results[].original_url`    | string  | URL directe de l'image hébergée sur OSS. Stable et intégrable. |
+| `results[].caption`         | string  | Légende courte. Présente uniquement quand `ranked` est `true`. |
+| `results[].source`          | string  | Site source d'origine (p. ex. `Unsplash`, `Pinterest`). |
+| `results[].original_width`  | string  | Largeur de l'image sous la forme `"NNNpx"`. |
+| `results[].original_height` | string  | Hauteur de l'image sous la forme `"NNNpx"`. |
+| `error`                     | string  | Présent uniquement en cas d'échec. |
 
-## Operating tips
+## Conseils opérationnels
 
-1. **Always present the OSS `original_url`, not the source site URL.** The
-   OSS link is the one that's guaranteed reachable; source pages may be
-   paywalled, geo-blocked, or deleted.
-2. **Skip captioning for speed.** `--no-rank` typically cuts response time
-   by more than half. Use it when you'll caption results yourself.
-3. **Be patient with timeouts.** A full call can take 90 seconds or more —
-   the upstream does image reachability probes, OSS upload, and captioning
-   one after another. Use a client-side timeout of at least 120 seconds.
-4. **Region matters.** `gl=cn` biases toward Chinese-language sources;
-   `gl=us` toward English. Pick the one that matches the user's audience.
+1. **Toujours présenter l'`original_url` OSS, pas l'URL du site source.** Le lien OSS
+   est celui garanti accessible ; les pages sources peuvent être derrière un paywall,
+   bloquées géographiquement ou supprimées.
+2. **Couper les légendes pour la vitesse.** `--no-rank` réduit généralement le temps de
+   réponse de plus de moitié. À utiliser quand vous légenderez vous-même les résultats.
+3. **Être patient avec les timeouts.** Un appel complet peut prendre 90 secondes ou plus —
+   l'amont enchaîne sondes d'accessibilité des images, upload OSS et légendage. Prévoir
+   un timeout côté client d'au moins 120 secondes.
+4. **La région compte.** `gl=cn` favorise les sources en langue chinoise ;
+   `gl=us` les sources anglaises. Choisir celle qui correspond à l'audience de l'utilisateur.
 
-## Error handling
+## Gestion des erreurs
 
-| Symptom | Likely cause | What to do |
+| Symptôme | Cause probable | Que faire |
 |---------|--------------|------------|
-| `Unknown command "image-search"` | SDK too old | Upgrade: `npm install -g z-ai-web-dev-sdk@latest`. |
-| `API request failed with status 401` / `403` | Auth issue at the gateway | Tell the user — credentials are managed outside this skill. |
-| `API request failed with status 502` | Upstream service unreachable | Retry; if it persists the in-house service is down. |
-| Empty `results` but `success: true` | Query too narrow or upstream filtered everything | Broaden the query, raise `--count`, or change `--gl`. |
+| `Unknown command "image-search"` | SDK trop ancien | Mettre à jour : `npm install -g z-ai-web-dev-sdk@latest`. |
+| `API request failed with status 401` / `403` | Problème d'authentification à la passerelle | En informer l'utilisateur — les identifiants sont gérés en dehors de ce skill. |
+| `API request failed with status 502` | Service amont inaccessible | Réessayer ; si cela persiste, le service maison est hors service. |
+| `results` vide mais `success: true` | Requête trop étroite ou l'amont a tout filtré | Élargir la requête, augmenter `--count` ou changer `--gl`. |

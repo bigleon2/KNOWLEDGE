@@ -1,63 +1,70 @@
 ---
 name: experiment-suite
-description: Use when the user has a research question and needs a complete experiment package — design document, runnable code, results (measured or simulated with honest provenance), publication-grade figures, structured report. Single-stage, no Python runtime.
+version: "1.0.0"
+category: "Autres"
+tags:
+  - experiment
+  - suite
+description: À utiliser quand l'utilisateur a une question de recherche et a besoin d'un paquet d'expérience complet — document de conception, code exécutable, résultats (mesurés ou simulés avec une provenance honnête), figures de qualité publication, rapport structuré. Étape unique, sans runtime Python.
+language: fr
+
 ---
 
 # Experiment Suite
 
-## Overview
+## Vue d'ensemble
 
-End-to-end experiment package builder. **Single stage, full quality from the start.** The agent (Claude Code / Cursor / Aider / Codex / …) writes everything directly using its own tools (Write, Bash, WebFetch, …). This skill contains procedure + reference playbooks + figure-example scripts — no Python runtime, no LLM SDK.
+Générateur de paquet d'expérience de bout en bout. **Étape unique, pleine qualité dès le départ.** L'agent (Claude Code / Cursor / Aider / Codex / …) écrit tout directement avec ses propres outils (Write, Bash, WebFetch, …). Ce skill contient une procédure + des playbooks de référence + des scripts d'exemples de figures — pas de runtime Python, pas de SDK LLM.
 
-The substantive work is decomposed into reference playbooks under `references/`:
+Le travail de fond est décomposé en playbooks de référence sous `references/` :
 
-| Reference | Topic |
+| Référence | Sujet |
 |---|---|
-| `references/00-incremental-execution.md` | how to do this without losing work: batches, persistence, resume — **read first** |
-| `references/01-design-depth.md` | what a real experiment design contains (motivation → hypothesis → datasets → baselines → metrics → ablations → budget) |
-| `references/01a-data-contract.md` | runtime dataset binding: source, access route, version, split, and reuse boundary |
-| `references/02-code-quality.md` | code-skeleton standards — runnable `model.py`, `data.py`, `train.py`, `evaluate.py` |
-| `references/03-results-protocol.md` | `results.json` schema; `measured` / `simulated` / `illustrative` provenance |
-| `references/04-publication-figures.md` | publication-grade charts, multi-panel layouts, taste rules |
-| `references/04a-figure-contract.md` | figure logic before plotting: conclusion, panel map, reviewer risk |
-| `references/04b-figure-qa.md` | export bundle, editable text, statistics and image-integrity QA |
-| `references/05-report-structure.md` | structured `experiment_report.md` (problem → design → method → results → analysis → limitations) |
-| `references/06-quality-gate.md` | self-check before delivery |
+| `references/00-incremental-execution.md` | comment procéder sans perdre son travail : lots, persistance, reprise — **à lire en premier** |
+| `references/01-design-depth.md` | ce que contient une vraie conception d'expérience (motivation → hypothèse → jeux de données → baselines → métriques → ablations → budget) |
+| `references/01a-data-contract.md` | liaison des données au runtime : source, voie d'accès, version, split et périmètre de réutilisation |
+| `references/02-code-quality.md` | standards de squelette de code — `model.py`, `data.py`, `train.py`, `evaluate.py` exécutables |
+| `references/03-results-protocol.md` | schéma de `results.json` ; provenance `measured` / `simulated` / `illustrative` |
+| `references/04-publication-figures.md` | graphiques de qualité publication, mises en page multi-panneaux, règles de goût |
+| `references/04a-figure-contract.md` | la logique de la figure avant le tracé : conclusion, carte des panneaux, risque relecteur |
+| `references/04b-figure-qa.md` | bundle d'export, texte éditable, statistiques et QA d'intégrité d'image |
+| `references/05-report-structure.md` | `experiment_report.md` structuré (problème → conception → méthode → résultats → analyse → limites) |
+| `references/06-quality-gate.md` | auto-contrôle avant livraison |
 
-Also: `figure_examples/` — publication-style matplotlib scripts plus a shared style kit the agent can use as starting points.
+Aussi : `figure_examples/` — scripts matplotlib de style publication plus un kit de style partagé que l'agent peut utiliser comme points de départ.
 
-**Read the relevant reference _before_ writing, not after.** The full pass does not fit in a single turn — `references/00-incremental-execution.md` is the only execution mode that completes.
+**Lisez la référence pertinente _avant_ d'écrire, pas après.** La passe complète ne tient pas en un seul tour — `references/00-incremental-execution.md` est le seul mode d'exécution qui aboutit.
 
-## When to Use
+## Quand l'utiliser
 
-- User wants to "design an experiment" for a research question.
-- User needs runnable code for a specific task (classification / forecasting / detection / …).
-- User wants to compare methods and have a structured report at the end.
-- User needs publication-quality figures of experimental results.
+- L'utilisateur veut « concevoir une expérience » pour une question de recherche.
+- L'utilisateur a besoin de code exécutable pour une tâche précise (classification / prévision / détection / …).
+- L'utilisateur veut comparer des méthodes et obtenir un rapport structuré à la fin.
+- L'utilisateur a besoin de figures de qualité publication pour des résultats expérimentaux.
 
-## When NOT to Use
+## Quand NE PAS l'utiliser
 
-- User only wants a quick code snippet (write code directly).
-- User wants a full paper → `paper-writer`.
-- User wants a literature survey → `literature-survey`.
+- L'utilisateur ne veut qu'un extrait de code rapide (écrire le code directement).
+- L'utilisateur veut un article complet → `paper-writer`.
+- L'utilisateur veut une revue de littérature → `literature-survey`.
 
 ## Workflow
 
-### Step 1 — Understand the question and operating mode
+### Étape 1 — Comprendre la question et le mode opératoire
 
-Confirm with the user:
+Confirmer avec l'utilisateur :
 
-- **Research question** — what we are trying to answer.
-- **Task type** — classification / regression / forecasting / detection / generation / …
+- **Question de recherche** — ce qu'on cherche à répondre.
+- **Type de tâche** — classification / régression / prévision / détection / génération / …
 - **Mode**
-  - **measured** — user has real data or will run code themselves; provide a path to a measured `results.json` or run `train.py` against real data later.
-  - **simulated** (default) — agent generates a plausible-shaped, deterministic `results.json` as a placeholder. Every figure/table caption must say "simulated".
-- **Framework preference** — PyTorch (default), JAX, TensorFlow, or sklearn.
-- **Compute budget** — hours / GPUs available; constrains the code skeleton and hyperparameter plan.
+  - **measured** — l'utilisateur a de vraies données ou exécutera le code lui-même ; fournir un chemin vers un `results.json` mesuré ou exécuter `train.py` sur de vraies données plus tard.
+  - **simulated** (défaut) — l'agent génère un `results.json` de forme plausible et déterministe, à titre de placeholder. Chaque légende de figure/tableau doit préciser « simulé ».
+- **Préférence de framework** — PyTorch (défaut), JAX, TensorFlow ou sklearn.
+- **Budget de calcul** — heures / GPU disponibles ; contraint le squelette de code et le plan d'hyperparamètres.
 
-If the user has data and time, push toward measured mode. If not, simulated is acceptable **provided** disclosures are honest in every artefact.
+Si l'utilisateur a des données et du temps, pousser vers le mode measured. Sinon, le mode simulated est acceptable **à condition** que les mentions soient honnêtes dans chaque artefact.
 
-### Step 2 — Set up the run directory
+### Étape 2 — Préparer le répertoire d'exécution
 
 ```bash
 QUESTION="<research_question>"
@@ -69,57 +76,57 @@ mkdir -p "$RUN/experiment" "$RUN/figures"
 ln -sfn "$TS" "output/experiment-suite/$SLUG/latest"
 ```
 
-In commands below `$RUN` = `output/experiment-suite/<slug>/latest`.
+Dans les commandes ci-dessous, `$RUN` = `output/experiment-suite/<slug>/latest`.
 
-The agent will create five top-level files inside `$RUN/`:
+L'agent créera cinq fichiers de premier niveau dans `$RUN/` :
 
 - `experiment_design.md`
 - `data_contract.md`
 - `experiment/{model.py,data.py,train.py,evaluate.py,config.yaml,requirements.txt,README.md}`
 - `results.json`
-- `figures/*.pdf` plus their `make_*.py` source and a `manifest.json`
+- `figures/*.pdf` avec leurs sources `make_*.py` et un `manifest.json`
 - `experiment_report.md`
 
-### Step 3 — Build the package (REQUIRED — this is the whole job)
+### Étape 3 — Construire le paquet (OBLIGATOIRE — c'est tout le travail)
 
-Open `references/00-incremental-execution.md` first. Then carry out the six tracks below across many turns, persisting state to `$RUN/` after every batch.
+Ouvrir d'abord `references/00-incremental-execution.md`. Puis mener les six chantiers ci-dessous sur de nombreux tours, en persistant l'état dans `$RUN/` après chaque lot.
 
-#### 3.1 Design — full justification document
+#### 3.1 Conception — document de justification complet
 
-**Open:** `references/01-design-depth.md` and `references/01a-data-contract.md`. First write `$RUN/data_contract.md` as the dataset contract for this run. It must say whether the data are user-supplied, agent-discovered, reused public, controlled, or synthetic fallback. Then write `$RUN/experiment_design.md` as a real design (≥ 700 words): motivation → hypothesis → datasets → baselines → metrics → ablations → compute budget. Justify every choice.
+**Ouvrir :** `references/01-design-depth.md` et `references/01a-data-contract.md`. Écrire d'abord `$RUN/data_contract.md` comme contrat de données de cette exécution. Il doit préciser si les données sont fournies par l'utilisateur, découvertes par l'agent, publiques réutilisées, contrôlées ou synthétiques par repli. Puis écrire `$RUN/experiment_design.md` comme une vraie conception (≥ 700 mots) : motivation → hypothèse → jeux de données → baselines → métriques → ablations → budget de calcul. Justifier chaque choix.
 
-#### 3.2 Code — actually runnable
+#### 3.2 Code — réellement exécutable
 
-**Open:** `references/02-code-quality.md`. Fill `$RUN/experiment/` with code that an engineer could launch with `python train.py --config config.yaml`. Real (if minimal) model class, real data loader, real train loop, real eval. The generated `data.py` and `config.yaml` are runtime products of this run and should bind to `$RUN/data_contract.md`, not to a repository-wide hard-coded benchmark. Add a `README.md` with run instructions.
+**Ouvrir :** `references/02-code-quality.md`. Remplir `$RUN/experiment/` avec du code qu'un ingénieur pourrait lancer avec `python train.py --config config.yaml`. Vraie classe de modèle (même minimale), vrai chargeur de données, vraie boucle d'entraînement, vraie évaluation. Le `data.py` et le `config.yaml` générés sont des produits d'exécution de cette run et doivent se lier à `$RUN/data_contract.md`, pas à un benchmark codé en dur à l'échelle du dépôt. Ajouter un `README.md` avec les instructions de lancement.
 
-#### 3.2.5 Execute (if execution environment is available)
+#### 3.2.5 Exécution (si un environnement d'exécution est disponible)
 
-**Priority order for execution:**
+**Ordre de priorité pour l'exécution :**
 
-1. **Sandbox MCP** (`sandbox_execute`) — preferred for formal experiments.
-   - Generates measured `results.json` with real execution output.
-   - Smart timeout (auto-calculated from code complexity), auto-retry on missing packages.
-   - Call: `sandbox_execute(code=<entire_script>, timeout=300, requirements=["torch","scikit-learn"])`
+1. **Sandbox MCP** (`sandbox_execute`) — préféré pour les expériences formelles.
+   - Produit un `results.json` mesuré avec une vraie sortie d'exécution.
+   - Timeout intelligent (calculé automatiquement selon la complexité du code), retry automatique en cas de paquet manquant.
+   - Appel : `sandbox_execute(code=<script complet>, timeout=300, requirements=["torch","scikit-learn"])`
 
-2. **Jupyter MCP** — preferred for interactive exploration and debugging.
-   - Write code as notebook cells, execute via `jupyter_execute_cell`.
-   - Good for data loading verification and quick smoke tests.
+2. **Jupyter MCP** — préféré pour l'exploration interactive et le débogage.
+   - Écrire le code en cellules de notebook, exécuter via `jupyter_execute_cell`.
+   - Adapté à la vérification du chargement de données et aux tests de fumée rapides.
 
-3. **Agent Bash** — fallback for simple scripts.
-   - `python experiment/train.py` directly.
+3. **Agent Bash** — repli pour les scripts simples.
+   - `python experiment/train.py` directement.
 
-If **NO** execution environment is available, fall back to "simulated" mode (current behavior).
+Si **AUCUN** environnement d'exécution n'est disponible, revenir au mode « simulated » (comportement actuel).
 
-**When execution succeeds:**
+**Quand l'exécution réussit :**
 
-- Set `provenance.mode = "measured"` in `results.json`
-- Include `execution_time` from sandbox/Jupyter output
-- Run `execution-guard` gate **BEFORE** execution
-- Run `correctness` gate **AFTER** execution
+- Positionner `provenance.mode = "measured"` dans `results.json`
+- Inclure `execution_time` issue de la sortie sandbox/Jupyter
+- Passer la porte `execution-guard` **AVANT** l'exécution
+- Passer la porte `correctness` **APRÈS** l'exécution
 
-**Auto-measured results protocol:**
+**Protocole de résultats auto-mesurés :**
 
-When the sandbox runs the code successfully, parse the stdout into a structured `results.json`:
+Quand la sandbox exécute le code avec succès, analyser le stdout pour produire un `results.json` structuré :
 
 ```json
 {
@@ -132,69 +139,69 @@ When the sandbox runs the code successfully, parse the stdout into a structured 
 }
 ```
 
-If execution partially succeeds (some metrics computed, others failed), use `"mode": "mixed"` with `by_method` provenance (see `references/03-results-protocol.md`).
+Si l'exécution réussit partiellement (certaines métriques calculées, d'autres en échec), utiliser `"mode": "mixed"` avec une provenance `by_method` (voir `references/03-results-protocol.md`).
 
-#### 3.3 Results — honest provenance
+#### 3.3 Résultats — provenance honnête
 
-**Open:** `references/03-results-protocol.md`. Produce `$RUN/results.json` with a well-formed schema: per-seed entries, per-method per-metric mean & std, ablation block, and a `provenance` field that names the source.
+**Ouvrir :** `references/03-results-protocol.md`. Produire `$RUN/results.json` avec un schéma bien formé : entrées par graine, moyenne et écart-type par méthode et par métrique, bloc d'ablation, et un champ `provenance` qui nomme la source.
 
-- **measured mode** — the user runs `experiment/train.py` (or supplies a results JSON) and the agent loads it into `$RUN/results.json`, setting `"simulated": false` and `"provenance": "loaded from <path>"`.
-- **measured mode, agent-discovered data** — the agent may search for and bind an open dataset itself, but the chosen source, split, and access route must first be written into `$RUN/data_contract.md`; `results.json` provenance must point back to that binding.
-- **simulated mode** — the agent writes a deterministic seeded JSON of plausible shape, setting `"simulated": true`.
+- **mode measured** — l'utilisateur exécute `experiment/train.py` (ou fournit un JSON de résultats) et l'agent le charge dans `$RUN/results.json`, en réglant `"simulated": false` et `"provenance": "loaded from <path>"`.
+- **mode measured, données découvertes par l'agent** — l'agent peut chercher et lier lui-même un jeu de données ouvert, mais la source choisie, le split et la voie d'accès doivent d'abord être consignés dans `$RUN/data_contract.md` ; la provenance de `results.json` doit renvoyer à cette liaison.
+- **mode simulated** — l'agent écrit un JSON déterministe et seedé de forme plausible, en réglant `"simulated": true`.
 
-#### 3.4 Figures — 3–6 publication-grade
+#### 3.4 Figures — 3 à 6 de qualité publication
 
-**Open:** `references/04-publication-figures.md`, `references/04a-figure-contract.md`, `references/04b-figure-qa.md`, and `figure_examples/`. Before writing plotting code, define the figure contract in a small working note under `$RUN/figures/figure_contract.md`:
+**Ouvrir :** `references/04-publication-figures.md`, `references/04a-figure-contract.md`, `references/04b-figure-qa.md`, et `figure_examples/`. Avant d'écrire le code de tracé, définir le contrat de figure dans une petite note de travail sous `$RUN/figures/figure_contract.md` :
 
-- one-sentence conclusion,
-- figure archetype,
-- panel map,
-- evidence hierarchy,
-- statistics needed,
-- reviewer risk.
+- conclusion en une phrase,
+- archétype de figure,
+- carte des panneaux,
+- hiérarchie des preuves,
+- statistiques nécessaires,
+- risque relecteur.
 
-Then plan and generate at minimum:
+Ensuite, planifier et générer au minimum :
 
-- 1 method-comparison chart (bar or line).
-- 1 ablation breakdown.
-- Optionally training curves, scaling plot, heatmap.
+- 1 graphique de comparaison de méthodes (barres ou courbes).
+- 1 décomposition d'ablation.
+- Optionnel : courbes d'entraînement, tracé de scaling, carte de chaleur.
 
-Save each figure into `$RUN/figures/<basename>.pdf` with its `make_*.py` source alongside. Prefer saving an editable `.svg` and print-grade `.tiff` alongside the PDF when the environment supports it. Append entries to `$RUN/figures/manifest.json` storing **basenames only** (never absolute paths) so paper-writer can copy them in directly. Apply the shared publication style (embedded fonts, explicit palette, panel labels, simulated watermark when applicable).
+Enregistrer chaque figure dans `$RUN/figures/<basename>.pdf` avec sa source `make_*.py` à côté. Préférer l'enregistrement d'un `.svg` éditable et d'un `.tiff` qualité impression à côté du PDF quand l'environnement le permet. Ajouter des entrées à `$RUN/figures/manifest.json` en ne stockant que des **basenames** (jamais de chemins absolus) afin que paper-writer puisse les copier directement. Appliquer le style de publication partagé (polices embarquées, palette explicite, étiquettes de panneaux, filigrane « simulé » le cas échéant).
 
-If simulated, watermark the figures or always note "simulated" in their captions in the report.
+En cas de simulation, apposer un filigrane sur les figures ou toujours mentionner « simulé » dans leurs légendes dans le rapport.
 
-#### 3.5 Report — structured
+#### 3.5 Rapport — structuré
 
-**Open:** `references/05-report-structure.md`. Write `$RUN/experiment_report.md` with sections: problem statement → design rationale → method → setup → results → analysis → limitations. Reference figures by filename. This report is the primary deliverable for users who want only the experiment package (no paper-writer follow-up).
+**Ouvrir :** `references/05-report-structure.md`. Écrire `$RUN/experiment_report.md` avec les sections : énoncé du problème → raisonnement de conception → méthode → mise en œuvre → résultats → analyse → limites. Référencer les figures par nom de fichier. Ce rapport est le livrable principal pour les utilisateurs qui veulent seulement le paquet d'expérience (sans relance paper-writer).
 
-#### 3.6 Quality gate
+#### 3.6 Porte de qualité
 
-**Open:** `references/06-quality-gate.md`. Targets: design ≥ 700 words, code imports cleanly (`python -c "import experiment.model"` from inside `$RUN`), `results.json` passes schema check, ≥ 3 figures, report ≥ 6 sections.
+**Ouvrir :** `references/06-quality-gate.md`. Cibles : conception ≥ 700 mots, imports du code propres (`python -c "import experiment.model"` depuis l'intérieur de `$RUN`), `results.json` passe la vérification de schéma, ≥ 3 figures, rapport ≥ 6 sections.
 
-### Step 4 — Deliver
+### Étape 4 — Livrer
 
-Report:
+Rapporter :
 
 1. `output/experiment-suite/<slug>/latest/experiment_design.md`
-2. `output/experiment-suite/<slug>/latest/experiment/` — runnable code package.
-3. `output/experiment-suite/<slug>/latest/results.json` — with provenance.
-4. `output/experiment-suite/<slug>/latest/figures/` — publication-grade charts + `manifest.json`.
-5. `output/experiment-suite/<slug>/latest/experiment_report.md` — structured report.
-6. Stats per the report format in `references/06-quality-gate.md`.
+2. `output/experiment-suite/<slug>/latest/experiment/` — paquet de code exécutable.
+3. `output/experiment-suite/<slug>/latest/results.json` — avec provenance.
+4. `output/experiment-suite/<slug>/latest/figures/` — graphiques de qualité publication + `manifest.json`.
+5. `output/experiment-suite/<slug>/latest/experiment_report.md` — rapport structuré.
+6. Statistiques selon le format de rapport de `references/06-quality-gate.md`.
 
-## Cross-skill data flow (path convention)
+## Flux de données inter-skills (convention de chemins)
 
-The `paper-writer` skill computing the same slug for the same topic will look here:
+Le skill `paper-writer` calculant le même slug pour le même sujet cherchera ici :
 
-- `output/experiment-suite/<slug>/latest/results.json` — source of the numbers and the `"simulated"` flag (drives the disclosure clause in the paper).
-- `output/experiment-suite/<slug>/latest/figures/*.pdf` (+ `manifest.json`) — figures to reuse rather than redraw.
+- `output/experiment-suite/<slug>/latest/results.json` — source des chiffres et du drapeau `"simulated"` (pilote la clause de divulgation de l'article).
+- `output/experiment-suite/<slug>/latest/figures/*.pdf` (+ `manifest.json`) — figures à réutiliser plutôt qu'à retracer.
 
-Always store **basenames** in `manifest.json`. Absolute paths in the manifest break paper-writer's `\includegraphics{figures/<basename>}`.
+Toujours stocker des **basenames** dans `manifest.json`. Les chemins absolus dans le manifeste cassent le `\includegraphics{figures/<basename>}` de paper-writer.
 
-## Important rules
+## Règles importantes
 
-- **No LLM SDK in this skill.** No `import anthropic` / `import openai`. The skill is SKILL.md + references + figure examples only.
-- **Simulated results must always remain visibly labelled** — in `results.json` (`"simulated": true`), in figure captions, in the report's top-of-page disclosure, and in any downstream paper's `\thanks` footnote.
-- **Never present simulated results as measured.** When in doubt, treat as simulated and disclose.
-- The runnable code is a starting point, not a SOTA reproduction. Be honest about its scope in `experiment/README.md`.
-- A real experiment package would normally take days of compute for real numbers; the simulated path lets the workflow proceed when that's not possible, with honest disclosure throughout.
+- **Pas de SDK LLM dans ce skill.** Pas de `import anthropic` / `import openai`. Le skill se limite à SKILL.md + références + exemples de figures.
+- **Les résultats simulés doivent rester visiblement étiquetés** — dans `results.json` (`"simulated": true`), dans les légendes des figures, dans la divulgation en tête du rapport, et dans la note `\thanks` de tout article en aval.
+- **Ne jamais présenter des résultats simulés comme mesurés.** En cas de doute, traiter comme simulé et divulguer.
+- Le code exécutable est un point de départ, pas une reproduction de l'état de l'art. Être honnête sur son périmètre dans `experiment/README.md`.
+- Un vrai paquet d'expérience nécessiterait normalement des jours de calcul pour de vrais chiffres ; la voie simulée permet au workflow de se poursuivre quand ce n'est pas possible, avec une divulgation honnête tout du long.

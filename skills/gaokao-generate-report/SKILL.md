@@ -1,23 +1,33 @@
 ---
 name: gaokao-generate-report
+version: "1.0.0"
+category: "Éducation"
+tags:
+  - gaokao
+  - generate
+  - report
 description: >-
-  合并考生信息、志愿列表、专业推荐与院校推荐，生成融合分析与冲稳保志愿列表的 HTML 志愿填报报告。
-  适用于高考志愿报告生成、志愿填报方案输出、志愿表可视化。
+  Fusionner les informations du candidat, la liste de vœux, les recommandations de filières et
+  d'établissements pour générer un rapport HTML de remplissage des vœux avec analyse intégrée et
+  liste de vœux ambitieux/sûrs/de repli. Convient pour la génération de rapports Gaokao, la
+  production de scénarios de candidature et la visualisation de la liste de vœux.
+language: fr
+
 ---
 
-# 生成志愿填报报告
+# Générer le rapport de remplissage des vœux
 
-本 Skill 是流水线的**第五步**：合并前序 JSON，渲染 HTML 报告。
+Ce skill est la **cinquième étape** du pipeline : fusionner les JSON précédents et rendre un rapport HTML.
 
-## 上下游
+## Amont / aval
 
-- **上游**：
-  - `parsed.json`（志愿列表）
-  - `major_recommendation.json`（专业推荐）
-  - `school_recommendation.json`（院校推荐）
-- **输出**：`volunteer_report.html`
+- **Amont** :
+  - `parsed.json` (liste de vœux)
+  - `major_recommendation.json` (recommandations de filières)
+  - `school_recommendation.json` (recommandations d'établissements)
+- **Sortie** : `volunteer_report.html`
 
-## 环境准备
+## Préparation de l'environnement
 
 ```bash
 cd gaokao-generate-report
@@ -25,9 +35,9 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 执行步骤
+## Étapes d'exécution
 
-### 1. 合并为 analysis.json
+### 1. Fusionner en analysis.json
 
 ```bash
 python3 scripts/merge_analysis.py \
@@ -36,9 +46,9 @@ python3 scripts/merge_analysis.py \
   -o output/analysis.json
 ```
 
-`merge_analysis.py` 将专业推荐与院校推荐合并为 `generate_html.py` 所需的 `analysis.json` 结构。
+`merge_analysis.py` fusionne les recommandations de filières et d'établissements dans la structure `analysis.json` attendue par `generate_html.py`.
 
-### 2. 生成 HTML
+### 2. Générer le HTML
 
 ```bash
 python3 scripts/generate_html.py \
@@ -47,23 +57,23 @@ python3 scripts/generate_html.py \
   -o output/volunteer_report.html
 ```
 
-### 3. 交付用户
+### 3. Livrer à l'utilisateur
 
-提供 `volunteer_report.html` 的**绝对路径**，并简要说明报告结构：
+Fournir le **chemin absolu** de `volunteer_report.html` et expliquer brièvement la structure du rapport :
 
-1. **综合测评与建议**（专业方向 + 院校策略）
-2. **志愿推荐列表**（冲/稳/保，⭐ 推荐学校 / 🔥 推荐专业可点击查看详情）
+1. **Bilan global et conseils** (orientations de filières + stratégie d'établissements)
+2. **Liste de vœux recommandés** (ambitieux/sûrs/de repli, ⭐ établissements recommandés / 🔥 filières recommandées cliquables pour voir le détail)
 
-## 合并前检查
+## Contrôles avant fusion
 
-| 检查项 | 说明 |
+| Point de contrôle | Description |
 |--------|------|
-| 专业字段一致 | `recommended_majors` 的 name/code 与 `parsed.json` 一致 |
-| 院校字段一致 | `recommended_schools` 的 name/code 与 `parsed.json` 一致 |
-| 文案完整 | `intro`、`strategy`、`school_strategy` 非空 |
+| Cohérence des champs de filières | Le name/code de `recommended_majors` doit correspondre à `parsed.json` |
+| Cohérence des champs d'établissements | Le name/code de `recommended_schools` doit correspondre à `parsed.json` |
+| Textes complets | `intro`, `strategy`, `school_strategy` non vides |
 
-若合并前发现推荐字段不匹配，应回到对应 Skill 修正 JSON。
+Si des champs de recommandation ne correspondent pas avant la fusion, revenir au skill concerné pour corriger le JSON.
 
-## 附加资源
+## Ressources annexes
 
-- [examples/analysis_merged_example.json](examples/analysis_merged_example.json) — 合并后的完整结构示例
+- [examples/analysis_merged_example.json](examples/analysis_merged_example.json) — exemple de structure complète après fusion

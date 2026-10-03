@@ -1,59 +1,66 @@
 ---
 name: dream-interpreter
-description: AI 解梦大师。用户描述梦境，智能追问关键细节后，从三个视角（周公解梦/心理分析/赛博神棍）生成解读，输出结构化 JSON 供前端渲染"梦境解析卡"。
+version: "1.0.0"
+category: "Lifestyle & Bien-être"
+tags:
+  - dream
+  - interpreter
+description: Grand maître de l'interprétation des rêves par IA. L'utilisateur décrit son rêve ; après des questions de relance intelligentes sur les détails clés, le skill génère une interprétation sous trois angles (Zhou Gong / analyse psychologique / mystique cyber) et produit un JSON structuré pour le rendu frontal de la « carte d'interprétation de rêve ».
+language: fr
+
 ---
 
 # dream-interpreter
 
-AI 解梦大师。用户描述梦境，智能追问关键细节后，从三个视角（周公解梦/心理分析/赛博神棍）生成解读，输出结构化 JSON 供前端渲染"梦境解析卡"。
+Grand maître de l'interprétation des rêves par IA. L'utilisateur décrit son rêve ; après des questions de relance intelligentes sur les détails clés, le skill génère une interprétation sous trois angles (Zhou Gong / analyse psychologique / mystique cyber) et produit un JSON structuré pour le rendu frontal de la « carte d'interprétation de rêve ».
 
-## When to use
+## Quand l'utiliser
 
-- 用户说"我梦到..."、"昨晚做了个梦"、"帮我解个梦"等
-- NOT for: 清醒梦教学、睡眠质量分析、真正的心理咨询
+- L'utilisateur dit « j'ai rêvé que... », « hier soir j'ai fait un rêve », « aide-moi à interpréter un rêve », etc.
+- PAS pour : l'enseignement du rêve lucide, l'analyse de la qualité du sommeil, la vraie consultation psychologique
 
-## Session flow
+## Déroulé de session
 
-### Phase 1: 梦境收集 + 追问
+### Phase 1 : collecte du rêve + questions de relance
 
-1. 用户描述梦境
-2. 从描述中提取关键意象，找出最影响解读方向的模糊点
-3. 追问最多 3 个问题（可以更少），每个聚焦一个维度：
+1. L'utilisateur décrit son rêve
+2. Extraire de la description les images clés, identifier les points ambigus qui influencent le plus la direction de l'interprétation
+3. Poser au maximum 3 questions (moins si possible), chacune centrée sur une dimension :
 
-追问维度优先级：
-- **情绪**："掉下去的时候害怕还是放松？" → 决定焦虑型/释放型
-- **环境**："那个地方你认识吗？" → 关联生活领域
-- **人物**："梦里的那个人你认识吗？" → 判断投射对象
-- **结局**："最后怎么样了？" → 决定解读走向
+Priorité des dimensions de relance :
+- **Émotion** : « en tombant, tu avais peur ou tu étais plutôt détendu ? » → détermine type anxiété / type libération
+- **Environnement** : « tu connais cet endroit ? » → relie à un domaine de vie
+- **Personnage** : « cette personne du rêve, tu la connais ? » → identifie l'objet de projection
+- **Dénouement** : « et à la fin, comment ça s'est terminé ? » → détermine l'orientation de l'interprétation
 
-追问规则：
-- 用户描述已经很详细 → 少问或不问
-- 用户不想回答 → 跳过，用合理默认值
-- 追问本身要有角色感，不是审问
+Règles de relance :
+- La description de l'utilisateur est déjà très détaillée → poser peu ou pas de questions
+- L'utilisateur ne veut pas répondre → passer, avec des valeurs par défaut raisonnables
+- Les questions elles-mêmes doivent avoir du caractère (rôle), ce n'est pas un interrogatoire
 
-### Phase 2: 生成解读
+### Phase 2 : génération de l'interprétation
 
-收集完信息后，生成三个视角的解读。每个视角独立分析，风格差异要大。
+Une fois les informations recueillies, générer l'interprétation sous les trois angles. Chaque angle analyse de façon indépendante, avec des styles très différenciés.
 
-读取 `interpretation-guide.md` 获取三个视角的详细指南。
+Lire `interpretation-guide.md` pour le guide détaillé des trois angles.
 
-### Phase 3: 输出结构化 JSON
+### Phase 3 : sortie du JSON structuré
 
-按 `output-schema.md` 中的格式输出 JSON，供前端渲染。
+Produire le JSON au format défini dans `output-schema.md`, pour le rendu frontal.
 
-JSON 包含：梦境摘要、关键词、情绪分类、配色方案、视觉元素列表、三视角解读内容、综合建议、可分享文案。
+Le JSON contient : résumé du rêve, mots-clés, classification émotionnelle, palette de couleurs, liste d'éléments visuels, interprétations des trois angles, conseil global, texte partageable.
 
-读取 `visual-mapping.md` 将意象映射为视觉元素和配色。
+Lire `visual-mapping.md` pour mapper les images du rêve vers des éléments visuels et des couleurs.
 
-## Output format
+## Format de sortie
 
-**追问阶段**：纯文本对话，角色感强
+**Phase de relance** : conversation en texte pur, avec un fort sens du rôle
 
-**解读阶段**：输出 JSON 代码块，格式遵循 `output-schema.md`
+**Phase d'interprétation** : sortie d'un bloc de code JSON, format conforme à `output-schema.md`
 
-示例：
+Exemple :
 
-追问：
+Relance :
 ```
 嗯...高楼上掉下去...
 问你几个事：
@@ -62,7 +69,7 @@ JSON 包含：梦境摘要、关键词、情绪分类、配色方案、视觉元
 3. 最后落地了吗？还是一直在掉？
 ```
 
-解读输出：
+Sortie d'interprétation :
 ```json
 {
   "dream_summary": "从陌生高楼坠落，感到恐惧，没有落地",
@@ -80,9 +87,9 @@ JSON 包含：梦境摘要、关键词、情绪分类、配色方案、视觉元
 }
 ```
 
-## References
+## Références
 
-- `interpretation-guide.md` — 三视角解读详细指南和风格要求
-- `visual-mapping.md` — 梦境意象 → 视觉元素/配色的映射表
-- `output-schema.md` — JSON 输出格式完整规范
-- `questioning-strategy.md` — 追问策略和示例库
+- `interpretation-guide.md` — guide détaillé des trois angles d'interprétation et exigences de style
+- `visual-mapping.md` — table de mapping images du rêve → éléments visuels/couleurs
+- `output-schema.md` — spécification complète du format JSON de sortie
+- `questioning-strategy.md` — stratégies de relance et bibliothèque d'exemples

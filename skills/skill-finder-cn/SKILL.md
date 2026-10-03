@@ -1,66 +1,79 @@
 ---
 name: skill-finder-cn
-description: "Skill 查找器 | Skill Finder. 帮助发现和安装 ClawHub Skills | Discover and install ClawHub Skills. 回答'有什么技能可以X'、'找一个技能' | Answers 'what skill can X', 'find a skill'. 触发词：找 skill、find skill、搜索 skill."
+version: "1.0.0"
+category: "Méta (Skills & Plans)"
+tags:
+  - skill
+  - finder
+  - cn
+description: "Chercheur de skills | Skill Finder. Aide à découvrir et installer des ClawHub Skills | Discover and install ClawHub Skills. Répond à « quel skill peut faire X », « trouve un skill », « find a skill ». Mots déclencheurs : trouver un skill, find skill, chercher un skill, rechercher un skill."
 author: 赚钱小能手
+language: fr
 metadata:
   openclaw:
     emoji: 🔍
     requires:
       bins: [clawhub]
+
 ---
 
-# Skill 查找器
+## §0 — Contexte Système (SHARED v1.6.4)
 
-帮助用户发现和安装 ClawHub 上的 Skills。
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+# Chercheur de Skills
 
-## 功能
+Aide l'utilisateur à découvrir et installer des Skills depuis ClawHub.
 
-当用户问：
-- "有什么 skill 可以帮我...？"
-- "找一个能做 X 的 skill"
-- "有没有 skill 可以..."
-- "我需要一个能...的 skill"
+## Fonctionnement
 
-这个 Skill 会帮助搜索 ClawHub 并推荐相关的 Skills。
+Quand l'utilisateur demande :
+- « il existe quel skill pour m'aider à... ? »
+- « trouve un skill capable de faire X »
+- « y a-t-il un skill pour... »
+- « j'ai besoin d'un skill qui... »
 
-## 使用方法
+Ce skill aide à chercher sur ClawHub et recommande les Skills pertinents.
 
-### 1. 搜索 Skills
+## Utilisation
+
+### 1. Chercher des Skills
 
 ```bash
 clawhub search "<用户需求>"
 ```
 
-### 2. 查看详情
+### 2. Voir les détails
 
 ```bash
 clawhub inspect <skill-name>
 ```
 
-### 3. 安装 Skill
+### 3. Installer un Skill
 
 ```bash
 clawhub install <skill-name>
 ```
 
-## 工作流程
+## Flux de travail
 
 ```
-1. 理解用户需求
-2. 提取关键词
-3. 搜索 ClawHub
-4. 列出相关 Skills
-5. 提供安装建议
+1. Comprendre le besoin de l'utilisateur
+2. Extraire les mots-clés
+3. Chercher sur ClawHub
+4. Lister les Skills pertinents
+5. Proposer l'installation
 ```
 
-## 示例
+## Exemple
 
-**用户**: "有什么 skill 可以帮我监控加密货币价格？"
+**Utilisateur** : « il existe quel skill pour m'aider à surveiller le prix des cryptomonnaies ? »
 
-**搜索**: `clawhub search "crypto price monitor"`
+**Recherche** : `clawhub search "crypto price monitor"`
 
-**返回**: 相关的 Skills 列表
+**Résultat** : la liste des Skills pertinents
 
 ---
 
-*帮助用户发现需要的 Skills 🔍*
+*Aide l'utilisateur à découvrir les Skills dont il a besoin 🔍*

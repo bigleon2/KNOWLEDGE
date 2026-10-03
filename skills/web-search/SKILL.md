@@ -1,36 +1,43 @@
 ---
 name: web-search
-description: Implement web search capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to search for real-time information from the web, retrieve up-to-date content beyond the knowledge cutoff, or find the latest news and data. Returns structured search results with URLs, snippets, and metadata.
+version: "1.0.0"
+category: "Web & Recherche"
+tags:
+  - web
+  - search
+description: Implémente des capacités de recherche web avec le z-ai-web-dev-sdk. Utilise ce skill lorsque l'utilisateur a besoin de rechercher des informations en temps réel sur le web, de récupérer du contenu à jour au-delà de la date de coupure des connaissances, ou de trouver les dernières actualités et données. Renvoie des résultats de recherche structurés avec URLs, extraits et métadonnées.
 license: MIT
+language: fr
+
 ---
 
-# Web Search Skill
+# Skill Web Search
 
-This skill guides the implementation of web search functionality using the z-ai-web-dev-sdk package, enabling applications to search the web and retrieve current information.
+Ce skill guide l'implémentation de la fonctionnalité de recherche web à l'aide du package z-ai-web-dev-sdk, permettant aux applications de rechercher sur le web et de récupérer des informations actuelles.
 
-## Installation Path
+## Chemin d'installation
 
-**Recommended Location**: `{project_path}/skills/web-search`
+**Emplacement recommandé** : `{project_path}/skills/web-search`
 
-Extract this skill package to the above path in your project.
+Extrayez ce package de skill à l'emplacement ci-dessus dans votre projet.
 
-**Reference Scripts**: Example test scripts are available in the `{project_path}/skills/web-search/scripts/` directory for quick testing and reference. See `{project_path}/skills/web-search/scripts/web_search.ts` for a working example.
+**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{project_path}/skills/web-search/scripts/` pour des tests rapides et comme référence. Voir `{project_path}/skills/web-search/scripts/web_search.ts` pour un exemple fonctionnel.
 
-## Overview
+## Vue d'ensemble
 
-The Web Search skill allows you to build applications that can search the internet, retrieve current information, and access real-time data from web sources.
+Le skill Web Search permet de construire des applications capables de rechercher sur internet, de récupérer des informations actuelles et d'accéder à des données en temps réel depuis des sources web.
 
-**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
+**IMPORTANT** : z-ai-web-dev-sdk DOIT être utilisé uniquement dans du code backend. Ne l'utilisez jamais dans du code côté client.
 
-## Prerequisites
+## Prérequis
 
-The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
+Le package z-ai-web-dev-sdk est déjà installé. Importez-le comme illustré dans les exemples ci-dessous.
 
-## CLI Usage (For Simple Tasks)
+## Utilisation du CLI (tâches simples)
 
-For simple web search queries, you can use the z-ai CLI instead of writing code. This is ideal for quick information retrieval, testing search functionality, or command-line automation.
+Pour des requêtes de recherche web simples, vous pouvez utiliser le z-ai CLI au lieu d'écrire du code. C'est idéal pour une récupération d'informations rapide, le test de la fonctionnalité de recherche ou l'automatisation en ligne de commande.
 
-### Basic Web Search
+### Recherche web basique
 
 ```bash
 # Simple search query
@@ -40,7 +47,7 @@ z-ai function --name "web_search" --args '{"query": "artificial intelligence"}'
 z-ai function -n web_search -a '{"query": "latest tech news"}'
 ```
 
-### Search with Custom Parameters
+### Recherche avec paramètres personnalisés
 
 ```bash
 # Limit number of results
@@ -54,7 +61,7 @@ z-ai function \
   -a '{"query": "cryptocurrency news", "num": 10, "recency_days": 7}'
 ```
 
-### Save Search Results
+### Sauvegarde des résultats de recherche
 
 ```bash
 # Save results to JSON file
@@ -70,7 +77,7 @@ z-ai function \
   -o ai_news.json
 ```
 
-### Advanced Search Examples
+### Exemples de recherche avancée
 
 ```bash
 # Search for specific topics
@@ -92,43 +99,43 @@ z-ai function \
   -o today_tech.json
 ```
 
-### CLI Parameters
+### Paramètres du CLI
 
-- `--name, -n`: **Required** - Function name (use "web_search")
-- `--args, -a`: **Required** - JSON arguments object with:
-  - `query` (string, required): Search keywords
-  - `num` (number, optional): Number of results (default: 10)
-  - `recency_days` (number, optional): Filter results from last N days
-- `--output, -o <path>`: Optional - Output file path (JSON format)
+- `--name, -n` : **Obligatoire** — Nom de la fonction (utilisez "web_search")
+- `--args, -a` : **Obligatoire** — Objet d'arguments JSON avec :
+  - `query` (string, obligatoire) : mots-clés de recherche
+  - `num` (number, optionnel) : nombre de résultats (défaut : 10)
+  - `recency_days` (number, optionnel) : filtre les résultats des N derniers jours
+- `--output, -o <path>` : Optionnel — Chemin du fichier de sortie (format JSON)
 
-### Search Result Structure
+### Structure d'un résultat de recherche
 
-Each result contains:
-- `url`: Full URL of the result
-- `name`: Title of the page
-- `snippet`: Preview text/description
-- `host_name`: Domain name
-- `rank`: Result ranking
-- `date`: Publication/update date
-- `favicon`: Favicon URL
+Chaque résultat contient :
+- `url` : URL complète du résultat
+- `name` : titre de la page
+- `snippet` : texte d'aperçu/description
+- `host_name` : nom de domaine
+- `rank` : classement du résultat
+- `date` : date de publication/mise à jour
+- `favicon` : URL du favicon
 
-### When to Use CLI vs SDK
+### Quand utiliser le CLI ou le SDK
 
-**Use CLI for:**
-- Quick information lookups
-- Testing search queries
-- Simple automation scripts
-- One-off research tasks
+**Utilisez le CLI pour :**
+- Des recherches d'informations rapides
+- Tester des requêtes de recherche
+- Des scripts d'automatisation simples
+- Des tâches de recherche ponctuelles
 
-**Use SDK for:**
-- Dynamic search in applications
-- Multi-step search workflows
-- Custom result processing and filtering
-- Production applications with complex logic
+**Utilisez le SDK pour :**
+- La recherche dynamique dans des applications
+- Des workflows de recherche en plusieurs étapes
+- Le traitement et le filtrage personnalisés des résultats
+- Des applications de production avec logique complexe
 
-## Search Result Type
+## Type de résultat de recherche
 
-Each search result is a `SearchFunctionResultItem` with the following structure:
+Chaque résultat de recherche est un `SearchFunctionResultItem` avec la structure suivante :
 
 ```typescript
 interface SearchFunctionResultItem {
@@ -142,9 +149,9 @@ interface SearchFunctionResultItem {
 }
 ```
 
-## Basic Web Search
+## Recherche web basique
 
-### Simple Search Query
+### Requête de recherche simple
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -165,7 +172,7 @@ const searchResults = await searchWeb('What is the capital of France?');
 console.log('Search Results:', searchResults);
 ```
 
-### Search with Custom Result Count
+### Recherche avec nombre de résultats personnalisé
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -188,7 +195,7 @@ const topResults = await searchWithLimit('artificial intelligence news', 5);
 const moreResults = await searchWithLimit('JavaScript frameworks', 20);
 ```
 
-### Formatted Search Results
+### Résultats de recherche formatés
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -224,9 +231,9 @@ results.forEach(result => {
 });
 ```
 
-## Advanced Use Cases
+## Cas d'usage avancés
 
-### Search with Result Processing
+### Recherche avec traitement des résultats
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -310,7 +317,7 @@ console.log('Grouped by domain:', processor.groupByDomain(results));
 console.log('Sorted by date:', processor.sortByDate(results));
 ```
 
-### News Search
+### Recherche d'actualités
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -352,7 +359,7 @@ aiNews.forEach(item => {
 });
 ```
 
-### Research Assistant
+### Assistant de recherche
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -456,7 +463,7 @@ const comparison = await assistant.compareTopics(
 console.log('Topic Comparison:', comparison);
 ```
 
-### Search Result Validation
+### Validation des résultats de recherche
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -530,9 +537,9 @@ console.log('High quality results:',
 );
 ```
 
-## Best Practices
+## Bonnes pratiques
 
-### 1. Query Optimization
+### 1. Optimisation des requêtes
 
 ```javascript
 // Bad: Too vague
@@ -545,7 +552,7 @@ const good = await searchWeb('JavaScript async/await best practices 2024');
 const goodWithContext = await searchWeb('React hooks tutorial for beginners');
 ```
 
-### 2. Error Handling
+### 2. Gestion des erreurs
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -590,7 +597,7 @@ async function safeSearch(query, retries = 3) {
 }
 ```
 
-### 3. Result Caching
+### 3. Cache des résultats
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -661,7 +668,7 @@ const result2 = await search.search('TypeScript tutorial');
 console.log('Cached:', result2.cached); // true
 ```
 
-### 4. Rate Limiting
+### 4. Limitation de débit
 
 ```javascript
 class RateLimitedSearch {
@@ -708,20 +715,20 @@ class RateLimitedSearch {
 }
 ```
 
-## Common Use Cases
+## Cas d'usage courants
 
-1. **Real-time Information Retrieval**: Get current news, stock prices, weather
-2. **Research & Analysis**: Gather information on specific topics
-3. **Content Discovery**: Find articles, tutorials, documentation
-4. **Competitive Analysis**: Research competitors and market trends
-5. **Fact Checking**: Verify information against web sources
-6. **SEO & Content Research**: Analyze search results for content strategy
-7. **News Aggregation**: Collect news from various sources
-8. **Academic Research**: Find papers, studies, and academic content
+1. **Récupération d'informations en temps réel** : obtenir l'actualité courante, les cours boursiers, la météo
+2. **Recherche et analyse** : rassembler des informations sur des sujets spécifiques
+3. **Découverte de contenu** : trouver des articles, tutoriels, documentations
+4. **Analyse concurrentielle** : étudier les concurrents et les tendances du marché
+5. **Vérification de faits** : confronter les informations aux sources web
+6. **Recherche SEO et de contenu** : analyser les résultats de recherche pour une stratégie de contenu
+7. **Agrégation d'actualités** : collecter des nouvelles depuis diverses sources
+8. **Recherche académique** : trouver des articles, études et contenus académiques
 
-## Integration Examples
+## Exemples d'intégration
 
-### Express.js Search API
+### API de recherche Express.js
 
 ```javascript
 import express from 'express';
@@ -812,7 +819,7 @@ initZAI().then(() => {
 });
 ```
 
-### Search with AI Summary
+### Recherche avec résumé par IA
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -865,48 +872,48 @@ console.log('Summary:', result.summary);
 console.log('Sources:', result.sources);
 ```
 
-## Troubleshooting
+## Dépannage
 
-**Issue**: "SDK must be used in backend"
-- **Solution**: Ensure z-ai-web-dev-sdk is only imported and used in server-side code
+**Problème** : "Le SDK doit être utilisé en backend"
+- **Solution** : assurez-vous que z-ai-web-dev-sdk n'est importé et utilisé que dans du code côté serveur
 
-**Issue**: Empty or no results returned
-- **Solution**: Try different query terms, check internet connectivity, verify API status
+**Problème** : résultats vides ou inexistants
+- **Solution** : essayez d'autres termes de requête, vérifiez la connectivité internet, vérifiez le statut de l'API
 
-**Issue**: Unexpected response format
-- **Solution**: Verify the response is an array, check for API changes, add type validation
+**Problème** : format de réponse inattendu
+- **Solution** : vérifiez que la réponse est un tableau, contrôlez d'éventuels changements d'API, ajoutez une validation de type
 
-**Issue**: Rate limiting errors
-- **Solution**: Implement request throttling, add delays between searches, use caching
+**Problème** : erreurs de limitation de débit
+- **Solution** : implémentez un throttle des requêtes, ajoutez des délais entre les recherches, utilisez le cache
 
-**Issue**: Low quality search results
-- **Solution**: Refine query terms, filter results by domain or date, validate result quality
+**Problème** : résultats de recherche de faible qualité
+- **Solution** : affinez les termes de requête, filtrez les résultats par domaine ou par date, validez la qualité des résultats
 
-## Performance Tips
+## Conseils de performance
 
-1. **Reuse SDK Instance**: Create ZAI instance once and reuse across searches
-2. **Implement Caching**: Cache search results to reduce API calls
-3. **Optimize Query Terms**: Use specific, targeted queries for better results
-4. **Limit Result Count**: Request only the number of results you need
-5. **Parallel Searches**: Use Promise.all for multiple independent searches
-6. **Result Filtering**: Filter results on client side when possible
+1. **Réutilisez l'instance SDK** : créez l'instance ZAI une seule fois et réutilisez-la pour toutes les recherches
+2. **Implémentez un cache** : mettez les résultats de recherche en cache pour réduire les appels API
+3. **Optimisez les termes de requête** : utilisez des requêtes spécifiques et ciblées pour de meilleurs résultats
+4. **Limitez le nombre de résultats** : ne demandez que le nombre de résultats nécessaire
+5. **Recherches parallèles** : utilisez Promise.all pour plusieurs recherches indépendantes
+6. **Filtrage des résultats** : filtrez les résultats côté client lorsque c'est possible
 
-## Security Considerations
+## Considérations de sécurité
 
-1. **Input Validation**: Sanitize and validate user search queries
-2. **Rate Limiting**: Implement rate limits to prevent abuse
-3. **API Key Protection**: Never expose SDK credentials in client-side code
-4. **Result Filtering**: Filter potentially harmful or inappropriate content
-5. **URL Validation**: Validate URLs before redirecting users
-6. **Privacy**: Don't log sensitive user search queries
+1. **Validation des entrées** : assainissez et validez les requêtes de recherche des utilisateurs
+2. **Limitation de débit** : implémentez des limites pour prévenir les abus
+3. **Protection des clés API** : n'exposez jamais les identifiants du SDK dans du code côté client
+4. **Filtrage des résultats** : filtrez les contenus potentiellement nuisibles ou inappropriés
+5. **Validation des URLs** : validez les URLs avant de rediriger les utilisateurs
+6. **Vie privée** : ne journalisez pas les requêtes de recherche sensibles des utilisateurs
 
-## Remember
+## À retenir
 
-- Always use z-ai-web-dev-sdk in backend code only
-- The SDK is already installed - import as shown in examples
-- Search results are returned as an array of SearchFunctionResultItem objects
-- Implement proper error handling and retries for production
-- Cache results when appropriate to reduce API calls
-- Use specific query terms for better search results
-- Validate and filter results before displaying to users
-- Check `scripts/web_search.ts` for a quick start example
+- Utilisez toujours z-ai-web-dev-sdk uniquement dans du code backend
+- Le SDK est déjà installé — importez-le comme montré dans les exemples
+- Les résultats de recherche sont renvoyés sous forme de tableau d'objets SearchFunctionResultItem
+- Implémentez une gestion d'erreurs et des tentatives appropriées pour la production
+- Mettez les résultats en cache quand c'est pertinent pour réduire les appels API
+- Utilisez des termes de requête spécifiques pour de meilleurs résultats de recherche
+- Validez et filtrez les résultats avant de les afficher aux utilisateurs
+- Consultez `scripts/web_search.ts` pour un exemple de démarrage rapide

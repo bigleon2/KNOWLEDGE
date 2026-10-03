@@ -1,68 +1,75 @@
 ---
 name: gift-evaluator
-description: The PRIMARY tool for Spring Festival gift analysis and social interaction generation. Use this skill when users upload photos of gifts (alcohol, tea, supplements, etc.) to inquire about their value, authenticity, or how to respond socially. Integrates visual perception, market valuation, and HTML card generation.
+version: "1.0.0"
+category: "Lifestyle & Bien-être"
+tags:
+  - gift
+  - evaluator
+description: L'outil PRINCIPAL pour l'analyse des cadeaux du Nouvel An chinois et la génération d'interactions sociales. Utilisez ce skill lorsque les utilisateurs téléversent des photos de cadeaux (alcool, thé, compléments alimentaires, etc.) pour connaître leur valeur, leur authenticité ou la posture sociale à adopter. Intègre la perception visuelle, l'évaluation de marché et la génération de cartes HTML.
+language: fr
 license: Internal Tool
+
 ---
 
-This skill transforms the assistant into an "AI Gift Appraiser" (春节礼品鉴定师). It bridges the gap between raw visual data and complex social context. It is designed to handle the full lifecycle of a user's request: identifying the object, determining its market and social value, and producing a shareable, gamified HTML artifact.
+Ce skill transforme l'assistant en « expert AI en évaluation de cadeaux ». Il fait le pont entre les données visuelles brutes et un contexte social complexe. Il est conçu pour prendre en charge le cycle de vie complet d'une demande : identifier l'objet, déterminer sa valeur marchande et sociale, puis produire un artefact HTML ludique et partageable.
 
-## Agent Thinking Strategy
+## Stratégie de raisonnement de l'agent
 
-Before and during the execution of tools, maintain a "High EQ" and "Market-Savvy" mindset. You are not just identifying objects; you are decoding social relationships.
+Avant et pendant l'exécution des outils, conservez un état d'esprit « forte intelligence émotionnelle » et « connaisseur du marché ». Vous ne vous contentez pas d'identifier des objets ; vous décodez des relations sociales.
 
-1.  **Visual Extraction (The Eye)**: 
-    * Call the vision tool to get a raw description.
-    * **CRITICAL**: Read the raw description carefully. Extract specific entities: Brand names (e.g., "Moutai", "Dior"), Vintages, Packaging details (e.g., "Dusty bottle" implies old stock, "Gift box" implies formality).
+1.  **Extraction visuelle (l'œil)** : 
+    * Appelez l'outil de vision pour obtenir une description brute.
+    * **CRITIQUE** : lisez attentivement la description brute. Extrayez les entités spécifiques : noms de marques (p. ex. « Moutai », « Dior »), millésimes, détails d'emballage (p. ex. « bouteille poussiéreuse » = stock ancien, « coffret cadeau » = formalité).
 
-2.  **Valuation Logic (The Brain)**: 
-    * **Price Anchoring**: Use search tools to find the *current* market price.
-    * **Social Labeling**: Classify the gift based on price and intent:
-        * `luxury`: High value (> ¥1000), "Hard Currency".
-        * `standard`: Festive, safe choices (¥200 - ¥1000).
-        * `budget`: Practical, funny, or cheap (< ¥200).
+2.  **Logique d'évaluation (le cerveau)** : 
+    * **Ancrage du prix** : utilisez les outils de recherche pour trouver le prix de marché *actuel*.
+    * **Étiquetage social** : classez le cadeau selon le prix et l'intention :
+        * `luxury` : grande valeur (> ¥1000), « devise forte ».
+        * `standard` : choix festifs et sûrs (¥200 - ¥1000).
+        * `budget` : pratique, amusant ou bon marché (< ¥200).
 
-3.  **Creative Synthesis (The Mouth)**:
-    * **Deep Critique**: Generate a "Roast" (毒舌点评) of **at least 50 words**. It must combine the visual details (e.g., dust, packaging color) with the price reality. Be spicy but insightful.
-    * **Structured Strategy**: You must structure the "Thank You Notes" and "Return Gift Ideas" into JSON format for the UI to render.
+3.  **Synthèse créative (la bouche)** :
+    * **Critique cinglante** : générez une critique au vitriol d'**au moins 50 mots**. Elle doit croiser les détails visuels (poussière, couleur de l'emballage, etc.) avec la réalité du prix. Piquant mais perspicace.
+    * **Stratégie structurée** : vous devez structurer les « messages de remerciement » et les « idées de contre-cadeaux » au format JSON pour que l'UI les affiche.
 
-## Tool Usage Guidelines
-### 1. The Perception Phase (Visual Analysis)
-Purpose: Utilizing VLM  skills to conduct a multi-dimensional visual decomposition of the uploaded product image. This process automatically identifies and extracts structured data including Brand Recognition, Product Style, Packaging Design, and Aesthetic Category.
+## Directives d'utilisation des outils
+### 1. La phase de perception (analyse visuelle)
+Objectif : utiliser les skills VLM pour réaliser une décomposition visuelle multidimensionnelle de l'image du produit téléversée. Ce processus identifie et extrait automatiquement des données structurées : reconnaissance de marque, style du produit, design d'emballage et catégorie esthétique.
 
-**Output Analysis**:
+**Analyse de la sortie** :
 
-* The tool returns a raw string content. Read it to extract keywords for the next step.
+* L'outil renvoie un contenu texte brut. Lisez-le pour en extraire les mots-clés de l'étape suivante.
 
-### 2. The Valuation Phase (Search)
+### 2. La phase d'évaluation (recherche)
 
-**Purpose**: Validate the product's worth.
-**Command**:search "EXTRACTED_KEYWORDS + price + review"
-
-
-### 3. The Content Structuring Phase (Reasoning)
-
-**Purpose**: Prepare the data for the HTML generator. **Do not call a tool here, just think and format strings.**
-
-1. **Construct `thank_you_json**`: Create 3 distinct styles of private messages.
-* *Format*: `[{"style": "Style Name", "content": "Message..."}]`
-* *Requirement*:
-* Style 1: "Decent/Formal" (for elders/bosses).
-* Style 2: "Friendly/Warm" (for peers/relatives).
-* Style 3: "Humorous/Close" (for best friends).
+**Objectif** : valider la valeur du produit.
+**Commande** : search "EXTRACTED_KEYWORDS + price + review"
 
 
-2. **Construct `return_gift_json**`: Analyze 4 potential giver personas.
-* *Format*: `[{"target": "If giver is...", "item": "Suggest...", "reason": "Why..."}]`
-* *Requirement*: Suggestions must include Age/Gender/Relation analysis (e.g., "If giver is an elder male", "If giver is a peer female").
-* *Value Logic*: Adhere to the principle of Value Reciprocity. The return gift's value should primarily match the received gift's value, while adjusting slightly based on the giver's status (e.g., seniority or intimacy).
+### 3. La phase de structuration du contenu (raisonnement)
+
+**Objectif** : préparer les données pour le générateur HTML. **N'appelez pas d'outil ici, réfléchissez et formatez des chaînes.**
+
+1. **Construire `thank_you_json** : créer 3 styles distincts de messages privés.
+* *Format* : `[{"style": "Style Name", "content": "Message..."}]`
+* *Exigence* :
+* Style 1 : « Correct/Formel » (pour les aînés/supérieurs).
+* Style 2 : « Amical/Chaleureux » (pour les pairs/parents).
+* Style 3 : « Humoristique/Proche » (pour les meilleurs amis).
 
 
-### 4. The Creation Phase (Render)
+2. **Construire `return_gift_json** : analyser 4 profils types de personnes offrant.
+* *Format* : `[{"target": "If giver is...", "item": "Suggest...", "reason": "Why..."}]`
+* *Exigence* : les suggestions doivent inclure une analyse Âge/Genre/Relation (p. ex. « si l'offreur est un homme âgé », « si l'offreur est une femme du même âge »).
+* *Logique de valeur* : respecter le principe de réciprocité de valeur. La valeur du contre-cadeau doit principalement correspondre à celle du cadeau reçu, ajustée légèrement selon le statut de l'offreur (ancienneté ou proximité).
 
-**Purpose**: Package the analysis into a modern, interactive HTML card.
-**HTML Generation**:
-    * *Constraint*: The `image_url` parameter in the Python command MUST be the original absolute path.`output_path` must be the full path.
-    * *Command*:
+
+### 4. La phase de création (rendu)
+
+**Objectif** : empaqueter l'analyse dans une carte HTML moderne et interactive.
+**Génération HTML** :
+    * *Contrainte* : le paramètre `image_url` de la commande Python DOIT être le chemin absolu d'origine. `output_path` doit être le chemin complet.
+    * *Commande* :
     ```bash
     python3 html_tools.py generate_gift_card \
         --product_name "EXTRACTED_NAME" \
@@ -75,9 +82,9 @@ Purpose: Utilizing VLM  skills to conduct a multi-dimensional visual decompositi
         --output_path "TARGET_FILE_PATH"
     ```
 
-## Operational Rules
+## Règles opérationnelles
 
-1. **JSON Formatting**: The `thank_you_json` and `return_gift_json` arguments MUST be valid JSON strings using double quotes. Do not wrap them in code blocks inside the command.
-2. **Critique Depth**: The `evaluation` text must be rich. Don't just say "It's expensive." Say "This 2018 vintage shows your uncle raided his personal cellar; the label wear proves it's real."
-3. **Vibe Consistency**: Ensure `vibe_code` matches the `price` assessment.
-4. **Final Output**: Always present the path to the generated HTML file.
+1. **Formatage JSON** : les arguments `thank_you_json` et `return_gift_json` DOIVENT être des chaînes JSON valides avec des guillemets doubles. Ne les enveloppez pas dans des blocs de code à l'intérieur de la commande.
+2. **Profondeur de la critique** : le texte `evaluation` doit être riche. Ne dites pas seulement « c'est cher ». Dites plutôt « ce millésime 2018 montre que votre oncle a pillé sa cave personnelle ; l'usure de l'étiquette prouve qu'il est authentique ».
+3. **Cohérence du vibe** : s'assurer que `vibe_code` correspond à l'estimation de `price`.
+4. **Sortie finale** : toujours présenter le chemin du fichier HTML généré.

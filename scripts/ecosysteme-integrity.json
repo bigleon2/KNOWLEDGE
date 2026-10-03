@@ -20,9 +20,9 @@
     "PROMPT-MAITRE-GEN-PLAN-v3.8.0.md": "25ee244df6a790c02366a57617f2b5ee8ba80b2e3b931d963b7e06b53beef190",
     "PROMPT-MAITRE-GEN-PLAN-v3.8.1.md": "69addcc9b1ef060ed348022b4753eccf2a160c6b66b38d946b8f5e49dd144ad9",
     "PROMPT-MAITRE-GEN-PLAN-v3.9.0.md": "a3c2fafaae6167b7a971a3120029349fca53f3d77c9eb9c3451108c597d82aee",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "3a677bb3f4f110871172294018d15f3390fca94b6f3f7ca627842c2630d9663a",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "45d72df683beb80b898c45af327d837df1c2b9d38de97de7115def62cdab746a",
     "PROMPT-MAITRE-SHARED.md": "0b81b31ff9d9f06f6f47a416072dd5635959d523c63590bf5b2ed6451bf0dc60",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "c435a2f391412989b88541cbc67113ba5630785738ca1fc38f50709e6d79a86b",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "7774994a8d97f5cfb603222f1d829afc42d375c965ed421b9f317913ea29ab4a",
     "README.md": "995e94078c4cc65929ca853f414898eb2bfdaf64b4b8c7fb3db3cf8ffcb65493",
     "SYNC-CONTEXT.md": "63e0683ec7a34581bb4d159e180a5f333eb22954e6231c014f19e8138ae362cf",
     "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-f.md": "74f055f7795621c03ac4f41463240342579f75d44d789da5366f4491d1e270ef"
@@ -48,15 +48,15 @@
     "PROMPT-MAITRE-GEN-PLAN-v3.8.0.md": "25ee244df6a790c02366a57617f2b5ee8ba80b2e3b931d963b7e06b53beef190",
     "PROMPT-MAITRE-GEN-PLAN-v3.8.1.md": "69addcc9b1ef060ed348022b4753eccf2a160c6b66b38d946b8f5e49dd144ad9",
     "PROMPT-MAITRE-GEN-PLAN-v3.9.0.md": "a3c2fafaae6167b7a971a3120029349fca53f3d77c9eb9c3451108c597d82aee",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "3a677bb3f4f110871172294018d15f3390fca94b6f3f7ca627842c2630d9663a",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "45d72df683beb80b898c45af327d837df1c2b9d38de97de7115def62cdab746a",
     "PROMPT-MAITRE-SHARED.md": "0b81b31ff9d9f06f6f47a416072dd5635959d523c63590bf5b2ed6451bf0dc60",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "c435a2f391412989b88541cbc67113ba5630785738ca1fc38f50709e6d79a86b",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "7774994a8d97f5cfb603222f1d829afc42d375c965ed421b9f317913ea29ab4a",
     "README.md": "995e94078c4cc65929ca853f414898eb2bfdaf64b4b8c7fb3db3cf8ffcb65493",
     "SYNC-CONTEXT.md": "63e0683ec7a34581bb4d159e180a5f333eb22954e6231c014f19e8138ae362cf",
     "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-f.md": "74f055f7795621c03ac4f41463240342579f75d44d789da5366f4491d1e270ef"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "f6f8fb9610ef65617823ab8f3bd5c2e5a111f9c54027ea4a9e9541e9933ffc50"
+    "mon-ecosysteme_archive.zip": "c0bae450622a2f343dd4bd6a1587ba61d62d579e95536d28e272860bf31f9de5"
   },
   "skills": {
     "agent-creator": {
@@ -80,7 +80,7 @@
       "version": "2.0.0"
     },
     "context-engineering": {
-      "sha256": "c6b30e5a3e7359f67f519899d4440ac1a972e884a40f13be9b63e4dfdadaf283",
+      "sha256": "b0d0573c21fa007532c88162f78f827ea8aeaa72fa2cd9909bc374cda5cf6d69",
       "version": "1.1.0"
     },
     "correct-py": {
@@ -96,19 +96,19 @@
       "version": "1.1.0"
     },
     "fleet-engineering": {
-      "sha256": "59ebd655d8d4a89647f79fc80e864fceed51e6fe3bcd7c9ca58b0bd78f61db11",
+      "sha256": "a2722fc38385f71a38e4630addf912714e450a9e46d50558f8b1263ea28bb3ef",
       "version": "1.0.0"
     },
     "gen-plan": {
-      "sha256": "4e14bf7342e9b12152a4d1ace9741e165be778ecdc22bbb5c4cb18a98261aa3a",
-      "version": "3.18.0"
+      "sha256": "487b82bdcb51faf41e3c4324e1ce1db9bd5f03831f25fbce04f024e84e87a753",
+      "version": "3.19.0"
     },
     "graph-engineering": {
-      "sha256": "3904c4687709e61148c5b0790f6f49a5f4fb93b62bf746cf9b693cf60033e044",
+      "sha256": "40f955fbfa61e570810274dc1984ed2867469c7263fa72cc7a46b4745d145073",
       "version": "1.0.1"
     },
     "harness-engineering": {
-      "sha256": "b60dbd4f6ff046c516c220a749ede998b2013a8aaa469c189b0af0e74b03fbdf",
+      "sha256": "7bec3e7a9ad4a8563b9bcae80e0cf39ea617d923d1c864c2834b8fe0d7686302",
       "version": "1.1.0"
     },
     "knowledge-observer": {
@@ -116,11 +116,11 @@
       "version": "1.0.0"
     },
     "loop-engineering": {
-      "sha256": "ccc7c75b6ef1a546c3bc190a4cb0491aaa13995f0347c66a120deca074fc7c2b",
+      "sha256": "b06050432cc805c555073bc5080ce41c691a87d45526f620e10ebcd5da9f1812",
       "version": "1.1.0"
     },
     "memory-engineering": {
-      "sha256": "5682640bdfa8be0be116166cca775d11169f9975437bd9215145886261c72343",
+      "sha256": "438080e1c9673788bd23fd7c3c6dac79f4edf4883bb31653041fb4dc1fdbf05f",
       "version": "1.1.0"
     },
     "pdf-llm": {
@@ -148,7 +148,11 @@
       "version": "1.0.0"
     },
     "skill-creator": {
-      "sha256": "5f8c368be3d64b91e0584f0e11707796c4aa81770844123fa816c264ef7461b3",
+      "sha256": "676dfa96f2ebbb81a792b4d11f78b5af6b3f8f9f7a815f5f50aa055d8b79464c",
+      "version": "1.1.0"
+    },
+    "skill-finder-cn": {
+      "sha256": "88f74220469a4828a90a6eeb3d5549225e4671cfbe6d230cf5b6a109885f5b8a",
       "version": "1.0.0"
     },
     "skills-inventory": {
@@ -156,12 +160,12 @@
       "version": "1.1.0"
     },
     "spec-driven-development": {
-      "sha256": "6291ee9a774bfcb90dd15efdb4d1b66e197cd5ae1926e5a74180b6a727edf6b3",
+      "sha256": "615cfcdbb06ae594289746a4cb5a76dba53daa7794999b2e8014fc0b64e14836",
       "version": "1.0.0"
     },
     "version-management": {
-      "sha256": "a9ec40301d510eb4d1dcfc96a7ac59e3dfe5557b2cb7cb862c931ca9dbccc942",
-      "version": "1.0.0"
+      "sha256": "d99b52a8b77a808ed90c2a1cee7abe448e2c04faf61def4a72ab4b90e454d4d1",
+      "version": "1.1.0"
     }
   }
 }

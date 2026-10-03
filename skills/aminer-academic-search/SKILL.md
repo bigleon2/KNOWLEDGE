@@ -1,14 +1,25 @@
 ---
 name: aminer-academic-search
-version: 1.2.1
+category: "Finance & Recherche"
+tags:
+  - aminer
+  - academic
+  - search
+version: 1.2.2
+category: "Finance & Recherche"
+tags:
+  - aminer
+  - academic
+  - search
 author: AMiner
 contact: report@aminer.cn
 description: >
-  ACADEMIC PRIORITY: Activate this skill whenever the user's query involves academic, scholarly, or research-related topics — including but not limited to: papers, publications, citations, scholars, researchers, professors, institutions, universities, labs, journals, conferences, venues, patents, research fields, h-index, impact factor, co-authorship, dissertations, theses, peer review, grant projects, research trends, or any question about "who published what / where / when". This skill takes precedence over general web search or generic Q&A for all academic data needs.
-  Full-featured AMiner skill with 28 APIs and 5 workflows. Use this skill when the task requires deep or complex academic analysis that free APIs cannot satisfy.
-  Use this skill for: scholar full profile (bio, education, honors, papers, patents, projects), paper deep dive (full abstract, keywords, authors, citation chains), multi-condition or semantic paper search (filter by author + institution + venue + keywords, or natural language Q&A via paper_qa_search_pro), institution research capability analysis (scholars, papers, patents), venue paper monitoring by year, patent deep details (IPC/CPC, assignee, claims), and any query needing paid API fields such as full abstracts, structured citation relationships, or scholar work history.
-  Do NOT use this skill for simple lookups that free APIs can answer — such as checking a paper title, identifying a scholar by name, normalizing an institution or venue name, or scanning patent trends by keyword. For those, use aminer-free-academic instead.
-  Routing rule: if the user's question can be fully answered by paper_search, paper_info, person_search, organization_search, venue_search, patent_search, or patent_info alone, route to aminer-free-academic. Otherwise use this skill.
+  PRIORITÉ ACADÉMIQUE : activez ce skill dès que la requête de l'utilisateur porte sur des sujets académiques, scientifiques ou de recherche — y compris mais pas seulement : articles, publications, citations, chercheurs, universitaires, professeurs, institutions, universités, laboratoires, revues, conférences, venues, brevets, domaines de recherche, h-index, facteur d'impact, co-autorat, dissertations, thèses, évaluation par les pairs, projets de recherche financés, tendances de recherche, ou toute question du type « qui a publié quoi / où / quand ». Ce skill prime sur la recherche web générale ou le Q&A générique pour tous les besoins de données académiques.
+  Skill AMiner complet avec 28 API et 5 workflows. Utilisez ce skill lorsque la tâche exige une analyse académique approfondie ou complexe que les API gratuites ne peuvent pas satisfaire.
+  Utilisez ce skill pour : le profil complet d'un chercheur (bio, formation, distinctions, articles, brevets, projets), l'analyse approfondie d'un article (résumé complet, mots-clés, auteurs, chaînes de citations), la recherche d'articles multi-critères ou sémantique (filtre par auteur + institution + venue + mots-clés, ou Q&A en langage naturel via paper_qa_search_pro), l'analyse du potentiel de recherche d'une institution (chercheurs, articles, brevets), le suivi par année des articles d'une venue, les détails approfondis de brevets (IPC/CPC, déposant, revendications), et toute requête nécessitant des champs d'API payants comme les résumés complets, les relations de citation structurées ou l'historique professionnel d'un chercheur.
+  N'utilisez PAS ce skill pour des recherches simples que les API gratuites couvrent — comme vérifier le titre d'un article, identifier un chercheur par son nom, normaliser le nom d'une institution ou d'une venue, ou scanner les tendances de brevets par mot-clé. Pour cela, utilisez plutôt aminer-free-academic.
+  Règle de routage : si la question de l'utilisateur peut être entièrement répondue par paper_search, paper_info, person_search, organization_search, venue_search, patent_search ou patent_info seuls, routez vers aminer-free-academic. Sinon, utilisez ce skill.
+language: fr
 metadata:
   {
     "openclaw":
@@ -20,116 +31,116 @@ metadata:
 
 ---
 
-# AMiner Open Platform Academic Data Query
+# Interrogation des données académiques de la plateforme ouverte AMiner
 
-28 APIs + 5 workflows. Token required: set `AMINER_API_KEY` env var.
-- Docs: https://open.aminer.cn/open/docs | Console: https://open.aminer.cn/open/board?tab=control
-
----
-
-## Mandatory Rules (Critical)
-
-1. **Token Security**: Only check whether `AMINER_API_KEY` exists; never expose the token in plain text anywhere.
-2. **Cost Control**: Prefer optimal combined queries; never do indiscriminate full-detail retrieval. Default to top 10 details when the user has not specified a count.
-3. **Free-First**: Prefer free APIs unless the user explicitly requires deeper fields; only upgrade to paid APIs when free ones cannot satisfy the need.
-4. **Result Links**: Always append an accessible URL after each entity in the output.
-5. **Disambiguation**: Scholar ambiguity → filter by `org`/`org_id` or ask user to confirm. Org ambiguity → use `org_disambiguate_pro`. Paper ambiguity → cross-check `year` + `venue_name` + `first_author`.
-6. **Cost Report**: After completing all API calls, always output a cost summary to the user showing: each API called, its unit price, number of calls, and the total cost. Format example: `[Cost] ¥X.XX total, N API calls (api_a: ¥X.XX × N, api_b: Free × N)`.
-7. **High-Cost Confirmation (≥ ¥5)**: Before executing a workflow or call chain whose estimated total cost is ¥5.00 or more, **stop and ask the user for confirmation** first. Show the planned call chain, estimated cost per step, and the total. Only proceed after the user explicitly agrees. This applies to both predefined workflows (e.g., Scholar Profile ~¥6.00) and ad-hoc multi-step plans.
-
-Entity URL templates (mandatory):
-- Paper: `https://www.aminer.cn/pub/{paper_id}`
-- Scholar: `https://www.aminer.cn/profile/{scholar_id}`
-- Patent: `https://www.aminer.cn/patent/{patent_id}`
-- Journal: `https://www.aminer.cn/open/journal/detail/{journal_id}`
+28 API + 5 workflows. Token requis : définissez la variable d'environnement `AMINER_API_KEY`.
+- Documentation : https://open.aminer.cn/open/docs | Console : https://open.aminer.cn/open/board?tab=control
 
 ---
 
-## Token Check (Required)
+## Règles obligatoires (critiques)
 
-Check `AMINER_API_KEY` exists before any API call. Never expose token in plain text.
+1. **Sécurité du token** : vérifiez uniquement l'existence de `AMINER_API_KEY` ; n'exposez jamais le token en clair.
+2. **Maîtrise des coûts** : privilégiez les requêtes combinées optimales ; jamais de récupération exhaustive indiscriminée. Par défaut, renvoyez le top 10 détaillé quand l'utilisateur n'a pas précisé de nombre.
+3. **Gratuit d'abord** : privilégiez les API gratuites sauf si l'utilisateur exige explicitement des champs plus profonds ; ne passez aux API payantes que lorsque les gratuites ne suffisent pas.
+4. **Liens de résultat** : ajoutez toujours une URL accessible après chaque entité dans la sortie.
+5. **Levée d'ambiguïté** : chercheur ambigu → filtrez par `org`/`org_id` ou demandez confirmation à l'utilisateur. Institution ambiguë → utilisez `org_disambiguate_pro`. Article ambigu → recoupez `year` + `venue_name` + `first_author`.
+6. **Rapport de coûts** : après tous les appels API, affichez toujours à l'utilisateur un résumé des coûts indiquant : chaque API appelée, son prix unitaire, le nombre d'appels et le coût total. Exemple de format : `[Cost] ¥X.XX total, N API calls (api_a: ¥X.XX × N, api_b: Free × N)`.
+7. **Confirmation des coûts élevés (≥ ¥5)** : avant d'exécuter un workflow ou une chaîne d'appels dont le coût total estimé est de 5,00 ¥ ou plus, **arrêtez-vous et demandez d'abord la confirmation de l'utilisateur**. Montrez la chaîne d'appels prévue, le coût estimé par étape et le total. Ne continuez qu'après l'accord explicite de l'utilisateur. S'applique aussi bien aux workflows prédéfinis (ex. Profil chercheur ~6,00 ¥) qu'aux plans multi-étapes ad hoc.
+
+Gabarits d'URL des entités (obligatoires) :
+- Article : `https://www.aminer.cn/pub/{paper_id}`
+- Chercheur : `https://www.aminer.cn/profile/{scholar_id}`
+- Brevet : `https://www.aminer.cn/patent/{patent_id}`
+- Revue : `https://www.aminer.cn/open/journal/detail/{journal_id}`
+
+---
+
+## Vérification du token (obligatoire)
+
+Vérifiez l'existence de `AMINER_API_KEY` avant tout appel API. N'exposez jamais le token en clair.
 
 ```bash
 [ -z "${AMINER_API_KEY+x}" ] && echo "AMINER_API_KEY missing" || echo "AMINER_API_KEY exists"
 ```
 
-- If `${AMINER_API_KEY}` exists: proceed. If not: check `--token` parameter. If neither: **stop**, guide user to [Console](https://open.aminer.cn/open/board?tab=control) to generate one.
-- If the user provides `AMINER_API_KEY` inline (e.g. "My token is xxx"), accept it for the current session, but recommend setting it as an environment variable for better security.
-- Default headers: `Authorization: ${AMINER_API_KEY}`, `X-Platform: openclaw`, `Content-Type: application/json;charset=utf-8` (POST).
+- Si `${AMINER_API_KEY}` existe : poursuivez. Sinon : vérifiez le paramètre `--token`. Si rien non plus : **arrêtez-vous**, guidez l'utilisateur vers la [Console](https://open.aminer.cn/open/board?tab=control) pour en générer un.
+- Si l'utilisateur fournit `AMINER_API_KEY` en ligne (ex. « mon token est xxx »), acceptez-le pour la session en cours, mais recommandez de le définir comme variable d'environnement pour plus de sécurité.
+- En-têtes par défaut : `Authorization: ${AMINER_API_KEY}`, `X-Platform: openclaw`, `Content-Type: application/json;charset=utf-8` (POST).
 
 ---
 
-## Call Guardrails
+## Garde-fous d'appel
 
-1. Parameter names and types must match `references/api-catalog.md` exactly.
-2. `paper_info` is batch-only: `{"ids": [...]}`. `paper_detail` is single-paper only: one `id`. Never mix them.
-3. When multiple details are needed, filter with a low-cost API first, then fetch details for a small set.
-4. **Prefer `paper_qa_search_pro`; avoid legacy `paper_qa_search`.** For almost all paper Q&A / topic / filter searches, call `paper_qa_search_pro` first. Use legacy `paper_qa_search` **only** when the user explicitly needs `topic_high` / `topic_middle` / `topic_low` structured OR/AND mode that Pro does not support. Do not default to the legacy endpoint out of habit.
+1. Les noms et types de paramètres doivent correspondre exactement à `references/api-catalog.md`.
+2. `paper_info` fonctionne uniquement par lot : `{"ids": [...]}`. `paper_detail` ne traite qu'un article à la fois : un seul `id`. Ne les mélangez jamais.
+3. Quand plusieurs détails sont nécessaires, filtrez d'abord avec une API peu coûteuse, puis récupérez les détails d'un petit ensemble.
+4. **Privilégiez `paper_qa_search_pro` ; évitez l'ancien `paper_qa_search`.** Pour presque toutes les recherches Q&A d'articles / par sujet / à filtres, appelez d'abord `paper_qa_search_pro`. N'utilisez l'ancien `paper_qa_search` **que** si l'utilisateur a explicitement besoin du mode structuré OR/AND `topic_high` / `topic_middle` / `topic_low` que Pro ne prend pas en charge. Ne recourez pas à l'ancien endpoint par habitude.
 
 ---
 
-## Paper Search API Selection Guide
+## Guide de choix de l'API de recherche d'articles
 
-When the user says "search for papers", determine the goal first:
+Quand l'utilisateur demande « cherche des articles », déterminez d'abord l'objectif :
 
-| API | Focus | Use Case | Cost |
+| API | Axes | Cas d'usage | Coût |
 |---|---|---|---|
-| `paper_search` | Title search → `paper_id` | Known paper title, locate target | Free |
-| `paper_search_pro` | Multi-condition search (author/org/venue/keyword) | Topic search, sort by citations or year | ¥0.01 |
-| `paper_qa_search_pro` | Natural language Q&A + rich filters | **Default / prefer this** for semantic & filter search; card + cursor | ¥0.70 |
-| `paper_qa_search` | Legacy structured topic keywords | **Rarely**; only for `topic_high/middle/low` OR/AND | ¥0.05 |
-| `paper_list_by_keywords` | Multi-keyword batch retrieval | Batch thematic retrieval | ¥0.10 |
-| `paper_detail_by_condition` | Year + venue dimension | Journal annual monitoring | ¥0.20 |
+| `paper_search` | Recherche par titre → `paper_id` | Titre d'article connu, localiser la cible | Gratuit |
+| `paper_search_pro` | Recherche multi-critères (auteur/org/venue/mot-clé) | Recherche thématique, tri par citations ou par année | ¥0.01 |
+| `paper_qa_search_pro` | Q&A en langage naturel + filtres riches | **Défaut / à privilégier** pour la recherche sémantique et à filtres ; carte + curseur | ¥0.70 |
+| `paper_qa_search` | Anciens mots-clés de sujet structurés | **Rarement** ; uniquement pour `topic_high/middle/low` OR/AND | ¥0.05 |
+| `paper_list_by_keywords` | Récupération par lots multi-mots-clés | Récupération thématique par lots | ¥0.10 |
+| `paper_detail_by_condition` | Dimension année + venue | Suivi annuel d'une revue | ¥0.20 |
 
-Default routing:
+Routage par défaut :
 
-1. **Known title**: `paper_search -> paper_detail -> paper_relation`
-2. **Conditional filtering**: `paper_search_pro -> paper_detail` (or `paper_qa_search_pro` when NL intent / citation-year soft filters help)
-3. **Natural language / topic Q&A**: **always prefer** `paper_qa_search_pro` → if empty, fall back to `paper_search_pro`. **Do not** start with legacy `paper_qa_search`.
-4. **Journal annual analysis**: `venue_search -> venue_paper_relation -> paper_detail_by_condition`
+1. **Titre connu** : `paper_search -> paper_detail -> paper_relation`
+2. **Filtrage conditionnel** : `paper_search_pro -> paper_detail` (ou `paper_qa_search_pro` quand l'intention en langage naturel / les filtres souples d'année de citation aident)
+3. **Q&A en langage naturel / par sujet** : **privilégiez toujours** `paper_qa_search_pro` → si vide, repli sur `paper_search_pro`. **Ne démarrez pas** avec l'ancien `paper_qa_search`.
+4. **Analyse annuelle d'une revue** : `venue_search -> venue_paper_relation -> paper_detail_by_condition`
 
-Key `paper_qa_search_pro` rules:
-- **Default choice** for natural-language paper search and multi-filter retrieval (`authors`/`author_ids`, `organizations`/`organization_ids`, `venues`/`venue_ids`, year/citation ranges, `all_terms`/`any_terms`/`exclude_terms`).
-- Page size is **fixed at 10**. Do not send `size`. Paginate with `next_cursor` → next request body is `{"cursor":"..."}` only.
-- `sort`: `relevance` / `balanced` / `recent` / `citation`. For “most cited” use `citation`; for “newest” use `recent`.
-- Response card fields only: `paper_id`, `title`, `title_zh`, `authors.name`/`name_zh`, `year`. Use `paper_detail` when full abstract/keywords are needed.
-- Always append `https://www.aminer.cn/pub/{paper_id}`.
+Règles clés de `paper_qa_search_pro` :
+- **Choix par défaut** pour la recherche d'articles en langage naturel et la récupération multi-filtres (`authors`/`author_ids`, `organizations`/`organization_ids`, `venues`/`venue_ids`, plages d'année/citations, `all_terms`/`any_terms`/`exclude_terms`).
+- La taille de page est **fixée à 10**. N'envoyez pas `size`. Paginez avec `next_cursor` → le corps de la requête suivante ne contient que `{"cursor":"..."}`.
+- `sort` : `relevance` / `balanced` / `recent` / `citation`. Pour « les plus cités », utilisez `citation` ; pour « les plus récents », `recent`.
+- Champs de la carte de réponse uniquement : `paper_id`, `title`, `title_zh`, `authors.name`/`name_zh`, `year`. Utilisez `paper_detail` quand le résumé ou les mots-clés complets sont nécessaires.
+- Ajoutez toujours `https://www.aminer.cn/pub/{paper_id}`.
 
-Legacy `paper_qa_search` — use sparingly:
-- Call **only** when `topic_high` / `topic_middle` / `topic_low` structured OR/AND is explicitly required; otherwise use Pro.
-- `query` and `topic_high/topic_middle/topic_low` are **mutually exclusive**; do not pass both.
-- Supports `sci_flag`, `force_citation_sort`, `force_year_sort`, `author_id`, `org_id`, `venue_ids`.
+Ancien `paper_qa_search` — à utiliser avec parcimonie :
+- Appelez-le **uniquement** quand le mode structuré OR/AND `topic_high` / `topic_middle` / `topic_low` est explicitement requis ; sinon utilisez Pro.
+- `query` et `topic_high/topic_middle/topic_low` sont **mutuellement exclusifs** ; ne passez pas les deux.
+- Prend en charge `sci_flag`, `force_citation_sort`, `force_year_sort`, `author_id`, `org_id`, `venue_ids`.
 
-Free-tier screening fields available:
+Champs de filtrage disponibles au niveau gratuit :
 
-- `paper_search`: `venue_name`, `first_author`, `n_citation_bucket`, `year`
-- `paper_info`: `abstract_slice`, `year`, `venue_id`, `author_count`
-- `person_search`: `interests`, `n_citation`, `org/org_id`
-- `organization_search`: `aliases`
-- `venue_search`: `aliases`, `venue_type`
-- `patent_search`: `inventor_name`, `app_year`, `pub_year`
-- `patent_info`: `app_year`, `pub_year`
-
----
-
-## Handling Out-of-Workflow Requests
-
-When the user's request falls outside the 5 workflows:
-
-1. Read `references/api-catalog.md` to confirm available APIs, parameters, and response fields.
-2. Design the shortest viable call chain: locate ID → supplement details → expand relationships.
-3. Do not give up because "no existing workflow fits"; actively compose APIs based on `api-catalog`.
+- `paper_search` : `venue_name`, `first_author`, `n_citation_bucket`, `year`
+- `paper_info` : `abstract_slice`, `year`, `venue_id`, `author_count`
+- `person_search` : `interests`, `n_citation`, `org/org_id`
+- `organization_search` : `aliases`
+- `venue_search` : `aliases`, `venue_type`
+- `patent_search` : `inventor_name`, `app_year`, `pub_year`
+- `patent_info` : `app_year`, `pub_year`
 
 ---
 
-## 5 Combined Workflows
+## Gérer les requêtes hors workflow
 
-### Workflow 1: Scholar Profile (~¥6.00)
+Quand la requête de l'utilisateur sort des 5 workflows :
 
-**Use Case**: Complete academic profile — bio, research interests, papers, patents, projects.
-**Cost note**: Full execution exceeds the ¥5 threshold → **must ask for user confirmation before proceeding** (Rule 7). Show the planned steps and cost. Confirm which sub-modules are needed; skip patents/projects if not requested.
+1. Lisez `references/api-catalog.md` pour confirmer les API disponibles, leurs paramètres et leurs champs de réponse.
+2. Concevez la chaîne d'appels viable la plus courte : localiser l'ID → compléter les détails → étendre les relations.
+3. N'abandonnez pas au motif qu'« aucun workflow existant ne correspond » ; composez activement les API à partir d'`api-catalog`.
 
-**Call Chain:**
+---
+
+## 5 workflows combinés
+
+### Workflow 1 : Profil chercheur (~¥6.00)
+
+**Cas d'usage** : profil académique complet — bio, centres d'intérêt de recherche, articles, brevets, projets.
+**Note de coût** : l'exécution complète dépasse le seuil de 5 ¥ → **demandez obligatoirement la confirmation de l'utilisateur avant de poursuivre** (Règle 7). Montrez les étapes prévues et le coût. Confirmez quels sous-modules sont nécessaires ; sautez brevets/projets si non demandés.
+
+**Chaîne d'appels :**
 ```
 Scholar search (name → person_id)
     ↓
@@ -141,15 +152,15 @@ Parallel calls (pick as needed):
   └── Scholar projects (funding info)                ¥1.50
 ```
 
-Fallback: if `paper_search` yields no results in sub-steps, fall back to `paper_search_pro`.
+Repli : si `paper_search` ne donne aucun résultat dans les sous-étapes, revenez à `paper_search_pro`.
 
 ---
 
-### Workflow 2: Paper Deep Dive (~¥0.12)
+### Workflow 2 : Analyse approfondie d'un article (~¥0.12)
 
-**Use Case**: Full paper information and citation chain from a title or keyword.
+**Cas d'usage** : informations complètes d'un article et chaîne de citations à partir d'un titre ou d'un mot-clé.
 
-**Call Chain:**
+**Chaîne d'appels :**
 ```
 Paper search / Paper search pro (title/keyword → paper_id)
     ↓
@@ -160,15 +171,15 @@ Paper citations (cited papers → cited_ids)                  ¥0.10
 (Optional) Batch paper_info for cited papers                Free
 ```
 
-Fallback: if `paper_search` yields no results, fall back to `paper_search_pro`.
+Repli : si `paper_search` ne donne aucun résultat, revenez à `paper_search_pro`.
 
 ---
 
-### Workflow 3: Org Analysis (~¥0.81)
+### Workflow 3 : Analyse d'institution (~¥0.81)
 
-**Use Case**: Institution scholar size, paper output, patent count — for competitive research or partnership evaluation.
+**Cas d'usage** : effectifs de chercheurs, production d'articles, nombre de brevets d'une institution — pour la veille concurrentielle ou l'évaluation d'un partenariat.
 
-**Call Chain:**
+**Chaîne d'appels :**
 ```
 Org disambiguation pro (raw string → org_id)  ¥0.05
     ↓
@@ -179,15 +190,15 @@ Parallel calls:
   └── Org patents (patent IDs, up to 10,000)     ¥0.10
 ```
 
-> If disambiguation pro returns no ID, fall back to `org_search` (free).
+> Si disambiguation pro ne renvoie aucun ID, revenez à `org_search` (gratuit).
 
 ---
 
-### Workflow 4: Venue Papers (~¥0.10 - ¥0.30)
+### Workflow 4 : Articles d'une venue (~¥0.10 - ¥0.30)
 
-**Use Case**: Track journal papers by year; useful for submission research or trend analysis.
+**Cas d'usage** : suivre les articles d'une revue par année ; utile pour préparer une soumission ou analyser des tendances.
 
-**Call Chain:**
+**Chaîne d'appels :**
 ```
 Venue search (name → venue_id)                          Free
     ↓
@@ -200,18 +211,18 @@ Venue papers (venue_id + year → paper_id list)          ¥0.10
 
 ---
 
-### Workflow 5: Patent Analysis (~¥0.02)
+### Workflow 5 : Analyse de brevets (~¥0.02)
 
-**Use Case**: Search patents in a technology domain, or retrieve a scholar's/institution's patent portfolio.
+**Cas d'usage** : rechercher des brevets dans un domaine technologique, ou récupérer le portefeuille de brevets d'un chercheur ou d'une institution.
 
-**Call Chain (standalone search):**
+**Chaîne d'appels (recherche autonome) :**
 ```
 Patent search (query → patent_id)        Free
     ↓
 Patent info / Patent details             Free / ¥0.01
 ```
 
-**Call Chain (via scholar/institution):**
+**Chaîne d'appels (via chercheur/institution) :**
 ```
 Scholar search → Scholar patents (patent_id list)
 Org disambiguation → Org patents (patent_id list)
@@ -221,29 +232,29 @@ Patent info / Patent details
 
 ---
 
-## Individual API Quick Reference
+## Référence rapide des API individuelles
 
-> Full parameter docs: read `references/api-catalog.md`
+> Documentation complète des paramètres : lisez `references/api-catalog.md`
 
-| # | Title | Method | Price | API Path (Base: publicapi.chatglm.cn/chatglm_public/skill/aminer) |
+| # | Titre | Méthode | Prix | Chemin API (Base : publicapi.chatglm.cn/chatglm_public/skill/aminer) |
 |---|------|------|------|------|
 | 1 | Paper QA Search Pro | POST | ¥0.70 | `/api/v3/paper/qa/searchPro` |
 | 2 | Paper QA Search (legacy) | POST | ¥0.05 | `/api/paper/qa/search` |
-| 3 | Scholar Search | POST | Free | `/api/person/search` |
-| 4 | Paper Search | GET | Free | `/api/paper/search` |
+| 3 | Scholar Search | POST | Gratuit | `/api/person/search` |
+| 4 | Paper Search | GET | Gratuit | `/api/paper/search` |
 | 5 | Paper Search Pro | GET | ¥0.01 | `/api/paper/search/pro` |
-| 6 | Patent Search | POST | Free | `/api/patent/search` |
-| 7 | Org Search | POST | Free | `/api/organization/search` |
-| 8 | Venue Search | POST | Free | `/api/venue/search` |
+| 6 | Patent Search | POST | Gratuit | `/api/patent/search` |
+| 7 | Org Search | POST | Gratuit | `/api/organization/search` |
+| 8 | Venue Search | POST | Gratuit | `/api/venue/search` |
 | 9 | Scholar Details | GET | ¥1.00 | `/api/person/detail` |
 | 10 | Scholar Projects | GET | ¥1.50 | `/api/project/person/v3/open` |
 | 11 | Scholar Papers | GET | ¥1.50 | `/api/person/paper/relation` |
 | 12 | Scholar Patents | GET | ¥1.50 | `/api/person/patent/relation` |
 | 13 | Scholar Portrait | GET | ¥0.50 | `/api/person/figure` |
-| 14 | Paper Info | POST | Free | `/api/paper/info` |
+| 14 | Paper Info | POST | Gratuit | `/api/paper/info` |
 | 15 | Paper Details | GET | ¥0.01 | `/api/paper/detail` |
 | 16 | Paper Citations | GET | ¥0.10 | `/api/paper/relation` |
-| 17 | Patent Info | GET | Free | `/api/patent/info` |
+| 17 | Patent Info | GET | Gratuit | `/api/patent/info` |
 | 18 | Patent Details | GET | ¥0.01 | `/api/patent/detail` |
 | 19 | Org Details | POST | ¥0.01 | `/api/organization/detail` |
 | 20 | Org Patents | GET | ¥0.10 | `/api/organization/patent/relation` |
@@ -258,10 +269,10 @@ Patent info / Patent details
 
 ---
 
-## References
+## Références
 
-- Full API parameter documentation: read `references/api-catalog.md`
-- Optional Python client: `scripts/aminer_client.py`
-- Test cases: `evals/evals.json`
-- Official documentation: https://open.aminer.cn/open/docs
-- Console: https://open.aminer.cn/open/board?tab=control
+- Documentation complète des paramètres API : lisez `references/api-catalog.md`
+- Client Python optionnel : `scripts/aminer_client.py`
+- Cas de test : `evals/evals.json`
+- Documentation officielle : https://open.aminer.cn/open/docs
+- Console : https://open.aminer.cn/open/board?tab=control

@@ -1,36 +1,43 @@
 ---
 name: web-reader
-description: Implement web page content extraction capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to scrape web pages, extract article content, retrieve page metadata, or build applications that process web content. Supports automatic content extraction with title, HTML, and publication time retrieval.
+version: "1.0.0"
+category: "Web & Recherche"
+tags:
+  - web
+  - reader
+description: Implémente des capacités d'extraction de contenu de pages web avec le z-ai-web-dev-sdk. Utilise ce skill lorsque l'utilisateur a besoin de scraper des pages web, d'extraire le contenu d'articles, de récupérer les métadonnées d'une page, ou de construire des applications traitant du contenu web. Prend en charge l'extraction automatique du contenu avec récupération du titre, du HTML et de la date de publication.
 license: MIT
+language: fr
+
 ---
 
-# Web Reader Skill
+# Skill Web Reader
 
-This skill guides the implementation of web page reading and content extraction functionality using the z-ai-web-dev-sdk package, enabling applications to fetch and process web page content programmatically.
+Ce skill guide l'implémentation de la lecture de pages web et de l'extraction de contenu à l'aide du package z-ai-web-dev-sdk, permettant aux applications de récupérer et de traiter du contenu web par programmation.
 
-## Skills Path
+## Chemin du skill
 
-**Skill Location**: `{project_path}/skills/web-reader`
+**Emplacement du skill** : `{project_path}/skills/web-reader`
 
-This skill is located at the above path in your project.
+Ce skill se trouve à l'emplacement ci-dessus dans votre projet.
 
-**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/web-reader.ts` for a working example.
+**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/web-reader.ts` pour un exemple fonctionnel.
 
-## Overview
+## Vue d'ensemble
 
-Web Reader allows you to build applications that can extract content from web pages, retrieve article metadata, and process HTML content. The API automatically handles content extraction, providing clean, structured data from any web URL.
+Web Reader permet de construire des applications capables d'extraire le contenu de pages web, de récupérer les métadonnées d'articles et de traiter du contenu HTML. L'API gère automatiquement l'extraction de contenu et fournit des données propres et structurées à partir de n'importe quelle URL web.
 
-**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
+**IMPORTANT** : z-ai-web-dev-sdk DOIT être utilisé uniquement dans du code backend. Ne l'utilisez jamais dans du code côté client.
 
-## Prerequisites
+## Prérequis
 
-The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
+Le package z-ai-web-dev-sdk est déjà installé. Importez-le comme illustré dans les exemples ci-dessous.
 
-## CLI Usage (For Simple Tasks)
+## Utilisation du CLI (tâches simples)
 
-For simple web page content extraction, you can use the z-ai CLI instead of writing code. This is ideal for quick content scraping, testing URLs, or simple automation tasks.
+Pour une extraction simple de contenu de page web, vous pouvez utiliser le z-ai CLI au lieu d'écrire du code. C'est idéal pour du scraping rapide de contenu, des tests d'URLs ou des tâches d'automatisation simples.
 
-### Basic Page Reading
+### Lecture basique d'une page
 
 ```bash
 # Extract content from a web page
@@ -40,7 +47,7 @@ z-ai function --name "page_reader" --args '{"url": "https://example.com"}'
 z-ai function -n page_reader -a '{"url": "https://www.example.com/article"}'
 ```
 
-### Save Page Content
+### Sauvegarde du contenu d'une page
 
 ```bash
 # Save extracted content to JSON file
@@ -56,7 +63,7 @@ z-ai function \
   -o blog_post.json
 ```
 
-### Common Use Cases
+### Cas d'usage courants
 
 ```bash
 # Extract news article
@@ -84,24 +91,24 @@ z-ai function \
   -o research.json
 ```
 
-### CLI Parameters
+### Paramètres du CLI
 
-- `--name, -n`: **Required** - Function name (use "page_reader")
-- `--args, -a`: **Required** - JSON arguments object with:
-  - `url` (string, required): The URL of the web page to read
-- `--output, -o <path>`: Optional - Output file path (JSON format)
+- `--name, -n` : **Obligatoire** — Nom de la fonction (utilisez "page_reader")
+- `--args, -a` : **Obligatoire** — Objet d'arguments JSON avec :
+  - `url` (string, obligatoire) : l'URL de la page web à lire
+- `--output, -o <path>` : Optionnel — Chemin du fichier de sortie (format JSON)
 
-### Response Structure
+### Structure de la réponse
 
-The CLI returns a JSON object containing:
-- `title`: Page title
-- `html`: Main content HTML
-- `text`: Plain text content
-- `publish_time`: Publication timestamp (if available)
-- `url`: Original URL
-- `metadata`: Additional page metadata
+Le CLI renvoie un objet JSON contenant :
+- `title` : titre de la page
+- `html` : HTML du contenu principal
+- `text` : contenu en texte brut
+- `publish_time` : horodatage de publication (si disponible)
+- `url` : URL d'origine
+- `metadata` : métadonnées supplémentaires de la page
 
-### Example Response
+### Exemple de réponse
 
 ```json
 {
@@ -117,7 +124,7 @@ The CLI returns a JSON object containing:
 }
 ```
 
-### Processing Multiple URLs
+### Traitement de plusieurs URLs
 
 ```bash
 # Create a simple script to process multiple URLs
@@ -131,31 +138,31 @@ do
 done
 ```
 
-### When to Use CLI vs SDK
+### Quand utiliser le CLI ou le SDK
 
-**Use CLI for:**
-- Quick content extraction
-- Testing URL accessibility
-- Simple web scraping tasks
-- One-off content retrieval
+**Utilisez le CLI pour :**
+- Une extraction rapide de contenu
+- Tester l'accessibilité d'URLs
+- Des tâches simples de scraping web
+- Une récupération de contenu ponctuelle
 
-**Use SDK for:**
-- Batch URL processing with custom logic
-- Integration with web applications
-- Complex content processing pipelines
-- Production applications with error handling
+**Utilisez le SDK pour :**
+- Le traitement d'URLs par lots avec logique personnalisée
+- L'intégration dans des applications web
+- Des pipelines complexes de traitement de contenu
+- Des applications de production avec gestion d'erreurs
 
-## How It Works
+## Fonctionnement
 
-The Web Reader uses the `page_reader` function to:
-1. Fetch the web page content
-2. Extract main article content and metadata
-3. Parse and clean the HTML
-4. Return structured data including title, content, and publication time
+Le Web Reader utilise la fonction `page_reader` pour :
+1. Récupérer le contenu de la page web
+2. Extraire le contenu principal de l'article et les métadonnées
+3. Analyser et nettoyer le HTML
+4. Renvoyer des données structurées incluant le titre, le contenu et la date de publication
 
-## Basic Web Reading Implementation
+## Implémentation basique de la lecture web
 
-### Simple Page Reading
+### Lecture simple d'une page
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -186,7 +193,7 @@ const pageData = await readWebPage('https://example.com/article');
 console.log('Page title:', pageData.title);
 ```
 
-### Extract Article Text Only
+### Extraction du texte seul d'un article
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -218,7 +225,7 @@ console.log(article.title);
 console.log(article.text.substring(0, 200) + '...');
 ```
 
-### Read Multiple Pages
+### Lecture de plusieurs pages
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -267,9 +274,9 @@ pages.forEach(page => {
 });
 ```
 
-## Advanced Use Cases
+## Cas d'usage avancés
 
-### Web Content Analyzer
+### Analyseur de contenu web
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -360,7 +367,7 @@ const comparison = await analyzer.comparePages(
 console.log('Comparison:', comparison);
 ```
 
-### RSS Feed Reader
+### Lecteur de flux RSS
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -434,7 +441,7 @@ const recent = reader.getRecentArticles(5);
 console.log('Recent articles:', recent.map(a => a.title));
 ```
 
-### Content Aggregator
+### Agrégateur de contenu
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -489,7 +496,7 @@ console.log(`Aggregated ${aggregated.sources.length} sources`);
 console.log(`Total words: ${aggregated.totalWords}`);
 ```
 
-### Web Scraping Pipeline
+### Pipeline de scraping web
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -581,9 +588,9 @@ console.log('Images found:', result.processed.images.length);
 console.log('Text length:', result.processed.plainText.length);
 ```
 
-## Response Format
+## Format de réponse
 
-### Successful Response
+### Réponse en cas de succès
 
 ```typescript
 {
@@ -606,22 +613,22 @@ console.log('Text length:', result.processed.plainText.length);
 }
 ```
 
-### Response Fields
+### Champs de la réponse
 
-| Field | Type | Description |
+| Champ | Type | Description |
 |-------|------|-------------|
-| `code` | number | Response status code |
-| `status` | number | HTTP status code |
-| `data.title` | string | Page title |
-| `data.url` | string | Page URL |
-| `data.html` | string | Extracted HTML content |
-| `data.publishedTime` | string | Publication date (optional) |
-| `data.usage.tokens` | number | Tokens used for processing |
-| `meta.usage.tokens` | number | Total tokens used |
+| `code` | number | Code de statut de la réponse |
+| `status` | number | Code de statut HTTP |
+| `data.title` | string | Titre de la page |
+| `data.url` | string | URL de la page |
+| `data.html` | string | Contenu HTML extrait |
+| `data.publishedTime` | string | Date de publication (optionnel) |
+| `data.usage.tokens` | number | Tokens utilisés pour le traitement |
+| `meta.usage.tokens` | number | Nombre total de tokens utilisés |
 
-## Best Practices
+## Bonnes pratiques
 
-### 1. Error Handling
+### 1. Gestion des erreurs
 
 ```javascript
 async function safeReadPage(url) {
@@ -661,7 +668,7 @@ async function safeReadPage(url) {
 }
 ```
 
-### 2. Rate Limiting
+### 2. Limitation de débit
 
 ```javascript
 class RateLimitedReader {
@@ -716,7 +723,7 @@ for (const url of urls) {
 }
 ```
 
-### 3. Caching Strategy
+### 3. Stratégie de cache
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -779,7 +786,7 @@ const data2 = await reader.readPage('https://example.com'); // From cache
 const data3 = await reader.readPage('https://example.com', true); // Force refresh
 ```
 
-### 4. Parallel Processing
+### 4. Traitement parallèle
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -834,7 +841,7 @@ results.forEach(result => {
 });
 ```
 
-### 5. Content Processing
+### 5. Traitement du contenu
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -902,20 +909,20 @@ const processed = await processWebPage('https://example.com/article');
 console.log('Processed content:', processed.title);
 ```
 
-## Common Use Cases
+## Cas d'usage courants
 
-1. **News Aggregation**: Collect and aggregate news articles from multiple sources
-2. **Content Monitoring**: Track changes on specific web pages
-3. **Research Tools**: Extract information from academic or reference websites
-4. **Price Tracking**: Monitor product pages for price changes
-5. **SEO Analysis**: Extract page metadata and content for SEO purposes
-6. **Archive Creation**: Create local copies of web content
-7. **Content Curation**: Collect and organize web content by topic
-8. **Competitive Intelligence**: Monitor competitor websites for updates
+1. **Agrégation d'actualités** : collecter et agréger des articles de presse depuis plusieurs sources
+2. **Surveillance de contenu** : suivre les changements sur des pages web spécifiques
+3. **Outils de recherche** : extraire des informations de sites académiques ou de référence
+4. **Suivi de prix** : surveiller les pages produits pour détecter les changements de prix
+5. **Analyse SEO** : extraire les métadonnées et le contenu des pages à des fins SEO
+6. **Création d'archives** : créer des copies locales de contenu web
+7. **Curation de contenu** : collecter et organiser du contenu web par thème
+8. **Veille concurrentielle** : surveiller les sites des concurrents pour détecter les mises à jour
 
-## Integration Examples
+## Exemples d'intégration
 
-### Express.js API Endpoint
+### Endpoint API Express.js
 
 ```javascript
 import express from 'express';
@@ -1007,7 +1014,7 @@ initZAI().then(() => {
 });
 ```
 
-### Scheduled Content Fetcher
+### Récupérateur de contenu planifié
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -1090,51 +1097,51 @@ fetcher.start();
 console.log('Scheduled fetching started');
 ```
 
-## Troubleshooting
+## Dépannage
 
-**Issue**: "SDK must be used in backend"
-- **Solution**: Ensure z-ai-web-dev-sdk is only imported and used in server-side code
+**Problème** : "Le SDK doit être utilisé en backend"
+- **Solution** : assurez-vous que z-ai-web-dev-sdk n'est importé et utilisé que dans du code côté serveur
 
-**Issue**: Failed to fetch page (404, 403, etc.)
-- **Solution**: Verify the URL is accessible and not behind authentication/paywall
+**Problème** : échec de récupération de la page (404, 403, etc.)
+- **Solution** : vérifiez que l'URL est accessible et non protégée par une authentification ou un paywall
 
-**Issue**: Incomplete or missing content
-- **Solution**: Some pages may have dynamic content that requires JavaScript. The reader extracts static HTML content.
+**Problème** : contenu incomplet ou manquant
+- **Solution** : certaines pages peuvent contenir du contenu dynamique nécessitant JavaScript. Le lecteur extrait le contenu HTML statique.
 
-**Issue**: High token usage
-- **Solution**: The token usage depends on page size. Consider caching frequently accessed pages.
+**Problème** : consommation élevée de tokens
+- **Solution** : la consommation de tokens dépend de la taille de la page. Envisagez de mettre en cache les pages fréquemment consultées.
 
-**Issue**: Slow response times
-- **Solution**: Implement caching, use parallel processing for multiple URLs, and consider rate limiting
+**Problème** : temps de réponse lents
+- **Solution** : mettez en place un cache, utilisez le traitement parallèle pour plusieurs URLs et envisagez une limitation de débit
 
-**Issue**: Empty HTML content
-- **Solution**: Check if the page requires authentication or has anti-scraping measures. Verify the URL is correct.
+**Problème** : contenu HTML vide
+- **Solution** : vérifiez si la page nécessite une authentification ou comporte des mesures anti-scraping. Vérifiez que l'URL est correcte.
 
-## Performance Tips
+## Conseils de performance
 
-1. **Implement caching**: Cache frequently accessed pages to reduce API calls
-2. **Use parallel processing**: Fetch multiple pages concurrently (with rate limiting)
-3. **Process content efficiently**: Extract only needed information from HTML
-4. **Set timeouts**: Implement reasonable timeouts for page fetching
-5. **Monitor token usage**: Track usage to optimize costs
-6. **Batch operations**: Group multiple URL fetches when possible
+1. **Mettez en place un cache** : mettez en cache les pages fréquemment consultées pour réduire les appels API
+2. **Utilisez le traitement parallèle** : récupérez plusieurs pages simultanément (avec limitation de débit)
+3. **Traitez le contenu efficacement** : extrayez du HTML uniquement les informations nécessaires
+4. **Définissez des timeouts** : implémentez des délais d'expiration raisonnables pour la récupération des pages
+5. **Surveillez la consommation de tokens** : suivez l'usage pour optimiser les coûts
+6. **Opérations par lots** : regroupez plusieurs récupérations d'URLs lorsque c'est possible
 
-## Security Considerations
+## Considérations de sécurité
 
-- Validate all URLs before processing
-- Sanitize extracted HTML content before displaying
-- Implement rate limiting to prevent abuse
-- Never expose SDK credentials in client-side code
-- Be respectful of robots.txt and website terms of service
-- Handle user data according to privacy regulations
-- Implement proper error handling for failed requests
+- Validez toutes les URLs avant traitement
+- Assainissez le contenu HTML extrait avant de l'afficher
+- Implémentez une limitation de débit pour prévenir les abus
+- N'exposez jamais les identifiants du SDK dans du code côté client
+- Respectez le robots.txt et les conditions d'utilisation des sites web
+- Traitez les données utilisateur conformément aux réglementations sur la vie privée
+- Implémentez une gestion d'erreurs appropriée pour les requêtes en échec
 
-## Remember
+## À retenir
 
-- Always use z-ai-web-dev-sdk in backend code only
-- The SDK is already installed - import as shown in examples
-- Implement proper error handling for robust applications
-- Use caching to improve performance and reduce costs
-- Respect website terms of service and rate limits
-- Process HTML content carefully to extract meaningful data
-- Monitor token usage for cost optimization
+- Utilisez toujours z-ai-web-dev-sdk uniquement dans du code backend
+- Le SDK est déjà installé — importez-le comme montré dans les exemples
+- Implémentez une gestion d'erreurs appropriée pour des applications robustes
+- Utilisez le cache pour améliorer les performances et réduire les coûts
+- Respectez les conditions d'utilisation des sites web et les limites de débit
+- Traitez le contenu HTML avec soin pour en extraire des données exploitables
+- Surveillez la consommation de tokens pour optimiser les coûts

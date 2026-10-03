@@ -1,0 +1,134 @@
+{
+  "profil": "MINIMALE",
+  "defaut": "COMPLET (pipeline §2 inchangé)",
+  "seeds": [
+    "gen-plan",
+    "correct-work",
+    "skills-inventory"
+  ],
+  "fermeture_skills": [
+    "agent-creator",
+    "audit-provenance",
+    "clone-chat",
+    "context-engineering",
+    "correct-py",
+    "correct-work",
+    "fleet-engineering",
+    "fullstack-dev",
+    "gen-plan",
+    "graph-engineering",
+    "harness-engineering",
+    "knowledge-observer",
+    "loop-engineering",
+    "memory-engineering",
+    "prompt-engineering",
+    "resource-monitor",
+    "script-creator",
+    "script-mon-ecosysteme-infrastructure",
+    "script-reviewer",
+    "skill-creator",
+    "skill-finder-cn",
+    "skills-inventory",
+    "spec-driven-development"
+  ],
+  "liens_depends": {
+    "skill-finder-cn": [],
+    "audit-provenance": [
+      "correct-work",
+      "knowledge-observer",
+      "script-creator"
+    ],
+    "script-creator": [
+      "correct-py",
+      "correct-work",
+      "skill-creator"
+    ],
+    "skill-creator": [],
+    "correct-work": [
+      "clone-chat",
+      "fullstack-dev",
+      "gen-plan",
+      "skills-inventory"
+    ],
+    "skills-inventory": [],
+    "gen-plan": [
+      "context-engineering",
+      "correct-work",
+      "fleet-engineering",
+      "graph-engineering",
+      "harness-engineering",
+      "knowledge-observer",
+      "loop-engineering",
+      "memory-engineering",
+      "prompt-engineering",
+      "resource-monitor",
+      "skills-inventory",
+      "spec-driven-development"
+    ],
+    "spec-driven-development": [],
+    "resource-monitor": [],
+    "prompt-engineering": [
+      "gen-plan",
+      "skill-creator"
+    ],
+    "memory-engineering": [],
+    "loop-engineering": [],
+    "knowledge-observer": [
+      "correct-work",
+      "gen-plan",
+      "skill-creator"
+    ],
+    "harness-engineering": [],
+    "graph-engineering": [],
+    "fleet-engineering": [],
+    "context-engineering": [],
+    "fullstack-dev": [],
+    "clone-chat": [
+      "correct-work",
+      "skill-creator"
+    ],
+    "correct-py": [
+      "correct-work",
+      "knowledge-observer",
+      "script-creator",
+      "skill-creator"
+    ],
+    "script-mon-ecosysteme-infrastructure": [
+      "skill-creator"
+    ],
+    "script-reviewer": [
+      "correct-work",
+      "script-creator",
+      "skill-creator"
+    ],
+    "agent-creator": [
+      "correct-work",
+      "gen-plan"
+    ]
+  },
+  "agents": [
+    "skills/@mon-ecosysteme/PROMPT-ULTRA-MAITRE-ORCHESTRATION.md",
+    "skills/@mon-ecosysteme/PROMPT-MAITRE-SHARED.md",
+    "skills/@mon-ecosysteme/SYNC-CONTEXT.md",
+    "skills/@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md"
+  ],
+  "supplement_normatif_2bis": [
+    "skill-creator",
+    "agent-creator",
+    "script-creator",
+    "script-reviewer",
+    "script-mon-ecosysteme-infrastructure",
+    "audit-provenance",
+    "skill-finder-cn"
+  ],
+  "registre": "skills/KNOWLEDGE.md",
+  "outillage": "scripts/ (complet — arbitres, certification, G-RES, gardes)",
+  "hors_fermeture": "corpus @mon-ecosysteme/ complet + archive d'intégrité (toujours complets, v2.2)",
+  "empreinte_fermeture": "c6212e1e75e28648",
+  "gain": {
+    "taille_skills_scripts_complete_mo": 62.87,
+    "taille_minimale_mo": 2.04,
+    "gain_mo": 60.83,
+    "gain_pct": 96.7
+  }
+}

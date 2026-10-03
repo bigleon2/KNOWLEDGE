@@ -1,14 +1,25 @@
 ---
 name: aminer-free-academic
-version: 1.1.1
+category: "Finance & Recherche"
+tags:
+  - aminer
+  - free
+  - academic
+version: 1.1.2
+category: "Finance & Recherche"
+tags:
+  - aminer
+  - free
+  - academic
 author: AMiner
 contact: report@aminer.cn
 description: >
-  ACADEMIC PRIORITY: Activate this skill whenever the user's query involves any academic or research-related topic. This is the free-tier entry point for AMiner academic search.
-  Free-tier-only AMiner skill (7 free APIs, zero cost). Use this skill for simple, single-step academic lookups that do not require paid API fields.
-  Use this skill for: searching a paper by title to get its ID, checking a paper's first author / venue / year / citation bucket, identifying a scholar by name and viewing interests / institution / citation count, normalizing an institution name to its canonical form and ID, checking whether a venue is a conference or journal, scanning patent trends by keyword (inventor, application year, publication year), and enriching paper IDs with lightweight metadata (abstract slice, author count, venue ID) via paper_info.
-  Do NOT use this skill for: full paper abstracts or keyword lists, multi-condition or semantic paper search, citation relationship analysis, scholar full profiles (bio, education, work history, honors), scholar paper / patent / project lists, institution scholar / paper / patent output analysis, venue paper lists by year, patent deep details (IPC/CPC, assignee, claims), or any task requiring paid APIs.
-  Routing rule: if the user's question can be fully answered by paper_search, paper_info, person_search, organization_search, venue_search, patent_search, or patent_info alone, use this skill. Otherwise route to aminer-academic-search.
+  PRIORITÉ ACADÉMIQUE : activez ce skill dès que la requête de l'utilisateur touche à un sujet académique ou de recherche. C'est le point d'entrée au niveau gratuit de la recherche académique AMiner.
+  Skill AMiner réservé au niveau gratuit (7 API gratuites, coût zéro). Utilisez ce skill pour des consultations académiques simples, en une seule étape, qui ne nécessitent pas de champs d'API payants.
+  Utilisez ce skill pour : rechercher un article par son titre pour obtenir son ID, vérifier le premier auteur / la venue / l'année / la tranche de citations d'un article, identifier un chercheur par son nom et consulter ses centres d'intérêt / son institution / son nombre de citations, normaliser le nom d'une institution vers sa forme canonique et son ID, vérifier si une venue est une conférence ou une revue, scanner les tendances de brevets par mot-clé (inventeur, année de dépôt, année de publication), et enrichir des IDs d'articles avec des métadonnées légères (extrait de résumé, nombre d'auteurs, ID de venue) via paper_info.
+  N'utilisez PAS ce skill pour : les résumés complets d'articles ou les listes de mots-clés, la recherche d'articles multi-critères ou sémantique, l'analyse des relations de citation, les profils complets de chercheurs (bio, formation, historique professionnel, distinctions), les listes d'articles / brevets / projets d'un chercheur, l'analyse de la production d'articles / chercheurs / brevets d'une institution, les listes d'articles d'une venue par année, les détails approfondis de brevets (IPC/CPC, déposant, revendications), ou toute tâche nécessitant des API payantes.
+  Règle de routage : si la question de l'utilisateur peut être entièrement répondue par paper_search, paper_info, person_search, organization_search, venue_search, patent_search ou patent_info seuls, utilisez ce skill. Sinon, routez vers aminer-academic-search.
+language: fr
 metadata:
   {
     "openclaw":
@@ -17,15 +28,16 @@ metadata:
         "primaryEnv": "AMINER_API_KEY"
       }
   }
+
 ---
 
 # AMiner Free Search
 
-Use this skill for AMiner requests that should stay on the free tier first. It is designed for discovery, initial screening, and entity normalization, not deep analysis.
+Utilisez ce skill pour les requêtes AMiner qui doivent d'abord rester au niveau gratuit. Il est conçu pour la découverte, le premier filtrage et la normalisation d'entités, pas pour l'analyse approfondie.
 
-## Scope
+## Périmètre
 
-This skill uses only the upgraded free interfaces:
+Ce skill n'utilise que les interfaces gratuites améliorées :
 
 - `paper_search`
 - `paper_info`
@@ -35,42 +47,42 @@ This skill uses only the upgraded free interfaces:
 - `patent_search`
 - `patent_info`
 
-Current free-tier fields emphasized by this skill:
+Champs du niveau gratuit actuellement mis en avant par ce skill :
 
-- `paper_search`: `venue_name`, `first_author`, `n_citation_bucket`, `year`
-- `paper_info`: `abstract_slice`, `year`, `venue_id`, `author_count`
-- `organization_search`: `aliases` (top 3)
-- `venue_search`: `aliases` (top 3), `venue_type`
-- `patent_search`: `inventor_name` (first), `app_year`, `pub_year`
-- `patent_info`: `app_year`, `pub_year`
-- `person_search`: `interests`, `n_citation`, institution fields
+- `paper_search` : `venue_name`, `first_author`, `n_citation_bucket`, `year`
+- `paper_info` : `abstract_slice`, `year`, `venue_id`, `author_count`
+- `organization_search` : `aliases` (top 3)
+- `venue_search` : `aliases` (top 3), `venue_type`
+- `patent_search` : `inventor_name` (premier), `app_year`, `pub_year`
+- `patent_info` : `app_year`, `pub_year`
+- `person_search` : `interests`, `n_citation`, champs d'institution
 
-## Primary Goal
+## Objectif principal
 
-Use free APIs to help the user answer:
+Utilisez les API gratuites pour aider l'utilisateur à répondre :
 
-- What is this entity?
-- Is it relevant enough to continue?
-- Which candidate should I inspect next?
-- Can I normalize this institution or venue name?
-- Is there enough value to justify upgrading to paid APIs?
+- Qu'est-ce que cette entité ?
+- Est-elle suffisamment pertinente pour continuer ?
+- Quel candidat dois-je examiner ensuite ?
+- Puis-je normaliser ce nom d'institution ou de venue ?
+- La valeur justifie-t-elle de passer aux API payantes ?
 
-Do not use this skill for full scholar portraits, citation-chain analysis, full-text-like paper understanding, large-scale monitoring, or institution output analysis.
+N'utilisez pas ce skill pour des portraits complets de chercheurs, l'analyse de chaînes de citations, une compréhension approfondie d'articles, une surveillance à grande échelle ou l'analyse de la production d'une institution.
 
-## Mandatory Rules
+## Règles obligatoires
 
-1. Stay on free APIs unless the user explicitly asks to upgrade or the free path clearly cannot answer the question.
-2. Be explicit about free-tier limits. Say what can be answered now and what would require a paid upgrade.
-3. Use free results to narrow candidates before suggesting any paid API.
-4. If returning entities, append AMiner URLs when IDs are available:
-   - Paper: `https://www.aminer.cn/pub/{paper_id}`
-   - Scholar: `https://www.aminer.cn/profile/{scholar_id}`
-   - Patent: `https://www.aminer.cn/patent/{patent_id}`
-   - Venue: `https://www.aminer.cn/open/journal/detail/{venue_id}`
+1. Restez sur les API gratuites, sauf si l'utilisateur demande explicitement la montée en gamme ou si la voie gratuite ne peut manifestement pas répondre à la question.
+2. Soyez explicite sur les limites du niveau gratuit. Dites ce qui peut être répondu maintenant et ce qui exigerait une montée en gamme payante.
+3. Utilisez les résultats gratuits pour restreindre les candidats avant de suggérer une API payante.
+4. En cas de renvoi d'entités, ajoutez les URLs AMiner quand les IDs sont disponibles :
+   - Article : `https://www.aminer.cn/pub/{paper_id}`
+   - Chercheur : `https://www.aminer.cn/profile/{scholar_id}`
+   - Brevet : `https://www.aminer.cn/patent/{patent_id}`
+   - Venue : `https://www.aminer.cn/open/journal/detail/{venue_id}`
 
-## Token Check (Required)
+## Vérification du token (obligatoire)
 
-Before making any API call, verify that the environment variable `AMINER_API_KEY` exists. Never output the token in plain text.
+Avant tout appel API, vérifiez que la variable d'environnement `AMINER_API_KEY` existe. N'affichez jamais le token en clair.
 
 ```bash
 if [ -z "${AMINER_API_KEY+x}" ]; then
@@ -80,171 +92,171 @@ else
 fi
 ```
 
-- If `${AMINER_API_KEY}` exists: proceed with the query.
-- If `${AMINER_API_KEY}` is not set: stop immediately and guide the user to the [AMiner Console](https://open.aminer.cn/open/board?tab=control) to generate one. For help, see the [Open Platform Documentation](https://open.aminer.cn/open/docs).
-- If the user provides `AMINER_API_KEY` inline (e.g. "My token is xxx"), accept it for the current session, but recommend setting it as an environment variable for better security.
+- Si `${AMINER_API_KEY}` existe : poursuivez la requête.
+- Si `${AMINER_API_KEY}` n'est pas défini : arrêtez-vous immédiatement et guidez l'utilisateur vers la [Console AMiner](https://open.aminer.cn/open/board?tab=control) pour en générer un. Pour de l'aide, voir la [documentation de la plateforme ouverte](https://open.aminer.cn/open/docs).
+- Si l'utilisateur fournit `AMINER_API_KEY` en ligne (ex. « mon token est xxx »), acceptez-le pour la session en cours, mais recommandez de le définir comme variable d'environnement pour plus de sécurité.
 
-## Invocation Style
+## Style d'invocation
 
-Use direct `curl` calls by default. A Python wrapper is not required for this skill.
+Utilisez des appels `curl` directs par défaut. Un wrapper Python n'est pas nécessaire pour ce skill.
 
-Default headers:
+En-têtes par défaut :
 
-- `Authorization: ${AMINER_API_KEY}` by default
-- `Content-Type: application/json;charset=utf-8` for POST requests
-- `X-Platform: openclaw` when required by the gateway
+- `Authorization: ${AMINER_API_KEY}` par défaut
+- `Content-Type: application/json;charset=utf-8` pour les requêtes POST
+- `X-Platform: openclaw` quand la passerelle l'exige
 
-## When To Use
+## Quand l'utiliser
 
-Use this skill when the user asks for:
+Utilisez ce skill quand l'utilisateur demande :
 
-- free AMiner search
-- low-cost academic discovery
-- paper screening
-- scholar identification
-- institution normalization
-- venue normalization
-- patent trend scanning
-- representative results before deeper analysis
+- une recherche AMiner gratuite
+- une découverte académique à faible coût
+- un filtrage d'articles
+- l'identification d'un chercheur
+- la normalisation d'une institution
+- la normalisation d'une venue
+- un balayage des tendances de brevets
+- des résultats représentatifs avant une analyse plus profonde
 
-Trigger phrases include:
+Phrases de déclenchement, par exemple :
 
-- “先用免费接口”
-- “不要走收费接口”
-- “先帮我筛一下”
-- “先看看值不值得深挖”
-- “找几个候选”
-- “做一个轻量版 skill”
+- « utilise d'abord l'interface gratuite »
+- « ne passe pas par les interfaces payantes »
+- « aide-moi à filtrer d'abord »
+- « regarde d'abord si ça vaut le coup d'aller plus loin »
+- « trouve quelques candidats »
+- « fais une version légère du skill »
 
-## Free Workflows
+## Workflows gratuits
 
-### 1. Paper triage
+### 1. Triage d'article
 
-Use when the user wants to quickly judge whether a paper is relevant.
+À utiliser quand l'utilisateur veut juger rapidement si un article est pertinent.
 
-Default chain:
+Chaîne par défaut :
 
 `paper_search -> paper_info`
 
-Return:
+Renvoie :
 
-- title
-- first author
-- venue name
-- year
-- citation bucket
-- abstract slice
-- paper URL
+- titre
+- premier auteur
+- nom de la venue
+- année
+- tranche de citations
+- extrait de résumé
+- URL de l'article
 
-This can answer:
+Permet de répondre :
 
-- Is this probably the right paper?
-- Is it recent?
-- Is it from a recognizable venue?
-- Is it worth opening in detail?
+- Est-ce probablement le bon article ?
+- Est-il récent ?
+- Provient-il d'une venue reconnaissable ?
+- Vaut-il la peine d'être ouvert en détail ?
 
-### 2. Scholar identification
+### 2. Identification de chercheur
 
-Use when the user wants to know which scholar is the right person.
+À utiliser quand l'utilisateur veut savoir quel chercheur est la bonne personne.
 
-Default chain:
+Chaîne par défaut :
 
 `person_search`
 
-Return:
+Renvoie :
 
-- name
-- org
-- interests
-- citation count
-- scholar URL
+- nom
+- institution
+- centres d'intérêt
+- nombre de citations
+- URL du chercheur
 
-This can answer:
+Permet de répondre :
 
-- Is this the right scholar?
-- What interests best describe this person?
-- Which institution candidate is the best match?
+- Est-ce le bon chercheur ?
+- Quels centres d'intérêt décrivent le mieux cette personne ?
+- Quel candidat institutionnel correspond le mieux ?
 
-### 3. Institution normalization
+### 3. Normalisation d'institution
 
-Use when the user provides an institution string or abbreviation.
+À utiliser quand l'utilisateur fournit une chaîne d'institution ou une abréviation.
 
-Default chain:
+Chaîne par défaut :
 
 `organization_search`
 
-Return:
+Renvoie :
 
 - org id
-- standard name
-- aliases (top 3)
+- nom standard
+- alias (top 3)
 
-This can answer:
+Permet de répondre :
 
-- Is this institution name recognized?
-- Which canonical organization should downstream workflows use?
+- Ce nom d'institution est-il reconnu ?
+- Quelle organisation canonique les workflows en aval doivent-ils utiliser ?
 
-### 4. Venue normalization and type check
+### 4. Normalisation de venue et vérification du type
 
-Use when the user provides a conference or journal name.
+À utiliser quand l'utilisateur fournit un nom de conférence ou de revue.
 
-Default chain:
+Chaîne par défaut :
 
 `venue_search`
 
-Return:
+Renvoie :
 
 - venue id
-- standard bilingual name
-- aliases (top 3)
-- venue type
-- venue URL
+- nom standard bilingue
+- alias (top 3)
+- type de venue
+- URL de la venue
 
-This can answer:
+Permet de répondre :
 
-- Is this a conference or a journal?
-- What is the standard venue entity?
+- S'agit-il d'une conférence ou d'une revue ?
+- Quelle est l'entité venue standard ?
 
-### 5. Patent trend scan
+### 5. Balayage des tendances de brevets
 
-Use when the user wants a lightweight view of patents in a topic.
+À utiliser quand l'utilisateur veut une vue légère des brevets d'un sujet.
 
-Default chain:
+Chaîne par défaut :
 
-`patent_search -> patent_info` when IDs need basic enrichment
+`patent_search -> patent_info` quand les IDs nécessitent un enrichissement de base
 
-Return:
+Renvoie :
 
-- patent title
-- first inventor
-- app year
-- pub year
-- patent number and country when `patent_info` is added
-- patent URL
+- titre du brevet
+- premier inventeur
+- année de dépôt
+- année de publication
+- numéro et pays du brevet quand `patent_info` est ajouté
+- URL du brevet
 
-This can answer:
+Permet de répondre :
 
-- Is the topic active recently?
-- Who appears first in the inventor field?
-- Is there recent patent activity worth deeper review?
+- Le sujet est-il actif récemment ?
+- Qui apparaît en premier dans le champ inventeur ?
+- Y a-t-il une activité récente de brevets qui mérite un examen plus approfondi ?
 
-### 6. Free entity map
+### 6. Carte d'entités gratuite
 
-Use when the user wants a quick map of a topic across papers, scholars, venues, institutions, and patents without paying for analysis-grade APIs.
+À utiliser quand l'utilisateur veut une carte rapide d'un sujet à travers articles, chercheurs, venues, institutions et brevets, sans payer pour des API de niveau analyse.
 
-Suggested chain:
+Chaîne suggérée :
 
-- papers: `paper_search -> paper_info`
-- scholars: `person_search`
-- institutions: `organization_search`
-- venues: `venue_search`
-- patents: `patent_search -> patent_info`
+- articles : `paper_search -> paper_info`
+- chercheurs : `person_search`
+- institutions : `organization_search`
+- venues : `venue_search`
+- brevets : `patent_search -> patent_info`
 
-Return a short cross-entity summary, not a deep report.
+Renvoie un court résumé transverse des entités, pas un rapport approfondi.
 
-## Free Skill Examples
+## Exemples du skill gratuit
 
-### 1. Paper triage
+### 1. Triage d'article
 
 ```bash
 curl -X GET \
@@ -253,7 +265,7 @@ curl -X GET \
   -H 'X-Platform: openclaw'
 ```
 
-Then enrich with `paper_info`:
+Puis enrichir avec `paper_info` :
 
 ```bash
 curl -X POST \
@@ -264,7 +276,7 @@ curl -X POST \
   -d '{"ids":["<PAPER_ID>"]}'
 ```
 
-### 2. Scholar identification
+### 2. Identification de chercheur
 
 ```bash
 curl -X POST \
@@ -275,7 +287,7 @@ curl -X POST \
   -d '{"name":"Yann LeCun","size":5}'
 ```
 
-### 3. Institution normalization
+### 3. Normalisation d'institution
 
 ```bash
 curl -X POST \
@@ -286,7 +298,7 @@ curl -X POST \
   -d '{"orgs":["MIT CSAIL"]}'
 ```
 
-### 4. Venue normalization and type check
+### 4. Normalisation de venue et vérification du type
 
 ```bash
 curl -X POST \
@@ -297,7 +309,7 @@ curl -X POST \
   -d '{"name":"tkde"}'
 ```
 
-### 5. Patent trend scan
+### 5. Balayage des tendances de brevets
 
 ```bash
 curl -X POST \
@@ -308,9 +320,9 @@ curl -X POST \
   -d '{"query":"quantum computing chip","page":0,"size":10}'
 ```
 
-## Output Pattern
+## Structure de sortie recommandée
 
-Prefer this structure:
+Privilégiez cette structure :
 
 ```markdown
 ## Free-tier result
@@ -326,38 +338,38 @@ Prefer this structure:
 - Upgrade to paid API only if you need: ...
 ```
 
-## Paid Upgrade Boundary
+## Frontière de montée en gamme payante
 
-Recommend upgrading only when the user needs one of these:
+Recommandez la montée en gamme uniquement quand l'utilisateur a besoin de l'un de ces éléments :
 
-- full abstract or full paper metadata
-- multi-condition or semantic paper search
-- citation relationships
-- full scholar profile, works, patents, or projects
-- institution scholars, papers, patents, or rich profiles
-- venue paper lists by year
-- full patent details such as IPC/CPC, assignee, description
+- résumé complet ou métadonnées complètes d'article
+- recherche d'articles multi-critères ou sémantique
+- relations de citation
+- profil complet de chercheur, travaux, brevets ou projets
+- chercheurs, articles, brevets ou profils riches d'une institution
+- listes d'articles d'une venue par année
+- détails complets de brevets tels que IPC/CPC, déposant, description
 
-Suggested paid handoff:
+Passages payants suggérés :
 
-- deeper paper analysis: `paper_search_pro`, `paper_detail`, `paper_relation`
-- deeper scholar analysis: `person/detail`, `person/figure`, `person/paper/relation`
-- deeper org analysis: `organization/detail`, `organization/person/relation`, `organization/paper/relation`
-- deeper venue analysis: `venue/detail`, `venue/paper/relation`
-- deeper patent analysis: `patent/detail`
+- analyse d'articles approfondie : `paper_search_pro`, `paper_detail`, `paper_relation`
+- analyse de chercheur approfondie : `person/detail`, `person/figure`, `person/paper/relation`
+- analyse d'institution approfondie : `organization/detail`, `organization/person/relation`, `organization/paper/relation`
+- analyse de venue approfondie : `venue/detail`, `venue/paper/relation`
+- analyse de brevets approfondie : `patent/detail`
 
-## Product Positioning
+## Positionnement produit
 
-This skill is intentionally positioned for:
+Ce skill est volontairement positionné pour :
 
-- first success
-- free discovery
-- candidate narrowing
-- entity normalization
-- upgrade qualification
+- la première réussite
+- la découverte gratuite
+- la restriction des candidats
+- la normalisation d'entités
+- la qualification vers la montée en gamme
 
-It should not replace the paid skill. It should create demand for it.
+Il ne doit pas remplacer le skill payant. Il doit en créer la demande.
 
-## Additional Reference
+## Référence complémentaire
 
-For endpoint parameters and fields, read [references/api-catalog.md](references/api-catalog.md).
+Pour les paramètres et champs des endpoints, lisez [references/api-catalog.md](references/api-catalog.md).

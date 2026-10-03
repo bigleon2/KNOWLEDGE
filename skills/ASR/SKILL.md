@@ -1,36 +1,42 @@
 ---
 name: ASR
-description: Implement speech-to-text (ASR/automatic speech recognition) capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to transcribe audio files, convert speech to text, build voice input features, or process audio recordings. Supports base64 encoded audio files and returns accurate text transcriptions.
+version: "1.0.0"
+category: "IA & Media"
+tags:
+  - ASR
+description: Implémente des capacités de reconnaissance vocale (ASR/speech-to-text) à l'aide du z-ai-web-dev-sdk. Utilisez ce skill lorsque l'utilisateur doit transcrire des fichiers audio, convertir de la parole en texte, créer des fonctionnalités de saisie vocale ou traiter des enregistrements audio. Prend en charge les fichiers audio encodés en base64 et renvoie des transcriptions textuelles précises.
+language: fr
 license: MIT
+
 ---
 
-# ASR (Speech to Text) Skill
+# Skill ASR (Speech to Text)
 
-This skill guides the implementation of speech-to-text (ASR) functionality using the z-ai-web-dev-sdk package, enabling accurate transcription of spoken audio into text.
+Ce skill guide l'implémentation de la reconnaissance vocale (ASR) à l'aide du package z-ai-web-dev-sdk, permettant de transcrire avec précision de l'audio parlé en texte.
 
-## Skills Path
+## Emplacement du skill
 
-**Skill Location**: `{project_path}/skills/ASR`
+**Emplacement du skill** : `{project_path}/skills/ASR`
 
-this skill is located at above path in your project.
+Ce skill se trouve à l'emplacement ci-dessus dans votre projet.
 
-**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/asr.ts` for a working example.
+**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/asr.ts` pour un exemple fonctionnel.
 
-## Overview
+## Vue d'ensemble
 
-Speech-to-Text (ASR - Automatic Speech Recognition) allows you to build applications that convert spoken language in audio files into written text, enabling voice-controlled interfaces, transcription services, and audio content analysis.
+La reconnaissance vocale (ASR - Automatic Speech Recognition) permet de créer des applications qui convertissent la langue parlée d'un fichier audio en texte écrit, ouvrant la voie à des interfaces contrôlées par la voix, des services de transcription et l'analyse de contenu audio.
 
-**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
+**IMPORTANT** : le z-ai-web-dev-sdk doit être utilisé exclusivement dans du code backend. Ne l'utilisez jamais dans du code côté client.
 
-## Prerequisites
+## Prérequis
 
-The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
+Le package z-ai-web-dev-sdk est déjà installé. Importez-le comme montré dans les exemples ci-dessous.
 
-## CLI Usage (For Simple Tasks)
+## Utilisation du CLI (pour les tâches simples)
 
-For simple audio transcription tasks, you can use the z-ai CLI instead of writing code. This is ideal for quick transcriptions, testing audio files, or batch processing.
+Pour des tâches simples de transcription audio, vous pouvez utiliser le CLI z-ai au lieu d'écrire du code. C'est idéal pour des transcriptions rapides, tester des fichiers audio ou du traitement par lots.
 
-### Basic Transcription from File
+### Transcription de base depuis un fichier
 
 ```bash
 # Transcribe an audio file
@@ -43,7 +49,7 @@ z-ai asr -f ./recording.mp3 -o transcript.json
 z-ai asr --file ./interview.wav --output result.json
 ```
 
-### Transcription from Base64
+### Transcription depuis du base64
 
 ```bash
 # Transcribe from base64 encoded audio
@@ -53,44 +59,44 @@ z-ai asr --base64 "UklGRiQAAABXQVZFZm10..." -o result.json
 z-ai asr -b "base64_encoded_audio_data" -o transcript.json
 ```
 
-### Streaming Output
+### Sortie en streaming
 
 ```bash
 # Stream transcription results
 z-ai asr -f ./audio.wav --stream
 ```
 
-### CLI Parameters
+### Paramètres du CLI
 
-- `--file, -f <path>`: **Required** (if not using --base64) - Audio file path
-- `--base64, -b <base64>`: **Required** (if not using --file) - Base64 encoded audio
-- `--output, -o <path>`: Optional - Output file path (JSON format)
-- `--stream`: Optional - Stream the transcription output
+- `--file, -f <path>` : **Obligatoire** (si `--base64` n'est pas utilisé) - chemin du fichier audio
+- `--base64, -b <base64>` : **Obligatoire** (si `--file` n'est pas utilisé) - audio encodé en base64
+- `--output, -o <path>` : Optionnel - chemin du fichier de sortie (format JSON)
+- `--stream` : Optionnel - streame la sortie de la transcription
 
-### Supported Audio Formats
+### Formats audio pris en charge
 
-The ASR service supports various audio formats including:
+Le service ASR prend en charge divers formats audio, notamment :
 - WAV (.wav)
 - MP3 (.mp3)
-- Other common audio formats
+- Autres formats audio courants
 
-### When to Use CLI vs SDK
+### Quand utiliser le CLI ou le SDK
 
-**Use CLI for:**
-- Quick audio file transcriptions
-- Testing audio recognition accuracy
-- Simple batch processing scripts
-- One-off transcription tasks
+**Utilisez le CLI pour :**
+- Des transcriptions rapides de fichiers audio
+- Tester la précision de la reconnaissance vocale
+- Des scripts simples de traitement par lots
+- Des tâches de transcription ponctuelles
 
-**Use SDK for:**
-- Real-time audio transcription in applications
-- Integration with recording systems
-- Custom audio processing workflows
-- Production applications with streaming audio
+**Utilisez le SDK pour :**
+- La transcription audio en temps réel dans des applications
+- L'intégration avec des systèmes d'enregistrement
+- Des workflows personnalisés de traitement audio
+- Des applications de production avec de l'audio en streaming
 
-## Basic ASR Implementation
+## Implémentation ASR de base
 
-### Simple Audio Transcription
+### Transcription audio simple
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -115,7 +121,7 @@ const transcription = await transcribeAudio('./audio.wav');
 console.log('Transcription:', transcription);
 ```
 
-### Transcribe Multiple Audio Files
+### Transcrire plusieurs fichiers audio
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -164,9 +170,9 @@ transcriptions.forEach(result => {
 });
 ```
 
-## Advanced Use Cases
+## Cas d'usage avancés
 
-### Audio File Processing with Metadata
+### Traitement de fichiers audio avec métadonnées
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -205,7 +211,7 @@ const result = await transcribeWithMetadata('./meeting_recording.wav');
 console.log('Transcription Details:', JSON.stringify(result, null, 2));
 ```
 
-### Real-time Audio Processing Service
+### Service de traitement audio en temps réel
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -276,7 +282,7 @@ const result2 = await asrService.transcribe('./audio.wav');
 console.log('Second call (cached):', result2);
 ```
 
-### Directory Transcription
+### Transcription d'un répertoire
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -349,9 +355,9 @@ console.log(`Successful: ${results.transcriptions.filter(t => t.success).length}
 console.log(`Failed: ${results.transcriptions.filter(t => !t.success).length}`);
 ```
 
-## Best Practices
+## Bonnes pratiques
 
-### 1. Audio Format Handling
+### 1. Gestion des formats audio
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -378,7 +384,7 @@ async function transcribeAnyFormat(audioFilePath) {
 }
 ```
 
-### 2. Error Handling
+### 2. Gestion des erreurs
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -429,7 +435,7 @@ async function safeTranscribe(audioFilePath) {
 }
 ```
 
-### 3. Post-Processing Transcriptions
+### 3. Post-traitement des transcriptions
 
 ```javascript
 function cleanTranscription(text) {
@@ -464,20 +470,20 @@ async function transcribeAndClean(audioFilePath) {
 }
 ```
 
-## Common Use Cases
+## Cas d'usage courants
 
-1. **Meeting Transcription**: Convert recorded meetings into searchable text
-2. **Interview Processing**: Transcribe interviews for analysis and documentation
-3. **Podcast Transcription**: Create text versions of podcast episodes
-4. **Voice Notes**: Convert voice memos to text for easier reference
-5. **Call Center Analytics**: Analyze customer service calls
-6. **Accessibility**: Provide text alternatives for audio content
-7. **Voice Commands**: Enable voice-controlled applications
-8. **Language Learning**: Transcribe pronunciation practice
+1. **Transcription de réunions** : convertir des réunions enregistrées en texte consultable
+2. **Traitement d'entretiens** : transcrire des entretiens pour analyse et documentation
+3. **Transcription de podcasts** : créer des versions textuelles des épisodes de podcast
+4. **Notes vocales** : convertir des mémos vocaux en texte pour s'y référer plus facilement
+5. **Analytique de centre d'appels** : analyser les appels du service client
+6. **Accessibilité** : fournir des alternatives textuelles au contenu audio
+7. **Commandes vocales** : activer des applications contrôlées à la voix
+8. **Apprentissage des langues** : transcrire des exercices de prononciation
 
-## Integration Examples
+## Exemples d'intégration
 
-### Express.js API Endpoint
+### Point d'accès API Express.js
 
 ```javascript
 import express from 'express';
@@ -535,46 +541,46 @@ initZAI().then(() => {
 });
 ```
 
-## Troubleshooting
+## Dépannage
 
-**Issue**: "SDK must be used in backend"
-- **Solution**: Ensure z-ai-web-dev-sdk is only imported in server-side code
+**Problème** : « le SDK doit être utilisé côté backend »
+- **Solution** : assurez-vous que z-ai-web-dev-sdk n'est importé que dans du code côté serveur
 
-**Issue**: Empty or incorrect transcription
-- **Solution**: Verify audio quality and format. Check if audio contains clear speech
+**Problème** : transcription vide ou incorrecte
+- **Solution** : vérifiez la qualité et le format de l'audio. Contrôlez que l'audio contient une parole claire
 
-**Issue**: Large file processing fails
-- **Solution**: Consider splitting large audio files into smaller segments
+**Problème** : échec du traitement des gros fichiers
+- **Solution** : envisagez de découper les fichiers audio volumineux en segments plus petits
 
-**Issue**: Slow transcription speed
-- **Solution**: Implement caching for repeated transcriptions, optimize file sizes
+**Problème** : vitesse de transcription lente
+- **Solution** : mettez en cache les transcriptions répétées, optimisez la taille des fichiers
 
-**Issue**: Memory errors with large files
-- **Solution**: Process files in chunks or increase Node.js memory limit
+**Problème** : erreurs de mémoire avec les gros fichiers
+- **Solution** : traitez les fichiers par morceaux ou augmentez la limite de mémoire de Node.js
 
-## Performance Tips
+## Conseils de performance
 
-1. **Reuse SDK Instance**: Create once, use multiple times
-2. **Implement Caching**: Cache transcriptions for duplicate files
-3. **Batch Processing**: Process multiple files efficiently with proper queuing
-4. **Audio Optimization**: Compress audio files before processing when possible
-5. **Async Operations**: Use Promise.all for parallel processing when appropriate
+1. **Réutilisez l'instance du SDK** : créez-la une fois, utilisez-la plusieurs fois
+2. **Implémentez un cache** : mettez en cache les transcriptions des fichiers en doublon
+3. **Traitement par lots** : traitez plusieurs fichiers efficacement avec une file d'attente appropriée
+4. **Optimisation audio** : compressez les fichiers audio avant traitement quand c'est possible
+5. **Opérations asynchrones** : utilisez Promise.all pour un traitement parallèle quand c'est approprié
 
-## Audio Quality Guidelines
+## Recommandations de qualité audio
 
-For best transcription results:
-- **Sample Rate**: 16kHz or higher
-- **Format**: WAV, MP3, or M4A recommended
-- **Noise Level**: Minimize background noise
-- **Speech Clarity**: Clear pronunciation and normal speaking pace
-- **File Size**: Under 100MB recommended for individual files
+Pour de meilleurs résultats de transcription :
+- **Fréquence d'échantillonnage** : 16 kHz ou plus
+- **Format** : WAV, MP3 ou M4A recommandés
+- **Niveau de bruit** : minimisez le bruit de fond
+- **Clarté de la parole** : prononciation claire et débit normal
+- **Taille de fichier** : moins de 100 Mo recommandé pour un fichier individuel
 
-## Remember
+## À retenir
 
-- Always use z-ai-web-dev-sdk in backend code only
-- The SDK is already installed - import as shown in examples
-- Audio files must be converted to base64 before processing
-- Implement proper error handling for production applications
-- Consider audio quality for best transcription accuracy
-- Clean up temporary files after processing
-- Cache results for frequently transcribed files
+- Utilisez toujours z-ai-web-dev-sdk uniquement dans du code backend
+- Le SDK est déjà installé - importez-le comme montré dans les exemples
+- Les fichiers audio doivent être convertis en base64 avant traitement
+- Implémentez une gestion d'erreurs appropriée pour les applications de production
+- Tenez compte de la qualité audio pour une meilleure précision de transcription
+- Nettoyez les fichiers temporaires après traitement
+- Mettez en cache les résultats pour les fichiers fréquemment transcrits
