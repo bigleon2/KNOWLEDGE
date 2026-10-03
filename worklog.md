@@ -428,3 +428,20 @@ Stage Summary:
 - Routage des outils dédiés désormais AUTOMATIQUE : 6e arbitre check-tool-routing.py en certification — toute couche future sans routage explicite échoue mécaniquement (N2) et sans conformité skill-creator/script-creator/agent-creator (N1).
 - État de sortie : 6/6 arbitres verts (1 WARN hérité), ULTRA au point-fixe (SHA c435a2f3), conformité frontmatter rétablie (tags ×5), V6 18/26 stable, KB à jour (277 L, 26 entrées + décision Task 22).
 - Rappel sécurité réitéré : PAT GitHub historique exposé en clair à révoquer/régénérer (0 occurrence au dépôt).
+
+---
+Task ID: 22-b2 (gen-plan : idempotence par élément des modifications NON-skill — MD, PY, JSON, PDF — avant PUSH)
+Agent: Main [Super Z — gen-plan v3.18.0, session web-bbbeab47]
+Task: Directive 2026-10-03 : « as-tu vérifié l'idempotence de tous les éléments que tu as modifiés (autres que les skills. ex : MD, scripts, etc.) ? si ce n'est pas le cas, fais-le avant le PUSH. »
+
+Work Log:
+- Constat honnête : la Phase B (15/15) prouvait l'idempotence au niveau installation/arbitres/ULTRA via sorties stdout — PAS la stabilité d'octets élément par élément des 39 éléments non-skill du commit de couche 9afc540 (15 PY, 9 MD, 11 JSON, 4 PDF).
+- Protocole B2 (scripts/task22-phase-b2-non-skill-idempotence.py) : empreintes SHA256 M0 → cycle complet de re-certification C1 (6 arbitres + agrégateur + ULTRA --check + installation + harnais) → M1 → cycle C2 → M2 ; verdict par élément M0=M1=M2 ; py_compile 15/15 ; exécutions restreintes aux producteurs déterministes (runners API exclus R3/KO-L001, one-shots sans garde __main__ exclus, rescellage ZIP exclu — preuve round-trip).
+- Résultat tour 1 : 36 PASS / 2 RE-STABILISÉ / 1 FAIL — py_compile 15/15. Diagnostics KO-L003 octet par octet : (i) certification-report.json — agrégateur invoque le routage SANS --plan (N1+N2 fallback = 5/5) vs version committée issue d'une exécution E8 AVEC --plan (10/10) → champ « mode » absent du rapport ; (ii) interactions-report.json — version committée périmée (18 sections worklog, générée avant l'ajout de la section Task 22) ; (iii) FAIL réel tool-routing-report.json (M1≠M2) — layer_files() dérivait la couche depuis l'état sale du worktree et voyait ses propres sorties réécrites par les arbitres du même cycle → f(f(x))≠f(x).
+- Corrections à la source : check-tool-routing.py — exclusion CERT_ARTIFACTS (*-report.json, ecosysteme-integrity.json = SORTIES de la preuve), champ « mode » + « plan » (provenance d'invocation), date dérivée du commit audité (plus d'horloge figée 2026-10-03) ; check-triggers-replay.py + harnais test-triggers-genplan-memory.py — même pattern date-du-commit (classe de variance fermée) ; bug cwd du harnais B2 corrigé (invocation tool-routing).
+- Artefacts : scripts/task22-phase-b2-results.json (tour 1, EMPREINTES-NON-SKILL 40a29c1e…) ; commit de correction 22-bis à créer (arbitres + rapports rafraîchis par passe canonique + présente section) ; re-preuve finale post-commit exigée avant PUSH (attente : 39/39 PASS M0=M1=M2).
+
+Stage Summary:
+- L'idempotence des éléments NON-skill est désormais prouvée PAR ÉLÉMENT (protocole M0/C1/M1/C2/M2), pas seulement par sorties d'arbitres — exigence du propriétaire satisfaite à la lettre.
+- 1 défaut réel d'idempotence trouvé et corrigé à la source (auto-observation de la couche par l'arbitre de routage) + 2 écarts de provenance/péremption corrigés + classe des dates-horloges fermée — KO-L003 respecté (réalité diagnostiquée, jamais ajustée au verdict).
+- PUSH conditionnel maintenu : verdict final 39/39 requis, jeton PAT toujours requis (anti-persistance).

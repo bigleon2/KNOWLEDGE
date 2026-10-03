@@ -50,16 +50,25 @@ def sh(cmd):
     p = subprocess.run(cmd, cwd=BASE, shell=True, capture_output=True, text=True, timeout=120)
     return p.stdout + p.stderr
 
+CERT_ARTIFACTS = re.compile(r"^scripts/([^/]+-report\.json|ecosysteme-integrity\.json)$")
+
+
 def layer_files():
     """Couche courante (D001) : fichiers CONTENU-modifiés vs HEAD (hors .next, hors
-    drift de mode 100644->100755 S4) + non suivis. Invariant dynamique KO-L003."""
+    drift de mode 100644->100755 S4) + non suivis. Invariant dynamique KO-L003.
+
+    Exclusion B2 (Task 22, preuve d'idempotence par élément) : les rapports JSON
+    que les arbitres réécrivent PENDANT la certification (*-report.json,
+    ecosysteme-integrity.json) sont des SORTIES de la preuve, pas des entrées de
+    la couche — sans exclusion, l'entrée de f dépend de sa propre sortie et
+    f(f(x)) != f(x) (défaut constaté M1 != M2, corrigé à la source)."""
     out = sh("git diff --numstat HEAD -- ':(exclude).next'")
     files = {l.split("\t")[2].strip() for l in out.splitlines()
              if len(l.split("\t")) >= 3
              and l.split("\t")[0] not in ("0", "-")
              and l.split("\t")[1] not in ("-",)}
     files |= {l.strip() for l in sh("git ls-files --others --exclude-standard").splitlines() if l.strip()}
-    return sorted(files)
+    return sorted(f for f in files if not CERT_ARTIFACTS.match(f))
 
 def classify(rel):
     if rel == "skills/KNOWLEDGE.md":
@@ -165,7 +174,13 @@ def main():
     n2_fails = [t for t, v in n2.items() if not v["trace"]]
 
     verdict = "PASS" if not n1_fails and not n2_fails else "FAIL"
-    rep = {"date": "2026-10-03", "task": "Task 22 — arbitre de routage (D006)",
+    # Provenance B2 (Task 22) : le rapport enregistre SON contexte d'invocation —
+    # un rapport N1-seul n'est pas comparable à un rapport N1+N2(plan) sans ce champ.
+    mode = ("N1+N2 (plan explicite)" if plan_arg else "N1+N2 (fallback glob)")
+    date_commit = sh("git log -1 --format=%cd --date=short").strip() or "2026-10-03"
+    rep = {"date": date_commit, "mode": mode,
+           "plan": plan_arg or None,
+           "task": "Task 22 — arbitre de routage (D006)",
            "couche": {"n_fichiers": len(layer), "par_type": {t: len(f) for t, f in typed.items()}},
            "N1_mecanique": n1, "N1_fails": [(t, f) for t, f in n1_fails],
            "N2_normatif": n2, "N2_manquants": n2_fails, "verdict": verdict}

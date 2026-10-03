@@ -55,8 +55,8 @@
       "cle": "routage",
       "echecs": 0,
       "nom": "check-tool-routing (Task 22, D006)",
-      "pass": 10,
-      "total": 10,
+      "pass": 6,
+      "total": 6,
       "verdict": "PASS",
       "vert": true
     }

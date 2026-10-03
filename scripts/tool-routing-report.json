@@ -1,41 +1,24 @@
 {
   "date": "2026-10-03",
+  "mode": "N1+N2 (fallback glob)",
+  "plan": null,
   "task": "Task 22 — arbitre de routage (D006)",
   "couche": {
-    "n_fichiers": 58,
+    "n_fichiers": 2,
     "par_type": {
-      "script": 5,
-      "infrastructure": 10,
-      "agent/PM": 5,
-      "registre KB": 1,
-      "skill": 26
+      "script": 2
     }
   },
   "N1_mecanique": {
-    "agent/PM": {
-      "n": 5,
-      "ok": true,
-      "detail": "traçabilité de version présente"
-    },
-    "infrastructure": {
-      "n": 10,
+    "script": {
+      "n": 2,
       "ok": true,
       "detail": "compilable + docstring (N3)"
     },
-    "registre KB": {
+    "registre KB (état)": {
       "n": 1,
       "ok": true,
       "detail": "26 entrées versionnées parsables (>=26 attendues)"
-    },
-    "script": {
-      "n": 5,
-      "ok": true,
-      "detail": "compilable + docstring (N3)"
-    },
-    "skill": {
-      "n": 26,
-      "ok": true,
-      "detail": "frontmatter skill-creator §2 conforme"
     }
   },
   "N1_fails": [],
@@ -54,10 +37,6 @@
     },
     "infrastructure": {
       "dedie": "script-mon-ecosysteme-infrastructure",
-      "trace": true
-    },
-    "registre KB": {
-      "dedie": "skills-inventory",
       "trace": true
     }
   },

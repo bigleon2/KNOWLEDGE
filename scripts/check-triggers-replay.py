@@ -150,8 +150,18 @@ def main():
         except Exception as e:  # rapport illisible → comparaison annulée, jamais masquée
             comparison = {"erreur": f"rapport précédent illisible : {e}"}
 
+    # Date du commit audité (B2 Task 22) : déterministe par commit — plus d'horloge murale,
+    # sinon le rapport change entre deux re-exécutions le lendemain (f(f(x)) != f(x)).
+    try:
+        import subprocess as _sp
+        _git_date = (_sp.run(["git", "-C", "/home/z/my-project/ecosystem", "log", "-1",
+                              "--format=%cd", "--date=short"],
+                             capture_output=True, text=True, timeout=10).stdout.strip()
+                     or "2026-10-03")
+    except Exception:
+        _git_date = "2026-10-03"
     report = {
-        "date": "2026-10-03",
+        "date": _git_date,
         "task": "Task 21 — campagne P0-P6, arbitre V6 (recommandation R1 Task 19)",
         "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
         "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
