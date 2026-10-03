@@ -1,5 +1,5 @@
 ```markdown
-# Profils ressource — gen-plan v3.7.0
+# Profils ressource — gen-plan v3.18.0
 
 ## NORMAL
 

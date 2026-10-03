@@ -1,5 +1,5 @@
 ---
-name: Version Management Skill
+name: version-management
 version: 1.0.0
 category: metier
 language: zh
@@ -10,7 +10,7 @@ tags:
 description: 独立通用 Skill：管理前端项目全生命周期。只要任务**可能**写出 .html/.jsx/.tsx/.vue 入口文件，就必须在写出第一个文件**之前**读取并遵循本 Skill（用于确定落盘路径与项目目录），而不是产出之后才补救；即使用户没有提到"项目"或"版本"也要使用。同时响应用户的版本相关操作（查看历史、恢复版本、切换项目等）。
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -593,3 +593,8 @@ git tag $NEXT_TAG
 - **用户预览时：** 后端在云机解析绝对路径并替换为 OSS 链接；Agent **不要**在源码中写 OSS URL
 - **Git 追踪范围：** 代码文件 + `assets/` 资源 + `export/` 产物均进 Git；`meta.json` 和 `style-samples*.html` 被 `.gitignore` 排除
 - **已知限制：** 多文件项目的 JS/CSS 预览、历史版本预览与最新不一致——见 §0.1，本期不修复
+
+---
+
+## Baseline A2 — statut de mesure
+> **Baseline A2 (Task 21 P3/F3, 2026-10-03)** : MESURÉE 2 voies (voie mécanique SHARED §7 v2 + voie L 3 runs réels) — score baseline 3/8 (nulls : 2) ; détail par cas : `scripts/baseline-a2-all-report.json` ; cas structurels consignés au registre KB (décision Task 21) ; re-mesure idempotente `--skip-done` armée pour les nulls 429 restants.

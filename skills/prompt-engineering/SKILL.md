@@ -1,18 +1,17 @@
 ---
 name: prompt-engineering
-version: 2.1.0
+version: 2.2.0
 category: ecosystem
 language: fr
 tags:
   - prompt-engineering
   - optimisation
   - evaluation
-  - iteration
   - ecosystem
 description: >
   Skill d'optimisation fine des prompts complexes : rédaction, restructuration
-  (restructure, restructurer), évaluation, itération et validation des
-  déclencheurs (trigger_evals) des artefacts de prompts (PMs, SKILL.md, évals).
+  (restructure, restructurer), évaluation et validation des
+  déclencheurs officiels des artefacts de prompts (PMs, SKILL.md).
   Spécialise la méthode prompt-engineering (méthode-mère : gen-plan ; source de vérité : SHARED §7)
   ; matérialisé le 2026-09-06 (recommandation de session, §5.2).
 dependencies:
@@ -21,7 +20,7 @@ dependencies:
     used_at: "Consultation du contexte écosystème (planification E1-E8, méthode-mère §1.9)"
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)

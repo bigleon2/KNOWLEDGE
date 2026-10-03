@@ -1,0 +1,415 @@
+{
+  "date": "2026-10-03",
+  "task": "Task 21 — campagne P5 : décisions d'équipement V0 consignées (gate P5)",
+  "regle": "P1 plateforme / P2 métier / NON-APPLICABLE collecteurs (motifs en ligne)",
+  "n_decisions": 67,
+  "compte": {
+    "ÉQUIPER-P1": 23,
+    "NON-APPLICABLE": 15,
+    "ÉQUIPER-P2": 29
+  },
+  "decisions": [
+    {
+      "skill": "ASR",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "LLM",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "TTS",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "VLM",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "agent-browser",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "ai-news-collectors",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "aminer-academic-search",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "aminer-daily-paper",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "aminer-deep-search",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "aminer-free-academic",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "anti-pua",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "auto-target-tracker",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "blog-writer",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "charts",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "cheat-sheet",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "coding-agent",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "content-strategy",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "contentanalysis",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "design",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "docx",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "dream-interpreter",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "experiment-suite",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "finance",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "fullstack-dev",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "gaokao-collect-student-info",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "gaokao-fetch-volunteers",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "gaokao-generate-report",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "gaokao-recommend-majors",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "gaokao-recommend-schools",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "get-fortune-analysis",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "gift-evaluator",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "image-edit",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "image-generation",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "image-search",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "image-understand",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "interview-designer",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "interview-prep",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "jd-resume-tailor",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "job-intent-tracker",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "literature-survey",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "market-research-reports",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "marketing-mode",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "mindfulness-meditation",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "multi-search-engine",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "pdf",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "podcast-generate",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "pptx",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "qingyan-research",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "quiz-html",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "quiz-mastery",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "research-explorer",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "resume-builder",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "seo-content-writer",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "skill-finder-cn",
+      "decision": "NON-APPLICABLE",
+      "motif": "collecteur/pipeline épinglé à une source — déclenchement par orchestration gen-plan E5",
+      "skil_md_present": true
+    },
+    {
+      "skill": "stock-analysis-skill",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "storyboard-manager",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "study-buddy",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "task-review",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "ui-ux-pro-max",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "video-generation",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "video-understand",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "visual-design-foundations",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "web-reader",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "web-search",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    },
+    {
+      "skill": "web-shader-extractor",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "writing-plans",
+      "decision": "ÉQUIPER-P2",
+      "motif": "compétence métier à vocabulaire discriminant propre — normalisation",
+      "skil_md_present": true
+    },
+    {
+      "skill": "xlsx",
+      "decision": "ÉQUIPER-P1",
+      "motif": "capacité plateforme transverse — collisions de routage probables",
+      "skil_md_present": true
+    }
+  ]
+}

@@ -67,6 +67,20 @@ def premier_existant(candidats):
 MODE_ENV = "--environnement" in sys.argv
 MODE_VERBOSE = "--verbose" in sys.argv
 
+
+def dernier_rapport_correct_work():
+    """Dernier rapport correct-work PROJET (invariant dynamique KO-L003, Task 22) :
+    l'arbitre verify-correct-work.py exige un chemin de rapport — l'agrégateur
+    dérive le plus récent du download/ réel au lieu d'un chemin figé."""
+    cands = sorted((BASE_DIR / "download").glob("rapport-correct-work-*.md"))
+    return str(cands[-1]) if cands else None
+
+
+_CW = [sys.executable, str(BASE_DIR / "skills" / "correct-work" / "scripts" / "verify-correct-work.py")]
+_DERNIER_CW = dernier_rapport_correct_work()
+if _DERNIER_CW:
+    _CW.append(_DERNIER_CW)
+
 ARBITRES = [
     ("verify-cross (axes 1-6)",
      [sys.executable, str(SCRIPTS / "verify-cross.py")],
@@ -75,7 +89,7 @@ ARBITRES = [
      [sys.executable, str(SCRIPTS / "verify-cross.py"), "--mode", "correct-work"],
      "cross_correct_work"),
     ("verify-correct-work v2.5.1",
-     [sys.executable, str(BASE_DIR / "skills" / "correct-work" / "scripts" / "verify-correct-work.py")],
+     _CW,
      "correct_work"),
     ("check-ecosysteme-integrity",
      [sys.executable, str(SCRIPTS / "check-ecosysteme-integrity.py")],
@@ -83,6 +97,9 @@ ARBITRES = [
     ("test-coherence-interactions (§11b)",
      [sys.executable, str(SCRIPTS / "test-coherence-interactions.py")],
      "interactions"),
+    ("check-tool-routing (Task 22, D006)",
+     [sys.executable, str(SCRIPTS / "check-tool-routing.py")],
+     "routage"),
 ]
 
 
@@ -134,6 +151,14 @@ def extraire(cle, sortie):
         pass_, total = int(p[0]), int(p[1])
         echecs = int(f[0]) if f else total - pass_
         return pass_, total, echecs, 0, (v.strip() if v else "ABSENT")
+
+    if cle == "routage":
+        p = len(re.findall(r"\[N[12] PASS\]", sortie))
+        f = len(re.findall(r"\[N[12] FAIL\]", sortie))
+        v = dernier(r"VERDICT\s*:\s*(.+)", sortie)
+        if p == 0 and f == 0:
+            return 0, 0, 1, 0, "NON PARSÉ"
+        return p, p + f, f, 0, (v.strip() if v else "ABSENT")
 
     if cle == "integrite":
         m = dernier(r"(\d+)/(\d+)\s*PASS,\s*(\d+)\s*FAIL", sortie)

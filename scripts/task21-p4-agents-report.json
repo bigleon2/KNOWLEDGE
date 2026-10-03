@@ -1,0 +1,25 @@
+{
+  "edits": [
+    "A2 KB gen-plan « Dépend de » fleet-engineering : libellé détention orchestrée (0)",
+    "A2 KB gen-plan « Dépend de » spec-driven-development : libellé détention orchestrée (0)",
+    "A2 KB gen-plan « Dépend de » memory-engineering : libellé détention orchestrée (0)",
+    "A3 : 0 SKILL.md en-têtes §0 synchronisés v1.6.4",
+    "A3 PM vivant synchronisé : PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md",
+    "A3 PM vivant synchronisé : PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
+    "A4 profils-ressource : « # Profils ressource — gen-plan v3\\.7\\.0… » appliqué"
+  ],
+  "notes": [
+    "A1 memory-engineering : motif introuvable « - gen-plan v3\\.15\\.0 §1\\.9 — routage autonome »",
+    "A2 fleet-engineering : motif introuvable « source\\s+de\\s+vérité\\s*:\\s*SHARED\\s+§7 »",
+    "A2 spec-driven-development : motif introuvable « source\\s+de\\s+vérité\\s*:\\s*SHARED\\s+§7 »",
+    "A2 memory-engineering : motif introuvable « source\\s+de\\s+vérité\\s*:\\s*SHARED\\s+§7 »",
+    "A7 fleet-engineering : motif introuvable « gen-plan \\(§1\\.9 »",
+    "A7 fleet-engineering : motif introuvable « `gen-plan` §1\\.9 »",
+    "A7 spec-driven-development : motif introuvable « gen-plan \\(§1\\.9 »",
+    "A7 spec-driven-development : motif introuvable « `gen-plan` §1\\.9 »",
+    "A7 memory-engineering : motif introuvable « gen-plan \\(§1\\.9 »",
+    "A7 memory-engineering : motif introuvable « `gen-plan` §1\\.9 »",
+    "A6 clone-chat : motif introuvable « ## §0 — RÈGLE ZÉRO \\(résumé de SHARED §0\\) »",
+    "A6 clone-chat : motif introuvable « mention 80 skills »"
+  ]
+}

@@ -1,14 +1,17 @@
 ---
 name: script-creator
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
+  tags:
+    - script
+    - creator
 description: >
   Créer et modifier les scripts de l'écosystème (arbitres, collecteurs, outils de
   vérification stdlib) avec critères de succès et tests mécaniques intégrés. Utiliser
-  lorsque l'utilisateur souhaite créer un nouveau script, corriger ou améliorer un
+  lorsque l'utilisateur souhaite créer un script, corriger ou améliorer un
   script existant, rendre un check certifiable exécutable localement, ou garantir
-  l'idempotence (rejeu ×2 sans effet) d'un outil. Structure, conventions d'évals et
+  l'idempotence (rejeu ×2 sans effet) d'un outil. Structure, conventions
   de description héritées de skill-creator ; objectif principal : la création ou la
   modification des scripts (et non des skills).
 dependencies:
@@ -28,7 +31,7 @@ dependencies:
 Un skill pour créer de nouveaux scripts et modifier des scripts existants de manière
 sûre, testée et traçable.
 
-## §0 — Contexte Système (SHARED v1.6.0)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables)

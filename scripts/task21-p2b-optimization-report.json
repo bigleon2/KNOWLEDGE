@@ -1,0 +1,97 @@
+{
+ "date": "2026-10-03",
+ "task": "Task 21 — F1 (finir P2) : Description Optimization pass 2",
+ "protocole": "A10/A14 (R2), validation locale zéro-API, contrôles négatifs préservés, KO-L003",
+ "skills": {
+  "correct-work": {
+   "applied": [],
+   "already": [
+    "couplage gen-plan OBLIGATOIRE"
+   ],
+   "note": "PM-couplé (v2.7.0) — révision documentaire sans bump (précédent pass 1)",
+   "post": "7/7",
+   "fails_post": []
+  },
+  "prompt-engineering": {
+   "applied": [
+    "évaluation, itération et validation des\n  déclencheurs (trigger_evals)",
+    "version:2.1.0→2.2.0"
+   ],
+   "already": [
+    "(PMs, SKILL.md, évals)",
+    "tag:iteration"
+   ],
+   "note": "FP2 « à partir de ce prompt » = radical du NOM (structurel, consigné)",
+   "post": "6/7",
+   "fails_post": [
+    {
+     "query": "Crée carrément un nouveau skill à partir de ce prompt.",
+     "expected": false,
+     "hits": [
+      "prompt"
+     ]
+    }
+   ]
+  },
+  "script-creator": {
+   "applied": [
+    "conventions d'évals et\n  de description héritées",
+    "version:1.0.0→1.1.0"
+   ],
+   "already": [
+    "souhaite créer un nouveau script,"
+   ],
+   "note": "",
+   "post": "7/7",
+   "fails_post": []
+  }
+ },
+ "structural_cases_consigned": [
+  {
+   "skill": "agent-creator",
+   "query": "Automatise ce workflow avec Zapier plutôt qu'avec un agent.",
+   "radical": "agent (nom)",
+   "voie_l": "NON×3 (ratio 0.0) — baseline P3 19:41"
+  },
+  {
+   "skill": "audio-metadata",
+   "query": "Transcris le contenu parlé de ce fichier audio.",
+   "radical": "audio (nom)",
+   "voie_l": "NON×3 (ratio 0.0) — baseline P3 19:41"
+  },
+  {
+   "skill": "pdf-llm",
+   "query": "3 cas « rapport/génère/fusionne PDF » (génération ≠ extraction)",
+   "radical": "pdf (nom)",
+   "voie_l": "NON (0.0 / 0.0 / 0.333<0.5) — baseline P3 19:41"
+  },
+  {
+   "skill": "prompt-engineering",
+   "query": "Crée carrément un nouveau skill à partir de ce prompt.",
+   "radical": "prompt (nom)",
+   "voie_l": "à compléter F3 (P3 : 1 NON, 2 nulls 429)"
+  },
+  {
+   "skill": "script-mon-ecosysteme-infrastructure",
+   "query": "Lance l'installation complète de l'écosystème sur ce profil.",
+   "radical": "ecosystem (nom)",
+   "voie_l": "cas ambigu : L déclenche aussi (0.667) — révision du cas au propriétaire"
+  },
+  {
+   "skill": "script-reviewer",
+   "query": "Crée un nouveau script qui compte les entrées de la KB.",
+   "radical": "script (nom)",
+   "voie_l": "à mesurer F3"
+  },
+  {
+   "skill": "skills-inventory",
+   "query": "2 cas « cherche sur le hub / installe » (inventaire ≠ installation)",
+   "radical": "skill (nom)",
+   "voie_l": "NON×3 ×2 (0.0) — baseline P3 19:41"
+  }
+ ],
+ "c006": {
+  "skill": "version-management",
+  "decision": "(b) voie L seule assumée et consignée — voie M structurellement aveugle au zh (stemmer français) ; voie L réelle : positifs OUI 3/3, négatifs 0.0 (P3) ; réversible vers (a) sur directive"
+ }
+}

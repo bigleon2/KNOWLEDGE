@@ -1,6 +1,6 @@
 ---
 name: autonomous-agent
-version: 1.0.0
+version: "1.1.0"
 category: ecosystem
 language: fr
 tags:
@@ -14,6 +14,7 @@ description: >
   Agent autonome avec mémoire interne à deux niveaux (État Court + État Long).
   5 modules internes, 4 modes, pipeline 8 étapes (A-H), format .agent,
   intégration multi-LLM et orchestration multi-agents.
+  Exécution autonome d'opérations complexes, persistance de l'état entre les sessions, traitement de requêtes de bout en bout, simulation de comportement sur des cas d'usage.
 dependencies:
   - skill: gen-plan
     version: ">=3.6.0"
@@ -29,7 +30,7 @@ dependencies:
 
 # AUTONOMOUS-AGENT v1.0.0
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)

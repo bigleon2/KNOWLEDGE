@@ -11,11 +11,11 @@ tags:
   - retrieval
   - contexte
 description: >-
- Skill discipline memory engineering : mémoire des agents — État Court/État Long, écriture sélective, budget d'attention fini, compaction paramétrable long-horizon, compaction de sessions longues avec ancres de reprise mécanique, mémoire externe par retrieval (IR/RAG) — récupération de l'information par retrieval ancré dans le registre versionné, sans hallucination, isolation des contextes : savoir isoler les contextes par tâche (prompts auto-contenus, pas de fuite inter-tâches). Spécialise la discipline memory engineering (source de vérité : SHARED §7). Opérationnalisation 2026 : AgeMem (arXiv 2026, 110+ citations), Memory in the Age of AI Agents (survey), checkpointing LangGraph/Redis. Fondements documentés : references/fondements-academiques.md.
+ Skill discipline memory engineering : mémoire des agents — État Court/État Long, écriture sélective, budget d'attention fini, compaction paramétrable long-horizon, compaction de sessions longues avec ancres de reprise mécanique, mémoire externe par retrieval (IR/RAG) — récupération de l'information par retrieval ancré dans le registre versionné, sans hallucination, isolation des contextes : savoir isoler les contextes par tâche (prompts auto-contenus, pas de fuite inter-tâches). Spécialise la discipline memory engineering (registre décentralisé : §8 local + registre KB). Opérationnalisation 2026 : AgeMem (arXiv 2026, 110+ citations), Memory in the Age of AI Agents (survey), checkpointing LangGraph/Redis. Fondements documentés : references/fondements-academiques.md.
 dependencies: []
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -31,7 +31,7 @@ dependencies: []
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
 ### §1.1 Mission
-Ingénierer la mémoire des agents plutôt que la subir : décider CE QUI est écrit (sélectivement), où (État Long versionné : worklog, KB, answer key, registres), comment c'est compacté (compaction paramétrable pour les sessions longues), ce qui est isolé (cloisonnement des contextes par tâche/agent) et comment c'est récupéré (retrieval par ancrage, anti-hallucination). Le budget d'attention est FINI : le plus petit ensemble de tokens à fort signal gagne, jamais « tout stocker ». Détenteur principal : gen-plan (§1.9) — qui impose État Long = plan + worklog + KB à toute exécution longue.
+Ingénierer la mémoire des agents plutôt que la subir : décider CE QUI est écrit (sélectivement), où (État Long versionné : worklog, KB, answer key, registres), comment c'est compacté (compaction paramétrable pour les sessions longues), ce qui est isolé (cloisonnement des contextes par tâche/agent) et comment c'est récupéré (retrieval par ancrage, anti-hallucination). Le budget d'attention est FINI : le plus petit ensemble de tokens à fort signal gagne, jamais « tout stocker ». Détenteur principal : gen-plan (PM §1.9) — qui impose État Long = plan + worklog + KB à toute exécution longue.
 
 ### §1.2 Modes
 - **M1 ÉCRIRE (write)** — append-only, daté, traçable : worklog (sections Task), KB (calibrations), answer key (décisions). Écrire est une décision d'ingénierie : une information non réutilisable ne mérite pas l'État Long.
@@ -69,7 +69,7 @@ Recherches N31/N34 vérifiées (preuves `tmp/n31-recherche/`) : **AgeMem** (arXi
 Répliques de l'État Long : worklog (unique), KB (unique), answer key (unique), plan (unique) — les « copies » (miroir prompts-maîtres, canal download, archive) sont des répliques BYTE-IDENTIQUES vérifiées, pas des variantes. Toute divergence clone↔original est un écart-attendu documenté (B9/D016) ou un drift à corriger.
 
 ## §3 — RELATIONS (extrait de SHARED §3.1)
-- `gen-plan` §1.9 — détenteur principal : impose l'État Long aux exécutions longues (E-série).
+- `gen-plan` PM §1.9 — détenteur principal : impose l'État Long aux exécutions longues (E-série).
 - `context-engineering` — le frère amont : ce que la mémoire retient, le contexte l'éclaire (budget partagé).
 - `graph-engineering` — la mémoire relationnelle : nœuds/arêtes versionnés, requêtes ancrées.
 - `loop-engineering` — les itérations longues appellent compaction + reprise mécanique.
@@ -82,14 +82,14 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 `evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs) ; déclenchement sur les demandes mémoire/état/compaction/reprise ; seuil 0.5 (confirm 3 runs armé — QUOTA_OK). Baseline A2 : MESURÉE 4/7 puis **7/7 POST-OPTIMISATION** (Task 18, 2026-10-03 — voie mécanique SHARED §7 v2 : 3 cas positifs sous le seuil en A2 → dérive établie → Description Optimization appliquée v1.1.0 (protocole A10/A14) ; re-mesure complète post-optimisation au QUOTA_OK (fenêtre 30 min, directive) : **7/7 sur les DEUX voies, 21/21 votes LLM réels zéro null, ratios 1.0×5 positifs / 0.0×2 contrôles, zéro dérive, Description Optimization requise : NON** ; rapports `download/rapport-baseline-a2-memory-engineering.md`, JSON `scripts/baseline-a2-memory-report.json`).
 
 ## §6 — TRAÇABILITÉ
-- v1.1.0 (Task 18, 2026-10-03, session web-bbbeab47) : Description Optimization (protocole A10/A14 — dérive A2 établie sur 3 cas positifs de la voie mécanique) — description frontmatter étendue des radicaux discriminants (compaction de sessions longues/ancres de reprise ; isoler les contextes par tâche/prompts auto-contenus/fuite ; récupération de l'information/registre versionné/sans hallucination) ; contrôles négatifs préservés (graphe 1 radical, flotte inchangée) ; v1.0.0 (N34, 2026-09-21, session B12-r56) : matérialisation de la discipline approuvée n°54 (proposition N31 — AgeMem 110+ citations) ; sources N31 ; intégration gen-plan v3.15.0 §1.9 ; baseline en attente QUOTA (D017).
+- v1.1.0 (Task 18, 2026-10-03, session web-bbbeab47) : Description Optimization (protocole A10/A14 — dérive A2 établie sur 3 cas positifs de la voie mécanique) — description frontmatter étendue des radicaux discriminants (compaction de sessions longues/ancres de reprise ; isoler les contextes par tâche/prompts auto-contenus/fuite ; récupération de l'information/registre versionné/sans hallucination) ; contrôles négatifs préservés (graphe 1 radical, flotte inchangée) ; v1.0.0 (N34, 2026-09-21, session B12-r56) : matérialisation de la discipline approuvée n°54 (proposition N31 — AgeMem 110+ citations) ; sources N31 ; intégration gen-plan §1.9 (version d'alors v3.15.0 — PM courant : v3.18.0) ; baseline MESURÉE 7/7 les 2 voies (Task 18-b — 21/21 votes réels).
 
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.15.0 §1.9 — routage autonome ; worklog.md — État Long opérant de la session.
+- gen-plan v3.18.0 §1.9 (PM) / §1.6 (SKILL.md) — routage autonome ; worklog.md — État Long opérant de la session.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |
 |------------|--------------------|------------------|
-| memory engineering | gen-plan (§1.9 — État Long obligatoire) | clone-chat (captation), correct-work (reprise), toute session longue |
+| memory engineering | gen-plan (PM §1.9 — État Long obligatoire) | clone-chat (captation), correct-work (reprise), toute session longue |

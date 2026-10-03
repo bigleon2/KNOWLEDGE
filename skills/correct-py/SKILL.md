@@ -1,20 +1,24 @@
 ---
 name: correct-py
-version: 1.0.0
+version: "1.1.0"
 category: ecosystem
 language: fr
+  tags:
+    - correct
+    - py
 description: >
   Vérifier et corriger la conformité des scripts Python de l'écosystème aux normes
   d'écriture du langage (PEP 8 : style, indentation, nommage snake_case ; PEP 257 :
   docstrings de module et de fonctions ; conventions de commentaires) par analyse
-  AST/tokenize stdlib, avec corrections mécaniques ciblées et idempotentes et rapport
-  JSON déterministe. Utiliser lorsqu'un script Python vient d'être créé ou modifié par
+  AST/tokenize stdlib, via corrections mécaniques ciblées et idempotentes et rapport
+  JSON déterministe. Utiliser lorsqu'un script Python vient d'être généré ou modifié par
   script-creator (post-traitement obligatoire, garde-fou 6 §1.3 — exécuté APRÈS chaque
   utilisation), lorsqu'un script existant doit être audité ou normalisé aux normes
-  Python, ou lorsqu'une vérification de style mécanique est requise avant relecture
+  Python, ou lorsqu'une vérification de style mécanique est requise préalablement à la relecture
   script-reviewer. Non concerné : création de scripts (script-creator), relecture
   fonctionnelle G1-G8 (script-reviewer), validation d'écosystème (correct-work),
   création de skills (skill-creator).
+  Commentaires corrigés, blancs parasites supprimés, style et indentation normalisés.
 dependencies:
   - skill: script-creator
     version: ">=1.0.0"
@@ -30,7 +34,7 @@ Un skill pour vérifier et corriger la conformité des scripts Python de l'écos
 normes PEP 8 / PEP 257 de manière mécanique, idempotente et traçable — le
 post-traitement obligatoire de script-creator.
 
-## §0 — Contexte Système (SHARED v1.6.0)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables)

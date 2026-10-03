@@ -287,7 +287,7 @@
     {
       "statut": "PASS",
       "section": "11c",
-      "check": "Aucune référence stale — l'état courant est uniformément v3.18.0",
+      "check": "Références vives alignées (dynamisé KO-L003, Task 21 P4) : 14 citations gen-plan et 26 en-têtes §0 scannés — gen-plan v3.18.0, SHARED v1.6.4",
       "detail": ""
     },
     {

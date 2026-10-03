@@ -1,18 +1,19 @@
 ---
 name: audio-metadata
-version: 1.0.0
+version: "1.1.0"
 category: metier
 language: fr
 description: >
   Gestion avancée des métadonnées audio — Extraction, normalisation, conversion  de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A). Use when the user needs to manage audio metadata, extract tags, or normalize  metadata across a collection.
   
+  Nettoie et corrige les tags ID3 : titres, artistes, pochettes, bibliothèques MP3 ; organise les playlists par album en corrigeant les tags manquants.
 tags: []
 dependencies: []
 date: 2026-06-21
 description-fr: Gestion avancée des métadonnées audio — Extraction, normalisation, conversion de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A). Utiliser quand l'utilisateur a besoin de gérer des métadonnées audio, extraire des tags, ou normaliser les métadonnées d'une collection.
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -270,3 +271,8 @@ if __name__ == '__main__':
 ---
 
 **Skill créé le 2026-06-21 pour François — DJ TRAKTOR**
+
+---
+
+## Baseline A2 — statut de mesure
+> **Baseline A2 (Task 21 P3/F3, 2026-10-03)** : MESURÉE 2 voies (voie mécanique SHARED §7 v2 + voie L 3 runs réels) — score baseline 5/7 (nulls : 1) ; détail par cas : `scripts/baseline-a2-all-report.json` ; cas structurels consignés au registre KB (décision Task 21) ; re-mesure idempotente `--skip-done` armée pour les nulls 429 restants.

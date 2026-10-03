@@ -12,10 +12,11 @@ tags:
 description: >
   Skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences).
   5 étapes, 4 modes (PROJET/CIBLE/DIRECT/AVEUGLE),
-  support multi-cibles, couplage gen-plan OBLIGATOIRE (dernière version installée) à l'Étape 1,
+  support multi-cibles, couplage genplan OBLIGATOIRE (dernière version installée) à l'Étape 1,
   intégration KB (Registre, kb_path, --kb-skill),
   matrice de décision agent/skill (statique + dynamique KB),
   métriques de performance.
+  Contrôler la cohérence avant de livrer ce que tu viens de produire.
 dependencies:
   - skill: gen-plan
     version: ">=3.7.0"
@@ -28,7 +29,7 @@ dependencies:
     used_at: "Vérification projets web"
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)

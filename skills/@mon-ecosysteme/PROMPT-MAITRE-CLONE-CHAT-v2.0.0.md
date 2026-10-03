@@ -8,11 +8,11 @@
 > **Dépend** : `CONTEXTE SYSTÈME` (embarqué ci-dessous)
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.1)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.4)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
-### Règle Zéro (§0)
-L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA.
+### Règle Zéro (§0) — résumé de travail (le §0 canonique du présent PM : « §0 — RÈGLE ZÉRO — CONTEXTE PERDU », infra)
+L'écosystème Knowledge est un ensemble de 93 skills conçus pour un assistant IA.
 
 ### Variables d'installation (§1.1)
 | Variable | Défaut | Description |
@@ -332,7 +332,7 @@ mkdir -p {{SKILLS_ROOT}}clone-chat/références
 Le fichier `SKILL.md` (~365 lignes) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
-2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention 80 skills, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
+2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention 93 skills, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
 3. **§1 — Spécification fonctionnelle** : objectif, 7+1 étapes (détail de chaque), profils ressource
 4. **§2 — Spécification technique** : format sortie, stack, grille #token, intégration gen-plan, mitigation taille, structure fichiers
 5. **§3 — Conventions** : nommage (SHARED §1.2), chemins relatifs, règle in extenso, numérotation §0-§5, Context Drift obligatoire
@@ -374,7 +374,7 @@ Vérifier que (SHARED §3.2) :
 |---|-------|---------|------------------|
 | 1 | SKILL.md existe | `{{SKILLS_ROOT}}clone-chat/SKILL.md` | File exists |
 | 2 | YAML frontmatter valide | name, version, category, language, tags, description, dependencies | All present |
-| 3 | §0 Règle zéro | 80 skills mentionnés, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}` | Present |
+| 3 | §0 Règle zéro | 93 skills mentionnés, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}` | Present |
 | 4 | 7+1 étapes | Étapes 1-7 + Étape 3.5 documentées | All present |
 | 5 | 8 checks validation | Table complète en Étape 6 | 8 checks |
 | 6 | 5 types de drift | INVERSION, MODIFICATION, CORRECTION, ENRICHISSEMENT, RECALIBRAGE | All present |

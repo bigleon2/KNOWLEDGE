@@ -12,11 +12,11 @@ tags:
   - supervisor
   - fan-out
 description: >-
- Skill discipline fleet engineering : orchestration de flottes d'agents — Agent Teams / Managed Agents, découplage cerveau/exécution, 5 patterns production fan-out-pipeline-debate-supervisor-swarm, coordination multi-instances avec Task IDs, agrégation et arbitrage des résultats. Spécialise la discipline fleet engineering (source de vérité : SHARED §7). Opérationnalisation 2026 : Anthropic Agent Teams & Managed Agents (2026), multi-agent research system (Anthropic, juin 2025), State of Agent Engineering (LangChain, 2026). Fondements documentés : references/fondements-academiques.md.
+ Skill discipline fleet engineering : orchestration de flottes d'agents — Agent Teams / Managed Agents, découplage cerveau/exécution, 5 patterns production fan-out-pipeline-debate-supervisor-swarm, coordination multi-instances avec Task IDs, agrégation et arbitrage des résultats. Spécialise la discipline fleet engineering (registre décentralisé : §8 local + registre KB). Opérationnalisation 2026 : Anthropic Agent Teams & Managed Agents (2026), multi-agent research system (Anthropic, juin 2025), State of Agent Engineering (LangChain, 2026). Fondements documentés : references/fondements-academiques.md.
 dependencies: []
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -32,7 +32,7 @@ dependencies: []
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
 ### §1.1 Mission
-Orchestrer plusieurs agents/instances comme une FLOTTE ingénierée — pas un essai spontané : choisir le pattern de coordination, assigner des tâches identifiées (Task ID), borner les ressources, agréger les résultats, arbitrer les divergences et journaliser la lignée de chaque sous-tâche. La flotte existe pour un objectif explicite du plan (gen-plan E-série) ; sa taille, son pattern et son budget sont des décisions d'ingénierie documentées, jamais un effet de bord. Le détenteur principal est gen-plan (§1.9) ; les autres skills en détiennent la fonction héritée.
+Orchestrer plusieurs agents/instances comme une FLOTTE ingénierée — pas un essai spontané : choisir le pattern de coordination, assigner des tâches identifiées (Task ID), borner les ressources, agréger les résultats, arbitrer les divergences et journaliser la lignée de chaque sous-tâche. La flotte existe pour un objectif explicite du plan (gen-plan E-série) ; sa taille, son pattern et son budget sont des décisions d'ingénierie documentées, jamais un effet de bord. Le détenteur principal est gen-plan (PM §1.9) ; les autres skills en détiennent la fonction héritée.
 
 ### §1.2 Modes
 - **M1 SUPERVISOR (défaut)** — un coordinateur + N workers spécialisés ; s'applique à toute tâche parallélisable avec points de fusion clairs (arbitrage central).
@@ -83,14 +83,14 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 `evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — disciplines voisines) ; déclenchement attendu sur les requêtes d'orchestration multi-agents explicites ; seuil de routage 0.5 (vote majoritaire confirm 3 runs — N34 armé, exécution au QUOTA_OK : D017/R3). Baseline A2 : MESURÉE 7/7 (Task 17, 2026-10-02 — voie mécanique heuristique SHARED §7 v2 sur les 7 cas officiels, zéro dérive, Description Optimization non requise ; rapport `download/rapport-baselines-a2-disciplines-n54.md`, JSON `scripts/baseline-a2-report.json`) ; confirm 3 runs LLM : MESURÉ (Task 18, 2026-10-03 — re-exécution idempotente `scripts/task17-baseline-a2.py` au QUOTA_OK, 42/42 votes réels zéro null, ratios voie L 1.0 sur les 5 cas positifs / 0.0 sur les 2 contrôles négatifs — conformes à la voie mécanique, zéro dérive 2 voies — R3).
 
 ## §6 — TRAÇABILITÉ
-- v1.0.0 (N34, 2026-09-21, session B12-r56) : matérialisation de la discipline approuvée n°54 ; sources N31 ; intégration gen-plan v3.15.0 §1.9 ; baseline en attente QUOTA (D017).
+- v1.0.0 (N34, 2026-09-21, session B12-r56) : matérialisation de la discipline approuvée n°54 ; sources N31 ; intégration gen-plan §1.9 (version d'alors v3.15.0 — PM courant : v3.18.0) ; baseline MESURÉE 7/7 les 2 voies (Task 17 — 42/42 votes réels).
 
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.15.0 §1.9 — routage autonome ; `references/orchestration-skills-agents.md` — matrice.
+- gen-plan v3.18.0 §1.9 (PM) / §1.6 (SKILL.md) — routage autonome ; `references/orchestration-skills-agents.md` — matrice.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |
 |------------|--------------------|------------------|
-| fleet engineering | gen-plan (§1.9 — choix pattern/bornes à E5/E7) | correct-work (arbitrage consolidé), tout agent coordinateur |
+| fleet engineering | gen-plan (PM §1.9 — choix pattern/bornes à E5/E7) | correct-work (arbitrage consolidé), tout agent coordinateur |

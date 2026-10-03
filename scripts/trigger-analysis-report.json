@@ -1,0 +1,410 @@
+{
+  "date": "2026-10-03",
+  "task": "Task 19 — test logique et efficacité des déclencheurs (directive gen-plan : analyse incohérences + triggers)",
+  "heuristique": "SHARED §7 v2 (réplique exacte du runner certifié task18-baseline-a2-memory.py — voie mécanique, zéro API)",
+  "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
+  "skills_officiels": {
+    "agent-creator": {
+      "version": "2.1.0",
+      "score_officiel": "6/7",
+      "derive_m": true,
+      "n_cases": 7
+    },
+    "audio-metadata": {
+      "version": "1.1.0",
+      "score_officiel": "6/7",
+      "derive_m": true,
+      "n_cases": 7
+    },
+    "audit-provenance": {
+      "version": "1.1.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "autonomous-agent": {
+      "version": "1.1.0",
+      "score_officiel": "8/8",
+      "derive_m": false,
+      "n_cases": 8
+    },
+    "clone-chat": {
+      "version": "2.0.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "context-engineering": {
+      "version": "1.1.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "correct-py": {
+      "version": "1.1.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "correct-work": {
+      "version": "2.7.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "cpp-analysis": {
+      "version": "1.1.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "fleet-engineering": {
+      "version": "1.0.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "gen-plan": {
+      "version": "3.18.0",
+      "score_officiel": "8/8",
+      "derive_m": false,
+      "n_cases": 8
+    },
+    "graph-engineering": {
+      "version": "1.0.1",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "harness-engineering": {
+      "version": "1.1.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "knowledge-observer": {
+      "version": "1.0.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "loop-engineering": {
+      "version": "1.1.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "memory-engineering": {
+      "version": "1.1.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "pdf-llm": {
+      "version": "1.0.0",
+      "score_officiel": "4/7",
+      "derive_m": true,
+      "n_cases": 7
+    },
+    "prompt-engineering": {
+      "version": "2.2.0",
+      "score_officiel": "6/7",
+      "derive_m": true,
+      "n_cases": 7
+    },
+    "resource-monitor": {
+      "version": "1.0.0",
+      "score_officiel": "6/6",
+      "derive_m": false,
+      "n_cases": 6
+    },
+    "script-creator": {
+      "version": "1.1.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "script-mon-ecosysteme-infrastructure": {
+      "version": "1.1.0",
+      "score_officiel": "6/7",
+      "derive_m": true,
+      "n_cases": 7
+    },
+    "script-reviewer": {
+      "version": "1.0.0",
+      "score_officiel": "6/7",
+      "derive_m": true,
+      "n_cases": 7
+    },
+    "skill-creator": {
+      "version": "1.0.0",
+      "score_officiel": "8/8",
+      "derive_m": false,
+      "n_cases": 8
+    },
+    "skills-inventory": {
+      "version": "1.1.0",
+      "score_officiel": "5/7",
+      "derive_m": true,
+      "n_cases": 7
+    },
+    "spec-driven-development": {
+      "version": "1.0.0",
+      "score_officiel": "7/7",
+      "derive_m": false,
+      "n_cases": 7
+    },
+    "version-management": {
+      "version": "1.0.0",
+      "score_officiel": "3/8",
+      "derive_m": true,
+      "n_cases": 8
+    }
+  },
+  "sondes_etat-long-operant": [
+    {
+      "id": "P1",
+      "query": "Reprends la session — le worklog.md est l'État Long opérant de la session, vérifie-le.",
+      "attendu_memory-engineering": true,
+      "detected": true,
+      "ok": true,
+      "raison": "Reprend littéralement la formule du §7 de memory-engineering (ancre de reprise = État Long opérant)",
+      "me_detail": {
+        "skill": "memory-engineering",
+        "score": 0.375,
+        "hits": [
+          "etat",
+          "long",
+          "sess"
+        ]
+      },
+      "n_skills_triggers": 3,
+      "routing": [
+        "autonomous-agent",
+        "clone-chat",
+        "memory-engineering"
+      ]
+    },
+    {
+      "id": "P2",
+      "query": "Consulte l'État Long avant d'exécuter la tâche.",
+      "attendu_memory-engineering": true,
+      "detected": true,
+      "ok": true,
+      "raison": "Même phrasé que l'eval AA-mémoire d'autonomous-agent (Étape C — Consultation de l'État Long)",
+      "me_detail": {
+        "skill": "memory-engineering",
+        "score": 0.5,
+        "hits": [
+          "etat",
+          "long",
+          "tach"
+        ]
+      },
+      "n_skills_triggers": 3,
+      "routing": [
+        "autonomous-agent",
+        "memory-engineering",
+        "spec-driven-development"
+      ]
+    },
+    {
+      "id": "P3",
+      "query": "La session devient longue : impose l'État Long (plan + worklog + KB) pour la suite.",
+      "attendu_memory-engineering": true,
+      "detected": true,
+      "ok": true,
+      "raison": "C'est l'obligation même que le KB attribue à gen-plan §1.9 (État Long imposé aux exécutions longues)",
+      "me_detail": {
+        "skill": "memory-engineering",
+        "score": 0.4,
+        "hits": [
+          "etat",
+          "long",
+          "longu",
+          "sess"
+        ]
+      },
+      "n_skills_triggers": 7,
+      "routing": [
+        "audit-provenance",
+        "autonomous-agent",
+        "clone-chat",
+        "gen-plan",
+        "memory-engineering",
+        "prompt-engineering",
+        "resource-monitor"
+      ]
+    },
+    {
+      "id": "P4",
+      "query": "Redémarre le serveur de développement.",
+      "attendu_memory-engineering": false,
+      "detected": false,
+      "ok": true,
+      "raison": "Contrôle négatif — hors périmètre mémoire",
+      "me_detail": null,
+      "n_skills_triggers": 0,
+      "routing": []
+    },
+    {
+      "id": "P5",
+      "query": "Corrige les erreurs de compilation Python.",
+      "attendu_memory-engineering": false,
+      "detected": false,
+      "ok": true,
+      "raison": "Contrôle négatif — périmètre correct-py, pas mémoire",
+      "me_detail": null,
+      "n_skills_triggers": 1,
+      "routing": [
+        "correct-py"
+      ]
+    }
+  ],
+  "sondes_voie_l": {},
+  "routing_map": {
+    "P1": [
+      {
+        "skill": "autonomous-agent",
+        "score": 0.5,
+        "hits": [
+          "etat",
+          "long",
+          "oper",
+          "sess"
+        ]
+      },
+      {
+        "skill": "clone-chat",
+        "score": 0.25,
+        "hits": [
+          "sess",
+          "worklog"
+        ]
+      },
+      {
+        "skill": "memory-engineering",
+        "score": 0.375,
+        "hits": [
+          "etat",
+          "long",
+          "sess"
+        ]
+      }
+    ],
+    "P2": [
+      {
+        "skill": "autonomous-agent",
+        "score": 0.333,
+        "hits": [
+          "etat",
+          "long"
+        ]
+      },
+      {
+        "skill": "memory-engineering",
+        "score": 0.5,
+        "hits": [
+          "etat",
+          "long",
+          "tach"
+        ]
+      },
+      {
+        "skill": "spec-driven-development",
+        "score": 0.333,
+        "hits": [
+          "avant",
+          "tach"
+        ]
+      }
+    ],
+    "P3": [
+      {
+        "skill": "audit-provenance",
+        "score": 0.2,
+        "hits": [
+          "plan",
+          "sess"
+        ]
+      },
+      {
+        "skill": "autonomous-agent",
+        "score": 0.3,
+        "hits": [
+          "etat",
+          "long",
+          "sess"
+        ]
+      },
+      {
+        "skill": "clone-chat",
+        "score": 0.3,
+        "hits": [
+          "plan",
+          "sess",
+          "worklog"
+        ]
+      },
+      {
+        "skill": "gen-plan",
+        "score": 0.1,
+        "hits": [
+          "plan"
+        ]
+      },
+      {
+        "skill": "memory-engineering",
+        "score": 0.4,
+        "hits": [
+          "etat",
+          "long",
+          "longu",
+          "sess"
+        ]
+      },
+      {
+        "skill": "prompt-engineering",
+        "score": 0.2,
+        "hits": [
+          "plan",
+          "sess"
+        ]
+      },
+      {
+        "skill": "resource-monitor",
+        "score": 0.2,
+        "hits": [
+          "longu",
+          "plan"
+        ]
+      }
+    ],
+    "P4": [],
+    "P5": [
+      {
+        "skill": "correct-py",
+        "score": 0.4,
+        "hits": [
+          "corrig",
+          "pyth"
+        ]
+      }
+    ]
+  },
+  "bilan": {
+    "skills_testes": 26,
+    "skills_derive_m": [
+      "agent-creator",
+      "audio-metadata",
+      "pdf-llm",
+      "prompt-engineering",
+      "script-mon-ecosysteme-infrastructure",
+      "script-reviewer",
+      "skills-inventory",
+      "version-management"
+    ],
+    "sondes_ok": "5/5",
+    "sondes_echec": []
+  }
+}

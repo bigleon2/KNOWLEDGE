@@ -16,6 +16,7 @@ description: >
   worklog) dans un fichier Markdown auto-suffisant. 7+1 étapes, Étape 3.5
   Context Drift, intégration gen-plan v3.6.1+ KB. Format Markdown unique,
   propriété auto-clonage.
+  Archive la session pour reprise par une session héritière.
 dependencies:
   - skill: gen-plan
     version: ">=3.6.1"
@@ -26,7 +27,7 @@ dependencies:
     used_at: "Validation croisée (Mode CIBLE, §3.5)"
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -34,7 +35,7 @@ dependencies:
 
 
 
-## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
+## §0bis — Règle zéro (résumé de SHARED §0)
 
 Les fichiers des sessions précédentes n'existent pas dans une nouvelle session : tout est
 à reconstruire à partir des documents de la lignée. Ne jamais utiliser le verbe « conserver ».
@@ -312,7 +313,7 @@ mkdir -p {{SKILLS_ROOT}}clone-chat/références
 Le fichier `SKILL.md` (~365 lignes) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
-2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention 80 skills, variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
+2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention du corpus de skills (nombre réel courant, recalibré), variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
 3. **§1 — Spécification fonctionnelle** : objectif, 7+1 étapes (détail de chaque), profils ressource
 4. **§2 — Spécification technique** : format sortie, stack, grille #token, intégration gen-plan, mitigation taille, structure fichiers
 5. **§3 — Conventions** : nommage (SHARED §1.2), chemins relatifs, règle in extenso, numérotation §0-§5, Context Drift obligatoire

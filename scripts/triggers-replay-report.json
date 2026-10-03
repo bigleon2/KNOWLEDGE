@@ -1,0 +1,2372 @@
+{
+  "date": "2026-10-03",
+  "task": "Task 21 — campagne P0-P6, arbitre V6 (recommandation R1 Task 19)",
+  "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
+  "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
+  "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
+  "n_skills": 26,
+  "skills_ok": 18,
+  "skills_derive": 8,
+  "verdict": "FAIL",
+  "derives": [
+    "agent-creator",
+    "audio-metadata",
+    "pdf-llm",
+    "prompt-engineering",
+    "script-mon-ecosysteme-infrastructure",
+    "script-reviewer",
+    "skills-inventory",
+    "version-management"
+  ],
+  "skills": {
+    "agent-creator": {
+      "version": "2.1.0",
+      "n_cases": 7,
+      "n_keywords": 25,
+      "score_officiel": "6/7",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Utilise le skill agent-creator pour créer et orchestrer des agents autonomes.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "agent",
+            "autonom",
+            "creator"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Crée un agent autonome pour surveiller et traiter mes mails.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.25,
+          "hits": [
+            "agent",
+            "autonom"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Conçois un agent persistant : fichier .agent, boucles d'exécution, matrice agent×skill, reprise d'état.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "agent",
+            "boucl",
+            "fichier",
+            "persist"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Orchestre plusieurs agents spécialisés sur ce flux de travail complexe.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.625,
+          "hits": [
+            "agent",
+            "flux",
+            "orchestr",
+            "plusi",
+            "specialis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Ingénierie de prompt : analyse, itérations comparées, critères mesurables, garde-fous anti-erreurs.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Optimise simplement le prompt système de mon assistant.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Automatise ce workflow avec Zapier plutôt qu'avec un agent.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "agent"
+          ],
+          "ok": false
+        }
+      ]
+    },
+    "audio-metadata": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 32,
+      "score_officiel": "6/7",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Utilise le skill audio-metadata pour lire et corriger les métadonnées de fichiers audio.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.3,
+          "hits": [
+            "audio",
+            "metadata",
+            "metadonne"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Nettoie les tags ID3 de ma bibliothèque MP3 (titre, artiste, pochette).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.857,
+          "hits": [
+            "artist",
+            "bibliothequ",
+            "nettoi",
+            "pochett",
+            "tags",
+            "titr"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Lis, corrige et normalise les métadonnées (tags, pochettes, numéros de piste) de mes fichiers audio.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "audio",
+            "corrig",
+            "metadonne",
+            "normalis",
+            "pochett",
+            "tags"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Organise ma playlist par album en corrigeant les métadonnées manquantes.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.625,
+          "hits": [
+            "album",
+            "corrige",
+            "metadonne",
+            "organis",
+            "playlist"
+          ],
+          "ok": true
+        },
+        {
+          "query": "J'ai un fichier WAV d'une réunion d'une heure, il me faut la transcription complète avec les tours de parole séparés.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Transcris le contenu parlé de ce fichier audio.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "audio"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Convertis mes FLAC en MP3 320 kbps.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "flac"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "audit-provenance": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 50,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Audite la provenance des artefacts de mon écosystème.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "artefact",
+            "audit",
+            "ecosystem",
+            "proven"
+          ],
+          "ok": true
+        },
+        {
+          "query": "D'où vient ce script ? Trace son lignage et sa session d'origine.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "lignag",
+            "origin",
+            "script",
+            "sess"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Nous avons restauré après le wipe : vérifie que chaque artefact a une provenance avant le clone.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.538,
+          "hits": [
+            "apre",
+            "artefact",
+            "avant",
+            "clon",
+            "proven",
+            "restaur",
+            "wipe"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Corrige les provenances manquantes de manière idempotente.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "idempotent",
+            "proven"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Crée un nouveau skill de création de skills.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Relis et valide ce script avec la grille G1-G8.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.2,
+          "hits": [
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Lance la certification complète de l'écosystème.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "ecosystem"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "autonomous-agent": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 33,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "exécute cette tâche complexe de façon autonome",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "autonom",
+            "complex",
+            "execut"
+          ],
+          "ok": true
+        },
+        {
+          "query": "persiste ton état pour la prochaine session",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "etat",
+            "sess"
+          ],
+          "ok": true
+        },
+        {
+          "query": "active ton pipeline et traite cette requête de bout en bout",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "bout",
+            "pipelin",
+            "requet",
+            "trait"
+          ],
+          "ok": true
+        },
+        {
+          "query": "simule ton comportement sur ce cas",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "comport",
+            "simul"
+          ],
+          "ok": true
+        },
+        {
+          "query": "crée-moi un agent autonome avec mémoire",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "agent",
+            "autonom",
+            "memoir"
+          ],
+          "ok": true
+        },
+        {
+          "query": "planifie cette tâche en étapes",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "etap"
+          ],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "clone-chat": {
+      "version": "2.0.0",
+      "n_cases": 7,
+      "n_keywords": 26,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill clone-chat pour cloner et archiver une conversation en Markdown auto-suffisant.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.417,
+          "hits": [
+            "auto",
+            "chat",
+            "clon",
+            "markdown",
+            "suffis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Clone cette discussion en un document autonome.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "clon",
+            "discuss"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Produis un Markdown auto-suffisant de la conversation (protocole 7+1 étapes) avec héritage et drifts documentés.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.455,
+          "hits": [
+            "auto",
+            "drift",
+            "etap",
+            "markdown",
+            "suffis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Archive cette session pour qu'une nouvelle session puisse en hériter proprement.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.222,
+          "hits": [
+            "arch",
+            "sess"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Vérifie maintenant l'archive que tu viens de produire.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "arch"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Exporte mes contacts au format CSV.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.2,
+          "hits": [
+            "format"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "context-engineering": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 19,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill context-engineering pour appliquer la discipline context engineering (curation, compaction).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "compact",
+            "context",
+            "curat",
+            "engineering"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Applique la discipline context engineering sur ce gros dossier.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "context",
+            "engineering"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps, mémoire externe.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.7,
+          "hits": [
+            "compact",
+            "context",
+            "curat",
+            "extern",
+            "just",
+            "memoir",
+            "temp"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Réduis ce contexte saturé sans perdre les informations critiques.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.125,
+          "hits": [
+            "context"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Construis la boucle : exécution → grader → feedback exploitable → itération jusqu'au critère de sortie.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Planifie d'abord la tâche avec le skill de planification.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Compresse ce dossier ZIP pour libérer de l'espace.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "correct-py": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 62,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Vérifie la conformité PEP 8 de ce script Python que je viens de créer.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "conformit",
+            "pyth",
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Corrige les commentaires sans espace et les blancs parasites de monitor.py.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "blanc",
+            "commentair",
+            "corrig",
+            "parasit"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Normalise ce script Python aux normes du langage (docstrings PEP 257 incluses).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "docstring",
+            "langag",
+            "norm",
+            "normalis",
+            "pyth",
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Applique le post-traitement correct-py au script produit par script-creator.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.625,
+          "hits": [
+            "correct",
+            "creator",
+            "post",
+            "script",
+            "trait"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Crée un nouveau script d'arbitre pour ce check certifiable.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Relis ce script avec la grille G1-G8 avant adoption.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Traduis le contenu de ce SKILL.md en français.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "skill"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "correct-work": {
+      "version": "2.7.0",
+      "n_cases": 7,
+      "n_keywords": 41,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill correct-work pour vérifier et corriger un travail réalisé.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "correct",
+            "realis",
+            "travail",
+            "work"
+          ],
+          "ok": true
+        },
+        {
+          "query": "correct-work(projet) : vérifie tout le projet avant livraison.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "avant",
+            "correct",
+            "projet",
+            "work"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.273,
+          "hits": [
+            "erreur",
+            "incoher",
+            "omiss"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Contrôle la cohérence de ce que tu viens de produire avant que je livre.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "avant",
+            "coher",
+            "produir",
+            "vien"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Élabore le plan d'action structuré de ce projet : classification, estimation de coût, sélection de skills, jalons.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.091,
+          "hits": [
+            "projet"
+          ],
+          "ok": true
+        },
+        {
+          "query": "On n'a encore rien produit : commence par planifier la tâche.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Sauvegarde cette conversation en Markdown autonome.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "cpp-analysis": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 28,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill cpp-analysis pour analyser du code C++ (structure, qualité, dépendances).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "analysi",
+            "code",
+            "cpp",
+            "depend",
+            "qualit"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Analyse l'architecture de ce gros projet C++ et ses dépendances.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "analys",
+            "architectur",
+            "depend",
+            "projet"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Cartographie le code C++ : modules, dépendances, complexité, points de dette technique.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "code",
+            "complexit",
+            "depend"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Évalue la qualité et la sûreté de cette base C++ avant la migration.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.857,
+          "hits": [
+            "avant",
+            "base",
+            "evalu",
+            "migr",
+            "qualit",
+            "suret"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Exécute le cycle de développement : plan, implémentation propre, vérification, tests automatisés.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Refactors directement ce fichier C++.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Configure CMake pour compiler mon projet.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "projet"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "fleet-engineering": {
+      "version": "1.0.0",
+      "n_cases": 7,
+      "n_keywords": 35,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill fleet-engineering pour orchestrer une flotte d'agents.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "agent",
+            "engineering",
+            "fleet",
+            "flott"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Lance plusieurs agents en parallèle avec un supervisor et agrège les résultats.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "agent",
+            "agreg",
+            "resultat",
+            "supervisor"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Choisis le bon pattern multi-agents : fan-out, pipeline, debate, supervisor ou swarm.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.636,
+          "hits": [
+            "agent",
+            "debat",
+            "multi",
+            "pattern",
+            "pipelin",
+            "supervisor",
+            "swarm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Coordonne une équipe d'instances avec Task IDs, bornes de coût et arbitrage des divergences.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.25,
+          "hits": [
+            "arbitrag",
+            "inst",
+            "task"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Scale cette exécution en flotte managée : découplage cerveau/exécution, assignation, fusion.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "cerv",
+            "decouplag",
+            "execut",
+            "flott"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Rédige la spécification exécutable et les critères d'acceptation avant d'implémenter.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.125,
+          "hits": [
+            "execut"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "gen-plan": {
+      "version": "3.18.0",
+      "n_cases": 8,
+      "n_keywords": 50,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill gen-plan pour planifier une tâche (modes, étapes E1-E15, estimation de coût).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.417,
+          "hits": [
+            "etap",
+            "gen",
+            "mode",
+            "plan",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "gen-plan : organise l'exécution de cette demande complexe.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "execut",
+            "gen",
+            "plan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Élabore le plan d'action structuré de ce projet : classification, estimation de coût, sélection de skills, jalons.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.273,
+          "hits": [
+            "acti",
+            "classific",
+            "plan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Analyse ma demande et produis un plan avec étapes, priorités et points de contrôle.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "analys",
+            "etap",
+            "plan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Intègre dans le plan d'actions : ajoute la rédaction du PDF de synthèse à la fin du cycle.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.3,
+          "hits": [
+            "acti",
+            "integr",
+            "plan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Vérifie plutôt le travail qui a déjà été fait.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Résume l'historique complet de cette conversation.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "graph-engineering": {
+      "version": "1.0.1",
+      "n_cases": 7,
+      "n_keywords": 11,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill graph-engineering pour appliquer la discipline graph engineering (graphe de connaissances).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "connaiss",
+            "engineering",
+            "graph"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Structure ces données en graphe de connaissances versionné.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "connaiss",
+            "graph",
+            "versionn"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Modélise en graphe : nœuds/arêtes versionnés, requêtes ancrées, traçabilité des relations.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "ancre",
+            "aret",
+            "graph",
+            "requet",
+            "versionn"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Interroge le graphe pour retrouver les dépendances entre ces entités.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.111,
+          "hits": [
+            "graph"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps, mémoire externe.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Dessine juste un organigramme en PNG.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Ajoute un nœud de subdivision dans mon modèle Blender.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "harness-engineering": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 19,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill harness-engineering pour appliquer la discipline harness engineering (harnais, gardes-fous, arbitres).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.545,
+          "hits": [
+            "arbitr",
+            "engineering",
+            "fous",
+            "gard",
+            "harnai",
+            "harnes"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Installe un harnais d'exécution avec arbitres sur ce workflow.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "arbitr",
+            "execut",
+            "harnai"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Construis le harnais : profils ressource, gardes-fous, arbitres de vérification, détection des pressions.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.455,
+          "hits": [
+            "arbitr",
+            "fous",
+            "gard",
+            "harnai",
+            "ressourc"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Ajoute les contrôles automatiques qui empêchent la dérive de ce processus.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "automat",
+            "control",
+            "deriv",
+            "processu"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Construis la boucle : exécution → grader → feedback exploitable → itération jusqu'au critère de sortie.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.1,
+          "hits": [
+            "execut"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Vérifie le livrable final avant de conclure.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Écris les tests unitaires de mon API REST.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "knowledge-observer": {
+      "version": "1.0.0",
+      "n_cases": 7,
+      "n_keywords": 26,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Observe cette session et journalise les patterns d'erreur récurrents (lessons learned).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.6,
+          "hits": [
+            "erreur",
+            "learned",
+            "less",
+            "observ",
+            "pattern",
+            "sess"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Lance knowledge-observer pour détecter les récurrences d'erreurs de cette discussion.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "detecter",
+            "erreur",
+            "knowledg",
+            "observer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Analyse post-session : quels patterns d'erreur reviennent et que proposer pour améliorer les skills ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.462,
+          "hits": [
+            "ameliorer",
+            "analys",
+            "erreur",
+            "pattern",
+            "sess",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Observation automatique : surveille les sessions pour détecter les patterns avant incident.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "automat",
+            "detecter",
+            "observ",
+            "pattern",
+            "sess"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Corrige cette erreur de frontmatter immédiatement.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.2,
+          "hits": [
+            "erreur"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Crée un nouveau skill de planification avec evals et trigger_evals.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Fais la certification complète de l'écosystème.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "ecosystem"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "loop-engineering": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 18,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill loop-engineering pour appliquer la discipline loop engineering (boucles exécution-vérification).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "boucl",
+            "engineering",
+            "execut",
+            "loop",
+            "verific"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Mets en place la boucle d'exécution-vérification avec graders sur ce pipeline.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "boucl",
+            "execut",
+            "grader",
+            "verific"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Construis la boucle : exécution → grader → feedback exploitable → itération jusqu'au critère de sortie.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.6,
+          "hits": [
+            "boucl",
+            "criter",
+            "execut",
+            "exploit",
+            "feedback",
+            "grader"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Définis les graders et les critères d'arrêt de ce processus itératif.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.714,
+          "hits": [
+            "arret",
+            "criter",
+            "grader",
+            "iterat",
+            "processu"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Gère le contexte de session : curation, compaction, éclairage juste-à-temps, mémoire externe.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.1,
+          "hits": [
+            "extern"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Vérifie simplement le travail une fois, à la fin.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Écris une boucle for en Python qui parcourt ma liste.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.125,
+          "hits": [
+            "boucl"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "memory-engineering": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 48,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill memory-engineering pour gouverner la mémoire de l'agent.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "agent",
+            "engineering",
+            "memoir",
+            "memory"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Décide quoi écrire en État Long : worklog, KB, answer key — et quoi jeter.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.222,
+          "hits": [
+            "etat",
+            "long"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Compacte cette session longue en conservant les ancres de reprise mécanique.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "ancr",
+            "compact",
+            "longu",
+            "mecan",
+            "repris",
+            "sess"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Isoler les contextes par tâche : prompts auto-contenus, pas de fuite inter-tâches.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.727,
+          "hits": [
+            "auto",
+            "contenu",
+            "context",
+            "fuit",
+            "inter",
+            "isoler",
+            "prompt",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Récupère l'information par retrieval ancré dans le registre versionné, sans hallucination.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.7,
+          "hits": [
+            "ancr",
+            "hallucin",
+            "inform",
+            "recuper",
+            "registr",
+            "retrieval",
+            "versionn"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Structure ces données en graphe de connaissances versionné avec nœuds et arêtes.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.111,
+          "hits": [
+            "versionn"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Lance plusieurs agents en parallèle et agrège leurs résultats avec un supervisor.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.111,
+          "hits": [
+            "agent"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "pdf-llm": {
+      "version": "1.0.0",
+      "n_cases": 7,
+      "n_keywords": 45,
+      "score_officiel": "4/7",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Utilise le skill pdf-llm pour interroger et analyser des PDF via LLM.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "analyser",
+            "llm",
+            "pdf",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Pose des questions sur ce PDF de 300 pages et cite les pages.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.125,
+          "hits": [
+            "pdf"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Charge ce PDF technique et réponds à mes questions en citant les sections, avec extraction des tableaux.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.231,
+          "hits": [
+            "extract",
+            "pdf",
+            "table"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Résume ce contrat PDF clause par clause avec référence aux pages.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.111,
+          "hits": [
+            "pdf"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Produis un rapport PDF paginé avec couverture, sommaire, tableaux et graphiques à partir de ces données.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "pdf",
+            "table"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Génère un nouveau PDF à partir de mes données de vente.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.143,
+          "hits": [
+            "pdf"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Fusionne ces 5 PDF en un seul fichier ordonné.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "pdf"
+          ],
+          "ok": false
+        }
+      ]
+    },
+    "prompt-engineering": {
+      "version": "2.2.0",
+      "n_cases": 7,
+      "n_keywords": 21,
+      "score_officiel": "6/7",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Utilise le skill prompt-engineering pour optimiser les prompts complexes.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "complex",
+            "engineering",
+            "prompt"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Améliore ce prompt système pour réduire les hallucinations.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.143,
+          "hits": [
+            "prompt"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Ingénierie de prompt : analyse, itérations comparées, critères mesurables, garde-fous anti-erreurs.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.091,
+          "hits": [
+            "prompt"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Restructure mon mega-prompt en modules plus fiables et testables.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.25,
+          "hits": [
+            "prompt",
+            "restructur"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Conçois un skill complet : SKILL.md, frontmatter, evals, trigger_evals, puis itère avec les evals.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Crée carrément un nouveau skill à partir de ce prompt.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "prompt"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Traduis cette consigne en anglais pour mon collègue.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "resource-monitor": {
+      "version": "1.0.0",
+      "n_cases": 6,
+      "n_keywords": 42,
+      "score_officiel": "6/6",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Surveille la consommation des ressources pendant cette exécution et alerte-moi si la pression monte.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.455,
+          "hits": [
+            "consomm",
+            "execut",
+            "press",
+            "ressourc",
+            "surveill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "resource-monitor : quel est le verdict ressources actuel et le mode recommandé ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "mode",
+            "monitor",
+            "recommand",
+            "resourc",
+            "ressourc",
+            "verdict"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Collecte les indicateurs système (disque, mémoire, budget, timeouts) et rends un verdict.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.7,
+          "hits": [
+            "budget",
+            "collect",
+            "disqu",
+            "indicat",
+            "memoir",
+            "timeout",
+            "verdict"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Peux-tu surveiller les ressources en continu et recommander parallèle ou série ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "continu",
+            "parallel",
+            "ressourc",
+            "seri"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Crée-moi un plan d'actions structuré pour ce projet.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "plan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Vérifie les livrables et rends un verdict correct-work.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "verdict"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "script-creator": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 40,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Crée un script Python qui compte les entrées du registre KB.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.125,
+          "hits": [
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Modifie le script monitor.py pour ajouter un indicateur de budget.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.143,
+          "hits": [
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Je veux un arbitre local exécutable pour ce check certifiable.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.714,
+          "hits": [
+            "arbitr",
+            "certifi",
+            "check",
+            "execut",
+            "local"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Persiste ce code en script réexécutable sous scripts/.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Lance la certification complète de l'écosystème.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "ecosystem"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Crée un nouveau skill avec evals et trigger_evals.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Traduis le contenu de ce SKILL.md en français.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "skill"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "script-mon-ecosysteme-infrastructure": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 21,
+      "score_officiel": "6/7",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Utilise le skill script-mon-ecosysteme-infrastructure pour générer les fichiers d'infrastructure de l'écosystème (3 niveaux de contexte).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.583,
+          "hits": [
+            "context",
+            "ecosystem",
+            "fichier",
+            "infrastructur",
+            "mon",
+            "nive",
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Génère le script d'infrastructure de l'écosystème avec l'en-tête Contexte Système.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.75,
+          "hits": [
+            "context",
+            "ecosystem",
+            "gener",
+            "infrastructur",
+            "script",
+            "system"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Produis les fichiers d'infrastructure écosystème avec injection automatique du Contexte Système (3 niveaux) et règles INFRA.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.769,
+          "hits": [
+            "automat",
+            "context",
+            "ecosystem",
+            "fichier",
+            "infra",
+            "infrastructur",
+            "inject",
+            "nive",
+            "regl",
+            "system"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Régénère un script d'arbitre conforme aux règles INFRA-1 à INFRA-3.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "infra",
+            "regl",
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Conçois un skill complet : SKILL.md, frontmatter, evals, trigger_evals, puis itère avec les evals.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Crée un nouveau skill de A à Z.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Lance l'installation complète de l'écosystème sur ce profil.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "ecosystem"
+          ],
+          "ok": false
+        }
+      ]
+    },
+    "script-reviewer": {
+      "version": "1.0.0",
+      "n_cases": 7,
+      "n_keywords": 55,
+      "score_officiel": "6/7",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Relis ce script avant de l'adopter comme livrable.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "avant",
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Vérifie l'idempotence de cet arbitre avec un rejeu double.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "arbitr",
+            "idempot"
+          ],
+          "ok": true
+        },
+        {
+          "query": "J'ai modifié le script de vérification, il faut le revalider avant livraison.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "avant",
+            "livrais",
+            "modifi",
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Fais une relecture de convergence des scripts modifiés depuis la dernière certification.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "converg",
+            "modifi",
+            "relectur",
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Crée un nouveau script qui compte les entrées de la KB.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "cree",
+            "script"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Lance la certification complète de l'écosystème.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "ecosystem"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Planifie la session avec gen-plan en mode parallèle.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "plan"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "skill-creator": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 25,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Create a new skill for generating release notes from git commits.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.3,
+          "hits": [
+            "creat",
+            "from",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Help me improve my existing skill — it fails on edge cases.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "existing",
+            "improv",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Run evals on this skill and benchmark its performance with variance analysis.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.636,
+          "hits": [
+            "analysi",
+            "benchmark",
+            "eval",
+            "perform",
+            "skill",
+            "vari",
+            "with"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Optimize my skill's description so it triggers more accurately.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "descript",
+            "optimiz",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "I want to iterate on this skill: test it, evaluate the results, then rewrite it.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.3,
+          "hits": [
+            "skill",
+            "test",
+            "want"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Write me a Python script that parses git logs.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Plan this complex task with milestones and cost estimates.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.111,
+          "hits": [
+            "with"
+          ],
+          "ok": true
+        },
+        {
+          "query": "hello",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "skills-inventory": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 54,
+      "score_officiel": "5/7",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Utilise le skill skills-inventory pour scanner et inventorier les skills disponibles.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.75,
+          "hits": [
+            "dispon",
+            "inventorier",
+            "inventory",
+            "scanner",
+            "skill",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Fais l'inventaire des skills installés avec leurs versions.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.25,
+          "hits": [
+            "inventair",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Scanne le répertoire des skills : présences, versions, dépendances, lacunes — tableau d'inventaire.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "inventair",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Quels skills sont disponibles pour cette tâche ? Consulte le registre.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "dispon",
+            "quel",
+            "skill",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Cherche dans le hub ClawHub les skills correspondant à mon besoin et installe-les.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.1,
+          "hits": [
+            "skill"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Cherche et installe de nouveaux skills depuis le hub.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "skill"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Liste les applications installées sur mon ordinateur.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "list"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "spec-driven-development": {
+      "version": "1.0.0",
+      "n_cases": 7,
+      "n_keywords": 35,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill spec-driven-development pour cadrer cette tâche par une spec.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.364,
+          "hits": [
+            "developm",
+            "driven",
+            "spec",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Rédige la spécification exécutable : exigences, contraintes, critères d'acceptation mécaniques.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.625,
+          "hits": [
+            "accept",
+            "criter",
+            "execut",
+            "mecan",
+            "specific"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Décompose la spec en plan puis en tâches atomiques avec preuves attendues.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "plan",
+            "spec",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Le code a dérivé de la spécification : amende la spec d'abord, puis réaligne l'implémentation.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "code",
+            "deriv",
+            "spec",
+            "specific"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Applique le workflow inversé : la spec comme contrat, le code comme artefact généré et vérifié.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "code",
+            "contrat",
+            "invers",
+            "spec",
+            "workflow"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Orchestre une flotte d'agents en patterns fan-out ou supervisor.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Compacte l'historique de session et sélectionne le plus petit contexte à fort signal.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "version-management": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 6,
+      "score_officiel": "3/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "帮我写一个个人主页 index.html",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.5,
+          "hits": [
+            "html"
+          ],
+          "ok": false
+        },
+        {
+          "query": "看看这个项目都有哪些历史版本",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "恢复到 V2，刚才那版改坏了",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "切回我上次的那个项目",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "给我做一个数据可视化仪表盘页面",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "分析这个 CSV 文件并输出统计摘要",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    }
+  }
+}

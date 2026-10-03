@@ -1,0 +1,201 @@
+{
+  "autonomous-agent": {
+    "pre": "4/8",
+    "post": "8/8",
+    "bump": "1.1.0",
+    "note": "",
+    "fails": [],
+    "changes": [
+      "extension radicaux discriminants (A10/A14, R2)",
+      "version 1.0.0 → 1.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "clone-chat": {
+    "pre": "6/7",
+    "post": "6/7",
+    "bump": null,
+    "note": "PM-couplé (PROMPT-MAITRE-CLONE-CHAT v2.0.0) — révision documentaire sans bump",
+    "fails": [
+      {
+        "query": "Archive cette session pour qu'une nouvelle session puisse en hériter proprement.",
+        "expected": true,
+        "trigger_m": false
+      }
+    ],
+    "changes": [
+      "extension radicaux discriminants (A10/A14, R2)"
+    ]
+  },
+  "correct-work": {
+    "pre": "5/7",
+    "post": "6/7",
+    "bump": null,
+    "note": "PM-couplé (PROMPT-MAITRE-CORRECT-WORK v2.7.0) — révision documentaire sans bump",
+    "fails": [
+      {
+        "query": "Élabore le plan d'action structuré de ce projet : classification, estimation de ",
+        "expected": false,
+        "trigger_m": true
+      }
+    ],
+    "changes": [
+      "extension radicaux discriminants (A10/A14, R2)"
+    ]
+  },
+  "cpp-analysis": {
+    "pre": "5/7",
+    "post": "7/7",
+    "bump": "1.1.0",
+    "note": "",
+    "fails": [],
+    "changes": [
+      "extension radicaux discriminants (A10/A14, R2)",
+      "version 1.0.0 → 1.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "harness-engineering": {
+    "pre": "6/7",
+    "post": "7/7",
+    "bump": "1.1.0",
+    "note": "",
+    "fails": [],
+    "changes": [
+      "extension radicaux discriminants (A10/A14, R2)",
+      "version 1.0.1 → 1.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "loop-engineering": {
+    "pre": "6/7",
+    "post": "7/7",
+    "bump": "1.1.0",
+    "note": "",
+    "fails": [],
+    "changes": [
+      "extension radicaux discriminants (A10/A14, R2)",
+      "version 1.0.1 → 1.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "audio-metadata": {
+    "pre": "4/7",
+    "post": "6/7",
+    "bump": "1.1.0",
+    "note": "",
+    "fails": [
+      {
+        "query": "Transcris le contenu parlé de ce fichier audio.",
+        "expected": false,
+        "trigger_m": true
+      }
+    ],
+    "changes": [
+      "extension radicaux discriminants (A10/A14, R2)",
+      "version 1.0.0 → 1.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "correct-py": {
+    "pre": "4/7",
+    "post": "6/7",
+    "bump": "1.1.0",
+    "note": "",
+    "fails": [
+      {
+        "query": "Relis ce script avec la grille G1-G8 avant adoption.",
+        "expected": false,
+        "trigger_m": true
+      }
+    ],
+    "changes": [
+      "chirurgie : « …vient d'être créé ou modifié… » → rephrasé",
+      "⚠ chirurgie INTROUVABLE : « avant relecture script-reviewer »",
+      "extension radicaux discriminants (A10/A14, R2)",
+      "version 1.0.0 → 1.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "audit-provenance": {
+    "pre": "6/7",
+    "post": "7/7",
+    "bump": "1.1.0",
+    "note": "",
+    "fails": [],
+    "changes": [
+      "⚠ chirurgie INTROUVABLE : « (skills, scripts, corpus, rapports, plans) »",
+      "chirurgie : « …validé par correct-work (mode CIBLE)… » → rephrasé",
+      "version 1.0.0 → 1.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "skills-inventory": {
+    "pre": "4/7",
+    "post": "5/7",
+    "bump": "1.1.0",
+    "note": "",
+    "fails": [
+      {
+        "query": "Cherche dans le hub ClawHub les skills correspondant à mon besoin et installe-le",
+        "expected": false,
+        "trigger_m": true
+      },
+      {
+        "query": "Cherche et installe de nouveaux skills depuis le hub.",
+        "expected": false,
+        "trigger_m": true
+      }
+    ],
+    "changes": [
+      "chirurgie : « …\"quelles skills sont installées\"… » → rephrasé",
+      "version 1.0.0 → 1.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "agent-creator": {
+    "pre": "6/7",
+    "post": "6/7",
+    "bump": "2.1.0",
+    "note": "N3 Task 21 : l'ancienne description dupliquait verbatim celle d'autonomous-agent (défaut d'identité) — réécriture fidèle aux cas positifs officiels",
+    "fails": [
+      {
+        "query": "Automatise ce workflow avec Zapier plutôt qu'avec un agent.",
+        "expected": false,
+        "trigger_m": true
+      }
+    ],
+    "changes": [
+      "description remplacée (N3)",
+      "version 2.0.0 → 2.1.0 (Description Optimization, précédent Task 18)"
+    ]
+  },
+  "version-management": {
+    "pre": "3/8",
+    "post": "3/8",
+    "bump": null,
+    "note": "N2 Task 21 : champ name normalisé kebab-case ; description zh inchangée — décision C006(b)",
+    "fails": [
+      {
+        "query": "帮我写一个个人主页 index.html",
+        "expected": true,
+        "trigger_m": false
+      },
+      {
+        "query": "看看这个项目都有哪些历史版本",
+        "expected": true,
+        "trigger_m": false
+      },
+      {
+        "query": "恢复到 V2，刚才那版改坏了",
+        "expected": true,
+        "trigger_m": false
+      },
+      {
+        "query": "切回我上次的那个项目",
+        "expected": true,
+        "trigger_m": false
+      },
+      {
+        "query": "给我做一个数据可视化仪表盘页面",
+        "expected": true,
+        "trigger_m": false
+      }
+    ],
+    "changes": [
+      "name normalisé kebab-case (N2)"
+    ]
+  }
+}

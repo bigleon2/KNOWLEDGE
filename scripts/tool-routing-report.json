@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-03",
+  "task": "Task 22 — arbitre de routage (D006)",
+  "couche": {
+    "n_fichiers": 58,
+    "par_type": {
+      "script": 5,
+      "infrastructure": 10,
+      "agent/PM": 5,
+      "registre KB": 1,
+      "skill": 26
+    }
+  },
+  "N1_mecanique": {
+    "agent/PM": {
+      "n": 5,
+      "ok": true,
+      "detail": "traçabilité de version présente"
+    },
+    "infrastructure": {
+      "n": 10,
+      "ok": true,
+      "detail": "compilable + docstring (N3)"
+    },
+    "registre KB": {
+      "n": 1,
+      "ok": true,
+      "detail": "26 entrées versionnées parsables (>=26 attendues)"
+    },
+    "script": {
+      "n": 5,
+      "ok": true,
+      "detail": "compilable + docstring (N3)"
+    },
+    "skill": {
+      "n": 26,
+      "ok": true,
+      "detail": "frontmatter skill-creator §2 conforme"
+    }
+  },
+  "N1_fails": [],
+  "N2_normatif": {
+    "skill": {
+      "dedie": "skill-creator",
+      "trace": true
+    },
+    "agent/PM": {
+      "dedie": "agent-creator",
+      "trace": true
+    },
+    "script": {
+      "dedie": "script-creator",
+      "trace": true
+    },
+    "infrastructure": {
+      "dedie": "script-mon-ecosysteme-infrastructure",
+      "trace": true
+    },
+    "registre KB": {
+      "dedie": "skills-inventory",
+      "trace": true
+    }
+  },
+  "N2_manquants": [],
+  "verdict": "PASS"
+}

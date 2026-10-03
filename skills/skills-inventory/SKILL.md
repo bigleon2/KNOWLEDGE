@@ -1,6 +1,6 @@
 ---
 name: skills-inventory
-version: 1.0.0
+version: "1.1.0"
 category: ecosystem
 language: fr
 tags:
@@ -12,7 +12,7 @@ description: >
   Scanner et rapporteur d'inventaire des skills. S'active dès que l'utilisateur demande de
   lister, d'inventorier, de cataloguer, de parcourir, de chercher ou d'explorer les skills
   disponibles — p. ex. "quelles sont les skills dispo", "list all skills", "montre-moi tes
-  skills", "inventaire des skills", "quelles skills sont installées", "génère l'inventaire
+  skills", "inventaire des skills", "quelles skills sont présentes", "génère l'inventaire
   des skills", "skills.md", "skill browser", "trouve une skill pour X", "quelle skill
   utiliser pour Y", "existe-t-il une skill qui fait Z", "quels outils et capacités
   ai-je", "combien de skills dans la catégorie X". Se déclenche également quand
@@ -24,7 +24,7 @@ description: >
 dependencies: []
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -179,3 +179,8 @@ Quand un skill doit identifier les skills pertinents pour une tâche :
 2. Filtrer par compatibilité de version
 3. Vérifier les dépendances croisées
 4. Produire une liste ordonnée des skills candidats
+
+---
+
+## Baseline A2 — statut de mesure
+> **Baseline A2 (Task 21 P3/F3, 2026-10-03)** : MESURÉE 2 voies (voie mécanique SHARED §7 v2 + voie L 3 runs réels) — score baseline 5/7 (nulls : 0) ; détail par cas : `scripts/baseline-a2-all-report.json` ; cas structurels consignés au registre KB (décision Task 21) ; re-mesure idempotente `--skip-done` armée pour les nulls 429 restants.

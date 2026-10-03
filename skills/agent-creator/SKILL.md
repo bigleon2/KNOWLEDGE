@@ -1,6 +1,6 @@
 ---
 name: agent-creator
-version: 2.0.0
+version: "2.1.0"
 category: ecosystem
 language: fr
 tags:
@@ -11,9 +11,9 @@ tags:
   - multi-llm
   - ecosystem
 description: >
-  Agent autonome avec mémoire interne à deux niveaux (État Court + État Long).
-  5 modules internes, 4 modes, pipeline 8 étapes (A-H), format .agent,
-  intégration multi-LLM et orchestration multi-agents.
+  Création et orchestration d'agents : génère des agents autonomes persistants (fichier .agent,
+  mémoire interne à deux niveaux, modules internes, boucles, intégration multi-LLM) et orchestre
+  plusieurs agents spécialisés sur un flux de tâches.
 dependencies:
   - skill: gen-plan
     version: ">=3.6.0"
@@ -29,7 +29,7 @@ dependencies:
 
 # AUTONOMOUS-AGENT v1.0.0
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -203,3 +203,8 @@ L'agent est conçu pour être compatible avec :
 | Version | Date | Changements |
 |---------|------|-------------|
 | 1.0.0 | 2026-08-09 | Version initiale, 5 modules, 4 modes, pipeline A-H, mémoire court+long |
+
+---
+
+## Baseline A2 — statut de mesure
+> **Baseline A2 (Task 21 P3/F3, 2026-10-03)** : MESURÉE 2 voies (voie mécanique SHARED §7 v2 + voie L 3 runs réels) — score baseline 6/7 (nulls : 1) ; détail par cas : `scripts/baseline-a2-all-report.json` ; cas structurels consignés au registre KB (décision Task 21) ; re-mesure idempotente `--skip-done` armée pour les nulls 429 restants.

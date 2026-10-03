@@ -1,6 +1,6 @@
 ---
 name: loop-engineering
-version: "1.0.1"
+version: "1.1.0"
 category: ecosystem
 language: fr
 tags:
@@ -12,10 +12,11 @@ description: >-
   Skill discipline loop engineering : boucle d'exécution, boucle de vérification
   avec graders et feedback exploitable, boucle externe d'amélioration continue.
   Spécialise la discipline loop engineering (source de vérité : SHARED §7).
+  Critères d'arrêt des processus itératifs, définition des graders.
 dependencies: []
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -135,7 +136,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 | Détenteur | Mode de détention | Usage |
 |-----------|-------------------|-------|
-| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.11.0 §1.9 | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
+| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.18.0 §1.9 | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
 | `correct-work` | **Fonction héritée** | Lecture et validation d'artefacts de prompts (specs, SKILL.md, rapports de vérification) |
 | `clone-chat` | **Fonction héritée** | Assemblage de documents-clones, produits d'ingénierie de prompts |
 | `prompt-engineering` | Compétence spécialisée (matérialisé v1.0.1) | Optimisation fine des prompts complexes (délégation gen-plan) |

@@ -37,7 +37,7 @@ dependencies:
     used_at: "Hook E1-RES (collecte G-RES, ouverture de session)"
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -176,6 +176,8 @@ R1 vérifier présence avant insertion · R2 ne jamais rétrograder · R3 fusion
 R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 ### §1.14 Leçons knowledge-observer — économie API et arbitres (re-curation B13, modes M3-M4)
+
+> **Note de numérotation (Task 21, résorption A7)** : le saut §1.8 → §1.14 est intentionnel — les sections §1.14/§1.15 portent leurs numéros d'origine du PM (re-curation B13) afin de préserver la traçabilité des références croisées (KB, changelogs PM) ; les sections PM intermédiaires (§1.9-§1.13) ne sont pas miroitées ici — leurs contenus figurent en §1.6-§1.8, chaque en-tête citant sa source PM.
 
 <!-- PATTERN:KO-L001-v1.0.0 -->
 

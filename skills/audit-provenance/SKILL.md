@@ -1,8 +1,11 @@
 ---
 name: audit-provenance
-version: 1.0.0
+version: "1.1.0"
 category: ecosystem
 language: fr
+  tags:
+    - audit
+    - provenance
 description: >
   Auditer la provenance des artefacts de l'écosystème (skills, scripts, corpus,
   rapports, plans) : traçabilité de l'origine (session, directive, clone épinglé,
@@ -12,7 +15,7 @@ description: >
   (clone-chat), avant chaque installation (PROMPT-MAITRE-INSTALL-ECOSYSTEME.md), ou lorsque
   l'utilisateur demande un audit de provenance / un contrôle de traçabilité.
   Matérialise la leçon L006 (knowledge-observer) ; dépend de script-creator pour
-  les conventions des scripts produits ; validé par correct-work (mode CIBLE).
+  les conventions des scripts produits ; contrôlé par correct-work (mode CIBLE).
 dependencies:
   - skill: knowledge-observer
     version: ">=1.0.0"
@@ -30,7 +33,7 @@ dependencies:
 Un skill pour tracer l'origine et le lignage des artefacts de l'écosystème, détecter
 ceux qui en sont dépourvus et corriger les manques de manière idempotente.
 
-## §0 — Contexte Système (SHARED v1.6.0)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables)

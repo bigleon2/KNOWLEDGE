@@ -18,7 +18,7 @@ dependencies:
     used_at: "conventions structurelles"
 ---
 
-## §0 — Contexte Système (SHARED v1.5.2)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -58,3 +58,8 @@ Tout artefact généré est enregistré dans `KNOWLEDGE.md` (template : `skills-
 ## §4 — Conventions
 
 Nommage kebab-case, versions semver, tags `#token`, variables `{{VARIABLE}}` (SHARED §1.2 — pointeur décentralisé : `skill-creator` §2).
+
+---
+
+## Baseline A2 — statut de mesure
+> **Baseline A2 (Task 21 P3/F3, 2026-10-03)** : MESURÉE 2 voies (voie mécanique SHARED §7 v2 + voie L 3 runs réels) — score baseline 6/7 (nulls : 2) ; détail par cas : `scripts/baseline-a2-all-report.json` ; cas structurels consignés au registre KB (décision Task 21) ; re-mesure idempotente `--skip-done` armée pour les nulls 429 restants.

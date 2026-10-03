@@ -47,29 +47,24 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.6.4 (lire en premier). Installateur : `PROM
 | `gen-plan` | 3.18.0 |
 | `correct-work` | 2.7.0 |
 | `clone-chat` | 2.0.0 |
-| `skills-inventory` | 1.0.0 |
+| `skills-inventory` | 1.1.0 |
 | `skill-creator` | 1.0.0 |
-| `agent-creator` | 2.0.0 |
-| `script-creator` | 1.0.0 |
+| `agent-creator` | 2.1.0 |
+| `script-creator` | 1.1.0 |
 | `script-reviewer` | 1.0.0 |
-| `audit-provenance` | 1.0.0 |
-| `prompt-engineering` | 2.1.0 |
+| `audit-provenance` | 1.1.0 |
+| `prompt-engineering` | 2.2.0 |
 | `context-engineering` | 1.1.0 |
-| `loop-engineering` | 1.0.1 |
+| `loop-engineering` | 1.1.0 |
 | `graph-engineering` | 1.0.1 |
-| `harness-engineering` | 1.0.1 |
+| `harness-engineering` | 1.1.0 |
 | `knowledge-observer` | 1.0.0 |
 | `script-mon-ecosysteme-infrastructure` | 1.1.0 |
-| `audio-metadata` | 1.0.0 |
-| `cpp-analysis` | 1.0.0 |
+| `audio-metadata` | 1.1.0 |
+| `cpp-analysis` | 1.1.0 |
 | `pdf-llm` | 1.0.0 |
 | `resource-monitor` | 1.0.0 |
 | `version-management` | 1.0.0 |
-| `autonomous-agent` | 1.0.0 |
-| `correct-py` | 1.0.0 |
-| `fleet-engineering` | 1.0.0 |
-| `memory-engineering` | 1.0.0 |
-| `spec-driven-development` | 1.0.0 |
 
 Registre KB : 26 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.7.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 

@@ -9,7 +9,7 @@ Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — 
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.1)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.4)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
 ### Règle Zéro (§0)

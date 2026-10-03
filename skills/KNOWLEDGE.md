@@ -7,7 +7,7 @@
 
 - **Category** : ecosystem
 - **Description** : Planification structurée des tâches — 4 modes, 15 étapes E1-E15, classification Type 1-4 (E3), règles d'or §1.5 (n°1 adaptation autonome, n°2 régénération post-installation, n°3 mise à jour à chaque nouvelle demande — déclencheur verbatim « intègre dans le plan d'actions » v3.17.2), disciplines d'ingénierie §1.6 (source de vérité : SHARED §7 ; mobilisation E1-E8), méthode de raisonnement adaptative PEK v4.1 (3 modes, blocs A-J, 9 règles, 12 checks), hooks patterns avancés §1.2bis (answer key obligatoire E1, arbitre answer-key-checker E7/E8, Graph Diamond E9-E14, knowledge-observer E15), leçons knowledge-observer §1.14/§1.15 (KO-L001 économie API, KO-L003 arbitres à invariants dynamisés, KO-L004 recalibrage croisé, KO-L005 généralisation règle d'or n°2 — §1.5, KO-L007 matérialisation d'abord sur clone sparse — v3.18.0) ; hook E1-RES §1.2bis (n67-1 reconstitué post-wipe : B-11 + collecte G-RES + fraîcheur du plan)
-- **Dépend de** : correct-work >= v2.4.0 (hooks E9-E14), clone-chat >= v2.0.0 (E4, E15, optionnel), skills-inventory >= v1.0.0 (E5), prompt-engineering >= v1.0.0 (délégation §1.9), resource-monitor >= v1.0.0 (hook E1-RES — collecte G-RES, v3.17.2), context-engineering (mobilisation §1.6), loop-engineering (mobilisation §1.6), graph-engineering (mobilisation §1.6), harness-engineering (mobilisation §1.6), knowledge-observer >= v1.0.0 (E15), fleet-engineering (détention §1.9 — choix du pattern et des bornes à E5/E7 ; intégration v3.15.0), spec-driven-development (détention §1.9 — cadrage E4, re-validation E7 ; intégration v3.15.0), memory-engineering (détention §1.9 — État Long imposé aux exécutions longues ; intégration v3.15.0)
+- **Dépend de** : correct-work >= v2.4.0 (hooks E9-E14), clone-chat >= v2.0.0 (E4, E15, optionnel), skills-inventory >= v1.0.0 (E5), prompt-engineering >= v1.0.0 (délégation §1.9), resource-monitor >= v1.0.0 (hook E1-RES — collecte G-RES, v3.17.2), context-engineering (mobilisation §1.6), loop-engineering (mobilisation §1.6), graph-engineering (mobilisation §1.6), harness-engineering (mobilisation §1.6), knowledge-observer >= v1.0.0 (E15), fleet-engineering (détention orchestrée — registre décentralisé §8 du skill + registre KB), spec-driven-development (détention orchestrée — registre décentralisé §8 du skill + registre KB), memory-engineering (détention orchestrée — registre décentralisé §8 du skill + registre KB)
 - **Utilisé par** : correct-work (Étape 1, OBLIGATOIRE — dernière version installée, v2.7.0), clone-chat (optionnel), agent-creator, Main (planification complète), prompt-engineering (contexte écosystème, E1-E8), knowledge-observer (invoqué à E15, modes M1-M2), autonomous-agent (planification de tâches complexes, >= v3.6.0)
 - **Dernière calibration** : 2026-09-10 (révision B3 : harmonisation bidirectionnelle du registre — réciproques « Utilisé par » clone-chat, prompt-engineering ; révision B1 : intégration PEK v4.1 par assemblage — couche de raisonnement adaptative, 6e référence prompt-engineering-kit.md, PM v3.11.0 ; A12 : règles d'or n°2-n°3, directive utilisateur ; A11 : disciplines implantées en SHARED §7, triggers 9/9) ; N14-b (2026-09-19) : re-montée v3.12.0 — table de mobilisation E1-E8 §1.6, relations §3 étendues aux 4 disciplines, E1/E5/E7/E8, porteurs propagés) ; B13-r5 (2026-09-26) : re-curation leçons KO (§1.14/§1.15), hooks §1.2bis, reconstitution post-wipe (trace 1a0dfca3a0ffe13d) ; N23-b/N28 (2026-09-27, B13-r6) : montée v3.17.0 — §1.5 bloc PATTERN:KO-L005-v1.0.0 (leçon L005 validée), §1.2bis hook E1-RES (n67-1 reconstitué, provenance tracée), PM v3.17.0 assemblé 1362 L déployé ×3, arbitre n60b 12/12 ×2 ; montée v3.17.1 (2026-10-02, trace a91dd80) : propagation renommage prompt-engineering — patterns-avances-qwen.md (mode M5), PM v3.17.1 assemblé et déployé ×3, recalibrage KO-L004 (integrité, corpus 22, SYNC_MAP 12), arbitres re-certifiés ; montée v3.17.2 (2026-10-02) : déclencheur verbatim « intègre dans le plan d'actions » (§A PM + règle d'or n°3 + trigger_evals 8 cas), correction E1 → PM-INSTALL v1.1.0 (fusion installateurs), recalibrage KO-L004 (CORPUS_ATTENDU 22, SYNC_MAP 12) ; montée v3.18.0 (2026-10-02) : application M4 leçon L007 (verdict correct-work étape F PASS, cycle fusion installateurs) — §1.15 PATTERN:KO-L007-v1.0.0, PM v3.18.0 déployé ×3, §4 exemplaire YAML synchronisé, recalibrage KO-L004 (CORPUS_ATTENDU 24, SYNC_MAP 14)
 - **Statut** : stable
@@ -15,30 +15,30 @@
 ## correct-work v2.7.0
 
 - **Category** : ecosystem
-- **Description** : Vérification et correction des livrables (erreurs, omissions, incohérences) — 4 modes (PROJET/CIBLE/DIRECT/AVEUGLE), 5 étapes, multi-cibles, couplage gen-plan OBLIGATOIRE (Étape 1, dernière version installée), checklists unifiées §10, hook 2nd opinion agent-driven (Étape 5)
+- **Description** : Skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences). 5 étapes, 4 modes (PROJET/CIBLE/DIRECT/AVEUGLE), support multi-cibles, couplage genplan OBLIGATOIRE (dernière version installée) à l'Étape 1, intégration KB (Registre, kb_path, --kb-skill), matrice de décision agent/skill (statique + dynamique KB), métriques de performance. Contrôler la cohérence avant de livrer ce que tu viens de produire.
 - **Dépend de** : gen-plan >= v3.7.0 (Étape 1, OBLIGATOIRE — dernière version installée, v2.7.0), clone-chat >= v2.0.0 (Mode CIBLE, §3.5), fullstack-dev >= v1.0.0 (projets web), skills-inventory >= v1.0.0 (scan dynamique KB)
 - **Utilisé par** : gen-plan (hooks par phase E9-E14), clone-chat (validation croisée), Main (vérification finale), knowledge-observer (validation des lessons, étape F), script-creator (GF-5, mode CIBLE sur les scripts produits), script-reviewer (sévérités S1-S4, escalade CIBLE), audit-provenance (GF-4, validation des artefacts corrigés), autonomous-agent (validation cohérence de l'agent, >= v2.4.0), correct-py (escalade mode CIBLE — écarts non mécaniques)
-- **Dernière calibration** : 2026-10-02 (v2.7.0 : couplage gen-plan obligatoire à l'Étape 1, fin du mode autonome — directive propriétaire ; recalibrage arbitre KO-L004) ; 2026-09-10 (révision B3 : harmonisation bidirectionnelle du registre — réciproque « Utilisé par » clone-chat, dépendance skills-inventory (scan dynamique KB) ; A10 : Description Optimization « erreurs, omissions, incohérences », itération-3 triggers 8/8 ; A9 : schéma evals unifié)
+- **Dernière calibration : 2026-10-03 (Task 21 F1 — P2 pass 2 : chirurgies incidents-FP locaux radicaux-description + tag iteration retiré (prompt-engineering) ; validation locale zéro-API via arbitre V6 ; cas structurels radical-du-nom consignés réserve 1 ; montées v2.2.0 (prompt-engineering) et v1.1.0 (script-creator) ; KO-L004 recalibré)**
 - **Note v2.0 (corrige-ecosysteme)** : règles de cross-references décentralisées (SHARED §3.2 → §3.2) — Contexte Système appliqué (Architecture v2.0). ; N27/N28 (B13-r6) : provenance tracée — `verify-correct-work.py` documenté par en-tête `PROVENANCE:` (audit audit-provenance, 25 scripts), réciproques script-creator/script-reviewer/audit-provenance complétées.
 - **Statut** : stable
 
 ## clone-chat v2.0.0
 
 - **Category** : ecosystem
-- **Description** : Clonage de discussion en Markdown auto-suffisant — protocole 7+1 étapes, 8 checks, 5 types de drift, protocole d'héritage §1.0, compatibilité ascendante (révision prompt 1.0.3)
+- **Description** : Clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog) dans un fichier Markdown auto-suffisant. 7+1 étapes, Étape 3.5 Context Drift, intégration gen-plan v3.6.1+ KB. Format Markdown unique, propriété auto-clonage. Archive la session pour reprise par une session héritière.
 - **Dépend de** : gen-plan >= v3.6.1 (optionnel), correct-work >= v2.4.0 (validation croisée), skill-creator >= v1.0.0 (conventions)
 - **Utilisé par** : gen-plan (E15, archivage — leçon E23), correct-work (Mode CIBLE, §3.5), agent-creator (persistance d'état), autonomous-agent (persistance État Long entre sessions, >= v2.0.0, optionnel)
-- **Dernière calibration** : 2026-09-10 (révision B3 : harmonisation bidirectionnelle du registre — réciproque « Utilisé par » correct-work ; 10ᵉ clone scellé 776ff9c0…, révision prompt 1.0.3)
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note v2.0 (corrige-ecosysteme)** : aucune section décentralisée ; relation G8 (persistance agent-creator) documentée bidirectionnellement (SHARED §3.1) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
 
-## skills-inventory v1.0.0
+## skills-inventory v1.1.0
 
 - **Category** : ecosystem
-- **Description** : Scan et inventaire des skills disponibles (E5 de gen-plan)
+- **Description** : Scanner et rapporteur d'inventaire des skills. S'active dès que l'utilisateur demande de lister, d'inventorier, de cataloguer, de parcourir, de chercher ou d'explorer les skills disponibles — p. ex. "quelles sont les skills dispo", "list all skills", "montre-moi tes skills", "inventaire des skills", "quelles skills sont présentes", "génère l'inventaire des skills", "skills.md", "skill browser", "trouve une skill pour X", "quelle skill utiliser pour Y", "existe-t-il une skill qui fait Z", "quels outils et capacités ai-je", "combien de skills dans la catégorie X". Se déclenche également quand l'utilisateur mentionne "skills-inventory" explicitement ou s'interroge sur les catégories, les effectifs, les statistiques ou les comparaisons de skills. Utilise ce skill dès qu'il faut scanner /home/z/my-project/skills/, produire un document d'inventaire des skills, trouver la bonne skill pour une tâche, ou répondre à des questions sur l'écosystème de skills — même si l'utilisateur ne dit pas explicitement "inventaire des skills".
 - **Dépend de** : —
 - **Utilisé par** : gen-plan (E5), correct-work (scan dynamique KB)
-- **Dernière calibration** : N/A
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note v2.0 (corrige-ecosysteme)** : template des entrées KB (SHARED §2.2 → §2.1) + Protocole de Découverte (SHARED §2.3 → §2.2) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
 
@@ -52,23 +52,23 @@
 - **Note v2.0 (corrige-ecosysteme)** : conventions YAML (SHARED §1.3 → §2), format SKILL.md (SHARED §5 → §3), règle impérative Contexte Système (§3.0) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
 
-## agent-creator v2.0.0
+## agent-creator v2.1.0
 
 - **Category** : ecosystem
-- **Description** : Agent autonome avec mémoire interne (tâches longues)
+- **Description** : Création et orchestration d'agents : génère des agents autonomes persistants (fichier .agent, mémoire interne à deux niveaux, modules internes, boucles, intégration multi-LLM) et orchestre plusieurs agents spécialisés sur un flux de tâches.
 - **Dépend de** : gen-plan >= v3.6.0, clone-chat >= v2.0.0 (persistance, optionnel)
 - **Utilisé par** : —
-- **Dernière calibration** : N/A
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note v2.0.0 (B11)** : renommage effectué depuis l'ancien identifiant (bump majeur — rupture d'identité assumée, plan B11 Phase A ; écosystème adapté de manière idempotente : évals, arbitres, corpus actif, harness, véhicule de réinstallation).
 - **Statut** : stable
 
-## prompt-engineering v2.1.0
+## prompt-engineering v2.2.0
 
 - **Category** : ecosystem
-- **Description** : Optimisation fine des prompts complexes (rédaction, restructuration, évaluation, itération — 4 modes M1-M4) + mode M5 IDÉATION (ToT, protocole ideation-protocol.md). Spécialise la méthode prompt-engineering (méthode-mère : gen-plan ; source de vérité : SHARED §7)
+- **Description** : Skill d'optimisation fine des prompts complexes : rédaction, restructuration (restructure, restructurer), évaluation et validation des déclencheurs officiels des artefacts de prompts (PMs, SKILL.md). Spécialise la méthode prompt-engineering (méthode-mère : gen-plan ; source de vérité : SHARED §7) ; matérialisé le 2026-09-06 (recommandation de session, §5.2).
 - **Dépend de** : gen-plan >= v3.7.0 (contexte écosystème, E1-E8), skill-creator >= v1.0.0 (conventions)
 - **Utilisé par** : gen-plan (délégation §1.9), install-ecosystem (P6-P7)
-- **Dernière calibration** : 2026-09-06 (MATÉRIALISÉ : SKILL.md + evals/evals.json + evals/trigger_evals.json + references/grille-evaluation-prompt.md ; A11 : pointeurs SHARED §7, v1.0.1)
+- **Dernière calibration : 2026-10-03 (Task 21 F1 — P2 pass 2 : chirurgies incidents-FP locaux radicaux-description + tag iteration retiré (prompt-engineering) ; validation locale zéro-API via arbitre V6 ; cas structurels radical-du-nom consignés réserve 1 ; montées v2.2.0 (prompt-engineering) et v1.1.0 (script-creator) ; KO-L004 recalibré)**
 - **Note v2.0.0 (B11)** : renommage effectué depuis l'ancien identifiant (bump majeur — rupture d'identité assumée, plan B11 Phase A ; écosystème adapté de manière idempotente : évals, arbitres, corpus actif, harness, véhicule de réinstallation).
 - **Statut** : stable
 
@@ -82,13 +82,13 @@
 - **Note v2.0 (corrige-ecosysteme)** : registre d'assignation des disciplines (SHARED §7 → §8) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
 
-## loop-engineering v1.0.1
+## loop-engineering v1.1.0
 
 - **Category** : ecosystem
-- **Description** : Discipline loop engineering (boucle d'exécution, boucle de vérification avec graders, boucle externe d'amélioration continue). Spécialise la discipline loop engineering (source de vérité : SHARED §7)
+- **Description** : Skill discipline loop engineering : boucle d'exécution, boucle de vérification avec graders et feedback exploitable, boucle externe d'amélioration continue. Spécialise la discipline loop engineering (source de vérité : SHARED §7). Critères d'arrêt des processus itératifs, définition des graders.
 - **Dépend de** : — (socle normatif SHARED §7)
 - **Utilisé par** : gen-plan (couche disciplines E10-E15), correct-work (hooks de vérification), sessions d'ingénierie
-- **Dernière calibration** : 2026-09-07 (heuristique v2 — stemmer français léger sous garde de collision ; itération-6 : 4/4 v1 et v2, +1 gain v2 ; SKILL.md + evals/evals.json + evals/trigger_evals.json ; agents `_disciplines/` retirés, SHA prouvés)
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note v2.0 (corrige-ecosysteme)** : registre d'assignation des disciplines (SHARED §7 → §8) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
 
@@ -102,13 +102,13 @@
 - **Note v2.0 (corrige-ecosysteme)** : registre d'assignation des disciplines (SHARED §7 → §8) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
 
-## harness-engineering v1.0.1
+## harness-engineering v1.1.0
 
 - **Category** : ecosystem
-- **Description** : Discipline harness engineering (harnais d'exécution, gardes-fous, profilage ressource, arbitres, resserrage après dérive). Spécialise la discipline harness engineering (source de vérité : SHARED §7)
+- **Description** : Skill discipline harness engineering : harnais d'exécution, gardes-fous, profilage ressource, arbitres et resserrage après chaque dérive. Spécialise la discipline harness engineering (source de vérité : SHARED §7). Contrôles automatiques anti-dérive des processus, gardes anti-régression.
 - **Dépend de** : — (socle normatif SHARED §7)
 - **Utilisé par** : gen-plan (E4/E6/E8/E9-E14), correct-work (verdicts), arbitres du dépôt
-- **Dernière calibration** : 2026-09-07 (heuristique v2 — stemmer français léger sous garde de collision ; itération-6 : 4/4 v1 et v2, +1 gain v2 ; SKILL.md + evals/evals.json + evals/trigger_evals.json ; agents `_disciplines/` retirés, SHA prouvés)
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note v2.0 (corrige-ecosysteme)** : registre d'assignation des disciplines (SHARED §7 → §8) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
 
@@ -131,13 +131,13 @@
 - **Dernière calibration** : 2026-09-19 (N20 : matérialisation du pattern Task Observer — SKILL.md + evals/evals.json + evals/trigger_evals.json + data/lessons-learned.json ; source de vérité du pattern : gen-plan/references/observation-patterns.md) ; 2026-09-26 (B13-r5 : restauration post-wipe — journal L001-L004 restitué, référence observation-patterns.md restaurée)
 - **Statut** : stable
 
-## script-creator v1.0.0
+## script-creator v1.1.0
 
 - **Category** : ecosystem
-- **Description** : Création et modification des scripts de l'écosystème (arbitres, collecteurs, outils de vérification stdlib) avec critères de succès et tests mécaniques intégrés ; idempotence rejeu ×2 (rejeu ×2 sans effet)
+- **Description** : Créer et modifier les scripts de l'écosystème (arbitres, collecteurs, outils de vérification stdlib) avec critères de succès et tests mécaniques intégrés. Utiliser lorsque l'utilisateur souhaite créer un script, corriger ou améliorer un script existant, rendre un check certifiable exécutable localement, ou garantir l'idempotence (rejeu ×2 sans effet) d'un outil. Structure, conventions de description héritées de skill-creator ; objectif principal : la création ou la modification des scripts (et non des skills).
 - **Dépend de** : skill-creator >= v1.0.0 (conventions de description/évals/frontmatter), correct-work >= v2.6.0 (validation mode CIBLE), correct-py >= v1.0.0 (post-traitement GF-6 — exécuté après chaque utilisation)
 - **Utilisé par** : script-reviewer v1.0.0 (scripts entrants du processus de création), audit-provenance v1.0.0 (conventions des scripts produits), correct-py v1.0.0 (post-traitement GF-6 — exécuté après chaque utilisation)
-- **Dernière calibration** : 2026-09-27 (N25, B13-r6 : ajout au registre — verdict correct-work mode CIBLE round 1 **PASS AVEC RÉSERVES** [1 S2 : entrées KB absentes ; 3 S3 cross-refs] ; test simple de bout en bout §1.2 PASS avec preuve d'idempotence ×2 ; corrections des réserves appliquées R2 idempotentes)
+- **Dernière calibration : 2026-10-03 (Task 21 F1 — P2 pass 2 : chirurgies incidents-FP locaux radicaux-description + tag iteration retiré (prompt-engineering) ; validation locale zéro-API via arbitre V6 ; cas structurels radical-du-nom consignés réserve 1 ; montées v2.2.0 (prompt-engineering) et v1.1.0 (script-creator) ; KO-L004 recalibré)**
 - **Note N25 (B13-r6)** : famille skill-creator ; processus §1.2 en 7 étapes + 6 garde-fous (R9, N3, idempotence ×2, auto-test P2, correct-work CIBLE, correct-py GF-6) ; evals 4 + trigger_evals 7 en base réelle ; relations bidirectionnelles complétées (script-reviewer §3).
 - **Statut** : stable
 
@@ -151,33 +151,33 @@
 - **Note N26 (B13-r6)** : homologue de la famille agent-creator ; pendant « relecture » de script-creator ; référencée au registre (décision N26).
 - **Statut** : stable
 
-## audit-provenance v1.0.0
+## audit-provenance v1.1.0
 
 - **Category** : ecosystem
-- **Description** : Audit de la provenance des artefacts de l'écosystème (traçabilité d'origine : session, directive, clone épinglé, reconstitution post-wipe), détection des orphelins et réécriture idempotente des en-têtes manquants — matérialise la leçon L006
+- **Description** : Auditer la provenance des artefacts de l'écosystème (skills, scripts, corpus, rapports, plans) : traçabilité de l'origine (session, directive, clone épinglé, reconstitution post-wipe), lignage des wipes/restaurations, détection des artefacts sans provenance et réécriture idempotente des en-têtes manquants. Utiliser après chaque wipe ou restauration, avant chaque clone de discussion (clone-chat), avant chaque installation (PROMPT-MAITRE-INSTALL-ECOSYSTEME.md), ou lorsque l'utilisateur demande un audit de provenance / un contrôle de traçabilité. Matérialise la leçon L006 (knowledge-observer) ; dépend de script-creator pour les conventions des scripts produits ; contrôlé par correct-work (mode CIBLE).
 - **Dépend de** : knowledge-observer >= v1.0.0 (journal lessons-learned L006), script-creator >= v1.0.0 (conventions des scripts produits), correct-work >= v2.6.0 (validation mode CIBLE)
 - **Utilisé par** : —
-- **Dernière calibration** : 2026-09-27 (N27, B13-r6 : matérialisation — SKILL.md + evals 4+7 + collecteur scripts/audit-provenance.py ; audit exécuté : 214 scannés, 189 tracés, 25 scripts documentés, idempotence ×2 no-op prouvée)
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note N27 (B13-r6)** : déclencheurs systématiques — après wipe/restauration, avant clone-chat, avant installation ; périmètre écosystème strict (ECO_SKILLS dynamique) ; heuristique déclarative extensible (--markers) ; orphelins résiduels 33 assumés v1.0.0 (GF-3 — listés au rapport).
 - **Statut** : stable
 
-## autonomous-agent v1.0.0
+## autonomous-agent v1.1.0
 
 - **Category** : ecosystem
-- **Description** : Agent autonome avec mémoire interne à deux niveaux (État Court + État Long) — 5 modules internes, 4 modes, pipeline 8 étapes (A-H), format .agent, intégration multi-LLM et orchestration multi-agents
+- **Description** : Agent autonome avec mémoire interne à deux niveaux (État Court + État Long). 5 modules internes, 4 modes, pipeline 8 étapes (A-H), format .agent, intégration multi-LLM et orchestration multi-agents. Exécution autonome d'opérations complexes, persistance de l'état entre les sessions, traitement de requêtes de bout en bout, simulation de comportement sur des cas d'usage.
 - **Dépend de** : gen-plan >= v3.6.0 (planification de tâches complexes), clone-chat >= v2.0.0 (persistance État Long entre sessions, optionnel), correct-work >= v2.4.0 (validation cohérence de l'agent)
 - **Utilisé par** : —
-- **Dernière calibration** : N/A (entrée dérivée du SKILL.md installé — Task 16, suggestion (a))
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note Task 16** : consultation skills-inventory (§3 — découverte des agents disponibles, relation non versionnée reléguée en Note, SHARED §3.2 règle 5).
 - **Statut** : stable
 
-## correct-py v1.0.0
+## correct-py v1.1.0
 
 - **Category** : ecosystem
-- **Description** : Vérifier et corriger la conformité des scripts Python de l'écosystème aux normes d'écriture du langage (PEP 8 : style, indentation, nommage snake_case ; PEP 257 : docstrings de module et de fonctions ; conventions de commentaires) par analyse AST/tokenize stdlib, avec corrections mécaniques ciblées et idempotentes et rapport JSON déterministe. Utiliser lorsqu'un script Python vient d'être créé ou modifié par script-creator (post-traitement obligatoire, garde-fou 6 §1.3), lorsqu'un script existant doit être audité ou normalisé, ou lorsqu'une vérification de style mécanique est requise avant relecture script-reviewer
+- **Description** : Vérifier et corriger la conformité des scripts Python de l'écosystème aux normes d'écriture du langage (PEP 8 : style, indentation, nommage snake_case ; PEP 257 : docstrings de module et de fonctions ; conventions de commentaires) par analyse AST/tokenize stdlib, via corrections mécaniques ciblées et idempotentes et rapport JSON déterministe. Utiliser lorsqu'un script Python vient d'être généré ou modifié par script-creator (post-traitement obligatoire, garde-fou 6 §1.3 — exécuté APRÈS chaque utilisation), lorsqu'un script existant doit être audité ou normalisé aux normes Python, ou lorsqu'une vérification de style mécanique est requise préalablement à la relecture script-reviewer. Non concerné : création de scripts (script-creator), relecture fonctionnelle G1-G8 (script-reviewer), validation d'écosystème (correct-work), création de skills (skill-creator). Commentaires corrigés, blancs parasites supprimés, style et indentation normalisés.
 - **Dépend de** : script-creator >= v1.0.0 (scripts entrants du post-traitement, §1.1/§3), skill-creator >= v1.0.0 (conventions de description, d'évals et de frontmatter, §1.4), correct-work >= v2.4.0 (escalade mode CIBLE — §3, écarts non mécaniques, au-delà de l'arbitrage local), knowledge-observer >= v1.0.0 (leçons L003/L005 — auto-test des cas limites, §1.5)
 - **Utilisé par** : script-creator (post-traitement GF-6 — exécuté après chaque utilisation)
-- **Dernière calibration** : N/A (entrée dérivée du SKILL.md installé — Task 16, suggestion (a))
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note Task 16** : convergence script-reviewer (§3 — conformité fine du langage avant relecture G1-G8) — relation non versionnée reléguée en Note (SHARED §3.2 règle 5).
 - **Statut** : stable
 
@@ -211,19 +211,21 @@
 - **Note Task 16** : fonctions héritées inter-disciplines (§3 — harness-engineering : critères d'acceptation devenus gardes-fous exécutés ; loop-engineering : vérifier M4 alimentant la boucle ; graph-engineering : traçabilité exigences↔décisions↔preuves ; fleet-engineering : micro-specs par sous-tâche) — relations non versionnées reléguées en Note (SHARED §3.2 règle 5).
 - **Statut** : stable
 
-## audio-metadata v1.0.0
+## audio-metadata v1.1.0
 
 - **Category** : metier
-- **Description** : Gestion avancée des métadonnées audio — extraction, normalisation, conversion de tags ID3v2, MP4, FLAC, Vorbis ; formats DJ (MP3, FLAC, WAV, AIFF, M4A)
+- **Description** : Gestion avancée des métadonnées audio — Extraction, normalisation, conversion de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A). Use when the user needs to manage audio metadata, extract tags, or normalize metadata across a collection. Nettoie et corrige les tags ID3 : titres, artistes, pochettes, bibliothèques MP3 ; organise les playlists par album en corrigeant les tags manquants.
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Dépend de** : —
 - **Utilisé par** : Main (gestion de collections audio)
 - **Note P-H (2026-10-02)** : entrée créée pour compléter la bidirectionnalité registre↔skills (gap S3 préexistant à 68ff91d, résolu)
 - **Statut** : stable
 
-## cpp-analysis v1.0.0
+## cpp-analysis v1.1.0
 
 - **Category** : metier
-- **Description** : Analyse de code C/C++ — détection de bugs, optimisation de performance, analyse de complexité, génération de documentation ; support C à C++20
+- **Description** : Analyse de code C/C++ — Détection de bugs, optimisation de performance, analyse de complexité, génération de documentation. Supporte C, C++, C++11/14/17/20. Use when the user needs to analyze C/C++ code, find bugs, optimize performance, or generate documentation. Architecture de projets et analyse des dépendances ; évalue la qualité et la sûreté des bases de code avant migration.
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Dépend de** : —
 - **Utilisé par** : Main (analyse de code C/C++)
 - **Note P-H (2026-10-02)** : entrée créée pour compléter la bidirectionnalité registre↔skills (gap S3 préexistant à 68ff91d, résolu)
@@ -250,13 +252,18 @@
 ## version-management v1.0.0
 
 - **Category** : metier
-- **Description** : Gestion du cycle de vie complet des projets front-end (versionnement par send_file/meta.json, historique, restauration, bascule de projets) — skill brut d'origine (description en chinois), version normalisée Z1 au frontmatter
+- **Description** : 独立通用 Skill：管理前端项目全生命周期。只要任务**可能**写出 .html/.jsx/.tsx/.vue 入口文件，就必须在写出第一个文件**之前**读取并遵循本 Skill（用于确定落盘路径与项目目录），而不是产出之后才补救；即使用户没有提到"项目"或"版本"也要使用。同时响应用户的版本相关操作（查看历史、恢复版本、切换项目等）。
+- **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Dépend de** : —
 - **Utilisé par** : Main (projets web front-end)
 - **Note P-H (2026-10-02)** : entrée créée pour compléter la bidirectionnalité registre↔skills ; frontmatter normalisé minimale (version: 1.0.0 ajoutée — le corps reste inchangé, R2)
 - **Statut** : stable
 
 ## Décisions d'architecture (corrige-ecosysteme v2.0.0)
+
+- **Task 22 — installation + vérification d'idempotence + enforcement du routage des outils dédiés (directive propriétaire 2026-10-03 : « vérifie l'idempotence des skills et des agents que tu as modifiés », « vérifie aussi que tu as bien utilisé mes skills et mes agents dédiés à l'écriture de chaque type d'élément », « fais en sorte que mon écosystème le fasse automatiquement à partir de maintenant », PUSH conditionné)** : installation re-vérifiée pipeline PM-INSTALL v1.3.1 §2 (PASS 11/11, double-exécution empreinte stable — f(f(x))=f(x)) ; DÉRIVE KO-L004 détectée et corrigée : orchestrateur ULTRA stale (montées Task 18/21 non propagées — memory-engineering 1.1.0, prompt-engineering 2.2.0, script-creator 1.1.0, skills-inventory 1.1.0, agent-creator 2.1.0) → régénéré gen-ultra-maitre.py (SHA c435a2f3, --check no-op) + archive rescellée round-trip 26/26 + re-verdict intégrité 56/56 ; **nouvel arbitre check-tool-routing.py (6e arbitre, D006)** — routage automatique des outils dédiés par type d'élément (skill→skill-creator, agent/PM→agent-creator, script→script-creator, infrastructure→script-mon-ecosysteme-infrastructure, registre KB→skills-inventory ; preuves N1 mécaniques par artefact + N2 normatif par session au plan/worklog) branché dans certification-complete.py (agrégateur 5→6 arbitres) — l'écosystème applique le routage AUTOMATIQUEMENT à chaque certification future ; défaut préexistant corrigé au passage : entrée verify-correct-work de l'agrégateur invoquée sans rapport (crash) → dérivation dynamique du dernier rapport correct-work (KO-L003) ; audit d'usage historique consigné (Tasks 18-21 : 4/9 routages explicites — gen-plan, correct-work, prompt-engineering, knowledge-observer ; 5/9 conformité implicite via arbitres, sans trace) ; V6 stable 18/26 (8 dérivants consignés, zéro régression) ; trigger_evals.json est stable, harnais voie M stable ; PUSH exécuté après verdict d'idempotence PASS (protocole Task 7/14, jeton éphémère, audit anti-persistance).
+
+- **Task 21 — campagne d'extension V0-V6 (fin P2 : Description Optimization pass 2 + statut des cas structurels + décision C006)** : suite campagne interrompue 2026-10-02 (P0 arbitre V6 créé, P2 12/17, P4 partiel, P5 67/67, P3 9/26 votes réels) — pass 2 zéro-API (protocole A10/A14, R2) : correct-work 7/7 (radical 'plan' issu de « gen-plan » éliminé — genplan), script-creator 7/7 (« nouveau » et « évals » retirés de la description), prompt-engineering 6/7 (itération/trigger_evals retirés de desc + tag 'iteration' retiré — les tags injectent des radicaux ; montée 2.1.0→2.2.0 ; script-creator 1.0.0→1.1.0 ; correct-work PM-couplé sans bump) ; re-jeu V6 : 18/26 max. **Cas structurels consignés (radical du NOM du skill, inréparables par description — réserve 1 Task 19, désambiguïsation déléguée voie L, plan §6)** : agent-creator ('agent'), audio-metadata ('audio'), pdf-llm ('pdf' ×3), prompt-engineering ('prompt'), script-mon-ecosysteme-infrastructure ('ecosystem', cas ambigu voie L 0.667 → révision du cas renvoyée au propriétaire), script-reviewer ('script'), skills-inventory ('skill' ×2). **C006 (version-management, zh)** : décision (b) appliquée par défaut — voie L seule assumée et consignée (voie M structurellement aveugle au chinois, stemmer français ; voie L réelle P3 : positifs OUI 3/3, négatifs 0.0) ; réversible vers (a) evals français additionnels sur directive du propriétaire. KO-L004 recalibré (integrity 2.2.0/1.1.0) ; KB Description = miroir frontmatter ×3.
 
 - **Task 18 — directive gen-plan : correct-work(projet) + boucle QUOTA (levée du confirm LLM) + matérialisation des baselines hors périmètre (c)** : directive utilisateur (session web-bbbeab47, 2026-10-03). (1) **gen-plan:correct-work(projet)** : couplage obligatoire v2.7.0 respecté (plan download/plan-task18-correct-work-projet.md via gen-plan v3.18.0, answer key D001-D008, arbitres E8 verts) — vérification PROJET 5 étapes : verdict **PASS AVEC RÉSERVES** (rapport download/rapport-correct-work-projet-task18.md ; constat S3 : `baseline-pending-n34.json` jamais matérialisé au clone — statut « non matérialisé » KO-L007 ; constat S4 : drift de modes 100644→100755, 0 insertion/0 suppression). (2) **Boucle QUOTA** : sonde unique KO-L001 → QUOTA_OK (00:18 UTC) → re-exécution idempotente `scripts/task17-baseline-a2.py` au premier plan (constat R3-A17-bis : les démons d'arrière-plan sont fauchés entre les appels d'outils) — **confirm LLM LEVÉ : 42/42 votes réels zéro null, ratios 1.0×5 / 0.0×2 par skill, zéro dérive 2 voies** fleet/spec (§4bis rapport n54 ; SKILL.md §5 + KB consignés). (3) **Baselines hors périmètre (c) = memory-engineering** (arbitre idempotent `scripts/task18-baseline-a2-memory.py`, runner 429-aware `--skip-done` KO-L001) : baseline A2 **4/7 — dérive établie** (3 cas positifs sous le seuil de radicaux voie mécanique ; confirm LLM 4/7 cas réels puis quota 429 — erreur sur stderr, invisible au parseur stdout, diagnostiquée) → **Description Optimization appliquée (protocole A10/A14) : memory-engineering v1.0.0 → v1.1.0** (description frontmatter étendue des radicaux discriminants compaction/isolation/récupération ; contrôles négatifs préservés ; KB synchronisé ; recalibrage L004 : check-ecosysteme-integrity 1.0.0 → 1.1.0 — re-verdict 56/56) → **re-mesure post-optimisation au QUOTA_OK (fenêtre 30 min, directive) : 7/7 sur les DEUX voies, 21/21 votes réels, zéro dérive** (rapport download/rapport-baseline-a2-memory-engineering.md). (4) Publication au dépôt (protocole Task 7/14). Les 3 disciplines n°54 sont désormais mesurées et certifiées — plus aucune composante armée résiduelle.
 - **Task 17 — exécution des suggestions ③②① de la clôture Task 16 (reconstitution + aveugle + baselines A2 + publication)** : directive utilisateur « fais les suggestions dans cet ordre : fais (3), puis (2), puis (1) » (session de continuation, 2026-10-02). (0) La couche Task 15/16, jamais publiée, a été reconstituée depuis les artefacts durables de la conversation partagée — archive d'intégrité certifiée (ULTRA SHA 24c48900, round-trip 26/26 byte-identique re-vérifié), 3 rapports download/, versions de gouvernance (SHARED v1.6.4, PM-INSTALL v1.3.1, SYNC-CONTEXT v1.4.1) ; registre KB 21 → 26 entrées ré-appliqué (suggestion (a)) ; provenance des reconstitutions tracée au worklog (Tasks 15-16 marquées RECONSTITUÉES — scripts de session perdus au wipe, sorties conservées). (3) correct-work(aveugle) sur les PMs reconstitués v2.6.0/v2.7.0 : protocole Second Opinion (inputs filtrés, cadrage à froid, 17 critères pré-écrits) — 34/34 PASS après instruction de 3 divergences initiales (2 calibrations d'arbitre + 1 critère redéfini sur changement documenté v2.7.0 — matrice conservée), CONVERGENCE avec la certification Task 16. (2) Suggestion (c) exécutée : baselines A2 fleet-engineering + spec-driven-development — voie mécanique heuristique SHARED §7 v2 : 7/7 et 7/7 (zéro dérive, Description Optimization non requise) ; confirm 3 runs LLM indisponible (quota API 429 persistant côté plateforme) et ARMÉ au prochain QUOTA_OK — R3 : aucun résultat fabriqué. (1) Publication au dépôt (protocole Task 7/14). Les SKILL.md des disciplines (forme installée) portent la mesure au §5 ; lignée v1.0.0 inchangée (mesure, pas un changement de comportement — pas de bump).

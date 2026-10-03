@@ -8,7 +8,7 @@
 > **Provenance** : PM reconstitué le 2026-10-02 (Task 16, session web-8a7e5653) par diffs chirurgicaux depuis v2.5.1 via v2.6.0 (méthode B1 — script `scripts/materialise-pm-correct-work.py`) ; changements v2.7.0 tracés par le SKILL.md v2.7.0 installé certifié (§1.5 « changement de contrat v2.7.0, directive propriétaire 2026-10-02 : fin du mode autonome ») et l'entrée KB correct-work ; lignage complet au §7 (aucun faux lignage).
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.1)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.4)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
 ### Règle Zéro (§0)
@@ -386,7 +386,7 @@ Version : 1.0.0 · Créé : phase N20 (session B12-r41) · Restauré : B13-r5 (t
 
 <!-- PATTERN:VERIFICATION-PROTOCOL-v1.0.0 -->
 
-## §0 — Contexte Système (SHARED v1.6.0)
+## §0 — Contexte Système (SHARED v1.6.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case | semver | #token | {{VARIABLE}} | @mon-ecosysteme/ (exception)

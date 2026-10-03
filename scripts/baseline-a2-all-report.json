@@ -1,0 +1,1177 @@
+{
+  "date": "2026-10-03",
+  "task": "Task 21 — campagne P3 (baselines A2 généralisées)",
+  "seuil": 0.5,
+  "confirm_runs": 3,
+  "skills": {
+    "version-management": {
+      "description": "独立通用 Skill：管理前端项目全生命周期。只要任务**可能**写出 .html/.jsx/.tsx/.vue 入口文件，就必须在写出第一个文件**之前**读取并遵循本 Skill（用于确定落盘路径与项目目录），而不是产出之后才补救；即使用户没有提到\"项目\"或\"版本\"也要使用。同时响应用户的版本相关操作（查看历史、恢复版本、切换项目等）。",
+      "n_cases": 8,
+      "score_baseline": "3/8",
+      "derive": true,
+      "votes_null": 2,
+      "cases": [
+        {
+          "query": "帮我写一个个人主页 index.html",
+          "expected": true,
+          "voie_m": {
+            "trigger": false,
+            "hits": [
+              "html"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "看看这个项目都有哪些历史版本",
+          "expected": true,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "恢复到 V2，刚才那版改坏了",
+          "expected": true,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              null
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "429 persistant"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "切回我上次的那个项目",
+          "expected": true,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              null,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "429 persistant",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "给我做一个数据可视化仪表盘页面",
+          "expected": true,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "分析这个 CSV 文件并输出统计摘要",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        }
+      ]
+    },
+    "agent-creator": {
+      "description": "Création et orchestration d'agents : génère des agents autonomes persistants (fichier .agent, mémoire interne à deux niveaux, modules internes, boucles, intégration multi-LLM) et orchestre plusieurs a",
+      "n_cases": 7,
+      "score_baseline": "6/7",
+      "derive": true,
+      "votes_null": 1,
+      "cases": [
+        {
+          "query": "Utilise le skill agent-creator pour créer et orchestrer des agents autonomes.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "agent",
+              "autonom",
+              "creator"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Crée un agent autonome pour surveiller et traiter mes mails.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "agent",
+              "autonom"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Conçois un agent persistant : fichier .agent, boucles d'exécution, matrice agent×skill, reprise d'état.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "agent",
+              "boucl",
+              "fichier",
+              "persist"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Orchestre plusieurs agents spécialisés sur ce flux de travail complexe.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "agent",
+              "flux",
+              "orchestr",
+              "plusi",
+              "specialis"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Ingénierie de prompt : analyse, itérations comparées, critères mesurables, garde-fous anti-erreurs.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Optimise simplement le prompt système de mon assistant.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              null,
+              null
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "429 persistant",
+              "429 persistant"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Automatise ce workflow avec Zapier plutôt qu'avec un agent.",
+          "expected": false,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "agent"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": false
+        }
+      ]
+    },
+    "skills-inventory": {
+      "description": "Scanner et rapporteur d'inventaire des skills. S'active dès que l'utilisateur demande de lister, d'inventorier, de cataloguer, de parcourir, de chercher ou d'explorer les skills disponibles — p. ex. \"",
+      "n_cases": 7,
+      "score_baseline": "5/7",
+      "derive": true,
+      "votes_null": 0,
+      "cases": [
+        {
+          "query": "Utilise le skill skills-inventory pour scanner et inventorier les skills disponibles.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "dispon",
+              "inventorier",
+              "inventory",
+              "scanner",
+              "skill",
+              "utilis"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Fais l'inventaire des skills installés avec leurs versions.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "inventair",
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Scanne le répertoire des skills : présences, versions, dépendances, lacunes — tableau d'inventaire.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "inventair",
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Quels skills sont disponibles pour cette tâche ? Consulte le registre.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "dispon",
+              "quel",
+              "skill",
+              "tach"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Cherche dans le hub ClawHub les skills correspondant à mon besoin et installe-les.",
+          "expected": false,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "Cherche et installe de nouveaux skills depuis le hub.",
+          "expected": false,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "Liste les applications installées sur mon ordinateur.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": [
+              "list"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        }
+      ]
+    },
+    "audio-metadata": {
+      "description": "Gestion avancée des métadonnées audio — Extraction, normalisation, conversion  de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A). Use when the user needs to manage ",
+      "n_cases": 7,
+      "score_baseline": "5/7",
+      "derive": true,
+      "votes_null": 1,
+      "cases": [
+        {
+          "query": "Utilise le skill audio-metadata pour lire et corriger les métadonnées de fichiers audio.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "audio",
+              "metadata",
+              "metadonne"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Nettoie les tags ID3 de ma bibliothèque MP3 (titre, artiste, pochette).",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "artist",
+              "bibliothequ",
+              "nettoi",
+              "pochett",
+              "tags",
+              "titr"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Lis, corrige et normalise les métadonnées (tags, pochettes, numéros de piste) de mes fichiers audio.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "audio",
+              "corrig",
+              "metadonne",
+              "normalis",
+              "pochett",
+              "tags"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              null,
+              null,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "429 persistant",
+              "429 persistant",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Organise ma playlist par album en corrigeant les métadonnées manquantes.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "album",
+              "corrige",
+              "metadonne",
+              "organis",
+              "playlist"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "J'ai un fichier WAV d'une réunion d'une heure, il me faut la transcription complète avec les tours de parole séparés.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Transcris le contenu parlé de ce fichier audio.",
+          "expected": false,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "audio"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "Convertis mes FLAC en MP3 320 kbps.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": [
+              "flac"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": false
+        }
+      ]
+    },
+    "pdf-llm": {
+      "description": "Extraction documentaire PDF vers Markdown + JSON structuré RAG-ready. Active ce skill chaque fois que l'utilisateur demande d'extraire, analyser, structurer, convertir en Markdown/JSON le contenu d'un",
+      "n_cases": 7,
+      "score_baseline": "4/7",
+      "derive": true,
+      "votes_null": 1,
+      "cases": [
+        {
+          "query": "Utilise le skill pdf-llm pour interroger et analyser des PDF via LLM.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "analyser",
+              "llm",
+              "pdf",
+              "utilis"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Pose des questions sur ce PDF de 300 pages et cite les pages.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "pdf"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              null,
+              null
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "429 persistant",
+              "429 persistant"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Charge ce PDF technique et réponds à mes questions en citant les sections, avec extraction des tableaux.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "extract",
+              "pdf",
+              "table"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Résume ce contrat PDF clause par clause avec référence aux pages.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "pdf"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Produis un rapport PDF paginé avec couverture, sommaire, tableaux et graphiques à partir de ces données.",
+          "expected": false,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "pdf",
+              "table"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "Génère un nouveau PDF à partir de mes données de vente.",
+          "expected": false,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "pdf"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": false
+        },
+        {
+          "query": "Fusionne ces 5 PDF en un seul fichier ordonné.",
+          "expected": false,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "pdf"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              true
+            ],
+            "ratio": 0.3333333333333333,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "OUI"
+            ]
+          },
+          "baseline_ok": false
+        }
+      ]
+    },
+    "script-mon-ecosysteme-infrastructure": {
+      "description": "Skill d'infrastructure de génération de fichiers de l'écosystème Knowledge. Injection automatique du Contexte Système à 3 niveaux, gardes d'intégrité et conventions de déploiement des artefacts (règle",
+      "n_cases": 7,
+      "score_baseline": "6/7",
+      "derive": true,
+      "votes_null": 2,
+      "cases": [
+        {
+          "query": "Utilise le skill script-mon-ecosysteme-infrastructure pour générer les fichiers d'infrastructure de l'écosystème (3 niveaux de contexte).",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "context",
+              "ecosystem",
+              "fichier",
+              "infrastructur",
+              "mon",
+              "nive",
+              "script"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Génère le script d'infrastructure de l'écosystème avec l'en-tête Contexte Système.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "context",
+              "ecosystem",
+              "gener",
+              "infrastructur",
+              "script",
+              "system"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              null
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "429 persistant"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Produis les fichiers d'infrastructure écosystème avec injection automatique du Contexte Système (3 niveaux) et règles INFRA.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "automat",
+              "context",
+              "ecosystem",
+              "fichier",
+              "infra",
+              "infrastructur",
+              "inject",
+              "nive",
+              "regl",
+              "system"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              null,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "429 persistant",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Régénère un script d'arbitre conforme aux règles INFRA-1 à INFRA-3.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "infra",
+              "regl",
+              "script"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Conçois un skill complet : SKILL.md, frontmatter, evals, trigger_evals, puis itère avec les evals.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Crée un nouveau skill de A à Z.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Lance l'installation complète de l'écosystème sur ce profil.",
+          "expected": false,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "ecosystem"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              false
+            ],
+            "ratio": 0.6666666666666666,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "NON"
+            ]
+          },
+          "baseline_ok": false
+        }
+      ]
+    }
+  }
+}

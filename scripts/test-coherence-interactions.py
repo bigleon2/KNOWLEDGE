@@ -482,16 +482,48 @@ else:
     record("PASS", "11b",
            "R2 vs ZIP v2.0 non applicable (référence correct-mon-eco absente de cet environnement)")
 
-# 11c. Références stale (état courant)
+# 11c. Références stale (DYNAMISÉ KO-L003 — Task 21 P4 : remplace l'invariant figé v3.10.0.
+# Les invariants sont dérivés de l'état courant : version gen-plan installée (frontmatter)
+# + version SHARED vivante (en-tête du PM). Les citations historiques (marqueurs de
+# traçabilité : intégration, Task, N34, TRAÇABILITÉ…) sont légitimes et exclues.)
 stale = []
-if re.search(r"^## gen-plan v3\.10\.0", kb_text, re.M):
-    stale.append("KB contient encore une entrée gen-plan v3.10.0")
+n_refs = 0
+HIST_MARKERS = ("N34", "historique", "intégration", "TRAÇABILITÉ", "lignage",
+                "consignation", "d'alors", "Task 1", "Task 2", "figé", "PM figé",
+                "estampille", "révision", "N20", "N23", "N28")
+for sp in sorted(SKILLS.glob("*/SKILL.md")):
+    if sp.parent.name == "@mon-ecosysteme":
+        continue
+    for i, line in enumerate(sp.read_text(encoding="utf-8").splitlines(), 1):
+        for m_v in re.finditer(r"gen-plan v(\d+\.\d+\.\d+)(\+?)", line):
+            n_refs += 1
+            # plancher « vX.Y.Z+ » : sémantique ≥ (minimum requis), pas une citation de version courante
+            if m_v.group(1) != gv and not m_v.group(2) and not any(mk in line for mk in HIST_MARKERS):
+                stale.append(f"{sp.parent.name}:{i} cite gen-plan v{m_v.group(1)} ≠ v{gv} (ligne vive)")
+sh_ver = None
+shared_pm = CORPUS / "PROMPT-MAITRE-SHARED.md"
+if shared_pm.exists():
+    m_sh = re.search(r">\s*\*\*Version\*\*\s*:\s*([0-9.]+)", shared_pm.read_text(encoding="utf-8"))
+    sh_ver = m_sh.group(1) if m_sh else None
+n_hdr = 0
+if sh_ver:
+    for sp in sorted(SKILLS.glob("*/SKILL.md")):
+        if sp.parent.name == "@mon-ecosysteme":
+            continue
+        for i, line in enumerate(sp.read_text(encoding="utf-8").splitlines(), 1):
+            m_h = re.search(r"Contexte Système \(SHARED v([0-9.]+)\)", line)
+            if m_h:
+                n_hdr += 1
+                if m_h.group(1) != sh_ver:
+                    stale.append(f"{sp.parent.name}:{i} en-tête §0 SHARED v{m_h.group(1)} ≠ v{sh_ver}")
 if "3.10.0" in gp_text:
     stale.append("SKILL.md gen-plan mentionne v3.10.0")
 if cal.get("gen-plan") != gv:
     stale.append("ECO_SKILLS désaligné")
 record("PASS" if not stale else "FAIL", "11c",
-       f"Aucune référence stale — l'état courant est uniformément v{gv}")
+       f"Références vives alignées (dynamisé KO-L003, Task 21 P4) : {n_refs} citations gen-plan "
+       f"et {n_hdr} en-têtes §0 scannés — gen-plan v{gv}, SHARED v{sh_ver}"
+       + ("" if not stale else " — STALE : " + "; ".join(stale[:5])))
 
 # 11d. Garde anti-doublons download/ (inversé Task 14 — décision v2.2)
 pm_dup = (DOWNLOAD / pm_v).exists()
