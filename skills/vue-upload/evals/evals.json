@@ -1,0 +1,77 @@
+{
+  "skill_name": "vue-upload",
+  "version": "1.1.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Convention resume-youtube : 5 evals fonctionnels positifs. Créé Task 31 (session web-bbbeab47). v1.1.0 (Task 36) : +1 eval panel rapide (VU-6), protocole deux temps intégré.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "VU-demarrage — démarrage du portail",
+      "prompt": "Donne-moi accès aux fichiers du dossier download, je ne peux pas les télécharger.",
+      "expected_output": "Le garde É1-INSTALL s'exécute, le serveur vue-upload démarre sur le port 3000 si absent, /files répond 200 et l'URL de preview est communiquée.",
+      "files": [],
+      "expectations": [
+        "La garde É1-INSTALL précède le démarrage",
+        "Le serveur écoute et /files retourne le JSON des deux dossiers",
+        "L'agent communique une URL d'accès (preview) à l'utilisateur"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "VU-idempotent — no-op si déjà actif",
+      "prompt": "Lance le serveur de fichiers vue-upload.",
+      "expected_output": "Si le port 3000 répond déjà 200 sur /files, l'agent ne redémarre pas le serveur (no-op honnête) et donne l'URL.",
+      "files": [],
+      "expectations": [
+        "Aucun second processus serveur lancé si le port est déjà en écoute",
+        "La réponse mentionne que le portail est déjà actif"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "VU-televersement — upload via le portail",
+      "prompt": "Je veux t'envoyer mes fichiers, comment faire ?",
+      "expected_output": "L'agent indique le portail vue-upload (glisser-déposer, destination upload/ ou download/) ou démarre s'il est inactif.",
+      "files": [],
+      "expectations": [
+        "Le formulaire de téléversement est mentionné (ou l'endpoint POST /upload/<dir>)",
+        "La destination upload/ est proposée pour les fichiers destinés à l'agent"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "VU-repli — preview indisponible",
+      "prompt": "L'URL de preview affiche une erreur 502, je n'arrive toujours pas au document.",
+      "expected_output": "L'agent applique le repli §1.2-4 : hébergement externe temporaire du fichier, lien direct vérifié par comparaison d'octets avant communication.",
+      "files": [],
+      "expectations": [
+        "Un lien externe temporaire est fourni",
+        "L'intégrité du fichier servi est vérifiée (taille/cmp) avant de communiquer le lien"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "VU-securite — traversée refusée",
+      "prompt": "Teste la sécurité du portail avec un chemin ../etc/passwd.",
+      "expected_output": "La traversée est refusée (400/404) par safe_join ; l'agent confirme que la racine est verrouillée sur download/ et upload/.",
+      "files": [],
+      "expectations": [
+        "GET /get/download/../… ne sert aucun fichier hors racine",
+        "La réponse documente la protection (realpath + basename)"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "VU-6 — panel rapide (voie chaude/froide, --hold)",
+      "prompt": "Affiche-moi rapidement le panneau d'accès aux livrables de la session, sans attendre ton ancien démarrage long.",
+      "expected_output": "L'agent exécute vue_upload_panel.py : voie chaude < 1 s si le portail vit déjà, voie froide in-process < 2 s sinon ; --hold N maintient le portail pendant la session d'accès deux temps ; --json pour un verdict machine-readable.",
+      "files": [],
+      "expectations": [
+        "La voie chaude ne redémarre PAS le serveur (idempotence préservée)",
+        "La voie froide démarre le serveur in-process (zéro subprocess/setsid) en < 2 s",
+        "Le panel liste download/ et upload/ avec les tailles et l'état du routage preview edge :81",
+        "--hold maintient le portail vivant pendant l'appel (vérifié par requête HTTP 200 concurrente)"
+      ]
+    }
+  ]
+}

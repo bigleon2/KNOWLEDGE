@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Utilise vue-upload pour me donner accès au dossier des livrables.",
+    "should_trigger": true
+  },
+  {
+    "query": "Je ne peux pas télécharger le document DOCX que tu as généré, ouvre-moi un accès.",
+    "should_trigger": true
+  },
+  {
+    "query": "Démarre le portail de fichiers pour que je puisse téléverser mes documents.",
+    "should_trigger": true
+  },
+  {
+    "query": "Crée une page web qui liste download/ et me laisse télécharger les fichiers.",
+    "should_trigger": true
+  },
+  {
+    "query": "Comment je t'envoie mes fichiers ? Un portail d'upload serait pratique.",
+    "should_trigger": true
+  },
+  {
+    "query": "Planifie le prochain sprint de développement de mon écosystème de skills.",
+    "should_trigger": false
+  },
+  {
+    "query": "Vérifie le travail réalisé sur le rapport Task 26 avant livraison.",
+    "should_trigger": false
+  },
+  {
+    "query": "Réinstalle la dernière version du skill gen-plan.",
+    "should_trigger": false
+  }
+]

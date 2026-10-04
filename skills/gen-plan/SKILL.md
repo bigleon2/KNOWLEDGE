@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.19.0
+version: 3.20.0
 category: ecosystem
 language: fr
 tags:
@@ -213,9 +213,9 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 ---
 
-### §1.16 Routage de découverte des skills + garde d'installation (v3.19.0, Task 23)
+### §1.16 Routage de découverte des skills + garde d'installation (v3.20.0, Task 23 + Task 29)
 
-**É1-INSTALL — garde d'installation (décision D006)** : à l'ouverture de session, AVANT E1, exécuter `python3 scripts/ensure-installed.py --check` — rc=0 : écosystème installé (no-op, jamais de réinstallation d'un état à jour) ; rc≠0 : écosystème absent ou dérivé → exécuter `python3 scripts/ensure-installed.py --reinstall` (pipeline PM-INSTALL §2/§2bis ; clone éphémère SANS persistance de jeton — anti-persistance Task 8/14) avant toute autre étape. La garde est idempotente (f(f(x))=f(x)) et journalise toute réinstallation au worklog.
+**É1-INSTALL — garde d'installation avec PRÉEMPTION (décision D006 Task 23 + D001-D004 Task 29)** : à l'ouverture de session, AVANT E1, et EN PREMIER (préemption), exécuter `python3 skills/gen-plan/scripts/ensure-installed.py --check` (chemin canonique — le script maître est INTÉGRÉ au skill ; le fichier racine `scripts/ensure-installed.py` est un shim de compatibilité qui délègue). rc=0 : écosystème installé (no-op, jamais de réinstallation d'un état à jour). rc≠0 : écosystème absent ou dérivé → **PRÉEMPTION** : l'agent SUSPEND toute tâche, y compris celles en cours d'exécution, et exécute `python3 skills/gen-plan/scripts/ensure-installed.py --reinstall` (pipeline PM-INSTALL §2/§2bis ; clone éphémère SANS persistance de jeton — anti-persistance Task 8/14) AVANT toute autre étape. Le mode `--preempt` concentre la décision : INSTALLE → PRIORITE-NONE (rc 0) ; ROOT absent → réinstallation IMMÉDIATE (PRIORITE-REINSTALL-OK) ; dérivé → PRIORITE-REINSTALL-REQUISE (rc 2, aucune action destructive). Après une réinstallation réussie, le script génère une **directive de mise à jour du plan d'actions en cours** (`download/plan-post-reinstall-<ts>.json`) : l'agent l'intègre au plan de façon COHÉRENTE et OPTIMISÉE (étapes interrompues → statut INTERRUPT-REINSTALL, étapes idempotentes KO-L001 reprennent en l'état, re-validation par arbitres E7/E8 avant reprise), puis journalise au worklog. La garde est idempotente (f(f(x))=f(x)).
 
 **Routage de découverte (décision D004)** — quand gen-plan doit trouver, sélectionner ou inventorier des skills (E5, §3) :
 
