@@ -1,0 +1,45 @@
+{
+  "checks": {
+    "C02": {
+      "nom": "vue-upload v1.2.0 structure",
+      "resultat": "PASS",
+      "detail": "version=1.2.0, frontmatter délimité (---×9), panel 26186 o, serveur marqueur 1.2.0=True, evals=8"
+    },
+    "C04": {
+      "nom": "PM gen-plan v3.19.0/v3.20.0 ×3",
+      "resultat": "PASS",
+      "detail": "6 fichiers présents, md5 cohérents par version (1+1 hash distincts), YAML v3.19.0=True, YAML v3.20.0=True, deltas §1.16/D006 (v319) + plan-post-reinstall (v320) présents"
+    },
+    "C05": {
+      "nom": "Audit PM correct-work/clone-chat",
+      "resultat": "PASS",
+      "detail": "PM correct-work v2.7.0=True, PM clone-chat v2.0.0=True (variantes: PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md)"
+    },
+    "C06": {
+      "nom": "Registre KB",
+      "resultat": "PASS",
+      "detail": "vue-upload v1.2.0=True, entrées Task 38/39=True/True, fiches versionnées=28 (fiche vue-upload montée, pas doublée)"
+    },
+    "C08": {
+      "nom": "Worklog format SHARED §1.4",
+      "resultat": "PASS",
+      "detail": "13/13 sections actives bien formées (Task ID + Stage Summary), entrée Task 39=True"
+    },
+    "C09": {
+      "nom": "Livrables intacts",
+      "resultat": "PASS",
+      "detail": "DOCX=120974 o (attendu 120 974), journal task39 14/14 PASS, plan+rapport CW Task 37 présents"
+    },
+    "C10": {
+      "nom": "État git cohérent (claims Task 38/39 = disque)",
+      "resultat": "PASS",
+      "detail": "HEAD=36c5d1f = origin/main=36c5d1f, 0 commit non poussé, arbre propre (non suivis: ['tmp/']), commits Task 39 présents (5354f27 + 36c5d1f)"
+    }
+  },
+  "findings": [],
+  "resume": {
+    "checks_executes": 7,
+    "pass": 7,
+    "fail": 0
+  }
+}
