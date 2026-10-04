@@ -1,6 +1,6 @@
 ---
 name: vue-upload
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 tags:
@@ -20,6 +20,14 @@ description: >
   v1.1.0 (Task 36) : panel RAPIDE vue_upload_panel.py — voie chaude < 1 s (portail
   déjà vivant, zéro démarrage), voie froide in-process < 2 s (thread daemon, zéro
   subprocess/setsid), --hold N pour la session d'accès deux temps, --json machine-readable.
+  v1.2.0 (Task 39, approfondissement — directive propriétaire) : ce qui était MANUEL devient
+  une commande — share <fichier> (repli externe AUTOMATISÉ filebin.net ≈ 6 j + tmpfiles.org
+  ≈ 60 min, VÉRIFICATION sha256 par re-téléchargement : un lien n'est annoncé VÉRIFIÉ
+  qu'après preuve d'intégrité), push <source> (inscription dans download/ ou upload/ avec
+  les règles serveur : assainissement, cachés refusés, 200 Mo max, no-op honnête, --force),
+  doctor (diagnostic < 1 s + voie recommandée — répond à « pourquoi ça ne fonctionne pas
+  à tous les coups »). Rétrocompatible : sans sous-commande = panel v1.1.0 inchangé
+  (listing enrichi : tri --sort, filtre --filter, dates).
 dependencies:
   - skill: gen-plan
     version: ">=3.20.0"
@@ -27,6 +35,7 @@ dependencies:
 read_when:
   - Déclencher quand la demande concerne : donner accès au propriétaire aux fichiers générés (download/, upload/)
   - Déclencher si la demande mentionne : vue-upload, portail, accès fichiers, télécharger livrable, téléverser
+  - Déclencher aussi si la demande mentionne : share, partager un fichier, lien externe vérifié, push vers download, doctor, diagnostic portail, « ça ne fonctionne pas à tous les coups »
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
@@ -43,6 +52,9 @@ read_when:
 - « je ne peux pas télécharger le document »
 - « crée un portail / une page pour mes livrables »
 - « lance le serveur de fichiers »
+- « partage ce fichier / donne-moi un lien vérifié » (share)
+- « mets ce fichier dans download / dans les livrables » (push)
+- « pourquoi ça ne fonctionne pas / diagnostique le portail » (doctor)
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
@@ -72,13 +84,30 @@ rafraîchissement automatique 15 s.
    (L'ancienne voie setsid de v1.0.0 reste possible pour un démon détaché mais n'est plus
    recommandée : processus fauché entre les appels — constats Tasks 31/33 ; jamais
    `python -c` inline — règle Script Persistence.)
-3. **Vérification** : intégrée au panel (portail_vivant, listing download/upload, routage
+3. **SOUS-COMMANDES (v1.2.0 — boîte à outils ; sans sous-commande = panel v1.1.0 inchangé)** :
+   - `share <fichier> [--as NOM] [--bin BIN] [--no-filebin] [--no-tmpfiles] [--json]` :
+     repli externe AUTOMATISÉ — filebin.net (≈ 6 jours) + tmpfiles.org (≈ 60 min) ;
+     VÉRIFICATION sha256 par re-téléchargement intégrée — un lien n'est annoncé VÉRIFIÉ
+     qu'après preuve d'intégrité (rc 4 si aucun lien vérifié ; filebin exige un bin ≥ 16
+     caractères — défaut : bin aléatoire) ;
+   - `push <source> [--as NOM] [--dir download|upload] [--force]` : inscription d'un
+     fichier dans download/ ou upload/ avec les MÊMES règles que le serveur (assainissement,
+     cachés refusés, 200 Mo max) ; no-op honnête si contenu identique ; --force requis
+     pour écraser un contenu différent (rc 5 sinon) ;
+   - `doctor` : diagnostic < 1 s (racine, dossiers, port, edge :81, disque, python) +
+     VOIE RECOMMANDÉE (pret / local / a-demarrer / repli) — répond à « pourquoi ça
+     ne fonctionne pas à tous les coups » ;
+   - parseur tolérant : les drapeaux globaux (--json, --port, --root, --sort, --filter)
+     sont acceptés AVANT ou APRÈS la sous-commande.
+   Codes retour : 0 OK · 2 bind impossible · 3 portail mort · 4 vérification impossible ·
+   5 push destination existante (sans --force) · 6 source ou nom invalide.
+4. **Vérification** : intégrée au panel (portail_vivant, listing download/upload, routage
    preview edge :81) ; contrôle croisé : `curl 127.0.0.1:3000/files` → JSON 200.
-4. **Communication** : donner l'URL de preview de la session (format plateforme) + préciser
+5. **Communication** : donner l'URL de preview de la session (format plateforme) + préciser
    que le portail liste download/ et upload/. Si l'URL de preview est indisponible pour
-   l'utilisateur, solution de repli : hébergement externe temporaire du fichier demandé
-   (lien direct vérifié par comparaison d'octets avant communication).
-5. **Journalisation** : entrée worklog (Task ID, port, fichiers servis).
+   l'utilisateur, solution de repli : `share <fichier>` (§1.2-3) — l'hébergement externe
+   temporaire est désormais UNE COMMANDE, avec vérification sha256 automatique.
+6. **Journalisation** : entrée worklog (Task ID, port, fichiers servis).
 
 ### §1.3 Endpoints du serveur
 
@@ -111,7 +140,8 @@ rafraîchissement automatique 15 s.
 ├── SKILL.md
 ├── scripts/
 │   ├── vue_upload_server.py    # serveur + UI (un fichier, stdlib)
-│   └── vue_upload_panel.py     # v1.1.0 — panel rapide (voie chaude/froide, --hold, --json)
+│   └── vue_upload_panel.py     # v1.2.0 — panel (voie chaude/froide, --hold, --json,
+│                               #   tri/filtre) + sous-commandes share / push / doctor
 └── evals/
     ├── evals.json
     └── trigger_evals.json
@@ -122,7 +152,10 @@ rafraîchissement automatique 15 s.
 - Provenance : CRÉÉ-VIA-PROTOCOLE (skill-creator, Task 31, session web-bbbeab47) ;
   v1.1.0 : panel rapide + protocole deux temps intégrés (Task 36, D036-06/07 — recherche
   z.ai : AUCUNE commande/fonction documentée pour un panneau livrables, 4 requêtes web,
-  17 résultats non pertinents, API storage = jeton absent — le mécanisme réel = preview edge :81).
+  17 résultats non pertinents, API storage = jeton absent — le mécanisme réel = preview edge :81) ;
+  v1.2.0 (Task 39, approfondissement — directive propriétaire) : share/push/doctor
+  automatisés + listing trié/filtré ; suite task39 14/14 PASS dont régression Task 33
+  15/15 (scripts/task39-test-vue-upload-v120.json).
 - Journal serveur : `/home/z/my-project/scripts/vue-upload.log` (voie setsid héritée) ;
   v1.1.0 : panneau éphémère in-process, sans journal persistant (état = listing filesystem).
 - Intégration KB : entrée registre (Task 31) — voir {{KB_PATH}}.
@@ -137,9 +170,11 @@ rafraîchissement automatique 15 s.
   preview pendant la fenêtre — routage edge :81 → :3000 prouvé empiriquement (Server: Caddy →
   Server: vue-upload). `vue-upload-hold.sh` (Task 34) est remplacé par `--hold` (même protocole,
   voie in-process plus rapide).
-- **Voie d'accès principale en environnement actuel** : le repli §1.2-4 (hébergement externe
-  temporaire). Procédure validée : tmpfiles.org (POST /api/v1/upload → page interstitielle,
-  extraire le lien /dl/<token>/ réel du HTML) et filebin.net (PUT /<bin-long>/<fichier> — bin ≥ 16
-  caractères, rétention 6 jours). TOUJOURS vérifier l'intégrité (curl -o + cmp avec le livrable)
-  AVANT de communiquer un lien, et annoncer la rétention.
+- **Voie d'accès principale en environnement actuel** : le repli (hébergement externe
+  temporaire) — **AUTOMATISÉ depuis v1.2.0 : `vue_upload_panel.py share <fichier>`**
+  (tmpfiles.org POST /api/v1/upload avec sonde d'interstitiel + extraction du lien /dl/ réel,
+  filebin.net PUT /<bin-long>/<fichier> — bin ≥ 16 caractères, rétention ≈ 6 jours) ;
+  la vérification sha256 par re-téléchargement est intégrée (fin de la procédure manuelle
+  curl -o + cmp de v1.1.0) et un lien n'est annoncé VÉRIFIÉ qu'après preuve d'intégrité.
+  Diagnostic « pourquoi ça ne fonctionne pas » : `doctor` (< 1 s, voie recommandée).
 - Pas d'authentification : le portail est un outil de workspace, exposition volontairement locale/preview.

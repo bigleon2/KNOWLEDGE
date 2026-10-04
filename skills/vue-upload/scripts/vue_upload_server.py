@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-vue-upload v1.0.0 — Serveur de fichiers local (portail d'accès aux livrables).
+vue-upload v1.2.0 — Serveur de fichiers local (portail d'accès aux livrables).
+(Marqueur aligné v1.2.0, Task 39 — logique inchangée depuis v1.0.0.)
 Task 31 (directive propriétaire 2026-10-05) : donner au propriétaire un accès
 direct au dossier download/ (et upload/) depuis son navigateur.
 
@@ -161,7 +162,7 @@ def safe_join(root, name):
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "vue-upload/1.0.0"
+    server_version = "vue-upload/1.2.0"
     root = "/home/z/my-project"
 
     def log_message(self, fmt, *args):
@@ -298,7 +299,7 @@ def main():
     except OSError:
         ThreadingHTTPServer.address_family = socket.AF_INET
         srv = ThreadingHTTPServer(("0.0.0.0", a.port), Handler)
-    print("vue-upload v1.0.0 — écoute [::]:%d (dual-stack) — racine %s" % (a.port, Handler.root), flush=True)
+    print("vue-upload v1.2.0 — écoute [::]:%d (dual-stack) — racine %s" % (a.port, Handler.root), flush=True)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

@@ -1,8 +1,8 @@
 {
   "skill_name": "vue-upload",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
-  "note": "Convention resume-youtube : 5 evals fonctionnels positifs. Créé Task 31 (session web-bbbeab47). v1.1.0 (Task 36) : +1 eval panel rapide (VU-6), protocole deux temps intégré.",
+  "note": "Convention resume-youtube : 5 evals fonctionnels positifs. Créé Task 31 (session web-bbbeab47). v1.1.0 (Task 36) : +1 eval panel rapide (VU-6), protocole deux temps intégré. v1.2.0 (Task 39, approfondissement) : +VU-7 share vérifié sha256, +VU-8 doctor — suite task39 14/14 PASS, régression Task 33 15/15.",
   "evals": [
     {
       "id": 1,
@@ -71,6 +71,32 @@
         "La voie froide démarre le serveur in-process (zéro subprocess/setsid) en < 2 s",
         "Le panel liste download/ et upload/ avec les tailles et l'état du routage preview edge :81",
         "--hold maintient le portail vivant pendant l'appel (vérifié par requête HTTP 200 concurrente)"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "VU-7 — share : repli externe AUTOMATISÉ vérifié sha256",
+      "prompt": "Partage le rapport DOCX qui est dans download, l'URL de preview ne marche pas à tous les coups.",
+      "expected_output": "L'agent exécute vue_upload_panel.py share <fichier> : dépôt sur filebin.net (≈ 6 jours) et tmpfiles.org (≈ 60 min), VÉRIFICATION sha256 par re-téléchargement intégrée ; seuls les liens VÉRIFIÉS sont communiqués avec leur rétention (rc 4 si aucun lien vérifié — jamais de lien non prouvé).",
+      "files": [],
+      "expectations": [
+        "La commande share remplace la procédure manuelle curl/cmp de v1.1.0",
+        "Chaque lien communiqué porte la preuve d'intégrité sha256 (re-téléchargement identique)",
+        "La rétention de chaque service est annoncée (≈ 6 jours / ≈ 60 min)",
+        "Aucun lien n'est communiqué si sa vérification a échoué (rc 4)"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "VU-8 — doctor : diagnostic et voie recommandée",
+      "prompt": "Ton portail ne fonctionne pas à tous les coups, diagnostique et dis-moi comment accéder à mes livrables.",
+      "expected_output": "L'agent exécute vue_upload_panel.py doctor (< 1 s) : contrôles racine/dossiers/port/edge :81/disque/python, verdict (pret / local / a-demarrer / repli) et VOIE RECOMMANDÉE explicite (preview --hold, accès local, ou share) ; push <source> pour inscrire un fichier dans download/ selon les règles serveur (no-op si identique, --force sinon).",
+      "files": [],
+      "expectations": [
+        "Le diagnostic s'exécute en moins d'une seconde avec un verdict explicite",
+        "La voie recommandée est formulée en instruction actionnable pour l'utilisateur",
+        "push respecte les gardes serveur : cachés refusés, 200 Mo max, rc 5 sans --force sur contenu différent",
+        "L'agent n'invente pas un accès preview quand doctor conclut « repli »"
       ]
     }
   ]
