@@ -8,6 +8,10 @@ tags:
 description: À utiliser quand l'utilisateur veut une revue de littérature complète sur un sujet de recherche précis. Produit un PDF de revue complet (6–20 pages, 60+ citations réelles, 100+ recommandé) avec source LaTeX, figures de taxonomie et table de littérature classée. Monotraitement, sans runtime Python.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : à utiliser quand l'utilisateur veut une revue de littérature complète sur un sujet de recherche précis
+  - Déclencher si la demande mentionne : revue, littérature, utiliser
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Literature Survey

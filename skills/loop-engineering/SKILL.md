@@ -14,6 +14,9 @@ description: >-
   Spécialise la discipline loop engineering (source de vérité : SHARED §7).
   Critères d'arrêt des processus itératifs, définition des graders.
 dependencies: []
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

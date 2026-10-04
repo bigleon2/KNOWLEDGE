@@ -19,6 +19,10 @@ triggers:
   - "meditation streak"
   - "be present"
 
+read_when:
+  - Déclencher quand la demande concerne : se construire une pratique de méditation avec des séances guidées, des séries de pratique (streaks) et des rap…
+  - Déclencher si la demande mentionne : pratique, construire, méditation
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Pleine conscience & Méditation

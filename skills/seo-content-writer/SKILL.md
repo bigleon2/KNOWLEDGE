@@ -34,6 +34,10 @@ metadata:
     - "help me write SEO content"
     - "draft content for"
 
+read_when:
+  - Déclencher quand la demande concerne : 'À utiliser quand l''utilisateur demande de "write SEO content", "create a blog post", "write an article", "co…
+  - Déclencher si la demande mentionne : content, write, contenu
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # SEO Content Writer

@@ -9,6 +9,10 @@ tags:
 description: Aide l'utilisateur à clarifier ses intentions de recherche d'emploi, génère un portrait des postes cibles et tient à jour une « table de suivi des candidatures » structurée. Quand l'utilisateur dit « je veux changer de travail / je ne sais pas à quel poste postuler / aide-moi à voir quel poste me convient / aide-moi à gérer mes candidatures / j'ai postulé à plusieurs endroits mais je perds le fil / je veux un OKR de recherche d'emploi / range ma recherche d'emploi », ou téléverse un CV sans demander de modification, ce skill doit être déclenché proactivement. Ce skill s'adresse aussi aux stagiaires, jeunes diplômés et candidats en reconversion qui, au démarrage de leur recherche, veulent faire trois choses : « auto-diagnostic + portrait cible + gestion des candidatures ».
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : aide l'utilisateur à clarifier ses intentions de recherche d'emploi, génère un portrait des postes cibles et t…
+  - Déclencher si la demande mentionne : recherche, aide, emploi
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Job Intent Tracker (intentions d'emploi + suivi des postes)

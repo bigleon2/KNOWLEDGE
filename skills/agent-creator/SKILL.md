@@ -25,6 +25,10 @@ dependencies:
   - skill: correct-work
     version: ">=2.4.0"
     used_at: "Validation cohérence de l'agent"
+read_when:
+  - Déclencher quand la demande concerne : création et orchestration d'agents : génère des agents autonomes persistants (fichier 
+  - Déclencher si la demande mentionne : agents, création, orchestration
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # AUTONOMOUS-AGENT v1.0.0

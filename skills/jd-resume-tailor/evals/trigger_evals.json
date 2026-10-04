@@ -1,0 +1,39 @@
+{
+  "_provenance": "auto-v1-t27",
+  "_calibration": "requise avant mesure voie L (prompts dérivés mécaniquement du frontmatter — pas de baseline R3)",
+  "skill_name": "jd-resume-tailor",
+  "evals": [
+    {
+      "query": "utilise le skill jd-resume-tailor pour cette tâche : la tâche « jd »",
+      "should_trigger": true
+    },
+    {
+      "query": "la tâche « jd »",
+      "should_trigger": true
+    },
+    {
+      "query": "j'ai besoin de la tâche « jd » — quelle est la procédure ?",
+      "should_trigger": true
+    },
+    {
+      "query": "aide-moi à la tâche « jd » avec jd-resume-tailor",
+      "should_trigger": true
+    },
+    {
+      "query": "peux-tu la tâche « jd » ?",
+      "should_trigger": true
+    },
+    {
+      "query": "bonjour",
+      "should_trigger": false
+    },
+    {
+      "query": "clone cette discussion",
+      "should_trigger": false
+    },
+    {
+      "query": "analyse ce CSV et donne-moi des statistiques",
+      "should_trigger": false
+    }
+  ]
+}

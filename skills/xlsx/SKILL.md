@@ -11,6 +11,10 @@ description: "Utilise ce skill chaque fois qu'un fichier tableur est l'entrée o
 license: Proprietary. LICENSE.txt has complete terms
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Utilise ce skill chaque fois qu'un fichier tableur est l'entrée ou la sortie principale
+  - Déclencher si la demande mentionne : données, fichier, tableur
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # XLSX — Atelier de tableurs piloté par scénarios

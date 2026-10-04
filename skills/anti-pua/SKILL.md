@@ -8,6 +8,10 @@ tags:
 description: Outil professionnel d'analyse psychologique pour identifier et analyser les comportements PUA (Pickup Artist) et la manipulation affective. Doté de capacités d'analyse de personnalité, de profilage psychologique et d'analyse émotionnelle, il sait repérer les schémas relationnels toxiques — manipulation affective, gaslighting, maltraitance —, évaluer les traits de personnalité (triade noire, narcissisme vulnérable, etc.), prédire les comportements de l'autre et donner des conseils concrets de relation. Utilisez ce skill quand l'utilisateur doit : analyser les motivations derrière les paroles et actes de quelqu'un, identifier des comportements PUA/de manipulation affective, évaluer des tendances NPD (trouble de la personnalité narcissique), repérer des comportements manipulateurs, prédire les comportements futurs de l'autre, chercher des conseils pour une relation saine, ou analyser la triade noire ou la triade claire.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : outil professionnel d'analyse psychologique pour identifier et analyser les comportements PUA (Pickup Artist)…
+  - Déclencher si la demande mentionne : comportements, analyse, analyser
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Maître anti-PUA - Identification de la manipulation affective et analyse psychologique

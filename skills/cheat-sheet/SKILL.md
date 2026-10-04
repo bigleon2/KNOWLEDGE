@@ -8,6 +8,10 @@ tags:
 description: Convertit des supports d'étude (PDF/Word/Markdown) en documents de fiches de révision condensées. Prend en charge trois styles (cartes de révision / carte mentale / Q&R) et produit un PDF compact à deux colonnes en petits caractères. Se déclenche quand l'utilisateur dit « génère une fiche de révision », « génère un Cheatsheet », « fais-moi un anti-sèche », « mets ce support sur une page », « fais une carte de connaissances ». **Ne gère pas** : créer des questions à partir du support (→ quiz-mastery), les projets d'apprentissage longue durée (→ study-buddy).
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : convertit des supports d'étude (PDF/Word/Markdown) en documents de fiches de révision condensées
+  - Déclencher si la demande mentionne : révision, carte, génère
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Générateur de Cheatsheet

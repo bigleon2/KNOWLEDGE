@@ -11,6 +11,10 @@ description: "Boîte à outils PDF professionnelle avec quatre lignes de product
 license: Proprietary. LICENSE.txt has complete terms
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Boîte à outils PDF professionnelle avec quatre lignes de production : (1) Report - documents structurés via R…
+  - Déclencher si la demande mentionne : documents, creative, design
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # PDF - Atelier de production de documents

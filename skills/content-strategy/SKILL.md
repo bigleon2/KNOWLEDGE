@@ -8,6 +8,10 @@ tags:
 description: Construire et exécuter une stratégie de marketing de contenu pour une activité de solopreneur. À utiliser pour planifier le contenu à créer, choisir les formats et canaux de contenu, bâtir un calendrier éditorial, mesurer la performance du contenu ou systématiser la production de contenu. Couvre la recherche d'audience pour le contenu, les piliers de contenu, la stratégie de distribution, les flux de recyclage et les métriques. Trigger on "content strategy", "content marketing", "what content should I create", "content plan", "content calendar", "content ideas", "content distribution", "grow through content".
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : construire et exécuter une stratégie de marketing de contenu pour une activité de solopreneur
+  - Déclencher si la demande mentionne : content, contenu, stratégie
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Content Strategy

@@ -27,6 +27,10 @@ metadata:
         slug: "marketing-mode"
         label: "Activer le mode marketing"
 
+read_when:
+  - Déclencher quand la demande concerne : "Marketing Mode combine 23 compétences marketing complètes couvrant la stratégie, la psychologie, le contenu,…
+  - Déclencher si la demande mentionne : marketing, stratégie, optimisation
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Marketing Mode - Base de connaissances marketing complète

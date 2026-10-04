@@ -13,6 +13,9 @@ description: >-
   du Gaokao, le choix de spécialité et l'analyse des débouchés professionnels.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Recommander les filières et les débouchés professionnels

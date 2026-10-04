@@ -26,6 +26,10 @@ dependencies:
   - skill: correct-work
     version: ">=2.4.0"
     used_at: "Validation cohérence de l'agent"
+read_when:
+  - Déclencher quand la demande concerne : agent autonome avec mémoire interne à deux niveaux (État Court + État Long)
+  - Déclencher si la demande mentionne : état, agent, autonome
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # AUTONOMOUS-AGENT v1.0.0

@@ -9,6 +9,10 @@ tags:
 description: À partir d'une fiche de poste (JD) et d'un CV existant, effectue « décryptage du JD + réécriture ciblée du CV ». Extrait du JD les compétences techniques dures, les compétences douces et les atouts bonus ; compare avec le CV pour une analyse d'écarts ; produit un CV réécrit pour ce poste précis, valorisant les expériences pertinentes, comblant les manques de mots-clés, tout en préservant les expériences réelles du candidat sans rien inventer. Quand l'utilisateur dit « adapte mon CV à ce poste / à cette entreprise », « aide-moi à comparer avec ce JD », « je veux postuler à cette offre, vois comment modifier mon CV », « optimise ce CV pour l'entreprise X », « fais-moi une version ciblée du CV », ou fournit simultanément un texte de JD + un fichier de CV, ce skill doit être déclenché. **Ne pas utiliser ce skill pour « écrire un CV de zéro »** — c'est le rôle de resume-builder.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : à partir d'une fiche de poste (JD) et d'un CV existant, effectue « décryptage du JD + réécriture ciblée du CV…
+  - Déclencher si la demande mentionne : poste, ciblée, compétences
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # JD ⇄ Resume Tailor (décryptage du JD + réécriture ciblée du CV)

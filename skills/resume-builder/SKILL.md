@@ -8,6 +8,10 @@ tags:
 description: Génère à partir de zéro ou optimise en profondeur un CV, puis l'exporte en plusieurs formats (docx / pdf / markdown). Réécrit les expériences avec la méthode STAR, vérifie la couverture en mots-clés ATS, choisit le template selon le secteur (internet produit / tech / finance / général). Déclenchez ce skill dès que l'utilisateur dit « aide-moi à rédiger un CV / optimiser mon CV / je ne sais pas écrire un CV / mon CV est trop faible / mon CV manque de professionnalisme / corrige mon CV / fais-moi un template de CV / exporte mon CV / ajoute des mots-clés à mon CV », ou qu'il téléverse un CV .pdf/.docx en demandant « vois comment l'améliorer ». Même si l'utilisateur se contente de demander « quels sont les défauts de mon CV », déclenchez-le.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : génère à partir de zéro ou optimise en profondeur un CV, puis l'exporte en plusieurs formats (docx / pdf / mar…
+  - Déclencher si la demande mentionne : exporte, docx, mots
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Resume Builder (génération et optimisation de CV)

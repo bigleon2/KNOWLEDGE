@@ -11,6 +11,10 @@ description: "Création, édition et analyse complètes de documents, avec prise
 license: Proprietary. LICENSE.txt has complete terms
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Création, édition et analyse complètes de documents, avec prise en charge du suivi des modifications, des com…
+  - Déclencher si la demande mentionne : documents, suivi, modifications
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Création, édition et analyse de documents DOCX

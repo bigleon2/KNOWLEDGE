@@ -8,6 +8,10 @@ description: Implémente des complétions de chat avec de grands modèles de lan
 language: fr
 license: MIT
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des complétions de chat avec de grands modèles de langage (LLM) à l'aide du z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : implémente, complétions, chat
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill LLM (Large Language Model)

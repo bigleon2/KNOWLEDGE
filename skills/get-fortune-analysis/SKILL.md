@@ -9,6 +9,10 @@ tags:
 description: Génère un rapport de fortune annuel visuellement somptueux, riche en contenu et empreint de ritualité (style constellations dorées).
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : génère un rapport de fortune annuel visuellement somptueux, riche en contenu et empreint de ritualité (style c…
+  - Déclencher si la demande mentionne : génère, rapport, fortune
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 # Nom du skill : get-fortune-analysis
 # Version : 4.1.0

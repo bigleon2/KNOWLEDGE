@@ -10,6 +10,10 @@ description: "Génère des rapports d'étude de marché complets (50+ pages) dan
 allowed-tools: [Read, Write, Edit, Bash]
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Génère des rapports d'étude de marché complets (50+ pages) dans le style des plus grands cabinets de conseil…
+  - Déclencher si la demande mentionne : génère, rapports, étude
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Market Research Reports

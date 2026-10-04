@@ -16,6 +16,10 @@ changelog: Improved description for better discoverability
 language: fr
 metadata: {"clawdbot":{"emoji":"💻","requires":{"bins":[]},"os":["linux","darwin","win32"]}}
 
+read_when:
+  - Déclencher quand la demande concerne : workflow de développement avec planification, implémentation, vérification et tests pour un développement logi…
+  - Déclencher si la demande mentionne : développement, workflow, planification
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## Quand l'utiliser

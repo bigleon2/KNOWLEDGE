@@ -10,6 +10,10 @@ tags:
 description: Intelligence de design UI/UX et guidance d'implémentation pour construire des interfaces soignées. À utiliser quand l'utilisateur demande du design UI, des flux UX, de l'architecture d'information, une direction de style visuel, des design systems/tokens, des specs de composants, de la copy/microcopy, de l'accessibilité, ou pour générer/critiquer/affiner une UI frontend (HTML/CSS/JS, React, Next.js, Vue, Svelte, Tailwind). Inclut des workflows pour (1) générer de nouvelles mises en page et styles UI, (2) améliorer une UI/UX existante, (3) produire des tokens de design system et des guidelines de composants, et (4) transformer des recommandations UX en changements de code concrets.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : intelligence de design UI/UX et guidance d'implémentation pour construire des interfaces soignées
+  - Déclencher si la demande mentionne : design, tokens, composants
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 Suis ces étapes pour produire un rendu UI/UX de haute qualité avec un minimum d'allers-retours.

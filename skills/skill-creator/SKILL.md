@@ -7,6 +7,10 @@ tags:
     - skill
     - creator
 description: Skill creator servant à créer de nouveaux skills, à modifier et améliorer des skills existants, et à mesurer leur performance. Utiliser quand l'utilisateur veut créer un skill de zéro, écrire un SKILL.md, accompagner la création ou la modification d'un skill (frontmatter, name, description, version, tags), éditer ou optimiser un skill existant, évaluer un skill en lançant des evals, benchmarker sa performance avec analyse de variance, ou optimiser la description d'un skill pour une meilleure précision de déclenchement.
+read_when:
+  - Déclencher quand la demande concerne : skill creator servant à créer de nouveaux skills, à modifier et améliorer des skills existants, et à mesurer l…
+  - Déclencher si la demande mentionne : skill, créer, skills
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

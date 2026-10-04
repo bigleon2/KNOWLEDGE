@@ -22,6 +22,10 @@ dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
     used_at: "Application des mises à jour"
+read_when:
+  - Déclencher quand la demande concerne : skill d'observation automatique des sessions pour détecter les patterns d'erreur et améliorer les skills de l'…
+  - Déclencher si la demande mentionne : observation, skill, automatique
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

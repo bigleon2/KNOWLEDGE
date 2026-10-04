@@ -14,6 +14,9 @@ description: >-
   la discipline harness engineering (source de vérité : SHARED §7).
   Contrôles automatiques anti-dérive des processus, gardes anti-régression.
 dependencies: []
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

@@ -16,6 +16,10 @@ dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
     used_at: "conventions structurelles"
+read_when:
+  - Déclencher quand la demande concerne : skill d'infrastructure de génération de fichiers de l'écosystème Knowledge
+  - Déclencher si la demande mentionne : infra, skill, infrastructure
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

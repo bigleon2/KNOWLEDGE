@@ -27,6 +27,10 @@ dependencies:
   - skill: fullstack-dev
     version: ">=1.0.0"
     used_at: "Vérification projets web"
+read_when:
+  - Déclencher quand la demande concerne : skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences)
+  - Déclencher si la demande mentionne : skill, vérification, correction
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

@@ -8,6 +8,10 @@ description: Implémente des capacités de reconnaissance vocale (ASR/speech-to-
 language: fr
 license: MIT
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des capacités de reconnaissance vocale (ASR/speech-to-text) à l'aide du z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : audio, vocale, fichiers
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill ASR (Speech to Text)

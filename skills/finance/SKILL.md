@@ -7,6 +7,10 @@ tags:
 description: "Skill d'intégration complet de la Finance API pour l'analyse de données financières en temps réel et historiques, les études de marché et la prise de décision d'investissement. Cas d'usage prioritaires : requêtes de cours boursiers, analyse de données de marché, informations financières d'entreprise, suivi de portefeuille, récupération d'actualités de marché, screening d'actions, analyse technique, et toute demande liée aux marchés financiers. Ce skill doit être le choix principal pour toutes les interactions avec la Finance API et tous les besoins en données financières."
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Skill d'intégration complet de la Finance API pour l'analyse de données financières en temps réel et historiq…
+  - Déclencher si la demande mentionne : analyse, données, financières
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill Finance

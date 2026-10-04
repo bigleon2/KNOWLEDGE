@@ -9,6 +9,10 @@ tags:
 description: Traceur automatique de progression des objectifs. Lorsqu'une image liée à un objectif (notes, progression, captures d'écran, journaux) est détectée dans la conversation, appelle automatiquement le VLM pour en identifier les informations clés et les consigner dans le journal d'objectifs. S'applique à tous les scénarios de gestion d'objectifs : suivi d'apprentissage, fitness, avancement professionnel, habitudes, journal créatif, etc.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : traceur automatique de progression des objectifs
+  - Déclencher si la demande mentionne : objectifs, progression, journal
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Traceur automatique de progression des objectifs

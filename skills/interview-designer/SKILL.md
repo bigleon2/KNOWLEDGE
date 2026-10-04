@@ -8,6 +8,10 @@ tags:
 description: Analyse des CV et conception de stratégies d'entretien selon une méthodologie fondée sur les preuves. Transforme la préparation d'entretien « lire le CV → poser des questions » en « définir un standard → investigation médico-légale → simulation du futur ». Combine le Topgrading de Geoff Smart, le recrutement basé sur la performance de Lou Adler et le contrôle des biais de Daniel Kahneman. À utiliser pour préparer des entretiens, créer des guides d'entretien structurés ou concevoir des questions de validation des compétences des candidats.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : analyse des CV et conception de stratégies d'entretien selon une méthodologie fondée sur les preuves
+  - Déclencher si la demande mentionne : entretien, questions, analyse
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill Interview Designer

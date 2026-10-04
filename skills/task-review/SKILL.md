@@ -8,6 +8,10 @@ tags:
 description: "Se déclenche quand la demande de l'utilisateur correspond à une tâche de haute complexité ; sert à sauvegarder le chemin de la tâche qui vient d'être accomplie sous forme de skill réutilisable, et à générer la documentation SKILL.md associée."
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Se déclenche quand la demande de l'utilisateur correspond à une tâche de haute complexité ; sert à sauvegarde…
+  - Déclencher si la demande mentionne : tâche, skill, déclenche
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## Moment de déclenchement

@@ -9,6 +9,10 @@ tags:
 description: "Intégration multi-moteurs de recherche avec 8 moteurs de recherche nationaux (CN). Prend en charge les opérateurs de recherche avancés, les filtres temporels, la recherche par site et la recherche d'articles WeChat. Aucune clé API requise."
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Intégration multi-moteurs de recherche avec 8 moteurs de recherche nationaux (CN)
+  - Déclencher si la demande mentionne : recherche, moteurs, intégration
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Multi Search Engine v2.0.1

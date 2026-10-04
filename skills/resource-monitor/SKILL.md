@@ -19,6 +19,10 @@ description: >
   à E6 (profilage) et en continu à E9-E14 (exécution/surveillance), et par toute
   tâche longue qui a besoin d'un signal de pression exploitable.
 dependencies: []
+read_when:
+  - Déclencher quand la demande concerne : surveillance permanente de la consommation des ressources de l'écosystème
+  - Déclencher si la demande mentionne : surveillance, permanente, continu
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

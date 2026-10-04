@@ -1,13 +1,17 @@
 ---
 name: version-management
-version: "1.1.0"
+version: "1.2.0"
 category: metier
 language: fr
 tags:
   - version-management
   - front-end
   - project-lifecycle
-description: Skill autonome générique de gestion de versions (version management) couvrant tout le cycle de vie des projets front-end. Dès que la tâche **risque** d'écrire un fichier d'entrée .html/.jsx/.tsx/.vue, il faut lire et suivre ce Skill **avant** d'écrire le premier fichier (pour déterminer le chemin de dépôt et le répertoire projet), et non en rattrapage après production ; à utiliser même si l'utilisateur ne mentionne ni « projet » ni « version ». Répond aussi aux opérations de versions demandées par l'utilisateur — consultation de l'historique, montée de version / incrément semver, mise à jour, restauration, rétrogradation, release, changelog, changement de projet, etc.
+description: Skill autonome générique de gestion de versions (version management) couvrant tout le cycle de vie des projets front-end. Dès que la tâche **risque** d'écrire un fichier d'entrée .html/.jsx/.tsx/.vue — typiquement toute demande de **création de page web ou d'interface** — page, site, formulaire, landing page, tableau de bord / dashboard, visualisation de données rendue en page —, il faut lire et suivre ce Skill **avant** d'écrire le premier fichier (pour déterminer le chemin de dépôt et le répertoire projet), et non en rattrapage après production ; à utiliser même si l'utilisateur ne mentionne ni « projet » ni « version ». Répond aussi aux opérations de versions et de projets demandées par l'utilisateur — consultation de l'historique, montée de version / incrément semver, mise à jour, restauration, rétrogradation, retour à une version antérieure, release, changelog, changement de projet, revenir à / reprendre / basculer vers le dernier projet ou un projet précédent, etc.
+read_when:
+  - Déclencher quand la demande concerne : skill autonome générique de gestion de versions (version management) couvrant tout le cycle de vie des projets…
+  - Déclencher si la demande mentionne : projet, version, page
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

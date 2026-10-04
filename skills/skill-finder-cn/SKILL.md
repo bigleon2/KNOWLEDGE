@@ -15,6 +15,10 @@ metadata:
     requires:
       bins: [clawhub]
 
+read_when:
+  - Déclencher quand la demande concerne : "Chercheur de skills | Skill Finder
+  - Déclencher si la demande mentionne : skill, skills, clawhub
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

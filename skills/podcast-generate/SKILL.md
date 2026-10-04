@@ -9,6 +9,10 @@ description: Génère des épisodes de podcast à partir de contenu fourni par l
 license: MIT
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : génère des épisodes de podcast à partir de contenu fourni par l'utilisateur ou en recherchant sur le web le su…
+  - Déclencher si la demande mentionne : podcast, contenu, génère
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Podcast Generate Skill (version TypeScript)

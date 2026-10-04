@@ -1,15 +1,16 @@
 {
-  "date": "2026-10-03",
-  "task": "Task 21 — campagne P3 (baselines A2 généralisées)",
+  "date": "2026-10-04",
+  "task": "Task 21+25 — campagne P3 baselines A2 généralisées (fusion honnête : 6 skills Task 21 + skill-creator & version-management re-mesurés voie L Task 25)",
   "seuil": 0.5,
   "confirm_runs": 3,
+  "n_skills": 7,
   "skills": {
     "version-management": {
-      "description": "独立通用 Skill：管理前端项目全生命周期。只要任务**可能**写出 .html/.jsx/.tsx/.vue 入口文件，就必须在写出第一个文件**之前**读取并遵循本 Skill（用于确定落盘路径与项目目录），而不是产出之后才补救；即使用户没有提到\"项目\"或\"版本\"也要使用。同时响应用户的版本相关操作（查看历史、恢复版本、切换项目等）。",
+      "description": "Skill autonome générique de gestion de versions (version management) couvrant tout le cycle de vie des projets front-end. Dès que la tâche **risque** d'écrire un fichier d'entrée .html/.jsx/.tsx/.vue ",
       "n_cases": 8,
       "score_baseline": "3/8",
       "derive": true,
-      "votes_null": 2,
+      "votes_null": 0,
       "cases": [
         {
           "query": "帮我写一个个人主页 index.html",
@@ -70,14 +71,14 @@
             "votes": [
               true,
               true,
-              null
+              true
             ],
             "ratio": 1.0,
             "trigger": true,
             "evidence": [
               "OUI",
               "OUI",
-              "429 persistant"
+              "OUI"
             ]
           },
           "baseline_ok": false
@@ -91,14 +92,14 @@
           },
           "voie_l": {
             "votes": [
-              null,
+              true,
               true,
               true
             ],
             "ratio": 1.0,
             "trigger": true,
             "evidence": [
-              "429 persistant",
+              "OUI",
               "OUI",
               "OUI"
             ]
@@ -197,7 +198,8 @@
           },
           "baseline_ok": true
         }
-      ]
+      ],
+      "_provenance": "Task 25 lot 2 re-mesuré (2026-10-04)"
     },
     "agent-creator": {
       "description": "Création et orchestration d'agents : génère des agents autonomes persistants (fichier .agent, mémoire interne à deux niveaux, modules internes, boucles, intégration multi-LLM) et orchestre plusieurs a",
@@ -387,7 +389,8 @@
           },
           "baseline_ok": false
         }
-      ]
+      ],
+      "_provenance": "Task 21 (2026-10-03)"
     },
     "skills-inventory": {
       "description": "Scanner et rapporteur d'inventaire des skills. S'active dès que l'utilisateur demande de lister, d'inventorier, de cataloguer, de parcourir, de chercher ou d'explorer les skills disponibles — p. ex. \"",
@@ -581,7 +584,8 @@
           },
           "baseline_ok": true
         }
-      ]
+      ],
+      "_provenance": "Task 21 (2026-10-03)"
     },
     "audio-metadata": {
       "description": "Gestion avancée des métadonnées audio — Extraction, normalisation, conversion  de tags ID3v2, MP4, FLAC, Vorbis. Supporte les formats DJ (MP3, FLAC, WAV, AIFF, M4A). Use when the user needs to manage ",
@@ -779,7 +783,8 @@
           },
           "baseline_ok": false
         }
-      ]
+      ],
+      "_provenance": "Task 21 (2026-10-03)"
     },
     "pdf-llm": {
       "description": "Extraction documentaire PDF vers Markdown + JSON structuré RAG-ready. Active ce skill chaque fois que l'utilisateur demande d'extraire, analyser, structurer, convertir en Markdown/JSON le contenu d'un",
@@ -969,7 +974,8 @@
           },
           "baseline_ok": false
         }
-      ]
+      ],
+      "_provenance": "Task 21 (2026-10-03)"
     },
     "script-mon-ecosysteme-infrastructure": {
       "description": "Skill d'infrastructure de génération de fichiers de l'écosystème Knowledge. Injection automatique du Contexte Système à 3 niveaux, gardes d'intégrité et conventions de déploiement des artefacts (règle",
@@ -1171,7 +1177,217 @@
           },
           "baseline_ok": false
         }
-      ]
+      ],
+      "_provenance": "Task 21 (2026-10-03)"
+    },
+    "skill-creator": {
+      "description": "Skill creator servant à créer de nouveaux skills, à modifier et améliorer des skills existants, et à mesurer leur performance. Utiliser quand l'utilisateur veut créer un skill de zéro, écrire un SKILL",
+      "n_cases": 8,
+      "score_baseline": "8/8",
+      "derive": false,
+      "votes_null": 0,
+      "cases": [
+        {
+          "query": "Create a new skill for generating release notes from git commits.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "creat",
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Help me improve my existing skill — it fails on edge cases.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Run evals on this skill and benchmark its performance with variance analysis.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "eval",
+              "perform",
+              "skill",
+              "vari"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Optimize my skill's description so it triggers more accurately.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "descript",
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "I want to iterate on this skill: test it, evaluate the results, then rewrite it.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Write me a Python script that parses git logs.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Plan this complex task with milestones and cost estimates.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "hello",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        }
+      ],
+      "_provenance": "Task 25 lot 1 (2026-10-04)"
     }
   }
 }

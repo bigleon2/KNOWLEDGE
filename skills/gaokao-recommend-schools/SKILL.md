@@ -13,6 +13,9 @@ description: >-
   du Gaokao, le choix d'université et la répartition ambitieux/sûrs/de repli des établissements.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Recommander les établissements et justifier

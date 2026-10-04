@@ -20,6 +20,10 @@ description: |
   "搜张图", "搜图".
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : service de recherche d'images maison de ZAI, exposé via le CLI du z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : images, service, recherche
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # image-search (service maison ZAI, via le SDK z-ai)

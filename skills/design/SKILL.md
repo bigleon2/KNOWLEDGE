@@ -7,6 +7,10 @@ tags:
 description: Router les tâches d'artefacts HTML liées au design (landing pages, portfolios, prototypes, decks, pages de contenu, outils web, cartes sociales, info-interactive) vers le bon artifact skill, et décider s'il faut utiliser design-system-reference, design-system-generation ou export. À utiliser pour tout travail de design UI/visuel/HTML.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : router les tâches d'artefacts HTML liées au design (landing pages, portfolios, prototypes, decks, pages de con…
+  - Déclencher si la demande mentionne : design, html, pages
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Design Skill

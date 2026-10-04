@@ -8,6 +8,10 @@ description: Implémente des capacités de chat visuel (IA basée sur la vision)
 language: fr
 license: MIT
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des capacités de chat visuel (IA basée sur la vision) à l'aide du z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : images, visuel, implémente
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill VLM (Vision Chat)

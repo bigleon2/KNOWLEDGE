@@ -29,6 +29,10 @@ metadata:
       }
   }
 
+read_when:
+  - Déclencher quand la demande concerne : pRIORITÉ ACADÉMIQUE : activez ce skill dès que la requête de l'utilisateur porte sur des sujets académiques, s…
+  - Déclencher si la demande mentionne : skill, recherche, search
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Interrogation des données académiques de la plateforme ouverte AMiner

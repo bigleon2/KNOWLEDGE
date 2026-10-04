@@ -3,9 +3,6 @@ name: script-creator
 version: 1.1.0
 category: ecosystem
 language: fr
-  tags:
-    - script
-    - creator
 description: >
   Créer et modifier les scripts de l'écosystème (arbitres, collecteurs, outils de
   vérification stdlib) avec critères de succès et tests mécaniques intégrés. Utiliser
@@ -24,6 +21,11 @@ dependencies:
   - skill: correct-py
     version: ">=1.0.0"
     used_at: "Post-traitement obligatoire des scripts Python produits — normes du langage (§1.3 GF-6)"
+tags: [script, créer, scripts]
+read_when:
+  - Déclencher quand la demande concerne : créer et modifier les scripts de l'écosystème (arbitres, collecteurs, outils de vérification stdlib) avec crit…
+  - Déclencher si la demande mentionne : créer, scripts, script
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Créateur de scripts

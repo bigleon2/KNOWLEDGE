@@ -14,6 +14,9 @@ description: >-
   des listes de vœux ambitieux/sûrs/de repli et l'appel de l'API de vœux.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Récupérer la liste de vœux recommandée

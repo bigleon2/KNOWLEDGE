@@ -8,6 +8,10 @@ tags:
 description: Aide les écrivains pour la planification d'histoire, le développement des personnages, la structuration de l'intrigue, l'écriture de chapitres, le suivi de la chronologie et la vérification de cohérence. Utilise ce skill pour les projets d'écriture créative organisés en dossiers contenant des personnages, des chapitres, des documents de planification d'histoire et des résumés. Déclenche ce skill pour des tâches comme « aide-moi à développer ce personnage », « écris le prochain chapitre », « vérifie la cohérence de mon histoire » ou « suis la chronologie des événements ».
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : aide les écrivains pour la planification d'histoire, le développement des personnages, la structuration de l'i…
+  - Déclencher si la demande mentionne : histoire, aide, planification
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Storyboard Manager

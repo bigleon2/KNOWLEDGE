@@ -28,6 +28,10 @@ metadata:
       }
   }
 
+read_when:
+  - Déclencher quand la demande concerne : "Recommandation personnalisée d'articles académiques via l'API rec5 d'AMiner
+  - Déclencher si la demande mentionne : articles, aminer, skill
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # aminer-daily-paper

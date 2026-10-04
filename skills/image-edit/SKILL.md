@@ -9,6 +9,10 @@ description: Implémente des fonctionnalités d'édition et de modification d'im
 license: MIT
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des fonctionnalités d'édition et de modification d'images par IA avec le z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : images, édition, implémente
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill d'édition d'images

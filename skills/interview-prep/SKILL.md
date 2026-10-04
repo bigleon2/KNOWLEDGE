@@ -8,6 +8,10 @@ tags:
 description: Aide l'utilisateur à préparer ses entretiens. À partir du JD cible, de l'entreprise et du poste visé, génère « questions d'entretien fréquentes + réponses de référence + banque de questions classée par entretien comportemental / technique / case », et produit un « manuel de préparation aux entretiens » imprimable. Quand l'utilisateur dit « aide-moi à préparer un entretien », « j'ai un entretien demain / après-demain », « questions d'entretien », « retours d'expérience d'entretien », « simulation d'entretien », « je passe un entretien pour le poste Y chez X », « aide-moi à préparer une histoire STAR », « comment répondre à cette question d'entretien », « présentation / raisons du départ / forces et faiblesses : comment répondre », ce skill doit être déclenché. Ne pas utiliser ce skill pour modifier un CV (voir jd-resume-tailor / resume-builder) ni pour recommander une orientation (voir job-intent-tracker).
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : aide l'utilisateur à préparer ses entretiens
+  - Déclencher si la demande mentionne : entretien, aide, préparer
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Interview Prep (préparation aux entretiens)

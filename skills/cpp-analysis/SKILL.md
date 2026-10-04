@@ -11,6 +11,10 @@ tags: []
 dependencies: []
 date: 2026-06-21
 description-fr: Analyse de code C/C++ — Détection de bugs, optimisation de performance, analyse de complexité, génération de documentation. Supporte C, C++, C++11/14/17/20. Utiliser quand l'utilisateur a besoin d'analyser du code C/C++, trouver des bugs, optimiser les performances, ou générer de la documentation.
+read_when:
+  - Déclencher quand la demande concerne : analyse de code C/C++ — Détection de bugs, optimisation de performance, analyse de complexité, génération de d…
+  - Déclencher si la demande mentionne : analyse, code, bugs
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

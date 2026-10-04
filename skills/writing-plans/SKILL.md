@@ -8,6 +8,10 @@ tags:
 description: À utiliser lorsque vous disposez d'un cahier des charges ou d'exigences pour une tâche en plusieurs étapes, avant de toucher au code
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : à utiliser lorsque vous disposez d'un cahier des charges ou d'exigences pour une tâche en plusieurs étapes, av…
+  - Déclencher si la demande mentionne : utiliser, lorsque, vous
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Writing Plans

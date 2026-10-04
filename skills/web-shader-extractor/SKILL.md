@@ -12,6 +12,10 @@ description: |
   répliquer les effets visuels d'un site web, "récupérer l'effet de fond de ce site", etc.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : extrait d'une page web le code des effets visuels WebGL/Canvas/Shader, le désobfusque puis le porte en projet…
+  - Déclencher si la demande mentionne : extraire, effet, effets
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Web Shader Extractor

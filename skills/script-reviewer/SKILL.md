@@ -3,9 +3,6 @@ name: script-reviewer
 version: 1.0.0
 category: ecosystem
 language: fr
-  tags:
-    - script
-    - reviewer
 description: >
   Relire et valider les scripts de l'écosystème (arbitres, collecteurs, outils stdlib)
   avant adoption : grille de relecture en 8 checks mécaniques (G1-G8), sévérités S1-S4
@@ -27,6 +24,11 @@ dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
     used_at: "Conventions de description, d'évals et de frontmatter (§1.4)"
+tags: [script, creator, être]
+read_when:
+  - Déclencher quand la demande concerne : relire et valider les scripts de l'écosystème (arbitres, collecteurs, outils stdlib) avant adoption : grille d…
+  - Déclencher si la demande mentionne : creator, script, être
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Relecteur de scripts

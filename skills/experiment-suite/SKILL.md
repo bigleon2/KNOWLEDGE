@@ -8,6 +8,10 @@ tags:
 description: À utiliser quand l'utilisateur a une question de recherche et a besoin d'un paquet d'expérience complet — document de conception, code exécutable, résultats (mesurés ou simulés avec une provenance honnête), figures de qualité publication, rapport structuré. Étape unique, sans runtime Python.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : à utiliser quand l'utilisateur a une question de recherche et a besoin d'un paquet d'expérience complet — docu…
+  - Déclencher si la demande mentionne : utiliser, quand, utilisateur
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Experiment Suite

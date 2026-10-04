@@ -35,6 +35,10 @@ dependencies:
   - skill: resource-monitor
     version: ">=1.0.0"
     used_at: "Hook E1-RES (collecte G-RES, ouverture de session)"
+read_when:
+  - Déclencher quand la demande concerne : skill de planification de tâches pour assistant IA
+  - Déclencher si la demande mentionne : planification, adaptation, answer
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

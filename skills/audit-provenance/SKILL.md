@@ -3,9 +3,6 @@ name: audit-provenance
 version: "1.1.0"
 category: ecosystem
 language: fr
-  tags:
-    - audit
-    - provenance
 description: >
   Auditer la provenance des artefacts de l'écosystème (skills, scripts, corpus,
   rapports, plans) : traçabilité de l'origine (session, directive, clone épinglé,
@@ -26,6 +23,11 @@ dependencies:
   - skill: correct-work
     version: ">=2.6.0"
     used_at: "Validation du skill et des artefacts corrigés (mode CIBLE, §1.3 GF-4)"
+tags: [provenance, clone, chaque]
+read_when:
+  - Déclencher quand la demande concerne : auditer la provenance des artefacts de l'écosystème (skills, scripts, corpus, rapports, plans) : traçabilité d…
+  - Déclencher si la demande mentionne : provenance, clone, chaque
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Audit de provenance

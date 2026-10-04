@@ -1,0 +1,39 @@
+{
+  "_provenance": "auto-v1-t27",
+  "_calibration": "requise avant mesure voie L (prompts dérivés mécaniquement du frontmatter — pas de baseline R3)",
+  "skill_name": "ui-ux-pro-max",
+  "evals": [
+    {
+      "query": "utilise le skill ui-ux-pro-max pour cette tâche : la tâche « ui »",
+      "should_trigger": true
+    },
+    {
+      "query": "la tâche « ui »",
+      "should_trigger": true
+    },
+    {
+      "query": "j'ai besoin de la tâche « ui » — quelle est la procédure ?",
+      "should_trigger": true
+    },
+    {
+      "query": "aide-moi à la tâche « ui » avec ui-ux-pro-max",
+      "should_trigger": true
+    },
+    {
+      "query": "peux-tu la tâche « ui » ?",
+      "should_trigger": true
+    },
+    {
+      "query": "bonjour",
+      "should_trigger": false
+    },
+    {
+      "query": "clone cette discussion",
+      "should_trigger": false
+    },
+    {
+      "query": "analyse ce CSV et donne-moi des statistiques",
+      "should_trigger": false
+    }
+  ]
+}

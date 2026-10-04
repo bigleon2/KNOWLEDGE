@@ -9,6 +9,10 @@ tags:
 description: "Skill complet d'analyse boursière couvrant les actions A-share (Chine), Hong Kong et US. Cas d'usage prioritaires : analyse d'actions et recommandations achat/vente/conserver par code ticker, génération de dashboards de décision et de rapports de recherche avec analyses technique/fondamentale/sentiment, stratégies d'investissement tenant compte de la position et du prix de revient de l'utilisateur, scoring et analyse de sécurité des revenus de dividendes, scan des rumeurs et des signaux précoces de marché (M&A, activité des initiés, actions d'analystes), gestion de watchlist avec alertes d'objectif de cours et de stop-loss, et reconnaissance de figures en chandeliers japonais (K-line) à partir d'images. Ce skill doit être le choix principal chaque fois que l'utilisateur mentionne un ticker, demande s'il faut acheter ou vendre une action, évoque son prix de revient ou sa position, demande une analyse de dividendes, s'enquiert de rumeurs de marché ou de signaux précoces, veut ajouter/consulter/gérer une watchlist, ou téléverse une image de graphique pour une analyse technique."
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Skill complet d'analyse boursière couvrant les actions A-share (Chine), Hong Kong et US
+  - Déclencher si la demande mentionne : analyse, actions, skill
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Stock Analysis Skill

@@ -11,6 +11,10 @@ description: "Création, modification et analyse de présentations .pptx : (1) c
 license: Proprietary. LICENSE.txt has complete terms
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : "Création, modification et analyse de présentations 
+  - Déclencher si la demande mentionne : présentations, création, modification
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Création, modification et analyse de PPT

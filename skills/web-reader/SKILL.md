@@ -9,6 +9,10 @@ description: Implémente des capacités d'extraction de contenu de pages web ave
 license: MIT
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des capacités d'extraction de contenu de pages web avec le z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : contenu, extraction, pages
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill Web Reader

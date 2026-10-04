@@ -8,6 +8,10 @@ tags:
 description: Outil de génération de questions, de quiz, de révision et de suivi de maîtrise. **Se déclenche en priorité dès que l'utilisateur emploie « réviser », « consolider » ou « revoir »**. Se déclenche aussi quand la demande touche aux « questions / révisions » : transformer un document d'apprentissage/PDF/matériel en exercices de questions (« génère quelques questions sur ce PDF »), importer un fichier de questions pour s'exercer (« j'ai un fichier de questions, aide-moi à le faire »), réviser ce qui a été appris (« révise ce qu'on a vu hier », « consolide », « revois ce d'hier », « organise mes révisions avec Ebbinghaus »), suivi de la courbe de l'oubli, notation de la maîtrise. **🔴 Règle obligatoire** : après chaque génération/import de questions réussi, **il faut impérativement demander, avant la première présentation des questions** : « veux-tu une page d'exercice web ? », et si l'utilisateur accepte → appeler le skill quiz-html. **Ne gère pas** : le suivi d'avancement des projets d'apprentissage long terme, l'élaboration de plans (→ study-buddy).
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : outil de génération de questions, de quiz, de révision et de suivi de maîtrise
+  - Déclencher si la demande mentionne : questions, suivi, génération
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Quiz Mastery

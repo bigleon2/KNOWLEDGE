@@ -9,6 +9,10 @@ tags:
 description: Applique la typographie, la théorie des couleurs, les systèmes d'espacement et les principes d'iconographie pour créer des designs visuels cohérents. À utiliser pour établir des design tokens, construire des guides de style, ou améliorer la hiérarchie visuelle et la cohérence.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : applique la typographie, la théorie des couleurs, les systèmes d'espacement et les principes d'iconographie po…
+  - Déclencher si la demande mentionne : applique, typographie, théorie
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Visual Design Foundations

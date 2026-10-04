@@ -13,6 +13,9 @@ tags:
 description: >-
  Skill discipline spec-driven development : la spécification comme contrat exécutable — spec AVANT code (workflow inversé), décomposition plan→tâches, critères d'acceptation mécaniques, constitution (guardrails), re-spécification à la dérive. Spécialise la discipline SDD (registre décentralisé : §8 local + registre KB). Opérationnalisation 2026 : arXiv « From Code to Contract » (janv. 2026), spec-first AI-native engineering (Microsoft), GitHub Spec Kit. Fondements documentés : references/fondements-academiques.md.
 dependencies: []
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

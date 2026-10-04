@@ -13,6 +13,9 @@ tags:
 description: >-
  Skill discipline memory engineering : mémoire des agents — État Court/État Long, écriture sélective, budget d'attention fini, compaction paramétrable long-horizon, compaction de sessions longues avec ancres de reprise mécanique, mémoire externe par retrieval (IR/RAG) — récupération de l'information par retrieval ancré dans le registre versionné, sans hallucination, isolation des contextes : savoir isoler les contextes par tâche (prompts auto-contenus, pas de fuite inter-tâches). Spécialise la discipline memory engineering (registre décentralisé : §8 local + registre KB). Opérationnalisation 2026 : AgeMem (arXiv 2026, 110+ citations), Memory in the Age of AI Agents (survey), checkpointing LangGraph/Redis. Fondements documentés : references/fondements-academiques.md.
 dependencies: []
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

@@ -9,6 +9,10 @@ description: Implémente des capacités spécialisées de compréhension vidéo 
 license: MIT
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des capacités spécialisées de compréhension vidéo avec le z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : vidéo, formats, implémente
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill Video Understanding

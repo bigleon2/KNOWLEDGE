@@ -3,9 +3,6 @@ name: correct-py
 version: "1.1.0"
 category: ecosystem
 language: fr
-  tags:
-    - correct
-    - py
 description: >
   Vérifier et corriger la conformité des scripts Python de l'écosystème aux normes
   d'écriture du langage (PEP 8 : style, indentation, nommage snake_case ; PEP 257 :
@@ -26,6 +23,11 @@ dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
     used_at: "Conventions de description, d'évals et de frontmatter (§1.4)"
+tags: [script, python, style]
+read_when:
+  - Déclencher quand la demande concerne : vérifier et corriger la conformité des scripts Python de l'écosystème aux normes d'écriture du langage (PEP 8…
+  - Déclencher si la demande mentionne : script, python, style
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Correcteur Python (normes du langage)

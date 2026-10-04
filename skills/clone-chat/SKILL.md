@@ -25,6 +25,10 @@ dependencies:
   - skill: correct-work
     version: ">=2.4.0"
     used_at: "Validation croisée (Mode CIBLE, §3.5)"
+read_when:
+  - Déclencher quand la demande concerne : clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog) dans un fichier Markdown auto-s…
+  - Déclencher si la demande mentionne : markdown, auto, session
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

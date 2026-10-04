@@ -9,6 +9,10 @@ tags:
 description: Agrégateur d'actualités IA avec tri par popularité. Se déclenche lorsque l'utilisateur demande les dernières actualités du domaine de l'IA, par exemple : « Quelles nouvelles IA aujourd'hui ? », « Résume l'actu IA de la semaine », « Quels produits IA font le buzz en ce moment ? », « De quoi parle-t-on dans le monde de l'IA ? ». Couvre : lancements de produits, articles de recherche, actualités du secteur, levées de fonds, mises à jour de projets open source, phénomènes viraux de communauté, projets IA/Agent populaires. Produit une liste de résumés triée par popularité, avec les liens vers les sources d'origine.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : agrégateur d'actualités IA avec tri par popularité
+  - Déclencher si la demande mentionne : actualités, popularité, produits
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # AI News Collector

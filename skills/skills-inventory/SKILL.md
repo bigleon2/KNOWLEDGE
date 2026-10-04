@@ -22,6 +22,10 @@ description: >
   trouver la bonne skill pour une tâche, ou répondre à des questions sur l'écosystème de
   skills — même si l'utilisateur ne dit pas explicitement "inventaire des skills".
 dependencies: []
+read_when:
+  - Déclencher quand la demande concerne : scanner et rapporteur d'inventaire des skills
+  - Déclencher si la demande mentionne : skills, skill, inventaire
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

@@ -33,6 +33,10 @@ description: >
   des organigrammes, des flowcharts ou tout schéma structurel. Ceux-ci DOIVENT utiliser Playwright+CSS.
 license: Proprietary. LICENSE.txt has complete terms
 language: fr
+read_when:
+  - Déclencher quand la demande concerne : skill de création professionnelle de graphiques et de schémas
+  - Déclencher si la demande mentionne : diagrammes, skill, utilisez
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Beautiful Charts

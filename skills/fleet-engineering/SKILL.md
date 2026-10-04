@@ -14,6 +14,9 @@ tags:
 description: >-
  Skill discipline fleet engineering : orchestration de flottes d'agents — Agent Teams / Managed Agents, découplage cerveau/exécution, 5 patterns production fan-out-pipeline-debate-supervisor-swarm, coordination multi-instances avec Task IDs, agrégation et arbitrage des résultats. Spécialise la discipline fleet engineering (registre décentralisé : §8 local + registre KB). Opérationnalisation 2026 : Anthropic Agent Teams & Managed Agents (2026), multi-agent research system (Anthropic, juin 2025), State of Agent Engineering (LangChain, 2026). Fondements documentés : references/fondements-academiques.md.
 dependencies: []
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

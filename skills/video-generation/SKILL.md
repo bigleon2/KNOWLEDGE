@@ -9,6 +9,10 @@ description: Implémente des capacités de génération vidéo par IA à l'aide 
 license: MIT
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des capacités de génération vidéo par IA à l'aide du z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : vidéo, implémente, capacités
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill Video Generation

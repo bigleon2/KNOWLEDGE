@@ -9,6 +9,10 @@ description: Implémente des capacités de recherche web avec le z-ai-web-dev-sd
 license: MIT
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des capacités de recherche web avec le z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : recherche, implémente, capacités
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill Web Search

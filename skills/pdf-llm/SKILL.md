@@ -9,6 +9,10 @@ description: >
 tags: []
 dependencies: []
 license: MIT
+read_when:
+  - Déclencher quand la demande concerne : extraction documentaire PDF vers Markdown + JSON structuré RAG-ready
+  - Déclencher si la demande mentionne : extraction, documentaire, markdown
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

@@ -9,6 +9,10 @@ description: Implémente des fonctionnalités spécialisées de compréhension d
 license: MIT
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des fonctionnalités spécialisées de compréhension d'images avec le z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : images, implémente, fonctionnalités
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill de compréhension d'images

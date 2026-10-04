@@ -9,6 +9,10 @@ description: "Développement web fullstack avec Next.js 16, TypeScript, Tailwind
 language: fr
 argument-hint: "Décris la fonctionnalité fullstack ou l'application que tu veux construire"
 
+read_when:
+  - Déclencher quand la demande concerne : "Développement web fullstack avec Next
+  - Déclencher si la demande mentionne : développement, fullstack, next
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill de développement web fullstack

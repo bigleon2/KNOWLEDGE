@@ -8,6 +8,10 @@ tags:
 description: À utiliser quand l'utilisateur a une direction de recherche vague et souhaite explorer des sujets spécifiques envisageables. Produit une analyse structurée avec des sujets candidats, une notation innovation/faisabilité et une pré-étude de 20 à 30 travaux représentatifs. Une seule étape, sans runtime Python.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : à utiliser quand l'utilisateur a une direction de recherche vague et souhaite explorer des sujets spécifiques…
+  - Déclencher si la demande mentionne : sujets, utiliser, quand
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Research Explorer

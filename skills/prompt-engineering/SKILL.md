@@ -18,6 +18,10 @@ dependencies:
   - skill: gen-plan
     version: ">=3.7.0"
     used_at: "Consultation du contexte écosystème (planification E1-E8, méthode-mère §1.9)"
+read_when:
+  - Déclencher quand la demande concerne : skill d'optimisation fine des prompts complexes : rédaction, restructuration (restructure, restructurer), éval…
+  - Déclencher si la demande mentionne : skill, prompts, méthode
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)

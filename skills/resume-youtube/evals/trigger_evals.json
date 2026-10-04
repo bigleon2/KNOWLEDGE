@@ -1,0 +1,10 @@
+[
+  {"query": "résume cette vidéo youtube", "should_trigger": true},
+  {"query": "fais-moi un résumé de cette playlist youtube", "should_trigger": true},
+  {"query": "résume la vidéo https://www.youtube.com/watch?v=abc123", "should_trigger": true},
+  {"query": "extrais les sous-titres de cette vidéo youtube", "should_trigger": true},
+  {"query": "analyse cette playlist youtube et liste les sujets traités", "should_trigger": true},
+  {"query": "analyse ce CSV et donne-moi des statistiques", "should_trigger": false},
+  {"query": "clone cette discussion", "should_trigger": false},
+  {"query": "bonjour", "should_trigger": false}
+]

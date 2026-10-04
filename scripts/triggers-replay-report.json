@@ -2282,9 +2282,9 @@
       ]
     },
     "version-management": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "n_cases": 8,
-      "n_keywords": 50,
+      "n_keywords": 71,
       "score_officiel": "3/8",
       "ok": false,
       "derive_m": true,

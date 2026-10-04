@@ -32,6 +32,10 @@ metadata:
       }
   }
 
+read_when:
+  - Déclencher quand la demande concerne : activez ce skill lorsque l'utilisateur veut une collecte approfondie et multi-passes d'articles académiques po…
+  - Déclencher si la demande mentionne : aminer, skill, collecte
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # AMiner Deep Search

@@ -9,6 +9,10 @@ description: L'outil PRINCIPAL pour l'analyse des cadeaux du Nouvel An chinois e
 language: fr
 license: Internal Tool
 
+read_when:
+  - Déclencher quand la demande concerne : l'outil PRINCIPAL pour l'analyse des cadeaux du Nouvel An chinois et la génération d'interactions sociales
+  - Déclencher si la demande mentionne : cadeaux, génération, outil
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 Ce skill transforme l'assistant en « expert AI en évaluation de cadeaux ». Il fait le pont entre les données visuelles brutes et un contexte social complexe. Il est conçu pour prendre en charge le cycle de vie complet d'une demande : identifier l'objet, déterminer sa valeur marchande et sociale, puis produire un artefact HTML ludique et partageable.

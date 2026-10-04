@@ -8,6 +8,10 @@ tags:
 description: Transforme un tableau de questions en une **page d'exercice web autonome** (fichier HTML). Lorsque l'utilisateur vient de terminer le flux « générer des questions à partir d'un document » ou « extraire des questions d'un fichier » de quiz-mastery, proposez proactivement de « s'entraîner dans une page web » ; après confirmation, appelez ce skill pour injecter les questions dans le template et générer un HTML à l'utilisateur. Se déclenche aussi quand l'utilisateur dit directement « fais-moi une page web / HTML / d'exercice avec ces questions ». **Ne gère pas** : la génération de questions (→ quiz-mastery), la notation (→ quiz-mastery), les plans de révision long terme (→ study-buddy).
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : transforme un tableau de questions en une **page d'exercice web autonome** (fichier HTML)
+  - Déclencher si la demande mentionne : questions, page, html
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Générateur de banque de questions web (Quiz HTML Builder)

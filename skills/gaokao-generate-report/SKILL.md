@@ -13,6 +13,9 @@ description: >-
   production de scénarios de candidature et la visualisation de la liste de vœux.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Générer le rapport de remplissage des vœux

@@ -16,6 +16,9 @@ description: >-
   des informations du candidat et la collecte d'informations avant le remplissage des vœux.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Collecte des informations du candidat au Gaokao

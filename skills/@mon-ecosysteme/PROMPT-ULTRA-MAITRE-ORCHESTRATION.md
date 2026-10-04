@@ -64,7 +64,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.6.4 (lire en premier). Installateur : `PROM
 | `cpp-analysis` | 1.1.0 |
 | `pdf-llm` | 1.0.0 |
 | `resource-monitor` | 1.0.0 |
-| `version-management` | 1.1.0 |
+| `version-management` | 1.2.0 |
 
 Registre KB : 27 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.7.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 

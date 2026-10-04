@@ -8,6 +8,10 @@ tags:
 description: Grand maître de l'interprétation des rêves par IA. L'utilisateur décrit son rêve ; après des questions de relance intelligentes sur les détails clés, le skill génère une interprétation sous trois angles (Zhou Gong / analyse psychologique / mystique cyber) et produit un JSON structuré pour le rendu frontal de la « carte d'interprétation de rêve ».
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : grand maître de l'interprétation des rêves par IA
+  - Déclencher si la demande mentionne : interprétation, rêve, grand
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # dream-interpreter

@@ -1,0 +1,39 @@
+{
+  "_provenance": "auto-v1-t27",
+  "_calibration": "requise avant mesure voie L (prompts dérivés mécaniquement du frontmatter — pas de baseline R3)",
+  "skill_name": "mindfulness-meditation",
+  "evals": [
+    {
+      "query": "utilise le skill mindfulness-meditation pour cette tâche : la tâche « mindfulness »",
+      "should_trigger": true
+    },
+    {
+      "query": "la tâche « mindfulness »",
+      "should_trigger": true
+    },
+    {
+      "query": "j'ai besoin de la tâche « mindfulness » — quelle est la procédure ?",
+      "should_trigger": true
+    },
+    {
+      "query": "aide-moi à la tâche « mindfulness » avec mindfulness-meditation",
+      "should_trigger": true
+    },
+    {
+      "query": "peux-tu la tâche « mindfulness » ?",
+      "should_trigger": true
+    },
+    {
+      "query": "bonjour",
+      "should_trigger": false
+    },
+    {
+      "query": "clone cette discussion",
+      "should_trigger": false
+    },
+    {
+      "query": "analyse ce CSV et donne-moi des statistiques",
+      "should_trigger": false
+    }
+  ]
+}

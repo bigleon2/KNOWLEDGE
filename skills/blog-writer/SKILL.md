@@ -8,6 +8,10 @@ tags:
 description: Ce skill doit être utilisé pour rédiger des articles de blog, des billets ou tout contenu long dans le style d'écriture distinctif de l'auteur. Il produit un contenu authentique et engagé, fidèle à la voix de l'auteur — directe, conversationnelle et ancrée dans l'expérience personnelle. Le skill couvre le workflow complet, de la revue de la recherche jusqu'à la publication sur Notion. Utilisez ce skill pour rédiger des articles de blog, des pièces de réflexion (thought leadership) ou tout texte censé refléter le point de vue de l'auteur sur l'IA, la productivité, la vente, le marketing ou la technologie.
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : ce skill doit être utilisé pour rédiger des articles de blog, des billets ou tout contenu long dans le style d…
+  - Déclencher si la demande mentionne : skill, auteur, rédiger
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Blog Writer

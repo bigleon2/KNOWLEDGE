@@ -9,6 +9,10 @@ description: Implémente des fonctionnalités de génération d'images par IA av
 license: MIT
 language: fr
 
+read_when:
+  - Déclencher quand la demande concerne : implémente des fonctionnalités de génération d'images par IA avec le z-ai-web-dev-sdk
+  - Déclencher si la demande mentionne : images, génération, créer
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # Skill de génération d'images

@@ -14,6 +14,9 @@ description: >-
   la discipline context engineering (source de vérité : SHARED §7) pour
   composer, contrôler et restituer ce que le système lit avant de répondre.
 dependencies: []
+read_when:
+  - Déclencher quand la demande concerne : >-
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.6.4)
