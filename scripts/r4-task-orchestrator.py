@@ -7,7 +7,7 @@ Usage : r4-task-orchestrator.py --file <plan.json> | --demo
 """
 import json, os, sys, time
 
-OUT = "/home/z/my-project/ecosystem/tmp/r4-orchestration.json"
+OUT = "/home/z/my-project/work_knowledge/tmp/r4-orchestration.json"
 
 DEMO = [
     {"id": "T1", "titre": "extraction specs", "deps": [], "priorite": 1},

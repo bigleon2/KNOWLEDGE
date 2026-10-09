@@ -6,8 +6,8 @@ Construit mécaniquement la matrice agent × skill depuis le registre KB
 """
 import json, os, re, sys, time
 
-KB = "/home/z/my-project/ecosystem/skills/KNOWLEDGE.md"
-OUT = "/home/z/my-project/ecosystem/tmp/r7-matrice-agents-skills.json"
+KB = "/home/z/my-project/work_knowledge/skills/KNOWLEDGE.md"
+OUT = "/home/z/my-project/work_knowledge/tmp/r7-matrice-agents-skills.json"
 
 def main():
     with open(KB, encoding="utf-8") as f:

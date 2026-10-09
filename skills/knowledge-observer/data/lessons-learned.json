@@ -47,13 +47,14 @@
     {
       "id": "L004",
       "pattern": "Recalibrage oublié lors des montées de version : les arbitres (verify-cross, verify-correct-work, test-coherence-interactions, check-ecosysteme-integrity, answer-key-checker), pre-checks (n8-a-precheck-a2), skills-meta.json, run-order, SYNC_MAP, miroir et archive valident l'état PRÉCÉDENT après une montée — verdicts inopérants",
-      "occurrences": 3,
+      "occurrences": 4,
       "sources": [
         "N20 PHASE 9 (re-calibrage x3 voies post v3.13.0) ; B13-r5 : integrity figé a 18 fichiers/ECO_SKILLS v3.13.0 pendant que le corpus montait a 19/v3.16.0",
-        "Task 7 P-C (cycle v3.17.1, commit a91dd80 -> 1bb0d77) : après le commit de renommage, scripts/ecosysteme-integrity.json restait épinglé au SHA du PM v3.17.0 pré-renommage (régression réelle de recalibrage oublié) — détectée au recalibrage croisé KO-L004, manifeste régénéré PAR le checker : 50/50 PASS"
+        "Task 7 P-C (cycle v3.17.1, commit a91dd80 -> 1bb0d77) : après le commit de renommage, scripts/ecosysteme-integrity.json restait épinglé au SHA du PM v3.17.0 pré-renommage (régression réelle de recalibrage oublié) — détectée au recalibrage croisé KO-L004, manifeste régénéré PAR le checker : 50/50 PASS",
+        "Session web-b93f42fa (2026-10-09, directive utilisateur « génération automatique du PM à toute montée de version ») : occurrence réelle — la montée Task 29 (gen-plan v3.20.0) n'a pas recalibré l'arbitre check-ecosysteme-integrity (ECO_SKILLS figé 3.19.0) ni le registre KB (entrée gen-plan v3.19.0) → verdicts inopérants ; matérialisation M4 : scripts/generer-pm-skill.py + PM-INSTALL §2quater v1.6.0 + SHARED v1.6.7 §6.1 + règle §1.15 v1.1.0"
       ],
-      "proposition": "Règle KO-L004 — toute montée de version déclenche le recalibrage mécanique des outils dépendants AVANT la certification ; l'application M4 de toute leçon intègre d'office la liste des outils à recalibrer (garde post-édition)",
-      "marqueur": "PATTERN:KO-L004-v1.0.0",
+      "proposition": "Règle KO-L004 — toute montée de version déclenche le recalibrage mécanique des outils dépendants AVANT la certification ; l'application M4 de toute leçon intègre d'office la liste des outils à recalibrer (garde post-édition) ; toute montée déclenche AUSSI la génération mécanique du prompt maître de la nouvelle version dans `@mon-ecosysteme/` (`scripts/generer-pm-skill.py` — substitutions verrouillées, garde R2, recalibrage croisé inclus — extension v1.1.0, directive utilisateur 2026-10-09)",
+      "marqueur": "PATTERN:KO-L004-v1.1.0",
       "cible_application": "skills/gen-plan/SKILL.md §1.15",
       "statut": "appliqué",
       "session": "B13",

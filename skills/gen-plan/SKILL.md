@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.20.0
+version: 3.21.0
 category: ecosystem
 language: fr
 tags:
@@ -41,7 +41,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.6.4)
+## §0 — Contexte Système (SHARED v1.6.7)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -130,6 +130,8 @@ read_when:
 
 **Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (PM v3.11.0 §1.8) : toute nouvelle demande utilisateur pendant l'exécution d'un plan déclenche la mise à jour cohérente du plan d'actions actuel via gen-plan (E13) — demandes intégrées comme étapes/priorités, ré-estimation #token des étapes affectées, re-validation E8 si le périmètre change matériellement, journalisation au worklog ; extension du plan, jamais réécriture destructrice (R2). **Déclencheur verbatim (v3.17.2, directive propriétaire 2026-10-02)** : la formulation « intègre dans le plan d'actions » (et variantes directes : « intègre ça au plan », « ajoute au plan d'actions ») déclenche ce mode E13 sans ambiguïté.
 
+**Règle d'or n°4 — Récupération du dépôt par clone** (directive utilisateur 2026-10-09, session web-b93f42fa) : toute opération devant lire ou utiliser un élément du dépôt (fichier, dossier, corpus, script, historique) passe par un **clone git local** (forme recommandée : shallow `--depth 1 --filter=blob:none`), JAMAIS par une lecture distante du contenu (API contents, raw.githubusercontent.com, rendu web) ; le clone sert de source de lecture ET de travail ; authentification par jeton éphémère uniquement (askpass/credential ponctuel — jamais persisté dans `.git/config` ni sur disque, anti-persistance Task 8/14) ; exceptions : sondes API ponctuelles (KO-L001 — une sonde par message utilisateur), écritures authentifiées sans persistance, clone matériellement impossible → adaptation journalisée (règle d'or n°1) ; chaque clonage est tracé au worklog (source, SHA de référence, destination, forme) ; publication uniquement sur validation explicite du propriétaire. La règle change le MOYEN d'accès (clone d'abord), jamais l'objectif des tâches.
+
 ### §1.6 Disciplines d'ingénierie de prompts (PM v3.12.0 §1.9)
 
 | Discipline | Mécanisme gen-plan |
@@ -197,11 +199,11 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 ### §1.15 Leçons knowledge-observer — recalibrage croisé (re-curation B13, modes M3-M4)
 
-<!-- PATTERN:KO-L004-v1.0.0 -->
+<!-- PATTERN:KO-L004-v1.1.0 -->
 
-**Règle KO-L004 — Recalibrage croisé** (leçon L004, appliquée) : toute montée de version d'un skill de l'écosystème déclenche le recalibrage mécanique des outils dépendants AVANT la certification : arbitres (`verify-cross.py`, `verify-correct-work.py`, `test-coherence-interactions.py`, `check-ecosysteme-integrity.py`, `answer-key-checker.py`), pre-checks (`n8-a-precheck-a2.py`), `skills-meta.json`, run-order, SYNC_MAP, miroir et archive. Un outil non recalibré valide l'état précédent — verdict inopérant. L'application M4 de toute leçon knowledge-observer intègre donc d'office la liste des outils à recalibrer (garde post-édition).
+**Règle KO-L004 — Recalibrage croisé ET génération du prompt maître** (leçon L004, appliquée — v1.1.0, directive 2026-10-09) : toute montée de version d'un skill de l'écosystème déclenche, AVANT la certification : (1) le recalibrage mécanique des outils dépendants : arbitres (`verify-cross.py`, `verify-correct-work.py`, `test-coherence-interactions.py`, `check-ecosysteme-integrity.py`, `answer-key-checker.py`), pre-checks (`n8-a-precheck-a2.py`), `skills-meta.json`, run-order, SYNC_MAP, miroir et archive ; (2) **la génération mécanique du prompt maître de la nouvelle version** — `PROMPT-MAITRE-<skill>-v<version>.md` dans `@mon-ecosysteme/` via `scripts/generer-pm-skill.py --generate <skill>` (substitutions verrouillées — ABANDON sans écriture si un motif n'apparaît pas exactement n fois ; garde anti-rétrogradation R2 ; recalibrage SHARED §6.1 + PM-INSTALL §2ter/§A.3 inclus ; rapport de couverture SKILL.md↔PM — le script ne masque jamais un écart, KO-L003). Un PM absent ou antérieur au SKILL.md installé laisse l'installation dériver (KO-L003 installe un PM sans correspondance de version ; l'arbitre interactions verdict FAIL sur PM postérieur). Un outil non recalibré valide l'état précédent — verdict inopérant. L'application M4 de toute leçon knowledge-observer intègre donc d'office la liste des outils à recalibrer ET l'étape de génération PM (garde post-édition).
 
-<!-- FIN-PATTERN:KO-L004-v1.0.0 -->
+<!-- FIN-PATTERN:KO-L004-v1.1.0 -->
 
 <!-- PATTERN:KO-L007-v1.0.0 -->
 
@@ -209,7 +211,7 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 <!-- FIN-PATTERN:KO-L007-v1.0.0 -->
 
-> Provenance : règles KO-L001/L003/L004 issues des leçons L001-L004 du journal `knowledge-observer` (sessions B13), reconstituées post-wipe (B13-r4, complété B13-r5) d'après les marqueurs et le lignage documentés — installées dans gen-plan v3.16.0 ; KO-L007 installée dans gen-plan v3.18.0 (leçon L007, verdict correct-work étape F PASS — cycle fusion installateurs 2026-10-02) ; les contenus exacts de v3.14.0/v3.15.0, non documentés, restent perdus au wipe inter-sessions.
+> Provenance : règles KO-L001/L003/L004 issues des leçons L001-L004 du journal `knowledge-observer` (sessions B13), reconstituées post-wipe (B13-r4, complété B13-r5) d'après les marqueurs et le lignage documentés — installées dans gen-plan v3.16.0 ; KO-L007 installée dans gen-plan v3.18.0 (leçon L007, verdict correct-work étape F PASS — cycle fusion installateurs 2026-10-02) ; KO-L004 portée v1.1.0 dans gen-plan v3.21.0 (extension génération mécanique du PM à toute montée de version — directive utilisateur 2026-10-09, session web-b93f42fa, matérialisation M4 : `scripts/generer-pm-skill.py`) ; les contenus exacts de v3.14.0/v3.15.0, non documentés, restent perdus au wipe inter-sessions.
 
 ---
 

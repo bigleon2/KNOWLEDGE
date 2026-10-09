@@ -18,10 +18,10 @@ l'exécute, PUIS met à jour le plan d'actions en cours (directive générée au
 par maj_plan_apres_reinstall → download/plan-post-reinstall-<ts>.json, Task 29 D004)
 avant de reprendre l'exécution.
 """
-import hashlib, json, os, subprocess, sys, time
+import hashlib, json, os, re, subprocess, sys, time
 from pathlib import Path
 
-ROOT = Path("/home/z/my-project/ecosystem")
+ROOT = Path("/home/z/my-project/work_knowledge")
 ORIGIN = "https://github.com/bigleon2/KNOWLEDGE.git"
 MP = Path("/home/z/my-project")
 
@@ -55,8 +55,12 @@ def etat() -> dict:
                 e["fichiers_manquants"].append(f)
         kb = ROOT / "skills/KNOWLEDGE.md"
         if kb.exists():
+            # S2-ε (Task 12, réconciliation 28/29 — KO-L003) : invariant dynamisé —
+            # comptage STRICT au format d'entrée « ## <skill> v<semver> ». La section
+            # « Décisions d'architecture (corrige-ecosysteme v2.0.0) » n'est PAS une
+            # entrée KB (le filtre lache " v" in l la sur-comptait → 29 au lieu de 28).
             e["kb_entrees"] = len([l for l in kb.read_text(encoding="utf-8", errors="replace").splitlines()
-                                   if l.startswith("## ") and " v" in l])
+                                   if re.match(r"^## [a-z0-9-]+ v\d+\.\d+\.\d+$", l.rstrip())])
     return e
 
 

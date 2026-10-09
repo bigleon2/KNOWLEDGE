@@ -70,7 +70,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.19.0",
+    "gen-plan": "3.21.0",
     "knowledge-observer": "1.0.0",
     "correct-work": "2.7.0",
     "clone-chat": "2.0.0",
@@ -90,7 +90,7 @@ ECO_SKILLS = {
     "cpp-analysis": "1.1.0",
     "pdf-llm": "1.0.0",
     "resource-monitor": "1.0.0",
-    "version-management": "1.1.0",
+    "version-management": "1.2.0",
     "skill-finder-cn": "1.0.0",  # Task 23 : fallback §1.16 inscrit au registre
     # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
     "autonomous-agent": "1.1.0",
@@ -98,6 +98,7 @@ ECO_SKILLS = {
     "fleet-engineering": "1.0.0",
     "memory-engineering": "1.1.0",  # Task 18 (2026-10-03) : Description Optimization A10/A14 — recalibrage L004
     "spec-driven-development": "1.0.0",
+    "vue-upload": "1.2.0",  # KO-L004 (session web-b93f42fa, 2026-10-09) : KB=registre fait foi (## vue-upload v1.2.0) — occurrence L004 résorbée, arbitre dynamisé
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.
@@ -111,7 +112,10 @@ METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au r
 # « push le clone dans @mon-ecosysteme/ » ; miroir + archive alignés).
 # Recalibrage L004 (Task 16, suggestion (b)) : 24 → 26 — PMs CORRECT-WORK
 # v2.6.0/v2.7.0 matérialisés au corpus (méthode B1, provenance tracée).
-CORPUS_ATTENDU = 26
+# Recalibrage L004 (session web-b93f42fa, 2026-10-09) : 26 → 28 — corpus réel certifié
+# (28 fichiers à HEAD 3eebe65 ; PMs GEN-PLAN v3.19.0/v3.20.0 recréés,
+# KB Tasks 39-40) — arbitre dynamisé, jamais la réalité (KO-L003).
+CORPUS_ATTENDU = 28
 
 results = []
 

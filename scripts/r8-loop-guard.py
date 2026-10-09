@@ -42,8 +42,8 @@ def main():
         "seuil": 4,
         "verdict": "CONFORME" if conforme else "NON-CONFORME",
     }
-    os.makedirs(f"/home/z/my-project/ecosystem/tmp", exist_ok=True)
-    with open("/home/z/my-project/ecosystem/tmp/r8-loop-guard.json", "w", encoding="utf-8") as f:
+    os.makedirs(f"/home/z/my-project/work_knowledge/tmp", exist_ok=True)
+    with open("/home/z/my-project/work_knowledge/tmp/r8-loop-guard.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     print(f"R8 : {plan.split('/')[-1]} → {out['verdict']} ({presents}/{len(PATTERNS)} motifs)")
     return 0 if conforme else 1

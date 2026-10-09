@@ -33,7 +33,7 @@ read_when:
 
 # AUTONOMOUS-AGENT v1.0.0
 
-## §0 — Contexte Système (SHARED v1.6.4)
+## §0 — Contexte Système (SHARED v1.6.7)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)

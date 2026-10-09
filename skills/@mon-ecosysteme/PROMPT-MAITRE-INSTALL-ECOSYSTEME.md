@@ -1,11 +1,12 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.4.0
-Date : 2026-10-03
+Version : 1.6.0
+Date : 2026-10-09
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
 Dépend : CONTEXTE SYSTÈME (embarqué ci-dessous)
-Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — périmètre (§A) + ordre d'exécution optimal (§2) + étendue d'installation COMPLET/MINIMALE (§2bis, v1.4.0) + critères de passage (§3).
+Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — périmètre (§A) + ordre d'exécution optimal (§2) + étendue d'installation COMPLET/MINIMALE (§2bis, v1.4.0) + références explicites des dernières versions des PMs et du socle indispensable (§2ter, v1.5.1) + génération automatique du PM à toute montée de version (§2quater, v1.6.0) + critères de passage (§3).
+Référence : §2ter — instantané explicite des dernières versions des PMs sources (GEN-PLAN, CORRECT-WORK, CLONE-CHAT) et des fichiers indispensables (directive utilisateur 2026-10-09) ; rafraîchi à chaque révision — la dérivation dynamique « PM le plus récent » (KO-L003) demeure la mécanique de référence ; §2quater (v1.6.0) — génération mécanique du PM à toute montée de version (KO-L004 v1.1.0, `scripts/generer-pm-skill.py`).
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
@@ -77,11 +78,54 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 **Fermeture MINIMALE (définition normative)** — l'union de :
 - les 3 skills fonctionnelles : `gen-plan/`, `correct-work/`, `skills-inventory/` (formes installées complètes : SKILL.md + `references/` + `evals/` + `scripts/`) ;
-- leurs éléments liés, dérivés MÉCANIQUEMENT au moment de l'installation (jamais figés — KO-L003) : dépendances déclarées (frontmatter YAML `dependencies` + registre KB « Dépend de ») et affectations SHARED §7 — à date : `resource-monitor`, `prompt-engineering`, `context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering`, `knowledge-observer`, `audit-provenance`, `skill-creator`, `agent-creator`, `script-creator`, `script-reviewer`, `script-mon-ecosysteme-infrastructure`, `skill-finder-cn` (fallback §1.16 gen-plan v3.19.0) ;
+- leurs éléments liés, dérivés MÉCANIQUEMENT au moment de l'installation (jamais figés — KO-L003) : dépendances déclarées (frontmatter YAML `dependencies` + registre KB « Dépend de ») et affectations SHARED §7 — à date : `resource-monitor`, `prompt-engineering`, `context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering`, `knowledge-observer`, `audit-provenance`, `skill-creator`, `agent-creator`, `script-creator`, `script-reviewer`, `script-mon-ecosysteme-infrastructure`, `skill-finder-cn` (fallback §1.16 gen-plan v3.21.0) ;
 - les agents requis : `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md`, `PROMPT-MAITRE-SHARED.md`, `SYNC-CONTEXT.md`, plus `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (véhicule de la réinstallation D006) ;
 - l'outillage et le registre : `scripts/` (arbitres, certification-complete.py, G-RES, ensure-installed.py, task23-install-minimale.py) et `skills/KNOWLEDGE.md` (source de vérité).
 
 **Propriétés** : le profil COMPLET demeure le DÉFAUT (pipeline §2 inchangé) ; la fermeture du profil MINIMALE est calculée par `scripts/task23-install-minimale.py` qui matérialise `scripts/install-profile.json` (profil, fermeture, empreintes SHA-256, gain disque mesuré) ; les arbitres opèrent sur le périmètre déclaré par ce manifeste ; l'archive d'intégrité et le corpus canonique `@mon-ecosysteme/` restent TOUJOURS complets (véhicule d'intégrité v2.2) — l'élagage ne s'applique qu'à l'arbre installé, jamais au corpus source.
+
+## §2ter — Références explicites des PMs les plus récents et du socle indispensable (instantané v1.6.0, 2026-10-09)
+
+**Objet (directive utilisateur « faire appel à la dernière version des prompts maîtres »)** : ce tableau matérialise l'instantané explicite des PMs sources mobilisés aux étapes 3-5 pour installer `gen-plan`, `correct-work` et `clone-chat`, ainsi que les fichiers du corpus et de l'outillage indispensables à l'installation et au bon fonctionnement de l'écosystème. Il complète sans les remplacer les mécanismes dynamiques : la dérivation « PM le plus récent » (KO-L003, §3.2) demeure la mécanique de référence et la garde anti-rétrogradation R2 s'applique ; cet instantané est rafraîchi à chaque révision du présent fichier.
+
+### PMs sources des étapes 3-5 (dernières versions au 2026-10-09)
+
+| Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
+|---------|--------------------------------------------------|---------------------|-------|
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.21.0.md` | gen-plan v3.21.0 | 3 |
+| correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md` | correct-work v2.7.0 | 4 |
+| clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | clone-chat v2.0.0 | 5 |
+
+### Fichiers de socle indispensables (corpus, archive, outillage, registre)
+
+| Fichier | Rôle | Mobilisé à |
+|---------|------|-----------|
+| `PROMPT-MAITRE-SHARED.md` | Socle commun — Contexte Système, conventions, registre des relations | Étape 0 |
+| `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md` | Routeur d'orchestration à l'usage (généré idempotent) | Étape 0 / usage |
+| `SYNC-CONTEXT.md` | Procédure de synchronisation du Contexte Système | Étape 0 / maintenance |
+| `README.md` | Architecture et guide de référence (§9 installation, §13 canal R-1) | Étape 0 / documentation |
+| `download/mon-ecosysteme_archive.zip` | Véhicule d'intégrité v2.2 — unique voie de diffusion du corpus | Étapes 1-2, 9 |
+| `scripts/check-ecosysteme-integrity.py` | Arbitre intégrité — invariant `CORPUS_ATTENDU`, SHAs corpus ↔ archive | Étapes 1-2, 8(c) |
+| `scripts/verify-cross.py` | Arbitre structure et cross-references | Étape 8(a) |
+| `scripts/certification-complete.py` | Orchestrateur des arbitres | Étapes 7-8 |
+| `scripts/task14-scan-doublons.py` | Garde anti-doublons `download/` (0 doublon attendu) | Étape 9 |
+| `scripts/task21-f2-rebuild-archive.py` | Rescellage de l'archive d'intégrité (round-trip v2.2) | Étapes 2, 9 |
+| `scripts/install-ecosystem.py` · `ensure-installed.py` · `task23-install-minimale.py` | Bootstrap, réinstallation garantie, profil MINIMALE | Étapes 3-7 |
+| `skills/KNOWLEDGE.md` | Registre KB — source de vérité de l'état installé | Étape 6 |
+
+**Versions historiques (jamais sources d'installation)** : les PMs antérieurs du corpus (`PROMPT-MAITRE-GEN-PLAN-v3.6.1` → `v3.19.0`, `PROMPT-MAITRE-CORRECT-WORK-v2.4.0` → `v2.6.0`) demeurent au titre de la byte-identité historique assumée (SYNC-CONTEXT, rétro-compatibilité R2) — les étapes 3-5 ne les mobilisent jamais (garde R2).
+
+## §2quater — Génération automatique du PM à toute montée de version (v1.6.0, 2026-10-09)
+
+**Directive KO-L004 v1.1.0 (gen-plan §1.15, matérialisation M4 — session web-b93f42fa)** : chaque fois qu'un skill des 3 familles (gen-plan, correct-work, clone-chat) monte en version, l'écosystème génère MÉCANIQUEMENT — avant toute certification — le prompt maître de la nouvelle version dans `@mon-ecosysteme/` sous le nom `PROMPT-MAITRE-<famille>-v<version>.md` (ex : `PROMPT-MAITRE-GEN-PLAN-v3.21.0.md` pour gen-plan v3.21.0). Aucun PM nouveau n'est rédigé à la main : la génération est l'affaire du script, l'agent ne complète que les deltas sémantiques.
+
+**Mécanique** (`scripts/generer-pm-skill.py`, Python stdlib — `--check` et `--generate <famille|all> [--delta FILE] [--dry-run]`) :
+- source de vérité : frontmatter `version:` de `skills/<famille>/SKILL.md` ; base : PM le plus récent du corpus (dérivation dynamique KO-L003) ;
+- substitutions verrouillées : ABANDON SANS ÉCRITURE si un motif n'apparaît pas exactement n fois (méthode B1) ; garde anti-rétrogradation R2 (jamais de rétrogradation sous la forme installée) ;
+- recalibrage croisé inclus : SHARED §6.1, PM-INSTALL §2ter/§A.3, historiques ; rapport de couverture SKILL.md↔PM (`scripts/generer-pm-report.json`) — le script ne masque jamais un écart (KO-L003) ; idempotent ×2 ;
+- codes retour : 0 ok/no-op · 1 écart détecté (--check) · 2 ABANDON verrouillé · 3 usage invalide.
+
+**Non-régression** : ce §2quater complète §2ter sans le remplacer (l'instantané explicite demeure rafraîchi à chaque révision) ; la dérivation dynamique KO-L003 (§3.2) demeure la mécanique de référence et la garde R2 s'applique ; l'ordre prescrit est : montée de version → génération PM (§2quater) → recalibrage des porteurs (KO-L004) → certification (étape 8 §3).
 
 ## §3 — Détail des points de contrôle critiques
 
@@ -134,6 +178,9 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.6.0 | 2026-10-09 | Directive KO-L004 v1.1.0 (gen-plan §1.15, matérialisation M4 — session web-b93f42fa) : §2quater — génération automatique du PM à toute montée de version des 3 familles (`scripts/generer-pm-skill.py` : substitutions verrouillées méthode B1, garde R2, recalibrage croisé SHARED §6.1 + §2ter/§A.3 inclus, rapport de couverture SKILL.md↔PM, idempotent ×2 ; ex : PROMPT-MAITRE-GEN-PLAN-v3.21.0.md) ; §2ter instantané rafraîchi v1.6.0 ; §2bis référence §1.16 gen-plan v3.19.0 → v3.21.0 (recalibrage KO-L004 — occurrence réelle résorbée) ; recalibrage croisé KO-L004 : SHARED v1.6.7 (§6.1 matérialisation), check-ecosysteme-integrity.py ECO_SKILLS gen-plan 3.19.0 → 3.21.0, KNOWLEDGE.md entrée gen-plan v3.19.0 → v3.21.0, leçon L004 marqueur PATTERN v1.1.0 |
+| v1.5.1 | 2026-10-09 | Règle d'or n°4 gen-plan (directive utilisateur « si tu dois utiliser un élément de mon dépôt alors clone-le à la place de lire son contenu sur mon dépôt », session web-b93f42fa) : §2ter — instantané rafraîchi gen-plan v3.20.0 → v3.21.0 (règle d'or n°4 : récupération du dépôt par clone git local, jamais lecture distante API/raw/web) ; §A.3 instantané courant v1.5.1 ; dérivation dynamique KO-L003 et garde R2 inchangées ; recalibrage croisé KO-L004 : SHARED v1.6.6 (§6.1 : gen-plan v3.21.0, PM-INSTALL v1.5.1) |
+| v1.5.0 | 2026-10-09 | Directive utilisateur « faire appel à la dernière version des prompts maîtres » : §2ter — instantané explicite des PMs sources des étapes 3-5 (GEN-PLAN v3.20.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0) et des fichiers de socle indispensables (SHARED, ULTRA-ORCHESTRATION, SYNC-CONTEXT, README, archive d'intégrité, arbitres, registre KB) ; dérivation dynamique KO-L003 et garde R2 conservées comme mécanique de référence ; instantané rafraîchi à chaque révision ; recalibrage croisé KO-L004 : SHARED v1.6.5 (§6.1 : gen-plan v3.20.0, PM-INSTALL v1.5.0) |
 | v1.4.0 | 2026-10-03 | Directive Task 23 (gain de place disque) : §2bis profil d'installation MINIMALE — fermeture mécanique {gen-plan, correct-work, skills-inventory + liés KB/SHARED §7 + agents ULTRA/SHARED/SYNC-CONTEXT/INSTALL + outillage + KB} dérivée par `scripts/task23-install-minimale.py` (manifest `scripts/install-profile.json` : profil, fermeture, empreintes, gain mesuré) ; COMPLET demeure le défaut ; corpus `@mon-ecosysteme/` et archive d'intégrité intacts (l'élagage ne touche que l'arbre installé) ; recalibrage croisé KO-L004 : gen-plan v3.19.0 (§1.16 routage découverte + É1-INSTALL), ECO_SKILLS (gen-plan 3.19.0, skill-creator 1.1.0, version-management 1.1.0 — francisation Task 23) |
 | v1.3.1 | 2026-10-02 | Résorption du cas d'espèce correct-work du §3.2 (suggestion (b), Task 16 — directive « appliquer (a) puis (b) pour résorber les écarts F1/F2/F4 », session web-8a7e5653) : PMs CORRECT-WORK v2.6.0/v2.7.0 matérialisés au corpus par diffs chirurgicaux depuis v2.5.1 (méthode B1 — script `scripts/materialise-pm-correct-work.py`, provenance de reconstitution tracée dans l'en-tête et le §7 de chaque PM, aucun faux lignage) ; CORPUS_ATTENDU 24 → 26, recalibrage croisé KO-L004 (SHARED v1.6.4 §6.1, SYNC-CONTEXT v1.4.1, orchestrateur ULTRA régénéré, archive rescellée round-trip 26/26) ; la garde R2 du §3.2 demeure pour tout état futur |
 | v1.3.0 | 2026-10-02 | Directive utilisateur (déduplication « même nom, même contexte, idempotent ») : décision d'architecture v2.2 — le canal de fichiers download/ est supprimé, les 14 fichiers corpus répliqués dans download/ sont effacés (le corpus n'est publié que via l'archive d'intégrité, véhicule v2.2) ; étape 7 recalibrée (sync-download.py retiré → certification-complete.py) ; étape 9 recentrée archive + garde anti-doublons `scripts/task14-scan-doublons.py` (0 doublon attendu) ; recalibrage croisé KO-L004 : SHARED v1.6.3 (§6.1 + ligne harness), SYNC-CONTEXT v1.4.0 (une seule voie de diffusion), README v2.1.0, orchestrateur ULTRA régénéré, arbitres recalibrés (check 3 inversé, §7/§11d interactions), résorption des réserves trigger_evals (evals skill-creator + version-management équipés) |
@@ -152,6 +199,8 @@ Note P4 : les SKILL.md + références des 4 skills sont créés en suivant le §
 
 ### §A.3 Registre KB cible (14 entrées)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
+
+Instantané courant (v1.6.0, 2026-10-09) : gen-plan v3.21.0 · correct-work v2.7.0 · clone-chat v2.0.0 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|

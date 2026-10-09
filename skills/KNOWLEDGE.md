@@ -3,7 +3,7 @@
 > Source de vérité des versions et des relations (README §4 / SHARED §2).
 > Format des entrées : template SHARED §2.2. Mise à jour à chaque matérialisation (gen-plan E15).
 
-## gen-plan v3.19.0
+## gen-plan v3.21.0
 
 - **Category** : ecosystem
 - **Description** : Planification structurée des tâches — 4 modes, 15 étapes E1-E15, classification Type 1-4 (E3), règles d'or §1.5 (n°1 adaptation autonome, n°2 régénération post-installation, n°3 mise à jour à chaque nouvelle demande — déclencheur verbatim « intègre dans le plan d'actions » v3.17.2), disciplines d'ingénierie §1.6 (source de vérité : SHARED §7 ; mobilisation E1-E8), méthode de raisonnement adaptative PEK v4.1 (3 modes, blocs A-J, 9 règles, 12 checks), hooks patterns avancés §1.2bis (answer key obligatoire E1, arbitre answer-key-checker E7/E8, Graph Diamond E9-E14, knowledge-observer E15), leçons knowledge-observer §1.14/§1.15 (KO-L001 économie API, KO-L003 arbitres à invariants dynamisés, KO-L004 recalibrage croisé, KO-L005 généralisation règle d'or n°2 — §1.5, KO-L007 matérialisation d'abord sur clone sparse — v3.18.0) ; hook E1-RES §1.2bis (n67-1 reconstitué post-wipe : B-11 + collecte G-RES + fraîcheur du plan)
@@ -262,7 +262,7 @@
 ## skill-finder-cn v1.0.0
 
 - **Category** : Méta (Skills & Plans)
-- **Description** : Chercheur de skills externe (ClawHub) — fallback de découverte du routage §1.16 gen-plan v3.19.0 ; répond à « quel skill peut faire X », « trouve un skill » ; tout élément trouvé passe un contrôle cybersécurité audit-provenance avant adoption (Task 23)
+- **Description** : Chercheur de skills externe (ClawHub) — fallback de découverte du routage §1.16 gen-plan v3.21.0 ; répond à « quel skill peut faire X », « trouve un skill » ; tout élément trouvé passe un contrôle cybersécurité audit-provenance avant adoption (Task 23)
 - **Dépend de** : aucune (fallback externe — contrôle audit-provenance obligatoire)
 - **Utilisé par** : gen-plan (§1.16 — fallback si skills-inventory échoue)
 - **Dernière calibration** : 2026-10-03 (Task 23 — inscription au registre, contenu francisé)

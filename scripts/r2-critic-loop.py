@@ -8,7 +8,7 @@ Usage : r2-critic-loop.py --target <fichier>
 """
 import hashlib, json, os, re, sys, time
 
-JOURNAL = "/home/z/my-project/ecosystem/tmp/r2-critic-journal.jsonl"
+JOURNAL = "/home/z/my-project/work_knowledge/tmp/r2-critic-journal.jsonl"
 
 def critic_checks(txt: str):
     lines = [l.strip() for l in txt.splitlines() if l.strip()]

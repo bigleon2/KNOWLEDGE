@@ -12,9 +12,9 @@ import json, os, re, sys, time, hashlib
 
 PROJECT = "/home/z/my-project"
 WORKLOG = os.path.join(PROJECT, "worklog.md")
-KB = os.path.join(PROJECT, "ecosystem/skills/KNOWLEDGE.md")
-OUT = os.path.join(PROJECT, "ecosystem/tmp/r3-memory-consolidation.json")
-BACKUP = os.path.join(PROJECT, "ecosystem/tmp/worklog-backup-pre-r3-apply.md")
+KB = os.path.join(PROJECT, "work_knowledge/skills/KNOWLEDGE.md")
+OUT = os.path.join(PROJECT, "work_knowledge/tmp/r3-memory-consolidation.json")
+BACKUP = os.path.join(PROJECT, "work_knowledge/tmp/worklog-backup-pre-r3-apply.md")
 
 
 def sha256(path):

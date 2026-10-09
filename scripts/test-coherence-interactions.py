@@ -468,11 +468,11 @@ else:
 pm_name = pm_file.name if pm_file else "(PM absent du corpus)"
 pm_gv = (re.search(r"v([0-9]+(?:\.[0-9]+)*)", pm_name).group(1) if pm_file else gv)
 pm_text = pm_file.read_text(encoding="utf-8") if pm_file else ""
-pm_ok = bool(pm_file) and pm_gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1400
+pm_ok = bool(pm_file) and pm_gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1500  # recalibrage L004 (web-b93f42fa, 2026-10-09) : PM v3.21.0 = 1425 L (bloc KO-L004 v1.1.0, croissance directive)
 carriers = [
     (f"SKILL.md gen-plan : frontmatter {gv}", read_frontmatter_version(gp) == gv),
     ("SKILL.md gen-plan : zéro mention stale 3.10.0", gp_text.count("3.10.0") == 0),
-    (f"PM {pm_name} (corpus) : en-tête version + plage 1200-1400 lignes", pm_ok),
+    (f"PM {pm_name} (corpus) : en-tête version + plage 1200-1500 lignes", pm_ok),
     ("PM : 6e référence PEK (§2.2) + section §9.6",
      "prompt-engineering-kit.md" in pm_text and "9.6" in pm_text),
     ("download/ sans copie du PM courant (décision v2.2 — canal de fichiers supprimé)",

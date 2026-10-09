@@ -7,7 +7,7 @@ Idempotent, sortie JSON.
 """
 import glob, json, os, re, sys, time
 
-OUT = "/home/z/my-project/ecosystem/tmp/r5-token-dashboard.json"
+OUT = "/home/z/my-project/work_knowledge/tmp/r5-token-dashboard.json"
 
 def main():
     plans = {}

@@ -33,7 +33,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.6.4)
+## §0 — Contexte Système (SHARED v1.6.7)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (exception)
@@ -191,7 +191,7 @@ Voir SHARED §1.4 pour le format. Spécifiquement pour correct-work :
 ```markdown
 ---
 Task ID: [task-id]
-Agent: correct-work v2.4.0
+Agent: correct-work v2.7.0
 Task: Vérification [mode] de [cible]
 
 Work Log:
@@ -272,11 +272,12 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 - [ ] La version du prompt maître est identifiée
 - [ ] Les livrables attendus sont listés
 
-### Phase 1 — Plan (via gen-plan ou autonome)
-- [ ] Plan de vérification créé (gen-plan ou autonome)
+### Phase 1 — Plan (via gen-plan — OBLIGATOIRE, §1.5)
+- [ ] Plan de vérification créé via gen-plan (dernière version installée — OBLIGATOIRE, §1.5)
+- [ ] gen-plan indisponible ou corrompu → ARRÊT EXPLICITE (§1.5 — jamais de plan autonome)
 - [ ] Sections à vérifier identifiées
 - [ ] Ordre de vérification défini
-- [ ] Estimation #token faite (si gen-plan disponible)
+- [ ] Estimation #token faite (grille #token gen-plan §4)
 
 ### Phase 2 — Erreurs et omissions
 - [ ] Chaque section du prompt comparée au livrable

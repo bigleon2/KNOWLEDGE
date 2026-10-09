@@ -8,13 +8,13 @@ Usage : r10-commit-review.py [--repo <chemin>]  (défaut : dépôt écosystème)
 import os, py_compile, re, subprocess, sys, tempfile, time, json
 
 SECRET_RE = re.compile(r"(?i)(ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,}|api[_-]?key\s*=\s*['\"][A-Za-z0-9]{16,})")
-OUT = "/home/z/my-project/ecosystem/tmp/r10-commit-review.json"
+OUT = "/home/z/my-project/work_knowledge/tmp/r10-commit-review.json"
 
 def git(repo, *args):
     return subprocess.run(["git", *args], cwd=repo, capture_output=True, text=True).stdout
 
 def main():
-    repo = sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else "/home/z/my-project/ecosystem"
+    repo = sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else "/home/z/my-project/work_knowledge"
     status = git(repo, "status", "--porcelain").splitlines()
     checks, fails = [], []
     tmpd = tempfile.mkdtemp(prefix="r10-")

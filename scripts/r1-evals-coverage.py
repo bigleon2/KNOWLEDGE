@@ -6,7 +6,7 @@ Baselines manquantes armées au QUOTA_OK (KO-L001 — aucune sonde API ici).
 """
 import glob, json, os, sys, time
 
-BASE = "/home/z/my-project/ecosystem"
+BASE = "/home/z/my-project/work_knowledge"
 OUT = f"{BASE}/tmp/r1-evals-coverage.json"
 
 def main():

@@ -1,8 +1,8 @@
-# PROMPT MAÎTRE — Installation du skill gen-plan v3.20.0
+# PROMPT MAÎTRE — Installation du skill gen-plan v3.21.0
 
-> **Version du prompt** : 1.11.0
-> **Skill cible** : gen-plan v3.20.0
-> **Date** : 2026-10-04
+> **Version du prompt** : 1.12.0
+> **Skill cible** : gen-plan v3.21.0
+> **Date** : 2026-10-09
 > **Source** : Écosystème Knowledge — Clone de discussion
 > **Dépend** : `PROMPT-MAITRE-SHARED.md` (lire en premier)
 
@@ -128,6 +128,18 @@ Opérationnalisation dans gen-plan :
 4. **Non-régression** — les étapes déjà terminées et leurs livrables restent intouchés (R2) ; la mise à jour est une extension du plan, jamais une réécriture destructrice.
 5. **Déclencheur verbatim (v3.17.2, directive propriétaire 2026-10-02)** — la formulation « intègre dans le plan d'actions » (et variantes directes : « intègre ça au plan », « ajoute au plan d'actions ») déclenche ce mode E13 sans ambiguïté : la demande est intégrée comme extension du plan courant, avec ré-estimation #token des étapes affectées et journalisation.
 
+**Règle d'or n°4 — Récupération du dépôt par clone** (ajoutée à la demande de l'utilisateur, 2026-10-09) :
+
+> « Si tu dois utiliser un élément de mon dépôt, alors clone-le à la place de lire son contenu sur mon dépôt. »
+
+Opérationnalisation dans gen-plan :
+
+1. **Déclencheur** — toute opération devant lire ou utiliser un élément du dépôt GitHub (bigleon2/KNOWLEDGE : fichier, dossier, corpus, script, historique) passe par un **clone git local**, jamais par une lecture distante du contenu (API contents, raw.githubusercontent.com, rendu web).
+2. **Mécanisme** — `git clone` local (forme recommandée : shallow `--depth 1 --filter=blob:none`, authentification PAT via askpass éphémère ou credential helper ponctuel — jamais de jeton persisté dans `.git/config` ni sur disque) ; le clone sert de source de lecture ET de travail ; les modifications sont faites localement et ne sont publiées que sur validation explicite de l'utilisateur.
+3. **Exceptions** — sondes API ponctuelles (une seule sonde par tour d'utilisateur — KO-L001) ; opérations d'écriture authentifiées (commit/push, ré-installations SANS persistance de jeton — Task 8/14) ; clone matériellement impossible → adaptation journalisée (règle d'or n°1).
+4. **Journalisation** — chaque clonage est tracé au worklog (SHARED §1.4) : source, SHA de référence, destination, forme du clone.
+5. **Continuité** — la règle change le MOYEN d'accès (clone d'abord), jamais l'objectif des tâches ; première application : session web-b93f42fa (rate-limiting API 403 contourné par clone shallow au commit épinglé).
+
 ### §1.9 Disciplines d'ingénierie de prompts
 
 **Méthode prompt-engineering (méthode-mère)** : gen-plan est le détenteur principal de la méthode du **prompt-engineering** — il l'applique à toutes ses étapes (E1-E15) via les 4 disciplines ci-dessous. Depuis la session A11 (2026-09-06), la **source de vérité des 5 disciplines est implantée dans le socle SHARED §7** (informations communes, règle de non-duplication §6.3) ; le présent §1.9 enregistre l'**orchestration gen-plan** des disciplines. Les autres skills de l'écosystème qui en ont besoin la détiennent en tant que **fonction héritée** (registre d'assignation : SHARED §7).
@@ -226,13 +238,22 @@ ligne de commande, état « uniformément v3.11.0 » figé). Toute divergence ar
 corrige en dynamisant l'arbitre, avec re-verdict honnête obligatoire après correction — jamais
 en ajustant la réalité pour coller au verdict.
 
-**KO-L004 — Recalibrage croisé** (leçon L004, appliquée) : toute montée de version d'un skill de
-l'écosystème déclenche le recalibrage mécanique des outils dépendants AVANT la certification :
-arbitres (`verify-cross.py`, `verify-correct-work.py`, `test-coherence-interactions.py`,
-`check-ecosysteme-integrity.py`, `answer-key-checker.py`), pre-checks (`n8-a-precheck-a2.py`),
-`skills-meta.json`, run-order, SYNC_MAP, miroir et archive. Un outil non recalibré valide l'état
-précédent — verdict inopérant. L'application M4 de toute leçon knowledge-observer intègre donc
-d'office la liste des outils à recalibrer (garde post-édition).
+**Règle KO-L004 — Recalibrage croisé ET génération du prompt maître** (leçon L004, appliquée —
+v1.1.0, directive 2026-10-09, matérialisation M4 : `scripts/generer-pm-skill.py`) : toute montée
+de version d'un skill de l'écosystème déclenche, AVANT la certification : (1) le recalibrage
+mécanique des outils dépendants : arbitres (`verify-cross.py`, `verify-correct-work.py`,
+`test-coherence-interactions.py`, `check-ecosysteme-integrity.py`, `answer-key-checker.py`),
+pre-checks (`n8-a-precheck-a2.py`), `skills-meta.json`, run-order, SYNC_MAP, miroir et archive ;
+(2) **la génération mécanique du prompt maître de la nouvelle version** —
+`PROMPT-MAITRE-<skill>-v<version>.md` dans `@mon-ecosysteme/` via
+`scripts/generer-pm-skill.py --generate <skill>` (substitutions verrouillées — ABANDON sans
+écriture si un motif n'apparaît pas exactement n fois ; garde anti-rétrogradation R2 ;
+recalibrage SHARED §6.1 + PM-INSTALL §2ter/§A.3 inclus ; rapport de couverture SKILL.md↔PM —
+le script ne masque jamais un écart, KO-L003). Un PM absent ou antérieur au SKILL.md installé
+laisse l'installation dériver (KO-L003 installe un PM sans correspondance de version ; l'arbitre
+interactions verdict FAIL sur PM postérieur). Un outil non recalibré valide l'état précédent —
+verdict inopérant. L'application M4 de toute leçon knowledge-observer intègre donc d'office la
+liste des outils à recalibrer ET l'étape de génération PM (garde post-édition).
 
 Leçon L002 (snapshot de sécurité avant tout montage) : **proposée**, non appliquée (mode M3 sans
 verdict correct-work) — aucun bloc PATTERN associé ; le pattern reste documenté au journal.
@@ -376,7 +397,7 @@ Relations directes de gen-plan (extrait de SHARED §3.1) :
 ```yaml
 ---
 name: gen-plan
-version: 3.20.0
+version: 3.21.0
 category: ecosystem
 language: fr
 tags:
@@ -570,6 +591,7 @@ Les evals §5.4 sont exécutés dans `{{SKILLS_ROOT}}gen-plan-workspace/iteratio
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v3.21.0 | 2026-10-09 | Règle d'or n°4 — récupération du dépôt par clone (directive utilisateur « si tu dois utiliser un élément de mon dépôt alors clone-le à la place de lire son contenu sur mon dépôt », session web-b93f42fa) : §1.8 — opérationnalisation en 5 points (déclencheur lecture/usage → clone git local shallow `--depth 1 --filter=blob:none`, jamais lecture distante API/raw/web ; mécanisme askpass éphémère, zéro persistance de jeton, publication uniquement sur validation utilisateur ; exceptions KO-L001 + écritures authentifiées + adaptation journalisée ; journalisation worklog ; continuité d'objectif) ; description frontmatter inchangée (non-régression triggers 9/9) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5) ; recalibrage croisé KO-L004 : SHARED v1.6.6 (§6.1 gen-plan v3.21.0), PM-INSTALL v1.5.1 (§2ter + §A.3) |
 | v3.20.0 | 2026-10-04 | Task 29 — intégration de la garde É1-INSTALL au skill (D001 : script maître `skills/gen-plan/scripts/ensure-installed.py`, le fichier racine `scripts/ensure-installed.py` devient un shim délégant) ; mode `--preempt` (D002 : INSTALLE→PRIORITE-NONE rc 0, ROOT absent→réinstallation IMMÉDIATE PRIORITE-REINSTALL-OK, dérivé→PRIORITE-REINSTALL-REQUISE rc 2 non destructif — doctrine Task 23 conservée) ; PRÉEMPTION prescrite au §1.16 comme comportement AGENT (D003 : suspendre toute tâche, réinstaller, puis mettre à jour le plan) ; après réinstallation réussie, génération automatique d'une directive de mise à jour du plan en cours `download/plan-post-reinstall-<ts>.json` (D004 : étapes interrompues → INTERRUPT-REINSTALL, étapes idempotentes KO-L001 reprennent en l'état, re-validation arbitres E7/E8 avant reprise) ; bump 3.19.0→3.20.0 (D005, description inchangée) ; réinstallation exécutée via la garde = no-op idempotent honnête (D007-D008 : 0 modification, audit stable 74 CONFORME / 20 PARTIEL) |
 | v3.19.0 | 2026-10-03 | Task 23 — routage de découverte des skills (D004) : skills-inventory PRIORITAIRE à E5/§3 (comparaison des éléments trouvés vs natifs MÉMORISÉE au registre KB), fallback skill-finder-cn avec contrôle cybersécurité audit-provenance AVANT adoption, bascule unidirectionnelle ; garde É1-INSTALL (D006) : `scripts/ensure-installed.py --check` à l'ouverture de session, préemption (suspension de toute tâche en cours) puis `--reinstall` via pipeline PM-INSTALL §2/§2bis sans persistance de jeton (anti-persistance Task 8/14) ; §3 relations (skills-inventory >=1.1.0, ajout skill-finder-cn) ; francisation D007 (skill-creator 1.1.0, version-management 1.1.0) ; recalibrage KO-L004 |
 | v3.18.0 | 2026-10-02 | Application M4 leçon L007 (pièges sparse-checkout — verdict correct-work étape F PASS, cycle fusion installateurs) : §1.12bis bloc PATTERN:PM-GEN-PLAN-KO-L007-v1.0.0 ; SKILL.md §1.15 bloc PATTERN:KO-L007-v1.0.0 + note de provenance étendue ; §4 exemplaire YAML synchronisé sur le frontmatter installé (version 3.18.0, description complète, 5 dépendances) ; recalibrage KO-L004 (CORPUS_ATTENDU 24, SYNC_MAP 14, ECO_SKILLS 3.18.0) ; journal L007 statut proposé → appliqué |
