@@ -172,7 +172,7 @@ Voir SHARED §1.4 pour le format. Spécifiquement pour correct-work :
 ```markdown
 ---
 Task ID: [task-id]
-Agent: correct-work v2.4.0
+Agent: correct-work v2.7.0
 Task: Vérification [mode] de [cible]
 
 Work Log:
@@ -492,6 +492,7 @@ L'instance de vérification aveugle reformule ses critères AVANT de lire le liv
 Révision documentaire 2026-09-06 (session A11, sans changement de version ni de contrat) : §B — pointeur de définition des disciplines actualisé (source de vérité : SHARED §7, réimplantation des disciplines) ; la mention historique PM v3.7.0 §1.9 reste valable comme lignage méthode-mère.
 Révision documentaire 2026-10-02 (Task 16, session web-8a7e5653) : le présent PM v2.6.0 est une RECONSTITUTION par diffs chirurgicaux depuis v2.5.1 (méthode B1 — script `scripts/materialise-pm-correct-work.py`). Le PM v2.6.0 d'origine est perdu au wipe inter-sessions ; les changements documentés ci-dessus sont tracés par le SKILL.md v2.7.0 installé (marqueurs « v2.6.0, phase N20 »), la décision KB N20 et `references/verification-protocol.md` (lui-même reconstitué B13-r5, trace `1a0dfca3a0ffe13d`). Détails de forme non traçables, assumés : estimations de taille §2.3/§5.2 (~320 lignes) et plage du check 2 §6 (200-450 lignes) recalées sur la lignée v2.5.1 → v2.7.0 ; §5.4 conserve les 8 cas trigger_evals de v2.5.1 (aucune trace d'un changement à v2.6.0). Aucun faux lignage.
 Révision documentaire 2026-10-02 (Task 16, session web-8a7e5653) : le présent PM v2.7.0 est une RECONSTITUTION par diffs chirurgicaux depuis v2.5.1 via v2.6.0 (méthode B1 — script `scripts/materialise-pm-correct-work.py`). Le PM v2.7.0 d'origine est perdu au wipe inter-sessions ; les changements documentés ci-dessus sont tracés par le SKILL.md v2.7.0 installé certifié (dépôt 42c2a41, §1.5/§2.2/§A) et l'entrée KB correct-work (« Dernière calibration » 2026-10-02). Détails de forme non traçables, assumés : estimations de taille §2.3/§5.2 (~330 lignes) et plage du check 2 §6 (200-450 lignes) recalées sur la forme installée (430 lignes réelles) ; §9.5 réécrit pour le couplage obligatoire (la justification du découplage v2.4.0-v2.6.0 reste documentée au §7). Aucun faux lignage.
+Révision documentaire 2026-10-10 (Task 14, session web-b93f42fa — directive KO-L004) : §2.6 (Agent), §9.2 (progression) et §10.1 (Phase 1) alignés sur la forme installée certifiée du SKILL.md v2.7.0 (S2-β, Task 12) ; corruption « ode] » du template §2.6 réparée (byte-proof md5 3789699e). Calibration de forme — aucun changement de contrat, version maintenue v2.7.0.
 
 ---
 
@@ -537,7 +538,7 @@ Les 4 modes couvrent 4 niveaux de vérification : PROJET (lourd mais exhaustif, 
 
 ### §9.2 Pourquoi 5 étapes ?
 
-Progression logique du plus évident au plus subtil : plan (via gen-plan ou autonome) → contenu factuel → structure formelle → interactions entre composants → cohérence globale des raisonnements. Cette séquence garantit que les erreurs grossières (S1) sont détectées avant les problèmes subtils (S3-S4).
+Progression logique du plus évident au plus subtil : plan (via gen-plan — OBLIGATOIRE, §1.5) → contenu factuel → structure formelle → interactions entre composants → cohérence globale des raisonnements. Cette séquence garantit que les erreurs grossières (S1) sont détectées avant les problèmes subtils (S3-S4).
 
 ### §9.3 Pourquoi l'intégration KB ?
 
@@ -569,11 +570,12 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 - [ ] La version du prompt maître est identifiée
 - [ ] Les livrables attendus sont listés
 
-### Phase 1 — Plan (via gen-plan ou autonome)
-- [ ] Plan de vérification créé (gen-plan ou autonome)
+### Phase 1 — Plan (via gen-plan — OBLIGATOIRE, §1.5)
+- [ ] Plan de vérification créé via gen-plan (dernière version installée — OBLIGATOIRE, §1.5)
+- [ ] gen-plan indisponible ou corrompu → ARRÊT EXPLICITE (§1.5 — jamais de plan autonome)
 - [ ] Sections à vérifier identifiées
 - [ ] Ordre de vérification défini
-- [ ] Estimation #token faite (si gen-plan disponible)
+- [ ] Estimation #token faite (grille #token gen-plan §4)
 
 ### Phase 2 — Erreurs et omissions
 - [ ] Chaque section du prompt comparée au livrable

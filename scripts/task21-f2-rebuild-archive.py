@@ -7,7 +7,7 @@ import shutil
 import zipfile
 from pathlib import Path
 
-BASE = Path("/home/z/my-project/ecosystem")
+BASE = Path("/home/z/my-project/work_knowledge")
 CORPUS = BASE / "skills" / "@mon-ecosysteme"
 ARCHIVE = BASE / "download" / "mon-ecosysteme_archive.zip"
 BAK = ARCHIVE.with_suffix(".zip.bak")

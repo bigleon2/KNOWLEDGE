@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-03",
+  "date": "2026-10-09",
   "task": "Task 21 — campagne P0-P6, arbitre V6 (recommandation R1 Task 19)",
   "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
   "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
-  "n_skills": 26,
-  "skills_ok": 18,
-  "skills_derive": 8,
+  "n_skills": 29,
+  "skills_ok": 20,
+  "skills_derive": 9,
   "verdict": "FAIL",
   "derives": [
     "agent-creator",
@@ -16,7 +16,8 @@
     "script-mon-ecosysteme-infrastructure",
     "script-reviewer",
     "skills-inventory",
-    "version-management"
+    "version-management",
+    "vue-upload"
   ],
   "skills": {
     "agent-creator": {
@@ -926,7 +927,7 @@
       ]
     },
     "gen-plan": {
-      "version": "3.19.0",
+      "version": "3.21.0",
       "n_cases": 8,
       "n_keywords": 50,
       "score_officiel": "8/8",
@@ -1739,6 +1740,107 @@
         }
       ]
     },
+    "resume-youtube": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 66,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "résume cette vidéo youtube",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.75,
+          "hits": [
+            "resum",
+            "video",
+            "youtub"
+          ],
+          "ok": true
+        },
+        {
+          "query": "fais-moi un résumé de cette playlist youtube",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "playlist",
+            "resum",
+            "youtub"
+          ],
+          "ok": true
+        },
+        {
+          "query": "résume la vidéo https://www.youtube.com/watch?v=abc123",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "resum",
+            "video",
+            "watch",
+            "youtub"
+          ],
+          "ok": true
+        },
+        {
+          "query": "extrais les sous-titres de cette vidéo youtube",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "sous",
+            "titr",
+            "video",
+            "youtub"
+          ],
+          "ok": true
+        },
+        {
+          "query": "analyse cette playlist youtube et liste les sujets traités",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.75,
+          "hits": [
+            "analys",
+            "list",
+            "playlist",
+            "sujet",
+            "trait",
+            "youtub"
+          ],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "script-creator": {
       "version": "1.1.0",
       "n_cases": 7,
@@ -2099,6 +2201,93 @@
         }
       ]
     },
+    "skill-finder-cn": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 20,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill skill-finder-cn pour cette tâche : la tâche « skill »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "finder",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « skill »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « skill » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « skill » avec skill-finder-cn",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aide",
+            "finder",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « skill » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "skills-inventory": {
       "version": "1.1.0",
       "n_cases": 7,
@@ -2356,6 +2545,170 @@
           "ok": true
         }
       ]
+    },
+    "vue-upload": {
+      "version": "1.2.0",
+      "n_cases": 8,
+      "n_keywords": 106,
+      "score_officiel": "6/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Utilise vue-upload pour me donner accès au dossier des livrables.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.556,
+          "hits": [
+            "acce",
+            "dossier",
+            "livr",
+            "upload",
+            "vue"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Je ne peux pas télécharger le document DOCX que tu as généré, ouvre-moi un accès.",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.1,
+          "hits": [
+            "acce"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Démarre le portail de fichiers pour que je puisse téléverser mes documents.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.222,
+          "hits": [
+            "fichier",
+            "portail"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Crée une page web qui liste download/ et me laisse télécharger les fichiers.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.273,
+          "hits": [
+            "download",
+            "fichier",
+            "list"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Comment je t'envoie mes fichiers ? Un portail d'upload serait pratique.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "fichier",
+            "portail",
+            "upload"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Planifie le prochain sprint de développement de mon écosystème de skills.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Vérifie le travail réalisé sur le rapport Task 26 avant livraison.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.25,
+          "hits": [
+            "task",
+            "verifi"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Réinstalle la dernière version du skill gen-plan.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "vers"
+          ],
+          "ok": true
+        }
+      ]
     }
-  }
+  },
+  "ignores_schema_non_canonique": [
+    "ASR",
+    "LLM",
+    "TTS",
+    "VLM",
+    "agent-browser",
+    "ai-news-collectors",
+    "aminer-daily-paper",
+    "aminer-deep-search",
+    "anti-pua",
+    "auto-target-tracker",
+    "blog-writer",
+    "charts",
+    "cheat-sheet",
+    "coding-agent",
+    "content-strategy",
+    "contentanalysis",
+    "design",
+    "docx",
+    "dream-interpreter",
+    "experiment-suite",
+    "finance",
+    "fullstack-dev",
+    "gaokao-collect-student-info",
+    "gaokao-fetch-volunteers",
+    "gaokao-generate-report",
+    "gaokao-recommend-majors",
+    "gaokao-recommend-schools",
+    "get-fortune-analysis",
+    "gift-evaluator",
+    "image-edit",
+    "image-generation",
+    "image-search",
+    "image-understand",
+    "interview-designer",
+    "interview-prep",
+    "jd-resume-tailor",
+    "job-intent-tracker",
+    "literature-survey",
+    "market-research-reports",
+    "marketing-mode",
+    "mindfulness-meditation",
+    "multi-search-engine",
+    "pdf",
+    "podcast-generate",
+    "pptx",
+    "qingyan-research",
+    "quiz-html",
+    "quiz-mastery",
+    "research-explorer",
+    "resume-builder",
+    "seo-content-writer",
+    "stock-analysis-skill",
+    "storyboard-manager",
+    "study-buddy",
+    "task-review",
+    "ui-ux-pro-max",
+    "video-generation",
+    "video-understand",
+    "visual-design-foundations",
+    "web-reader",
+    "web-search",
+    "web-shader-extractor",
+    "writing-plans",
+    "xlsx"
+  ]
 }

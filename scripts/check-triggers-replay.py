@@ -111,8 +111,14 @@ def main():
             equipped.append(sdir)
 
     registry = {}
+    ignores = []
     for sdir in equipped:
         sk = load_skill(sdir)
+        if not (isinstance(sk["cases"], list)
+                and all(isinstance(c, dict) and "query" in c and "should_trigger" in c
+                        for c in sk["cases"])):
+            ignores.append(sdir.name)
+            continue
         kws = keywords_for(sk["name"], sk["desc"], sk["tags"])
         strong = {stem(p) for p in sk["name"].split("-")}
         rows = []
@@ -154,7 +160,7 @@ def main():
     # sinon le rapport change entre deux re-exécutions le lendemain (f(f(x)) != f(x)).
     try:
         import subprocess as _sp
-        _git_date = (_sp.run(["git", "-C", "/home/z/my-project/ecosystem", "log", "-1",
+        _git_date = (_sp.run(["git", "-C", "/home/z/my-project/work_knowledge", "log", "-1",
                               "--format=%cd", "--date=short"],
                              capture_output=True, text=True, timeout=10).stdout.strip()
                      or "2026-10-03")
@@ -172,6 +178,7 @@ def main():
         "verdict": "PASS" if not derives else "FAIL",
         "derives": derives,
         "skills": registry,
+        "ignores_schema_non_canonique": ignores,
     }
     if comparison:
         report["comparaison_run_precedent"] = comparison
@@ -189,6 +196,8 @@ def main():
                   f"régressions={comparison['regressions'] or '0'} · "
                   f"améliorations={comparison['ameliorations'] or '0'} · "
                   f"nouveaux={comparison['nouveaux'] or '0'} · retirés={comparison['retires'] or '0'}")
+        if ignores:
+            print(f"IGNORÉS (schéma non canonique, hors périmètre voie M) : {len(ignores)}")
         print(f"\nBILAN : {n_ok_skills}/{len(registry)} skills au score maximal — "
               f"dérives : {derives or 'aucune'}")
         print(f"VERDICT : {report['verdict']} — JSON : {OUT_JSON}")
