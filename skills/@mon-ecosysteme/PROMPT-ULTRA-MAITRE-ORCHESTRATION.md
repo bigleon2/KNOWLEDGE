@@ -30,21 +30,21 @@
 
 ## §2 — Registre dynamique des prompts maîtres (dérivé du corpus réel)
 
-État réel de `skills/@mon-ecosysteme/` : **25 fichiers canoniques + cet orchestrateur** (invariant `CORPUS_ATTENDU` du checker).
+État réel de `skills/@mon-ecosysteme/` : **7 fichiers canoniques + cet orchestrateur** (invariant `CORPUS_ATTENDU` du checker).
 
 | Famille | PM le plus récent (source d'assemblage) | Versions historiques figées (R2) |
 |---------|------------------------------------------|----------------------------------|
-| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.18.0.md (la plus récente) | 3.6.1, 3.7.0, 3.8.0, 3.8.1, 3.9.0, 3.10.0, 3.11.0, 3.12.0, 3.13.0, 3.16.0, 3.17.0, 3.17.1, 3.17.2 |
-| CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md (la plus récente) | 2.4.0, 2.5.0, 2.5.1, 2.6.0 |
+| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.21.0.md (la plus récente) | — |
+| CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md (la plus récente) | — |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.6.4 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.4.0 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.6.7 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.6.0 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
 | Skill | Version |
 |-------|---------|
-| `gen-plan` | 3.19.0 |
+| `gen-plan` | 3.21.0 |
 | `correct-work` | 2.7.0 |
 | `clone-chat` | 2.0.0 |
 | `skills-inventory` | 1.1.0 |
@@ -66,12 +66,12 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.6.4 (lire en premier). Installateur : `PROM
 | `resource-monitor` | 1.0.0 |
 | `version-management` | 1.2.0 |
 
-Registre KB : 27 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.7.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
+Registre KB : 28 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.7.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 
 ## §4 — Points d'entrée et ordre de lecture
 
-1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.6.4) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.4.0) — périmètre §A + pipeline 10 étapes + critères §3.
+1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.6.7) — toujours en premier.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.6.0) — périmètre §A + pipeline 10 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
 5. **Publication** : archive `download/mon-ecosysteme_archive.zip` (round-trip v2.2) — unique voie de diffusion du corpus (décision v2.2 : canal de fichiers download/ supprimé, garde `scripts/task14-scan-doublons.py`).

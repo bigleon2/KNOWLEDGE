@@ -24,13 +24,17 @@ ECOSYSTEM_DIR = REPO_DIR / "skills" / "@mon-ecosysteme"
 SHARED_PATH = ECOSYSTEM_DIR / "PROMPT-MAITRE-SHARED.md"
 
 PROMPT_FILES = [
-    "PROMPT-MAITRE-GEN-PLAN-v3.11.0.md",
-    "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md",
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
 ]
 # Recalibrage fusion v1.1.0 (2026-10-02) : INSTALL-ECOSYSTEME.md supprimé —
 # source d'installation unique PROMPT-MAITRE-INSTALL-ECOSYSTEME.md (R4).
+# Recalibrage Task 16 (2026-10-11) : PMs GEN-PLAN v3.11.0 et CORRECT-WORK v2.5.1
+# déplacés vers skills/@historique/prompts-maitres/ (byte-identité scellée) —
+# non-cibles de resynchronisation (R2, byte-identité historique assumée).
+# Cibles vivantes restantes : CLONE-CHAT v2.0.0 + INSTALL-ECOSYSTEME.
+# PM CORRECT-WORK v2.7.0 : porteur du bloc FIGÉ hérité de v2.5.1 (reconstitution
+# méthode B1) — non-cible (SYNC-CONTEXT v1.4.1, bloc gelé R2).
 
 class SyncContextBlock:
     def __init__(self):

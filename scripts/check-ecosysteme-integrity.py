@@ -119,7 +119,13 @@ METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au r
 # propriétaire d72226a (clone-discussion-2026-09-27-…-b13-r7-f.md, UI web) —
 # corpus réel certifié 27 fichiers, re-scellement archive aligné (F2 retrait
 # sanctionné D002, plan-task15-decisions-restantes.md).
-CORPUS_ATTENDU = 27
+# Recalibrage Task 16 (session web-b93f42fa, 2026-10-11) : 27 → 8 — déduplication
+# des PMs (directive propriétaire « ne garder que la dernière version ») : 19 PMs
+# historiques déplacés git mv vers skills/@historique/prompts-maitres/ (byte-identité
+# SHA-256 scellée contre blobs b36f177, dossier @historique/) — corpus = 3 PMs
+# sources (GEN-PLAN v3.21.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0) + socle
+# (SHARED, INSTALL, ULTRA, README, SYNC-CONTEXT), re-scellement archive aligné (F2).
+CORPUS_ATTENDU = 8
 
 results = []
 
@@ -143,7 +149,7 @@ def main():
 
     print("=== 1. Corpus canonique @mon-ecosysteme (SHA-256) ===")
     corpus_files = sorted(os.listdir(CORPUS)) if os.path.isdir(CORPUS) else []
-    check(f"{CORPUS_ATTENDU} fichiers présents (Architecture v2.0 — N27, recalibré Task 15 d72226a)", len(corpus_files) == CORPUS_ATTENDU,
+    check(f"{CORPUS_ATTENDU} fichiers présents (Architecture v2.0 — N27, recalibré Task 16 b36f177: dédup PMs → @historique)", len(corpus_files) == CORPUS_ATTENDU,
           f"{len(corpus_files)} fichiers")
     for fname in corpus_files:
         digest = sha256(os.path.join(CORPUS, fname))

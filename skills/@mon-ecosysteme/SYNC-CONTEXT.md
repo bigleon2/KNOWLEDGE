@@ -1,8 +1,9 @@
 # Procédure de Synchronisation du Contexte Système
 
-> **Version** : 1.4.1
+> **Version** : 1.4.2
 > **Date** : 2026-10-02
 > **Objet** : Maintenir la cohérence entre `PROMPT-MAITRE-SHARED.md` (source de vérité) et les blocs `## ⚙️ CONTEXTE SYSTÈME` embarqués dans les prompts maîtres.
+> **Révision v1.4.2 (2026-10-11, Task 16)** : déduplication des PMs (directive propriétaire « ne garder que la dernière version ») — les PMs GEN-PLAN v3.11.0 et CORRECT-WORK v2.5.1 sont déplacés vers `skills/@historique/prompts-maitres/` (byte-identité scellée) et restent non-cibles de resynchronisation (R2) ; les cibles vivantes du sync sont réduites à 2 (CLONE-CHAT v2.0.0 + INSTALL-ECOSYSTEME) ; état du corpus porté à **8 fichiers** (3 PMs sources + socle) ; le dossier `@historique/` est l'archive documentaire des versions (distillation + fichiers sources).
 > **Révision v1.4.1 (2026-10-02, Task 16)** : suggestions (a)/(b) — résorption F1/F2/F4 : état du corpus porté à **26 fichiers** (PMs CORRECT-WORK v2.6.0/v2.7.0 matérialisés par diffs chirurgicaux méthode B1, provenance de reconstitution tracée) ; les PMs reconstitués v2.6.0/v2.7.0 portent le bloc CONTEXTE SYSTÈME figé hérité de v2.5.1 et ne sont PAS des cibles de resynchronisation (même statut que les versions historiques — bloc gelé R2).
 > **Révision v1.4.0 (2026-10-02, Task 14)** : décision d'architecture v2.2 — le canal de fichiers `download/` est supprimé (déduplication : les fichiers corpus répliqués dans `download/` étaient des doublons byte-identiques de `skills/`). L'archive d'intégrité devient l'UNIQUE voie de diffusion du corpus ; `scripts/sync-download.py` est retiré (périmètre disparu) et remplacé par la garde `scripts/task14-scan-doublons.py` (0 doublon attendu).
 
@@ -12,9 +13,9 @@ Le bloc `## ⚙️ CONTEXTE SYSTÈME` présent dans chaque prompt maître actif 
 
 Si le SHARED évolue (nouvelles conventions, nouvelles variables, correction de règles), les blocs embarqués doivent être resynchronisés.
 
-### État du corpus (mis à jour 2026-10-02 — v1.4.1 : PMs CORRECT-WORK v2.6.0/v2.7.0, Task 16)
+### État du corpus (mis à jour 2026-10-11 — v1.4.2 : dédup PMs vers @historique/, Task 16)
 
-- **Corpus canonique `skills/@mon-ecosysteme/`** : l'invariant `CORPUS_ATTENDU` de `scripts/check-ecosysteme-integrity.py` fait foi (dérivation dynamique — KO-L003) ; dernier recalibrage : **26 fichiers** (PMs CORRECT-WORK v2.6.0/v2.7.0 matérialisés — historique : 21 @6ea0e0c, 22 @v3.17.1, 21 après fusion, 22 avec PM v3.17.2, 23 avec ultra-PM, 24 avec le clone -f, 26 avec la lignée CORRECT-WORK complétée).
+- **Corpus canonique `skills/@mon-ecosysteme/`** : l'invariant `CORPUS_ATTENDU` de `scripts/check-ecosysteme-integrity.py` fait foi (dérivation dynamique — KO-L003) ; dernier recalibrage : **8 fichiers** (3 PMs sources — GEN-PLAN v3.21.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0 — + socle SHARED/INSTALL/ULTRA/README/SYNC-CONTEXT ; les 19 PMs historiques sont archivés en `skills/@historique/prompts-maitres/` — historique : 21 @6ea0e0c, 22 @v3.17.1, 21 après fusion, 22 avec PM v3.17.2, 23 avec ultra-PM, 24 avec le clone -f, 26 avec la lignée CORRECT-WORK complétée, 27 après suppression d72226a, 8 après dédup Task 16).
 - Dernier changement : directive « appliquer (a) puis (b) pour résorber les écarts F1/F2/F4 » (Task 16, session web-8a7e5653) — suggestion (b) : PMs CORRECT-WORK v2.6.0/v2.7.0 reconstitués par diffs chirurgicaux depuis v2.5.1 (méthode B1 — `scripts/materialise-pm-correct-work.py`, gardes d'unicité 24+22 motifs, provenance tracée en-tête + §7 de chaque PM) ; le corpus porte désormais la forme certifiée v2.7.0 (garde R2 du PM-INSTALL v1.3.1 §3.2).
 - **Une voie de diffusion byte-identique** (le corpus fait foi, sens de réplication corpus → archive) :
   1. **Archive** `download/mon-ecosysteme_archive.zip` — véhicule d'intégrité v2.2 (corpus byte-identique + extras sous `homologues/` uniquement).
@@ -24,16 +25,14 @@ Si le SHARED évolue (nouvelles conventions, nouvelles variables, correction de 
 
 | # | Fichier | Niveau | Emplacement du bloc |
 | :--- | :--- | :---: | :--- |
-| 1 | `PROMPT-MAITRE-GEN-PLAN-v3.11.0.md` | N1 | Après le frontmatter |
-| 2 | `PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md` | N1 | Après le frontmatter |
-| 3 | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | N1 | Après le frontmatter |
-| 4 | `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` | N1 | Après le frontmatter |
-| 5 | Tous les `SKILL.md` (94 fichiers au 1er niveau de `skills/`) | N2 | §0 — Contexte Système |
-| 6 | Tous les fichiers `.agent` (2 fichiers) | N2 | Après le titre |
-| 7 | Scripts `.py` porteurs du bloc en docstring (78 fichiers sur 106 dans `scripts/`) | N3 | Docstring en en-tête |
+| 1 | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | N1 | Après le frontmatter |
+| 2 | `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` | N1 | Après le frontmatter |
+| 3 | Tous les `SKILL.md` (94 fichiers au 1er niveau de `skills/`) | N2 | §0 — Contexte Système |
+| 4 | Tous les fichiers `.agent` (2 fichiers) | N2 | Après le titre |
+| 5 | Scripts `.py` porteurs du bloc en docstring (78 fichiers sur 106 dans `scripts/`) | N3 | Docstring en en-tête |
 
-> **Note N1** : les prompts maîtres GEN-PLAN postérieurs à la v3.11.0 (v3.12.0 → v3.17.x) ne portent plus le bloc figé — ils s'appuient sur la dépendance externe au registre KB (`skills/KNOWLEDGE.md`, Règle Zéro : KB source de vérité). Le dernier porteur N1 est donc la v3.11.0 ; `scripts/sync-context-block.py` cible exactement les 4 fichiers du tableau (INSTALL-ECOSYSTEME.md retiré — fusion installateurs v1.1.0, R4).
-> **Rétro-compatibilité R2** : les versions antérieures (PM GEN-PLAN v3.6.1 → v3.10.0, PM CORRECT-WORK v2.4.0/v2.5.0) sont conservées byte-identité historique assumée (§11b) — elles ne sont PAS des cibles de resynchronisation. Les PMs CORRECT-WORK v2.6.0/v2.7.0 (reconstitués Task 16, méthode B1) portent le bloc figé hérité byte-identique de v2.5.1 — mêmes statut et traitement (non-cibles, bloc gelé R2, divergence documentée au §7 de chaque PM).
+> **Note N1 (v1.4.2, Task 16)** : les PMs GEN-PLAN v3.11.0 et CORRECT-WORK v2.5.1 (porteurs N1 d'époque) sont archivés en `skills/@historique/prompts-maitres/` — byte-identité historique assumée (R2), non-cibles de resynchronisation. `scripts/sync-context-block.py` cible exactement les 2 fichiers du tableau (recalibré Task 16). Le PM CORRECT-WORK v2.7.0 porte le bloc figé hérité de v2.5.1 (reconstitution méthode B1) — non-cible (bloc gelé R2).
+> **Rétro-compatibilité R2** : les versions antérieures (PM GEN-PLAN v3.6.1 → v3.19.0, PM CORRECT-WORK v2.4.0 → v2.6.0) sont archivées en `skills/@historique/prompts-maitres/` — byte-identité historique assumée (§11b) — elles ne sont PAS des cibles de resynchronisation. Les PMs CORRECT-WORK v2.6.0/v2.7.0 (reconstitués Task 16, méthode B1) portent le bloc figé hérité byte-identique de v2.5.1 — mêmes statut et traitement (non-cibles, bloc gelé R2, divergence documentée au §7 de chaque PM).
 
 ## Procédure étape par étape
 
@@ -46,7 +45,7 @@ Exemple : `v1.5.2` → `v1.6.0` (si nouvelle convention), `v1.5.3` (si correctio
 
 ### Étape 3 : Exécuter les scripts de synchronisation
 ```bash
-python scripts/sync-context-block.py --level all   # bloc figé N1 (4 porteurs)
+python scripts/sync-context-block.py --level all   # bloc figé N1 (2 porteurs vivants)
 python scripts/propagate-context.py                # N2 skills + N3 scripts
 ```
 
@@ -80,7 +79,7 @@ git push origin main
 
 ```bash
 # Synchroniser uniquement les prompts maîtres (Niveau 1)
-python scripts/sync-context-block.py --level all
+python scripts/sync-context-block.py --level all   # 2 porteurs vivants (Task 16)
 
 # Synchroniser uniquement les skills (Niveau 2)
 python scripts/propagate-context.py
