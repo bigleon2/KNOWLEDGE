@@ -955,3 +955,17 @@ Work Log:
 Stage Summary:
 - Task 17 re-exécutée en couches protégées (origin/main seule zone survivante à l'écraseur local) — garanties mécaniques équivalentes à l'originale, réserves documentées (re-mesure non reproductible, 1 QUOTA, réécritures non byte-identiques assumées).
 - Restant propriétaire : révocation PAT (consignée) ; re-mesure du cas QUOTA agent-creator à la prochaine campagne.
+
+---
+Task ID: 17-final
+Agent: Main [Super Z — gen-plan v3.21.0, session web-b93f42fa]
+Task: Clôture de la Task 17 re-exécutée — hashes des couches publiées et état final.
+
+Work Log:
+- Couches publiées sur origin/main : R1 2df7429 (codification v1.6.8 + cascade 145 porteurs) → R2 ff8c061 (voie L 31/31 + replay) → R3 6af3e0a + correctif R3-b 930a1b7 (harnais 16/16 ; fragment long de token auto-persisté par le check C15 détecté par l'audit, éradiqué par fragments courts concaténés — le fragment 18c demeure dans l'historique de 6af3e0a, non exploitable seul, PAT à révoquer) → R4 53cb12f (Task 17-B : historique par skill + autres éléments, distillation retirée, 3 harnais verts 22/22 · 16/16 · 16/16).
+- État final : voie L 31/31 (21 CONFIRME + 7 REFUTE révisés templates + 2 AMBIGU + 1 QUOTA re-mesurable) ; replay 79/93 x14 dérivants CONFIRME ; arbitres verts (integrity 60/60, coherence 48/3/0, verify-cross 100 %, vcw ALL PASS, generer-pm 3/3, doublons 0) ; @historique/ = README v1.1.0 + historiques-par-skill ×3 + historique-autres-elements.md + prompts-maitres ×19.
+
+Stage Summary:
+- Task 17 + 17-B complètes et publiées en 6 commits/6 pushes (R1→R5 + correctif) — pattern B5 étendu, audits anti-persistance par push (dernier : 0/0/0).
+- Leçons consignées : (1) l'écraseur local frappe sans trace — commit/push immédiat par couche ; (2) tout script de mutation doit échouer si 0 match (garde anti-faux-succès) ; (3) un check anti-persistance ne doit jamais porter le fragment qu'il cherche (fragments courts concaténés) ; (4) les cas négatifs officiels = décisions de conception, non révisables par vote LLM.
+- Restant propriétaire : révocation PAT (consignée) ; re-mesure du cas QUOTA agent-creator à la prochaine campagne.
