@@ -499,3 +499,20 @@ Work Log:
 Stage Summary:
 - origin/main synchronisé sur la couche Task 24 (7459d00) puis le présent journal.
 - PAT exposé au canal de discussion : révocation/régénération recommandée (consigné Tasks 18/22/24).
+
+---
+Task ID: 14-push (journal B5 — post-push Task 14)
+Agent: Main [Super Z — session web-b93f42fa]
+Task: Journalisation post-push (pattern B5) — publication de la couche Task 14 (KO-L004 + C006 + correct-work PROJET PASS AVEC RÉSERVES) après GO propriétaire (PAT ré-fourni non révoqué, 2026-10-10).
+
+Work Log:
+- Push #1 rejeté (fetch first) : le remote portait d72226a (suppression UI web de l'archive clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-f.md) absent du local — divergence 1 commit / 1 commit sur base commune 2992bae.
+- Rebase sans conflit (0 chevauchement de fichiers entre d72226a et la couche Task 14) : 1065aa0 → 98dffed, historique linéaire « commits empilés » préservé, la suppression distante est conservée.
+- Push #1 réussi : d72226a..98dffed main -> main (couche Task 14 : 10 fichiers, 651 insertions — 4 livrables download/, 3 scripts + integrity + replay-report, PM correct-work v2.7.0, trigger_evals skill-finder-cn) — jeton x-access-token en URL d'invocation uniquement, jamais écrit dans un fichier.
+- Audit anti-persistance post-push : VALEUR de jeton = 0 occurrence dans l'arbre de travail (grep récursif) comme dans l'arbre suivi ; mentions « github_pat_ » = prose d'audit + regex SECRET_RE de r10-commit-review.py (correcteur anti-secret, mécanisme sanctionné) ; remote -v sans jeton ; git config locale sans secret (grep credential/token/password = 0 ligne).
+- refs/remotes/origin/main resynchronisé à 98dffed (push par URL explicite : le tracking ref n'est pas mis à jour hors remote nommé).
+- Commit journal + push #2 (2 commits / 2 pushes — pattern B5 complet).
+
+Stage Summary:
+- origin/main synchronisé sur la couche Task 14 (98dffed) puis le présent journal : KO-L004 résorbée (PM correct-work v2.7.0, 726 L, md5 e64e85ce), C006 close (verify-cross 84/84), correct-work PROJET PASS AVEC RÉSERVES (40 checks, rapport commité).
+- Restant propriétaire (reporté) : directive remédiation 11 harnais dormants (finding S3 14-CW) ; décision 64 enveloppes ; re-mesure voie L ×9 (QUOTA_OK) ; disposition tmp/ ; sync worklog repo (flux rouvert par le présent journal — les entrées de la campagne courante 11→14 ne sont pas rétro-syncées, gap consigné à 14-CW) ; révocation PAT (consigné Tasks 18/22/24/13-push/14-push).
