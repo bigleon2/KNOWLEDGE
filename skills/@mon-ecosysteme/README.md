@@ -37,7 +37,8 @@ KNOWLEDGE/
 │
 ├── @historique/                         ← Archive des versions historiques des PMs et skills (Task 16)
 │   ├── README.md                        ← Objet, règles de conservation (byte-identité R2, unicité R4)
-│   ├── historique-versions-prompts-maitres.md ← Distillation : particularités, améliorations, avantages par version
+│   ├── historiques-par-skill/{gen-plan,correct-work,clone-chat}.md ← Historique par skill (Task 17-B)
+│   ├── historique-autres-elements.md ← Historique du socle non-PM (Task 17-B)
 │   └── prompts-maitres/{gen-plan×15, correct-work×4} ← PMs historiques déplacés (byte-identité scellée)
 │
 ├── skills/                              ← Skills métier (Niveau 2)
