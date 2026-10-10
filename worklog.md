@@ -938,3 +938,20 @@ Work Log:
 Stage Summary:
 - Directive Task 16 EXÉCUTÉE : corpus dédupliqué (dernières versions seules — GEN-PLAN v3.21.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0), historique des versions préservé sans grossissement (corpus −81,7 %, archive des 19 PMs byte-identique + distillation), écosystème réinstallé au profil local, origin/main = 295e649.
 - Restant propriétaire : re-mesure voie L ×15 dérives replay (QUOTA_OK — héritées Task 15) ; révocation PAT (consignée Tasks 18/22/24/13-push/14-push/15/16) ; éventuelle codification SHARED §1.2 d'@historique/ (non faite — principe du préfixe @ déjà documenté, cascade resync N1 évitée R-F1).
+
+---
+Task ID: 17
+Agent: Main [Super Z — gen-plan v3.21.0, session web-b93f42fa]
+Task: Re-exécution complète post-incident S3 étendu — codification SHARED §1.2 @historique/ (v1.6.8 + cascade), re-mesure voie L des dérives replay, correct-work PROJET, historique par skill (Task 17-B), en couches R1-R5 commitées/poussées (GO propriétaire avec PAT).
+
+Work Log:
+- INCIDENT (documenté commit 2df7429) : restauration directory-wide depuis snapshot 2026-10-10 20:48 (working tree + .git ; reflog/mtimes alignés) — couche Task 17 originelle + plan 17-B perdus (0 blob en ODB, miroir profil stalé) ; riposte = re-exécution en couches, origin/main = seule zone survivante.
+- R1 (2df7429) : SHARED v1.6.8 (§1.2 codifie @historique/ — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003, KO-L004 re-scellement, résorption _archive stale) ; cascade 145 porteurs (2 N1 + 93 skills + 49 scripts + 2 .agent) ; propagate-context.py idempotence v2 (remplacement de bloc, was skip pur v1.5.2) + blocs L2/L3 v1.6.8 avec mention @historique ; install-ecosystem.py extrait v1.6.8 ; 4 blocs §0 divergents corrigés ; SYNC-CONTEXT v1.4.3 ; arbitres : integrity 60/60, coherence 48/3/0, verify-cross 100 %, archive re-scéllée.
+- R2 (ff8c061) : voie L 31/31 (runner réécrit crash-safe/idempotent/prompt calibré contrat SHARED §7 v2) — 21 CONFIRME + 7 REFUTE_UNANIME (révisions templates uniquement : ai-news ×2, jd ×2, ui-ux ×3 → False) + 2 AMBIGU (sans révision) + 1 QUOTA (agent-creator, 429 durable, QUOTA_OK) ; reversion script-mon tracée (négatif officiel = décision de conception, faux succès du 1er script corrigé par garde 1/1) ; re-replay 79/93, 14 dérivants CONFIRME (0 fix instrument) ; evals révisés : ai-news/jd/ui-ux.
+- R3 : harnais task17-answer-key-check.py réécrit 16/16 rc0 (2 passes de calibration : C03 auto-détection, C06/C08 comptages réels, C12 SHA vives, C05 post-annulation) ; sweep 9 arbitres (vcw ALL PASS, generer-pm 3/3, doublons 0, registry-sync ECARTS conception 0 ghost) ; plans download/plan-task17-reexecution-optimisee.md (mise à jour demandée par le propriétaire : incident + O1-O5 optimisations) + rapports task17 + correct-work PROJET PASS AVEC RÉSERVES ; R4 disque : historiques-par-skill ×3 (migration verbatim 22/10/4), historique-autres-elements.md, README @historique v1.1.0.
+- R4 (à pousser) : D003 git rm distillation globale après migration prouvée + maj références croisées (PM-INSTALL ×2, README éco, harnais task16) ; D005 SYNC-CONTEXT ligne descriptive ; D006 harnais task17-b 16 checks + sweep.
+- R5 (à pousser) : journal + audits anti-persistance canoniques.
+
+Stage Summary:
+- Task 17 re-exécutée en couches protégées (origin/main seule zone survivante à l'écraseur local) — garanties mécaniques équivalentes à l'originale, réserves documentées (re-mesure non reproductible, 1 QUOTA, réécritures non byte-identiques assumées).
+- Restant propriétaire : révocation PAT (consignée) ; re-mesure du cas QUOTA agent-creator à la prochaine campagne.

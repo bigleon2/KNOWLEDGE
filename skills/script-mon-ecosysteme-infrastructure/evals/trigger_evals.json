@@ -25,6 +25,6 @@
   },
   {
     "query": "Lance l'installation complète de l'écosystème sur ce profil.",
-    "should_trigger": true
+    "should_trigger": false
   }
 ]

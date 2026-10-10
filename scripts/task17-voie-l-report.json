@@ -272,8 +272,9 @@
             true
           ],
           "ratio": 1.0,
-          "decision": "REFUTE_UNANIME",
-          "revision_appliquee": true
+          "decision": "CONFIRME",
+          "revision_appliquee": false,
+          "note": "révision annulée manuellement — cas négatif officiel = décision de conception (présomption de justesse ; l'installation complète relève d'install-ecosystem, pas de script-mon-infrastructure) ; politique : seuls les cas templates auto-générés « la tâche « x » » sont révisables par la voie L"
         }
       ]
     },

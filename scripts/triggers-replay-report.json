@@ -5,8 +5,8 @@
   "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
   "n_skills": 93,
-  "skills_ok": 80,
-  "skills_derive": 13,
+  "skills_ok": 79,
+  "skills_derive": 14,
   "verdict": "FAIL",
   "derives": [
     "agent-browser",
@@ -18,6 +18,7 @@
     "pdf-llm",
     "prompt-engineering",
     "qingyan-research",
+    "script-mon-ecosysteme-infrastructure",
     "script-reviewer",
     "skills-inventory",
     "version-management",
@@ -6308,9 +6309,9 @@
       "version": "1.1.0",
       "n_cases": 7,
       "n_keywords": 21,
-      "score_officiel": "7/7",
-      "ok": true,
-      "derive_m": false,
+      "score_officiel": "6/7",
+      "ok": false,
+      "derive_m": true,
       "cases": [
         {
           "query": "Utilise le skill script-mon-ecosysteme-infrastructure pour générer les fichiers d'infrastructure de l'écosystème (3 niveaux de contexte).",
@@ -6392,13 +6393,13 @@
         },
         {
           "query": "Lance l'installation complète de l'écosystème sur ce profil.",
-          "expected": true,
+          "expected": false,
           "trigger_m": true,
           "score": 0.167,
           "hits": [
             "ecosystem"
           ],
-          "ok": true
+          "ok": false
         }
       ]
     },
