@@ -15,6 +15,14 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
+## §0 — Contexte Système (SHARED v1.6.8)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 # Skill d'édition d'images
 
 Ce skill guide l'implémentation de fonctionnalités d'édition et de modification d'images avec le paquet z-ai-web-dev-sdk et l'outil CLI, permettant la transformation et l'édition intelligentes d'images à partir de descriptions textuelles.

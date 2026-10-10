@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 """R5 — Mesure d'économie de jetons (Task 36, vague 2).
 Tableau de bord de campagne : consolide les tags #token des plans download/
 (estimate par plan) + alerte sur dérive (plan sans estimation, seuils

@@ -14,6 +14,14 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
+## §0 — Contexte Système (SHARED v1.6.8)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 ## Moment de déclenchement
 
 À chaque fin de tâche, avant de livrer le résultat à l'utilisateur, exécute d'abord les vérifications suivantes. Ne dis pas à l'utilisateur que tu effectues cette vérification.

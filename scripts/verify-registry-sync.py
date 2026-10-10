@@ -3,9 +3,9 @@
 # registre KNOWLEDGE.md <-> repertoires skills/ jusqu'ici dependant de la discipline E15.
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.0)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
-Conventions : kebab-case | semver | {{VARIABLE}} | worklog SHARED §1.4
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
 verify-registry-sync.py — Arbitre de synchronisation registre ↔ répertoires (C3).

@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 """R2 — Boucle CRITIC institutionnalisée (Task 36, vague 1).
 Critique séparée de la génération sur les livrables sensibles.
 Mode mécanique zéro-API (toujours disponible, KO-L001) : checklist contradictoire.

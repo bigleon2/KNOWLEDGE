@@ -15,6 +15,14 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
+## §0 — Contexte Système (SHARED v1.6.8)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 # Skill Web Reader
 
 Ce skill guide l'implémentation de la lecture de pages web et de l'extraction de contenu à l'aide du package z-ai-web-dev-sdk, permettant aux applications de récupérer et de traiter du contenu web par programmation.

@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 """R8 — Boucles d'exécution vérifiée par défaut dans les plans d'actions (Task 36, vague 1).
 Garde mécanique : un plan CONFORME contient, par phase d'exécution, la boucle
 vérifier → corriger → re-vérifier (max 3 itérations, escalade règle d'or n°1)

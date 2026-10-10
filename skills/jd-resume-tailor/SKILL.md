@@ -15,6 +15,14 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
+## §0 — Contexte Système (SHARED v1.6.8)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 # JD ⇄ Resume Tailor (décryptage du JD + réécriture ciblée du CV)
 
 Le périmètre de ce skill est étroit : **il ne résout que « on a déjà un JD + un CV, il faut produire la version au taux de réussite le plus élevé »**.

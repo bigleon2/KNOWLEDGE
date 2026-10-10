@@ -14,6 +14,14 @@ read_when:
   - Déclencher si la demande mentionne : génère, rapport, fortune
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
+
+## §0 — Contexte Système (SHARED v1.6.8)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
 # Nom du skill : get-fortune-analysis
 # Version : 4.1.0
 # Description : Génère un rapport de fortune annuel visuellement somptueux, riche en contenu et empreint de ritualité (style constellations dorées).

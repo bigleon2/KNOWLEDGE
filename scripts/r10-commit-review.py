@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 """R10 — Revue de commit par agent de code avant publication locale (Task 36, vague 2).
 Couche D007 du protocole de commit : revue mécanique AVANT tout commit local
 du dépôt écosystème. Checks : py_compile des .py modifiés, secrets, SKILL.md

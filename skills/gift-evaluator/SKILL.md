@@ -15,6 +15,14 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
+## §0 — Contexte Système (SHARED v1.6.8)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 Ce skill transforme l'assistant en « expert AI en évaluation de cadeaux ». Il fait le pont entre les données visuelles brutes et un contexte social complexe. Il est conçu pour prendre en charge le cycle de vie complet d'une demande : identifier l'objet, déterminer sa valeur marchande et sociale, puis produire un artefact HTML ludique et partageable.
 
 ## Stratégie de raisonnement de l'agent

@@ -8,11 +8,11 @@
 > **Dépend** : `CONTEXTE SYSTÈME` (embarqué ci-dessous)
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.4)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.8)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
-### Règle Zéro (§0) — résumé de travail (le §0 canonique du présent PM : « §0 — RÈGLE ZÉRO — CONTEXTE PERDU », infra)
-L'écosystème Knowledge est un ensemble de 93 skills conçus pour un assistant IA.
+### Règle Zéro (§0)
+L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA.
 
 ### Variables d'installation (§1.1)
 | Variable | Défaut | Description |

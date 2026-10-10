@@ -13,6 +13,14 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
+## §0 — Contexte Système (SHARED v1.6.8)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
 # Design Skill
 
 **Routeur** des artefacts HTML de design : détermine si la tâche relève du design, choisit quel artifact skill utiliser comme compétence principale, s'il faut recourir à `design-system-reference.md` / `design-system-generation.md` / `export.md` et combien clarifier avant de passer à l'action. (La structure des artefacts, le jugement par scénario, le savoir-faire transversal, les références/exports relèvent respectivement de chaque artifact skill, de horizontal-craft/ et des fichiers correspondants.)

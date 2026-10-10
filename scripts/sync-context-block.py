@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.1)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
-Conventions : kebab-case | semver | #token | {{VARIABLE}}
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
 Script de synchronisation du Contexte Système après évolution du SHARED

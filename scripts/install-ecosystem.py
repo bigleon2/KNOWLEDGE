@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.5.2)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
-Conventions : kebab-case | semver | #token | {{VARIABLE}}
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
 Script d'installation complète de l'écosystème Knowledge
@@ -57,7 +57,7 @@ def phase_p3_inject_context():
     print("\n💉 P3 — Injection du Contexte Système (Niveau 1)")
     
     CONTEXT_BLOCK = """---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.5.2)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.6.8)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
 ### Règle Zéro (§0)
@@ -72,7 +72,7 @@ L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant 
 | `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
 
 ### Conventions de nommage (§1.2)
-- **Répertoires** : kebab-case
+- **Répertoires** : kebab-case — `@mon-ecosysteme/` (PMs) et `@historique/` (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation) = dossiers non-skills
 - **Fichiers** : kebab-case avec extension
 - **Versions** : format semver
 - **Tags** : préfixe `#`
