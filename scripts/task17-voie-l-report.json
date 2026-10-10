@@ -1,0 +1,476 @@
+{
+  "date": "2026-10-10 21:15",
+  "methode": "voie L — 3 votes z-ai CLI par cas dérivant (rewrite post-incident S3 étendu)",
+  "source": "scripts/triggers-replay-report.json (15 dérives voie M)",
+  "skills": {
+    "agent-browser": {
+      "cases": [
+        {
+          "query": "Automatiser des interactions web",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "j'ai besoin de Automatiser des interactions web — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "peux-tu Automatiser des interactions web ?",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "agent-creator": {
+      "cases": [
+        {
+          "query": "Automatise ce workflow avec Zapier plutôt qu'avec un agent.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            null,
+            null,
+            false
+          ],
+          "ratio": null,
+          "decision": "QUOTA",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "ai-news-collectors": {
+      "cases": [
+        {
+          "query": "la tâche « ai »",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "j'ai besoin de la tâche « ai » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "REFUTE_UNANIME",
+          "revision_appliquee": true
+        },
+        {
+          "query": "peux-tu la tâche « ai » ?",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "REFUTE_UNANIME",
+          "revision_appliquee": true
+        }
+      ]
+    },
+    "audio-metadata": {
+      "cases": [
+        {
+          "query": "Transcris le contenu parlé de ce fichier audio.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "gaokao-recommend-schools": {
+      "cases": [
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "jd-resume-tailor": {
+      "cases": [
+        {
+          "query": "la tâche « jd »",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "REFUTE_UNANIME",
+          "revision_appliquee": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « jd » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "peux-tu la tâche « jd » ?",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "REFUTE_UNANIME",
+          "revision_appliquee": true
+        }
+      ]
+    },
+    "pdf-llm": {
+      "cases": [
+        {
+          "query": "Produis un rapport PDF paginé avec couverture, sommaire, tableaux et graphiques à partir de ces données.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            true,
+            false,
+            false
+          ],
+          "ratio": 0.3333333333333333,
+          "decision": "AMBIGU",
+          "revision_appliquee": false
+        },
+        {
+          "query": "Génère un nouveau PDF à partir de mes données de vente.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "Fusionne ces 5 PDF en un seul fichier ordonné.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            true,
+            true,
+            false
+          ],
+          "ratio": 0.6666666666666666,
+          "decision": "AMBIGU",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "prompt-engineering": {
+      "cases": [
+        {
+          "query": "Crée carrément un nouveau skill à partir de ce prompt.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "qingyan-research": {
+      "cases": [
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "script-mon-ecosysteme-infrastructure": {
+      "cases": [
+        {
+          "query": "Lance l'installation complète de l'écosystème sur ce profil.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "REFUTE_UNANIME",
+          "revision_appliquee": true
+        }
+      ]
+    },
+    "script-reviewer": {
+      "cases": [
+        {
+          "query": "Crée un nouveau script qui compte les entrées de la KB.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "skills-inventory": {
+      "cases": [
+        {
+          "query": "Cherche dans le hub ClawHub les skills correspondant à mon besoin et installe-les.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "Cherche et installe de nouveaux skills depuis le hub.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "ui-ux-pro-max": {
+      "cases": [
+        {
+          "query": "la tâche « ui »",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "REFUTE_UNANIME",
+          "revision_appliquee": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « ui » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "REFUTE_UNANIME",
+          "revision_appliquee": true
+        },
+        {
+          "query": "peux-tu la tâche « ui » ?",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "REFUTE_UNANIME",
+          "revision_appliquee": true
+        }
+      ]
+    },
+    "version-management": {
+      "cases": [
+        {
+          "query": "帮我写一个个人主页 index.html",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "看看这个项目都有哪些历史版本",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "恢复到 V2，刚才那版改坏了",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "切回我上次的那个项目",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "给我做一个数据可视化仪表盘页面",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "vue-upload": {
+      "cases": [
+        {
+          "query": "Je ne peux pas télécharger le document DOCX que tu as généré, ouvre-moi un accès.",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "Vérifie le travail réalisé sur le rapport Task 26 avant livraison.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    }
+  },
+  "bilan": {
+    "CONFIRME": 20,
+    "QUOTA": 1,
+    "REFUTE_UNANIME": 8,
+    "AMBIGU": 2
+  }
+}

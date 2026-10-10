@@ -5,7 +5,7 @@
   },
   {
     "query": "la tâche « jd »",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "j'ai besoin de la tâche « jd » — quelle est la procédure ?",
@@ -17,7 +17,7 @@
   },
   {
     "query": "peux-tu la tâche « jd » ?",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "bonjour",

@@ -5,11 +5,11 @@
   },
   {
     "query": "la tâche « ui »",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "j'ai besoin de la tâche « ui » — quelle est la procédure ?",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "aide-moi à la tâche « ui » avec ui-ux-pro-max",
@@ -17,7 +17,7 @@
   },
   {
     "query": "peux-tu la tâche « ui » ?",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "bonjour",

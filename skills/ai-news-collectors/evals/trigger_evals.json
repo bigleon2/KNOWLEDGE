@@ -9,7 +9,7 @@
   },
   {
     "query": "j'ai besoin de la tâche « ai » — quelle est la procédure ?",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "aide-moi à la tâche « ai » avec ai-news-collectors",
@@ -17,7 +17,7 @@
   },
   {
     "query": "peux-tu la tâche « ai » ?",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "bonjour",

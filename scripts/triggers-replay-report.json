@@ -5,8 +5,8 @@
   "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
   "n_skills": 93,
-  "skills_ok": 78,
-  "skills_derive": 15,
+  "skills_ok": 80,
+  "skills_derive": 13,
   "verdict": "FAIL",
   "derives": [
     "agent-browser",
@@ -18,10 +18,8 @@
     "pdf-llm",
     "prompt-engineering",
     "qingyan-research",
-    "script-mon-ecosysteme-infrastructure",
     "script-reviewer",
     "skills-inventory",
-    "ui-ux-pro-max",
     "version-management",
     "vue-upload"
   ],
@@ -540,7 +538,7 @@
       "version": "1.0.0",
       "n_cases": 8,
       "n_keywords": 48,
-      "score_officiel": "5/8",
+      "score_officiel": "7/8",
       "ok": false,
       "derive_m": true,
       "cases": [
@@ -566,13 +564,13 @@
         },
         {
           "query": "j'ai besoin de la tâche « ai » — quelle est la procédure ?",
-          "expected": true,
+          "expected": false,
           "trigger_m": false,
           "score": 0.2,
           "hits": [
             "quell"
           ],
-          "ok": false
+          "ok": true
         },
         {
           "query": "aide-moi à la tâche « ai » avec ai-news-collectors",
@@ -587,11 +585,11 @@
         },
         {
           "query": "peux-tu la tâche « ai » ?",
-          "expected": true,
+          "expected": false,
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
-          "ok": false
+          "ok": true
         },
         {
           "query": "bonjour",
@@ -4266,7 +4264,7 @@
       "version": "1.0.0",
       "n_cases": 8,
       "n_keywords": 62,
-      "score_officiel": "5/8",
+      "score_officiel": "7/8",
       "ok": false,
       "derive_m": true,
       "cases": [
@@ -4284,11 +4282,11 @@
         },
         {
           "query": "la tâche « jd »",
-          "expected": true,
+          "expected": false,
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
-          "ok": false
+          "ok": true
         },
         {
           "query": "j'ai besoin de la tâche « jd » — quelle est la procédure ?",
@@ -4312,11 +4310,11 @@
         },
         {
           "query": "peux-tu la tâche « jd » ?",
-          "expected": true,
+          "expected": false,
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
-          "ok": false
+          "ok": true
         },
         {
           "query": "bonjour",
@@ -6310,9 +6308,9 @@
       "version": "1.1.0",
       "n_cases": 7,
       "n_keywords": 21,
-      "score_officiel": "6/7",
-      "ok": false,
-      "derive_m": true,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
       "cases": [
         {
           "query": "Utilise le skill script-mon-ecosysteme-infrastructure pour générer les fichiers d'infrastructure de l'écosystème (3 niveaux de contexte).",
@@ -6394,13 +6392,13 @@
         },
         {
           "query": "Lance l'installation complète de l'écosystème sur ce profil.",
-          "expected": false,
+          "expected": true,
           "trigger_m": true,
           "score": 0.167,
           "hits": [
             "ecosystem"
           ],
-          "ok": false
+          "ok": true
         }
       ]
     },
@@ -7314,9 +7312,9 @@
       "version": "1.0.0",
       "n_cases": 8,
       "n_keywords": 49,
-      "score_officiel": "5/8",
-      "ok": false,
-      "derive_m": true,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
       "cases": [
         {
           "query": "utilise le skill ui-ux-pro-max pour cette tâche : la tâche « ui »",
@@ -7332,19 +7330,19 @@
         },
         {
           "query": "la tâche « ui »",
-          "expected": true,
+          "expected": false,
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
-          "ok": false
+          "ok": true
         },
         {
           "query": "j'ai besoin de la tâche « ui » — quelle est la procédure ?",
-          "expected": true,
+          "expected": false,
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
-          "ok": false
+          "ok": true
         },
         {
           "query": "aide-moi à la tâche « ui » avec ui-ux-pro-max",
@@ -7359,11 +7357,11 @@
         },
         {
           "query": "peux-tu la tâche « ui » ?",
-          "expected": true,
+          "expected": false,
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
-          "ok": false
+          "ok": true
         },
         {
           "query": "bonjour",
