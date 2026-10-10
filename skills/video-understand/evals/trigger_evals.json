@@ -1,39 +1,34 @@
-{
-  "_provenance": "auto-v1-t27",
-  "_calibration": "requise avant mesure voie L (prompts dérivés mécaniquement du frontmatter — pas de baseline R3)",
-  "skill_name": "video-understand",
-  "evals": [
-    {
-      "query": "utilise le skill video-understand pour cette tâche : la tâche « video »",
-      "should_trigger": true
-    },
-    {
-      "query": "la tâche « video »",
-      "should_trigger": true
-    },
-    {
-      "query": "j'ai besoin de la tâche « video » — quelle est la procédure ?",
-      "should_trigger": true
-    },
-    {
-      "query": "aide-moi à la tâche « video » avec video-understand",
-      "should_trigger": true
-    },
-    {
-      "query": "peux-tu la tâche « video » ?",
-      "should_trigger": true
-    },
-    {
-      "query": "bonjour",
-      "should_trigger": false
-    },
-    {
-      "query": "clone cette discussion",
-      "should_trigger": false
-    },
-    {
-      "query": "analyse ce CSV et donne-moi des statistiques",
-      "should_trigger": false
-    }
-  ]
-}
+[
+  {
+    "query": "utilise le skill video-understand pour cette tâche : la tâche « video »",
+    "should_trigger": true
+  },
+  {
+    "query": "la tâche « video »",
+    "should_trigger": true
+  },
+  {
+    "query": "j'ai besoin de la tâche « video » — quelle est la procédure ?",
+    "should_trigger": true
+  },
+  {
+    "query": "aide-moi à la tâche « video » avec video-understand",
+    "should_trigger": true
+  },
+  {
+    "query": "peux-tu la tâche « video » ?",
+    "should_trigger": true
+  },
+  {
+    "query": "bonjour",
+    "should_trigger": false
+  },
+  {
+    "query": "clone cette discussion",
+    "should_trigger": false
+  },
+  {
+    "query": "analyse ce CSV et donne-moi des statistiques",
+    "should_trigger": false
+  }
+]

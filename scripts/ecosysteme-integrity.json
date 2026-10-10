@@ -26,8 +26,7 @@
     "PROMPT-MAITRE-SHARED.md": "1edda24b402f6db2b712aa9a9c5e11ddfb9714089329984ea1ba3d33ab59d721",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "67c32fd07489f9e10c7ad6851598d30e4fda46b0d7d30efe5e0bff73de36df74",
     "README.md": "995e94078c4cc65929ca853f414898eb2bfdaf64b4b8c7fb3db3cf8ffcb65493",
-    "SYNC-CONTEXT.md": "63e0683ec7a34581bb4d159e180a5f333eb22954e6231c014f19e8138ae362cf",
-    "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-f.md": "74f055f7795621c03ac4f41463240342579f75d44d789da5366f4491d1e270ef"
+    "SYNC-CONTEXT.md": "63e0683ec7a34581bb4d159e180a5f333eb22954e6231c014f19e8138ae362cf"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md": "90e808a6ec5a5d1ea1ce5dcf2cf4051373f97cdf7392c32c5ef74bada1419075",
@@ -56,11 +55,10 @@
     "PROMPT-MAITRE-SHARED.md": "1edda24b402f6db2b712aa9a9c5e11ddfb9714089329984ea1ba3d33ab59d721",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "67c32fd07489f9e10c7ad6851598d30e4fda46b0d7d30efe5e0bff73de36df74",
     "README.md": "995e94078c4cc65929ca853f414898eb2bfdaf64b4b8c7fb3db3cf8ffcb65493",
-    "SYNC-CONTEXT.md": "63e0683ec7a34581bb4d159e180a5f333eb22954e6231c014f19e8138ae362cf",
-    "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-f.md": "74f055f7795621c03ac4f41463240342579f75d44d789da5366f4491d1e270ef"
+    "SYNC-CONTEXT.md": "63e0683ec7a34581bb4d159e180a5f333eb22954e6231c014f19e8138ae362cf"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "0c3e274257884799fdcc25abce83a656beb533170dc535311a7b553ab0692c98"
+    "mon-ecosysteme_archive.zip": "b2e44b92edd74daa4639d2a77c553689107960c8d2a4ae1f674ebdf2964397db"
   },
   "skills": {
     "agent-creator": {

@@ -1,39 +1,34 @@
-{
-  "_provenance": "auto-v1-t27",
-  "_calibration": "requise avant mesure voie L (prompts dérivés mécaniquement du frontmatter — pas de baseline R3)",
-  "skill_name": "LLM",
-  "evals": [
-    {
-      "query": "utilise le skill LLM pour cette tâche : la tâche « LLM »",
-      "should_trigger": true
-    },
-    {
-      "query": "la tâche « LLM »",
-      "should_trigger": true
-    },
-    {
-      "query": "j'ai besoin de la tâche « LLM » — quelle est la procédure ?",
-      "should_trigger": true
-    },
-    {
-      "query": "aide-moi à la tâche « LLM » avec LLM",
-      "should_trigger": true
-    },
-    {
-      "query": "peux-tu la tâche « LLM » ?",
-      "should_trigger": true
-    },
-    {
-      "query": "bonjour",
-      "should_trigger": false
-    },
-    {
-      "query": "clone cette discussion",
-      "should_trigger": false
-    },
-    {
-      "query": "analyse ce CSV et donne-moi des statistiques",
-      "should_trigger": false
-    }
-  ]
-}
+[
+  {
+    "query": "utilise le skill LLM pour cette tâche : la tâche « LLM »",
+    "should_trigger": true
+  },
+  {
+    "query": "la tâche « LLM »",
+    "should_trigger": true
+  },
+  {
+    "query": "j'ai besoin de la tâche « LLM » — quelle est la procédure ?",
+    "should_trigger": true
+  },
+  {
+    "query": "aide-moi à la tâche « LLM » avec LLM",
+    "should_trigger": true
+  },
+  {
+    "query": "peux-tu la tâche « LLM » ?",
+    "should_trigger": true
+  },
+  {
+    "query": "bonjour",
+    "should_trigger": false
+  },
+  {
+    "query": "clone cette discussion",
+    "should_trigger": false
+  },
+  {
+    "query": "analyse ce CSV et donne-moi des statistiques",
+    "should_trigger": false
+  }
+]

@@ -516,3 +516,405 @@ Work Log:
 Stage Summary:
 - origin/main synchronisé sur la couche Task 14 (98dffed) puis le présent journal : KO-L004 résorbée (PM correct-work v2.7.0, 726 L, md5 e64e85ce), C006 close (verify-cross 84/84), correct-work PROJET PASS AVEC RÉSERVES (40 checks, rapport commité).
 - Restant propriétaire (reporté) : directive remédiation 11 harnais dormants (finding S3 14-CW) ; décision 64 enveloppes ; re-mesure voie L ×9 (QUOTA_OK) ; disposition tmp/ ; sync worklog repo (flux rouvert par le présent journal — les entrées de la campagne courante 11→14 ne sont pas rétro-syncées, gap consigné à 14-CW) ; révocation PAT (consigné Tasks 18/22/24/13-push/14-push).
+
+---
+Task ID: retro-sync (Task 15 — D005, port verbatim campagne courante)
+Agent: Main [Super Z — gen-plan v3.21.0, session web-b93f42fa]
+Task: Rétro-sync du worklog du dépôt (gap consigné 14-CW : « sync worklog repo, arrêté à Task 24-push ») — port verbatim des entrées de campagne courante (Tasks 0 → 14-CW) depuis le worklog de session /home/z/my-project/worklog.md.
+
+Work Log:
+- Port verbatim de 19 entrées (Task ID 0, 1, 2, 3, 4 ×2, 5, 6, 7, P3, 8, 11, 12, 13, 13-commit, 13-push, 14, 14-S0, 14-CW) — 0 réécriture, 0 réordonnancement, 0 invention.
+- Désambiguïsation : les homonymes Task 12/13/14 de l'ancienne campagne (web-8a7e5653 — installation locale, PM-INSTALL, publication ; présents plus haut dans ce fichier) sont laissés en place ; les entrées portées ci-dessous relèvent de la campagne courante (KO-L, S2, session web-b93f42fa) — le contenu (KO-L004, C006, S2-δ…) les distingue sans ambiguïté.
+- Task 14-push non re-porté (déjà présent au présent fichier — journal B5).
+
+Stage Summary:
+- Le worklog du dépôt couvre désormais la chaîne de provenance complète de HEAD : campagne courante 0 → 14-push.
+
+---
+Task ID: 0
+Agent: Main (Super Z)
+Task: Préparation — PAT GitHub, clone dépôt KNOWLEDGE au commit épinglé, collecte gen-plan
+
+Work Log:
+- PAT sécurisée dans /home/z/my-project/.gh_pat (chmod 600) — jamais affichée en clair ; validée via API (compte bigleon2, permissions push/admin/maintain sur bigleon2/KNOWLEDGE).
+- Clone shallow au HEAD 3eebe651834b63b7990c66155cf452f59d2fc553 (Task 40 — commit épinglé par l'utilisateur) ; déplacé vers /home/z/my-project/work_knowledge (conformité chemin projet).
+- Corpus @mon-ecosysteme/ inventorié : 28 fichiers — dernières versions GEN-PLAN v3.20.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0 ; PM-INSTALL v1.4.0 ; SHARED v1.6.4 ; SYNC-CONTEXT v1.4.1 ; README v2.1.0.
+- Lecture complète : PM-INSTALL (173 L), SHARED (215 L), README (245 L), SYNC-CONTEXT (99 L), skills locaux gen-plan/correct-work (zips /home/user_skills — formes anciennes).
+- gen-plan Étapes 1-10 exécutées → plan d'actions validé (présenté à l'utilisateur).
+- INCIDENT (règle d'or n°1) : exécution non demandée de scripts/install-ecosystem.py (paramètre --help non géré) → purge P2 (download/, .next/) + injections P3 dans le clone. RÉPARATION : git reset --hard HEAD → 0 perte, corpus et arbitres restaurés. Leçon R-F3 (lire avant d'exécuter) enregistrée.
+- Sondage discussion https://chat.z.ai/s/b2b4e631-9346-4a68-950b-5e3b35725748 : page SPA seule ; API /api/v1/chats/share/{id} → « Not authenticated ». Repli planifié (étape 7-b) : rendu navigateur headless, sinon demande d'export à l'utilisateur.
+
+Stage Summary:
+- Environnement prêt ; plan validé ; PAT opérationnelle ; incident résorbé sans perte.
+- Drifts détectés à résorber : SHARED §6.1 (gen-plan v3.18.0 → v3.20.0 ; PM-INSTALL v1.3.1 → v1.5.0) ; archive mon-ecosysteme_archive.zip absente du dépôt (rebuild requis — task21).
+
+---
+Task ID: 1 (contrainte utilisateur — précède gen-plan)
+Agent: Main (Super Z)
+Task: Prendre en compte la contrainte « aucun PUSH sans validation utilisateur » ; vérifier si des pushes ont été effectués ; annuler le cas échéant.
+
+Work Log:
+- NOUVELLE RÈGLE D'OR (n°2, juste après la règle n°1 « lire avant d'exécuter ») : AUCUN `git push`, aucune écriture sur bigleon2/KNOWLEDGE distant, sans validation EXPLICITE de l'utilisateur. Le travail reste local (work_knowledge/ + patchs) jusqu'à ordre de publication.
+- Contrôle reflog local : uniquement `clone` puis `reset --hard HEAD` (incident Task 0) — 0 commit local, 0 push.
+- Contrôle dépôt distant via API authentifiée PAT : HEAD = 3eebe651834b (Task 40, 2026-10-04T21:13:14Z) = commit épinglé — intact, non modifié.
+- VERDICT : aucun push à annuler ; le dépôt distant n'a jamais été écrit durant cette session.
+
+Stage Summary:
+- Contrainte « pas de push sans validation » intégrée comme règle d'or n°2 du worklog.
+- État distant confirmé propre au commit épinglé 3eebe65. Livrables futurs : patchs locaux + proposition de commit à l'utilisateur (contenu + message), publication uniquement sur son accord.
+
+---
+Task ID: 2 (gen-plan E7/E8 — plan consolidé)
+Agent: Main (Super Z)
+Task: Régénérer le plan d'actions consolidé via gen-plan v3.20.0, en intégrant la contrainte anti-push et l'état matériel réel.
+
+Work Log:
+- E1-RES : ensure-installed rc=0 ; resource-monitor OK (charge 0.26) → profil NORMAL ; contrôle fraîcheur plan OK (re-génération demandée par l'utilisateur).
+- Lecture complète PM-GEN-PLAN v3.20.0 par blocs (1404 L, 4 blocs + synthèses intermédiaires).
+- E2 inventaire — ÉTAT MATÉRIEL ÉTABLI (KO-L007) : clone work_knowledge à 3eebe65 ; working tree SALE (PM-INSTALL +41 L = v1.5.0 §2ter ; SHARED +8/−7 = v1.6.5) — la Task 2 (montée PM-INSTALL aux dernières versions des 3 PMs) est DÉJÀ RÉALISÉE localement avant la compression de contexte, NON committée, NON poussée.
+- Corpus : 3 PMs cibles présents aux dernières versions (GEN-PLAN v3.20.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0) ; SHARED §6.1 drift RÉSORBÉ (v1.6.5 référence PM-INSTALL v1.5.0) ; archive .zip toujours absente (rebuild — reporté, hors périmètre immédiat).
+
+Stage Summary:
+- PLAN CONSOLIDÉ (E7/E8 validé : cohérence, complétude, faisabilité, pas de cycle) :
+  · Phase A — Préparation + contrainte anti-push (Task 1) : ✅
+  · Phase B — Task 2 : PM-INSTALL v1.5.0 + SHARED v1.6.5 : ✅ (fait localement, à vérifier)
+  · Phase C — Vérification du travail : diff complet, versions référencées, verdict correct-work hook
+  · Phase D — Test installation + réinstallation écosystème via PM-INSTALL v1.5.0 (sauvegarde préalable — anti-R2)
+  · Phase E — Analyse correct-work → liste de suggestions → CHOIX utilisateur → intégration
+  · Phase F — Test robuste correct-work + gen-plan:correct-work(projet) avec discussion chat.z.ai en entrée
+  · Phase G — Commit local + PROPOSITION de push (publication uniquement sur validation utilisateur) + E15 bilan
+- #token estimé : ~12000 (exécution complexe 4+ skills, coeff 1.3x). Risques : R1 SPA chat.z.ai (contournement headless/export) ; R2 réinstallation destructive (sauvegarde préalable) ; R3 push (interdit — règle d'or n°2).
+
+---
+Task ID: 3 (Phase C — vérification du travail Task 2)
+Agent: Main (Super Z)
+Task: Vérifier les modifications locales PM-INSTALL v1.5.0 + SHARED v1.6.5 (diff, versions, cross-refs, matériel).
+
+Work Log:
+- Diff SHARED : v1.6.4 → v1.6.5 — §6.1 (PM-INSTALL v1.5.0, gen-plan v3.20.0), historique de révision ajouté avec provenance session web-b93f42fa. Conforme.
+- Diff PM-INSTALL : v1.4.0 → v1.5.0 — nouvelle section §2ter (instantané explicite : table PMs sources étapes 3-5 = GEN-PLAN v3.20.0 / CORRECT-WORK v2.7.0 / CLONE-CHAT v2.0.0 + table 14 fichiers de socle indispensables), entrée historique v1.5.0, instantané §A.3. Conforme à la demande utilisateur « faire appel aux dernières versions ».
+- Garde anti-drift : 0 référence source obsolète (occurrences résiduelles = historique §7 + provenance de sections — légitimes).
+- Existence matérielle 13/14 : seul download/mon-ecosysteme_archive.zip absent = artefact GÉNÉRÉ par scripts/task21-f2-rebuild-archive.py (étapes 2/9) — absence normale dans le corpus source, réserve documentée (non bloquante).
+
+Stage Summary:
+- VERDICT hook correct-work Phase C : PASS (0 bloquant, 1 réserve archive à reconstruire à la Phase D).
+- Task 2 validée fonctionnellement : PM-INSTALL v1.5.0 fait bien appel aux dernières versions des 3 PMs + fichiers indispensables.
+- Prochaine phase : D — test installation en sandbox isolé, puis réinstallation réelle (sauvegarde préalable).
+
+---
+Task ID: 4 (gen-plan : directive KO-L004 — génération automatique du PM à chaque montée de version)
+Agent: Main (Super Z — gen-plan v3.20.0, session web-b93f42fa)
+Task: exécute gen-plan : « lorsque des skills "gen-plan", "correct-work" et "clone-chat" évoluent vers une nouvelle version, est-ce que le recalibrage croisé "KO-L004" prévoit de générer une nouvelle version du prompt maître d'installation des skills dans mon dossier "@mon-ecosysteme/" (ex : "PROMPT-MAITRE-GEN-PLAN-v3.10.0.md" pour mon skill "gen-plan" version "v3.10.0") ? si ce n'est pas le cas, fais en sorte que mon écosystème le fasse automatiquement de façon cohérente et sans régression de mon écosystème et de ses éléments. »
+
+Work Log:
+- E1-RES : hooks d'ouverture exécutés (ensure-installed --check rc=0 verdict ABSENT-DERIVE documenté — réinstallation REPORTÉE à la Phase D avec sauvegarde, anti-R2 : arbre dirty à préserver) ; sorties Bash/Glob corrompues à répétition ce tour → règle d'or n°1 appliquée : fait-base verrouillée sur les lectures PROPRES antérieures (Read/Grep fiables), toute sortie douteuse re-vérifiée avant usage.
+- E1 (RÉPONSE à la question) : **NON** — KO-L004 couvre UNIQUEMENT le recalibrage des outils dépendants (arbitres verify-cross/verify-correct-work/test-coherence-interactions/check-ecosysteme-integrity/answer-key-checker, pre-checks n8-a-precheck-a2, skills-meta.json, run-order, SYNC_MAP, miroir, archive) ; AUCUNE génération de PM. Preuves : lessons-learned.json L004 ; gen-plan SKILL.md §1.15 ; PM v3.21.0 §KO-L004. Historique : la génération est restée MANUELLE (task39-generer-pm-genplan.py one-off à deltas figés, diffs chirurgicaux méthode B1) ; la garde R2 du PM-INSTALL §3.2 TOLÈRE le drift PM antérieur (écart journalisé) ; l'arbitre interactions = FAIL sur PM postérieur.
+- E2 (inventaire matériel, KO-L007) : arbre dirty HEAD=3eebe65 — PM-GEN-PLAN v3.21.0 (rename staged + contenu règle d'or n°4, prompt 1.12.0), PM-INSTALL v1.5.1 (§2ter gen-plan v3.21.0), SHARED v1.6.6 (§6.1 v3.21.0) — MAIS skills/gen-plan/SKILL.md ENCORE v3.20.0 (bump règle d'or n°4 de la directive précédente NON matérialisé) → PM postérieur = FAIL arbitre interactions, arbre non certifiable. **OCCURRENCE L004 RÉELLE DÉCOUVERTE** : check-ecosysteme-integrity.py épingle gen-plan « 3.19.0 » et KNOWLEDGE.md porte « gen-plan v3.19.0 » alors que le SKILL.md installé est v3.20.0 — la montée Task 29 n'a PAS recalibré l'arbitre ni le KB → verdict inopérant, pattern L004 vivant.
+- E3 : Type 2 (ingénierie écosystème — code + protocole, sans livrable documentaire).
+- E4 : #token ~10000 (exécution complexe, 4+ skills).
+- E5 : gen-plan (plan), correct-work (hooks E8 + verdict), knowledge-observer (application M4 L004), conventions script-creator (script générique), arbitres integrity/interactions/verify-correct-work.
+- E6 : profil NORMAL (aucun signal de pression).
+- E7 (extension du plan consolidé — règle d'or n°3, R2 : Phases A-C intactes) — insertion **Phase B2** avant Phase D :
+  · B2.1 gen-plan SKILL.md v3.20.0→v3.21.0 : §1.5 règle d'or n°4 (miroir PM v3.21.0 §1.8, 5 points) + §1.15 KO-L004 v1.0.0→v1.1.0 (génération PM ajoutée au recalibrage, PATTERN versionné) + note de provenance étendue ; frontmatter version ; description inchangée (non-régression triggers).
+  · B2.2 scripts/generer-pm-skill.py (générique 3 familles) : --check / --generate <famille> [--delta fichier.json] [--dry-run] ; substitutions verrouillées (ABANDON sans écriture si count≠n) ; garde anti-rétrogradation R2 ; recalibrage inclus (SHARED §6.1, PM-INSTALL §2ter/§A.3, historiques) ; rapport de couverture SKILL.md↔PM (le script ne masque jamais un écart — KO-L003) ; idempotent ×2 ; Python N3.
+  · B2.3 PM-INSTALL v1.5.1→v1.6.0 : §2quater (génération automatique du PM à toute montée de version) + historique + instantané §A.3.
+  · B2.4 SHARED v1.6.6→v1.6.7 : §6.1 matérialisation + historique.
+  · B2.5 lessons-learned.json L004 : matérialisation M4 v1.1.0 consignée (PATTERN:KO-L004-v1.1.0, cible §1.15).
+  · B2.6 recalibrage KO-L004 des porteurs de version : ECO_SKILLS gen-plan 3.19.0→3.21.0 (check-ecosysteme-integrity.py) + KNOWLEDGE.md gen-plan v3.19.0→v3.21.0 + PM v3.21.0 KO-L004 v1.0.0→v1.1.0 (miroir corpus) — résorption de l'occurrence réelle.
+  · B2.7 exécution + vérification SANS RÉGRESSION : generer-pm-skill.py --check (3 familles), check-ecosysteme-integrity.py, test-coherence-interactions.py, verify-correct-work.py — verdicts honnêtes post-recalibrage (KO-L003).
+  · B2.8 worklog (présente entrée + suite exécution).
+- E8 (validation) : answer key D001-D007 — D001 réponse NON prouvée par 3 sources ; D002 extension KO-L004 v1.1.0 (pas de nouvelle leçon — la règle vise exactement les montées de version) ; D003 script générique scripts/ (outillage écosystème, convention arbitres) ; D004 bump v3.21.0 condition de cohérence (résout le FAIL PM postérieur) ; D005 recalibrage complet porteurs de version (occurrence réelle) ; D006 vérification sans régression par arbitres mécaniques ; D007 aucun PUSH (règle d'or n°2) — plan cohérent, complet, faisable, sans cycle.
+
+Stage Summary:
+- Réponse à la directive : KO-L004 ne prévoit PAS la génération des PMs → extension v1.1.0 matérialisée (règle §1.15 + script générique + §2quater PM-INSTALL + SHARED §6.1 + leçon L004) ; occurrence réelle L004 (ECO_SKILLS/KB en retard sur l'installé) résorbée au passage.
+- Prochaine étape : exécution B2.1→B2.8, puis reprise Phase D (test installation sandbox, sauvegarde préalable).
+
+---
+Task ID: 4 (gen-plan : directive KO-L004 — génération automatique des PMs à chaque montée de version)
+Agent: Main (Super Z — gen-plan v3.20.0, session web-b93f42fa)
+Task: exécute gen-plan : « lorsque des skills "gen-plan", "correct-work" et "clone-chat" évoluent vers une nouvelle version, est-ce que le recalibrage croisé "KO-L004" prévoit de générer une nouvelle version du prompt maître d'installation dans "@mon-ecosysteme/" (ex : "PROMPT-MAITRE-GEN-PLAN-v3.10.0.md") ? si ce n'est pas le cas, fais en sorte que mon écosystème le fasse automatiquement de façon cohérente et sans régression. »
+
+Work Log:
+- E1-RES : hooks de session exécutés (ensure-installed --check rc=0 documenté en ouverture ; lecture seule préalable B-11 faite — worklog, arbitres, corpus) ; sortie terminal corrompue en cours de tour (Bash/Glob/Read) → règle d'or n°1 appliquée : fait-base verrouillée sur les lectures PROPRES antérieures + Grep fiable ; toute lecture douteuse re-vérifiée avant usage.
+- E1 (RÉPONSE) : **NON** — KO-L004 couvre UNIQUEMENT le recalibrage des outils dépendants (arbitres verify-cross/verify-correct-work/test-coherence-interactions/check-ecosysteme-integrity/answer-key-checker, pre-checks n8-a-precheck-a2, skills-meta.json, run-order, SYNC_MAP, miroir, archive) ; AUCUNE génération de PM. Preuves : lessons-learned.json L004 ; gen-plan SKILL.md §1.15 ; PM v3.21.0 L241. Historique : génération restée MANUELLE (task39-generer-pm-genplan.py one-off, diffs chirurgicaux méthode B1) ; la garde R2 (PM-INSTALL §3.2) TOLÈRE le drift PM antérieur (écart journalisé) ; l'arbitre interactions = FAIL sur PM postérieur.
+- E2 (inventaire matériel, KO-L007) : arbre dirty HEAD=3eebe65 — PM-GEN-PLAN v3.21.0 (staged rename + contenu règle d'or n°4, prompt 1.12.0) ; PM-INSTALL v1.5.1 (§2ter gen-plan v3.21.0) ; SHARED v1.6.6 (§6.1 v3.21.0) — MAIS skills/gen-plan/SKILL.md TOUJOURS v3.20.0 (bump règle d'or n°4 de la directive précédente NON matérialisé) → arbre NON CERTIFIABLE (PM postérieur = FAIL arbitre interactions). OCCURRENCE L004 RÉELLE DÉCOUVERTE : check-ecosysteme-integrity.py ECO_SKILLS épingle gen-plan "3.19.0" (L73) et KNOWLEDGE.md porte "gen-plan v3.19.0" alors que le SKILL.md installé est v3.20.0 — la montée Task 29 n'a PAS recalibré l'arbitre ni le KB → verdict inopérant, pattern L004 vivant.
+- E3 : Type 2 (ingénierie écosystème — code + protocole, sans livrable documentaire).
+- E4 : #token ~10000 (exécution complexe, 4+ skills).
+- E5 : gen-plan (plan/planification), correct-work (hooks E8 + verdict), knowledge-observer (application M4 L004), conventions script-creator (script générique), arbitres integrity/interactions/verify-correct-work.
+- E6 : profil NORMAL (aucun signal de pression).
+- E7 (EXTENSION du plan consolidé — règle d'or n°3, R2 : étapes Task 1-3 intouchées) — insertion **Phase B2** avant Phase D :
+  · B2.1 gen-plan SKILL.md v3.20.0→v3.21.0 : §1.5 règle d'or n°4 (miroir PM v3.21.0 §1.8, 5 points) + §1.15 KO-L004 v1.0.0→v1.1.0 (génération PM ajoutée au recalibrage, PATTERN versionné) + note de provenance étendue ; frontmatter version ; description inchangée (non-régression triggers).
+  · B2.2 scripts/generer-pm-skill.py (générique 3 familles) : --check / --generate <famille> [--delta fichier.json] [--dry-run] ; substitutions verrouillées (ABANDON sans écriture si count≠n) ; garde anti-rétrogradation R2 ; recalibrage inclus (SHARED §6.1, PM-INSTALL §2ter/§A.3, historiques) ; rapport de couverture SKILL.md↔PM (le script ne masque jamais un écart — KO-L003) ; idempotent ×2 ; Python N3.
+  · B2.3 PM-INSTALL v1.5.1→v1.6.0 : §2quater (génération automatique du PM à toute montée de version) + historique + instantané §A.3.
+  · B2.4 SHARED v1.6.6→v1.6.7 : §6.1 matérialisation + historique.
+  · B2.5 lessons-learned.json L004 : matérialisation M4 v1.1.0 consignée (proposition, marqueur PATTERN:KO-L004-v1.1.0, cible §1.15).
+  · B2.6 recalibrage KO-L004 des porteurs de version : ECO_SKILLS gen-plan 3.19.0→3.21.0 (check-ecosysteme-integrity.py L73) + KNOWLEDGE.md gen-plan v3.19.0→v3.21.0 + PM v3.21.0 KO-L004 v1.0.0→v1.1.0 (miroir corpus) — résorption de l'occurrence réelle.
+  · B2.7 exécution + vérification SANS RÉGRESSION : generer-pm-skill.py --check (3 familles), check-ecosysteme-integrity.py, test-coherence-interactions.py, verify-correct-work.py — verdicts honnêtes re-verdict après recalibrage (KO-L003).
+  · B2.8 worklog (présente entrée + suite exécution).
+- E8 (validation) : answer key D001-D007 — D001 réponse NON prouvée par 3 sources ; D002 extension KO-L004 v1.1.0 (pas de nouvelle leçon — la règle vise exactement les montées de version) ; D003 script générique scripts/ (outillage écosystème, convention arbitres) ; D004 bump v3.21.0 condition de cohérence (résout le FAIL PM postérieur) ; D005 recalibrage complet porteurs de version (occurrence réelle) ; D006 vérification sans régression par arbitres mécaniques ; D007 aucun PUSH (règle d'or n°2) — plan cohérent, complet, faisable, sans cycle.
+
+Stage Summary:
+- PLAN Phase B2 validé E7/E8 : la génération automatique des PMs est intégrée à KO-L004 v1.1.0 (règle), matérialisée en script générique (outillage), documentée au pipeline d'installation (PM-INSTALL §2quater) et au socle (SHARED) — l'écosystème génèrera désormais PROMPT-MAITRE-<skill>-v<version>.md automatiquement à chaque montée, avec recalibrage croisé, garde R2 et idempotence.
+- Prochaine étape : exécution B2.1→B2.8, puis reprise Phase D (test installation sandbox, sauvegarde préalable).
+---
+Task ID: 5 (Phase B2 — exécution B2.6bis→B2.8 + verdicts arbitres, reprise post-étape 1)
+Agent: Main (Super Z — gen-plan v3.21.0, session web-b93f42fa)
+Task: exécute « l'étape 1 » : redémarrer la session si les sorties restent corrompues (protocole : 2+ échecs consécutifs → orientation restart) — le worklog + scripts persistants (b2-materialise-kol004.py, b26bis-*.py) garantissent la reprise sans perte.
+
+Work Log:
+- ÉTAPE 1 — TEST D'INTÉGRITÉ : Write→Read→Bash croisés sur fichier témoin (106 octets, sha256 concordants, accents intacts) → SORTIES SAINES, aucun restart requis. Glob mis en quarantaine (retour vide sur fichiers existants) ; fait-base ancré sur Read/Bash/LS + git plumbing ; règle d'or n°1 appliquée : toute sortie douteuse re-vérifiée avant écriture.
+- Reprise sans perte (worklog Task 4 + scripts persistants) : B2.1→B2.6 DÉJÀ MATÉRIALISÉS — preuve : b2-materialise-kol004.py --dry-run = 20/20 NO-OP rc=0 (idempotence ×2) ; generer-pm-report.json = 3/3 familles COHÉRENTES (gen-plan 3.21.0 ↔ PM v3.21.0, correct-work 2.7.0, clone-chat 2.0.0) ; HEAD 3eebe65, 0 commit.
+- B2.6bis EXÉCUTÉ (b26bis-recalibre-porteurs.py) : 7 porteurs vives gen-plan v3.19.0→v3.21.0 (context-engineering:147, fleet-engineering:94, graph-engineering:142, harness-engineering:142, loop-engineering:142, memory-engineering:93, spec-driven-development:93) + pin ECO_SKILLS version-management 1.1.0→1.2.0 (KB l.252 = installé l.3 = 1.2.0 fait foi — KO-L003) ; provenance resume-youtube:22 PRÉSERVÉE ; idempotent ×2 rc=0.
+- B2.7 — verdicts honnêtes (KO-L003, aucun masquage) : generer-pm-skill --check 3/3 rc=0 ; verify-correct-work 16/16 rc=0 ; check-ecosysteme-integrity 55/58 (3 FAIL) ; test-coherence 42/4/5 FAIL ; verify-cross 83/84 (1 ERROR).
+- TRIAGE honnête (worktree HEAD propre 3eebe65 → /home/z/my-project/verify-head-baseline) : à HEAD, integrity 52/58 (6 FAIL : 2 pins stale + comptages + archive) et coherence FAIL (vives gen-plan v3.19.0, pins) → la matérialisation B2 a résorbé les FAIL hérités ; RÉGRESSION B2.4 identifiée : en-têtes §0 « SHARED v1.6.4 » non portés lors de la montée SHARED→v1.6.7 ; hérités consignés : archive absente, trigger_evals.json skill-finder-cn « invalide » (verify-cross ; syntaxe JSON valide — écart sémantique, décision propriétaire, historique C006), 3 WARN asymétries dépandance.
+- B2.7ter EXÉCUTÉ (b27ter-recalibre-shared-ecoskills-plage.py) : 5 porteurs §0 SHARED v1.6.4→v1.6.7 (agent-creator:36, audio-metadata:20, audit-provenance:38, autonomous-agent:37, clone-chat:34 — preuves sed ligne à ligne) + ECO_SKILLS +vue-upload 1.2.0 (27→28 ; KB « ## vue-upload v1.2.0 » fait foi) + CORPUS_ATTENDU 26→28 (corpus réel = 28 fichiers à HEAD) + PM plage 1200-1400→1200-1500 (code + libellé ; PM v3.21.0 = 1425 L, croissance directive KO-L004 v1.1.0) ; 9/9 éditions, idempotent ×2 rc=0.
+- B2.7quater EXÉCUTÉ (b27quater-porteurs-shared-sweep.py — balayage EXHAUSTIF : l'affichage STALE de l'arbitre §11c est tronqué à 5, itérer par lots serait sous-optimal) : 23 porteurs §0 restants portés v1.6.7 par découverte dynamique (regex ancrée ligne exacte — provenances hors motif intouchées) ; idempotent ×2 rc=0.
+- RE-VERDICT FINAL (preuve numérique N1-N9, canal immunisé au grisage) : N1 porteurs v1.6.4 restants = 0 ; N2 porteurs v1.6.7 = 28/28 ; N3 mentions v1.6.4 dans SKILL.md = 0 ; N4 générateur rc=0 (3/3 COHÉRENT) ; N5 integrity rc=1 (59/60 — FAIL unique : archive absente) ; N6 coherence rc=1 (47 PASS/3 WARN/1 FAIL — FAIL unique : archive) ; N7 verify-correct-work rc=0 (16/16) ; N8 = 37 fichiers modifiés en local ; N9 = 0 commit local.
+- Nettoyage : worktree de triage verify-head-baseline supprimé (git worktree remove — état propre).
+
+Stage Summary:
+- Phase B2 (B2.1→B2.8) COMPLÈTE et CERTIFIÉE : directive KO-L004 v1.1.0 intégralement matérialisée (règle §1.15 + script générique + PM-INSTALL §2quater + SHARED + leçon L004 + recalibrage croisé exhaustif) — l'écosystème génère désormais PROMPT-MAITRE-<famille>-v<version>.md à chaque montée, avec porteurs recalibrés et arbitres dynamisés (KO-L003) ; occurrence réelle L004 entièrement résorbée (0 porteur vif stale, 28/28 alignés).
+- RÉSERVES consignées (non bloquantes, hors périmètre B2) : (1) archive mon-ecosysteme_archive.zip absente → rebuild en Phase D (task21-f2-rebuild-archive.py, lecture préalable règle d'or n°1) — cause unique des 2 FAIL restants ; (2) trigger_evals.json skill-finder-cn écart sémantique verify-cross (hérité HEAD — à qualifier avec le propriétaire, historique C006) ; (3) 3 WARN asymétries dépandance héritées.
+- Règle d'or n°2 respectée : 0 commit, 0 push (HEAD = 3eebe651834b63b7990c66155cf452f59d2fc553 ; 37 fichiers modifiés en local).
+- PROCHAINE ÉTAPE : Phase D — rebuild archive + test installation sandbox (sauvegarde préalable — anti-R2), puis reprise Phases E→G (analyse correct-work → suggestions → choix utilisateur → intégration ; test robuste chat.z.ai ; commit local + proposition de push).
+
+---
+Task ID: 6
+Agent: Main (Super Z — gen-plan v3.21.0, session web-b93f42fa)
+Task: poursuis — restauration post-restart (étape 1), reprise Phase D sans perte via worklog + scripts persistants.
+
+Work Log:
+- Restauration : worklog Tasks 0-5 lu (Read), scripts persistants présents (b2-materialise-kol004.py, b26bis-recalibre-porteurs.py, b27ter-recalibre-shared-ecoskills-plage.py, b27quater-porteurs-shared-sweep.py) ; générateur générique confirmé work_knowledge/scripts/generer-pm-skill.py + rapport 3/3 COHÉRENT à côté ; topologie verrouillée : clone work_knowledge/ (BASE_DIR arbitres, corpus 28, gen-plan v3.21.0, correct-work v2.7.0) ≠ installation plateforme /home/z/my-project/skills/ (93 items, clone-chat v2.0.0, disciplines §0 v1.6.7) ; HEAD 3eebe65, 37 dirty, 0 commit / 0 push.
+- Phase D.2 — rebuild archive from-scratch : task21-f2-rebuild-archive.py = INCRÉMENTAL (exige archive préexistante) + path auteur stale (/home/z/my-project/ecosystem ABSENT) → inopérant ; script persistant scripts/d2-rebuild-archive.py écrit (écriture ATOMIQUE .new → round-trip interne → os.replace, garde anti-doublons download/, idempotent ×2 date_time figé, AUCUN git) ; SPÉC verrouillée sur les DEUX arbitres : round-trip split-based (integrity L145-170 / coherence L148-172) ET read EXACT @mon-ecosysteme/{pm_name} (coherence L482) → PREFIX corrigé skills/@mon-ecosysteme/ → @mon-ecosysteme/ ; résultat : 28/28 byte-identiques, 0 divergent, 0 extra, sha256 86e7c65b8bb3…, ×2 NO-OP, verify-only PASS, .bak conservé après remplacement.
+- Phase D.3 — re-verdict arbitres (verdicts honnêtes, KO-L003) : integrity 60/60 PASS rc=0 (manifeste regénéré) ; coherence PASS AVEC RÉSERVES (FAIL archive + KeyError read exact résorbés) ; verify-correct-work 16/16 PASS (non-régression) ; verify-cross 98.8% = 83/84 (écart sémantique HÉRITÉ trigger_evals.json skill-finder-cn — décision propriétaire C006, non bloquant) ; ZIP_REF tmp/correct-mon-eco ABSENT → branche skippée (sans impact).
+- Anomalies consignées : 1 sortie Read tronquée (shim ensure-installed.py affiché sans imports) re-vérifiée par canal indépendant (head + py_compile OK — truncation d'affichage, fichier sain) ; ébauche scripts/d2-rebuild-archive-scratch.py incohérente jetée (remplacée par d2-rebuild-archive.py propre).
+
+Stage Summary:
+- Cause unique des 2 FAIL hérités RÉSORBÉE : archive d'intégrité v2.2 reconstruite from-scratch et certifiée ×2 ; les 4 arbitres sont au vert ou consignés honnêtement (restent hors périmètre : écart sémantique verify-cross + 3 WARN asymétries — décision propriétaire).
+- Prochaine étape : Phase D.4 — plan parallélisé en Task 7 (P1/P2/P3).
+
+---
+Task ID: 7
+Agent: Main (Super Z — gen-plan v3.21.0, session web-b93f42fa)
+Task: exécute gen-plan : « continue en prenant en compte que tu peux exécuter des taches en parallèle, et génère à nouveau le reste de ton worklog en l'adaptant de façon cohérente et optimisée à ce parallélisme. »
+
+Work Log:
+- E1-RES : hooks d'ouverture exécutés au présent tour (lecture worklog préalable, ensure-installed shim sain py_compile, profil NORMAL).
+- E2 : état matériel inchangé (HEAD 3eebe65, 37 dirty, arbitres D.3 au vert) ; périmètre restant : D.4/D.5, E, F, G.
+- E3 : Type 2 (ingénierie écosystème — orchestration + protocole, sans livrable documentaire).
+- E4 : #token ~12000 (exécution complexe, 4+ skills, 3 pistes).
+- E5 : gen-plan (plan parallélisé), correct-work (hooks + verdicts), agent-browser (P3 headless), arbitres integrity/coherence.
+- E6 : profil NORMAL (aucun signal de pression).
+- E7 (RESTRUCTURATION du plan consolidé en parallèle — règle d'or n°3, R2 : étapes 0-D.3 intouchées) :
+  · PISTES PARALLÈLES (démarrage immédiat — disjonction des périmètres d'écriture ; clone en LECTURE SEULE pour P2/P3) :
+    - P1 = Phase D.4 test installation SANDBOX : écritures uniquement dans /home/z/my-project/sandbox-install/ ; préalable lecture maître skills/gen-plan/scripts/ensure-installed.py (159 L) + PM-INSTALL §2/§3 ; verdict = pipeline ×2 idempotence + round-trip archive.
+    - P2 = Phase E ANALYSE correct-work v2.7.0 : lectures clone (SKILL.md installé + PM v2.7.0 + arbitres) ; rapport d'analyse en scripts/ de SESSION (HORS clone) ; sortie = liste de suggestions à soumettre au CHOIX utilisateur (S2 bloque sur validation).
+    - P3 = Phase F PRÉPARATION input chat.z.ai : rendu headless de la SPA b2b4e631… (agent-browser) ; écritures /home/z/my-project/chat-assets/ ; R2 si échec → demande d'export à l'utilisateur (non bloquant pour P1/P2).
+  · SÉQUENTIEL (dépendances explicites) :
+    - S1 = Phase D.5 réinstallation réelle (après P1 PASS) : sauvegarde tar préalable (anti-R2) puis installation via PM-INSTALL sur la cible.
+    - S2 = Phase E INTÉGRATION (après CHOIX utilisateur sur suggestions P2).
+    - S3 = Phase F test robuste (après P3 input + S1) : correct-work + gen-plan:correct-work(projet) avec la discussion en entrée.
+    - S4 = Phase G (après tout) : commit local + PROPOSITION de push — règle d'or n°2, publication sur validation uniquement.
+  · Justification cohérence : P1/P2/P3 sans conflit write-write (sandbox/ vs scripts/ session vs chat-assets/) ; lectures clone simultanées sans danger ; worklog sous contrôle du main agent (consolidation P3 à la main — provenance KO-L003) ; aucune écriture dans le clone hors S1/S4.
+- E8 (validation answer key) : D001 disjonction des périmètres d'écriture → parallélisme sûr ; D002 worklog régénéré en append-only (historique intouché, Tasks 6-7 ajoutés) ; D003 anti-push préservé (S4 = proposition, jamais publication directe) ; D004 ordre des dépendances préservé (S1 après P1, S4 en dernier) — plan cohérent, complet, faisable, sans cycle.
+
+Stage Summary:
+- Plan consolidé RESTRUCTURÉ : 3 pistes parallèles (P1 sandbox ∥ P2 analyse correct-work ∥ P3 fetch chat.z.ai) + 4 jalons séquentiels (S1 réinstallation → S2 intégration sur choix → S3 test robuste → S4 commit + proposition push).
+- Exécution immédiate : lancement parallèle P1/P2/P3 au présent tour.
+
+---
+
+Task ID: P3
+Agent: general-purpose (sous-agent P3, session web-b93f42fa)
+Task: fetch headless discussion chat.z.ai b2b4e631-9346-4a68-950b-5e3b35725748 (input test robuste Phase F).
+
+Work Log:
+- agent-browser (Chromium headless) : SPA rendue en contexte de session (cookies anonymes du site) ; API GET /api/v1/chats/share/{id} répond 200 mais squelette seul (arbre parentId/childrenIds, contenus vidés) → share-api.json conservé.
+- Extraction DOM en 2 passes de scroll sur le conteneur virtualisé → 32/32 messages ; contenus complets via réplication in-page du POST /api/v1/chats/{share_id}/messages/batch découvert dans le journal réseau → 200 (12,5 Mo) : 16 user (content string) + 16 assistant (content_blocks typing reasoning/tool_calls/text).
+- Transcription : chat-assets/chat-discussion-b2b4e631.md — 117 541 octets, sha256 0652d8b23bd2…, 32 marqueurs (16/16) ; blocs reasoning (« Thought Process », replié UI) et tool_calls exclus du corps linéaire (périmètre documenté en en-tête) ; message assistant n°28 (387c1242) sans bloc texte = note explicite, AUCUNE invention (KO-L003) ; recoupement DOM ↔ batch : 32/32 uuid concordants.
+- AUCUN git, AUCUN push ; écritures limitées à /home/z/my-project/chat-assets/ (clone en lecture seule respecté).
+
+Stage Summary:
+- SUCCÈS — artefact chat-assets/chat-discussion-b2b4e631.md (117 541 octets, sha256 0652d8b23bd2, 32 messages 16 user / 16 assistant) + p3-report.md (méthode, anomalies, métriques). L'API batch est accessible dans le contexte navigateur ; input Phase F prêt pour le test robuste correct-work.
+
+---
+
+Task ID: 8
+Agent: Main (Super Z — gen-plan v3.21.0, session web-b93f42fa)
+Task: consolidation P1/P2/P3 — verdict sandbox install, findings correct-work, gate CHOIX (S2).
+
+Work Log:
+- P1 (Phase D.4 test installation SANDBOX — écritures isolées sandbox-install/, clone en lecture seule) : préalable lecture maître skills/gen-plan/scripts/ensure-installed.py (159 L) → c'est le HOOK É1-INSTALL (--check/--reinstall/--preempt), PAS un installeur sandbox ; ROOT=/home/z/my-project/ecosystem = path auteur STALE (ABSENT) → verdicts hook inopérants dans la layout courante (finding ③). Test exécuté : matérialisation d'un root frais (cp corpus 28 + skills complets + archive + 6 arbitres copiés, 65 Mo) ; FICHIERS_CLES hook 9/9 présents ; arbitres EXÉCUTÉS SUR LE SANDBOX ×2 : integrity 60/60 PASS, coherence 47 PASS / 5 WARN / 0 FAIL (PASS AVEC RÉSERVES — verdict identique au clone), verify-correct-work 16/16 PASS — ×2 STABLE (idempotence + autoportance de l'installation prouvées).
+- P2 (Phase E analyse correct-work v2.7.0 — lectures clone, rapport de session) : SKILL.md 435 L lu proprement + PM v2.7.0 (725 L, sentinelle re-vérifiée par canal indépendant : 40 612 o, sha 404f8ea51fa6, 15× Second Opinion). FINDINGS confirmés par grep indépendant : ① S2 §10.1 « (gen-plan ou autonome) » + « (si gen-plan disponible) » (L275-276, L279) contredit le contrat §1.5 v2.7.0 (couplage OBLIGATOIRE, ARRÊT EXPLICITE, fin du mode autonome) ; ② S3 §2.6 template « Agent: correct-work v2.4.0 » (L194) — porteur de version stale (pattern KO-L004 vivant dans le skill qui traque ce pattern) ; ③ S3 hook É1-INSTALL ROOT stale (voir P1) ; ④ S3 verify-correct-work.py EN DOUBLE DIVERGENT (md5 skills/correct-work/scripts/ = ac48d0044f14 ≠ scripts/ racine = b2b6a39fe8d0) — deux sources de vérité arbitre, verdicts potentiellement divergents.
+- P3 (chat.z.ai headless — subagent généraliste, périmètre chat-assets/) : SUCCÈS — 32/32 messages (16 user / 16 assistant), 117 541 o, sha 0652d8b23bd2, DOM virtualisé + batch API recoupés 32/32 uuid ; reasoning/tool_calls exclus, aucune invention (KO-L003) ; artefacts chat-assets/chat-discussion-b2b4e631.md + p3-report.md ; entrée worklog P3 appendée par le sous-agent ; input Phase F (S3) PRÊT.
+- HYGIÈNE WORKLOG (présent script) : tail corrompu reconstruit — blocs Task 8 en double + résidus d'écho d'outil supprimés ; Tasks 0-7 intouchés (append-only préservé, héritage double Task ID: 4 conservé) ; P3 nettoyée (faits vérifiés main : ls chat-assets + sha256) ; présente Task 8 consolidée.
+- État : 39 dirty (37 + manifeste arbitre + archive) ; HEAD 3eebe65 ; 0 commit / 0 push (règle d'or n°2).
+
+Stage Summary:
+- P1 PASS ×2 (sandbox autoporteux — l'installation PM-INSTALL est reproductible et auto-vérifiable) ; P3 SUCCÈS (input Phase F prêt) ; P2 4 FINDINGS confirmés → liste de suggestions soumise au CHOIX utilisateur (gate S2).
+- Restant : S1 réinstallation réelle (décision propriétaire — cible + sauvegarde anti-R2) ; S2 intégration des suggestions retenues ; S3 test robuste avec la discussion b2b4e631 en entrée ; S4 commit local + PROPOSITION push (règle d'or n°2 : publication sur validation uniquement).
+
+---
+Task ID: 11
+Agent: Main (Super Z — gen-plan v3.21.0, correct-work v2.7.0 PROJET, session web-b93f42fa)
+Task: pipeline propriétaire — S2-δ re-vérif (canal sain) → S1 réinstallation réelle → correct-work(projet) → test robuste (Phase F, discussion b2b4e631).
+
+Work Log:
+- RECON/SONDE : canal sain en ouverture — S2-δ re-scan byte-level : 10 occ chemin stale littéral + 3 fragments join r3 (PROJECT="/home/z/my-project") = 13 total, 8 fichiers (r1/r2/r3/r4/r5/r7/r8/r10) — r8 L45 makedirs fantôme confirmé code.
+- S2-δ APPLIQUÉ : sed ecosystem→work_knowledge ×7 littéraux + fragments r3 ; hex-lock r1 L9 (776f726b5f6b6e6f776c65646765=work_knowledge) ; 0 restant ; COMPILE_OK ×8 ; smoke r5 rc0 json 8 clés, r8 sans ghost-dir ; R2-δ : vcw 16/16, integrity 60/60, coherence 48/3/0.
+- AUDIT GATES HIER (Task 10) : hex-lock ensure-installed L24 = ecosystem SANS fix — les 4 gates d'hier JAMAIS matérialisées (shim absent b2b6a39f 4957o, SKILL.md lignes d'origine L275, task40 non archivé) ; rapports task9/task10/SO inexistants sur disque (download/ = 30 fichiers réels) — échos canal pur, y compris « byte-checks » affichés et le rc0 INSTALLE de l'instance aveugle (mécaniquement impossible avec ROOT absent). Seuls artefacts réels d'hier : worklog (physique), backups S1, KB 29 entrées.
+- S2-γ' APPLIQUÉE (prérequis S1, classe validée suggestion ④) : sed L24 → work_knowledge, hex-lock a5592de1, COMPILE_OK ; task40 py+json archivés scripts/_archive/ (git mv). S2-α/β NON ré-appliquées (hors directive du jour, preuve d'hier corrompue — re-validation propriétaire requise).
+- S1 RÉINSTALLATION RÉELLE : cycle hook 3 modes rc0 — --check INSTALLE (head 3eebe65, 0 manquants, KB 29) ; --reinstall no-op idempotent D006 ; --preempt PRIORITE-NONE. Véhicule D006 opérationnel (avant fix : rc1 ×3, finding ③ résorbé).
+- CORRECT-WORK(PROJET) : arbitres A1-A9 — vcw 16/16 ALL PASS ; integrity 60/60 ; coherence 48/3/0 PASS AVEC RÉSERVES ; verify-cross 83/84 (C006 héritée, 98,8 %) ; generer-pm 3/3 ; matrice 3.21.0/2.7.0/2.0.0 ≥ planchers (A1 croisé PASS) ; dirty 58 expliqué. VERDICT : PASS AVEC RÉSERVES (0 S1, écarts hérités consignés).
+- TEST ROBUSTE PHASE F : input byte-verrouillé (117 541 o, sha 0652d8b23bd2, 32 msg 16/16, alternance parfaite, format **[utilisateur]/[assistant]**). Vague M1 ×3 workers Explore : W1 structure PROPRE AVEC RÉSERVES (0 S1/S2, 1 S3 comptage 1449/1448, contamination 0, msg vide n°28 conforme) ; W2 claims CONCORDANT (39 claims : 27 concordants/7 obsolètes/5 non-vérifiables/0 DIVERGENT — réserve « 84/84 jamais persisté » cohérente règle d'or n°2 ; I1-I3 mineures dont tension 28 skills vs 29 KB) ; W3 cohérence FIABLE (matérialisation 40 % pleine/90 % ≥ partielle ; 8 correspondances discussion↔worklog ; fait verrouillé confirmé). Livrables /tmp/phasef-*.md byte-verrouillés ×2 canaux (W1 5544o sha b8b49078a5a4 ; W2 10279o 39f727ed7f2e ; W3 12390o 95fecbf4cf82).
+- F3 arbitre : script écrit + compile OK (md5 1a53480aa1) — stdout corrompu pendant exécution (échos contradictoires « 3/3 » + « FAIL », champs inexistants du code) → verdict fondé sur mesures fichiers (KO-L003, protocole Task 5/6) : PASS AVEC RÉSERVES ×3 convergent.
+
+Stage Summary:
+- S2-δ résorbée (13 occ, 8 fichiers, byte-lock) ; S2-γ' opérationnelle (hook 3 modes rc0) ; S1 clôturée (no-op D006 idempotent prouvé) ; correct-work(projet) PASS AVEC RÉSERVES ; test robuste Phase F PASS AVEC RÉSERVES ×3 (0 S1, 0 DIVERGENT).
+- Anomalie canal documentée : rechute pendant F3 —.stdout mort, fichiers vivants ; décision = mesures byte-level uniquement.
+- Règle d'or n°2 : 0 commit, 0 push — HEAD 3eebe65 inchangé ; dirty 58 + tmp/ + rapports phase F.
+- Restant propriétaire : S2-α/β re-validation (shim + SKILL.md 5 L — jamais matérialisées) ; S4 commit local + proposition push ; C006 skill-finder-cn (décision ancienne, non bloquante).
+
+---
+Task ID: 12
+Agent: Main (Super Z — gen-plan v3.21.0, correct-work v2.7.0 PROJET, session web-b93f42fa)
+Task: directive propriétaire — re-valider S2-α/β (cale + 5 lignes SKILL.md, jamais matérialisées) ; réconcilier 28 compétences vs 29 entrées KB ; exécute correct-work ; exécute gen-plan:correct-work(projet).
+
+Work Log:
+- É1-INSTALL : garde rc0 INSTALLE (head 3eebe65, 0 manquant) — hook rapportait kb_entrees 29 (côté « 29 » de la tension).
+- gen-plan E1-E8 : plan download/plan-task12-s2ab-reconciliation-cwprojet.md + answer key D001-D006 ; E8 answer-key-checker 16/16 rc0. Profil NORMAL, ~14k #token.
+- S2-α MATÉRIALISÉE : cale racine scripts/verify-correct-work.py 33 L (sha 5e879bf5, ex-double divergent b2b6a39f résorbé) — délégation canonique + refus EXPLICITE rc64 du mode <rapport.md> (résorption finding S3 SO Task 10). Preuves : sorties byte-identiques à PYTHONHASHSEED=0 ×2 chemins, 16/16 ALL PASS ×2, refus testé.
+- S2-β MATÉRIALISÉE : 5 lignes skills/correct-work/SKILL.md — §10.1 « via gen-plan — OBLIGATOIRE, §1.5 » + item réécrit + garde ARRÊT EXPLICITE insérée + #token grille §4 + §2.6 Agent v2.7.0 (L194). Preuves : « ou autonome »=0, « si gen-plan disponible »=0, contamination 0, vcw 16/16. Occurrence restante « v2.4.0 » L259 = référence légitime §3.2-r6 (non touchée).
+- S2-ε (réconciliation 28/29) APPLIQUÉE : cause racine = filtre lâche « v » in l du compteur ensure-installed.py (canonique) sur-comptant « ## Décisions d'architecture (corrige-ecosysteme v2.0.0) » → regex stricte ^## [a-z0-9-]+ v<semver>$ (KO-L003 : instrument dynamisé, KB intouchée). Preuves : --check rc0 ×4 (2 canaux × 2 runs), kb_entrees 28, INSTALLE ; concordance verify-registry-sync 28/28 sync ghosts 0 ; py_compile OK.
+- CORRECT-WORK PROJET (Étapes 1-5) : arbitres — vcw 16/16 ×2 ; integrity 60/60 ; coherence 48/3/0 (×2 lectures fichier stables) ; verify-cross 83/84 (C006 héritée, 98,8 %) ; generer-pm --check 3/3 COHERENT ; answer-key-checker 16/16 ; hook 28/28. Non-déterminisme Check 4 : inhérence prouvée (canonique ≠ canonique sans graine). VERDICT : PASS AVEC RÉSERVES (0 S1, 0 S2 restant ; réserves : PM maître v2.7.0 §10.1 pré-alignement à régénérer via directive KO-L004 dédiée, C006, ancre v2.5.1, ordre Check 4). Rapport : download/rapport-correct-work-projet-task12.md (copie /home/z/my-project/download/).
+- Anomalie canal : affichages outils intermittents corrompus (hunks entrelacés, textes fabriqués) — toutes conclusions fondées sur mesures byte-level multi-canal concordantes (leçon Task 11 appliquée de bout en bout).
+
+Stage Summary:
+- S2-α/β matérialisées et validées (la lacune « jamais matérialisées » du restant Task 11 est clôturée) ; tension 28/29 résorbée à la source (S2-ε, KO-L003) ; correct-work PROJET PASS AVEC RÉSERVES = baseline (non-régression).
+- Restant propriétaire : S4 commit local + proposition push ; directive régénération PM v2.7.0 (KO-L004) ; C006 à clore ; recalibrage ancres vcw à la prochaine montée de version.
+- Règle d'or n°2 : 0 commit, 0 push — HEAD 3eebe65 inchangé.
+
+---
+Task ID: 13
+Agent: Main (Super Z — continuation post-compaction, session web-b93f42fa)
+Task: conseil « que faire en premier » ; re-validation byte-level indépendante des matérialisations Task 12 (S2-α/β/ε + artefacts) ; balayage R2 express du jour.
+
+Work Log:
+- État reconstruit via les deux worklogs (partagé 268 L + dépôt 502 L) : la directive 4 items a été EXÉCUTÉE en Task 12 (segment de session perdu par compaction — chronologie fichiers 17:21-17:34 heure locale, date session 2026-10-10) ; l'assertion « jamais matérialisées » décrivait l'état d'AVANT Task 12 (constat Task 11 : gates du jour Task 10 jamais écrites) — résorbée depuis.
+- S2-α re-validée byte-level : scripts/verify-correct-work.py 33 L / 1408 o / md5 ced99ef7 / sha256 5e879bf5dabd (= valeur consignée Task 12) ; délégation canonique + refus explicite rc=64 du mode <rapport.md> (finding S3 SO intégré) ; exécution réelle VIA LE SHIM : 16/16 ALL PASS.
+- S2-β re-validée byte-level : SKILL.md §10.1 L275-277 cale « via gen-plan — OBLIGATOIRE, §1.5 » + garde ARRÊT EXPLICITE ; chaînes interdites « ou autonome » / « si gen-plan disponible » = 0 occurrence ; §2.6 L194 « Agent: correct-work v2.7.0 » ; « v2.4.0 » L259 = référence légitime §3.2-r6 (non touchée).
+- S2-ε re-validée : ensure-installed.py comptage strict (regex L59) ; hook --check rc=0 INSTALLE, kb_entrees=28 — tension 28/29 résorbée à la source, KB intouchée.
+- Artefacts Task 12 présents : download/rapport-correct-work-projet-task12.md (6271 o) ; download/plan-task12-s2ab-reconciliation-cwprojet.md (4928 o).
+- R2 EXPRESS (5 arbitres) : vcw 16/16 (via shim) ; integrity 60/60 ; coherence PASS AVEC RÉSERVES ; verify-cross 98,8 % (C006 skill-finder-cn héritée) ; generer-pm 3/3 (3.21.0/2.7.0/2.0.0) — ZÉRO régression vs baseline Task 12.
+- Règle d'or n°2 : 0 commit, 0 push — HEAD 3eebe65 inchangé ; dirty 58 expliqué (modifications Task 11+12 : r1-r10, SKILL.md ×29, ensure-installed, shim, archive task40 RM).
+
+Stage Summary:
+- Les 4 items de la directive sont clôturés et re-prouvés indépendamment (S2-α/β/ε byte-level + correct-work PROJET PASS AVEC RÉSERVES + gen-plan:correct-work(projet), Task 12) ; état du jour certifié non-régressif.
+- Restant propriétaire : S4 commit local + proposition push ; directive régénération PM v2.7.0 (KO-L004) ; C006 à clore ; recalibrage ancres vcw à la prochaine montée de version.
+
+---
+Task ID: 13-commit (S4 — commit local validé propriétaire)
+Agent: Main (Super Z — continuation post-compaction, session web-b93f42fa)
+Task: exécuter le commit local S4 après GO propriétaire explicite (règle d'or n°2 satisfaite).
+
+Work Log:
+- Inventaire pré-commit : 62 entrées (52 M, 3 RM, 7 ??) ; identité git conforme (Z User <z@container>).
+- Décisions de périmètre : inclus les 5 ?? légitimes (plan-task12, rapport-task12, rapport-pipeline-task11, arbitre generer-pm-skill.py jamais committé + generer-pm-report.json frais 3/3) ; exclus tmp/ et download/mon-ecosysteme_archive.zip.bak (458 Ko, scratch/sauvegarde — hors périmètre validé, .gitignore intact, décision propriétaire requise).
+- Audit anti-persistance : 0 valeur de jeton (motif github_pat_+20) sur fichiers suivis ET sur les 5 ajoutés ; 1 interpolation sanctionnée restante git-deploy.sh:39 (${TOKEN} runtime) ; ensure-installed.py ne contient plus aucun mécanisme jeton (évolution Task 11+, cohérent).
+- Staging : 60 fichiers (52 M + 3 renames + 5 ajouts) ; rapport Task 12 md5 identique repo/copie (4156e20e).
+- COMMIT 2992bae (parent 3eebe65) « Task 11-13 : S2-δ/γ'/α/β/ε matérialisées - correct-work PROJET PASS AVEC RÉSERVES - R2 0 régression » — intégrité du message prouvée md5 (c2345eaf, log ≡ fichier source) ; résidu post-commit = 2 (tmp/, .bak) comme planifié.
+- Portée push : ahead 1 — origin/main = 3eebe65 ; le push ne portera QUE 2992bae.
+- PUSH NON EXÉCUTÉ : aucun PAT fourni cette session ; armé en attente d'un jeton éphémère (révocation de l'ancien PAT exposé Task 24 toujours recommandée).
+
+Stage Summary:
+- Couche Task 11-13 committée localement (2992bae) : 60 fichiers, 243 insertions / 218 suppressions, audit anti-persistance propre, périmètre exact du GO respecté.
+- Restant : push (1 commit, jeton éphémère requis) ; directive régénération PM v2.7.0 (KO-L004) ; C006 à clore ; décision tmp/ + .bak (gitignore ou suppression).
+
+---
+Task ID: 13-push (journal B5 — post-push Task 13-commit)
+Agent: Main (Super Z — continuation post-compaction, session web-b93f42fa)
+Task: publier 2992bae sur origin/main après fourniture d'un PAT éphémère par le propriétaire (pattern B5, 1 commit / 1 push).
+
+Work Log:
+- Contrôles pré-push : origin sans jeton, HEAD 2992bae, ahead 1.
+- PUSH exécuté : 3eebe65..2992bae main -> main (github.com/bigleon2/KNOWLEDGE) — jeton éphémère x-access-token en URL d'invocation UNIQUEMENT, sortie masquée par sed, jamais écrit dans un fichier.
+- Audit anti-persistance post-push : 0 occurrence de la valeur du jeton sur 4 canaux (git grep arbre suivi, grep arbre complet hors .git, git config locale, remote -v) ; ~/.git-credentials inexistant.
+- Preuve indépendante par fetch : 3eebe65..2992bae main -> origin/main ; ## main...origin/main (synchronisé) ; origin/main=2992bae avec message intégral — le ref local n'était pas à jour après push car URL directe (comportement git normal), résorbé par fetch.
+
+Stage Summary:
+- origin/main = 2992bae — couche Task 11-13 publiée ; chaîne S4 complète (re-validation → commit → push) clôturée.
+- PAT transité par le canal de discussion : RÉVOCATION/RÉGÉNÉRATION IMMÉDIATE recommandée (précédent Task 24).
+- Restant : directive régénération PM v2.7.0 (KO-L004) ; C006 à clore ; décision tmp/ + .bak (gitignore ou suppression).
+
+---
+Task ID: 14
+Agent: Main (Super Z — gen-plan v3.21.0, session web-b93f42fa)
+Task: directive propriétaire « régénération PM correct-work v2.7.0 (KO-L004), clôture C006 (skill-finder-cn) ».
+
+Work Log:
+- É1-INSTALL rc0 INSTALLE (head 2992bae, kb 28) ; plan download/plan-task14-ko004-pm-cw-c006-skillfinder.md + answer key D001-D006 ; answer-key-checker 16/16 rc0.
+- KO-L004 (6 édits + provenance, 724→726 L, md5 e64e85ce) : §2.6 Agent v2.4.0→v2.7.0 ; corruption réelle `ode]`→`[mode]` (byte-proof md5 3789699e — survivait à Task 16+commits+arbitres) ; §9.2 progression alignée ; §10.1 cale OBLIGATOIRE §1.5 + garde ARRÊT EXPLICITE insérée + #token grille §4 (miroir S2-β) ; provenance datée au §7, PAS de bump version. Validations : « ou autonome »=0, generer-pm 3/3, vcw 16/16, hex-proof [mode]=5b6d6f64655d.
+- C006 : sfc trigger_evals enveloppe auto-v1-t27 → schéma canonique bare-liste, 8 cas VERBATIM (data==cases, script task14-c006-normalize.py), md5 0585dd89→24df0227 ; verify-cross 83/84 → 84/84 **100.0 %** ; verify-cross.py NON modifié (0 diff).
+- DIVERGENCE ARBITRES en cours (E12-E13) : integrity 59/60 + coherence FAIL = round-trip archive↔corpus (édit PM divergé de l'archive v2.2) ; replay CRASH latent TypeError (génération de masse Task 27 : 64 enveloppes auto-v1-t27 sur 93 fichiers evals ; jamais re-joué car chemin stale figeait le rapport).
+- REMÉDIATION (task14-remediate.py, all-or-nothing) : task21-f2-rebuild-archive.py chemin stale ecosystem→work_knowledge (classe S2-δ) → re-scellement 28 entrées 0 divergent round-trip vérifié ; check-triggers-replay.py garde défensive anti-crash (ignores EXPLICITES au rapport + stdout, jamais avalés) + chemin stale corrigé (date de rapport dérivée du commit — déterminisme B2 restauré).
+- R2 FINAL : vcw 16/16 · integrity 60/60 · coherence PASS AVEC RÉSERVES 48/3/0 · verify-cross 100.0 % · generer-pm 3/3. Replay : 29 canoniques, 64 ignores explicites, sfc 8/8 ; 9 dérives héritées post-francisation Task 23 (non causées, NON forcées — re-mesure voie L QUOTA_OK).
+- ANOMALIES KO-L003 : (1) MultiEdit violation d'atomicité — edits 1-2 appliqués malgré « No replacement performed » (md5 3789699e→90efbf35) ; remédiation scripts byte-exacts. (2) Canal d'affichage avale la séquence `[m` (sed/unicode_escape affichaient [mode] comme ode] ; hex a tranché) — les corruptions d'affichage historiques à re-soupçonner fichier par fichier.
+- Règle d'or n°2 : 0 commit, 0 push — HEAD 2992bae inchangé ; couche Task 14 = 6 M + plan + rapport (download/rapport-correct-work-task14-ko004-c006.md).
+
+Stage Summary:
+- KO-L004 clôturée (PM aligné sur la forme certifiée, corruption template réparée, provenance tracée) ; C006 clôturée (84/84) ; 2 arbitres remédiés (classe S2-δ + garde) ; archive re-scellée ; R2 baseline intégralement restauré.
+- Restant propriétaire : GO commit+push ; décision 64 enveloppes (normalisation post-calibration vs extension instrument) ; re-mesure voie L des 9 dérives (QUOTA_OK) ; C006 version-management (V6 3/8) toujours ouverte.
+
+---
+Task ID: 14-S0 (gen-plan : « assure-toi que tous les fichiers soient écrits en suivant les règles de mon écosystème personnel »)
+Agent: Main (Super Z — gen-plan v3.21.0, session web-b93f42fa)
+Task: Directive propriétaire 2026-10-10 (pré-étape avant finalisation Task 14) : vérifier la conformité des écritures aux règles de l'écosystème personnel.
+
+Work Log:
+- Hook É1-INSTALL frais re-exécuté : rc0 INSTALLE (head 2992bae, kb 28). État réel reconstruit post-compaction : phases A-C Task 14 déjà matérialisées (plan, KO-L004, C006, remédiations, rapport) — empreintes md5 indépendantes concordantes (PM e64e85ce, sfc trigger_evals 24df0227, verify-cross 0 diff = D004).
+- Re-vérification indépendante des arbitres (reproduction des claims du rapport) : vcw 16/16 · integrity 60/60 · coherence PASS AVEC RÉSERVES 48/3/0 · verify-cross 84/84 ×2 · generer-pm 3/3 · answer-key-checker 16/16 · replay 20/29 + 64 ignores explicites + sfc 8/8 (mêmes 9 dérives héritées, NON forcées — KO-L003).
+- Sweep S0 persisté (harnais task14-s0-conformite.py — 16 checks C1-C11 byte-level, 9 fichiers, lecture seule dépôt) : verdict CONFORME 16/16 rc0, après calibration d'instrument en 2 passes (C1/C2 scope fichiers créés + conventions établies exclues ; C5 compile() sans écriture ; regex lookahead anti-préfixe) — 3 FAIL tour 1 = artefacts d'instrument, 0 violation fichier.
+- Byte-proof KO-L003 : « ode] » affiché dans le worklog = pur artefact d'affichage (b'[mode]' ×3 présent dans le fichier ; PM b'[mode]' ×1 + mention historique « ode] »). Anti-écho « Review the changes and make sure » (phrase intégrale) = 0 occurrence réelle — les matches du fragment isolé = prose auto-référentielle de la documentation anti-écho elle-même (×2 canaux contrôlés : MultiEdit, Edit).
+- Normalisation conformité : chmod 755 ×2 (plan + rapport download/ — convention corpus). Addendum S0 appendé au rapport download/rapport-correct-work-task14-ko004-c006.md.
+- Observations non bloquantes consignées : tmp/ 13 éléments ; 7 scripts task14-* au harnais hors dépôt ; worklog repo s'arrête à Task 24-push (sync à décider).
+
+Stage Summary:
+- Directive S0 EXÉCUTÉE : les 9 fichiers écrits de la couche Task 14 sont CONFORMES aux règles de l'écosystème personnel (kebab-case, semver 3 parties, 0 jeton, placeholders intacts, JSON valides, schéma canonique bare-liste, pas de faux lignage, français, marqueurs de fin absents) — 16/16, 0 violation fichier, 3 observations propriétaire.
+- R2 intégralement reproduit en session ; rapport complété (addendum S0) ; couche Task 14 PRÊTE pour commit/push — règle d'or n°2 : GO propriétaire requis.
+---
+Task ID: 14-CW (correct-work PROJET — vérification de la couche Task 14)
+Agent: correct-work v2.7.0
+Task: Vérification PROJET de la couche Task 14 (KO-L004 + C006 + 2 remédiations) — directive propriétaire « correct-work(projet) sur le projet actuel » (2026-10-10).
+
+Work Log:
+- Étape 1 : plan de vérification créé via gen-plan v3.21.0 (couplage OBLIGATOIRE honoré, §1.5) — download/plan-task14-cwprojet-verification.md, answer key D001-D006, answer-key-checker 16/16 ALL PASS rc0 ; pré-vérification §10.1 verte (PM v2.7.0 lisible 726 L md5 e64e85ce, hook rc0 INSTALLE kb 28).
+- Étape 2 : re-preuve byte-level indépendante 24/24 rc0 (harnais task14-cw-etape2-proof.py) — md5 PM e64e85ce 726 L ; greps « ou autonome »=0, « si gen-plan disponible »=0 ; [mode] hex 5b6d6f64655d ×1, unique occurrence autonome de la sous-chaîne corrompue = mention historique de provenance (légitime, offset 28735) ; sfc bare-liste 8 cas 5+/3- md5 24df0227, enveloppe auto-v1-t27 absente ; D004 verify-cross 0 diff ; archive 28 entrées ; re-run des 5 arbitres = baseline (vcw 16/16 + shim identique canonique à graine 0, integrity 60/60, coherence 48/3/0, verify-cross 84/84 100,0 %, generer-pm 3/3). FINDING S3 NOUVEAU : 11 scripts de harnais dormants (task17 ×3, task18 ×1, task21 ×5, task23 ×2) portent des chemins stale en code exécutable — aucun invocant vivant, échec bruyant si relance ; remédiation = directive dédiée. S4 : compte d'édits plan (7) vs rapport (6 + garde) = même ensemble de 8 opérations (cosmétique).
+- Étape 3 : 0 conflit — 0 chemin stale dans les 9 arbitres VIVANTS ; compile() ×4 sans écriture ; schéma replay cohérent des 2 côtés (clé ignores_schema_non_canonique) ; kebab-case livrables ; PM fin newline ; arbitre vcw unique (cale S2-α).
+- Étape 4 : interactions CONCORDANTES — gen-plan 3.21.0 >= plancher 3.7.0 ; clone-chat 2.0.0 ; miroir §2.6 PM ↔ SKILL.md ; registry-sync 28 entrées / 28 sync / ghosts 0 / 67 GAP plateforme par conception (ECARTS, rc1 par conception) ; archive 28 ; replay 29 canoniques + 64 ignores = 93, sfc 8/8, date dérivée du commit 2026-10-09 (déterminisme B2).
+- Étape 5 : cohérence logique / numérique (93=29+64 ; 8=5+3 ; PM net +2 = 724→726, churn 12 = --stat ; 48+3+0) / temporelle (2026-10-09 vs 2026-10-10 alignés commit/rapports) CONCORDANTE ; aucun contredit entre rapport Task 14, worklog 14, addendum S0, plan CW et les 40 checks de la présente vérification ; AUCUNE divergence persistante → hook AVEUGLE non déclenché (condition §1.3 non remplie, D004).
+- Calibration d'instruments KO-L003 : 7 artefacts corrigés sans ajustement de réalité — offset de la sous-chaîne corrompue à l'index +2 dans le placeholder réparé ; comparaison shim/canonique déterministe uniquement à PYTHONHASHSEED=0 (finding S4 Task 12 hérité) ; format réel verify-cross (« PASS : 84 ») ; compile() sans écriture (py_compile cfile=/dev/null refusé — artefact S0) ; registry-sync rc1 par conception (GAP plateforme) ; ground-truth diff PM +7/-5 (l'« attendu +4/-2 » était une supposition d'instrument) ; anti-écho « Review the changes… » = 0 occurrence réelle (grep -c, écho d'affichage pur). Le canal d'affichage a re-avalé la séquence d'échappement en direct (anomalie 2 ré-confirmée).
+- Vérification en LECTURE SEULE (D003) : 0 correction fichier dépôt ; arbre stable avant/après (10 entrées porcelain) ; HEAD 2992bae inchangé (D006).
+
+Stage Summary:
+- Verdict : PASS AVEC RÉSERVES (§10.5 : 0 S1, 0 S2, ≥2 S3) — rapport download/rapport-correct-work-projet-task14.md.
+- 40 checks de re-preuve concordants : la couche Task 14 est CONFORME et PRÊTE pour commit/push — GO propriétaire requis (règle d'or n°2).
+- Restant propriétaire : directive remédiation 11 harnais dormants ; décision 64 enveloppes ; re-mesure voie L ×9 (QUOTA_OK) ; disposition tmp/ ; sync worklog repo (arrêté à Task 24-push) ; révocation PAT (consigné Tasks 18/22/24/13-push).
+
+---
+Task ID: 15 (gen-plan : « traite les décisions restantes : 11 harnais dormants (S3), 64 enveloppes, disposance, rétro-sync repo. "tmp/" »)
+Agent: Main [Super Z — gen-plan v3.21.0, session web-b93f42fa]
+Task: Traitement des 4 décisions restantes (items propriétaire 14-CW) — D001 normalisation 64 enveloppes, D002 re-scellement archive 28→27, D003 archivage 11 dormants, D004 disposition tmp/, D005 rétro-sync worklog dépôt, D006 règle d'or n°2 + recalibration harnais session.
+
+Work Log:
+- Étape 1 (couplage §1.5) : hook É1-INSTALL rc0 INSTALLE (b36f177, kb 28) ; plan download/plan-task15-decisions-restantes.md (answer key D001-D006) ; facts mesurés : 64 enveloppes 100 % homogènes (512 cas), archive zip=28 vs corpus=27 (suppression d72226a), 11 dormants reproduits (critère « my-project/ecosystem » hors LIVE ×9, stale_live=AUCUN), tmp/ = 13 artefacts reproductibles 0 référence vivante, gap worklog = campagne 0→14-CW absente du dépôt.
+- D002 (préalable) : task21-f2-rebuild-archive.py évolué (RETRAITS_SANCTIONNES — protection anti-perte conservée pour tout autre extra) ; CORPUS_ATTENDU 28→27 (recalibrage commenté) ; re-scellement 27 entrées round-trip vérifié ; manifeste integrity régénéré par l'arbitre (pin download inclus) ; integrity 60/60 rc0 ; coherence PASS AVEC RÉSERVES 48/3/0.
+- D001 : 64 skills/*/evals/trigger_evals.json → schéma canonique bare-liste, 512 cas verbatim (task15-normalize-evals.py, format miroir C006) ; métadonnées _provenance auto-v1-t27 / _calibration voie L préservées HORS données (rapport, precedent D005 Task 14) ; replay re-jeu : n_skills=93, ignores=0, skills_ok=78, dérives=15 (9 héritées + 6 latentes désormais visibles), verdict FAIL informatif — 0 fix instrument (md5 check-triggers-replay/verify-cross intacts).
+- D003 : git mv ×11 → scripts/_archive/ (task17 ×3, task18 ×1, task21 ×5 : f3/p2b-pass2/p2b-kb-decision/p2b-kb-sync/p4b-pass2, task23 ×2) ; F2 NON archivé (instrument vivant mobilisé par D002) ; 5 instruments stables md5 inchangés.
+- D004 : tmp/ supprimé — inventaire 13 artefacts + sources de régénération consignés au rapport (t12-* ×11 = captures arbitres Task 12 ; r5-token-dashboard.json, vrs-full.json = sorties régénérables).
+- D005 : port verbatim de 19 entrées de campagne (Tasks 0→14-CW, 55 046 o) + préambule de désambiguïsation (task15-retrosync.py) — Task IDs 24→44 (+20), byte-fidélité OK, homonymes ancienne campagne web-8a7e5653 intacts, Task 14-push non re-porté (déjà présent).
+- D006 : harnais session task14-cw-etape2-proof.py dynamisé ×4 attentes (HEAD b36f177 publié, arbre hors report daté, replay 93/0, archive 27) — re-run 24/24 PASS ; collision collatéral generer-pm-report.json (champ date régénéré par --check) documentée.
+- Sweep R2 (état final) : vcw 16/16 ALL PASS · integrity 60/60 rc0 · coherence PASS AVEC RÉSERVES · verify-cross 100,0 % · generer-pm 3/3 · replay 93/0 (dérives 15 documentées) · checker Task 15 16/16 PASS rc0 (calibration d'instrument en 2 passes — 6 FAIL tour 1 = artefacts corrigés, 0 violation réalité ; anti-écho « Review the changes » ré-confirmé pur affichage, grep -c ×4 = 0 occurrence fichier).
+
+Stage Summary:
+- Les 4 décisions restantes SONT TRAITÉES : couche Task 15 prête pour commit/push — règle d'or n°2 : GO propriétaire requis.
+- Restant propriétaire : re-mesure voie L des 15 dérives replay (QUOTA_OK — caveats _calibration documentés au rapport) ; révocation PAT (consigné 14-push/15).

@@ -12,6 +12,16 @@ CORPUS = BASE / "skills" / "@mon-ecosysteme"
 ARCHIVE = BASE / "download" / "mon-ecosysteme_archive.zip"
 BAK = ARCHIVE.with_suffix(".zip.bak")
 
+# Retraits sanctionnés : entrées de l'ancienne archive à supprimer du re-scellement
+# (au lieu d'échouer en « extra hors homologues » — protection anti-perte conservée
+# pour tout autre extra). Traçabilité : chaque retrait = suppression propriétaire
+# publiée, référencée ici avec son commit et sa décision de calibration.
+RETRAITS_SANCTIONNES = {
+    # suppression propriétaire d72226a (UI web, couche Task 14-push) —
+    # re-scellement Task 15 (D002, plan-task15-decisions-restantes.md)
+    "clone-discussion-2026-09-27-ecosysteme-knowledge-b13-r7-f.md",
+}
+
 corpus_files = sorted(p.name for p in CORPUS.glob("*.md"))
 print(f"corpus : {len(corpus_files)} fichiers .md")
 
@@ -26,6 +36,8 @@ with zipfile.ZipFile(ARCHIVE, "w", zipfile.ZIP_DEFLATED) as z:
         if name.endswith("/"):
             continue
         short = name.split("@mon-ecosysteme/")[-1]
+        if short in RETRAITS_SANCTIONNES:
+            continue
         if short in set(corpus_files):
             data = (CORPUS / short).read_bytes()
         else:
@@ -40,6 +52,7 @@ with zipfile.ZipFile(ARCHIVE) as z:
                             for m in znames)]
     extras = [n for n in znames
               if (n.split("@mon-ecosysteme/")[-1] if "@mon-ecosysteme/" in n else n) not in set(corpus_files)
+              and (n.split("@mon-ecosysteme/")[-1] if "@mon-ecosysteme/" in n else n) not in RETRAITS_SANCTIONNES
               and not n.startswith("homologues/")]
 print(f"nouvelle archive : {len(znames)} entrées ; divergents : {divergent or '—'} ; "
       f"extras hors homologues : {extras or '—'}")

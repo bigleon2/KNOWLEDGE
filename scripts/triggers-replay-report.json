@@ -1,25 +1,455 @@
 {
-  "date": "2026-10-09",
+  "date": "2026-10-10",
   "task": "Task 21 — campagne P0-P6, arbitre V6 (recommandation R1 Task 19)",
   "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
   "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
-  "n_skills": 29,
-  "skills_ok": 20,
-  "skills_derive": 9,
+  "n_skills": 93,
+  "skills_ok": 78,
+  "skills_derive": 15,
   "verdict": "FAIL",
   "derives": [
+    "agent-browser",
     "agent-creator",
+    "ai-news-collectors",
     "audio-metadata",
+    "gaokao-recommend-schools",
+    "jd-resume-tailor",
     "pdf-llm",
     "prompt-engineering",
+    "qingyan-research",
     "script-mon-ecosysteme-infrastructure",
     "script-reviewer",
     "skills-inventory",
+    "ui-ux-pro-max",
     "version-management",
     "vue-upload"
   ],
   "skills": {
+    "ASR": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 30,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill ASR pour cette tâche : la tâche « ASR »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "asr",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « ASR »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "asr"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « ASR » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "asr"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « ASR » avec ASR",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "aide",
+            "asr"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « ASR » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "asr"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "LLM": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 29,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill LLM pour cette tâche : la tâche « LLM »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "llm",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « LLM »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "llm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « LLM » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "llm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « LLM » avec LLM",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "aide",
+            "llm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « LLM » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "llm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "TTS": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 31,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill TTS pour cette tâche : la tâche « TTS »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "tts",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « TTS »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "tts"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « TTS » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "tts"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « TTS » avec TTS",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "aide",
+            "tts"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « TTS » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "tts"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "VLM": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 27,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill VLM pour cette tâche : la tâche « VLM »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "utilis",
+            "vlm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « VLM »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "vlm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « VLM » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "vlm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « VLM » avec VLM",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "aide",
+            "vlm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « VLM » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "vlm"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "agent-browser": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 19,
+      "score_officiel": "5/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "utilise le skill agent-browser pour cette tâche : Automatiser des interactions web",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.182,
+          "hits": [
+            "agent",
+            "browser"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Automatiser des interactions web",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "j'ai besoin de Automatiser des interactions web — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "aide-moi à Automatiser des interactions web avec agent-browser",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.222,
+          "hits": [
+            "agent",
+            "browser"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu Automatiser des interactions web ?",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "agent-creator": {
       "version": "2.1.0",
       "n_cases": 7,
@@ -103,6 +533,356 @@
             "agent"
           ],
           "ok": false
+        }
+      ]
+    },
+    "ai-news-collectors": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 48,
+      "score_officiel": "5/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "utilise le skill ai-news-collectors pour cette tâche : la tâche « ai »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "collector",
+            "news",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « ai »",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "j'ai besoin de la tâche « ai » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.2,
+          "hits": [
+            "quell"
+          ],
+          "ok": false
+        },
+        {
+          "query": "aide-moi à la tâche « ai » avec ai-news-collectors",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "collector",
+            "news"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « ai » ?",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "aminer-daily-paper": {
+      "version": "1.1.3",
+      "n_cases": 8,
+      "n_keywords": 32,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill aminer-daily-paper pour cette tâche : la tâche « aminer »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aminer",
+            "daily",
+            "paper",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « aminer »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aminer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « aminer » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "aminer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « aminer » avec aminer-daily-paper",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "aminer",
+            "daily",
+            "paper"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « aminer » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "aminer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "aminer-deep-search": {
+      "version": "2.0.1",
+      "n_cases": 8,
+      "n_keywords": 68,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill aminer-deep-search pour cette tâche : la tâche « aminer »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aminer",
+            "deep",
+            "search",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « aminer »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aminer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « aminer » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "aminer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « aminer » avec aminer-deep-search",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "aminer",
+            "deep",
+            "search"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « aminer » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "aminer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "anti-pua": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 53,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill anti-pua pour cette tâche : la tâche « anti »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "anti",
+            "pua",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « anti »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "anti"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « anti » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "anti"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « anti » avec anti-pua",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "anti",
+            "pua"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « anti » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "anti"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
         }
       ]
     },
@@ -293,6 +1073,94 @@
         }
       ]
     },
+    "auto-target-tracker": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 33,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill auto-target-tracker pour cette tâche : la tâche « auto »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "auto",
+            "target",
+            "tracker"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « auto »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "auto"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « auto » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "auto"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « auto » avec auto-target-tracker",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "auto",
+            "target",
+            "tracker"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « auto » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "auto"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "autonomous-agent": {
       "version": "1.1.0",
       "n_cases": 8,
@@ -388,6 +1256,267 @@
         }
       ]
     },
+    "blog-writer": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 45,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill blog-writer pour cette tâche : la tâche « blog »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "blog",
+            "utilis",
+            "writer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « blog »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "blog"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « blog » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "blog"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « blog » avec blog-writer",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "blog",
+            "writer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « blog » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "blog"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "charts": {
+      "version": "1.0.1",
+      "n_cases": 8,
+      "n_keywords": 104,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill charts pour cette tâche : la tâche « charts »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "chart",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « charts »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "chart"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « charts » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "chart"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « charts » avec charts",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "chart"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « charts » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "chart"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "statist"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "cheat-sheet": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 46,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill cheat-sheet pour cette tâche : la tâche « cheat »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "cheat",
+            "sheet",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « cheat »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "cheat"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « cheat » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "cheat"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « cheat » avec cheat-sheet",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "cheat",
+            "sheet"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « cheat » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "cheat"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "clone-chat": {
       "version": "2.0.0",
       "n_cases": 7,
@@ -471,6 +1600,264 @@
           "score": 0.2,
           "hits": [
             "format"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "coding-agent": {
+      "version": "1.0.5",
+      "n_cases": 8,
+      "n_keywords": 10,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill coding-agent pour cette tâche : la tâche « coding »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "agent",
+            "coding"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « coding »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "coding"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « coding » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "coding"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « coding » avec coding-agent",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "agent",
+            "coding"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « coding » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "coding"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "content-strategy": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 39,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill content-strategy pour cette tâche : la tâche « content »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "cont",
+            "strategy"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « content »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "cont"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « content » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "cont"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « content » avec content-strategy",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "cont",
+            "strategy"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « content » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "cont"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "contentanalysis": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 20,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill contentanalysis pour cette tâche : la tâche « contentanalysis »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "contentanalysi"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « contentanalysis »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "contentanalysi"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « contentanalysis » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "contentanalysi"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « contentanalysis » avec contentanalysis",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "contentanalysi"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « contentanalysis » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "contentanalysi"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
           ],
           "ok": true
         }
@@ -831,6 +2218,450 @@
         }
       ]
     },
+    "design": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 28,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill design pour cette tâche : la tâche « design »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "design",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « design »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "design",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « design » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "design",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « design » avec design",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "design",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « design » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "design",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "docx": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 30,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill docx pour cette tâche : la tâche « docx »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "docx",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « docx »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "docx",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « docx » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "docx",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « docx » avec docx",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "docx",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « docx » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "docx",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "dream-interpreter": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 30,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill dream-interpreter pour cette tâche : la tâche « dream »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "dream",
+            "interpreter",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « dream »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "dream"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « dream » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "dream"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « dream » avec dream-interpreter",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "dream",
+            "interpreter"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « dream » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "dream"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "experiment-suite": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 29,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill experiment-suite pour cette tâche : la tâche « experiment »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "experim",
+            "suit",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « experiment »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "experim"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « experiment » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "experim"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « experiment » avec experiment-suite",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "experim",
+            "suit"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « experiment » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "experim"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "finance": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 37,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill finance pour cette tâche : la tâche « finance »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "financ"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « finance »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "financ"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « finance » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "financ"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « finance » avec finance",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "financ"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « finance » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "financ"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
     "fleet-engineering": {
       "version": "1.0.0",
       "n_cases": 7,
@@ -926,6 +2757,541 @@
         }
       ]
     },
+    "fullstack-dev": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 28,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill fullstack-dev pour cette tâche : la tâche « fullstack »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "dev",
+            "fullstack"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « fullstack »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "fullstack"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « fullstack » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "fullstack"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « fullstack » avec fullstack-dev",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "dev",
+            "fullstack"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « fullstack » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "fullstack"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "gaokao-collect-student-info": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 36,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill gaokao-collect-student-info pour cette tâche : la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "collect",
+            "gaokao",
+            "info",
+            "stud"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « gaokao » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « gaokao » avec gaokao-collect-student-info",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "collect",
+            "gaokao",
+            "info",
+            "stud"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « gaokao » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "gaokao-fetch-volunteers": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 30,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill gaokao-fetch-volunteers pour cette tâche : la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "fetch",
+            "gaokao",
+            "volunteer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « gaokao » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « gaokao » avec gaokao-fetch-volunteers",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "fetch",
+            "gaokao",
+            "volunteer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « gaokao » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "gaokao-generate-report": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 25,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill gaokao-generate-report pour cette tâche : la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "gaokao",
+            "generat",
+            "report"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « gaokao » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « gaokao » avec gaokao-generate-report",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "gaokao",
+            "generat",
+            "report"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « gaokao » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "gaokao-recommend-majors": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 21,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill gaokao-recommend-majors pour cette tâche : la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "gaokao",
+            "major",
+            "recommend"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « gaokao » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « gaokao » avec gaokao-recommend-majors",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "gaokao",
+            "major",
+            "recommend"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « gaokao » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "gaokao-recommend-schools": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 26,
+      "score_officiel": "7/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "utilise le skill gaokao-recommend-schools pour cette tâche : la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "gaokao",
+            "recommend",
+            "school"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « gaokao »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « gaokao » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « gaokao » avec gaokao-recommend-schools",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "gaokao",
+            "recommend",
+            "school"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « gaokao » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "gaokao"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "analys",
+            "donn"
+          ],
+          "ok": false
+        }
+      ]
+    },
     "gen-plan": {
       "version": "3.21.0",
       "n_cases": 8,
@@ -1018,6 +3384,182 @@
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "get-fortune-analysis": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 15,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill get-fortune-analysis pour cette tâche : la tâche « get »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "analysi",
+            "fortun",
+            "get"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « get »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "get"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « get » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "get"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « get » avec get-fortune-analysis",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "analysi",
+            "fortun",
+            "get"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « get » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "get"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "gift-evaluator": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 31,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill gift-evaluator pour cette tâche : la tâche « gift »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "evaluator",
+            "gift"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « gift »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "gift"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « gift » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "gift"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « gift » avec gift-evaluator",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "evaluator",
+            "gift"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « gift » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "gift"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
           "ok": true
         }
       ]
@@ -1194,6 +3736,706 @@
         }
       ]
     },
+    "image-edit": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 34,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill image-edit pour cette tâche : la tâche « image »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "edit",
+            "imag",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « image »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « image » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « image » avec image-edit",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "edit",
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « image » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "image-generation": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 32,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill image-generation pour cette tâche : la tâche « image »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "gener",
+            "imag",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « image »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « image » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « image » avec image-generation",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "gener",
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « image » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "image-search": {
+      "version": "1.0.1",
+      "n_cases": 8,
+      "n_keywords": 2,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill image-search pour cette tâche : la tâche « image »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "imag",
+            "search"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « image »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « image » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « image » avec image-search",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "imag",
+            "search"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « image » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "image-understand": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 26,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill image-understand pour cette tâche : la tâche « image »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "imag",
+            "understand",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « image »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « image » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « image » avec image-understand",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "imag",
+            "understand"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « image » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "imag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "interview-designer": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 43,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill interview-designer pour cette tâche : la tâche « interview »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "designer",
+            "interview"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « interview »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "interview"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « interview » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "interview"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « interview » avec interview-designer",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "designer",
+            "interview"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « interview » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "interview"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "interview-prep": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 55,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill interview-prep pour cette tâche : la tâche « interview »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "interview",
+            "prep",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « interview »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "interview"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « interview » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "interview"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « interview » avec interview-prep",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aide",
+            "interview",
+            "prep"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « interview » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "interview"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "jd-resume-tailor": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 62,
+      "score_officiel": "5/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "utilise le skill jd-resume-tailor pour cette tâche : la tâche « jd »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "resum",
+            "tailor",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « jd »",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "j'ai besoin de la tâche « jd » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "aide-moi à la tâche « jd » avec jd-resume-tailor",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aide",
+            "resum",
+            "tailor"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « jd » ?",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "job-intent-tracker": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 56,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill job-intent-tracker pour cette tâche : la tâche « job »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "intent",
+            "job",
+            "tracker",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « job »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "job"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « job » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "job"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « job » avec job-intent-tracker",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "aide",
+            "intent",
+            "job",
+            "tracker"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « job » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "job"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "knowledge-observer": {
       "version": "1.0.0",
       "n_cases": 7,
@@ -1291,6 +4533,93 @@
         }
       ]
     },
+    "literature-survey": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 25,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill literature-survey pour cette tâche : la tâche « literature »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "literatur",
+            "survey",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « literature »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "literatur"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « literature » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "literatur"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « literature » avec literature-survey",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "literatur",
+            "survey"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « literature » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "literatur"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "loop-engineering": {
       "version": "1.1.0",
       "n_cases": 7,
@@ -1381,6 +4710,185 @@
           "hits": [
             "boucl"
           ],
+          "ok": true
+        }
+      ]
+    },
+    "market-research-reports": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 42,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill market-research-reports pour cette tâche : la tâche « market »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "market",
+            "report",
+            "research"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « market »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "market"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « market » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "market"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « market » avec market-research-reports",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "market",
+            "report",
+            "research"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « market » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "market"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "marketing-mode": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 22,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill marketing-mode pour cette tâche : la tâche « marketing »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "marketing",
+            "mode",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « marketing »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "marketing"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « marketing » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "marketing"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « marketing » avec marketing-mode",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aide",
+            "marketing",
+            "mode"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « marketing » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "marketing"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
           "ok": true
         }
       ]
@@ -1487,6 +4995,264 @@
         }
       ]
     },
+    "mindfulness-meditation": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 11,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill mindfulness-meditation pour cette tâche : la tâche « mindfulness »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "medit",
+            "mindfulnes"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « mindfulness »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "mindfulnes"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « mindfulness » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "mindfulnes"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « mindfulness » avec mindfulness-meditation",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "medit",
+            "mindfulnes"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « mindfulness » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "mindfulnes"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "multi-search-engine": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 18,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill multi-search-engine pour cette tâche : la tâche « multi »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "engin",
+            "multi",
+            "search"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « multi »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "multi"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « multi » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "multi"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « multi » avec multi-search-engine",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "engin",
+            "multi",
+            "search"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « multi » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "multi"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "pdf": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 62,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill pdf pour cette tâche : la tâche « pdf »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "pdf"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « pdf »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "pdf"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « pdf » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "pdf"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « pdf » avec pdf",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "pdf"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « pdf » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "pdf"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "pdf-llm": {
       "version": "1.0.0",
       "n_cases": 7,
@@ -1573,6 +5339,180 @@
         }
       ]
     },
+    "podcast-generate": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 35,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill podcast-generate pour cette tâche : la tâche « podcast »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "generat",
+            "podcast",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « podcast »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "podcast"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « podcast » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "podcast"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « podcast » avec podcast-generate",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "generat",
+            "podcast"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « podcast » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "podcast"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "pptx": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 25,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill pptx pour cette tâche : la tâche « pptx »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "pptx",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « pptx »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "pptx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « pptx » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "pptx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « pptx » avec pptx",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "pptx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « pptx » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "pptx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
     "prompt-engineering": {
       "version": "2.2.0",
       "n_cases": 7,
@@ -1648,6 +5588,359 @@
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "qingyan-research": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 55,
+      "score_officiel": "7/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "utilise le skill qingyan-research pour cette tâche : la tâche « qingyan »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "qingyan",
+            "research"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « qingyan »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "qingyan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « qingyan » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "qingyan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « qingyan » avec qingyan-research",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "qingyan",
+            "research"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « qingyan » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "qingyan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "analys",
+            "statist"
+          ],
+          "ok": false
+        }
+      ]
+    },
+    "quiz-html": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 41,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill quiz-html pour cette tâche : la tâche « quiz »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "html",
+            "quiz",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « quiz »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "quiz"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « quiz » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "quiz"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « quiz » avec quiz-html",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "html",
+            "quiz"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « quiz » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "quiz"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "quiz-mastery": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 64,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill quiz-mastery pour cette tâche : la tâche « quiz »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "mastery",
+            "quiz",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « quiz »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "quiz"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « quiz » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "quiz"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « quiz » avec quiz-mastery",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aide",
+            "mastery",
+            "quiz"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « quiz » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "quiz"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "research-explorer": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 26,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill research-explorer pour cette tâche : la tâche « research »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "explorer",
+            "research",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « research »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "research"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « research » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "research"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « research » avec research-explorer",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "explorer",
+            "research"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « research » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "research"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
           "ok": true
         }
       ]
@@ -1736,6 +6029,94 @@
           "hits": [
             "verdict"
           ],
+          "ok": true
+        }
+      ]
+    },
+    "resume-builder": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 54,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill resume-builder pour cette tâche : la tâche « resume »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "builder",
+            "resum",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « resume »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "resum"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « resume » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "resum"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « resume » avec resume-builder",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "aide",
+            "builder",
+            "resum"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « resume » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "resum"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
           "ok": true
         }
       ]
@@ -2112,6 +6493,95 @@
         }
       ]
     },
+    "seo-content-writer": {
+      "version": "2.0.1",
+      "n_cases": 8,
+      "n_keywords": 44,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill seo-content-writer pour cette tâche : la tâche « seo »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "cont",
+            "seo",
+            "utilis",
+            "writer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « seo »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "seo"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « seo » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "seo"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « seo » avec seo-content-writer",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "cont",
+            "seo",
+            "writer"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « seo » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "seo"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "skill-creator": {
       "version": "1.1.0",
       "n_cases": 8,
@@ -2470,6 +6940,457 @@
         }
       ]
     },
+    "stock-analysis-skill": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 80,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill stock-analysis-skill pour cette tâche : la tâche « stock »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "analysi",
+            "skill",
+            "stock",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « stock »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "stock"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « stock » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "stock"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « stock » avec stock-analysis-skill",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "analysi",
+            "skill",
+            "stock"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « stock » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "stock"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "storyboard-manager": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 32,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill storyboard-manager pour cette tâche : la tâche « storyboard »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "manager",
+            "storyboard",
+            "tach",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « storyboard »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "storyboard",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « storyboard » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "storyboard",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « storyboard » avec storyboard-manager",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "aide",
+            "manager",
+            "storyboard",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « storyboard » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "storyboard",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "study-buddy": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 115,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill study-buddy pour cette tâche : la tâche « study »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "buddy",
+            "study",
+            "tach",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « study »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "study",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « study » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "quell",
+            "study",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « study » avec study-buddy",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "aide",
+            "buddy",
+            "study",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « study » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "study",
+            "tach"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "task-review": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 22,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill task-review pour cette tâche : la tâche « task »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "review",
+            "tach",
+            "task",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « task »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "tach",
+            "task"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « task » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "tach",
+            "task"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « task » avec task-review",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "review",
+            "tach",
+            "task"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « task » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "tach",
+            "task"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "ui-ux-pro-max": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 49,
+      "score_officiel": "5/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "utilise le skill ui-ux-pro-max pour cette tâche : la tâche « ui »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "max",
+            "pro",
+            "utilis"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « ui »",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "j'ai besoin de la tâche « ui » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "aide-moi à la tâche « ui » avec ui-ux-pro-max",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "max",
+            "pro"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « ui » ?",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
     "version-management": {
       "version": "1.2.0",
       "n_cases": 8,
@@ -2538,6 +7459,278 @@
         },
         {
           "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "video-generation": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 29,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill video-generation pour cette tâche : la tâche « video »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "gener",
+            "tach",
+            "utilis",
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « video »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "tach",
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « video » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "besoin",
+            "tach",
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « video » avec video-generation",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "aide",
+            "gener",
+            "tach",
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « video » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "tach",
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "video-understand": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 26,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill video-understand pour cette tâche : la tâche « video »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "understand",
+            "utilis",
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « video »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « video » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « video » avec video-understand",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "understand",
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « video » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "video"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    "visual-design-foundations": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 23,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill visual-design-foundations pour cette tâche : la tâche « visual »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "design",
+            "found",
+            "visual"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « visual »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "visual"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « visual » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "visual"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « visual » avec visual-design-foundations",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "design",
+            "found",
+            "visual"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « visual » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "visual"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
           "expected": false,
           "trigger_m": false,
           "score": 0.0,
@@ -2643,72 +7836,454 @@
           "ok": true
         }
       ]
+    },
+    "web-reader": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 26,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill web-reader pour cette tâche : la tâche « web »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "reader",
+            "utilis",
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « web »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « web » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « web » avec web-reader",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "reader",
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « web » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "web-search": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 29,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill web-search pour cette tâche : la tâche « web »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "search",
+            "utilis",
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « web »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « web » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "besoin",
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « web » avec web-search",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "search",
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « web » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "web-shader-extractor": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 3,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill web-shader-extractor pour cette tâche : la tâche « web »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "extractor",
+            "shader",
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « web »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « web » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « web » avec web-shader-extractor",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "extractor",
+            "shader",
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « web » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "web"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "writing-plans": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 15,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill writing-plans pour cette tâche : la tâche « writing »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "plan",
+            "tach",
+            "writing"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « writing »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "tach",
+            "writing"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « writing » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "tach",
+            "writing"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « writing » avec writing-plans",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "plan",
+            "tach",
+            "writing"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « writing » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "tach",
+            "writing"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "xlsx": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 51,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "utilise le skill xlsx pour cette tâche : la tâche « xlsx »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "tach",
+            "utilis",
+            "xlsx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "la tâche « xlsx »",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "tach",
+            "xlsx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "j'ai besoin de la tâche « xlsx » — quelle est la procédure ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "tach",
+            "xlsx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "aide-moi à la tâche « xlsx » avec xlsx",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.4,
+          "hits": [
+            "tach",
+            "xlsx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "peux-tu la tâche « xlsx » ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "tach",
+            "xlsx"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
+          "ok": true
+        }
+      ]
     }
   },
-  "ignores_schema_non_canonique": [
-    "ASR",
-    "LLM",
-    "TTS",
-    "VLM",
-    "agent-browser",
-    "ai-news-collectors",
-    "aminer-daily-paper",
-    "aminer-deep-search",
-    "anti-pua",
-    "auto-target-tracker",
-    "blog-writer",
-    "charts",
-    "cheat-sheet",
-    "coding-agent",
-    "content-strategy",
-    "contentanalysis",
-    "design",
-    "docx",
-    "dream-interpreter",
-    "experiment-suite",
-    "finance",
-    "fullstack-dev",
-    "gaokao-collect-student-info",
-    "gaokao-fetch-volunteers",
-    "gaokao-generate-report",
-    "gaokao-recommend-majors",
-    "gaokao-recommend-schools",
-    "get-fortune-analysis",
-    "gift-evaluator",
-    "image-edit",
-    "image-generation",
-    "image-search",
-    "image-understand",
-    "interview-designer",
-    "interview-prep",
-    "jd-resume-tailor",
-    "job-intent-tracker",
-    "literature-survey",
-    "market-research-reports",
-    "marketing-mode",
-    "mindfulness-meditation",
-    "multi-search-engine",
-    "pdf",
-    "podcast-generate",
-    "pptx",
-    "qingyan-research",
-    "quiz-html",
-    "quiz-mastery",
-    "research-explorer",
-    "resume-builder",
-    "seo-content-writer",
-    "stock-analysis-skill",
-    "storyboard-manager",
-    "study-buddy",
-    "task-review",
-    "ui-ux-pro-max",
-    "video-generation",
-    "video-understand",
-    "visual-design-foundations",
-    "web-reader",
-    "web-search",
-    "web-shader-extractor",
-    "writing-plans",
-    "xlsx"
-  ]
+  "ignores_schema_non_canonique": []
 }

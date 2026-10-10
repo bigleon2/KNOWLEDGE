@@ -115,7 +115,11 @@ METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au r
 # Recalibrage L004 (session web-b93f42fa, 2026-10-09) : 26 → 28 — corpus réel certifié
 # (28 fichiers à HEAD 3eebe65 ; PMs GEN-PLAN v3.19.0/v3.20.0 recréés,
 # KB Tasks 39-40) — arbitre dynamisé, jamais la réalité (KO-L003).
-CORPUS_ATTENDU = 28
+# Recalibrage Task 15 (session web-b93f42fa, 2026-10-10) : 28 → 27 — suppression
+# propriétaire d72226a (clone-discussion-2026-09-27-…-b13-r7-f.md, UI web) —
+# corpus réel certifié 27 fichiers, re-scellement archive aligné (F2 retrait
+# sanctionné D002, plan-task15-decisions-restantes.md).
+CORPUS_ATTENDU = 27
 
 results = []
 
@@ -139,7 +143,7 @@ def main():
 
     print("=== 1. Corpus canonique @mon-ecosysteme (SHA-256) ===")
     corpus_files = sorted(os.listdir(CORPUS)) if os.path.isdir(CORPUS) else []
-    check(f"{CORPUS_ATTENDU} fichiers présents (Architecture v2.0 — N28, recalibré L004 Task 56)", len(corpus_files) == CORPUS_ATTENDU,
+    check(f"{CORPUS_ATTENDU} fichiers présents (Architecture v2.0 — N27, recalibré Task 15 d72226a)", len(corpus_files) == CORPUS_ATTENDU,
           f"{len(corpus_files)} fichiers")
     for fname in corpus_files:
         digest = sha256(os.path.join(CORPUS, fname))
