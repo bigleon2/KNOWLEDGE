@@ -81,9 +81,10 @@ def main():
     check("C14 plan d'exécution optimisé présent (plan vivant Task 17)",
           (REPO / "download/plan-task17-reexecution-optimisee.md").exists())
 
-    # Discipline
-    grep = subprocess.run(["git", "grep", "-c", "11AJSTJXQ0ryjZQBNslGQV", "HEAD"], capture_output=True, text=True)
-    check("C15 0 token VALUE dans l'arbre suivi", grep.returncode != 0 or "0" in grep.stdout)
+    # Discipline : recherche par fragments courts concaténés (le code ne porte JAMAIS un fragment long)
+    fragment = "11AJST" + "JXQ0"
+    grep = subprocess.run(["git", "grep", "-c", fragment, "HEAD"], capture_output=True, text=True)
+    check("C15 0 token VALUE dans l'arbre suivi", grep.returncode != 0, grep.stdout[:120])
     plan = (REPO / "download/plan-task17-reexecution-optimisee.md").read_text(encoding="utf-8")
     check("C16 plan : incident S3 étendu documenté + O1-O5 optimisations", "INCIDENT S3 ÉTENDU" in plan and "O1" in plan)
 
