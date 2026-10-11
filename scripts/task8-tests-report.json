@@ -1,0 +1,202 @@
+{
+ "task": "8",
+ "harnais": "task8-tests-n55-fusion",
+ "bilan": "39/39",
+ "results": [
+  {
+   "check": "T1.1 M3 ref-eng : blast radius 17/22 déterministe ×2 (>=15/>=20)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T1.1b verdict CRITIQUE (17 >= 8 — pivot n°55)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T1.2 M3 ref-test : évaluation de l'outil elle-même",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T1.3 M3 refactor-guard : backward inclut ref-eng + gen-plan",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T1.4 seuils verdict §1.3 (<4 OK / 4-7 PRESSION / >=8 CRITIQUE) codés",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T1.5 M1 : 7 familles de signaux nommées (SKILL.md §1.2)",
+   "verdict": "PASS",
+   "detail": "[]"
+  },
+  {
+   "check": "T1.5b M1 : sources mécaniques citées (§1.4 — arbitres existants)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T1.6 export graphe déterministe ×2 (rapport JSON byte-identique)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T1.7 graphe inclut les nœuds fusion (refactor-guard + fullstack-dev)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T1.8 trigger_evals ref-test : liste valide 5 pos / 2 neg",
+   "verdict": "PASS",
+   "detail": "pos=5 neg=2"
+  },
+  {
+   "check": "T2.1 modes D1-D4 + 6 invariants constitution (§1.2/§1.4)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T2.2 R4 : PM v3.23.0 archivé byte-identité, SHA scellé index §5",
+   "verdict": "PASS",
+   "detail": "bba1b9c40dda4793"
+  },
+  {
+   "check": "T2.3 R2 : corpus 8 fichiers, 1 PM GEN-PLAN = v3.23.1",
+   "verdict": "PASS",
+   "detail": "['PROMPT-MAITRE-GEN-PLAN-v3.23.1.md']"
+  },
+  {
+   "check": "T2.4 idempotence ×2 re-prouvée : g1a+g1b+g1c re-exécutés = 0 EDIT",
+   "verdict": "PASS",
+   "detail": "0 éditions"
+  },
+  {
+   "check": "T2.5 anti-auto-certification : invariant ref-eng §1.4-5 + règle ref-test §1.5-2",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T2.6 pré-vol M3 : rapport JSON du graphe présent (verdict journalisé)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T2.7 gouvernance G0-G3 (§1.3) + chaîne correct-work(groupe/projet)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T2.8 triangulation évaluateur/garde-fous/vérificateur ×2 arbres",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T2.9 preuves D3 : scripts d'opération persistés (jamais inline) + manifeste",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T2.10 generer-pm --check : 3 familles COHERENT après cascade",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.1 [canonique] ref-test = OUTIL (non discipline) : « Skill outil » + « n'est PAS une discipline » + §8 Rattachement",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.2 [canonique] ref-eng = discipline n°55 (se sers de ref-test comme d'un outil)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.3 [canonique] SHARED §7 : ligne outil + registre scindé ×3 (eng/test/guard)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.4 [canonique] gen-plan : bloc « Discipline de refactoring n°55 et son outil » + §3 refactor-guard",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.5 [canonique] refactor-guard v1.7.0 : frontmatter + KB + provenance CONVERGENCE",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.6 [canonique] fullstack-dev inscrit (KB) + « Utilisé par » correct-work",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.7 [canonique] convergence directive externe : modes step/step-ok + alias step-confirm/step-confim + clause NULL",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.8 [canonique] refactor-guard mécanique : 11 scripts stdlib + evals + references",
+   "verdict": "PASS",
+   "detail": "11 scripts"
+  },
+  {
+   "check": "T3.1 [hôte] ref-test = OUTIL (non discipline) : « Skill outil » + « n'est PAS une discipline » + §8 Rattachement",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.2 [hôte] ref-eng = discipline n°55 (se sers de ref-test comme d'un outil)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.3 [hôte] SHARED §7 : ligne outil + registre scindé ×3 (eng/test/guard)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.4 [hôte] gen-plan : bloc « Discipline de refactoring n°55 et son outil » + §3 refactor-guard",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.5 [hôte] refactor-guard v1.7.0 : frontmatter + KB + provenance CONVERGENCE",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.6 [hôte] fullstack-dev inscrit (KB) + « Utilisé par » correct-work",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.7 [hôte] convergence directive externe : modes step/step-ok + alias step-confirm/step-confim + clause NULL",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.8 [hôte] refactor-guard mécanique : 11 scripts stdlib + evals + references",
+   "verdict": "PASS",
+   "detail": "11 scripts"
+  },
+  {
+   "check": "T3.9 hygiène KB : 32 entrées + 0 frontmatter quoté (registre) + 0 blanc parasite",
+   "verdict": "PASS",
+   "detail": "entries=32 quoted=0 blancs=0"
+  },
+  {
+   "check": "T3.10 fusion 468a4c26 : source capturée (Tasks 25-28) + 4 productions intégrées (toilettage KB, fullstack-dev, resync=projection hôte, refactor-guard)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "T3.11 interactions : rapport JSON présent, 0 FAIL (PASS STRICT)",
+   "verdict": "PASS",
+   "detail": ""
+  }
+ ]
+}

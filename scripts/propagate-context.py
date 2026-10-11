@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.3)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.4)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -17,7 +17,7 @@ from pathlib import Path
 REPO_DIR = Path(__file__).parent.parent
 SKILLS_ROOT = REPO_DIR / "skills"
 
-CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.3)
+CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -26,7 +26,7 @@ CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.3)
 """
 
 CONTEXT_HEADER_L3 = '''"""
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.3)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.4)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -36,7 +36,7 @@ Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
 # Contenu interne de l'en-tête L3 (utilisé par le remplacement idempotent)
 L3_BLOCK_INNER = (
-    "⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.3)\n"
+    "⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.4)\n"
     "SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL\n"
     "Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)\n"
     "Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.\n"

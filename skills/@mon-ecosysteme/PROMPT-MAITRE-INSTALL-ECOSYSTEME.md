@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.6.3
+Version : 1.6.4
 Date : 2026-10-09
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -92,7 +92,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
-| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.23.0.md` | gen-plan v3.23.0 | 3 |
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.23.1.md` | gen-plan v3.23.1 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md` | correct-work v2.7.0 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | clone-chat v2.0.0 | 5 |
 
@@ -178,6 +178,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.6.4 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.23.0→v3.23.1 ; recalibrage croisé : SHARED v1.7.4 (§6.1), §2ter, §A.3 |
 | v1.6.3 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.22.1→v3.23.0 ; recalibrage croisé : SHARED v1.7.3 (§6.1), §2ter, §A.3 |
 | v1.6.2 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.22.0→v3.22.1 ; recalibrage croisé : SHARED v1.7.2 (§6.1), §2ter, §A.3 |
 | v1.6.1 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.21.0→v3.22.0 ; recalibrage croisé : SHARED v1.7.1 (§6.1), §2ter, §A.3 |
@@ -205,7 +206,7 @@ Note P4 : les SKILL.md + références des 4 skills sont créés en suivant le §
 ### §A.3 Registre KB cible (14 entrées)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.6.0, 2026-10-09) : gen-plan v3.23.0 · correct-work v2.7.0 · clone-chat v2.0.0 — cf. §2ter.
+Instantané courant (v1.6.0, 2026-10-09) : gen-plan v3.23.1 · correct-work v2.7.0 · clone-chat v2.0.0 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|

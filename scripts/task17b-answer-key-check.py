@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.3)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.4)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -36,7 +36,7 @@ def main():
     cw = (par_skill / "correct-work.md").read_text(encoding="utf-8")
     cc = (par_skill / "clone-chat.md").read_text(encoding="utf-8")
     check("C02 tables complètes (22/10/4 lignes de versions)",
-          sum(1 for l in gp.splitlines() if l.startswith("| v")) == 25
+          sum(1 for l in gp.splitlines() if l.startswith("| v")) == 26
           and sum(1 for l in cw.splitlines() if l.startswith("| v")) == 10
           and sum(1 for l in cc.splitlines() if l.startswith("| v")) == 4)
     check("C03 migration verbatim : lignes de tables d'origine présentes",
@@ -72,7 +72,7 @@ def main():
           and "historique-autres-elements.md" in readme)
     check("C12 index SHA-256 19 PMs conservé (§5)",
           # recalibrages KO-L004 (Tasks 3/6/7) : index §5 étendu à 22 entrées + 1 mention texte
-          readme.count("PROMPT-MAITRE-") == 23 and "| gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.6.1.md | 6356ae3e" in readme)
+          readme.count("PROMPT-MAITRE-") == 24 and "| gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.6.1.md | 6356ae3e" in readme)
     check("C13 procédure §4 étendue (mise à jour des historiques)",
           "historiques-par-skill/<skill>.md" in readme and "historique-autres-elements.md" in readme)
 

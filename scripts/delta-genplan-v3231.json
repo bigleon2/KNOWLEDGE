@@ -1,0 +1,40 @@
+{
+ "history": "Correction outil + fusion discussion externe 468a4c26 (Task 8, session web-b4d7dd19 — gen-plan(step)) : refactoring-test n'est plus déclaré discipline — il est l'OUTIL de la discipline n°55 refactoring-engineering (directive propriétaire : « seul refactoring-engineering est une discipline, qui se sert de refactoring-test comme un outil ») ; refactor-guard v1.7.0 déclaré (garde-fous des opérations — lignée externe 468a4c26, base hôte v1.2.0 portée R4, 11 scripts stdlib) ; fullstack-dev inscrit au registre KB (précédent vue-upload) ; toilettage KB (3 blancs parasites) ; S4 déquotes frontmatters (17 fichiers, valeurs inchangées) ; bloc PATTERN §1.6 outil+garde-fous, table §1.6 +§3 relations (refactor-guard +1 ligne) ; SHARED v1.7.3→v1.7.4 (§7 outil + registre ×3 lignes) ; PM-INSTALL v1.6.3→v1.6.4",
+ "subs": [
+  {
+   "old": "| **Refactoring engineering** | Discipline n°55 : déclaration/planification/exécution des opérations de refactoring (petites transformations préservant le comportement observable — arbitres, semver, R2/R4) ; évaluation indépendante obligatoire (anti-auto-certification) | §1.9 bloc n°55 ; E4/E7 ; E9-E14 |",
+   "new": "| **Refactoring engineering** | Discipline n°55 : déclaration/planification/exécution des opérations de refactoring (petites transformations préservant le comportement observable — arbitres, semver, R2/R4) ; se sert de refactoring-test comme d'un outil ; garde-fous : refactor-guard (fusion 468a4c26) | §1.9 bloc n°55 ; E4/E7 ; E9-E14 |",
+   "count": 1
+  },
+  {
+   "old": "| **Refactoring test** | Discipline n°55 : détection/évaluation des situations de refactoring + graphe d'interactions (blast radius) ; verdict machine OK/PRESSION/CRITIQUE — producteur d'information, ne modifie rien | §1.9 bloc n°55 ; E4/E7 ; E9-E14 |",
+   "new": "| **Refactoring test** | Outil de la discipline n°55 (non discipline — Task 8) : détection/évaluation des situations de refactoring + graphe d'interactions (blast radius) ; verdict machine OK/PRESSION/CRITIQUE — producteur d'information, ne modifie rien | §1.9 bloc n°55 ; E4/E7 ; E9-E14 |",
+   "count": 1
+  },
+  {
+   "old": "**Disciplines de refactoring n°55 (v3.23.0, directive propriétaire session web-b4d7dd19 : « le système de refactoring de mon écosystème déclaré et tagué en tant que discipline »)** : le système de refactoring effectif de l'écosystème (correct-work modes CIBLE/DIRECT + procédures cascade PM + arbitres mécaniques + archivage @historique R4) est déclaré comme discipline `refactoring-engineering` ; le détecteur/évaluateur `refactoring-test` (producteur d'information, ne modifie rien — anti-auto-certification) est appelable par tout élément (gen-plan, agents, disciplines, scripts). gen-plan les mobilise :",
+   "new": "**Discipline de refactoring n°55 et son outil (v3.23.1 — Task 8 : correction directive propriétaire « seul refactoring-engineering est une discipline, qui se sert de refactoring-test comme un outil » ; fusion discussion externe 468a4c26 : refactor-guard v1.7.0 déclaré comme garde-fous des opérations)** : le système de refactoring effectif de l'écosystème (correct-work modes CIBLE/DIRECT + procédures cascade PM + arbitres mécaniques + archivage @historique R4) est déclaré comme discipline `refactoring-engineering` ; l'outil `refactoring-test` (producteur d'information, non discipline, ne modifie rien — anti-auto-certification) est appelable par tout élément (gen-plan, agents, disciplines, scripts) ; le garde-fous `refactor-guard` (score de risque H01-H15, sandbox, échelle rollout) est mobilisé par refactoring-engineering pendant les opérations à risque. gen-plan les mobilise :",
+   "count": 1
+  },
+  {
+   "old": "| Étape | Disciplines n°55 mobilisées | Mécanisme |",
+   "new": "| Étape | Discipline n°55, outil et garde-fous mobilisés | Mécanisme |",
+   "count": 1
+  },
+  {
+   "old": "Source de vérité : SHARED §7 (n°55) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB.",
+   "new": "Source de vérité : SHARED §7 (n°55) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB. Les opérations à risque mobilisent refactor-guard (garde-fous — fusion 468a4c26).",
+   "count": 1
+  },
+  {
+   "old": "| refactoring-engineering | Mobilisation n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Conception/exécution des opérations de refactoring (E4/E7 + situations E9-E14) — version >= v1.0.0 |",
+   "new": "| refactoring-engineering | Mobilisation n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Conception/exécution des opérations de refactoring (E4/E7 + situations E9-E14) — version >= v1.0.1 |\n| refactor-guard | Garde-fous de refactoring (fusion discussion 468a4c26 — lignée externe v1.7.0) | Mobilisé par refactoring-engineering pendant les opérations à risque (score H01-H15, sandbox, rollout) ; détection de besoins (hook E13) — version >= v1.7.0 |",
+   "count": 1
+  },
+  {
+   "old": "| refactoring-test | Mobilisation n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Détection/évaluation + graphe d'interactions (blast radius) — verdict machine, version >= v1.0.0 |",
+   "new": "| refactoring-test | Outil n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Détection/évaluation + graphe d'interactions (blast radius) — verdict machine, version >= v1.0.1 |",
+   "count": 1
+  }
+ ]
+}

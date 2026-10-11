@@ -1,6 +1,6 @@
 ---
 name: fleet-engineering
-version: "1.0.1"
+version: 1.0.1
 category: ecosystem
 language: fr
 tags:
@@ -23,7 +23,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.3)
+## §0 — Contexte Système (SHARED v1.7.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -95,7 +95,7 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.23.0 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; `references/orchestration-skills-agents.md` — matrice.
+- gen-plan v3.23.1 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; `references/orchestration-skills-agents.md` — matrice.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |

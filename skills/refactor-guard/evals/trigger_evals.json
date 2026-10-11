@@ -1,0 +1,10 @@
+[
+  {"query": "refactorise le module core de mon écosystème, il est devenu ingérable", "should_trigger": true},
+  {"query": "gen-plan détecte une dette technique sur ce fichier — que dit refactor-guard ?", "should_trigger": true},
+  {"query": "évalue le risque de restructurer ce module avant de toucher quoi que ce soit", "should_trigger": true},
+  {"query": "refactor-guard : scan le graphe de dépendances de scripts/ et dis-moi s'il y a des cycles", "should_trigger": true},
+  {"query": "je veux découper cette God Class de 2000 lignes sans rien casser", "should_trigger": true},
+  {"query": "écris-moi un nouveau module de scraping depuis zéro", "should_trigger": false},
+  {"query": "clone cette discussion", "should_trigger": false},
+  {"query": "bonjour", "should_trigger": false}
+]

@@ -1,6 +1,6 @@
 ---
 name: refactoring-engineering
-version: "1.0.0"
+version: 1.0.1
 category: ecosystem
 language: fr
 tags:
@@ -12,7 +12,7 @@ tags:
   - gouvernance
   - archivage-r4
 description: >-
-  Skill discipline refactoring engineering : déclarer, planifier et exécuter les OPÉRATIONS DE REFACTORING de l'écosystème (skills, corpus PM, scripts, agents, documents) par une série de petites transformations préservant le comportement observable — où « comportement observable » = verdicts d'arbitres inchangés, semver strict, invariants R2 (non-régression)/R4 (archivage byte-identité), idempotence ×2. Discipline n°55 (comme graph-engineering) : déclare le système de refactoring effectif de l'écosystème (correct-work modes CIBLE/DIRECT + procédures cascade PM + arbitres mécaniques + @historique R4) et l'organise : pré-checks verrouillés = golden master AVANT toute modification, éditions chirurgicales assert count==1, dry-run puis réel, recalibrage croisé KO-L004, archivage @historique, re-certification. Évaluation INDÉPENDANTE obligatoire par refactoring-test (pré-vol/post-vol — anti-auto-certification) ; vérification par correct-work et les arbitres. Appelé par gen-plan (conception de plan E4/E7 + situations de refactoring détectées en E9-E14) et mobilisable par tout élément. Spécialise la discipline refactoring engineering n°55 (source de vérité : SHARED §7). Fondements documentés : references/fondements-academiques.md.
+  Skill discipline refactoring engineering : déclarer, planifier et exécuter les OPÉRATIONS DE REFACTORING de l'écosystème (skills, corpus PM, scripts, agents, documents) par une série de petites transformations préservant le comportement observable — où « comportement observable » = verdicts d'arbitres inchangés, semver strict, invariants R2 (non-régression)/R4 (archivage byte-identité), idempotence ×2. Discipline n°55 (comme graph-engineering) : déclare le système de refactoring effectif de l'écosystème (correct-work modes CIBLE/DIRECT + procédures cascade PM + arbitres mécaniques + @historique R4) et l'organise : pré-checks verrouillés = golden master AVANT toute modification, éditions chirurgicales assert count==1, dry-run puis réel, recalibrage croisé KO-L004, archivage @historique, re-certification. Se sert de refactoring-test comme d'un OUTIL d'évaluation indépendante (pré-vol/post-vol — anti-auto-certification ; refactoring-test est l'outil de la présente discipline, non une discipline — correction directive propriétaire Task 8) ; vérification par correct-work et les arbitres. Appelé par gen-plan (conception de plan E4/E7 + situations de refactoring détectées en E9-E14) et mobilisable par tout élément. Garde-fous mobilisés pendant les opérations : refactor-guard (score de risque H01-H15, sandbox, échelle rollout — fusion discussion 468a4c26, lignée externe v1.7.0). Spécialise la discipline refactoring engineering n°55 (source de vérité : SHARED §7). Fondements documentés : references/fondements-academiques.md.
 dependencies:
   - skill: gen-plan
     version: ">=3.15.0"
@@ -23,13 +23,16 @@ dependencies:
   - skill: correct-work
     version: ">=2.7.0"
     used_at: "vérification post-opératoire — correct-work(groupe) après chaque groupe d'opérations, correct-work(projet) en fin de chaîne"
+  - skill: refactor-guard
+    version: ">=1.7.0"
+    used_at: "garde-fous des opérations D3/D4 — score de risque H01-H15, sandbox obligatoire, échelle rollout, maker-checker (fusion discussion 468a4c26)"
 read_when:
   - Déclencher quand la demande concerne : déclarer, planifier ou exécuter une opération de refactoring — transformations préservant le comportement, zéro-régression, cascade versionnée, archivage.
   - Déclencher si la demande mentionne : refactoring, restructuration, opération de refactoring, migration progressive, zéro-régression, refactorer un skill/corpus/script, pré-checks verrouillés, archivage @historique.
   - Ne pas déclencher pour la DÉTECTION/ÉVALUATION seule (refactoring-test) ni pour la vérification post-hoc générique (correct-work).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.3)
+## §0 — Contexte Système (SHARED v1.7.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -82,6 +85,7 @@ Artefacts par opération : fiche D1 (worklog ou plan), scripts d'édition verrou
 - `gen-plan` — détenteur principal : conception des opérations à E4/E7 ; situations détectées en E9-E14 routent vers D1.
 - `refactoring-test` — évaluateur indépendant OBLIGATOIRE (pré-vol M2/M3, post-vol M4) ; refactoring-engineering consomme ses verdicts, jamais l'inverse.
 - `correct-work` — bras de vérification (correct-work(groupe)/projet) ; correct-work vérifie post-hoc, refactoring-engineering transforme — complémentaires, non fusionnés.
+- `refactor-guard` — garde-fous des opérations : score de risque (H01-H15), sandbox obligatoire, échelle de déploiement, maker-checker ; mobilisé pendant D3/D4 pour les opérations à risque ; triangulation avec refactoring-test (évaluation) et correct-work (vérification).
 - `spec-driven-development` — la fiche D1 est une micro-spécification (invariants = constitution, preuves = critères d'acceptation mécaniques).
 - `harness-engineering` — les arbitres et gardes du harnais sont les post-conditions exécutées de toute opération.
 - `graph-engineering` — le graphe KB (arêtes versionnées) est la matière première du blast radius (consommé via refactoring-test).
@@ -95,16 +99,17 @@ Kebab-case ; semver strict (PATCH = recalibrage, MINOR = nouvelle capacité, MAJ
 `evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — voisins correct-work et harness-engineering) ; déclenchement attendu sur les requêtes d'exécution/planification de refactoring explicites ; seuil de routage 0.5. Baseline A2 : EN ATTENTE (QUOTA_OK — directive ; précédent n°54 : mesurée en Task dédiée).
 
 ## §6 — TRAÇABILITÉ
+- v1.0.1 (2026-10-12, session web-b4d7dd19 Task 8 — gen-plan(step), fusion discussion externe 468a4c26) : calibration de déclaration — « refactoring-engineering se sert de refactoring-test comme un outil » (seule discipline n°55) ; dependencies += refactor-guard >=1.7.0 (garde-fous) ; §3/§8 triangulation évaluateur/garde-fous/vérificateur.
 - v1.0.0 (n°55, 2026-10-12, session web-b4d7dd19 Task 7 — gen-plan(step) G3/G4) : matérialisation de la discipline refactoring engineering (directive propriétaire : le système de refactoring de l'écosystème déclaré et tagué comme discipline d'engineering, dédié aux opérations de refactoring, appelé par gen-plan à la conception et en situation) ; le système déclaré = correct-work v2.7.0 + procédures cascade PM + arbitres + @historique R4 (prouvé par les cascades v3.22.0/v3.22.1 — Tasks 3/6) ; sources : recherche web approfondie (rapport Task 7) ; baseline A2 en attente QUOTA.
 
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées (behavior-preserving, préparatoire, golden master, migrations progressives, fitness functions).
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.23.0 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
+- gen-plan v3.23.1 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
 - correct-work v2.7.0 (SKILL.md) §1.2/§10 — modes de vérification déclarés.
 - `scripts/refactoring-test-graph.py` — bras mécanique de l'évaluateur indépendant.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |
 |------------|--------------------|------------------|
-| refactoring engineering | gen-plan (E4/E7 conception + situations E9-E14) | correct-work (vérification post-opératoire), refactoring-test (évaluation indépendante obligatoire), tout élément transformateur supervisé |
+| refactoring engineering | gen-plan (E4/E7 conception + situations E9-E14) | correct-work (vérification post-opératoire), refactoring-test (OUTIL — évaluation indépendante obligatoire), refactor-guard (garde-fous des opérations), tout élément transformateur supervisé |

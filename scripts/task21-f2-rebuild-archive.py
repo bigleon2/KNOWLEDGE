@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.3)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.4)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -33,6 +33,11 @@ RETRAITS_SANCTIONNES = {
     # reinstallation.md) : 19 PMs historiques DÉPLACÉS git mv vers
     # skills/@historique/prompts-maitres/{gen-plan,correct-work}/ — byte-identité
     # vérifiée ci-dessous contre l'ancienne archive (garde anti-perte renforcée).
+    # cascade gen-plan v3.23.1 (Task 8, session web-b4d7dd19 — gen-plan(step),
+    # correction outil n°55 + fusion discussion 468a4c26) : PM GEN-PLAN v3.23.0
+    # DÉPLACÉ git mv vers skills/@historique/prompts-maitres/gen-plan/ —
+    # byte-identité vérifiée ci-dessous (garde anti-perte ; SHA bba1b9c40dda…).
+    "PROMPT-MAITRE-GEN-PLAN-v3.23.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md", "PROMPT-MAITRE-GEN-PLAN-v3.7.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.8.0.md", "PROMPT-MAITRE-GEN-PLAN-v3.8.1.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.9.0.md", "PROMPT-MAITRE-GEN-PLAN-v3.10.0.md",

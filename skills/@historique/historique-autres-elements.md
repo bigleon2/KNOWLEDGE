@@ -24,6 +24,7 @@
 | v1.7.0 | 2026-10-11 | §7 matérialisation des définitions normatives des 3 disciplines n°54 dans la table de définitions (spec-driven development, memory engineering, fleet engineering — ancrage état de l'art dans `references/fondements-academiques.md` de chaque skill ; registre d'assignation inchangé — R4) — session web-b4d7dd19, objectif principal discussion Qwen |
 | v1.7.1 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.0 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver — adaptation locale journalisée : D010 + précédents v3.21.0) |
 | v1.7.2 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.1 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver ; cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
+| v1.7.4 | 2026-10-12 | §7 correction outil (ligne « Refactoring test » = outil de la discipline n°55 — Task 8, directive propriétaire) + registre scindé en 3 lignes (refactoring-engineering discipline / refactoring-test outil / refactor-guard garde-fous — fusion discussion 468a4c26) ; §6.1 référence gen-plan portée à v3.23.1 (recalibrage mécanique KO-L004 — `generer-pm-skill.py`, bump PATCH conformité semver) — session web-b4d7dd19 Task 8 gen-plan(step) |
 | v1.7.3 | 2026-10-12 | §7 matérialisation des définitions normatives des 2 disciplines de refactoring n°55 (refactoring engineering, refactoring test — ancrage état de l'art dans `references/fondements-academiques.md` de chaque skill ; registre d'assignation +1 ligne) ; §6.1 référence gen-plan portée à v3.23.0 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver) — session web-b4d7dd19 Task 7 gen-plan(step) |
 
 ## 2. SYNC-CONTEXT.md (procédure de synchronisation des blocs)
@@ -36,6 +37,7 @@
 | v1.4.3 | 2026-10-11 | Codification SHARED §1.2 en v1.6.8 (dossier `@historique/` — R4/R2/KO-L003, re-scellement KO-L004) ; cascade resync 2 N1 + 93 N2 + 49 N3 + 2 .agent (Task 17) |
 | v1.4.4 | 2026-10-11 | Recalibrage état gen-plan v3.22.0 — v3.21.0 archivé (16 PMs GEN-PLAN) ; décision propagation N2 tracée : bloc §0 byte-identique v1.6.8→v1.7.1, aucune re-propagation requise (cascade n°54, session web-b4d7dd19) |
 | v1.4.5 | 2026-10-11 | Recalibrage état gen-plan v3.22.1 — v3.22.0 archivé (17 PMs GEN-PLAN) ; propagation marqueur §0 v1.7.1→v1.7.2 recalibrée et exécutée (cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
+| v1.4.7 | 2026-10-12 | Révision Task 8 (cascade gen-plan v3.23.1 — gen-plan(step), fusion discussion 468a4c26) : propagation marqueur §0 v1.7.3→v1.7.4 (constantes recalibrées — skills + scripts + agents, idempotent ×2) |
 | v1.4.6 | 2026-10-12 | Recalibrage état gen-plan v3.23.0 — v3.22.1 archivé (18 PMs GEN-PLAN) ; propagation marqueur §0 v1.7.2→v1.7.3 recalibrée et exécutée (97 skills + 51 scripts + 2 agents, idempotent ×2 — matérialisation n°55, session web-b4d7dd19 Task 7) |
 
 ## 3. README.md (guide de référence de l'écosystème)
@@ -89,7 +91,8 @@ Registre à 30 entrées — instantané des versions archivé ci-dessous (source
 | script-mon-ecosysteme-infrastructure | v1.1.0 | skill-finder-cn | v1.0.0 |
 | knowledge-observer | v1.0.0 | vue-upload | v1.2.0 |
 | script-creator | v1.1.0 | script-reviewer | v1.0.0 |
-| refactoring-engineering | v1.0.0 | refactoring-test | v1.0.0 |
+| refactoring-engineering | v1.0.1 | refactoring-test | v1.0.1 |
+| refactor-guard | v1.7.0 | fullstack-dev | v1.0.0 |
 
 ## 7. Mise à jour de ce fichier
 

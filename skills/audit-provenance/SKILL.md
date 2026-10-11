@@ -1,6 +1,6 @@
 ---
 name: audit-provenance
-version: "1.1.0"
+version: 1.1.0
 category: ecosystem
 language: fr
 description: >
@@ -35,7 +35,7 @@ read_when:
 Un skill pour tracer l'origine et le lignage des artefacts de l'écosystème, détecter
 ceux qui en sont dépourvus et corriger les manques de manière idempotente.
 
-## §0 — Contexte Système (SHARED v1.7.3)
+## §0 — Contexte Système (SHARED v1.7.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

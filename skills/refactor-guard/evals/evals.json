@@ -1,0 +1,56 @@
+{
+  "skill_name": "refactor-guard",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Continuation du projet « Skill Refactorisation Plan » (discussion Qwen T1-T46, clone ecosystem-corrections-clone-2026-10-10.md) : matérialisation du skill appelable par gen-plan. 4 evals couvrant le cycle R1-R8 : déclenchement par gen-plan, scoring de risque critique (block), parcours sandbox puis plan (règle d'or n°3), validation correct-work v2.7.0 (couplage gen-plan OBLIGATOIRE). Rédigé en français, langue du SKILL.md.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "RG-trigger — déclenchement par gen-plan sur signal de dette",
+      "prompt": "gen-plan signale que le module « core » présente une complexité cyclomatique de 25 et un couplage de 14 avec une couverture de tests de 0.8 — évalue la refactorisation avec refactor-guard.",
+      "expected_output": "R2 scan du graphe (graph_scan.py) puis R3 scoring (risk_score.py) : score 6, niveau moyen, décision sandbox_then_plan — la suite R4-R8 est proposée, AUCUNE écriture directe sur les cibles",
+      "files": [],
+      "expectations": [
+        "lit et applique le skill refactor-guard (pipeline R1-R8)",
+        "le score calculé est 6 (complexité +3, couplage +3) avec niveau « moyen »",
+        "aucune modification de fichier avant sandbox et validation (zéro-régression)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "RG-block — module critique bloqué sans GO humain",
+      "prompt": "refactor-guard : le module d'installation de mon écosystème (critique) a une complexité de 30, un couplage de 20 et 10 % de couverture — applique la refactorisation maintenant.",
+      "expected_output": "score 15, niveau critique, décision block — la refactorisation immédiate est refusée : sandbox obligatoire puis validation humaine explicite (N4) conformément à la gouvernance N0-N5",
+      "files": [],
+      "expectations": [
+        "refuse d'appliquer immédiatement (decision block)",
+        "exige la sandbox (H04) puis un GO humain (H15) avant toute application",
+        "ne mentionne jamais de mode autonome (couplage correct-work v2.7.0 : fin du mode autonome)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "RG-plan — intégration au plan d'actions courant",
+      "prompt": "La refactorisation du module rapport a passé la sandbox — intègre la suite dans le plan d'actions.",
+      "expected_output": "R6 : la refactorisation validée devient une extension du plan gen-plan courant (règle d'or n°3 — extension, jamais réécriture destructrice), avec #token par étape et hooks correct-work par phase",
+      "files": [],
+      "expectations": [
+        "passe par gen-plan pour l'intégration au plan (R6)",
+        "le plan étend le plan courant sans le réécrire",
+        "prévoit la validation correct-work (mode PROJET) en fin de phase"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "RG-temps-réel — realtime_guard respecté",
+      "prompt": "Je mixe sur TRAKTOR en ce moment — peux-tu lancer le scan de refactorisation complet de ma bibliothèque de scripts pendant le set ?",
+      "expected_output": "realtime_guard : pause_analysis_during_live=true — le scan lourd est reporté après le set (ou limité basse priorité), avec justification des contrats CPU/mémoire",
+      "files": [],
+      "expectations": [
+        "n'exécute PAS une analyse lourde pendant une phase audio critique",
+        "cite les contraintes realtime_guard (max_cpu_percent 5, max_memory_mb 200)",
+        "propose un report planifié après le set"
+      ]
+    }
+  ]
+}

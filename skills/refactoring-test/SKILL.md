@@ -1,6 +1,6 @@
 ---
 name: refactoring-test
-version: "1.0.0"
+version: 1.0.1
 category: ecosystem
 language: fr
 tags:
@@ -13,7 +13,7 @@ tags:
   - evaluation
   - verdict-machine
 description: >-
-  Skill discipline refactoring test : détecteur/évaluateur des situations de refactoring — reconnaître les situations où un refactoring devient nécessaire (signaux : duplication, dérive de terminologie, versions divergentes, asymétries KB, réserves récurrentes, churn de cascade, complexité des procédures), évaluer ces situations (risque, urgence, portée — scoring principal/intérêt adapté de SQALE), et générer un graphe d'interactions (depuis la KB + dependencies YAML) pour estimer l'impact (blast radius) des modifications futures. Verdict machine-à-machine OK/PRESSION/CRITIQUE consommable par tout élément de l'écosystème (gen-plan, agents, disciplines, scripts). PRODUCTEUR D'INFORMATION : ne modifie rien — l'exécution appartient à refactoring-engineering ; l'indépendance de l'évaluateur vis-à-vis de l'exécutant est la garantie anti-auto-certification. Bras mécanique : scripts/refactoring-test-graph.py (stdlib). Spécialise la discipline refactoring test n°55 (source de vérité : SHARED §7). Fondements documentés : references/fondements-academiques.md.
+  Skill outil refactoring test : détecteur/évaluateur des situations de refactoring — reconnaître les situations où un refactoring devient nécessaire (signaux : duplication, dérive de terminologie, versions divergentes, asymétries KB, réserves récurrentes, churn de cascade, complexité des procédures), évaluer ces situations (risque, urgence, portée — scoring principal/intérêt adapté de SQALE), et générer un graphe d'interactions (depuis la KB + dependencies YAML) pour estimer l'impact (blast radius) des modifications futures. Verdict machine-à-machine OK/PRESSION/CRITIQUE consommable par tout élément de l'écosystème (gen-plan, agents, disciplines, scripts). PRODUCTEUR D'INFORMATION : ne modifie rien — l'exécution appartient à refactoring-engineering ; l'indépendance de l'évaluateur vis-à-vis de l'exécutant est la garantie anti-auto-certification. Bras mécanique : scripts/refactoring-test-graph.py (stdlib). Outil de la discipline refactoring-engineering (n°55 — source de vérité : SHARED §7) : refactoring-engineering se sert de refactoring-test comme un outil d'évaluation ; refactoring-test n'est PAS une discipline (correction directive propriétaire, Task 8) et reste appelable par tout élément (gen-plan, agents, disciplines, scripts). Fondements documentés : references/fondements-academiques.md.
 dependencies:
   - skill: gen-plan
     version: ">=3.15.0"
@@ -24,7 +24,7 @@ read_when:
   - Ne pas déclencher pour l'EXÉCUTION d'un refactoring (refactoring-engineering) ni pour une vérification post-hoc générique (correct-work).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.3)
+## §0 — Contexte Système (SHARED v1.7.4)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -65,7 +65,7 @@ Source d'arêtes : registre KB ({{KB_PATH}}) parsé mécaniquement (sections **D
 4. **Verdict reproductible** : deux exécutions sur le même état produisent le même verdict (déterminisme ; le bras mécanique est stdlib).
 5. **R3** : un verdict non journalisé (worklog) est « en attente de journalisation », jamais « rendu ».
 
-### §1.6 Fondements (n°55, 2026-10-12)
+### §1.6 Fondements (outil de la discipline n°55, 2026-10-12)
 Détection multi-signaux (taxonomies de code smells — Fowler ; hotspots = complexité × fréquence de changement — Tornhill) ; dette principal/intérêt (SQALE — Letouzey ; Krauchanka) ; impact par graphe de dépendances et reachability (change impact analysis — program dependency graphs) ; blast radius avant action d'agent ; évaluation indépendante de l'exécution (characterization/golden master — Feathers ; fitness functions automatisées). Détail et sources : `references/fondements-academiques.md`.
 
 ## §2 — SPÉCIFICATION TECHNIQUE
@@ -85,15 +85,15 @@ Kebab-case ; semver strict ; verdicts OK/PRESSION/CRITIQUE (même vocabulaire qu
 `evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — voisins correct-work et graph-engineering) ; déclenchement attendu sur les requêtes de détection/évaluation/impact de refactoring explicites ; seuil de routage 0.5. Baseline A2 : EN ATTENTE (QUOTA_OK — directive ; précédent n°54 : mesurée en Task dédiée). La voie mécanique M3 est testable sans QUOTA (`--target` sur la KB).
 
 ## §6 — TRAÇABILITÉ
-- v1.0.0 (n°55, 2026-10-12, session web-b4d7dd19 Task 7 — gen-plan(step) G3/G4) : matérialisation de la discipline refactoring test (directive propriétaire : détecteur/évaluateur + graphe d'interactions pour estimer l'impact des modifications futures de refactoring-engineering) ; sources : recherche web approfondie (rapport Task 7) ; intégration gen-plan v3.23.0 §1.6 bloc n°55 ; baseline A2 en attente QUOTA.
+- v1.0.1 (2026-10-12, session web-b4d7dd19 Task 8 — gen-plan(step), fusion discussion externe 468a4c26) : correction de déclaration — refactoring-test n'est PAS une discipline ; il est l'OUTIL de la discipline refactoring-engineering (n°55) qui se sert de lui comme d'un outil d'évaluation indépendant (directive propriétaire explicite) ; frontmatter déquoté (S4 — valeur inchangée dans le bump).
+- v1.0.0 (n°55, 2026-10-12, session web-b4d7dd19 Task 7 — gen-plan(step) G3/G4) : matérialisation de la discipline refactoring test (directive propriétaire : détecteur/évaluateur + graphe d'interactions pour estimer l'impact des modifications futures de refactoring-engineering) ; sources : recherche web approfondie (rapport Task 7) ; intégration gen-plan v3.23.1 §1.6 bloc n°55 ; baseline A2 en attente QUOTA.
 
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées de la recherche web (détection, SQALE, impact analysis, blast radius, anti-auto-certification).
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.23.0 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
+- gen-plan v3.23.1 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
 - `scripts/refactoring-test-graph.py` — bras mécanique (graphe + verdict).
 
-## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
-| Discipline | Détenteur principal | Fonction héritée |
-|------------|--------------------|------------------|
-| refactoring test | gen-plan (E4/E7 + situations E9-E14) | refactoring-engineering (pré-vol/post-vol obligatoire), tout élément évaluateur (agents, scripts, disciplines) |
+## §8 — Rattachement à la discipline n°55 (décentralisé du SHARED §7)
+
+refactoring-test est l'OUTIL de la discipline `refactoring-engineering` (n°55) — non une discipline (correction directive propriétaire, Task 8, session web-b4d7dd19 : « seul refactoring-engineering est une discipline, qui se sert de refactoring-test comme un outil » ; fusion discussion externe 468a4c26). Détenteur principal : gen-plan (E4/E7 + situations E9-E14) ; consommateur obligatoire : refactoring-engineering (pré-vol/post-vol — anti-auto-certification) ; appelable par tout élément (agents, scripts, disciplines).
