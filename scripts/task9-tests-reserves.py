@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.5)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.6)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -76,14 +76,15 @@ def t_res1():
                        capture_output=True, text=True, cwd=CAN)
     check("T-R1.6 --generate refactor-guard = NO-OP (cohérence)", "NO-OP" in r.stdout)
     inst = read(CAN + "/skills/@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md")
-    check("T-R1.7 PM-INSTALL v1.6.5 : §2quater 4 familles + §2ter ligne REFACTOR-GUARD",
-          "Version : 1.6.5" in inst and "des 4 familles (gen-plan, correct-work, clone-chat, "
+    check("T-R1.7 PM-INSTALL v1.7.0 : §2quater 4 familles + §2ter ligne REFACTOR-GUARD + étape 6",
+          "Version : 1.7.0" in inst and "des 4 familles (gen-plan, correct-work, clone-chat, "
           "refactor-guard — décision D009 du 2026-10-12)" in inst
-          and "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md" in inst)
+          and "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md" in inst
+          and "| 6 | **refactor-guard**" in inst)
     shared = read(CAN + "/skills/@mon-ecosysteme/PROMPT-MAITRE-SHARED.md")
-    check("T-R1.8 SHARED v1.7.5 : §6.1 ligne REFACTOR-GUARD + PM-INSTALL v1.6.5",
-          "> **Version** : 1.7.5" in shared and "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md" in shared
-          and "| v1.6.5 |" in shared)
+    check("T-R1.8 SHARED v1.7.6 : §6.1 ligne REFACTOR-GUARD + PM-INSTALL v1.7.0",
+          "> **Version** : 1.7.6" in shared and "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md" in shared
+          and "| v1.7.0 |" in shared)
     kb = read(CAN + "/skills/KNOWLEDGE.md")
     check("T-R1.9 KB : décision D009 LEVÉE consignée (calibration refactor-guard)",
           "décision propriétaire D009 LEVÉE" in kb and "PM canonique PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0 au corpus" in kb)

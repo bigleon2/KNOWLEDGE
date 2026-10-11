@@ -23,7 +23,7 @@
 | Planifier une tâche / un projet | gen-plan (dernière version) | PM gen-plan le plus récent | E1-E15, 4 modes |
 | Vérifier / corriger un travail | correct-work v2.7.0 (gen-plan OBLIGATOIRE à l'Étape 1) | PM correct-work le plus récent | 5 étapes, 4 modes |
 | Archiver une session / clone | clone-chat | PM clone-chat le plus récent | 7+1 étapes, 8 checks |
-| Installer / réinstaller l'écosystème | PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — SOURCE UNIQUE | ce fichier (§A + pipeline 10 étapes) | corpus -> registre -> arbitres |
+| Installer / réinstaller l'écosystème | PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — SOURCE UNIQUE | ce fichier (§A + pipeline 11 étapes) | corpus -> registre -> arbitres |
 | Synchroniser contexte / canaux | SYNC-CONTEXT.md + scripts de sync | — | 2 voies byte-identiques |
 | Auditer la provenance | audit-provenance | — | L006, avant clone/install |
 | Observer les leçons | knowledge-observer | — | journal lessons-learned, M1-M2 à E15 |
@@ -38,7 +38,7 @@
 | CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md (la plus récente) | — |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.7.5 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.6.5 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.7.6 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.7.0 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
@@ -70,8 +70,8 @@ Registre KB : 32 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.
 
 ## §4 — Points d'entrée et ordre de lecture
 
-1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.5) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.6.5) — périmètre §A + pipeline 10 étapes + critères §3.
+1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.6) — toujours en premier.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.7.0) — périmètre §A + pipeline 11 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
 5. **Publication** : archive `download/mon-ecosysteme_archive.zip` (round-trip v2.2) — unique voie de diffusion du corpus (décision v2.2 : canal de fichiers download/ supprimé, garde `scripts/task14-scan-doublons.py`).

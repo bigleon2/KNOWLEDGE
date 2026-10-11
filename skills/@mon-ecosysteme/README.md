@@ -1,8 +1,9 @@
 # Écosystème Knowledge — Architecture & Guide de référence
 
 > **Date** : 2026-10-12
-> **Version** : 2.1.5
-> **Architecture** : v2.2 — SHARED v1.7.3 — Contexte Système 3 niveaux
+> **Version** : 2.1.6
+> **Architecture** : v2.2 — SHARED v1.7.6 — Contexte Système 3 niveaux
+> **Révision v2.1.6 (2026-10-12, directive propriétaire PM-INSTALL — session web-b4d7dd19, gen-plan(step))** : PM-INSTALL v1.7.0 — étape 6 refactor-guard au pipeline (10→11 étapes, 4e famille D009 désormais installée depuis le corpus), périmètre COMPLET explicite (formes installées de toutes les entrées KB — 8 disciplines n°54/n°55 + outil refactoring-test + refactor-guard), fermeture MINIMALE étendue +6 éléments, §A.3 extensions +6 entrées + instantané courant, socle §2ter +1 ligne (refactoring-test-graph.py) ; cascade KO-L004 : SHARED v1.7.6 (§3.2/§6.1), ULTRA régénéré (11 étapes), propagate v1.7.6 (98 skills + 65 scripts + 2 agents), SYNC-CONTEXT v1.4.8, archive rescellée round-trip 9/9 ; arborescence §2 recalibrée.
 > **Révision v2.1.5 (cascade gen-plan v3.23.1, session web-b4d7dd19 Task 8 gen-plan(step) — fusion discussion externe 468a4c26)** : PM GEN-PLAN v3.23.1 vivant (correction outil n°55 — refactoring-test = outil de la discipline refactoring-engineering, directive propriétaire), v3.23.0 archivé (19 PMs GEN-PLAN) ; SHARED v1.7.4 (§7 : outil + registre ×3 lignes), PM-INSTALL v1.6.4 ; KB 32 entrées (+refactor-guard v1.7.0 garde-fous, +fullstack-dev — fusion 468a4c26 ; n°55 corrigées) ; propagation §0 v1.7.4 (idempotent ×2) ; arborescence §2 recalibrée.
 > **Révision v2.1.4 (cascade gen-plan v3.23.0, session web-b4d7dd19 Task 7 gen-plan(step))** : recalibrage état — PM GEN-PLAN v3.23.0 vivant (matérialisation des disciplines de refactoring n°55 : refactoring-engineering + refactoring-test — directive propriétaire), v3.22.1 archivé `@historique/` (18 PMs GEN-PLAN) ; SHARED v1.7.3 (§6.1 + §7 n°55), PM-INSTALL v1.6.3 (§2ter/§A.3) ; KB 30 entrées (2 n°55 + réciproques) ; propagation §0 ×97+51+2 (idempotent ×2) ; arborescence §2 recalibrée.
 > **Révision v2.1.3 (cascade gen-plan v3.22.1, session web-b4d7dd19)** : recalibrage état — PM GEN-PLAN v3.22.1 vivant (renommage du mode step-confirm → step-ok + clause mode NULL — directive propriétaire), v3.22.0 archivé `@historique/` (17 PMs GEN-PLAN) ; SHARED v1.7.2 (§6.1), PM-INSTALL v1.6.2 (§2ter/§A.3) ; arborescence §2 recalibrée.
@@ -36,7 +37,7 @@ KNOWLEDGE/
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
 │   ├── PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md  ← 4e famille (décision D009)
-│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.6.5)
+│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.7.0 — pipeline 11 étapes)
 │   ├── PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ← Orchestration à l'usage (généré idempotent v1.0.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │

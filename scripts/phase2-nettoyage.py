@@ -5,7 +5,7 @@
 # intégrité sha256 VERIFIEE) — échec de sauvegarde ⇒ suppression annulée (fail-safe).
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.5)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.6)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

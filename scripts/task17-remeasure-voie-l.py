@@ -2,7 +2,7 @@
 # PROVENANCE: Task 17 re-execution (session web-b93f42fa) — rewrite post-incident S3 étendu
 # (restauration snapshot 2026-10-10 20:48 ; runner original perdu, logique reconstituée du worklog)
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.5)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.6)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

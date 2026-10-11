@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.5)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.6)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -45,7 +45,7 @@ ROUTING = [
     ("Planifier une tâche / un projet", "gen-plan (dernière version)", "PM gen-plan le plus récent", "E1-E15, 4 modes"),
     ("Vérifier / corriger un travail", "correct-work v2.7.0 (gen-plan OBLIGATOIRE à l'Étape 1)", "PM correct-work le plus récent", "5 étapes, 4 modes"),
     ("Archiver une session / clone", "clone-chat", "PM clone-chat le plus récent", "7+1 étapes, 8 checks"),
-    ("Installer / réinstaller l'écosystème", "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — SOURCE UNIQUE", "ce fichier (§A + pipeline 10 étapes)", "corpus -> registre -> arbitres"),
+    ("Installer / réinstaller l'écosystème", "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — SOURCE UNIQUE", "ce fichier (§A + pipeline 11 étapes)", "corpus -> registre -> arbitres"),
     ("Synchroniser contexte / canaux", "SYNC-CONTEXT.md + scripts de sync", "—", "2 voies byte-identiques"),
     ("Auditer la provenance", "audit-provenance", "—", "L006, avant clone/install"),
     ("Observer les leçons", "knowledge-observer", "—", "journal lessons-learned, M1-M2 à E15"),
@@ -147,7 +147,7 @@ Registre KB : {kb_entries} entrées versionnées (`skills/KNOWLEDGE.md`). correc
 ## §4 — Points d'entrée et ordre de lecture
 
 1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v{shared_v}) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v{install_v}) — périmètre §A + pipeline 10 étapes + critères §3.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v{install_v}) — périmètre §A + pipeline 11 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
 5. **Publication** : archive `download/mon-ecosysteme_archive.zip` (round-trip v2.2) — unique voie de diffusion du corpus (décision v2.2 : canal de fichiers download/ supprimé, garde `scripts/task14-scan-doublons.py`).
