@@ -34,17 +34,17 @@
 
 | Famille | PM le plus récent (source d'assemblage) | Versions historiques figées (R2) |
 |---------|------------------------------------------|----------------------------------|
-| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.21.0.md (la plus récente) | — |
+| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.22.1.md (la plus récente) | — |
 | CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md (la plus récente) | — |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.6.7 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.6.0 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.7.2 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.6.2 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
 | Skill | Version |
 |-------|---------|
-| `gen-plan` | 3.21.0 |
+| `gen-plan` | 3.22.1 |
 | `correct-work` | 2.7.0 |
 | `clone-chat` | 2.0.0 |
 | `skills-inventory` | 1.1.0 |
@@ -70,8 +70,8 @@ Registre KB : 28 entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.
 
 ## §4 — Points d'entrée et ordre de lecture
 
-1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.6.7) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.6.0) — périmètre §A + pipeline 10 étapes + critères §3.
+1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.2) — toujours en premier.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.6.2) — périmètre §A + pipeline 10 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
 5. **Publication** : archive `download/mon-ecosysteme_archive.zip` (round-trip v2.2) — unique voie de diffusion du corpus (décision v2.2 : canal de fichiers download/ supprimé, garde `scripts/task14-scan-doublons.py`).

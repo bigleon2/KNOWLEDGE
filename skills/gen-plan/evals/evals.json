@@ -2,7 +2,7 @@
   "skill_name": "gen-plan",
   "version": "3.10.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
-  "note": "Schéma unifié skill-creator (révision PM v3.8.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 6 evals v3.7.0 préservée (5 d'origine + hook correct-work E9-E14).",
+  "note": "Schéma unifié skill-creator (révision PM v3.8.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 6 evals v3.7.0 préservée (5 d'origine + hook correct-work E9-E14) ; eval 7 GP-mode-step ajouté en v3.22.0 (modes step — enchaînement autonome des groupes, correct-work(groupe) par groupe, correct-work(projet) final) ; eval 8 GP-mode-step-ok ajouté en v3.22.1 (renommage step-confirm → step-ok — confirmation propriétaire avant chaque groupe).",
   "evals": [
     {
       "id": 1,
@@ -68,6 +68,30 @@
       "expectations": [
         "Le hook correct-work est invoqué pour chaque phase E9-E14",
         "Le plan référence correct-work >= v2.4.0 dans ses relations"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "GP-mode-step — Enchaînement autonome des groupes (modes step/step-ok, spécifique v3.22.0-v3.22.1)",
+      "prompt": "gen-plan(step) : exécute le plan d'actions en cours en groupes séquentiels avec une vérification après chaque groupe",
+      "expected_output": "Les groupes du plan s'enchaînent en autonome ; correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction) et correct-work(projet) en fin de chaîne",
+      "files": [],
+      "expectations": [
+        "Le mode step est reconnu et les groupes s'exécutent en séquentiel",
+        "correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction)",
+        "correct-work(projet) est invoqué en fin de chaîne"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "GP-mode-step-ok — Confirmation propriétaire par groupe (renommage step-confirm → step-ok, spécifique v3.22.1)",
+      "prompt": "gen-plan(step-ok) : exécute le plan d'actions en groupes séquentiels en me demandant confirmation avant chaque groupe",
+      "expected_output": "Le mode step-ok est reconnu (alias step-confirm/step-confim normalisés) ; une confirmation du propriétaire est demandée avant chaque groupe et correct-work(projet) clôt la chaîne",
+      "files": [],
+      "expectations": [
+        "Le mode step-ok (alias step-confirm) est reconnu et route vers le mode step avec confirmation",
+        "Une confirmation propriétaire explicite est demandée avant chaque groupe",
+        "Aucun groupe n'est exécuté sans confirmation propriétaire préalable"
       ]
     }
   ]

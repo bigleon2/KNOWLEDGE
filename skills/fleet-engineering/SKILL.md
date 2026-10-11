@@ -1,6 +1,6 @@
 ---
 name: fleet-engineering
-version: "1.0.0"
+version: "1.0.1"
 category: ecosystem
 language: fr
 tags:
@@ -13,13 +13,17 @@ tags:
   - fan-out
 description: >-
  Skill discipline fleet engineering : orchestration de flottes d'agents — Agent Teams / Managed Agents, découplage cerveau/exécution, 5 patterns production fan-out-pipeline-debate-supervisor-swarm, coordination multi-instances avec Task IDs, agrégation et arbitrage des résultats. Spécialise la discipline fleet engineering (registre décentralisé : §8 local + registre KB). Opérationnalisation 2026 : Anthropic Agent Teams & Managed Agents (2026), multi-agent research system (Anthropic, juin 2025), State of Agent Engineering (LangChain, 2026). Fondements documentés : references/fondements-academiques.md.
-dependencies: []
+dependencies:
+  - skill: gen-plan
+    version: ">=3.15.0"
+    used_at: "détenteur principal — choix du pattern et des bornes à E5/E7 (§8)"
 read_when:
-  - Déclencher quand la demande concerne : >-
+  - Déclencher quand la demande concerne : orchestrer plusieurs agents ou instances comme une flotte ingénierée — choisir le pattern de coordination (fan-out, pipeline, debate, supervisor, swarm), assigner des tâches identifiées avec bornes de coût, agréger et arbitrer les résultats.
+  - Déclencher si la demande mentionne : flotte d'agents, multi-agents, orchestration d'agents, fan-out, pipeline, debate, supervisor, swarm, Task IDs, agents parallèles, agrégation de résultats, Agent Teams, agents managés, découplage cerveau/exécution.
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.6.8)
+## §0 — Contexte Système (SHARED v1.7.2)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -91,7 +95,7 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.21.0 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; `references/orchestration-skills-agents.md` — matrice.
+- gen-plan v3.22.1 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; `references/orchestration-skills-agents.md` — matrice.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |

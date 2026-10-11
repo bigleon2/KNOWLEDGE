@@ -21,6 +21,9 @@
 | v1.6.6 | 2026-10-09 | Référence gen-plan v3.21.0 (règle d'or n°4 — clone git local, jamais lecture distante) |
 | v1.6.7 | 2026-10-09 | Référence PM-INSTALL v1.6.0 (§2quater génération automatique du PM — KO-L004 v1.1.0) |
 | v1.6.8 | 2026-10-11 | §1.2 codification du dossier d'archive `skills/@historique/` (R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003, re-scellement KO-L004, résorption mention `_archive/` stale) — Task 17 |
+| v1.7.0 | 2026-10-11 | §7 matérialisation des définitions normatives des 3 disciplines n°54 dans la table de définitions (spec-driven development, memory engineering, fleet engineering — ancrage état de l'art dans `references/fondements-academiques.md` de chaque skill ; registre d'assignation inchangé — R4) — session web-b4d7dd19, objectif principal discussion Qwen |
+| v1.7.1 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.0 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver — adaptation locale journalisée : D010 + précédents v3.21.0) |
+| v1.7.2 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.1 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver ; cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
 
 ## 2. SYNC-CONTEXT.md (procédure de synchronisation des blocs)
 
@@ -29,7 +32,9 @@
 | v1.4.0 | 2026-10-02 | Decision d'architecture v2.2 — canal download/ supprimé, archive d'intégrité = unique voie de diffusion ; `sync-download.py` retiré, garde `task14-scan-doublons.py` (Task 14) |
 | v1.4.1 | 2026-10-02 | Résorption F1/F2/F4 — corpus 26 fichiers, PMs v2.6.0/v2.7.0 reconstitués méthode B1, blocs gelés R2 (Task 16, session web-8a7e5653) |
 | v1.4.2 | 2026-10-11 | Dédup des PMs — cibles de resync réduites à 2 porteurs N1 vivants, corpus 8 fichiers, `@historique/` archive documentaire (Task 16) |
-| v1.4.3 | 2026-10-11 | Codification SHARED §1.2 v1.6.8 (@historique/) — cascade exécutée 2 N1 + 93 skills N2 + 49 scripts N3 + 2 .agent (Task 17) |
+| v1.4.3 | 2026-10-11 | Codification SHARED §1.2 en v1.6.8 (dossier `@historique/` — R4/R2/KO-L003, re-scellement KO-L004) ; cascade resync 2 N1 + 93 N2 + 49 N3 + 2 .agent (Task 17) |
+| v1.4.4 | 2026-10-11 | Recalibrage état gen-plan v3.22.0 — v3.21.0 archivé (16 PMs GEN-PLAN) ; décision propagation N2 tracée : bloc §0 byte-identique v1.6.8→v1.7.1, aucune re-propagation requise (cascade n°54, session web-b4d7dd19) |
+| v1.4.5 | 2026-10-11 | Recalibrage état gen-plan v3.22.1 — v3.22.0 archivé (17 PMs GEN-PLAN) ; propagation marqueur §0 v1.7.1→v1.7.2 recalibrée et exécutée (cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
 
 ## 3. README.md (guide de référence de l'écosystème)
 
@@ -37,6 +42,8 @@
 |---------|------|--------------------|
 | v2.1.0 | 2026-10-02 | Décision d'architecture v2.2 — canal download/ supprimé, outillage recalibré, drift SHARED §6.1 résorbé (Task 14) |
 | v2.1.1 | 2026-10-11 | Dédup des PMs — corpus dernières versions seules, `@historique/` documenté, arborescence §2 recalibrée (Task 16) |
+| v2.1.2 | 2026-10-11 | Recalibrage état gen-plan v3.22.0 — §7 « 5 disciplines » → « 5 + 3 matérialisations n°54 », arborescence v3.22.0/v1.6.1/×16, SHARED v1.7.1 (cascade n°54, session web-b4d7dd19) |
+| v2.1.3 | 2026-10-11 | Recalibrage état gen-plan v3.22.1 — arborescence v3.22.1/v1.6.2/×17, SHARED v1.7.2 (cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
 
 ## 4. PROMPT-ULTRA-MAITRE-ORCHESTRATION.md (orchestrateur)
 
@@ -55,19 +62,21 @@
 | v1.5.0 | 2026-10-09 | §2ter — instantané explicite des dernières versions des PMs sources et du socle indispensable |
 | v1.5.1 | 2026-10-09 | Instantané rafraîchi gen-plan v3.21.0 (règle d'or n°4 clone git local) |
 | v1.6.0 | 2026-10-09 | §2quater — génération automatique du PM à toute montée de version (KO-L004 v1.1.0, `generer-pm-skill.py`) |
+| v1.6.1 | 2026-10-11 | §2ter + §A.3 instantané rafraîchi gen-plan v3.22.0 (recalibrage mécanique KO-L004 — `generer-pm-skill.py`, bump PATCH conformité semver — adaptation locale journalisée : D010 + précédents v3.21.0) |
+| v1.6.2 | 2026-10-11 | §2ter + §A.3 instantané rafraîchi gen-plan v3.22.1 (recalibrage mécanique KO-L004 — `generer-pm-skill.py`, bump PATCH conformité semver ; cascade renommage step-ok + clause mode NULL) |
 
 ## 6. Registre KB — `skills/KNOWLEDGE.md` (source de vérité de l'état de l'écosystème)
 
-Registre à 28 entrées — instantané des versions archivé ci-dessous (source : registre KB, 2026-10-11 ; le registre vivant fait foi ; les versions des 3 familles = versions de leurs PMs vivants, contrat KO-L004).
+Registre à 28 entrées — instantané des versions archivé ci-dessous (source : registre KB, instantané rafraîchi 2026-10-11 cascade v3.22.1 ; le registre vivant fait foi ; les versions des 3 familles = versions de leurs PMs vivants, contrat KO-L004).
 
 | Skill | Version | Skill | Version |
 |-------|---------|-------|---------|
-| gen-plan | v3.21.0 | audit-provenance | v1.1.0 |
+| gen-plan | v3.22.1 | audit-provenance | v1.1.0 |
 | correct-work | v2.7.0 | autonomous-agent | v1.1.0 |
 | clone-chat | v2.0.0 | correct-py | v1.1.0 |
-| skills-inventory | v1.1.0 | fleet-engineering | v1.0.0 |
-| skill-creator | v1.1.0 | memory-engineering | v1.1.0 |
-| agent-creator | v2.1.0 | spec-driven-development | v1.0.0 |
+| skills-inventory | v1.1.0 | fleet-engineering | v1.0.1 |
+| skill-creator | v1.1.0 | memory-engineering | v1.1.1 |
+| agent-creator | v2.1.0 | spec-driven-development | v1.0.1 |
 | prompt-engineering | v2.2.0 | audio-metadata | v1.1.0 |
 | context-engineering | v1.1.0 | cpp-analysis | v1.1.0 |
 | loop-engineering | v1.1.0 | pdf-llm | v1.0.0 |

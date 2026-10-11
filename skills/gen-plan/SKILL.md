@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.21.0
+version: 3.22.1
 category: ecosystem
 language: fr
 tags:
@@ -41,7 +41,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.6.8)
+## §0 — Contexte Système (SHARED v1.7.2)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -131,6 +131,8 @@ read_when:
 
 **Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (PM v3.11.0 §1.8) : toute nouvelle demande utilisateur pendant l'exécution d'un plan déclenche la mise à jour cohérente du plan d'actions actuel via gen-plan (E13) — demandes intégrées comme étapes/priorités, ré-estimation #token des étapes affectées, re-validation E8 si le périmètre change matériellement, journalisation au worklog ; extension du plan, jamais réécriture destructrice (R2). **Déclencheur verbatim (v3.17.2, directive propriétaire 2026-10-02)** : la formulation « intègre dans le plan d'actions » (et variantes directes : « intègre ça au plan », « ajoute au plan d'actions ») déclenche ce mode E13 sans ambiguïté.
 
+**Déclencheurs de mode `gen-plan(<mode>) : <instructions>` (v3.22.1 — renommage directive propriétaire session web-b4d7dd19 ; chantier initial discussion parente 5ef6176f)** : `gen-plan(step) : <instructions>` — enchaînement autonome des groupes séquentiels du plan d'actions, `correct-work(groupe)` après chaque groupe (max 2 rounds de correction par groupe), `correct-work(projet)` en fin de chaîne ; `gen-plan(step-ok) : <instructions>` — identique au mode step avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1) ; alias `step-confirm` (v3.22.0) et `step-confim` normalisés en `step-ok` (R4) ; **clause mode NULL** — toute invocation sans `<mode>` explicite (`gen-plan : <instructions>`, ex. « gen-plan : continue ») conserve le comportement antérieur à l'introduction des modes step/step-ok (v3.21.0) : intégration E13 ou exécution classique du plan, sans portes de confirmation (directive propriétaire 2026-10-11) ; tout autre mode → clarification demandée au propriétaire, jamais d'invention de mode (R2). Le déclencheur coexiste avec le déclencheur verbatim « intègre dans le plan d'actions » (règle d'or n°3) — une demande qui porte un mode explicite route vers le mode, sans re-déclencher l'intégration E13 ; une demande sans mode explicite route vers le comportement NULL (jamais vers step/step-ok).
+
 **Règle d'or n°4 — Récupération du dépôt par clone** (directive utilisateur 2026-10-09, session web-b93f42fa) : toute opération devant lire ou utiliser un élément du dépôt (fichier, dossier, corpus, script, historique) passe par un **clone git local** (forme recommandée : shallow `--depth 1 --filter=blob:none`), JAMAIS par une lecture distante du contenu (API contents, raw.githubusercontent.com, rendu web) ; le clone sert de source de lecture ET de travail ; authentification par jeton éphémère uniquement (askpass/credential ponctuel — jamais persisté dans `.git/config` ni sur disque, anti-persistance Task 8/14) ; exceptions : sondes API ponctuelles (KO-L001 — une sonde par message utilisateur), écritures authentifiées sans persistance, clone matériellement impossible → adaptation journalisée (règle d'or n°1) ; chaque clonage est tracé au worklog (source, SHA de référence, destination, forme) ; publication uniquement sur validation explicite du propriétaire. La règle change le MOYEN d'accès (clone d'abord), jamais l'objectif des tâches.
 
 ### §1.6 Disciplines d'ingénierie de prompts (PM v3.12.0 §1.9)
@@ -162,6 +164,21 @@ L'optimisation fine des prompts complexes est déléguée au skill `prompt-engin
 **Méthode de raisonnement adaptative PEK (v3.11.0, PM §1.9)** : gen-plan mobilise le Prompt Engineering Kit v4.1 (méthode pure) comme couche de raisonnement opérationnelle — 3 modes d'exécution (CoT 7 étapes / Chaining 4 étapes / Hybride à bascule automatique selon la complexité E1-E3) alignés sur la philosophie §1.4 #6 et calibrés par les profils §2.4 ; blocs de sortie adaptatifs A-J mappés sur les Types 1-4 (E3) ; 9 règles critiques + 12 checks de validation (scoring 25 pts, seuil 22/25) intégrés aux hooks correct-work par phase (E9-E14). Contenu opérationnel : `references/prompt-engineering-kit.md`.
 
 **Matérialisation des disciplines (état A12, mise à jour session A13)** : les 4 disciplines d'exécution sont matérialisées en skills complets à déclenchement automatique (`context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering` — SKILL.md + evals + trigger_evals ; les matérialisations agent intermédiaires `_disciplines/` A11 et `gen-plan.agent` A9 sont retirées, SHA prouvés) et la discipline prompt-engineering en skill (`prompt-engineering`). Source de vérité des disciplines : SHARED §7 ; orchestration : PM v3.12.0 §1.9.
+
+<!-- PATTERN:GEN-PLAN-DISCIPLINES-ETENDUES-v2.0.0 -->
+
+**Matérialisations n°54 — disciplines d'ingénierie étendues (v3.22.0, cascade KO-L004/§2quater — discussion parente 5ef6176f recalibrée sur l'état réel N34, Tasks 16-18)** : les 3 disciplines n°54 sont matérialisées en skills complets à déclenchement automatique (`spec-driven-development`, `memory-engineering`, `fleet-engineering` — SKILL.md + evals + trigger_evals, baselines mesurées 7/7 voie mécanique + 42/42 votes LLM) et sont orchestrées par gen-plan **au même titre** que les 4 disciplines A12 :
+
+| Étape | Disciplines matérialisées n°54 mobilisées | Mécanisme |
+|--------|------------------------|-----------|
+| E4 | spec-driven-development ; memory-engineering | Cadrage spec-first (answer key E1 = spec de session) ; État Long obligatoire (plan + worklog + KB) |
+| E5 | fleet-engineering ; graph-engineering | Choix pattern/bornes de flotte (Graph Diamond E9-E14) ; matrice agent × skill |
+| E7 | spec-driven-development | Re-validation de la spec de session avant publication du plan |
+| E9-E14 | memory-engineering ; fleet-engineering | Compaction + ancres de reprise entre phases ; contrôle de flotte par phase (hook correct-work) |
+
+Source de vérité : SHARED §7 (table de définitions + registre d'assignation — v1.7.0) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB ; orchestration : PM v3.12.0 §1.9. Les relations inter-disciplines (fleet ↔ memory ↔ spec) restent en §3 des skills, non versionnées (SHARED §3.2 règle 5).
+
+<!-- FIN-PATTERN:GEN-PLAN-DISCIPLINES-ETENDUES-v2.0.0 -->
 
 ---
 
@@ -253,8 +270,8 @@ skills/gen-plan/
 │   ├── graph-diamond-pattern.md      # Parallélisation exceptionnelle (N20)
 │   └── observation-patterns.md       # Task Observer — cycle A-H (N20)
 └── evals/
-    ├── evals.json                    # Cas de test d'évaluation (6 evals)
-    └── trigger_evals.json            # Description Optimization (8 cas — déclencheur verbatim v3.17.2)
+    ├── evals.json                    # Cas de test d'évaluation (8 evals — id 7 GP-mode-step v3.22.0, id 8 GP-mode-step-ok v3.22.1)
+    └── trigger_evals.json            # Description Optimization (12 cas — verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm)
 ```
 
 ### §2.3 Auto-calibration E15
@@ -302,6 +319,9 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 | loop-engineering | Mobilisation (§1.6) | Boucle E10-E13 + auto-calibration E15 — déclenchement automatique (SHARED §7) |
 | graph-engineering | Mobilisation (§1.6) | Registre KB graphe bidirectionnel versionné, matrice agent × skill — déclenchement automatique (SHARED §7) |
 | harness-engineering | Mobilisation (§1.6) | Profils ressource, hooks E8 + E9-E14, arbitres, worklog — déclenchement automatique (SHARED §7) |
+| spec-driven-development | Détention orchestrée (SHARED §7, registre décentralisé §8 du skill) | Cadrage spec-first à E4, re-validation à E7 — version >= v1.0.0 |
+| memory-engineering | Détention orchestrée (SHARED §7, registre décentralisé §8 du skill) | État Long obligatoire aux exécutions longues, compaction/reprise — version >= v1.1.0 |
+| fleet-engineering | Détention orchestrée (SHARED §7, registre décentralisé §8 du skill) | Choix du pattern et des bornes à E5/E7, Graph Diamond — version >= v1.0.0 |
 | knowledge-observer | Invocation à E15 (§1.2bis) | Observation post-session (modes M1-M2) ; les modes M3-M4 exigent un verdict correct-work — version >= v1.0.0 |
 | resource-monitor | Mobilisation hook E1-RES (§1.2bis) | Collecte G-RES à l'ouverture de session — verdict OK/PRESSION/CRITIQUE → mode d'exécution, version >= v1.0.0 |
 | answer-key | Arbitrage E7/E8 (§1.2bis) | Décisions E1 vérifiables mécaniquement — arbitre answer-key-checker.py (16 checks) |

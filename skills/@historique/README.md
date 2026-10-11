@@ -14,18 +14,18 @@ Structure dirigée par le propriétaire (Task 17-B) : **un historique par skill*
 
 | Élément | Rôle |
 |---------|------|
-| `historiques-par-skill/gen-plan.md` | Historique dédié du skill gen-plan — 22 versions (v2.0.0 → v3.21.0), tables migrées verbatim de l'ex-distillation globale (Task 17-B) |
+| `historiques-par-skill/gen-plan.md` | Historique dédié du skill gen-plan — 24 versions (v2.0.0 → v3.22.1), tables migrées verbatim de l'ex-distillation globale (Task 17-B) |
 | `historiques-par-skill/correct-work.md` | Historique dédié du skill correct-work — 10 versions (v1.0.0 → v2.7.0) + révisions documentaires de la famille |
 | `historiques-par-skill/clone-chat.md` | Historique dédié du skill clone-chat — 4 versions (v1.0.0 → v2.0.0) + révisions documentaires (PROMPT 1.0.1-1.0.3) |
-| `historique-autres-elements.md` | Historique du socle sans famille à PM : SHARED (v1.4.0 → v1.6.8), SYNC-CONTEXT (v1.4.0 → v1.4.3), README (v2.1.0/v2.1.1), ULTRA (généré), PM-INSTALL (v1.1.0 → v1.6.0), registre KB (instantané 28 skills) |
-| `prompts-maitres/gen-plan/` | 15 PMs GEN-PLAN historiques (v3.6.1 → v3.19.0), déplacés du corpus `git mv` — byte-identité prouvée SHA-256 contre les blobs du commit de référence (b36f177, rapport Task 16) |
+| `historique-autres-elements.md` | Historique du socle sans famille à PM : SHARED (v1.4.0 → v1.7.2), SYNC-CONTEXT (v1.4.0 → v1.4.5), README (v2.1.0 → v2.1.3), ULTRA (généré), PM-INSTALL (v1.1.0 → v1.6.2), registre KB (instantané 28 skills) |
+| `prompts-maitres/gen-plan/` | 17 PMs GEN-PLAN historiques (v3.6.1 → v3.22.0), déplacés du corpus `git mv` — byte-identité prouvée SHA-256 contre les blobs du commit de référence (b36f177, rapport Task 16) |
 | `prompts-maitres/correct-work/` | 4 PMs CORRECT-WORK historiques (v2.4.0 → v2.6.0), mêmes garanties |
 
 Vue d'ensemble des 3 familles (héritée de l'ex-distillation) :
 
 | Famille | Skill installé | Versions documentées | Fichiers archivés ici | Version vivante (corpus) |
 |---------|----------------|---------------------|----------------------|--------------------------|
-| GEN-PLAN | gen-plan — planification de tâches (4 modes, 15 étapes E1-E15) | 22 (v2.0.0 → v3.21.0) | 15 (v3.6.1 → v3.19.0) | v3.21.0 |
+| GEN-PLAN | gen-plan — planification de tâches (4 modes, 15 étapes E1-E15) | 24 (v2.0.0 → v3.22.1) | 17 (v3.6.1 → v3.22.0) | v3.22.1 |
 | CORRECT-WORK | correct-work — vérification/correction (5 étapes, 4 modes) | 10 (v1.0.0 → v2.7.0) | 4 (v2.4.0 → v2.6.0) | v2.7.0 |
 | CLONE-CHAT | clone-chat — archivage de session (7+1 étapes, 8 checks) | 4 (v1.0.0 → v2.0.0) | 0 (v2.0.0 vit dès sa création) | v2.0.0 |
 
@@ -49,9 +49,9 @@ Versions documentées SANS fichier archivé : GEN-PLAN v2.0.0 → v3.6.0 (antér
 5. La présente table §2 est rafraîchie et l'index §5 mis à jour ;
 6. Recalibrage croisé KO-L004 standard (CORPUS_ATTENDU, manifeste integrity, archive, orchestrateur ULTRA) et sweep arbitres avant tout commit.
 
-## 5. Index des fichiers sources archivés (19 PMs — sceau SHA-256)
+## 5. Index des fichiers sources archivés (21 PMs — sceau SHA-256)
 
-Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git mv` (Task 16, 2026-10-11) — byte-identité prouvée contre les blobs du commit de référence `b36f177` (script `/home/z/my-project/scripts/task16-move-pms.py`, all-or-nothing, garde anti-homonyme R4). Table complète au rapport `download/rapport-task16-corpus-pms-historique-reinstallation.md`.
+Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git mv` (Task 16, 2026-10-11) — byte-identité prouvée contre les blobs du commit de référence `b36f177` (script `/home/z/my-project/scripts/task16-move-pms.py`, all-or-nothing, garde anti-homonyme R4). Table complète au rapport `download/rapport-task16-corpus-pms-historique-reinstallation.md`. Complément cascade gen-plan v3.22.1 (2026-10-11, session web-b4d7dd19) : `PROMPT-MAITRE-GEN-PLAN-v3.22.0.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité ; adaptation règle d'or n°1 journalisée, SHA-256 scellé ci-dessous).
 
 | Fichier archivé | SHA-256 |
 |-----------------|---------|
@@ -70,6 +70,8 @@ Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.17.2.md | 45f7e71989f44b85530a689580b969c78b6b33d009d9ab5e910c839f86d5dbe6 |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.18.0.md | 65b68b2d7f423e280fa6353dd375e6d8b512043299166491a3cbbf8d44d32cc9 |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.19.0.md | df6a59c04d02bc932ceb2d9bac48629ea073f8ca788df2e3af5fbf3a1db5103b |
+| gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.21.0.md | 0eab284a6c0a06d798856ff3300c09c6229ea898b19a55a503853e7a5fd64bec |
+| gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.22.0.md | 07118d824393b6464170f77669eabf5e262d2fbecd67fbe3ad136beab8300a4c |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md | 16f82edb358ce36cfffbbfb9058ffda4d1d8a1e7d144791f11cbc82f67b60063 |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.5.0.md | 8dfc29a77633502609abc7a1d68a73cf53be40be7a7d5a6fd2670d1a40bfb8cf |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md | 9b3fad20a188aeb95a21cf251fb71a36a9a4b038bbb8a1fff96599f4adfba0b5 |

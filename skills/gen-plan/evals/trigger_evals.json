@@ -16,8 +16,24 @@
     "should_trigger": true
   },
   {
+    "query": "gen-plan(step) : exécute le plan d'actions en cours en groupes séquentiels avec une vérification après chaque groupe.",
+    "should_trigger": true
+  },
+  {
+    "query": "gen-plan(step-ok) : re-génère le plan d'actions puis enchaîne les groupes en demandant ma confirmation avant chacun.",
+    "should_trigger": true
+  },
+  {
+    "query": "gen-plan(step-confirm) : poursuis l'exécution en groupes avec ma confirmation avant chacun (ancien nom du mode).",
+    "should_trigger": true
+  },
+  {
     "query": "Intègre dans le plan d'actions : ajoute la rédaction du PDF de synthèse à la fin du cycle.",
     "should_trigger": true
+  },
+  {
+    "query": "gen-plan (stp) : lance ce mode pour ce projet.",
+    "should_trigger": false
   },
   {
     "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",

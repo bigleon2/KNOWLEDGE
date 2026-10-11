@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.6.0
+Version : 1.6.2
 Date : 2026-10-09
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -92,7 +92,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
-| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.21.0.md` | gen-plan v3.21.0 | 3 |
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.22.1.md` | gen-plan v3.22.1 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md` | correct-work v2.7.0 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | clone-chat v2.0.0 | 5 |
 
@@ -178,6 +178,8 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.6.2 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.22.0→v3.22.1 ; recalibrage croisé : SHARED v1.7.2 (§6.1), §2ter, §A.3 |
+| v1.6.1 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.21.0→v3.22.0 ; recalibrage croisé : SHARED v1.7.1 (§6.1), §2ter, §A.3 |
 | v1.6.0 | 2026-10-09 | Directive KO-L004 v1.1.0 (gen-plan §1.15, matérialisation M4 — session web-b93f42fa) : §2quater — génération automatique du PM à toute montée de version des 3 familles (`scripts/generer-pm-skill.py` : substitutions verrouillées méthode B1, garde R2, recalibrage croisé SHARED §6.1 + §2ter/§A.3 inclus, rapport de couverture SKILL.md↔PM, idempotent ×2 ; ex : PROMPT-MAITRE-GEN-PLAN-v3.21.0.md) ; §2ter instantané rafraîchi v1.6.0 ; §2bis référence §1.16 gen-plan v3.19.0 → v3.21.0 (recalibrage KO-L004 — occurrence réelle résorbée) ; recalibrage croisé KO-L004 : SHARED v1.6.7 (§6.1 matérialisation), check-ecosysteme-integrity.py ECO_SKILLS gen-plan 3.19.0 → 3.21.0, KNOWLEDGE.md entrée gen-plan v3.19.0 → v3.21.0, leçon L004 marqueur PATTERN v1.1.0 |
 | v1.5.1 | 2026-10-09 | Règle d'or n°4 gen-plan (directive utilisateur « si tu dois utiliser un élément de mon dépôt alors clone-le à la place de lire son contenu sur mon dépôt », session web-b93f42fa) : §2ter — instantané rafraîchi gen-plan v3.20.0 → v3.21.0 (règle d'or n°4 : récupération du dépôt par clone git local, jamais lecture distante API/raw/web) ; §A.3 instantané courant v1.5.1 ; dérivation dynamique KO-L003 et garde R2 inchangées ; recalibrage croisé KO-L004 : SHARED v1.6.6 (§6.1 : gen-plan v3.21.0, PM-INSTALL v1.5.1) |
 | v1.5.0 | 2026-10-09 | Directive utilisateur « faire appel à la dernière version des prompts maîtres » : §2ter — instantané explicite des PMs sources des étapes 3-5 (GEN-PLAN v3.20.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0) et des fichiers de socle indispensables (SHARED, ULTRA-ORCHESTRATION, SYNC-CONTEXT, README, archive d'intégrité, arbitres, registre KB) ; dérivation dynamique KO-L003 et garde R2 conservées comme mécanique de référence ; instantané rafraîchi à chaque révision ; recalibrage croisé KO-L004 : SHARED v1.6.5 (§6.1 : gen-plan v3.20.0, PM-INSTALL v1.5.0) |
@@ -202,7 +204,7 @@ Note P4 : les SKILL.md + références des 4 skills sont créés en suivant le §
 ### §A.3 Registre KB cible (14 entrées)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.6.0, 2026-10-09) : gen-plan v3.21.0 · correct-work v2.7.0 · clone-chat v2.0.0 — cf. §2ter.
+Instantané courant (v1.6.0, 2026-10-09) : gen-plan v3.22.1 · correct-work v2.7.0 · clone-chat v2.0.0 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|

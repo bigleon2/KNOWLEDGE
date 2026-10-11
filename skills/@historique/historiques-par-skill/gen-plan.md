@@ -1,15 +1,15 @@
 # Historique par skill — gen-plan
 
 > **Version** : 1.0.0 — **Date** : 2026-10-11 (Task 17-B, session web-b93f42fa — directive propriétaire « un historique par skill »)
-> **Version vivante (corpus)** : v3.21.0 — `skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.21.0.md` (sa table §7 fait foi)
-> **Versions archivées** : 15 PMs (v3.6.1 → v3.19.0) dans `prompts-maitres/gen-plan/` — sceau SHA-256 au README §2
+> **Version vivante (corpus)** : v3.22.1 — `skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.22.1.md` (sa table §7 fait foi)
+> **Versions archivées** : 17 PMs (v3.6.1 → v3.22.0) dans `prompts-maitres/gen-plan/` — sceau SHA-256 au README §2
 > **Provenance** : tables migrées verbatim de `historique-versions-prompts-maitres.md` §2 (fichier retiré après migration — R4 une information, une source ; Task 17-B)
 
-## Famille GEN-PLAN — 22 versions (skill : gen-plan)
+## Famille GEN-PLAN — 24 versions (skill : gen-plan)
 
 **Particularité durable du skill** : planification structurée pour assistant IA — 4 modes (Planification, Exécution, Surveillance, Adaptation), 15 étapes E1-E15, classification Type 1-4, 3 profils ressource (NORMAL/ECO/VIEUX PC), tagging #token, scripts Python uniquement (N3), disciplines d'ingénierie de prompts, hooks patterns avancés, règles d'or §1.8.
 
-| Version | Date | Améliorations implantées (source §7 du PM v3.21.0) | Avantage par rapport à la version précédente |
+| Version | Date | Améliorations implantées (source : §7 du PM vivant) | Avantage par rapport à la version précédente |
 |---------|------|---------------------------------------------------|----------------------------------------------|
 | v2.0.0 | 2026-07-18 | Version initiale (refusée par l'utilisateur) | — (point de départ de la lignée) |
 | v3.1.0 | 2026-07-18 | Refactoring complet suite au refus de v2.0.0 | Forme restructurée qui devient la base acceptée de toute la lignée |
@@ -32,6 +32,8 @@
 | v3.18.0 | 2026-10-02 | Application M4 de la leçon L007 (matérialisation d'abord — pièges sparse-checkout), YAML §4 synchronisé sur le frontmatter installé | Les faits de matérialisation sont établis AVANT toute écriture et tout verdict d'arbitre (anti-faux-verdict) |
 | v3.19.0 | 2026-10-03 | Routage de découverte (Task 23) : skills-inventory prioritaire, fallback skill-finder-cn avec contrôle cybersécurité audit-provenance, bascule unidirectionnelle ; garde É1-INSTALL --check à l'ouverture | La découverte des skills est priorisée et comparée au registre ; l'écart d'installation est détecté avant tout travail |
 | v3.20.0 | 2026-10-04 | Task 29 : script maître ensure-installed.py intégré au skill, mode --preempt (réinstallation immédiate si ROOT absent), directive post-réinstallation download/plan-post-reinstall-<ts>.json | La réinstallation est garantie idempotente et le plan en cours est mis à jour de façon cohérente après réinstallation |
-| v3.21.0 | 2026-10-09 | Règle d'or n°4 : toute utilisation d'un élément du dépôt passe par un clone git local (shallow), jamais une lecture distante API/raw/web ; askpass éphémère, zéro persistance de jeton | Accès au dépôt fiable (rate-limiting API 403 contourné) et discipline de sécurité du jeton institutionnalisée — **VERSION VIVANTE (corpus)** |
+| v3.21.0 | 2026-10-09 | Règle d'or n°4 : toute utilisation d'un élément du dépôt passe par un clone git local (shallow), jamais une lecture distante API/raw/web ; askpass éphémère, zéro persistance de jeton | Accès au dépôt fiable (rate-limiting API 403 contourné) et discipline de sécurité du jeton institutionnalisée (supplantée par v3.22.0 le 2026-10-11 — archivée) |
+| v3.22.0 | 2026-10-11 | Orchestration complète des matérialisations n°54 (discussion parente 5ef6176f recalibrée sur l'état réel N34/Tasks 16-18) : table de mobilisation étendue E4/E5/E7/E9-E14 (spec/memory/fleet orchestrées au même titre que les 4 disciplines A12), 3 relations détention orchestrée (bidirectionnalité SHARED §0.3 — fin de l'asymétrie SKILL.md ↔ KB ↔ SHARED), déclencheurs de mode gen-plan(step)/gen-plan(step-confirm) (alias step-confim normalisé, mode inconnu → clarification), trigger_evals 8 → 11 cas (+2 positifs modes, +1 négatif mode invalide), eval id 7 GP-mode-step | Le routage effectif de gen-plan vers les 3 disciplines n°54 est garanti dans le SKILL.md lui-même et les modes step/step-confirm sont déclenchables verbatim (modes renommés en step-ok en v3.22.1 — supplantée par v3.22.1 le 2026-10-11 — archivée) |
+| v3.22.1 | 2026-10-11 | Renommage du mode step-confirm → step-ok (directive propriétaire session web-b4d7dd19 — renommage demandé avant compaction, jamais matérialisé dans les arbres) : `gen-plan(step-ok)` nom canonique (confirmation propriétaire avant chaque groupe), alias `step-confirm` (v3.22.0) et `step-confim` normalisés R4, **clause mode NULL** explicite — invocation sans `<mode>` (ex. « gen-plan : continue ») = comportement antérieur aux modes step (v3.21.0), sans portes de confirmation ; evals id 8 GP-mode-step-ok + note evals recalibrée ; trigger_evals 11 → 12 cas (cas step-ok + cas alias step-confirm) ; recalibrage croisé SHARED v1.7.2 / PM-INSTALL v1.6.2 | Le mode invoqué par le propriétaire (« step-ok ») existe désormais verbatim avec ses portes de confirmation, et l'invocation sans mode retrouve le comportement d'avant les modes (clause NULL) — **VERSION VIVANTE (corpus)** |
 
-Fichiers archivés de la famille : `prompts-maitres/gen-plan/` — v3.6.1, v3.7.0, v3.8.0, v3.8.1, v3.9.0, v3.10.0, v3.11.0, v3.12.0, v3.13.0, v3.16.0, v3.17.0, v3.17.1, v3.17.2, v3.18.0, v3.19.0 (15 fichiers, SHA-256 au §5).
+Fichiers archivés de la famille : `prompts-maitres/gen-plan/` — v3.6.1, v3.7.0, v3.8.0, v3.8.1, v3.9.0, v3.10.0, v3.11.0, v3.12.0, v3.13.0, v3.16.0, v3.17.0, v3.17.1, v3.17.2, v3.18.0, v3.19.0, v3.21.0, v3.22.0 (17 fichiers, SHA-256 au §5).

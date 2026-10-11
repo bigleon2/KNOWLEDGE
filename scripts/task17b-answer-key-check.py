@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.2)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 """Task 17-B — answer key checker (16 checks) : structure d'historique par skill + autres éléments.
 Directive propriétaire : « un historique par skill et un fichier historique pour les autres éléments »."""
 import hashlib

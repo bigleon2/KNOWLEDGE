@@ -1,6 +1,6 @@
 ---
 name: spec-driven-development
-version: "1.0.0"
+version: "1.0.1"
 category: ecosystem
 language: fr
 tags:
@@ -12,13 +12,17 @@ tags:
   - cadrage
 description: >-
  Skill discipline spec-driven development : la spécification comme contrat exécutable — spec AVANT code (workflow inversé), décomposition plan→tâches, critères d'acceptation mécaniques, constitution (guardrails), re-spécification à la dérive. Spécialise la discipline SDD (registre décentralisé : §8 local + registre KB). Opérationnalisation 2026 : arXiv « From Code to Contract » (janv. 2026), spec-first AI-native engineering (Microsoft), GitHub Spec Kit. Fondements documentés : references/fondements-academiques.md.
-dependencies: []
+dependencies:
+  - skill: gen-plan
+    version: ">=3.15.0"
+    used_at: "détenteur principal — cadrage spec-first E4, re-validation E7 (§8)"
 read_when:
-  - Déclencher quand la demande concerne : >-
+  - Déclencher quand la demande concerne : cadrer une tâche complexe par une spécification exécutable (exigences, contraintes, critères d'acceptation mécaniques), décomposer une spec en plan puis en tâches atomiques, piloter l'implémentation par dérivation de la spec, ou re-spécifier à la dérive prouvée.
+  - Déclencher si la demande mentionne : spécification, spec, spec-first, contrat exécutable, critères d'acceptation, critères mécaniques, décomposition en tâches, constitution, guardrails, amendement de spec, workflow inversé, re-spécification.
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.6.8)
+## §0 — Contexte Système (SHARED v1.7.2)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -90,7 +94,7 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.21.0 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; plan d'actions B12 — spec de session opérante.
+- gen-plan v3.22.1 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; plan d'actions B12 — spec de session opérante.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |

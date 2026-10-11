@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.2)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -43,6 +43,19 @@ RETRAITS_SANCTIONNES = {
     "PROMPT-MAITRE-GEN-PLAN-v3.19.0.md",
     "PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md", "PROMPT-MAITRE-CORRECT-WORK-v2.5.0.md",
     "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md", "PROMPT-MAITRE-CORRECT-WORK-v2.6.0.md",
+    # cascade gen-plan v3.22.0 (session web-b4d7dd19, KO-L004/§2quater) — re-scellement
+    # post-cascade : PM v3.21.0 supplanté DÉPLACÉ git mv vers
+    # skills/@historique/prompts-maitres/gen-plan/ — byte-identité vérifiée ci-dessous
+    # (garde anti-perte renforcée ; SHA-256 scellé à l'index §5 du README @historique).
+    "PROMPT-MAITRE-GEN-PLAN-v3.21.0.md",
+    # cascade gen-plan v3.22.1 (session web-b4d7dd19, directive propriétaire
+    # renommage step-confirm → step-ok + clause mode NULL) — re-scellement
+    # post-cascade : PM v3.22.0 supplanté DÉPLACÉ mv byte-identité (fichier non
+    # suivi — jamais commité ; adaptation règle d'or n°1 journalisée) vers
+    # skills/@historique/prompts-maitres/gen-plan/ — byte-identité vérifiée
+    # ci-dessous (garde anti-perte renforcée ; SHA-256 scellé à l'index §5 du
+    # README @historique).
+    "PROMPT-MAITRE-GEN-PLAN-v3.22.0.md",
 }
 
 # Task 16 — garde anti-perte renforcée pour les retraits DÉPLACÉS : chaque PM
@@ -58,10 +71,15 @@ def dest_historique(short):
 corpus_files = sorted(p.name for p in CORPUS.glob("*.md"))
 print(f"corpus : {len(corpus_files)} fichiers .md")
 
-shutil.copy2(ARCHIVE, BAK)
-with zipfile.ZipFile(BAK) as z:
-    old_names = z.namelist()
-    old_bytes = {n: z.read(n) for n in old_names if not n.endswith("/")}
+# ADAPTATION LOCALE (règle d'or n°1 PM-INSTALL §3.4) : archive absente au premier
+# rescellement (jamais commitée — .gitignore download/) -> pas de .bak, ancienne archive = {}
+if ARCHIVE.exists():
+    shutil.copy2(ARCHIVE, BAK)
+    with zipfile.ZipFile(BAK) as z:
+        old_names = z.namelist()
+        old_bytes = {n: z.read(n) for n in old_names if not n.endswith("/")}
+else:
+    old_bytes = {}
 print(f"ancienne archive : {len(old_bytes)} entrées")
 
 # Task 16 — vérification anti-perte des retraits déplacés (avant toute écriture)
@@ -77,13 +95,25 @@ for name, data in old_bytes.items():
 print(f"garde anti-perte : {sum(1 for n in old_bytes if n.split('@mon-ecosysteme/')[-1] in RETRAITS_SANCTIONNES and dest_historique(n.split('@mon-ecosysteme/')[-1]))} PMs déplacés vérifiés byte-identiques en @historique/")
 
 with zipfile.ZipFile(ARCHIVE, "w", zipfile.ZIP_DEFLATED) as z:
-    for name in old_names:
-        if name.endswith("/"):
-            continue
-        short = name.split("@mon-ecosysteme/")[-1]
-        if short in RETRAITS_SANCTIONNES:
-            continue
-        if short in set(corpus_files):
+    # ADAPTATION LOCALE (règle d'or n°1 PM-INSTALL §3.4) : premier scellement —
+    # ancienne archive absente -> les 8 fichiers corpus sont ajoutés directement.
+    corpus_set = set(corpus_files)
+    planned, seen = [], set()
+    if old_bytes:
+        for name in old_names:
+            if name.endswith("/"):
+                continue
+            short = name.split("@mon-ecosysteme/")[-1]
+            if short in RETRAITS_SANCTIONNES or short in seen:
+                continue
+            planned.append((name, short))
+            seen.add(short)
+    for f in corpus_files:
+        if f not in seen:
+            planned.append((f"@mon-ecosysteme/{f}", f))
+            seen.add(f)
+    for name, short in planned:
+        if short in corpus_set:
             data = (CORPUS / short).read_bytes()
         else:
             data = old_bytes[name]

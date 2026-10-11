@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.2)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -70,7 +70,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.21.0",
+    "gen-plan": "3.22.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : cascade renommage step-ok + clause mode NULL — recalibrage L004
     "knowledge-observer": "1.0.0",
     "correct-work": "2.7.0",
     "clone-chat": "2.0.0",
@@ -95,9 +95,9 @@ ECO_SKILLS = {
     # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
     "autonomous-agent": "1.1.0",
     "correct-py": "1.1.0",
-    "fleet-engineering": "1.0.0",
-    "memory-engineering": "1.1.0",  # Task 18 (2026-10-03) : Description Optimization A10/A14 — recalibrage L004
-    "spec-driven-development": "1.0.0",
+    "fleet-engineering": "1.0.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54
+    "memory-engineering": "1.1.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54 (Task 18 : Description Optimization conservée)
+    "spec-driven-development": "1.0.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54
     "vue-upload": "1.2.0",  # KO-L004 (session web-b93f42fa, 2026-10-09) : KB=registre fait foi (## vue-upload v1.2.0) — occurrence L004 résorbée, arbitre dynamisé
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator

@@ -1,8 +1,10 @@
 # Écosystème Knowledge — Architecture & Guide de référence
 
-> **Date** : 2026-10-02
-> **Version** : 2.1.1
-> **Architecture** : v2.2 — SHARED v1.6.3 — Contexte Système 3 niveaux
+> **Date** : 2026-10-11
+> **Version** : 2.1.3
+> **Architecture** : v2.2 — SHARED v1.7.2 — Contexte Système 3 niveaux
+> **Révision v2.1.3 (cascade gen-plan v3.22.1, session web-b4d7dd19)** : recalibrage état — PM GEN-PLAN v3.22.1 vivant (renommage du mode step-confirm → step-ok + clause mode NULL — directive propriétaire), v3.22.0 archivé `@historique/` (17 PMs GEN-PLAN) ; SHARED v1.7.2 (§6.1), PM-INSTALL v1.6.2 (§2ter/§A.3) ; arborescence §2 recalibrée.
+> **Révision v2.1.2 (cascade gen-plan v3.22.0, session web-b4d7dd19)** : recalibrage état — PM GEN-PLAN v3.22.0 vivant (orchestration matérialisations n°54 + déclencheurs de mode step/step-confirm), v3.21.0 archivé `@historique/` (16 PMs GEN-PLAN) ; §7 SHARED : « Définitions des 5 disciplines » → « 5 + 3 matérialisations n°54 » (SHARED v1.7.0, discussion parente 5ef6176f) ; arborescence §2 recalibrée.
 > **Révision v2.1.1 (Task 16)** : déduplication des prompts maîtres (directive propriétaire « ne garder que la dernière version ») — le corpus `@mon-ecosysteme/` ne porte plus que les PMs sources (GEN-PLAN v3.21.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0) + socle ; les 19 PMs historiques sont archivés dans le nouveau dossier `skills/@historique/` (byte-identité SHA-256 scellée, distillation des particularités/améliorations/avantages par version) ; arborescence §2 recalibrée.
 > **Révision v2.1.0 (Task 14)** : décision d'architecture v2.2 — canal de fichiers `download/` supprimé (déduplication, le corpus est publié uniquement via l'archive d'intégrité `download/mon-ecosysteme_archive.zip`) ; `sync-download.py` retiré de l'outillage, remplacé par la garde `scripts/task14-scan-doublons.py` ; arborescence et commandes recalibrées (certification-complete.py ajouté) ; drift SHARED §6.1 (GEN-PLAN v3.12.0 → v3.18.0) résorbé au passage.
 
@@ -28,10 +30,10 @@ KNOWLEDGE/
 ├── @mon-ecosysteme/                     ← Prompts maîtres (Niveau 1) — dernières versions seules (Task 16)
 │   ├── README.md                        ← Ce guide
 │   ├── PROMPT-MAITRE-SHARED.md          ← Socle commun (source de vérité)
-│   ├── PROMPT-MAITRE-GEN-PLAN-v3.21.0.md
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.22.1.md
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
-│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.6.0)
+│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.6.2)
 │   ├── PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ← Orchestration à l'usage (généré idempotent v1.0.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │
@@ -39,7 +41,7 @@ KNOWLEDGE/
 │   ├── README.md                        ← Objet, règles de conservation (byte-identité R2, unicité R4)
 │   ├── historiques-par-skill/{gen-plan,correct-work,clone-chat}.md ← Historique par skill (Task 17-B)
 │   ├── historique-autres-elements.md ← Historique du socle non-PM (Task 17-B)
-│   └── prompts-maitres/{gen-plan×15, correct-work×4} ← PMs historiques déplacés (byte-identité scellée)
+│   └── prompts-maitres/{gen-plan×17, correct-work×4} ← PMs historiques déplacés (byte-identité scellée)
 │
 ├── skills/                              ← Skills métier (Niveau 2)
 │   ├── gen-plan/
@@ -129,7 +131,7 @@ Les informations spécifiques à un skill ont été extraites du SHARED et inté
 - §2.1 : Rôle du registre KB
 - §3.1 : Tableau complet des relations
 - §6 : Architecture des prompts maîtres
-- §7 : Définitions des 5 disciplines
+- §7 : Définitions des 5 disciplines + 3 matérialisations n°54 (SHARED v1.7.0)
 
 ---
 

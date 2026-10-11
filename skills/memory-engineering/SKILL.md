@@ -1,6 +1,6 @@
 ---
 name: memory-engineering
-version: "1.1.0"
+version: "1.1.1"
 category: ecosystem
 language: fr
 tags:
@@ -12,13 +12,17 @@ tags:
   - contexte
 description: >-
  Skill discipline memory engineering : mémoire des agents — État Court/État Long, écriture sélective, budget d'attention fini, compaction paramétrable long-horizon, compaction de sessions longues avec ancres de reprise mécanique, mémoire externe par retrieval (IR/RAG) — récupération de l'information par retrieval ancré dans le registre versionné, sans hallucination, isolation des contextes : savoir isoler les contextes par tâche (prompts auto-contenus, pas de fuite inter-tâches). Spécialise la discipline memory engineering (registre décentralisé : §8 local + registre KB). Opérationnalisation 2026 : AgeMem (arXiv 2026, 110+ citations), Memory in the Age of AI Agents (survey), checkpointing LangGraph/Redis. Fondements documentés : references/fondements-academiques.md.
-dependencies: []
+dependencies:
+  - skill: gen-plan
+    version: ">=3.15.0"
+    used_at: "détenteur principal — État Long obligatoire aux exécutions longues, E-série (§8)"
 read_when:
-  - Déclencher quand la demande concerne : >-
+  - Déclencher quand la demande concerne : gouverner la mémoire d'un agent ou d'une session — décider ce qui est écrit en État Long (worklog, KB, answer key), compacter une session longue en conservant les ancres de reprise mécanique, isoler les contextes par tâche, ou récupérer l'information par retrieval ancré.
+  - Déclencher si la demande mentionne : mémoire, État Long, État Court, écriture sélective, compaction, condensé fait foi, ancre de reprise, retrieval, registre versionné, isolation de contexte, fuite inter-tâches, budget d'attention, reprise après interruption.
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.6.8)
+## §0 — Contexte Système (SHARED v1.7.2)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -90,7 +94,7 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.21.0 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; worklog.md — État Long opérant de la session.
+- gen-plan v3.22.1 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; worklog.md — État Long opérant de la session.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |

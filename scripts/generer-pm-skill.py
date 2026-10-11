@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.6.8)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.2)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -75,6 +75,18 @@ def abandon(msg, code=2):
 def bump_minor(v):
     a, b, c = (int(x) for x in v.split("."))
     return "%d.%d.%d" % (a, b + 1, 0)
+
+
+def bump_patch(v):
+    """Bump PATCH pour le recalibrage SHARED/PM-INSTALL (adaptation locale
+    session web-b4d7dd19, règle d'or n°1 — journalisée worklog Task 3) :
+    conformité semver (mise à jour de référence interne = PATCH), à
+    l'intention consignée D010 du plan certifié (« PM-INSTALL v1.6.1 »)
+    et aux précédents mécaniques v3.21.0 (SHARED v1.6.5→v1.6.6,
+    PM-INSTALL v1.5.0→v1.5.1). La « Version du prompt » du PM généré
+    reste bump_minor (itération substantielle du PM)."""
+    a, b, c = (int(x) for x in v.split("."))
+    return "%d.%d.%d" % (a, b, c + 1)
 
 
 def semver_tuple(s):
@@ -216,9 +228,9 @@ def recalibrage(results, dry):
     shared = read(SHARED)
     pm_install = read(PM_INSTALL)
     sh_old = re.search(r"> \*\*Version\*\* : (\d+\.\d+\.\d+)", shared).group(1)
-    sh_new = bump_minor(sh_old)
+    sh_new = bump_patch(sh_old)
     pi_old = re.search(r"^Version : (\d+\.\d+\.\d+)", pm_install, re.MULTILINE).group(1)
-    pi_new = bump_minor(pi_old)
+    pi_new = bump_patch(pi_old)
     fams = " · ".join("%s v%s→v%s" % (r["famille"], r["old"], r["new"]) for r in results)
     for r in results:
         f, old, new = r["famille"], r["old"], r["new"]
@@ -276,7 +288,7 @@ def run_generate(target, delta_path, dry):
         return
     if not dry:
         for r in results:
-            out = os.path.join(CORPUS, "PROMPT-MAITRE-%s-v%s.md" % (FAMILLES[r["famille"]], r["new"]))
+            out = os.path.join(CORPUS, "%s-v%s.md" % (FAMILLES[r["famille"]], r["new"]))
             with open(out, "w", encoding="utf-8") as f:
                 f.write(r["text"])
             print("PM écrit : %s (%d lignes)" % (out, r["text"].count("\n")))

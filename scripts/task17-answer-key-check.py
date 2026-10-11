@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.2)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 """Task 17 — answer key checker (16 checks) — réécrit post-incident S3 étendu.
 Calibré à la réalité de re-exécution (origin/main ff8c061)."""
 import hashlib
