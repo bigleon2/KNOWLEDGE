@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.4)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.5)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -39,8 +39,8 @@ def main():
     replay = json.loads((REPO / "scripts/triggers-replay-report.json").read_text(encoding="utf-8"))
 
     # Cascade
-    check("C01 SHARED v1.7.4 — §1.2 codifie @historique (R4, git mv, KO-L004)",
-          "**Version** : 1.7.4" in shared and "@historique/" in shared and "git mv" in shared and "KO-L004" in shared)
+    check("C01 SHARED v1.7.5 — §1.2 codifie @historique (R4, git mv, KO-L004)",
+          "**Version** : 1.7.5" in shared and "@historique/" in shared and "git mv" in shared and "KO-L004" in shared)
     check("C02 SYNC-CONTEXT v1.4.6 (révision Task 17 cascade tracée)",
           "**Version** : 1.4.7" in sync and "v1.4.3 (2026-10-11, Task 17)" in sync)
     residus = [str(p) for p in list(REPO.glob("skills/*/SKILL.md")) + list(REPO.glob("scripts/*.py"))
@@ -48,7 +48,7 @@ def main():
                and "SHARED v1.5.2" in p.read_text(encoding="utf-8") and "_archive" not in str(p)]
     check("C03 cascade : 0 résidu v1.5.2 hors archive dormante et hors instrument", not residus, str(residus))
     check("C04 propagate idempotence v2 (remplacement de bloc existant)",
-          "Idempotence v2" in prop and "SHARED v1.7.4" in prop and "@historique/" in prop)
+          "Idempotence v2" in prop and "SHARED v1.7.5" in prop and "@historique/" in prop)
 
     # Voie L
     from collections import Counter
@@ -81,8 +81,8 @@ def main():
     integ = json.loads((REPO / "scripts/ecosysteme-integrity.json").read_text(encoding="utf-8"))
     divergents = [f for f, sha in integ["corpus"].items()
                   if hashlib.sha256((REPO / "skills/@mon-ecosysteme" / f).read_bytes()).hexdigest() != sha]
-    check("C12 integrity : corpus 8/8 SHA vives alignées sur le manifeste",
-          len(integ["corpus"]) == 8 and not divergents, str(divergents))
+    check("C12 integrity : corpus 9/9 SHA vives alignées sur le manifeste",
+          len(integ["corpus"]) == 9 and not divergents, str(divergents))
     inter = (REPO / "scripts/interactions-report.json").read_text(encoding="utf-8")
     check("C13 coherence : 0 FAIL (PASS AVEC RÉSERVES)", '"fail": 0' in inter.lower() or "0 FAIL" in inter or inter.count('"fail"') >= 0 and '"FAIL"' not in inter)
     check("C14 plan d'exécution optimisé présent (plan vivant Task 17)",

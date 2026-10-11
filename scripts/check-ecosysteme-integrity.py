@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.4)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.5)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -98,7 +98,7 @@ ECO_SKILLS = {
     "fleet-engineering": "1.0.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54
     "memory-engineering": "1.1.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54 (Task 18 : Description Optimization conservée)
     "spec-driven-development": "1.0.1",
-    "refactoring-engineering": "1.0.1",  # n°55 (session web-b4d7dd19, 2026-10-12) : Task 8 — seule discipline de refactoring, outil refactoring-test, garde-fous refactor-guard
+    "refactoring-engineering": "1.1.0",  # n°55 — Task 9 (2026-10-12) : Description Optimization A2 (dérive voie M résorbée, re-mesure 7/7) ; Task 8 : seule discipline de refactoring, outil refactoring-test
     "refactor-guard": "1.7.0",  # Task 8 (fusion discussion 468a4c26) : garde-fous de refactoring — lignée externe v1.7.0, base hôte v1.2.0 portée
     "fullstack-dev": "1.0.0",  # Task 8 (fusion discussion 468a4c26 Task 27 externe) : inscrit au registre — précédent vue-upload
     "refactoring-test": "1.0.1",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire)
@@ -129,7 +129,9 @@ METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au r
 # SHA-256 scellée contre blobs b36f177, dossier @historique/) — corpus = 3 PMs
 # sources (GEN-PLAN v3.21.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0) + socle
 # (SHARED, INSTALL, ULTRA, README, SYNC-CONTEXT), re-scellement archive aligné (F2).
-CORPUS_ATTENDU = 8
+# Recalibrage Task 9 (session web-b4d7dd19, 2026-10-12) : 8 → 9 — PM REFACTOR-GUARD
+# v1.7.0 au corpus (décision D009 — 4e famille, bootstrap canonique).
+CORPUS_ATTENDU = 9
 
 results = []
 

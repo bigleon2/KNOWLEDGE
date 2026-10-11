@@ -8,3 +8,7 @@
 | v1.2.0 | 2026-10-10 | Première exécution N1 shadow réelle (3 cibles vivantes) + calibration grille #token §2.5 ; scripts/shadow_run.py (self-tests 79/79 ×2) — version d'origine du port hôte (contenu intégré à l'identique) |
 | v1.1.0 | 2026-10-10 | Matérialisation des 8 modules C-SAFE-1 (config, audit_ledger H09, spec_builder H07, policy_engine H10, sandbox_runner H04, checker H05, human_gate H15, rollout H08) — chaîne script-creator → correct-py → script-reviewer |
 | v1.0.0 | 2026-10-10 | Matérialisation initiale (projet « Skill Refactorisation Plan » — discussion Qwen T1-T46 : conception C05/C-SAFE-1, zéro-régression, gouvernance N0-N5) |
+
+### PM canonique (2026-10-12 — décision D009)
+
+Le PM refactor-guard entre au corpus sous décision propriétaire D009 (Task 9, session web-b4d7dd19 — gen-plan(step)) : `PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md` (bootstrap — sections SKILL.md portées verbatim, ancres `generer-pm-skill.py` alignées, famille n°4). Les 6 PMs de la lignée externe (v1.2.0→v1.7.0, discussion 468a4c26) sont ACCEPTÉS non portés (non verbatim — provenance R4) ; les futures montées génèrent leur PM mécaniquement (extension generer-pm 3→4 familles, §2quater PM-INSTALL v1.6.5).

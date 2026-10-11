@@ -64,7 +64,7 @@
    "detail": "bba1b9c40dda4793"
   },
   {
-   "check": "T2.3 R2 : corpus 8 fichiers, 1 PM GEN-PLAN = v3.23.1",
+   "check": "T2.3 R2 : corpus 9 fichiers (D009), 1 PM GEN-PLAN = v3.23.1",
    "verdict": "PASS",
    "detail": "['PROMPT-MAITRE-GEN-PLAN-v3.23.1.md']"
   },
@@ -99,7 +99,7 @@
    "detail": ""
   },
   {
-   "check": "T2.10 generer-pm --check : 3 familles COHERENT après cascade",
+   "check": "T2.10 generer-pm --check : 4 familles COHERENT après cascade (D009)",
    "verdict": "PASS",
    "detail": ""
   },

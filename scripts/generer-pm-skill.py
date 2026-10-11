@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.4)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.5)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -10,8 +10,10 @@ Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 """generer-pm-skill.py — Génération mécanique du prompt maître à toute montée de version.
 
 Règle KO-L004 v1.1.0 (gen-plan §1.15, leçon L004 matérialisée — directive
-utilisateur 2026-10-09) : toute montée de version d'un skill des 3 familles
-(gen-plan, correct-work, clone-chat) déclenche, AVANT la certification :
+utilisateur 2026-10-09) : toute montée de version d'un skill des 4 familles
+(gen-plan, correct-work, clone-chat, refactor-guard — décision propriétaire
+D009, 2026-10-12 : PMs de la lignée externe ACCEPTÉS non portés — non
+verbatim R4 ; le PM canonique démarre à v1.7.0) déclenche, AVANT la certification :
   (1) le recalibrage mécanique des outils dépendants (arbitres, pre-checks,
       skills-meta.json, run-order, SYNC_MAP, miroir, archive) ;
   (2) la génération mécanique du prompt maître de la nouvelle version —
@@ -64,6 +66,9 @@ FAMILLES = {
     "gen-plan": "PROMPT-MAITRE-GEN-PLAN",
     "correct-work": "PROMPT-MAITRE-CORRECT-WORK",
     "clone-chat": "PROMPT-MAITRE-CLONE-CHAT",
+    # 4e famille — décision propriétaire D009 (2026-10-12, session web-b4d7dd19) :
+    # PMs externes ACCEPTÉS non portés (non verbatim, R4) ; PM canonique v1.7.0 bootstrap.
+    "refactor-guard": "PROMPT-MAITRE-REFACTOR-GUARD",
 }
 
 

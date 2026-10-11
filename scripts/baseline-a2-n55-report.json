@@ -1,0 +1,413 @@
+{
+  "date": "2026-10-12",
+  "task": "Task 9 / G-RES-2 — baselines A2 n°55 (QUOTA_OK levé par directive propriétaire 2026-10-12)",
+  "seuil": 0.5,
+  "confirm_runs": 3,
+  "methode": "SHARED §7 v2 (réplique task18/task21)",
+  "skills": {
+    "refactoring-engineering": {
+      "description": "Skill discipline refactoring engineering : déclarer, planifier et exécuter les OPÉRATIONS DE REFACTORING de l'écosystème (skills, corpus PM, scripts, agents, documents) par une série de petites transf",
+      "n_cases": 7,
+      "score_baseline": "7/7",
+      "derive": false,
+      "derive_voie_m": [],
+      "derive_voie_l": [],
+      "votes_null": 0,
+      "cases": [
+        {
+          "query": "Utilise le skill refactoring-engineering pour exécuter le refactoring préparé.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "engineering",
+              "executer",
+              "refactoring",
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Déclare une opération de refactoring : cible, invariants, preuves attendues, plan de retour arrière.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "cibl",
+              "declar",
+              "invari",
+              "oper",
+              "plan",
+              "refactoring"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Refactoring préparatoire : rends ce changement facile, puis fais le changement facilement.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "puis",
+              "refactoring"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Planifie le refactoring du corpus PM en petites transformations préservant le comportement observable.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "comport",
+              "corpu",
+              "observ",
+              "petit",
+              "preserv",
+              "refactoring",
+              "transform"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Migre ce skill vers la nouvelle structure en stratégie progressive : remplacement sanctionné par étapes, archivage R4.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "archivag",
+              "skill"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Corrige ce fichier isolé rapidement sans plan préalable.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": [
+              "plan"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Renforce le harnais : profils ressource, signaux de pression, gardes-fous.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": []
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        }
+      ]
+    },
+    "refactoring-test": {
+      "description": "Skill outil refactoring test : détecteur/évaluateur des situations de refactoring — reconnaître les situations où un refactoring devient nécessaire (signaux : duplication, dérive de terminologie, vers",
+      "n_cases": 7,
+      "score_baseline": "7/7",
+      "derive": false,
+      "derive_voie_m": [],
+      "derive_voie_l": [],
+      "votes_null": 0,
+      "cases": [
+        {
+          "query": "Utilise le skill refactoring-test pour détecter si un refactoring est nécessaire sur ce skill.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "necessair",
+              "refactoring",
+              "test"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Évalue cette situation de refactoring : risque, urgence, portée.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "evalu",
+              "porte",
+              "refactoring",
+              "risqu",
+              "situ",
+              "urgenc"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Génère le graphe d'interactions et estime le blast radius d'une modification de refactoring-engineering.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "blast",
+              "engineering",
+              "graph",
+              "interact",
+              "modific",
+              "radiu",
+              "refactoring"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Scanne les signaux de dette technique de l'écosystème : duplication, versions divergentes, asymétries de la KB.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "asymetri",
+              "divergent",
+              "duplic",
+              "ecosystem",
+              "sign",
+              "vers"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Fais un re-scan post-opératoire : le delta de santé après le refactoring.",
+          "expected": true,
+          "voie_m": {
+            "trigger": true,
+            "hits": [
+              "refactoring"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              true,
+              true
+            ],
+            "ratio": 1.0,
+            "trigger": true,
+            "evidence": [
+              "OUI",
+              "OUI",
+              "OUI"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Vérifie et corrige le rapport que je viens de produire (5 étapes, verdict S1-S3).",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": [
+              "verdict"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              false,
+              false,
+              false
+            ],
+            "ratio": 0.0,
+            "trigger": false,
+            "evidence": [
+              "NON",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        },
+        {
+          "query": "Construis le graphe de connaissances de la KB : nœuds, arêtes, schéma versionné.",
+          "expected": false,
+          "voie_m": {
+            "trigger": false,
+            "hits": [
+              "graph"
+            ]
+          },
+          "voie_l": {
+            "votes": [
+              true,
+              false,
+              false
+            ],
+            "ratio": 0.3333333333333333,
+            "trigger": false,
+            "evidence": [
+              "OUI",
+              "NON",
+              "NON"
+            ]
+          },
+          "baseline_ok": true
+        }
+      ]
+    }
+  }
+}

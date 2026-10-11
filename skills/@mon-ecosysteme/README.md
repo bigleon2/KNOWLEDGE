@@ -35,7 +35,8 @@ KNOWLEDGE/
 │   ├── PROMPT-MAITRE-GEN-PLAN-v3.23.1.md
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
-│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.6.3)
+│   ├── PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md  ← 4e famille (décision D009)
+│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.6.5)
 │   ├── PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ← Orchestration à l'usage (généré idempotent v1.0.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │
@@ -79,7 +80,7 @@ KNOWLEDGE/
 ## 3. Les 3 niveaux de Contexte Système
 
 ### Niveau 1 : Bloc complet (Prompts maîtres)
-- **Cibles** : 5 fichiers `PROMPT-MAITRE-*.md`
+- **Cibles** : 6 fichiers `PROMPT-MAITRE-*.md`
 - **Contenu** : Règle Zéro + Variables + Conventions (complet)
 - **Position** : Après le frontmatter, avant §A
 - **Taille** : ~1 250 caractères

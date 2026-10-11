@@ -1,12 +1,12 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.6.4
+Version : 1.6.5
 Date : 2026-10-09
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
 Dépend : CONTEXTE SYSTÈME (embarqué ci-dessous)
 Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — périmètre (§A) + ordre d'exécution optimal (§2) + étendue d'installation COMPLET/MINIMALE (§2bis, v1.4.0) + références explicites des dernières versions des PMs et du socle indispensable (§2ter, v1.5.1) + génération automatique du PM à toute montée de version (§2quater, v1.6.0) + critères de passage (§3).
-Référence : §2ter — instantané explicite des dernières versions des PMs sources (GEN-PLAN, CORRECT-WORK, CLONE-CHAT) et des fichiers indispensables (directive utilisateur 2026-10-09) ; rafraîchi à chaque révision — la dérivation dynamique « PM le plus récent » (KO-L003) demeure la mécanique de référence ; §2quater (v1.6.0) — génération mécanique du PM à toute montée de version (KO-L004 v1.1.0, `scripts/generer-pm-skill.py`).
+Référence : §2ter — instantané explicite des dernières versions des PMs sources (GEN-PLAN, CORRECT-WORK, CLONE-CHAT, REFACTOR-GUARD — 4e famille, décision D009) et des fichiers indispensables (directive utilisateur 2026-10-09) ; rafraîchi à chaque révision — la dérivation dynamique « PM le plus récent » (KO-L003) demeure la mécanique de référence ; §2quater (v1.6.0) — génération mécanique du PM à toute montée de version (KO-L004 v1.1.0, `scripts/generer-pm-skill.py`).
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
@@ -95,6 +95,9 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 | gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.23.1.md` | gen-plan v3.23.1 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md` | correct-work v2.7.0 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | clone-chat v2.0.0 | 5 |
+| refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md` | refactor-guard v1.7.0 | — |
+
+refactor-guard (4e famille — décision D009, bootstrap v1.7.0) : hors pipeline d'installation 3-5 (garde-fous de refactoring appelé par gen-plan, hook E13) — l'instantané est tenu à jour au même titre.
 
 ### Fichiers de socle indispensables (corpus, archive, outillage, registre)
 
@@ -117,7 +120,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 ## §2quater — Génération automatique du PM à toute montée de version (v1.6.0, 2026-10-09)
 
-**Directive KO-L004 v1.1.0 (gen-plan §1.15, matérialisation M4 — session web-b93f42fa)** : chaque fois qu'un skill des 3 familles (gen-plan, correct-work, clone-chat) monte en version, l'écosystème génère MÉCANIQUEMENT — avant toute certification — le prompt maître de la nouvelle version dans `@mon-ecosysteme/` sous le nom `PROMPT-MAITRE-<famille>-v<version>.md` (ex : `PROMPT-MAITRE-GEN-PLAN-v3.21.0.md` pour gen-plan v3.21.0). Aucun PM nouveau n'est rédigé à la main : la génération est l'affaire du script, l'agent ne complète que les deltas sémantiques.
+**Directive KO-L004 v1.1.0 (gen-plan §1.15, matérialisation M4 — session web-b93f42fa)** : chaque fois qu'un skill des 4 familles (gen-plan, correct-work, clone-chat, refactor-guard — décision D009 du 2026-10-12) monte en version, l'écosystème génère MÉCANIQUEMENT — avant toute certification — le prompt maître de la nouvelle version dans `@mon-ecosysteme/` sous le nom `PROMPT-MAITRE-<famille>-v<version>.md` (ex : `PROMPT-MAITRE-GEN-PLAN-v3.21.0.md` pour gen-plan v3.21.0). Aucun PM nouveau n'est rédigé à la main : la génération est l'affaire du script, l'agent ne complète que les deltas sémantiques.
 
 **Mécanique** (`scripts/generer-pm-skill.py`, Python stdlib — `--check` et `--generate <famille|all> [--delta FILE] [--dry-run]`) :
 - source de vérité : frontmatter `version:` de `skills/<famille>/SKILL.md` ; base : PM le plus récent du corpus (dérivation dynamique KO-L003) ;
@@ -178,6 +181,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.6.5 | 2026-10-12 | Décision propriétaire D009 (Task 9, session web-b4d7dd19 — gen-plan(step)) : 4e famille refactor-guard — PM canonique PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0 au corpus (bootstrap — PMs de la lignée externe ACCEPTÉS non portés, R4) ; generer-pm-skill.py 3→4 familles ; §2ter +1 ligne REFACTOR-GUARD, §2quater 3→4 familles, référence §1 alignée |
 | v1.6.4 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.23.0→v3.23.1 ; recalibrage croisé : SHARED v1.7.4 (§6.1), §2ter, §A.3 |
 | v1.6.3 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.22.1→v3.23.0 ; recalibrage croisé : SHARED v1.7.3 (§6.1), §2ter, §A.3 |
 | v1.6.2 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.22.0→v3.22.1 ; recalibrage croisé : SHARED v1.7.2 (§6.1), §2ter, §A.3 |

@@ -1,0 +1,137 @@
+{
+  "task": "Task 9 / G3-b — tests de clôture des réserves (D009 + baselines A2 n°55 + remédiation purge)",
+  "date": "2026-10-12",
+  "bilan": "26/26",
+  "results": [
+    {
+      "check": "T-R1.1 PM REFACTOR-GUARD v1.7.0 au corpus",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.2 ancres generer-pm (5) présentes",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.3 décision D009 documentée dans le PM (provenance R4)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.4 generer-pm FAMILLES = 4 entrées (dict)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.5 generer-pm --check 4/4 COHERENT ×2 (idempotent)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.6 --generate refactor-guard = NO-OP (cohérence)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.7 PM-INSTALL v1.6.5 : §2quater 4 familles + §2ter ligne REFACTOR-GUARD",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.8 SHARED v1.7.5 : §6.1 ligne REFACTOR-GUARD + PM-INSTALL v1.6.5",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.9 KB : décision D009 LEVÉE consignée (calibration refactor-guard)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.10 @historique : section PM canonique (2026-10-12)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R1.11 PM projeté hôte byte-identique",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R2.1 rapport baseline JSON présent",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R2.2 refactoring-engineering : 7/14 cas baseline_ok, 0 dérive ×2 voies, 0 vote null",
+      "verdict": "PASS",
+      "detail": "n=7 ok=7 null=0 dm=0 dl=0"
+    },
+    {
+      "check": "T-R2.2 refactoring-test : 7/14 cas baseline_ok, 0 dérive ×2 voies, 0 vote null",
+      "verdict": "PASS",
+      "detail": "n=7 ok=7 null=0 dm=0 dl=0"
+    },
+    {
+      "check": "T-R2.3 confirm LLM = 3 runs réels/cas (anti-fabrication R3)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R2.4 Description Optimization : frontmatter v1.1.0 + phrase optimisée",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R2.5 evals R2 inchangées (7 cas ref-eng, 7 cas ref-test)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R2.6 KB heading v1.1.0 + calibration Task 9 (A2)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R2.7 ECO_SKILLS : refactoring-engineering 1.1.0 (SHA vive alignée)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R2.8 @historique : ligne v1.1.0 (Description Optimization A2)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R2.9 rapport MD livré (verdict consolidé 14/14)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R3.1 manifeste Task 9 présent",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R3.2 post-checks : 128/128 byte-identité (×2)",
+      "verdict": "PASS",
+      "detail": "{'perimetre': 128, 'copies': 0, 'identiques': 128, 'absents_canonique': 0, 'byte_identite_pass2': 128}"
+    },
+    {
+      "check": "T-R3.3 5 fichiers purgés critiques restaurés byte-identité",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R3.4 exclusion R2 version-management maintenue",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "T-R3.5 harnais idempotent (re-exécution = même verdicts)",
+      "verdict": "PASS",
+      "detail": ""
+    }
+  ]
+}

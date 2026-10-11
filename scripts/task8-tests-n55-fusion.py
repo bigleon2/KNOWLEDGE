@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.5)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # -*- coding: utf-8 -*-
 """Task 8 G2-b — 3 tests complexes et robustes : refactoring-engineering + refactoring-test
 (+ fusion discussion 468a4c26).
@@ -119,11 +126,12 @@ def t2():
     idx = read(CAN + "/skills/@historique/README.md")
     check("T2.2 R4 : PM v3.23.0 archivé byte-identité, SHA scellé index §5",
           h is not None and h in idx, h[:16] if h else "absent")
-    # T2.3 R2 non-rétrogradation : corpus = exactement 1 PM GEN-PLAN = v3.23.1
+    # T2.3 R2 non-rétrogradation : corpus = 1 PM GEN-PLAN = v3.23.1 + PM REFACTOR-GUARD v1.7.0 (D009)
     corpus = sorted(os.listdir(CAN + "/skills/@mon-ecosysteme"))
     pms = [f for f in corpus if f.startswith("PROMPT-MAITRE-GEN-PLAN-")]
-    check("T2.3 R2 : corpus 8 fichiers, 1 PM GEN-PLAN = v3.23.1",
-          len(corpus) == 8 and pms == ["PROMPT-MAITRE-GEN-PLAN-v3.23.1.md"], str(pms))
+    check("T2.3 R2 : corpus 9 fichiers (D009), 1 PM GEN-PLAN = v3.23.1",
+          len(corpus) == 9 and pms == ["PROMPT-MAITRE-GEN-PLAN-v3.23.1.md"]
+          and "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md" in corpus, str(pms))
     # T2.4 idempotence ×2 RE-POUVRÉE à l'instant (scripts d'état → 0 EDIT)
     edits = 0
     for s in ("g1a-corrections-n55.py", "g1b-kb-n55.py", "g1c-genplan-shared-eco.py"):
@@ -154,7 +162,7 @@ def t2():
     # T2.10 delta PM verrouillé + idempotent (ré-exécution no-op)
     r = subprocess.run([sys.executable, CAN + "/scripts/generer-pm-skill.py", "--check"],
                        capture_output=True, text=True, cwd=CAN)
-    check("T2.10 generer-pm --check : 3 familles COHERENT après cascade", "COHERENT" in r.stdout and r.returncode == 0)
+    check("T2.10 generer-pm --check : 4 familles COHERENT après cascade (D009)", "COHERENT" in r.stdout and r.returncode == 0)
 
 
 def t3():
