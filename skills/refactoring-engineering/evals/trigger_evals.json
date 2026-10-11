@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill refactoring-engineering pour exécuter le refactoring préparé.",
+    "should_trigger": true
+  },
+  {
+    "query": "Déclare une opération de refactoring : cible, invariants, preuves attendues, plan de retour arrière.",
+    "should_trigger": true
+  },
+  {
+    "query": "Refactoring préparatoire : rends ce changement facile, puis fais le changement facilement.",
+    "should_trigger": true
+  },
+  {
+    "query": "Planifie le refactoring du corpus PM en petites transformations préservant le comportement observable.",
+    "should_trigger": true
+  },
+  {
+    "query": "Migre ce skill vers la nouvelle structure en stratégie progressive : remplacement sanctionné par étapes, archivage R4.",
+    "should_trigger": true
+  },
+  {
+    "query": "Corrige ce fichier isolé rapidement sans plan préalable.",
+    "should_trigger": false
+  },
+  {
+    "query": "Renforce le harnais : profils ressource, signaux de pression, gardes-fous.",
+    "should_trigger": false
+  }
+]

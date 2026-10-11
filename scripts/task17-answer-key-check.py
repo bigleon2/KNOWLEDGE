@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.2)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.3)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -39,16 +39,16 @@ def main():
     replay = json.loads((REPO / "scripts/triggers-replay-report.json").read_text(encoding="utf-8"))
 
     # Cascade
-    check("C01 SHARED v1.6.8 — §1.2 codifie @historique (R4, git mv, KO-L004)",
-          "**Version** : 1.6.8" in shared and "@historique/" in shared and "git mv" in shared and "KO-L004" in shared)
-    check("C02 SYNC-CONTEXT v1.4.3 (révision Task 17 cascade tracée)",
-          "**Version** : 1.4.3" in sync and "v1.4.3 (2026-10-11, Task 17)" in sync)
+    check("C01 SHARED v1.7.3 — §1.2 codifie @historique (R4, git mv, KO-L004)",
+          "**Version** : 1.7.3" in shared and "@historique/" in shared and "git mv" in shared and "KO-L004" in shared)
+    check("C02 SYNC-CONTEXT v1.4.6 (révision Task 17 cascade tracée)",
+          "**Version** : 1.4.6" in sync and "v1.4.3 (2026-10-11, Task 17)" in sync)
     residus = [str(p) for p in list(REPO.glob("skills/*/SKILL.md")) + list(REPO.glob("scripts/*.py"))
                if p.name != "task17-answer-key-check.py"
                and "SHARED v1.5.2" in p.read_text(encoding="utf-8") and "_archive" not in str(p)]
     check("C03 cascade : 0 résidu v1.5.2 hors archive dormante et hors instrument", not residus, str(residus))
     check("C04 propagate idempotence v2 (remplacement de bloc existant)",
-          "Idempotence v2" in prop and "SHARED v1.6.8" in prop and "@historique/" in prop)
+          "Idempotence v2" in prop and "SHARED v1.7.3" in prop and "@historique/" in prop)
 
     # Voie L
     from collections import Counter

@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.22.1
+version: 3.23.0
 category: ecosystem
 language: fr
 tags:
@@ -41,7 +41,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.2)
+## §0 — Contexte Système (SHARED v1.7.3)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -143,6 +143,8 @@ read_when:
 | **Loop engineering** | Boucle E10-E13 (exécution → surveillance → écart → ajustement) ; auto-calibration E15 |
 | **Graph engineering** | Registre KB = graphe de relations bidirectionnelles versionnées ; matrice agent × skill |
 | **Harness engineering** | Profils ressource + signaux de pression ; hook E8 correct-work + contrôle par phase (E9-E14) ; worklog structuré |
+| **Refactoring engineering** | Discipline n°55 : déclaration/planification/exécution des opérations de refactoring (petites transformations préservant le comportement observable — arbitres, semver, R2/R4) ; bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0 |
+| **Refactoring test** | Discipline n°55 : détection/évaluation des situations de refactoring + graphe d'interactions (blast radius) ; verdict machine OK/PRESSION/CRITIQUE |
 
 **Table de mobilisation E1-E8 (v3.12.0)** — disciplines mobilisées par étape de planification (audit N5-a : interprétation PEK E1-E3 conforme, génération E4-E8 explicitée) :
 
@@ -179,6 +181,20 @@ L'optimisation fine des prompts complexes est déléguée au skill `prompt-engin
 Source de vérité : SHARED §7 (table de définitions + registre d'assignation — v1.7.0) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB ; orchestration : PM v3.12.0 §1.9. Les relations inter-disciplines (fleet ↔ memory ↔ spec) restent en §3 des skills, non versionnées (SHARED §3.2 règle 5).
 
 <!-- FIN-PATTERN:GEN-PLAN-DISCIPLINES-ETENDUES-v2.0.0 -->
+
+<!-- PATTERN:GEN-PLAN-REFACTORING-v1.0.0 -->
+
+**Disciplines de refactoring n°55 (v3.23.0, directive propriétaire session web-b4d7dd19 : « le système de refactoring de mon écosystème déclaré et tagué en tant que discipline »)** : le système de refactoring effectif de l'écosystème (correct-work modes CIBLE/DIRECT + procédures cascade PM + arbitres mécaniques + archivage @historique R4) est déclaré comme discipline `refactoring-engineering` ; le détecteur/évaluateur `refactoring-test` (producteur d'information, ne modifie rien — anti-auto-certification) est appelable par tout élément (gen-plan, agents, disciplines, scripts). gen-plan les mobilise :
+
+| Étape | Disciplines n°55 mobilisées | Mécanisme |
+|--------|------------------------|-----------|
+| E4 | refactoring-test ; refactoring-engineering | Détection/évaluation des situations de refactoring (M1 scan, verdict OK/PRESSION/CRITIQUE) ; conception des opérations dans le plan (fiche D1 — invariants, preuves attendues, pré-checks verrouillés = golden master) |
+| E7 | refactoring-test | Re-validation de l'impact avant publication du plan (M3 — graphe d'interactions, blast radius des modifications prévues) |
+| E9-E14 | refactoring-test ; refactoring-engineering | Toute situation où un refactoring pourrait se poser route vers refactoring-test (évaluation) puis refactoring-engineering (D1-D4 — zéro-régression) ; re-scan post-opératoire M4 |
+
+Règle d'anti-auto-certification : l'exécutant (refactoring-engineering) ne s'auto-évalue pas — évaluation indépendante par refactoring-test (pré-vol/post-vol) + arbitres mécaniques + correct-work. Source de vérité : SHARED §7 (n°55) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB.
+
+<!-- FIN-PATTERN:GEN-PLAN-REFACTORING-v1.0.0 -->
 
 ---
 
@@ -322,6 +338,8 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 | spec-driven-development | Détention orchestrée (SHARED §7, registre décentralisé §8 du skill) | Cadrage spec-first à E4, re-validation à E7 — version >= v1.0.0 |
 | memory-engineering | Détention orchestrée (SHARED §7, registre décentralisé §8 du skill) | État Long obligatoire aux exécutions longues, compaction/reprise — version >= v1.1.0 |
 | fleet-engineering | Détention orchestrée (SHARED §7, registre décentralisé §8 du skill) | Choix du pattern et des bornes à E5/E7, Graph Diamond — version >= v1.0.0 |
+| refactoring-engineering | Mobilisation n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Conception/exécution des opérations de refactoring (E4/E7 + situations E9-E14) — version >= v1.0.0 |
+| refactoring-test | Mobilisation n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Détection/évaluation + graphe d'interactions (blast radius) — verdict machine, version >= v1.0.0 |
 | knowledge-observer | Invocation à E15 (§1.2bis) | Observation post-session (modes M1-M2) ; les modes M3-M4 exigent un verdict correct-work — version >= v1.0.0 |
 | resource-monitor | Mobilisation hook E1-RES (§1.2bis) | Collecte G-RES à l'ouverture de session — verdict OK/PRESSION/CRITIQUE → mode d'exécution, version >= v1.0.0 |
 | answer-key | Arbitrage E7/E8 (§1.2bis) | Décisions E1 vérifiables mécaniquement — arbitre answer-key-checker.py (16 checks) |

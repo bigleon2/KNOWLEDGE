@@ -1,8 +1,9 @@
 # Écosystème Knowledge — Architecture & Guide de référence
 
-> **Date** : 2026-10-11
-> **Version** : 2.1.3
-> **Architecture** : v2.2 — SHARED v1.7.2 — Contexte Système 3 niveaux
+> **Date** : 2026-10-12
+> **Version** : 2.1.4
+> **Architecture** : v2.2 — SHARED v1.7.3 — Contexte Système 3 niveaux
+> **Révision v2.1.4 (cascade gen-plan v3.23.0, session web-b4d7dd19 Task 7 gen-plan(step))** : recalibrage état — PM GEN-PLAN v3.23.0 vivant (matérialisation des disciplines de refactoring n°55 : refactoring-engineering + refactoring-test — directive propriétaire), v3.22.1 archivé `@historique/` (18 PMs GEN-PLAN) ; SHARED v1.7.3 (§6.1 + §7 n°55), PM-INSTALL v1.6.3 (§2ter/§A.3) ; KB 30 entrées (2 n°55 + réciproques) ; propagation §0 ×97+51+2 (idempotent ×2) ; arborescence §2 recalibrée.
 > **Révision v2.1.3 (cascade gen-plan v3.22.1, session web-b4d7dd19)** : recalibrage état — PM GEN-PLAN v3.22.1 vivant (renommage du mode step-confirm → step-ok + clause mode NULL — directive propriétaire), v3.22.0 archivé `@historique/` (17 PMs GEN-PLAN) ; SHARED v1.7.2 (§6.1), PM-INSTALL v1.6.2 (§2ter/§A.3) ; arborescence §2 recalibrée.
 > **Révision v2.1.2 (cascade gen-plan v3.22.0, session web-b4d7dd19)** : recalibrage état — PM GEN-PLAN v3.22.0 vivant (orchestration matérialisations n°54 + déclencheurs de mode step/step-confirm), v3.21.0 archivé `@historique/` (16 PMs GEN-PLAN) ; §7 SHARED : « Définitions des 5 disciplines » → « 5 + 3 matérialisations n°54 » (SHARED v1.7.0, discussion parente 5ef6176f) ; arborescence §2 recalibrée.
 > **Révision v2.1.1 (Task 16)** : déduplication des prompts maîtres (directive propriétaire « ne garder que la dernière version ») — le corpus `@mon-ecosysteme/` ne porte plus que les PMs sources (GEN-PLAN v3.21.0, CORRECT-WORK v2.7.0, CLONE-CHAT v2.0.0) + socle ; les 19 PMs historiques sont archivés dans le nouveau dossier `skills/@historique/` (byte-identité SHA-256 scellée, distillation des particularités/améliorations/avantages par version) ; arborescence §2 recalibrée.
@@ -12,7 +13,7 @@
 
 ## 1. Vue d'ensemble
 
-L'écosystème Knowledge est un ensemble de **84 skills** conçus pour un assistant IA (9 skills écosystème + 71 skills métier + 4 skills de discipline).
+L'écosystème Knowledge est un ensemble de **86 skills** conçus pour un assistant IA (9 skills écosystème + 71 skills métier + 6 skills de discipline — dont les 2 disciplines de refactoring n°55).
 
 ### Principes fondamentaux
 
@@ -30,10 +31,10 @@ KNOWLEDGE/
 ├── @mon-ecosysteme/                     ← Prompts maîtres (Niveau 1) — dernières versions seules (Task 16)
 │   ├── README.md                        ← Ce guide
 │   ├── PROMPT-MAITRE-SHARED.md          ← Socle commun (source de vérité)
-│   ├── PROMPT-MAITRE-GEN-PLAN-v3.22.1.md
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.23.0.md
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md
-│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.6.2)
+│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.6.3)
 │   ├── PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ← Orchestration à l'usage (généré idempotent v1.0.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │
@@ -41,7 +42,7 @@ KNOWLEDGE/
 │   ├── README.md                        ← Objet, règles de conservation (byte-identité R2, unicité R4)
 │   ├── historiques-par-skill/{gen-plan,correct-work,clone-chat}.md ← Historique par skill (Task 17-B)
 │   ├── historique-autres-elements.md ← Historique du socle non-PM (Task 17-B)
-│   └── prompts-maitres/{gen-plan×17, correct-work×4} ← PMs historiques déplacés (byte-identité scellée)
+│   └── prompts-maitres/{gen-plan×18, correct-work×4} ← PMs historiques déplacés (byte-identité scellée)
 │
 ├── skills/                              ← Skills métier (Niveau 2)
 │   ├── gen-plan/

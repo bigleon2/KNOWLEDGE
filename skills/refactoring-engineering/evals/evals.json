@@ -1,0 +1,43 @@
+{
+  "skill_name": "refactoring-engineering",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals de matérialisation n°55 (Task 7, session web-b4d7dd19) — structure miroir des disciplines n°54 ; contrôles négatifs : correct-work (mode DIRECT) et harness-engineering.",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Utilise le skill refactoring-engineering pour exécuter le refactoring préparé.",
+      "expected_behavior": "déclenchement du skill refactoring-engineering"
+    },
+    {
+      "id": 2,
+      "query": "Déclare une opération de refactoring : cible, invariants, preuves attendues, plan de retour arrière.",
+      "expected_behavior": "déclenchement du skill refactoring-engineering"
+    },
+    {
+      "id": 3,
+      "query": "Refactoring préparatoire : rends ce changement facile, puis fais le changement facilement.",
+      "expected_behavior": "déclenchement du skill refactoring-engineering"
+    },
+    {
+      "id": 4,
+      "query": "Planifie le refactoring du corpus PM en petites transformations préservant le comportement observable.",
+      "expected_behavior": "déclenchement du skill refactoring-engineering"
+    },
+    {
+      "id": 5,
+      "query": "Migre ce skill vers la nouvelle structure en stratégie progressive : remplacement sanctionné par étapes, archivage R4.",
+      "expected_behavior": "déclenchement du skill refactoring-engineering"
+    },
+    {
+      "id": 6,
+      "query": "Corrige ce fichier isolé rapidement sans plan préalable.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    },
+    {
+      "id": 7,
+      "query": "Renforce le harnais : profils ressource, signaux de pression, gardes-fous.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill refactoring-test pour détecter si un refactoring est nécessaire sur ce skill.",
+    "should_trigger": true
+  },
+  {
+    "query": "Évalue cette situation de refactoring : risque, urgence, portée.",
+    "should_trigger": true
+  },
+  {
+    "query": "Génère le graphe d'interactions et estime le blast radius d'une modification de refactoring-engineering.",
+    "should_trigger": true
+  },
+  {
+    "query": "Scanne les signaux de dette technique de l'écosystème : duplication, versions divergentes, asymétries de la KB.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fais un re-scan post-opératoire : le delta de santé après le refactoring.",
+    "should_trigger": true
+  },
+  {
+    "query": "Vérifie et corrige le rapport que je viens de produire (5 étapes, verdict S1-S3).",
+    "should_trigger": false
+  },
+  {
+    "query": "Construis le graphe de connaissances de la KB : nœuds, arêtes, schéma versionné.",
+    "should_trigger": false
+  }
+]

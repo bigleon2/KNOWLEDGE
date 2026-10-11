@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.2)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.3)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -56,6 +56,12 @@ RETRAITS_SANCTIONNES = {
     # ci-dessous (garde anti-perte renforcée ; SHA-256 scellé à l'index §5 du
     # README @historique).
     "PROMPT-MAITRE-GEN-PLAN-v3.22.0.md",
+    # gen-plan v3.23.0 (session web-b4d7dd19, Task 7 gen-plan(step) — matérialisation
+    # disciplines de refactoring n°55) — re-scellement post-cascade : PM v3.22.1
+    # supplanté DÉPLACÉ git mv vers skills/@historique/prompts-maitres/gen-plan/ —
+    # byte-identité vérifiée ci-dessous (garde anti-perte renforcée ; SHA-256
+    # scellé à l'index §5 du README @historique).
+    "PROMPT-MAITRE-GEN-PLAN-v3.22.1.md",
 }
 
 # Task 16 — garde anti-perte renforcée pour les retraits DÉPLACÉS : chaque PM

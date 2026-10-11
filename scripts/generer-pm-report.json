@@ -3,8 +3,8 @@
   "date": "2026-10-11",
   "familles": {
     "gen-plan": {
-      "skill": "3.22.1",
-      "pm": "PROMPT-MAITRE-GEN-PLAN-v3.22.1.md",
+      "skill": "3.23.0",
+      "pm": "PROMPT-MAITRE-GEN-PLAN-v3.23.0.md",
       "etat": "COHERENT"
     },
     "correct-work": {

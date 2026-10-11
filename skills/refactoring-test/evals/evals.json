@@ -1,0 +1,43 @@
+{
+  "skill_name": "refactoring-test",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals de matérialisation n°55 (Task 7, session web-b4d7dd19) — structure miroir des disciplines n°54 (graph/context/loop/harness/fleet/spec/memory) ; contrôles négatifs : correct-work et graph-engineering.",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Utilise le skill refactoring-test pour détecter si un refactoring est nécessaire sur ce skill.",
+      "expected_behavior": "déclenchement du skill refactoring-test"
+    },
+    {
+      "id": 2,
+      "query": "Évalue cette situation de refactoring : risque, urgence, portée.",
+      "expected_behavior": "déclenchement du skill refactoring-test"
+    },
+    {
+      "id": 3,
+      "query": "Génère le graphe d'interactions et estime le blast radius d'une modification de refactoring-engineering.",
+      "expected_behavior": "déclenchement du skill refactoring-test"
+    },
+    {
+      "id": 4,
+      "query": "Scanne les signaux de dette technique de l'écosystème : duplication, versions divergentes, asymétries de la KB.",
+      "expected_behavior": "déclenchement du skill refactoring-test"
+    },
+    {
+      "id": 5,
+      "query": "Fais un re-scan post-opératoire : le delta de santé après le refactoring.",
+      "expected_behavior": "déclenchement du skill refactoring-test"
+    },
+    {
+      "id": 6,
+      "query": "Vérifie et corrige le rapport que je viens de produire (5 étapes, verdict S1-S3).",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    },
+    {
+      "id": 7,
+      "query": "Construis le graphe de connaissances de la KB : nœuds, arêtes, schéma versionné.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine)"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "manifest": {
+    "projection": "gen-plan v3.23.0 / disciplines n°55 (Task 7, session web-b4d7dd19)",
+    "files": {
+      "refactoring-engineering/SKILL.md": "2808ad1a9cd22937231514cd870ceeb15f881274345e3d2aeb6d24cd26f5f0cf",
+      "refactoring-engineering/evals/evals.json": "5104bc4edf1921f0db5feb22b62c881c6b7b7b44eb42186148cbc1e49885d64c",
+      "refactoring-engineering/evals/trigger_evals.json": "1762d0ff69de324ce1baf943f713519e6eeecfd5f450d22f6c3ba3d6bb4b3bb2",
+      "refactoring-engineering/references/fondements-academiques.md": "e810a82e95873f313288facf128ba865b402fcb35df594dacfb8db66c87408b3",
+      "refactoring-test/SKILL.md": "5acf11b431d62d42b30715530e737a6d422c7399b8516ee434b3b10a73c11147",
+      "refactoring-test/evals/evals.json": "2592c442e96358f38e332078079eebab4ecb1ead1d8cc35c53f2fcb6514c8511",
+      "refactoring-test/evals/trigger_evals.json": "9922240d5acbe1c199df95b8e24bd8da182b588bd018f6359029aa85895d7548",
+      "refactoring-test/references/fondements-academiques.md": "132c7a5248937e765f5a28eead78a84891fea1f3ef7b00c53c3a37ac2f75614b",
+      "gen-plan/SKILL.md": "2a2639e39cff5eef4a01fda93d275961a9deb6c373db428c0299f67e438983f2",
+      "gen-plan/evals/evals.json": "d0434a8a0a31802e32a54840255a6935ac84218e971a7dacef23f821a0f3df0c",
+      "gen-plan/evals/trigger_evals.json": "7423a64f3ae450fc4c3bdf6f7492bbb8b9ed4922d9cb3ec7b3f296e6696a35ea",
+      "KNOWLEDGE.md": "9ca74283f1009cf20be80d4523030b3b31713f0c11b43f40ed18904cbe86f030",
+      "@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.23.0.md": "bba1b9c40dda47936fa9a1317897b99680c851f2cf4bf20e675a954da10e724b",
+      "@mon-ecosysteme/PROMPT-MAITRE-SHARED.md": "dc580f6275ba527b472626d2e972e60f05a3beb5b2f3f4d2540208beff5b0b80",
+      "@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "fc1d7d96ff6c43508a16a7d651507e9ae8367560291a08e5629c4fddc68775ed",
+      "@mon-ecosysteme/README.md": "f0be485a7ad3d015c7d1c0b6402f1c44ecde4f6f3553d8229bf7d426e91be29c",
+      "@mon-ecosysteme/SYNC-CONTEXT.md": "cf46eb6fa8d32e14f49e0249782e18c6314ba829adc30239a07763ee43291d91",
+      "@mon-ecosysteme/PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "3e53e687d2c9e342dd34dd34354782a79a1110b92218c0a7a6076694b61e03f8",
+      "@historique/README.md": "f4a29c39553c31a60b1871583cfe7db0a55452e1930868c2431eb5440cba6be6",
+      "@historique/historique-autres-elements.md": "85b8a387168f8306fa92d881eb68de4b8c048352244553a889c864df78712959",
+      "@historique/historiques-par-skill/gen-plan.md": "bbc676009315f3407ec5c7fcdfcddf2d04cf0bd722447a63590c7a6a3d830215",
+      "@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.22.1.md": "45a01c3c90ec1eeb17bd602fa323b38c7e2c7804ec0796b5da539134959c0db5",
+      "context-engineering/SKILL.md": "1ad38ac87ef7837378af80ccd313104c149e915daf428fbebabc068abe13cbfc",
+      "graph-engineering/SKILL.md": "b52ae4b56d6ce898674ae3f6146b1c633c14d1f2f3278b9c6b51c08c84564228",
+      "harness-engineering/SKILL.md": "1d0c4cdcd7ea8cb203e50a273ceb05b065d8db03f674aa8aa7c99bd195cde9f8",
+      "loop-engineering/SKILL.md": "a77d0d51d20ce0eebd37c577162f30332fc3fa330257e57b0f76aae24dea256d",
+      "fleet-engineering/SKILL.md": "cb21ff94cfbd5f3904ddc0aa04d8f21463d4c58c68e97cbca7dbf14098d9dd16",
+      "memory-engineering/SKILL.md": "c2a89989f30f57bb2d997513af2c09c04d84e87e7c3a6b0dfdec036e8958adfb",
+      "spec-driven-development/SKILL.md": "71050ff8675f66dcb509630ded91cf12dc9c805d8f4edb3838c1c2f17a9f9977"
+    },
+    "retrait": "@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.22.1.md"
+  },
+  "post": {
+    "copied_ok": 29,
+    "total": 29,
+    "retrait_applique": false,
+    "byte_identite": true,
+    "retrait_confirme": true,
+    "v3230_hote": true,
+    "n55_hote": true
+  }
+}
