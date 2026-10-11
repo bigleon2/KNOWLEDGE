@@ -1,6 +1,6 @@
 ---
 name: clone-chat
-version: 2.0.0
+version: 2.0.1
 category: ecosystem
 language: fr
 tags:
@@ -25,13 +25,16 @@ dependencies:
   - skill: correct-work
     version: ">=2.4.0"
     used_at: "Validation croisée (Mode CIBLE, §3.5)"
+  - skill: skill-creator
+    version: ">=1.0.0"
+    used_at: "Conventions structurelles (§5, §9)"
 read_when:
   - Déclencher quand la demande concerne : clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog) dans un fichier Markdown auto-s…
   - Déclencher si la demande mentionne : markdown, auto, session
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.6)
+## §0 — Contexte Système (SHARED v1.7.7)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -323,7 +326,7 @@ Le fichier `SKILL.md` (~365 lignes) doit contenir :
 5. **§3 — Conventions** : nommage (SHARED §1.2), chemins relatifs, règle in extenso, numérotation §0-§5, Context Drift obligatoire
 6. **§4 — Relations** : gen-plan (§4.1), correct-work (§4.2), skill-creator (§4.3)
 7. **§5 — Auto-clonage** : mécanisme de croissance, fichiers de référence
-8. **HISTORIQUE DES VERSIONS**
+8. **Historique des versions** : porté par la table §7 du PM vivant de la famille (R4 une information une source — KO-L003) ; aucune section locale requise dans SKILL.md.
 
 ### §5.3 Créer le fichier de référence
 
@@ -334,11 +337,11 @@ Le contenu in extenso du template est en §9.
 Ajouter l'entrée clone-chat au registre KB (format SHARED §2.2) :
 
 ```markdown
-## clone-chat v2.0.0
+## clone-chat v2.0.1
 
 - **Category** : ecosystem
 - **Description** : Clonage de discussion en Markdown auto-suffisant. 7+1 étapes, intégration gen-plan v3.6.1+ KB.
-- **Dépend de** : gen-plan >= v3.6.1 (optionnel), correct-work >= v2.4.0 (validation croisée)
+- **Dépend de** : gen-plan >= v3.6.1 (optionnel), correct-work >= v2.4.0 (validation croisée), skill-creator >= v1.0.0 (conventions), skill-creator >= v1.0.0 (conventions), skill-creator >= v1.0.0 (conventions)
 - **Utilisé par** : gen-plan (E4, E15), correct-work (Mode CIBLE, §3.5)
 - **Dernière calibration** : [date]
 - **Statut** : stable

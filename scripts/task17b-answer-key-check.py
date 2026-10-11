@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.6)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.7)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -35,10 +35,10 @@ def main():
     gp = (par_skill / "gen-plan.md").read_text(encoding="utf-8")
     cw = (par_skill / "correct-work.md").read_text(encoding="utf-8")
     cc = (par_skill / "clone-chat.md").read_text(encoding="utf-8")
-    check("C02 tables complètes (22/10/4 lignes de versions)",
+    check("C02 tables complètes (26/10/5 lignes de versions)",
           sum(1 for l in gp.splitlines() if l.startswith("| v")) == 26
           and sum(1 for l in cw.splitlines() if l.startswith("| v")) == 10
-          and sum(1 for l in cc.splitlines() if l.startswith("| v")) == 4)
+          and sum(1 for l in cc.splitlines() if l.startswith("| v")) == 5)
     check("C03 migration verbatim : lignes de tables d'origine présentes",
           "| v3.21.0 | 2026-10-09 |" in gp and "| v2.7.0 | 2026-10-02 |" in cw and "| v2.0.0 | 2026-08-09 |" in cc)
     check("C04 en-têtes par skill : version vivante + pointeur prompts-maitres + provenance",

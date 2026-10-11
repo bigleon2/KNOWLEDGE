@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.6)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.7)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -32,18 +32,19 @@ SKILLS = os.path.join(BASE_DIR, "skills")
 KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 OUT = os.path.join(CORPUS, "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md")
 
-ECO_SKILLS = ["gen-plan", "correct-work", "clone-chat", "skills-inventory",
-              "skill-creator", "agent-creator", "script-creator",
-              "script-reviewer", "audit-provenance", "prompt-engineering",
-              "context-engineering", "loop-engineering", "graph-engineering",
-              "harness-engineering", "knowledge-observer",
-              "script-mon-ecosysteme-infrastructure",
-              "audio-metadata", "cpp-analysis", "pdf-llm",
-              "resource-monitor", "version-management"]
+ECO_SKILLS_NOTE = "dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé)"
+
+def eco_skills():
+    """Skills écosystème dérivés du registre KB (KO-L003 — résorption F6 Task 12 : liste codée en dur 21/32)."""
+    with open(KB, encoding="utf-8") as f:
+        return re.findall(r"^## ([\w-]+) v[\d.]+", f.read(), re.MULTILINE)
+
 
 ROUTING = [
     ("Planifier une tâche / un projet", "gen-plan (dernière version)", "PM gen-plan le plus récent", "E1-E15, 4 modes"),
     ("Vérifier / corriger un travail", "correct-work v2.7.0 (gen-plan OBLIGATOIRE à l'Étape 1)", "PM correct-work le plus récent", "5 étapes, 4 modes"),
+    ("Refactorer un élément (besoin détecté / dette technique)", "refactoring-engineering (n°55) + refactor-guard (garde-fous)", "PM refactor-guard le plus récent", "H01-H15, zéro-régression, échelle rollout"),
+    ("Évaluer l'impact d'une modification (blast radius)", "refactoring-test (outil n°55)", "—", "graphe d'interactions M3, verdict machine"),
     ("Archiver une session / clone", "clone-chat", "PM clone-chat le plus récent", "7+1 étapes, 8 checks"),
     ("Installer / réinstaller l'écosystème", "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — SOURCE UNIQUE", "ce fichier (§A + pipeline 11 étapes)", "corpus -> registre -> arbitres"),
     ("Synchroniser contexte / canaux", "SYNC-CONTEXT.md + scripts de sync", "—", "2 voies byte-identiques"),
@@ -72,9 +73,9 @@ def frontmatter_version(skill):
 def corpus_state():
     files = sorted(f for f in os.listdir(CORPUS)
                    if os.path.isfile(os.path.join(CORPUS, f)))
-    families = {"GEN-PLAN": [], "CORRECT-WORK": [], "CLONE-CHAT": []}
+    families = {"GEN-PLAN": [], "CORRECT-WORK": [], "CLONE-CHAT": [], "REFACTOR-GUARD": []}
     for f in files:
-        m = re.match(r"PROMPT-MAITRE-(GEN-PLAN|CORRECT-WORK|CLONE-CHAT)-v([\d.]+)\.md$", f)
+        m = re.match(r"PROMPT-MAITRE-(GEN-PLAN|CORRECT-WORK|CLONE-CHAT|REFACTOR-GUARD)-v([\d.]+)\.md$", f)
         if m:
             families[m.group(1)].append((f, m.group(2)))
     for k in families:
@@ -83,14 +84,18 @@ def corpus_state():
     with open(os.path.join(CORPUS, "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md"), encoding="utf-8") as f:
         install_v = re.search(r"^Version : ([\d.]+)", f.read(), re.MULTILINE).group(1)
     with open(os.path.join(CORPUS, "PROMPT-MAITRE-SHARED.md"), encoding="utf-8") as f:
-        shared_v = re.search(r"\*\*Version\*\* : ([\d.]+)", f.read()).group(1)
-    return files, families, install_v, shared_v
+        shared_text = f.read()
+    shared_v = re.search(r"\*\*Version\*\* : ([\d.]+)", shared_text).group(1)
+    mdate = re.search(r"(\d{4}-\d{2}-\d{2})", shared_text)
+    shared_date = mdate.group(1) if mdate else "?"
+    return files, families, install_v, shared_v, shared_date
 
 
 def build():
-    files, families, install_v, shared_v = corpus_state()
+    files, families, install_v, shared_v, shared_date = corpus_state()
     files = [f for f in files if f != "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md"]  # exclusion auto-référentielle (idempotence)
-    versions = [(s, frontmatter_version(s)) for s in ECO_SKILLS]
+    versions = [(s, frontmatter_version(s) or "—") for s in eco_skills()]
+    cw_v = frontmatter_version("correct-work") or "?"
     kb_entries = 0
     if os.path.isfile(KB):
         with open(KB, encoding="utf-8") as f:
@@ -106,7 +111,7 @@ def build():
 
 > **Version** : 1.0.0 (généré)
 > **Généré par** : `scripts/gen-ultra-maitre.py` (idempotent — ne pas éditer à la main ; éditer le script puis régénérer)
-> **Date de génération** : 2026-10-02
+> **État dérivé de** : SHARED v{shared_v} (révision {shared_date}) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
 > **Rôle** : point d'entrée UNIQUE d'orchestration à l'usage — route chaque demande vers le bon prompt maître / skill, sans dupliquer leur contenu (R4)
 > **Directive** : propriétaire 2026-10-02 (« prompt ultra maître ») — design retenu : orchestrateur léger dérivé dynamiquement du corpus (KO-L003), PAS de conversion des PMs existants en monolithes (R4 duplication / R2 corpus figé / KO-L004 drift)
 
@@ -142,7 +147,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v{shared_v} (lire en premier). Installateur : 
 |-------|---------|
 {rows_skills}
 
-Registre KB : {kb_entries} entrées versionnées (`skills/KNOWLEDGE.md`). correct-work v2.7.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
+Registre KB : {kb_entries} entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 {ECO_SKILLS_NOTE}. correct-work v{cw_v} exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 
 ## §4 — Points d'entrée et ordre de lecture
 
@@ -160,6 +165,7 @@ Registre KB : {kb_entries} entrées versionnées (`skills/KNOWLEDGE.md`). correc
 | correct-work —utilise→ gen-plan | Étape 1 OBLIGATOIRE (dernière version) |
 | gen-plan —délègue→ prompt-engineering | optimisation fine des prompts (SHARED §3.1) |
 | clone-chat —enrichit→ KNOWLEDGE.md | descriptions §2 |
+| refactoring-engineering —se sert de→ refactoring-test | évaluateur indépendant pré-vol/post-vol (anti-auto-certification, n°55) |
 | knowledge-observer —valide→ gen-plan | leçons §1.14/§1.15 (M1-M2 à E15) |
 | install-ecosysteme —précondition→ audit-provenance | audit avant installation (L006) |
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.6)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.7)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -67,6 +67,12 @@ RETRAITS_SANCTIONNES = {
     # byte-identité vérifiée ci-dessous (garde anti-perte renforcée ; SHA-256
     # scellé à l'index §5 du README @historique).
     "PROMPT-MAITRE-GEN-PLAN-v3.22.1.md",
+    # cascade clone-chat v2.0.1 (Task 12, session web-b4d7dd19 — gen-plan(step),
+    # directive propriétaire « appliquer les corrections » — C-12c : F-c1/F-c2) :
+    # PM CLONE-CHAT v2.0.0 supplanté DÉPLACÉ git mv vers
+    # skills/@historique/prompts-maitres/clone-chat/ — byte-identité vérifiée
+    # ci-dessous (garde anti-perte renforcée).
+    "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
 }
 
 # Task 16 — garde anti-perte renforcée pour les retraits DÉPLACÉS : chaque PM
@@ -77,6 +83,8 @@ def dest_historique(short):
         return HISTORIQUE / "gen-plan" / short
     if short.startswith("PROMPT-MAITRE-CORRECT-WORK-"):
         return HISTORIQUE / "correct-work" / short
+    if short.startswith("PROMPT-MAITRE-CLONE-CHAT-"):
+        return HISTORIQUE / "clone-chat" / short
     return None
 
 corpus_files = sorted(p.name for p in CORPUS.glob("*.md"))

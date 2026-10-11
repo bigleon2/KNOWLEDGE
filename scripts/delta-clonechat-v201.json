@@ -1,0 +1,25 @@
+{
+ "history": "Task 12 (directive propriétaire « appliquer les corrections », session web-b4d7dd19 — gen-plan(step)) : dependencies += skill-creator >= v1.0.0 (conventions — alignement frontmatter sur KB « Dépend de »/SHARED §3.1, résorption F-c1 Task 12) ; §5.2 item 8 harmonisé au modèle PM-§7 (R4 une information une source — résorption F-c2) ; recalibrage croisé KO-L004 : SHARED v1.7.7 (§7 dé-figage pins n°53 + §6.1), PM-INSTALL v1.7.1 (§2ter/§A.3), @historique/prompts-maitres/clone-chat/ (git mv byte-identité R4), ECO_SKILLS arbitre, ULTRA régénéré (4 familles + routes refactoring + ECO_SKILLS dérivée KB + date non figée).",
+ "subs": [
+  {
+   "old": "  - skill: correct-work\n    version: \">=2.4.0\"\n    used_at: \"Validation croisée (Mode CIBLE, §3.5)\"\n---",
+   "new": "  - skill: correct-work\n    version: \">=2.4.0\"\n    used_at: \"Validation croisée (Mode CIBLE, §3.5)\"\n  - skill: skill-creator\n    version: \">=1.0.0\"\n    used_at: \"Conventions structurelles (§5, §9)\"\n---",
+   "count": 1
+  },
+  {
+   "old": "8. **HISTORIQUE DES VERSIONS**",
+   "new": "8. **Historique des versions** : porté par la table §7 du PM vivant de la famille (R4 une information une source — KO-L003) ; aucune section locale requise dans SKILL.md.",
+   "count": 1
+  },
+  {
+   "old": "## clone-chat v2.0.0\n",
+   "new": "## clone-chat v2.0.1\n",
+   "count": 1
+  },
+  {
+   "old": "- **Dépend de** : gen-plan >= v3.6.1 (optionnel), correct-work >= v2.4.0 (validation croisée)",
+   "new": "- **Dépend de** : gen-plan >= v3.6.1 (optionnel), correct-work >= v2.4.0 (validation croisée), skill-creator >= v1.0.0 (conventions)",
+   "count": 1
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 ---
 name: refactoring-test
-version: 1.0.1
+version: 1.0.2
 category: ecosystem
 language: fr
 tags:
@@ -24,7 +24,7 @@ read_when:
   - Ne pas déclencher pour l'EXÉCUTION d'un refactoring (refactoring-engineering) ni pour une vérification post-hoc générique (correct-work).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.6)
+## §0 — Contexte Système (SHARED v1.7.7)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -82,9 +82,10 @@ Bras mécanique : `scripts/refactoring-test-graph.py` (stdlib — re/json/sys) :
 Kebab-case ; semver strict ; verdicts OK/PRESSION/CRITIQUE (même vocabulaire que resource-monitor) ; journalisation worklog obligatoire (signaux + preuves + verdict) ; aucune fabrication de signaux (R3) ; lecture seule sur toute cible évaluée.
 
 ## §5 — ÉVALUATIONS ET DÉCLENCHEURS
-`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — voisins correct-work et graph-engineering) ; déclenchement attendu sur les requêtes de détection/évaluation/impact de refactoring explicites ; seuil de routage 0.5. Baseline A2 : EN ATTENTE (QUOTA_OK — directive ; précédent n°54 : mesurée en Task dédiée). La voie mécanique M3 est testable sans QUOTA (`--target` sur la KB).
+`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — voisins correct-work et graph-engineering) ; déclenchement attendu sur les requêtes de détection/évaluation/impact de refactoring explicites ; seuil de routage 0.5. Baseline A2 : MESURÉE 7/7 les 2 voies (Task 9/G-RES-2, 2026-10-12 — méthode SHARED §7 v2, voie M + confirm voie L 3 runs, seuil 0.5, ×3 confirmations, 0 dérive, 0 vote null ; rapport `scripts/baseline-a2-n55-report.json`). La voie mécanique M3 est testable sans QUOTA (`--target` sur la KB).
 
 ## §6 — TRAÇABILITÉ
+- v1.0.2 (Task 12, 2026-10-12, session web-b4d7dd19 — gen-plan(step), directive propriétaire « appliquer les corrections ») : résorption F2 (Task 11, consigné) — §5 baseline A2 actualisée (MESURÉE 7/7 les 2 voies — Task 9/G-RES-2, rapport `scripts/baseline-a2-n55-report.json`).
 - v1.0.1 (2026-10-12, session web-b4d7dd19 Task 8 — gen-plan(step), fusion discussion externe 468a4c26) : correction de déclaration — refactoring-test n'est PAS une discipline ; il est l'OUTIL de la discipline refactoring-engineering (n°55) qui se sert de lui comme d'un outil d'évaluation indépendant (directive propriétaire explicite) ; frontmatter déquoté (S4 — valeur inchangée dans le bump).
 - v1.0.0 (n°55, 2026-10-12, session web-b4d7dd19 Task 7 — gen-plan(step) G3/G4) : matérialisation de la discipline refactoring test (directive propriétaire : détecteur/évaluateur + graphe d'interactions pour estimer l'impact des modifications futures de refactoring-engineering) ; sources : recherche web approfondie (rapport Task 7) ; intégration gen-plan v3.23.1 §1.6 bloc n°55 ; baseline A2 en attente QUOTA.
 

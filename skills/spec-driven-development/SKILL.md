@@ -22,7 +22,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.6)
+## §0 — Contexte Système (SHARED v1.7.7)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -89,6 +89,7 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 `evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs) ; déclenchement sur les demandes de cadrage/spécification/contrat d'acceptation ; seuil 0.5 (confirm 3 runs armé — QUOTA_OK). Baseline A2 : MESURÉE 7/7 (Task 17, 2026-10-02 — voie mécanique heuristique SHARED §7 v2 sur les 7 cas officiels, zéro dérive, Description Optimization non requise ; rapport `download/rapport-baselines-a2-disciplines-n54.md`, JSON `scripts/baseline-a2-report.json`) ; confirm 3 runs LLM : MESURÉ (Task 18, 2026-10-03 — re-exécution idempotente `scripts/task17-baseline-a2.py` au QUOTA_OK, 42/42 votes réels zéro null, ratios voie L 1.0 sur les 5 cas positifs / 0.0 sur les 2 contrôles négatifs — conformes à la voie mécanique, zéro dérive 2 voies — R3).
 
 ## §6 — TRAÇABILITÉ
+- v1.0.1 (cascade KO-L004 n°54, 2026-10-11, session web-b4d7dd19) : read_when + dependencies gen-plan (bump PATCH cascade) (entrée complétée rétrospectivement — Task 12, 2026-10-12, session web-b4d7dd19 — gen-plan(step), directive « appliquer les corrections ») (constat F-d5) ; calibration KB complétée au passage.
 - v1.0.0 (N34, 2026-09-21, session B12-r56) : matérialisation de la discipline approuvée n°54 (candidat prioritaire N31) ; sources N31 ; intégration gen-plan §1.9 (version d'alors v3.15.0 — PM courant : v3.18.0) ; baseline MESURÉE 7/7 les 2 voies (Task 17 — 42/42 votes réels).
 
 ## §7 — RÉFÉRENCES

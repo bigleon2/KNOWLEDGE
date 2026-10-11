@@ -19,7 +19,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.6)
+## §0 — Contexte Système (SHARED v1.7.7)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -118,6 +118,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 ## §6 — TRAÇABILITÉ
 
+- **Révision v1.1.0** : Task 21 P2 (2026-10-03 — Description Optimization A10/A14 : description frontmatter étendue des radicaux discriminants, chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu — cf. calibration KB) (entrée complétée rétrospectivement — Task 12, 2026-10-12, session web-b4d7dd19 — gen-plan(step), directive « appliquer les corrections ») (constat F-d2 : montée non tracée).
 - **Origine** : session A11 — matérialisation intermédiaire en agent `_disciplines/` (format §2.3 agent-creator).
 - **Matérialisation skill** : session A12, 2026-09-07 — levée de la réserve A11 « agents sans trigger_evals ».
 - **Preuve de retrait** : SHA-256 des agents `_disciplines/` consignés avant suppression ; contenu normatif repris ici et en SHARED §7.

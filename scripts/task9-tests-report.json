@@ -34,12 +34,12 @@
       "detail": ""
     },
     {
-      "check": "T-R1.7 PM-INSTALL v1.7.0 : §2quater 4 familles + §2ter ligne REFACTOR-GUARD + étape 6",
+      "check": "T-R1.7 PM-INSTALL v1.7.1 : §2quater 4 familles + §2ter ligne REFACTOR-GUARD + étape 6",
       "verdict": "PASS",
       "detail": ""
     },
     {
-      "check": "T-R1.8 SHARED v1.7.6 : §6.1 ligne REFACTOR-GUARD + PM-INSTALL v1.7.0",
+      "check": "T-R1.8 SHARED v1.7.7 : §6.1 ligne REFACTOR-GUARD + PM-INSTALL v1.7.1",
       "verdict": "PASS",
       "detail": ""
     },
@@ -79,7 +79,7 @@
       "detail": ""
     },
     {
-      "check": "T-R2.4 Description Optimization : frontmatter v1.1.0 + phrase optimisée",
+      "check": "T-R2.4 Description Optimization : frontmatter v1.1.1 (Task 12) + phrase optimisée",
       "verdict": "PASS",
       "detail": ""
     },
@@ -89,12 +89,12 @@
       "detail": ""
     },
     {
-      "check": "T-R2.6 KB heading v1.1.0 + calibration Task 9 (A2)",
+      "check": "T-R2.6 KB heading v1.1.1 + calibration Task 9 (A2)",
       "verdict": "PASS",
       "detail": ""
     },
     {
-      "check": "T-R2.7 ECO_SKILLS : refactoring-engineering 1.1.0 (SHA vive alignée)",
+      "check": "T-R2.7 ECO_SKILLS : refactoring-engineering 1.1.1 (SHA vive alignée)",
       "verdict": "PASS",
       "detail": ""
     },

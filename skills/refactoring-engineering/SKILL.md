@@ -1,6 +1,6 @@
 ---
 name: refactoring-engineering
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -18,7 +18,7 @@ dependencies:
     version: ">=3.15.0"
     used_at: "détenteur principal — conception des opérations à E4/E7 + situations E9-E14 (§8)"
   - skill: refactoring-test
-    version: ">=1.0.0"
+    version: ">=1.0.1"
     used_at: "pré-vol (M2 évaluation + M3 graphe/blast radius AVANT l'opération) et post-vol (M4 re-scan) — OBLIGATOIRE, anti-auto-certification"
   - skill: correct-work
     version: ">=2.7.0"
@@ -32,7 +32,7 @@ read_when:
   - Ne pas déclencher pour la DÉTECTION/ÉVALUATION seule (refactoring-test) ni pour la vérification post-hoc générique (correct-work).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.6)
+## §0 — Contexte Système (SHARED v1.7.7)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -96,9 +96,11 @@ Artefacts par opération : fiche D1 (worklog ou plan), scripts d'édition verrou
 Kebab-case ; semver strict (PATCH = recalibrage, MINOR = nouvelle capacité, MAJOR = rupture de contrat) ; journalisation worklog obligatoire par Task ID ; scripts d'opération persistés sous scripts/ (jamais inline) ; aucune fabrication de preuve (R3) ; toute publication (push) reste conditionnée à la validation explicite du propriétaire (règle d'or n°4).
 
 ## §5 — ÉVALUATIONS ET DÉCLENCHEURS
-`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — voisins correct-work et harness-engineering) ; déclenchement attendu sur les requêtes d'exécution/planification de refactoring explicites ; seuil de routage 0.5. Baseline A2 : EN ATTENTE (QUOTA_OK — directive ; précédent n°54 : mesurée en Task dédiée).
+`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — voisins correct-work et harness-engineering) ; déclenchement attendu sur les requêtes d'exécution/planification de refactoring explicites ; seuil de routage 0.5. Baseline A2 : MESURÉE 7/7 les 2 voies (Task 9/G-RES-2, 2026-10-12 — méthode SHARED §7 v2, voie M + confirm voie L 3 runs, seuil 0.5, ×3 confirmations, 0 dérive, 0 vote null ; rapport `scripts/baseline-a2-n55-report.json`).
 
 ## §6 — TRAÇABILITÉ
+- v1.1.1 (Task 12, 2026-10-12, session web-b4d7dd19 — gen-plan(step), directive propriétaire « appliquer les corrections ») : résorption F1/F3/F4 (Task 11, consignés) — §5 baseline A2 actualisée (MESURÉE 7/7 les 2 voies — Task 9/G-RES-2) ; plancher frontmatter refactoring-test porté >=1.0.1 (alignement KB) ; l'entrée v1.1.0 est complétée rétrospectivement ci-après (elle n'avait pas de ligne §6 — constat F3).
+- v1.1.0 (Task 9, 2026-10-12, session web-b4d7dd19 — gen-plan(step), QUOTA_OK levé) : Description Optimization (protocole SHARED §7) — voie M 6/7 (1 dérive cas négatif, collision lexicale gard+fous) → phrase « Garde-fous mobilisés pendant les opérations » remplacée par « Sécurisation des opérations assurée par le skill refactor-guard » (sémantique inchangée) ; re-mesure 7/7 — 0 dérive ×2 voies.
 - v1.0.1 (2026-10-12, session web-b4d7dd19 Task 8 — gen-plan(step), fusion discussion externe 468a4c26) : calibration de déclaration — « refactoring-engineering se sert de refactoring-test comme un outil » (seule discipline n°55) ; dependencies += refactor-guard >=1.7.0 (garde-fous) ; §3/§8 triangulation évaluateur/garde-fous/vérificateur.
 - v1.0.0 (n°55, 2026-10-12, session web-b4d7dd19 Task 7 — gen-plan(step) G3/G4) : matérialisation de la discipline refactoring engineering (directive propriétaire : le système de refactoring de l'écosystème déclaré et tagué comme discipline d'engineering, dédié aux opérations de refactoring, appelé par gen-plan à la conception et en situation) ; le système déclaré = correct-work v2.7.0 + procédures cascade PM + arbitres + @historique R4 (prouvé par les cascades v3.22.0/v3.22.1 — Tasks 3/6) ; sources : recherche web approfondie (rapport Task 7) ; baseline A2 en attente QUOTA.
 

@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.7.0
+Version : 1.7.1
 Date : 2026-10-12
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -95,7 +95,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 |---------|--------------------------------------------------|---------------------|-------|
 | gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.23.1.md` | gen-plan v3.23.1 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md` | correct-work v2.7.0 | 4 |
-| clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md` | clone-chat v2.0.0 | 5 |
+| clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md` | clone-chat v2.0.1 | 5 |
 | refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md` | refactor-guard v1.7.0 | 6 |
 
 refactor-guard (4e famille — décision D009, bootstrap v1.7.0) : installé à l'étape 6 depuis le pipeline v1.7.0 (fin de l'exclusion « hors pipeline 3-5 » de la décision d'origine — le PM porte son §5 d'installation standard) ; l'instantané est tenu à jour au même titre.
@@ -185,6 +185,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.7.1 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : clone-chat v2.0.0→v2.0.1 ; recalibrage croisé : SHARED v1.7.7 (§6.1), §2ter, §A.3 |
 | v1.7.0 | 2026-10-12 | Directive propriétaire (session web-b4d7dd19 — gen-plan(step), « vérifie aussi que PM-INSTALL installe bien toutes les disciplines, ainsi que tous les éléments nécessaires pour faire du refactoring ; si ce n'est pas le cas, fais en sorte qu'il le fasse ») : étape 6 refactor-guard ajoutée au pipeline (10→11 étapes) — le 4e PM famille D009 est désormais installé depuis le corpus (fin de l'exclusion « hors pipeline 3-5 » ; §2ter/§3.2/§3.3/§4/§5/§A.2 recalibrés) ; périmètre COMPLET défini explicitement = formes installées de toutes les entrées du registre KB courant (8 disciplines n°54/n°55 + outil refactoring-test + 4e famille refactor-guard incluses) ; fermeture MINIMALE « à date » étendue +6 éléments (fleet-engineering, memory-engineering, spec-driven-development, refactoring-engineering, refactoring-test, refactor-guard) ; §A.3 +6 entrées extensions + instantané courant refactor-guard v1.7.0 ; socle §2ter +1 ligne (`scripts/refactoring-test-graph.py` — outil n°55) ; recalibrage croisé KO-L004 : SHARED v1.7.6 (§3.2/§6.1), ULTRA régénéré (11 étapes, install_v dynamique), propagate-context v1.7.6, README v2.1.6, SYNC-CONTEXT v1.4.8, archive rescellée round-trip 9/9 |
 | v1.6.5 | 2026-10-12 | Décision propriétaire D009 (Task 9, session web-b4d7dd19 — gen-plan(step)) : 4e famille refactor-guard — PM canonique PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0 au corpus (bootstrap — PMs de la lignée externe ACCEPTÉS non portés, R4) ; generer-pm-skill.py 3→4 familles ; §2ter +1 ligne REFACTOR-GUARD, §2quater 3→4 familles, référence §1 alignée |
 | v1.6.4 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.23.0→v3.23.1 ; recalibrage croisé : SHARED v1.7.4 (§6.1), §2ter, §A.3 |
@@ -215,7 +216,7 @@ Note P4 (recalibrée v1.7.0) : les SKILL.md + références des 4 familles (gen-p
 ### §A.3 Registre KB cible (14 entrées d'époque + 6 extensions v1.7.0)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.7.0, 2026-10-12) : gen-plan v3.23.1 · correct-work v2.7.0 · clone-chat v2.0.0 · refactor-guard v1.7.0 — cf. §2ter.
+Instantané courant (v1.7.1, 2026-10-12) : gen-plan v3.23.1 · correct-work v2.7.0 · clone-chat v2.0.1 · refactor-guard v1.7.0 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|

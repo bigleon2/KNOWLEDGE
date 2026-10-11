@@ -1,0 +1,558 @@
+{
+  "task": "Task 12 (corrections — directive « appliquer les corrections »)",
+  "date": "2026-10-12",
+  "perimetre": 109,
+  "copies": 109,
+  "identiques": 0,
+  "exclusions": [
+    "version-management"
+  ],
+  "post_check_divergents": [],
+  "fichiers": [
+    {
+      "path": "@historique/historiques-par-skill/clone-chat.md",
+      "status": "NOUVEAU",
+      "sha256": "e2a8d4fd65bc1c43ed966530be6b607629418dff93c2dc6337b48de856e9b5bc"
+    },
+    {
+      "path": "@historique/historiques-par-skill/gen-plan.md",
+      "status": "COPIE",
+      "sha256": "1ab60a4a03b1076d8ce4c17e6ddfdf80540062fb3776e61b6735f12544c05fb2"
+    },
+    {
+      "path": "@historique/prompts-maitres/clone-chat/PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+      "status": "NOUVEAU",
+      "sha256": "403435c9c351abebf716f21b5368b768ba4fd3b9bfa3781df7e7821af2edbbc3"
+    },
+    {
+      "path": "@mon-ecosysteme/PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md",
+      "status": "NOUVEAU",
+      "sha256": "1e8bcb65667a52a902d6010c210dcec9b3ac6c7c71e1b5d16101925992435c80"
+    },
+    {
+      "path": "@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md",
+      "status": "COPIE",
+      "sha256": "d5c601984bafb48f37d2aa21d5bb2a2ae6dd712129bf32088dcd2bb0c58afdd3"
+    },
+    {
+      "path": "@mon-ecosysteme/PROMPT-MAITRE-SHARED.md",
+      "status": "COPIE",
+      "sha256": "7e076f520b06578e850944090be3e925403cb6479dd5b5e1fc34cb2242f311b8"
+    },
+    {
+      "path": "@mon-ecosysteme/PROMPT-ULTRA-MAITRE-ORCHESTRATION.md",
+      "status": "COPIE",
+      "sha256": "9c80ca97e37247999145cedad1cf118c0a78f79bd31cacf563af605bbc33212e"
+    },
+    {
+      "path": "@mon-ecosysteme/README.md",
+      "status": "COPIE",
+      "sha256": "39b66b1304d5ebf07ab3588faeef2a315e0b02cb8ef58f6124b79a0b1ae77e9a"
+    },
+    {
+      "path": "@mon-ecosysteme/SYNC-CONTEXT.md",
+      "status": "COPIE",
+      "sha256": "0afe967146b8939cd13c0dc08769cc7725271c4b907f3dbd78a532ef0c74a6fd"
+    },
+    {
+      "path": "ASR/SKILL.md",
+      "status": "COPIE",
+      "sha256": "421eda3383591b6c551f509ccdb53c84d56bab99d936b80788f653daa2062135"
+    },
+    {
+      "path": "KNOWLEDGE.md",
+      "status": "COPIE",
+      "sha256": "f990608d797fa257763fff554bc96761db2b17f6639379ed0f3c092c64a5c86c"
+    },
+    {
+      "path": "LLM/SKILL.md",
+      "status": "COPIE",
+      "sha256": "8cdcc5dfa4ad5a5a0d67fea89737ddf269ccdc7f200dbb3c67511b227be027cb"
+    },
+    {
+      "path": "TTS/SKILL.md",
+      "status": "COPIE",
+      "sha256": "859f1f542f8db3eb6851f33887c65f0ea5c5f78bff03342fa9f6188b04308576"
+    },
+    {
+      "path": "VLM/SKILL.md",
+      "status": "COPIE",
+      "sha256": "89cec87f2e8613e9527b0faabcf44d2af26580381f62044abb38d75dd74906df"
+    },
+    {
+      "path": "agent-browser/SKILL.md",
+      "status": "COPIE",
+      "sha256": "bba8359bd86a5e9e7b635765d53daeecdff0261f38a5f35379c3d6eb836688a8"
+    },
+    {
+      "path": "agent-creator/SKILL.md",
+      "status": "COPIE",
+      "sha256": "14732e36ca69dba35b06eba7849519f00e538710545980f40364a709d7bd2e63"
+    },
+    {
+      "path": "agent-creator/references/agent-creator.agent",
+      "status": "COPIE",
+      "sha256": "8ff01d539ac62f9cf90f7ecbdc4869fa7e62717e058f6a64c81e8c025a52b891"
+    },
+    {
+      "path": "ai-news-collectors/SKILL.md",
+      "status": "COPIE",
+      "sha256": "b9567c49607f3610503d6ddd90110c215e81450b5a92e15b53fdbd26c0e25825"
+    },
+    {
+      "path": "aminer-academic-search/SKILL.md",
+      "status": "COPIE",
+      "sha256": "127829f124ef4d9d078dc31df9b437e6e504db3c00f2cb91be5701cc44dd2bae"
+    },
+    {
+      "path": "aminer-daily-paper/SKILL.md",
+      "status": "COPIE",
+      "sha256": "4e0adbf725f132aac8e949668af562beb7894fe238f5731306a3cc649be2e3b0"
+    },
+    {
+      "path": "aminer-deep-search/SKILL.md",
+      "status": "COPIE",
+      "sha256": "b9320a6b67d0aa1f4cddcdf9273f5f19db3de339b714c9c5d0d9b2dcc2e0e3bd"
+    },
+    {
+      "path": "aminer-free-academic/SKILL.md",
+      "status": "COPIE",
+      "sha256": "8c834568dda08a82cdaf563d419e0d180d0e8572b534a946756197c1002f8820"
+    },
+    {
+      "path": "anti-pua/SKILL.md",
+      "status": "COPIE",
+      "sha256": "e9964dd2f5113b3a258812c729acfc3c77d65350937edade2d010f2673efa978"
+    },
+    {
+      "path": "audio-metadata/SKILL.md",
+      "status": "COPIE",
+      "sha256": "fed0404ba061196d23d3254f4670801751d1d429f369a0c040ae3445f06d199d"
+    },
+    {
+      "path": "audit-provenance/SKILL.md",
+      "status": "COPIE",
+      "sha256": "1d84e902523a7481212a5bb8b9f560ada4ddb1603770365b67dbef25263358e7"
+    },
+    {
+      "path": "auto-target-tracker/SKILL.md",
+      "status": "COPIE",
+      "sha256": "43afd0eb5ce1e946309b338a7c7395d9657d07ff62780658b410d8df3398bcb9"
+    },
+    {
+      "path": "autonomous-agent/SKILL.md",
+      "status": "COPIE",
+      "sha256": "2775ea6b826b2177e47a90696d46985daceb2d33c09fa569f9c921c977feb70b"
+    },
+    {
+      "path": "autonomous-agent/references/autonomous-agent.agent",
+      "status": "COPIE",
+      "sha256": "2792a18b2423078e9334161054d0ea7f2e95c20f9b5fa9782fec896218909cbd"
+    },
+    {
+      "path": "blog-writer/SKILL.md",
+      "status": "COPIE",
+      "sha256": "88cddc423bdb8891b65187e935e7af79c2346d165a7c5cb2fe7fb73565b3e19b"
+    },
+    {
+      "path": "charts/SKILL.md",
+      "status": "COPIE",
+      "sha256": "13f1b88b39b6f0d29b90540a4cfde8cf739de7e3196140114b13a860cf54745d"
+    },
+    {
+      "path": "cheat-sheet/SKILL.md",
+      "status": "COPIE",
+      "sha256": "1d85427d8aa33556cc77b307f2361283f3dad8fd654b8752ed675b24f5f6cac5"
+    },
+    {
+      "path": "clone-chat/SKILL.md",
+      "status": "COPIE",
+      "sha256": "0f13ad4935bc07bc3986850e906b36fa53e762090deb4f301d4248568eca5c09"
+    },
+    {
+      "path": "coding-agent/SKILL.md",
+      "status": "COPIE",
+      "sha256": "eec36c4fb7298b9754612113a621dc44e19e253ff594fa6c567ce6a367e18d58"
+    },
+    {
+      "path": "content-strategy/SKILL.md",
+      "status": "COPIE",
+      "sha256": "c2baf72435e6a6e98566d35fead5f0b23fa401a1ef4ad5d7f25ed0e6a583cd0e"
+    },
+    {
+      "path": "contentanalysis/SKILL.md",
+      "status": "COPIE",
+      "sha256": "d22758f9155d8986bec836f20b13dec2c4b6c2de9eb5a1da5e3f0222b6026f38"
+    },
+    {
+      "path": "context-engineering/SKILL.md",
+      "status": "COPIE",
+      "sha256": "3cf8b6b1400775d5ca7468fec5431ee90769fbcfca2a7ea5b00ca2ad5f7d850a"
+    },
+    {
+      "path": "correct-py/SKILL.md",
+      "status": "COPIE",
+      "sha256": "2ef14f0b7bbc4eb47dc080255a23c5342fc44f271b8a7f8c79d6e74bc2cc53e5"
+    },
+    {
+      "path": "correct-work/SKILL.md",
+      "status": "COPIE",
+      "sha256": "840c404377a2d19116bf76a8322e2bc99b8840dc0316a8112799a97d67a418dc"
+    },
+    {
+      "path": "cpp-analysis/SKILL.md",
+      "status": "COPIE",
+      "sha256": "f29a7c94026d24e07ce2210e92a7bfaa86a2769165733c5c91057d95b531c19e"
+    },
+    {
+      "path": "design/SKILL.md",
+      "status": "COPIE",
+      "sha256": "33931c90bca4f7dc0c1cf7b91832b2fafbc6ef777778a7f1c275781576b55736"
+    },
+    {
+      "path": "docx/SKILL.md",
+      "status": "COPIE",
+      "sha256": "990f148b5cbf03b9e70c522bbcfe3d8685298c47b9b8ef0d61ce3416dfe4ea9e"
+    },
+    {
+      "path": "dream-interpreter/SKILL.md",
+      "status": "COPIE",
+      "sha256": "fce324cd44e7128ae6dd928158fb793edefddc48dc8d6c3c25e11793fbbff7f8"
+    },
+    {
+      "path": "experiment-suite/SKILL.md",
+      "status": "COPIE",
+      "sha256": "6aa3b36fe8c66586454171724b0e2a0f991941ac13f03b7057c746f1e95a3194"
+    },
+    {
+      "path": "finance/SKILL.md",
+      "status": "COPIE",
+      "sha256": "5962573c001593305868eb87594e16348f0750f88b2a66fd6c92845f9376ae76"
+    },
+    {
+      "path": "fleet-engineering/SKILL.md",
+      "status": "COPIE",
+      "sha256": "931210320d63269a443ce27021dec236d1f6002f0495722471e0f8c63b72adb7"
+    },
+    {
+      "path": "fullstack-dev/SKILL.md",
+      "status": "COPIE",
+      "sha256": "9314dab5c577ceb966f5ca9cd65f607c4fdbe0e7e9643fe8d434abc065a01eaa"
+    },
+    {
+      "path": "gaokao-collect-student-info/SKILL.md",
+      "status": "COPIE",
+      "sha256": "2f80654d454ca89553ebf3ca9b75c06e2f86c288c8286bb4323d7395df437728"
+    },
+    {
+      "path": "gaokao-fetch-volunteers/SKILL.md",
+      "status": "COPIE",
+      "sha256": "ee4005fdd5a8e20e79cd2c7e4a375bf1593c90ed6ed208fa05d323ad662e88df"
+    },
+    {
+      "path": "gaokao-generate-report/SKILL.md",
+      "status": "COPIE",
+      "sha256": "5da5f0166de08785ccf398155543c86bbb2c4f254ab42b8a42ae1641b40d1ec0"
+    },
+    {
+      "path": "gaokao-recommend-majors/SKILL.md",
+      "status": "COPIE",
+      "sha256": "c8215324df036b99d14ff4b9ceb57fcaaa5bd338068f555aa065b769b1cda2c6"
+    },
+    {
+      "path": "gaokao-recommend-schools/SKILL.md",
+      "status": "COPIE",
+      "sha256": "b96228207ced717f7f462255daa805dba27058977982ebb59a23fcb1a5f88395"
+    },
+    {
+      "path": "gen-plan/SKILL.md",
+      "status": "COPIE",
+      "sha256": "3e08a2847beac1adec4e1aad8d5c536c6eca845daef691dbcfab57721ef4369d"
+    },
+    {
+      "path": "get-fortune-analysis/SKILL.md",
+      "status": "COPIE",
+      "sha256": "4f05fb058af5b1f92626db3dbb7c65822076edbd5f1e057197bec7753eb4ba5d"
+    },
+    {
+      "path": "gift-evaluator/SKILL.md",
+      "status": "COPIE",
+      "sha256": "3b25a5373fc44b895ab28b44ac4c54eb21dd744e613c022784a8cf63e9788620"
+    },
+    {
+      "path": "graph-engineering/SKILL.md",
+      "status": "COPIE",
+      "sha256": "b530903fe361f61c4edf79355eecddccef658f324ab028eb208583727b096d1f"
+    },
+    {
+      "path": "harness-engineering/SKILL.md",
+      "status": "COPIE",
+      "sha256": "1b88aa1087e1f1dd34f438a38e558f89101af19427b9a0c923bec6cc765ac920"
+    },
+    {
+      "path": "image-edit/SKILL.md",
+      "status": "COPIE",
+      "sha256": "fe709ace02ca13dd3f81ac78560f568d30d8e76fa98b23e574110a52d2982b12"
+    },
+    {
+      "path": "image-generation/SKILL.md",
+      "status": "COPIE",
+      "sha256": "c0818a27d6149d8664b70b0fcfadc5c636437d520d49f804f7c8204ee0efed49"
+    },
+    {
+      "path": "image-search/SKILL.md",
+      "status": "COPIE",
+      "sha256": "a83a21efb0acc0e3da65b70321c7cb056da48c89bc01b02d0c020e5ab9f6ca25"
+    },
+    {
+      "path": "image-understand/SKILL.md",
+      "status": "COPIE",
+      "sha256": "5a0dcf5d93d442b88585fd4e5b0bc0ec2aa80f40c1f09bd3033cbc84ce5b3753"
+    },
+    {
+      "path": "interview-designer/SKILL.md",
+      "status": "COPIE",
+      "sha256": "300083f970bc6a4aa47584dd7d1cad5bf1c40739366f74dac0be9615e739a43f"
+    },
+    {
+      "path": "interview-prep/SKILL.md",
+      "status": "COPIE",
+      "sha256": "df334bfa5cdd343ebccd19c4181884288821318146d5e909ad3d7a5a6c538060"
+    },
+    {
+      "path": "jd-resume-tailor/SKILL.md",
+      "status": "COPIE",
+      "sha256": "9755295b8485661a7b60837236d31e79c06f9b8b1083a27efa346399b8d75c66"
+    },
+    {
+      "path": "job-intent-tracker/SKILL.md",
+      "status": "COPIE",
+      "sha256": "27fc8a93868c31ba69fba3ccf59e56c2a6b41f419a7998fd9c96e97c1d269669"
+    },
+    {
+      "path": "knowledge-observer/SKILL.md",
+      "status": "COPIE",
+      "sha256": "94e0102af67b50c26ce40440943bfd72b3f413471453f954a109c213d6e0d3f6"
+    },
+    {
+      "path": "literature-survey/SKILL.md",
+      "status": "COPIE",
+      "sha256": "e9446aa93a76af1266f6050ab23f9b0c2e428164e4edae96ea58a07375bdb762"
+    },
+    {
+      "path": "loop-engineering/SKILL.md",
+      "status": "COPIE",
+      "sha256": "63a47430d72c82c5741f6bc00784e0002678d0b452bcf5518e492a6a928a03d8"
+    },
+    {
+      "path": "market-research-reports/SKILL.md",
+      "status": "COPIE",
+      "sha256": "0d9d49759acef009a9ec705c52f9ac4e8fa8cadc29c0ca07bfd724bfad0aa90f"
+    },
+    {
+      "path": "marketing-mode/SKILL.md",
+      "status": "COPIE",
+      "sha256": "f174238760b6448c18fcb450b0719028f3230b254c4dac5122403154c9cfa12d"
+    },
+    {
+      "path": "memory-engineering/SKILL.md",
+      "status": "COPIE",
+      "sha256": "e08cb08742590c17fc4409a1295ebd52417dcfb80cefdbda9d87c1567d089e02"
+    },
+    {
+      "path": "mindfulness-meditation/SKILL.md",
+      "status": "COPIE",
+      "sha256": "a7156403a2a070513fe13f56f640dcbcf274f63eebc6f6a959e0758d63cd4967"
+    },
+    {
+      "path": "multi-search-engine/SKILL.md",
+      "status": "COPIE",
+      "sha256": "011d4053ee11209b5cba7d9385da795446871be0f050607021cf3ec3547fcedf"
+    },
+    {
+      "path": "pdf-llm/SKILL.md",
+      "status": "COPIE",
+      "sha256": "1c0598c4f8a5fa01b3e3fca38095952132c8277e7d1956cc070ecb8303930464"
+    },
+    {
+      "path": "pdf/SKILL.md",
+      "status": "COPIE",
+      "sha256": "6e75e243f8deeab1f5f2432ee66b58a4783e0031c129e9bcc6513e599b8e0c8c"
+    },
+    {
+      "path": "podcast-generate/SKILL.md",
+      "status": "COPIE",
+      "sha256": "89b91a70a54f798067f4367221b29512643e043b9f046632ea1745b7e7d25934"
+    },
+    {
+      "path": "pptx/SKILL.md",
+      "status": "COPIE",
+      "sha256": "b958865c872b8f3fa206b2c5ea5bc356132b13466931ae293e149507d40ee66b"
+    },
+    {
+      "path": "prompt-engineering/SKILL.md",
+      "status": "COPIE",
+      "sha256": "9ab63a183e0bd662575e64b8be18efe3b3b1ae76a2f8df9f4ab316da1940f285"
+    },
+    {
+      "path": "qingyan-research/SKILL.md",
+      "status": "COPIE",
+      "sha256": "6056eacdcf3920d48d38419a55a8d2283c588c8ec5d446d6de11afafbce614b0"
+    },
+    {
+      "path": "quiz-html/SKILL.md",
+      "status": "COPIE",
+      "sha256": "5dbc5e0712967f5280409f200fee909186e21f6721d715bcb52b684080c2b52a"
+    },
+    {
+      "path": "quiz-mastery/SKILL.md",
+      "status": "COPIE",
+      "sha256": "546a8b624a9dab37757bf9a06da6cf61f1f459b3b33831d976d0196179c25c34"
+    },
+    {
+      "path": "refactor-guard/SKILL.md",
+      "status": "COPIE",
+      "sha256": "7c8935a854087d2aea4698ff53103fccad043b7eb79e94a145088eeb1fe81444"
+    },
+    {
+      "path": "refactoring-engineering/SKILL.md",
+      "status": "COPIE",
+      "sha256": "965fc07f38b4b0e83c455308e9517f5c14440115601e52c12a2b17ad74b0f04b"
+    },
+    {
+      "path": "refactoring-test/SKILL.md",
+      "status": "COPIE",
+      "sha256": "9c49d3f06388362324460ceed9472046aea0eedab52daf146d28224071a576ba"
+    },
+    {
+      "path": "research-explorer/SKILL.md",
+      "status": "COPIE",
+      "sha256": "f3eacb3906c0b0c78797ea7c41f44f7b7d0cdca7d48cf97d612d0098759866ee"
+    },
+    {
+      "path": "resource-monitor/SKILL.md",
+      "status": "COPIE",
+      "sha256": "b3f6c07783b6fd924137b2db54ad255918e174c1e685597d8adff9d9dd008959"
+    },
+    {
+      "path": "resume-builder/SKILL.md",
+      "status": "COPIE",
+      "sha256": "9014b12d2fc93972bd544f28fd1307d91c052e37a663250123df45ea86ab18ec"
+    },
+    {
+      "path": "resume-youtube/SKILL.md",
+      "status": "COPIE",
+      "sha256": "6e033eccf5b3dbad0212106243e95e6f9730b1877b76b1295a56d80f4752ae18"
+    },
+    {
+      "path": "script-creator/SKILL.md",
+      "status": "COPIE",
+      "sha256": "19bc95e031587cfa6a86d395ab84e1131909bc8935b005779194f015722484d2"
+    },
+    {
+      "path": "script-mon-ecosysteme-infrastructure/SKILL.md",
+      "status": "COPIE",
+      "sha256": "1e8530d56dc50e5b71bb3fcc3f0cb5ec16cad7bec0b4dc18b31308bd4bdb0324"
+    },
+    {
+      "path": "script-reviewer/SKILL.md",
+      "status": "COPIE",
+      "sha256": "75da1ad3900c079e625fb6c1c87a868ad5a212d5ca86328db7fa4181629acdf3"
+    },
+    {
+      "path": "seo-content-writer/SKILL.md",
+      "status": "COPIE",
+      "sha256": "4f92e26a87ea6f2fd7a251cdb7f668b960b328d323e0f43dec05f87da5b2b838"
+    },
+    {
+      "path": "skill-creator/SKILL.md",
+      "status": "COPIE",
+      "sha256": "a9fa49a86d229ea5929b15620938f6474ac09920caa0eef9ff320da69c3f283b"
+    },
+    {
+      "path": "skill-finder-cn/SKILL.md",
+      "status": "COPIE",
+      "sha256": "7816ec15cfad9bddd6730e82a2450a722ca8ec40d8e123f4ae17b4072d0c13d1"
+    },
+    {
+      "path": "skills-inventory/SKILL.md",
+      "status": "COPIE",
+      "sha256": "ce3d34c3965feb9fbf0c6d84ccdc6cbb656607c2ac66538195ae13df9b93541a"
+    },
+    {
+      "path": "spec-driven-development/SKILL.md",
+      "status": "COPIE",
+      "sha256": "ffa2db84a713520b81ef7bf343c838bc9805f2474567d4d418c1a5cda538c19e"
+    },
+    {
+      "path": "stock-analysis-skill/SKILL.md",
+      "status": "COPIE",
+      "sha256": "ec1b6f0ac4efabab7c3c8a21f47dcedf4164141f15e85230c3bd2a94c00523da"
+    },
+    {
+      "path": "storyboard-manager/SKILL.md",
+      "status": "COPIE",
+      "sha256": "2c8d8671335f12cf2dbf8a439d27dd8a4a31acb7b15c2e2dfed7cfa4e44e0666"
+    },
+    {
+      "path": "study-buddy/SKILL.md",
+      "status": "COPIE",
+      "sha256": "cb0afbd42f6d6f05335aefe509ae2ceeaf40a66ca5b5ee15354ae775dc9cf4ea"
+    },
+    {
+      "path": "task-review/SKILL.md",
+      "status": "COPIE",
+      "sha256": "4b99c2242deeb4fde10bf7c8cceb1963bb1028c05ddf6c8f6af1101422ade5bf"
+    },
+    {
+      "path": "ui-ux-pro-max/SKILL.md",
+      "status": "COPIE",
+      "sha256": "7531c40f0f69b53202e340c78b1f3d9ca05ec7a048519d908c408ad886278910"
+    },
+    {
+      "path": "video-generation/SKILL.md",
+      "status": "COPIE",
+      "sha256": "f32780d30b0620c4245d361d2cc5c16abe3ae9cdfab234cb13e88a6c9e903d19"
+    },
+    {
+      "path": "video-understand/SKILL.md",
+      "status": "COPIE",
+      "sha256": "a904c884c4c3f96fd97206bed49026bfcd9df6b3975bfcf44fa80bdf7805f574"
+    },
+    {
+      "path": "visual-design-foundations/SKILL.md",
+      "status": "COPIE",
+      "sha256": "f5e42453e56714cca7b74f1cd5fa2bcd6e3434c6de598aa26cbd568de70e0276"
+    },
+    {
+      "path": "vue-upload/SKILL.md",
+      "status": "COPIE",
+      "sha256": "e23fdf38cc6d39b80fe1c03bae55b8549dacc0dcfed384de42918b32ac876225"
+    },
+    {
+      "path": "web-reader/SKILL.md",
+      "status": "COPIE",
+      "sha256": "699b96750b588df579be681dc8084e9431c970c1e1a8ba1fd3d62b5c7c1ff276"
+    },
+    {
+      "path": "web-search/SKILL.md",
+      "status": "COPIE",
+      "sha256": "af8cfb8c722d648971166bc9d9bf0a98fa52d231c8732cac590f26166398c9fb"
+    },
+    {
+      "path": "web-shader-extractor/SKILL.md",
+      "status": "COPIE",
+      "sha256": "d6a5da4091d1901b63a7e051afed37f63560aec4925ee7c00a277dcec7094e2f"
+    },
+    {
+      "path": "writing-plans/SKILL.md",
+      "status": "COPIE",
+      "sha256": "7e22067e7511372658f697b50d547cadbba4a38c18ba67b94aa54f40fb230f3e"
+    },
+    {
+      "path": "xlsx/SKILL.md",
+      "status": "COPIE",
+      "sha256": "834f1a47b4254ea477cb358ed91a386d3c8e1a55e8a0c87c52c582fedfc31871"
+    }
+  ]
+}

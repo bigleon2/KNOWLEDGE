@@ -2,50 +2,310 @@
   "kb": "skills/KNOWLEDGE.md",
   "nodes": 32,
   "edges": 67,
-  "target": "refactoring-engineering",
-  "backward": [
-    "agent-creator",
-    "audit-provenance",
-    "autonomous-agent",
-    "clone-chat",
-    "correct-py",
-    "correct-work",
-    "fleet-engineering",
-    "gen-plan",
-    "knowledge-observer",
-    "memory-engineering",
-    "prompt-engineering",
-    "refactor-guard",
-    "refactoring-test",
-    "script-creator",
-    "script-reviewer",
-    "spec-driven-development",
-    "vue-upload"
-  ],
-  "forward": [
-    "audit-provenance",
-    "clone-chat",
-    "context-engineering",
-    "correct-py",
-    "correct-work",
-    "fleet-engineering",
-    "fullstack-dev",
-    "gen-plan",
-    "graph-engineering",
-    "harness-engineering",
-    "knowledge-observer",
-    "loop-engineering",
-    "memory-engineering",
-    "prompt-engineering",
-    "refactor-guard",
-    "refactoring-test",
-    "resource-monitor",
-    "script-creator",
-    "skill-creator",
-    "skill-finder-cn",
-    "skills-inventory",
-    "spec-driven-development"
-  ],
-  "blast_radius": 17,
-  "verdict": "CRITIQUE"
+  "graphe": {
+    "agent-creator": {
+      "depends_on": [
+        "gen-plan",
+        "clone-chat"
+      ],
+      "used_by": []
+    },
+    "audio-metadata": {
+      "depends_on": [],
+      "used_by": []
+    },
+    "audit-provenance": {
+      "depends_on": [
+        "knowledge-observer",
+        "script-creator",
+        "correct-work"
+      ],
+      "used_by": []
+    },
+    "autonomous-agent": {
+      "depends_on": [
+        "gen-plan",
+        "clone-chat",
+        "correct-work"
+      ],
+      "used_by": []
+    },
+    "clone-chat": {
+      "depends_on": [
+        "gen-plan",
+        "correct-work",
+        "skill-creator"
+      ],
+      "used_by": [
+        "gen-plan",
+        "correct-work",
+        "agent-creator",
+        "autonomous-agent"
+      ]
+    },
+    "context-engineering": {
+      "depends_on": [],
+      "used_by": [
+        "gen-plan"
+      ]
+    },
+    "correct-py": {
+      "depends_on": [
+        "script-creator",
+        "skill-creator",
+        "correct-work",
+        "knowledge-observer"
+      ],
+      "used_by": [
+        "script-creator"
+      ]
+    },
+    "correct-work": {
+      "depends_on": [
+        "gen-plan",
+        "clone-chat",
+        "fullstack-dev",
+        "skills-inventory"
+      ],
+      "used_by": [
+        "gen-plan",
+        "clone-chat",
+        "knowledge-observer",
+        "script-creator",
+        "script-reviewer",
+        "audit-provenance",
+        "autonomous-agent",
+        "correct-py",
+        "refactoring-engineering",
+        "refactor-guard"
+      ]
+    },
+    "cpp-analysis": {
+      "depends_on": [],
+      "used_by": []
+    },
+    "fleet-engineering": {
+      "depends_on": [
+        "gen-plan"
+      ],
+      "used_by": [
+        "gen-plan"
+      ]
+    },
+    "fullstack-dev": {
+      "depends_on": [],
+      "used_by": [
+        "correct-work"
+      ]
+    },
+    "gen-plan": {
+      "depends_on": [
+        "correct-work",
+        "clone-chat",
+        "skills-inventory",
+        "prompt-engineering",
+        "resource-monitor",
+        "context-engineering",
+        "loop-engineering",
+        "graph-engineering",
+        "harness-engineering",
+        "knowledge-observer",
+        "fleet-engineering",
+        "spec-driven-development",
+        "memory-engineering",
+        "skill-finder-cn",
+        "audit-provenance",
+        "refactoring-engineering",
+        "refactoring-test",
+        "refactor-guard"
+      ],
+      "used_by": [
+        "correct-work",
+        "clone-chat",
+        "agent-creator",
+        "prompt-engineering",
+        "knowledge-observer",
+        "autonomous-agent",
+        "spec-driven-development",
+        "memory-engineering",
+        "fleet-engineering",
+        "vue-upload",
+        "refactoring-engineering",
+        "refactoring-test",
+        "refactor-guard"
+      ]
+    },
+    "graph-engineering": {
+      "depends_on": [],
+      "used_by": [
+        "gen-plan",
+        "correct-work",
+        "refactor-guard"
+      ]
+    },
+    "harness-engineering": {
+      "depends_on": [],
+      "used_by": [
+        "gen-plan",
+        "correct-work",
+        "refactor-guard"
+      ]
+    },
+    "knowledge-observer": {
+      "depends_on": [
+        "gen-plan",
+        "correct-work",
+        "skill-creator"
+      ],
+      "used_by": [
+        "gen-plan",
+        "audit-provenance",
+        "correct-py"
+      ]
+    },
+    "loop-engineering": {
+      "depends_on": [],
+      "used_by": [
+        "gen-plan",
+        "correct-work",
+        "refactor-guard"
+      ]
+    },
+    "memory-engineering": {
+      "depends_on": [
+        "gen-plan"
+      ],
+      "used_by": [
+        "gen-plan"
+      ]
+    },
+    "pdf-llm": {
+      "depends_on": [],
+      "used_by": []
+    },
+    "prompt-engineering": {
+      "depends_on": [
+        "gen-plan",
+        "skill-creator"
+      ],
+      "used_by": [
+        "gen-plan"
+      ]
+    },
+    "refactor-guard": {
+      "depends_on": [
+        "gen-plan",
+        "correct-work",
+        "resource-monitor",
+        "graph-engineering",
+        "spec-driven-development",
+        "harness-engineering",
+        "loop-engineering"
+      ],
+      "used_by": [
+        "gen-plan",
+        "refactoring-engineering"
+      ]
+    },
+    "refactoring-engineering": {
+      "depends_on": [
+        "gen-plan",
+        "refactoring-test",
+        "correct-work",
+        "refactor-guard"
+      ],
+      "used_by": [
+        "gen-plan"
+      ]
+    },
+    "refactoring-test": {
+      "depends_on": [
+        "gen-plan"
+      ],
+      "used_by": [
+        "gen-plan",
+        "refactoring-engineering"
+      ]
+    },
+    "resource-monitor": {
+      "depends_on": [],
+      "used_by": [
+        "gen-plan",
+        "refactor-guard"
+      ]
+    },
+    "script-creator": {
+      "depends_on": [
+        "skill-creator",
+        "correct-work",
+        "correct-py"
+      ],
+      "used_by": [
+        "script-reviewer",
+        "audit-provenance",
+        "correct-py"
+      ]
+    },
+    "script-mon-ecosysteme-infrastructure": {
+      "depends_on": [
+        "skill-creator"
+      ],
+      "used_by": []
+    },
+    "script-reviewer": {
+      "depends_on": [
+        "script-creator",
+        "correct-work",
+        "skill-creator"
+      ],
+      "used_by": []
+    },
+    "skill-creator": {
+      "depends_on": [],
+      "used_by": [
+        "clone-chat",
+        "prompt-engineering",
+        "script-mon-ecosysteme-infrastructure",
+        "knowledge-observer",
+        "script-creator",
+        "script-reviewer",
+        "correct-py"
+      ]
+    },
+    "skill-finder-cn": {
+      "depends_on": [
+        "audit-provenance"
+      ],
+      "used_by": [
+        "gen-plan"
+      ]
+    },
+    "skills-inventory": {
+      "depends_on": [],
+      "used_by": [
+        "gen-plan",
+        "correct-work"
+      ]
+    },
+    "spec-driven-development": {
+      "depends_on": [
+        "gen-plan"
+      ],
+      "used_by": [
+        "gen-plan",
+        "refactor-guard"
+      ]
+    },
+    "version-management": {
+      "depends_on": [],
+      "used_by": []
+    },
+    "vue-upload": {
+      "depends_on": [
+        "gen-plan",
+        "correct-work"
+      ],
+      "used_by": []
+    }
+  }
 }

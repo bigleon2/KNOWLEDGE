@@ -1,7 +1,7 @@
 # Historique par skill — gen-plan
 
 > **Version** : 1.0.0 — **Date** : 2026-10-11 (Task 17-B, session web-b93f42fa — directive propriétaire « un historique par skill »)
-> **Version vivante (corpus)** : v3.23.0 — `skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.23.0.md` (sa table §7 fait foi)
+> **Version vivante (corpus)** : v3.23.1 — `skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.23.1.md` (sa table §7 fait foi)
 > **Versions archivées** : 18 PMs (v3.6.1 → v3.22.1) dans `prompts-maitres/gen-plan/` — sceau SHA-256 au README §2
 > **Provenance** : tables migrées verbatim de `historique-versions-prompts-maitres.md` §2 (fichier retiré après migration — R4 une information, une source ; Task 17-B)
 

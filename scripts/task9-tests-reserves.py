@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.6)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.7)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -76,15 +76,15 @@ def t_res1():
                        capture_output=True, text=True, cwd=CAN)
     check("T-R1.6 --generate refactor-guard = NO-OP (cohérence)", "NO-OP" in r.stdout)
     inst = read(CAN + "/skills/@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md")
-    check("T-R1.7 PM-INSTALL v1.7.0 : §2quater 4 familles + §2ter ligne REFACTOR-GUARD + étape 6",
-          "Version : 1.7.0" in inst and "des 4 familles (gen-plan, correct-work, clone-chat, "
+    check("T-R1.7 PM-INSTALL v1.7.1 : §2quater 4 familles + §2ter ligne REFACTOR-GUARD + étape 6",
+          "Version : 1.7.1" in inst and "des 4 familles (gen-plan, correct-work, clone-chat, "
           "refactor-guard — décision D009 du 2026-10-12)" in inst
           and "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md" in inst
           and "| 6 | **refactor-guard**" in inst)
     shared = read(CAN + "/skills/@mon-ecosysteme/PROMPT-MAITRE-SHARED.md")
-    check("T-R1.8 SHARED v1.7.6 : §6.1 ligne REFACTOR-GUARD + PM-INSTALL v1.7.0",
-          "> **Version** : 1.7.6" in shared and "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md" in shared
-          and "| v1.7.0 |" in shared)
+    check("T-R1.8 SHARED v1.7.7 : §6.1 ligne REFACTOR-GUARD + PM-INSTALL v1.7.1",
+          "> **Version** : 1.7.7" in shared and "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md" in shared
+          and "| v1.7.1 |" in shared)
     kb = read(CAN + "/skills/KNOWLEDGE.md")
     check("T-R1.9 KB : décision D009 LEVÉE consignée (calibration refactor-guard)",
           "décision propriétaire D009 LEVÉE" in kb and "PM canonique PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0 au corpus" in kb)
@@ -121,22 +121,22 @@ def t_res2():
           all(len(r["voie_l"]["votes"]) == 3
               for s in sk.values() for r in s.get("cases", [])))
     skmd = read(CAN + "/skills/refactoring-engineering/SKILL.md")
-    check("T-R2.4 Description Optimization : frontmatter v1.1.0 + phrase optimisée",
-          "version: 1.1.0" in skmd
+    check("T-R2.4 Description Optimization : frontmatter v1.1.1 (Task 12) + phrase optimisée",
+          "version: 1.1.1" in skmd
           and "Sécurisation des opérations assurée par le skill refactor-guard" in skmd
-          and "Garde-fous mobilisés pendant les opérations" not in skmd)
+          and "Garde-fous mobilisés pendant les opérations" not in skmd.split("## §6")[0])
     check("T-R2.5 evals R2 inchangées (7 cas ref-eng, 7 cas ref-test)",
           len(json.load(open(CAN + "/skills/refactoring-engineering/evals/trigger_evals.json"))) == 7
           and len(json.load(open(CAN + "/skills/refactoring-test/evals/trigger_evals.json"))) == 7)
     kb = read(CAN + "/skills/KNOWLEDGE.md")
-    check("T-R2.6 KB heading v1.1.0 + calibration Task 9 (A2)",
-          "## refactoring-engineering v1.1.0" in kb and "baselines A2 MESURÉES" in kb)
+    check("T-R2.6 KB heading v1.1.1 + calibration Task 9 (A2)",
+          "## refactoring-engineering v1.1.1" in kb and "baselines A2 MESURÉES" in kb)
     integ = json.load(open(CAN + "/scripts/ecosysteme-integrity.json"))
     ecosk = read(CAN + "/scripts/check-ecosysteme-integrity.py")
     ie = integ["skills"].get("refactoring-engineering", {})
-    check("T-R2.7 ECO_SKILLS : refactoring-engineering 1.1.0 (SHA vive alignée)",
-          '"refactoring-engineering": "1.1.0"' in ecosk
-          and isinstance(ie, dict) and ie.get("version") == "1.1.0"
+    check("T-R2.7 ECO_SKILLS : refactoring-engineering 1.1.1 (SHA vive alignée)",
+          '"refactoring-engineering": "1.1.1"' in ecosk
+          and isinstance(ie, dict) and ie.get("version") == "1.1.1"
           and ie.get("sha256") == sha256(CAN + "/skills/refactoring-engineering/SKILL.md"))
     hist = read(CAN + "/skills/@historique/historiques-par-skill/refactoring-engineering.md")
     check("T-R2.8 @historique : ligne v1.1.0 (Description Optimization A2)",
