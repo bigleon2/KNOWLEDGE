@@ -1,0 +1,101 @@
+{
+  "etapes": [
+    {
+      "etape": "1-corpus",
+      "msg": "9/9 fichiers corpus installés — byte-identité SHA-256 OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:gen-plan",
+      "msg": "15 fichiers copiés/vérifiés — byte-identité OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:gen-plan",
+      "msg": "version installée 3.23.1 (corpus 3.23.1) — R2 OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:correct-work",
+      "msg": "7 fichiers copiés/vérifiés — byte-identité OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:correct-work",
+      "msg": "version installée 2.7.0 (corpus 2.7.0) — R2 OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:clone-chat",
+      "msg": "4 fichiers copiés/vérifiés — byte-identité OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:clone-chat",
+      "msg": "version installée 2.0.1 (corpus 2.0.1) — R2 OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:refactor-guard",
+      "msg": "16 fichiers copiés/vérifiés — byte-identité OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:refactor-guard",
+      "msg": "version installée 1.7.0 (corpus 1.7.0) — R2 OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:skill-creator-sync",
+      "msg": "20 fichiers copiés/vérifiés — byte-identité OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:kb-extra-version-management",
+      "msg": "3 fichiers copiés/vérifiés — byte-identité OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:kb-extra-skill-finder-cn",
+      "msg": "5 fichiers copiés/vérifiés — byte-identité OK",
+      "ok": true
+    },
+    {
+      "etape": "3-6:kb-extra-fullstack-dev",
+      "msg": "2 fichiers copiés/vérifiés — byte-identité OK",
+      "ok": true
+    },
+    {
+      "etape": "2-garde-v22",
+      "msg": "placeholder plateforme download/README.md supprimé (collision nom corpus — décision v2.2)",
+      "ok": true
+    },
+    {
+      "etape": "7-registre-KB",
+      "msg": "KNOWLEDGE.md déployé (350 lignes)",
+      "ok": true
+    },
+    {
+      "etape": "8-outillage",
+      "msg": "68 scripts déployés vers scripts/",
+      "ok": true
+    },
+    {
+      "etape": "2-10-archive",
+      "msg": "round-trip 9/9 byte-identique + homologues (5) — OK",
+      "ok": true
+    }
+  ],
+  "sha": {
+    "PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md": "1e8bcb65667a52a902d6010c210dcec9b3ac6c7c71e1b5d16101925992435c80",
+    "PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md": "dcecb4d62228cef38106e8770aeabf6b8ff5e33372f6992f1529575790196e01",
+    "PROMPT-MAITRE-GEN-PLAN-v3.23.1.md": "02002b98586fbe38b45a760748b94a226846da527264fa3331c9dd31984ba59c",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "d5c601984bafb48f37d2aa21d5bb2a2ae6dd712129bf32088dcd2bb0c58afdd3",
+    "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md": "74438d695d2fb7b4d7b406f576b16d7fa2706d0b4113183ea6e55fb84215e62e",
+    "PROMPT-MAITRE-SHARED.md": "7e076f520b06578e850944090be3e925403cb6479dd5b5e1fc34cb2242f311b8",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "9c80ca97e37247999145cedad1cf118c0a78f79bd31cacf563af605bbc33212e",
+    "README.md": "39b66b1304d5ebf07ab3588faeef2a315e0b02cb8ef58f6124b79a0b1ae77e9a",
+    "SYNC-CONTEXT.md": "0afe967146b8939cd13c0dc08769cc7725271c4b907f3dbd78a532ef0c74a6fd"
+  },
+  "verdict": "PASS"
+}
