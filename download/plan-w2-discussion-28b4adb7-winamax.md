@@ -71,31 +71,31 @@ Décisions vérifiables : capture texte `upload/discussion-28b4adb7-texte.txt` (
 - T1 ✅ Vérification factuelle des 3 stats Winamax : **VPIP** (% mains jouées volontairement), **PFR** (% relances pré-flop), **Agressivité AF** — recherche web (VPIP/PFR sources d'autorité ; interface Winamax affiche « mains jouées / relances pré-flop / agressivité ») + connaissance client Winamax (3 formats d'affichage possibles documentés).
 - T2 ✅ Lecture intégrale du skill PDF : brief creative-flow + fonts + typesetting + palette + cover + pagination + typographie + charts + cover-backgrounds + fill-engine + geometry ; Template 07 « Crystal Blue » identifié ; comportement convertisseur `html2pdf-next.js` analysé (Paged.js, pages nommées `@page`, fond propagé, `preferCSSPageSize`).
 
-### T3 — Outline détaillé du document — ⏳ À FAIRE (point de reprise exact de la discussion)
+### T3 — Outline détaillé du document — ✅ FAITE (2026-10-16 : Outline 14 sections validé via outil dédié)
 
 1. Charger le skill `pdf` plateforme et confirmer les gabarits (Template 07 « Crystal Blue »).
 2. Construire l'outline : couverture (titre, sous-titre, visuel HUD) → sommaire → partie 1 : les 3 chiffres de l'avatar (VPIP, PFR, AF — définition, lecture, formats d'affichage) → partie 2 : module ranges → partie 3 : module cotes & équité → partie 4 : module calcul des stats (formules, exemples de calcul) → partie 5 : module plan d'action (tableaux de décision) → 5 exemples commentés avec HUD simulés → 10 exercices illustrés + corrigés intégrés → annexe : glossaire et plages de référence.
 3. Chaque fiche stat : définition formelle + formule + tableau d'interprétation par plage + HUD simulé + cas cash game et tournoi.
 4. Validation de l'outline avant génération (cohérence 30+ pages, répartition modules/exemples/exercices).
 
-### T4 — Génération du HTML complet — ⏳ À FAIRE
+### T4 — Génération du HTML complet — ✅ FAITE (2026-10-16 : HTML Template 07 Crystal Blue, assemblé depuis scripts/pdf-parts/, ~800 lignes)
 
 1. Vérifier les assets existants de `download/` (réutilisation, règle asset-reuse).
 2. Générer le HTML complet stylé Template 07 « Crystal Blue » : couverture bleu nuit + cyan, corps clair ; HUD simulés en CSS (avatar + panneau 3 chiffres) ; tableaux d'interprétation ; formules ; graphiques.
 3. Contenu conforme au cahier des charges : 30+ pages, niveau intermédiaire, cash game + tournoi, corrigés intégrés, 5 exemples, 10 exercices illustrés.
 4. Respect des conventions typographiques du skill (fonts, overflow, pagination, geometry — fichiers déjà analysés en T2).
 
-### T5 — Validation HTML — ⏳ À FAIRE
+### T5 — Validation HTML — ✅ FAITE (2026-10-16 : poster_validate corrigé micro-polices + glows background ; couverture isolée cover_validate 0 collision)
 
 1. Exécuter `poster_validate.py check-html` sur le HTML généré.
 2. Corriger tout écart (débordements, polices non déclarées, structure de pages nommées) ; itérer jusqu'à PASS.
 
-### T6 — Conversion PDF + QA — ⏳ À FAIRE
+### T6 — Conversion PDF + QA — ✅ FAITE (2026-10-16 : html2pdf-next.js Paged.js, 32 pages après enrichissements, pdf_qa.py --no-tables PASS all checks)
 
 1. Convertir via `html2pdf-next.js` (Paged.js, `preferCSSPageSize`, fond propagé chaque page) → PDF vectoriel.
 2. Exécuter `pdf_qa.py` : contrôle pages, débordements, polices embarquées ; corriger et reconvertir si FAIL.
 
-### T7 — Finalisation + livraison — ⏳ À FAIRE
+### T7 — Finalisation + livraison — ✅ FAITE (2026-10-16 : numérotation pypdf 1..31 couverture cachée, métadonnées, 0 U+FFFD, livrés download/fiches-winamax-hud-vpip-pfr-af.pdf + .html)
 
 1. Numérotation des pages (pypdf) + métadonnées (titre, auteur, sujet).
 2. Livraison dans `/home/z/my-project/download/` (nom descriptif) + worklog partagé (section dédiée) + rapport à l'utilisateur.

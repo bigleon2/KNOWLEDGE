@@ -22,7 +22,7 @@ Décisions vérifiables : D-W1-1 (Tâche A certifiée — rapport `scripts/rappo
 
 ## E2 — Inventaire des ressources
 
-- **Écosystème local certifié (Task 1)** : corpus `skills/@mon-ecosysteme/` **9/9 byte-identique** ; familles d'instantané §2ter — **gen-plan 3.23.1**, **correct-work 2.7.0**, **clone-chat 2.0.1**, **refactor-guard 1.7.0** ; registre KB `skills/KNOWLEDGE.md` (350 L, 26 entrées) ; outillage **68 scripts** ; archive scellée `download/mon-ecosysteme_archive.zip` (round-trip 9/9 PASS, 0 doublon download/).
+- **Écosystème local certifié (Task 1)** : corpus `skills/@mon-ecosysteme/` **9/9 byte-identique** ; familles d'instantané §2ter — **gen-plan 3.23.1**, **correct-work 2.7.0**, **clone-chat 2.0.1**, **refactor-guard 1.7.0** ; registre KB `skills/KNOWLEDGE.md` (350 L, 32 entrées) ; outillage **68 scripts** ; archive scellée `download/mon-ecosysteme_archive.zip` (round-trip 9/9 PASS, 0 doublon download/).
 - **Certification étape 9** : verify-cross 96/96 · verify-correct-work 16/16 · integrity 68/68 (manifeste `scripts/ecosysteme-integrity.json`) ; rapport `scripts/rapport-installation-ecosysteme.json` (PASS).
 - **Clone local** : `/home/z/my-project/KNOWLEDGE` (HEAD **bc387a0** — Task 12-CORRECTIONS, batterie 100 % verte d'origine) ; origin authentifié PAT.
 - **Artefacts de session** : `upload/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (référence d'installation) ; `upload/shared_chat.json` + `upload/discussion-28b4adb7-texte.txt` (captures de la discussion partagée) ; `download/plan-w2-discussion-28b4adb7-winamax.md` (plan d'exécution Tâche B).
@@ -69,13 +69,13 @@ Décisions vérifiables : D-W1-1 (Tâche A certifiée — rapport `scripts/rappo
 ### A0-A1 — ✅ FAITES (Task 1)
 
 - A0 lecture PM-INSTALL v1.7.1 + SHARED v1.7.7 ; règle d'or n°4 : clone bc387a0 ; PAT configuré sur origin (non persisté).
-- A1 pipeline étapes 0-10 exécuté et certifié : corpus 9/9, familles gen-plan 3.23.1 / correct-work 2.7.0 / clone-chat 2.0.1 / refactor-guard 1.7.0, registre KB 26 entrées, 68 scripts, archive scellée round-trip 9/9, arbitres 3/3 verts (96/96, 16/16, 68/68), rapport PASS.
+- A1 pipeline étapes 0-10 exécuté et certifié : corpus 9/9, familles gen-plan 3.23.1 / correct-work 2.7.0 / clone-chat 2.0.1 / refactor-guard 1.7.0, registre KB 32 entrées, 68 scripts, archive scellée round-trip 9/9, arbitres 3/3 verts (96/96, 16/16, 68/68), rapport PASS.
 
 ### W0 — ✅ FAITE (ce tour)
 
 - W0 régénérations demandées : **plan W1** (session, ce document) + **plan W2** (discussion 28b4adb7, fiches Winamax) — via gen-plan v3.23.1, format canonique E1-E8 + bloc REPRISE, journalisées au worklog (Task 2).
 
-### A2 — Publication archive via PAT — ⏳ À FAIRE
+### A2 — Publication archive via PAT — ✅ FAITE (Task 3 : commit ecb0d5a, push main vérifié bc387a0..ecb0d5a ; archive au canal local, convention *.zip du dépôt)
 
 1. Pré-flight : collecte G-RES + vérification état git du clone (propre, HEAD bc387a0) + vérification accès distant (PAT, `git ls-remote`).
 2. Déposer dans le clone les livrables de session à publier : `download/mon-ecosysteme_archive.zip` (archive d'intégrité scellée), `scripts/rapport-installation-ecosysteme.json`, plans W1/W2 (`download/plan-w1-session-ecosysteme-winamax.md`, `download/plan-w2-discussion-28b4adb7-winamax.md`).
@@ -83,13 +83,13 @@ Décisions vérifiables : D-W1-1 (Tâche A certifiée — rapport `scripts/rappo
 4. En cas de refus distant (permissions fine-grained manquantes) : reporter le verdict exact + conserver les livrables locaux (règle d'or n°1 — adaptation, jamais un arrêt).
 5. Worklog : journaliser la publication (traces commit/push).
 
-### B1-B7 — Tâche B : fiches PDF Winamax (plan W2) — ⏳ À FAIRE
+### B1-B7 — Tâche B : fiches PDF Winamax (plan W2) — ✅ FAITE (Task 4 : 32 pages, QA PASS, download/fiches-winamax-hud-vpip-pfr-af.pdf + .html)
 
 - Exécution intégrale du **plan W2** (plan d'exécution opérationnel de la discussion 28b4adb7) : T3 outline détaillé → T4 HTML complet Template 07 « Crystal Blue » (30+ pages, HUD simulés, 4 modules, 5 exemples, 10 exercices corrigés) → T5 `poster_validate.py check-html` → T6 conversion `html2pdf-next.js` + QA `pdf_qa.py` → T7 numérotation pypdf + métadonnées + livraison `download/` + worklog.
 - Cahier des charges déjà épinglé (discussion source) : aucune re-clarification — exécution directe.
 - Statuts reportés dans W1 à chaque phase terminée (R2 : jamais de réécriture destructrice).
 
-### A3 — Clôture de session (étape 11 PM-INSTALL) — ⏳ À FAIRE (fin de session)
+### A3 — Clôture de session (étape 11 PM-INSTALL) — ✅ FAITE (Task 5 : clone-chat 8/8 checks PASS, download/session-w1-ecosysteme-winamax-clone-2026-10-16.md)
 
 1. Pré-requis : A2 ✅ et B1-B7 ✅ (livrables finalisés).
 2. Exécuter clone-chat v2.0.1 (7+1 étapes, mode CIBLE, Context Drift §3.5) : clone intégral de la session courante — contexte, décisions, artefacts, worklog Tasks 1-N, plans W1/W2, directives (traces), nom descriptif du clone.
