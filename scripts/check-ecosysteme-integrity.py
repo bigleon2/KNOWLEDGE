@@ -44,7 +44,7 @@ discussion partagée, round-trip 26/26 byte-identique).
 
 Vérifications (pipeline PM-INSTALL étapes 1-2, 8 — périmètre v1.3.0) :
   1. SHA-256 des fichiers du corpus canonique skills/@mon-ecosysteme/
-  2. Round-trip byte-identité archive download/mon-ecosysteme_archive.zip ↔ corpus
+  2. Round-trip byte-identité archive download/mon-ecosysteme_archive.zip ↔ corpus + piliers (v2.3)
   3. Garde anti-doublons download/ (décision v2.2 — 0 fichier du corpus en copie)
   4. Structure des 26 skills écosystème installés (21 + 5 skills famille Task 16)
   5. Cohérence versions SKILL.md ↔ registre KNOWLEDGE.md (26 entrées versionnées
@@ -108,6 +108,20 @@ ECO_SKILLS = {
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.
 KB_ONLY_VERSION = set()
 METIER_SKILLS = []  # P-H (2026-10-02) : les ex-métier sont versionnés et au registre — check 4bis vidé
+# Recalibrage F5 (Task 8, session web-43f5b4bd, 2026-10-17) : archive v2.3 étendue aux
+# piliers — l'archive embarque, sous le préfixe piliers/, les 6 fichiers critiques du
+# profil (2 SKILL.md familles PM, registre KB, orchestrateur de certification, arbitre
+# d'intégrité, réinstallateur) afin que la restauration autonome couvre suppression ET
+# corruption sur ce périmètre ; le round-trip vérifie leur byte-identité (compatibilité
+# ascendante : une archive v2.2 sans entrées piliers/ reste conforme, n_pil_ko = 0).
+PILIERS_ARCHIVE = {
+    "piliers/skills/gen-plan/SKILL.md": os.path.join(SKILLS, "gen-plan", "SKILL.md"),
+    "piliers/skills/correct-work/SKILL.md": os.path.join(SKILLS, "correct-work", "SKILL.md"),
+    "piliers/skills/KNOWLEDGE.md": KB,
+    "piliers/scripts/certification-complete.py": os.path.join(BASE_DIR, "scripts", "certification-complete.py"),
+    "piliers/scripts/check-ecosysteme-integrity.py": os.path.join(BASE_DIR, "scripts", "check-ecosysteme-integrity.py"),
+    "piliers/scripts/install-ecosysteme-local.sh": os.path.join(BASE_DIR, "scripts", "install-ecosysteme-local.sh"),
+}
 # [N14-c] SYNC_MAP — HISTORIQUE : bloc supprimé Task 14 (décision v2.2, déduplication) —
 # le canal de fichiers download/ n'existe plus ; le check 3 applique la garde
 # anti-doublons sur le listing RÉEL du corpus (dérivation dynamique — KO-L003).
@@ -161,13 +175,22 @@ def main():
         digest = sha256(os.path.join(CORPUS, fname))
         manifest["corpus"][fname] = digest
 
-    print("\n=== 2. Archive round-trip (véhicule d'intégrité v2.1) ===")
-    ok, n_ident, n_homologues = os.path.isfile(ARCHIVE), 0, 0
+    print("\n=== 2. Archive round-trip (véhicule d'intégrité v2.3 — corpus + piliers) ===")
+    ok, n_ident, n_homologues, n_pil, n_pil_ko = os.path.isfile(ARCHIVE), 0, 0, 0, 0
     if ok:
         import zipfile
         with zipfile.ZipFile(ARCHIVE) as z:
             znames = [n for n in z.namelist() if not n.endswith("/")]
             for n in znames:
+                if n in PILIERS_ARCHIVE:
+                    # F5 (Task 8, 2026-10-17) : piliers scellés — byte-identité exigée
+                    cp = PILIERS_ARCHIVE[n]
+                    if os.path.isfile(cp) and hashlib.sha256(z.read(n)).hexdigest() == sha256(cp):
+                        manifest["archive"][n] = sha256(cp)
+                        n_pil += 1
+                    else:
+                        n_pil_ko += 1
+                    continue
                 rel = n.split("@mon-ecosysteme/")[-1] if "@mon-ecosysteme/" in n else n
                 cp = os.path.join(CORPUS, rel)
                 if os.path.isfile(cp) and hashlib.sha256(z.read(n)).hexdigest() == sha256(cp):
@@ -177,14 +200,17 @@ def main():
                     n_homologues += 1
             # v2.1 (N26, recalibrage L004) : corpus ⊆ archive byte-identique +
             # extras uniquement sous homologues/ (famille créateur/relecture).
+            # v2.3 (F5, Task 8) : + piliers scellés vérifiés byte-identiques.
             extras = [n for n in znames
-                      if (n.split("@mon-ecosysteme/")[-1]
-                          if "@mon-ecosysteme/" in n else n) not in corpus_files]
+                      if n not in PILIERS_ARCHIVE
+                      and (n.split("@mon-ecosysteme/")[-1]
+                           if "@mon-ecosysteme/" in n else n) not in corpus_files]
             ok = (n_ident == len(corpus_files)
+                  and n_pil_ko == 0
                   and all(e.startswith("homologues/") for e in extras)
-                  and n_ident + len(extras) == len(znames))
-    check("Archive byte-identique au corpus + homologues (v2.2)", ok,
-          f"{n_ident}/{len(corpus_files)} + {n_homologues} homologues (N26 — recalibrage L004 ; véhicule v2.2, décision déduplication Task 14)")
+                  and n_ident + n_pil + n_pil_ko + len(extras) == len(znames))
+    check("Archive byte-identique au corpus + piliers (v2.3)", ok,
+          f"corpus {n_ident}/{len(corpus_files)} · piliers {n_pil}/{len(PILIERS_ARCHIVE)} ({n_pil_ko} divergents) · {n_homologues} homologues")
 
     print("\n=== 3. Garde anti-doublons download/ (décision v2.2) ===")
     n_dup = 0

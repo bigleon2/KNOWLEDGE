@@ -145,6 +145,18 @@ record("PASS" if len(corpus_files) == _expected_corpus else "WARN", "1",
 import zipfile
 identical, divergent, n_zip = 0, [], 0
 extras_hors_homologues = []
+# F5 (Task 8, session web-43f5b4bd, 2026-10-17) : archive v2.3 étendue aux piliers —
+# entrées sous piliers/ vérifiées byte-identiques aux fichiers vivants (compatibilité
+# ascendante : une archive v2.2 sans piliers/ reste conforme).
+PILIERS_RT = {
+    "piliers/skills/gen-plan/SKILL.md": SKILLS / "gen-plan" / "SKILL.md",
+    "piliers/skills/correct-work/SKILL.md": SKILLS / "correct-work" / "SKILL.md",
+    "piliers/skills/KNOWLEDGE.md": SKILLS / "KNOWLEDGE.md",
+    "piliers/scripts/certification-complete.py": BASE / "scripts" / "certification-complete.py",
+    "piliers/scripts/check-ecosysteme-integrity.py": BASE / "scripts" / "check-ecosysteme-integrity.py",
+    "piliers/scripts/install-ecosysteme-local.sh": BASE / "scripts" / "install-ecosysteme-local.sh",
+}
+pil_divergents = []
 if ARCHIVE.is_file():
     with zipfile.ZipFile(ARCHIVE) as z:
         znames = [n for n in z.namelist() if not n.endswith("/")]
@@ -157,18 +169,23 @@ if ARCHIVE.is_file():
                 divergent.append(name)
         # v2.1 (N25/N26, recalibrage L004) : corpus ⊆ archive byte-identique +
         # extras uniquement sous homologues/ (famille créateur/relecture).
+        # v2.3 (F5, Task 8) : + piliers scellés byte-identiques (préfixe piliers/).
         _corpus_set = set(corpus_files)
-        extras_hors_homologues = [
-            n for n in znames
-            if (n.split("@mon-ecosysteme/")[-1] if "@mon-ecosysteme/" in n else n) not in _corpus_set
-            and not n.startswith("homologues/")
-        ]
-if divergent or extras_hors_homologues:
+        for n in znames:
+            if n in PILIERS_RT:
+                src = PILIERS_RT[n]
+                if not src.is_file() or z.read(n) != src.read_bytes():
+                    pil_divergents.append(n)
+                continue
+            rel = n.split("@mon-ecosysteme/")[-1] if "@mon-ecosysteme/" in n else n
+            if rel not in _corpus_set and not n.startswith("homologues/"):
+                extras_hors_homologues.append(n)
+if divergent or extras_hors_homologues or pil_divergents:
     record("FAIL", "1", "Round-trip archive ↔ corpus",
-           f"divergents : {divergent or '—'} ; extras hors homologues/ : {extras_hors_homologues or '—'} (zip={n_zip}, corpus={len(corpus_files)})")
+           f"divergents : {divergent or '—'} ; extras hors homologues/ : {extras_hors_homologues or '—'} ; piliers divergents : {pil_divergents or '—'} (zip={n_zip}, corpus={len(corpus_files)})")
 else:
     record("PASS", "1", "Round-trip archive ↔ corpus",
-           f"{identical}/{len(corpus_files)} identiques + {n_zip - len(corpus_files)} homologues v2.1 (remplace le miroir supprimé — KB §Décisions)")
+           f"{identical}/{len(corpus_files)} identiques + {len(PILIERS_RT)} piliers v2.3 + {n_zip - len(corpus_files) - len(PILIERS_RT)} homologues v2.1 (remplace le miroir supprimé — KB §Décisions)")
 
 # ============================================================================
 print("\n=== 2. Registre KB : versions déclarées <-> réelles ===")

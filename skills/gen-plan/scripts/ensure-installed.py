@@ -8,6 +8,9 @@ Hook gen-plan v3.20.0 §1.16 — exécuter AVANT E1, EN PREMIER (préemption).
   --reinstall  si ABSENT : clone (jeton éphémère env GITHUB_TOKEN, jamais persisté)
                puis vérification pipeline (Phase A) ; si déjà installé : no-op (idempotence)
                si présent mais DÉRIVÉ : diagnostic + rc=2 (aucune action destructive)
+               (mode profil — racine non-git : jamais de clone DANS le profil ; la
+                réparation est déléguée au réinstallateur scripts/install-ecosysteme-local.sh,
+                qui opère en mode autonome F3 ou en mode clone sur source externe)
   --preempt    garde de PRÉEMPTION (Task 29 D002) : INSTALLE → PRIORITE-NONE (rc 0) ;
                ROOT absent → réinstallation IMMÉDIATE (PRIORITE-REINSTALL-OK, rc 0) ;
                dérivé → PRIORITE-REINSTALL-REQUISE + diagnostic (rc 2, non destructif)
@@ -21,9 +24,13 @@ avant de reprendre l'exécution.
 import hashlib, json, os, re, subprocess, sys, time
 from pathlib import Path
 
-ROOT = Path("/home/z/my-project/work_knowledge")
+# L008 (portabilité des chemins) : racines dérivées de l'emplacement du script —
+# <root>/skills/gen-plan/scripts/ensure-installed.py → parents[3] = <root>.
+# Compat. machine d'origine (profil hôte distinct de la racine écosystème) :
+# la variable d'environnement ECO_PROFILE_ROOT surcharge MP.
+ROOT = Path(__file__).resolve().parents[3]
 ORIGIN = "https://github.com/bigleon2/KNOWLEDGE.git"
-MP = Path("/home/z/my-project")
+MP = Path(os.environ.get("ECO_PROFILE_ROOT", str(ROOT)))
 
 FICHIERS_CLES = [
     "skills/KNOWLEDGE.md",
@@ -65,7 +72,10 @@ def etat() -> dict:
 
 
 def installe(e: dict) -> bool:
-    return (e["root_present"] and e["git_repo"] and not e["fichiers_manquants"]
+    # Mode profil reconnu (KO-L003/L008) : git_repo est informatif — un profil
+    # installé n'est pas un clone git. État installé = racine présente + fichiers
+    # clés présents + registre KB suffisant.
+    return (e["root_present"] and not e["fichiers_manquants"]
             and e["kb_entrees"] >= 14)
 
 
@@ -99,7 +109,8 @@ def do_reinstall(e, preempt=False):
     if e["root_present"] and (not e["git_repo"] or e["fichiers_manquants"]):
         print(json.dumps({"verdict": "DERIVE", "diagnostic": e,
                           "action": "aucune action destructive automatique — "
-                                    "réparation manuelle ou --force requise"},
+                                    "mode profil : exécuter scripts/install-ecosysteme-local.sh "
+                                    "(mode autonome F3) ; mode clone : réparation manuelle requise"},
                          ensure_ascii=False))
         sys.exit(2)
     head_avant = e.get("head")

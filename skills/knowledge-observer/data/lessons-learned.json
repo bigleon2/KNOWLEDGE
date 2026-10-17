@@ -107,6 +107,22 @@
       "statut": "appliqué",
       "session": "v3.17.1",
       "verdict_correct_work": "PASS (2026-10-02, cycle fusion installateurs — étape F, arbitres 29/29 + battery complète)"
+    },
+    {
+      "id": "L008",
+      "pattern": "Chemins absolus de la machine d'origine codés en dur dans les scripts et gardes de l'écosystème : ROOT/BASE/REPO pointés vers un chemin absolu hérité (ex. /home/z/my-project/work_knowledge) — sur tout profil transplanté, les gardes rendent des verdicts faux (ABSENT-DERIVE rc=1 sur un état certifié, divergence arbitre <-> réalité KO-L003) ou ciblent une source inexistante (réinstallateur inopérant) ; pattern récurrent à chaque transplantation du dépôt",
+      "occurrences": 3,
+      "sources": [
+        "Installation locale (Task 1, 2026-10-17) : scripts/task21-f2-rebuild-archive.py BASE = work_knowledge (machine d'origine) — retarget mécanique sed au déploiement",
+        "Analyse gen-plan optimisation (Task 2, 2026-10-17) : skills/gen-plan/scripts/ensure-installed.py ROOT = work_knowledge — garde É1-INSTALL inopérante au profil local (F1) ; refactoring-test --target gen-plan = CRITIQUE",
+        "Chantier F3 (Task 4, 2026-10-17) : install-ecosysteme-local.sh REPO = clone éphémère en dur — réinstallateur inopérant après résorption du clone ; + ~15 occurrences du même pattern vivant dans le clone (résorbées par F2)"
+      ],
+      "proposition": "Règle KO-L008 — tout script/arbitre dérive ses racines de son emplacement (__file__, parents[n]) ou les reçoit en paramètre/variable d'environnement, jamais d'un chemin absolu de machine ; correction chirurgicale via refactoring-engineering (golden master avant, édition count==1, re-certification après) ; toute nouvelle occurrence se corrige à la source dans le dépôt amont (les restaurations par re-clone ramènent les versions upstream)",
+      "marqueur": "PATTERN:KO-L008-v1.0.0 (appliqué de facto Task 4 : ensure-installed.py ROOT/MP dérivés de __file__ + surcharge ECO_PROFILE_ROOT ; install-ecosysteme-local.sh modes CLONE/AUTONOME paramétrés)",
+      "cible_application": "skills/gen-plan/scripts/ensure-installed.py (Task 4) ; scripts/install-ecosysteme-local.sh (Task 4) ; convention d'écriture pour tout nouveau script de l'écosystème",
+      "statut": "appliqué",
+      "session": "web-43f5b4bd (2026-10-17)",
+      "verdict_correct_work": "PASS (re-certification complète 6/6, orchestrateur, post-F1 — 0 régression)"
     }
   ],
   "schema": "Task Observer (gen-plan/references/observation-patterns.md §4) — phase N20, session B12-r41",
