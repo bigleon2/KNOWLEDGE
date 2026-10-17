@@ -1,0 +1,34 @@
+{
+  "skill": "dessin-technique",
+  "version": "1.0.0",
+  "evals": [
+    {
+      "id": "T1-capture-forme",
+      "description": "Cotes déduites d'une scène synthétique aux cotes connues (plaque 100x60 mm, trou Ø20 mm, pièce 1 centime Ø16,25 mm) — erreur ≤ 5 %",
+      "commande": "python3 skills/dessin-technique/scripts/capture_forme.py --selftest",
+      "attendu": "verdict PASS, erreurs {largeur, hauteur, echelle, trou} ≤ 5 %",
+      "priorite": "S1"
+    },
+    {
+      "id": "T2-mise-a-lechelle",
+      "description": "Facteurs pièce par pièce depuis cotes connues (UMA hex 27 / coude écrou 26) — ratios conservés, mode commune cohérent",
+      "commande": "python3 skills/dessin-technique/scripts/mise_a_echelle.py --selftest",
+      "attendu": "verdict PASS",
+      "priorite": "S2"
+    },
+    {
+      "id": "T3-conformite-style",
+      "description": "Rendu généré conforme au DNA (fond clair dominant, faces grises, lavande présente, traits sombres)",
+      "commande": "python3 skills/dessin-technique/scripts/generer_dessin.py --check-only --out <rendu>",
+      "attendu": "verdict PASS",
+      "priorite": "S1"
+    },
+    {
+      "id": "T4-idempotence",
+      "description": "Selftests rejoués ×2 → mêmes verdicts (idempotence R1)",
+      "commande": "les commandes T1+T2 exécutées deux fois de suite",
+      "attendu": "verdicts identiques au run précédent",
+      "priorite": "S2"
+    }
+  ]
+}

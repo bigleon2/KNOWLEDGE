@@ -1,0 +1,27 @@
+{
+  "skill": "dessin-technique",
+  "version_dna": "1.0.0",
+  "source": "analyse mesurée de upload/dessin technique.png (434x428, quantification 6 bits + moyennes de zones)",
+  "mesures": {
+    "fond": "#f8f8f8",
+    "faces_dessus": "#d8d8f8",
+    "faces_flancs": ["#b8b8c0", "#a8a8b0", "#a0a0a8"],
+    "traits_et_cotation": "#4b4b51",
+    "proportions": { "fond": 63.3, "gris_flancs": 11.2, "lavande_dessus": 4.0 }
+  },
+  "view": "isométrie CAO (~30°), faces plates sans dégradé, arêtes fines nettes",
+  "cotation": {
+    "couleur": "#4b4b51",
+    "lignes_d_attache": "perpendiculaires à la cote, petit dépassement",
+    "fleches": "pleines, fines",
+    "symboles": { "diametre": "Ø", "unite": "mm", "angle": "°" },
+    "police": "sans-serif technique fine"
+  },
+  "interdits": [
+    "photographie, texture réaliste, reflets brillants",
+    "ombres portées douces type rendu 3D",
+    "dégradés de couleurs sur les faces",
+    "texte parasite, filigrane, signature"
+  ],
+  "prompt_style_en": "Isometric CAD-style technical illustration, engineering textbook drawing. Flat shaded 3D part: top faces light lavender #d8d8f8, side faces neutral grey #b0b0b8 to #b8b8c0, sharp thin dark charcoal #4b4b51 object edges, plain near-white #f8f8f8 background. No gradients on faces, no realistic textures, no reflections, no cast shadows, no text, no watermark. Clean vector look, precise geometry, thin uniform line weight."
+}

@@ -47,7 +47,7 @@
 - **Category** : ecosystem
 - **Description** : Création, modification et amélioration de skills — conventions structurelles (frontmatter, tags, evals), cas de test, benchmark, optimisation de description (contenu francisé Task 23)
 - **Dépend de** : —
-- **Utilisé par** : clone-chat (conventions), prompt-engineering (création), script-mon-ecosysteme-infrastructure v1.1.0 (conventions + évals — INFRA-1/2/3), knowledge-observer (application des mises à jour), script-creator v1.0.0 (conventions), script-reviewer v1.0.0 (conventions), correct-py v1.0.0 (conventions de description, d'évals et de frontmatter, §1.4)
+- **Utilisé par** : clone-chat (conventions), prompt-engineering (création), script-mon-ecosysteme-infrastructure v1.1.0 (conventions + évals — INFRA-1/2/3), knowledge-observer (application des mises à jour), script-creator v1.0.0 (conventions), script-reviewer v1.0.0 (conventions), correct-py v1.0.0 (conventions de description, d'évals et de frontmatter, §1.4), dessin-technique v1.0.0 (conventions structurelles — dependencies frontmatter)
 - **Dernière calibration** : N/A
 - **Note v2.0 (corrige-ecosysteme)** : conventions YAML (SHARED §1.3 → §2), format SKILL.md (SHARED §5 → §3), règle impérative Contexte Système (§3.0) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
@@ -311,6 +311,15 @@
 - **Description** : Développement web fullstack (Next.js 16, TypeScript, Tailwind CSS 4, shadcn/ui, Prisma ORM) — construire des applications web complètes, composants UI, schémas de base de données, routes API, websocket/socket.io ; inscrit au registre (Task 8, fusion discussion 468a4c26 Task 27 externe : référencé par correct-work « Dépend de » sans entrée au registre — précédent exact vue-upload Task 36) ; standards du registre respectés (§0 SHARED + trigger_evals au format liste)
 - **Utilisé par** : correct-work (>= v1.0.0, projets web — « Dépend de » côté correct-work)
 - **Dernière calibration** : Task 8 (2026-10-12, session web-b4d7dd19 — gen-plan(step), fusion discussion 468a4c26 Task 27) : inscription au registre + bidirectionnalité correct-work ; §0 présent (marqueur propagé) ; trigger_evals.json déjà au format liste — conforme ; frontmatter déquoté (S4)
+- **Statut** : stable
+
+## dessin-technique v1.0.0
+
+- **Category** : métier
+- **Description** : Reproduit toute pièce ou scène dans le style « dessin technique » (isométrie CAO flat-shaded, cotation normalisée) à partir d'un DNA de style MESURÉ (style-dna.json : fond #f8f8f8, faces dessus lavande #d8d8f8, flancs #a8a8b0-#b8b8c0, traits/cotation #4b4b51 ; bloc prompt_style_en injecté VERBATIM — reproductibilité ; toute évolution du style = re-mesure de l'image de référence + bump version_dna, traçabilité R4). Trois fonctions : F1 capture de forme (reconnaît les formes d'une pièce photographiée et déduit ses cotes via une pièce de centime posée à côté — détection circulaire hors bbox pièce, échelle px/mm via diamètres officiels euro, trous par cavités relatives) ; F2 mise à l'échelle (harmonise pièce par pièce les facteurs d'un dessin multi-pièces quand les cotes sont connues — tailles linéaires pondérées + mode commune) ; F3 génération (rendu z-ai puis annotations PIL en seconde passe — cotation sans chevauchement). Scripts : capture_forme.py, mise_a_echelle.py, generer_dessin.py ; references/pieces-centimes.md (diamètres BCE) ; evals T1-T4 (T1 PASS ×2 erreurs ≤ 3 %, T2 PASS ×2, T4 idempotence prouvée).
+- **Dépend de** : skill-creator >= v1.0.0 (conventions structurelles), image-generation >= v1.0.0 (génération du rendu de base — z-ai CLI/SDK)
+- **Utilisé par** : missions d'illustration technique de fiches atelier (VOSS-C — figures É1/É2 fiche_atelier_voss_18l Révision C ; VOSS-D — « Étape 2 — Coude CELA sur l'UMA », spec v2 + annotations seconde passe)
+- **Dernière calibration** : VOSS-C (création v1.0.0 — DNA mesuré sur l'image de référence, 3 scripts, evals T1-T4, correct-work CIBLE PASS 11/11) ; 2026-10-17 (Task 8 — réinscription au registre : entrée v1.0.0 perdue lors des wipes/restaurations inter-sessions, découverte Task 7 — précédents vue-upload Task 36 / fullstack-dev Task 8 : réinscription à la version courante, R2 jamais rétrograder)
 - **Statut** : stable
 
 ## Décisions d'architecture (corrige-ecosysteme v2.0.0)
