@@ -103,6 +103,7 @@ ECO_SKILLS = {
     "fullstack-dev": "1.0.0",  # Task 8 (fusion discussion 468a4c26 Task 27 externe) : inscrit au registre — précédent vue-upload
     "refactoring-test": "1.0.2",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire) ; Task 12 : §5 baseline MESURÉE 7/7
     "vue-upload": "1.2.0",  # KO-L004 (session web-b93f42fa, 2026-10-09) : KB=registre fait foi (## vue-upload v1.2.0) — occurrence L004 résorbée, arbitre dynamisé
+    "dessin-technique": "1.0.0",  # Task 8 (2026-10-17) : inscrit au registre — réinscription après wipes/restaurations inter-sessions (découverte Task 7), précédents vue-upload Task 36 / fullstack-dev Task 8
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.

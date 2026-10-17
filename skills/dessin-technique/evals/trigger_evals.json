@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Reproduis cette pièce photographiée dans le style dessin technique (isométrie CAO cotée) — il y a une pièce de centime posée à côté pour l'échelle.",
+    "should_trigger": true
+  },
+  {
+    "query": "Génère le dessin technique coté de l'étape 2 (coude monté sur l'UMA) à partir du DNA de style mesuré.",
+    "should_trigger": true
+  },
+  {
+    "query": "Mets à l'échelle ce dessin multi-pièces : les cotes réelles sont connues, harmonise les facteurs pièce par pièce.",
+    "should_trigger": true
+  },
+  {
+    "query": "Déduis les cotes de cette pièce sur la photo grâce à la pièce de monnaie posée à côté (capture de forme).",
+    "should_trigger": true
+  },
+  {
+    "query": "Génère une photo réaliste de l'atelier pour illustrer la fiche.",
+    "should_trigger": false
+  },
+  {
+    "query": "Corrige l'orthographe du rapport PDF.",
+    "should_trigger": false
+  }
+]
