@@ -1,6 +1,6 @@
 {
   "skill": "dessin-technique",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "evals": [
     {
       "id": "T1-capture-forme",
@@ -32,14 +32,14 @@
     },
     {
       "id": "T5-mesure-filet",
-      "description": "Pas/Ø majeur/désignation d'une tige M22×1,5 synthétique (4 px/mm, stries 2 px/6 px, pièce 1c) — err ≤ 5 %, meilleur candidat M22x1.5",
+      "description": "Pas/Ø majeur/désignation — 4 cas v1.1.1 : A stries droites M22×1,5 (4 px/mm) ≤ 5 % + meilleur M22x1.5 ; B tige verticale à stries horizontales déphasées (hélice simulée) M8×1 (8 px/mm) ≤ 5 % ; C tige lisse → ABANDON ; D pas 1,25 mm à Ø 22 (hors table ISO) à signature forte → mesuré sans abandon, 0 candidat, hors_table_iso",
       "commande": "python3 skills/dessin-technique/scripts/mesurer_filet.py --selftest",
-      "attendu": "verdict PASS, erreurs {pas, diametre} ≤ 5 %, meilleur = M22x1.5",
+      "attendu": "verdict PASS, 4/4 cas ok",
       "priorite": "S1"
     },
     {
       "id": "T6-mesure-profondeur",
-      "description": "Profondeur d'un trou borgne synthétique (Ø25 mm, profondeur 15 mm, φ 40°, 4 px/mm, pièce 2e) — profondeur ≤ 8 %, Ø ≤ 5 %, φ ±3°",
+      "description": "Profondeur d'un trou borgne synthétique (Ø25 mm, profondeur 15 mm, φ 40°, 4 px/mm, pièce 2e) — profondeur ≤ 8 %, Ø ≤ 5 %, φ ±3° ; validation trou-ness v1.1.1 active (fond dominant encastré en contact far)",
       "commande": "python3 skills/dessin-technique/scripts/mesurer_profondeur.py --selftest",
       "attendu": "verdict PASS, erreurs {profondeur ≤ 8 %, diametre ≤ 5 %, inclinaison ≤ 7,5 %}",
       "priorite": "S1"

@@ -5,7 +5,7 @@ SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
-dessin-technique — F5 mesure de profondeur (v1.1.0) : photo d'un trou borgne
+dessin-technique — F5 mesure de profondeur (v1.1.1) : photo d'un trou borgne
 CIRCULAIRE à fond visible (+ pièce de centime pour l'échelle) → profondeur,
 Ø d'ouverture, inclinaison de vue.
 
@@ -18,6 +18,12 @@ Méthode (projection orthographique, fond éclairé) : le contour de la cavité
 visible = ellipse d'ouverture (2a, 2b) → inclinaison φ = acos(b/a) ; le fond
 (plus clair que la paroi) est tronqué par le bord proche : son extension le
 long de l'axe mineur vaut 2b − δ avec δ = profondeur × sin φ × px_mm.
+Validation « trou-ness » v1.1.1 (défaut confirmé Task 11 : relief frappé d'une
+pièce plate pris pour un fond → profondeur fallacieuse 5,35 mm) : le masque
+« fond » doit présenter la signature d'un vrai fond — (1) dominante connexe
+≥ 60 %, (2) encastré dans l'ouverture (ne déborde pas du bord proche),
+(3) en CONTACT avec le bord LOINTAIN (la lèvre far partage son contour entre
+ouverture et fond) — sinon ABANDON explicite.
 Gardes : vue trop verticale (b/a > 0,97) → ABANDON ; fond non visible → ABANDON.
 Limites : ±8 % scène synthétique / ±15 % photo réelle (erreurs_estimees).
 """
@@ -31,6 +37,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from capture_forme import segments  # v1.0.0 — composantes connexes (trou-ness)
 from mesurer_filet import echelle_depuis_photo  # réutilise F4 (échelle monnaie)
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(
@@ -92,8 +99,49 @@ def analyser_zone(L, zone):
     # FAR de la lentille confond avec le contour du masque intérieur (érodé) ;
     # le bord proche est interne (paroi/fond) et n'est pas érodé.
     delta = deux_b - ext_fond
+
+    # v1.1.1 — validation « trou-ness » (défaut confirmé Task 11 : le relief
+    # frappé d'une pièce plate produit une profondeur fallacieuse) : le masque
+    # « fond » doit porter la signature géométrique d'un vrai fond de trou
+    # borgne. (1) dominante connexe — un fond réel est d'un seul tenant ;
+    lab_f, tailles_f = segments(fond)
+    dom = max(tailles_f.values()) if tailles_f else 0
+    if dom < 0.60 * int(fond.sum()):
+        raise SystemExit(
+            f"ABANDON : signature de trou absente — « fond » morcelé "
+            f"(dominante {dom}/{int(fond.sum())} px < 60 %) ; la zone ne présente "
+            f"pas un fond de trou borgne unique (relief d'objet plat ?)")
+    # (2) encastrement + (3) contact far — ORIENTATION DÉTERMINISTE d'abord :
+    # le signe d'un vecteur propre de PCA est arbitraire (défaut attrapé par le
+    # selftest T6 au premier run v1.1.1 : contact mesuré = δ quand l'axe pointait
+    # vers le bord PROCHE) → v_min est orienté pour que le FOND soit du côté
+    # des projections MAX (le fond s'enfonce vers le bord lointain).
+    proj_o = pts @ v_min
+    proj_f = pts_f @ v_min
+    if float(proj_f.mean()) < float(proj_o.mean()):
+        v_min = -v_min
+        proj_o, proj_f = pts @ v_min, pts_f @ v_min
+    # (2) encastrement — le fond ne déborde pas du bord PROCHE de l'ouverture ;
+    debord = float(proj_o.min() - proj_f.min())
+    if debord > 3.0:
+        raise SystemExit(
+            f"ABANDON : signature de trou absente — le « fond » déborde du bord "
+            f"proche de l'ouverture ({debord:.1f} px > 3) (objet plat texturé "
+            f"plutôt qu'une cavité)")
+    # (3) contact far — la lèvre LOINTAINE partage son contour entre ouverture
+    # et fond (le bord far du fond ≈ le bord far de l'ouverture) ; sinon le
+    # « fond » flotte au milieu sans jamais toucher le bord : pas une cavité.
+    contact = float(proj_o.max() - proj_f.max())
+    if contact > max(4.0, 0.20 * max(delta, 1.0)):
+        raise SystemExit(
+            f"ABANDON : signature de trou absente — le fond n'est pas en contact "
+            f"avec le bord lointain de l'ouverture ({contact:.1f} px > "
+            f"{max(4.0, 0.20 * max(delta, 1.0)):.1f}) — pas une cavité borgne")
     return {"deux_a": deux_a, "deux_b": deux_b, "b_sur_a": float(b_sur_a),
-            "phi_deg": phi, "delta_px": float(delta), "ext_fond_px": ext_fond}
+            "phi_deg": phi, "delta_px": float(delta), "ext_fond_px": ext_fond,
+            "trou_ness": {"dominante_pct": round(dom / max(1, int(fond.sum())), 3),
+                          "debord_proche_px": round(debord, 2),
+                          "contact_far_px": round(contact, 2)}}
 
 
 def mesurer(chemin, coin, zone, diametre_mm=None):
@@ -120,12 +168,15 @@ def mesurer(chemin, coin, zone, diametre_mm=None):
             "profondeur_note": note,
             "delta_px": round(m["delta_px"], 2),
             "b_sur_a": round(m["b_sur_a"], 3),
+            "trou_ness": m.get("trou_ness"),
         },
         "erreurs_estimees": {
             "profondeur": "±8 % scène synthétique / ±15 % photo réelle",
             "diametre_bord": "≤ 5 %",
             "limites": "projection orthographique (d ≪ distance caméra), fond éclairé "
-                       "et distinguable de la paroi, trou circulaire",
+                       "et distinguable de la paroi, trou circulaire ; validation "
+                       "trou-ness v1.1.1 (fond dominant encastré en contact du bord "
+                       "lointain) — un relief d'objet plat est rejeté",
         },
     }
 
