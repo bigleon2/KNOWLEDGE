@@ -17,6 +17,7 @@ Structure dirigée par le propriétaire (Task 17-B) : **un historique par skill*
 | `historiques-par-skill/gen-plan.md` | Historique dédié du skill gen-plan — 25 versions (v2.0.0 → v3.23.0), tables migrées verbatim de l'ex-distillation globale (Task 17-B) |
 | `historiques-par-skill/correct-work.md` | Historique dédié du skill correct-work — 10 versions (v1.0.0 → v2.7.0) + révisions documentaires de la famille |
 | `historiques-par-skill/clone-chat.md` | Historique dédié du skill clone-chat — 4 versions (v1.0.0 → v2.0.0) + révisions documentaires (PROMPT 1.0.1-1.0.3) |
+| `historiques-par-skill/dessin-technique.md` | Historique dédié du skill dessin-technique — 2 versions (v1.0.0 → v1.1.0), créé Task 10 (2026-10-18, session web-da654199) ; v1.0.0 vit en git dépôt (b944a27 → 26de6c1), SHA-256 scellé au journal |
 | `historique-autres-elements.md` | Historique du socle sans famille à PM : SHARED (v1.4.0 → v1.7.2), SYNC-CONTEXT (v1.4.0 → v1.4.5), README (v2.1.0 → v2.1.3), ULTRA (généré), PM-INSTALL (v1.1.0 → v1.6.2), registre KB (instantané 28 skills) |
 | `prompts-maitres/gen-plan/` | 18 PMs GEN-PLAN historiques (v3.6.1 → v3.22.1), déplacés du corpus `git mv` — byte-identité prouvée SHA-256 contre les blobs du commit de référence (b36f177, rapport Task 16) |
 | `prompts-maitres/correct-work/` | 4 PMs CORRECT-WORK historiques (v2.4.0 → v2.6.0), mêmes garanties |

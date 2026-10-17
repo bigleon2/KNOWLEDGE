@@ -1,6 +1,6 @@
 {
   "skill": "dessin-technique",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "evals": [
     {
       "id": "T1-capture-forme",
@@ -29,6 +29,20 @@
       "commande": "les commandes T1+T2 exécutées deux fois de suite",
       "attendu": "verdicts identiques au run précédent",
       "priorite": "S2"
+    },
+    {
+      "id": "T5-mesure-filet",
+      "description": "Pas/Ø majeur/désignation d'une tige M22×1,5 synthétique (4 px/mm, stries 2 px/6 px, pièce 1c) — err ≤ 5 %, meilleur candidat M22x1.5",
+      "commande": "python3 skills/dessin-technique/scripts/mesurer_filet.py --selftest",
+      "attendu": "verdict PASS, erreurs {pas, diametre} ≤ 5 %, meilleur = M22x1.5",
+      "priorite": "S1"
+    },
+    {
+      "id": "T6-mesure-profondeur",
+      "description": "Profondeur d'un trou borgne synthétique (Ø25 mm, profondeur 15 mm, φ 40°, 4 px/mm, pièce 2e) — profondeur ≤ 8 %, Ø ≤ 5 %, φ ±3°",
+      "commande": "python3 skills/dessin-technique/scripts/mesurer_profondeur.py --selftest",
+      "attendu": "verdict PASS, erreurs {profondeur ≤ 8 %, diametre ≤ 5 %, inclinaison ≤ 7,5 %}",
+      "priorite": "S1"
     }
   ]
 }

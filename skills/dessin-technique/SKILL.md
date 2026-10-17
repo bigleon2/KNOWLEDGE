@@ -1,6 +1,6 @@
 ---
 name: dessin-technique
-version: 1.0.0
+version: 1.1.0
 category: metier
 language: fr
 tags:
@@ -9,13 +9,19 @@ tags:
   - "#capture-de-forme"
   - "#mise-a-lechelle"
   - "#image-generation"
+  - "#filetage"
+  - "#profondeur"
 description: >
   Reproduit n'importe quelle pièce ou scène dans le style « dessin technique »
   (isométrie CAO flat-shaded, cotation normalisée) à partir d'un DNA de style
   mesuré. Fonction capture de forme : reconnaît les formes d'une pièce
   photographiée et déduit ses cotes grâce à une pièce de centime posée à côté
   (référence d'échelle). Fonction mise à l'échelle : harmonise pièce par pièce
-  les facteurs d'un dessin multi-pièces quand les cotes sont connues.
+  les facteurs d'un dessin multi-pièces quand les cotes sont connues. Fonction
+  mesure de filetage (v1.1.0) : pas, Ø majeur et désignation ISO 261 d'une tige
+  filetée photographiée de profil. Fonction mesure de profondeur (v1.1.0) :
+  profondeur d'un trou borgne circulaire à fond visible (ellipticité de
+  l'ouverture + décalage du fond, projection orthographique).
 dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
@@ -26,6 +32,7 @@ dependencies:
 read_when:
   - Déclencher quand la demande concerne : reproduire une image/pièce dans le style « dessin technique », générer un dessin technique coté, mesurer une pièce sur photo avec pièce de monnaie, mettre à l'échelle un dessin multi-pièces
   - Déclencher si la demande mentionne : dessin technique, style CAO, capture de forme, mise à l'échelle, cotes sur photo
+  - Déclencher si la demande mentionne (v1.1.0) : filetage, pas de vis, visserie, tige filetée, désignation ISO, profondeur de trou, trou borgne
   - Ne pas déclencher hors de ce périmètre (photos réalistes → image-generation/image-edit)
 ---
 
@@ -105,18 +112,71 @@ Cotes connues d'un dessin multi-pièces → facteurs d'échelle harmonisés.
 | T2 | mise à l'échelle (`--selftest`) | ratios conservés, échelles cohérentes |
 | T3 | conformité style (`--check`) | palette générée dans les tolérances DNA |
 | T4 | idempotence | selftests ×2 → mêmes verdicts |
+| T5 | mesure de filetage (v1.1.0, `--selftest`) | pas et Ø majeur ≤ 5 %, désignation ISO correcte |
+| T6 | mesure de profondeur (v1.1.0, `--selftest`) | profondeur ≤ 8 %, Ø ≤ 5 %, inclinaison ±3° |
+
+### §1.6 F4 — mesure de filetage (v1.1.0)
+
+Tige/vis filetée photographiée **de profil** (+ pièce de centime pour l'échelle)
+→ pas du filet, Ø majeur, désignation ISO 261.
+
+- Entrée : `mesurer_filet.py <photo> --coin DENOM [--zone x0,y0,x1,y1]
+  [--axe horizontal|vertical] [--diametre-mm X] [-o out.json]` — `--selftest` = T5.
+- Pipeline : échelle monnaie (primitives F1 importées — discrimination
+  pièce/tige par **remplissage de bbox** : cercle vu de face ≈ 0,785, objet plein
+  de profil ≈ 1,0, indépendant des tailles relatives ; jamais d'upscale —
+  l'interpolation polluerait les masques) → zone (défaut : bbox tige rognée
+  10 %) → profil de luminance moyen perpendiculairement aux stries →
+  détendance (moyenne glissante **normalisée aux bords** — évite les bosses
+  d'extrémité qui auto-corrèlent) → autocorrélation normalisée → pic dominant
+  (seuil 0,25, interpolation parabolique) → **pas** ; **Ø majeur** = extension
+  perpendiculaire du masque ; **désignation** : table ISO 261
+  (`references/filets-normaux.md` — miroir de la table intégrée), critères
+  Ø ±5 % ET pas ±max(10 %, 0,15 mm) → candidats triés + meilleur.
+- Sortie JSON : `{echelle_px_mm, filet:{pas_mm, pas_px_analyse,
+  pic_autocorrelation, diametre_majeur_mm}, designation_candidats[], meilleur,
+  erreurs_estimees}`.
+- Tolérances : T5 — pas ≤ 5 %, Ø ≤ 5 % (synthétique) ; photo réelle : pas ±10 %.
+- Garde : aucune périodicité (pic < 0,25 ou profil constant) → ABANDON explicite.
+
+### §1.7 F5 — mesure de profondeur (v1.1.0)
+
+Trou borgne **circulaire** à fond visible (+ pièce de centime) → profondeur,
+Ø d'ouverture, inclinaison de vue.
+
+- Entrée : `mesurer_profondeur.py <photo> --coin DENOM --trou x0,y0,x1,y1
+  [--diametre-mm X] [-o out.json]` — `--selftest` = T6.
+- Pipeline (projection orthographique, d ≪ distance caméra) : échelle monnaie →
+  masque intérieur (seuil adaptatif p5/p95 de la zone) → PCA des pixels →
+  ellipse d'ouverture (2a, 2b) → inclinaison φ = acos(b/a) → fond visible
+  (plus clair que la paroi ; érosion 4-connexe du masque — tue les anneaux
+d'interpolation — compensation 1 bord) → extension du fond le long de l'axe
+  mineur = 2b − δ → **profondeur = δ / (px_mm · sin φ)** ; **Ø bord = 2a / px_mm**.
+- Sortie JSON : `{echelle_px_mm, trou:{diametre_bord_mm, inclinaison_deg,
+  profondeur_mm, delta_px, b_sur_a}, erreurs_estimees}`.
+- Tolérances : T6 — profondeur ≤ 8 %, Ø ≤ 5 %, φ ±3° (synthétique) ; photo
+  réelle : profondeur ±15 %.
+- Gardes : vue trop verticale (b/a > 0,97) → ABANDON (profondeur non séparable
+  de l'ellipticité) ; fond non visible/non éclairé → ABANDON ; δ ≤ 1 px →
+  profondeur 0 (trou traversant ou fond au ras, noté).
 
 ## §2 — Spécification technique
 
-- Stack : Python 3 (stdlib + PIL + numpy), z-ai CLI (génération), JSON.
+- Stack : Python 3 (stdlib + PIL + numpy — autocorrélation, PCA, érosion binaire), z-ai CLI (génération), JSON.
 - Emplacements : `{{SKILLS_ROOT}}dessin-technique/` — SKILL.md, style-dna.json,
-  scripts/{capture_forme.py, mise_a_echelle.py, generer_dessin.py},
-  references/pieces-centimes.md, evals/evals.json.
+  scripts/{capture_forme.py, mise_a_echelle.py, generer_dessin.py,
+  mesurer_filet.py, mesurer_profondeur.py},
+  references/{pieces-centimes.md, filets-normaux.md}, evals/evals.json,
+  evals/trigger_evals.json.
 - N3 (SHARED) : scripts Python uniquement.
-- Limites assumées : la détection de la pièce de monnaie suppose une pièce
-  circulaire visible et séparée de la pièce à mesurer ; les cotes internes
-  complexes (profondeurs, filets) ne sont pas mesurables sur photo simple —
-  la spécification le documente (sortie `erreurs_estimees`).
+- Limites assumées : F1/F2 — la détection de la pièce de monnaie suppose une pièce
+  circulaire visible et séparée de la pièce à mesurer ; F4 — vue de profil
+  requise, seuls le pas et le Ø majeur sont mesurables (le profil du filet :
+  angle, relief, n'est pas mesurable sur photo simple) ; F5 — trou circulaire à
+  fond visible et éclairé, projection orthographique (±8 % synthétique / ±15 %
+  photo), trou elliptique ou fond occulté hors périmètre ; les autres cotes
+  internes complexes ne sont pas mesurables sur photo simple — la spécification
+  le documente (sortie `erreurs_estimees`).
 
 ## §3 — Relations
 
@@ -124,7 +184,7 @@ Cotes connues d'un dessin multi-pièces → facteurs d'échelle harmonisés.
 |------|--------|---------|
 | image-generation | utilise | rendu de base via z-ai (CLI `z-ai image`) |
 | skill-creator | conventions | structure SKILL.md/evals, >= 1.0.0 |
-| correct-work | vérifié par | Mode CIBLE sur le skill ; tests T1-T4 |
+| correct-work | vérifié par | Mode CIBLE sur le skill ; tests T1-T6 |
 
 ## §4 — Conventions
 

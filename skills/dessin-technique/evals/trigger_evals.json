@@ -16,6 +16,14 @@
     "should_trigger": true
   },
   {
+    "query": "Mesure le pas de vis de cette tige filetée sur la photo (il y a une pièce de 2 € pour l'échelle) et donne la désignation ISO du filet.",
+    "should_trigger": true
+  },
+  {
+    "query": "Quelle est la profondeur de ce trou borgne ? Le fond est visible sur la photo, avec une pièce de monnaie à côté pour l'échelle.",
+    "should_trigger": true
+  },
+  {
     "query": "Génère une photo réaliste de l'atelier pour illustrer la fiche.",
     "should_trigger": false
   },
