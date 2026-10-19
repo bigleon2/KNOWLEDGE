@@ -969,3 +969,20 @@ Stage Summary:
 - Task 17 + 17-B complètes et publiées en 6 commits/6 pushes (R1→R5 + correctif) — pattern B5 étendu, audits anti-persistance par push (dernier : 0/0/0).
 - Leçons consignées : (1) l'écraseur local frappe sans trace — commit/push immédiat par couche ; (2) tout script de mutation doit échouer si 0 match (garde anti-faux-succès) ; (3) un check anti-persistance ne doit jamais porter le fragment qu'il cherche (fragments courts concaténés) ; (4) les cas négatifs officiels = décisions de conception, non révisables par vote LLM.
 - Restant propriétaire : révocation PAT (consignée) ; re-mesure du cas QUOTA agent-creator à la prochaine campagne.
+
+---
+Task ID: 44
+Agent: Main [Super Z — gen-plan v3.20.0, session web-38713acd]
+Task: Directive propriétaire : « pousse les skills photo vers le dépôt KNOWLEDGE distant » (via PAT — usage éphémère, non persisté) — publication de la famille photo iPhone générée/testée Tasks 41-42.
+
+Work Log:
+- Constat d'environnement : dossiers locaux KNOWLEDGE/ et ecosystem/ fauchés par l'écraseur inter-sessions (l'écraseur local frappe sans trace — leçon Task 17) → clone frais du distant (lecture publique sans PAT) : main b75a620 (le distant avait avancé depuis la vérification Task 41 @ 3eebe65 — commits dessin-technique Tasks 8-13 d'une autre session).
+- Destination conforme aux conventions : création `skills/@photos/` (dossier non-skill SHARED §1.2 v1.6.8, précédent `@historique/`) — `@mon-ecosysteme/` écarté (corpus réservé aux PMs écosystème), conversion SKILL.md écartée (byte-identité des livrables audités prioritaire).
+- 3 PMs copiés byte-identiques (SHA-256 prouvé source ↔ copie) : iphone18-photos v1.0 COURANT, iphone17-photos v2.0 ARCHIVÉ, iphone-photos-migration v1.0 RÉUTILISABLE + README provenance/règles v1.0.0.
+- Registre KB et ECO_SKILLS (33) VOLONTAIREMENT non modifiés — compteurs des arbitres de comptage préservés (précédent Task 8 dessin-technique : inscription KB = opération d'une session écosystème dédiée, pas d'un push unilatéral).
+- Commit + push origin/main via URL jetable PAT (aucune persistance de la clé — fichier, config ou script) ; vérification post-push ls-remote + ls-tree.
+
+Stage Summary:
+- Famille photo iPhone publiée au dépôt : skills/@photos/ (3 PMs byte-identiques + README) — survit désormais aux wipes inter-sessions (source de vérité dépôt).
+- Décisions : dossier @ non-skill (pas de KB), pas de conversion de format (byte-identité R2), archive zip non poussée (*.zip ignoré par .gitignore — livrable session, pas corpus).
+- Restant propriétaire : RÉVOCATION DU PAT (exposé au canal + fragment 18c dans l'historique 6af3e0a — Task 17-final) ; inscription KB de @photos si souhaitée (session écosystème dédiée).
