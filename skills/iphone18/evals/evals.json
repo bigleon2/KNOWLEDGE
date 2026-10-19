@@ -1,0 +1,48 @@
+{
+  "skill": "iphone18",
+  "version": "1.0.0",
+  "evals": [
+    {
+      "id": "E1-pipeline-complet",
+      "description": "Photo réelle + demande d'amélioration → pipeline §1→§9 complet : analyse ANALYSE-v2 (scores + inventaire B6), moteur R1-R18, plan YAML affiché AVANT exécution (règle 3), sortie nommée PA-<CAS>-<seq>, rapport §8 + question §9",
+      "commande": "« Améliore cette photo qualité max » + photo uploadée",
+      "attendu": "sortie + rapport complet (analyse, diagnostic R, plan YAML, QC 12/12, limites honnêtes, question §9)",
+      "priorite": "S1"
+    },
+    {
+      "id": "E2-preset-defaut",
+      "description": "Rendu par défaut iphone18_max (§6.1) déclenché par le moteur — jamais appliqué à l'aveugle (règle 2)",
+      "commande": "analyse §1→§2 d'une photo standard",
+      "attendu": "rendu_cible: iphone18_max dans le plan YAML + rendu conforme (netteté étendue R18)",
+      "priorite": "S1"
+    },
+    {
+      "id": "E3-r18-ouverture",
+      "description": "Demande d'ouverture explicite → R18 : ouverture_cible au plan + avis honnête « simulation computationnelle, non optique » + critère QC 12",
+      "commande": "« détache le sujet, ouverture ƒ/1.8 »",
+      "attendu": "ouverture_cible dans le YAML + avis R18 au rapport §8",
+      "priorite": "S2"
+    },
+    {
+      "id": "E4-mode-serie",
+      "description": "2+ photos → mode série §10 : sorties une par une, QC unitaire par sortie, rapport unifié, question unique finale",
+      "commande": "« traite ces deux photos »",
+      "attendu": "PA-<CAS>-1 / PA-<CAS>-2 + rapport unifié + UNE question",
+      "priorite": "S2"
+    },
+    {
+      "id": "E5-garde-fous-b6",
+      "description": "Fidélité stricte : expressions/orientations des têtes + inventaire B6 + décor (critères QC 1-4) ; aucune retouche spontanée après réponse « non » à §9 (fin de traitement)",
+      "commande": "QC comparatif original↔sortie puis réponse « non »",
+      "attendu": "critères 1-4 PASS + fin de traitement sans itération",
+      "priorite": "S1"
+    },
+    {
+      "id": "E6-commandes-refus",
+      "description": "Interface §13 : preset:iphone18 / preset:iphone18_max → preset défaut ; preset:iphone19 → REFUS (règle 14 — section SPÉCULATIF inactive)",
+      "commande": "« preset:iphone19 »",
+      "attendu": "refus explicite motivé (section inactive, jamais de valeur par défaut)",
+      "priorite": "S2"
+    }
+  ]
+}

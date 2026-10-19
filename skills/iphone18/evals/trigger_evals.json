@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Améliore cette photo avec le rendu iPhone 18 Pro Max qualité max.",
+    "should_trigger": true
+  },
+  {
+    "query": "Applique le preset iphone18_max sur cette photo de mariage.",
+    "should_trigger": true
+  },
+  {
+    "query": "Peux-tu détacher le sujet avec une ouverture ƒ/1.8 sur cette photo de concert ?",
+    "should_trigger": true
+  },
+  {
+    "query": "Retouche ces deux photos de fête en mode série, qualité iPhone 18 max.",
+    "should_trigger": true
+  },
+  {
+    "query": "Restaure ce scan de photo ancienne des années 80, rendu propre et net.",
+    "should_trigger": true
+  },
+  {
+    "query": "Prépare cette photo en poster A4 à 300 DPI pour impression.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fais le rendu iPhone 17 Pro Max de cette photo.",
+    "should_trigger": false
+  },
+  {
+    "query": "Reproduis cette pièce photographiée en dessin technique coté (isométrie CAO).",
+    "should_trigger": false
+  }
+]

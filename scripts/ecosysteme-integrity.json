@@ -8,7 +8,13 @@
     "PROMPT-MAITRE-SHARED.md": "7e076f520b06578e850944090be3e925403cb6479dd5b5e1fc34cb2242f311b8",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "9c80ca97e37247999145cedad1cf118c0a78f79bd31cacf563af605bbc33212e",
     "README.md": "39b66b1304d5ebf07ab3588faeef2a315e0b02cb8ef58f6124b79a0b1ae77e9a",
-    "SYNC-CONTEXT.md": "0afe967146b8939cd13c0dc08769cc7725271c4b907f3dbd78a532ef0c74a6fd"
+    "SYNC-CONTEXT.md": "0afe967146b8939cd13c0dc08769cc7725271c4b907f3dbd78a532ef0c74a6fd",
+    "piliers/scripts/certification-complete.py": "99b9a6186e60f237b5f30ec905327723e04025744bc9e4d8370885b26beb96a8",
+    "piliers/scripts/check-ecosysteme-integrity.py": "3233a4e03f2923686d55ae0f9781c3a7ea31c56b2d04f793556cb171f0f17092",
+    "piliers/scripts/install-ecosysteme-local.sh": "a4d1339958e31d61602eb9b94db6e35132e89abbdb64baced4f6fa699d228175",
+    "piliers/skills/KNOWLEDGE.md": "7e1540c8bf4d6d9b287855a1962e6d1fbad0e77108d56ade7923493455d80ee0",
+    "piliers/skills/correct-work/SKILL.md": "840c404377a2d19116bf76a8322e2bc99b8840dc0316a8112799a97d67a418dc",
+    "piliers/skills/gen-plan/SKILL.md": "3e08a2847beac1adec4e1aad8d5c536c6eca845daef691dbcfab57721ef4369d"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md": "1e8bcb65667a52a902d6010c210dcec9b3ac6c7c71e1b5d16101925992435c80",
@@ -22,7 +28,7 @@
     "SYNC-CONTEXT.md": "0afe967146b8939cd13c0dc08769cc7725271c4b907f3dbd78a532ef0c74a6fd"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "0a395eb0ffd8290efbf8fa52585c0b3ce29ea2585c18b460d8e89e875a42aee8"
+    "mon-ecosysteme_archive.zip": "392218df578833a8f2ab88a87c20278ce7129500603dc0bc76925c6777d0d3a1"
   },
   "skills": {
     "agent-creator": {
@@ -84,6 +90,14 @@
     "harness-engineering": {
       "sha256": "1b88aa1087e1f1dd34f438a38e558f89101af19427b9a0c923bec6cc765ac920",
       "version": "1.1.0"
+    },
+    "iphone17": {
+      "sha256": "e5f49c25baaad95cc72bb0bfaf809cbf3bc04ab9562855165b1ffe840989e119",
+      "version": "1.0.0"
+    },
+    "iphone18": {
+      "sha256": "4bc6c50e1bf052e416db70e7e5857ce8580debb515553ac4241f037f775063a0",
+      "version": "1.0.0"
     },
     "knowledge-observer": {
       "sha256": "94e0102af67b50c26ce40440943bfd72b3f413471453f954a109c213d6e0d3f6",

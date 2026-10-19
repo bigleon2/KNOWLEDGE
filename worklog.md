@@ -986,3 +986,21 @@ Stage Summary:
 - Famille photo iPhone publiée au dépôt : skills/@photos/ (3 PMs byte-identiques + README) — survit désormais aux wipes inter-sessions (source de vérité dépôt).
 - Décisions : dossier @ non-skill (pas de KB), pas de conversion de format (byte-identité R2), archive zip non poussée (*.zip ignoré par .gitignore — livrable session, pas corpus).
 - Restant propriétaire : RÉVOCATION DU PAT (exposé au canal + fragment 18c dans l'historique 6af3e0a — Task 17-final) ; inscription KB de @photos si souhaitée (session écosystème dédiée).
+
+---
+Task ID: 45
+Agent: Main [Super Z — gen-plan v3.23.1 mode step, session web-38713acd]
+Task: Mission gen-plan(step) 7 étapes propriétaire (clone-chat → cw(projet) → skills iphone18/iphone17 → cw(projet) → tests robustes ×2) — « pour mon écosystème personnel » (ordre explicite propriétaire, contrairement à Task 44 où l'inscription KB avait été écartée).
+
+Work Log:
+- Groupe A : clone-chat v2.0.1 → download/iphone18-photos-ecosysteme-clone-2026-10-20.md (8/8 checks, 6 drifts tracés). Groupe B : correct-work(projet) — 5 findings corrigés en session (sync 4 skills KB-registrés écrasés par les copies plateforme, suppression placeholder download/README.md, rescellement archive v2.3 via task-f5 portable L008) → arbitre 70/70 (avant skills) + leçons (pré-vol devrait toujours suivre le pipeline de l'arbitre complet ; toute modification de pilier ⇒ rescellement).
+- Groupe C : génération skills/iphone18 + skills/iphone17 v1.0.0 (précédent dessin-technique Task 8) — projection VERBATIM des PMs skills/@photos/ (corps §PROMPT MAÎTRE→§13 byte-identique, R2 source intact SHA-256), frontmatter 6 champs + §0 Contexte Système N2 + note de lignage + périmètres d'époque honnêtes ; scripts/editer-image.mjs embarqué (contournement SDK base64, CLI z-ai erreur 1210) ; evals 6 cas + trigger_evals 8 cas chacun ; KB 33 → 35 + cross-ref bidirectionnelle skill-creator ; KO-L004 : ECO_SKILLS += 2 (compteurs dérivés dynamiquement — KO-L003). Scripts de reproduction/verification committés (task45c-*). CIBLE 40/40 PASS.
+- Groupe D : correct-work(projet) post-génération — 0 problème (vue fraîche : clone dépôt propre pendant la mission, conventions, interactions, answer key cohérent).
+- Groupe E : campagne série §10 PA-TEST-002 (skill iphone18, 2 photos réelles nouvelles « musikalarue » 604×453) — PASS intégral : QC 12/12 ×2, zéro itération, R18 ƒ/4.0 validé ×2, G1-G7/B6 respectés, script embarqué 4/4. Rapport download/rapport-PA-TEST-002.md.
+- Groupe F : campagne série §10 PA-TEST-003 (skill iphone17, mêmes photos, pipeline d'époque R1-R17 sans R18, grille 11 critères) — sortie 1 PASS intégral (11/11, R13) ; sortie 2 PASS AVEC RÉSERVES : rendu 17_max en échec de fidélité non déterministe (G1/G4 puis G3 inventions confirmées par vérification ciblée) après budget d'itération §5 2/2 + 3 récupérations — meilleure version P1-P6 livrée + échec documenté honnêtement (rapport-PA-TEST-003.md) ; zone de fragilité : compositions atypiques multi-visages chevauchés/inversés basse résolution (la génération courante iphone18 l'a passée 12/12). Leçons : candidats TOUJOURS versionnés (perte de la meilleure génération 10/11 par écrasement) ; vérification ciblée anti-hallucination QC sur allégations G3.
+- KB calibrée avec les résultats E/F ; arbitre 74/74 PASS, manifeste écrit (committé).
+
+Stage Summary:
+- DEUX SKILLS MÉTIER PHOTO INSCRITS À L'ÉCOSYSTÈME : iphone18 v1.0.0 (génération courante, R18 ouverture variable, testée 12/12 ×3 sorties cumulées PA-TEST-001/002) + iphone17 v1.0.0 (périmètre d'époque R1-R17, testé 11/11 + échec rendu documenté sur composition atypique) — KB 35 entrées, cross-refs bidirectionnelles, KO-L004 recalibré, écosystème certifié 74/74 + verify-cross 105/105 + coherence 49/50 (1 WARN hérité).
+- Écarts signalés aux sessions écosystème : liste familles pipeline incomplète (skill-creator, version-management, skill-finder-cn, fullstack-dev, vue-upload absents) ; task21-f2-rebuild-archive.py chemin codé en dur (work_knowledge) vs portabilité L008 de task-f5.
+- PAT non disponible ce tour (jamais persisté — jeton fourni Task 41/44 usage éphémère, révocation recommandée) : commit LOCAL seulement, push en attente d'un jeton frais si souhaité.
