@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Fais le rendu iPhone 19 Pro Max qualité max de cette photo.",
+    "should_trigger": true
+  },
+  {
+    "query": "Applique le preset iphone19_max sur cette photo de mariage.",
+    "should_trigger": true
+  },
+  {
+    "query": "Traite cette photo avec la génération suivante d'iPhone, qualité max.",
+    "should_trigger": true
+  },
+  {
+    "query": "Retouche ces deux photos de fête en mode série, rendu iPhone 19 max.",
+    "should_trigger": true
+  },
+  {
+    "query": "Améliore cette photo qualité max.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fais le rendu iPhone 18 Pro Max de cette photo.",
+    "should_trigger": false
+  },
+  {
+    "query": "Restaure ce scan de photo ancienne des années 80, rendu propre et net.",
+    "should_trigger": false
+  },
+  {
+    "query": "Prépare cette photo en poster A4 à 300 DPI pour impression.",
+    "should_trigger": false
+  }
+]

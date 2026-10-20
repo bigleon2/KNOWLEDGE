@@ -1,0 +1,57 @@
+{
+  "qc": {
+    "1": {
+      "ok": true,
+      "justif": "Les traits faciaux de chaque personne sont fidèlement reconnus et préservés sans altération de l'identité."
+    },
+    "2": {
+      "ok": true,
+      "justif": "Les expressions (sourires discrets à éclatants), regards et orientations de tête des six femmes sont strictement identiques à l'original."
+    },
+    "3": {
+      "ok": true,
+      "justif": "L'inventaire complet est respecté : coiffures (queue-de-cheval, mi-longue, courte, casquette, blonde attachée, brune courte), vêtements (débardeurs noir/gris/rouge/kaki/blanc) et accessoires (bracelets, colliers, badge FESTIVAL, verres, sac ethnique) correspondent exactement ; le décor (tente blanche h.g., fond noir) et l'homme torse nu partiel à droite sont conservés."
+    },
+    "4": {
+      "ok": true,
+      "justif": "Aucun élément nouveau n'a été introduit ni supprimé de la scène originale."
+    },
+    "5": {
+      "ok": true,
+      "justif": "Pas de halo excessif sur les lumières, pas de banding visible, artefacts résiduels quasi inexistants ; le texte du badge est nettement amélioré mais intact."
+    },
+    "6": {
+      "ok": true,
+      "justif": "Le bruit numérique est drastiquement réduit tout en conservant une texture cutanée naturelle sans effet 'masque plastique'."
+    },
+    "7": {
+      "ok": true,
+      "justif": "Le rendu simule bien un mode nuit iPhone haute gamme avec netteté prioritaire sur les visages, dynamique étendue et ouverture apparente large (ƒ/4.0)."
+    },
+    "8": {
+      "ok": true,
+      "justif": "Le cadrage et le plan sont identiques à l'image source, sans recadrage ni décentrement."
+    },
+    "9": {
+      "ok": true,
+      "justif": "Le ratio 4:3 est maintenu et la résolution est significativement supérieure à l'original."
+    },
+    "10": {
+      "ok": true,
+      "justif": "L'agrandissement est propre avec reconstruction cohérente des détails fins (cheveux, tissus) sans invention grossière."
+    },
+    "11": {
+      "ok": true,
+      "justif": "La focale apparente est conservée garantissant le même champ de vision et perspective que l'original."
+    },
+    "12": {
+      "ok": true,
+      "justif": "La netteté étendue sur toute la profondeur du groupe (avant-arrière) est respectée sans altération morphologique des sujets."
+    }
+  },
+  "fidelite": {
+    "divergences": [],
+    "verdict": "fidèle"
+  },
+  "bilan": "L'amélioration technique est remarquable : réduction du bruit, augmentation de la netteté et correction colorimétrique nocturne ont été réalisées en stricte conformité avec la contrainte de non-modification du contenu. Toutes les personnes, leurs expressions, leurs accessoires et le décor sont intégralement préservés. Aucune divergence détectée."
+}

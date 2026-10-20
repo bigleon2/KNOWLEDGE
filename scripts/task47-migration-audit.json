@@ -1,0 +1,276 @@
+{
+  "remplacements": [
+    {
+      "label": "titre document",
+      "occurrences": 1,
+      "octets_old": 22,
+      "octets_new": 22
+    },
+    {
+      "label": "titre PM",
+      "occurrences": 1,
+      "octets_old": 112,
+      "octets_new": 140
+    },
+    {
+      "label": "version",
+      "occurrences": 1,
+      "octets_old": 124,
+      "octets_new": 138
+    },
+    {
+      "label": "origine",
+      "occurrences": 1,
+      "octets_old": 274,
+      "octets_new": 644
+    },
+    {
+      "label": "changelog",
+      "octets_old": 2873,
+      "octets_new": 2784
+    },
+    {
+      "label": "cible §0",
+      "occurrences": 1,
+      "octets_old": 58,
+      "octets_new": 86
+    },
+    {
+      "label": "contexte matériel §0",
+      "octets_old": 975,
+      "octets_new": 1154
+    },
+    {
+      "label": "règle 14 — squelette iphone20",
+      "occurrences": 1,
+      "octets_old": 118,
+      "octets_new": 118
+    },
+    {
+      "label": "C3 défaut preset",
+      "occurrences": 1,
+      "octets_old": 25,
+      "octets_new": 25
+    },
+    {
+      "label": "R13 preset",
+      "occurrences": 1,
+      "octets_old": 48,
+      "octets_new": 48
+    },
+    {
+      "label": "§3 rendu_cible",
+      "occurrences": 1,
+      "octets_old": 43,
+      "octets_new": 43
+    },
+    {
+      "label": "§6.1 preset défaut",
+      "octets_old": 1711,
+      "octets_new": 2073
+    },
+    {
+      "label": "§6.5 restauration",
+      "occurrences": 1,
+      "octets_old": 34,
+      "octets_new": 34
+    },
+    {
+      "label": "§6.9 frontale",
+      "occurrences": 1,
+      "octets_old": 336,
+      "octets_new": 501
+    },
+    {
+      "label": "§6.10 squelette iphone20",
+      "octets_old": 1309,
+      "octets_new": 1747
+    },
+    {
+      "label": "§11 note rétroactive v0.9.0 (insertion)",
+      "occurrences": 1,
+      "octets_old": 107,
+      "octets_new": 557
+    },
+    {
+      "label": "§12 livrables",
+      "octets_old": 816,
+      "octets_new": 1135
+    },
+    {
+      "label": "§13 preset row",
+      "occurrences": 1,
+      "octets_old": 291,
+      "octets_new": 419
+    }
+  ],
+  "controles": [
+    {
+      "nom": "INTANGIBLE Règles absolues 1-13",
+      "verdict": "OK",
+      "detail": "1584 octets"
+    },
+    {
+      "nom": "INTANGIBLE §1 grille A (axe technique)",
+      "verdict": "OK",
+      "detail": "647 octets"
+    },
+    {
+      "nom": "INTANGIBLE §1 grille B (axe sémantique)",
+      "verdict": "OK",
+      "detail": "591 octets"
+    },
+    {
+      "nom": "INTANGIBLE §1 C1-C2",
+      "verdict": "OK",
+      "detail": "102 octets"
+    },
+    {
+      "nom": "INTANGIBLE §2 R1-R12",
+      "verdict": "OK",
+      "detail": "806 octets"
+    },
+    {
+      "nom": "INTANGIBLE §2 R14-R18",
+      "verdict": "OK",
+      "detail": "1833 octets"
+    },
+    {
+      "nom": "INTANGIBLE §2 garde-fous G1-G7",
+      "verdict": "OK",
+      "detail": "1055 octets"
+    },
+    {
+      "nom": "INTANGIBLE §4 pipeline P0-P9",
+      "verdict": "OK",
+      "detail": "1793 octets"
+    },
+    {
+      "nom": "INTANGIBLE §5 QC 1-12 + itération + note v1.4",
+      "verdict": "OK",
+      "detail": "1539 octets"
+    },
+    {
+      "nom": "INTANGIBLE §6.2-6.8 presets",
+      "verdict": "OK",
+      "detail": "2874 octets (delta contrôlé)"
+    },
+    {
+      "nom": "INTANGIBLE §7 intégration opérationnelle",
+      "verdict": "OK",
+      "detail": "1332 octets"
+    },
+    {
+      "nom": "INTANGIBLE §8 gabarit rapport",
+      "verdict": "OK",
+      "detail": "608 octets"
+    },
+    {
+      "nom": "INTANGIBLE §9 mode interaction",
+      "verdict": "OK",
+      "detail": "643 octets"
+    },
+    {
+      "nom": "INTANGIBLE §10 mode série",
+      "verdict": "OK",
+      "detail": "298 octets"
+    },
+    {
+      "nom": "INTANGIBLE §11 a-f + notes rétroactives v2.0/v1.0",
+      "verdict": "OK",
+      "detail": "1254 octets"
+    },
+    {
+      "nom": "INTANGIBLE §13 lignes non-preset",
+      "verdict": "OK",
+      "detail": "669 octets (delta contrôlé)"
+    },
+    {
+      "nom": "R13 = renommage preset seul (contrainte 5.2)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "§3 YAML = renommage rendu_cible seul",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A1a iphone19_max présent C3/R13/§3/§6.1/§6.5",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A1b iphone20 (règle 14/§6.10/§13)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A2a sections §0→§13 présentes",
+      "verdict": "OK",
+      "detail": "14/14"
+    },
+    {
+      "nom": "A2b règles R1→R18 (ni plus ni moins)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A2c garde-fous G1→G7",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A2d critères QC 1→12",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A3 champs YAML §3",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A4 aucune règle R19 fonctionnelle",
+      "verdict": "OK",
+      "detail": "3 lignes mentionnant R19 (toutes documentaires)"
+    },
+    {
+      "nom": "A5 résidus iphone18_max documentaires uniquement",
+      "verdict": "OK",
+      "detail": "5 occurrences (2 changelog + 1 baseline §6.1 + 1 note §11 v0.9.0 + 1 §13)"
+    },
+    {
+      "nom": "A6a statut ANTICIPÉ visible (version/§0/§6.1)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A6b tags honnêteté [RUMEUR]/[NON VÉRIFIÉ]/[SPÉCULATIF]",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "A7 changelog 12 lignes de zone",
+      "verdict": "OK",
+      "detail": "12 lignes zone"
+    },
+    {
+      "nom": "A8 §6.10 INACTIVE + règle 14",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "nom": "SKILL.md corps PM VERBATIM (R2)",
+      "verdict": "OK",
+      "detail": ""
+    }
+  ],
+  "verdict": "PASS 100%",
+  "fichiers": {
+    "pm": "/home/z/my-project/skills/@photos/iphone19-photos.md",
+    "skill": "/home/z/my-project/skills/iphone19/SKILL.md",
+    "lignes_pm": 359,
+    "octets_pm": 32773
+  }
+}

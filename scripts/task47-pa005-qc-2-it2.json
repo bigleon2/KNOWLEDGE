@@ -1,0 +1,57 @@
+{
+  "qc": {
+    "1": {
+      "ok": true,
+      "justif": "Les traits faciaux et l'identité des six personnes sont parfaitement préservés sans aucune altération morphologique."
+    },
+    "2": {
+      "ok": true,
+      "justif": "Les expressions (sourires, regard neutre, bouche entrouverte) et l'orientation de chaque tête sont strictement identiques à l'original."
+    },
+    "3": {
+      "ok": true,
+      "justif": "L'inventaire complet est respecté : six personnes en cercle avec leurs coiffures, vêtements, accessoires (casquette, lunettes), piercings et maquillage intacts."
+    },
+    "4": {
+      "ok": true,
+      "justif": "Aucun élément n'a été ajouté ou supprimé de la scène ; le décor et tous les objets présents dans l'original sont conservés."
+    },
+    "5": {
+      "ok": true,
+      "justif": "Pas de halo ni d'écrêtage sur les sources lumineuses, absence de banding, et le texte sur le t-shirt reste intact et lisible."
+    },
+    "6": {
+      "ok": true,
+      "justif": "Le bruit est quasiment éliminé tout en conservant une texture cutanée naturelle sans effet plastique artificiel."
+    },
+    "7": {
+      "ok": true,
+      "justif": "La netteté est maximale sur les visages prioritaires avec un rendu nuit propre, dynamique étendue et textures réalistes conformes au rendu iPhone 19 Pro Max."
+    },
+    "8": {
+      "ok": true,
+      "justif": "Le cadrage et le plan sont identiques à l'original sans aucun recadrage ni décalage du champ visuel."
+    },
+    "9": {
+      "ok": true,
+      "justif": "Le ratio 4:3 est respecté et la résolution de sortie est supérieure à celle de l'image source originale."
+    },
+    "10": {
+      "ok": true,
+      "justif": "L'agrandissement est propre avec une interpolation fidèle qui ne génère pas de détails inventés grossièrement."
+    },
+    "11": {
+      "ok": true,
+      "justif": "Le cadre et le cadrage sont intégralement conservés sans aucune distorsion liée à un changement de focale."
+    },
+    "12": {
+      "ok": true,
+      "justif": "La netteté étendue simule correctement une ouverture f/4.0 avec tous les sujets nets de l'avant à l'arrière sans altération."
+    }
+  },
+  "fidelite": {
+    "divergences": [],
+    "verdict": "fidèle"
+  },
+  "bilan": "Le rendu technique atteint une fidélité maximale : amélioration significative de la résolution, réduction du bruit et optimisation de la luminosité sans aucune modification de contenu, d'expression ou de composition par rapport à l'original."
+}

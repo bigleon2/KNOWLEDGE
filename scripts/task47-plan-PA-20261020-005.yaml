@@ -1,0 +1,59 @@
+# PA-20261020-005 — campagne série §10, skill iphone19 v0.9.0 (Task 47, session web-38713acd)
+# Plan persisté AVANT exécution (règle 3). Contrainte propriétaire : ZÉRO modification / ZÉRO retouche —
+# uniquement le pipeline qualité standard (fidélité maximale, G1-G7 stricts, inventaire B6 verrouillé).
+
+campagne:
+  skill: iphone19
+  version_skill: 0.9.0
+  pm: skills/@photos/iphone19-photos.md v0.9.0 [ANTICIPÉE]
+  mode: série §10 (2 sorties, une par photo, QC unitaire, rapport unifié, question unique §9)
+  contrainte_proprietaire: "je ne veux pas faire de modifications et de retouches à ces photos"
+  interpretation: "alignée sur réponse §9 PA-TEST-004 (« aucune modification — uniquement l'amélioration de la qualité ») — pipeline standard P0-P9, rendu défaut iphone19_max (moteur R13/R18), AUCUNE retouche créative, AUCUN élément ajouté/supprimé, expressions/orientations/coiffures/vêtements/accessoires verrouillés B6"
+  analyse: "grilles ANALYSE-v2 RÉUTILISÉES des campagnes PA-TEST-002/003 (photo-intrinsèques identiques — économie API KO-L001, documentée) ; B6 verrouillés : scripts/task45e-an-copines.json + scripts/task45e-an-potos.json"
+  remede_sse: "appels SDK vision via zai.chat.completions.createVision + thinking disabled (pattern éprouvé task46-s2-qc.mjs) ; génération via zai.images.generations.edit (editer-image.mjs) — JAMAIS de parsing JSON de flux stream"
+  candidats: "VERSIONNÉS par tentative (leçon PA-TEST-003-2 : jamais d'écrasement) — promotion vers nom final seulement après QC PASS"
+
+sorties:
+  - sortie_nom: PA-TEST-005-1
+    photo: "upload/musikalarue - les copines.jpg"
+    source: "604×453 4:3, compact années 2000, fête nocturne sous tente, flash direct"
+    diagnostic: "A1=2 A2=3 A3=3 A4=2 A5=2 A6=2 A7=1 A8=3 A9=1 A10=0 · B1=6 visages + homme partiel · B2=badge FESTIVAL · B3=fête nocturne sous tente · B4=flash direct · B5=plan moyen groupé"
+    regles_declenchees: [R1, R3, R4, R5, R6, R7, R8, R10, R13, R18]
+    adaptation_photo: "priorités copines — écrêtage flash (A2=3, R4), bruit forte lumière (A3=3, R5), tone-mapping flash dur (A8=3, R10), 6 visages prioritaires (R8), badge FESTIVAL lanière verte INTACT (G2/B2), restauration 2000s (R13), groupe → ƒ/4.0 netteté étendue (R18 défaut auto)"
+    focale_cible: aucune
+    ouverture_cible: "ƒ/4.0   # R18 défaut auto — scène de groupe"
+    rendu_cible: iphone19_max
+    format_sortie: {ratio: "4:3", support: écran, resolution: "1152×864 (×1,9 propre)"}
+    pipeline: "P1-P6 consolidé (1 appel) → rendu iphone19_max (1 appel) — chaîne 2 appels, canevas 1152×864"
+    fichiers:
+      intermediaire: "download/PA-TEST-005-1-amelioration-P1-P6.png"
+      candidats: ["download/PA-TEST-005-1-iphone19-max-candidat-v1.png"]
+      final: "download/PA-TEST-005-1-iphone19-max.png"
+
+  - sortie_nom: PA-TEST-005-2
+    photo: "upload/musikalarue - les potos.jpg"
+    source: "604×453 4:3, smartphone/compact bas de gamme, soirée intérieure, lumière artificielle dure"
+    diagnostic: "A1=2 A2=1 A3=3 A4=2 A5=2 A6=2 A7=1 A8=2 A9=1 A10=0 · B1=6 visages en cercle (tête inversée au centre, chevauchement) · B2=inscription graphique t-shirt (à préserver) · B3=soirée intérieure · B4=lumière dure"
+    regles_declenchees: [R1, R3, R5, R6, R7, R8, R10, R13, R18]
+    adaptation_photo: "priorités potos — bruit (A3=3, R5), cercle atypique 6 têtes avec tête INVERSÉE au centre (composition conservée telle quelle), chevauchement de visage P1/P2 PRÉSERVÉ, inscription graphique t-shirt P6 intacte (G2), piercings (septum P1, nostril droit P3, nostril P6), P4 strictement de face neutre — ZONE DE FRAGILITÉ connue (échec rendu 17 documenté PA-TEST-003-2) : vigilance fidélité maximale QC"
+    focale_cible: aucune
+    ouverture_cible: "ƒ/4.0   # R18 défaut auto — scène de groupe"
+    rendu_cible: iphone19_max
+    format_sortie: {ratio: "4:3", support: écran, resolution: "1152×864 (×1,9 propre)"}
+    pipeline: "P1-P6 consolidé (1 appel) → rendu iphone19_max (1 appel) — chaîne 2 appels, canevas 1152×864"
+    fichiers:
+      intermediaire: "download/PA-TEST-005-2-amelioration-P1-P6.png"
+      candidats: ["download/PA-TEST-005-2-iphone19-max-candidat-v1.png"]
+      final: "download/PA-TEST-005-2-iphone19-max.png"
+
+controles_QC:
+  grille: "12 critères v2.0 (fidélité 1-4, rendu 7, cadrage 8, ratio 9, résolution 10, focale 11, ouverture 12) + vérification fidélité exhaustive"
+  contrainte_ajoutee: "critère 7 = rendu iphone19_max ANTICIPÉ respecté (extrapolation baseline 18 : netteté zones utiles, nuit propre, groupe net ƒ/4.0, textures réalistes) ; renforcement critères 1-4 (contrainte propriétaire zéro modification/retouche)"
+  outil: "scripts/task47-pa005-qc.mjs (createVision + thinking disabled — remède SSE)"
+  iteration: "max 2 (§5) — KO fidélité 1-4 → rejeu rendu avec contrainte renforcée ; si toujours KO → livraison meilleure version + limite documentée"
+
+fallback:
+  - "si rendu iphone19_max en échec fidélité après budget : livrer l'intermédiaire P1-P6 (amélioration qualité seule) comme meilleure version + échec documenté (protocole §5, précédent PA-TEST-003-2)"
+  - "si appel générationnel en échec technique ×3 : documenter, retenter avec backoff (editer-image.mjs retries=3 natif)"
+
+estimation: {cout: "4 appels générationnels (2/sortie) + 2 appels QC vision", risque_principal: "dérive générationnelle sur composition atypique potos (précédent 17_max) — mitigé par candidats versionnés + QC renforcé"}
