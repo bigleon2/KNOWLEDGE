@@ -4,7 +4,7 @@
   "evals": [
     {
       "id": "E1-pipeline-complet",
-      "description": "Photo réelle + demande explicite rendu iPhone 19 → pipeline §1→§9 complet : analyse ANALYSE-v2 (scores + inventaire B6), moteur R1-R18, plan YAML affiché AVANT exécution (règle 3), sortie nommée PA-<CAS>-<seq>, rapport §8 + question §9",
+      "description": "Photo réelle + demande explicite rendu iPhone 19 → pipeline §1→§9 complet : analyse ANALYSE-v2 (scores + inventaire B6), moteur R1-R19, plan YAML affiché AVANT exécution (règle 3), sortie nommée PA-<CAS>-<seq>, rapport §8 + question §9",
       "commande": "« Fais le rendu iPhone 19 Pro Max qualité max de cette photo » + photo uploadée",
       "attendu": "sortie + rapport complet (analyse, diagnostic R, plan YAML, QC 12/12, limites honnêtes dont statut ANTICIPÉ, question §9)",
       "priorite": "S1"
