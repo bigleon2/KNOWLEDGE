@@ -104,9 +104,9 @@ ECO_SKILLS = {
     "refactoring-test": "1.0.2",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire) ; Task 12 : §5 baseline MESURÉE 7/7
     "vue-upload": "1.2.0",  # KO-L004 (session web-b93f42fa, 2026-10-09) : KB=registre fait foi (## vue-upload v1.2.0) — occurrence L004 résorbée, arbitre dynamisé
     "dessin-technique": "1.1.1",
-    "iphone18": "1.0.0",  # Task 45 (session web-38713acd) : projection PM @photos/iphone18-photos.md v1.0 (R18 ouverture variable, preset iphone18_max, PA-TEST-001 QC 12/12)
-    "iphone19": "0.10.0",  # Task 48 (session web-38713acd) : bump v0.10.0 — émulation pixel binning R19 (directive propriétaire, frandroid 27/03/2026) ; création v0.9.0 Task 47 (migration ANTICIPÉE)
-    "iphone17": "1.0.0",  # Task 45 (session web-38713acd) : projection PM @photos/iphone17-photos.md v2.0 archivé (R1-R17 d'époque, preset iphone17_max)  # Task 12 (2026-10-18) : bump PATCH v1.1.1 — corrections findings Task 11 (ACF par latitude + garde anti-fallacieux + trou-ness) ; Task 10 : bump v1.1.0 — F4 filetage + F5 profondeur, evals T5/T6 (recalibrage KO-L004 ; création Task 8 2026-10-17, réinscription post-wipes)
+    "iphone18": "1.1.0",  # Task 48 (session web-38713acd) : bump v1.1.0 extension 1944 (chemin argentique N&B années 1930-1950) ; création v1.0.0 Task 45 (R18 ouverture variable, PA-TEST-001 QC 12/12)
+    "iphone19": "0.11.0",  # Task 48 (session web-38713acd) : bump v0.11.0 extension 1944 (chemin argentique N&B années 1930-1950) ; v0.10.0 pixel binning R19 (frandroid 27/03/2026) ; création v0.9.0 Task 47 (migration ANTICIPÉE)
+    "iphone17": "1.1.0",  # Task 48 (session web-38713acd) : bump v1.1.0 extension 1944 (chemin argentique N&B années 1930-1950) ; création v1.0.0 Task 45 (R1-R17 d'époque, PM v2.0 scellé @historique/photos/)  # Task 12 (2026-10-18) : bump PATCH v1.1.1 — corrections findings Task 11 (ACF par latitude + garde anti-fallacieux + trou-ness) ; Task 10 : bump v1.1.0 — F4 filetage + F5 profondeur, evals T5/T6 (recalibrage KO-L004 ; création Task 8 2026-10-17, réinscription post-wipes)
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.

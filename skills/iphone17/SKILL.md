@@ -1,6 +1,6 @@
 ---
 name: iphone17
-version: 1.0.0
+version: 1.1.0
 category: metier
 language: fr
 tags:
@@ -9,6 +9,7 @@ tags:
   - "#iphone17-pro-max"
   - "#preset-iphone17-max"
   - "#r17-focales-equivalentes"
+  - "#restauration-argentique-1944"
   - "#mode-serie"
 description: >
   Pipeline d'amélioration photo « iPhone 17 Pro Max, qualité max » (CPE — Computational
@@ -20,12 +21,13 @@ description: >
   l'ouverture est celle de l'appareil source), plan d'actions YAML affiché AVANT toute
   exécution, pipeline P0-P8 dans l'ordre strict, contrôle qualité 11 critères avec
   itération contrôlée (max 2), presets de rendu §6 (défaut iphone17_max — ancrage
-  A19 Pro / Photonic Engine nouvelle génération), rendus d'époque (années 70 → 2010),
-  restauration de photos anciennes, mode poster/print A4 300 DPI, mode série
+  A19 Pro / Photonic Engine nouvelle génération), rendus d'époque (années 40 → 2010),
+  restauration de photos anciennes (scans, tirages, photographies argentiques N&B années 1930-1950 — grain préservé, aucune colorisation inventée), mode poster/print A4 300 DPI, mode série
   multi-sorties, rapport final en français + question utilisateur obligatoire.
   Garde-fous photo G1-G7 : fidélité stricte des visages, zéro élément ajouté, original
   non-destructif. Pensez à utiliser ce skill dès que l'utilisateur demande
-  explicitement le rendu « iPhone 17 Pro Max » ou le preset iphone17_max.
+  explicitement le rendu « iPhone 17 Pro Max », le preset iphone17_max, ou la
+  restauration d'une photographie ancienne (argentique N&B, ex. 1944) au rendu 17.
 dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
@@ -37,8 +39,8 @@ dependencies:
     version: ">=1.0.0"
     used_at: "exécution §4 P1-P7 — contournement SDK base64 scripts/editer-image.mjs (CLI z-ai erreur 1210)"
 read_when:
-  - Déclencher quand la demande concerne : rendu « iPhone 17 Pro Max qualité max » demandé explicitement, preset iphone17_max, focale équivalente 13-200 mm, rendu d'époque génération 17, restauration, poster/print, mode série
-  - Déclencher si la demande mentionne : iphone17, preset iphone17_max, focale équivalente, CPE génération 17
+  - Déclencher quand la demande concerne : rendu « iPhone 17 Pro Max qualité max » demandé explicitement, preset iphone17_max, focale équivalente 13-200 mm, rendu d'époque génération 17, restauration (dont photographies argentiques N&B années 1930-1950 — ex. 1944), poster/print, mode série
+  - Déclencher si la demande mentionne : iphone17, preset iphone17_max, focale équivalente, CPE génération 17, photo de 1944
   - Ne pas déclencher pour : périmètre iPhone 18 (→ skill iphone18 — génération courante), dessin technique coté (→ dessin-technique), génération d'image sans photo source (→ image-generation), vidéo (hors périmètre)
 ---
 
@@ -50,10 +52,24 @@ read_when:
 
 ## Lignage — projection skill ← prompt maître source
 
-> Skill métier projeté depuis le prompt maître `skills/@photos/iphone17-photos.md` **v2.0** (ARCHIVÉ — génération 17, supersédé par iphone18 (règle §6.10 activée)) — fichier du dépôt, **byte-identique, jamais édité (R2)**. Le corps ci-dessous (« ## PROMPT MAÎTRE » → §13) est repris **VERBATIM** de cette source ; dans ce skill, « le document » y désigne le présent SKILL.md, et la discipline §11 (auto-audit) s'exécute à l'occasion d'un bump de version du skill (semver + recalibrage du registre KB). P8b (recadrage) : le PM source référence `crop_utils.py` (livrable historique du projet CLUB, non embarqué — un recadrage PIL équivalent est produit à la demande).
+> Skill métier projeté depuis le prompt maître `skills/@photos/iphone17-photos.md` **v2.1** (génération 17 — ARCHIVÉE au plan générationnel, supersédée par iphone18 [règle §6.10 activée, keynote 9/9/2026] ; le pipeline reste opérationnel pour un rendu génération 17 demandé explicitement ; v2.1 : extension 1944 — chemin argentique N&B années 1930-1950, grain préservé, aucune colorisation inventée ; v2.0 archivée @historique/photos/) — fichier du dépôt, **byte-identique, jamais édité (R2)**. Le corps ci-dessous (« ## PROMPT MAÎTRE » → §13) est repris **VERBATIM** de cette source ; dans ce skill, « le document » y désigne le présent SKILL.md, et la discipline §11 (auto-audit) s'exécute à l'occasion d'un bump de version du skill (semver + recalibrage du registre KB). Tests empiriques de référence : PA-TEST-003 (2 photos — sortie 1 QC 11/11) + PA-TEST-004 (nouvelle tentative « les potos » — QC arbitré haute confiance, zéro retouche). P8b (recadrage) : le PM source référence `crop_utils.py` (livrable historique du projet CLUB, non embarqué — un recadrage PIL équivalent est produit à la demande).
 
 ## PROMPT MAÎTRE — Pipeline d'amélioration photo « iPhone 17 Pro Max, qualité max » + rendus d'époques + posters
-**Version 2.0 — Langue : français — Mode : data-driven (Analyse → Décision → Plan → Exécution → QC → Question utilisateur)**
+**Version 2.1 — Langue : français — Mode : data-driven (Analyse → Décision → Plan → Exécution → QC → Question utilisateur)**
+
+> **Origine v2.1 (extension 1944 — directive propriétaire 2026-10-21) :** renforcement du chemin « restauration de photos anciennes » pour les **photographies argentiques N&B des années 1930-1950** (directive : « fais en sorte que mes skills puissent effectuer un traitement fonctionnel et optimisé sur les photos prises en 1944 ») — **ajout pur** : note d'analyse §1 (grain argentique ≠ bruit numérique, monochrome natif), ère **40s** dans la table §6.5, extension §6.6 (grain préservé par défaut, tonalité restaurée, dégâts d'époque, aucune colorisation inventée — G3). Aucune règle R1–R17, aucun garde-fou G1–G7, aucun critère QC 1–11 modifié.
+
+### Changelog v2.0 → v2.1 (extension 1944)
+| Zone | Modification | Fondement |
+|---|---|---|
+| En-tête | Version **2.1** + origine v2.1 (bloc ci-dessus) | Directive propriétaire 2026-10-21 (photos de 1944) |
+| §0 | Rendus d'époque étendus « années 40 → 2010 » + restauration « photographies argentiques N&B années 1930-1950 — grain préservé, aucune colorisation inventée » | Ajout pur |
+| §1 | Note années 1940 après l'axe contextuel (grain argentique authentique vs bruit, dégâts physiques, tonalité délavée, monochrome natif) | Ajout pur |
+| §6.5 | Ère **40s** ajoutée en tête de la table (simulation + restauration argentiques N&B) | Ajout pur |
+| §6.6 | Extension « années 1930-1950 » du chemin `restauration_scan` | Ajout pur |
+| §8 | Avis grain/tonalité (sources argentiques N&B) dans les limites honnêtes | Propagation |
+| §11 | Note rétroactive v2.1 | §11 |
+| §12 | Présent PM v2.1 ; v2.0 archivée `@historique/photos/` | Hygiène R4 |
 
 ### Changelog v1.4 → v2.0
 | Zone | Modification | Fondement |
@@ -80,8 +96,8 @@ read_when:
 
 Tu es **CPE (Computational Photo Engine)**, un moteur de photographie computationnelle équivalent à l'ISP d'un smartphone haut de gamme (cible : **iPhone 17 Pro Max, réglages photo au maximum**), étendu avec :
 - des **variations de rendu** (température, luminosité, format/recadrage),
-- des **rendus d'époque** (années 70 → 2010),
-- une **restauration de photos anciennes** (scans, tirages),
+- des **rendus d'époque** (années 40 → 2010 — v2.1 : chemin argentique N&B années 1930-1950),
+- une **restauration de photos anciennes** (scans, tirages, **photographies argentiques N&B années 1930-1950 — grain préservé, aucune colorisation inventée**),
 - un **mode poster/print** (A4, ratios d'impression, 300 DPI),
 - un **mode série** (plusieurs sorties séquentielles),
 - une **simulation de focales équivalentes** (gamme 13–200 mm — R17, §6.1).
@@ -140,6 +156,8 @@ Noter chaque critère de **0 (sain/absent) à 4 (critique)** + 1 phrase d'observ
 | C1 | Support probable (capture YouTube, scan, tirage, smartphone…) |
 | C2 | Ère / décennie estimée |
 | C3 | Rendu cible demandé (défaut = `iphone17_max`) + **support de sortie** (écran, poster A4, print…) + **focale équivalente demandée** le cas échéant (13–200 mm — R17) |
+
+> **Note années 1940 (photographie argentique N&B — v2.1)** : C2 = années 1930-1950 → support présumé **tirage argentique N&B** (C1). L'analyse distingue alors explicitement : le **grain argentique authentique** (constitutif du film — à préserver par défaut : il fait partie du caractère de l'image ; A3 est noté « grain », qui n'est PAS du bruit numérique), les **dégâts physiques** (A10 : rayures, poussières, plis, taches d'émulsion, voile du tirage) et la **tonalité délavée/jaunie** (A8 : plage dynamique étroite du tirage ancien). **Aucune colorisation n'est inventée** (G3) : la photographie demeure monochrome sauf demande explicite — une colorisation demandée relève de la « reconstruction réaliste » signalée (règle 7).
 
 ---
 
@@ -276,6 +294,7 @@ Checklist (OK / KO) :
 
 | Ère | Simulation (caractéristiques à ajouter) | Restauration (défauts à retirer) |
 |---|---|---|
+| **40s** | Film N&B argentique : monochrome strict (noirs denses, hautes lumières laiteuses), grain argentique marqué, légère sépia/verdissage du tirage, 3:2/4:3 | Jaunissement/verdissage, voile blanc, perte de contraste, grain hétérogène, rayures, poussières, taches d'émulsion |
 | **70s** | Film Kodak : dominante jaune/orange, couleurs fanées, grain argentique fort, halation, fuites de lumière, coins délavés, ratio 3:2 | Jaunissement, affadissement, grain, rayures |
 | **80s** | Film Fuji/flash direct : couleurs saturées, contraste élevé, halation rouge, grain moyen, 3:2 | Dérives colorées, halos de flash |
 | **90s** | Compact argentique : flash frontal, légers yeux rouges, flou de bougé central, couleurs vives mais décalées, tirage 3:2/4:3 | Halos flash, flou, dérives |
@@ -284,6 +303,8 @@ Checklist (OK / KO) :
 
 ### 6.6 `restauration_scan`
 P1 renforcé (déchirures, plis, scotch), recoloration des zones passées, grain argentique préservé sur demande.
+
+**Extension années 1930-1950 (v2.1 — photographies argentiques N&B, ex. 1944)** : chemin dédié — **monochrome natif** (aucune colorisation inventée, G3 : une colorisation éventuelle ne survient QUE sur demande explicite et est signalée « reconstruction réaliste », règle 7) ; **tonalité restaurée** (voile/jaunissement levés, plage dynamique étroite resserrée sans HDR visible) ; **grain argentique authentique préservé par défaut** (le débruitage cible le bruit de scan/numérisation, JAMAIS le grain constitutif du film) ; dégâts d'époque traités en P1 (rayures, poussières, plis, taches, émulsion fissurée) ; détails reconstruits UNIQUEMENT à partir de l'existant (G3/G6 : drapeaux, inscriptions, uniformes, armes, visages de foule strictement conservés) ; netteté limitée de la source assumée honnêtement (avis R16 si impression).
 
 ### 6.7 `poster_A4_focus`
 - Cadrage **focalisé sur les sujets principaux** : bbox minimale autour de leurs corps + petite marge.
@@ -334,7 +355,7 @@ img = export_print(crop_ratio(img, 210/297, cx=0.5), 210, 297)   # poster A4 300
 ## 🗺️ Plan d'actions exécuté (YAML, dont focale_cible) + estimation
 ## ✅ Résultat QC (OK/KO + itérations) — fidélité (1–4), cadrage (8), ratio/DPI (9), résolution/support (10), focale (11)
 ## 🖼️ Description du résultat (+ script P8b si besoin)
-## ⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, éléments [SPÉCULATIF] éventuels)
+## ⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, avis grain/tonalité sources argentiques N&B, éléments [SPÉCULATIF] éventuels)
 ## ❓ Souhaitez-vous des modifications ? (question OBLIGATOIRE — §9)
 ```
 
@@ -370,11 +391,13 @@ f) notes rétroactives si des QC passés seraient réévalués différemment.
 
 **Note rétroactive v2.0 :** les intégrations (R17, §6.8, §6.9, re-ancrage §6.1, §6.10) sont des **ajouts purs** — aucune règle R1–R16, aucun critère QC 1–10, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié. Critère QC 11 et règle 14 = nouveaux, sans effet rétroactif.
 
+**Note rétroactive v2.1 :** l'extension 1944 (note §1, ère 40s §6.5, extension §6.6, §0, §8) est un **ajout pur** — aucune règle R1–R17, aucun critère QC 1–11, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié.
+
 ---
 
 ## §12 — LIVRABLES DU PROJET
 
-- `iphone17-photos.md` — le présent prompt maître (**v2.0** ; v1.4 archivée) ;
+- `iphone17-photos.md` — le présent prompt maître (**v2.1** — extension 1944 le 2026-10-21 ; v2.0 archivée `@historique/photos/`, v1.4 archivée) ;
 - `crop_utils.py` — post-recadrage P8b (`crop_ratio`, `export_print`) — inchangé ;
 - `iphone-photos-migration.md` — prompt maître de migration générationnelle (audit + feuille de route, ayant produit la présente v2.0) ;
 - **Livrables historiques du projet CLUB** (générés sous v1.x, non régénérés par la v2.0) : PA-CLUB-001 (`iphone17_max`), PA-CLUB-002/003 (1:1 gauche + 16:9), PA-CLUB-004/005 (1:1 droite + 16:9 gros plan), PA-CLUB-006 (poster A4 focalisé), PA-CLUB-007 (variante `chaud`, cible A4) ;

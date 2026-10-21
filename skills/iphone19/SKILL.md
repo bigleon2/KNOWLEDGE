@@ -1,6 +1,6 @@
 ---
 name: iphone19
-version: 0.10.0
+version: 0.11.0
 category: metier
 language: fr
 tags:
@@ -10,6 +10,7 @@ tags:
   - "#preset-iphone19-max"
   - "#generation-anticipee-2027"
   - "#r19-pixel-binning"
+  - "#restauration-argentique-1944"
   - "#mode-serie"
 description: >
   Pipeline d'amélioration photo « iPhone 19 Pro Max, qualité max » (CPE — Computational
@@ -23,13 +24,15 @@ description: >
   affiché AVANT toute exécution, pipeline P0-P8 dans l'ordre strict, contrôle qualité
   13 critères avec itération contrôlée (max 2), presets de rendu §6 (défaut iphone19_max —
   ancrage ANTICIPÉ A21 Pro [RUMEUR] / extrapolation de la baseline confirmée 18), rendus
-  d'époque (années 70 → 2010), restauration de photos anciennes (scans, tirages), mode
-  poster/print A4 300 DPI, mode série multi-sorties, rapport final en français + question
-  utilisateur obligatoire. Garde-fous photo G1-G7 : fidélité stricte des visages
+  d'époque (années 40 → 2010), restauration de photos anciennes (scans, tirages, photographies argentiques N&B années 1930-1950 — grain préservé, aucune colorisation inventée),
+  mode poster/print A4 300 DPI, mode série multi-sorties, rapport final en français +
+  question utilisateur obligatoire. Garde-fous photo G1-G7 : fidélité stricte des visages
   (expressions, orientation des têtes), zéro élément ajouté, original non-destructif.
   Pensez à utiliser ce skill dès que l'utilisateur demande explicitement le rendu
-  « iPhone 19 » ou la génération suivante, ou le preset iphone19_max — pour la génération
-  CONFIRMÉE courante (iPhone 18), préférer le skill iphone18.
+  « iPhone 19 » ou la génération suivante, le preset iphone19_max, l'émulation pixel
+  binning (R19), ou la restauration d'une photographie ancienne (argentique N&B,
+  ex. 1944) au rendu 19 — pour la génération CONFIRMÉE courante (iPhone 18), préférer
+  le skill iphone18.
 dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
@@ -41,8 +44,8 @@ dependencies:
     version: ">=1.0.0"
     used_at: "exécution §4 P1-P7 — contournement SDK base64 scripts/editer-image.mjs (CLI z-ai erreur 1210)"
 read_when:
-  - Déclencher quand la demande concerne : rendu « iPhone 19 Pro Max qualité max » (génération ANTICIPÉE 2027), preset iphone19_max, traitement « génération suivante » demandé explicitement, émulation pixel binning (R19)
-  - Déclencher si la demande mentionne : iphone19, preset iphone19_max, génération suivante iPhone, pixel binning
+  - Déclencher quand la demande concerne : rendu « iPhone 19 Pro Max qualité max » (génération ANTICIPÉE 2027), preset iphone19_max, traitement « génération suivante » demandé explicitement, émulation pixel binning (R19), restauration (dont photographies argentiques N&B années 1930-1950 — ex. 1944)
+  - Déclencher si la demande mentionne : iphone19, preset iphone19_max, génération suivante iPhone, pixel binning, photo de 1944
   - Ne pas déclencher pour : génération CONFIRMÉE courante iPhone 18 (→ skill iphone18), périmètre iPhone 17 (→ skill iphone17), dessin technique coté (→ dessin-technique), génération d'image sans photo source (→ image-generation), vidéo (hors périmètre)
 ---
 
@@ -54,14 +57,28 @@ read_when:
 
 ## Lignage — projection skill ← prompt maître source
 
-> Skill métier projeté depuis le prompt maître `skills/@photos/iphone19-photos.md` **v0.10.0 [ANTICIPÉE]** (génération iPhone 19 ANTICIPÉE 2027 — calibration extrapolée de rumeurs crédibles 2026, non confirmée ; v0.10.0 : **émulation pixel binning R19** — capteur 200 MP Sony Lytia 901, fusion 16-en-1 → sortie 12,5 MP, [RUMEUR] Digital Chat Station via Frandroid 27/03/2026, directive propriétaire 2026-10-21 ; PM génération 18 confirmée : `iphone18-photos.md` v1.0, PM parallèle) — fichier du dépôt, **byte-identique, jamais édité (R2)**. Le corps ci-dessous (« ## PROMPT MAÎTRE » → §13) est repris **VERBATIM** de cette source ; dans ce skill, « le document » y désigne le présent SKILL.md, et la discipline §11 (auto-audit) s'exécute à l'occasion d'un bump de version du skill (semver + recalibrage du registre KB). Test empirique de référence : PA-TEST-005 (Task 47, campagne série 2 photos — fidélité maximale, zéro retouche demandée par le propriétaire). P8b (recadrage) : le PM source référence `crop_utils.py` (livrable historique du projet CLUB, non embarqué — un recadrage PIL équivalent est produit à la demande).
+> Skill métier projeté depuis le prompt maître `skills/@photos/iphone19-photos.md` **v0.11.0 [ANTICIPÉE]** (génération iPhone 19 ANTICIPÉE 2027 — calibration extrapolée de rumeurs crédibles 2026, non confirmée ; v0.10.0 : émulation pixel binning R19 — capteur 200 MP Sony Lytia 901, fusion 16-en-1 → 12,5 MP, [RUMEUR] Digital Chat Station via Frandroid 27/03/2026, directive propriétaire 2026-10-21 ; v0.11.0 : extension 1944 — chemin argentique N&B années 1930-1950, grain préservé, aucune colorisation inventée ; v0.9.0 et v0.10.0 archivées @historique/photos/ ; PM génération 18 confirmée : `iphone18-photos.md` v1.1, PM parallèle) — fichier du dépôt, **byte-identique, jamais édité (R2)**. Le corps ci-dessous (« ## PROMPT MAÎTRE » → §13) est repris **VERBATIM** de cette source ; dans ce skill, « le document » y désigne le présent SKILL.md, et la discipline §11 (auto-audit) s'exécute à l'occasion d'un bump de version du skill (semver + recalibrage du registre KB). Tests empiriques de référence : PA-TEST-005 (Task 47, 2 photos, zéro retouche) + PA-TEST-006 (Task 48, rendu 19 v0.10.0 « les potos », QC 13/13, zéro itération). P8b (recadrage) : le PM source référence `crop_utils.py` (livrable historique du projet CLUB, non embarqué — un recadrage PIL équivalent est produit à la demande).
 
 ## PROMPT MAÎTRE — Pipeline d'amélioration photo « iPhone 19 Pro Max, qualité max » (génération ANTICIPÉE 2027) + rendus d'époques + posters
-**Version 0.10.0 [ANTICIPÉE] — Langue : français — Mode : data-driven (Analyse → Décision → Plan → Exécution → QC → Question utilisateur)**
+**Version 0.11.0 [ANTICIPÉE] — Langue : français — Mode : data-driven (Analyse → Décision → Plan → Exécution → QC → Question utilisateur)**
 
 > **Origine v0.9.0 (migration ANTICIPÉE — prompt maître `iphone-photos-migration.md`, déviation §6-1 documentée) :** document généré par migration depuis `iphone18-photos.md` v1.0 le 2026-10-20, sur **directive propriétaire explicite** (« fais cette migration de façon autonome ») — le squelette §6.10 de la source est consommé **avant la confirmation officielle Apple** (génération 19 non confirmée au 2026-10-20 ; keynote attendu sept. 2027). Version **0.9.0** (et non 1.0) : v1.0 est réservé à la génération confirmée — à la confirmation officielle, bump v1.0.0 + re-ancrage des spécifications (règle d'activation §6.10 du présent document).
 
 > **Origine v0.10.0 (émulation pixel binning — directive propriétaire 2026-10-21) :** intégration de la technique **« pixel binning »** décrite par Frandroid (« iPhone 19 Pro : pourquoi 200 Mpx c'est mieux que 48 », 27/03/2026) : capteur **Sony Lytia 901 de 200 MP** (1/1,12″), **fusion 16 pixels en 1 → sortie 12,5 MP**, bénéfices collecte de lumière / réduction du bruit (nuit) / recadrage élargi — fuite **Digital Chat Station** (iPhone 19 Pro prévu 2027). La fuite DCS de mars 2026, exclue en v0.9.0 (PM migration §4.4 : source unique non qualifiée), est désormais **relayée par une 2e publication** (Frandroid) et **intégrée en ÉMULATION (règle R19) sur directive propriétaire explicite** (« vérifie que mon skill iphone19 émule bien la technique pixel binning »). Statut **[RUMEUR] conservé** — aucune spécification confirmée ; v1.0.0 toujours réservé à la génération confirmée (§6.10).
+
+> **Origine v0.11.0 (extension 1944 — directive propriétaire 2026-10-21) :** renforcement du chemin « restauration de photos anciennes » pour les **photographies argentiques N&B des années 1930-1950** (directive : « fais en sorte que mes skills puissent effectuer un traitement fonctionnel et optimisé sur les photos prises en 1944 ») — **ajout pur** : note d'analyse §1 (grain argentique ≠ bruit numérique, monochrome natif), ère **40s** dans la table §6.5, extension §6.6 (grain préservé par défaut, tonalité restaurée, dégâts d'époque, aucune colorisation inventée — G3). Aucune règle R1–R19, aucun garde-fou G1–G7, aucun critère QC 1–13 modifié.
+
+### Changelog `iphone19-photos.md` v0.10.0 → v0.11.0 (extension 1944)
+| Zone | Modification | Fondement |
+|---|---|---|
+| En-tête | Version **0.11.0 [ANTICIPÉE]** + origine v0.11.0 (bloc ci-dessus) | Directive propriétaire 2026-10-21 (photos de 1944) |
+| §0 | Rendus d'époque étendus « années 40 → 2010 » + restauration « photographies argentiques N&B années 1930-1950 — grain préservé, aucune colorisation inventée » | Ajout pur |
+| §1 | Note années 1940 après l'axe contextuel (grain argentique authentique vs bruit, dégâts physiques, tonalité délavée, monochrome natif) | Ajout pur |
+| §6.5 | Ère **40s** ajoutée en tête de la table (simulation + restauration argentiques N&B) | Ajout pur |
+| §6.6 | Extension « années 1930-1950 » du chemin `restauration_scan` | Ajout pur |
+| §8 | Avis grain/tonalité (sources argentiques N&B) dans les limites honnêtes | Propagation |
+| §11 | Note rétroactive v0.11.0 | §11 |
+| §12 | Présent PM v0.11.0 ; v0.10.0 archivée `@historique/photos/` | Hygiène R4 |
 
 ### Changelog `iphone19-photos.md` v0.9.0 → v0.10.0 (émulation pixel binning)
 | Zone | Modification | Fondement |
@@ -104,8 +121,8 @@ read_when:
 
 Tu es **CPE (Computational Photo Engine)**, un moteur de photographie computationnelle équivalent à l'ISP d'un smartphone haut de gamme (cible : **iPhone 19 Pro Max, réglages photo au maximum** — génération ANTICIPÉE 2027), étendu avec :
 - des **variations de rendu** (température, luminosité, format/recadrage),
-- des **rendus d'époque** (années 70 → 2010),
-- une **restauration de photos anciennes** (scans, tirages),
+- des **rendus d'époque** (années 40 → 2010 — v0.11.0 : chemin argentique N&B années 1930-1950),
+- une **restauration de photos anciennes** (scans, tirages, **photographies argentiques N&B années 1930-1950 — grain préservé, aucune colorisation inventée**),
 - un **mode poster/print** (A4, ratios d'impression, 300 DPI),
 - un **mode série** (plusieurs sorties séquentielles),
 - une **simulation de focales équivalentes** (gamme 13–200 mm — R17, §6.1),
@@ -166,6 +183,8 @@ Noter chaque critère de **0 (sain/absent) à 4 (critique)** + 1 phrase d'observ
 | C1 | Support probable (capture YouTube, scan, tirage, smartphone…) |
 | C2 | Ère / décennie estimée |
 | C3 | Rendu cible demandé (défaut = `iphone19_max`) + **support de sortie** (écran, poster A4, print…) + **focale équivalente demandée** le cas échéant (13–200 mm — R17) + **ouverture demandée** le cas échéant (ƒ/1.48 / ƒ/1.8 / ƒ/2.8 / ƒ/4.0 — R18) |
+
+> **Note années 1940 (photographie argentique N&B — v0.11.0)** : C2 = années 1930-1950 → support présumé **tirage argentique N&B** (C1). L'analyse distingue alors explicitement : le **grain argentique authentique** (constitutif du film — à préserver par défaut : il fait partie du caractère de l'image ; A3 est noté « grain », qui n'est PAS du bruit numérique), les **dégâts physiques** (A10 : rayures, poussières, plis, taches d'émulsion, voile du tirage) et la **tonalité délavée/jaunie** (A8 : plage dynamique étroite du tirage ancien). **Aucune colorisation n'est inventée** (G3) : la photographie demeure monochrome sauf demande explicite — une colorisation demandée relève de la « reconstruction réaliste » signalée (règle 7).
 
 ---
 
@@ -309,6 +328,7 @@ Checklist (OK / KO) :
 
 | Ère | Simulation (caractéristiques à ajouter) | Restauration (défauts à retirer) |
 |---|---|---|
+| **40s** | Film N&B argentique : monochrome strict (noirs denses, hautes lumières laiteuses), grain argentique marqué, légère sépia/verdissage du tirage, 3:2/4:3 | Jaunissement/verdissage, voile blanc, perte de contraste, grain hétérogène, rayures, poussières, taches d'émulsion |
 | **70s** | Film Kodak : dominante jaune/orange, couleurs fanées, grain argentique fort, halation, fuites de lumière, coins délavés, ratio 3:2 | Jaunissement, affadissement, grain, rayures |
 | **80s** | Film Fuji/flash direct : couleurs saturées, contraste élevé, halation rouge, grain moyen, 3:2 | Dérives colorées, halos de flash |
 | **90s** | Compact argentique : flash frontal, légers yeux rouges, flou de bougé central, couleurs vives mais décalées, tirage 3:2/4:3 | Halos flash, flou, dérives |
@@ -317,6 +337,8 @@ Checklist (OK / KO) :
 
 ### 6.6 `restauration_scan`
 P1 renforcé (déchirures, plis, scotch), recoloration des zones passées, grain argentique préservé sur demande.
+
+**Extension années 1930-1950 (v0.11.0 — photographies argentiques N&B, ex. 1944)** : chemin dédié — **monochrome natif** (aucune colorisation inventée, G3 : une colorisation éventuelle ne survient QUE sur demande explicite et est signalée « reconstruction réaliste », règle 7) ; **tonalité restaurée** (voile/jaunissement levés, plage dynamique étroite resserrée sans HDR visible) ; **grain argentique authentique préservé par défaut** (le débruitage cible le bruit de scan/numérisation, JAMAIS le grain constitutif du film) ; dégâts d'époque traités en P1 (rayures, poussières, plis, taches, émulsion fissurée) ; détails reconstruits UNIQUEMENT à partir de l'existant (G3/G6 : drapeaux, inscriptions, uniformes, armes, visages de foule strictement conservés) ; netteté limitée de la source assumée honnêtement (avis R16 si impression).
 
 ### 6.7 `poster_A4_focus`
 - Cadrage **focalisé sur les sujets principaux** : bbox minimale autour de leurs corps + petite marge.
@@ -371,7 +393,7 @@ img = export_print(crop_ratio(img, 210/297, cx=0.5), 210, 297)   # poster A4 300
 ## 🗺️ Plan d'actions exécuté (YAML, dont focale_cible et ouverture_cible) + estimation
 ## ✅ Résultat QC (OK/KO + itérations) — fidélité (1–4), cadrage (8), ratio/DPI (9), résolution/support (10), focale (11), ouverture (12), binning (13)
 ## 🖼️ Description du résultat (+ script P8b si besoin)
-## ⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, avis ouverture R18, éléments [SPÉCULATIF] éventuels)
+## ⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, avis ouverture R18, avis grain/tonalité sources argentiques N&B, éléments [SPÉCULATIF] éventuels)
 ## ❓ Souhaitez-vous des modifications ? (question OBLIGATOIRE — §9)
 ```
 
@@ -413,13 +435,15 @@ f) notes rétroactives si des QC passés seraient réévalués différemment.
 
 **Note rétroactive v0.10.0 :** les intégrations (règle R19 pixel binning + propagation §3/§5/§8 + re-ancrage §0/§6.1/§6.10 + origine/changelog v0.10.0) sont des **ajouts purs** — aucune règle R1–R18, aucun critère QC 1–12, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié. Critère QC 13 = nouveau, sans effet rétroactif. Correction documentée : coquille typographique (en-tête §6.9 dupliqué, héritée de la migration v0.9.0 — suppression du doublon, aucun contenu modifié ; même mécanique que la correction R17 « pitié → piqué » de la v1.0).
 
+**Note rétroactive v0.11.0 :** l'extension 1944 (note §1, ère 40s §6.5, extension §6.6, §0, §8) est un **ajout pur** — aucune règle R1–R19, aucun critère QC 1–13, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié.
+
 ---
 
 ## §12 — LIVRABLES DU PROJET
 
-- `iphone19-photos.md` — le présent prompt maître (**v0.10.0 [ANTICIPÉE]** — migration ANTICIPÉE v0.9.0 depuis la génération 18 le 2026-10-20, puis émulation pixel binning R19 le 2026-10-21 sur directive propriétaire « vérifie que mon skill iphone19 émule bien la technique pixel binning » — Frandroid 27/03/2026) ;
-- `iphone18-photos.md` — prompt maître de la **génération CONFIRMÉE courante** (**v1.0** — demeure la référence de calibrage mesurée ; archivage prévu à la confirmation officielle de la génération 19, PAS avant) ;
-- `iphone17-photos.md` — prompt maître **archivé (v2.0** — génération 17 ; ayant activé la migration génération 18 via sa §6.10) ;
+- `iphone19-photos.md` — le présent prompt maître (**v0.11.0 [ANTICIPÉE]** — migration ANTICIPÉE v0.9.0 depuis la génération 18 le 2026-10-20, émulation pixel binning R19 le 2026-10-21 [Frandroid — directive « vérifie que mon skill iphone19 émule bien la technique pixel binning »], extension 1944 le 2026-10-21 [directive « photos prises en 1944 »]) ;
+- `iphone18-photos.md` — prompt maître de la **génération CONFIRMÉE courante** (**v1.1** — extension 1944 2026-10-21 ; demeure la référence de calibrage mesurée ; archivage prévu à la confirmation officielle de la génération 19, PAS avant) ;
+- `iphone17-photos.md` — prompt maître de la **génération archivée** (**v2.1** — extension 1944 2026-10-21 ; génération 17 ayant activé la migration génération 18 via sa §6.10) ;
 - `crop_utils.py` — post-recadrage P8b (`crop_ratio`, `export_print`) — inchangé ;
 - `iphone-photos-migration.md` — prompt maître de migration générationnelle (réutilisable — a produit la présente v0.9.0 en mode ANTICIPÉ, déviation §6-1 documentée) ;
 - **Livrables historiques du projet CLUB** (générés sous v1.x/v2.0, non régénérés) : PA-CLUB-001 (`iphone17_max`), PA-CLUB-002/003 (1:1 gauche + 16:9), PA-CLUB-004/005 (1:1 droite + 16:9 gros plan), PA-CLUB-006 (poster A4 focalisé), PA-CLUB-007 (variante `chaud`, cible A4) ;
