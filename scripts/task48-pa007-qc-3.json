@@ -1,0 +1,61 @@
+{
+  "qc": {
+    "1": {
+      "ok": true,
+      "justif": "Les visages de la foule de 1944 sont parfaitement reconnaissables avec leurs expressions et postures authentiques préservées."
+    },
+    "2": {
+      "ok": true,
+      "justif": "Les expressions, postures et orientations des sujets sont strictement identiques à l'original sans aucune altération."
+    },
+    "3": {
+      "ok": true,
+      "justif": "Tous les éléments de l'inventaire de référence sont présents : camion militaire sombre à calandre verticale sans marquage, homme casqué au sommet bras levé tenant un drapeau tricolore français, drapeau américain tenu plus bas, jeune homme souriant en pull V avec carabine sur les genoux, jeune femme en robe claire jambes pendantes, homme en costume debout sur le pare-choc main dans la poche, trois hommes poussant le camion, homme en chemise claire marchant vers la caméra, garçon courant vers la droite, silhouette partielle à gauche, immeuble haussmannien, bâtiment bas à fenêtres grillagées, arbres et rue étroite."
+    },
+    "4": {
+      "ok": true,
+      "justif": "Aucun élément ajouté ou supprimé (personnes, drapeaux, armes, véhicules, bâtiments) et stricte monochromie respectée sans aucune colorisation."
+    },
+    "5": {
+      "ok": true,
+      "justif": "Aucun halo ni écrêtage nouveau, pas de banding ni artéfact visible, et absence totale de teinte colorée ajoutée."
+    },
+    "6": {
+      "ok": true,
+      "justif": "Le grain argentique authentique est parfaitement préservé dans sa structure et son caractère, sans écrasement ni lissage plastique."
+    },
+    "7": {
+      "ok": true,
+      "justif": "Le rendu iPhone 19 Pro Max anticipé est respecté : monochrome strict, grain préservé, SNR accru et micro-détail fin maintenu."
+    },
+    "8": {
+      "ok": true,
+      "justif": "Le cadrage et le plan sont identiques à l'original avec la composition 3:2 entière conservée sans recadrage."
+    },
+    "9": {
+      "ok": true,
+      "justif": "Le ratio 3:2 exact est maintenu avec une résolution supérieure à l'original permettant un meilleur détail."
+    },
+    "10": {
+      "ok": true,
+      "justif": "L'adéquation résolution source ↔ sortie est optimale avec un agrandissement propre sans invention grossière de détails."
+    },
+    "11": {
+      "ok": true,
+      "justif": "Aucune focale demandée ; conservation du cadre original vérifiée et respectée intégralement."
+    },
+    "12": {
+      "ok": true,
+      "justif": "L'ouverture simulée ƒ/4.0 est respectée avec netteté étendue de l'avant-plan à l'arrière-plan sans altération des sujets."
+    },
+    "13": {
+      "ok": true,
+      "justif": "L'émulation pixel binning R19 est respectée : caractère « pixels fusionnés » avec SNR accru et micro-détail fin préservé, sans lissage plastique et sans écrasement du grain argentique."
+    }
+  },
+  "fidelite": {
+    "divergences": [],
+    "verdict": "fidèle"
+  },
+  "bilan": "La seconde image constitue un rendu techniquement supérieur fidèle à l'original : amélioration du rapport signal/bruit et de la netteté micro-détail tout en préservant scrupuleusement le grain argentique d'époque, la composition 3:2 complète, l'intégrité du contenu historique (personnes, drapeaux, véhicules, armes, architecture) et la stricte monochromie. Aucune divergence détectée."
+}

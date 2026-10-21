@@ -1,0 +1,9 @@
+{
+  "inscription_identique": false,
+  "lettres_identiques": "N/A (l'inscription n'est pas visible dans les extraits fournis)",
+  "nettete_acceptable": true,
+  "visage_identique": true,
+  "verdict": "intact",
+  "confiance": "moyenne",
+  "justification": "Les extraits montrent uniquement les visages des individus. L'inscription sur le t-shirt gris mentionnée dans le prompt n'est pas visible dans l'image source ni dans le rendu amélioré. Les visages, les lunettes et les expressions sont identiques entre les deux versions, bien que l'image de droite soit un agrandissement plus net."
+}

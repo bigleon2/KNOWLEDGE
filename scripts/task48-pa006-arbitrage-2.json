@@ -1,0 +1,9 @@
+{
+  "inscription_identique": true,
+  "lettres_identiques": "N/A (l'inscription n'est pas visible dans les extraits fournis, seul le visage est visible)",
+  "nettete_acceptable": true,
+  "visage_identique": true,
+  "verdict": "intact",
+  "confiance": "haute",
+  "justification": "L'image de droite est un agrandissement (zoom x1,9) de la zone de gauche. Les traits du visage (barbe, lunettes, expression faciale, bouche entrouverte) sont parfaitement conservés et cohérents avec un simple rééchantillonnage sans altération des détails ni invention d'éléments."
+}

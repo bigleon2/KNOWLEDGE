@@ -1,0 +1,48 @@
+{
+  "A": {
+    "A1": {"score": 1, "obs": "L'exposition est globalement équilibrée avec une bonne restitution des tons moyens, bien que le ciel soit légèrement clair."},
+    "A2": {"score": 2, "obs": "Léger écrêtage des hautes lumières dans le ciel et sur les chemises claires, ainsi que quelques zones d'ombres très denses sous le camion."},
+    "A3": {"score": 1, "obs": "Présence d'un grain argentique visible et cohérent avec un film de l'époque, sans bruit numérique artificiel."},
+    "A4": {"score": 1, "obs": "La mise au point est correcte sur le sujet principal (camion et passagers), avec un léger flou de bougé naturel sur certains personnages en mouvement."},
+    "A5": {"score": 0, "obs": "Absence d'artéfacts de compression numériques visibles, l'image semble propre de ce point de vue."},
+    "A6": {"score": 1, "obs": "Résolution moyenne caractéristique d'un tirage d'époque scanné ; les fins détails des visages manquent légèrement de piqué."},
+    "A7": {"score": 0, "obs": "Image en noir et blanc neutre sans dominante colorée (sépia ou verdissage) notable."},
+    "A8": {"score": 2, "obs": "Le contraste est marqué, typique d'un tirage argentique ancien, avec une perte de détails dans les extrêmes."},
+    "A9": {"score": 1, "obs": "Légère baisse de netteté vers les bords de l'image suggérant un vignettage optique naturel de l'objectif utilisé."},
+    "A10": {"score": 2, "obs": "Quelques petites taches, poussières et imperfections liées à l'âge du support original sont visibles, notamment dans les zones claires."}
+  },
+  "B": {
+    "B1": "Environ 15 à 20 visages clairement identifiables au premier plan sur et autour du camion, plus une dizaine en arrière-plan flou.",
+    "B2": "Pas de texte ou panneau lisible strictement à préserver ; présence de drapeaux (français et américain) dont les motifs doivent être conservés.",
+    "B3": "Scène de joie populaire lors d'une libération militaire (Défilé/Fête de rue).",
+    "B4": "Éclairage naturel extérieur, jour nuageux ou diffus (lumière douce, ombres peu agressives).",
+    "B5": "Plan moyen en légère contre-plongée, cadrage centré sur le camion qui structure la composition verticale.",
+    "B6": "INVENTAIRE DE RÉFÉRENCE :
+- VÉHICULE : Camion militaire lourd (type GMC CCKW 2,5 tonnes ou similaire) de couleur sombre. Calandre à ailettes verticales distinctives. Câbles ou cordes posés sur le pare-choc avant. Pas de marquage textuel lisible sur l'avant.
+- GROUPE SUR LE CAMION (de haut en bas) :
+  * Personnage au sommet : Casque d'acier (style US) sur la tête, bras droit levé tenant un drapeau (partiellement visible).
+  * Passagers arrière : Plusieurs hommes assis sur la cabine/tole, vêtements civils (chemises, vestes), expressions joyeuses, certains lèvent la main.
+  * Drapeaux : Un drapeau français tricolore (bleu-blanc-rouge) agité à gauche par un homme penché. Un drapeau américain (étoiles et bandes) tenu plus bas à gauche.
+  * Jeune homme au centre (sur le capot) : Pull à col en V, pantalon foncé, souriant, tenant une carabine ou fusil (type M1 Carbine ou similaire) posé horizontalement sur ses genoux.
+  * Femme/Jeune femme à droite du capot : Robe claire à motifs (fleurs ?), jambes pendantes, chaussures sombres.
+  * Homme debout sur le pare-choc avant (gauche) : Costume sombre (veste et pantalon), cravate claire, main gauche dans la poche, expression sérieuse/souriante, casque d'acier posé sur le pare-choc près de son pied droit.
+  * Personne à l'extrême droite du pare-chef : Vêtement sombre, semblant pousser ou tenir le véhicule.
+- GROUPE AU SOL (autour du camion) :
+  * À gauche : Trois hommes en costumes sombres (vestes) qui poussent le camion par l'aile/porte avant. Expressions d'effort et de détermination.
+  * En arrière-plan gauche : Homme en chemise claire marchant vers la caméra, regardant le camion.
+  * À droite : Jeune garçon en chemise blanche et pantalon noir foncé, en mouvement de course vers la droite, regard tourné vers le camion.
+  * Extrême gauche : Partielle silhouette d'un homme de dos (épaule, bras).
+- DÉCOR :
+  * Rue pavée/asphaltée étroite de style urbain français.
+  * Bâtiment de gauche : Immeuble haussmannien (pierre de taille, fenêtres régulières, toit en mansarde).
+  * Bâtiment de droite : Bâtiment plus bas, façade enduite claire, fenêtres grillagées, toit en tuiles avec cheminées.
+  * Arrière-plan : Arbres feuillus visibles entre les immeubles à gauche."
+  },
+  "C": {
+    "C1": "Tirage photographique argentique original (papier citrate ou baryté) scanné en haute résolution.",
+    "C2": "Années 1940 (probablement août 1944 - Libération de Paris).",
+    "C3": "défaut"
+  },
+  "monochrome": true,
+  "resume": "Cette photographie historique en noir et blanc capture l'euphorie de la Libération avec une foule joyeuse sur un camion militaire américain. L'image présente une qualité technique typique du reportage de guerre de 1944, avec un grain argentique prononcé et un contraste élevé caractéristique des tirages de l'époque."
+}

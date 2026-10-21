@@ -1,0 +1,68 @@
+{
+  "qc": {
+    "1": {
+      "ok": false,
+      "justif": "Les visages ont été altérés par l'IA (lissage, changement de traits) et l'identité des sujets n'est pas fidèlement préservée."
+    },
+    "2": {
+      "ok": true,
+      "justif": "Les expressions, postures et orientations générales des sujets restent strictement identiques à l'original."
+    },
+    "3": {
+      "ok": false,
+      "justif": "Le camion présente désormais une couleur verte visible et un marquage blanc sur le capot ; les drapeaux sont colorisés en bleu-blanc-rouge et étoiles/bandes rouges."
+    },
+    "4": {
+      "ok": false,
+      "justif": "Colorisation complète de l'image (drapeaux, vêtements, véhicules, bâtiments) en violation de la contrainte monochrome stricte."
+    },
+    "5": {
+      "ok": false,
+      "justif": "Présence d'une teinte colorée généralisée sur l'ensemble de l'image au lieu du monochrome exigé."
+    },
+    "6": {
+      "ok": false,
+      "justif": "Le grain argentique authentique a été totalement écrasé et remplacé par un rendu numérique lissé de type photographie moderne."
+    },
+    "7": {
+      "ok": false,
+      "justif": "Le rendu est en couleur et non monochrome, avec une texture numérique lisse au lieu du grain argentique préservé demandé."
+    },
+    "8": {
+      "ok": true,
+      "justif": "Le cadrage et la composition générale 3:2 restent identiques sans recadrage apparent."
+    },
+    "9": {
+      "ok": true,
+      "justif": "Le ratio 3:2 est conservé et la résolution semble supérieure ou égale à l'original."
+    },
+    "10": {
+      "ok": false,
+      "justif": "L'agrandissement a généré des détails inventés par l'IA (textures de tissus, traits faciaux, marquages) non présents dans la source."
+    },
+    "11": {
+      "ok": true,
+      "justif": "Aucune focale n'était demandée et le cadre original a été conservé sans modification de perspective notable."
+    },
+    "12": {
+      "ok": false,
+      "justif": "Bien que la netteté soit étendue, le résultat final est en couleur et non en monochrome comme exigé pour ce critère."
+    }
+  },
+  "fidelite": {
+    "divergences": [
+      "Colorisation complète de l'image (passage de N&B à couleur)",
+      "Drapeau français : ajout des couleurs bleu, blanc, rouge",
+      "Drapeau américain : ajout des couleurs rouge, blanche, bleue avec étoiles",
+      "Camion militaire : apparition d'une peinture verte olive et d'un marquage/blanc sur le capot avant",
+      "Vêtements : colorisation de tous les habits (pull bleu, costume marron/violet, chemises claires, etc.)",
+      "Bâtiments : colorisation des façades (beige, gris, brun)",
+      "Suppression totale du grain argentique authentique remplacé par un rendu numérique lisse",
+      "Altération des traits faciaux par IA (lissage, modification des visages)",
+      "Ajout de détails inventés non présents dans l'original (textures de tissus, reflets, éléments de camouflage)",
+      "Modification globale du contraste et de la tonalité passant d'un document historique N&B à une image couleur moderne"
+    ],
+    "verdict": "divergences majeures"
+  },
+  "bilan": "Échec critique : l'image de sortie viole les deux contraintes absolues — elle est entièrement colorisée (KO critère 4) et le grain argentique a été écrasé/lissé (KO critère 6). Le rendu « iPhone 18 Pro Max » demandé en mode monochrome conservateur n'a pas été respecté. L'IA a également inventé des détails (couleurs, marquages, textures) absents de l'original, constituant une modification de contenu interdite."
+}

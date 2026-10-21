@@ -1,0 +1,51 @@
+# PA-20261021-007 — campagne test robuste × 3 skills sur « libération après guerre » (Task 48 G4, session web-38713acd)
+# Plan persisté AVANT exécution (règle 3). Contrainte propriétaire (§9 pré-décidée pour CHAQUE skill) :
+# « sans modification, ni retouches » — G1-G7 stricts, B6 verrouillé, aucune colorisation (extension 1944 §6.6).
+
+campagne:
+  skills: [iphone17 v1.1.0, iphone18 v1.1.0, iphone19 v0.11.0]
+  pms: "skills/@photos/iphone17-photos.md v2.1 · iphone18-photos.md v1.1 · iphone19-photos.md v0.11.0 (extension 1944)"
+  mode: série §10 (3 sorties rendu + 1 sortie comparaison ; QC unitaire ; rapport unifié ; question unique §9)
+  p0: "upload/libération après guerre.png — 828×550 (3:2), sha256:5818fa6a1aaa7ae9…, JAMAIS modifié"
+  analyse: "dédiée (photo inédite) — scripts/task48-pa007-analyse.json : A1=1 A2=2 A3=1(grain authentique≠bruit) A4=1 A5=0 A6=1 A7=0 A8=2 A9=1 A10=2 · B1=foule nombreuse (camion + sol) · B2=aucun texte lisible (pas de marquage camion) · B3=fête de libération rue · B4=lumière du jour · B5=plan large · C1=tirage argentique scanné · C2=années 1940 (août 1944, Libération de Paris) · monochrome=true"
+  b6_verrouille: "camion militaire sombre (calandre verticale, câbles pare-choc, aucun marquage) ; homme au sommet casqué bras levé + drapeau ; drapeau TRICOLORE français agité à gauche + drapeau AMÉRICAIN tenu plus bas ; jeune homme sourisant pull col en V tenant carabine sur les genoux ; jeune femme robe claire à motifs jambes pendantes ; homme debout sur pare-choc (costume sombre, cravate claire, casque posé près du pied) ; 3 hommes qui poussent ; homme en chemise claire marchant ; garçon en chemise blanche qui court ; silhouette partielle dos à gauche ; immeuble haussmannien + bâtiment bas à droite + arbres + rue pavée"
+  regles_declenchees: "17 : [R2, R4, R10, R13] · 18 : [R2, R4, R10, R13, R18] · 19 : [R2, R4, R10, R13, R18, R19] — A3=1 (grain) : R5 NON déclenchée (note §1 1944 : le grain authentique n'est PAS un bruit) ; A6=1 : R7 NON déclenchée (piqué modéré assumé)"
+  interpretation_1944: "R13 mode restauration (ère ancienne → xxx_max, authenticité préservée) + extension §6.6 v-bump : monochrome natif (aucune colorisation — G3), grain argentique préservé par défaut, tonalité restaurée (A2/A8 : hautes lumières du ciel récupérées, ombres du camion débouchées, SANS HDR visible), dégâts P1 (taches/poussières A10), détails uniquement depuis l'existant (drapeaux/armes/uniformes/foule strictement conservés), netteté honnête"
+  remede_sse: "createVision + thinking disabled (vision) ; images.generations.edit (génération) — jamais de stream parsé"
+  candidats: "VERSIONNÉS par tentative (jamais écrasés) — promotion après QC PASS"
+  lecon_appliquee: "rendu MINIMAL CONSERVATEUR dès la 1re passe (contenu intégralement verrouillé B6 — leçons PA-TEST-003-2/005)"
+
+sorties:
+  - sortie_nom: PA-TEST-007-1
+    skill: iphone17 v1.1.0 (d'époque — génération 17)
+    pipeline: "P1-P6 (1 appel, entrée = original) → rendu conservateur 17_max d'époque (1 appel) — QC 11 critères"
+    fichiers: {intermediaire: "download/PA-TEST-007-1-amelioration-P1-P6.png", candidats: ["download/PA-TEST-007-1-iphone17-max-candidat-v1.png"], final: "download/PA-TEST-007-1-iphone17-max.png"}
+  - sortie_nom: PA-TEST-007-2
+    skill: iphone18 v1.1.0 (confirmée — R18 ƒ/4.0 groupe + Styles 3)
+    pipeline: "P1-P6 (1 appel) → rendu conservateur 18_max (1 appel, ƒ/4.0 netteté étendue) — QC 12 critères"
+    fichiers: {intermediaire: "download/PA-TEST-007-2-amelioration-P1-P6.png", candidats: ["download/PA-TEST-007-2-iphone18-max-candidat-v1.png"], final: "download/PA-TEST-007-2-iphone18-max.png"}
+  - sortie_nom: PA-TEST-007-3
+    skill: iphone19 v0.11.0 (ANTICIPÉE — R18 + R19 binning)
+    pipeline: "P1-P6 avec expression R19 (1 appel) → rendu conservateur 19_max (1 appel, ƒ/4.0 + pixels fusionnés) — QC 13 critères"
+    fichiers: {intermediaire: "download/PA-TEST-007-3-amelioration-P1-P6.png", candidats: ["download/PA-TEST-007-3-iphone19-max-candidat-v1.png"], final: "download/PA-TEST-007-3-iphone19-max.png"}
+  - sortie_nom: comparaison-enrichie-liberation
+    nature: "composite PIL pur (zéro appel générationnel, sources lecture seule, sha256 avant/après)"
+    panneaux_2x3:
+      - "ORIGINAL P0 — 828×550, tirage argentique N&B août 1944"
+      - "AMÉLIORATION QUALITÉ SEULE — P1-P6 v0.11.0 (intermédiaire de la campagne 19, le plus récent)"
+      - "RENDU iPhone 17 Pro Max — d'époque (PA-TEST-007-1, QC 11)"
+      - "RENDU iPhone 18 Pro Max — confirmée (PA-TEST-007-2, QC 12)"
+      - "RENDU iPhone 19 Pro Max v0.11.0 — ANTICIPÉ + binning (PA-TEST-007-3, QC 13)"
+      - "GUIDE DE LECTURE — adapté 1944 (camion, drapeaux, foule, monochrome/grain, restauration vs colorisation)"
+    livrable: "download/comparaison-liberation-apres-guerre-cote-a-cote.png"
+
+controles_QC:
+  grille: "11/12/13 critères selon skill (fidélité 1-4 avec B6 libération + MONOCHROME : aucune colorisation ; rendu 7 avec monochrome + grain préservés ; 12 ouverture [18/19] ; 13 binning [19])"
+  outil: "scripts/task48-pa007-qc.mjs (createVision + thinking disabled)"
+  iteration: "max 2 par skill (§5) — KO fidélité 1-4 → rejeu rendu contrainte renforcée ; si KO persistant : meilleure version + limite documentée"
+
+fallback:
+  - "échec fidélité après budget : livrer l'intermédiaire P1-P6 du skill comme meilleure version + échec documenté (protocole §5)"
+  - "échec technique ×3 : documenter, retenter (editer-image.mjs retries=3 natif)"
+
+estimation: {cout: "6 appels générationnels + 3 QC vision (+ itérations éventuelles) + composite local", risque_principal: "dérive générationnelle sur détails historiques (drapeaux, armes, marquages) — mitigé par B6 exhaustif verrouillé + rendu conservateur + QC par skill"}

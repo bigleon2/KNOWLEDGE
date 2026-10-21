@@ -1,0 +1,57 @@
+{
+  "qc": {
+    "1": {
+      "ok": true,
+      "justif": "Les visages de la foule de 1944 conservent leurs expressions naturelles et leur identité est parfaitement préservée sans déformation."
+    },
+    "2": {
+      "ok": true,
+      "justif": "Les expressions, postures et orientations de tous les sujets sont strictement identiques à l'original, sans aucune altération."
+    },
+    "3": {
+      "ok": true,
+      "justif": "Tous les éléments de l'inventaire sont présents : camion militaire sombre sans marquage, homme casqué bras levé avec drapeau tricolore français à gauche et drapeau américain plus bas, jeune homme souriant en pull V avec carabine sur les genoux, jeune femme en robe claire jambes pendantes, homme en costume debout sur le pare-choc main dans la poche avec casque au sol, trois hommes poussant le camion, homme en chemise claire marchant vers la caméra, garçon courant à droite, silhouette partielle à gauche, immeuble haussmannien, bâtiment bas à fenêtres grillagées, arbres et rue étroite."
+    },
+    "4": {
+      "ok": true,
+      "justif": "Aucun élément n'a été ajouté ou supprimé (personnes, drapeaux, armes, véhicules, bâtiments) et l'image demeure en monochrome strict sans aucune colorisation."
+    },
+    "5": {
+      "ok": true,
+      "justif": "Aucun halo, écrêtage, banding ni artéfact n'est visible, et aucune teinte colorée n'a été ajoutée à l'image."
+    },
+    "6": {
+      "ok": true,
+      "justif": "Le grain argentique authentique du tirage d'époque est parfaitement préservé, ni écrasé ni lissé en plastique."
+    },
+    "7": {
+      "ok": true,
+      "justif": "Le rendu iPhone 18 Pro Max est respecté avec netteté étendue avant-arrière simulée, style monochrome strict et texture/grain naturels conservés."
+    },
+    "8": {
+      "ok": true,
+      "justif": "Le cadrage et le plan sont identiques à l'original, aucun recadrage n'a été effectué et la composition 3:2 entière est préservée."
+    },
+    "9": {
+      "ok": true,
+      "justif": "Le ratio 3:2 exact est maintenu et la résolution de sortie est supérieure à celle de l'original grâce à l'amélioration technique."
+    },
+    "10": {
+      "ok": true,
+      "justif": "L'adéquation résolution source ↔ sortie est optimale avec un agrandissement propre et aucun détail grossièrement inventé."
+    },
+    "11": {
+      "ok": true,
+      "justif": "Aucune focale particulière n'étant demandée, la conservation du cadre original est vérifiée et confirmée."
+    },
+    "12": {
+      "ok": true,
+      "justif": "L'ouverture simulée ƒ/4.0 est respectée avec une netteté étendue du camion à la foule jusqu'aux immeubles en arrière-plan, sans altération des sujets."
+    }
+  },
+  "fidelite": {
+    "divergences": [],
+    "verdict": "fidèle"
+  },
+  "bilan": "La seconde image constitue un rendu techniquement supérieur fidèle à l'original : amélioration de la netteté, du contraste et de la dynamique tonale tout en préservant intégralement le grain argentique, la composition, tous les éléments de scène et le caractère monochrome authentique de la photographie d'août 1944. Aucune divergence détectée."
+}

@@ -1,0 +1,60 @@
+# Task 48 — Directive propriétaire multi-étapes (session web-38713acd, suite — 2026-10-21)
+# gen-plan v3.23.1 mode (step) — plan persisté AVANT action (règle 3) — horodatage Unix : voir worklog
+# Profil : NORMAL (G-RES niveau 0) — source : clone certifié tmp/KNOWLEDGE-repo @ HEAD e62f354 (poussé)
+# Préalable exécuté : ÉTAPE 1 installation écosystème profil local COMPLET (réinstallation post-wipe
+# §3.4 + recalibrage KO-L004 ECO_SKILLS 35→36 + bidirectionnalité skill-creator↔iphone19 +
+# rescellage archive v2.3 + certification 6/6 arbitres PASS — rapport-installation-ecosysteme-task48.json)
+
+directives:
+  S1:
+    action: "Vérifier que le skill iphone19 émule bien la technique « pixel binning » dont parle la page frandroid (iPhone 19 Pro, 200 Mpx)"
+    source_article: "https://www.frandroid.com/marques/apple/3042289_iphone-19-pro-pourquoi-200-mpx-cest-mieux-que-48 (27/03/2026) — fuite Digital Chat Station : capteur Sony Lytia 901 200 MP, binning 16-en-1 → sortie 12,5 MP, capteur 1/1,12″, bénéfices lumière/bruit/crop-zoom, iPhone 19 Pro prévu 2027"
+    constat_attendu: "iphone19 v0.9.0 N'ÉMULE PAS le pixel binning — le 200 MP fut EXCLU en Task 47 (PM migration §4.4 : rumeur unique DCS, citation contexte seul, aucune règle fonctionnelle — cf. §0 et limites du PM v0.9.0)"
+    action_corrective: "bump iphone19 v0.9.0 → v0.10.0 [ANTICIPÉE] : ajout R19 (émulation pixel binning 16-en-1 — fusion 4×4 simulée : capteur 200 MP → sortie 12,5 MP équivalente, gains SNR/lumière/crop-zoom rendus), sourcé frandroid 27/03/2026 = 2e publication de la fuite DCS (statut [RUMEUR] conservé, distinction confirmé/rumeur stricte) ; recalibrage KB + ECO_SKILLS + projection skill + evals ; auto-audit A1-A8 (blocs intangibles byte-identiques)"
+    verification: "grep binning/200 MP fonctionnels dans PM v0.10.0 ; article relu pour ancrage factuel ; diff v0.9.0→v0.10.0 documenté ; auto-audit PASS"
+  S2:
+    action: "Même comparaison enrichie (format D7 Task 47) du rendu 19 pour « Les Potos » — campagne PA-20261021-006 (série §10)"
+    contrainte_proprietaire: "réponse §9 pré-décidée « sans modification, ni retouches » → zéro retouche, G1-G7 stricts, fidélité maximale"
+    rendu: "RÉGÉNÉRÉ avec iphone19 v0.10.0 (le rendu PA-TEST-005-2 provient de v0.9.0 ; la comparaison porte sur le rendu de la version courante post-S1) — recette standard, 1 traitement, candidats versionnés, itération QC max 2/2 sur échec de fidélité uniquement"
+    comparaison: "composite PIL pur 2×3 : ORIGINAL P0 (musikalarue - les potos.jpg) + AMÉLIORATION P1-P6 (PA-TEST-004-2) + RENDU 17_max (PA-TEST-004-1, QC arbitré) + RENDU 18_max (PA-TEST-002-2, QC 12/12) + RENDU 19_max v0.10.0 (PA-TEST-006-1) + GUIDE DE LECTURE adapté au contenu potos ; rapport format copines (QC structurel 8/8, sha256 sources avant/après, limites honnêtes)"
+    livrables: "PA-TEST-006-1-iphone19-max.png + comparaison-les-potos-cote-a-cote-v2.png + rapport-comparaison-potos.md + question §9 (réponse déjà donnée par la directive : aucune retouche)"
+  S3:
+    action: "Faire que les skills iphone17, iphone18 et iphone19 puissent effectuer un traitement FONCTIONNEL et OPTIMISÉ sur les photos prises en 1944 (ex. « libération après guerre »)"
+    methode: "audit du chemin « restauration photos anciennes » des 3 PMs → renforcement chirurgical 1944 : photographie N&B argentique (gestion monochrome native SANS invention de couleur — G3), grain argentique préservé/authentique, rayures/poussière atténuées sans invention, plage dynamique étroite honorée, netteté limitée de la source assumée honnêtement, fidélité historique stricte (G1-G7/B6 intacts)"
+    bumps: "iphone17 v1.0.0 → v1.1.0 (PM @photos v2.0 → v2.1) ; iphone18 v1.0.0 → v1.1.0 (PM v1.0 → v1.1) ; iphone19 v0.10.0 → v0.11.0 (PM v0.10.0 → v0.11.0) — MINOR chacun (nouvelle fonctionnalité 1944)"
+    procedure: "archivage @historique R4 des versions supplantées (byte-identité) ; projections skills régénérées (mécanique task45c : frontmatter + §0 + note lignage + corps PM verbatim) ; KB 3 entrées mises à jour ; ECO_SKILLS recalibré ; rescellage archive v2.3 + re-certification 6 arbitres ; auto-audits par skill (blocs intangibles)"
+  S4:
+    action: "Test robuste des skills iphone17, iphone18 et iphone19 sur « libération après guerre » — campagne PA-20261021-007 (série §10)"
+    contrainte_proprietaire: "réponse §9 pré-décidée « sans modification, ni retouches » pour CHACUN des 3 skills → zéro retouche, G1-G7 stricts"
+    execution: "1 traitement par skill (versions adaptées post-S3), ordre 17 → 18 → 19 ; analyse A1-A10/B1-B6/C1-C3 dédiée (photo 1944 inédite) ; P1-P6 + rendu max via scripts/editer-image.mjs embarqué ; P0 sha256 avant/après ; candidats versionnés jamais écrasés ; leçon PA-TEST-005 appliquée d'emblée (composition atypique → rendu CONSERVATEUR à verrouillage facial dès la 1re passe)"
+    qc: "11 critères (17) / 12 critères (18, 19) via createVision + thinking disabled (pattern task47-pa005-qc.mjs) ; itération max 2/2 par skill ; si KO persistant : meilleure version + limite documentée (protocole §5)"
+    livrables: "PA-TEST-007-1-iphone17-max.png + PA-TEST-007-2-iphone18-max.png + PA-TEST-007-3-iphone19-max.png + rapport PA-TEST-007 unifié"
+  S5:
+    action: "Même comparaison enrichie que précédemment des rendus iphone17/iphone18/iphone19 pour « libération après guerre »"
+    comparaison: "composite PIL pur 2×3 : ORIGINAL P0 (libération après guerre.png) + AMÉLIORATION P1-P6 (intermédiaire de la campagne 19 — plus récent) + RENDUS 17_max / 18_max / 19_max (PA-TEST-007-1/2/3) + GUIDE DE LECTURE adapté (camion militaire, drapeaux tricolore/US, foule, architecture haussmannienne, 1944) ; rapport enrichi (format copines)"
+    livrable: "comparaison-liberation-apres-guerre-cote-a-cote.png + rapport-comparaison-liberation.md"
+  S6:
+    action: "Exécuter le skill correct-work (projet) de l'écosystème personnel local — v2.7.0 Mode PROJET (§10.1)"
+    methode: "arbitres C01-C20 pattern task47-cw-projet.py adapté Task 48 : invariants R2/R4, P0 intacts, G1-G7/B6 sur livrables, anti-persistance PAT, byte-identité @historique, KB/ECO_SKILLS/archive cohérents, plans règle 3, rapports gabarits, leçons consignées"
+  S7:
+    action: "Exécuter le skill clone-chat de l'écosystème personnel local — v2.0.1 (7+1 étapes, étape 3.5 Context Drift, intégration gen-plan KB)"
+    livrable: "clone Markdown auto-suffisant de la discussion (archive session)"
+  D010:
+    action: "Clôture dépôt : commit des évolutions (recalibrage install Task 48, iphone19 v0.10.0→v0.11.0, iphone17/18 v1.1.0, @historique, KB, rapports, comparaisons, worklog, clone) + PUSH GitHub bigleon2/KNOWLEDGE"
+    justification: "précédent propriétaire D1/D6 Task 47 (dépôt source de vérité à jour à chaque jalon) + correct-work(projet) exige un dépôt cohérent — PAT éphémère (env), jamais persisté, jamais committé"
+
+ordre: "P0 (ce plan + E8) → P1/G1 (S1 pixel binning : vérification + v0.10.0) → CW(CIBLE) → P2/G2 (S2 PA-TEST-006 rendu potos + comparaison enrichie) → CW(CIBLE) → P3/G3 (S3 adaptation 1944 × 3 + rescellage + re-certification) → CW(CIBLE) → P4/G4 (S4 PA-TEST-007 test robuste × 3 + S5 comparaison enrichie) → CW(CIBLE) → P5/G5 (S6 correct-work projet) → P6/G6 (S7 clone-chat → commit + push → worklog final)"
+
+groupes_cw: "mode (step) : correct-work(groupe) après chaque groupe (max 2 rounds de correction par groupe), correct-work(projet) en fin de chaîne (S6)"
+
+invariants:
+  - "R2 : sources certifiées jamais éditées en place — tout bump = nouveau contenu versionné + archivage @historique R4 (byte-identité) ; projections skills = régénération VERBATIM (mécanique task45c)"
+  - "G1-G7 + inventaire B6 : intacts dans les 3 PMs bumpés (auto-audit blocs intangibles byte-identiques par skill)"
+  - "originaux P0 (upload/) jamais modifiés — sha256 vérifiés avant/après chaque campagne (les potos, libération après guerre)"
+  - "statut ANTICIPÉE iphone19 : visible partout (frontmatter, description, §0, §6.10-analog, limites) — v1.0.0 réservé à la génération confirmée"
+  - "honnêteté 1944 : fidélité historique stricte — aucune colorisation inventée (G3), grain/rayures traités sans invention d'éléments"
+  - "PAT : éphémère (env), jamais persisté, jamais committé"
+  - "remède SSE (transversal) : createVision + thinking disabled pour tout appel vision ; images.generations.edit / editer-image.mjs pour la génération — jamais de flux stream parsé en JSON"
+  - "ECO_SKILLS / KB / archive v2.3 : recalibrés et rescellés après chaque changement de pilier (KO-L004)"
+
+estimation: "#token ~50-65k (S1 ~10k, S2 ~8k dont 1 rendu, S3 ~12k, S4 ~14k dont 3 rendus, S5 ~4k, S6 ~6k, S7+clôture ~6k)"

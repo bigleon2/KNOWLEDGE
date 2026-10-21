@@ -1,0 +1,65 @@
+{
+  "qc": {
+    "1": {
+      "ok": true,
+      "justif": "Les visages conservent leurs traits distinctifs et leur identité est parfaitement préservée malgré l'amélioration de la netteté."
+    },
+    "2": {
+      "ok": true,
+      "justif": "Toutes les expressions (sourire large, sourire timide, sourire en coin, neutre serré, neutre lunettes, surpris bouche entrouverte) et orientations de tête sont strictement identiques personne par personne."
+    },
+    "3": {
+      "ok": true,
+      "justif": "L'inventaire complet est respecté : six personnes avec leurs attributs exacts (cheveux longs bruns raie milieu tête en bas, chevauchement préservé, casquette noire à l'envers, homme dégarni neutre face, homme lunettes barbe, homme t-shirt gris inscription rose piercing), décor mur clair ligne angle vertical."
+    },
+    "4": {
+      "ok": true,
+      "justif": "Aucun élément n'a été ajouté ou supprimé : tous les piercings, lunettes, accessoires, vêtements et objets (bouteille verte) sont présents et inchangés."
+    },
+    "5": {
+      "ok": false,
+      "justif": "L'inscription graphique rose/violette sur le t-shirt gris gauche présente un léger flou de rééchantillonnage et perte de lisibilité des détails fins par rapport à l'original."
+    },
+    "6": {
+      "ok": true,
+      "justif": "Le bruit est maîtrisé sans effet plastique excessif, les textures cutanées et capillaires restent naturelles avec un grain subtil préservé."
+    },
+    "7": {
+      "ok": true,
+      "justif": "Le rendu respecte les spécifications iPhone 19 Pro Max simulées : netteté prioritaire sur les visages, mode nuit propre, profondeur de champ étendue simulée f/4.0, dynamique améliorée sans artefact HDR visible."
+    },
+    "8": {
+      "ok": true,
+      "justif": "Le cadrage et le plan sont identiques à l'original sans aucun recadrage détectable, tous les sujets occupent la même position relative."
+    },
+    "9": {
+      "ok": true,
+      "justif": "Le ratio 4:3 est respecté et la résolution de sortie est supérieure à l'original avec un agrandissement propre."
+    },
+    "10": {
+      "ok": true,
+      "justif": "L'agrandissement est propre avec une interpolation de qualité, sans invention grossière de détails ni artefacts de sur-résolution majeurs."
+    },
+    "11": {
+      "ok": true,
+      "justif": "La focale est conservée telle quelle : le cadre, la perspective et le cadrage sont strictement identiques à l'image source."
+    },
+    "12": {
+      "ok": true,
+      "justif": "L'ouverture simulée f/4.0 est respectée avec une netteté étendue cohérente du premier plan à l'arrière-plan sans altération morphologique des sujets."
+    },
+    "13": {
+      "ok": true,
+      "justif": "L'émulation pixel binning R19 est effective : SNR amélioré, bruit chromatique réduit, micro-détails préservés, absence de lissage plastique uniforme."
+    }
+  },
+  "fidelite": {
+    "divergences": [
+      "Légère altération de la netteté et de la lisibilité de l'inscription graphique rose/violette sur le t-shirt gris (personne en bas à gauche) due au traitement d'upscaling",
+      "Micro-variation infime dans la rendu de la texture du tissu du t-shirt orange (droite) apparaissant légèrement plus lisse",
+      "Légère modification de la courbe de contraste globale donnant un aspect 'nuit propre' légèrement différent de l'original plus brut"
+    ],
+    "verdict": "divergences mineures"
+  },
+  "bilan": "Rendu technique de haute qualité globalement fidèle à l'original. Les 12 critères sur 13 sont validés. Les seules divergences constatées sont mineures et techniques (perte infime de détail sur un texte imprimé lors de l'upscaling, variation de texture textile minime). Aucune altération de contenu, d'expression, de positionnement ou d'identité n'est détectée. Le rendu 'iPhone 19 Pro Max' simulé est réussi avec une gestion intelligente du bruit et de la netteté étendue."
+}

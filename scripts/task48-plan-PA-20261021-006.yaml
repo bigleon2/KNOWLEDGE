@@ -1,0 +1,55 @@
+# PA-20261021-006 — campagne skill iphone19 v0.10.0 (Task 48 G2, session web-38713acd)
+# Plan persisté AVANT exécution (règle 3). Contrainte propriétaire (§9 pré-décide) :
+# « sans modification, ni retouches » — pipeline qualité standard, G1-G7 stricts, B6 verrouillé.
+
+campagne:
+  skill: iphone19
+  version_skill: 0.10.0
+  pm: skills/@photos/iphone19-photos.md v0.10.0 [ANTICIPÉE]
+  mode: série §10 (2 sorties : S1 rendu, S2 comparaison enrichie — QC unitaire, rapport unifié, question unique §9)
+  contrainte_proprietaire: "la réponse à la dernière question du skill sera « sans modification, ni retouches »"
+  interpretation: "alignée sur PA-TEST-004/005 : pipeline standard P0-P9, rendu défaut iphone19_max (R13/R18/R19), AUCUNE retouche créative, AUCUN élément ajouté/supprimé, expressions/orientations/coiffures/vêtements/accessoires verrouillés B6"
+  objectif: "rendu 19 de la version COURANTE v0.10.0 (émulation pixel binning R19) pour la comparaison enrichie — le rendu PA-TEST-005-2 (v0.9.0) reste disponible et non modifié"
+  analyse: "grille ANALYSE-v2 RÉUTILISÉE des campagnes PA-TEST-002/003/005 (photo-intrinsèques identiques — économie API KO-L001, documentée) ; B6 verrouillé : scripts/task45e-an-potos.json"
+  lecon_appliquee: "PA-TEST-005 it.2 (leçon) : composition atypique potos → rendu MINIMAL CONSERVATEUR à verrouillage facial DÈS LA PREMIÈRE PASSE (recette it.2 éprouvée 12/12, reprise intégralement + expression R19)"
+  remede_sse: "appels SDK vision via zai.chat.completions.createVision + thinking disabled ; génération via zai.images.generations.edit (editer-image.mjs) — JAMAIS de parsing JSON de flux stream"
+  candidats: "VERSIONNÉS par tentative (leçon PA-TEST-003-2 : jamais d'écrasement) — promotion vers nom final seulement après QC PASS"
+
+sorties:
+  - sortie_nom: PA-TEST-006-1
+    photo: "upload/musikalarue - les potos.jpg (P0 sha256:1a5c04df6d3783ba… — vérifié, jamais modifié)"
+    source: "604×453 4:3, smartphone/compact bas de gamme, soirée intérieure, lumière artificielle dure"
+    diagnostic: "A1=2 A2=1 A3=3 A4=2 A5=2 A6=2 A7=1 A8=2 A9=1 A10=0 · B1=6 visages en cercle (tête inversée au centre, chevauchement) · B2=inscription graphique t-shirt · B3=soirée intérieure · B4=lumière dure"
+    regles_declenchees: [R1, R3, R5, R6, R7, R8, R10, R13, R18, R19]
+    r19: "émulation pixel binning 16-en-1 (preset iphone19_max actif + A3=3 basse lumière) — expression intégrée à l'instruction « amélioration » P1-P6 (§7) et au caractère du rendu (§6.1)"
+    focale_cible: aucune
+    ouverture_cible: "ƒ/4.0   # R18 défaut auto — scène de groupe"
+    rendu_cible: iphone19_max
+    format_sortie: {ratio: "4:3", support: écran, resolution: "1152×864 (×1,9 propre)"}
+    pipeline: "P1-P6 consolidé AVEC R19 (1 appel, entrée = original) → rendu conservateur + R19 (1 appel, entrée = intermédiaire) — chaîne 2 appels, canevas 1152×864"
+    fichiers:
+      intermediaire: "download/PA-TEST-006-1-amelioration-P1-P6.png"
+      candidats: ["download/PA-TEST-006-1-iphone19-max-candidat-v1.png"]
+      final: "download/PA-TEST-006-1-iphone19-max.png"
+
+  - sortie_nom: comparaison-enrichie-potos
+    nature: "composite PIL pur (zéro appel générationnel, zéro modification des sources — lecture seule, sha256 avant/après)"
+    panneaux_2x3:
+      - "ORIGINAL P0 — upload/musikalarue - les potos.jpg (604×453)"
+      - "AMÉLIORATION QUALITÉ SEULE — P1-P6 v0.10.0 avec R19 (PA-TEST-006-1-amelioration — plus récent, précédent copines D7 ; PA-TEST-004-2/005-2 historiques disponibles)"
+      - "RENDU iPhone 17 Pro Max — PA-TEST-004-1 (QC arbitré haute confiance, Task 46)"
+      - "RENDU iPhone 18 Pro Max — PA-TEST-002-2 (QC 12/12)"
+      - "RENDU iPhone 19 Pro Max v0.10.0 — PA-TEST-006-1 (QC 13, pixel binning R19)"
+      - "GUIDE DE LECTURE — adapté au contenu potos (cercle atypique, tête inversée, 6 repères, lignée 17→18→19 + R19)"
+    livrable: "download/comparaison-les-potos-cote-a-cote-5-versions.png (2208×1204)"
+
+controles_QC:
+  grille: "13 critères v0.10.0 (fidélité 1-4, rendu 7 [avec caractère binning], cadrage 8, ratio 9, résolution 10, focale 11, ouverture 12, binning 13) + vérification fidélité exhaustive"
+  outil: "scripts/task48-pa006-qc.mjs (createVision + thinking disabled — remède SSE)"
+  iteration: "max 2 (§5) — KO fidélité 1-4 → rejeu rendu avec contrainte renforcée ; si toujours KO → livraison meilleure version + limite documentée (protocole §5)"
+
+fallback:
+  - "si rendu en échec fidélité après budget : livrer l'intermédiaire P1-P6 comme meilleure version + échec documenté (précédent PA-TEST-003-2)"
+  - "si appel générationnel en échec technique ×3 : documenter, retenter (editer-image.mjs retries=3 natif)"
+
+estimation: {cout: "2 appels générationnels + 1 appel QC vision + composite local", risque_principal: "dérive générationnelle composition atypique (précédents 17_max / 19 v0.9.0 it.1) — mitigé par recette conservatrice it.2 d'emblée + candidats versionnés + QC 13"}

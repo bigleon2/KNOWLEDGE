@@ -1,0 +1,53 @@
+{
+  "qc": {
+    "1": {
+      "ok": true,
+      "justif": "Les visages sont naturels et les identités de tous les sujets (foule, soldat casqué, jeune homme au fusil) sont parfaitement préservées sans déformation ni lissage excessif."
+    },
+    "2": {
+      "ok": true,
+      "justif": "Les expressions, postures et orientations strictes sont identiques : le bras levé du casqué, le sourire du jeune homme à la carabine, la position des pousseurs et la course du garçon à droite."
+    },
+    "3": {
+      "ok": true,
+      "justif": "Tous les éléments de scène référencés sont présents et conformes : camion militaire sombre sans marquage, drapeau tricolore français à gauche et drapeau américain étoiles/bandes en dessous, jeune femme en robe claire à motifs, homme au costume sombre sur le pare-choc avec cravate claire et main dans la poche, trois pousseurs, homme en chemise claire marchant vers la caméra, garçon courant à droite, silhouette partielle à gauche, immeuble haussmannien et bâtiment bas avec fenêtres grillagées."
+    },
+    "4": {
+      "ok": true,
+      "justif": "Aucun élément ajouté ou supprimé (personnes, drapeaux, armes, véhicules, bâtiments), et l'image demeure strictement monochrome sans aucune colorisation."
+    },
+    "5": {
+      "ok": true,
+      "justif": "Aucun halo, écrêtage, banding ou artéfact détecté ; aucune teinte colorée n'a été ajoutée à l'image."
+    },
+    "6": {
+      "ok": true,
+      "justif": "Le grain argentique authentique est parfaitement préservé avec sa structure naturelle, sans être écrasé ni lissé en plastique (seul un nettoyage subtil des poussières est visible)."
+    },
+    "7": {
+      "ok": true,
+      "justif": "Le rendu iPhone 17 Pro Max (Photonic Engine NG) est respecté : monochrome strict, grain argentique conservé, netteté homogène, lumière maîtrisée sans halo et tone-mapping doux."
+    },
+    "8": {
+      "ok": true,
+      "justif": "Le cadrage et le plan sont identiques à l'original, sans aucun recadrage, conservant la composition 3:2 entière."
+    },
+    "9": {
+      "ok": true,
+      "justif": "Le ratio 3:2 exact est maintenu et la résolution de sortie est supérieure à celle de l'original (828×550)."
+    },
+    "10": {
+      "ok": true,
+      "justif": "L'agrandissement depuis la source 828×550 est propre et cohérent, sans invention grossière de détails non présents dans l'original."
+    },
+    "11": {
+      "ok": true,
+      "justif": "La focale originale est conservée et le cadre est vérifié comme identique, sans distorsion ni changement de perspective."
+    }
+  },
+  "fidelite": {
+    "divergences": [],
+    "verdict": "fidèle"
+  },
+  "bilan": "Le rendu technique « iPhone 17 Pro Max qualité max » est parfaitement réussi : amélioration nette de la définition, du contraste et de la dynamique tout en respectant scrupuleusement les contraintes absolues de monochromie stricte, de conservation du grain argentique authentique et d'intégrité totale du contenu (aucune modification ni retouche des sujets, objets ou environnement). Fidélité maximale à l'original."
+}
