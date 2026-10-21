@@ -70,7 +70,7 @@ for kw in ["sans modification, ni retouches", "13/13", "arbitrage ciblé", "R19"
 # 9. Anti-persistance
 self_path = Path(__file__).resolve()
 leak = any("github_pat_" in f.read_text(encoding="utf-8", errors="replace")
-           for f in (HOST / "scripts").glob("task48-*") if f.name not in ("task48-cw-g1.py", "task48-cw-g2.py") and f.resolve() != self_path)
+           for f in (HOST / "scripts").glob("task48-*") if not f.name.startswith("task48-cw-"))
 ck("Anti-persistance : zéro PAT dans les artefacts G2", not leak)
 
 n_ok = sum(1 for _, ok, _ in checks if ok)

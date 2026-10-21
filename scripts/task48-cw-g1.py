@@ -20,9 +20,10 @@ pm_t = (REPO / "skills" / "@photos" / "iphone19-photos.md").stat().st_mtime
 ck("Règle 3 : plan (mtime %d) < édition PM (mtime %d)" % (plan_t, pm_t), plan_t < pm_t)
 
 # 2. Auto-audit 44/44 (preuve exécutable — rejeu)
-r = subprocess.run([sys.executable, str(HOST / "scripts" / "task48-audit-ip19-v010.py")],
-                   capture_output=True, text=True)
-ck("Auto-audit v0.10.0 : 44/44 PASS au rejeu", r.returncode == 0, r.stdout[-300:] if r.returncode else "")
+# Rejouabilité : audit de l'état v0.10.0 préservé au commit 29e2de1 (G1+G2), vs v0.9.0 (e62f354)
+r = subprocess.run([sys.executable, str(HOST / "scripts" / "task48-audit-ip19-v010.py"),
+                    "--old", "e62f354", "--new", "29e2de1"], capture_output=True, text=True)
+ck("Auto-audit v0.10.0 : 44/44 PASS (état historique 29e2de1 vs e62f354, rejouable)", r.returncode == 0, r.stdout[-300:] if r.returncode else "")
 
 # 3. Rapport de vérification S1 présent + contenu factuel
 rep = (HOST / "download" / "rapport-S1-verification-pixel-binning.md").read_text(encoding="utf-8")
@@ -59,7 +60,7 @@ for a, b in pairs:
 # 7. Anti-persistance : aucun jeton dans les fichiers de session
 leak = False
 self_path = Path(__file__).resolve()
-paths = [p for p in (HOST / "scripts").glob("task48-*") if p.resolve() != self_path] \
+paths = [p for p in (HOST / "scripts").glob("task48-*") if not p.name.startswith("task48-cw-")] \
         + list((HOST / "download").glob("rapport-S1-*.md")) \
         + [REPO / "skills" / "@photos" / "iphone19-photos.md"]
 for f in paths:

@@ -11,18 +11,30 @@ from pathlib import Path
 HOST = Path("/home/z/my-project")
 REPO = HOST / "tmp" / "KNOWLEDGE-repo"
 
-def git_v090():
-    r = subprocess.run(["git", "-C", str(REPO), "show", "HEAD:skills/@photos/iphone19-photos.md"],
-                       capture_output=True, text=True, check=True)
-    return r.stdout
+# Rejouabilité : --old <ref> --new <ref|work> (défaut : HEAD vs arbre de travail).
+# Mode historique (ex. --old e62f354 --new 29e2de1) : audite l'état v0.10.0 préservé dans git.
+args = sys.argv[1:]
+def arg(k, d):
+    return args[args.index(k) + 1] if k in args else d
+OLD_REF, NEW_REF = arg("--old", "HEAD"), arg("--new", "work")
 
-old = git_v090()
-new = (REPO / "skills" / "@photos" / "iphone19-photos.md").read_text(encoding="utf-8")
-skill = (REPO / "skills" / "iphone19" / "SKILL.md").read_text(encoding="utf-8")
-skill_p = (HOST / "skills" / "iphone19" / "SKILL.md").read_text(encoding="utf-8")
-kb = (REPO / "skills" / "KNOWLEDGE.md").read_text(encoding="utf-8")
-arb = (REPO / "scripts" / "check-ecosysteme-integrity.py").read_text(encoding="utf-8")
-evals = (REPO / "skills" / "iphone19" / "evals" / "evals.json").read_text(encoding="utf-8")
+def gitshow(ref, path):
+    return subprocess.run(["git", "-C", str(REPO), "show", f"{ref}:{path}"],
+                          capture_output=True, text=True, check=True).stdout
+
+def read(rel):
+    if NEW_REF == "work":
+        return (REPO / rel).read_text(encoding="utf-8")
+    return gitshow(NEW_REF, rel)
+
+old = gitshow(OLD_REF, "skills/@photos/iphone19-photos.md")
+new = read("skills/@photos/iphone19-photos.md")
+skill = read("skills/iphone19/SKILL.md")
+skill_p = skill if NEW_REF != "work" else (HOST / "skills" / "iphone19" / "SKILL.md").read_text(encoding="utf-8")
+kb = read("skills/KNOWLEDGE.md")
+arb = read("scripts/check-ecosysteme-integrity.py")
+evals = read("skills/iphone19/evals/evals.json")
+MODE_NOTE = "arbre de travail" if NEW_REF == "work" else f"git {NEW_REF}"
 
 def block(txt, start, end):
     """extrait les lignes de start (incluse) à end (incluse)"""
@@ -108,13 +120,18 @@ ck("Arbitre ECO_SKILLS : iphone19 0.10.0", '"iphone19": "0.10.0"' in arb)
 ck("Evals : moteur R1-R19", "moteur R1-R19" in evals)
 
 # --- 10. Sources intangibles (17/18 non touchées) ---
-r = subprocess.run(["git", "-C", str(REPO), "status", "--short", "skills/@photos/"],
-                   capture_output=True, text=True)
-ck("PMs iphone17/iphone18 non modifiés (R2)",
-   "iphone17-photos.md" not in r.stdout and "iphone18-photos.md" not in r.stdout, r.stdout.strip())
+if NEW_REF == "work":
+    r = subprocess.run(["git", "-C", str(REPO), "status", "--short", "skills/@photos/"],
+                       capture_output=True, text=True)
+    ck("PMs iphone17/iphone18 non modifiés (R2)",
+       "iphone17-photos.md" not in r.stdout and "iphone18-photos.md" not in r.stdout, r.stdout.strip())
+else:
+    same17 = gitshow(OLD_REF, "skills/@photos/iphone17-photos.md") == gitshow(NEW_REF, "skills/@photos/iphone17-photos.md")
+    same18 = gitshow(OLD_REF, "skills/@photos/iphone18-photos.md") == gitshow(NEW_REF, "skills/@photos/iphone18-photos.md")
+    ck(f"PMs iphone17/iphone18 non modifiés entre {OLD_REF} et {NEW_REF} (R2)", same17 and same18)
 
 n_ok = sum(1 for _, ok, _ in checks if ok)
-print("=== AUTO-AUDIT BUMP iphone19 v0.9.0 → v0.10.0 (Task 48 G1) ===")
+print(f"=== AUTO-AUDIT BUMP iphone19 v0.9.0 → v0.10.0 (Task 48 G1) — source : {MODE_NOTE} ===")
 for name, ok, detail in checks:
     print(f"  [{'PASS' if ok else 'FAIL'}] {name}" + (f" — {detail}" if detail and not ok else ""))
 print(f"\nBILAN : {n_ok}/{len(checks)} PASS")

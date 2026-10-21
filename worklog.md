@@ -395,3 +395,18 @@ Stage Summary:
 - L'extension 1944 (G3) est VALIDÉE EMPIRIQUEMENT sur photo réelle : traitement fonctionnel ET optimisé (R13 restauration + §6.6 : grain préservé, tonalité restaurée, aucune colorisation) par les 3 skills.
 - Leçon majeure consignée : biais de colorisation systématique de l'étage P1-P6 sur scène historique iconique (3/3) — neutralisé par l'étage rendu conservateur monochrome.
 - PROCHAINE ÉTAPE : G5/S6 — correct-work (projet) ; puis G6/S7 — clone-chat + clôture dépôt (commit + push).
+---
+Task ID: 48 (G5)
+Agent: Main [Super Z — correct-work v2.7.0 Mode PROJET, session web-38713acd]
+Task: G5/S6 — exécuter le skill correct-work (projet) de l'écosystème personnel local.
+
+Work Log:
+- Exécution Mode PROJET §10.1 (phases 1-5) : scripts/task48-cw-projet.py — C01-C25 : plan via gen-plan + E8, livrables par directive (installation PASS, S1 audit + rapport, S2 QC 13/13 + requalification motivée, S3 audit 74/74 + archivage + certification 6/6, S4 QC 11/12/13 fidèles ×3, S5 comparaison + rapports), structure/conventions (versions alignées KB↔SKILL↔PM, sync dépôt=profil, candidats versionnés), interactions (ECO_SKILLS + certification), cohérence (ANTICIPÉE/[RUMEUR], règle 3, anti-persistance, worklog, dépôt propre).
+- 1re passe : 23/25 — 2 KO de REJOUABILITÉ des vérificateurs (pas des défauts réels) : (a) audit v0.10.0 rejoué contre le PM courant v0.11.0 (échec sur les vérifications de version d'état) ; (b) scans anti-persistance des CW de groupe se détectant mutuellement (vérificateurs créés ultérieurement non exclus).
+- Corrections de rejouabilité (réalité du problème = le vérificateur, pas l'état — précédents KO-L003/Task 47 D5) : audit-ip19-v010 paramétré --old/--new (mode historique git, défaut HEAD/arbre) ; cw-g1 passe en mode historique 29e2de1 vs e62f354 (44/44 rejouables) ; exclusions unifiées task48-cw-* dans les 4 scans de groupe ; C23 passe au motif de JETON réel (github_pat_<20+ car.>) — la chaîne documentaire nue « github_pat_ » du rapport Task 47 (précédent D5) n'est pas un jeton.
+- Re-jeux : G1 21/21, G2 21/21, G3 21/21, G4 32/32, audit v0.10.0 historique 44/44 → **correct-work (projet) : 25/25 — PASS** (rapport download/rapport-cw-projet-task48.json).
+- Réserve documentée : push GitHub différé à la clôture G6 (3 commits locaux en attente — D010, précédent Task 45 D008).
+
+Stage Summary:
+- G5/S6 TERMINÉ : correct-work (projet) 25/25 PASS sur l'ensemble de la directive (installation + S1-S5) — chaîne de vérification complète et REJOUEABLE (audits historiques par refs git).
+- PROCHAINE ÉTAPE : G6/S7 — clone-chat (archivage session) + clôture dépôt (commit + push GitHub).

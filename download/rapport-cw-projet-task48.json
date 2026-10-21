@@ -1,0 +1,182 @@
+{
+  "tache": "Task 48 — correct-work Mode PROJET (S6)",
+  "checks": [
+    {
+      "id": "C01",
+      "phase": "P1",
+      "nom": "Plan Task 48 via gen-plan v3.23.1 (routage normatif 8 skills + answer key D001-D011)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C02",
+      "phase": "P1",
+      "nom": "E8 validation structurelle du plan : 25/25 PASS au rejeu",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C03",
+      "phase": "P2",
+      "nom": "Étape 1 : installation profil COMPLET — verdict PASS (certification 6/6)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C04",
+      "phase": "P2",
+      "nom": "Garde É1-INSTALL → INSTALLE (rc=0)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C05",
+      "phase": "P2",
+      "nom": "S1 : PM iphone19 v0.11.0 émule le pixel binning (R19 complète, 16-en-1, 12,5 MP, Sony Lytia 901, frandroid 27/03/2026)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C06",
+      "phase": "P2",
+      "nom": "S1 : auto-audit v0.10.0 44/44 (état historique 29e2de1 vs e62f354 — rejouable)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C07",
+      "phase": "P2",
+      "nom": "S1 : rapport de vérification livré (constat honnête v0.9.0 + correspondance article→implémentation)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C08",
+      "phase": "P2",
+      "nom": "S2 : rendu 19 potos v0.10.0 QC 13/13 fidèle + P0 intact",
+      "verdict": "OK",
+      "detail": "P0=1a5c04df6d3783ba"
+    },
+    {
+      "id": "C09",
+      "phase": "P2",
+      "nom": "S2 : requalification critère 5 motivée (arbitrage pleine image confiance haute, verdict intact)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C10",
+      "phase": "P2",
+      "nom": "S2 : comparaison potos 5 versions + rapport",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C11",
+      "phase": "P2",
+      "nom": "S3 : auto-audit bumps 1944 74/74 (3 skills, R/QC/G/B6 intacts, archivage byte-identique)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C12",
+      "phase": "P2",
+      "nom": "S3 : archivage R4 @historique/photos/ (4 versions scellées)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C13",
+      "phase": "P2",
+      "nom": "S3 : re-certification 6/6 arbitres verts (post-bumps, archive rescellée)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C14",
+      "phase": "P2",
+      "nom": "S4 : test robuste 17/18/19 — QC 11/11, 12/12 (it. 1/2), 13/13, fidèles zéro divergence ×3 + P0 intact",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C15",
+      "phase": "P2",
+      "nom": "S5 : comparaison libération + 2 rapports",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C16",
+      "phase": "P2",
+      "nom": "CW CIBLE par groupe : G1 21/21, G2 21/21, G3 21/21, G4 32/32 (rejeux)",
+      "verdict": "OK",
+      "detail": "{'g1': True, 'g2': True, 'g3': True, 'g4': True}"
+    },
+    {
+      "id": "C17",
+      "phase": "P3",
+      "nom": "Versions alignées KB ↔ SKILL.md ↔ PM (17 v1.1.0/v2.1, 18 v1.1.0/v1.1, 19 v0.11.0/v0.11.0)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C18",
+      "phase": "P3",
+      "nom": "Sync dépôt = profil (PMs + SKILL.md + KB + arbitre)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C19",
+      "phase": "P3",
+      "nom": "Candidats versionnés (jamais écrasés) — PA-TEST-006/007",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C20",
+      "phase": "P4",
+      "nom": "ECO_SKILLS recalibré (1.1.0 / 1.1.0 / 0.11.0) + certification cohérente",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C21",
+      "phase": "P5",
+      "nom": "Statut ANTICIPÉE + [RUMEUR] visibles (PM 19 : origine v0.10.0/v0.11.0, limites §6.1, squelette §6.10)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C22",
+      "phase": "P5",
+      "nom": "Règle 3 : plans (directive + PA-006 + PA-007) persistés AVANT générations",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C23",
+      "phase": "P5",
+      "nom": "Anti-persistance : zéro JETON réel (motif github_pat_<20+ car.>) dans scripts/ + download/",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C24",
+      "phase": "P5",
+      "nom": "Worklog à jour (sections Task 48 : installation+G1, G2, G3, G4)",
+      "verdict": "OK",
+      "detail": ""
+    },
+    {
+      "id": "C25",
+      "phase": "P5",
+      "nom": "Dépôt local propre (0 fichier non commité) ; push différé à la clôture G6 (réserve documentée)",
+      "verdict": "OK",
+      "detail": "en attente push : 3 commits (D010 → G6)"
+    }
+  ],
+  "bilan": "25/25",
+  "verdict": "PASS"
+}

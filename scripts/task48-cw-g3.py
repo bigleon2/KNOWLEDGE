@@ -50,7 +50,7 @@ for f in ["musikalarue - les potos.jpg", "musikalarue - les copines.jpg", "libé
 # 6. Anti-persistance (hors scripts vérificateurs)
 leak = any("github_pat_" in f.read_text(encoding="utf-8", errors="replace")
            for f in (HOST / "scripts").glob("task48-*")
-           if f.name not in ("task48-cw-g1.py", "task48-cw-g2.py", "task48-cw-g3.py"))
+           if not f.name.startswith("task48-cw-"))
 ck("Anti-persistance : zéro PAT dans les artefacts G3", not leak)
 
 n_ok = sum(1 for _, ok, _ in checks if ok)
