@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Vérification post-installation correct-work v2.7.0
+"""Vérification post-installation correct-work v2.8.0
 
 16 checks automatisés correspondant au tableau §6 du Prompt Maître v2.5.1.
 Calibrage v2.7.0 (2026-10-02 : couplage gen-plan obligatoire Étape 1 — KO-L004, L003) : plage ~400 L, PM v2.5.1, dép gen-plan >= v3.7.0,
 regex étapes insensible à la casse (Étape/étape), valeur de version vérifiée.
+Recalibrage v2.8.0 (2026-10-23, Task 18 — session web-fdf5963c, KO-L004) : intégration alias-eco
+dépendance optionnelle mode PROJET (>= 1.0.0), version attendue 2.8.0.
 Calibrage v2.6.0 (B13-r5 : aligné frontmatter installé — L003).
 Usage:
     python verify-correct-work.py
@@ -20,7 +22,7 @@ PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WO
 SHARED_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-SHARED.md")
 KB_PATH = os.path.join(SKILLS_ROOT, "KNOWLEDGE.md")
 
-EXPECTED_VERSION = "2.7.0"
+EXPECTED_VERSION = "2.8.0"
 EXPECTED_LINES_MIN = 200
 EXPECTED_LINES_MAX = 450
 EXPECTED_MODES = {"PROJET", "CIBLE", "DIRECT"}

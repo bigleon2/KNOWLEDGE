@@ -1,6 +1,6 @@
 ---
 name: graph-engineering
-version: 1.0.1
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -18,7 +18,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -87,6 +87,10 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 | **E** | Cohérence : arbitre verify-cross (M3). |
 | **F** | Enrichissement E15 (M4) + journalisation. |
 
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+**Arêtes bi-temporelles** (Graphiti/Zep, arXiv 2501.13956) : chaque arête porte `valid_from` (version d'intégration) et, au remplacement, une INVALIDATION DATÉE au lieu d'un retrait — compatible R2 (on n'efface jamais, on invalide) ; les requêtes « état à la version N » deviennent possibles sans @historique consulté hors graphe. **Arbitre de divergence KB ↔ frontmatters** : les arêtes déclarées deux fois (registre KB + blocs dependencies YAML) doivent diverger JAMAIS — une seule source fait foi, l'autre est dérivée ; un diff mécanique périodique remonte toute asymétrie (extension verify-cross). **Pondération d'arêtes par usage récent** : fréquence d'invocation (#token, dates de calibration) oriente la sélection E5 — les nœuds chauds remontent, les dormants s'estompent ; un résumé par catégorie dans la KB (style résumés de communautés GraphRAG) accélère la navigation sans requête exhaustive. Sources : arXiv 2501.13956 · github.com/getzep/graphiti · github.com/openspg/kag.
+
 ## §2 — SPÉCIFICATION TECHNIQUE
 
 - Markdown (KB, registres), YAML (frontmatter dependencies), JSON (preuves), Python (arbitres).
@@ -139,7 +143,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 | Détenteur | Mode de détention | Usage |
 |-----------|-------------------|-------|
-| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.23.1 §1.9 (PM corpus antérieur toléré — garde R2) | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
+| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.23.2 §1.9 (PM corpus antérieur toléré — garde R2) | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
 | `correct-work` | **Fonction héritée** | Lecture et validation d'artefacts de prompts (specs, SKILL.md, rapports de vérification) |
 | `clone-chat` | **Fonction héritée** | Assemblage de documents-clones, produits d'ingénierie de prompts |
 | `prompt-engineering` | Compétence spécialisée (matérialisé v1.0.1) | Optimisation fine des prompts complexes (délégation gen-plan) |

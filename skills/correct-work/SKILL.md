@@ -1,6 +1,6 @@
 ---
 name: correct-work
-version: 2.7.0
+version: 2.8.0
 category: ecosystem
 language: fr
 tags:
@@ -14,6 +14,7 @@ description: >
   5 étapes, 4 modes (PROJET/CIBLE/DIRECT/AVEUGLE),
   support multi-cibles, couplage genplan OBLIGATOIRE (dernière version installée) à l'Étape 1,
   intégration KB (Registre, kb_path, --kb-skill),
+  délégation alias-eco (mode PROJET — tenue du registre des phrases récurrentes, v2.8.0),
   matrice de décision agent/skill (statique + dynamique KB),
   métriques de performance.
   Contrôler la cohérence avant de livrer ce que tu viens de produire.
@@ -27,13 +28,16 @@ dependencies:
   - skill: fullstack-dev
     version: ">=1.0.0"
     used_at: "Vérification projets web"
+  - skill: alias-eco
+    version: ">=1.0.0"
+    used_at: "Mode PROJET — tenue du registre des phrases récurrentes (§10.1 Phase 2)"
 read_when:
   - Déclencher quand la demande concerne : skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences)
   - Déclencher si la demande mentionne : skill, vérification, correction
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -127,6 +131,7 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 | gen-plan | >= v3.7.0 (dernière installée OBLIGATOIRE) | Étape 1 (plan d'actions) | Non (obligatoire) |
 | clone-chat | >= v2.0.0 | Mode CIBLE (§3.5 Context Drift) | Oui |
 | fullstack-dev | >= v1.0.0 | Vérification de projets web | Oui |
+| alias-eco | >= v1.0.0 | Mode PROJET — registre des phrases récurrentes (§10.1 Phase 2, v2.8.0) | Oui (mode PROJET seulement) |
 
 ### §2.3 Structure des fichiers
 
@@ -241,6 +246,7 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 | gen-plan | Invocation à E1 (OBLIGATOIRE) | Plan de vérification — dernière version installée, plancher >= v3.7.0 |
 | clone-chat | Vérification Mode CIBLE | §3.5 Context Drift, version >= v2.0.0 |
 | fullstack-dev | Vérification | Projets web : structure et dépendances, version >= v1.0.0 |
+| alias-eco | Délégation (v2.8.0) | Mode PROJET — tenue du registre des phrases récurrentes de la discussion analysée (§10.1 Phase 2, registre @historique/@Alias/), version >= v1.0.0 |
 | knowledge.md | Scan dynamique | Découverte versions et dépendances |
 
 ---
@@ -280,6 +286,7 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 - [ ] Estimation #token faite (grille #token gen-plan §4)
 
 ### Phase 2 — Erreurs et omissions
+- [ ] Phrases récurrentes de la discussion analysée : registre tenu à jour via alias-eco (délégation v2.8.0 — JSON trié dédupliqué dans @historique/@Alias/)
 - [ ] Chaque section du prompt comparée au livrable
 - [ ] Erreurs factuelles listées
 - [ ] Omissions listées

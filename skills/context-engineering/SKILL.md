@@ -1,6 +1,6 @@
 ---
 name: context-engineering
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 tags:
@@ -19,7 +19,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -90,6 +90,10 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 | **G** | Journalisation (worklog SHARED §1.4). |
 | **H** | Enrichissement (E15 : KB, grille). |
 
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+**Just-in-time retrieval en principe M1** (Anthropic 2025) : charger des POINTERS légers (chemins, requêtes, ID) au moment de l'étape concernée plutôt qu'intégralement en amont ; la lecture intégrale devient l'exception motivée (cohérence budget d'attention + resource-monitor). **Hygiène KV-cache** (Manus) : préfixe de contexte stable, journal append-only, pas de timestamps volatils en tête — le cache coûte ~10× moins que le re-calcul. **Anti « Governance Decay »** (arXiv 2606.22528) : la compaction efface silencieusement les contraintes de gouvernance — après CHAQUE compaction, ré-énoncer les invariants critiques (règle zéro, contraintes propriétaire) en tête du contexte compacté, et consigner un tombstone pour toute contrainte évacuée. **Références** : Anthropic « effective context engineering » (09/2025) · ACE arXiv 2510.04618 (le plan complexe = playbook évolutif à deltas incrémentaux — complémentaire de gen-plan) · Claude Cookbook 03/2026 (les stratégies se composent : mémoire + compaction + purge d'outils).
+
 ## §2 — SPÉCIFICATION TECHNIQUE
 
 - Markdown (SKILL.md), YAML (frontmatter), JSON (evals), Python (scripts de vérification).
@@ -144,7 +148,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 | Détenteur | Mode de détention | Usage |
 |-----------|-------------------|-------|
-| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.23.1 §1.9 (PM corpus antérieur toléré — garde R2) | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
+| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.23.2 §1.9 (PM corpus antérieur toléré — garde R2) | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
 | `correct-work` | **Fonction héritée** | Lecture et validation d'artefacts de prompts (specs, SKILL.md, rapports de vérification) |
 | `clone-chat` | **Fonction héritée** | Assemblage de documents-clones, produits d'ingénierie de prompts |
 | `prompt-engineering` | Compétence spécialisée (matérialisé v1.0.1) | Optimisation fine des prompts complexes (délégation gen-plan) |

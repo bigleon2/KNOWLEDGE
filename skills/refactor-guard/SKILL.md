@@ -1,6 +1,6 @@
 ---
 name: refactor-guard
-version: 1.7.0
+version: 1.8.0
 category: ecosystem
 language: fr
 tags:
@@ -60,7 +60,7 @@ read_when:
   - Ne pas déclencher pour du code neuf sans base existante (pas de refactorisation possible)
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -136,6 +136,10 @@ read_when:
 | < 6 | Faible | Refactorisation locale simple, contrôlée par tests (N2→N3) |
 
 ---
+
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+**Golden master AVANT (renforcement R5)** : avant TOUTE modification, capturer et sceller les sorties baseline (n ≥ 3 runs — entrées nominales + edge cases), puis les rejouer en sandbox ET post-vol ; la preuve comportementale (sorties identiques) remplace le simple hachage avant/après, qui ne prouve rien si les entrées varient. **Mutation testing léger (sandbox)** : avant de considérer une validation acquise, modifier 1 opérateur/constante de la cible et exiger qu'au moins 1 test échoue — une suite qui reste verte sur une mutation prouvée est déclarée INSENSIBLE (anti faux-verts ; tests qui testent le testeur). **Rollback armé (N5)** : en canary, la violation d'un contrat (latence/CPU/mémoire) déclenche le rollback AUTOMATIQUEMENT armé + signalement propriétaire — « rollback testé » ne suffit plus ; détection de contournement de tests dans les journaux (héritage TRACE). Sources : Rackspace/CircleCI progressive delivery 2026 · characterization tests · arXiv 2601.20103.
 
 ## §2 — Spécification technique
 
@@ -254,7 +258,7 @@ R1 vérifier présence avant insertion · R2 ne jamais rétrograder le niveau de
 
 | Version | Date | Contenu |
 |---------|------|---------|
-| 1.0.0 | 2026-10-10 | Matérialisation initiale — continuation du projet « Skill Refactorisation Plan » (discussion Qwen T1-T46 : conception C05/C-SAFE-1, principe zéro-régression, gouvernance N0-N5) ; adaptée à l'écosystème d72226a+ (gen-plan v3.23.1, correct-work v2.7.0 couplage OBLIGATOIRE, KO-L003 dynamique, C006 bare-liste). Scripts stdlib testés ; evals conformes au schéma skill-creator. Réserve KO-L004 : génération du PM refactor-guard (extension generer-pm-skill.py 3→4 familles) reportée à décision propriétaire (D009). |
+| 1.0.0 | 2026-10-10 | Matérialisation initiale — continuation du projet « Skill Refactorisation Plan » (discussion Qwen T1-T46 : conception C05/C-SAFE-1, principe zéro-régression, gouvernance N0-N5) ; adaptée à l'écosystème d72226a+ (gen-plan v3.23.2, correct-work v2.7.0 couplage OBLIGATOIRE, KO-L003 dynamique, C006 bare-liste). Scripts stdlib testés ; evals conformes au schéma skill-creator. Réserve KO-L004 : génération du PM refactor-guard (extension generer-pm-skill.py 3→4 familles) reportée à décision propriétaire (D009). |
 | 1.1.0 | 2026-10-10 | Matérialisation des 8 modules d'hypothèses C-SAFE-1 (config, audit_ledger H09, spec_builder H07, policy_engine H10, sandbox_runner H04, checker H05, human_gate H15, rollout H08) via chaîne imposée script-creator → correct-py → script-reviewer ; self-tests idempotents ×2 ; propagation versionnaire checker ECO_SKILLS + KB ; outil correct-py-verifie.py matérialisé (KO-L003) ; SKILL.md étendu via skill-creator. (Ligne d'historique complétée rétrospectivement en 1.2.0 — écart versionnaire constaté au contrôle correct-work PROJET.) |
 | 1.2.0 | 2026-10-10 | Première exécution N1 shadow réelle (3 cibles vivantes) + calibration grille #token §2.5 (deux périmètres : agent-driven inchangé / mécanique calibré E15) ; ajout `scripts/shadow_run.py` (self-test 11/11 ×2, correct-py CONFORME, garde gouvernance : refuse tout mode d'application) ; correction F-1 (correct-work PROJET 2026-10-10) : comptage self-tests 72→**79/79** (cumul réel vérifié ×2) ; journaux audit H09 + rapports de calibration archivés (`download/refactor-guard-shadow-run-2026-10-10/`). |
 | 1.7.0 | 2026-10-12 | CONVERGENCE de la lignée externe (fusion discussion 468a4c26 — Task 8, session web-b4d7dd19, gen-plan(step)) : l'instance source a certifié refactor-guard v1.7.0 (double-montée Tasks 23-24 — 6 PM v1.2.0→v1.7.0, rollout enabled = échelle H15 terminale, ledger N6, verif-finale-n6 réconcilié « périmées-par-conception » Task 26) ; matérialisation canonique = base mécanique v1.2.0 portée à l'identique (11 scripts stdlib + evals + references ×2) + présente calibration ; diffs intermédiaires v1.3.0→v1.6.0 non verbatim consignés par leurs preuves de discussion (R4 provenance — réserve : PMs de la lignée externe non portés, génération PM 3→4 familles = décision propriétaire D009 reportée) ; déclaration KB + ECO_SKILLS + arêtes bidirectionnelles (gen-plan hook E13, refactoring-engineering garde-fous D3/D4 — discipline n°55). |

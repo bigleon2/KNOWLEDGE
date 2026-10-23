@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.7)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.9)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -14,7 +14,8 @@ import shutil
 import zipfile
 from pathlib import Path
 
-BASE = Path("/home/z/my-project/work_knowledge")
+# Portabilite L008 (garde E1) : derive de __file__ (jamais de chemin absolu figure)
+BASE = Path(__file__).resolve().parent.parent
 CORPUS = BASE / "skills" / "@mon-ecosysteme"
 HISTORIQUE = BASE / "skills" / "@historique" / "prompts-maitres"  # Task 16 : destination des PMs déplacés
 ARCHIVE = BASE / "download" / "mon-ecosysteme_archive.zip"
@@ -37,6 +38,31 @@ RETRAITS_SANCTIONNES = {
     # correction outil n°55 + fusion discussion 468a4c26) : PM GEN-PLAN v3.23.0
     # DÉPLACÉ git mv vers skills/@historique/prompts-maitres/gen-plan/ —
     # byte-identité vérifiée ci-dessous (garde anti-perte ; SHA bba1b9c40dda…).
+    # cascade Task 18 (2026-10-23, session web-fdf5963c — optimisation du système
+    # d'installation + alias-eco) : 4 PMs familles supplantés par montées mécaniques
+    # KO-L004 (gen-plan v3.23.2, correct-work v2.8.0, clone-chat v2.0.2,
+    # refactor-guard v1.7.1) — DÉPLACÉS git mv vers skills/@historique/
+    # prompts-maitres/<famille>/ — byte-identité SHA-256 scellée au README §5.
+    "PROMPT-MAITRE-GEN-PLAN-v3.23.1.md",
+    "PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md",
+    "PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md",
+    "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md",
+    # cascade Task 22 (2026-10-23, même session — directive « disciplines/techniques »,
+    # veille 2025-2026) : PM REFACTOR-GUARD v1.7.1 supplanté par la montée mécanique
+    # KO-L004 (SKILL.md v1.8.0 — §1.9bis golden master AVANT + mutation testing +
+    # rollback armé) — DÉPLACÉ vers skills/@historique/prompts-maitres/
+    # refactor-guard/ — byte-identité SHA-256 scellée au README §5.
+    "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.1.md",
+    # véhicule d'intégrité v2.3 « piliers » (reprise matinale 2026-10-23, session
+    # web-fdf5963c — reinstallateur autonome) : RETIRÉ au profit du véhicule v2.2
+    # corpus-seul (PM-INSTALL v1.8.0) ; le contenu des piliers vit dans l'arbre
+    # (scripts/, skills/KNOWLEDGE.md, skills/<famille>/SKILL.md) — aucune perte.
+    "piliers/scripts/certification-complete.py",
+    "piliers/scripts/check-ecosysteme-integrity.py",
+    "piliers/scripts/install-ecosysteme-local.sh",
+    "piliers/skills/KNOWLEDGE.md",
+    "piliers/skills/correct-work/SKILL.md",
+    "piliers/skills/gen-plan/SKILL.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.23.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.6.1.md", "PROMPT-MAITRE-GEN-PLAN-v3.7.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.8.0.md", "PROMPT-MAITRE-GEN-PLAN-v3.8.1.md",
@@ -85,6 +111,11 @@ def dest_historique(short):
         return HISTORIQUE / "correct-work" / short
     if short.startswith("PROMPT-MAITRE-CLONE-CHAT-"):
         return HISTORIQUE / "clone-chat" / short
+    if short.startswith("PROMPT-MAITRE-REFACTOR-GUARD-"):
+        # Task 22 (2026-10-23) : KO-L003 — la liste figée ignorait la 4e famille
+        # (refactor-guard) ; la garde anti-perte sautait silencieusement ses
+        # retraits. Dynamisée = périmètre complet des 4 familles PM.
+        return HISTORIQUE / "refactor-guard" / short
     return None
 
 corpus_files = sorted(p.name for p in CORPUS.glob("*.md"))
@@ -97,8 +128,17 @@ if ARCHIVE.exists():
     with zipfile.ZipFile(BAK) as z:
         old_names = z.namelist()
         old_bytes = {n: z.read(n) for n in old_names if not n.endswith("/")}
+        # Task 20 (finding F3) : capture des dates d'entrées — le rescellement
+        # doit être byte-STABLE (Z6/R6). Avant : writestr(nom, données) horodatait
+        # chaque entrée à l'horloge murale → hash archive changeant à chaque
+        # rescellement → manifeste (qui enregistre ce hash) jamais en point fixe
+        # → installation non idempotente au niveau byte. Les dates existantes
+        # sont désormais préservées ; époque fixe pour une entrée nouvelle.
+        old_dates = {n: zi.date_time for n, zi in zip(z.namelist(), z.infolist())
+                     if not n.endswith("/")}
 else:
     old_bytes = {}
+    old_dates = {}
 print(f"ancienne archive : {len(old_bytes)} entrées")
 
 # Task 16 — vérification anti-perte des retraits déplacés (avant toute écriture)
@@ -136,7 +176,15 @@ with zipfile.ZipFile(ARCHIVE, "w", zipfile.ZIP_DEFLATED) as z:
             data = (CORPUS / short).read_bytes()
         else:
             data = old_bytes[name]
-        z.writestr(name, data)
+        # Task 20 (F3) : ZipInfo explicite — dates préservées (époque fixe
+        # 1980-01-01 pour une entrée absente de l'ancienne archive), compression
+        # DEFLATED et attributs 0o600 répliqués exactement comme writestr(nom)
+        # le faisait, afin que le premier rescellement post-correctif soit
+        # byte-identique à l'archive existante puis stable à l'infini.
+        zi = zipfile.ZipInfo(name, date_time=old_dates.get(name, (1980, 1, 1, 0, 0, 0)))
+        zi.compress_type = zipfile.ZIP_DEFLATED
+        zi.external_attr = 0o600 << 16
+        z.writestr(zi, data)
 
 # auto-vérification : corpus ⊆ archive byte-identique, extras seulement homologues/
 with zipfile.ZipFile(ARCHIVE) as z:
@@ -154,5 +202,6 @@ if divergent or extras:
     shutil.copy2(BAK, ARCHIVE)
     print("ÉCHEC — archive restaurée depuis la sauvegarde")
     raise SystemExit(1)
-BAK.unlink()
+if BAK.exists():
+    BAK.unlink()
 print("Archive régénérée et round-trip vérifié (véhicule v2.2).")

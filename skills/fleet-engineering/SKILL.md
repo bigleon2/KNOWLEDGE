@@ -1,6 +1,6 @@
 ---
 name: fleet-engineering
-version: 1.0.1
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -23,7 +23,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -73,6 +73,10 @@ Registre KB (source de vérité), worklog append-only (lignée des Task ID), hoo
 ### §1.7 Fondements académiques et veille (N34, 2026-09-21 — n°54)
 Recherches N31/N34 vérifiées (preuves `tmp/n31-recherche/`) : **Agent Teams** (Claude Code, code.claude.com) — plusieurs instances coordonnées, un team lead assigne et fusionne ; **Managed Agents** (Anthropic, avr. 2026) — découplage du « cerveau » et de l'exécution pour scaler ; **5 patterns production 2026** (fan-out, pipeline, debate, supervisor, swarm — digitalapplied, mai 2026) avec best-fit par usage ; **multi-agent research system** (Anthropic, juin 2025) — leçons d'ingénierie (orchestrateur + sous-agents, citation obligatoire) ; **State of Agent Engineering** (LangChain, 2026) — la coordination multi-agents devient une discipline d'ingénierie (test, déploiement). Détail et sources : `references/fondements-academiques.md`.
 
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+**Règle 0 — gate anti-flotte** (Cognition « Don't Build Multi-Agents » 2025, reconfirmé 04/2026) : une flotte est INTERDITE si (a) les tâches sont séquentielles à écritures entrelacées, ou (b) le ratio de coût ~15× tokens du multi-agent (Anthropic 06/2025 : agents ≈ 4×, multi-agents ≈ 15× vs chat) n'est pas justifié par un périmètre large parallélisable ; sous-tâches en lecture seule/indépendantes = zone verte. **M5 swarm durci** (Anthropic « Patterns and problems in emerging multiagent systems », 08/2026 — coordination failures, collusion, sabotage documentés) : journaliser qui-a-décidé-quoi PAR agent ; quota strict maintenu. **Ordre de routage E5/E7** (neutralise les conflits de périmètre) : (a) tâche séquentielle → 1 agent autonome (autonomous-agent) ; (b) parallélisable/indépendant → flotte M1-M5 ; (c) nœuds scripts/binaires → inter-scripts ; (d) création d'agents réutilisables → agent-creator. **Échecs de handoff** : la majorité des échecs multi-agents sont des pertes de contexte au handoff — la micro-spéc par sous-tâche (liaison spec-driven) est la parade citée. Sources : cognition.com/blog/dont-build-multi-agents · anthropic.com/research/multiagent-systems · anthropic.com/engineering/multi-agent-research-system.
+
 ## §2 — SPÉCIFICATION TECHNIQUE
 Artefacts : matrice d'assignation (Task ID × agent × livrable × bornes) ; journal d'agrégation (résultats, verdicts d'arbitres, divergences) ; les prompts d'agents sont auto-contenus et citent leur Task ID. Transport : outils `Task` (sous-agents) du harnais ; aucune exécution SDK hors demande explicite (D013). Idempotence : le relancement d'une flotte ne duplique pas les livrables (reprise par Task ID, pattern --skip-done).
 
@@ -96,7 +100,7 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.23.1 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; `references/orchestration-skills-agents.md` — matrice.
+- gen-plan v3.23.2 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; `references/orchestration-skills-agents.md` — matrice.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |

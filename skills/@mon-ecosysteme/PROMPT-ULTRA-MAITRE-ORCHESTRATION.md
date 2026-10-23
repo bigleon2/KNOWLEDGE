@@ -2,7 +2,7 @@
 
 > **Version** : 1.0.0 (généré)
 > **Généré par** : `scripts/gen-ultra-maitre.py` (idempotent — ne pas éditer à la main ; éditer le script puis régénérer)
-> **État dérivé de** : SHARED v1.7.7 (révision 2026-10-12) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
+> **État dérivé de** : SHARED v1.7.9 (révision 2026-10-23) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
 > **Rôle** : point d'entrée UNIQUE d'orchestration à l'usage — route chaque demande vers le bon prompt maître / skill, sans dupliquer leur contenu (R4)
 > **Directive** : propriétaire 2026-10-02 (« prompt ultra maître ») — design retenu : orchestrateur léger dérivé dynamiquement du corpus (KO-L003), PAS de conversion des PMs existants en monolithes (R4 duplication / R2 corpus figé / KO-L004 drift)
 
@@ -36,56 +36,58 @@
 
 | Famille | PM le plus récent (source d'assemblage) | Versions historiques figées (R2) |
 |---------|------------------------------------------|----------------------------------|
-| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.23.1.md (la plus récente) | — |
-| CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md (la plus récente) | — |
-| CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md (la plus récente) | — |
-| REFACTOR-GUARD | PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md (la plus récente) | — |
+| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.23.2.md (la plus récente) | — |
+| CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md (la plus récente) | — |
+| CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md (la plus récente) | — |
+| REFACTOR-GUARD | PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.7.7 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.7.1 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.7.9 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.8.1 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
 | Skill | Version |
 |-------|---------|
-| `gen-plan` | 3.23.1 |
-| `correct-work` | 2.7.0 |
-| `clone-chat` | 2.0.1 |
+| `gen-plan` | 3.23.2 |
+| `correct-work` | 2.8.0 |
+| `clone-chat` | 2.0.2 |
 | `skills-inventory` | 1.1.0 |
 | `skill-creator` | 1.1.0 |
-| `agent-creator` | 2.1.0 |
-| `prompt-engineering` | 2.2.0 |
-| `context-engineering` | 1.1.0 |
-| `loop-engineering` | 1.1.0 |
-| `graph-engineering` | 1.0.1 |
-| `harness-engineering` | 1.1.0 |
+| `agent-creator` | 2.2.0 |
+| `prompt-engineering` | 2.3.0 |
+| `context-engineering` | 1.2.0 |
+| `loop-engineering` | 1.2.0 |
+| `graph-engineering` | 1.1.0 |
+| `harness-engineering` | 1.2.0 |
 | `script-mon-ecosysteme-infrastructure` | 1.1.0 |
 | `knowledge-observer` | 1.0.0 |
 | `script-creator` | 1.1.0 |
 | `script-reviewer` | 1.0.0 |
 | `audit-provenance` | 1.1.0 |
-| `autonomous-agent` | 1.1.0 |
+| `autonomous-agent` | 1.2.0 |
 | `correct-py` | 1.1.0 |
-| `fleet-engineering` | 1.0.1 |
-| `memory-engineering` | 1.1.1 |
-| `spec-driven-development` | 1.0.1 |
+| `fleet-engineering` | 1.1.0 |
+| `memory-engineering` | 1.2.0 |
+| `spec-driven-development` | 1.1.0 |
 | `refactoring-engineering` | 1.1.1 |
-| `refactoring-test` | 1.0.2 |
+| `refactoring-test` | 1.1.0 |
 | `audio-metadata` | 1.1.0 |
 | `cpp-analysis` | 1.1.0 |
 | `pdf-llm` | 1.0.0 |
-| `resource-monitor` | 1.0.0 |
+| `resource-monitor` | 1.1.0 |
 | `version-management` | 1.2.0 |
 | `skill-finder-cn` | 1.0.0 |
 | `vue-upload` | 1.2.0 |
-| `refactor-guard` | 1.7.0 |
+| `refactor-guard` | 1.8.0 |
 | `fullstack-dev` | 1.0.0 |
+| `dessin-technique` | 1.1.1 |
+| `alias-eco` | 1.0.0 |
 
-Registre KB : 32 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé). correct-work v2.7.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
+Registre KB : 34 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé). correct-work v2.8.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 
 ## §4 — Points d'entrée et ordre de lecture
 
-1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.7) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.7.1) — périmètre §A + pipeline 11 étapes + critères §3.
+1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.9) — toujours en premier.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.8.1) — périmètre §A + pipeline 11 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
 5. **Publication** : archive `download/mon-ecosysteme_archive.zip` (round-trip v2.2) — unique voie de diffusion du corpus (décision v2.2 : canal de fichiers download/ supprimé, garde `scripts/task14-scan-doublons.py`).

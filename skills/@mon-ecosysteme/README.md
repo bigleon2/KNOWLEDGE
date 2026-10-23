@@ -1,8 +1,10 @@
 # Écosystème Knowledge — Architecture & Guide de référence
 
 > **Date** : 2026-10-12
-> **Version** : 2.1.7
-> **Architecture** : v2.2 — SHARED v1.7.7 — Contexte Système 3 niveaux
+> **Version** : 2.1.8
+> **Architecture** : v2.2 — SHARED v1.7.8 — Contexte Système 3 niveaux
+> **Révision v2.1.9 (2026-10-23, Task 22 — session web-fdf5963c, directive propriétaire gen-plan(step) « analyse pipeline d'installation + disciplines/techniques »)** : refactor-guard v1.7.1→v1.8.0 (§1.9bis apports de veille 2025-2026 : golden master AVANT + mutation testing léger + rollback automatique armé — 12 disciplines/techniques enrichies, agent-creator v2.2.0 dérive critique résorbée) ; PM REFACTOR-GUARD v1.8.0 généré mécaniquement KO-L004, v1.7.1 archivé @historique/prompts-maitres/refactor-guard/ (SHA scellé) ; PM-INSTALL v1.8.0→v1.8.1 (F1 anti-faux-succès rc propagé + F2 exclusion __pycache__ + F3 vérification post-install SHA-256 embarquée) ; SHARED v1.7.9 ; arborescence §2 recalibrée.
+> **Révision v2.1.8 (2026-10-23, Task 18 — session web-fdf5963c, directive propriétaire « optimise le système d'installation en regénérant » + skill alias-eco)** : 4 PMs familles régénérés mécaniquement KO-L004 (GEN-PLAN v3.23.2, CORRECT-WORK v2.8.0 — intégration alias-eco mode PROJET, CLONE-CHAT v2.0.2, REFACTOR-GUARD v1.7.1 — note §5 mécanisme dual) ; PM-INSTALL v1.8.0 (MÉCANISME DUAL : installation directe des formes certifiées par défaut — exécutant canonique eco_install_pipeline.py ; assemblage bootstrap ; périmètre += alias-eco §2bis/§4/§A.3) ; SHARED v1.7.8 ; skill alias-eco v1.0.0 créé (registre d'alias $<ALIAS>, déclencheurs « alias-eco »/« liste mes alias »/« alias-eco (chat) », registre @historique/@Alias/) ; KB 34 entrées ; cascade KO-L004 : propagate v1.7.8 (100 skills + 69 scripts + 2 agents), ULTRA régénéré, arbitres recalibrés, archive rescellée round-trip 9/9 ; arborescence §2 recalibrée.
 > **Révision v2.1.7 (2026-10-12, Task 12 — directive propriétaire « appliquer les corrections », session web-b4d7dd19, gen-plan(step))** : clone-chat v2.0.0→v2.0.1 (dependencies += skill-creator conventions — F-c1, §5.2 item 8 modèle PM-§7 — F-c2), v2.0.0 archivé `@historique/prompts-maitres/clone-chat/` (git mv byte-identité R4) ; refactoring-engineering v1.1.1 (§5 baseline A2 MESURÉE 7/7 — F1/F3, plancher ref-test >=1.0.1 — F4) ; refactoring-test v1.0.2 (§5 baseline — F2) ; entrées §6 rétrospectives ×5 disciplines (F-d1..F-d5) ; SHARED v1.7.7 (§7 dé-figage pins n°53 — F-e, §6.1) ; PM-INSTALL v1.7.1 (§2ter/§A.3) ; cascade KO-L004 : propagate v1.7.7 (98 skills + 65 scripts + 2 agents), ULTRA régénéré (4 familles + routes refactoring + ECO_SKILLS dérivée KB + date non figée — F5/F6), arbitres recalibrés (integrity ECO_SKILLS, task17, task9), archive rescellée round-trip 9/9 ; arborescence §2 recalibrée (clone-chat v2.0.1, PM-INSTALL v1.7.1, archives gen-plan×19 + clone-chat×1 — ×18 stale résorbé).
 > **Révision v2.1.6 (2026-10-12, directive propriétaire PM-INSTALL — session web-b4d7dd19, gen-plan(step))** : PM-INSTALL v1.7.0 — étape 6 refactor-guard au pipeline (10→11 étapes, 4e famille D009 désormais installée depuis le corpus), périmètre COMPLET explicite (formes installées de toutes les entrées KB — 8 disciplines n°54/n°55 + outil refactoring-test + refactor-guard), fermeture MINIMALE étendue +6 éléments, §A.3 extensions +6 entrées + instantané courant, socle §2ter +1 ligne (refactoring-test-graph.py) ; cascade KO-L004 : SHARED v1.7.6 (§3.2/§6.1), ULTRA régénéré (11 étapes), propagate v1.7.6 (98 skills + 65 scripts + 2 agents), SYNC-CONTEXT v1.4.8, archive rescellée round-trip 9/9 ; arborescence §2 recalibrée.
 > **Révision v2.1.5 (cascade gen-plan v3.23.1, session web-b4d7dd19 Task 8 gen-plan(step) — fusion discussion externe 468a4c26)** : PM GEN-PLAN v3.23.1 vivant (correction outil n°55 — refactoring-test = outil de la discipline refactoring-engineering, directive propriétaire), v3.23.0 archivé (19 PMs GEN-PLAN) ; SHARED v1.7.4 (§7 : outil + registre ×3 lignes), PM-INSTALL v1.6.4 ; KB 32 entrées (+refactor-guard v1.7.0 garde-fous, +fullstack-dev — fusion 468a4c26 ; n°55 corrigées) ; propagation §0 v1.7.4 (idempotent ×2) ; arborescence §2 recalibrée.
@@ -34,11 +36,11 @@ KNOWLEDGE/
 ├── @mon-ecosysteme/                     ← Prompts maîtres (Niveau 1) — dernières versions seules (Task 16)
 │   ├── README.md                        ← Ce guide
 │   ├── PROMPT-MAITRE-SHARED.md          ← Socle commun (source de vérité)
-│   ├── PROMPT-MAITRE-GEN-PLAN-v3.23.1.md
-│   ├── PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md
-│   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md
-│   ├── PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md  ← 4e famille (décision D009)
-│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.7.1 — pipeline 11 étapes)
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.23.2.md
+│   ├── PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md
+│   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md
+│   ├── PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md  ← 4e famille (décision D009)
+│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.8.0 — pipeline 11 étapes, mécanisme dual)
 │   ├── PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ← Orchestration à l'usage (généré idempotent v1.0.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │

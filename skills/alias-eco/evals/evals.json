@@ -1,0 +1,77 @@
+{
+  "skill_name": "alias-eco",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Créé via skill-creator (Task 18, session web-fdf5963c, directive propriétaire 2026-10-23) : 6 evals couvrant les 3 déclencheurs, la détection/tri/déduplication JSON, la résolution $<ALIAS> et l'intégration correct-work (projet).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "AE-registre — Liste JSON triée dédupliquée",
+      "prompt": "Analyse cette discussion et liste mes phrases récurrentes en JSON dans @historique/@Alias/",
+      "expected_output": "aliases.json mis à jour : phrases triées alphabétiquement, aucun doublon strictement identique",
+      "files": [],
+      "expectations": [
+        "Le registre skills/@historique/@Alias/aliases.json existe et est un JSON valide",
+        "Les phrases sont triées par ordre alphabétique (casse repliée)",
+        "Aucune phrase dupliquée après normalisation (espaces repliés, ponctuation d'extrémité retirée)",
+        "Chaque entrée porte occurrences, premiere_detection, derniere_detection, source"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "AE-chat — Liste TXT triée alphabétique",
+      "prompt": "alias-eco (chat)",
+      "expected_output": "Une liste TXT (download/alias-eco-chat-<date>.txt) de toutes les phrases récurrentes de la discussion, triée par ordre alphabétique",
+      "files": [],
+      "expectations": [
+        "Le fichier TXT est produit dans download/",
+        "Les phrases y sont triées par ordre alphabétique",
+        "Le registre JSON est mis à jour au passage (même détection)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "AE-resolve — Résolution $<ALIAS> à la lecture",
+      "prompt": "Résous : « optimise le système d'installation de $ECO-LEON »",
+      "expected_output": "« optimise le système d'installation de mon écosystème personnel » (expansion avant interprétation)",
+      "files": [],
+      "expectations": [
+        "Tout $<ALIAS> enregistré est expansé via le registre",
+        "Un alias non enregistré est signalé explicitement, jamais inventé"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "AE-add — Attribution explicite d'un alias",
+      "prompt": "Ajoute l'alias ECO-DEPOT pour la phrase « mon dépôt KNOWLEDGE »",
+      "expected_output": "L'entrée existe dans aliases.json avec alias ECO-DEPOT, source tracée",
+      "files": [],
+      "expectations": [
+        "Le format d'alias est validé (^[A-Z0-9][A-Z0-9-]*$) — refus explicite sinon",
+        "La détection seule n'attribue JAMAIS d'alias (attribution = acte explicite)"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "AE-liste — Déclencheur « liste mes alias »",
+      "prompt": "liste mes alias",
+      "expected_output": "Affichage lisible du registre (phrase → $ALIAS) trié alphabétiquement",
+      "files": [],
+      "expectations": [
+        "Toutes les phrases enregistrées sont affichées, avec leur alias s'ils existent",
+        "L'affichage est trié alphabétiquement"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "AE-correctwork — Délégation lors de correct-work (projet)",
+      "prompt": "correct-work (projet) sur cette discussion (l'analyse passe par alias-eco pour les phrases récurrentes)",
+      "expected_output": "Le registre des phrases récurrentes est tenu à jour pendant la vérification PROJET",
+      "files": [],
+      "expectations": [
+        "correct-work v2.8.0 §10.1 délègue la tenue du registre à alias-eco",
+        "Le registre aliases.json reflète les phrases récurrentes de la discussion analysée"
+      ]
+    }
+  ]
+}

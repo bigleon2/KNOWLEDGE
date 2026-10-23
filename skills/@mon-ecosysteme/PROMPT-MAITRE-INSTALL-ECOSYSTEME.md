@@ -1,11 +1,11 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.7.1
+Version : 1.8.1
 Date : 2026-10-12
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
 Dépend : CONTEXTE SYSTÈME (embarqué ci-dessous)
-Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — périmètre (§A) + ordre d'exécution optimal (§2) + étendue d'installation COMPLET/MINIMALE (§2bis, v1.4.0) + références explicites des dernières versions des PMs et du socle indispensable (§2ter, v1.5.1) + génération automatique du PM à toute montée de version (§2quater, v1.6.0) + critères de passage (§3). Couverture v1.7.0 (directive propriétaire « toutes les disciplines + tous les éléments du refactoring ») : étape 6 refactor-guard au pipeline (4e famille D009, 10→11 étapes) + périmètre COMPLET explicite (toutes les entrées du registre KB — 8 disciplines n°54/n°55 + trio refactoring incluses) + fermeture MINIMALE étendue + §A.3 extensions +6 entrées.
+Complète : ce fichier est l'UNIQUE source d'installation de l'écosystème — périmètre (§A) + ordre d'exécution optimal (§2) + étendue d'installation COMPLET/MINIMALE (§2bis, v1.4.0) + références explicites des dernières versions des PMs et du socle indispensable (§2ter, v1.5.1) + génération automatique du PM à toute montée de version (§2quater, v1.6.0) + critères de passage (§3) + MÉCANISME DUAL d'installation (v1.8.0, §3.2 : installation directe des formes certifiées du dépôt par défaut — exécutant canonique `scripts/eco_install_pipeline.py` ; assemblage depuis les PMs = voie bootstrap corpus-seul) + intégration du registre d'alias `alias-eco` au périmètre (v1.8.0 : §2bis/§4/§A.3). Couverture v1.7.0 (directive propriétaire « toutes les disciplines + tous les éléments du refactoring ») : étape 6 refactor-guard au pipeline (4e famille D009, 10→11 étapes) + périmètre COMPLET explicite (toutes les entrées du registre KB — 8 disciplines n°54/n°55 + trio refactoring incluses) + fermeture MINIMALE étendue + §A.3 extensions +6 entrées.
 Référence : §2ter — instantané explicite des dernières versions des PMs sources (GEN-PLAN, CORRECT-WORK, CLONE-CHAT, REFACTOR-GUARD — 4e famille, décision D009) et des fichiers indispensables (directive utilisateur 2026-10-09) ; rafraîchi à chaque révision — la dérivation dynamique « PM le plus récent » (KO-L003) demeure la mécanique de référence ; §2quater (v1.6.0) — génération mécanique du PM à toute montée de version (KO-L004 v1.1.0, `scripts/generer-pm-skill.py`).
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
@@ -44,7 +44,7 @@ Variables (SHARED §1.1) : `{{SKILLS_ROOT}}` = `skills/` · `{{KB_PATH}}` = `ski
 L'ordre dérive du graphe d'interactions cartographié (README §8, SHARED §3.1) :
 
 1. **Rien ne s'interprète sans le socle** — chaque fichier spécifique ouvre par « Lire SHARED en premier » (§B) → SHARED est l'étape 1.
-2. **Rien ne s'installe depuis un corpus non authentifié** — les formes installées sont assemblées DEPUIS les PMs ; si le corpus est corrompu, tout le reste l'est → intégrité en étape 2.
+2. **Rien ne s'installe depuis une source non authentifiée** — installation directe (v1.8.0, §3.2-a) : les formes certifiées du DÉPÔT (garde R2 + arbitres) ; bootstrap (§3.2-b) : les formes installées sont assemblées DEPUIS les PMs du corpus authentifié (archive scellée) ; si la source est corrompue, tout le reste l'est → intégrité en étape 2.
 3. **L'archive garantit la byte-identité** — l'intégrité du corpus est vérifiée par le round-trip de `download/mon-ecosysteme_archive.zip` (véhicule d'intégrité v2.2 ; décisions d'architecture v2.0 et v2.2 : miroir local `skills/_prompts-maitres/` supprimé, puis canal de fichiers download/ supprimé — le corpus n'est publié que via l'archive) → étape 2.
 4. **gen-plan avant les skills qu'il orchestre** — correct-work (Étape 1 : gen-plan obligatoire) et clone-chat (§2.6 : intégration optionnelle) s'enregistrent auprès d'un gen-plan présent → étape 4.
 5. **correct-work et clone-chat après gen-plan** — l'ordre P4-b/P4-c respecte le précédent validé (worklog A2/A3) et la direction de dépendance dominante (gen-plan —invoque→ correct-work) → étapes 5-6.
@@ -69,6 +69,8 @@ L'ordre dérive du graphe d'interactions cartographié (README §8, SHARED §3.1
 | 10 | **Publication** | Archive zip (round-trip byte-identique) + worklog — canal de fichiers download/ supprimé (décision v2.2 : aucun fichier du corpus ne doit exister en double dans `download/`, garde `scripts/task14-scan-doublons.py`) | Vérif round-trip byte-identique + scan doublons 0 | N/N round-trip OK ; 0 doublon download/ |
 | 11 | **Clôture** | clone-chat (archivage session) + mise à jour KNOWLEDGE.md si nouveau skill | 8 checks S1-S8 clone-chat | Clone scellé, idempotent |
 
+Note (mécanisme dual, v1.8.0 — directive propriétaire « PM INSTALL assemble au lieu d'installer ») : les étapes 3-6 s'exécutent par **installation DIRECTE des formes certifiées du dépôt** (voie par défaut, §3.2-a) ; la colonne « Source → Destination » de la table décrit la **voie bootstrap** (§3.2-b, assemblage depuis les PMs — environnement nu, corpus/archive seul). Réponse à la question propriétaire : l'assemblage a historiquement garanti l'unique source de vérité (R4), l'authenticité (archive scellée) et la portabilité (le corpus suffit à tout reconstruire) ; depuis KO-L004 v1.1.0 la direction de génération est SKILL.md → PM (le PM est dérivé mécaniquement) et le dépôt porte les formes certifiées par les arbitres — l'installation directe est donc devenue la voie la plus judicieuse quand le dépôt est disponible, l'assemblage demeurant la voie bootstrap équivalente.
+
 Note (correct-work CIBLE, 2026-09-06, S3 ; révisée session A9, 2026-09-06) : les skills sans prompt maître propre — `skills-inventory`, `skill-creator`, `agent-creator`, `fullstack-dev` — n'ont pas de forme installée locale : ils existent comme entrées du registre KB (étape 7) et sont mobilisés à l'exécution, pas à l'installation. Extension v1.7.0 : les 8 disciplines d'exécution (SHARED §7 — context/loop/graph/harness + n°54 fleet/memory/spec-driven + n°55 refactoring-engineering) ainsi que l'outil `refactoring-test` possèdent des formes installées matérielles (`<skill>/` — SKILL.md + evals + trigger_evals/references, déclenchement automatique) ; leur installation relève du périmètre COMPLET (§2bis) via le registre KB (étape 7), et `refactor-guard` est installé à l'étape 6 depuis son PM. `prompt-engineering` est désormais MATÉRIALISÉ (forme installée `prompt-engineering/` : SKILL.md + evals/evals.json + evals/trigger_evals.json + references/grille-evaluation-prompt.md ; recommandation clone 2026-09-06 §5.2 exécutée).
 
 Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fichiers, 7 fichiers cœur, PM gen-plan v3.7.0, arbitres 60/60) sont remplacés par des invariants dynamiques (KO-L003) : l'invariant `CORPUS_ATTENDU` du checker fait foi pour la taille du corpus ; « PM le plus récent » se dérive du listing réel du corpus ; les critères numériques sont les verdicts des arbitres courants.
@@ -79,7 +81,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 **Fermeture MINIMALE (définition normative)** — l'union de :
 - les 3 skills fonctionnelles : `gen-plan/`, `correct-work/`, `skills-inventory/` (formes installées complètes : SKILL.md + `references/` + `evals/` + `scripts/`) ;
-- leurs éléments liés, dérivés MÉCANIQUEMENT au moment de l'installation (jamais figés — KO-L003) : dépendances déclarées (frontmatter YAML `dependencies` + registre KB « Dépend de ») et affectations SHARED §7 — à date (étendue v1.7.0 : 8 disciplines + trio refactoring) : `resource-monitor`, `prompt-engineering`, `context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering`, `fleet-engineering`, `memory-engineering`, `spec-driven-development`, `refactoring-engineering`, `refactoring-test`, `refactor-guard`, `knowledge-observer`, `audit-provenance`, `skill-creator`, `agent-creator`, `script-creator`, `script-reviewer`, `script-mon-ecosysteme-infrastructure`, `skill-finder-cn` (fallback §1.16 gen-plan v3.21.0) ;
+- leurs éléments liés, dérivés MÉCANIQUEMENT au moment de l'installation (jamais figés — KO-L003) : dépendances déclarées (frontmatter YAML `dependencies` + registre KB « Dépend de ») et affectations SHARED §7 — à date (étendue v1.7.0 : 8 disciplines + trio refactoring) : `resource-monitor`, `prompt-engineering`, `context-engineering`, `loop-engineering`, `graph-engineering`, `harness-engineering`, `fleet-engineering`, `memory-engineering`, `spec-driven-development`, `refactoring-engineering`, `refactoring-test`, `refactor-guard`, `knowledge-observer`, `audit-provenance`, `skill-creator`, `agent-creator`, `script-creator`, `script-reviewer`, `script-mon-ecosysteme-infrastructure`, `skill-finder-cn` (fallback §1.16 gen-plan v3.21.0), `alias-eco` (registre des phrases récurrentes $<ALIAS> — délégation correct-work v2.8.0, registre `@historique/@Alias/`) ;
 - les agents requis : `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md`, `PROMPT-MAITRE-SHARED.md`, `SYNC-CONTEXT.md`, plus `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (véhicule de la réinstallation D006) et `PROMPT-MAITRE-REFACTOR-GUARD-v<version>.md` (4e famille — source de l'étape 6, décision D009) ;
 - l'outillage et le registre : `scripts/` (arbitres, certification-complete.py, G-RES, ensure-installed.py, task23-install-minimale.py, refactoring-test-graph.py) et `skills/KNOWLEDGE.md` (source de vérité).
 
@@ -93,11 +95,10 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
-| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.23.1.md` | gen-plan v3.23.1 | 3 |
-| correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md` | correct-work v2.7.0 | 4 |
-| clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md` | clone-chat v2.0.1 | 5 |
-| refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md` | refactor-guard v1.7.0 | 6 |
-
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.23.2.md` | gen-plan v3.23.2 | 3 |
+| correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md` | correct-work v2.8.0 | 4 |
+| clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md` | clone-chat v2.0.2 | 5 |
+| refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md` | refactor-guard v1.8.0 | 6 |
 refactor-guard (4e famille — décision D009, bootstrap v1.7.0) : installé à l'étape 6 depuis le pipeline v1.7.0 (fin de l'exclusion « hors pipeline 3-5 » de la décision d'origine — le PM porte son §5 d'installation standard) ; l'instantané est tenu à jour au même titre.
 
 ### Fichiers de socle indispensables (corpus, archive, outillage, registre)
@@ -137,8 +138,11 @@ refactor-guard (4e famille — décision D009, bootstrap v1.7.0) : installé à 
 ### §3.1 Étape 1 — Intégrité du corpus
 Comparer les SHAs SHA-256 des fichiers du corpus aux valeurs scellées dans l'archive de référence (méthode neutral-line, Annexe D du PDF source ; canal R-1 = README §13, référence historique). Toute divergence = STOP : restaurer depuis `download/mon-ecosysteme_archive.zip` ou le stockage versionné avant de reprendre au contrôle 1.
 
-### §3.2 Étapes 3-6 — Assemblage des formes installées
-Les SKILL.md sont ASSEMBLÉS depuis les PMs (jamais copiés à l'aveugle) : YAML frontmatter (§4 du PM) + règle zéro + spécifications (§1-§2) + relations (§3) + sections spécifiques. Les fichiers de référence sont extraits des blocs ```` ```markdown ```` du §9 avec fences incluses (round-trip déterministe, leçon A2) — l'extraction doit être insensible aux titres internes des blocs (logique de balance des fences).
+### §3.2 Étapes 3-6 — Mécanisme dual : installation directe (défaut) / assemblage (bootstrap)
+
+**(a) Installation DIRECTE — voie PAR DÉFAUT (v1.8.0)** : lorsque le dépôt est disponible (clone git local, règle d'or n°4), les étapes 3-6 copient telles quelles les **formes installées certifiées** du dépôt (`skills/<famille>/` + `skills/<skill>/` du registre KB — SKILL.md, references/, evals/, scripts/), certifiées par les arbitres de l'étape 9 ; la **garde R2 anti-rétrogradation** s'applique (jamais de version inférieure à la forme installée existante) et la **garde d'authenticité** demeure (le dépôt est vérifié au pin descendant-tolérant, l'archive round-trip à l'étape 2). Exécutant canonique : `scripts/eco_install_pipeline.py` (sync union + garde R2 + rescellement archive), versionné au dépôt.
+
+**(b) Assemblage depuis les PMs — voie BOOTSTRAP (corpus/archive seul)** : les SKILL.md sont ASSEMBLÉS depuis les PMs (jamais copiés à l'aveugle) : YAML frontmatter (§4 du PM) + règle zéro + spécifications (§1-§2) + relations (§3) + sections spécifiques — les §5 des 4 PMs familles demeurent la SPÉCIFICATION de la forme installée (la voie (a) copie exactement ce que la voie (b) reconstruit ; les deux produisent des formes byte-identiques). Les fichiers de référence sont extraits des blocs ```` ```markdown ```` du §9 avec fences incluses (round-trip déterministe, leçon A2) — l'extraction doit être insensible aux titres internes des blocs (logique de balance des fences).
 
 **Dérivation « PM le plus récent » (v1.2.0, KO-L003)** : le PM source de chaque famille (gen-plan, correct-work, clone-chat, refactor-guard — 4 familles, décision D009) est le plus récent du corpus, dérivé du listing réel de `@mon-ecosysteme/` par tri semver des suffixes `-vX.Y.Z.md` — jamais d'un numéro figé. **Garde anti-rétrogradation (R2)** : si la version du PM dérivé est inférieure à celle du SKILL.md installé (`skills/<famille>/`, frontmatter = source de vérité), la forme installée est conservée inchangée — l'assemblage ne rétrograde jamais — et l'écart est journalisé au worklog ; l'entrée KB (étape 7) porte la version installée. Cas d'espèce au jour de la v1.2.0 : correct-work — corpus v2.5.1, installé v2.7.0 → l'étape 4 conservait v2.7.0. **Ce cas d'espèce est RÉSORBÉ depuis la v1.3.1 (Task 16, 2026-10-02)** : les PMs CORRECT-WORK v2.6.0/v2.7.0 sont matérialisés au corpus (reconstitution par diffs chirurgicaux méthode B1, provenance tracée au §7 de chaque PM) — le corpus porte désormais la forme certifiée v2.7.0 et la garde R2 demeure pour tout état futur.
 
@@ -161,6 +165,7 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 | skills-inventory —scanne→ KNOWLEDGE.md | 7 | Registre source |
 | install-ecosystem —utilise→ infrastructure | 2-8 | Déploiement P6-P7 |
 | gen-plan —délègue→ prompt-engineering | 0-11 | Optimisation fine des prompts |
+| correct-work —délègue→ alias-eco | 4, 9(b) | Mode PROJET — tenue du registre des phrases récurrentes de la discussion analysée (v1.8.0) |
 
 ## §5 — Relations
 
@@ -185,6 +190,9 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.8.1 | 2026-10-23 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : refactor-guard v1.7.1→v1.8.0 ; recalibrage croisé : SHARED v1.7.9 (§6.1), §2ter, §A.3 |
+| v1.8.0 | 2026-10-23 | Directive propriétaire (session web-fdf5963c, Task 18 — « optimise le système d'installation en regénérant, toutes disciplines et refactoring » + prérequis A « assemble au lieu d'installer ») : MÉCANISME DUAL d'installation codifié — §3.2 réécrit : (a) installation DIRECTE des formes certifiées du dépôt = voie PAR DÉFAUT (exécutant canonique scripts/eco_install_pipeline.py — chemin REPO paramétrable, pin descendant-tolérant), (b) assemblage depuis les PMs = voie BOOTSTRAP (les §5 des PMs demeurent la spécification de la forme — 4 PMs familles régénérés mécaniquement KO-L004 avec note §5 mécanisme dual : gen-plan v3.23.2, correct-work v2.8.0, clone-chat v2.0.2, refactor-guard v1.7.1) ; intégration alias-eco (skill v1.0.0 — registre d'alias $<ALIAS>, déclencheurs « alias-eco »/« liste mes alias »/« alias-eco (chat) », registre JSON @historique/@Alias/, délégation correct-work v2.8.0 mode PROJET) au périmètre (§2bis, §4, §A.3) ; §1 #2 et §2 recalibrés |
+| v1.7.2 | 2026-10-23 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.23.1→v3.23.2 · correct-work v2.7.0→v2.8.0 · clone-chat v2.0.1→v2.0.2 · refactor-guard v1.7.0→v1.7.1 ; recalibrage croisé : SHARED v1.7.8 (§6.1), §2ter, §A.3 |
 | v1.7.1 | 2026-10-11 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : clone-chat v2.0.0→v2.0.1 ; recalibrage croisé : SHARED v1.7.7 (§6.1), §2ter, §A.3 |
 | v1.7.0 | 2026-10-12 | Directive propriétaire (session web-b4d7dd19 — gen-plan(step), « vérifie aussi que PM-INSTALL installe bien toutes les disciplines, ainsi que tous les éléments nécessaires pour faire du refactoring ; si ce n'est pas le cas, fais en sorte qu'il le fasse ») : étape 6 refactor-guard ajoutée au pipeline (10→11 étapes) — le 4e PM famille D009 est désormais installé depuis le corpus (fin de l'exclusion « hors pipeline 3-5 » ; §2ter/§3.2/§3.3/§4/§5/§A.2 recalibrés) ; périmètre COMPLET défini explicitement = formes installées de toutes les entrées du registre KB courant (8 disciplines n°54/n°55 + outil refactoring-test + 4e famille refactor-guard incluses) ; fermeture MINIMALE « à date » étendue +6 éléments (fleet-engineering, memory-engineering, spec-driven-development, refactoring-engineering, refactoring-test, refactor-guard) ; §A.3 +6 entrées extensions + instantané courant refactor-guard v1.7.0 ; socle §2ter +1 ligne (`scripts/refactoring-test-graph.py` — outil n°55) ; recalibrage croisé KO-L004 : SHARED v1.7.6 (§3.2/§6.1), ULTRA régénéré (11 étapes, install_v dynamique), propagate-context v1.7.6, README v2.1.6, SYNC-CONTEXT v1.4.8, archive rescellée round-trip 9/9 |
 | v1.6.5 | 2026-10-12 | Décision propriétaire D009 (Task 9, session web-b4d7dd19 — gen-plan(step)) : 4e famille refactor-guard — PM canonique PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0 au corpus (bootstrap — PMs de la lignée externe ACCEPTÉS non portés, R4) ; generer-pm-skill.py 3→4 familles ; §2ter +1 ligne REFACTOR-GUARD, §2quater 3→4 familles, référence §1 alignée |
@@ -216,7 +224,7 @@ Note P4 (recalibrée v1.7.0) : les SKILL.md + références des 4 familles (gen-p
 ### §A.3 Registre KB cible (14 entrées d'époque + 6 extensions v1.7.0)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.7.1, 2026-10-12) : gen-plan v3.23.1 · correct-work v2.7.0 · clone-chat v2.0.1 · refactor-guard v1.7.0 — cf. §2ter.
+Instantané courant (v1.8.0, 2026-10-23) : gen-plan v3.23.2 · correct-work v2.8.0 · clone-chat v2.0.2 · refactor-guard v1.8.0 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|
@@ -245,5 +253,6 @@ Extensions (recalibrage v1.7.0 — disciplines n°54 + discipline n°55/outil + 
 | refactoring-engineering | v1.1.0 |
 | refactoring-test | v1.0.1 |
 | refactor-guard | v1.7.0 |
+| alias-eco | v1.0.0 |
 
 Catégorie (attestée) : ecosystem — les 4 dernières matérialisations sont les skills des disciplines d'exécution (socle SHARED §7, session A12) : forme installée `<discipline>/` — SKILL.md + evals/evals.json + evals/trigger_evals.json, déclenchement automatique ; matérialisations agent `_disciplines/` retirées, SHA prouvés ; « Utilisé par » : gen-plan (couche disciplines), sessions d'ingénierie ; matérialisées 2026-09-07.

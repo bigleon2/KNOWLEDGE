@@ -24,6 +24,7 @@
 | v1.7.0 | 2026-10-11 | §7 matérialisation des définitions normatives des 3 disciplines n°54 dans la table de définitions (spec-driven development, memory engineering, fleet engineering — ancrage état de l'art dans `references/fondements-academiques.md` de chaque skill ; registre d'assignation inchangé — R4) — session web-b4d7dd19, objectif principal discussion Qwen |
 | v1.7.1 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.0 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver — adaptation locale journalisée : D010 + précédents v3.21.0) |
 | v1.7.2 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.1 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver ; cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
+| v1.7.8 | 2026-10-23 | §6.1 — référence(s) PM portée(s) aux 4 versions générées mécaniquement (gen-plan v3.23.2, correct-work v2.8.0, clone-chat v2.0.2, refactor-guard v1.7.1) + référence PM-INSTALL portée à v1.8.0 (mécanisme dual d'installation + périmètre alias-eco — Task 18, session web-fdf5963c) ; complétion de la ligne de révision |
 | v1.7.4 | 2026-10-12 | §7 correction outil (ligne « Refactoring test » = outil de la discipline n°55 — Task 8, directive propriétaire) + registre scindé en 3 lignes (refactoring-engineering discipline / refactoring-test outil / refactor-guard garde-fous — fusion discussion 468a4c26) ; §6.1 référence gen-plan portée à v3.23.1 (recalibrage mécanique KO-L004 — `generer-pm-skill.py`, bump PATCH conformité semver) — session web-b4d7dd19 Task 8 gen-plan(step) |
 | v1.7.3 | 2026-10-12 | §7 matérialisation des définitions normatives des 2 disciplines de refactoring n°55 (refactoring engineering, refactoring test — ancrage état de l'art dans `references/fondements-academiques.md` de chaque skill ; registre d'assignation +1 ligne) ; §6.1 référence gen-plan portée à v3.23.0 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver) — session web-b4d7dd19 Task 7 gen-plan(step) |
 
@@ -37,6 +38,7 @@
 | v1.4.3 | 2026-10-11 | Codification SHARED §1.2 en v1.6.8 (dossier `@historique/` — R4/R2/KO-L003, re-scellement KO-L004) ; cascade resync 2 N1 + 93 N2 + 49 N3 + 2 .agent (Task 17) |
 | v1.4.4 | 2026-10-11 | Recalibrage état gen-plan v3.22.0 — v3.21.0 archivé (16 PMs GEN-PLAN) ; décision propagation N2 tracée : bloc §0 byte-identique v1.6.8→v1.7.1, aucune re-propagation requise (cascade n°54, session web-b4d7dd19) |
 | v1.4.5 | 2026-10-11 | Recalibrage état gen-plan v3.22.1 — v3.22.0 archivé (17 PMs GEN-PLAN) ; propagation marqueur §0 v1.7.1→v1.7.2 recalibrée et exécutée (cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
+| v1.5.0 | 2026-10-23 | Cascade Task 18 (session web-fdf5963c, KO-L004) : 4 PMs familles régénérés mécaniquement (gen-plan v3.23.2, correct-work v2.8.0, clone-chat v2.0.2, refactor-guard v1.7.1 — note §5 mécanisme dual) ; PM-INSTALL v1.7.2→v1.8.0 ; SHARED v1.7.8 ; propagation marqueur §0 v1.7.7→v1.7.8 exécutée (100 skills + 69 scripts + 2 agents, idempotent) ; skill alias-eco v1.0.0 créé (registre @historique/@Alias/ — état vivant) ; KB 34 entrées ; ULTRA régénéré ; archive rescellée round-trip 9/9 |
 | v1.4.7 | 2026-10-12 | Révision Task 8 (cascade gen-plan v3.23.1 — gen-plan(step), fusion discussion 468a4c26) : propagation marqueur §0 v1.7.3→v1.7.4 (constantes recalibrées — skills + scripts + agents, idempotent ×2) |
 | v1.4.6 | 2026-10-12 | Recalibrage état gen-plan v3.23.0 — v3.22.1 archivé (18 PMs GEN-PLAN) ; propagation marqueur §0 v1.7.2→v1.7.3 recalibrée et exécutée (97 skills + 51 scripts + 2 agents, idempotent ×2 — matérialisation n°55, session web-b4d7dd19 Task 7) |
 
@@ -60,6 +62,8 @@
 
 | Version | Date | Résumé de révision |
 |---------|------|--------------------|
+| v1.8.0 | 2026-10-23 | MÉCANISME DUAL d'installation (§3.2 réécrit : installation directe des formes certifiées du dépôt = voie par défaut, exécutant canonique eco_install_pipeline.py ; assemblage bootstrap corpus-seul) + intégration alias-eco (§2bis/§4/§A.3) — Task 18, session web-fdf5963c, directive propriétaire « optimise le système d'installation en regénérant » + prérequis A |
+| v1.7.2 | 2026-10-23 | Génération mécanique KO-L004 des 4 PMs familles (gen-plan v3.23.2 · correct-work v2.8.0 · clone-chat v2.0.2 · refactor-guard v1.7.1) — recalibrage croisé §2ter/§A.3 ; SHARED v1.7.8 |
 | v1.1.0 | 2026-10-02 | Fusion des installateurs (périmètre §A + ordre optimal 10 étapes) — source d'installation unique (R4) |
 | v1.2.0 | 2026-10-02 | Dérivation dynamique « PM le plus récent » généralisée aux 3 familles + garde anti-rétrogradation R2 (§3.2) |
 | v1.3.0 | 2026-10-02 | Déduplication download/ — canal de fichiers supprimé (décision d'architecture v2.2) |
@@ -73,13 +77,13 @@
 
 ## 6. Registre KB — `skills/KNOWLEDGE.md` (source de vérité de l'état de l'écosystème)
 
-Registre à 30 entrées — instantané des versions archivé ci-dessous (source : registre KB, instantané rafraîchi 2026-10-12 matérialisation n°55 ; le registre vivant fait foi ; les versions des 3 familles = versions de leurs PMs vivants, contrat KO-L004).
+Registre à 34 entrées — instantané des versions archivé ci-dessous (source : registre KB, instantané rafraîchi 2026-10-23 Task 18 — alias-eco v1.0.0 créé, 4 familles montées ; le registre vivant fait foi ; les versions des 4 familles = versions de leurs PMs vivants, contrat KO-L004).
 
 | Skill | Version | Skill | Version |
 |-------|---------|-------|---------|
-| gen-plan | v3.23.0 | audit-provenance | v1.1.0 |
-| correct-work | v2.7.0 | autonomous-agent | v1.1.0 |
-| clone-chat | v2.0.0 | correct-py | v1.1.0 |
+| gen-plan | v3.23.2 | audit-provenance | v1.1.0 |
+| correct-work | v2.8.0 | autonomous-agent | v1.1.0 |
+| clone-chat | v2.0.2 | correct-py | v1.1.0 |
 | skills-inventory | v1.1.0 | fleet-engineering | v1.0.1 |
 | skill-creator | v1.1.0 | memory-engineering | v1.1.1 |
 | agent-creator | v2.1.0 | spec-driven-development | v1.0.1 |
@@ -92,7 +96,8 @@ Registre à 30 entrées — instantané des versions archivé ci-dessous (source
 | knowledge-observer | v1.0.0 | vue-upload | v1.2.0 |
 | script-creator | v1.1.0 | script-reviewer | v1.0.0 |
 | refactoring-engineering | v1.0.1 | refactoring-test | v1.0.1 |
-| refactor-guard | v1.7.0 | fullstack-dev | v1.0.0 |
+| refactor-guard | v1.7.1 | fullstack-dev | v1.0.0 |
+| alias-eco | v1.0.0 | dessin-technique | v1.1.1 |
 
 ## 7. Mise à jour de ce fichier
 

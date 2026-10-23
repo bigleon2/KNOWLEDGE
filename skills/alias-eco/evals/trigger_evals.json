@@ -1,0 +1,34 @@
+[
+  {
+    "query": "alias-eco",
+    "should_trigger": true
+  },
+  {
+    "query": "Utilise alias-eco pour gérer le système d'alias de mon écosystème.",
+    "should_trigger": true
+  },
+  {
+    "query": "liste mes alias",
+    "should_trigger": true
+  },
+  {
+    "query": "alias-eco (chat) : donne-moi la liste des phrases récurrentes de cette discussion, triée par ordre alphabétique.",
+    "should_trigger": true
+  },
+  {
+    "query": "Expande $ECO-LEON dans mon message et ajoute l'alias ECO-DEPOT pour « mon dépôt KNOWLEDGE ».",
+    "should_trigger": true
+  },
+  {
+    "query": "Clone cette discussion dans un Markdown auto-suffisant pour la session héritière.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fais-moi l'inventaire de toutes les skills disponibles avec leurs catégories.",
+    "should_trigger": false
+  },
+  {
+    "query": "Vérifie les livrables de ce projet : erreurs, omissions, incohérences.",
+    "should_trigger": false
+  }
+]

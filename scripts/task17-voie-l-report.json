@@ -53,12 +53,12 @@
           "expected": false,
           "trigger_m": true,
           "votes": [
-            null,
-            null,
+            false,
+            false,
             false
           ],
-          "ratio": null,
-          "decision": "QUOTA",
+          "ratio": 0.0,
+          "decision": "CONFIRME",
           "revision_appliquee": false
         }
       ]
@@ -466,12 +466,88 @@
           "revision_appliquee": false
         }
       ]
+    },
+    "alias-eco": {
+      "cases": [
+        {
+          "query": "Clone cette discussion dans un Markdown auto-suffisant pour la session héritière.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "Fais-moi l'inventaire de toutes les skills disponibles avec leurs catégories.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        },
+        {
+          "query": "Vérifie les livrables de ce projet : erreurs, omissions, incohérences.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "gen-plan": {
+      "cases": [
+        {
+          "query": "gen-plan (stp) : lance ce mode pour ce projet.",
+          "expected": false,
+          "trigger_m": true,
+          "votes": [
+            false,
+            false,
+            false
+          ],
+          "ratio": 0.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
+    },
+    "refactor-guard": {
+      "cases": [
+        {
+          "query": "je veux découper cette God Class de 2000 lignes sans rien casser",
+          "expected": true,
+          "trigger_m": false,
+          "votes": [
+            true,
+            true,
+            true
+          ],
+          "ratio": 1.0,
+          "decision": "CONFIRME",
+          "revision_appliquee": false
+        }
+      ]
     }
   },
   "bilan": {
-    "CONFIRME": 20,
-    "QUOTA": 1,
-    "REFUTE_UNANIME": 8,
+    "CONFIRME": 27,
+    "REFUTE_UNANIME": 7,
     "AMBIGU": 2
   }
 }

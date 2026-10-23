@@ -1,23 +1,26 @@
 {
-  "date": "2026-10-10",
+  "date": "2026-10-03",
   "task": "Task 21 — campagne P0-P6, arbitre V6 (recommandation R1 Task 19)",
   "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
   "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
-  "n_skills": 93,
-  "skills_ok": 79,
-  "skills_derive": 14,
+  "n_skills": 98,
+  "skills_ok": 81,
+  "skills_derive": 17,
   "verdict": "FAIL",
   "derives": [
     "agent-browser",
     "agent-creator",
     "ai-news-collectors",
+    "alias-eco",
     "audio-metadata",
     "gaokao-recommend-schools",
+    "gen-plan",
     "jd-resume-tailor",
     "pdf-llm",
     "prompt-engineering",
     "qingyan-research",
+    "refactor-guard",
     "script-mon-ecosysteme-infrastructure",
     "script-reviewer",
     "skills-inventory",
@@ -450,9 +453,9 @@
       ]
     },
     "agent-creator": {
-      "version": "2.1.0",
+      "version": "2.2.0",
       "n_cases": 7,
-      "n_keywords": 25,
+      "n_keywords": 26,
       "score_officiel": "6/7",
       "ok": false,
       "derive_m": true,
@@ -615,6 +618,119 @@
           "score": 0.0,
           "hits": [],
           "ok": true
+        }
+      ]
+    },
+    "alias-eco": {
+      "version": "1.0.0",
+      "n_cases": 8,
+      "n_keywords": 69,
+      "score_officiel": "5/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "alias-eco",
+          "expected": true,
+          "trigger_m": true,
+          "score": 1.0,
+          "hits": [
+            "alia",
+            "eco"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Utilise alias-eco pour gérer le système d'alias de mon écosystème.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "alia",
+            "eco",
+            "ecosystem",
+            "system"
+          ],
+          "ok": true
+        },
+        {
+          "query": "liste mes alias",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "alia",
+            "list"
+          ],
+          "ok": true
+        },
+        {
+          "query": "alias-eco (chat) : donne-moi la liste des phrases récurrentes de cette discussion, triée par ordre alphabétique.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "alia",
+            "alphabet",
+            "chat",
+            "discuss",
+            "eco",
+            "list",
+            "ordr",
+            "phras",
+            "recurrent",
+            "trie"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Expande $ECO-LEON dans mon message et ajoute l'alias ECO-DEPOT pour « mon dépôt KNOWLEDGE ».",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.545,
+          "hits": [
+            "alia",
+            "depot",
+            "eco",
+            "knowledg",
+            "leon",
+            "messag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Clone cette discussion dans un Markdown auto-suffisant pour la session héritière.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.3,
+          "hits": [
+            "clon",
+            "discuss",
+            "sess"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Fais-moi l'inventaire de toutes les skills disponibles avec leurs catégories.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "inventair",
+            "skill"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Vérifie les livrables de ce projet : erreurs, omissions, incohérences.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "livr",
+            "projet"
+          ],
+          "ok": false
         }
       ]
     },
@@ -1161,7 +1277,7 @@
       ]
     },
     "autonomous-agent": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "n_cases": 8,
       "n_keywords": 33,
       "score_officiel": "8/8",
@@ -1517,7 +1633,7 @@
       ]
     },
     "clone-chat": {
-      "version": "2.0.0",
+      "version": "2.0.2",
       "n_cases": 7,
       "n_keywords": 26,
       "score_officiel": "7/7",
@@ -1863,7 +1979,7 @@
       ]
     },
     "context-engineering": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "n_cases": 7,
       "n_keywords": 19,
       "score_officiel": "7/7",
@@ -2041,9 +2157,9 @@
       ]
     },
     "correct-work": {
-      "version": "2.7.0",
+      "version": "2.8.0",
       "n_cases": 7,
-      "n_keywords": 41,
+      "n_keywords": 46,
       "score_officiel": "7/7",
       "ok": true,
       "derive_m": false,
@@ -2302,6 +2418,134 @@
           "trigger_m": false,
           "score": 0.0,
           "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "dessin-technique": {
+      "version": "1.1.1",
+      "n_cases": 8,
+      "n_keywords": 78,
+      "score_officiel": "8/8",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Reproduis cette pièce photographiée dans le style dessin technique (isométrie CAO cotée) — il y a une pièce de centime posée à côté pour l'échelle.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.625,
+          "hits": [
+            "centim",
+            "cote",
+            "dessin",
+            "echell",
+            "isometri",
+            "photographie",
+            "piec",
+            "pose",
+            "styl",
+            "techn"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Génère le dessin technique coté de l'étape 2 (coude monté sur l'UMA) à partir du DNA de style mesuré.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.462,
+          "hits": [
+            "cote",
+            "dessin",
+            "mesur",
+            "partir",
+            "styl",
+            "techn"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Mets à l'échelle ce dessin multi-pièces : les cotes réelles sont connues, harmonise les facteurs pièce par pièce.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.692,
+          "hits": [
+            "connu",
+            "cote",
+            "dessin",
+            "echell",
+            "fact",
+            "harmonis",
+            "multi",
+            "piec",
+            "reell"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Déduis les cotes de cette pièce sur la photo grâce à la pièce de monnaie posée à côté (capture de forme).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "captur",
+            "cote",
+            "form",
+            "grac",
+            "piec",
+            "pose"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Mesure le pas de vis de cette tige filetée sur la photo (il y a une pièce de 2 € pour l'échelle) et donne la désignation ISO du filet.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "design",
+            "echell",
+            "filete",
+            "mesur",
+            "piec",
+            "tige"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Quelle est la profondeur de ce trou borgne ? Le fond est visible sur la photo, avec une pièce de monnaie à côté pour l'échelle.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.562,
+          "hits": [
+            "borgn",
+            "cote",
+            "echell",
+            "fond",
+            "piec",
+            "profond",
+            "quell",
+            "trou",
+            "visibl"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Génère une photo réaliste de l'atelier pour illustrer la fiche.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        },
+        {
+          "query": "Corrige l'orthographe du rapport PDF.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.25,
+          "hits": [
+            "orthograph"
+          ],
           "ok": true
         }
       ]
@@ -2662,7 +2906,7 @@
       ]
     },
     "fleet-engineering": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "n_cases": 7,
       "n_keywords": 35,
       "score_officiel": "7/7",
@@ -3292,12 +3536,12 @@
       ]
     },
     "gen-plan": {
-      "version": "3.21.0",
-      "n_cases": 8,
+      "version": "3.23.2",
+      "n_cases": 12,
       "n_keywords": 50,
-      "score_officiel": "8/8",
-      "ok": true,
-      "derive_m": false,
+      "score_officiel": "11/12",
+      "ok": false,
+      "derive_m": true,
       "cases": [
         {
           "query": "Utilise le skill gen-plan pour planifier une tâche (modes, étapes E1-E15, estimation de coût).",
@@ -3350,6 +3594,44 @@
           "ok": true
         },
         {
+          "query": "gen-plan(step) : exécute le plan d'actions en cours en groupes séquentiels avec une vérification après chaque groupe.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.308,
+          "hits": [
+            "acti",
+            "execut",
+            "gen",
+            "plan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "gen-plan(step-ok) : re-génère le plan d'actions puis enchaîne les groupes en demandant ma confirmation avant chacun.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.231,
+          "hits": [
+            "acti",
+            "gen",
+            "plan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "gen-plan(step-confirm) : poursuis l'exécution en groupes avec ma confirmation avant chacun (ancien nom du mode).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.308,
+          "hits": [
+            "execut",
+            "gen",
+            "mode",
+            "plan"
+          ],
+          "ok": true
+        },
+        {
           "query": "Intègre dans le plan d'actions : ajoute la rédaction du PDF de synthèse à la fin du cycle.",
           "expected": true,
           "trigger_m": true,
@@ -3360,6 +3642,18 @@
             "plan"
           ],
           "ok": true
+        },
+        {
+          "query": "gen-plan (stp) : lance ce mode pour ce projet.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "gen",
+            "mode",
+            "plan"
+          ],
+          "ok": false
         },
         {
           "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",
@@ -3564,7 +3858,7 @@
       ]
     },
     "graph-engineering": {
-      "version": "1.0.1",
+      "version": "1.1.0",
       "n_cases": 7,
       "n_keywords": 11,
       "score_officiel": "7/7",
@@ -3646,7 +3940,7 @@
       ]
     },
     "harness-engineering": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "n_cases": 7,
       "n_keywords": 19,
       "score_officiel": "7/7",
@@ -4620,7 +4914,7 @@
       ]
     },
     "loop-engineering": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "n_cases": 7,
       "n_keywords": 18,
       "score_officiel": "7/7",
@@ -4893,7 +5187,7 @@
       ]
     },
     "memory-engineering": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "n_cases": 7,
       "n_keywords": 48,
       "score_officiel": "7/7",
@@ -5513,7 +5807,7 @@
       ]
     },
     "prompt-engineering": {
-      "version": "2.2.0",
+      "version": "2.3.0",
       "n_cases": 7,
       "n_keywords": 21,
       "score_officiel": "6/7",
@@ -5855,6 +6149,296 @@
         }
       ]
     },
+    "refactor-guard": {
+      "version": "1.8.0",
+      "n_cases": 8,
+      "n_keywords": 116,
+      "score_officiel": "7/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "refactorise le module core de mon écosystème, il est devenu ingérable",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.25,
+          "hits": [
+            "ecosystem",
+            "refactoris"
+          ],
+          "ok": true
+        },
+        {
+          "query": "gen-plan détecte une dette technique sur ce fichier — que dit refactor-guard ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "detect",
+            "dett",
+            "guard",
+            "plan",
+            "refactor",
+            "techn"
+          ],
+          "ok": true
+        },
+        {
+          "query": "évalue le risque de restructurer ce module avant de toucher quoi que ce soit",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.222,
+          "hits": [
+            "evalu",
+            "risqu"
+          ],
+          "ok": true
+        },
+        {
+          "query": "refactor-guard : scan le graphe de dépendances de scripts/ et dis-moi s'il y a des cycles",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.6,
+          "hits": [
+            "depend",
+            "graph",
+            "guard",
+            "refactor",
+            "scan",
+            "script"
+          ],
+          "ok": true
+        },
+        {
+          "query": "je veux découper cette God Class de 2000 lignes sans rien casser",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false
+        },
+        {
+          "query": "écris-moi un nouveau module de scraping depuis zéro",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "zero"
+          ],
+          "ok": true
+        },
+        {
+          "query": "clone cette discussion",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.333,
+          "hits": [
+            "discuss"
+          ],
+          "ok": true
+        },
+        {
+          "query": "bonjour",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "refactoring-engineering": {
+      "version": "1.1.1",
+      "n_cases": 7,
+      "n_keywords": 95,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill refactoring-engineering pour exécuter le refactoring préparé.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "engineering",
+            "executer",
+            "refactoring",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Déclare une opération de refactoring : cible, invariants, preuves attendues, plan de retour arrière.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.545,
+          "hits": [
+            "cibl",
+            "declar",
+            "invari",
+            "oper",
+            "plan",
+            "refactoring"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Refactoring préparatoire : rends ce changement facile, puis fais le changement facilement.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "puis",
+            "refactoring"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Planifie le refactoring du corpus PM en petites transformations préservant le comportement observable.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.875,
+          "hits": [
+            "comport",
+            "corpu",
+            "observ",
+            "petit",
+            "preserv",
+            "refactoring",
+            "transform"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Migre ce skill vers la nouvelle structure en stratégie progressive : remplacement sanctionné par étapes, archivage R4.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.167,
+          "hits": [
+            "archivag",
+            "skill"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Corrige ce fichier isolé rapidement sans plan préalable.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "plan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Renforce le harnais : profils ressource, signaux de pression, gardes-fous.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "refactoring-test": {
+      "version": "1.1.0",
+      "n_cases": 7,
+      "n_keywords": 81,
+      "score_officiel": "7/7",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill refactoring-test pour détecter si un refactoring est nécessaire sur ce skill.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "necessair",
+            "refactoring",
+            "test"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Évalue cette situation de refactoring : risque, urgence, portée.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.857,
+          "hits": [
+            "evalu",
+            "porte",
+            "refactoring",
+            "risqu",
+            "situ",
+            "urgenc"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Génère le graphe d'interactions et estime le blast radius d'une modification de refactoring-engineering.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.7,
+          "hits": [
+            "blast",
+            "engineering",
+            "graph",
+            "interact",
+            "modific",
+            "radiu",
+            "refactoring"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Scanne les signaux de dette technique de l'écosystème : duplication, versions divergentes, asymétries de la KB.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.6,
+          "hits": [
+            "asymetri",
+            "divergent",
+            "duplic",
+            "ecosystem",
+            "sign",
+            "vers"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Fais un re-scan post-opératoire : le delta de santé après le refactoring.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.125,
+          "hits": [
+            "refactoring"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Vérifie et corrige le rapport que je viens de produire (5 étapes, verdict S1-S3).",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.125,
+          "hits": [
+            "verdict"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Construis le graphe de connaissances de la KB : nœuds, arêtes, schéma versionné.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.143,
+          "hits": [
+            "graph"
+          ],
+          "ok": true
+        }
+      ]
+    },
     "research-explorer": {
       "version": "1.0.0",
       "n_cases": 8,
@@ -5945,7 +6529,7 @@
       ]
     },
     "resource-monitor": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "n_cases": 6,
       "n_keywords": 42,
       "score_officiel": "6/6",
@@ -6848,7 +7432,7 @@
       ]
     },
     "spec-driven-development": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "n_cases": 7,
       "n_keywords": 35,
       "score_officiel": "7/7",

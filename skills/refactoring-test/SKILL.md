@@ -1,6 +1,6 @@
 ---
 name: refactoring-test
-version: 1.0.2
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -24,7 +24,7 @@ read_when:
   - Ne pas déclencher pour l'EXÉCUTION d'un refactoring (refactoring-engineering) ni pour une vérification post-hoc générique (correct-work).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -68,6 +68,10 @@ Source d'arêtes : registre KB ({{KB_PATH}}) parsé mécaniquement (sections **D
 ### §1.6 Fondements (outil de la discipline n°55, 2026-10-12)
 Détection multi-signaux (taxonomies de code smells — Fowler ; hotspots = complexité × fréquence de changement — Tornhill) ; dette principal/intérêt (SQALE — Letouzey ; Krauchanka) ; impact par graphe de dépendances et reachability (change impact analysis — program dependency graphs) ; blast radius avant action d'agent ; évaluation indépendante de l'exécution (characterization/golden master — Feathers ; fitness functions automatisées). Détail et sources : `references/fondements-academiques.md`.
 
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+**Co-changes git (change coupling — CodeScene)** : en complément des arêtes déclaratives (KB + dependencies YAML), M3 peut déduire des arêtes EMPIRIQUES de l'historique git — fichiers modifiés ensemble ≥ k fois = couplage réel que les déclarations manquent ; le blast radius déclaratif seul sous-estime l'impact. **Blast radius pondéré** : nœud pivot (centralité forte — arbitres, KB, SHARED) = poids ×2 ; calibration des seuils OK/PRESSION/CRITIQUE sur l'historique des verdicts (mesure, pas a priori — les seuils fixes 4/7, 4/8 ne sont que des points de départ). **Isolation de contexte maker/checker** : l'indépendance refactoring-engineering (maker) / refactoring-test (checker) devient une CONDITION VÉRIFIABLE de validité du verdict — session séparée, mémoire non partagée, l'exécutant sans accès au raisonnement de l'évaluateur (« two AI agents do not give you four eyes ») ; sans isolation, le verdict est consigné « non validable quatre yeux ». Sources : codescene.com · zenn.dev maker-cannot-be-checker 07/2026 · moderne.ai.
+
 ## §2 — SPÉCIFICATION TECHNIQUE
 Bras mécanique : `scripts/refactoring-test-graph.py` (stdlib — re/json/sys) : parse la KB → graphe dirigé (A dépend de B) ; modes : `--target <skill>` (M3 — blast radius backward/forward + verdict), `--graph` (export complet), `--json` (sortie machine : scripts/refactoring-test-report.json). Idempotent ×2 (même état = même sortie). Les modes M1/M2/M4 sont des procédures de session (checklist §1.2) journalisées au worklog ; leurs preuves citent les arbitres existants (test-coherence-interactions, verify-cross, check-ecosysteme-integrity) comme sources de signaux.
 
@@ -87,12 +91,12 @@ Kebab-case ; semver strict ; verdicts OK/PRESSION/CRITIQUE (même vocabulaire qu
 ## §6 — TRAÇABILITÉ
 - v1.0.2 (Task 12, 2026-10-12, session web-b4d7dd19 — gen-plan(step), directive propriétaire « appliquer les corrections ») : résorption F2 (Task 11, consigné) — §5 baseline A2 actualisée (MESURÉE 7/7 les 2 voies — Task 9/G-RES-2, rapport `scripts/baseline-a2-n55-report.json`).
 - v1.0.1 (2026-10-12, session web-b4d7dd19 Task 8 — gen-plan(step), fusion discussion externe 468a4c26) : correction de déclaration — refactoring-test n'est PAS une discipline ; il est l'OUTIL de la discipline refactoring-engineering (n°55) qui se sert de lui comme d'un outil d'évaluation indépendant (directive propriétaire explicite) ; frontmatter déquoté (S4 — valeur inchangée dans le bump).
-- v1.0.0 (n°55, 2026-10-12, session web-b4d7dd19 Task 7 — gen-plan(step) G3/G4) : matérialisation de la discipline refactoring test (directive propriétaire : détecteur/évaluateur + graphe d'interactions pour estimer l'impact des modifications futures de refactoring-engineering) ; sources : recherche web approfondie (rapport Task 7) ; intégration gen-plan v3.23.1 §1.6 bloc n°55 ; baseline A2 en attente QUOTA.
+- v1.0.0 (n°55, 2026-10-12, session web-b4d7dd19 Task 7 — gen-plan(step) G3/G4) : matérialisation de la discipline refactoring test (directive propriétaire : détecteur/évaluateur + graphe d'interactions pour estimer l'impact des modifications futures de refactoring-engineering) ; sources : recherche web approfondie (rapport Task 7) ; intégration gen-plan v3.23.1 §1.6 bloc n°55 (mention HISTORIQUE d'époque — la référence vive est à jour v3.23.2) ; baseline A2 en attente QUOTA.
 
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées de la recherche web (détection, SQALE, impact analysis, blast radius, anti-auto-certification).
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.23.1 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
+- gen-plan v3.23.2 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
 - `scripts/refactoring-test-graph.py` — bras mécanique (graphe + verdict).
 
 ## §8 — Rattachement à la discipline n°55 (décentralisé du SHARED §7)

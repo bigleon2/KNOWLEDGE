@@ -1,6 +1,6 @@
 ---
 name: loop-engineering
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 tags:
@@ -19,7 +19,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -87,6 +87,10 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 | **E** | Boucle externe : bilan du cycle, recalibration des boucles internes (M3). |
 | **F** | Clôture : gains consignés, KB et worklog enrichis (M4). |
 
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+**Calibration des graders agentiques (M2)** : avant tout usage d'un grader agentique dans une boucle — échantillon golden de verdicts attendus, accord ≥ 80 % avec la voie mécanique exigé, juge ≠ rédacteur, ordre des cas randomisé (anti-biais positionnel/self-preference). **Critères d'arrêt quantifiés** : toute boucle porte (a) un max d'itérations N, (b) un plateau (gain marginal < ε sur 2 cycles consécutifs → arrêt), (c) une escalade propriétaire ; le hash des graders est scellé AVANT le run — toute modification du grader en cours de boucle est un signal de reward hacking (TRACE, arXiv 2601.20103) et invalide les verdicts. **Vérification intermédiaire** (VPR — Verifiable Process Rewards, arXiv 2605.10325) : un grader léger par étape (contrôle de convergence en cours de route) réduit le coût des échecs découverts tardivement — la vérification unique en fin de phase demeure le filet, pas le seul point de contrôle. **Limite documentée** (« The Limit of RLVR ») : itérer sans changer de méthode améliore l'efficacité d'échantillonnage, pas la capacité — une boucle qui ne converge pas exige un changement de méthode, pas plus d'itérations.
+
 ## §2 — SPÉCIFICATION TECHNIQUE
 
 - Markdown (rapports), JSON (benchmarks), Python (graders déterministes et scripts d'évaluation).
@@ -140,7 +144,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 | Détenteur | Mode de détention | Usage |
 |-----------|-------------------|-------|
-| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.23.1 §1.9 (PM corpus antérieur toléré — garde R2) | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
+| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.23.2 §1.9 (PM corpus antérieur toléré — garde R2) | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
 | `correct-work` | **Fonction héritée** | Lecture et validation d'artefacts de prompts (specs, SKILL.md, rapports de vérification) |
 | `clone-chat` | **Fonction héritée** | Assemblage de documents-clones, produits d'ingénierie de prompts |
 | `prompt-engineering` | Compétence spécialisée (matérialisé v1.0.1) | Optimisation fine des prompts complexes (délégation gen-plan) |

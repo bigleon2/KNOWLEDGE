@@ -1,6 +1,6 @@
 ---
 name: memory-engineering
-version: 1.1.1
+version: 1.2.0
 category: ecosystem
 language: fr
 tags:
@@ -22,7 +22,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -72,6 +72,10 @@ Deux niveaux (pattern établi de l'écosystème) : **État Court** — la fenêt
 ### §1.7 Fondements académiques et veille (N34, 2026-09-21 — n°54)
 Recherches N31/N34 vérifiées (preuves `tmp/n31-recherche/`) : **AgeMem** (arXiv 2026, 110+ citations) — opérations mémoire exposées comme outils : l'agent décide de façon autonome quoi/quand stocker, récupérer, mettre à jour ; **« Memory in the Age of AI Agents »** (survey, github.com) — taxonomie mémoire conversationnelle court/long terme ; **checkpointing & mémoire vectorielle** (Redis × LangGraph, juil. 2026) — persistance d'état et retrieval ; **panorama des frameworks mémoire** (machinelearningmastery, avr. 2026) — mémoire long terme, retrieval, gestion de contexte. Détail et sources : `references/fondements-academiques.md`.
 
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+**Ops update/forget/consolidate de première classe** (AgeMem, ACL 2026 — opérations mémoire exposées comme outils) : l'append-only demeure la règle d'écriture, mais l'oubli contrôlé devient une opération légitime — tombstone daté pour toute règle contredite, rollback versionné pour toute rétraction (l'EL non administré devient bruit + surface d'attaque — MemoryAgentBench). **Gouvernance des écrits** (survey « Memory in the Age of AI Agents », arXiv 2512.13564) : ranger chaque écrit par sa nature — KB = mémoire factuelle, worklog = mémoire expérientielle, scratchpad = mémoire de travail. **Validation Letta 2025** : la mémoire filesystem (recherche agentic de fichiers) est compétitive avec les bases vectorielles — conforte le choix KB/worklog-as-files de l'écosystème. **Contre-mesure budgétaire** : le « budget d'attention FINI » est lié au signal #token de resource-monitor (cross-ref dependencies) — une écriture sélective coûte moins cher qu'une relecture intégrale. Sources : arXiv 2601.01885 AgeMem · arXiv 2512.13564 · letta.com benchmark 08/2025.
+
 ## §2 — SPÉCIFICATION TECHNIQUE
 Répliques de l'État Long : worklog (unique), KB (unique), answer key (unique), plan (unique) — les « copies » (miroir prompts-maîtres, canal download, archive) sont des répliques BYTE-IDENTIQUES vérifiées, pas des variantes. Toute divergence clone↔original est un écart-attendu documenté (B9/D016) ou un drift à corriger.
 
@@ -95,7 +99,7 @@ Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées, signaux de veille, interactions.
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.23.1 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; worklog.md — État Long opérant de la session.
+- gen-plan v3.23.2 (SKILL.md) §1.9 PM/§1.6 — PM corpus antérieur toléré (garde R2) — routage autonome ; worklog.md — État Long opérant de la session.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 | Discipline | Détenteur principal | Fonction héritée |

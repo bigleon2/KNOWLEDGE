@@ -1,6 +1,6 @@
 ---
 name: prompt-engineering
-version: 2.2.0
+version: 2.3.0
 category: ecosystem
 language: fr
 tags:
@@ -19,12 +19,12 @@ dependencies:
     version: ">=3.7.0"
     used_at: "Consultation du contexte écosystème (planification E1-E8, méthode-mère §1.9)"
 read_when:
-  - Déclencher quand la demande concerne : skill d'optimisation fine des prompts complexes : rédaction, restructuration (restructure, restructurer), éval…
+  - "Déclencher quand la demande concerne : skill d'optimisation fine des prompts complexes : rédaction, restructuration (restructure, restructurer), éval…"
   - Déclencher si la demande mentionne : skill, prompts, méthode
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -91,6 +91,10 @@ Détail d'usage : `references/grille-evaluation-prompt.md`.
 1. Évaluation initiale (grille §1.4) — rapport M3.
 2. Ajustements proposés (un par axe sous seuil), classés par impact.
 3. Re-évaluation après application. L'itération s'arrête quand tous les axes PASS, ou après 3 itérations (dérive documentée au worklog, décision utilisateur).
+
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+**Catalogue technique → cas d'usage** : CoT (raisonnement multi-étapes) · self-consistency (réduction de variance par vote N chemins — prototype des 3 runs de confirm des baselines A2) · least-to-most (décomposition progressive) · plan-and-act (plans long-horizon, arXiv 2503.09572) · JSON-schema (sortie vérifiable — > 99 % d'adhérence avec validation + retry). **Couplage itération ↔ evals mesurés** : la boucle d'itération §1.5 s'ancre sur une métrique objective (trigger_evals, baselines A2) — itérer sans métrique optimise du bruit ; le cap 3 itérations est inchangé ; la grille §1.4 demeure l'outil d'audit. **Règle « artefact générable = schéma + check déterministe »** (arXiv 2601.22025) : tout artefact générable (plan, verdict, answer key) s'accompagne d'un check mécanique — alignement sur la philosophie arbitres de gen-plan. **Veille prompt-as-code** (APE, OPRO, DSPy+GEPA) : horizon d'automatisation de l'optimisation, applicable dès que les evals sont mesurés ; le métier migre vers eval engineering + context engineering (non-duplication SHARED §7 respectée). Sources : platform.claude.com prompt-eng best practices · arxiv 2503.09572 · arxiv 2601.22025 · arize.com GEPA.
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 

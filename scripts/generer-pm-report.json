@@ -1,5 +1,26 @@
 {
-  "mode": "generate",
-  "date": "2026-10-11",
-  "resultat": "no-op"
+  "mode": "check",
+  "date": "2026-10-23",
+  "familles": {
+    "gen-plan": {
+      "skill": "3.23.2",
+      "pm": "PROMPT-MAITRE-GEN-PLAN-v3.23.2.md",
+      "etat": "COHERENT"
+    },
+    "correct-work": {
+      "skill": "2.8.0",
+      "pm": "PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md",
+      "etat": "COHERENT"
+    },
+    "clone-chat": {
+      "skill": "2.0.2",
+      "pm": "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md",
+      "etat": "COHERENT"
+    },
+    "refactor-guard": {
+      "skill": "1.8.0",
+      "pm": "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md",
+      "etat": "COHERENT"
+    }
+  }
 }

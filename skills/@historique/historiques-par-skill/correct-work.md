@@ -1,11 +1,11 @@
 # Historique par skill — correct-work
 
 > **Version** : 1.0.0 — **Date** : 2026-10-11 (Task 17-B, session web-b93f42fa — directive propriétaire « un historique par skill »)
-> **Version vivante (corpus)** : v2.7.0 — `skills/@mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md` (sa table §7 fait foi)
-> **Versions archivées** : 4 PMs (v2.4.0 → v2.6.0) dans `prompts-maitres/correct-work/` — sceau SHA-256 au README §2
+> **Version vivante (corpus)** : v2.8.0 — `skills/@mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md` (sa table §7 fait foi)
+> **Versions archivées** : 5 PMs (v2.4.0 → v2.7.0) dans `prompts-maitres/correct-work/` — sceau SHA-256 au README §2
 > **Provenance** : tables migrées verbatim de `historique-versions-prompts-maitres.md` §3 (fichier retiré après migration — R4 une information, une source ; Task 17-B)
 
-## Famille CORRECT-WORK — 10 versions (skill : correct-work)
+## Famille CORRECT-WORK — 11 versions (skill : correct-work)
 
 **Particularité durable du skill** : vérification et correction de travaux pour assistant IA — 5 étapes, 4 modes (PROJET, CIBLE, AVEUGLE, + rapport), verdicts S1-S4, métriques de performance, checklists opérationnelles, hooks gen-plan (E8 + contrôle par phase E9-E14), arbitre verify-correct-work (16 checks).
 
@@ -20,7 +20,8 @@
 | v2.5.0 | 2026-09-06 | Unification du schéma evals (skill-creator) au §5 (evals.json, trigger_evals.json, workspaces) | Evals comparables entre exécutions (with_skill vs baseline) — même référentiel que gen-plan |
 | v2.5.1 | 2026-09-06 | Description Optimization (itération-3) : description frontmatter enrichie « erreurs, omissions, incohérences » | Déclenchement du skill 8/8 (au lieu de 6/8) — les cas « correction » et « omissions/incohérences » sont couverts |
 | v2.6.0 | 2026-09-19 | 4e mode AVEUGLE (Second Opinion — re-vérification sans accès au premier verdict), hook 2nd opinion agent-driven à l'Étape 5 (inputs filtrés), maximum 2 rounds de correction par artefact | Le biais de confirmation est éliminé (le second verdict ne voit pas le premier) ; la boucle de correction est bornée (SHARED §4.4) |
-| v2.7.0 | 2026-10-02 | Couplage gen-plan OBLIGATOIRE à l'Étape 1 (résolution dynamique de la dernière version installée) — fin du mode autonome ; ARRÊT EXPLICITE si gen-plan est indisponible ou corrompu ; §5.4 aligné sur la forme installée certifiée (7 cas trigger_evals) | Cohérence méthodologique garantie : toute vérification est planifiée par gen-plan, jamais improvisée — **VERSION VIVANTE (corpus)** |
+| v2.7.0 | 2026-10-02 | Couplage gen-plan OBLIGATOIRE à l'Étape 1 (résolution dynamique de la dernière version installée) — fin du mode autonome ; ARRÊT EXPLICITE si gen-plan est indisponible ou corrompu ; §5.4 aligné sur la forme installée certifiée (7 cas trigger_evals) | Cohérence méthodologique garantie : toute vérification est planifiée par gen-plan, jamais improvisée — supplantée par v2.8.0 le 2026-10-23 — archivée |
+| v2.8.0 | 2026-10-23 | Intégration alias-eco + mécanisme dual (Task 18, session web-fdf5963c — directive propriétaire : registre d'alias $<ALIAS>) : mode PROJET — délégation de la tenue du registre des phrases récurrentes à alias-eco >= v1.0.0 (§10.1 Phase 2, registre @historique/@Alias/) ; dependencies §4/§2.2 += alias-eco ; §3 Relations += alias-eco ; note §5 mécanisme dual (installation directe des formes certifiées par défaut — PM-INSTALL v1.8.0 §3.2) ; PM v2.8.0 généré mécaniquement KO-L004 (complétion agent 5 substitutions verrouillées) ; recalibrage croisé SHARED v1.7.8 / PM-INSTALL v1.7.2→v1.8.0 | La vérification PROJET tient automatiquement le registre des phrases récurrentes de la discussion analysée (délégation bidirectionnelle KB) — MINOR intégration fonctionnelle — **VERSION VIVANTE (corpus)** |
 
 Révisions documentaires de la famille (sans changement de version) : session A11 2026-09-06 (§B pointeur disciplines → SHARED §7) ; Task 16 2026-10-02 (v2.6.0 et v2.7.0 RECONSTITUTIONS par diffs chirurgicaux méthode B1 — `scripts/materialise-pm-correct-work.py` — les originaux perdus au wipe, provenance tracée en tête de PM, aucun faux lignage) ; Task 14 2026-10-10 (§2.6/§9.2/§10.1 alignés sur le SKILL.md v2.7.0 certifié, corruption « ode] » réparée, calibration de forme).
-Fichiers archivés de la famille : `prompts-maitres/correct-work/` — v2.4.0, v2.5.0, v2.5.1, v2.6.0 (4 fichiers, SHA-256 au §5).
+Fichiers archivés de la famille : `prompts-maitres/correct-work/` — v2.4.0, v2.5.0, v2.5.1, v2.6.0, v2.7.0 (5 fichiers, SHA-256 au §5).

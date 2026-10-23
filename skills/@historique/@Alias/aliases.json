@@ -1,0 +1,70 @@
+{
+ "format": "aliases-eco v1",
+ "mis_a_jour": "2026-10-23",
+ "source": "alias-eco v1.0.0",
+ "phrases": [
+  {
+   "phrase": "de façon cohérente",
+   "alias": null,
+   "occurrences": 8,
+   "occurrences_cumulees": 8,
+   "premiere_detection": "2026-10-23",
+   "derniere_detection": "2026-10-23",
+   "source": "scan discussion-web-fdf5963c.txt"
+  },
+  {
+   "phrase": "de façon cohérente, optimisée et fonctionnelle",
+   "alias": null,
+   "occurrences": 8,
+   "occurrences_cumulees": 8,
+   "premiere_detection": "2026-10-23",
+   "derniere_detection": "2026-10-23",
+   "source": "scan discussion-web-fdf5963c.txt"
+  },
+  {
+   "phrase": "de mon écosystème personnel",
+   "alias": null,
+   "occurrences": 3,
+   "occurrences_cumulees": 3,
+   "premiere_detection": "2026-10-23",
+   "derniere_detection": "2026-10-23",
+   "source": "scan discussion-web-fdf5963c.txt"
+  },
+  {
+   "phrase": "fais en sorte",
+   "alias": null,
+   "occurrences": 3,
+   "occurrences_cumulees": 3,
+   "premiere_detection": "2026-10-23",
+   "derniere_detection": "2026-10-23",
+   "source": "scan discussion-web-fdf5963c.txt"
+  },
+  {
+   "phrase": "le système d'installation de mon écosystème",
+   "alias": null,
+   "occurrences": 3,
+   "occurrences_cumulees": 3,
+   "premiere_detection": "2026-10-23",
+   "derniere_detection": "2026-10-23",
+   "source": "scan discussion-web-fdf5963c.txt"
+  },
+  {
+   "phrase": "mon dépôt KNOWLEDGE",
+   "alias": null,
+   "occurrences": 3,
+   "occurrences_cumulees": 3,
+   "premiere_detection": "2026-10-23",
+   "derniere_detection": "2026-10-23",
+   "source": "scan discussion-web-fdf5963c.txt"
+  },
+  {
+   "phrase": "mon écosystème personnel",
+   "alias": "ECO-LEON",
+   "occurrences": 0,
+   "occurrences_cumulees": 3,
+   "premiere_detection": "2026-10-23",
+   "derniere_detection": "2026-10-23",
+   "source": "attribution manuelle 2026-10-23"
+  }
+ ]
+}

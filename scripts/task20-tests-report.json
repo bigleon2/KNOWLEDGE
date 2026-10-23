@@ -1,0 +1,185 @@
+{
+  "decisions": {
+    "D002": {
+      "detail": "34 skills, 0 manquant(s), 0 divergence(s)",
+      "ok": true
+    },
+    "D003": {
+      "detail": "rc 0, 0 FAIL",
+      "ok": true
+    },
+    "D004": {
+      "detail": "rc 0",
+      "ok": true
+    },
+    "D005": {
+      "detail": "gen-plan v3.23.2 + garde INSTALLE",
+      "ok": true
+    },
+    "D006": {
+      "detail": "PASS  : 16/16",
+      "ok": true
+    },
+    "D007": {
+      "detail": "selftest 15/15, ECO-LEON True",
+      "ok": true
+    },
+    "D008": {
+      "detail": "run1 0.1s, preflight True, garde True, purges True",
+      "ok": true
+    },
+    "D009": {
+      "detail": "diff1 True, diff2 True, manifeste convergent True, archive stable True",
+      "ok": true
+    }
+  },
+  "mesures": {},
+  "t1": {
+    "divergents": [],
+    "manquants": [],
+    "n_skills_registre": 34
+  },
+  "t2": {
+    "duree_s": 0.04,
+    "fails": 0,
+    "rc": 0,
+    "resume": [
+      "",
+      "=== RESUME : 72/72 PASS, 0 FAIL ==="
+    ]
+  },
+  "t3": {
+    "duree_s": 0.49,
+    "rc": 0,
+    "stderr": "",
+    "verdicts": [
+      "  [3/6] verify-correct-work v2.5.1               ALL PASS (16/16) [OK]",
+      "  [4/6] check-ecosysteme-integrity               ALL PASS (72/72) [OK]",
+      "  VERDICT : CERTIFICATION COMPLÈTE : ALL PASS (6/6)"
+    ]
+  },
+  "t4": {
+    "declencheurs": {
+      "E15": true,
+      "correct-work": true,
+      "gen-plan(step)": true,
+      "plan d'actions": true,
+      "É1-INSTALL": true
+    },
+    "frontmatter": {
+      "category": true,
+      "dependencies": true,
+      "description": true,
+      "language": true,
+      "name": true,
+      "version": true
+    },
+    "garde_E1_INSTALL": {
+      "duree_s": 0.03,
+      "fichiers_manquants": [],
+      "rc": 0,
+      "verdict": "INSTALLE"
+    },
+    "lignes": 382,
+    "version": "3.23.2"
+  },
+  "t5": {
+    "all_pass": true,
+    "duree_s": 0.02,
+    "rc": 0,
+    "score": "PASS  : 16/16"
+  },
+  "t6": {
+    "duree_s": 0.05,
+    "list_rc": 0,
+    "registre": {
+      "deduplique": true,
+      "eco_leon": true,
+      "n_phrases": 7,
+      "trie": true
+    },
+    "selftest": "15/15",
+    "selftest_rc": 0
+  },
+  "t7": {
+    "cert_post_install": {
+      "all_pass": true,
+      "duree_s": 0.04,
+      "rc": 0
+    },
+    "diff1_conforme": true,
+    "diff_A_vers_B": {
+      "modifies": [],
+      "nouveaux": [],
+      "supprimes": []
+    },
+    "manifeste_pre_run_stale": true,
+    "modifies_hors_manifeste": [],
+    "run1": {
+      "duree_s": 0.1,
+      "etapes": {
+        "preflight": "commit b75a620 OK (pin b75a620 ancêtre — descendant-tolérant)",
+        "skills/@mon-ecosysteme": "9 fichiers",
+        "skills/KNOWLEDGE.md": "fichier sync",
+        "skills/clone-chat": "4 fichiers",
+        "skills/correct-work": "8 fichiers",
+        "skills/gen-plan": "15 fichiers",
+        "skills/skill-creator": "20 fichiers",
+        "skills/skills-inventory": "4 fichiers"
+      },
+      "garde_R2": "0 rétrogradation — host ≤ repo partout",
+      "preflight_ok": true,
+      "purges": [],
+      "rc": 0
+    }
+  },
+  "t8": {
+    "archive_byte_stable_run2": true,
+    "cert_post_install_2": {
+      "all_pass": true,
+      "duree_s": 0.04,
+      "rc": 0
+    },
+    "diff2_conforme": true,
+    "diff_B2_vers_C": {
+      "modifies": [
+        "scripts/ecosysteme-integrity.json"
+      ],
+      "nouveaux": [],
+      "supprimes": []
+    },
+    "manifeste_convergence_inter_cycles": true,
+    "modifies_hors_manifeste": [],
+    "run2": {
+      "duree_s": 0.1,
+      "rc": 0
+    }
+  },
+  "t9": {
+    "durees_s": {
+      "arbitre_correct_work": 0.02,
+      "cert_post_install_1": 0.04,
+      "cert_post_install_2": 0.04,
+      "certification_depot": 0.49,
+      "garde_E1_INSTALL": 0.03,
+      "integrite_hote": 0.04,
+      "run1": 0.1,
+      "run2": 0.1
+    },
+    "tailles_mo": {
+      "archive_hote": 0.1,
+      "corpus_depot": 0.3,
+      "corpus_hote": 0.3,
+      "scripts_hote": 1.35,
+      "skills_eco_hote": 1.12
+    },
+    "tailles_octets": {
+      "archive_hote": 107951,
+      "corpus_depot": 318726,
+      "corpus_hote": 318726,
+      "scripts_hote": 1413164,
+      "skills_eco_hote": 1176343
+    }
+  },
+  "verdict": "PERFORMANT"
+}

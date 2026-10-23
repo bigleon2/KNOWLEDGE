@@ -1,13 +1,14 @@
 ---
 name: agent-creator
-version: 2.1.0
+version: 2.2.0
 category: ecosystem
 language: fr
 tags:
   - agent
+  - agent-creation
+  - fabrique
   - memory
   - pipeline
-  - autonomous
   - multi-llm
   - ecosystem
 description: >
@@ -17,23 +18,26 @@ description: >
 dependencies:
   - skill: gen-plan
     version: ">=3.6.0"
-    used_at: "Planification de tâches complexes"
+    used_at: "Planification de tâches complexes (F1 cadrage)"
+  - skill: autonomous-agent
+    version: ">=1.2.0"
+    used_at: "Runtime d'exécution des agents produits"
   - skill: clone-chat
     version: ">=2.0.0"
     used_at: "Persistance État Long entre sessions"
     optional: true
   - skill: correct-work
     version: ">=2.4.0"
-    used_at: "Validation cohérence de l'agent"
+    used_at: "Validation cohérence des artefacts produits (F3)"
 read_when:
-  - Déclencher quand la demande concerne : création et orchestration d'agents : génère des agents autonomes persistants (fichier 
-  - Déclencher si la demande mentionne : agents, création, orchestration
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
+  - Déclencher quand la demande concerne : CRÉATION d'agents persistants (fichier .agent) — cadrer, générer, valider, tester, inscrire un agent
+  - Déclencher si la demande mentionne : créer/cadrer/générer un agent, fabrique d'agents, fichier .agent, agent persistant
+  - Ne pas déclencher pour EXÉCUTER un agent existant (autonomous-agent) ni pour ORCHESTRER une flotte existante (fleet-engineering) — convention protocole, Task 28/22.
 ---
 
-# AUTONOMOUS-AGENT v1.0.0
+# AGENT-CREATOR v2.2.0 — Fabrique d'agents persistants
 
-## §0 — Contexte Système (SHARED v1.7.7)
+## §0 — Contexte Système (SHARED v1.7.9)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -43,29 +47,31 @@ read_when:
 
 ### §1.1 Objectif
 
-Fournir un cadre pour créer et faire fonctionner des **agents autonomes"
-avec une mémoire interne à deux niveaux. L'agent analyse, comprend,
-structure et exécute des tâches complexes en pipeline, tout en
-maintenant une cohérence entre sessions via la mémoire persistante.
+Fournir la FABRIQUE d'agents persistants de l'écosystème : cadrer un besoin
+d'agent, générer son fichier `.agent` (mémoire interne à deux niveaux,
+modules, pipeline), valider sa structure, tester son comportement et
+l'inscrire aux registres. L'exécution d'un agent produit relève du runtime
+autonomous-agent ; l'orchestration d'une flotte existante relève de
+fleet-engineering — une responsabilité par élément (non-duplication SHARED §7).
 
-### §1.2 Les 5 modules internes
+### §1.2 Workflow de fabrique (5 étapes F1-F5)
 
-| Module | Rôle | Description |
-|--------|------|-------------|
-| **Analyse** | Segmentation, extraction, classification | Décompose l'entrée en éléments structurés |
-| **Mémoire** | Gestion État Court + Long | Stockage et récupération du contexte |
-| **Règles** | Conformité, cohérence, sécurité | Vérifie que la sortie respecte les contraintes |
-| **Synthèse** | Génération structurée | Produit la réponse finale |
-| **Pipeline** | Exécution séquentielle | Orchestre les modules dans l'ordre |
+| Étape | Nom | Description |
+|-------|------|-------------|
+| **F1** | Cadrer | Analyser le besoin : une responsabilité unique par agent (anti-mega-agent), inputs/outputs, règles de sécurité, niveau de persistance |
+| **F2** | Générer | Produire le gabarit `.agent` (format §2.3) spécialisé : objectif 1 phrase, modes, règles, champ `capacites` machine-lisible (style Agent Card A2A) |
+| **F3** | Valider | Schéma YAML conforme (references/agent-format.md), YAML parseable, read_when/description-déclencheur dense, correct-work(cible) sur l'artefact |
+| **F4** | Tester | Mode M4 Simulation : exécuter le comportement sur des cas représentatifs (positifs + négatifs), vérifier la cohérence des sorties |
+| **F5** | Inscrire | skills-inventory (découvrabilité) + registre KB si élément d'écosystème + worklog (provenance) — l'agent non inscrit est invisible |
 
 ### §1.3 Les 4 modes
 
 | Mode | Nom | Description |
 |------|-----|-------------|
-| M1 | **Analyse** | Extraction des intentions, détection des contraintes, segmentation du contenu |
-| M2 | **Synthèse** | Génération structurée, respect strict des formats |
-| M3 | **Pipeline** | Exécution séquentielle, vérification à chaque étape |
-| M4 | **Simulation** | Application du comportement de l'agent, vérification de cohérence |
+| M1 | **Cadrage** | Analyse du besoin d'agent : responsabilité unique, contraintes, périmètre F1 |
+| M2 | **Génération** | Production du gabarit .agent spécialisé + champ capacites, étape F2 |
+| M3 | **Validation** | Schéma YAML + parse + déclencheurs + correct-work(cible), étape F3 |
+| M4 | **Simulation** | Test comportemental du produit (cas représentatifs), étape F4 ; inscription F5 en sortie |
 
 ### §1.4 Mémoire interne à deux niveaux
 
@@ -83,23 +89,29 @@ maintenant une cohérence entre sessions via la mémoire persistante.
 - Historique structuré des interactions
 - Données persistantes (calibration, métriques)
 
-**Persistance** : l'État Long est sauvegardé via clone-chat (si
-disponible) ou dans un fichier `.agent` (format YAML, voir
-`references/agent-format.md`). L'État Court est volatil — il
-n'existe que dans la session en cours.
+**Persistance** : l'État Long de chaque agent PRODUIT est sauvegardé dans son
+fichier `.agent` (format YAML, voir `references/agent-format.md`) ; la
+persistance inter-sessions de la fabrique elle-même passe par clone-chat
+(optionnel). L'État Court est volatil — il n'existe que dans la session.
 
-### §1.5 Pipeline interne (A-H)
+### §1.5 Contenu obligatoire d'un agent produit
 
-| Étape | Nom | Description |
-|-------|------|-------------|
-| A | Analyse du message | Segmenter et classifier l'entrée |
-| B | Mise à jour État Court | Intégrer le message dans le contexte immédiat |
-| C | Consultation État Long | Récupérer les règles et préférences pertinentes |
-| D | Détermination du mode | Choisir M1-M4 selon la nature de l'entrée |
-| E | Exécution du mode | Appliquer le traitement correspondant |
-| F | Synthèse structurée | Produire la réponse formatée |
-| G | Vérification | Valider cohérence, conformité, sécurité |
-| H | Mise à jour mémoire | Persist les nouvelles informations dans État Long |
+Un `.agent` validé F3 porte AU MINIMUM : `objectif` (1 phrase, une
+responsabilité) ; `modes` explicites ; `regles` de sécurité ; `inputs`/`outputs`
+typés ; `memoire` (EC/EL) ; `capacites` (liste machine-lisible — découverte
+style Agent Card A2A, consommable par skills-inventory) ; `relations` (skills
+dépendants, versions). Le prompt système de l'agent suit l'altitude durable
+(Anthropic 09/2025) : langage direct, durabilité > micro-gestion des étapes —
+voir agent-prompt-engineering (non-duplication SHARED §7).
+
+### §1.6 Orchestration multi-agents (renvoi)
+
+La fabrique PRODUIT les agents ; l'orchestration d'une flotte est déléguée :
+ordre de routage (fleet-engineering §1.9bis) — (a) tâche séquentielle → 1 agent
+autonome ; (b) parallélisable/indépendant → flotte M1-M5 ; (c) nœuds
+scripts/binaires → inter-scripts ; (d) création d'agents réutilisables →
+agent-creator (cette fabrique). Task IDs globaux et agrégation re-vérifiée :
+voir fleet-engineering.
 
 ---
 
@@ -122,16 +134,19 @@ n'existe que dans la session en cours.
 
 ### §2.3 Format .agent
 
-Les fichiers `.agent` stockent l'État Long d'un agent. Format YAML :
+Les fichiers `.agent` stockent l'État Long d'un agent produit. Format YAML
+(schéma complet : `references/agent-format.md`) — champ `capacites` obligatoire
+(style Agent Card A2A, découverte machine-lisible) :
 
 ```yaml
 agent:
-  nom: <nom-agent>
-  objectif: <objectif principal>
+  nom: <nom-agent>              # kebab-case
+  objectif: <objectif en 1 phrase — une responsabilité>
   modes: <modes disponibles>
   regles: <règles strictes>
   inputs: <types d'entrées>
   outputs: <types de sorties>
+  capacites: <liste machine-lisible — style Agent Card A2A>
   memoire:
     court: <structure EC>
     long: <structure EL>
@@ -177,9 +192,12 @@ F → Finalisation
 | Avec | Nature | Détails |
 |------|--------|--------|
 | gen-plan | Utilisation | Planification de tâches complexes, version >= v3.6.0 |
+| autonomous-agent | Runtime | Exécution des agents produits (la fabrique produit, le runtime exécute) |
+| fleet-engineering | Délégation | Orchestration de flottes — la fabrique n'orchestre pas (routage §1.6) |
 | clone-chat | Persistance | Sauvegarde État Long entre sessions, optionnel, version >= v2.0.0 |
-| skills-inventory | Consultation | Découverte des agents disponibles |
-| correct-work | Vérification | Validation de la cohérence de l'agent, version >= v2.4.0 |
+| skills-inventory | Inscription | F5 — découvrabilité des agents produits |
+| agent-prompt-engineering | Rédaction | Altitude durable des prompts système des agents produits |
+| correct-work | Vérification | Validation de la cohérence des artefacts produits, version >= v2.4.0 |
 
 ---
 
@@ -207,7 +225,9 @@ L'agent est conçu pour être compatible avec :
 
 | Version | Date | Changements |
 |---------|------|-------------|
-| 1.0.0 | 2026-08-09 | Version initiale, 5 modules, 4 modes, pipeline A-H, mémoire court+long |
+| 2.2.0 | 2026-10-23 | Task 22 — DÉRIVE CRITIQUE résorbée : le corps était une copie quasi verbatim d'autonomous-agent (titre erroné « AUTONOMOUS-AGENT v1.0.0 », aucun workflow de fabrique malgré la description frontmatter) ; §1 re-écrit comme VRAIE fabrique (workflow F1-F5 cadrer→générer→valider→tester→inscrire), modes M1-M4 réalignés, §1.5 contenu obligatoire + champ capacites (Agent Card A2A), §1.6 renvoi orchestration (fleet-engineering), relations §3 étendues (autonomous-agent runtime, fleet, agent-prompt-engineering), read_when réparé (tronqué mid-phrase — 1/94 Task 28), .agent ré-écrit (objectif fabrique, champ capacites, pipeline F1-F5) ; veille 2025-2026 : sub-agents Claude Code, A2A Agent Card, skill authoring Anthropic |
+| 2.1.0 | 2026-10 | Version antérieure (corps hérité non aligné — défaut documenté ci-dessus) |
+| 1.0.0 | 2026-08-09 | Version initiale (corps autonome copié — origine de la dérive) |
 
 ---
 
