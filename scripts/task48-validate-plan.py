@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.9)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # -*- coding: utf-8 -*-
 """Task 48 — E8 : validation structurelle du plan + answer key (pattern task41-validate-answer-key.py,
 l'arbitre answer-key-checker.py n'étant pas matérialisé au dépôt — constat Task 41 déjà consigné)."""

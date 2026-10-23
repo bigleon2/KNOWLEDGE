@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.9)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # -*- coding: utf-8 -*-
 """Task 48 — G3/S3 : auto-audit des bumps 1944 (17 v2.1 / 18 v1.1 / 19 v0.11.0).
 Vérifie : blocs intangibles byte-identiques vs état git 29e2de1 (pré-G3), ajouts purs 1944,

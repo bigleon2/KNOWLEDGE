@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.9)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # -*- coding: utf-8 -*-
 """Task 48 — PA-TEST-006 : crop côte à côte de la zone inscription (PIL pur) pour arbitrage ciblé.
 Zone : homme à gauche au centre, t-shirt gris inscription rose/violette épaule gauche."""

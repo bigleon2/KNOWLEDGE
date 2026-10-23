@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.9)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # -*- coding: utf-8 -*-
 """Task 48 — G2/S2 : comparaison côte à côte enrichie des 5 versions de « les potos » + guide de
 lecture (grille 2×3, composite PIL pur — zéro appel générationnel, zéro modification des sources).

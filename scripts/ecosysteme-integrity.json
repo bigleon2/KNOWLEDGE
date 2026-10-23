@@ -89,6 +89,18 @@
       "sha256": "a0fc6b2db461304979a85b29911f233cab13bf96f754348b2c39ac899f8824fd",
       "version": "1.2.0"
     },
+    "iphone17": {
+      "sha256": "ff0a2fe4aebc453a37d5cc955672b0adeabef6187b7a3483a2473e84fb2b5e0d",
+      "version": "1.1.0"
+    },
+    "iphone18": {
+      "sha256": "d8b50c3d29221771b334d827bf2e4b069ee685e0b037953925a7ae440245dfa3",
+      "version": "1.1.0"
+    },
+    "iphone19": {
+      "sha256": "53e9687f60bb96257669efb89380d6ef66221732eb0f0382d8bc79aaae51a454",
+      "version": "0.11.0"
+    },
     "knowledge-observer": {
       "sha256": "c3a5056a6e5e80766bf3b5674f319b4fe9e710b352a44d6e58ab528f2aa363c9",
       "version": "1.0.0"
