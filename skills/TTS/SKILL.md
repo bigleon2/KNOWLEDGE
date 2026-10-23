@@ -1,20 +1,10 @@
 ---
 name: TTS
-version: "1.0.0"
-category: "IA & Media"
-tags:
-  - TTS
-description: Implémente des capacités de synthèse vocale (TTS/text-to-speech) à l'aide du z-ai-web-dev-sdk. Utilisez ce skill lorsque l'utilisateur doit convertir du texte en parole naturelle, créer du contenu audio, construire des applications vocales ou générer des fichiers audio parlés. Prend en charge plusieurs voix, une vitesse ajustable et divers formats audio.
-language: fr
+description: Implement text-to-speech (TTS) capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to convert text into natural-sounding speech, create audio content, build voice-enabled applications, or generate spoken audio files. Supports multiple voices, adjustable speed, and various audio formats.
 license: MIT
-
-read_when:
-  - Déclencher quand la demande concerne : implémente des capacités de synthèse vocale (TTS/text-to-speech) à l'aide du z-ai-web-dev-sdk
-  - Déclencher si la demande mentionne : audio, implémente, capacités
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -22,47 +12,47 @@ read_when:
 
 
 
-# Skill TTS (Text to Speech)
+# TTS (Text to Speech) Skill
 
-Ce skill guide l'implémentation de la synthèse vocale (TTS) à l'aide du package z-ai-web-dev-sdk, permettant de convertir du texte en audio parlé naturel.
+This skill guides the implementation of text-to-speech (TTS) functionality using the z-ai-web-dev-sdk package, enabling conversion of text into natural-sounding speech audio.
 
-## Emplacement du skill
+## Skills Path
 
-**Emplacement du skill** : `{project_path}/skills/TTS`
+**Skill Location**: `{project_path}/skills/TTS`
 
-Ce skill se trouve à l'emplacement ci-dessus dans votre projet.
+This skill is located at the above path in your project.
 
-**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/tts.ts` pour un exemple fonctionnel.
+**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/tts.ts` for a working example.
 
-## Vue d'ensemble
+## Overview
 
-La synthèse vocale (TTS) permet de créer des applications qui génèrent de l'audio parlé à partir d'un texte saisi, avec diverses voix, vitesses et formats de sortie pour des usages variés.
+Text-to-Speech allows you to build applications that generate spoken audio from text input, supporting various voices, speeds, and output formats for diverse use cases.
 
-**IMPORTANT** : le z-ai-web-dev-sdk doit être utilisé exclusivement dans du code backend. Ne l'utilisez jamais dans du code côté client.
+**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
 
-## Limitations et contraintes de l'API
+## API Limitations and Constraints
 
-Avant d'implémenter la fonctionnalité TTS, prenez connaissance de ces limitations importantes :
+Before implementing TTS functionality, be aware of these important limitations:
 
-### Contraintes sur le texte d'entrée
-- **Longueur maximale** : 1024 caractères par requête
-- Le texte dépassant cette limite doit être découpé en morceaux plus petits
+### Input Text Constraints
+- **Maximum length**: 1024 characters per request
+- Text exceeding this limit must be split into smaller chunks
 
-### Paramètres audio
-- **Plage de vitesse** : 0,5 à 2,0
-  - 0,5 = demi-vitesse (plus lent)
-  - 1,0 = vitesse normale (défaut)
-  - 2,0 = double vitesse (plus rapide)
-- **Plage de volume** : supérieur à 0, jusqu'à 10
-  - Défaut : 1.0
-  - Les valeurs doivent être strictement supérieures à 0 (exclu) et au plus 10 (inclus)
+### Audio Parameters
+- **Speed range**: 0.5 to 2.0
+  - 0.5 = half speed (slower)
+  - 1.0 = normal speed (default)
+  - 2.0 = double speed (faster)
+- **Volume range**: Greater than 0, up to 10
+  - Default: 1.0
+  - Values must be greater than 0 (exclusive) and up to 10 (inclusive)
 
-### Format et streaming
-- **Limitation du streaming** : quand `stream: true` est activé, seul le format `pcm` est pris en charge
-- **Sans streaming** : prend en charge les formats `wav`, `pcm` et `mp3`
-- **Fréquence d'échantillonnage** : 24000 Hz (recommandé)
+### Format and Streaming
+- **Streaming limitation**: When `stream: true` is enabled, only `pcm` format is supported
+- **Non-streaming**: Supports `wav`, `pcm`, and `mp3` formats
+- **Sample rate**: 24000 Hz (recommended)
 
-### Bonne pratique pour les textes longs
+### Best Practice for Long Text
 ```javascript
 function splitTextIntoChunks(text, maxLength = 1000) {
   const chunks = [];
@@ -83,15 +73,15 @@ function splitTextIntoChunks(text, maxLength = 1000) {
 }
 ```
 
-## Prérequis
+## Prerequisites
 
-Le package z-ai-web-dev-sdk est déjà installé. Importez-le comme montré dans les exemples ci-dessous.
+The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
 
-## Utilisation du CLI (pour les tâches simples)
+## CLI Usage (For Simple Tasks)
 
-Pour des conversions simples de texte en parole, vous pouvez utiliser le CLI z-ai au lieu d'écrire du code. C'est idéal pour une génération audio rapide, tester des voix ou une automatisation simple.
+For simple text-to-speech conversions, you can use the z-ai CLI instead of writing code. This is ideal for quick audio generation, testing voices, or simple automation.
 
-### TTS de base
+### Basic TTS
 
 ```bash
 # Convert text to speech (default WAV format)
@@ -101,7 +91,7 @@ z-ai tts --input "Hello, world" --output ./hello.wav
 z-ai tts -i "Hello, world" -o ./hello.wav
 ```
 
-### Différentes voix et vitesses
+### Different Voices and Speed
 
 ```bash
 # Use specific voice
@@ -114,7 +104,7 @@ z-ai tts -i "This is faster speech" -o ./fast.wav --speed 1.5
 z-ai tts -i "This is slower speech" -o ./slow.wav --speed 0.8
 ```
 
-### Différents formats de sortie
+### Different Output Formats
 
 ```bash
 # MP3 format
@@ -127,39 +117,39 @@ z-ai tts -i "Hello World" -o ./hello.wav --format wav
 z-ai tts -i "Hello World" -o ./hello.pcm --format pcm
 ```
 
-### Sortie en streaming
+### Streaming Output
 
 ```bash
 # Stream audio generation
 z-ai tts -i "This is a longer text that will be streamed" -o ./stream.wav --stream
 ```
 
-### Paramètres du CLI
+### CLI Parameters
 
-- `--input, -i <text>` : **Obligatoire** - texte à convertir en parole (1024 caractères maximum)
-- `--output, -o <path>` : **Obligatoire** - chemin du fichier audio de sortie
-- `--voice, -v <voice>` : Optionnel - type de voix (défaut : tongtong)
-- `--speed, -s <number>` : Optionnel - vitesse de la parole, 0.5-2.0 (défaut : 1.0)
-- `--format, -f <format>` : Optionnel - format de sortie : wav, mp3, pcm (défaut : wav)
-- `--stream` : Optionnel - activer la sortie en streaming (prend uniquement en charge le format pcm)
+- `--input, -i <text>`: **Required** - Text to convert to speech (max 1024 characters)
+- `--output, -o <path>`: **Required** - Output audio file path
+- `--voice, -v <voice>`: Optional - Voice type (default: tongtong)
+- `--speed, -s <number>`: Optional - Speech speed, 0.5-2.0 (default: 1.0)
+- `--format, -f <format>`: Optional - Output format: wav, mp3, pcm (default: wav)
+- `--stream`: Optional - Enable streaming output (only supports pcm format)
 
-### Quand utiliser le CLI ou le SDK
+### When to Use CLI vs SDK
 
-**Utilisez le CLI pour :**
-- Des conversions rapides de texte en parole
-- Tester différentes voix et vitesses
-- Une génération audio simple par lots
-- Des scripts d'automatisation en ligne de commande
+**Use CLI for:**
+- Quick text-to-speech conversions
+- Testing different voices and speeds
+- Simple batch audio generation
+- Command-line automation scripts
 
-**Utilisez le SDK pour :**
-- La génération audio dynamique dans des applications
-- L'intégration avec des services web
-- Des pipelines personnalisés de traitement audio
-- Des applications de production aux exigences complexes
+**Use SDK for:**
+- Dynamic audio generation in applications
+- Integration with web services
+- Custom audio processing pipelines
+- Production applications with complex requirements
 
-## Implémentation TTS de base
+## Basic TTS Implementation
 
-### Conversion simple de texte en parole
+### Simple Text to Speech
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -189,7 +179,7 @@ async function textToSpeech(text, outputPath) {
 await textToSpeech('Hello, world!', './output.wav');
 ```
 
-### Plusieurs choix de voix
+### Multiple Voice Options
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -218,7 +208,7 @@ async function generateWithVoice(text, voice, outputPath) {
 await generateWithVoice('Welcome to our service', 'tongtong', './welcome.wav');
 ```
 
-### Vitesse ajustable
+### Adjustable Speed
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -256,7 +246,7 @@ await generateWithSpeed('This is an important announcement', 0.8, './slow.wav');
 await generateWithSpeed('Quick update', 1.3, './fast.wav');
 ```
 
-### Volume ajustable
+### Adjustable Volume
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -293,9 +283,9 @@ await generateWithVolume('This is an announcement', 5.0, './loud.wav');
 await generateWithVolume('Whispered message', 0.5, './quiet.wav');
 ```
 
-## Cas d'usage avancés
+## Advanced Use Cases
 
-### Traitement par lots
+### Batch Processing
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -357,7 +347,7 @@ const results = await batchTextToSpeech(texts, './audio-output');
 console.log('Generated:', results.length, 'audio files');
 ```
 
-### Génération dynamique de contenu
+### Dynamic Content Generation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -413,7 +403,7 @@ await generator.saveAudio(
 );
 ```
 
-### Exemple de route API Next.js
+### Next.js API Route Example
 
 ```javascript
 import { NextRequest, NextResponse } from 'next/server';
@@ -463,9 +453,9 @@ export async function POST(req: NextRequest) {
 }
 ```
 
-## Bonnes pratiques
+## Best Practices
 
-### 1. Préparation du texte
+### 1. Text Preparation
 ```javascript
 function prepareTextForTTS(text) {
   // Remove excessive whitespace
@@ -487,7 +477,7 @@ function prepareTextForTTS(text) {
 }
 ```
 
-### 2. Gestion des erreurs
+### 2. Error Handling
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
 import fs from 'fs';
@@ -534,7 +524,7 @@ async function safeTTS(text, outputPath) {
 }
 ```
 
-### 3. Réutilisation de l'instance du SDK
+### 3. SDK Instance Reuse
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -554,19 +544,19 @@ const zai = await getZAIInstance();
 const response = await zai.audio.tts.create({ ... });
 ```
 
-## Cas d'usage courants
+## Common Use Cases
 
-1. **Livres audio et podcasts** : convertir du contenu écrit en format audio
-2. **E-learning** : créer la narration de contenus éducatifs
-3. **Accessibilité** : fournir des versions audio de contenus textuels
-4. **Assistants vocaux** : générer des réponses dynamiques
-5. **Annonces** : créer des notifications audio automatisées
-6. **Systèmes IVR** : générer les messages des standards téléphoniques
-7. **Localisation de contenu** : créer de l'audio dans différentes langues
+1. **Audiobooks & Podcasts**: Convert written content to audio format
+2. **E-learning**: Create narration for educational content
+3. **Accessibility**: Provide audio versions of text content
+4. **Voice Assistants**: Generate dynamic responses
+5. **Announcements**: Create automated audio notifications
+6. **IVR Systems**: Generate phone system prompts
+7. **Content Localization**: Create audio in different languages
 
-## Exemples d'intégration
+## Integration Examples
 
-### Point d'accès API Express.js
+### Express.js API Endpoint
 
 ```javascript
 import express from 'express';
@@ -631,51 +621,51 @@ initZAI().then(() => {
 });
 ```
 
-## Dépannage
+## Troubleshooting
 
-**Problème** : « le texte d'entrée dépasse la longueur maximale »
-- **Solution** : le texte d'entrée est limité à 1024 caractères. Découpez les textes plus longs en morceaux à l'aide de la fonction `splitTextIntoChunks` présentée dans la section Limitations et contraintes de l'API
+**Issue**: "Input text exceeds maximum length"
+- **Solution**: Text input is limited to 1024 characters. Split longer text into chunks using the `splitTextIntoChunks` function shown in the API Limitations section
 
-**Problème** : « paramètre de vitesse invalide » ou comportement de vitesse inattendu
-- **Solution** : la vitesse doit être comprise entre 0.5 et 2.0. Vérifiez que votre valeur de vitesse est dans cette plage
+**Issue**: "Invalid speed parameter" or unexpected speed behavior
+- **Solution**: Speed must be between 0.5 and 2.0. Check your speed value is within this range
 
-**Problème** : « paramètre de volume invalide »
-- **Solution** : le volume doit être supérieur à 0 et au plus 10. Assurez-vous que la valeur du volume est dans l'intervalle (0, 10]
+**Issue**: "Invalid volume parameter"
+- **Solution**: Volume must be greater than 0 and up to 10. Ensure volume value is in range (0, 10]
 
-**Problème** : « format de stream non pris en charge » avec WAV/MP3
-- **Solution** : le mode streaming ne prend en charge que le format PCM. Utilisez soit `response_format: 'pcm'` avec le streaming, soit désactivez le streaming (`stream: false`) pour une sortie WAV/MP3
+**Issue**: "Stream format not supported" with WAV/MP3
+- **Solution**: Streaming mode only supports PCM format. Either use `response_format: 'pcm'` with streaming, or disable streaming (`stream: false`) for WAV/MP3 output
 
-**Problème** : « le SDK doit être utilisé côté backend »
-- **Solution** : assurez-vous que z-ai-web-dev-sdk n'est importé que dans du code côté serveur
+**Issue**: "SDK must be used in backend"
+- **Solution**: Ensure z-ai-web-dev-sdk is only imported in server-side code
 
-**Problème** : « TypeError: response.audio is undefined »
-- **Solution** : le SDK renvoie un objet Response standard ; utilisez `await response.arrayBuffer()` au lieu d'accéder à `response.audio`
+**Issue**: "TypeError: response.audio is undefined"
+- **Solution**: The SDK returns a standard Response object, use `await response.arrayBuffer()` instead of accessing `response.audio`
 
-**Problème** : fichier audio généré vide ou corrompu
-- **Solution** : assurez-vous d'appeler `await response.arrayBuffer()` et de convertir correctement en Buffer : `Buffer.from(new Uint8Array(arrayBuffer))`
+**Issue**: Generated audio file is empty or corrupted
+- **Solution**: Ensure you're calling `await response.arrayBuffer()` and properly converting to Buffer: `Buffer.from(new Uint8Array(arrayBuffer))`
 
-**Problème** : audio qui sonne artificiel
-- **Solution** : préparez correctement le texte (supprimez les caractères spéciaux, développez les abréviations)
+**Issue**: Audio sounds unnatural
+- **Solution**: Prepare text properly (remove special characters, expand abbreviations)
 
-**Problème** : temps de traitement longs
-- **Solution** : découpez les textes longs en morceaux plus petits et traitez-les en parallèle
+**Issue**: Long processing times
+- **Solution**: Break long text into smaller chunks and process in parallel
 
-**Problème** : le cache Next.js sert une ancienne route API
-- **Solution** : créez un nouveau point d'accès de route API ou redémarrez le serveur de développement
+**Issue**: Next.js caching old API route
+- **Solution**: Create a new API route endpoint or restart the dev server
 
-## Conseils de performance
+## Performance Tips
 
-1. **Réutilisez l'instance du SDK** : créez l'instance ZAI une seule fois et réutilisez-la
-2. **Implémentez un cache** : mettez en cache l'audio généré pour les textes répétés
-3. **Traitement par lots** : traitez plusieurs textes efficacement
-4. **Optimisez le texte** : supprimez le contenu superflu avant la génération
-5. **Traitement asynchrone** : utilisez des files d'attente pour gérer plusieurs requêtes
+1. **Reuse SDK Instance**: Create ZAI instance once and reuse
+2. **Implement Caching**: Cache generated audio for repeated text
+3. **Batch Processing**: Process multiple texts efficiently
+4. **Optimize Text**: Remove unnecessary content before generation
+5. **Async Processing**: Use queues for handling multiple requests
 
-## Notes importantes
+## Important Notes
 
-### Contraintes de l'API
+### API Constraints
 
-**Longueur du texte d'entrée** : 1024 caractères maximum par requête. Pour les textes plus longs :
+**Input Text Length**: Maximum 1024 characters per request. For longer text:
 ```javascript
 // Split long text into chunks
 const longText = "..."; // Your long text here
@@ -693,13 +683,13 @@ for (const chunk of chunks) {
 }
 ```
 
-**Limitation du format de streaming** : avec `stream: true`, seul le format `pcm` est pris en charge. Pour une sortie `wav` ou `mp3`, utilisez `stream: false`.
+**Streaming Format Limitation**: When using `stream: true`, only `pcm` format is supported. For `wav` or `mp3` output, use `stream: false`.
 
-**Fréquence d'échantillonnage** : l'audio est généré à 24000 Hz (réglage recommandé pour la lecture).
+**Sample Rate**: Audio is generated at 24000 Hz sample rate (recommended setting for playback).
 
-### Format de l'objet Response
+### Response Object Format
 
-La méthode `zai.audio.tts.create()` renvoie un objet **Response** standard (pas un objet personnalisé avec une propriété `audio`). Utilisez toujours :
+The `zai.audio.tts.create()` method returns a standard **Response** object (not a custom object with an `audio` property). Always use:
 
 ```javascript
 // ✅ CORRECT
@@ -712,42 +702,42 @@ const response = await zai.audio.tts.create({ ... });
 const buffer = Buffer.from(response.audio); // response.audio is undefined
 ```
 
-### Voix disponibles
+### Available Voices
 
-- `tongtong` - chaleureuse et affectueuse
-- `chuichui` - vive et adorable
-- `xiaochen` - posée et professionnelle
-- `jam` - gentleman à l'accent britannique
-- `kazi` - claire et standard
-- `douji` - naturelle et fluide
-- `luodo` - pleine d'expression
+- `tongtong` - 温暖亲切
+- `chuichui` - 活泼可爱
+- `xiaochen` - 沉稳专业
+- `jam` - 英音绅士
+- `kazi` - 清晰标准
+- `douji` - 自然流畅
+- `luodo` - 富有感染力
 
-### Plage de vitesse
+### Speed Range
 
-- Minimum : `0.5` (demi-vitesse)
-- Défaut : `1.0` (vitesse normale)
-- Maximum : `2.0` (double vitesse)
+- Minimum: `0.5` (half speed)
+- Default: `1.0` (normal speed)
+- Maximum: `2.0` (double speed)
 
-**Important** : les valeurs de vitesse hors de la plage [0.5, 2.0] provoquent des erreurs d'API.
+**Important**: Speed values outside the range [0.5, 2.0] will result in API errors.
 
-### Plage de volume
+### Volume Range
 
-- Minimum : supérieur à `0` (exclu)
-- Défaut : `1.0` (volume normal)
-- Maximum : `10` (inclus)
+- Minimum: Greater than `0` (exclusive)
+- Default: `1.0` (normal volume)
+- Maximum: `10` (inclusive)
 
-**Remarque** : le paramètre de volume est optionnel. S'il n'est pas spécifié, il vaut 1.0 par défaut.
+**Note**: Volume parameter is optional. When not specified, defaults to 1.0.
 
-## À retenir
+## Remember
 
-- Utilisez toujours z-ai-web-dev-sdk uniquement dans du code backend
-- **Le texte d'entrée est limité à 1024 caractères maximum** - découpez les textes plus longs en morceaux
-- **La vitesse doit être comprise entre 0.5 et 2.0** - les valeurs hors plage provoquent des erreurs
-- **Le volume doit être supérieur à 0 et au plus 10** - paramètre optionnel avec 1.0 par défaut
-- **Le streaming ne prend en charge que le format PCM** - utilisez le mode sans streaming pour une sortie WAV ou MP3
-- Le SDK renvoie un objet Response standard - utilisez `await response.arrayBuffer()`
-- Convertissez l'ArrayBuffer en Buffer avec `Buffer.from(new Uint8Array(arrayBuffer))`
-- Gérez correctement les buffers audio lors de l'enregistrement dans des fichiers
-- Implémentez une gestion d'erreurs pour les applications de production
-- Envisagez un cache pour les contenus fréquemment générés
-- Nettoyez périodiquement les anciens fichiers audio pour gérer le stockage
+- Always use z-ai-web-dev-sdk in backend code only
+- **Input text is limited to 1024 characters maximum** - split longer text into chunks
+- **Speed must be between 0.5 and 2.0** - values outside this range will cause errors
+- **Volume must be greater than 0 and up to 10** - optional parameter with default 1.0
+- **Streaming only supports PCM format** - use non-streaming for WAV or MP3 output
+- The SDK returns a standard Response object - use `await response.arrayBuffer()`
+- Convert ArrayBuffer to Buffer using `Buffer.from(new Uint8Array(arrayBuffer))`
+- Handle audio buffers properly when saving to files
+- Implement error handling for production applications
+- Consider caching for frequently generated content
+- Clean up old audio files periodically to manage storage

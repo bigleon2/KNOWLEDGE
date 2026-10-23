@@ -1,0 +1,221 @@
+ M download/rapport-correct-work-projet-task18.md
+ M scripts/answer-key-checker.py
+ M scripts/audit-provenance.py
+ M scripts/back-depot.py
+ M scripts/backup-historique.py
+ M scripts/certification-complete.py
+ M scripts/check-corps-phase2.py
+ M scripts/check-ecosysteme-integrity.py
+ M scripts/check-tool-routing.py
+ M scripts/check-triggers-replay.py
+ M scripts/create-pm-genplan-v3.11.0.py
+ M scripts/eco_install_pipeline.py
+ M scripts/ecosysteme-integrity.json
+ M scripts/ensure-installed.py
+ M scripts/fix-frontmatter.py
+ M scripts/fix-yaml-cases.py
+ M scripts/g1-bootstrap-pm-refactor-guard.py
+ M scripts/g1-extensions-d009.py
+ M scripts/g1-recalibrage-task17.py
+ M scripts/g1a-corrections-n55.py
+ M scripts/g1a-repair-dedup.py
+ M scripts/g1b-kb-n55.py
+ M scripts/g1c-genplan-shared-eco.py
+ M scripts/g1d-cascade-n55.py
+ M scripts/g2-projection-hote-task8.py
+ M scripts/g2b-description-optimization.py
+ M scripts/g3-projection-hote-task9.py
+ M scripts/gen-ultra-maitre.py
+ M scripts/generer-pm-report.json
+ M scripts/generer-pm-skill.py
+ M scripts/install-ecosystem-skills.py
+ M scripts/install-ecosystem.py
+ M scripts/phase1-nettoyage.py
+ M scripts/phase2-nettoyage.py
+ M scripts/propagate-context.py
+ M scripts/r1-evals-coverage.py
+ M scripts/r10-commit-review.py
+ M scripts/r2-critic-loop.py
+ M scripts/r3-memory-consolidation.py
+ M scripts/r4-task-orchestrator.py
+ M scripts/r5-token-dashboard.py
+ M scripts/r7-agent-specialization.py
+ M scripts/r8-loop-guard.py
+ M scripts/refactoring-test-graph.py
+ M scripts/repair-frontmatter-yaml.py
+ M scripts/scan-versions-reelles.py
+ M scripts/spell-check.py
+ M scripts/sync-context-block.py
+ M scripts/task-f5-seal-archive-v23.py
+ M scripts/task13-answer-key-check.py
+ M scripts/task14-answer-key-check.py
+ M scripts/task14-deduplication.py
+ M scripts/task14-scan-doublons.py
+ M scripts/task15-answer-key-check.py
+ M scripts/task16-answer-key-check.py
+ M scripts/task17-answer-key-check.py
+ M scripts/task17-remeasure-voie-l.py
+ M scripts/task17-voie-l-report.json
+ M scripts/task17b-answer-key-check.py
+ M scripts/task21-baseline-a2-all.py
+ M scripts/task21-f2-rebuild-archive.py
+ M scripts/task21-p2-description-optimization.py
+ M scripts/task21-p5-equipment-decisions.py
+ M scripts/task39-generer-pm-genplan.py
+ M scripts/task39-test-vue-upload-v120.py
+ M scripts/task8-tests-n55-fusion.py
+ M scripts/task9-baseline-a2-n55.py
+ M scripts/task9-tests-reserves.py
+ M scripts/test-acces-skills-agents.py
+ M scripts/test-coherence-interactions.py
+ M scripts/test-restauration-elargie.py
+ M scripts/triggers-replay-report.json
+ M scripts/verify-correct-work.py
+ M scripts/verify-cross.py
+ M scripts/verify-registry-sync.py
+ M skills/@historique/README.md
+ M skills/@historique/historique-autres-elements.md
+ M skills/@historique/historiques-par-skill/clone-chat.md
+ M skills/@historique/historiques-par-skill/correct-work.md
+ M skills/@historique/historiques-par-skill/gen-plan.md
+ M skills/@historique/historiques-par-skill/refactor-guard.md
+R  skills/@mon-ecosysteme/PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md -> skills/@historique/prompts-maitres/clone-chat/PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md
+R  skills/@mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md -> skills/@historique/prompts-maitres/correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md
+R  skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.23.1.md -> skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.23.1.md
+R  skills/@mon-ecosysteme/PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md -> skills/@historique/prompts-maitres/refactor-guard/PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md
+A  skills/@historique/prompts-maitres/refactor-guard/PROMPT-MAITRE-REFACTOR-GUARD-v1.7.1.md
+ M skills/@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md
+A  skills/@mon-ecosysteme/PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md
+ M skills/@mon-ecosysteme/PROMPT-MAITRE-SHARED.md
+ M skills/@mon-ecosysteme/PROMPT-ULTRA-MAITRE-ORCHESTRATION.md
+ M skills/@mon-ecosysteme/README.md
+ M skills/@mon-ecosysteme/SYNC-CONTEXT.md
+ M skills/ASR/SKILL.md
+ M skills/KNOWLEDGE.md
+ M skills/LLM/SKILL.md
+ M skills/TTS/SKILL.md
+ M skills/VLM/SKILL.md
+ M skills/agent-browser/SKILL.md
+ M skills/agent-creator/SKILL.md
+ M skills/agent-creator/references/agent-creator.agent
+ M skills/ai-news-collectors/SKILL.md
+ M skills/aminer-academic-search/SKILL.md
+ M skills/aminer-daily-paper/SKILL.md
+ M skills/aminer-deep-search/SKILL.md
+ M skills/aminer-free-academic/SKILL.md
+ M skills/anti-pua/SKILL.md
+ M skills/audio-metadata/SKILL.md
+ M skills/audit-provenance/SKILL.md
+ M skills/auto-target-tracker/SKILL.md
+ M skills/autonomous-agent/SKILL.md
+ M skills/autonomous-agent/references/autonomous-agent.agent
+ M skills/blog-writer/SKILL.md
+ M skills/charts/SKILL.md
+ M skills/cheat-sheet/SKILL.md
+ M skills/clone-chat/SKILL.md
+ M skills/coding-agent/SKILL.md
+ M skills/content-strategy/SKILL.md
+ M skills/contentanalysis/SKILL.md
+ M skills/context-engineering/SKILL.md
+ M skills/correct-py/SKILL.md
+ M skills/correct-work/SKILL.md
+ M skills/correct-work/scripts/verify-correct-work.py
+ M skills/cpp-analysis/SKILL.md
+ M skills/design/SKILL.md
+ M skills/dessin-technique/SKILL.md
+ M skills/docx/SKILL.md
+ M skills/dream-interpreter/SKILL.md
+ M skills/experiment-suite/SKILL.md
+ M skills/finance/SKILL.md
+ M skills/fleet-engineering/SKILL.md
+ M skills/fullstack-dev/SKILL.md
+ M skills/gaokao-collect-student-info/SKILL.md
+ M skills/gaokao-fetch-volunteers/SKILL.md
+ M skills/gaokao-generate-report/SKILL.md
+ M skills/gaokao-recommend-majors/SKILL.md
+ M skills/gaokao-recommend-schools/SKILL.md
+ M skills/gen-plan/SKILL.md
+ M skills/gen-plan/references/guide-selection-agent-skill.md
+ M skills/get-fortune-analysis/SKILL.md
+ M skills/gift-evaluator/SKILL.md
+ M skills/graph-engineering/SKILL.md
+ M skills/harness-engineering/SKILL.md
+ M skills/image-edit/SKILL.md
+ M skills/image-generation/SKILL.md
+ M skills/image-search/SKILL.md
+ M skills/image-understand/SKILL.md
+ M skills/interview-designer/SKILL.md
+ M skills/interview-prep/SKILL.md
+ M skills/jd-resume-tailor/SKILL.md
+ M skills/job-intent-tracker/SKILL.md
+ M skills/knowledge-observer/SKILL.md
+ M skills/literature-survey/SKILL.md
+ M skills/loop-engineering/SKILL.md
+ M skills/market-research-reports/SKILL.md
+ M skills/marketing-mode/SKILL.md
+ M skills/memory-engineering/SKILL.md
+ M skills/mindfulness-meditation/SKILL.md
+ M skills/multi-search-engine/SKILL.md
+ M skills/pdf-llm/SKILL.md
+ M skills/pdf/SKILL.md
+ M skills/podcast-generate/SKILL.md
+ M skills/pptx/SKILL.md
+ M skills/prompt-engineering/SKILL.md
+ M skills/qingyan-research/SKILL.md
+ M skills/quiz-html/SKILL.md
+ M skills/quiz-mastery/SKILL.md
+ M skills/refactor-guard/SKILL.md
+ M skills/refactoring-engineering/SKILL.md
+ M skills/refactoring-test/SKILL.md
+ M skills/research-explorer/SKILL.md
+ M skills/resource-monitor/SKILL.md
+ M skills/resume-builder/SKILL.md
+ M skills/resume-youtube/SKILL.md
+ M skills/script-creator/SKILL.md
+ M skills/script-mon-ecosysteme-infrastructure/SKILL.md
+ M skills/script-reviewer/SKILL.md
+ M skills/seo-content-writer/SKILL.md
+ M skills/skill-creator/SKILL.md
+ M skills/skill-finder-cn/SKILL.md
+ M skills/skills-inventory/SKILL.md
+ M skills/spec-driven-development/SKILL.md
+ M skills/stock-analysis-skill/SKILL.md
+ M skills/storyboard-manager/SKILL.md
+ M skills/study-buddy/SKILL.md
+ M skills/task-review/SKILL.md
+ M skills/ui-ux-pro-max/SKILL.md
+ M skills/version-management/SKILL.md
+ M skills/video-generation/SKILL.md
+ M skills/video-understand/SKILL.md
+ M skills/visual-design-foundations/SKILL.md
+ M skills/vue-upload/SKILL.md
+ M skills/web-reader/SKILL.md
+ M skills/web-search/SKILL.md
+ M skills/web-shader-extractor/SKILL.md
+ M skills/writing-plans/SKILL.md
+ M skills/xlsx/SKILL.md
+ M worklog.md
+?? download/alias-eco-chat-2026-10-23.txt
+?? download/plan-task18-optimisation-installation-alias-eco.md
+?? download/plan-task19-suite-mode-step.md
+?? download/plan-task20-test-installation-performante.md
+?? download/rapport-correct-work-projet-task18-reprise-matinale-ancienne-campagne.md
+?? download/rapport-task20-test-installation-performante.md
+?? scripts/delta-refactor-guard-v180.json
+?? scripts/task18-cascade-historique.py
+?? scripts/task18-completion-pms.py
+?? scripts/task18-kb.py
+?? scripts/task18-pm-install-v180.py
+?? scripts/task18-shared-v178.py
+?? scripts/task20-answer-key-check.py
+?? scripts/task20-registry-update.py
+?? scripts/task20-tests-installation.py
+?? scripts/task20-tests-report.json
+?? scripts/task22-apply-disciplines.py
+?? scripts/task22-aveugle-second-opinion.py
+?? scripts/task22-cascade-docs.py
+?? skills/@historique/@Alias/
+?? skills/@mon-ecosysteme/PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md
+?? skills/@mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md
+?? skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.23.2.md
+?? skills/alias-eco/

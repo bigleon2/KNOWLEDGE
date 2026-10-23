@@ -5,7 +5,7 @@ SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
-alias-manager.py — Gestionnaire mécanique du système d'alias $<ALIAS> (skill alias-eco v1.0.0).
+alias-manager.py — Gestionnaire mécanique du système d'alias $<ALIAS> (skill alias-eco v1.2.0).
 
 Directive propriétaire 2026-10-23 : remplacer les grandes phrases récurrentes des
 discussions par des alias au format $<ALIAS> (ex : « mon écosystème personnel » →
@@ -22,7 +22,8 @@ $ECO-LEON). Le gestionnaire :
     (download/alias-eco-chat-<date>.txt) ;
   - résout les $<ALIAS> d'un texte (--resolve) ;
   - attribue un alias explicitement (--add — l'alias n'est JAMAIS inventé par
-    la détection, règle §1.4.4) ;
+    la détection, règle §1.4.4) ou via la GRAMMAIRE B (--trigger, v1.2.0 —
+    `alias-eco "<texte>" --add <ALIAS>`, variantes « » / $ALIAS, GO propriétaire) ;
   --selftest : tests internes sur fixtures (aucune écriture du registre réel).
 
 Codes retour : 0 OK · 1 échec (selftest/assert) · 2 usage invalide.
@@ -65,7 +66,7 @@ def load_registry():
     if os.path.isfile(JSON_PATH):
         with open(JSON_PATH, encoding="utf-8") as f:
             return json.load(f)
-    return {"format": "aliases-eco v1", "mis_a_jour": None, "source": "alias-eco v1.0.0",
+    return {"format": "aliases-eco v1", "mis_a_jour": None, "source": "alias-eco v1.1.0",
             "phrases": []}
 
 
@@ -195,6 +196,23 @@ def cmd_list():
     return 0
 
 
+GRAMMAIRE_B_RE = re.compile(
+    r'^alias-eco\s+(?:«\s*(.+?)\s*»|"(.*?)")\s*--add\s+\$?([A-Za-z0-9()çéèêëàâäùûüôöîï\-]+)\s*$',
+    re.S)
+
+
+def cmd_trigger(expression):
+    """Grammaire B (v1.2.0, GO propriétaire) : parse et applique.
+    rc 0 = attribué · rc 2 = expression mal formée ou alias hors format."""
+    m = GRAMMAIRE_B_RE.match(expression.strip())
+    if not m:
+        print("ABANDON : expression grammaire B mal formée (attendu : "
+              "alias-eco \"<texte>\" --add <ALIAS>)", file=sys.stderr)
+        return 2
+    texte = m.group(1) if m.group(1) is not None else m.group(2)
+    return cmd_add(m.group(3), texte)
+
+
 def cmd_add(alias, phrase):
     if not ALIAS_NAME_RE.match(alias):
         print("ABANDON : format d'alias invalide %r (attendu ^[A-Z0-9][A-Z0-9-]*$)" % alias,
@@ -300,6 +318,20 @@ def selftest():
         out = ALIAS_RE.sub(lambda m: amap.get(m.group(1), m.group(0)), "de $ECO-TEST local")
         ok.append(("résolution $ECO-TEST", "écosystème" in out and "$ECO-TEST" not in out))
         ok.append(("garde format alias", cmd_add("invalide", "x") == 2))
+    # grammaire B (v1.2.0) : parse + gardes
+    g1 = cmd_trigger('alias-eco "phrase test grammaire" --add G-B-TEST')
+    ok.append(("grammaire B rc=0", g1 == 0))
+    reg_g = load_registry()
+    ok.append(("grammaire B alias enregistré",
+               any(e.get("alias") == "G-B-TEST" and "grammaire" in e["phrase"] for e in reg_g["phrases"])))
+    ok.append(("grammaire B variante « » + $ALIAS",
+               cmd_trigger('alias-eco «phrase test bis» --add $G-B-TEST2') == 0))
+    ok.append(("grammaire B texte avec --add interne",
+               cmd_trigger('alias-eco "écrire --add ici est du texte" --add G-B-TEST3') == 0))
+    ok.append(("grammaire B alias hors format (façon()) rejeté",
+               cmd_trigger('alias-eco "x" --add façon()') == 2))
+    ok.append(("grammaire B expression mal formée rejetée",
+               cmd_trigger('alias-eco (chat)') == 2))
     # mode chat : TXT trié
     src = os.path.join(tmp, "chat.txt")
     with open(src, "w", encoding="utf-8") as f:
@@ -341,6 +373,11 @@ def main():
             print("usage : --add <ALIAS> \"<phrase>\"", file=sys.stderr)
             return 2
         return cmd_add(args[1], " ".join(args[2:]))
+    if args[0] == "--trigger":
+        if len(args) < 2:
+            print('usage : --trigger "alias-eco \\"<texte>\\" --add <ALIAS>"', file=sys.stderr)
+            return 2
+        return cmd_trigger(" ".join(args[1:]))
     if args[0] in ("--scan", "--chat"):
         if len(args) < 2:
             print("usage : %s <fichier>…" % args[0], file=sys.stderr)

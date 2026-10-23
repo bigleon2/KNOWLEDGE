@@ -24,6 +24,7 @@
 | v1.7.0 | 2026-10-11 | §7 matérialisation des définitions normatives des 3 disciplines n°54 dans la table de définitions (spec-driven development, memory engineering, fleet engineering — ancrage état de l'art dans `references/fondements-academiques.md` de chaque skill ; registre d'assignation inchangé — R4) — session web-b4d7dd19, objectif principal discussion Qwen |
 | v1.7.1 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.0 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver — adaptation locale journalisée : D010 + précédents v3.21.0) |
 | v1.7.2 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.1 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver ; cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
+| v1.7.11 | 2026-10-24 | §6.1 — référence PM GEN-PLAN portée à v3.24.0 (génération mécanique `scripts/generer-pm-skill.py` — substitutions verrouillées, recalibrage inclus — Task 26, session web-fdf5963c ; note : lignes v1.7.9/v1.7.10 absentes de cette table — écart hérité documenté, la table §7 du PM vivant fait foi) |
 | v1.7.8 | 2026-10-23 | §6.1 — référence(s) PM portée(s) aux 4 versions générées mécaniquement (gen-plan v3.23.2, correct-work v2.8.0, clone-chat v2.0.2, refactor-guard v1.7.1) + référence PM-INSTALL portée à v1.8.0 (mécanisme dual d'installation + périmètre alias-eco — Task 18, session web-fdf5963c) ; complétion de la ligne de révision |
 | v1.7.4 | 2026-10-12 | §7 correction outil (ligne « Refactoring test » = outil de la discipline n°55 — Task 8, directive propriétaire) + registre scindé en 3 lignes (refactoring-engineering discipline / refactoring-test outil / refactor-guard garde-fous — fusion discussion 468a4c26) ; §6.1 référence gen-plan portée à v3.23.1 (recalibrage mécanique KO-L004 — `generer-pm-skill.py`, bump PATCH conformité semver) — session web-b4d7dd19 Task 8 gen-plan(step) |
 | v1.7.3 | 2026-10-12 | §7 matérialisation des définitions normatives des 2 disciplines de refactoring n°55 (refactoring engineering, refactoring test — ancrage état de l'art dans `references/fondements-academiques.md` de chaque skill ; registre d'assignation +1 ligne) ; §6.1 référence gen-plan portée à v3.23.0 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver) — session web-b4d7dd19 Task 7 gen-plan(step) |
@@ -32,6 +33,8 @@
 
 | Version | Date | Résumé de révision |
 |---------|------|--------------------|
+| v1.5.4 | 2026-10-24 | Cascade Task 26 (session web-fdf5963c, KO-L004) : gen-plan v3.23.2→v3.24.0 (parallélisation par défaut — philosophie #4 inversée, directive propriétaire) ; PM GEN-PLAN v3.24.0 généré mécaniquement (complétion agent), v3.23.2 archivé R4 ; SHARED v1.7.11 ; PM-INSTALL v1.8.4 ; KB recalibrée ; ULTRA régénéré ; propagation marqueur §0 v1.7.11 (106 skills + 107 scripts + 2 agents) ; archive rescellée round-trip v2.3 |
+| v1.5.3 | 2026-10-23 | Cascade Task 25bis/25ter (GO propriétaire, session web-fdf5963c) : alias-eco v1.1.0→v1.2.0 (grammaire B --trigger + OPT-TRIO ; v1.1.0 Description Optimization replay 8/8) ; KB, PM-INSTALL v1.8.3 (§A.3), ULTRA recalibrés ; registre @Alias vivant (ECO-LEON, OPT-TRIO — non-cible resync) |
 | v1.4.0 | 2026-10-02 | Decision d'architecture v2.2 — canal download/ supprimé, archive d'intégrité = unique voie de diffusion ; `sync-download.py` retiré, garde `task14-scan-doublons.py` (Task 14) |
 | v1.4.1 | 2026-10-02 | Résorption F1/F2/F4 — corpus 26 fichiers, PMs v2.6.0/v2.7.0 reconstitués méthode B1, blocs gelés R2 (Task 16, session web-8a7e5653) |
 | v1.4.2 | 2026-10-11 | Dédup des PMs — cibles de resync réduites à 2 porteurs N1 vivants, corpus 8 fichiers, `@historique/` archive documentaire (Task 16) |
@@ -46,6 +49,8 @@
 
 | Version | Date | Résumé de révision |
 |---------|------|--------------------|
+| v2.1.12 | 2026-10-24 | Task 26 (session web-fdf5963c, KO-L004) : gen-plan v3.24.0 (parallélisation par défaut sur preuve d'indépendance) ; PM GEN-PLAN v3.24.0 généré mécaniquement, v3.23.2 archivé @historique/prompts-maitres/gen-plan/ (mv byte-identité R4) ; SHARED v1.7.11 / PM-INSTALL v1.8.4 ; SYNC v1.5.4, ULTRA, KB recalibrés |
+| v2.1.11 | 2026-10-23 | Cascade Task 25bis/25ter (GO propriétaire, session web-fdf5963c) : alias-eco v1.2.0 (grammaire B --trigger + OPT-TRIO ; v1.1.0 Description Optimization) ; KB, PM-INSTALL v1.8.3, SYNC v1.5.3, ULTRA recalibrés |
 | v2.1.0 | 2026-10-02 | Décision d'architecture v2.2 — canal download/ supprimé, outillage recalibré, drift SHARED §6.1 résorbé (Task 14) |
 | v2.1.1 | 2026-10-11 | Dédup des PMs — corpus dernières versions seules, `@historique/` documenté, arborescence §2 recalibrée (Task 16) |
 | v2.1.2 | 2026-10-11 | Recalibrage état gen-plan v3.22.0 — §7 « 5 disciplines » → « 5 + 3 matérialisations n°54 », arborescence v3.22.0/v1.6.1/×16, SHARED v1.7.1 (cascade n°54, session web-b4d7dd19) |
@@ -62,6 +67,8 @@
 
 | Version | Date | Résumé de révision |
 |---------|------|--------------------|
+| v1.8.4 | 2026-10-24 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.23.2→v3.24.0 ; recalibrage croisé : SHARED v1.7.11 (§6.1), §2ter, §A.3 |
+| v1.8.3 | 2026-10-23 | Cascade alias-eco v1.2.0 (Task 25bis/25ter, GO propriétaire) : §A.3 instantané recalibré (alias-eco v1.0.0→v1.2.0) — bump PATCH conformité semver |
 | v1.8.0 | 2026-10-23 | MÉCANISME DUAL d'installation (§3.2 réécrit : installation directe des formes certifiées du dépôt = voie par défaut, exécutant canonique eco_install_pipeline.py ; assemblage bootstrap corpus-seul) + intégration alias-eco (§2bis/§4/§A.3) — Task 18, session web-fdf5963c, directive propriétaire « optimise le système d'installation en regénérant » + prérequis A |
 | v1.7.2 | 2026-10-23 | Génération mécanique KO-L004 des 4 PMs familles (gen-plan v3.23.2 · correct-work v2.8.0 · clone-chat v2.0.2 · refactor-guard v1.7.1) — recalibrage croisé §2ter/§A.3 ; SHARED v1.7.8 |
 | v1.1.0 | 2026-10-02 | Fusion des installateurs (périmètre §A + ordre optimal 10 étapes) — source d'installation unique (R4) |
@@ -77,7 +84,7 @@
 
 ## 6. Registre KB — `skills/KNOWLEDGE.md` (source de vérité de l'état de l'écosystème)
 
-Registre à 34 entrées — instantané des versions archivé ci-dessous (source : registre KB, instantané rafraîchi 2026-10-23 Task 18 — alias-eco v1.0.0 créé, 4 familles montées ; le registre vivant fait foi ; les versions des 4 familles = versions de leurs PMs vivants, contrat KO-L004).
+Registre à 34 entrées — instantané des versions archivé ci-dessous (source : registre KB, instantané rafraîchi 2026-10-23 Task 18 (création alias-eco) puis Task 25bis/25ter (alias-eco v1.2.0 — grammaire B --trigger, OPT-TRIO) ; le registre vivant fait foi ; les versions des 4 familles = versions de leurs PMs vivants, contrat KO-L004).
 
 | Skill | Version | Skill | Version |
 |-------|---------|-------|---------|
@@ -97,7 +104,7 @@ Registre à 34 entrées — instantané des versions archivé ci-dessous (source
 | script-creator | v1.1.0 | script-reviewer | v1.0.0 |
 | refactoring-engineering | v1.0.1 | refactoring-test | v1.0.1 |
 | refactor-guard | v1.7.1 | fullstack-dev | v1.0.0 |
-| alias-eco | v1.0.0 | dessin-technique | v1.1.1 |
+| alias-eco | v1.2.0 | dessin-technique | v1.1.1 |
 
 ## 7. Mise à jour de ce fichier
 

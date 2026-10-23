@@ -1,21 +1,9 @@
 ---
 name: visual-design-foundations
-version: "1.0.0"
-category: "Visualisation & Design"
-tags:
-  - visual
-  - design
-  - foundations
-description: Applique la typographie, la théorie des couleurs, les systèmes d'espacement et les principes d'iconographie pour créer des designs visuels cohérents. À utiliser pour établir des design tokens, construire des guides de style, ou améliorer la hiérarchie visuelle et la cohérence.
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : applique la typographie, la théorie des couleurs, les systèmes d'espacement et les principes d'iconographie po…
-  - Déclencher si la demande mentionne : applique, typographie, théorie
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
+description: Apply typography, color theory, spacing systems, and iconography principles to create cohesive visual designs. Use when establishing design tokens, building style guides, or improving visual hierarchy and consistency.
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -25,24 +13,24 @@ read_when:
 
 # Visual Design Foundations
 
-Construisez des systèmes visuels cohérents et accessibles en vous appuyant sur les fondamentaux de la typographie, de la couleur, de l'espacement et de l'iconographie.
+Build cohesive, accessible visual systems using typography, color, spacing, and iconography fundamentals.
 
-## Quand utiliser ce skill
+## When to Use This Skill
 
-- Établir des design tokens pour un nouveau projet
-- Créer ou affiner un système d'espacement et de dimensionnement
-- Choisir et associer des polices de caractères
-- Construire des palettes de couleurs accessibles
-- Concevoir des systèmes d'icônes et des ressources visuelles
-- Améliorer la hiérarchie visuelle et la lisibilité
-- Auditer des designs pour la cohérence visuelle
-- Implémenter le mode sombre ou le theming
+- Establishing design tokens for a new project
+- Creating or refining a spacing and sizing system
+- Selecting and pairing typefaces
+- Building accessible color palettes
+- Designing icon systems and visual assets
+- Improving visual hierarchy and readability
+- Auditing designs for visual consistency
+- Implementing dark mode or theming
 
-## Systèmes fondamentaux
+## Core Systems
 
-### 1. Échelle typographique
+### 1. Typography Scale
 
-**Échelle modulaire** (dimensionnement basé sur des ratios) :
+**Modular Scale** (ratio-based sizing):
 
 ```css
 :root {
@@ -58,16 +46,16 @@ Construisez des systèmes visuels cohérents et accessibles en vous appuyant sur
 }
 ```
 
-**Recommandations d'interligne** :
-| Type de texte | Interligne |
+**Line Height Guidelines**:
+| Text Type | Line Height |
 |-----------|-------------|
-| Titres | 1.1 - 1.3 |
-| Corps de texte | 1.5 - 1.7 |
-| Libellés UI | 1.2 - 1.4 |
+| Headings | 1.1 - 1.3 |
+| Body text | 1.5 - 1.7 |
+| UI labels | 1.2 - 1.4 |
 
-### 2. Système d'espacement
+### 2. Spacing System
 
-**Grille de 8 points** (standard du secteur) :
+**8-point grid** (industry standard):
 
 ```css
 :root {
@@ -84,9 +72,9 @@ Construisez des systèmes visuels cohérents et accessibles en vous appuyant sur
 }
 ```
 
-### 3. Système de couleurs
+### 3. Color System
 
-**Tokens de couleurs sémantiques** :
+**Semantic color tokens**:
 
 ```css
 :root {
@@ -115,7 +103,7 @@ Construisez des systèmes visuels cohérents et accessibles en vous appuyant sur
 }
 ```
 
-## Démarrage rapide : design tokens dans Tailwind
+## Quick Start: Design Tokens in Tailwind
 
 ```js
 // tailwind.config.js
@@ -152,17 +140,17 @@ module.exports = {
 };
 ```
 
-## Bonnes pratiques typographiques
+## Typography Best Practices
 
-### Association de polices
+### Font Pairing
 
-**Combinaisons sûres** :
+**Safe combinations**:
 
-- Titres : **Inter** / Corps : **Inter** (famille unique)
-- Titres : **Playfair Display** / Corps : **Source Sans Pro** (contraste)
-- Titres : **Space Grotesk** / Corps : **IBM Plex Sans** (géométrique)
+- Heading: **Inter** / Body: **Inter** (single family)
+- Heading: **Playfair Display** / Body: **Source Sans Pro** (contrast)
+- Heading: **Space Grotesk** / Body: **IBM Plex Sans** (geometric)
 
-### Typographie responsive
+### Responsive Typography
 
 ```css
 /* Fluid typography using clamp() */
@@ -178,7 +166,7 @@ p {
 }
 ```
 
-### Chargement des polices
+### Font Loading
 
 ```css
 /* Prevent layout shift */
@@ -190,18 +178,18 @@ p {
 }
 ```
 
-## Théorie des couleurs
+## Color Theory
 
-### Exigences de contraste (WCAG)
+### Contrast Requirements (WCAG)
 
-| Élément            | Ratio minimum |
+| Element            | Minimum Ratio |
 | ------------------ | ------------- |
-| Corps de texte     | 4.5:1 (AA)    |
-| Texte large (18px+) | 3:1 (AA)      |
-| Composants UI      | 3:1 (AA)      |
-| Renforcé           | 7:1 (AAA)     |
+| Body text          | 4.5:1 (AA)    |
+| Large text (18px+) | 3:1 (AA)      |
+| UI components      | 3:1 (AA)      |
+| Enhanced           | 7:1 (AAA)     |
 
-### Stratégie de mode sombre
+### Dark Mode Strategy
 
 ```css
 :root {
@@ -221,7 +209,7 @@ p {
 }
 ```
 
-### Accessibilité des couleurs
+### Color Accessibility
 
 ```tsx
 // Check contrast programmatically
@@ -244,9 +232,9 @@ function getContrastRatio(foreground: string, background: string): number {
 }
 ```
 
-## Recommandations d'espacement
+## Spacing Guidelines
 
-### Espacement des composants
+### Component Spacing
 
 ```
 Card padding:      16-24px (--space-4 to --space-6)
@@ -256,7 +244,7 @@ Button padding:    8-16px vertical, 16-24px horizontal
 Icon-text gap:     8px (--space-2)
 ```
 
-### Rythme visuel
+### Visual Rhythm
 
 ```css
 /* Consistent vertical rhythm */
@@ -273,9 +261,9 @@ Icon-text gap:     8px (--space-2)
 }
 ```
 
-## Iconographie
+## Iconography
 
-### Système de tailles d'icônes
+### Icon Sizing System
 
 ```css
 :root {
@@ -287,7 +275,7 @@ Icon-text gap:     8px (--space-2)
 }
 ```
 
-### Composant Icône
+### Icon Component
 
 ```tsx
 interface IconProps {
@@ -318,21 +306,21 @@ export function Icon({ name, size = "md", className }: IconProps) {
 }
 ```
 
-## Bonnes pratiques
+## Best Practices
 
-1. **Établissez des contraintes** : limitez les choix pour maintenir la cohérence
-2. **Documentez les décisions** : créez un guide de style vivant
-3. **Testez l'accessibilité** : vérifiez le contraste, les tailles, les cibles tactiles
-4. **Utilisez des tokens sémantiques** : nommez selon l'usage, pas selon l'apparence
-5. **Concevez mobile-first** : partez des contraintes, ajoutez de la complexité
-6. **Maintenez le rythme vertical** : un espacement cohérent crée l'harmonie
-7. **Limitez les graisses de police** : 2 à 3 graisses par famille suffisent
+1. **Establish Constraints**: Limit choices to maintain consistency
+2. **Document Decisions**: Create a living style guide
+3. **Test Accessibility**: Verify contrast, sizing, touch targets
+4. **Use Semantic Tokens**: Name by purpose, not appearance
+5. **Design Mobile-First**: Start with constraints, add complexity
+6. **Maintain Vertical Rhythm**: Consistent spacing creates harmony
+7. **Limit Font Weights**: 2-3 weights per family is sufficient
 
-## Problèmes courants
+## Common Issues
 
-- **Espacement incohérent** : absence d'échelle définie
-- **Contraste insuffisant** : non-respect des exigences WCAG
-- **Surcharge de polices** : trop de familles ou de graisses
-- **Nombres magiques** : valeurs arbitraires au lieu de tokens
-- **États manquants** : oubli des états hover, focus, disabled
-- **Absence de plan de mode sombre** : l'adaptation a posteriori est plus difficile que la planification
+- **Inconsistent Spacing**: Not using a defined scale
+- **Poor Contrast**: Failing WCAG requirements
+- **Font Overload**: Too many families or weights
+- **Magic Numbers**: Arbitrary values instead of tokens
+- **Missing States**: Forgetting hover, focus, disabled
+- **No Dark Mode Plan**: Retrofitting is harder than planning

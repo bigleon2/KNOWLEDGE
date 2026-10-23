@@ -1,21 +1,10 @@
 ---
 name: Video Generation
-version: "1.0.0"
-category: "Autres"
-tags:
-  - video
-  - generation
-description: Implémente des capacités de génération vidéo par IA à l'aide du z-ai-web-dev-sdk. Utilise ce skill lorsque l'utilisateur a besoin de générer des vidéos à partir de prompts texte ou d'images, de créer du contenu vidéo par programmation, ou de construire des applications produisant des sorties vidéo. Prend en charge la gestion asynchrone des tâches avec polling du statut et récupération des résultats.
+description: Implement AI-powered video generation capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to generate videos from text prompts or images, create video content programmatically, or build applications that produce video outputs. Supports asynchronous task management with status polling and result retrieval.
 license: MIT
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : implémente des capacités de génération vidéo par IA à l'aide du z-ai-web-dev-sdk
-  - Déclencher si la demande mentionne : vidéo, implémente, capacités
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -23,33 +12,33 @@ read_when:
 
 
 
-# Skill Video Generation
+# Video Generation Skill
 
-Ce skill guide l'implémentation de la fonctionnalité de génération vidéo à l'aide du package z-ai-web-dev-sdk, permettant aux modèles d'IA de créer des vidéos à partir de descriptions texte ou d'images via un traitement de tâches asynchrone.
+This skill guides the implementation of video generation functionality using the z-ai-web-dev-sdk package, enabling AI models to create videos from text descriptions or images through asynchronous task processing.
 
-## Chemin du skill
+## Skills Path
 
-**Emplacement du skill** : `{project_path}/skills/video-generation`
+**Skill Location**: `{project_path}/skills/video-generation`
 
-Ce skill se trouve à l'emplacement ci-dessus dans votre projet.
+This skill is located at the above path in your project.
 
-**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/video.ts` pour un exemple fonctionnel.
+**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/video.ts` for a working example.
 
-## Vue d'ensemble
+## Overview
 
-La génération vidéo permet de construire des applications capables de créer du contenu vidéo à partir de prompts texte ou d'images, avec des paramètres personnalisables tels que la résolution, la fréquence d'images, la durée et les réglages de qualité. L'API repose sur un modèle de tâches asynchrone : vous créez une tâche puis interrogez son statut jusqu'à récupérer les résultats.
+Video Generation allows you to build applications that can create video content from text prompts or images, with customizable parameters like resolution, frame rate, duration, and quality settings. The API uses an asynchronous task model where you create a task and poll for results.
 
-**IMPORTANT** : z-ai-web-dev-sdk DOIT être utilisé uniquement dans du code backend. Ne l'utilisez jamais dans du code côté client.
+**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
 
-## Prérequis
+## Prerequisites
 
-Le package z-ai-web-dev-sdk est déjà installé. Importez-le comme illustré dans les exemples ci-dessous.
+The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
 
-## Utilisation du CLI (tâches simples)
+## CLI Usage (For Simple Tasks)
 
-Pour les tâches simples de génération vidéo, vous pouvez utiliser le z-ai CLI au lieu d'écrire du code. Le CLI gère automatiquement la création de la tâche et le polling, ce qui le rend idéal pour des tests rapides et des automatisations simples.
+For simple video generation tasks, you can use the z-ai CLI instead of writing code. The CLI handles task creation and polling automatically, making it ideal for quick tests and simple automation.
 
-### Texte vers vidéo basique
+### Basic Text-to-Video
 
 ```bash
 # Generate video with automatic polling
@@ -59,7 +48,7 @@ z-ai video --prompt "A cat playing with a ball" --poll
 z-ai video -p "Beautiful landscape with mountains" --poll
 ```
 
-### Qualité et réglages personnalisés
+### Custom Quality and Settings
 
 ```bash
 # Quality mode (speed or quality)
@@ -76,11 +65,11 @@ z-ai video \
 z-ai video -p "Fireworks display" --duration 10 --poll
 ```
 
-### Image vers vidéo
+### Image-to-Video
 
-**IMPORTANT** : pour le paramètre `image_url`, il est **fortement recommandé d'utiliser des données d'image encodées en base64** plutôt que des URLs. Cette approche est plus fiable et évite les problèmes potentiels de réseau ou les restrictions d'accès.
+**IMPORTANT**: For `image_url` parameter, it is **strongly recommended to use base64-encoded image data** instead of URLs. This approach is more reliable and avoids potential network issues or access restrictions.
 
-**Remarque** : faites correspondre le type MIME de l'URI de données au format réel de votre image (image/jpeg, image/png, image/webp, etc.) pour éviter les erreurs de décodage.
+**Note**: Match the MIME type in the data URI to your actual image format (image/jpeg, image/png, image/webp, etc.) to avoid decoding issues.
 
 ```bash
 # Generate video from single image using base64 (RECOMMENDED)
@@ -114,9 +103,9 @@ z-ai video \
   --poll
 ```
 
-### Mode première/dernière frame
+### First-Last Frame Mode
 
-**IMPORTANT** : pour une fiabilité optimale, utilisez des images encodées en base64 plutôt que des URLs. Assurez-vous que le type MIME correspond au format réel de chaque image.
+**IMPORTANT**: For best reliability, use base64-encoded images instead of URLs. Ensure the MIME type matches your actual image format.
 
 ```bash
 # Generate video between two frames using base64 (RECOMMENDED)
@@ -145,7 +134,7 @@ z-ai video \
   --poll
 ```
 
-### Avec génération audio
+### With Audio Generation
 
 ```bash
 # Generate video with AI-generated audio effects
@@ -155,7 +144,7 @@ z-ai video \
   --poll
 ```
 
-### Sauvegarde de la sortie
+### Save Output
 
 ```bash
 # Save task result to JSON file
@@ -165,7 +154,7 @@ z-ai video \
   -o video_result.json
 ```
 
-### Paramètres de polling personnalisés
+### Custom Polling Parameters
 
 ```bash
 # Customize polling behavior
@@ -179,22 +168,22 @@ z-ai video \
 z-ai video -p "Abstract art animation" -o task.json
 ```
 
-### Paramètres du CLI
+### CLI Parameters
 
-- `--prompt, -p <text>` : Optionnel — Description texte de la vidéo
-- `--image-url, -i <data>` : Optionnel — **De préférence des données d'image encodées en base64** (ex. "data:image/png;base64,iVBORw..."). Les URLs sont également prises en charge mais moins recommandées. Pour deux images, utilisez des valeurs séparées par des virgules.
-- `--quality, -q <mode>` : Optionnel — Mode de sortie : `speed` ou `quality` (défaut : speed)
-- `--with-audio` : Optionnel — Génère des effets audio par IA (défaut : false)
-- `--size, -s <resolution>` : Optionnel — Résolution de la vidéo (ex. "1920x1080")
-- `--fps <rate>` : Optionnel — Fréquence d'images : 30 ou 60 (défaut : 30)
-- `--duration, -d <seconds>` : Optionnel — Durée : 5 ou 10 secondes (défaut : 5)
-- `--model, -m <model>` : Optionnel — Nom du modèle à utiliser
-- `--poll` : Optionnel — Interroge automatiquement jusqu'à la fin de la tâche
-- `--poll-interval <seconds>` : Optionnel — Intervalle de polling (défaut : 5)
-- `--max-polls <count>` : Optionnel — Nombre maximum de tentatives de polling (défaut : 60)
-- `--output, -o <path>` : Optionnel — Chemin du fichier de sortie (format JSON)
+- `--prompt, -p <text>`: Optional - Text description of the video
+- `--image-url, -i <data>`: Optional - **Preferably base64-encoded image data** (e.g., "data:image/png;base64,iVBORw..."). URLs are also supported but less recommended. For two images, use comma-separated values.
+- `--quality, -q <mode>`: Optional - Output mode: `speed` or `quality` (default: speed)
+- `--with-audio`: Optional - Generate AI audio effects (default: false)
+- `--size, -s <resolution>`: Optional - Video resolution (e.g., "1920x1080")
+- `--fps <rate>`: Optional - Frame rate: 30 or 60 (default: 30)
+- `--duration, -d <seconds>`: Optional - Duration: 5 or 10 seconds (default: 5)
+- `--model, -m <model>`: Optional - Model name to use
+- `--poll`: Optional - Auto-poll until task completes
+- `--poll-interval <seconds>`: Optional - Polling interval (default: 5)
+- `--max-polls <count>`: Optional - Maximum poll attempts (default: 60)
+- `--output, -o <path>`: Optional - Output file path (JSON format)
 
-### Résolutions prises en charge
+### Supported Resolutions
 
 - `1024x1024`
 - `768x1344`
@@ -203,41 +192,41 @@ z-ai video -p "Abstract art animation" -o task.json
 - `1152x864`
 - `1440x720`
 - `720x1440`
-- `1920x1080` (et autres résolutions standard)
+- `1920x1080` (and other standard resolutions)
 
-### Vérifier le statut d'une tâche plus tard
+### Checking Task Status Later
 
-Si vous créez une tâche sans `--poll`, vous pouvez vérifier son statut ultérieurement :
+If you create a task without `--poll`, you can check its status later:
 
 ```bash
 # Get the task ID from the initial response
 z-ai async-result --id "task-id-here" --poll
 ```
 
-### Quand utiliser le CLI ou le SDK
+### When to Use CLI vs SDK
 
-**Utilisez le CLI pour :**
-- Des tests rapides de génération vidéo
-- La création d'une vidéo simple et ponctuelle
-- Des scripts d'automatisation en ligne de commande
-- Le test de différents prompts et réglages
+**Use CLI for:**
+- Quick video generation tests
+- Simple one-off video creation
+- Command-line automation scripts
+- Testing different prompts and settings
 
-**Utilisez le SDK pour :**
-- La génération vidéo par lots avec logique personnalisée
-- L'intégration dans des applications web
-- La gestion personnalisée de files de tâches
-- Des applications de production avec workflows complexes
+**Use SDK for:**
+- Batch video generation with custom logic
+- Integration with web applications
+- Custom task queue management
+- Production applications with complex workflows
 
-## Workflow de génération vidéo
+## Video Generation Workflow
 
-La génération vidéo suit un modèle asynchrone en deux étapes :
+Video generation follows a two-step asynchronous pattern:
 
-1. **Créer la tâche** : soumettre la requête de génération vidéo et recevoir un ID de tâche
-2. **Interroger les résultats** : consulter le statut de la tâche jusqu'à complétion et récupérer l'URL de la vidéo
+1. **Create Task**: Submit video generation request and receive a task ID
+2. **Poll Results**: Query the task status until completion and retrieve the video URL
 
-## Implémentation basique de la génération vidéo
+## Basic Video Generation Implementation
 
-### Génération simple texte vers vidéo
+### Simple Text-to-Video Generation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -295,11 +284,11 @@ const videoUrl = await generateVideo('A cat is playing with a ball.');
 console.log('Generated video:', videoUrl);
 ```
 
-### Génération image vers vidéo
+### Image-to-Video Generation
 
-**IMPORTANT** : le paramètre `image_url` accepte à la fois des données d'image encodées en base64 et des URLs, mais **l'encodage base64 est fortement recommandé** pour une meilleure fiabilité et pour éviter les problèmes liés au réseau.
+**IMPORTANT**: The `image_url` parameter accepts both base64-encoded image data and URLs, but **base64 encoding is strongly recommended** for better reliability and to avoid network-related issues.
 
-**Critique** : faites toujours correspondre le type MIME de votre URI de données base64 au format réel de l'image pour éviter les erreurs de décodage.
+**Critical**: Always match the MIME type in your base64 data URI to the actual image format to prevent decoding errors.
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -372,9 +361,9 @@ const task3 = await generateVideoFromImage(
 );
 ```
 
-### Image vers vidéo avec frames de début et de fin
+### Image-to-Video with Start and End Frames
 
-**IMPORTANT** : pour le mode keyframes, les images encodées en base64 sont **fortement recommandées** par rapport aux URLs afin de garantir une génération vidéo cohérente et fiable. Utilisez toujours le type MIME correct pour chaque image.
+**IMPORTANT**: For keyframe mode, base64-encoded images are **highly recommended** over URLs to ensure consistent and reliable video generation. Always use the correct MIME type for each image.
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -451,9 +440,9 @@ const task2 = await generateVideoWithKeyframes(
 );
 ```
 
-## Gestion asynchrone des résultats
+## Asynchronous Result Management
 
-### Interroger le statut d'une tâche
+### Query Task Status
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -492,7 +481,7 @@ async function checkTaskStatus(taskId) {
 const status = await checkTaskStatus('your-task-id-here');
 ```
 
-### Polling avec backoff exponentiel
+### Polling with Exponential Backoff
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -531,9 +520,9 @@ async function pollWithBackoff(taskId) {
 }
 ```
 
-## Cas d'usage avancés
+## Advanced Use Cases
 
-### Gestionnaire de file d'attente de génération vidéo
+### Video Generation Queue Manager
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -622,7 +611,7 @@ const result = await queue.pollTask(taskId);
 console.log('Video ready:', result.video_result?.[0]?.url);
 ```
 
-### Génération vidéo par lots
+### Batch Video Generation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -698,24 +687,24 @@ videos.forEach(video => {
 });
 ```
 
-## Paramètres de configuration
+## Configuration Parameters
 
-### Paramètres de génération vidéo
+### Video Generation Parameters
 
-| Paramètre | Type | Obligatoire | Description | Défaut |
+| Parameter | Type | Required | Description | Default |
 |-----------|------|----------|-------------|---------|
-| `prompt` | string | Optionnel* | Description texte de la vidéo | - |
-| `image_url` | string \| string[] | Optionnel* | URL(s) des images pour la génération | - |
-| `quality` | string | Optionnel | Mode de sortie : `'speed'` ou `'quality'` | `'speed'` |
-| `with_audio` | boolean | Optionnel | Génère des effets audio par IA | `false` |
-| `size` | string | Optionnel | Résolution de la vidéo (ex. `'1920x1080'`) | - |
-| `fps` | number | Optionnel | Fréquence d'images : `30` ou `60` | `30` |
-| `duration` | number | Optionnel | Durée en secondes : `5` ou `10` | `5` |
-| `model` | string | Optionnel | Nom du modèle | - |
+| `prompt` | string | Optional* | Text description of the video | - |
+| `image_url` | string \| string[] | Optional* | Image URL(s) for generation | - |
+| `quality` | string | Optional | Output mode: `'speed'` or `'quality'` | `'speed'` |
+| `with_audio` | boolean | Optional | Generate AI audio effects | `false` |
+| `size` | string | Optional | Video resolution (e.g., `'1920x1080'`) | - |
+| `fps` | number | Optional | Frame rate: `30` or `60` | `30` |
+| `duration` | number | Optional | Duration in seconds: `5` or `10` | `5` |
+| `model` | string | Optional | Model name | - |
 
-*Remarque : au moins l'un des deux, `prompt` ou `image_url`, doit être fourni.
+*Note: At least one of `prompt` or `image_url` must be provided.
 
-### Formats d'URL d'image
+### Image URL Formats
 
 ```javascript
 // Single image (starting frame)
@@ -728,15 +717,15 @@ image_url: [
 ]
 ```
 
-### Valeurs de statut de tâche
+### Task Status Values
 
-- `PROCESSING` : la tâche est en cours de traitement
-- `SUCCESS` : la tâche s'est terminée avec succès
-- `FAIL` : la tâche a échoué
+- `PROCESSING`: Task is being processed
+- `SUCCESS`: Task completed successfully
+- `FAIL`: Task failed
 
-## Formats de réponse
+## Response Formats
 
-### Réponse de création de tâche
+### Task Creation Response
 
 ```json
 {
@@ -746,7 +735,7 @@ image_url: [
 }
 ```
 
-### Réponse d'interrogation de tâche (succès)
+### Task Query Response (Success)
 
 ```json
 {
@@ -761,7 +750,7 @@ image_url: [
 }
 ```
 
-### Réponse d'interrogation de tâche (en cours)
+### Task Query Response (Processing)
 
 ```json
 {
@@ -771,9 +760,9 @@ image_url: [
 }
 ```
 
-## Bonnes pratiques
+## Best Practices
 
-### 1. Stratégie de polling
+### 1. Polling Strategy
 
 ```javascript
 // Recommended polling implementation
@@ -802,7 +791,7 @@ async function smartPoll(zai, taskId) {
 }
 ```
 
-### 2. Gestion des erreurs
+### 2. Error Handling
 
 ```javascript
 async function safeVideoGeneration(params) {
@@ -849,14 +838,14 @@ async function safeVideoGeneration(params) {
 }
 ```
 
-### 3. Gestion des ressources
+### 3. Resource Management
 
-- Mettez l'instance ZAI en cache pour plusieurs générations vidéo
-- Stockez les IDs de tâches pour les opérations de longue durée
-- Nettoyez les tâches terminées de votre système de suivi
-- Implémentez des mécanismes de timeout pour éviter un polling infini
+- Cache the ZAI instance for multiple video generations
+- Implement task ID storage for long-running operations
+- Clean up completed tasks from your tracking system
+- Implement timeout mechanisms to prevent infinite polling
 
-### 4. Arbitrage qualité vs vitesse
+### 4. Quality vs Speed Trade-offs
 
 ```javascript
 // Fast generation for previews or high volume
@@ -877,27 +866,27 @@ const qualityVideo = await zai.video.generations.create({
 });
 ```
 
-### 5. Considérations de sécurité
+### 5. Security Considerations
 
-- Validez toutes les entrées utilisateur avant de créer des tâches
-- Implémentez une limitation de débit pour les endpoints de génération vidéo
-- Stockez et validez les IDs de tâches de manière sécurisée
-- N'exposez jamais les identifiants du SDK dans du code côté client
-- Définissez des timeouts raisonnables pour les opérations de polling
+- Validate all user inputs before creating tasks
+- Implement rate limiting for video generation endpoints
+- Store and validate task IDs securely
+- Never expose SDK credentials in client-side code
+- Set reasonable timeouts for polling operations
 
-## Cas d'usage courants
+## Common Use Cases
 
-1. **Contenu pour réseaux sociaux** : générer de courts clips vidéo pour des publications et des stories
-2. **Supports marketing** : créer des vidéos de démonstration de produits
-3. **Éducation** : générer des explications visuelles et des tutoriels
-4. **Divertissement** : créer du contenu animé à partir de descriptions
-5. **Prototypage** : maquettes vidéo rapides pour des présentations
-6. **Développement de jeux** : générer des cinématiques ou des vidéos d'arrière-plan
-7. **Automatisation de contenu** : génération vidéo en masse pour divers usages
+1. **Social Media Content**: Generate short video clips for posts and stories
+2. **Marketing Materials**: Create product demonstration videos
+3. **Education**: Generate visual explanations and tutorials
+4. **Entertainment**: Create animated content from descriptions
+5. **Prototyping**: Quick video mockups for presentations
+6. **Game Development**: Generate cutscene or background videos
+7. **Content Automation**: Bulk video generation for various purposes
 
-## Exemples d'intégration
+## Integration Examples
 
-### Endpoint API Express.js
+### Express.js API Endpoint
 
 ```javascript
 import express from 'express';
@@ -981,7 +970,7 @@ initZAI().then(() => {
 });
 ```
 
-### Mises à jour temps réel via WebSocket
+### WebSocket Real-time Updates
 
 ```javascript
 import WebSocket from 'ws';
@@ -1061,41 +1050,41 @@ async function pollAndNotify(ws, taskId) {
 initZAI();
 ```
 
-## Dépannage
+## Troubleshooting
 
-**Problème** : "Le SDK doit être utilisé en backend"
-- **Solution** : assurez-vous que z-ai-web-dev-sdk n'est importé et utilisé que dans du code côté serveur
+**Issue**: "SDK must be used in backend"
+- **Solution**: Ensure z-ai-web-dev-sdk is only imported and used in server-side code
 
-**Problème** : la tâche reste indéfiniment en statut PROCESSING
-- **Solution** : implémentez des mécanismes de timeout appropriés et tenez compte de la complexité et de la durée de la vidéo
+**Issue**: Task stays in PROCESSING status indefinitely
+- **Solution**: Implement proper timeout mechanisms and consider the video complexity and duration
 
-**Problème** : URL vidéo introuvable dans la réponse
-- **Solution** : vérifiez les différents champs de réponse possibles (video_result, video_url, url, video) comme montré dans les exemples
+**Issue**: Video URL not found in response
+- **Solution**: Check multiple possible response fields (video_result, video_url, url, video) as shown in examples
 
-**Problème** : la tâche échoue immédiatement
-- **Solution** : vérifiez que les paramètres respectent les exigences (prompt/image_url valides, valeurs prises en charge pour quality/fps/duration)
+**Issue**: Task fails immediately
+- **Solution**: Verify that parameters meet requirements (valid prompt/image_url, supported values for quality/fps/duration)
 
-**Problème** : génération vidéo lente
-- **Solution** : utilisez le mode de qualité 'speed', réduisez la durée/le fps, ou envisagez des prompts plus simples
+**Issue**: Slow video generation
+- **Solution**: Use 'speed' quality mode, reduce duration/fps, or consider simpler prompts
 
-**Problème** : timeout du polling
-- **Solution** : augmentez maxPolls ou pollInterval en fonction de la durée et des réglages de qualité de la vidéo
+**Issue**: Polling timeout
+- **Solution**: Increase maxPolls value or pollInterval based on video duration and quality settings
 
-## Conseils de performance
+## Performance Tips
 
-1. **Utilisez des réglages de qualité adaptés** : choisissez 'speed' pour des résultats rapides, 'quality' pour la production finale
-2. **Commencez par des durées courtes** : testez avec des vidéos de 5 secondes avant de générer du contenu plus long
-3. **Implémentez un polling intelligent** : utilisez un backoff exponentiel pour réduire les appels API
-4. **Mettez l'instance ZAI en cache** : réutilisez la même instance pour plusieurs générations vidéo
-5. **Traitement parallèle** : créez plusieurs tâches simultanément et interrogez-les indépendamment
-6. **Supervisez et journalisez** : suivez les temps de complétion des tâches pour optimiser votre stratégie de polling
+1. **Use appropriate quality settings**: Choose 'speed' for quick results, 'quality' for final production
+2. **Start with shorter durations**: Test with 5-second videos before generating longer content
+3. **Implement intelligent polling**: Use exponential backoff to reduce API calls
+4. **Cache ZAI instance**: Reuse the same instance for multiple video generations
+5. **Parallel processing**: Create multiple tasks simultaneously and poll them independently
+6. **Monitor and log**: Track task completion times to optimize your polling strategy
 
-## À retenir
+## Remember
 
-- Utilisez toujours z-ai-web-dev-sdk uniquement dans du code backend
-- La génération vidéo est asynchrone — implémentez toujours un polling correct
-- Vérifiez plusieurs champs de réponse pour l'URL vidéo afin d'assurer la compatibilité
-- Implémentez des timeouts pour éviter des boucles de polling infinies
-- Gérez les trois statuts de tâche : PROCESSING, SUCCESS et FAIL
-- Tenez compte des limites de débit (rate limits) et ajoutez des délais appropriés entre les requêtes
-- Le SDK est déjà installé — importez-le comme montré dans les exemples
+- Always use z-ai-web-dev-sdk in backend code only
+- Video generation is asynchronous - always implement proper polling
+- Check multiple response fields for video URL to ensure compatibility
+- Implement timeouts to prevent infinite polling loops
+- Handle all three task statuses: PROCESSING, SUCCESS, and FAIL
+- Consider rate limits and implement appropriate delays between requests
+- The SDK is already installed - import as shown in examples

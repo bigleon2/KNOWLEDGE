@@ -24,6 +24,10 @@
     "should_trigger": false
   },
   {
+    "query": "alias-eco \"mon dépôt KNOWLEDGE\" --add ECO-DEPOT",
+    "should_trigger": true
+  },
+  {
     "query": "Fais-moi l'inventaire de toutes les skills disponibles avec leurs catégories.",
     "should_trigger": false
   },

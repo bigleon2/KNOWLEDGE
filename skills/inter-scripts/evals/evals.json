@@ -1,0 +1,34 @@
+{
+  "skill": "inter-scripts",
+  "version": "1.0.0",
+  "evals": [
+    {
+      "id": "E1-registre",
+      "description": "Le registre déclare les nœuds (trigo-euler C++ daemon + scripts Python dessin-technique) avec langage, interface, capacités, canal et règle de sélection",
+      "commande": "python3 -c \"import json; r=json.load(open('skills/inter-scripts/scripts/registre.json')); assert 'trigo-euler' in r['scripts'] and r['scripts']['trigo-euler']['concurrent'] is True and 'regle_selection' in r; print('PASS')\"",
+      "attendu": "PASS",
+      "priorite": "S1"
+    },
+    {
+      "id": "E2-client-daemon",
+      "description": "Le client générique appelle le démon trigo-euler (démarrage paresseux + health-check) et obtient une réponse correcte",
+      "commande": "python3 skills/inter-scripts/scripts/is_client.py --script trigo-euler --op trig.eval --args '{\"fonction\":\"sin\",\"x\":0.5}'",
+      "attendu": "ok=true, canal=daemon-socket, valeur ≈ sin(0,5)",
+      "priorite": "S1"
+    },
+    {
+      "id": "E3-orchestration-cycles",
+      "description": "L'orchestrateur valide un plan multi-projets (niveaux Kahn, canaux adaptés) et REJETTE un graphe cyclé (CYCLE_DETECTE, rc=1)",
+      "commande": "orchestrer.py --plans <plan> --verifier ; orchestrer.py --plans <plan-cycle> --verifier (rc attendu 1)",
+      "attendu": "PLAN_VALIDE avec niveaux+canaux ; cycle rejeté explicitement",
+      "priorite": "S1"
+    },
+    {
+      "id": "E4-idempotence",
+      "description": "Ré-exécution d'un plan (chaîne joint-v2) → sorties byte-identiques (sha16 égaux) et verdict PASS ×2",
+      "commande": "orchestrer.py --plans tmp/mission-voss/trigo-inter-scripts/plan-joint-v2.json --executer (×2, comparaison sha16)",
+      "attendu": "PASS ×2, sha16 identiques",
+      "priorite": "S2"
+    }
+  ]
+}

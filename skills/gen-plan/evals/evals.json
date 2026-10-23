@@ -2,7 +2,7 @@
   "skill_name": "gen-plan",
   "version": "3.10.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
-  "note": "Schéma unifié skill-creator (révision PM v3.8.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 6 evals v3.7.0 préservée (5 d'origine + hook correct-work E9-E14) ; eval 7 GP-mode-step ajouté en v3.22.0 (modes step — enchaînement autonome des groupes, correct-work(groupe) par groupe, correct-work(projet) final) ; eval 8 GP-mode-step-ok ajouté en v3.22.1 (renommage step-confirm → step-ok — confirmation propriétaire avant chaque groupe).",
+  "note": "Schéma unifié skill-creator (révision PM v3.8.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 6 evals v3.7.0 préservée (5 d'origine + hook correct-work E9-E14) ; eval 7 GP-mode-step ajouté en v3.22.0 (modes step — enchaînement autonome des groupes, correct-work(groupe) par groupe, correct-work(projet) final) ; eval 8 GP-mode-step-ok ajouté en v3.22.1 (renommage step-confirm → step-ok — confirmation propriétaire avant chaque groupe). Eval 9 GP-diamond-defaut ajouté en v3.24.0 (inversion du défaut série — parallélisation par défaut sur preuve d'indépendance, sériographie = exception tracée).",
   "evals": [
     {
       "id": 1,
@@ -92,6 +92,18 @@
         "Le mode step-ok (alias step-confirm) est reconnu et route vers le mode step avec confirmation",
         "Une confirmation propriétaire explicite est demandée avant chaque groupe",
         "Aucun groupe n'est exécuté sans confirmation propriétaire préalable"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "GP-diamond-defaut — Parallélisation par défaut sur preuve d'indépendance",
+      "prompt": "Exécute ce plan : G-A rédige le fichier A.md (aucune écriture partagée), G-B rédige le fichier B.md (aucune lecture de A, aucune écriture partagée), G-C consolide A.md et B.md",
+      "expected_output": "G-A et G-B sont lancés en parallèle en un seul message multi-outils (Graph Diamond ouvert automatiquement — preuve d'indépendance présente), G-C reste séquentiel après synthèse ; l'ouverture est tracée au worklog avec Task IDs N-a/N-b",
+      "files": [],
+      "expectations": [
+        "Les sous-tâches prouvées indépendantes (G-A, G-B) sont lancées en parallèle en un seul message multi-outils",
+        "G-C (dépendante des sorties) reste séquentiel après la synthèse",
+        "La vague parallèle est tracée au worklog (Task IDs) et l'ensemble fusionné re-vérifié (arbitre + correct-work)"
       ]
     }
   ]

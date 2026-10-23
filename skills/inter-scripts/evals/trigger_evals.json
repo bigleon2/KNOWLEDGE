@@ -1,0 +1,18 @@
+[
+  {
+    "query": "Fais communiquer mon script C++ trigo-euler avec mes scripts Python : il doit être appelable par plusieurs tâches en même temps",
+    "should_trigger": true
+  },
+  {
+    "query": "inter-scripts : orchestre l'exécution de mon plan d'actions en choisissant les bons canaux (démon socket pour les appels concurrents, fichier typé pour les chaînages)",
+    "should_trigger": true
+  },
+  {
+    "query": "Construis le graphe de tâches de mes deux projets et exécute-les en fan-out avec détection de cycles et journal des canaux",
+    "should_trigger": true
+  },
+  {
+    "query": "Orchestre une flotte d'agents IA pour la recherche documentaire",
+    "should_trigger": false
+  }
+]

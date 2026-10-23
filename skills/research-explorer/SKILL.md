@@ -1,20 +1,9 @@
 ---
 name: research-explorer
-version: "1.0.0"
-category: "Autres"
-tags:
-  - research
-  - explorer
-description: À utiliser quand l'utilisateur a une direction de recherche vague et souhaite explorer des sujets spécifiques envisageables. Produit une analyse structurée avec des sujets candidats, une notation innovation/faisabilité et une pré-étude de 20 à 30 travaux représentatifs. Une seule étape, sans runtime Python.
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : à utiliser quand l'utilisateur a une direction de recherche vague et souhaite explorer des sujets spécifiques…
-  - Déclencher si la demande mentionne : sujets, utiliser, quand
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
+description: Use when the user has a vague research direction and wants to explore feasible specific topics. Outputs a structured analysis with candidate topics, innovation/feasibility scoring, and a pre-survey of 20–30 representative works. Single-stage, no Python runtime.
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -24,33 +13,33 @@ read_when:
 
 # Research Explorer
 
-## Vue d'ensemble
+## Overview
 
-Skill d'exploration de sujets de recherche. Prend une direction large, mène une recherche web multi-dimensionnelle avec les propres outils WebSearch / WebFetch de l'agent, et produit trois livrables Markdown structurés. **Une seule étape, qualité complète dès le départ.** Pas de runtime Python, pas de SDK LLM.
+Research-topic exploration SKILL. Takes a broad direction, performs multi-dimensional web research with the agent's own WebSearch / WebFetch tools, and produces three structured Markdown deliverables. **Single stage, full quality from the start.** No Python runtime, no LLM SDK.
 
-## Quand l'utiliser
+## When to Use
 
-- L'utilisateur dit « je veux faire de la recherche sur X » sans sujet précis.
-- L'utilisateur veut savoir « quels sont les sujets à la mode dans X ».
-- L'utilisateur a besoin d'aide pour resserrer un domaine large en 5 à 10 sujets candidats.
-- L'utilisateur demande une « vue d'ensemble du paysage de recherche ».
+- User says "I want to research X" without a specific topic.
+- User wants to know "what are the hot topics in X".
+- User needs help narrowing a broad field into 5–10 candidate topics.
+- User asks for "research landscape overview".
 
-## Quand NE PAS l'utiliser
+## When NOT to Use
 
-- L'utilisateur a déjà une question de recherche précise → utilisez `literature-survey` ou `paper-writer`.
-- L'utilisateur veut une vérification de fait rapide → utilisez WebSearch directement.
+- User already has a specific research question → use `literature-survey` or `paper-writer`.
+- User wants a quick fact-check → use WebSearch directly.
 
 ## Workflow
 
-### Étape 1 — Comprendre la direction
+### Step 1 — Understand the direction
 
-Confirmez avec l'utilisateur :
+Confirm with the user:
 
-- **Direction** — le domaine d'intérêt large (ex. « apprentissage fédéré », « NLP pour la santé »).
-- **Contraintes** — théorique vs appliquée, méthodes spécifiques, revue cible, budget de calcul, horizon temporel.
-- **Langue** — par défaut l'anglais dans la conversation ; les rapports sont en anglais sauf demande contraire de l'utilisateur.
+- **Direction** — the broad area of interest (e.g., "federated learning", "NLP for healthcare").
+- **Constraints** — theory vs. applied, specific methods, target venue, compute budget, time horizon.
+- **Language** — default English in conversation; reports in English unless the user requests otherwise.
 
-### Étape 2 — Préparer le répertoire d'exécution
+### Step 2 — Set up the run directory
 
 ```bash
 DIRECTION="<direction>"
@@ -62,49 +51,57 @@ mkdir -p "$RUN"
 ln -sfn "$TS" "output/research-explorer/$SLUG/latest"
 ```
 
-Dans les commandes ci-dessous, `$RUN` = `output/research-explorer/<slug>/latest`.
+In commands below `$RUN` = `output/research-explorer/<slug>/latest`.
 
-### Étape 3 — Exploration multi-dimensionnelle
+### Step 3 — Multi-dimensional exploration
 
-Lancez **la recherche académique AMiner** et **la recherche web** sur les dimensions suivantes (une requête par dimension, davantage si les retours sont maigres) :
+Run **AMiner academic search** and **web search** across the following
+dimensions (one query per dimension, more if returns are thin):
 
-1. **Sujets à la mode** — "<direction> 2024 2025 hot topics" / "recent advances".
-2. **Problèmes ouverts** — "<direction> open problems" / "challenges".
+1. **Hot topics** — "<direction> 2024 2025 hot topics" / "recent advances".
+2. **Open problems** — "<direction> open problems" / "challenges".
 3. **Surveys** — "<direction> survey 2024" / "<direction> review".
 4. **Benchmarks** — "<direction> benchmark" / "<direction> evaluation dataset".
 5. **Applications** — "<direction> applications" / "<direction> industry use cases".
-6. **Inter-champs** — "<direction> + <champ adjacent>" (choisissez 1 à 2 champs adjacents).
-7. ** percées récentes** — articles des 6 à 12 derniers mois dans les grandes conférences/revues.
+6. **Cross-field** — "<direction> + <adjacent field>" (pick 1–2 adjacent fields).
+7. **Recent breakthroughs** — papers from the last 6–12 months at top venues.
 
-**Stratégie de recherche (préférez la recherche académique structurée au web générique) :**
+**Search strategy (prefer structured academic search over generic web):**
 
-- **AMiner `search_papers`** — utilisez-ceci EN PREMIER pour chaque dimension. Il renvoie des articles avec des métadonnées structurées (citations, venue, DOI, auteurs) que la recherche web ne fournit pas. Exemple : `search_papers(query="federated learning survey 2024", max_results=10, sort_by_citation=true)`.
-- **AMiner `search_authors`** — utilisez pour trouver les chercheurs de premier plan de la direction. Exemple : `search_authors(query="federated learning", max_results=10)`.
-- **`web_search`** — utilisez en complément quand AMiner renvoie des résultats insuffisants, ou pour des sources non académiques (blogs, documentation, benchmarks).
+- **AMiner `search_papers`** — Use this FIRST for every dimension. It returns
+  papers with structured metadata (citations, venue, DOI, authors) that web
+  search cannot provide. Example: `search_papers(query="federated learning survey 2024", max_results=10, sort_by_citation=true)`.
+- **AMiner `search_authors`** — Use to find leading researchers in the
+  direction. Example: `search_authors(query="federated learning", max_results=10)`.
+- **`web_search`** — Use as a supplement when AMiner returns insufficient
+  results, or for non-academic sources (blogs, documentation, benchmarks).
 
-Pour chaque candidat retenu, extrayez titre canonique / auteurs / année / venue / nombre de citations depuis la réponse AMiner. Pour les résultats issus uniquement de la recherche web, faites un **WebFetch** de l'URL du résumé pour extraire les métadonnées. Persistez les notes intermédiaires dans `$RUN/search_notes.md` après chaque dimension pour permettre une reprise propre du travail.
+For each kept candidate, extract canonical title / authors / year / venue /
+citation count from the AMiner response. For web-search-only results,
+**WebFetch** the abstract URL to extract metadata. Persist intermediate notes
+to `$RUN/search_notes.md` after every dimension so the work resumes cleanly.
 
-### Étape 4 — Produire les trois livrables
+### Step 4 — Produce the three deliverables
 
-Écrivez-les dans `$RUN/` :
+Write these in `$RUN/`:
 
 #### 4.1 `research_exploration.md`
 
-Analyse structurée contenant :
+Structured analysis containing:
 
-- **Rappel de la direction et contraintes**.
-- **Cartographie du paysage** — les principaux sous-champs et les relations entre eux.
-- **5 à 10 sujets candidats**, chacun avec :
-  - Titre (assez précis pour servir de titre d'article).
-  - Motivation (pourquoi c'est pertinent maintenant).
-  - Angle d'innovation (ce qui serait nouveau).
-  - Score de faisabilité (faible / moyen / élevé) avec une brève justification (disponibilité des données, besoins de calcul, densité des travaux antérieurs).
-  - Risque / question ouverte.
-- **Recommandation** — les 1 à 3 sujets que l'utilisateur devrait poursuivre, et pourquoi.
+- **Direction recap & constraints**.
+- **Landscape map** — main subfields and the relationships between them.
+- **5–10 candidate topics**, each with:
+  - Title (specific enough to be a paper title).
+  - Motivation (why this matters now).
+  - Innovation angle (what would be new).
+  - Feasibility score (low / medium / high) with a brief justification (data availability, compute requirements, prior work density).
+  - Risk / open question.
+- **Recommendation** — which 1–3 the user should pursue and why.
 
 #### 4.2 `topic_matrix.md`
 
-Plan hiérarchique Markdown de l'espace de sujets :
+A hierarchical Markdown outline of the topic space:
 
 ```
 # <Direction>
@@ -115,33 +112,33 @@ Plan hiérarchique Markdown de l'espace de sujets :
 ### Topic B.1
 ```
 
-Ce fichier est exploitable par le skill `mindmap-render` pour produire une carte mentale visuelle.
+This file is consumable by the `mindmap-render` skill to produce a visual mindmap.
 
 #### 4.3 `literature_pre_survey.md`
 
-Un tableau de pré-étude des **20 à 30 travaux représentatifs** découverts ci-dessus, avec les colonnes : titre, auteurs, année, venue, URL, note de pertinence en une phrase. Chaque entrée doit avoir une URL que l'agent a récupérée dans cette session.
+A pre-survey table of **20–30 representative works** discovered above, with columns: title, authors, year, venue, URL, one-sentence relevance note. Every entry must have a URL the agent fetched in this session.
 
-### Étape 5 — Passation optionnelle
+### Step 5 — Optional handoff
 
-Si l'utilisateur choisit un sujet, suggérez le skill suivant :
+If the user picks a topic, suggest the next skill:
 
-- Pour un article : le skill `paper-writer` (avec le sujet choisi).
-- Pour une revue de littérature : le skill `literature-survey`.
-- Pour un paquet d'expériences : le skill `experiment-suite`.
-- Pour une carte de sujets visuelle : le skill `mindmap-render` consommant `topic_matrix.md`.
+- For a paper: the `paper-writer` skill (using the chosen topic).
+- For a survey: the `literature-survey` skill.
+- For an experiment package: the `experiment-suite` skill.
+- For a visual topic map: the `mindmap-render` skill consuming `topic_matrix.md`.
 
-## Flux de données inter-skills (convention de chemins)
+## Cross-skill data flow (path convention)
 
-Un skill en aval peut localiser cette exploration via le slug :
+A downstream skill can locate this exploration via the slug:
 
 - `output/research-explorer/<slug>/latest/topic_matrix.md`
 - `output/research-explorer/<slug>/latest/literature_pre_survey.md`
 
-Si l'utilisateur retient un sujet de la matrice, les skills aval calculent leur propre slug à partir du **sujet** (et non de la direction d'origine), de sorte que les chemins de slugs divergent à partir de ce skill — ce qui est correct.
+If the user picks one topic from the matrix, downstream skills compute their own slug from the **topic** (not the original direction), so the slug paths diverge from this skill onward — which is correct.
 
-## Règles importantes
+## Important rules
 
-- **Pas de SDK LLM dans ce skill.** Juste une procédure + ce `SKILL.md`.
-- **Les candidats sont des suggestions, pas des garanties de nouveauté** — l'utilisateur doit vérifier l'originalité avant de s'engager.
-- **Les scores de faisabilité sont heuristiques** — signalez explicitement l'incertitude quand c'est pertinent.
-- Chaque entrée de littérature doit avoir une URL récupérée dans cette session ; pas d'entrées uniquement de mémoire.
+- **No LLM SDK in this skill.** Just a procedure + this `SKILL.md`.
+- **Candidates are suggestions, not guaranteed novel** — the user must verify originality before committing.
+- **Feasibility scores are heuristic** — flag uncertainty explicitly when relevant.
+- Every literature entry must have a URL fetched in this session; no memory-only entries.

@@ -1,0 +1,43 @@
+{
+  "skill_name": "cahier-des-charges",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals de création v1.0.0 (directive propriétaire session web-f90062ce, 2026-10-23) — 5 positifs + 2 contrôles négatifs (disciplines voisines : spec-driven-development, gen-plan).",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Conçois le cahier des charges de ce projet à partir de la discussion de cadrage fournie.",
+      "expected_behavior": "déclenchement du skill cahier-des-charges (M1 CADRER — analyse des sources, puis M2 RÉDIGER)"
+    },
+    {
+      "id": 2,
+      "query": "Établis le document d'exigences : objectifs, périmètre inclus et exclus, exigences fonctionnelles et non-fonctionnelles, critères d'acceptation.",
+      "expected_behavior": "déclenchement du skill cahier-des-charges (M2 RÉDIGER — structure canonique 12 sections)"
+    },
+    {
+      "id": 3,
+      "query": "Rédige le CDC complet du projet avant de lancer le développement.",
+      "expected_behavior": "déclenchement du skill cahier-des-charges"
+    },
+    {
+      "id": 4,
+      "query": "Le périmètre du projet a changé : fais évoluer le cahier des charges avec des amendements tracés.",
+      "expected_behavior": "déclenchement du skill cahier-des-charges (M4 FAIRE ÉVOLUER — table d'amendements, bump de version, re-validation M3)"
+    },
+    {
+      "id": 5,
+      "query": "Cadrage du nouveau projet : parties prenantes, indicateurs de succès, livrables et jalons.",
+      "expected_behavior": "déclenchement du skill cahier-des-charges (M1 CADRER)"
+    },
+    {
+      "id": 6,
+      "query": "Décompose la spécification exécutable de cette tâche en plan puis en tâches atomiques.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — discipline voisine spec-driven-development)"
+    },
+    {
+      "id": 7,
+      "query": "Génère le plan d'actions de la session et enchaîne les groupes en mode step.",
+      "expected_behavior": "AUCUN déclenchement (contrôle négatif — skill voisin gen-plan)"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.10)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.11)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -70,7 +70,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.23.2",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : cascade renommage step-ok + clause mode NULL — recalibrage L004
+    "gen-plan": "3.24.0",  # KO-L004 (Task 26, 2026-10-24) : parallélisation par défaut — philosophie #4 inversée — recalibrage L004
     "knowledge-observer": "1.0.0",
     "correct-work": "2.8.0",
     "clone-chat": "2.0.2",
@@ -100,7 +100,7 @@ ECO_SKILLS = {
     "spec-driven-development": "1.1.1",
     "refactoring-engineering": "1.1.1",  # n°55 — Task 9 (2026-10-12) : Description Optimization A2 (dérive voie M résorbée, re-mesure 7/7) ; Task 8 : seule discipline de refactoring, outil refactoring-test ; Task 12 : recalibrage doc (§5 baseline MESURÉE 7/7, plancher ref-test >=1.0.1)
     "refactor-guard": "1.8.1",
-    "alias-eco": "1.0.0",  # Task 18 (2026-10-23) : registre d'alias $<ALIAS> — délégation correct-work mode PROJET,  # Task 8 (fusion discussion 468a4c26) : garde-fous de refactoring — lignée externe v1.7.0, base hôte v1.2.0 portée
+    "alias-eco": "1.2.0",  # KO-L004 Task 25bis/25ter (2026-10-23) : Description Optimization v1.1.0 + grammaire B --trigger v1.2.0 ; créé Task 18 (registre d'alias $<ALIAS> — délégation correct-work mode PROJET),  # Task 8 (fusion discussion 468a4c26) : garde-fous de refactoring — lignée externe v1.7.0, base hôte v1.2.0 portée
     "fullstack-dev": "1.0.0",  # Task 8 (fusion discussion 468a4c26 Task 27 externe) : inscrit au registre — précédent vue-upload
     "refactoring-test": "1.1.1",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire) ; Task 12 : §5 baseline MESURÉE 7/7
     "vue-upload": "1.2.0",  # KO-L004 (session web-b93f42fa, 2026-10-09) : KB=registre fait foi (## vue-upload v1.2.0) — occurrence L004 résorbée, arbitre dynamisé

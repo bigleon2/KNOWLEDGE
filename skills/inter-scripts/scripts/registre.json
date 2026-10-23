@@ -1,0 +1,66 @@
+{
+  "skill": "inter-scripts",
+  "version": "1.0.0",
+  "description": "Registre des scripts interopérables : nœuds (langage, chemin, interface, modes), canaux disponibles (one-shot / stdin / daemon socket / fichiers typés) et capacités exposées. Source de vérité du graphe d'appels inter-langages.",
+  "scripts": {
+    "trigo-euler": {
+      "langage": "cpp",
+      "binaire": "skills/dessin-technique/scripts/trigo-euler",
+      "source": "skills/dessin-technique/scripts/trigo-euler.cpp",
+      "compilation": "g++ -O2 -std=c++17 -pthread -Wall trigo-euler.cpp -o trigo-euler",
+      "interface": "json-ndjson",
+      "modes": ["one-shot", "stdin", "daemon"],
+      "daemon": {
+        "socket": "/tmp/trigo-euler.sock",
+        "ready_file": "/tmp/trigo-euler.ready",
+        "pid_file": "/tmp/trigo-euler.pid",
+        "max_clients": 8
+      },
+      "capacites": ["trig.eval", "trig.resoudre", "canonique.cercle", "canonique.ellipse",
+                     "analyse.derivee", "analyse.primitive", "analyse.integrale",
+                     "fourier.serie", "fourier.eval", "euler.formule", "euler.rotation",
+                     "euler.projection", "euler.caracteristique", "piece.profil_2d",
+                     "piece.modele_iso"],
+      "concurrent": true,
+      "skill": "dessin-technique",
+      "version_script": "1.0.0"
+    },
+    "capture_forme": {
+      "langage": "python",
+      "script": "skills/dessin-technique/scripts/capture_forme.py",
+      "interface": "cli-fichiers",
+      "modes": ["one-shot"],
+      "capacites": ["mesure-photo", "echelle-monnaie"],
+      "concurrent": false,
+      "skill": "dessin-technique",
+      "version_script": "1.2.0"
+    },
+    "mise_a_echelle": {
+      "langage": "python",
+      "script": "skills/dessin-technique/scripts/mise_a_echelle.py",
+      "interface": "cli-fichiers",
+      "modes": ["one-shot"],
+      "capacites": ["harmonisation-echelle-multi-pieces"],
+      "concurrent": false,
+      "skill": "dessin-technique",
+      "version_script": "1.2.0"
+    },
+    "generer_dessin": {
+      "langage": "python",
+      "script": "skills/dessin-technique/scripts/generer_dessin.py",
+      "interface": "cli-fichiers",
+      "modes": ["one-shot"],
+      "capacites": ["rendu-zai", "postpro-dna", "annotations", "geo-deterministe"],
+      "concurrent": false,
+      "skill": "dessin-technique",
+      "version_script": "1.3.0"
+    }
+  },
+  "canaux": {
+    "one-shot": "subprocess avec requête/réponse en fichiers JSON — tâche isolée, aucune contention",
+    "stdin-pipe": "JSON sur stdin/stdout — chaînage direct dans un pipe shell",
+    "daemon-socket": "socket UNIX NDJSON, thread par connexion — tâches multiples simultanées sur un même binaire",
+    "fichier-typé": "JSON typé déposé dans tmp/ — handoff entre étages d'un pipeline, traçable et rejouable"
+  },
+  "regle_selection": "1 tâche restante sur le nœud -> one-shot | >= 2 tâches restantes (même niveau ou projets distincts) sur un nœud concurrent -> daemon-socket | sortie->entrée d'un autre nœud -> fichier-typé | commande pipe shell -> stdin-pipe"
+}

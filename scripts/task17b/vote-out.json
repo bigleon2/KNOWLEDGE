@@ -1,0 +1,22 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"should_trigger\": true}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1792766822,
+  "id": "20261023224701e20128629e8f4b68",
+  "model": "glm-4-plus",
+  "object": "chat.completion",
+  "request_id": "20261023224701e20128629e8f4b68",
+  "usage": {
+    "completion_tokens": 7,
+    "prompt_tokens": 483,
+    "total_tokens": 490
+  }
+}

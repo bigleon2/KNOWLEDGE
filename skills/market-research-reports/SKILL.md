@@ -1,22 +1,10 @@
 ---
 name: market-research-reports
-version: "1.0.0"
-category: "Finance & Recherche"
-tags:
-  - market
-  - research
-  - reports
-description: "Génère des rapports d'étude de marché complets (50+ pages) dans le style des plus grands cabinets de conseil (McKinsey, BCG, Gartner). Inclut une mise en forme LaTeX professionnelle, une génération visuelle étendue avec scientific-schematics et generate-image, une intégration approfondie avec research-lookup pour la collecte de données, et une analyse stratégique multi-frameworks incluant les cinq forces de Porter, PESTLE, SWOT, TAM/SAM/SOM et la matrice BCG."
+description: "Generate comprehensive market research reports (50+ pages) in the style of top consulting firms (McKinsey, BCG, Gartner). Features professional LaTeX formatting, extensive visual generation with scientific-schematics and generate-image, deep integration with research-lookup for data gathering, and multi-framework strategic analysis including Porter's Five Forces, PESTLE, SWOT, TAM/SAM/SOM, and BCG Matrix."
 allowed-tools: [Read, Write, Edit, Bash]
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : "Génère des rapports d'étude de marché complets (50+ pages) dans le style des plus grands cabinets de conseil…
-  - Déclencher si la demande mentionne : génère, rapports, étude
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -26,55 +14,55 @@ read_when:
 
 # Market Research Reports
 
-## Vue d'ensemble
+## Overview
 
-Les rapports d'étude de marché sont des documents stratégiques complets qui analysent les industries, les marchés et les paysages concurrentiels pour éclairer les décisions d'entreprise, les stratégies d'investissement et la planification stratégique. Ce skill génère des **rapports de qualité professionnelle de 50+ pages** avec un contenu visuel riche, sur le modèle des livrables des grands cabinets comme McKinsey, BCG, Bain, Gartner et Forrester.
+Market research reports are comprehensive strategic documents that analyze industries, markets, and competitive landscapes to inform business decisions, investment strategies, and strategic planning. This skill generates **professional-grade reports of 50+ pages** with extensive visual content, modeled after deliverables from top consulting firms like McKinsey, BCG, Bain, Gartner, and Forrester.
 
-**Caractéristiques clés :**
-- **Longueur complète** : rapports conçus pour 50+ pages, sans contrainte de tokens
-- **Contenu visuel riche** : 5-6 diagrammes clés générés au départ (d'autres ajoutés selon les besoins pendant la rédaction)
-- **Analyse orientée données** : intégration approfondie avec research-lookup pour les données de marché
-- **Approche multi-frameworks** : cinq forces de Porter, PESTLE, SWOT, matrice BCG, TAM/SAM/SOM
-- **Mise en forme professionnelle** : typographie, couleurs et mise en page de qualité cabinet de conseil
-- **Recommandations actionnables** : orientation stratégique avec feuilles de route de mise en œuvre
+**Key Features:**
+- **Comprehensive length**: Reports are designed to be 50+ pages with no token constraints
+- **Visual-rich content**: 5-6 key diagrams generated at start (more added as needed during writing)
+- **Data-driven analysis**: Deep integration with research-lookup for market data
+- **Multi-framework approach**: Porter's Five Forces, PESTLE, SWOT, BCG Matrix, TAM/SAM/SOM
+- **Professional formatting**: Consulting-firm quality typography, colors, and layout
+- **Actionable recommendations**: Strategic focus with implementation roadmaps
 
-**Format de sortie :** LaTeX avec style professionnel, compilé en PDF. Utilise le package de style `market_research.sty` pour une mise en forme cohérente et professionnelle.
+**Output Format:** LaTeX with professional styling, compiled to PDF. Uses the `market_research.sty` style package for consistent, professional formatting.
 
-## Quand utiliser ce skill
+## When to Use This Skill
 
-Ce skill doit être utilisé pour :
-- Créer des analyses de marché complètes pour des décisions d'investissement
-- Élaborer des rapports sectoriels pour la planification stratégique
-- Analyser les paysages concurrentiels et la dynamique de marché
-- Réaliser des exercices de dimensionnement de marché (TAM/SAM/SOM)
-- Évaluer des opportunités d'entrée sur un marché
-- Préparer des supports de due diligence pour des opérations de M&A
-- Créer du contenu d'expertise pour le positionnement sectoriel
-- Élaborer la documentation d'une stratégie go-to-market
-- Analyser les impacts réglementaires et politiques sur les marchés
-- Construire des business cases pour le lancement de nouveaux produits
+This skill should be used when:
+- Creating comprehensive market analysis for investment decisions
+- Developing industry reports for strategic planning
+- Analyzing competitive landscapes and market dynamics
+- Conducting market sizing exercises (TAM/SAM/SOM)
+- Evaluating market entry opportunities
+- Preparing due diligence materials for M&A activities
+- Creating thought leadership content for industry positioning
+- Developing go-to-market strategy documentation
+- Analyzing regulatory and policy impacts on markets
+- Building business cases for new product launches
 
-## Exigences d'enrichissement visuel
+## Visual Enhancement Requirements
 
-**CRITIQUE : les rapports d'étude de marché doivent inclure un contenu visuel clé.**
+**CRITICAL: Market research reports should include key visual content.**
 
-Chaque rapport doit générer **6 visuels essentiels** au démarrage, avec des visuels supplémentaires ajoutés selon les besoins pendant la rédaction. Commencer par les visualisations les plus critiques pour établir le cadre du rapport.
+Every report should generate **6 essential visuals** at the start, with additional visuals added as needed during writing. Start with the most critical visualizations to establish the report framework.
 
-### Outils de génération visuelle
+### Visual Generation Tools
 
-**Utiliser `scientific-schematics` pour :**
-- Graphiques de trajectoire de croissance du marché
-- Diagrammes TAM/SAM/SOM (cercles concentriques)
-- Diagrammes des cinq forces de Porter
-- Matrices de positionnement concurrentiel
-- Graphiques de segmentation du marché
-- Diagrammes de chaîne de valeur
-- Feuilles de route technologiques
-- Heatmaps de risques
-- Matrices de priorisation stratégique
-- Chronologies de mise en œuvre / diagrammes de Gantt
-- Diagrammes d'analyse SWOT
-- Matrices croissance-partage BCG
+**Use `scientific-schematics` for:**
+- Market growth trajectory charts
+- TAM/SAM/SOM breakdown diagrams (concentric circles)
+- Porter's Five Forces diagrams
+- Competitive positioning matrices
+- Market segmentation charts
+- Value chain diagrams
+- Technology roadmaps
+- Risk heatmaps
+- Strategic prioritization matrices
+- Implementation timelines/Gantt charts
+- SWOT analysis diagrams
+- BCG Growth-Share matrices
 
 ```bash
 # Example: Generate a TAM/SAM/SOM diagram
@@ -88,11 +76,11 @@ python skills/scientific-schematics/scripts/generate_schematic.py \
   -o figures/porters_five_forces.png --doc-type report
 ```
 
-**Utiliser `generate-image` pour :**
-- Infographies héros de la synthèse pour la direction
-- Illustrations conceptuelles d'industrie/secteur
-- Visualisations technologiques abstraites
-- Imagerie de page de couverture
+**Use `generate-image` for:**
+- Executive summary hero infographics
+- Industry/sector conceptual illustrations
+- Abstract technology visualizations
+- Cover page imagery
 
 ```bash
 # Example: Generate executive summary infographic
@@ -101,375 +89,375 @@ python skills/generate-image/scripts/generate_image.py \
   --output figures/executive_summary.png
 ```
 
-### Visuels recommandés par section (générer selon les besoins)
+### Recommended Visuals by Section (Generate as Needed)
 
-| Section | Visuels prioritaires | Visuels optionnels |
+| Section | Priority Visuals | Optional Visuals |
 |---------|-----------------|------------------|
-| Synthèse pour la direction | Infographie exécutive (DÉPART) | - |
-| Taille du marché et croissance | Trajectoire de croissance (DÉPART), TAM/SAM/SOM (DÉPART) | Ventilation régionale, croissance par segment |
-| Paysage concurrentiel | Cinq forces de Porter (DÉPART), matrice de positionnement (DÉPART) | Graphique de parts de marché, groupes stratégiques |
-| Analyse des risques | Heatmap des risques (DÉPART) | Matrice d'atténuation |
-| Recommandations stratégiques | Matrice d'opportunités | Cadre de priorisation |
-| Feuille de route de mise en œuvre | Chronologie/Gantt | Suivi des jalons |
-| Thèse d'investissement | Projections financières | Analyse de scénarios |
+| Executive Summary | Executive infographic (START) | - |
+| Market Size & Growth | Growth trajectory (START), TAM/SAM/SOM (START) | Regional breakdown, segment growth |
+| Competitive Landscape | Porter's Five Forces (START), Positioning matrix (START) | Market share chart, strategic groups |
+| Risk Analysis | Risk heatmap (START) | Mitigation matrix |
+| Strategic Recommendations | Opportunity matrix | Priority framework |
+| Implementation Roadmap | Timeline/Gantt | Milestone tracker |
+| Investment Thesis | Financial projections | Scenario analysis |
 
-**Commencer par les 6 visuels prioritaires** (marqués DÉPART ci-dessus), puis générer des visuels supplémentaires au fil de la rédaction des sections qui nécessitent un support visuel.
-
----
-
-## Structure du rapport (50+ pages)
-
-### Pages liminaires (~5 pages)
-
-#### Page de couverture (1 page)
-- Titre et sous-titre du rapport
-- Visualisation héros (générée)
-- Date et classification
-- Préparé pour / Préparé par
-
-#### Table des matières (1-2 pages)
-- Automatisée depuis LaTeX
-- Liste des figures
-- Liste des tableaux
-
-#### Synthèse pour la direction (2-3 pages)
-- **Encadré Instantané du marché** : métriques clés en un coup d'œil
-- **Thèse d'investissement** : synthèse en 3-5 points
-- **Constats clés** : découvertes et insights majeurs
-- **Recommandations stratégiques** : les 3-5 recommandations actionnables principales
-- **Infographie de synthèse** : synthèse visuelle des points saillants du rapport
+**Start with 6 priority visuals** (marked as START above), then generate additional visuals as specific sections are written and require visual support.
 
 ---
 
-### Analyse principale (~35 pages)
+## Report Structure (50+ Pages)
 
-#### Chapitre 1 : Vue d'ensemble et définition du marché (4-5 pages)
+### Front Matter (~5 pages)
 
-**Contenu requis :**
-- Définition et périmètre du marché
-- Cartographie de l'écosystème industriel
-- Acteurs clés et leurs rôles
-- Frontières et marchés adjacents
-- Contexte historique et évolution
+#### Cover Page (1 page)
+- Report title and subtitle
+- Hero visualization (generated)
+- Date and classification
+- Prepared for / Prepared by
 
-**Visuels requis (2) :**
-1. Diagramme d'écosystème / chaîne de valeur du marché
-2. Diagramme de structure de l'industrie
+#### Table of Contents (1-2 pages)
+- Automated from LaTeX
+- List of Figures
+- List of Tables
 
-**Données clés :**
-- Critères de définition du marché
-- Segments inclus/exclus
-- Périmètre géographique
-- Horizon temporel de l'analyse
-
----
-
-#### Chapitre 2 : Taille du marché et analyse de croissance (6-8 pages)
-
-**Contenu requis :**
-- Calcul du marché adressable total (TAM)
-- Définition du marché adressable exploitable (SAM)
-- Estimation du marché obtenable (SOM)
-- Analyse de croissance historique (5-10 ans)
-- Projections de croissance (5-10 ans à venir)
-- Moteurs et freins de croissance
-- Ventilation régionale du marché
-- Analyse par segment
-
-**Visuels requis (4) :**
-1. Graphique de trajectoire de croissance du marché (historique + projeté)
-2. Diagramme à cercles concentriques TAM/SAM/SOM
-3. Ventilation régionale du marché (camembert ou treemap)
-4. Comparaison de croissance des segments (graphique en barres)
-
-**Données clés :**
-- Taille actuelle du marché (avec source)
-- CAGR (historique et projeté)
-- Taille du marché par région
-- Taille du marché par segment
-- Hypothèses clés des projections
-
-**Sources de données :**
-Utiliser `research-lookup` pour trouver :
-- Rapports d'études de marché (Gartner, Forrester, IDC, etc.)
-- Données d'associations professionnelles
-- Statistiques gouvernementales
-- Rapports financiers d'entreprises
-- Études académiques
+#### Executive Summary (2-3 pages)
+- **Market Snapshot Box**: Key metrics at a glance
+- **Investment Thesis**: 3-5 bullet point summary
+- **Key Findings**: Major discoveries and insights
+- **Strategic Recommendations**: Top 3-5 actionable recommendations
+- **Executive Summary Infographic**: Visual synthesis of report highlights
 
 ---
 
-#### Chapitre 3 : Moteurs et tendances de l'industrie (5-6 pages)
+### Core Analysis (~35 pages)
 
-**Contenu requis :**
-- Facteurs macroéconomiques
-- Tendances technologiques
-- Moteurs réglementaires
-- Évolutions sociales et démographiques
-- Facteurs environnementaux
-- Tendances propres au secteur
+#### Chapter 1: Market Overview & Definition (4-5 pages)
 
-**Cadres d'analyse :**
-- **Analyse PESTLE** : politique, économique, social, technologique, juridique, environnemental
-- **Évaluation d'impact des tendances** : matrice probabilité vs impact
+**Content Requirements:**
+- Market definition and scope
+- Industry ecosystem mapping
+- Key stakeholders and their roles
+- Market boundaries and adjacencies
+- Historical context and evolution
 
-**Visuels requis (3) :**
-1. Frise des tendances de l'industrie ou graphique radar
-2. Matrice d'impact des moteurs
-3. Diagramme d'analyse PESTLE
+**Required Visuals (2):**
+1. Market ecosystem/value chain diagram
+2. Industry structure diagram
 
-**Données clés :**
-- 5 à 10 principaux moteurs de croissance avec impact quantifié
-- Tendances émergentes avec chronologie
-- Facteurs de disruption
+**Key Data Points:**
+- Market definition criteria
+- Included/excluded segments
+- Geographic scope
+- Time horizon for analysis
 
 ---
 
-#### Chapitre 4 : Paysage concurrentiel (6-8 pages)
+#### Chapter 2: Market Size & Growth Analysis (6-8 pages)
 
-**Contenu requis :**
-- Analyse de la structure du marché
-- Profils des acteurs majeurs
-- Analyse des parts de marché
-- Positionnement concurrentiel
-- Barrières à l'entrée
-- Dynamique concurrentielle
+**Content Requirements:**
+- Total Addressable Market (TAM) calculation
+- Serviceable Addressable Market (SAM) definition
+- Serviceable Obtainable Market (SOM) estimation
+- Historical growth analysis (5-10 years)
+- Growth projections (5-10 years forward)
+- Growth drivers and inhibitors
+- Regional market breakdown
+- Segment-level analysis
 
-**Cadres d'analyse :**
-- **Cinq forces de Porter** : analyse complète de l'industrie
-- **Matrice de positionnement concurrentiel** : matrice 2x2 sur les dimensions clés
-- **Cartographie des groupes stratégiques** : regrouper les concurrents par stratégie
+**Required Visuals (4):**
+1. Market growth trajectory chart (historical + projected)
+2. TAM/SAM/SOM concentric circles diagram
+3. Regional market breakdown (pie chart or treemap)
+4. Segment growth comparison (bar chart)
 
-**Visuels requis (4) :**
-1. Diagramme des cinq forces de Porter
-2. Camembert ou barres des parts de marché
-3. Matrice de positionnement concurrentiel (2x2)
-4. Carte des groupes stratégiques
+**Key Data Points:**
+- Current market size (with source)
+- CAGR (historical and projected)
+- Market size by region
+- Market size by segment
+- Key assumptions for projections
 
-**Données clés :**
-- Parts de marché par entreprise (top 10)
-- Évaluation de l'intensité concurrentielle
-- Évaluation des barrières à l'entrée
-- Évaluation du pouvoir des fournisseurs/acheteurs
-
----
-
-#### Chapitre 5 : Analyse et segmentation clients (4-5 pages)
-
-**Contenu requis :**
-- Définition des segments de clientèle
-- Taille et croissance des segments
-- Analyse du comportement d'achat
-- Besoins et points de douleur des clients
-- Processus de décision
-- Moteurs de valeur par segment
-
-**Cadres d'analyse :**
-- **Matrice de segmentation client** : taille vs croissance
-- **Canvas de proposition de valeur** : tâches, frustrations, gains
-- **Cartographie du parcours client** : de la notoriété au plaidoyer
-
-**Visuels requis (3) :**
-1. Décomposition de la segmentation client (camembert/treemap)
-2. Matrice d'attractivité des segments
-3. Parcours client ou diagramme de proposition de valeur
-
-**Données clés :**
-- Tailles et pourcentages des segments
-- Taux de croissance par segment
-- Taille moyenne des transactions / revenu par client
-- Coût d'acquisition client par segment
+**Data Sources:**
+Use `research-lookup` to find:
+- Market research reports (Gartner, Forrester, IDC, etc.)
+- Industry association data
+- Government statistics
+- Company financial reports
+- Academic studies
 
 ---
 
-#### Chapitre 6 : Paysage technologique et d'innovation (4-5 pages)
+#### Chapter 3: Industry Drivers & Trends (5-6 pages)
 
-**Contenu requis :**
-- Stack technologique actuel
-- Technologies émergentes
-- Tendances d'innovation
-- Courbes d'adoption technologique
-- Analyse des investissements R&D
-- Paysage des brevets
+**Content Requirements:**
+- Macroeconomic factors
+- Technology trends
+- Regulatory drivers
+- Social and demographic shifts
+- Environmental factors
+- Industry-specific trends
 
-**Cadres d'analyse :**
-- **Évaluation de maturité technologique** : niveaux TRL
-- **Positionnement sur le cycle du hype** : où se situent les technologies
-- **Feuille de route technologique** : évolution dans le temps
+**Analysis Frameworks:**
+- **PESTLE Analysis**: Political, Economic, Social, Technological, Legal, Environmental
+- **Trend Impact Assessment**: Likelihood vs Impact matrix
 
-**Visuels requis (2) :**
-1. Diagramme de feuille de route technologique
-2. Courbe d'innovation/d'adoption ou cycle du hype
+**Required Visuals (3):**
+1. Industry trends timeline or radar chart
+2. Driver impact matrix
+3. PESTLE analysis diagram
 
-**Données clés :**
-- Dépenses R&D de l'industrie
-- Jalons technologiques clés
-- Tendances des dépôts de brevets
-- Taux d'adoption des technologies
-
----
-
-#### Chapitre 7 : Environnement réglementaire et politique (3-4 pages)
-
-**Contenu requis :**
-- Cadre réglementaire actuel
-- Autorités réglementaires clés
-- Exigences de conformité
-- Changements réglementaires à venir
-- Tendances politiques
-- Évaluation d'impact
-
-**Visuels requis (1) :**
-1. Chronologie réglementaire ou diagramme de cadre
-
-**Données clés :**
-- Réglementations clés et dates d'entrée en vigueur
-- Coûts de conformité
-- Risques réglementaires
-- Probabilité de changements politiques
+**Key Data Points:**
+- Top 5-10 growth drivers with quantified impact
+- Emerging trends with timeline
+- Disruption factors
 
 ---
 
-#### Chapitre 8 : Analyse des risques (3-4 pages)
+#### Chapter 4: Competitive Landscape (6-8 pages)
 
-**Contenu requis :**
-- Risques de marché
-- Risques concurrentiels
-- Risques réglementaires
-- Risques technologiques
-- Risques opérationnels
-- Risques financiers
-- Stratégies d'atténuation des risques
+**Content Requirements:**
+- Market structure analysis
+- Major player profiles
+- Market share analysis
+- Competitive positioning
+- Barriers to entry
+- Competitive dynamics
 
-**Cadres d'analyse :**
-- **Heatmap des risques** : probabilité vs impact
-- **Registre des risques** : inventaire complet des risques
-- **Matrice d'atténuation** : risque vs stratégie d'atténuation
+**Analysis Frameworks:**
+- **Porter's Five Forces**: Comprehensive industry analysis
+- **Competitive Positioning Matrix**: 2x2 matrix on key dimensions
+- **Strategic Group Mapping**: Cluster competitors by strategy
 
-**Visuels requis (2) :**
-1. Heatmap des risques (probabilité vs impact)
-2. Matrice d'atténuation des risques
+**Required Visuals (4):**
+1. Porter's Five Forces diagram
+2. Market share pie chart or bar chart
+3. Competitive positioning matrix (2x2)
+4. Strategic group map
 
-**Données clés :**
-- 10 principaux risques avec notation
-- Scores de probabilité des risques
-- Scores de sévérité d'impact
-- Estimations des coûts d'atténuation
-
----
-
-### Recommandations stratégiques (~10 pages)
-
-#### Chapitre 9 : Opportunités et recommandations stratégiques (4-5 pages)
-
-**Contenu requis :**
-- Identification des opportunités
-- Dimensionnement des opportunités
-- Analyse des options stratégiques
-- Cadre de priorisation
-- Recommandations détaillées
-- Facteurs de succès
-
-**Cadres d'analyse :**
-- **Matrice d'attractivité des opportunités** : attractivité vs capacité à gagner
-- **Cadre d'options stratégiques** : construire, acheter, s'associer, ignorer
-- **Matrice de priorité** : impact vs effort
-
-**Visuels requis (3) :**
-1. Matrice d'opportunités
-2. Cadre d'options stratégiques
-3. Matrice de priorité / recommandation
-
-**Données clés :**
-- Tailles des opportunités
-- Besoins d'investissement
-- Rendements attendus
-- Délai de création de valeur
+**Key Data Points:**
+- Market share by company (top 10)
+- Competitive intensity rating
+- Entry barriers assessment
+- Supplier/buyer power assessment
 
 ---
 
-#### Chapitre 10 : Feuille de route de mise en œuvre (3-4 pages)
+#### Chapter 5: Customer Analysis & Segmentation (4-5 pages)
 
-**Contenu requis :**
-- Plan de mise en œuvre par phases
-- Jalons et livrables clés
-- Besoins en ressources
-- Chronologie et séquençage
-- Dépendances et chemin critique
-- Structure de gouvernance
+**Content Requirements:**
+- Customer segment definitions
+- Segment size and growth
+- Buying behavior analysis
+- Customer needs and pain points
+- Decision-making process
+- Value drivers by segment
 
-**Visuels requis (2) :**
-1. Chronologie de mise en œuvre / diagramme de Gantt
-2. Suivi des jalons ou diagramme de phases
+**Analysis Frameworks:**
+- **Customer Segmentation Matrix**: Size vs Growth
+- **Value Proposition Canvas**: Jobs, Pains, Gains
+- **Customer Journey Mapping**: Awareness to Advocacy
 
-**Données clés :**
-- Durées des phases
-- Besoins en ressources
-- Jalons clés avec dates
-- Allocation budgétaire par phase
+**Required Visuals (3):**
+1. Customer segmentation breakdown (pie/treemap)
+2. Segment attractiveness matrix
+3. Customer journey or value proposition diagram
 
----
-
-#### Chapitre 11 : Thèse d'investissement et projections financières (3-4 pages)
-
-**Contenu requis :**
-- Synthèse de l'investissement
-- Projections financières
-- Analyse de scénarios
-- Attentes de rendement
-- Hypothèses clés
-- Analyse de sensibilité
-
-**Visuels requis (2) :**
-1. Graphique de projections financières (revenus, croissance)
-2. Comparaison de scénarios
-
-**Données clés :**
-- Projections de revenus (3-5 ans)
-- Projections de CAGR
-- Attentes ROI/IRR
-- Hypothèses financières clés
+**Key Data Points:**
+- Segment sizes and percentages
+- Growth rates by segment
+- Average deal size / revenue per customer
+- Customer acquisition cost by segment
 
 ---
 
-### Pages finales (~5 pages)
+#### Chapter 6: Technology & Innovation Landscape (4-5 pages)
 
-#### Annexe A : Méthodologie et sources de données (1-2 pages)
-- Méthodologie de recherche
-- Approche de collecte des données
-- Sources et citations
-- Limites et hypothèses
+**Content Requirements:**
+- Current technology stack
+- Emerging technologies
+- Innovation trends
+- Technology adoption curves
+- R&D investment analysis
+- Patent landscape
 
-#### Annexe B : Tableaux détaillés de données de marché (2-3 pages)
-- Tableaux complets de données de marché
-- Ventilations régionales
-- Détails par segment
-- Séries de données historiques
+**Analysis Frameworks:**
+- **Technology Readiness Assessment**: TRL levels
+- **Hype Cycle Positioning**: Where technologies sit
+- **Technology Roadmap**: Evolution over time
 
-#### Annexe C : Profils d'entreprises (1-2 pages)
-- Brefs profils des concurrents clés
-- Faits financiers marquants
-- Axes d'orientation stratégique
+**Required Visuals (2):**
+1. Technology roadmap diagram
+2. Innovation/adoption curve or hype cycle
 
-#### Références/Bibliographie
-- Toutes les sources citées
-- Format BibTeX pour LaTeX
+**Key Data Points:**
+- R&D spending in the industry
+- Key technology milestones
+- Patent filing trends
+- Technology adoption rates
 
 ---
 
-## Flux de travail
+#### Chapter 7: Regulatory & Policy Environment (3-4 pages)
 
-### Phase 1 : Recherche et collecte de données
+**Content Requirements:**
+- Current regulatory framework
+- Key regulatory bodies
+- Compliance requirements
+- Upcoming regulatory changes
+- Policy trends
+- Impact assessment
 
-**Étape 1 : Définir le périmètre**
-- Clarifier la définition du marché
-- Fixer les frontières géographiques
-- Déterminer l'horizon temporel
-- Identifier les questions clés auxquelles répondre
+**Required Visuals (1):**
+1. Regulatory timeline or framework diagram
 
-**Étape 2 : Mener une recherche approfondie**
+**Key Data Points:**
+- Key regulations and effective dates
+- Compliance costs
+- Regulatory risks
+- Policy change probability
 
-Utiliser `research-lookup` largement pour collecter les données de marché :
+---
+
+#### Chapter 8: Risk Analysis (3-4 pages)
+
+**Content Requirements:**
+- Market risks
+- Competitive risks
+- Regulatory risks
+- Technology risks
+- Operational risks
+- Financial risks
+- Risk mitigation strategies
+
+**Analysis Frameworks:**
+- **Risk Heatmap**: Probability vs Impact
+- **Risk Register**: Comprehensive risk inventory
+- **Mitigation Matrix**: Risk vs Mitigation strategy
+
+**Required Visuals (2):**
+1. Risk heatmap (probability vs impact)
+2. Risk mitigation matrix
+
+**Key Data Points:**
+- Top 10 risks with ratings
+- Risk probability scores
+- Impact severity scores
+- Mitigation cost estimates
+
+---
+
+### Strategic Recommendations (~10 pages)
+
+#### Chapter 9: Strategic Opportunities & Recommendations (4-5 pages)
+
+**Content Requirements:**
+- Opportunity identification
+- Opportunity sizing
+- Strategic options analysis
+- Prioritization framework
+- Detailed recommendations
+- Success factors
+
+**Analysis Frameworks:**
+- **Opportunity Attractiveness Matrix**: Attractiveness vs Ability to Win
+- **Strategic Options Framework**: Build, Buy, Partner, Ignore
+- **Priority Matrix**: Impact vs Effort
+
+**Required Visuals (3):**
+1. Opportunity matrix
+2. Strategic options framework
+3. Priority/recommendation matrix
+
+**Key Data Points:**
+- Opportunity sizes
+- Investment requirements
+- Expected returns
+- Timeline to value
+
+---
+
+#### Chapter 10: Implementation Roadmap (3-4 pages)
+
+**Content Requirements:**
+- Phased implementation plan
+- Key milestones and deliverables
+- Resource requirements
+- Timeline and sequencing
+- Dependencies and critical path
+- Governance structure
+
+**Required Visuals (2):**
+1. Implementation timeline/Gantt chart
+2. Milestone tracker or phase diagram
+
+**Key Data Points:**
+- Phase durations
+- Resource requirements
+- Key milestones with dates
+- Budget allocation by phase
+
+---
+
+#### Chapter 11: Investment Thesis & Financial Projections (3-4 pages)
+
+**Content Requirements:**
+- Investment summary
+- Financial projections
+- Scenario analysis
+- Return expectations
+- Key assumptions
+- Sensitivity analysis
+
+**Required Visuals (2):**
+1. Financial projection chart (revenue, growth)
+2. Scenario analysis comparison
+
+**Key Data Points:**
+- Revenue projections (3-5 years)
+- CAGR projections
+- ROI/IRR expectations
+- Key financial assumptions
+
+---
+
+### Back Matter (~5 pages)
+
+#### Appendix A: Methodology & Data Sources (1-2 pages)
+- Research methodology
+- Data collection approach
+- Data sources and citations
+- Limitations and assumptions
+
+#### Appendix B: Detailed Market Data Tables (2-3 pages)
+- Comprehensive market data tables
+- Regional breakdowns
+- Segment details
+- Historical data series
+
+#### Appendix C: Company Profiles (1-2 pages)
+- Brief profiles of key competitors
+- Financial highlights
+- Strategic focus areas
+
+#### References/Bibliography
+- All sources cited
+- BibTeX format for LaTeX
+
+---
+
+## Workflow
+
+### Phase 1: Research & Data Gathering
+
+**Step 1: Define Scope**
+- Clarify market definition
+- Set geographic boundaries
+- Determine time horizon
+- Identify key questions to answer
+
+**Step 2: Conduct Deep Research**
+
+Use `research-lookup` extensively to gather market data:
 
 ```bash
 # Market size and growth data
@@ -489,35 +477,35 @@ python skills/research-lookup/scripts/research_lookup.py \
   "What are the key regulations and policy changes affecting the [MARKET] industry?"
 ```
 
-**Étape 3 : Organisation des données**
-- Créer un dossier `sources/` avec les notes de recherche
-- Organiser les données par section
-- Identifier les manques de données
-- Mener des recherches complémentaires si nécessaire
+**Step 3: Data Organization**
+- Create `sources/` folder with research notes
+- Organize data by section
+- Identify data gaps
+- Conduct follow-up research as needed
 
-### Phase 2 : Analyse et application des cadres
+### Phase 2: Analysis & Framework Application
 
-**Étape 4 : Appliquer les cadres d'analyse**
+**Step 4: Apply Analysis Frameworks**
 
-Pour chaque cadre, mener une analyse structurée :
+For each framework, conduct structured analysis:
 
-- **Dimensionnement du marché** : TAM → SAM → SOM avec hypothèses claires
-- **Cinq forces de Porter** : noter chaque force Élevé/Moyen/Faible avec justification
-- **PESTLE** : analyser chaque dimension avec tendances et impacts
-- **SWOT** : forces/faiblesses internes, opportunités/menaces externes
-- **Positionnement concurrentiel** : définir les axes, placer les concurrents
+- **Market Sizing**: TAM → SAM → SOM with clear assumptions
+- **Porter's Five Forces**: Rate each force High/Medium/Low with rationale
+- **PESTLE**: Analyze each dimension with trends and impacts
+- **SWOT**: Internal strengths/weaknesses, external opportunities/threats
+- **Competitive Positioning**: Define axes, plot competitors
 
-**Étape 5 : Développer les insights**
-- Synthétiser les constats en insights clés
-- Identifier les implications stratégiques
-- Élaborer les recommandations
-- Prioriser les opportunités
+**Step 5: Develop Insights**
+- Synthesize findings into key insights
+- Identify strategic implications
+- Develop recommendations
+- Prioritize opportunities
 
-### Phase 3 : Génération visuelle
+### Phase 3: Visual Generation
 
-**Étape 6 : Générer tous les visuels**
+**Step 6: Generate All Visuals**
 
-Générer les visuels AVANT de rédiger le rapport. Utiliser le script de génération en lot :
+Generate visuals BEFORE writing the report. Use the batch generation script:
 
 ```bash
 # Generate all standard market report visuals
@@ -526,7 +514,7 @@ python skills/market-research-reports/scripts/generate_market_visuals.py \
   --output-dir figures/
 ```
 
-Ou générer individuellement :
+Or generate individually:
 
 ```bash
 # 1. Market growth trajectory
@@ -560,11 +548,11 @@ python skills/generate-image/scripts/generate_image.py \
   --output figures/06_exec_summary.png
 ```
 
-### Phase 4 : Rédaction du rapport
+### Phase 4: Report Writing
 
-**Étape 7 : Initialiser la structure du projet**
+**Step 7: Initialize Project Structure**
 
-Créer la structure de projet standard :
+Create the standard project structure:
 
 ```
 writing_outputs/YYYYMMDD_HHMMSS_market_report_[topic]/
@@ -580,26 +568,26 @@ writing_outputs/YYYYMMDD_HHMMSS_market_report_[topic]/
 └── final/
 ```
 
-**Étape 8 : Rédiger le rapport à partir du template**
+**Step 8: Write Report Using Template**
 
-Utiliser le `market_report_template.tex` comme point de départ. Rédiger chaque section en suivant le guide de structure, en veillant à :
+Use the `market_report_template.tex` as a starting point. Write each section following the structure guide, ensuring:
 
-- **Couverture complète** : chaque sous-section traitée
-- **Contenu orienté données** : affirmations étayées par la recherche
-- **Intégration visuelle** : référencer toutes les figures générées
-- **Ton professionnel** : écriture de style cabinet de conseil
-- **Sans contrainte de tokens** : écrire pleinement, sans abréger
+- **Comprehensive coverage**: Every subsection addressed
+- **Data-driven content**: Claims supported by research
+- **Visual integration**: Reference all generated figures
+- **Professional tone**: Consulting-style writing
+- **No token constraints**: Write fully, don't abbreviate
 
-**Directives de rédaction :**
-- Utiliser la voix active autant que possible
-- Commencer par les insights, appuyer avec les données
-- Utiliser des listes numérotées pour les recommandations
-- Inclure les sources de données pour toutes les statistiques
-- Créer des transitions fluides entre les sections
+**Writing Guidelines:**
+- Use active voice where possible
+- Lead with insights, support with data
+- Use numbered lists for recommendations
+- Include data sources for all statistics
+- Create smooth transitions between sections
 
-### Phase 5 : Compilation et relecture
+### Phase 5: Compilation & Review
 
-**Étape 9 : Compiler le LaTeX**
+**Step 9: Compile LaTeX**
 
 ```bash
 cd writing_outputs/[project_folder]/drafts/
@@ -609,93 +597,93 @@ xelatex v1_market_report.tex
 xelatex v1_market_report.tex
 ```
 
-**Étape 10 : Revue qualité**
+**Step 10: Quality Review**
 
-Vérifier que le rapport respecte les standards de qualité :
+Verify the report meets quality standards:
 
-- [ ] Le nombre total de pages atteint 50+
-- [ ] Tous les visuels essentiels (5-6 cœur + supplémentaires) sont inclus et s'affichent correctement
-- [ ] La synthèse pour la direction capture les constats clés
-- [ ] Tous les points de données ont des sources citées
-- [ ] Les cadres d'analyse sont correctement appliqués
-- [ ] Les recommandations sont actionnables et priorisées
-- [ ] Aucune figure ou tableau orphelin
-- [ ] Table des matières, liste des figures et liste des tableaux exactes
-- [ ] Bibliographie complète
-- [ ] Le PDF se compile sans erreur
+- [ ] Total page count is 50+ pages
+- [ ] All essential visuals (5-6 core + any additional) are included and render correctly
+- [ ] Executive summary captures key findings
+- [ ] All data points have sources cited
+- [ ] Analysis frameworks are properly applied
+- [ ] Recommendations are actionable and prioritized
+- [ ] No orphaned figures or tables
+- [ ] Table of contents, list of figures, list of tables are accurate
+- [ ] Bibliography is complete
+- [ ] PDF renders without errors
 
-**Étape 11 : Relecture par les pairs**
+**Step 11: Peer Review**
 
-Utiliser le skill peer-review pour évaluer le rapport :
-- Évaluer l'exhaustivité
-- Vérifier l'exactitude des données
-- Contrôler la fluidité logique
-- Évaluer la qualité des recommandations
+Use the peer-review skill to evaluate the report:
+- Assess comprehensiveness
+- Verify data accuracy
+- Check logical flow
+- Evaluate recommendation quality
 
 ---
 
-## Standards de qualité
+## Quality Standards
 
-### Objectifs de nombre de pages
+### Page Count Targets
 
-| Section | Pages minimum | Pages cible |
+| Section | Minimum Pages | Target Pages |
 |---------|---------------|--------------|
-| Pages liminaires | 4 | 5 |
-| Vue d'ensemble du marché | 4 | 5 |
-| Taille du marché et croissance | 5 | 7 |
-| Moteurs de l'industrie | 4 | 6 |
-| Paysage concurrentiel | 5 | 7 |
-| Analyse clients | 3 | 5 |
-| Paysage technologique | 3 | 5 |
-| Environnement réglementaire | 2 | 4 |
-| Analyse des risques | 2 | 4 |
-| Recommandations stratégiques | 3 | 5 |
-| Feuille de route de mise en œuvre | 2 | 4 |
-| Thèse d'investissement | 2 | 4 |
-| Pages finales | 4 | 5 |
+| Front Matter | 4 | 5 |
+| Market Overview | 4 | 5 |
+| Market Size & Growth | 5 | 7 |
+| Industry Drivers | 4 | 6 |
+| Competitive Landscape | 5 | 7 |
+| Customer Analysis | 3 | 5 |
+| Technology Landscape | 3 | 5 |
+| Regulatory Environment | 2 | 4 |
+| Risk Analysis | 2 | 4 |
+| Strategic Recommendations | 3 | 5 |
+| Implementation Roadmap | 2 | 4 |
+| Investment Thesis | 2 | 4 |
+| Back Matter | 4 | 5 |
 | **TOTAL** | **43** | **66** |
 
-### Exigences de qualité visuelle
+### Visual Quality Requirements
 
-- **Résolution** : toutes les images à 300 DPI minimum
-- **Format** : PNG pour le raster, PDF pour le vectoriel
-- **Accessibilité** : palettes adaptées au daltonisme
-- **Cohérence** : même palette de couleurs sur tout le rapport
-- **Étiquetage** : tous les axes, légendes et points de données étiquetés
-- **Attribution des sources** : sources citées dans les légendes des figures
+- **Resolution**: All images at 300 DPI minimum
+- **Format**: PNG for raster, PDF for vector
+- **Accessibility**: Colorblind-friendly palettes
+- **Consistency**: Same color scheme throughout
+- **Labeling**: All axes, legends, and data points labeled
+- **Source Attribution**: Sources cited in figure captions
 
-### Exigences de qualité des données
+### Data Quality Requirements
 
-- **Actualité** : données de moins de 2 ans (année courante de préférence)
-- **Sourçage** : toutes les statistiques attribuées à des sources précises
-- **Validation** : recouper plusieurs sources quand c'est possible
-- **Hypothèses** : toutes les projections énoncent leurs hypothèses sous-jacentes
-- **Limites** : reconnaître les limites et les manques des données
+- **Currency**: Data no older than 2 years (prefer current year)
+- **Sourcing**: All statistics attributed to specific sources
+- **Validation**: Cross-reference multiple sources when possible
+- **Assumptions**: All projections state underlying assumptions
+- **Limitations**: Acknowledge data limitations and gaps
 
-### Exigences de qualité rédactionnelle
+### Writing Quality Requirements
 
-- **Objectivité** : présentation équilibrée, reconnaissance des incertitudes
-- **Clarté** : éviter le jargon, définir les termes techniques
-- **Précision** : chiffres précis plutôt que qualificatifs vagues
-- **Structure** : titres clairs, logique fluide, transitions naturelles
-- **Actionnabilité** : recommandations spécifiques et implémentables
+- **Objectivity**: Present balanced analysis, acknowledge uncertainties
+- **Clarity**: Avoid jargon, define technical terms
+- **Precision**: Use specific numbers over vague qualifiers
+- **Structure**: Clear headings, logical flow, smooth transitions
+- **Actionability**: Recommendations are specific and implementable
 
 ---
 
-## Mise en forme LaTeX
+## LaTeX Formatting
 
-### Utilisation du package de style
+### Using the Style Package
 
-Le package `market_research.sty` fournit une mise en forme professionnelle. L'inclure dans votre document :
+The `market_research.sty` package provides professional formatting. Include it in your document:
 
 ```latex
 \documentclass[11pt,letterpaper]{report}
 \usepackage{market_research}
 ```
 
-### Environnements d'encadrés
+### Box Environments
 
-Utiliser des encadrés colorés pour mettre en valeur le contenu clé :
+Use colored boxes to highlight key content:
 
 ```latex
 % Key insight box (blue)
@@ -728,7 +716,7 @@ TAM (Total Addressable Market) represents the total revenue opportunity.
 \end{calloutbox}
 ```
 
-### Mise en forme des figures
+### Figure Formatting
 
 ```latex
 \begin{figure}[htbp]
@@ -739,7 +727,7 @@ TAM (Total Addressable Market) represents the total revenue opportunity.
 \end{figure}
 ```
 
-### Mise en forme des tableaux
+### Table Formatting
 
 ```latex
 \begin{table}[htbp]
@@ -761,25 +749,25 @@ Asia-Pacific & \$10.5B & 23.2\% & 18.7\% \\
 \end{table}
 ```
 
-Pour la référence complète de mise en forme, voir `assets/FORMATTING_GUIDE.md`.
+For complete formatting reference, see `assets/FORMATTING_GUIDE.md`.
 
 ---
 
-## Intégration avec d'autres skills
+## Integration with Other Skills
 
-Ce skill fonctionne en synergie avec :
+This skill works synergistically with:
 
-- **research-lookup** : essentiel pour collecter données de marché, statistiques et renseignement concurrentiel
-- **scientific-schematics** : générer tous les diagrammes, graphiques et visualisations
-- **generate-image** : créer infographies et illustrations conceptuelles
-- **peer-review** : évaluer la qualité et l'exhaustivité du rapport
-- **citation-management** : gérer les références BibTeX
+- **research-lookup**: Essential for gathering market data, statistics, and competitive intelligence
+- **scientific-schematics**: Generate all diagrams, charts, and visualizations
+- **generate-image**: Create infographics and conceptual illustrations
+- **peer-review**: Evaluate report quality and completeness
+- **citation-management**: Manage BibTeX references
 
 ---
 
-## Exemples de prompts
+## Example Prompts
 
-### Section Vue d'ensemble du marché
+### Market Overview Section
 
 ```
 Write a comprehensive market overview section for the [Electric Vehicle Charging Infrastructure] market. Include:
@@ -792,7 +780,7 @@ Write a comprehensive market overview section for the [Electric Vehicle Charging
 Generate 2 supporting visuals using scientific-schematics.
 ```
 
-### Section Paysage concurrentiel
+### Competitive Landscape Section
 
 ```
 Analyze the competitive landscape for the [Cloud Computing] market. Include:
@@ -805,7 +793,7 @@ Analyze the competitive landscape for the [Cloud Computing] market. Include:
 Generate 4 supporting visuals including Porter's Five Forces diagram and positioning matrix.
 ```
 
-### Section Recommandations stratégiques
+### Strategic Recommendations Section
 
 ```
 Develop strategic recommendations for entering the [Renewable Energy Storage] market. Include:
@@ -820,102 +808,102 @@ Generate 3 supporting visuals including opportunity matrix and priority framewor
 
 ---
 
-## Checklist : validation 50+ pages
+## Checklist: 50+ Page Validation
 
-Avant de finaliser le rapport, vérifier :
+Before finalizing the report, verify:
 
-### Exhaustivité de la structure
-- [ ] Page de couverture avec visuel héros
-- [ ] Table des matières (auto-générée)
-- [ ] Liste des figures (auto-générée)
-- [ ] Liste des tableaux (auto-générée)
-- [ ] Synthèse pour la direction (2-3 pages)
-- [ ] Les 11 chapitres cœur présents
-- [ ] Annexe A : Méthodologie
-- [ ] Annexe B : Tableaux de données
-- [ ] Annexe C : Profils d'entreprises
-- [ ] Références/Bibliographie
+### Structure Completeness
+- [ ] Cover page with hero visual
+- [ ] Table of contents (auto-generated)
+- [ ] List of figures (auto-generated)
+- [ ] List of tables (auto-generated)
+- [ ] Executive summary (2-3 pages)
+- [ ] All 11 core chapters present
+- [ ] Appendix A: Methodology
+- [ ] Appendix B: Data tables
+- [ ] Appendix C: Company profiles
+- [ ] References/Bibliography
 
-### Exhaustivité visuelle (5-6 cœur)
-- [ ] Graphique de trajectoire de croissance du marché (priorité 1)
-- [ ] Diagramme TAM/SAM/SOM (priorité 2)
-- [ ] Cinq forces de Porter (priorité 3)
-- [ ] Matrice de positionnement concurrentiel (priorité 4)
-- [ ] Heatmap des risques (priorité 5)
-- [ ] Infographie de synthèse exécutive (priorité 6, optionnel)
+### Visual Completeness (Core 5-6)
+- [ ] Market growth trajectory chart (Priority 1)
+- [ ] TAM/SAM/SOM diagram (Priority 2)
+- [ ] Porter's Five Forces (Priority 3)
+- [ ] Competitive positioning matrix (Priority 4)
+- [ ] Risk heatmap (Priority 5)
+- [ ] Executive summary infographic (Priority 6, optional)
 
-### Visuels supplémentaires (générer selon les besoins)
-- [ ] Diagramme d'écosystème du marché
-- [ ] Graphique de ventilation régionale
-- [ ] Graphique de croissance des segments
-- [ ] Diagramme de tendances/PESTLE
-- [ ] Graphique de parts de marché
-- [ ] Graphique de segmentation client
-- [ ] Feuille de route technologique
-- [ ] Chronologie réglementaire
-- [ ] Matrice d'opportunités
-- [ ] Chronologie de mise en œuvre
-- [ ] Graphique de projections financières
-- [ ] Autres visuels spécifiques aux sections
+### Additional Visuals (Generate as Needed)
+- [ ] Market ecosystem diagram
+- [ ] Regional breakdown chart
+- [ ] Segment growth chart
+- [ ] Industry trends/PESTLE diagram
+- [ ] Market share chart
+- [ ] Customer segmentation chart
+- [ ] Technology roadmap
+- [ ] Regulatory timeline
+- [ ] Opportunity matrix
+- [ ] Implementation timeline
+- [ ] Financial projections chart
+- [ ] Other section-specific visuals
 
-### Qualité du contenu
-- [ ] Toutes les statistiques ont des sources
-- [ ] Les projections incluent des hypothèses
-- [ ] Cadres correctement appliqués
-- [ ] Recommandations actionnables
-- [ ] Rédaction de qualité professionnelle
-- [ ] Aucune section placeholder ou incomplète
+### Content Quality
+- [ ] All statistics have sources
+- [ ] Projections include assumptions
+- [ ] Frameworks properly applied
+- [ ] Recommendations are actionable
+- [ ] Writing is professional quality
+- [ ] No placeholder or incomplete sections
 
-### Qualité technique
-- [ ] PDF compilé sans erreur
-- [ ] Toutes les figures s'affichent correctement
-- [ ] Les renvois fonctionnent
-- [ ] Bibliographie complète
-- [ ] Nombre de pages supérieur à 50
+### Technical Quality
+- [ ] PDF compiles without errors
+- [ ] All figures render correctly
+- [ ] Cross-references work
+- [ ] Bibliography complete
+- [ ] Page count exceeds 50
 
 ---
 
-## Ressources
+## Resources
 
-### Fichiers de référence
+### Reference Files
 
-Charger ces fichiers pour des consignes détaillées :
+Load these files for detailed guidance:
 
-- **`references/report_structure_guide.md`** : exigences de contenu détaillées, section par section
-- **`references/visual_generation_guide.md`** : prompts complets pour générer tous les types de visuels
-- **`references/data_analysis_patterns.md`** : templates pour Porter, PESTLE, SWOT, etc.
+- **`references/report_structure_guide.md`**: Detailed section-by-section content requirements
+- **`references/visual_generation_guide.md`**: Complete prompts for generating all visual types
+- **`references/data_analysis_patterns.md`**: Templates for Porter's, PESTLE, SWOT, etc.
 
 ### Assets
 
-- **`assets/market_research.sty`** : package de style LaTeX
-- **`assets/market_report_template.tex`** : template LaTeX complet
-- **`assets/FORMATTING_GUIDE.md`** : référence rapide des environnements d'encadrés et du style
+- **`assets/market_research.sty`**: LaTeX style package
+- **`assets/market_report_template.tex`**: Complete LaTeX template
+- **`assets/FORMATTING_GUIDE.md`**: Quick reference for box environments and styling
 
 ### Scripts
 
-- **`scripts/generate_market_visuals.py`** : générer en lot tous les visuels du rapport
+- **`scripts/generate_market_visuals.py`**: Batch generate all report visuals
 
 ---
 
-## Dépannage
+## Troubleshooting
 
-### Problèmes courants
+### Common Issues
 
-**Problème** : le rapport fait moins de 50 pages
-- **Solution** : développer les tableaux de données en annexes, ajouter des profils d'entreprises plus détaillés, inclure des ventilations régionales supplémentaires
+**Problem**: Report is under 50 pages
+- **Solution**: Expand data tables in appendices, add more detailed company profiles, include additional regional breakdowns
 
-**Problème** : les visuels ne s'affichent pas
-- **Solution** : vérifier les chemins de fichiers dans LaTeX, s'assurer que les images sont dans le dossier figures/, vérifier les extensions
+**Problem**: Visuals not rendering
+- **Solution**: Check file paths in LaTeX, ensure images are in figures/ folder, verify file extensions
 
-**Problème** : entrées manquantes dans la bibliographie
-- **Solution** : exécuter bibtex après la première passe xelatex, vérifier les erreurs de syntaxe dans le fichier .bib
+**Problem**: Bibliography missing entries
+- **Solution**: Run bibtex after first xelatex pass, check .bib file for syntax errors
 
-**Problème** : débordement de tableau/figure
-- **Solution** : utiliser `\resizebox` ou le package `adjustbox`, réduire le pourcentage de largeur des images
+**Problem**: Table/figure overflow
+- **Solution**: Use `\resizebox` or `adjustbox` package, reduce image width percentage
 
-**Problème** : qualité visuelle médiocre de la génération
-- **Solution** : utiliser l'option `--doc-type report`, augmenter les itérations avec `--iterations 5`
+**Problem**: Poor visual quality from generation
+- **Solution**: Use `--doc-type report` flag, increase iterations with `--iterations 5`
 
 ---
 
-Utilisez ce skill pour créer des rapports d'étude de marché complets et riches en visuels qui rivalisent avec les livrables des plus grands cabinets de conseil. La combinaison d'une recherche approfondie, de cadres structurés et d'une visualisation étendue produit des documents qui éclairent les décisions stratégiques et témoignent d'une rigueur analytique.
+Use this skill to create comprehensive, visually-rich market research reports that rival top consulting firm deliverables. The combination of deep research, structured frameworks, and extensive visualization produces documents that inform strategic decisions and demonstrate analytical rigor.

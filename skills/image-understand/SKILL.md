@@ -1,21 +1,10 @@
 ---
 name: image-understand
-version: "1.0.0"
-category: "IA & Media"
-tags:
-  - image
-  - understand
-description: Implémente des fonctionnalités spécialisées de compréhension d'images avec le z-ai-web-dev-sdk. Utilisez ce skill quand l'utilisateur a besoin d'analyser des images statiques, extraire des informations visuelles, effectuer de l'OCR, détecter des objets, classer des images ou comprendre du contenu visuel. Optimisé pour les formats PNG, JPEG, GIF, WebP et BMP.
+description: Implement specialized image understanding capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to analyze static images, extract visual information, perform OCR, detect objects, classify images, or understand visual content. Optimized for PNG, JPEG, GIF, WebP, and BMP formats.
 license: MIT
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : implémente des fonctionnalités spécialisées de compréhension d'images avec le z-ai-web-dev-sdk
-  - Déclencher si la demande mentionne : images, implémente, fonctionnalités
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -23,40 +12,40 @@ read_when:
 
 
 
-# Skill de compréhension d'images
+# Image Understanding Skill
 
-Ce skill fournit des fonctionnalités spécialisées de compréhension d'images avec le paquet z-ai-web-dev-sdk, permettant aux modèles d'IA d'analyser, décrire et extraire des informations d'images statiques.
+This skill provides specialized image understanding functionality using the z-ai-web-dev-sdk package, enabling AI models to analyze, describe, and extract information from static images.
 
-## Emplacement du skill
+## Skills Path
 
-**Emplacement** : `{project_path}/skills/image-understand`
+**Skill Location**: `{project_path}/skills/image-understand`
 
-Ce skill se trouve à l'emplacement indiqué ci-dessus dans votre projet.
+this skill is located at above path in your project.
 
-**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/image-understand.ts` pour un exemple concret.
+**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/image-understand.ts` for a working example.
 
-## Vue d'ensemble
+## Overview
 
-La compréhension d'images se concentre spécifiquement sur l'analyse d'images statiques, avec des capacités pour :
-- La description d'images et la compréhension de scènes
-- La détection et la reconnaissance d'objets
-- L'OCR (reconnaissance optique de caractères) et l'extraction de texte
-- La classification et le catégorisation d'images
-- L'analyse de contenu visuel
-- L'évaluation de la qualité
-- L'accessibilité (génération de texte alt)
+Image Understanding focuses specifically on static image analysis, providing capabilities for:
+- Image description and scene understanding
+- Object detection and recognition
+- OCR (Optical Character Recognition) and text extraction
+- Image classification and categorization
+- Visual content analysis
+- Quality assessment
+- Accessibility (alt text generation)
 
-**IMPORTANT** : z-ai-web-dev-sdk doit être utilisé UNIQUEMENT dans le code backend. Ne jamais l'utiliser dans le code côté client.
+**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
 
-## Prérequis
+## Prerequisites
 
-Le paquet z-ai-web-dev-sdk est déjà installé. Importez-le comme montré dans les exemples ci-dessous.
+The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
 
-## Utilisation CLI (pour les tâches simples)
+## CLI Usage (For Simple Tasks)
 
-Pour des tâches rapides d'analyse d'images, vous pouvez utiliser le CLI z-ai au lieu d'écrire du code. Idéal pour de simples descriptions d'images, des tests ou de l'automatisation.
+For quick image analysis tasks, you can use the z-ai CLI instead of writing code. This is ideal for simple image descriptions, testing, or automation.
 
-### Analyse basique d'image
+### Basic Image Analysis
 
 ```bash
 # Describe an image from URL
@@ -66,7 +55,7 @@ z-ai vision --prompt "What's in this image?" --image "https://example.com/photo.
 z-ai vision -p "Describe this image" -i "https://example.com/image.png"
 ```
 
-### Analyser des images locales
+### Analyze Local Images
 
 ```bash
 # Analyze a local image file
@@ -76,7 +65,7 @@ z-ai vision -p "What objects are in this photo?" -i "./photo.jpg"
 z-ai vision -p "Describe the scene" -i "./landscape.png" -o description.json
 ```
 
-### Comparaison de plusieurs images
+### Multiple Images Comparison
 
 ```bash
 # Compare multiple images
@@ -94,7 +83,7 @@ z-ai vision \
   --image "https://example.com/img3.jpg"
 ```
 
-### Analyse avancée avec thinking
+### Advanced Analysis with Thinking
 
 ```bash
 # Enable chain-of-thought reasoning for complex tasks
@@ -111,52 +100,52 @@ z-ai vision \
   --thinking
 ```
 
-### Sortie en streaming
+### Streaming Output
 
 ```bash
 # Stream the analysis in real-time
 z-ai vision -p "Provide a detailed description" -i "./photo.jpg" --stream
 ```
 
-### Paramètres CLI
+### CLI Parameters
 
-- `--prompt, -p <text>` : **obligatoire** - question ou instruction sur la ou les images
-- `--image, -i <URL ou chemin>` : optionnel - URL de l'image ou chemin du fichier local (utilisable plusieurs fois)
-- `--thinking, -t` : optionnel - active le raisonnement en chaîne de pensée (désactivé par défaut)
-- `--output, -o <chemin>` : optionnel - chemin du fichier de sortie (format JSON)
-- `--stream` : optionnel - diffuse la réponse en temps réel
+- `--prompt, -p <text>`: **Required** - Question or instruction about the image(s)
+- `--image, -i <URL or path>`: Optional - Image URL or local file path (can be used multiple times)
+- `--thinking, -t`: Optional - Enable chain-of-thought reasoning (default: disabled)
+- `--output, -o <path>`: Optional - Output file path (JSON format)
+- `--stream`: Optional - Stream the response in real-time
 
-### Formats d'images pris en charge
+### Supported Image Formats
 
-- PNG (.png) - idéal pour les diagrammes, captures d'écran et graphiques avec transparence
-- JPEG (.jpg, .jpeg) - idéal pour les photos et images complexes
-- GIF (.gif) - supporte les images statiques et animées
-- WebP (.webp) - format moderne avec bonne compression
-- BMP (.bmp) - format bitmap non compressé
+- PNG (.png) - Best for diagrams, screenshots, graphics with transparency
+- JPEG (.jpg, .jpeg) - Best for photos and complex images
+- GIF (.gif) - Supports both static and animated images
+- WebP (.webp) - Modern format with good compression
+- BMP (.bmp) - Uncompressed bitmap format
 
-### Quand utiliser le CLI vs le SDK
+### When to Use CLI vs SDK
 
-**Utiliser le CLI pour :**
-- L'analyse ou la description rapide d'images
-- Des tâches OCR ponctuelles
-- Tester les capacités de compréhension d'images
-- Des scripts simples de traitement par lot
-- Générer du texte alt pour l'accessibilité
+**Use CLI for:**
+- Quick image analysis or descriptions
+- One-off OCR tasks
+- Testing image understanding capabilities
+- Simple batch processing scripts
+- Generating alt text for accessibility
 
-**Utiliser le SDK pour :**
-- Les conversations multi-tours sur des images
-- Les pipelines complexes de traitement d'images
-- Les applications en production avec gestion d'erreurs
-- L'intégration personnalisée avec la logique de votre application
-- Le traitement par lot avec logique métier personnalisée
+**Use SDK for:**
+- Multi-turn conversations about images
+- Complex image processing pipelines
+- Production applications with error handling
+- Custom integration with your application logic
+- Batch processing with custom business logic
 
-## Approche recommandée
+## Recommended Approach
 
-Pour de meilleures performances et fiabilité, utilisez l'encodage base64 pour transmettre les images au modèle plutôt que des URLs d'images.
+For better performance and reliability, use base64 encoding to pass images to the model instead of image URLs.
 
-## Implémentation de base de la compréhension d'images
+## Basic Image Understanding Implementation
 
-### Analyse d'une image unique
+### Single Image Analysis
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -200,7 +189,7 @@ const objectDetection = await analyzeImage(
 );
 ```
 
-### Comparaison de plusieurs images
+### Multiple Images Comparison
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -242,7 +231,7 @@ const comparison = await compareImages(
 );
 ```
 
-### Support des images base64 (recommandé)
+### Base64 Image Support (Recommended)
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -299,9 +288,9 @@ const result = await analyzeLocalImage(
 );
 ```
 
-## Cas d'usage avancés
+## Advanced Use Cases
 
-### OCR et extraction de texte
+### OCR and Text Extraction
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -340,7 +329,7 @@ const businessCardInfo = await extractText(
 );
 ```
 
-### Détection et comptage d'objets
+### Object Detection and Counting
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -379,7 +368,7 @@ const allObjects = await detectObjects(
 );
 ```
 
-### Classification et étiquetage d'images
+### Image Classification and Tagging
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -425,7 +414,7 @@ const classification = await classifyAndTag(
 console.log('Tags:', classification.tags);
 ```
 
-### Évaluation de la qualité
+### Quality Assessment
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -461,7 +450,7 @@ Provide specific feedback for each criterion.`;
 }
 ```
 
-### Accessibilité - génération de texte alt
+### Accessibility - Alt Text Generation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -496,7 +485,7 @@ const altText = await generateAltText(
 );
 ```
 
-### Compréhension de scène
+### Scene Understanding
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -530,9 +519,9 @@ async function understandScene(imageUrl) {
 }
 ```
 
-## Traitement par lot
+## Batch Processing
 
-### Traiter plusieurs images
+### Process Multiple Images
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -599,23 +588,23 @@ const results = await processor.processBatch(
 );
 ```
 
-## Bonnes pratiques
+## Best Practices
 
-### 1. Qualité et préparation des images
-- Utiliser des images haute résolution pour une meilleure précision d'analyse
-- S'assurer que les images sont bien éclairées et correctement exposées
-- Pour l'OCR, s'assurer que le texte est net et lisible
-- Optimiser la taille des fichiers pour équilibrer qualité et performances
-- Formats pris en charge : PNG (idéal pour texte/diagrammes), JPEG (idéal pour photos), WebP, GIF, BMP
+### 1. Image Quality and Preparation
+- Use high-resolution images for better analysis accuracy
+- Ensure images are well-lit and properly exposed
+- For OCR, ensure text is clear and readable
+- Optimize file size to balance quality and performance
+- Supported formats: PNG (best for text/diagrams), JPEG (best for photos), WebP, GIF, BMP
 
-### 2. Ingénierie des prompts pour les images
-- Être précis sur les informations dont vous avez besoin
-- Mentionner le type d'image (photo, diagramme, capture d'écran, etc.)
-- Pour les tâches complexes, décomposer en questions spécifiques
-- Utiliser des prompts structurés pour une sortie JSON
-- Inclure le contexte quand c'est pertinent
+### 2. Prompt Engineering for Images
+- Be specific about what information you need
+- Mention the type of image (photo, diagram, screenshot, etc.)
+- For complex tasks, break down into specific questions
+- Use structured prompts for JSON output
+- Include context when relevant
 
-### 3. Gestion d'erreurs
+### 3. Error Handling
 
 ```javascript
 async function safeImageAnalysis(imageUrl, prompt) {
@@ -649,36 +638,36 @@ async function safeImageAnalysis(imageUrl, prompt) {
 }
 ```
 
-### 4. Optimisation des performances
-- Mettre en cache l'instance du SDK pour le traitement par lot
-- Utiliser l'encodage base64 pour les images locales
-- Implémenter un contrôle de débit pour les grands lots
-- Envisager un prétraitement des images (redimensionnement, compression) pour les gros fichiers
-- Utiliser le mode thinking approprié (désactivé pour les tâches simples, activé pour le raisonnement complexe)
+### 4. Performance Optimization
+- Cache SDK instance for batch processing
+- Use base64 encoding for local images
+- Implement request throttling for large batches
+- Consider image preprocessing (resize, compress) for large files
+- Use appropriate thinking mode (disabled for simple tasks, enabled for complex reasoning)
 
-### 5. Considérations de sécurité
-- Valider les URLs d'images avant traitement
-- Implémenter une limitation de débit pour les API publiques
-- Assainir les données d'images fournies par l'utilisateur
-- Ne jamais exposer les identifiants du SDK dans le code côté client
-- Implémenter une modération de contenu pour les images téléversées par les utilisateurs
+### 5. Security Considerations
+- Validate image URLs before processing
+- Implement rate limiting for public APIs
+- Sanitize user-provided image data
+- Never expose SDK credentials in client-side code
+- Implement content moderation for user-uploaded images
 
-## Cas d'usage courants
+## Common Use Cases
 
-1. **Analyse de produits e-commerce** : analyser des images de produits, extraire des caractéristiques, générer des descriptions
-2. **Traitement de documents** : extraire du texte de reçus, factures, formulaires, cartes de visite
-3. **Modération de contenu** : détecter des contenus inappropriés, vérifier la conformité des images
-4. **Contrôle qualité** : identifier des défauts, évaluer la qualité des produits en fabrication
-5. **Accessibilité** : générer automatiquement du texte alt pour les images
-6. **Catalogage d'images** : étiqueter et catégoriser automatiquement des bibliothèques d'images
-7. **Recherche visuelle** : comprendre et indexer des images pour des fonctionnalités de recherche
-8. **Imagerie médicale** : analyse préliminaire avec les avertissements appropriés
-9. **Immobilier** : analyser des photos de biens, extraire des caractéristiques
-10. **Réseaux sociaux** : générer des légendes, hashtags et descriptions
+1. **E-commerce Product Analysis**: Analyze product images, extract features, generate descriptions
+2. **Document Processing**: Extract text from receipts, invoices, forms, business cards
+3. **Content Moderation**: Detect inappropriate content, verify image compliance
+4. **Quality Control**: Identify defects, assess product quality in manufacturing
+5. **Accessibility**: Generate alt text for images automatically
+6. **Image Cataloging**: Auto-tag and categorize image libraries
+7. **Visual Search**: Understand and index images for search functionality
+8. **Medical Imaging**: Preliminary analysis with appropriate disclaimers
+9. **Real Estate**: Analyze property photos, extract features
+10. **Social Media**: Generate captions, hashtags, and descriptions
 
-## Exemples d'intégration
+## Integration Examples
 
-### Point d'accès API Express.js
+### Express.js API Endpoint
 
 ```javascript
 import express from 'express';
@@ -783,7 +772,7 @@ initZAI().then(() => {
 });
 ```
 
-### Route API Next.js
+### Next.js API Route
 
 ```javascript
 // pages/api/image-understand.js
@@ -841,34 +830,34 @@ export default async function handler(req, res) {
 }
 ```
 
-## Dépannage
+## Troubleshooting
 
-**Problème** : « SDK must be used in backend »
-- **Solution** : s'assurer que z-ai-web-dev-sdk n'est importé et utilisé que dans le code côté serveur, jamais dans le code client/navigateur
+**Issue**: "SDK must be used in backend"
+- **Solution**: Ensure z-ai-web-dev-sdk is only imported and used in server-side code, never in client/browser code
 
-**Problème** : image non chargée ou non analysée
-- **Solution** : vérifier que l'URL de l'image est accessible, renvoie le bon type MIME et est dans un format pris en charge
+**Issue**: Image not loading or being analyzed
+- **Solution**: Verify the image URL is accessible, returns correct MIME type, and is in a supported format
 
-**Problème** : précision OCR médiocre
-- **Solution** : s'assurer que le texte est net et lisible, augmenter la résolution de l'image, garantir un bon éclairage et contraste
+**Issue**: Poor OCR accuracy
+- **Solution**: Ensure text is clear and readable, increase image resolution, ensure proper lighting and contrast
 
-**Problème** : détection ou comptage d'objets imprécis
-- **Solution** : activer le mode thinking pour les tâches de comptage complexes, utiliser des images haute résolution, fournir des prompts précis
+**Issue**: Inaccurate object detection or counting
+- **Solution**: Enable thinking mode for complex counting tasks, use high-resolution images, provide specific prompts
 
-**Problème** : temps de réponse lents
-- **Solution** : optimiser la taille des images (redimensionner avant upload), utiliser base64 pour les images locales, mettre en cache l'instance du SDK pour le traitement par lot
+**Issue**: Slow response times
+- **Solution**: Optimize image size (resize before upload), use base64 for local images, cache SDK instance for batch processing
 
-**Problème** : échec de l'encodage base64
-- **Solution** : vérifier que le chemin du fichier est correct, contrôler les permissions du fichier, s'assurer que le type MIME correspond à l'extension
+**Issue**: Base64 encoding fails
+- **Solution**: Verify file path is correct, check file permissions, ensure MIME type matches file extension
 
-## À retenir
+## Remember
 
-- Toujours utiliser z-ai-web-dev-sdk uniquement dans le code backend
-- Le SDK est déjà installé - importer comme montré dans les exemples
-- Utiliser le type de contenu `image_url` pour les images statiques
-- L'encodage base64 est recommandé pour de meilleures performances
-- Structurer clairement les prompts pour de meilleurs résultats
-- Activer le mode thinking pour les tâches de raisonnement complexes (comptage, analyse détaillée)
-- Gérer les erreurs avec soin en production
-- Valider et assainir les entrées utilisateur
-- Prendre en compte la vie privée et la sécurité lors du traitement des images utilisateur
+- Always use z-ai-web-dev-sdk in backend code only
+- The SDK is already installed - import as shown in examples
+- Use `image_url` content type for static images
+- Base64 encoding is recommended for better performance
+- Structure prompts clearly for best results
+- Enable thinking mode for complex reasoning tasks (counting, detailed analysis)
+- Handle errors gracefully in production
+- Validate and sanitize user inputs
+- Consider privacy and security when processing user images

@@ -1,21 +1,10 @@
 ---
 name: image-edit
-version: "1.0.0"
-category: "IA & Media"
-tags:
-  - image
-  - edit
-description: Implémente des fonctionnalités d'édition et de modification d'images par IA avec le z-ai-web-dev-sdk. Utilisez ce skill quand l'utilisateur a besoin de modifier des images existantes, créer des variantes, changer le contenu visuel, redessiner des assets ou transformer des images à partir de descriptions textuelles. Prend en charge plusieurs tailles d'images et renvoie des résultats encodés en base64. Inclut aussi un outil CLI pour une édition rapide d'images.
+description: Implement AI image editing and modification capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to edit existing images, create variations, modify visual content, redesign assets, or transform images based on text descriptions. Supports multiple image sizes and returns base64 encoded results. Also includes CLI tool for quick image editing.
 license: MIT
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : implémente des fonctionnalités d'édition et de modification d'images par IA avec le z-ai-web-dev-sdk
-  - Déclencher si la demande mentionne : images, édition, implémente
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -23,27 +12,27 @@ read_when:
 
 
 
-# Skill d'édition d'images
+# Image Edit Skill
 
-Ce skill guide l'implémentation de fonctionnalités d'édition et de modification d'images avec le paquet z-ai-web-dev-sdk et l'outil CLI, permettant la transformation et l'édition intelligentes d'images à partir de descriptions textuelles.
+This skill guides the implementation of image editing and modification functionality using the z-ai-web-dev-sdk package and CLI tool, enabling intelligent transformation and editing of images based on text descriptions.
 
-## Emplacement du skill
+## Skills Path
 
-**Emplacement** : `{project_path}/skills/image-edit`
+**Skill Location**: `{project_path}/skills/image-edit`
 
-Ce skill se trouve à l'emplacement indiqué ci-dessus dans votre projet.
+this skill is located at above path in your project.
 
-**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/image-edit.ts` pour un exemple concret.
+**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/image-edit.ts` for a working example.
 
-## Vue d'ensemble
+## Overview
 
-L'édition d'images permet de construire des applications qui modifient, transforment et améliorent des images existantes grâce aux modèles d'IA. Idéal pour redessiner des assets, créer des variantes, améliorer le contenu visuel et transformer des images à partir de descriptions textuelles.
+Image Edit allows you to build applications that modify, transform, and enhance existing images using AI models. Perfect for redesigning assets, creating variations, improving visual content, and transforming images based on textual descriptions.
 
-**IMPORTANT** : z-ai-web-dev-sdk doit être utilisé UNIQUEMENT dans le code backend. Ne jamais l'utiliser dans le code côté client.
+**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
 
-## Méthode de l'API du SDK
+## SDK API Method
 
-La fonctionnalité d'édition d'images utilise la méthode d'API suivante :
+The image editing functionality uses the following API method:
 
 ```javascript
 await zai.images.generations.edit({
@@ -54,19 +43,19 @@ await zai.images.generations.edit({
 })
 ```
 
-**Important** : le paramètre `images` doit être un tableau d'objets avec une propriété `url`, pas une simple chaîne.
+**Important**: The `images` parameter must be an array of objects with a `url` property, not a plain string.
 
-**Point d'accès API** : `POST /images/generations/edit`
+**API Endpoint**: `POST /images/generations/edit`
 
-**Renvoie** : `ImageGenerationResponse` avec l'image éditée encodée en base64
+**Returns**: `ImageGenerationResponse` with base64 encoded edited image
 
-## Prérequis
+## Prerequisites
 
-Le paquet z-ai-web-dev-sdk est déjà installé. Importez-le comme montré dans les exemples ci-dessous.
+The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
 
-## Édition d'images de base
+## Basic Image Editing
 
-### Transformation simple d'une image
+### Simple Image Transformation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -111,7 +100,7 @@ await editImage(
 );
 ```
 
-### Créer des variantes d'image
+### Create Image Variations
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -156,7 +145,7 @@ await createVariation(
 );
 ```
 
-### Plusieurs tailles d'images pour l'édition
+### Multiple Image Sizes for Editing
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -213,11 +202,11 @@ await editImageWithSize(
 );
 ```
 
-## Utilisation de l'outil CLI
+## CLI Tool Usage
 
-L'outil CLI z-ai offre un moyen pratique de modifier des images directement depuis la ligne de commande.
+The z-ai CLI tool provides a convenient way to edit images directly from the command line.
 
-### Utilisation CLI de base
+### Basic CLI Usage
 
 ```bash
 # Edit image with full options
@@ -233,19 +222,19 @@ z-ai image-edit -p "Redesign in modern style" -i "./design.png" -o "./modern.png
 z-ai image-edit -p "Convert to landscape orientation" -i "https://example.com/photo.png" -o "./landscape.png" -s 1344x768
 ```
 
-### Paramètres CLI
+### CLI Parameters
 
-- `--prompt, -p` : **obligatoire** - description de la modification à appliquer
-- `--image, -i` : **obligatoire** - URL de l'image d'origine ou chemin du fichier local
-- `--output, -o` : **obligatoire** - chemin du fichier image de sortie (format PNG)
-- `--size, -s` : optionnel - taille de l'image, 1024x1024 par défaut
-- `--help, -h` : optionnel - affiche l'aide
+- `--prompt, -p`: **Required** - Description of the edit to apply
+- `--image, -i`: **Required** - Original image URL or local file path
+- `--output, -o`: **Required** - Output image file path (PNG format)
+- `--size, -s`: Optional - Image size, default is 1024x1024
+- `--help, -h`: Optional - Display help information
 
-### Tailles prises en charge
+### Supported Sizes
 
 - `1024x1024`, `768x1344`, `864x1152`, `1344x768`, `1152x864`, `1440x720`, `720x1440`
 
-### Cas d'usage CLI pour l'édition d'images
+### CLI Use Cases for Image Editing
 
 ```bash
 # Redesign existing asset
@@ -273,9 +262,9 @@ z-ai image-edit -p "Transform to dark moody atmosphere with dramatic lighting" -
 z-ai image-edit -p "Add a hat to the person" -i "https://example.com/photo.png" -o "./result.png" -s 1024x1024
 ```
 
-## Cas d'usage avancés
+## Advanced Use Cases
 
-### Édition d'images par lot
+### Batch Image Editing
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -350,7 +339,7 @@ const results = await batchEditImages(editInstructions, './edited-images');
 console.log(`Edited ${results.filter(r => r.success).length} images`);
 ```
 
-### Service d'édition d'images
+### Image Editing Service
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -469,7 +458,7 @@ const variations = await service.createVariations(
 console.log('Edit history:', service.getEditHistory());
 ```
 
-### Transfert de style et transformation
+### Style Transfer and Transformation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -520,7 +509,7 @@ await applyStyleTransfer(
 );
 ```
 
-### Remplacement d'éléments
+### Element Replacement
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -565,9 +554,9 @@ await replaceElement(
 );
 ```
 
-## Bonnes pratiques
+## Best Practices
 
-### 1. Prompts d'édition efficaces
+### 1. Effective Edit Prompts
 
 ```javascript
 function buildEditPrompt(baseDescription, modification, preserveElements = []) {
@@ -595,7 +584,7 @@ const editPrompt = buildEditPrompt(
 // Result: "Professional headshot photo, change background to modern office, keep lighting, pose, expression unchanged, maintain overall composition"
 ```
 
-### 2. Choix de la taille selon le type d'édition
+### 2. Size Selection for Different Edit Types
 
 ```javascript
 function selectSizeForEdit(editType) {
@@ -617,7 +606,7 @@ const size = selectSizeForEdit('background-change');
 await editImage('Replace background with beach scene', './beach_bg.png', size);
 ```
 
-### 3. Gestion d'erreurs avec retry
+### 3. Error Handling with Retry
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -668,22 +657,22 @@ async function safeEditImage(imageSource, editPrompt, size, outputPath, retries 
 }
 ```
 
-## Cas d'usage courants d'édition d'images
+## Common Image Editing Use Cases
 
-1. **Remplacement d'arrière-plan** : changer ou supprimer les arrière-plans des photos
-2. **Transformation de style** : convertir des photos en peintures, illustrations, etc.
-3. **Ajustement des couleurs** : changer les palettes, la saturation, l'ambiance
-4. **Modification d'éléments** : remplacer ou modifier des éléments précis
-5. **Changements de composition** : ajuster le cadrage, l'orientation, la disposition
-6. **Ajustements d'éclairage** : modifier la lumière, les ombres, les hautes lumières
-7. **Redesign d'assets** : moderniser ou rebrander des designs existants
-8. **Amélioration de la qualité** : améliorer la qualité visuelle globale
-9. **Création de variantes** : générer plusieurs versions d'une image
-10. **Conversion de format** : transformer entre différents styles ou formats
+1. **Background Replacement**: Change or remove backgrounds in photos
+2. **Style Transformation**: Convert photos to paintings, illustrations, etc.
+3. **Color Adjustment**: Change color schemes, saturation, mood
+4. **Element Modification**: Replace or modify specific elements
+5. **Composition Changes**: Adjust framing, orientation, layout
+6. **Lighting Adjustments**: Modify lighting, shadows, highlights
+7. **Asset Redesign**: Modernize or rebrand existing designs
+8. **Quality Enhancement**: Improve overall visual quality
+9. **Variation Creation**: Generate multiple versions of an image
+10. **Format Conversion**: Transform between different styles or formats
 
-## Exemples d'intégration
+## Integration Examples
 
-### Point d'accès API Express.js
+### Express.js API Endpoint
 
 ```javascript
 import express from 'express';
@@ -810,9 +799,9 @@ initZAI().then(() => {
 });
 ```
 
-## Intégration CLI dans les scripts
+## CLI Integration in Scripts
 
-### Script shell pour l'édition par lot
+### Shell Script for Batch Editing
 
 ```bash
 #!/bin/bash
@@ -830,86 +819,86 @@ z-ai image-edit -p "$BASE, on wooden desk, natural lighting" -i "$ORIGINAL_IMAGE
 echo "Variations created successfully!"
 ```
 
-## Dépannage
+## Troubleshooting
 
-**Problème** : « SDK must be used in backend »
-- **Solution** : s'assurer que z-ai-web-dev-sdk n'est utilisé que dans le code côté serveur
+**Issue**: "SDK must be used in backend"
+- **Solution**: Ensure z-ai-web-dev-sdk is only used in server-side code
 
-**Problème** : paramètre de taille invalide
-- **Solution** : n'utiliser que les tailles prises en charge : 1024x1024, 768x1344, 864x1152, 1344x768, 1152x864, 1440x720, 720x1440
+**Issue**: Invalid size parameter
+- **Solution**: Use only supported sizes: 1024x1024, 768x1344, 864x1152, 1344x768, 1152x864, 1440x720, 720x1440
 
-**Problème** : l'image éditée ne correspond pas à l'intention
-- **Solution** : être plus précis dans les prompts d'édition. Indiquer ce qu'il faut changer ET ce qu'il faut préserver
+**Issue**: Edited image doesn't match intention
+- **Solution**: Be more specific in edit prompts. Include what to change AND what to preserve
 
-**Problème** : commande CLI introuvable
-- **Solution** : s'assurer que le CLI z-ai est correctement installé et présent dans le PATH
+**Issue**: CLI command not found
+- **Solution**: Ensure z-ai CLI is properly installed and in PATH
 
-**Problème** : perte de qualité d'image après édition
-- **Solution** : utiliser des options de taille plus grandes et inclure des termes de qualité dans les prompts
+**Issue**: Image quality loss after editing
+- **Solution**: Use larger size options and include quality terms in prompts
 
-**Problème** : résultats incohérents entre les variantes
-- **Solution** : inclure une description de base plus précise et des instructions de modification détaillées
+**Issue**: Inconsistent results across variations
+- **Solution**: Include more specific base description and detailed modification instructions
 
-## Conseils d'ingénierie des prompts d'édition
+## Edit Prompt Engineering Tips
 
-### Bons prompts d'édition
+### Good Edit Prompts
 - ✓ "Change background to modern office, keep subject and lighting identical"
 - ✓ "Transform to watercolor style, maintain composition and colors"
 - ✓ "Replace red car with blue motorcycle, keep road and scenery unchanged"
 - ✓ "Adjust to golden hour lighting, preserve all elements"
 
-### Mauvais prompts d'édition
+### Poor Edit Prompts
 - ✗ "make it better"
 - ✗ "change something"
 - ✗ "different version"
 
-### Composants d'un prompt d'édition
-1. **Contexte de base** : ce que l'image représente actuellement
-2. **Modification** : quels changements précis effectuer
-3. **Préservation** : quels éléments conserver à l'identique
-4. **Qualité** : qualité ou style de sortie souhaité
+### Edit Prompt Components
+1. **Base Context**: What the image currently represents
+2. **Modification**: What specific changes to make
+3. **Preservation**: What elements to keep unchanged
+4. **Quality**: Desired output quality or style
 
-### Modèles d'édition efficaces
+### Effective Edit Patterns
 
-**Changements d'arrière-plan :**
+**Background Changes:**
 ```
 "[Subject description], replace background with [new background], maintain subject lighting and pose"
 ```
 
-**Transferts de style :**
+**Style Transfers:**
 ```
 "[Current description] transformed into [style name] style, preserve composition and key elements"
 ```
 
-**Remplacement d'éléments :**
+**Element Replacement:**
 ```
 "[Scene description], replace [element A] with [element B], keep everything else identical"
 ```
 
-**Ajustements de couleurs :**
+**Color Adjustments:**
 ```
 "[Image description], change color scheme to [colors], maintain contrast and composition"
 ```
 
-## Tailles d'images prises en charge
+## Supported Image Sizes
 
-- `1024x1024` - Carré (idéal pour l'édition générale)
+- `1024x1024` - Square (Best for general editing)
 - `768x1344` - Portrait
 - `864x1152` - Portrait
-- `1344x768` - Paysage
-- `1152x864` - Paysage
-- `1440x720` - Paysage large
-- `720x1440` - Portrait allongé
+- `1344x768` - Landscape
+- `1152x864` - Landscape
+- `1440x720` - Wide landscape
+- `720x1440` - Tall portrait
 
-## À retenir
+## Remember
 
-- Toujours utiliser z-ai-web-dev-sdk uniquement dans le code backend
-- Le SDK est déjà installé - importer comme montré
-- L'outil CLI est disponible pour une édition rapide d'images
-- Être précis sur ce qu'il faut changer ET sur ce qu'il faut préserver
-- Inclure la description de base pour un meilleur contexte
-- Utiliser la taille appropriée selon le type d'édition
-- Implémenter une logique de retry pour les applications en production
-- Tester les prompts d'édition de manière itérative pour de meilleurs résultats
-- Envisager de créer des variantes pour explorer les options
-- Les images base64 doivent être décodées avant enregistrement
+- Always use z-ai-web-dev-sdk in backend code only
+- The SDK is already installed - import as shown
+- CLI tool is available for quick image editing
+- Be specific about what to change AND what to preserve
+- Include base description for better context
+- Use appropriate size for the edit type
+- Implement retry logic for production applications
+- Test edit prompts iteratively for best results
+- Consider creating variations to explore options
+- Base64 images need to be decoded before saving

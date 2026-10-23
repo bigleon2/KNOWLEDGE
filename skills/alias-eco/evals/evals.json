@@ -2,7 +2,7 @@
   "skill_name": "alias-eco",
   "version": "1.0.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
-  "note": "Créé via skill-creator (Task 18, session web-fdf5963c, directive propriétaire 2026-10-23) : 6 evals couvrant les 3 déclencheurs, la détection/tri/déduplication JSON, la résolution $<ALIAS> et l'intégration correct-work (projet).",
+  "note": "Créé via skill-creator (Task 18, session web-fdf5963c, directive propriétaire 2026-10-23) : 7 evals couvrant les 3 déclencheurs, la détection/tri/déduplication JSON, la résolution $<ALIAS> et l'intégration correct-work (projet).",
   "evals": [
     {
       "id": 1,
@@ -71,6 +71,18 @@
       "expectations": [
         "correct-work v2.8.0 §10.1 délègue la tenue du registre à alias-eco",
         "Le registre aliases.json reflète les phrases récurrentes de la discussion analysée"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "AE-facon — Normalisation $façon() → $FACON (décision Task 27)",
+      "prompt": "Résous les alias de : « corrige ce problème $façon() puis applique le tout $FACON »",
+      "expected_output": "$façon() est signalé non expansé (hors garde canonique ^[A-Z0-9][A-Z0-9-]*$) ; $FACON est expansé en « de façon cohérente, optimisée et fonctionnelle »",
+      "files": [],
+      "expectations": [
+        "--resolve $façon() renvoie le texte inchangé (rc=0, non expansé — alias jamais inventé)",
+        "--resolve $FACON expande la phrase complète (registre R4, une phrase = un alias)",
+        "La décision de normalisation et le renommage OPT-TRIO→FACON sont documentés en references/format-alias.md §4 (décision 2026-10-24)"
       ]
     }
   ]

@@ -1,21 +1,9 @@
 ---
 name: "multi-search-engine"
-version: "1.0.0"
-category: "Web & Recherche"
-tags:
-  - multi
-  - search
-  - engine
-description: "Intégration multi-moteurs de recherche avec 8 moteurs de recherche nationaux (CN). Prend en charge les opérateurs de recherche avancés, les filtres temporels, la recherche par site et la recherche d'articles WeChat. Aucune clé API requise."
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : "Intégration multi-moteurs de recherche avec 8 moteurs de recherche nationaux (CN)
-  - Déclencher si la demande mentionne : recherche, moteurs, intégration
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
+description: "Multi search engine integration with 8 domestic (CN) search engines. Supports advanced search operators, time filters, site search, and WeChat article search. No API keys required."
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -25,9 +13,9 @@ read_when:
 
 # Multi Search Engine v2.0.1
 
-Intégration de 8 moteurs de recherche chinois nationaux pour l'exploration web sans clés API.
+Integration of 8 domestic Chinese search engines for web crawling without API keys.
 
-## Moteurs de recherche (nationaux - CN uniquement)
+## Search Engines (Domestic - CN Only)
 
 - **Baidu**: `https://www.baidu.com/s?wd={keyword}`
 - **Bing CN**: `https://cn.bing.com/search?q={keyword}&ensearch=0`
@@ -38,7 +26,7 @@ Intégration de 8 moteurs de recherche chinois nationaux pour l'exploration web 
 - **Toutiao**: `https://so.toutiao.com/search?keyword={keyword}`
 - **Jisilu**: `https://www.jisilu.cn/explore/?keyword={keyword}`
 
-## Exemples rapides
+## Quick Examples
 
 ```javascript
 // Basic search (Baidu)
@@ -60,39 +48,39 @@ web_fetch({"url": "https://so.toutiao.com/search?keyword=新能源+政策"})
 web_fetch({"url": "https://www.jisilu.cn/explore/?keyword=REITs"})
 ```
 
-## Opérateurs avancés
+## Advanced Operators
 
-| Opérateur | Exemple | Description |
+| Operator | Example | Description |
 |----------|---------|-------------|
-| `site:` | `site:github.com python` | Rechercher dans un site |
-| `filetype:` | `filetype:pdf report` | Type de fichier spécifique |
-| `""` | `"machine learning"` | Correspondance exacte |
-| `-` | `python -snake` | Exclure un terme |
-| `OR` | `cat OR dog` | L'un des deux termes |
+| `site:` | `site:github.com python` | Search within site |
+| `filetype:` | `filetype:pdf report` | Specific file type |
+| `""` | `"machine learning"` | Exact match |
+| `-` | `python -snake` | Exclude term |
+| `OR` | `cat OR dog` | Either term |
 
-## Filtres temporels
+## Time Filters
 
-| Paramètre | Description |
+| Parameter | Description |
 |-----------|-------------|
-| `tbs=qdr:h` | Dernière heure |
-| `tbs=qdr:d` | Dernier jour |
-| `tbs=qdr:w` | Dernière semaine |
-| `tbs=qdr:m` | Dernier mois |
-| `tbs=qdr:y` | Dernière année |
+| `tbs=qdr:h` | Past hour |
+| `tbs=qdr:d` | Past day |
+| `tbs=qdr:w` | Past week |
+| `tbs=qdr:m` | Past month |
+| `tbs=qdr:y` | Past year |
 
-## Notes sur les moteurs de recherche
+## Search Engine Notes
 
-- **Recherche WeChat** : idéal pour chercher les articles et contenus publics de WeChat
-- **Toutiao** : adapté aux sujets tendance et à l'agrégation d'actualités
-- **Jisilu** : centré sur les données financières et d'investissement
-- **Bing INT** : résultats de recherche internationaux via l'interface Bing
-- **Bing CN** : résultats de recherche chinois localisés
+- **WeChat Search**: Best for searching WeChat public articles and content
+- **Toutiao**: Good for trending topics and news aggregation
+- **Jisilu**: Focused on financial and investment data
+- **Bing INT**: International search results via Bing interface
+- **Bing CN**: Localized Chinese search results
 
 ## Documentation
 
-- `references/international-search.md` - Guide de recherche internationale archivé (pour référence)
-- `CHANGELOG.md` - Historique des versions
+- `references/international-search.md` - Archived international search guide (for reference)
+- `CHANGELOG.md` - Version history
 
-## Licence
+## License
 
 MIT

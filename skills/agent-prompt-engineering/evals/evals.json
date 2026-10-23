@@ -1,0 +1,67 @@
+{
+  "skill_name": "agent-prompt-engineering",
+  "version": "1.0.1",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals créées à la matérialisation (session A9, 2026-09-06) au schéma exact skill-creator — couvrent les 4 opérations (§1.2), la grille 5 axes (§1.4) et la non-duplication de la méthode-mère (SHARED §6.3, §7).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "APE-restructuration — Restructuration sans perte",
+      "prompt": "Restructure la section §5 de ce prompt maître pour supprimer les duplications tout en préservant la sémantique",
+      "expected_output": "Une version restructurée de la section, sans duplication, avec diff documenté et sémantique préservée",
+      "files": [],
+      "expectations": [
+        "La restructuration supprime les duplications identifiées",
+        "Un diff documentant chaque changement est produit",
+        "Aucune règle sémantique n'est perdue ou altérée"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "APE-evaluation-5-axes — Évaluation selon la grille",
+      "prompt": "Évalue ce SKILL.md selon la grille d'évaluation à 5 axes sans le modifier",
+      "expected_output": "Un rapport M3 notant les 5 axes (clarté, précision, structure, économie, robustesse) avec recommandations",
+      "files": [],
+      "expectations": [
+        "Les 5 axes de la grille §1.4 sont tous notés",
+        "Le mode M3 est respecté : aucun fichier modifié",
+        "Chaque axe sous seuil reçoit une recommandation classée par impact"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "APE-iteration-boucle — Boucle évaluer-ajuster-re-évaluer",
+      "prompt": "Itère sur ce prompt jusqu'au seuil de qualité ou à 3 itérations maximum",
+      "expected_output": "Une boucle d'itération terminée par PASS complet ou une dérive documentée au worklog",
+      "files": [],
+      "expectations": [
+        "Chaque itération produit une évaluation complète (grille §1.4)",
+        "La boucle s'arrête au PASS complet ou après 3 itérations maximum",
+        "Toute dérive est journalisée dans le worklog (SHARED §1.4)"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "APE-non-duplication — Respect de la méthode-mère",
+      "prompt": "Rédige la description des 4 disciplines d'ingénierie de prompts pour ce skill",
+      "expected_output": "Une référence à la source de vérité (PM gen-plan §1.9) sans redéfinition des disciplines",
+      "files": [],
+      "expectations": [
+        "Les disciplines ne sont pas redéfinies (SHARED §6.3, §7)",
+        "La source de vérité PM gen-plan §1.9 est citée",
+        "Le skill se borne à spécialiser la méthode sur ses artefacts"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "APE-triggers — Validation Description Optimization (M4)",
+      "prompt": "Valide le frontmatter de ce skill avec ses trigger_evals",
+      "expected_output": "Un rapport M4 montrant le résultat attendu pour chaque cas should_trigger",
+      "files": [],
+      "expectations": [
+        "Chaque cas true déclenche le skill et chaque cas false ne le déclenche pas",
+        "Le rapport M4 est produit avec les justifications"
+      ]
+    }
+  ]
+}

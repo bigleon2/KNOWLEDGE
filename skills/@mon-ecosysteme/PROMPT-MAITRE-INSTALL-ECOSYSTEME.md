@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.8.2
+Version : 1.8.4
 Date : 2026-10-12
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -95,7 +95,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
-| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.23.2.md` | gen-plan v3.23.2 | 3 |
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.24.0.md` | gen-plan v3.24.0 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md` | correct-work v2.8.0 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md` | clone-chat v2.0.2 | 5 |
 | refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md` | refactor-guard v1.8.1 | 6 |
@@ -190,6 +190,8 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.8.4 | 2026-10-23 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.23.2→v3.24.0 ; recalibrage croisé : SHARED v1.7.11 (§6.1), §2ter, §A.3 |
+| v1.8.3 | 2026-10-23 | KO-L004 v1.1.0 — cascade alias-eco v1.1.0→v1.2.0 (grammaire B mécanique --trigger + attribution OPT-TRIO ; v1.1.0 = Description Optimization clause d'exclusion) : §A.3 instantané recalibré — Task 25bis/25ter, session web-fdf5963c, GO propriétaire |
 | v1.8.2 | 2026-10-23 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : refactor-guard v1.8.0→v1.8.1 ; recalibrage croisé : SHARED v1.7.10 (§6.1), §2ter, §A.3 |
 | v1.8.1 | 2026-10-23 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : refactor-guard v1.7.1→v1.8.0 ; recalibrage croisé : SHARED v1.7.9 (§6.1), §2ter, §A.3 |
 | v1.8.0 | 2026-10-23 | Directive propriétaire (session web-fdf5963c, Task 18 — « optimise le système d'installation en regénérant, toutes disciplines et refactoring » + prérequis A « assemble au lieu d'installer ») : MÉCANISME DUAL d'installation codifié — §3.2 réécrit : (a) installation DIRECTE des formes certifiées du dépôt = voie PAR DÉFAUT (exécutant canonique scripts/eco_install_pipeline.py — chemin REPO paramétrable, pin descendant-tolérant), (b) assemblage depuis les PMs = voie BOOTSTRAP (les §5 des PMs demeurent la spécification de la forme — 4 PMs familles régénérés mécaniquement KO-L004 avec note §5 mécanisme dual : gen-plan v3.23.2, correct-work v2.8.0, clone-chat v2.0.2, refactor-guard v1.7.1) ; intégration alias-eco (skill v1.0.0 — registre d'alias $<ALIAS>, déclencheurs « alias-eco »/« liste mes alias »/« alias-eco (chat) », registre JSON @historique/@Alias/, délégation correct-work v2.8.0 mode PROJET) au périmètre (§2bis, §4, §A.3) ; §1 #2 et §2 recalibrés |
@@ -225,7 +227,7 @@ Note P4 (recalibrée v1.7.0) : les SKILL.md + références des 4 familles (gen-p
 ### §A.3 Registre KB cible (14 entrées d'époque + 6 extensions v1.7.0)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.8.0, 2026-10-23) : gen-plan v3.23.2 · correct-work v2.8.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
+Instantané courant (v1.8.0, 2026-10-23) : gen-plan v3.24.0 · correct-work v2.8.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|
@@ -254,6 +256,6 @@ Extensions (recalibrage v1.7.0 — disciplines n°54 + discipline n°55/outil + 
 | refactoring-engineering | v1.1.0 |
 | refactoring-test | v1.0.1 |
 | refactor-guard | v1.7.0 |
-| alias-eco | v1.0.0 |
+| alias-eco | v1.2.0 |
 
 Catégorie (attestée) : ecosystem — les 4 dernières matérialisations sont les skills des disciplines d'exécution (socle SHARED §7, session A12) : forme installée `<discipline>/` — SKILL.md + evals/evals.json + evals/trigger_evals.json, déclenchement automatique ; matérialisations agent `_disciplines/` retirées, SHA prouvés ; « Utilisé par » : gen-plan (couche disciplines), sessions d'ingénierie ; matérialisées 2026-09-07.

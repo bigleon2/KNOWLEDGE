@@ -1,21 +1,10 @@
 ---
 name: image-generation
-version: "1.0.0"
-category: "IA & Media"
-tags:
-  - image
-  - generation
-description: Implémente des fonctionnalités de génération d'images par IA avec le z-ai-web-dev-sdk. Utilisez ce skill quand l'utilisateur a besoin de créer des images à partir de descriptions textuelles, générer du contenu visuel, créer des œuvres, concevoir des assets ou construire des applications avec création d'images par IA. Prend en charge plusieurs tailles d'images et renvoie des images encodées en base64. Inclut aussi un outil CLI pour une génération rapide d'images.
+description: Implement AI image generation capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to create images from text descriptions, generate visual content, create artwork, design assets, or build applications with AI-powered image creation. Supports multiple image sizes and returns base64 encoded images. Also includes CLI tool for quick image generation.
 license: MIT
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : implémente des fonctionnalités de génération d'images par IA avec le z-ai-web-dev-sdk
-  - Déclencher si la demande mentionne : images, génération, créer
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -23,31 +12,31 @@ read_when:
 
 
 
-# Skill de génération d'images
+# Image Generation Skill
 
-Ce skill guide l'implémentation de la fonctionnalité de génération d'images avec le paquet z-ai-web-dev-sdk et l'outil CLI, permettant de créer des images de haute qualité à partir de descriptions textuelles.
+This skill guides the implementation of image generation functionality using the z-ai-web-dev-sdk package and CLI tool, enabling creation of high-quality images from text descriptions.
 
-## Emplacement du skill
+## Skills Path
 
-**Emplacement** : `{project_path}/skills/image-generation`
+**Skill Location**: `{project_path}/skills/image-generation`
 
-Ce skill se trouve à l'emplacement indiqué ci-dessus dans votre projet.
+this skill is located at above path in your project.
 
-**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/image-generation.ts` pour un exemple concret.
+**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/image-generation.ts` for a working example.
 
-## Vue d'ensemble
+## Overview
 
-La génération d'images permet de construire des applications qui créent du contenu visuel à partir de prompts textuels grâce aux modèles d'IA, ouvrant la voie à des workflows créatifs, à l'automatisation du design et à la production de contenu visuel.
+Image Generation allows you to build applications that create visual content from text prompts using AI models, enabling creative workflows, design automation, and visual content production.
 
-**IMPORTANT** : z-ai-web-dev-sdk doit être utilisé UNIQUEMENT dans le code backend. Ne jamais l'utiliser dans le code côté client.
+**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
 
-## Prérequis
+## Prerequisites
 
-Le paquet z-ai-web-dev-sdk est déjà installé. Importez-le comme montré dans les exemples ci-dessous.
+The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
 
-## Génération d'images de base
+## Basic Image Generation
 
-### Création simple d'image
+### Simple Image Creation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -78,7 +67,7 @@ await generateImage(
 );
 ```
 
-### Plusieurs tailles d'images
+### Multiple Image Sizes
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -132,11 +121,11 @@ await generateImageWithSize(
 );
 ```
 
-## Utilisation de l'outil CLI
+## CLI Tool Usage
 
-L'outil CLI z-ai offre un moyen pratique de générer des images directement depuis la ligne de commande.
+The z-ai CLI tool provides a convenient way to generate images directly from the command line.
 
-### Utilisation CLI de base
+### Basic CLI Usage
 
 ```bash
 # Generate image with full options
@@ -152,7 +141,7 @@ z-ai image -p "A sunset" -o "./sunset.png" -s 1344x768
 z-ai image -p "A portrait" -o "./portrait.png" -s 768x1344
 ```
 
-### Cas d'usage CLI
+### CLI Use Cases
 
 ```bash
 # Website hero image
@@ -174,9 +163,9 @@ z-ai image -p "Simple geometric logo with blue gradient, minimal design" -o "./l
 z-ai image -p "Subtle geometric pattern, pastel colors, website background" -o "./bg_pattern.png" -s 1440x720
 ```
 
-## Cas d'usage avancés
+## Advanced Use Cases
 
-### Génération d'images par lot
+### Batch Image Generation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -241,7 +230,7 @@ const results = await generateImageBatch(prompts, './generated-images');
 console.log(`Generated ${results.filter(r => r.success).length} images`);
 ```
 
-### Service de génération d'images
+### Image Generation Service
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -343,7 +332,7 @@ const result = await service.generate(
 console.log('Generated:', result.path);
 ```
 
-### Générateur d'assets pour sites web
+### Website Asset Generator
 
 ```bash
 # Using CLI for quick website asset generation
@@ -352,9 +341,9 @@ z-ai image -p "Team collaboration illustration" -o "./assets/team.png" -s 1344x7
 z-ai image -p "Simple geometric logo" -o "./assets/logo.png" -s 1024x1024
 ```
 
-## Bonnes pratiques
+## Best Practices
 
-### 1. Ingénierie de prompts efficace
+### 1. Effective Prompt Engineering
 
 ```javascript
 function buildEffectivePrompt(subject, style, details = []) {
@@ -379,7 +368,7 @@ const prompt = buildEffectivePrompt(
 // Result: "mountain landscape, oil painting style, sunset lighting, dramatic clouds, reflection in lake, high quality, detailed"
 ```
 
-### 2. Aide au choix de la taille
+### 2. Size Selection Helper
 
 ```javascript
 function selectOptimalSize(purpose) {
@@ -402,7 +391,7 @@ const size = selectOptimalSize('hero-banner');
 await generateImage('website hero image', size, './hero.png');
 ```
 
-### 3. Gestion d'erreurs
+### 3. Error Handling
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -452,20 +441,20 @@ async function safeGenerateImage(prompt, size, outputPath, retries = 3) {
 }
 ```
 
-## Cas d'usage courants
+## Common Use Cases
 
-1. **Design web** : générer des images hero, des fonds et des assets visuels
-2. **Supports marketing** : créer des visuels pour les réseaux sociaux et des images promotionnelles
-3. **Visualisation produit** : générer des maquettes et des variantes de produits
-4. **Création de contenu** : produire des illustrations d'articles et des vignettes
-5. **Assets de marque** : créer des logos, des icônes et des visuels de marque
-6. **Design UI/UX** : générer des éléments d'interface et des illustrations
-7. **Développement de jeux** : créer des concept arts et des assets de jeu
-8. **E-commerce** : générer des images produits et des mises en scène
+1. **Website Design**: Generate hero images, backgrounds, and visual assets
+2. **Marketing Materials**: Create social media graphics and promotional images
+3. **Product Visualization**: Generate product mockups and variations
+4. **Content Creation**: Produce blog post illustrations and thumbnails
+5. **Brand Assets**: Create logos, icons, and brand imagery
+6. **UI/UX Design**: Generate interface elements and illustrations
+7. **Game Development**: Create concept art and game assets
+8. **E-commerce**: Generate product images and lifestyle shots
 
-## Exemples d'intégration
+## Integration Examples
 
-### Point d'accès API Express.js
+### Express.js API Endpoint
 
 ```javascript
 import express from 'express';
@@ -528,9 +517,9 @@ initZAI().then(() => {
 });
 ```
 
-## Intégration CLI dans les scripts
+## CLI Integration in Scripts
 
-### Exemple de script shell
+### Shell Script Example
 
 ```bash
 #!/bin/bash
@@ -545,58 +534,58 @@ z-ai image -p "Simple geometric logo" -o "./assets/logo.png" -s 1024x1024
 echo "Assets generated successfully!"
 ```
 
-## Dépannage
+## Troubleshooting
 
-**Problème** : « SDK must be used in backend »
-- **Solution** : s'assurer que z-ai-web-dev-sdk n'est utilisé que dans le code côté serveur
+**Issue**: "SDK must be used in backend"
+- **Solution**: Ensure z-ai-web-dev-sdk is only used in server-side code
 
-**Problème** : paramètre de taille invalide
-- **Solution** : n'utiliser que les tailles prises en charge : 1024x1024, 768x1344, 864x1152, 1344x768, 1152x864, 1440x720, 720x1440
+**Issue**: Invalid size parameter
+- **Solution**: Use only supported sizes: 1024x1024, 768x1344, 864x1152, 1344x768, 1152x864, 1440x720, 720x1440
 
-**Problème** : l'image générée ne correspond pas au prompt
-- **Solution** : rendre les prompts plus spécifiques et descriptifs. Inclure le style, les détails et les termes de qualité
+**Issue**: Generated image doesn't match prompt
+- **Solution**: Make prompts more specific and descriptive. Include style, details, and quality terms
 
-**Problème** : commande CLI introuvable
-- **Solution** : s'assurer que le CLI z-ai est correctement installé et présent dans le PATH
+**Issue**: CLI command not found
+- **Solution**: Ensure z-ai CLI is properly installed and in PATH
 
-**Problème** : fichier image corrompu
-- **Solution** : vérifier que le décodage base64 et l'écriture du fichier sont corrects
+**Issue**: Image file is corrupted
+- **Solution**: Verify base64 decoding and file writing are correct
 
-## Conseils d'ingénierie des prompts
+## Prompt Engineering Tips
 
-### Bons prompts
+### Good Prompts
 - ✓ "Professional product photography of wireless headphones, white background, studio lighting, high quality"
 - ✓ "Mountain landscape at golden hour, oil painting style, dramatic clouds, detailed"
 - ✓ "Modern minimalist logo for tech company, blue and white, geometric shapes"
 
-### Mauvais prompts
+### Poor Prompts
 - ✗ "headphones"
 - ✗ "picture of mountains"
 - ✗ "logo"
 
-### Composants d'un prompt
-1. **Sujet** : ce que vous voulez voir
-2. **Style** : style artistique, style photographique, etc.
-3. **Détails** : éléments spécifiques, couleurs, ambiance
-4. **Qualité** : « high quality », « detailed », « professional »
+### Prompt Components
+1. **Subject**: What you want to see
+2. **Style**: Art style, photography style, etc.
+3. **Details**: Specific elements, colors, mood
+4. **Quality**: "high quality", "detailed", "professional"
 
-## Tailles d'images prises en charge
+## Supported Image Sizes
 
-- `1024x1024` - Carré
+- `1024x1024` - Square
 - `768x1344` - Portrait
 - `864x1152` - Portrait
-- `1344x768` - Paysage
-- `1152x864` - Paysage
-- `1440x720` - Paysage large
-- `720x1440` - Portrait allongé
+- `1344x768` - Landscape
+- `1152x864` - Landscape
+- `1440x720` - Wide landscape
+- `720x1440` - Tall portrait
 
-## À retenir
+## Remember
 
-- Toujours utiliser z-ai-web-dev-sdk uniquement dans le code backend
-- Le SDK est déjà installé - importer comme montré
-- L'outil CLI est disponible pour une génération rapide d'images
-- Les tailles prises en charge sont précises - utiliser la liste fournie
-- Les images base64 doivent être décodées avant enregistrement
-- Envisager le cache pour les prompts répétés
-- Implémenter une logique de retry pour les applications en production
-- Utiliser des prompts descriptifs pour de meilleurs résultats
+- Always use z-ai-web-dev-sdk in backend code only
+- The SDK is already installed - import as shown
+- CLI tool is available for quick image generation
+- Supported sizes are specific - use the provided list
+- Base64 images need to be decoded before saving
+- Consider caching for repeated prompts
+- Implement retry logic for production applications
+- Use descriptive prompts for better results

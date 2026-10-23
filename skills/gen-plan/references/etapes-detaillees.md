@@ -163,7 +163,7 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 **Outputs** :
 - Plan structuré : étapes, dépendances, checkpoints, #token par étape
 - TODO list ordonnée
-- Identification des étapes parallélisables
+- Partitionnement des étapes en vagues parallèles (défaut v3.24.0 : parallèle dès preuve d'indépendance — philosophie #4 ; le série est justifié et tracé)
 
 **Critères de validation** :
 - [ ] Toutes les étapes E9-E14 couvertes
@@ -196,7 +196,7 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 
 ## E9 — Lancement de l'exécution
 
-**Objectif** : Démarrer l'exécution selon le plan validé.
+**Objectif** : Démarrer l'exécution selon le plan validé, en vagues parallèles (Graph Diamond ouvert automatiquement sur preuve d'indépendance — v3.24.0) ; l'ordre série ne s'applique qu'aux étapes dépendantes ou sous pression ressource (verdict resource-monitor SERIE/PAUSE).
 
 **Inputs** : Plan validé (E8), Contexte session
 

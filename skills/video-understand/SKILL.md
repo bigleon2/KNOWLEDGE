@@ -1,21 +1,10 @@
 ---
 name: video-understand
-version: "1.0.0"
-category: "IA & Media"
-tags:
-  - video
-  - understand
-description: Implémente des capacités spécialisées de compréhension vidéo avec le z-ai-web-dev-sdk. Utilise ce skill lorsque l'utilisateur a besoin d'analyser du contenu vidéo, de comprendre les mouvements et les séquences temporelles, d'extraire des informations de frames vidéo, de décrire des scènes vidéo, ou de réaliser des analyses vidéo par IA. Optimisé pour les formats MP4, AVI, MOV et autres formats vidéo courants.
+description: Implement specialized video understanding capabilities using the z-ai-web-dev-sdk. Use this skill when the user needs to analyze video content, understand motion and temporal sequences, extract information from video frames, describe video scenes, or perform video-based AI analysis. Optimized for MP4, AVI, MOV, and other common video formats.
 license: MIT
-language: fr
-
-read_when:
-  - Déclencher quand la demande concerne : implémente des capacités spécialisées de compréhension vidéo avec le z-ai-web-dev-sdk
-  - Déclencher si la demande mentionne : vidéo, formats, implémente
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -23,41 +12,41 @@ read_when:
 
 
 
-# Skill Video Understanding
+# Video Understanding Skill
 
-Ce skill fournit une fonctionnalité spécialisée de compréhension vidéo à l'aide du package z-ai-web-dev-sdk, permettant aux modèles d'IA d'analyser, de décrire et d'extraire des informations de contenus vidéo, y compris les mouvements, les séquences temporelles et les changements de scène.
+This skill provides specialized video understanding functionality using the z-ai-web-dev-sdk package, enabling AI models to analyze, describe, and extract information from video content including motion, temporal sequences, and scene changes.
 
-## Chemin du skill
+## Skills Path
 
-**Emplacement du skill** : `{project_path}/skills/video-understand`
+**Skill Location**: `{project_path}/skills/video-understand`
 
-Ce skill se trouve à l'emplacement ci-dessus dans votre projet.
+this skill is located at above path in your project.
 
-**Scripts de référence** : des scripts de test d'exemple sont disponibles dans le répertoire `{Skill Location}/scripts/` pour des tests rapides et comme référence. Voir `{Skill Location}/scripts/video-understand.ts` pour un exemple fonctionnel.
+**Reference Scripts**: Example test scripts are available in the `{Skill Location}/scripts/` directory for quick testing and reference. See `{Skill Location}/scripts/video-understand.ts` for a working example.
 
-## Vue d'ensemble
+## Overview
 
-La compréhension vidéo se concentre spécifiquement sur l'analyse de contenus vidéo, avec les capacités suivantes :
-- Compréhension et description des scènes vidéo
-- Détection des actions et des mouvements
-- Analyse des séquences temporelles
-- Détection d'événements dans les vidéos
-- Résumé du contenu vidéo
-- Détection des changements de scène
-- Suivi des personnes et des objets à travers les frames
-- Analyse de contenus audio-visuels (le cas échéant)
+Video Understanding focuses specifically on video content analysis, providing capabilities for:
+- Video scene understanding and description
+- Action and motion detection
+- Temporal sequence analysis
+- Event detection in videos
+- Video content summarization
+- Scene change detection
+- People and object tracking across frames
+- Audio-visual content analysis (when applicable)
 
-**IMPORTANT** : z-ai-web-dev-sdk DOIT être utilisé uniquement dans du code backend. Ne l'utilisez jamais dans du code côté client.
+**IMPORTANT**: z-ai-web-dev-sdk MUST be used in backend code only. Never use it in client-side code.
 
-## Prérequis
+## Prerequisites
 
-Le package z-ai-web-dev-sdk est déjà installé. Importez-le comme illustré dans les exemples ci-dessous.
+The z-ai-web-dev-sdk package is already installed. Import it as shown in the examples below.
 
-## Utilisation du CLI (tâches simples)
+## CLI Usage (For Simple Tasks)
 
-Pour des tâches rapides d'analyse vidéo, vous pouvez utiliser le z-ai CLI au lieu d'écrire du code. C'est idéal pour des descriptions vidéo simples, des tests ou des automatisations.
+For quick video analysis tasks, you can use the z-ai CLI instead of writing code. This is ideal for simple video descriptions, testing, or automation.
 
-### Analyse vidéo basique
+### Basic Video Analysis
 
 ```bash
 # Analyze a video from URL
@@ -67,7 +56,7 @@ z-ai vision --prompt "Summarize what happens in this video" --image "https://exa
 z-ai vision -p "Describe the key events" -i "https://example.com/presentation.mp4"
 ```
 
-### Analyser des vidéos locales
+### Analyze Local Videos
 
 ```bash
 # Analyze a local video file
@@ -77,7 +66,7 @@ z-ai vision -p "What activities are shown in this video?" -i "./recording.mp4"
 z-ai vision -p "Provide a detailed summary" -i "./meeting.mp4" -o summary.json
 ```
 
-### Analyse vidéo avancée
+### Advanced Video Analysis
 
 ```bash
 # Complex scene understanding with thinking
@@ -94,56 +83,56 @@ z-ai vision \
   --thinking
 ```
 
-### Sortie en streaming
+### Streaming Output
 
 ```bash
 # Stream the video analysis
 z-ai vision -p "Describe this video content" -i "./video.mp4" --stream
 ```
 
-### Paramètres du CLI
+### CLI Parameters
 
-- `--prompt, -p <text>` : **Obligatoire** — Question ou instruction concernant la vidéo
-- `--image, -i <URL ou chemin>` : Optionnel — URL de la vidéo ou chemin d'un fichier local (malgré son nom, fonctionne aussi pour les vidéos)
-- `--thinking, -t` : Optionnel — Active le raisonnement en chaîne de pensée pour les analyses complexes (défaut : désactivé)
-- `--output, -o <path>` : Optionnel — Chemin du fichier de sortie (format JSON)
-- `--stream` : Optionnel — Diffuse la réponse en temps réel
+- `--prompt, -p <text>`: **Required** - Question or instruction about the video
+- `--image, -i <URL or path>`: Optional - Video URL or local file path (despite the name, it works for videos too)
+- `--thinking, -t`: Optional - Enable chain-of-thought reasoning for complex analysis (default: disabled)
+- `--output, -o <path>`: Optional - Output file path (JSON format)
+- `--stream`: Optional - Stream the response in real-time
 
-### Formats vidéo pris en charge
+### Supported Video Formats
 
-- MP4 (.mp4) - Format le plus largement pris en charge
+- MP4 (.mp4) - Most widely supported format
 - AVI (.avi) - Audio Video Interleave
-- MOV (.mov) - Format QuickTime
-- WebM (.webm) - Format optimisé pour le web
-- MKV (.mkv) - Format Matroska
-- FLV (.flv) - Format Flash Video
+- MOV (.mov) - QuickTime format
+- WebM (.webm) - Web-optimized format
+- MKV (.mkv) - Matroska format
+- FLV (.flv) - Flash Video format
 
-### Quand utiliser le CLI ou le SDK
+### When to Use CLI vs SDK
 
-**Utilisez le CLI pour :**
-- Des résumés vidéo rapides
-- Une analyse vidéo ponctuelle
-- Le test des capacités de compréhension vidéo
-- Des scripts d'automatisation simples
-- La génération de descriptions vidéo
+**Use CLI for:**
+- Quick video summaries
+- One-off video analysis
+- Testing video understanding capabilities
+- Simple automation scripts
+- Generating video descriptions
 
-**Utilisez le SDK pour :**
-- Des conversations multi-tours à propos de vidéos
-- Des pipelines complexes de traitement vidéo
-- Des applications de production avec gestion d'erreurs
-- Une intégration personnalisée avec la logique de traitement vidéo
-- Un traitement vidéo par lots avec workflows personnalisés
+**Use SDK for:**
+- Multi-turn conversations about videos
+- Complex video processing pipelines
+- Production applications with error handling
+- Custom integration with video processing logic
+- Batch video processing with custom workflows
 
-## Approche recommandée
+## Recommended Approach
 
-Pour de meilleures performances et une meilleure fiabilité avec des vidéos locales, envisagez :
-1. De téléverser les vidéos sur un CDN et d'utiliser des URLs
-2. Pour les vidéos courtes, de convertir les images clés en images pour une analyse plus rapide
-3. Pour les vidéos longues, de découper ou d'échantillonner à intervalles réguliers
+For better performance and reliability with local videos, consider:
+1. Uploading videos to a CDN and using URLs
+2. For shorter videos, convert key frames to images for faster analysis
+3. For long videos, consider chunking or sampling at intervals
 
-## Implémentation basique de la compréhension vidéo
+## Basic Video Understanding Implementation
 
-### Analyse d'une seule vidéo
+### Single Video Analysis
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -187,7 +176,7 @@ const actionDetection = await analyzeVideo(
 );
 ```
 
-### Compréhension des scènes vidéo
+### Video Scene Understanding
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -225,7 +214,7 @@ const sceneAnalysis = await understandVideoScenes(
 );
 ```
 
-### Détection des mouvements et actions
+### Motion and Action Detection
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -264,7 +253,7 @@ const allActions = await detectActions(
 );
 ```
 
-### Extraction de la chronologie des événements
+### Event Timeline Extraction
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -297,7 +286,7 @@ Format as a chronological list.`;
 }
 ```
 
-### Classification du contenu vidéo
+### Video Content Classification
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -338,9 +327,9 @@ Format your response as structured JSON.`;
 }
 ```
 
-## Cas d'usage avancés
+## Advanced Use Cases
 
-### Conversation vidéo multi-tours
+### Multi-turn Video Conversation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -412,7 +401,7 @@ const followup2 = await conversation.askFollowUp(
 );
 ```
 
-### Évaluation de la qualité vidéo
+### Video Quality Assessment
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -450,7 +439,7 @@ Provide detailed feedback for each criterion.`;
 }
 ```
 
-### Modération du contenu vidéo
+### Video Content Moderation
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -485,7 +474,7 @@ Provide specific examples for any concerns identified.`;
 }
 ```
 
-### Génération de transcription vidéo (description visuelle)
+### Video Transcript Generation (Visual Description)
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -519,7 +508,7 @@ Format as a time-based narrative (e.g., "At the beginning...", "Then...", "Final
 }
 ```
 
-### Analyse de vidéos sportives
+### Sports Video Analysis
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -559,7 +548,7 @@ async function analyzeSportsVideo(videoUrl, sport = null) {
 }
 ```
 
-### Résumé de vidéos éducatives
+### Educational Video Summarization
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -595,9 +584,9 @@ Format as a study guide.`;
 }
 ```
 
-## Traitement vidéo par lots
+## Batch Video Processing
 
-### Traiter plusieurs vidéos
+### Process Multiple Videos
 
 ```javascript
 import ZAI from 'z-ai-web-dev-sdk';
@@ -668,23 +657,23 @@ const results = await processor.processBatch(
 );
 ```
 
-## Bonnes pratiques
+## Best Practices
 
-### 1. Préparation des vidéos
-- Utilisez des formats vidéo standard (MP4, MOV, AVI)
-- Assurez-vous que les vidéos sont accessibles via des URLs publiques ou correctement encodées
-- Pour les vidéos longues, envisagez de créer des extraits plus courts pour des analyses spécifiques
-- Optimisez la taille des vidéos pour un traitement plus rapide
-- Assurez-vous d'un bon éclairage et d'une bonne qualité audio dans les vidéos sources
+### 1. Video Preparation
+- Use standard video formats (MP4, MOV, AVI)
+- Ensure videos are accessible via public URLs or properly encoded
+- For long videos, consider creating shorter clips for specific analysis
+- Optimize video size for faster processing
+- Ensure good lighting and audio quality in source videos
 
-### 2. Prompt engineering pour les vidéos
-- Soyez précis sur les aspects temporels ("au début", "tout au long", "à la fin")
-- Précisez le type d'analyse souhaité (actions, événements, scènes, etc.)
-- Pour les vidéos longues, demandez des résumés ou les moments clés
-- Utilisez le mode thinking pour un raisonnement temporel complexe
-- Indiquez si vous souhaitez une organisation chronologique ou thématique
+### 2. Prompt Engineering for Videos
+- Be specific about temporal aspects ("beginning", "throughout", "at the end")
+- Mention what type of analysis you need (actions, events, scenes, etc.)
+- For long videos, ask for summaries or key moments
+- Use thinking mode for complex temporal reasoning
+- Specify if you need chronological or thematic organization
 
-### 3. Gestion des erreurs
+### 3. Error Handling
 
 ```javascript
 async function safeVideoAnalysis(videoUrl, prompt) {
@@ -718,37 +707,37 @@ async function safeVideoAnalysis(videoUrl, prompt) {
 }
 ```
 
-### 4. Optimisation des performances
-- Mettez l'instance SDK en cache pour le traitement par lots
-- Implémentez un throttle des requêtes (ajoutez des délais entre les requêtes)
-- Traitez les vidéos de manière asynchrone lorsque c'est possible
-- Pour les très longues vidéos, envisagez une analyse à intervalles spécifiques
-- Utilisez le mode thinking approprié (désactivé pour les descriptions simples, activé pour les analyses complexes)
+### 4. Performance Optimization
+- Cache SDK instance for batch processing
+- Implement request throttling (add delays between requests)
+- Process videos asynchronously when possible
+- For very long videos, consider analyzing at specific intervals
+- Use appropriate thinking mode (disabled for simple descriptions, enabled for complex analysis)
 
-### 5. Considérations de sécurité
-- Validez les URLs vidéo avant traitement
-- Implémentez une limitation de débit pour les API publiques
-- Assainissez les URLs vidéo fournies par l'utilisateur
-- N'exposez jamais les identifiants du SDK dans du code côté client
-- Implémentez une modération de contenu pour les vidéos téléversées par les utilisateurs
-- Tenez compte des limites de taille des fichiers vidéo
+### 5. Security Considerations
+- Validate video URLs before processing
+- Implement rate limiting for public APIs
+- Sanitize user-provided video URLs
+- Never expose SDK credentials in client-side code
+- Implement content moderation for user-uploaded videos
+- Consider video file size limits
 
-## Cas d'usage courants
+## Common Use Cases
 
-1. **Modération de contenu** : examiner automatiquement les vidéos téléversées pour vérifier leur conformité aux règles
-2. **Catalogage vidéo** : générer des descriptions et des tags pour des vidéothèques
-3. **Analyse sportive** : analyser des matchs, identifier les phases de jeu, évaluer les performances
-4. **Contenu éducatif** : résumer des cours, créer des guides d'étude
-5. **Sécurité et surveillance** : détecter des événements, suivre des activités (avec l'autorisation appropriée)
-6. **Contrôle qualité** : évaluer la qualité de production des vidéos
-7. **Réseaux sociaux** : générer des sous-titres et des descriptions de vidéos
-8. **Formation et documentation** : analyser des vidéos de formation, créer de la documentation
-9. **Enregistrement d'événements** : résumer des réunions, conférences, présentations
-10. **Divertissement** : analyser films et émissions pour le contenu, les thèmes, les scènes
+1. **Content Moderation**: Automatically review video uploads for policy compliance
+2. **Video Cataloging**: Generate descriptions and tags for video libraries
+3. **Sports Analysis**: Analyze games, identify plays, assess performance
+4. **Educational Content**: Summarize lectures, create study guides
+5. **Security & Surveillance**: Detect events, track activities (with appropriate authorization)
+6. **Quality Control**: Assess video production quality
+7. **Social Media**: Generate video captions and descriptions
+8. **Training & Documentation**: Analyze training videos, create documentation
+9. **Event Recording**: Summarize meetings, conferences, presentations
+10. **Entertainment**: Analyze films, shows for content, themes, scenes
 
-## Exemples d'intégration
+## Integration Examples
 
-### Endpoint API Express.js
+### Express.js API Endpoint
 
 ```javascript
 import express from 'express';
@@ -842,7 +831,7 @@ initZAI().then(() => {
 });
 ```
 
-### Route API Next.js
+### Next.js API Route
 
 ```javascript
 // pages/api/video-understand.js
@@ -900,36 +889,36 @@ export default async function handler(req, res) {
 }
 ```
 
-## Dépannage
+## Troubleshooting
 
-**Problème** : "Le SDK doit être utilisé en backend"
-- **Solution** : assurez-vous que z-ai-web-dev-sdk n'est importé et utilisé que dans du code côté serveur, jamais dans du code client/navigateur
+**Issue**: "SDK must be used in backend"
+- **Solution**: Ensure z-ai-web-dev-sdk is only imported and used in server-side code, never in client/browser code
 
-**Problème** : la vidéo ne se charge pas ou n'est pas analysée
-- **Solution** : vérifiez que l'URL de la vidéo est accessible, renvoie le bon type MIME et est dans un format pris en charge
+**Issue**: Video not loading or being analyzed
+- **Solution**: Verify the video URL is accessible, returns correct MIME type, and is in a supported format
 
-**Problème** : analyse temporelle imprécise
-- **Solution** : activez le mode thinking pour un raisonnement temporel complexe et fournissez des prompts plus précis sur le temps/la séquence
+**Issue**: Inaccurate temporal analysis
+- **Solution**: Enable thinking mode for complex temporal reasoning, provide more specific prompts about time/sequence
 
-**Problème** : temps de réponse lents pour les vidéos
-- **Solution** : les vidéos demandent plus de traitement que les images ; envisagez des extraits plus courts ou un échantillonnage pour les vidéos longues
+**Issue**: Slow response times for videos
+- **Solution**: Videos take longer to process than images; consider shorter clips or sampling for long videos
 
-**Problème** : détails manquants dans la vidéo
-- **Solution** : soyez plus précis dans votre prompt, interrogez des segments temporels ou des aspects particuliers
+**Issue**: Missing details from video
+- **Solution**: Be more specific in your prompt, ask about particular time segments or aspects
 
-**Problème** : format vidéo non pris en charge
-- **Solution** : convertissez la vidéo en MP4 (le plus largement pris en charge) et vérifiez que l'URL renvoie le bon type MIME vidéo
+**Issue**: Video format not supported
+- **Solution**: Convert video to MP4 (most widely supported), check that URL returns proper video MIME type
 
-## À retenir
+## Remember
 
-- Utilisez toujours z-ai-web-dev-sdk uniquement dans du code backend
-- Le SDK est déjà installé — importez-le comme montré dans les exemples
-- Utilisez le type de contenu `video_url` pour les fichiers vidéo
-- L'analyse vidéo prend plus de temps que l'analyse d'images — soyez patient
-- Activez le mode thinking pour un raisonnement temporel complexe et la détection d'événements
-- Structurez les prompts pour inclure l'information temporelle (début, milieu, fin)
-- Gérez les erreurs avec soin en production
-- Implémentez une limitation de débit et des délais pour le traitement par lots
-- Validez et assainissez les entrées utilisateur
-- Tenez compte de la vie privée et de la sécurité lors du traitement des vidéos des utilisateurs
-- Pour les très longues vidéos, envisagez d'analyser des segments spécifiques ou des images clés
+- Always use z-ai-web-dev-sdk in backend code only
+- The SDK is already installed - import as shown in examples
+- Use `video_url` content type for video files
+- Video analysis takes longer than image analysis - be patient
+- Enable thinking mode for complex temporal reasoning and event detection
+- Structure prompts to include temporal information (beginning, middle, end)
+- Handle errors gracefully in production
+- Implement rate limiting and delays for batch processing
+- Validate and sanitize user inputs
+- Consider privacy and security when processing user videos
+- For very long videos, consider analyzing specific segments or key frames

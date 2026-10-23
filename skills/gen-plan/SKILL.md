@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.23.2
+version: 3.24.0
 category: ecosystem
 language: fr
 tags:
@@ -16,7 +16,7 @@ description: >
   tagging #token, snippets, scripts Python uniquement,
   règles d'or d'adaptation autonome, disciplines d'ingénierie de prompts,
   hooks patterns avancés (answer key E1, arbitre answer-key-checker E7/E8,
-  Graph Diamond E9-E14, knowledge-observer E15),
+  Graph Diamond E9-E14 — parallélisation par défaut sur preuve d'indépendance, knowledge-observer E15),
   déclencheur verbatim « intègre dans le plan d'actions » (E13 — règle d'or n°3)
 dependencies:
   - skill: correct-work
@@ -41,7 +41,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.10)
+## §0 — Contexte Système (SHARED v1.7.11)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -88,7 +88,7 @@ read_when:
 |------|-------|-----------|-----------|
 | **Answer key obligatoire** | **E1** | Chaque décision E1 devient une entrée `D0NN` de l'answer key (criterion, verification exécutable, source, priority S1-S4, status pending) | `references/answer-key-template.md` |
 | **Arbitre answer-key-checker** | **E7/E8** | Le plan référence l'answer key ; à E8, l'arbitre mécanique `scripts/answer-key-checker.py` (16 checks) valide structure, fonctionnalité, idempotence et intégration — verdict PASS requis pour S1/S2 | `scripts/answer-key-checker.py` |
-| **Graph Diamond** | **E9-E14** | Parallélisation exceptionnelle des actions indépendantes (défaut : série, philosophie #4) — tracée au worklog | `references/graph-diamond-pattern.md` |
+| **Graph Diamond** | **E9-E14** | Parallélisation PAR DÉFAUT des actions prouvées indépendantes (le série est l'exception justifiée — philosophie #4 v3.24.0) — tracée au worklog | `references/graph-diamond-pattern.md` |
 | **Observer** | **E15** | Invoque knowledge-observer en modes M1-M2 (observation + analyse post-session) ; les modes M3-M4 exigent un verdict correct-work | `references/observation-patterns.md` |
 
 <!-- FIN-PATTERN:GEN-PLAN-HOOKS-PATTERNS-v1.0.0 -->
@@ -110,7 +110,7 @@ read_when:
 1. **Read before planning** — Toujours lire le projet avant de planifier.
 2. **Performance-driven sélection** — Le choix skill/agent est dicté par le gain de performance.
 3. **Skills can launch specialized agents** — Modèle à deux couches : Skill → Agent Spécialisé.
-4. **Serial exécution by DEFAULT** — Tâches UNE À LA UNE. Parallélisme INTERDIT sauf demande explicite.
+4. **Parallélisation par défaut sur preuve d'indépendance** (v3.24.0 — inversion du défaut série hérité, directive propriétaire 2026-10-24) — Les sous-tâches PROUVÉES indépendantes (aucune écriture partagée, aucune dépendance d'ordre) s'exécutent en PARALLÈLE PAR DÉFAUT : le Graph Diamond s'ouvre automatiquement dès que la preuve d'indépendance existe (E9-E14). L'exécution série est l'exception justifiée et tracée : dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC. Toute vague parallèle est journalisée au worklog (Task IDs `N-a`/`N-b`) et re-vérifiée (re-verdict resource-monitor entre les vagues, arbitre sur l'ensemble fusionné, correct-work par phase).
 5. **Visible progress** — L'utilisateur sait toujours où on en est.
 6. **CoT + Chaining avec auto-correction** — Raisonnement structuré avant chaque action.
 7. **Lecture bloc par bloc** — Fichiers > 500 lignes : lire par blocs successifs (limit/offset), produire une synthèse intermédiaire entre chaque bloc. Ne jamais lire un fichier > 500 lignes d'un seul coup. Voir `references/profils-ressource.md` (VIEUX PC règle 4 : troncature 500 lignes).
@@ -283,10 +283,10 @@ skills/gen-plan/
 │   ├── patterns-avances-qwen.md      # 5 patterns avancés (N19) — Answer Key, Graph Diamond, ToT, Second Opinion, Task Observer
 │   ├── answer-key-b12.md             # Premier registre réel des décisions (N19, D001-D010)
 │   ├── answer-key-template.md        # Schéma + règles Answer Key (N20)
-│   ├── graph-diamond-pattern.md      # Parallélisation exceptionnelle (N20)
+│   ├── graph-diamond-pattern.md      # Parallélisation par défaut sur preuve d'indépendance (N20, inversée v3.24.0)
 │   └── observation-patterns.md       # Task Observer — cycle A-H (N20)
 └── evals/
-    ├── evals.json                    # Cas de test d'évaluation (8 evals — id 7 GP-mode-step v3.22.0, id 8 GP-mode-step-ok v3.22.1)
+    ├── evals.json                    # Cas de test d'évaluation (9 evals — id 7 GP-mode-step v3.22.0, id 8 GP-mode-step-ok v3.22.1, id 9 GP-diamond-defaut v3.24.0)
     └── trigger_evals.json            # Description Optimization (12 cas — verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm)
 ```
 
