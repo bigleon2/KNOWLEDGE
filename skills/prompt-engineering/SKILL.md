@@ -1,6 +1,6 @@
 ---
 name: prompt-engineering
-version: 2.3.0
+version: 2.3.1
 category: ecosystem
 language: fr
 tags:
@@ -24,7 +24,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -94,7 +94,13 @@ Détail d'usage : `references/grille-evaluation-prompt.md`.
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Catalogue technique → cas d'usage** : CoT (raisonnement multi-étapes) · self-consistency (réduction de variance par vote N chemins — prototype des 3 runs de confirm des baselines A2) · least-to-most (décomposition progressive) · plan-and-act (plans long-horizon, arXiv 2503.09572) · JSON-schema (sortie vérifiable — > 99 % d'adhérence avec validation + retry). **Couplage itération ↔ evals mesurés** : la boucle d'itération §1.5 s'ancre sur une métrique objective (trigger_evals, baselines A2) — itérer sans métrique optimise du bruit ; le cap 3 itérations est inchangé ; la grille §1.4 demeure l'outil d'audit. **Règle « artefact générable = schéma + check déterministe »** (arXiv 2601.22025) : tout artefact générable (plan, verdict, answer key) s'accompagne d'un check mécanique — alignement sur la philosophie arbitres de gen-plan. **Veille prompt-as-code** (APE, OPRO, DSPy+GEPA) : horizon d'automatisation de l'optimisation, applicable dès que les evals sont mesurés ; le métier migre vers eval engineering + context engineering (non-duplication SHARED §7 respectée). Sources : platform.claude.com prompt-eng best practices · arxiv 2503.09572 · arxiv 2601.22025 · arize.com GEPA.
+- **Catalogue technique → cas d'usage** : CoT (raisonnement multi-étapes) · self-consistency (réduction de variance par vote N chemins) · least-to-most (décomposition progressive) · plan-and-act (plans long-horizon, arXiv 2503.09572) · JSON-schema (sortie vérifiable — > 99 % d'adhérence avec validation + retry). → *Application locale* : self-consistency = prototype des 3 runs de confirm des baselines A2 ; JSON-schema = verdicts et answer keys machine-vérifiables.
+- **Couplage itération ↔ evals mesurés** : la boucle d'itération §1.5 s'ancre sur une métrique objective (trigger_evals, baselines A2) — itérer sans métrique optimise du bruit ; le cap 3 itérations est inchangé ; la grille §1.4 demeure l'outil d'audit. → *Application locale* : trigger_evals + baselines A2 MESURÉES avant toute itération de description ou de prompt.
+- **Règle « artefact générable = schéma + check déterministe »** (arXiv 2601.22025) : tout artefact générable (plan, verdict, answer key) s'accompagne d'un check mécanique — alignement sur la philosophie arbitres de gen-plan. → *Application locale* : tout verdict est re-jouable mécaniquement (arbitres stdlib, pas de LLM).
+- **Veille prompt-as-code** (APE, OPRO, DSPy+GEPA) : horizon d'automatisation de l'optimisation, applicable dès que les evals sont mesurés ; le métier migre vers eval engineering + context engineering (non-duplication SHARED §7 respectée). → *Application locale* : veille consignée, adoption conditionnée à des evals mesurées (baseline A2).
+- **Sources** : platform.claude.com prompt-eng best practices · arxiv 2503.09572 · arxiv 2601.22025 · arize.com GEPA.
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 

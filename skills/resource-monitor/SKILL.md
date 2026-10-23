@@ -1,6 +1,6 @@
 ---
 name: resource-monitor
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -25,7 +25,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -85,7 +85,13 @@ Le collecteur est sans état global : les indicateurs qui ne sont pas mesurables
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**2 indicateurs nouveaux (F1-F6)** : dérive d'effort (tokens/étape vs baseline de session — détecte le ×2 silencieux des workers héritant d'un effort haut à output égal) ; taux de hit cache/préfixe (dégradation = dérive de préfixe de contexte — Datadog 09/2026). **429 : anti retry-storm** (Kong/Maxim/Palo Alto 2026) : la recommandation émet `action: backoff_exponentiel` + circuit breaker (arrêt après N échecs consécutifs) — les retry storms déplètent le budget token qu'ils prétendent économiser ; instrumente la leçon KO-L001 (sonde unique, cadence polie). **Downgrades par effort assigné** (pattern Anthropic lead-agent) : option `--task-weights` — PARALLELE_REDUIT/SERIE choisissent d'abord les tâches à faible effort assigné, pas par largeur seule (un downgrade largeur-seule anéantit les gains démontrés du parallélisme : latence ÷2, 90,2 %). **Hystérésis + envergure prédictive** : verdicts anti-flapping (OK↔PRECISION exige un franchissement persistant) + projection « budget restant ÷ étapes restantes » en plus des seuils réactifs — le monitoring passe de réactif à prédictif.
+- **2 indicateurs nouveaux (F1-F6)** : dérive d'effort (tokens/étape vs baseline de session — détecte le ×2 silencieux des workers héritant d'un effort haut à output égal) ; taux de hit cache/préfixe (dégradation = dérive de préfixe de contexte — Datadog 09/2026). → *Application locale* : signaux #token par étape — dérive d'effort détectée au fil du worklog, pas seulement au total de session.
+- **429 : anti retry-storm** (Kong/Maxim/Palo Alto 2026) : la recommandation émet `action: backoff_exponentiel` + circuit breaker (arrêt après N échecs consécutifs) — les retry storms déplètent le budget token qu'ils prétendent économiser. → *Application locale* : instrumente la leçon KO-L001 (sonde unique, cadence polie) — backoff + circuit breaker, jamais de boucle de retry agressive.
+- **Downgrades par effort assigné** (pattern Anthropic lead-agent) : option `--task-weights` — PARALLELE_REDUIT/SERIE choisissent d'abord les tâches à faible effort assigné, pas par largeur seule (un downgrade largeur-seule anéantit les gains démontrés du parallélisme : latence ÷2, 90,2 %). → *Application locale* : recommandations de mode — les tâches S2 sortent d'abord en PARALLELE_REDUIT, les S1 restent.
+- **Hystérésis + envergure prédictive** : verdicts anti-flapping (OK↔PRECISION exige un franchissement persistant) + projection « budget restant ÷ étapes restantes » en plus des seuils réactifs — le monitoring passe de réactif à prédictif. → *Application locale* : projection budget/étapes affichée au plan (#token par groupe) — arbitrages anticipés, non subis.
+- **Sources** : Kong/Maxim/Palo Alto 2026 · Datadog 09/2026 · pattern Anthropic lead-agent · KO-L001 (leçon Task 17).
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — Spécification technique
 

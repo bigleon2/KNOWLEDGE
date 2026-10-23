@@ -1,6 +1,6 @@
 ---
 name: agent-creator
-version: 2.2.0
+version: 2.3.0
 category: ecosystem
 language: fr
 tags:
@@ -37,7 +37,7 @@ read_when:
 
 # AGENT-CREATOR v2.2.0 — Fabrique d'agents persistants
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -114,6 +114,14 @@ agent-creator (cette fabrique). Task IDs globaux et agrégation re-vérifiée :
 voir fleet-engineering.
 
 ---
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+- **Fabrique ≠ runtime (sub-agents Claude Code, 2025)** : la création d'agents persistants est une responsabilité distincte de leur exécution et de leur orchestration — une responsabilité par élément (anti-mega-agent). → *Application locale* : workflow F1-F5 (cadrer→générer→valider→tester→inscrire) ; exécution → autonomous-agent ; orchestration → fleet-engineering (routage §1.6).
+- **Champ capacités machine-lisible (Agent Card A2A)** : tout agent produit expose ses capacités en style Agent Card — découvrabilité par défaut, consommable par des registres externes. → *Application locale* : §2.3 format .agent (champ `capacites` obligatoire) + inscription skills-inventory (F5 — l'agent non inscrit est invisible).
+- **Skill authoring / progressive disclosure (Anthropic, Agent Skills 10/2025)** : les artefacts d'agents suivent le standard ouvert — description dense (déclencheur), corps (instructions), détails à la demande (references/). → *Application locale* : gabarits de la fabrique + read_when denses des agents produits (rédaction : agent-prompt-engineering).
+- **Sources** : anthropic.com (sub-agents Claude Code · Agent Skills 10/2025) · a2a-protocol (Agent Card) · anthropic.com/engineering/effective-context-engineering-for-ai-agents.
+
+> **Ajout Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : §1.9bis créée pour le 16e élément — apports de veille de la réécriture v2.2.0 (Task 22) alignés au format commun des 15 autres.
 
 ## §2 — Spécification technique
 
@@ -225,6 +233,7 @@ L'agent est conçu pour être compatible avec :
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| 2.3.0 | 2026-10-23 | Task 24 — §1.9bis créée (16e élément — apports de veille 2025-2026 de la réécriture v2.2.0 alignés au format commun des 15 autres : fabrique ≠ runtime, champ capacites Agent Card A2A, progressive disclosure) — bump MINOR (recalibrage KO-L004 : ECO_SKILLS + KB) |
 | 2.2.0 | 2026-10-23 | Task 22 — DÉRIVE CRITIQUE résorbée : le corps était une copie quasi verbatim d'autonomous-agent (titre erroné « AUTONOMOUS-AGENT v1.0.0 », aucun workflow de fabrique malgré la description frontmatter) ; §1 re-écrit comme VRAIE fabrique (workflow F1-F5 cadrer→générer→valider→tester→inscrire), modes M1-M4 réalignés, §1.5 contenu obligatoire + champ capacites (Agent Card A2A), §1.6 renvoi orchestration (fleet-engineering), relations §3 étendues (autonomous-agent runtime, fleet, agent-prompt-engineering), read_when réparé (tronqué mid-phrase — 1/94 Task 28), .agent ré-écrit (objectif fabrique, champ capacites, pipeline F1-F5) ; veille 2025-2026 : sub-agents Claude Code, A2A Agent Card, skill authoring Anthropic |
 | 2.1.0 | 2026-10 | Version antérieure (corps hérité non aligné — défaut documenté ci-dessus) |
 | 1.0.0 | 2026-08-09 | Version initiale (corps autonome copié — origine de la dérive) |

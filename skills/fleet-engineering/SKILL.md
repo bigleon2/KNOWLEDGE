@@ -1,6 +1,6 @@
 ---
 name: fleet-engineering
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -23,7 +23,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -75,7 +75,13 @@ Recherches N31/N34 vérifiées (preuves `tmp/n31-recherche/`) : **Agent Teams** 
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Règle 0 — gate anti-flotte** (Cognition « Don't Build Multi-Agents » 2025, reconfirmé 04/2026) : une flotte est INTERDITE si (a) les tâches sont séquentielles à écritures entrelacées, ou (b) le ratio de coût ~15× tokens du multi-agent (Anthropic 06/2025 : agents ≈ 4×, multi-agents ≈ 15× vs chat) n'est pas justifié par un périmètre large parallélisable ; sous-tâches en lecture seule/indépendantes = zone verte. **M5 swarm durci** (Anthropic « Patterns and problems in emerging multiagent systems », 08/2026 — coordination failures, collusion, sabotage documentés) : journaliser qui-a-décidé-quoi PAR agent ; quota strict maintenu. **Ordre de routage E5/E7** (neutralise les conflits de périmètre) : (a) tâche séquentielle → 1 agent autonome (autonomous-agent) ; (b) parallélisable/indépendant → flotte M1-M5 ; (c) nœuds scripts/binaires → inter-scripts ; (d) création d'agents réutilisables → agent-creator. **Échecs de handoff** : la majorité des échecs multi-agents sont des pertes de contexte au handoff — la micro-spéc par sous-tâche (liaison spec-driven) est la parade citée. Sources : cognition.com/blog/dont-build-multi-agents · anthropic.com/research/multiagent-systems · anthropic.com/engineering/multi-agent-research-system.
+- **Règle 0 — gate anti-flotte** (Cognition « Don't Build Multi-Agents » 2025, reconfirmé 04/2026) : une flotte est INTERDITE si (a) les tâches sont séquentielles à écritures entrelacées, ou (b) le ratio de coût ~15× tokens du multi-agent (Anthropic 06/2025 : agents ≈ 4×, multi-agents ≈ 15× vs chat) n'est pas justifié par un périmètre large parallélisable ; sous-tâches en lecture seule/indépendantes = zone verte. → *Application locale* : E5/E7 — gate anti-flotte avant toute délégation multiple ; zone verte = lecture seule/indépendant.
+- **M5 swarm durci** (Anthropic « Patterns and problems in emerging multiagent systems », 08/2026 — coordination failures, collusion, sabotage documentés) : journaliser qui-a-décidé-quoi PAR agent ; quota strict maintenu. → *Application locale* : worklogs PAR agent (Task IDs globaux) + quotas #token stricts.
+- **Ordre de routage E5/E7** (neutralise les conflits de périmètre) : (a) tâche séquentielle → 1 agent autonome (autonomous-agent) ; (b) parallélisable/indépendant → flotte M1-M5 ; (c) nœuds scripts/binaires → inter-scripts ; (d) création d'agents réutilisables → agent-creator. → *Application locale* : arbre de routage repris dans gen-plan/references/guide-selection-agent-skill.md et agent-creator §1.6.
+- **Échecs de handoff** : la majorité des échecs multi-agents sont des pertes de contexte au handoff — la micro-spéc par sous-tâche (liaison spec-driven) est la parade citée. → *Application locale* : prompts de Task auto-contenus (micro-spéc obligatoire — jamais de dépendance au contexte parent).
+- **Sources** : cognition.com/blog/dont-build-multi-agents · anthropic.com/research/multiagent-systems · anthropic.com/engineering/multi-agent-research-system.
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 Artefacts : matrice d'assignation (Task ID × agent × livrable × bornes) ; journal d'agrégation (résultats, verdicts d'arbitres, divergences) ; les prompts d'agents sont auto-contenus et citent leur Task ID. Transport : outils `Task` (sous-agents) du harnais ; aucune exécution SDK hors demande explicite (D013). Idempotence : le relancement d'une flotte ne duplique pas les livrables (reprise par Task ID, pattern --skip-done).

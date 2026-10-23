@@ -1,6 +1,6 @@
 ---
 name: refactor-guard
-version: 1.8.0
+version: 1.8.1
 category: ecosystem
 language: fr
 tags:
@@ -60,7 +60,7 @@ read_when:
   - Ne pas déclencher pour du code neuf sans base existante (pas de refactorisation possible)
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -139,7 +139,12 @@ read_when:
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Golden master AVANT (renforcement R5)** : avant TOUTE modification, capturer et sceller les sorties baseline (n ≥ 3 runs — entrées nominales + edge cases), puis les rejouer en sandbox ET post-vol ; la preuve comportementale (sorties identiques) remplace le simple hachage avant/après, qui ne prouve rien si les entrées varient. **Mutation testing léger (sandbox)** : avant de considérer une validation acquise, modifier 1 opérateur/constante de la cible et exiger qu'au moins 1 test échoue — une suite qui reste verte sur une mutation prouvée est déclarée INSENSIBLE (anti faux-verts ; tests qui testent le testeur). **Rollback armé (N5)** : en canary, la violation d'un contrat (latence/CPU/mémoire) déclenche le rollback AUTOMATIQUEMENT armé + signalement propriétaire — « rollback testé » ne suffit plus ; détection de contournement de tests dans les journaux (héritage TRACE). Sources : Rackspace/CircleCI progressive delivery 2026 · characterization tests · arXiv 2601.20103.
+- **Golden master AVANT (renforcement R5)** : avant TOUTE modification, capturer et sceller les sorties baseline (n ≥ 3 runs — entrées nominales + edge cases), puis les rejouer en sandbox ET post-vol ; la preuve comportementale (sorties identiques) remplace le simple hachage avant/après, qui ne prouve rien si les entrées varient. → *Application locale* : sorties baseline scellées avant cascade (generer-pm --check + arbitres AVANT régénération).
+- **Mutation testing léger (sandbox)** : avant de considérer une validation acquise, modifier 1 opérateur/constante de la cible et exiger qu'au moins 1 test échoue — une suite qui reste verte sur une mutation prouvée est déclarée INSENSIBLE (anti faux-verts ; tests qui testent le testeur). → *Application locale* : gardes anti-faux-succès des scripts de mutation (échec si 0 match — leçon Task 17) ; re-jeu ×2 pour prouver l'idempotence.
+- **Rollback armé (N5)** : en canary, la violation d'un contrat (latence/CPU/mémoire) déclenche le rollback AUTOMATIQUEMENT armé + signalement propriétaire — « rollback testé » ne suffit plus ; détection de contournement de tests dans les journaux (héritage TRACE). → *Application locale* : publication rebase = retour garanti à l'état antérieur (rebase --abort / reset --hard scellé) ; 0 force-push (Règle 0 GitHub).
+- **Sources** : Rackspace/CircleCI progressive delivery 2026 · characterization tests · arXiv 2601.20103.
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — Spécification technique
 

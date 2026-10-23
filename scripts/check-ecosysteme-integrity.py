@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.9)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.10)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -76,33 +76,33 @@ ECO_SKILLS = {
     "clone-chat": "2.0.2",
     "skills-inventory": "1.1.0",
     "skill-creator": "1.1.0",
-    "agent-creator": "2.2.0",  # Task 22 (2026-10-23) : DÉRIVE CRITIQUE résorbée — SKILL.md re-écrit comme VRAIE fabrique d'agents (workflow F1-F5), .agent ré-écrit (capacites A2A), read_when réparé
+    "agent-creator": "2.3.0",  # Task 22 (2026-10-23) : DÉRIVE CRITIQUE résorbée — SKILL.md re-écrit comme VRAIE fabrique d'agents (workflow F1-F5), .agent ré-écrit (capacites A2A), read_when réparé
     "script-creator": "1.1.0",
     "script-reviewer": "1.0.0",
     "audit-provenance": "1.1.0",
-    "prompt-engineering": "2.3.0",
-    "context-engineering": "1.2.0",
-    "loop-engineering": "1.2.0",
-    "graph-engineering": "1.1.0",
-    "harness-engineering": "1.2.0",
+    "prompt-engineering": "2.3.1",
+    "context-engineering": "1.2.1",
+    "loop-engineering": "1.2.1",
+    "graph-engineering": "1.1.1",
+    "harness-engineering": "1.2.1",
     "script-mon-ecosysteme-infrastructure": "1.1.0",
     "audio-metadata": "1.1.0",
     "cpp-analysis": "1.1.0",
     "pdf-llm": "1.0.0",
-    "resource-monitor": "1.1.0",
+    "resource-monitor": "1.1.1",
     "version-management": "1.2.0",
     "skill-finder-cn": "1.0.0",  # Task 23 : fallback §1.16 inscrit au registre
     # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
-    "autonomous-agent": "1.2.0",
+    "autonomous-agent": "1.2.1",
     "correct-py": "1.1.0",
-    "fleet-engineering": "1.1.0",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54
-    "memory-engineering": "1.2.0",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54 (Task 18 : Description Optimization conservée)
-    "spec-driven-development": "1.1.0",
+    "fleet-engineering": "1.1.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54
+    "memory-engineering": "1.2.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54 (Task 18 : Description Optimization conservée)
+    "spec-driven-development": "1.1.1",
     "refactoring-engineering": "1.1.1",  # n°55 — Task 9 (2026-10-12) : Description Optimization A2 (dérive voie M résorbée, re-mesure 7/7) ; Task 8 : seule discipline de refactoring, outil refactoring-test ; Task 12 : recalibrage doc (§5 baseline MESURÉE 7/7, plancher ref-test >=1.0.1)
-    "refactor-guard": "1.8.0",
+    "refactor-guard": "1.8.1",
     "alias-eco": "1.0.0",  # Task 18 (2026-10-23) : registre d'alias $<ALIAS> — délégation correct-work mode PROJET,  # Task 8 (fusion discussion 468a4c26) : garde-fous de refactoring — lignée externe v1.7.0, base hôte v1.2.0 portée
     "fullstack-dev": "1.0.0",  # Task 8 (fusion discussion 468a4c26 Task 27 externe) : inscrit au registre — précédent vue-upload
-    "refactoring-test": "1.1.0",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire) ; Task 12 : §5 baseline MESURÉE 7/7
+    "refactoring-test": "1.1.1",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire) ; Task 12 : §5 baseline MESURÉE 7/7
     "vue-upload": "1.2.0",  # KO-L004 (session web-b93f42fa, 2026-10-09) : KB=registre fait foi (## vue-upload v1.2.0) — occurrence L004 résorbée, arbitre dynamisé
     "dessin-technique": "1.1.1",
     "iphone18": "1.1.0",  # Task 48 (session web-38713acd) : bump v1.1.0 extension 1944 (chemin argentique N&B années 1930-1950) ; création v1.0.0 Task 45 (R18 ouverture variable, PA-TEST-001 QC 12/12)

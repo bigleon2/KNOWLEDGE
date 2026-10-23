@@ -31,7 +31,7 @@ Vue d'ensemble des 3 familles (héritée de l'ex-distillation) :
 | GEN-PLAN | gen-plan — planification de tâches (4 modes, 15 étapes E1-E15) | 26 (v2.0.0 → v3.23.2) | 19 (v3.6.1 → v3.23.1) | v3.23.2 |
 | CORRECT-WORK | correct-work — vérification/correction (5 étapes, 4 modes) | 11 (v1.0.0 → v2.8.0) | 5 (v2.4.0 → v2.7.0) | v2.8.0 |
 | CLONE-CHAT | clone-chat — archivage de session (7+1 étapes, 8 checks) | 6 (v1.0.0 → v2.0.2) | 2 (v2.0.0, v2.0.1) | v2.0.2 |
-| REFACTOR-GUARD | refactor-guard — garde-fous de refactoring (H01-H15, échelle rollout) | 3 (v1.7.0 → v1.8.0) | 2 (v1.7.0, v1.7.1) | v1.8.0 |
+| REFACTOR-GUARD | refactor-guard — garde-fous de refactoring (H01-H15, échelle rollout) | 4 (v1.7.0 → v1.8.1) | 3 (v1.7.0, v1.7.1, v1.8.0) | v1.8.1 |
 
 Versions documentées SANS fichier archivé : GEN-PLAN v2.0.0 → v3.6.0 (antérieures à la matérialisation du corpus, perdues aux wipes inter-sessions — changements tracés par les §7 successifs) et v3.20.0 (remplacée le jour même par v3.21.0) ; CORRECT-WORK v1.0.0 → v2.3.0 (même cause) ; CLONE-CHAT v1.0.0 → v1.2.0 (même cause). Les PMs CORRECT-WORK v2.6.0/v2.7.0 sont des RECONSTITUTIONS par diffs chirurgicaux (méthode B1, Task 16 session web-8a7e5653 — provenance tracée en tête de chaque PM, aucun faux lignage).
 
@@ -53,9 +53,9 @@ Versions documentées SANS fichier archivé : GEN-PLAN v2.0.0 → v3.6.0 (antér
 5. La présente table §2 est rafraîchie et l'index §5 mis à jour ;
 6. Recalibrage croisé KO-L004 standard (CORPUS_ATTENDU, manifeste integrity, archive, orchestrateur ULTRA) et sweep arbitres avant tout commit.
 
-## 5. Index des fichiers sources archivés (26 PMs — sceau SHA-256)
+## 5. Index des fichiers sources archivés (27 PMs — sceau SHA-256)
 
-Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git mv` (Task 16, 2026-10-11) — byte-identité prouvée contre les blobs du commit de référence `b36f177` (script `/home/z/my-project/scripts/task16-move-pms.py`, all-or-nothing, garde anti-homonyme R4). Table complète au rapport `download/rapport-task16-corpus-pms-historique-reinstallation.md`. Complément cascade Task 22 (2026-10-23, session web-fdf5963c — directive « disciplines/techniques », veille 2025-2026) : `PROMPT-MAITRE-REFACTOR-GUARD-v1.7.1.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité, adaptation règle d'or n°1 journalisée ; SHA-256 scellé ci-dessous ; provenance : le fichier corpus v1.7.1 était la source de l'archive scellée Task 20 — même octets). Complément cascade gen-plan v3.22.1 (2026-10-11, session web-b4d7dd19) : `PROMPT-MAITRE-GEN-PLAN-v3.22.0.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité ; adaptation règle d'or n°1 journalisée, SHA-256 scellé ci-dessous).
+Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git mv` (Task 16, 2026-10-11) — byte-identité prouvée contre les blobs du commit de référence `b36f177` (script `/home/z/my-project/scripts/task16-move-pms.py`, all-or-nothing, garde anti-homonyme R4). Table complète au rapport `download/rapport-task16-corpus-pms-historique-reinstallation.md`. Complément cascade Task 24 (2026-10-23, session web-fdf5963c — directive « révisez les §1.9bis des 16 éléments ») : `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md` archivé par `git mv` byte-identité (R4 — SHA-256 scellé ci-dessous ; fichier suivi au dépôt depuis le commit des couches 18/20/22). Complément cascade Task 22 (2026-10-23, session web-fdf5963c — directive « disciplines/techniques », veille 2025-2026) : `PROMPT-MAITRE-REFACTOR-GUARD-v1.7.1.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité, adaptation règle d'or n°1 journalisée ; SHA-256 scellé ci-dessous ; provenance : le fichier corpus v1.7.1 était la source de l'archive scellée Task 20 — même octets). Complément cascade gen-plan v3.22.1 (2026-10-11, session web-b4d7dd19) : `PROMPT-MAITRE-GEN-PLAN-v3.22.0.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité ; adaptation règle d'or n°1 journalisée, SHA-256 scellé ci-dessous).
 
 | Fichier archivé | SHA-256 |
 |-----------------|---------|
@@ -64,6 +64,7 @@ Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git
 | clone-chat/PROMPT-MAITRE-CLONE-CHAT-v2.0.1.md | 1e8bcb65667a52a902d6010c210dcec9b3ac6c7c71e1b5d16101925992435c80 |
 | refactor-guard/PROMPT-MAITRE-REFACTOR-GUARD-v1.7.0.md | 74438d695d2fb7b4d7b406f576b16d7fa2706d0b4113183ea6e55fb84215e62e |
 | refactor-guard/PROMPT-MAITRE-REFACTOR-GUARD-v1.7.1.md | 8fceb8c1ac1dbb2848b87a8d154d9970a5b6418551898065caee56f9392de33e |
+| refactor-guard/PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md | 907f899247ff5a087c781275223bfcacd779df3bc20a6734b9f34ef1dc1bbb54 |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.6.1.md | 6356ae3efe09522a8c6802147cfc88b0e0e58875b2dd3443d84a378395565ef6 |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.7.0.md | e053f0ae7ccde425f7f15d84ab263738637a442e48c9e245824a9b32656b8880 |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.8.0.md | 25ee244df6a790c02366a57617f2b5ee8ba80b2e3b931d963b7e06b53beef190 |

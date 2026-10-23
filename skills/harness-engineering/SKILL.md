@@ -1,6 +1,6 @@
 ---
 name: harness-engineering
-version: 1.2.0
+version: 1.2.1
 category: ecosystem
 language: fr
 tags:
@@ -19,7 +19,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -89,7 +89,12 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Mode checkpoint/reprise (M1)** (Anthropic « effective harnesses for long-running agents », 11/2025) : sérialiser l'état de session à chaque phase (snapshots tar, fichier d'état JSON daté) pour reprendre après interruption/timeout sans re-exécution intégrale — pattern des snapshots Task 18 ; le checkpoint est un artefact d'état : déterministe ou exclu du périmètre projeté (leçon Task 20). **Budget de resserrage** : tout nouveau check doit être idempotent ET documenté (quoi, pourquoi, coût) ; revue périodique des checks dormants/redondants avec archivage en _archive/ — le harnais doit rester mince, sinon il devient lui-même la dette (90+ checks sans revue = friction permanente). **Frontière du vocabulaire** (table commune avec loop-engineering) : ARBITRE = script stdlib déterministe du dépôt (verdict machine, pas de LLM) ; GRADER = mécanique OU agentique d'évaluation, calibré selon loop-engineering M2 ; les deux sont des points de contrôle du harnais, seuls leurs moyens diffèrent.
+- **Mode checkpoint/reprise (M1)** (Anthropic « effective harnesses for long-running agents », 11/2025) : sérialiser l'état de session à chaque phase (snapshots tar, fichier d'état JSON daté) pour reprendre après interruption/timeout sans re-exécution intégrale — pattern des snapshots Task 18 ; le checkpoint est un artefact d'état : déterministe ou exclu du périmètre projeté (leçon Task 20). → *Application locale* : snapshots tar par phase + état JSON daté — reprise sans re-exécution intégrale.
+- **Budget de resserrage** : tout nouveau check doit être idempotent ET documenté (quoi, pourquoi, coût) ; revue périodique des checks dormants/redondants avec archivage — le harnais doit rester mince, sinon il devient lui-même la dette (90+ checks sans revue = friction permanente). → *Application locale* : chaque arbitre = idempotent + documenté (provenance en en-tête) ; archivage @historique des checks supplantés.
+- **Frontière du vocabulaire** (table commune avec loop-engineering) : ARBITRE = script stdlib déterministe du dépôt (verdict machine, pas de LLM) ; GRADER = mécanique OU agentique d'évaluation, calibré selon loop-engineering M2 ; les deux sont des points de contrôle du harnais, seuls leurs moyens diffèrent. → *Application locale* : vocabulaire uniforme dans les plans et rapports — un arbitre n'est jamais appelé « grader ».
+- **Sources** : Anthropic « effective harnesses for long-running agents » (11/2025) · héritage TRACE (arXiv 2601.20103).
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 

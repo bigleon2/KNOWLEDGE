@@ -1,6 +1,6 @@
 ---
 name: autonomous-agent
-version: 1.2.0
+version: 1.2.1
 category: ecosystem
 language: fr
 tags:
@@ -34,7 +34,7 @@ read_when:
 
 # AUTONOMOUS-AGENT v1.0.0
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -106,7 +106,12 @@ n'existe que dans la session en cours.
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Étape G2 RE-PLANIFICATION** (entre G et H — pattern plan-and-execute) : si la vérification G échoue → retour au mode M1 avec diagnostic d'échec (max 2 itérations, puis escalade) ; sans transition définie, un échec de vérification laisse l'agent sans issue. **Politique d'oubli/rollback EL** : budget d'EL (taille max), purge des règles contredites (tombstone daté), rollback versionné du .agent — l'EL non administré devient bruit + surface d'attaque (MemoryAgentBench, arXiv 2507.05257 ; lifecycle Write/Store/Retrieve/Execute/Share/Forget). **Machine à états explicite** : matrice de transitions de modes (M1→M2→M3→M4→G→G2→H) consignée — l'exécution autonome sans machine à états dérive silencieusement. Sources : arXiv 2507.05257 · langchain.com/blog/planning-agents · mastra.ai/articles/langgraph.
+- **Étape G2 RE-PLANIFICATION** (entre G et H — pattern plan-and-execute) : si la vérification G échoue → retour au mode M1 avec diagnostic d'échec (max 2 itérations, puis escalade) ; sans transition définie, un échec de vérification laisse l'agent sans issue. → *Application locale* : pipeline A-H — échec G → re-planification bornée, puis escalade propriétaire (jamais d'itération sans fin).
+- **Politique d'oubli/rollback EL** : budget d'EL (taille max), purge des règles contredites (tombstone daté), rollback versionné du .agent — l'EL non administré devient bruit + surface d'attaque (MemoryAgentBench, arXiv 2507.05257 ; lifecycle Write/Store/Retrieve/Execute/Share/Forget). → *Application locale* : .agent versionnés @historique — tombstones datés, rollback byte-identité.
+- **Machine à états explicite** : matrice de transitions de modes (M1→M2→M3→M4→G→G2→H) consignée — l'exécution autonome sans machine à états dérive silencieusement. → *Application locale* : matrice de transitions documentée — chaque changement de mode trace son déclencheur.
+- **Sources** : arXiv 2507.05257 · langchain.com/blog/planning-agents · mastra.ai/articles/langgraph.
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — Spécification technique
 

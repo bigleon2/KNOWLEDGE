@@ -18,8 +18,8 @@
       "etat": "COHERENT"
     },
     "refactor-guard": {
-      "skill": "1.8.0",
-      "pm": "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md",
+      "skill": "1.8.1",
+      "pm": "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md",
       "etat": "COHERENT"
     }
   }

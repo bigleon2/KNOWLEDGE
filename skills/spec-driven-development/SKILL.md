@@ -1,6 +1,6 @@
 ---
 name: spec-driven-development
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -22,7 +22,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -74,7 +74,13 @@ Recherches N31/N34 vérifiées (preuves `tmp/n31-recherche/`) : **« From Code t
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**M1.5 CLARIFIER** (Spec Kit `/clarify`) : avant M2 DÉCOMPOSER, poser 3-7 questions ciblées sur les ambiguïtés et cas limites détectés dans la spécification (hook candidat : gen-plan E4). **Rebuild test** (critère de complétude) : la spec seule doit permettre de reconstruire le livrable — si un détail manque, la spec est incomplète. **Garde de granularité anti-overhead** : SDD est réservé aux tâches complexes ou non réversibles ; micro-tâche et prototype → micro-spec ≤ 3 lignes ou pas de spec (l'overhead démontré : un bug fix traité en 4 user stories et 16 critères ; Tessl 2026 : SDD overkill pour les prototypes). **Conflits documentés** : SDD ne remplace PAS le TDD — les équipes matures les combinent (spec pour le QUOI, tests pour le VÉRIFIÉ) ; modèle hybride avec l'agilité (stories légères pour le flux, spec contractuelle pour périmètre/acceptation) ; remède « spec-poussière » = re-validation de la spec après chaque dérive (hooks d'événement à la Kiro). Sources : arXiv 2602.00180 « From Code to Contract » · github.com/github/spec-kit · kiro.dev/docs/specs · martinfowler.com (SDD-3-tools).
+- **M1.5 CLARIFIER** (Spec Kit `/clarify`) : avant M2 DÉCOMPOSER, poser 3-7 questions ciblées sur les ambiguïtés et cas limites détectés dans la spécification. → *Application locale* : hook candidat gen-plan E4 — CLARIFIER avant DÉCOMPOSER.
+- **Rebuild test** (critère de complétude) : la spec seule doit permettre de reconstruire le livrable — si un détail manque, la spec est incomplète. → *Application locale* : answer key vérifiable — chaque décision (criterion + verification + source) doit suffire à reconstruire le livrable.
+- **Garde de granularité anti-overhead** : SDD réservé aux tâches complexes ou non réversibles ; micro-tâche et prototype → micro-spec ≤ 3 lignes ou pas de spec (l'overhead démontré : un bug fix traité en 4 user stories et 16 critères ; Tessl 2026 : SDD overkill pour les prototypes). → *Application locale* : routage gen-plan — plans basiques sans spec contractuelle complète, tâches de données (Type 4) en micro-spec.
+- **Conflits documentés** : SDD ne remplace PAS le TDD — les équipes matures les combinent (spec pour le QUOI, tests pour le VÉRIFIÉ) ; modèle hybride avec l'agilité (stories légères pour le flux, spec contractuelle pour périmètre/acceptation) ; remède « spec-poussière » = re-validation de la spec après chaque dérive (hooks d'événement à la Kiro). → *Application locale* : boucle E10-E13 — answer key re-validée à chaque dérive détectée, jamais re-rédigée à l'aveugle.
+- **Sources** : arXiv 2602.00180 « From Code to Contract » · github.com/github/spec-kit · kiro.dev/docs/specs · martinfowler.com (SDD-3-tools).
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 Format spec (canon écosystème) : en-tête (objectif, version, statut) → hors-périmètre → exigences E# (chacune + critère mécanique C#) → constitution → amendements (table datée) → preuves (chemins). Les checks des critères sont des scripts/arbitres persistés — jamais des assertions en l'air.

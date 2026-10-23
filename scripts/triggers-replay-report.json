@@ -4,9 +4,9 @@
   "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
   "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
-  "n_skills": 98,
+  "n_skills": 101,
   "skills_ok": 81,
-  "skills_derive": 17,
+  "skills_derive": 20,
   "verdict": "FAIL",
   "derives": [
     "agent-browser",
@@ -16,6 +16,9 @@
     "audio-metadata",
     "gaokao-recommend-schools",
     "gen-plan",
+    "iphone17",
+    "iphone18",
+    "iphone19",
     "jd-resume-tailor",
     "pdf-llm",
     "prompt-engineering",
@@ -453,7 +456,7 @@
       ]
     },
     "agent-creator": {
-      "version": "2.2.0",
+      "version": "2.3.0",
       "n_cases": 7,
       "n_keywords": 26,
       "score_officiel": "6/7",
@@ -1277,7 +1280,7 @@
       ]
     },
     "autonomous-agent": {
-      "version": "1.2.0",
+      "version": "1.2.1",
       "n_cases": 8,
       "n_keywords": 33,
       "score_officiel": "8/8",
@@ -1979,7 +1982,7 @@
       ]
     },
     "context-engineering": {
-      "version": "1.2.0",
+      "version": "1.2.1",
       "n_cases": 7,
       "n_keywords": 19,
       "score_officiel": "7/7",
@@ -2906,7 +2909,7 @@
       ]
     },
     "fleet-engineering": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "n_cases": 7,
       "n_keywords": 35,
       "score_officiel": "7/7",
@@ -3858,7 +3861,7 @@
       ]
     },
     "graph-engineering": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "n_cases": 7,
       "n_keywords": 11,
       "score_officiel": "7/7",
@@ -3940,7 +3943,7 @@
       ]
     },
     "harness-engineering": {
-      "version": "1.2.0",
+      "version": "1.2.1",
       "n_cases": 7,
       "n_keywords": 19,
       "score_officiel": "7/7",
@@ -4555,6 +4558,336 @@
         }
       ]
     },
+    "iphone17": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 94,
+      "score_officiel": "7/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Améliore cette photo avec le rendu iPhone 17 Pro Max qualité max.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.556,
+          "hits": [
+            "amelior",
+            "iphon",
+            "photo",
+            "qualit",
+            "rendu"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Applique le preset iphone17_max sur cette photo.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.571,
+          "hits": [
+            "appl",
+            "iphon",
+            "photo",
+            "preset"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Fais un portrait serré avec la focale équivalente 85 mm sur cette photo.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "equivalent",
+            "focal",
+            "photo"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Retouche ces deux vieilles photos en mode série, rendu iPhone 17.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.556,
+          "hits": [
+            "iphon",
+            "mode",
+            "photo",
+            "rendu",
+            "seri"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Restaure ce tirage argentique abîmé des années 70.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "anne",
+            "argent",
+            "restaur",
+            "tirag"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Prépare un poster A4 300 DPI de cette photo de famille.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "photo",
+            "poster"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Améliore cette photo au rendu iPhone 18 Pro Max qualité max.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.625,
+          "hits": [
+            "amelior",
+            "iphon",
+            "photo",
+            "qualit",
+            "rendu"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Reproduis cette pièce photographiée en dessin technique coté (isométrie CAO).",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "iphone18": {
+      "version": "1.1.0",
+      "n_cases": 8,
+      "n_keywords": 91,
+      "score_officiel": "7/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Améliore cette photo avec le rendu iPhone 18 Pro Max qualité max.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.556,
+          "hits": [
+            "amelior",
+            "iphon",
+            "photo",
+            "qualit",
+            "rendu"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Applique le preset iphone18_max sur cette photo de mariage.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "iphon",
+            "photo",
+            "preset"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Peux-tu détacher le sujet avec une ouverture ƒ/1.8 sur cette photo de concert ?",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.2,
+          "hits": [
+            "ouvertur",
+            "photo"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Retouche ces deux photos de fête en mode série, qualité iPhone 18 max.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "iphon",
+            "mode",
+            "photo",
+            "qualit",
+            "seri"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Restaure ce scan de photo ancienne des années 80, rendu propre et net.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "ancienn",
+            "anne",
+            "photo",
+            "rendu",
+            "restaur",
+            "scan"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Prépare cette photo en poster A4 à 300 DPI pour impression.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "photo",
+            "poster"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Fais le rendu iPhone 17 Pro Max de cette photo.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "iphon",
+            "photo",
+            "rendu"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Reproduis cette pièce photographiée en dessin technique coté (isométrie CAO).",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true
+        }
+      ]
+    },
+    "iphone19": {
+      "version": "0.11.0",
+      "n_cases": 8,
+      "n_keywords": 116,
+      "score_officiel": "4/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Fais le rendu iPhone 19 Pro Max qualité max de cette photo.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "iphon",
+            "photo",
+            "qualit",
+            "rendu"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Applique le preset iphone19_max sur cette photo de mariage.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "appl",
+            "iphon",
+            "photo",
+            "preset"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Traite cette photo avec la génération suivante d'iPhone, qualité max.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.556,
+          "hits": [
+            "gener",
+            "iphon",
+            "photo",
+            "qualit",
+            "suivant"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Retouche ces deux photos de fête en mode série, rendu iPhone 19 max.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "iphon",
+            "mode",
+            "photo",
+            "rendu",
+            "seri"
+          ],
+          "ok": true
+        },
+        {
+          "query": "Améliore cette photo qualité max.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.6,
+          "hits": [
+            "amelior",
+            "photo",
+            "qualit"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Fais le rendu iPhone 18 Pro Max de cette photo.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.429,
+          "hits": [
+            "iphon",
+            "photo",
+            "rendu"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Restaure ce scan de photo ancienne des années 80, rendu propre et net.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "ancienn",
+            "anne",
+            "photo",
+            "rendu",
+            "restaur",
+            "scan"
+          ],
+          "ok": false
+        },
+        {
+          "query": "Prépare cette photo en poster A4 à 300 DPI pour impression.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "photo",
+            "poster"
+          ],
+          "ok": false
+        }
+      ]
+    },
     "jd-resume-tailor": {
       "version": "1.0.0",
       "n_cases": 8,
@@ -4914,7 +5247,7 @@
       ]
     },
     "loop-engineering": {
-      "version": "1.2.0",
+      "version": "1.2.1",
       "n_cases": 7,
       "n_keywords": 18,
       "score_officiel": "7/7",
@@ -5187,7 +5520,7 @@
       ]
     },
     "memory-engineering": {
-      "version": "1.2.0",
+      "version": "1.2.1",
       "n_cases": 7,
       "n_keywords": 48,
       "score_officiel": "7/7",
@@ -5807,7 +6140,7 @@
       ]
     },
     "prompt-engineering": {
-      "version": "2.3.0",
+      "version": "2.3.1",
       "n_cases": 7,
       "n_keywords": 21,
       "score_officiel": "6/7",
@@ -6150,7 +6483,7 @@
       ]
     },
     "refactor-guard": {
-      "version": "1.8.0",
+      "version": "1.8.1",
       "n_cases": 8,
       "n_keywords": 116,
       "score_officiel": "7/8",
@@ -6342,7 +6675,7 @@
       ]
     },
     "refactoring-test": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "n_cases": 7,
       "n_keywords": 81,
       "score_officiel": "7/7",
@@ -6529,7 +6862,7 @@
       ]
     },
     "resource-monitor": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "n_cases": 6,
       "n_keywords": 42,
       "score_officiel": "6/6",
@@ -7432,7 +7765,7 @@
       ]
     },
     "spec-driven-development": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "n_cases": 7,
       "n_keywords": 35,
       "score_officiel": "7/7",

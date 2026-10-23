@@ -1,6 +1,6 @@
 ---
 name: memory-engineering
-version: 1.2.0
+version: 1.2.1
 category: ecosystem
 language: fr
 tags:
@@ -22,7 +22,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -74,7 +74,13 @@ Recherches N31/N34 vérifiées (preuves `tmp/n31-recherche/`) : **AgeMem** (arXi
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Ops update/forget/consolidate de première classe** (AgeMem, ACL 2026 — opérations mémoire exposées comme outils) : l'append-only demeure la règle d'écriture, mais l'oubli contrôlé devient une opération légitime — tombstone daté pour toute règle contredite, rollback versionné pour toute rétraction (l'EL non administré devient bruit + surface d'attaque — MemoryAgentBench). **Gouvernance des écrits** (survey « Memory in the Age of AI Agents », arXiv 2512.13564) : ranger chaque écrit par sa nature — KB = mémoire factuelle, worklog = mémoire expérientielle, scratchpad = mémoire de travail. **Validation Letta 2025** : la mémoire filesystem (recherche agentic de fichiers) est compétitive avec les bases vectorielles — conforte le choix KB/worklog-as-files de l'écosystème. **Contre-mesure budgétaire** : le « budget d'attention FINI » est lié au signal #token de resource-monitor (cross-ref dependencies) — une écriture sélective coûte moins cher qu'une relecture intégrale. Sources : arXiv 2601.01885 AgeMem · arXiv 2512.13564 · letta.com benchmark 08/2025.
+- **Ops update/forget/consolidate de première classe** (AgeMem, ACL 2026 — opérations mémoire exposées comme outils) : l'append-only demeure la règle d'écriture, mais l'oubli contrôlé devient une opération légitime — tombstone daté pour toute règle contredite, rollback versionné pour toute rétraction (l'EL non administré devient bruit + surface d'attaque — MemoryAgentBench). → *Application locale* : EL administré — tombstones datés au worklog, rollbacks versionnés (@historique) pour les rétractions.
+- **Gouvernance des écrits** (survey « Memory in the Age of AI Agents », arXiv 2512.13564) : ranger chaque écrit par sa nature — KB = mémoire factuelle, worklog = mémoire expérientielle, scratchpad = mémoire de travail. → *Application locale* : tri d'écriture systématique — une information, un fichier de destination.
+- **Validation Letta 2025** : la mémoire filesystem (recherche agentic de fichiers) est compétitive avec les bases vectorielles — conforte le choix KB/worklog-as-files de l'écosystème. → *Application locale* : zéro base vectorielle — recherche agentic sur fichiers (KB, worklogs, @historique).
+- **Contre-mesure budgétaire** : le « budget d'attention FINI » est lié au signal #token de resource-monitor (cross-ref dependencies) — une écriture sélective coûte moins cher qu'une relecture intégrale. → *Application locale* : écriture sélective par défaut ; relecture intégrale = exception motivée.
+- **Sources** : arXiv 2601.01885 AgeMem · arXiv 2512.13564 · letta.com benchmark 08/2025.
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 Répliques de l'État Long : worklog (unique), KB (unique), answer key (unique), plan (unique) — les « copies » (miroir prompts-maîtres, canal download, archive) sont des répliques BYTE-IDENTIQUES vérifiées, pas des variantes. Toute divergence clone↔original est un écart-attendu documenté (B9/D016) ou un drift à corriger.

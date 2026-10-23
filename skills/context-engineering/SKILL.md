@@ -1,6 +1,6 @@
 ---
 name: context-engineering
-version: 1.2.0
+version: 1.2.1
 category: ecosystem
 language: fr
 tags:
@@ -19,7 +19,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -92,7 +92,14 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Just-in-time retrieval en principe M1** (Anthropic 2025) : charger des POINTERS légers (chemins, requêtes, ID) au moment de l'étape concernée plutôt qu'intégralement en amont ; la lecture intégrale devient l'exception motivée (cohérence budget d'attention + resource-monitor). **Hygiène KV-cache** (Manus) : préfixe de contexte stable, journal append-only, pas de timestamps volatils en tête — le cache coûte ~10× moins que le re-calcul. **Anti « Governance Decay »** (arXiv 2606.22528) : la compaction efface silencieusement les contraintes de gouvernance — après CHAQUE compaction, ré-énoncer les invariants critiques (règle zéro, contraintes propriétaire) en tête du contexte compacté, et consigner un tombstone pour toute contrainte évacuée. **Références** : Anthropic « effective context engineering » (09/2025) · ACE arXiv 2510.04618 (le plan complexe = playbook évolutif à deltas incrémentaux — complémentaire de gen-plan) · Claude Cookbook 03/2026 (les stratégies se composent : mémoire + compaction + purge d'outils).
+- **Just-in-time retrieval en principe M1** (Anthropic 2025) : charger des POINTERS légers (chemins, requêtes, ID) au moment de l'étape concernée plutôt qu'intégralement en amont ; la lecture intégrale devient l'exception motivée. → *Application locale* : M1 composition — pointers + exceptions motivées ; budget d'attention armé par resource-monitor (#token).
+- **Hygiène KV-cache** (Manus) : préfixe de contexte stable, journal append-only, pas de timestamps volatils en tête — le cache coûte ~10× moins que le re-calcul. → *Application locale* : bloc §0 stable + worklogs append-only ; timestamps tenus hors tête des documents vivants.
+- **Anti « Governance Decay »** (arXiv 2606.22528) : la compaction efface silencieusement les contraintes de gouvernance — après CHAQUE compaction, ré-énoncer les invariants critiques (règle zéro, contraintes propriétaire) en tête du contexte compacté, et consigner un tombstone pour toute contrainte évacuée. → *Application locale* : clone-chat (règle zéro ré-énoncée en tête de clone) + résumés de compaction gen-plan (invariants ré-énoncés) + tombstones au worklog.
+- **ACE — le plan complexe = playbook évolutif** (arXiv 2510.04618) : le plan évolue par deltas incrémentaux appliqués au fil de l'exécution — complémentaire de gen-plan. → *Application locale* : boucle E10-E13 — révisions de plan à deltas incrémentaux, jamais de re-rédaction intégrale.
+- **Composabilité des stratégies** (Claude Cookbook 03/2026) : mémoire + compaction + purge d'outils se composent. → *Application locale* : modes M1-M4 non exclusifs — composition explicite au cycle opérationnel A-H.
+- **Sources** : Anthropic « effective context engineering » (09/2025) · ACE arXiv 2510.04618 · Claude Cookbook 03/2026 · arXiv 2606.22528.
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 

@@ -1,6 +1,6 @@
 ---
 name: loop-engineering
-version: 1.2.0
+version: 1.2.1
 category: ecosystem
 language: fr
 tags:
@@ -19,7 +19,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -89,7 +89,13 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Calibration des graders agentiques (M2)** : avant tout usage d'un grader agentique dans une boucle — échantillon golden de verdicts attendus, accord ≥ 80 % avec la voie mécanique exigé, juge ≠ rédacteur, ordre des cas randomisé (anti-biais positionnel/self-preference). **Critères d'arrêt quantifiés** : toute boucle porte (a) un max d'itérations N, (b) un plateau (gain marginal < ε sur 2 cycles consécutifs → arrêt), (c) une escalade propriétaire ; le hash des graders est scellé AVANT le run — toute modification du grader en cours de boucle est un signal de reward hacking (TRACE, arXiv 2601.20103) et invalide les verdicts. **Vérification intermédiaire** (VPR — Verifiable Process Rewards, arXiv 2605.10325) : un grader léger par étape (contrôle de convergence en cours de route) réduit le coût des échecs découverts tardivement — la vérification unique en fin de phase demeure le filet, pas le seul point de contrôle. **Limite documentée** (« The Limit of RLVR ») : itérer sans changer de méthode améliore l'efficacité d'échantillonnage, pas la capacité — une boucle qui ne converge pas exige un changement de méthode, pas plus d'itérations.
+- **Calibration des graders agentiques (M2)** : avant tout usage d'un grader agentique dans une boucle — échantillon golden de verdicts attendus, accord ≥ 80 % avec la voie mécanique exigé, juge ≠ rédacteur, ordre des cas randomisé (anti-biais positionnel/self-preference). → *Application locale* : voie L des baselines A2 — 3 runs réels, juge ≠ rédacteur, décisions d'arbitrage consignées.
+- **Critères d'arrêt quantifiés** : toute boucle porte (a) un max d'itérations N, (b) un plateau (gain marginal < ε sur 2 cycles consécutifs → arrêt), (c) une escalade propriétaire ; le hash des graders est scellé AVANT le run — toute modification du grader en cours de boucle est un signal de reward hacking (TRACE, arXiv 2601.20103) et invalide les verdicts. → *Application locale* : boucle E12-E13 — max d'itérations + escalade ; instruments figés pendant la boucle (0 fix instrument, leçon Task 22).
+- **Vérification intermédiaire** (VPR — Verifiable Process Rewards, arXiv 2605.10325) : un grader léger par étape (contrôle de convergence en cours de route) réduit le coût des échecs découverts tardivement — la vérification unique en fin de phase demeure le filet, pas le seul point de contrôle. → *Application locale* : arbitres par groupe (G-A→G-G) — verdicts intermédiaires avant la certification finale.
+- **Limite documentée** (« The Limit of RLVR ») : itérer sans changer de méthode améliore l'efficacité d'échantillonnage, pas la capacité — une boucle qui ne converge pas exige un changement de méthode, pas plus d'itérations. → *Application locale* : échec E12-E13 répété = changement de méthode (ré-écriture du check ou de la couche), jamais plus d'itérations à l'identique.
+- **Sources** : TRACE arXiv 2601.20103 · VPR arXiv 2605.10325 · « The Limit of RLVR ».
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 

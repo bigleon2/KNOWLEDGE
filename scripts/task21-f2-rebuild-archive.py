@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.9)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.10)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -53,6 +53,13 @@ RETRAITS_SANCTIONNES = {
     # rollback armé) — DÉPLACÉ vers skills/@historique/prompts-maitres/
     # refactor-guard/ — byte-identité SHA-256 scellée au README §5.
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.7.1.md",
+    # cascade Task 24 (2026-10-23, même session — directive « révisez les §1.9bis
+    # des 16 éléments ») : PM REFACTOR-GUARD v1.8.0 supplanté par la montée
+    # mécanique KO-L004 (SKILL.md v1.8.1 — §1.9bis révisée : bullets actionnables
+    # apport → application locale + Sources normalisé) — DÉPLACÉ git mv vers
+    # skills/@historique/prompts-maitres/refactor-guard/ — byte-identité SHA-256
+    # scellée au README §5 (index 27 PMs).
+    "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md",
     # véhicule d'intégrité v2.3 « piliers » (reprise matinale 2026-10-23, session
     # web-fdf5963c — reinstallateur autonome) : RETIRÉ au profit du véhicule v2.2
     # corpus-seul (PM-INSTALL v1.8.0) ; le contenu des piliers vit dans l'arbre

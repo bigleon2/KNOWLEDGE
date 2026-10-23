@@ -1,6 +1,6 @@
 ---
 name: refactoring-test
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -24,7 +24,7 @@ read_when:
   - Ne pas déclencher pour l'EXÉCUTION d'un refactoring (refactoring-engineering) ni pour une vérification post-hoc générique (correct-work).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.9)
+## §0 — Contexte Système (SHARED v1.7.10)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -70,7 +70,12 @@ Détection multi-signaux (taxonomies de code smells — Fowler ; hotspots = comp
 
 ### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
 
-**Co-changes git (change coupling — CodeScene)** : en complément des arêtes déclaratives (KB + dependencies YAML), M3 peut déduire des arêtes EMPIRIQUES de l'historique git — fichiers modifiés ensemble ≥ k fois = couplage réel que les déclarations manquent ; le blast radius déclaratif seul sous-estime l'impact. **Blast radius pondéré** : nœud pivot (centralité forte — arbitres, KB, SHARED) = poids ×2 ; calibration des seuils OK/PRESSION/CRITIQUE sur l'historique des verdicts (mesure, pas a priori — les seuils fixes 4/7, 4/8 ne sont que des points de départ). **Isolation de contexte maker/checker** : l'indépendance refactoring-engineering (maker) / refactoring-test (checker) devient une CONDITION VÉRIFIABLE de validité du verdict — session séparée, mémoire non partagée, l'exécutant sans accès au raisonnement de l'évaluateur (« two AI agents do not give you four eyes ») ; sans isolation, le verdict est consigné « non validable quatre yeux ». Sources : codescene.com · zenn.dev maker-cannot-be-checker 07/2026 · moderne.ai.
+- **Co-changes git (change coupling — CodeScene)** : en complément des arêtes déclaratives (KB + dependencies YAML), M3 peut déduire des arêtes EMPIRIQUES de l'historique git — fichiers modifiés ensemble ≥ k fois = couplage réel que les déclarations manquent ; le blast radius déclaratif seul sous-estime l'impact. → *Application locale* : refactoring-test-graph.py — arêtes empiriques git en complément du graphe déclaratif.
+- **Blast radius pondéré** : nœud pivot (centralité forte — arbitres, KB, SHARED) = poids ×2 ; calibration des seuils OK/PRESSION/CRITIQUE sur l'historique des verdicts (mesure, pas a priori — les seuils fixes 4/7, 4/8 ne sont que des points de départ). → *Application locale* : arbitres/KB/SHARED = pivots — toute montée déclenche la cascade KO-L004 complète.
+- **Isolation de contexte maker/checker** : l'indépendance refactoring-engineering (maker) / refactoring-test (évaluateur) devient une CONDITION VÉRIFIABLE de validité du verdict — session séparée, mémoire non partagée, l'exécutant sans accès au raisonnement de l'évaluateur (« two AI agents do not give you four eyes ») ; sans isolation, le verdict est consigné « non validable quatre yeux ». → *Application locale* : correct-work (aveugle) en session/inputs séparés — Second Opinion à cadrage à froid.
+- **Sources** : codescene.com · zenn.dev maker-cannot-be-checker 07/2026 · moderne.ai.
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 Bras mécanique : `scripts/refactoring-test-graph.py` (stdlib — re/json/sys) : parse la KB → graphe dirigé (A dépend de B) ; modes : `--target <skill>` (M3 — blast radius backward/forward + verdict), `--graph` (export complet), `--json` (sortie machine : scripts/refactoring-test-report.json). Idempotent ×2 (même état = même sortie). Les modes M1/M2/M4 sont des procédures de session (checklist §1.2) journalisées au worklog ; leurs preuves citent les arbitres existants (test-coherence-interactions, verify-cross, check-ecosysteme-integrity) comme sources de signaux.
