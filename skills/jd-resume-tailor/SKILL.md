@@ -3,7 +3,7 @@ name: jd-resume-tailor
 description: 给定一份 JD 和一份现有简历，做"JD 拆解 + 简历定向改写"。拆 JD 抽出硬技能、软技能、加分项；对照简历做 gap 分析；产出针对该岗位重写后的简历，突出相关经验、补齐关键词缺口、并保留候选人真实经历不编造。当用户说"针对这个岗位 / 这家公司改简历""帮我对一下这个 JD""我想投这个职位你看怎么改""把这份简历针对 X 公司优化""做一份定向版简历"，或同时给出 JD 文本 + 简历文件时，必须触发本 skill。**请勿用本 skill 做"从零写简历"**——那是 resume-builder 的事。
 ---
 
-## §0 — Contexte Système (SHARED v1.7.11)
+## §0 — Contexte Système (SHARED v1.7.12)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

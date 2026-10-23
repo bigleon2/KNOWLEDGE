@@ -324,4 +324,52 @@ Les étapes E8, E14 et E15 incluent des portées héritées des versions antéri
 - [ ] Si le SKILL.md de gen-plan a été modifié pendant l'exécution, les tâches restantes sont réévaluées
 - [ ] Les tâches affectées sont marquées `[REEVALUER]` avec la raison et les sections impactées
 - [ ] Chaque réévaluation est documentée dans le worklog
+
+## Mode step — protocole d'exécution hiérarchique (v3.25.0)
+
+> Directive propriétaire 2026-10-23 (session web-f90062ce ; re-matérialisée v3.25.0 sur base v3.24.0 — directive jamais publiée dans la lignée distante, restaurée sur GO propriétaire) : les groupes de tâches sont divisés en sous-groupes de tâches avec liste des tâches du groupe, pour une meilleure compréhension de l'organisation et de l'état du déroulement du plan d'actions. S'applique aux modes `gen-plan(step)` et `gen-plan(step-ok)` (SKILL.md §1.5 déclencheurs, §5.5 conventions).
+
+### Protocole d'ouverture du mode
+
+1. **Lecture de l'état** (B-11) : worklog + plan d'actions en cours + verdicts d'arbitres rendus — l'état réel fait foi.
+2. **Normalisation idempotente** : groupes déjà structurés en sous-groupes → aucune réécriture (R2/R6) ; groupes plats → partition des tâches en sous-groupes par affinité de livrable ou de phase (2-5 tâches par sous-groupe, sous-groupe unique si le groupe compte 3 tâches ou moins), journalisée au worklog.
+3. **Vue d'ensemble d'ouverture** : tous les groupes avec statut et compteur de tâches `n/m`.
+4. **Tableau d'ouverture du premier groupe** : sous-groupes + tâches + statuts courants + compteurs.
+
+### Déroulement (par groupe)
+
+5. **Exécution (parallélisation par défaut v3.24.0)** : la structure hiérarchique est la couche d'organisation et de LECTURE du plan ; l'exécution des tâches suit la philosophie v3.24.0 — Graph Diamond ouvert automatiquement dès preuve d'indépendance (y compris à travers les frontières de sous-groupes), le séquentiel étant l'exception justifiée et tracée (dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC). Chaque fin de tâche → mise à jour du statut + entrée worklog (E10) ; chaque fin de sous-groupe → rappel compact du sous-groupe clôturé.
+6. **Clôture de groupe** : tableau final du groupe (statuts définitifs + compteurs) puis `correct-work(groupe)` (max 2 rounds — v3.22.0, SKILL.md §5.4). En step-ok, la confirmation du propriétaire est demandée APRÈS le verdict et AVANT le groupe suivant.
+7. **Fin de chaîne** : `correct-work(projet)` + vue d'ensemble finale (tous les groupes, compteurs, verdicts).
+
+### Format canonique d'affichage
+
+Vue d'ensemble (ouverture et clôture de chaîne) :
+
+    Plan d'actions — vue d'ensemble
+    G1 <intitulé du groupe>   [TERMINÉ]  (8/8 — correct-work PASS)
+    G2 <intitulé du groupe>   [EN COURS] (3/6 — SG2.2 en cours)
+    G3 <intitulé du groupe>   [À FAIRE]  (0/5)
+
+Tableau de groupe (ouverture et clôture de groupe) :
+
+    ### Groupe G2 — <intitulé> [EN COURS] (3/6)
+    | Sous-groupe | Tâche | #token | Statut |
+    |-------------|-------|--------|--------|
+    | SG2.1 <intitulé> (2/2) | T2.1.1 <intitulé> | #token 1200 | [TERMINÉ] |
+    | SG2.1 | T2.1.2 <intitulé> | #token 800 | [TERMINÉ] |
+    | SG2.2 <intitulé> (1/2) | T2.2.1 <intitulé> | #token 1500 | [TERMINÉ] |
+    | SG2.2 | T2.2.2 <intitulé> | #token 900 | [EN COURS] |
+    | SG2.3 <intitulé> (0/2) | T2.3.1 <intitulé> | #token 600 | [À FAIRE] |
+    | SG2.3 | T2.3.2 <intitulé> | #token 400 | [À FAIRE] |
+
+### Correspondance avec les étapes E1-E15
+
+Ouverture du mode = E9 (lancement — vagues parallèles v3.24.0 pour l'exécution) ; mises à jour de statut = E10 (suivi, entrée worklog par tâche) ; fin de sous-groupe = checkpoint léger (E11) ; écarts de déroulement (retard, blocage) = E12 ; statut `[BLOQUÉ]`/`[REPORTÉ]` et re-partition = E13 (ajustement, journalisé) ; clôture de groupe + correct-work(groupe) = hook par phase (SKILL.md §5.4) ; fin de chaîne = E14 ; bilan de chaîne (écarts estimé/réel, leçons) = E15.
+
+### Règles de sécurité
+
+- Un statut `[TERMINÉ]` exige une preuve vérifiable (livrable présent, verdict d'arbitre, entrée worklog) — sinon divergence KO-L003.
+- Un statut n'est JAMAIS rétrogradé silencieusement : toute re-partition de sous-groupes (E13) est journalisée avec sa justification.
+- La normalisation d'ouverture ne modifie jamais les livrables ni les verdicts déjà rendus (R2) ; elle ne touche que la couche d'organisation/affichage du plan.
 ```

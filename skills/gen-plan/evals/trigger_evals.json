@@ -16,7 +16,7 @@
     "should_trigger": true
   },
   {
-    "query": "gen-plan(step) : exécute le plan d'actions en cours en groupes séquentiels avec une vérification après chaque groupe.",
+    "query": "gen-plan(step) : exécute le plan d'actions en cours en groupes séquentiels divisés en sous-groupes de tâches, avec la liste des tâches, leur statut d'avancement et une vérification après chaque groupe.",
     "should_trigger": true
   },
   {

@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.24.0
+version: 3.25.0
 category: ecosystem
 language: fr
 tags:
@@ -41,7 +41,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.11)
+## §0 — Contexte Système (SHARED v1.7.12)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -131,7 +131,7 @@ read_when:
 
 **Règle d'or n°3 — Mise à jour du plan à chaque nouvelle demande** (PM v3.11.0 §1.8) : toute nouvelle demande utilisateur pendant l'exécution d'un plan déclenche la mise à jour cohérente du plan d'actions actuel via gen-plan (E13) — demandes intégrées comme étapes/priorités, ré-estimation #token des étapes affectées, re-validation E8 si le périmètre change matériellement, journalisation au worklog ; extension du plan, jamais réécriture destructrice (R2). **Déclencheur verbatim (v3.17.2, directive propriétaire 2026-10-02)** : la formulation « intègre dans le plan d'actions » (et variantes directes : « intègre ça au plan », « ajoute au plan d'actions ») déclenche ce mode E13 sans ambiguïté.
 
-**Déclencheurs de mode `gen-plan(<mode>) : <instructions>` (v3.22.1 — renommage directive propriétaire session web-b4d7dd19 ; chantier initial discussion parente 5ef6176f)** : `gen-plan(step) : <instructions>` — enchaînement autonome des groupes séquentiels du plan d'actions, `correct-work(groupe)` après chaque groupe (max 2 rounds de correction par groupe), `correct-work(projet)` en fin de chaîne ; `gen-plan(step-ok) : <instructions>` — identique au mode step avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1) ; alias `step-confirm` (v3.22.0) et `step-confim` normalisés en `step-ok` (R4) ; **clause mode NULL** — toute invocation sans `<mode>` explicite (`gen-plan : <instructions>`, ex. « gen-plan : continue ») conserve le comportement antérieur à l'introduction des modes step/step-ok (v3.21.0) : intégration E13 ou exécution classique du plan, sans portes de confirmation (directive propriétaire 2026-10-11) ; tout autre mode → clarification demandée au propriétaire, jamais d'invention de mode (R2). Le déclencheur coexiste avec le déclencheur verbatim « intègre dans le plan d'actions » (règle d'or n°3) — une demande qui porte un mode explicite route vers le mode, sans re-déclencher l'intégration E13 ; une demande sans mode explicite route vers le comportement NULL (jamais vers step/step-ok).
+**Déclencheurs de mode `gen-plan(<mode>) : <instructions>` (v3.25.0 — structure hiérarchique du mode step : directive propriétaire session web-f90062ce, re-matérialisée sur base v3.24.0 ; v3.22.1 — renommage directive propriétaire session web-b4d7dd19 ; chantier initial discussion parente 5ef6176f)** : `gen-plan(step) : <instructions>` — enchaînement autonome des groupes séquentiels du plan d'actions, chaque groupe divisé en sous-groupes de tâches avec liste des tâches et statut d'avancement (§5.5 — v3.25.0), `correct-work(groupe)` après chaque groupe (max 2 rounds de correction par groupe), `correct-work(projet)` en fin de chaîne ; `gen-plan(step-ok) : <instructions>` — identique au mode step (structure hiérarchique §5.5 héritée) avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1) ; alias `step-confirm` (v3.22.0) et `step-confim` normalisés en `step-ok` (R4) ; **clause mode NULL** — toute invocation sans `<mode>` explicite (`gen-plan : <instructions>`, ex. « gen-plan : continue ») conserve le comportement antérieur à l'introduction des modes step/step-ok (v3.21.0) : intégration E13 ou exécution classique du plan, sans portes de confirmation (directive propriétaire 2026-10-11) ; tout autre mode → clarification demandée au propriétaire, jamais d'invention de mode (R2). Le déclencheur coexiste avec le déclencheur verbatim « intègre dans le plan d'actions » (règle d'or n°3) — une demande qui porte un mode explicite route vers le mode, sans re-déclencher l'intégration E13 ; une demande sans mode explicite route vers le comportement NULL (jamais vers step/step-ok).
 
 **Règle d'or n°4 — Récupération du dépôt par clone** (directive utilisateur 2026-10-09, session web-b93f42fa) : toute opération devant lire ou utiliser un élément du dépôt (fichier, dossier, corpus, script, historique) passe par un **clone git local** (forme recommandée : shallow `--depth 1 --filter=blob:none`), JAMAIS par une lecture distante du contenu (API contents, raw.githubusercontent.com, rendu web) ; le clone sert de source de lecture ET de travail ; authentification par jeton éphémère uniquement (askpass/credential ponctuel — jamais persisté dans `.git/config` ni sur disque, anti-persistance Task 8/14) ; exceptions : sondes API ponctuelles (KO-L001 — une sonde par message utilisateur), écritures authentifiées sans persistance, clone matériellement impossible → adaptation journalisée (règle d'or n°1) ; chaque clonage est tracé au worklog (source, SHA de référence, destination, forme) ; publication uniquement sur validation explicite du propriétaire. La règle change le MOYEN d'accès (clone d'abord), jamais l'objectif des tâches.
 
@@ -286,8 +286,8 @@ skills/gen-plan/
 │   ├── graph-diamond-pattern.md      # Parallélisation par défaut sur preuve d'indépendance (N20, inversée v3.24.0)
 │   └── observation-patterns.md       # Task Observer — cycle A-H (N20)
 └── evals/
-    ├── evals.json                    # Cas de test d'évaluation (9 evals — id 7 GP-mode-step v3.22.0, id 8 GP-mode-step-ok v3.22.1, id 9 GP-diamond-defaut v3.24.0)
-    └── trigger_evals.json            # Description Optimization (12 cas — verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm)
+    ├── evals.json                    # Cas de test d'évaluation (9 evals — id 7 GP-mode-step v3.22.0 étendu v3.25.0 structure hiérarchique, id 8 GP-mode-step-ok v3.22.1, id 9 GP-diamond-defaut v3.24.0)
+    └── trigger_evals.json            # Description Optimization (12 cas — verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm, cas step enrichi v3.25.0 sous-groupes)
 ```
 
 ### §2.3 Auto-calibration E15
@@ -379,3 +379,15 @@ Chaque étape du plan et chaque skill utilisé reçoit un tag `#token` indiquant
 ### §5.4 Hook correct-work par phase (E9-E14)
 
 Dès qu'une phase du plan d'actions vient de se terminer, lancer `correct-work(livrables de la phase, mode=CIBLE)` AVANT d'entamer la phase suivante : PASS → phase suivante ; PASS AVEC RÉSERVES → réserves loggées au worklog, exécution continue ; FAIL → pause jusqu'à correction puis re-vérification. Le hook E8 (fin de plan) reste la vérification finale.
+
+### §5.5 Mode step — structure hiérarchique et état d'avancement (v3.25.0)
+
+**Directive propriétaire (2026-10-23, session web-f90062ce ; re-matérialisée v3.25.0 sur base v3.24.0 — directive jamais publiée dans la lignée distante, restaurée sur GO propriétaire)** : en modes step/step-ok, chaque groupe du plan d'actions est divisé en sous-groupes de tâches, chaque sous-groupe listant explicitement ses tâches — pour une meilleure compréhension de l'organisation et de l'état du déroulement du plan d'actions.
+
+**Structure canonique** : **Groupe `G<k>`** (unité de vérification — correct-work(groupe), inchangé v3.22.0) → **Sous-groupe `SG<k>.<j>`** (lot cohérent de tâches par affinité de livrable ou de phase, typiquement 2-5 tâches ; un groupe de 3 tâches ou moins admet un sous-groupe unique — jamais de sur-fragmentation) → **Tâche `T<k>.<j>.<i>`** (unité d'exécution élémentaire, taguée #token — N1).
+
+**Statuts d'avancement** (toujours dérivés de l'état vérifiable — livrables, verdicts d'arbitres, worklog — jamais inventés, KO-L003) : `[À FAIRE]` (non entamée) · `[EN COURS]` (entamée) · `[TERMINÉ]` (terminée et constatable) · `[BLOQUÉ]` (adaptation en cours — règle d'or n°1) · `[REPORTÉ]` (déplacée à un groupe ultérieur — E13 journalisé). Compteurs `n/m` par sous-groupe et par groupe.
+
+**Cadence d'affichage (optimisée)** : (1) ouverture de groupe — tableau complet du groupe (sous-groupes + tâches + statuts + compteurs), en step-ok APRÈS confirmation ; (2) fin de tâche — mise à jour de la ligne et des compteurs, sans ré-affichage complet ; (3) fin de sous-groupe — rappel compact du sous-groupe clôturé ; (4) clôture de groupe — tableau final + verdict correct-work(groupe). Une vue d'ensemble du plan (tous les groupes, statuts, compteurs) ouvre et clôt la chaîne.
+
+**Règles de cohérence (réconciliées avec la parallélisation par défaut v3.24.0)** : la structure hiérarchique est la couche d'ORGANISATION et de LECTURE du plan (sous-groupes par affinité, statuts, compteurs) — orthogonale à la couche d'EXÉCUTION : l'exécution conserve la parallélisation par défaut (Graph Diamond ouvert automatiquement dès preuve d'indépendance — y compris à travers les frontières de sous-groupes ; le séquentiel reste l'exception justifiée et tracée : dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC), chaque tâche d'une vague parallèle mettant à jour individuellement son statut et les compteurs de son sous-groupe ; un plan existant à groupes plats est normalisé à l'ouverture du mode (partition par affinité, idempotente R6, journalisée worklog — extension du plan, jamais réécriture destructrice R2) ; correct-work(groupe) reste calé sur le groupe, pas sur le sous-groupe (cadence v3.22.0 préservée, non-régression R2) ; step-ok hérite intégralement de la structure (confirmation avant chaque groupe, pas avant chaque sous-groupe).

@@ -72,12 +72,15 @@
     },
     {
       "id": 7,
-      "name": "GP-mode-step — Enchaînement autonome des groupes (modes step/step-ok, spécifique v3.22.0-v3.22.1)",
+      "name": "GP-mode-step — Enchaînement autonome des groupes avec structure hiérarchique (modes step/step-ok, v3.22.0-v3.25.0)",
       "prompt": "gen-plan(step) : exécute le plan d'actions en cours en groupes séquentiels avec une vérification après chaque groupe",
-      "expected_output": "Les groupes du plan s'enchaînent en autonome ; correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction) et correct-work(projet) en fin de chaîne",
+      "expected_output": "Les groupes du plan s'enchaînent en autonome ; chaque groupe est divisé en sous-groupes de tâches (SG<k>.<j>) avec la liste de ses tâches (T<k>.<j>.<i>), leurs statuts d'avancement ([À FAIRE]/[EN COURS]/[TERMINÉ]/[BLOQUÉ]/[REPORTÉ]) et les compteurs n/m ; l'état du déroulement est affiché à l'ouverture du groupe, à chaque fin de tâche/sous-groupe et à la clôture ; correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction) et correct-work(projet) en fin de chaîne",
       "files": [],
       "expectations": [
-        "Le mode step est reconnu et les groupes s'exécutent en séquentiel",
+        "Le mode step est reconnu et les groupes s'enchaînent (l'exécution intra-groupe suit la parallélisation par défaut v3.24.0 — Graph Diamond sur preuve d'indépendance)",
+        "Chaque groupe est divisé en sous-groupes de tâches (SG<k>.<j>) et chaque tâche est listée (T<k>.<j>.<i>)",
+        "Les statuts d'avancement et compteurs n/m reflètent l'état réel du déroulement, mis à jour à chaque transition",
+        "Un plan à groupes plats est normalisé en sous-groupes de façon idempotente, sans réécriture destructrice (R2/R6)",
         "correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction)",
         "correct-work(projet) est invoqué en fin de chaîne"
       ]

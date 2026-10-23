@@ -5,7 +5,7 @@ description: >-
   输出结构化 major_recommendation.json。适用于高考专业推荐、选专业、就业方向分析。
 ---
 
-## §0 — Contexte Système (SHARED v1.7.11)
+## §0 — Contexte Système (SHARED v1.7.12)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

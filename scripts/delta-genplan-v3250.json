@@ -1,0 +1,40 @@
+{
+ "history": "Re-matérialisation de la structure hiérarchique du mode step (directive propriétaire 2026-10-23, session web-f90062ce — jamais publiée dans la lignée distante v3.23.2 → v3.24.0 [travail local non poussé, analyse B2], restaurée sur GO propriétaire SG7.4 Task B2) : §1.5 SKILL.md — définition gen-plan(step) étendue (chaque groupe divisé en sous-groupes de tâches avec liste des tâches et statut d'avancement §5.5) + step-ok hérite de la structure ; §5.5 SKILL.md (nouveau) — structure canonique G<k>→SG<k>.<j>→T<k>.<j>.<i>, statuts [À FAIRE]/[EN COURS]/[TERMINÉ]/[BLOQUÉ]/[REPORTÉ] dérivés de l'état vérifiable (KO-L003), compteurs n/m, cadence d'affichage optimisée, normalisation idempotente des plans plats (R2/R6), correct-work(groupe) inchangé au niveau groupe (non-régression v3.22.0), RÈGLES RÉCONCILIÉES avec la parallélisation par défaut v3.24.0 (structure = couche organisation/lecture, exécution = Graph Diamond automatique sur preuve d'indépendance, y compris inter-sous-groupes) ; references/etapes-detaillees.md — section « Mode step — protocole d'exécution hiérarchique » (protocole d'ouverture, déroulement par groupe aligné v3.24.0, formats canoniques d'affichage, correspondance E9-E15, règles de sécurité) ; evals.json — id 7 étendu (expectations structure hiérarchique + parallélisation, 9 evals inchangées par ailleurs) ; trigger_evals.json — cas step enrichi (formulation sous-groupes, 12 cas inchangés) ; §2.2 — commentaires synchronisés ; description frontmatter inchangée (non-régression triggers) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5)",
+ "subs": [
+  {
+   "old": "- `gen-plan(step) : <instructions>` — enchaînement autonome des groupes séquentiels du plan d'actions, correct-work(groupe) après chaque groupe (max 2 rounds de correction), correct-work(projet) en fin de chaîne (v3.22.0)",
+   "new": "- `gen-plan(step) : <instructions>` — enchaînement autonome des groupes séquentiels du plan d'actions, chaque groupe divisé en sous-groupes de tâches avec liste des tâches et statut d'avancement (§5.5 — v3.25.0), correct-work(groupe) après chaque groupe (max 2 rounds de correction), correct-work(projet) en fin de chaîne (v3.22.0 ; structure hiérarchique v3.25.0)",
+   "count": 1
+  },
+  {
+   "old": "- `gen-plan(step-ok) : <instructions>` — identique au mode step avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1)",
+   "new": "- `gen-plan(step-ok) : <instructions>` — identique au mode step (structure hiérarchique §5.5 héritée — v3.25.0) avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1)",
+   "count": 1
+  },
+  {
+   "old": "    └── trigger_evals.json            # Cas de déclenchement (Description Optimization — 12 cas, verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm)",
+   "new": "    └── trigger_evals.json            # Cas de déclenchement (Description Optimization — 12 cas, verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm, cas step enrichi v3.25.0 sous-groupes)",
+   "count": 1
+  },
+  {
+   "old": "7. **§5 — Conventions** : Nommage (SHARED §1.2), Python uniquement (N3), tagging",
+   "new": "7. **§5 — Conventions** : Nommage (SHARED §1.2), Python uniquement (N3), tagging, structure hiérarchique du mode step (§5.5 — v3.25.0)",
+   "count": 1
+  },
+  {
+   "old": " ; eval 8 GP-mode-step-ok ajouté en v3.22.1 (renommage step-confirm → step-ok — confirmation propriétaire avant chaque groupe).\",",
+   "new": " ; eval 8 GP-mode-step-ok ajouté en v3.22.1 (renommage step-confirm → step-ok — confirmation propriétaire avant chaque groupe) ; eval 7 étendu en v3.25.0 (structure hiérarchique groupes → sous-groupes → tâches + statuts d'avancement + compteurs n/m — re-matérialisation directive propriétaire session web-f90062ce, réconciliée avec la parallélisation par défaut v3.24.0).\",",
+   "count": 1
+  },
+  {
+   "old": "      \"name\": \"GP-mode-step — Enchaînement autonome des groupes (modes step, spécifique v3.22.0)\",",
+   "new": "      \"name\": \"GP-mode-step — Enchaînement autonome des groupes avec structure hiérarchique (modes step/step-ok, v3.22.0-v3.25.0)\",",
+   "count": 1
+  },
+  {
+   "old": "      \"expected_output\": \"Les groupes du plan s'enchaînent en autonome ; correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction) et correct-work(projet) en fin de chaîne\",\n      \"files\": [],\n      \"expectations\": [\n        \"Le mode step est reconnu et les groupes s'exécutent en séquentiel\",\n        \"correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction)\",\n        \"correct-work(projet) est invoqué en fin de chaîne\"\n      ]",
+   "new": "      \"expected_output\": \"Les groupes du plan s'enchaînent en autonome ; chaque groupe est divisé en sous-groupes de tâches (SG<k>.<j>) avec la liste de ses tâches (T<k>.<j>.<i>), leurs statuts d'avancement ([À FAIRE]/[EN COURS]/[TERMINÉ]/[BLOQUÉ]/[REPORTÉ]) et les compteurs n/m ; l'état du déroulement est affiché à l'ouverture du groupe, à chaque fin de tâche/sous-groupe et à la clôture ; correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction) et correct-work(projet) en fin de chaîne\",\n      \"files\": [],\n      \"expectations\": [\n        \"Le mode step est reconnu et les groupes s'enchaînent (l'exécution intra-groupe suit la parallélisation par défaut v3.24.0 — Graph Diamond sur preuve d'indépendance)\",\n        \"Chaque groupe est divisé en sous-groupes de tâches (SG<k>.<j>) et chaque tâche est listée (T<k>.<j>.<i>)\",\n        \"Les statuts d'avancement et compteurs n/m reflètent l'état réel du déroulement, mis à jour à chaque transition\",\n        \"Un plan à groupes plats est normalisé en sous-groupes de façon idempotente, sans réécriture destructrice (R2/R6)\",\n        \"correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction)\",\n        \"correct-work(projet) est invoqué en fin de chaîne\"\n      ]",
+   "count": 1
+  }
+ ]
+}
