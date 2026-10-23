@@ -513,3 +513,4 @@ Work Log:
 Stage Summary:
 - Directive EXÉCUTÉE intégralement : §1.9bis des 16 éléments révisées (uniformes, actionnables, 0 perte factuelle — garde mécanique), intégration amont propre (union documentée), cascade KO-L004 complète, tests verts, correct-work convergent, publication au GO propriétaire.
 - Restant propriétaire : rotation de la PAT (plan-task23 G3) ; plan actif Task 19 inchangé.
+- Publication (G-F) : push 97e09cc..2563bfd vers origin/main (publication-task24 → main, 3 commits : couches 18/20/22 + intégration amont + Task 24) ; vérification distante anonyme ls-remote = 2563bfd ; audit anti-persistance 0 occurrence (git config, arbre de travail, historique des commits via git log -S, .git/config) ; rotation PAT recommandée (plan-task23 G3).
