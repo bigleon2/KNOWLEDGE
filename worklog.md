@@ -177,3 +177,25 @@ Work Log:
 
 Stage Summary:
 - origin/main = cad21a9 : l'intégralité du travail certifié de la session web-f90062ce est PUBLIÉE (gen-plan v3.25.0, SHARED v1.7.12, PM-INSTALL v1.8.5, KB 39, réinstallation B4, H1/H2/H1-P2 avec rapports download/rapport-h1-audit-idempotence.md et download/rapport-h1p2-rejeu-sandbox-84.md). La présente entrée est journalisée puis poussée dans la foulée (tip final = présent commit). Restant propriétaire : rotation/révocation du jeton éphémère ; amendement M4 du CDC Serre CBD à réception du contenu Copilot.
+---
+Task ID: G-vue-upload-doctrine-eval
+Agent: Main [Super Z — session web-f90062ce, directive propriétaire gen-plan (mode NULL) : « résiduel vue-upload (affiner la doctrine et réviser l'eval DOCX) »]
+
+Task: Résorption du résiduel replay vue-upload::DOCX par les DEUX voies demandées — affiner la doctrine de description + réviser le cas DOCX du corpus trigger_evals — cascade KO-L004 complète + re-validation replay/arbitres.
+
+Work Log:
+- Hooks : É1-INSTALL rc=0 INSTALLE (39 KB, af303cc) ; E1-RES OK/PARALLÈLE ; sonde KO-L001 remote=local=af303cc.
+- É1-E7 plan via gen-plan v3.26.0 (download/plan-vue-upload-doctrine-eval.md — answer key D001-D010, 10 tâches §5.5) ; arbitre answer-key-checker 16/16 ALL PASS (E8).
+- Diagnostic (audit disque) : cache verdict false figé vs attendu true ; voie M déjà trigger_m=false (score 0.1) — l'accord mécanique existait, seul l'attendu divergeait ; description couvrait la douleur macro sans frontière micro.
+- Doctrine affinée : vue-upload v1.3.0 (bump MINOR — contrat de déclenchement) — clause frontière MACRO/MICRO (MACRO=accès dossiers/portail/share/push/doctor ; MICRO=remise d'UN fichier précis → canal direct conversation, hors périmètre).
+- Corpus révisé : cas DOCX → should_trigger false (contrôle négatif, cohérent voie L figée ET voie M) + cas macro sémantique sans mention du skill → true (8→9 cas) ; YAML/JSON validés mécaniquement.
+- Cascade KO-L004 : KB v1.3.0 (version+description+calibration 2026-10-24) ; integrity pin 1.3.0 ; ULTRA régénéré (dérive frontmatter — table 1.3.0) ; propagate §0 ×2 scripts ; projection hôte byte-identité ×2 (7 artefacts — script persisté projection-hote-vue-upload-v130.py) ; archives v2.3 rescellées ×2 dépôt+hôte (15 entrées round-trip — incident garde anti-perte sur flux d'évolution légitime traité par la procédure documentée H3/B0 : retrait archive périmée, contenu suivi git reconstructible).
+- RE-VALIDATION : replay V6.1 re-joué → 104/104 skills, 0 dérive, VERDICT PASS ; sources {voie-m 774, voie-l-cache 19, veto 14, désaccord 0} (était désaccord 1) ; cas DOCX ok=true (source voie-l-cache — accord final), cas macro ok=true (voie-m) ; cache R4 JAMAIS réécrit (l'attendu révisé rétablit l'accord — architecture lecture-figée intacte).
+- Arbitres verts ×2 : dépôt (verify-cross 100 %, integrity 82/82 ×2, interactions 51/1 WARN hérité B1/0 FAIL, doublons 0, verify-correct-work 16/16) + hôte (mêmes ×4).
+- Commit local a9d3e30 (9 fichiers, 142 insertions) — publication au GO (règle d'or n°4).
+- Alignement final : evals.json champ version v1.2.0 → v1.3.0 + note v1.3.0 doctrine (suite fonctionnelle inchangée ; marqueur code serveur v1.2.0 conservé honnête — logique stable v1.0.0) ; re-projection hôte byte-identité ×2, commit local de suivi, verify-cross 100 % + integrity 82/82 re-verts.
+
+Stage Summary:
+- RÉSIDUEL vue-upload RÉSORBÉ : replay 104/104 (était 103/104), désaccord juge-corpus 0 (était 1) — la doctrine distingue désormais explicitement le portail de dossiers (macro) de la remise d'un fichier précis (micro, canal direct).
+- Verdict : PASS — rapport download/rapport-vue-upload-doctrine-eval.md, plan 10/10 verified.
+- En suspens propriétaire : révocation PAT éphémère ; GO pour publier les 2 commits locaux (a9d3e30 + bc914db — recensement mécanique af303cc..HEAD = 2).
