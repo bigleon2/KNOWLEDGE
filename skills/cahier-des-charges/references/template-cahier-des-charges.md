@@ -1,9 +1,14 @@
 # Template canonique — Cahier des charges (12 sections)
 
-> Skill cahier-des-charges v1.0.0 — template exécutable. À copier dans
+> Compatibilité : skill `cahier-des-charges` v2.0.0 → v2.0.1 (reconnaissance discipline + tags — contenu de cette référence inchangé, R2).
+
+
+> Skill cahier-des-charges v2.0.0 — template exécutable. À copier dans
 > `download/cahier-des-charges-<projet>.md` puis à remplir section par section (M2).
 > Les blocs `💡` sont des règles de rédaction : à lire, à appliquer, puis à SUPPRIMER du livrable.
 > Les sections sans contenu réel sont marquées « à compléter en M1 » — jamais de texte creux (R3).
+> Les annexes D (fiche domaine) et T (stratégie de vérification) s'activent en cycle Engineering
+> Design complet (M5→M7) — en CDC seul (M1→M3), elles restent hors livrable.
 
 ---
 
@@ -11,6 +16,7 @@
 
 > **Version** : 1.0.0 · **Statut** : BROUILLON → VALIDÉ → ÉVOLUÉ
 > **Date** : AAAA-MM-JJ · **Rédigé par** : <agent/session> · **Validé par** : <propriétaire>
+> **Domaine** : <primaire (+ secondaires) — détecté en M5, résumé en Annexe D> · **Profil SE** : <mini|standard|complexe — calibré en M5>
 > **Sources** : <demande verbatim, discussion partagée, documents, décisions>
 
 ## 1. Contexte et problématique
@@ -112,6 +118,36 @@ livrable, le critère s'exécute et décide (correct-work mode CIBLE s'appuie su
 - **[S1]** <demande propriétaire — verbatim ou résumé fidèle, date>
 - **[S2]** <discussion de cadrage — lien/chemin, date, points retenus>
 - **[S3]** <documents, normes, décisions citées>
+
+## Annexe D — Fiche domaine (résumé) — cycle Engineering Design (M5)
+
+💡 *Résumé de `download/fiche-domaine-<projet>.md` — la fiche complète reste la source de vérité
+du volet domaine et prévaut en cas d'écart. Activée en cycle complet (M5→M7) ; hors livrable en
+CDC seul. Un domaine mixte déclare un PRIMAIRE (gouverne vocabulaire, normes, méthodes) et des
+secondaires (règle 9). Toute norme citée ici est tracée à une source datée [Sx] — une norme sans
+source est [HYP-xx] (règle 7).*
+
+| Rubrique | Contenu |
+|----------|---------|
+| Domaine primaire | <domaine détecté — gouverne le vocabulaire, les normes, les méthodes> |
+| Domaines secondaires | <domaines d'appoint — contraintes et glossaire additionnels> |
+| Signaux de détection | <≥ 2 signaux lexicaux cités des sources du projet> |
+| Normes citées | <normes du domaine — chacune tracée à sa source datée [Sx]> |
+| Méthodes du métier | <méthodes de conception et de vérification retenues> |
+| Doutes | [HYP-xx] <détection fragile, alternatives écartées> |
+
+## Annexe T — Stratégie de vérification — cycle Engineering Design (M7)
+
+💡 *Annonce contractuelle : quels lots de tests prouveront quoi. Les IDs TF-xx/TH-xx se figent
+en P4-P5 (scaffold `scripts/scaffold_tests.py`). Au profil mini, une table simple exigence → test
+suffit (règle 11). Chaque exigence est soit couverte par ≥ 1 test, soit déclarée NON VÉRIFIABLE
+avec sa raison (règle 12) — jamais une couverture alléguée (R3).*
+
+| Lot de tests | Prouve | Exigences visées | Nature |
+|--------------|--------|------------------|--------|
+| TF (fonctionnel) | <comportements exigés — assertions exécutables> | EF-…, ENF-… | assertions scriptées (`tests_fonctionnels/`) |
+| TH (matériel simulé) | <sous-systèmes matériels — patrons `references/simulation-materielle.md`> | ENF-…, EF-… | simulation déterministe, graine fixe (`tests_materiel/`) |
+| (non couvert) | — | EF/ENF-xx | NON VÉRIFIABLE : <raison assumée> |
 
 ---
 

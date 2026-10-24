@@ -20,11 +20,31 @@
     "should_trigger": true
   },
   {
+    "query": "Analyse ce projet (lien + fichiers joints) : détermine automatiquement le domaine technique, instruis-le par recherche web et calibre la rigueur d'ingénierie.",
+    "should_trigger": true
+  },
+  {
+    "query": "Conçois intégralement ce système mécatronique à partir de son cahier des charges : architecture, sous-systèmes, interfaces, allocation des exigences.",
+    "should_trigger": true
+  },
+  {
+    "query": "Génère les tests fonctionnels qui prouvent les exigences du CDC, avec matrice de couverture.",
+    "should_trigger": true
+  },
+  {
+    "query": "Simule le système matériel (modèle thermique + boucle PID + capteurs virtuels) pour vérifier les exigences de performance.",
+    "should_trigger": true
+  },
+  {
     "query": "Décompose la spécification exécutable de cette tâche en plan puis en tâches atomiques.",
     "should_trigger": false
   },
   {
     "query": "Génère le plan d'actions de la session et enchaîne les groupes en mode step.",
+    "should_trigger": false
+  },
+  {
+    "query": "Reproduis cette pièce en dessin technique isométrique avec cotation normalisée.",
     "should_trigger": false
   }
 ]
