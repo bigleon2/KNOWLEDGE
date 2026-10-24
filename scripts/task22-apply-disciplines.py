@@ -7,7 +7,7 @@
 # KB en-tête + bullet calibration). Échec si 0 match (garde anti-faux-succès,
 # leçon Task 17). Idempotence ×2 (re-run = 0 modification).
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.12)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.13)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

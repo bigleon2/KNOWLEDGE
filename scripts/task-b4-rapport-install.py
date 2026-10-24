@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.13)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # PROVENANCE: session web-f90062ce (2026-10-24) — tâche B4 — re-wipe du workspace
 # constaté post-B3 (corpus hôte effacé : @mon-ecosysteme, gen-plan, correct-work,
 # KNOWLEDGE.md, @historique absents ; scripts/ et download/ workspace intacts).
 # Ré-exécution de la directive « réinstalle ma dernière version de mon écosystème
 # avant de continuer » depuis le dépôt local da549af (état le plus récent certifié
-# B3 : gen-plan v3.25.0, KB 39, SHARED v1.7.12, PM-INSTALL v1.8.5).
+# B3 : gen-plan v3.25.0, KB 39, SHARED v1.7.13, PM-INSTALL v1.8.5).
 # Ce script consolide le rapport d'installation B4 (structure du rapport B2).
 """Rapport d'installation B4 — réinstallation post-re-wipe (source da549af)."""
 import json
@@ -35,7 +42,7 @@ rapport = {
     "pipeline": ("KNOWLEDGE-repo/scripts/eco_install_pipeline.py "
                  "(PM-INSTALL v1.8.5 §3.2-a — installation directe, exécutant canonique)"),
     "resultats": {
-        "corpus": "9 fichiers .md (@mon-ecosysteme — vivants v3.25.0/SHARED v1.7.12/PM-INSTALL v1.8.5)",
+        "corpus": "9 fichiers .md (@mon-ecosysteme — vivants v3.25.0/SHARED v1.7.13/PM-INSTALL v1.8.5)",
         "skills_kb": "39 entrées installées (gen-plan 15, correct-work, clone-chat, refactor-guard 16, "
                      "alias-eco 5, cahier-des-charges 4, agent-prompt-engineering 4, disciplines…)",
         "historique": "48 fichiers (@historique)",

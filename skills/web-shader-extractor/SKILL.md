@@ -6,7 +6,7 @@ description: |
   复刻某网站的视觉效果、"把这个网站的背景效果扒下来" 等。
 ---
 
-## §0 — Contexte Système (SHARED v1.7.12)
+## §0 — Contexte Système (SHARED v1.7.13)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

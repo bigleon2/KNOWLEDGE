@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.12)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.13)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -106,6 +106,13 @@ RETRAITS_SANCTIONNES = {
     # skills/@historique/prompts-maitres/clone-chat/ — byte-identité vérifiée
     # ci-dessous (garde anti-perte renforcée).
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.0.md",
+    # cascade gen-plan v3.26.0 (session web-f90062ce, KO-L004 — leçons vérité
+    # source PM INSTALL : dégradation gracieuse philosophie #4 + règle d'or n°5
+    # anti-aspirant) — re-scellement post-cascade : PM v3.25.0 supplanté DÉPLACÉ
+    # git mv vers skills/@historique/prompts-maitres/gen-plan/ — byte-identité
+    # vérifiée ci-dessous (garde anti-perte renforcée ; SHA-256 cc6cdcdf… scellé
+    # à l'index §5 du README @historique).
+    "PROMPT-MAITRE-GEN-PLAN-v3.25.0.md",
 }
 
 # Task 16 — garde anti-perte renforcée pour les retraits DÉPLACÉS : chaque PM

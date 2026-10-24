@@ -3,7 +3,7 @@ name: cheat-sheet
 description: 将 PDF/Word/Markdown 学习资料转化为精炼的知识浓缩卡文档。支持三种风格（知识点速查卡/思维导图式/Q&A式），输出双栏小字 PDF。当用户说"生成知识浓缩卡"、"生成 Cheatsheet"、"帮我做个速查表"、"把这个资料整理成一页纸"、"做个知识卡片"时触发。**不处理**：基于材料出题（→ quiz-mastery）、长期学习项目（→ study-buddy）。
 ---
 
-## §0 — Contexte Système (SHARED v1.7.12)
+## §0 — Contexte Système (SHARED v1.7.13)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

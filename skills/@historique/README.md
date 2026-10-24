@@ -21,14 +21,14 @@ Structure dirigée par le propriétaire (Task 17-B) : **un historique par skill*
 | `photos/` | 4 PMs @photos historiques (iphone17 v2.0, iphone18 v1.0, iphone19 v0.9.0/v0.10.0) — extraits git byte-identiques (e62f354, 29e2de1), scellés SHA-256 dans `photos/INDEX.md` (créé Task 48, 2026-10-21) |
 | `@Alias/aliases.json` | **Registre VIVANT** du système d'alias `$<ALIAS>` (skill alias-eco v1.0.0, Task 18 2026-10-23) — phrases récurrentes triées alphabétiquement, dédupliquées ; ÉTAT VIVANT non scellé (mis à jour à chaque scan/analyse correct-work PROJET) — les règles de conservation R2/R4 du présent dossier ne s'y appliquent PAS (il n'est pas une archive scellée) |
 | `historique-autres-elements.md` | Historique du socle sans famille à PM : SHARED (v1.4.0 → v1.7.2), SYNC-CONTEXT (v1.4.0 → v1.4.5), README (v2.1.0 → v2.1.3), ULTRA (généré), PM-INSTALL (v1.1.0 → v1.6.2), registre KB (instantané 28 skills) |
-| `prompts-maitres/gen-plan/` | 18 PMs GEN-PLAN historiques (v3.6.1 → v3.22.1), déplacés du corpus `git mv` — byte-identité prouvée SHA-256 contre les blobs du commit de référence (b36f177, rapport Task 16) |
+| `prompts-maitres/gen-plan/` | 23 PMs GEN-PLAN historiques (v3.6.1 → v3.25.0) — comptage mécanique recalibré cascade v3.26.0 (label stale « 18 » hérité documenté worklog), déplacés du corpus `git mv` — byte-identité prouvée SHA-256 contre les blobs du commit de référence (b36f177, rapport Task 16) |
 | `prompts-maitres/correct-work/` | 4 PMs CORRECT-WORK historiques (v2.4.0 → v2.6.0), mêmes garanties |
 
 Vue d'ensemble des 3 familles (héritée de l'ex-distillation) :
 
 | Famille | Skill installé | Versions documentées | Fichiers archivés ici | Version vivante (corpus) |
 |---------|----------------|---------------------|----------------------|--------------------------|
-| GEN-PLAN | gen-plan — planification de tâches (4 modes, 15 étapes E1-E15) | 28 (v2.0.0 → v3.25.0) | 22 (v3.6.1 → v3.24.0) | v3.25.0 |
+| GEN-PLAN | gen-plan — planification de tâches (4 modes, 15 étapes E1-E15) | 29 (v2.0.0 → v3.26.0) | 23 (v3.6.1 → v3.25.0) | v3.26.0 |
 | CORRECT-WORK | correct-work — vérification/correction (5 étapes, 4 modes) | 11 (v1.0.0 → v2.8.0) | 5 (v2.4.0 → v2.7.0) | v2.8.0 |
 | CLONE-CHAT | clone-chat — archivage de session (7+1 étapes, 8 checks) | 6 (v1.0.0 → v2.0.2) | 2 (v2.0.0, v2.0.1) | v2.0.2 |
 | REFACTOR-GUARD | refactor-guard — garde-fous de refactoring (H01-H15, échelle rollout) | 4 (v1.7.0 → v1.8.1) | 3 (v1.7.0, v1.7.1, v1.8.0) | v1.8.1 |
@@ -53,12 +53,13 @@ Versions documentées SANS fichier archivé : GEN-PLAN v2.0.0 → v3.6.0 (antér
 5. La présente table §2 est rafraîchie et l'index §5 mis à jour ;
 6. Recalibrage croisé KO-L004 standard (CORPUS_ATTENDU, manifeste integrity, archive, orchestrateur ULTRA) et sweep arbitres avant tout commit.
 
-## 5. Index des fichiers sources archivés (30 PMs — sceau SHA-256)
+## 5. Index des fichiers sources archivés (31 PMs — sceau SHA-256)
 
 Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git mv` (Task 16, 2026-10-11) — byte-identité prouvée contre les blobs du commit de référence `b36f177` (script `/home/z/my-project/scripts/task16-move-pms.py`, all-or-nothing, garde anti-homonyme R4). Table complète au rapport `download/rapport-task16-corpus-pms-historique-reinstallation.md`. Complément cascade Task 24 (2026-10-23, session web-fdf5963c — directive « révisez les §1.9bis des 16 éléments ») : `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md` archivé par `git mv` byte-identité (R4 — SHA-256 scellé ci-dessous ; fichier suivi au dépôt depuis le commit des couches 18/20/22). Complément cascade Task 22 (2026-10-23, session web-fdf5963c — directive « disciplines/techniques », veille 2025-2026) : `PROMPT-MAITRE-REFACTOR-GUARD-v1.7.1.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité, adaptation règle d'or n°1 journalisée ; SHA-256 scellé ci-dessous ; provenance : le fichier corpus v1.7.1 était la source de l'archive scellée Task 20 — même octets). Complément cascade gen-plan v3.22.1 (2026-10-11, session web-b4d7dd19) : `PROMPT-MAITRE-GEN-PLAN-v3.22.0.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité ; adaptation règle d'or n°1 journalisée, SHA-256 scellé ci-dessous).
 
 | Fichier archivé | SHA-256 |
 |-----------------|---------|
+| gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.25.0.md | cc6cdcdf8cb89bd6da03552dc7e57d0b8c8d1681ec957ce8fa315823c1e95197 |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.24.0.md | 31ed1a5250fbadcdf91ee4fedd911439c1de4282d7a1104e850a1e57004f241a |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.23.1.md | 02002b98586fbe38b45a760748b94a226846da527264fa3331c9dd31984ba59c |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.7.0.md | dcecb4d62228cef38106e8770aeabf6b8ff5e33372f6992f1529575790196e01 |

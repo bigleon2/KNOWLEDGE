@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.25.0
+version: 3.26.0
 category: ecosystem
 language: fr
 tags:
@@ -41,7 +41,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.12)
+## §0 — Contexte Système (SHARED v1.7.13)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -110,7 +110,7 @@ read_when:
 1. **Read before planning** — Toujours lire le projet avant de planifier.
 2. **Performance-driven sélection** — Le choix skill/agent est dicté par le gain de performance.
 3. **Skills can launch specialized agents** — Modèle à deux couches : Skill → Agent Spécialisé.
-4. **Parallélisation par défaut sur preuve d'indépendance** (v3.24.0 — inversion du défaut série hérité, directive propriétaire 2026-10-24) — Les sous-tâches PROUVÉES indépendantes (aucune écriture partagée, aucune dépendance d'ordre) s'exécutent en PARALLÈLE PAR DÉFAUT : le Graph Diamond s'ouvre automatiquement dès que la preuve d'indépendance existe (E9-E14). L'exécution série est l'exception justifiée et tracée : dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC. Toute vague parallèle est journalisée au worklog (Task IDs `N-a`/`N-b`) et re-vérifiée (re-verdict resource-monitor entre les vagues, arbitre sur l'ensemble fusionné, correct-work par phase).
+4. **Parallélisation par défaut sur preuve d'indépendance** (v3.24.0 — inversion du défaut série hérité, directive propriétaire 2026-10-24) — Les sous-tâches PROUVÉES indépendantes (aucune écriture partagée, aucune dépendance d'ordre) s'exécutent en PARALLÈLE PAR DÉFAUT : le Graph Diamond s'ouvre automatiquement dès que la preuve d'indépendance existe (E9-E14). L'exécution série est l'exception justifiée et tracée : dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC. Toute vague parallèle est journalisée au worklog (Task IDs `N-a`/`N-b`) et re-vérifiée (re-verdict resource-monitor entre les vagues, arbitre sur l'ensemble fusionné, correct-work par phase). **Dégradation gracieuse des vagues contre un service externe** (leçons Task 29/30, session web-fdf5963c — vérité source PM INSTALL, v3.26.0) : rate limit (429) détecté → bascule sérielle + retry/backoff + cache déterministe (verdicts figés une fois, consultés en lecture seule — jamais re-décidés) ; le code retour seul ne fait jamais foi (purge du fichier de sortie périmé avant appel — un CLI peut sortir rc=0 en erreur) ; tout jugement sémantique délégué pose la question de ROUTAGE du référentiel (jamais une appartenance de domaine) avec la référence complète, jamais tronquée.
 5. **Visible progress** — L'utilisateur sait toujours où on en est.
 6. **CoT + Chaining avec auto-correction** — Raisonnement structuré avant chaque action.
 7. **Lecture bloc par bloc** — Fichiers > 500 lignes : lire par blocs successifs (limit/offset), produire une synthèse intermédiaire entre chaque bloc. Ne jamais lire un fichier > 500 lignes d'un seul coup. Voir `references/profils-ressource.md` (VIEUX PC règle 4 : troncature 500 lignes).
@@ -134,6 +134,8 @@ read_when:
 **Déclencheurs de mode `gen-plan(<mode>) : <instructions>` (v3.25.0 — structure hiérarchique du mode step : directive propriétaire session web-f90062ce, re-matérialisée sur base v3.24.0 ; v3.22.1 — renommage directive propriétaire session web-b4d7dd19 ; chantier initial discussion parente 5ef6176f)** : `gen-plan(step) : <instructions>` — enchaînement autonome des groupes séquentiels du plan d'actions, chaque groupe divisé en sous-groupes de tâches avec liste des tâches et statut d'avancement (§5.5 — v3.25.0), `correct-work(groupe)` après chaque groupe (max 2 rounds de correction par groupe), `correct-work(projet)` en fin de chaîne ; `gen-plan(step-ok) : <instructions>` — identique au mode step (structure hiérarchique §5.5 héritée) avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1) ; alias `step-confirm` (v3.22.0) et `step-confim` normalisés en `step-ok` (R4) ; **clause mode NULL** — toute invocation sans `<mode>` explicite (`gen-plan : <instructions>`, ex. « gen-plan : continue ») conserve le comportement antérieur à l'introduction des modes step/step-ok (v3.21.0) : intégration E13 ou exécution classique du plan, sans portes de confirmation (directive propriétaire 2026-10-11) ; tout autre mode → clarification demandée au propriétaire, jamais d'invention de mode (R2). Le déclencheur coexiste avec le déclencheur verbatim « intègre dans le plan d'actions » (règle d'or n°3) — une demande qui porte un mode explicite route vers le mode, sans re-déclencher l'intégration E13 ; une demande sans mode explicite route vers le comportement NULL (jamais vers step/step-ok).
 
 **Règle d'or n°4 — Récupération du dépôt par clone** (directive utilisateur 2026-10-09, session web-b93f42fa) : toute opération devant lire ou utiliser un élément du dépôt (fichier, dossier, corpus, script, historique) passe par un **clone git local** (forme recommandée : shallow `--depth 1 --filter=blob:none`), JAMAIS par une lecture distante du contenu (API contents, raw.githubusercontent.com, rendu web) ; le clone sert de source de lecture ET de travail ; authentification par jeton éphémère uniquement (askpass/credential ponctuel — jamais persisté dans `.git/config` ni sur disque, anti-persistance Task 8/14) ; exceptions : sondes API ponctuelles (KO-L001 — une sonde par message utilisateur), écritures authentifiées sans persistance, clone matériellement impossible → adaptation journalisée (règle d'or n°1) ; chaque clonage est tracé au worklog (source, SHA de référence, destination, forme) ; publication uniquement sur validation explicite du propriétaire. La règle change le MOYEN d'accès (clone d'abord), jamais l'objectif des tâches.
+
+**Règle d'or n°5 — Journal, statuts et chiffres dérivés de l'état vérifiable — anti-aspirant** (leçons Task 30, session web-fdf5963c — discussion PM INSTALL, source de vérité ; v3.26.0) : un plan ou un journal ne pré-écrit JAMAIS ses résultats — tout statut, compteur ou chiffre dérive d'un artefact vérifiable existant sur disque (KO-L003 étendu à l'écriture) ; en reprise post-coupure, tout journal pré-existant est audité contre ses artefacts annoncés (existence réelle sur disque) AVANT de lui faire confiance ; les chiffres documentés viennent d'un recensement mécanique, jamais d'un libellé de mémoire (précédent off-by-one « 14→13 vetos », Task 30) ; avant de qualifier des données d'« aspirantes », vérifier le PÉRIMÈTRE — le dépôt et le miroir hôte sont deux copies distinctes (inodes différents), convention : dépôt = source R4, sync miroir dans cette direction uniquement ; contamination aspirante avérée → réécriture des livrables vivants + corrections apposées R2 (append-only) sur @historique, jamais de masquage.
 
 ### §1.6 Disciplines d'ingénierie de prompts (PM v3.12.0 §1.9)
 
@@ -274,7 +276,7 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 skills/gen-plan/
 ├── SKILL.md                          # Skill opérationnel compact (~300 lignes)
 ├── references/
-│   ├── etapes-detaillees.md          # Détail des 15 étapes
+│   ├── etapes-detaillees.md          # Détail des 15 étapes + protocole mode step (v3.25.0) + leçons vagues parallèles (v3.26.0)
 │   ├── grille-token.md               # Grille de calibration #token
 │   ├── classification-types.md       # Routage Type 1-4
 │   ├── profils-ressource.md          # NORMAL / ECO / VIEUX PC
@@ -286,7 +288,7 @@ skills/gen-plan/
 │   ├── graph-diamond-pattern.md      # Parallélisation par défaut sur preuve d'indépendance (N20, inversée v3.24.0)
 │   └── observation-patterns.md       # Task Observer — cycle A-H (N20)
 └── evals/
-    ├── evals.json                    # Cas de test d'évaluation (9 evals — id 7 GP-mode-step v3.22.0 étendu v3.25.0 structure hiérarchique, id 8 GP-mode-step-ok v3.22.1, id 9 GP-diamond-defaut v3.24.0)
+    ├── evals.json                    # Cas de test d'évaluation (9 evals — id 7 GP-mode-step v3.22.0 étendu v3.25.0/v3.26.0, id 8 GP-mode-step-ok v3.22.1, id 9 GP-diamond-defaut v3.24.0 étendu v3.26.0 dégradation gracieuse)
     └── trigger_evals.json            # Description Optimization (12 cas — verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm, cas step enrichi v3.25.0 sous-groupes)
 ```
 

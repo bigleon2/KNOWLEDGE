@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.12)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.13)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -70,7 +70,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.25.0",  # KO-L004 (SG7.4 Task B2, session web-f90062ce, 2026-10-24) : re-matérialisation structure hiérarchique du mode step sur base v3.24.0 (parallélisation conservée — couches orthogonales) ; précédent Task 26 : parallélisation par défaut
+    "gen-plan": "3.26.0",  # KO-L004 (session web-f90062ce, 2026-10-24) : leçons vérité source PM INSTALL (dégradation gracieuse philosophie #4 + règle d'or n°5 anti-aspirant) ; précédent SG7.4 Task B2 : re-matérialisation structure hiérarchique ; précédent Task 26 : parallélisation par défaut
     "knowledge-observer": "1.0.0",
     "correct-work": "2.8.0",
     "clone-chat": "2.0.2",

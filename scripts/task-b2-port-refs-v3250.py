@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.13)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # PROVENANCE: session web-f90062ce (2026-10-24) — SG7.4 Task B2 : port des références
 # vives gen-plan v3.24.0 → v3.25.0 (5 skills — arbitre interactions, boucle E12-E13).
 # Idempotent : rejeu = 0 substitution (les motifs v3.25.0 ne matchent plus v3.24.0).

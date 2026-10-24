@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.13)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+"""
+
 # PROVENANCE: session web-f90062ce (2026-10-24) — tâche H1, consolidation du
 # rapport final qualifié : verdicts de revue manuelle (norme définie AVANT
 # qualification — KO-L003) appliqués au scan statique task-h1-audit-idempotence.

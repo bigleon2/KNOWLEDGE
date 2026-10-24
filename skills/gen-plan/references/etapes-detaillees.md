@@ -372,4 +372,14 @@ Ouverture du mode = E9 (lancement — vagues parallèles v3.24.0 pour l'exécuti
 - Un statut `[TERMINÉ]` exige une preuve vérifiable (livrable présent, verdict d'arbitre, entrée worklog) — sinon divergence KO-L003.
 - Un statut n'est JAMAIS rétrogradé silencieusement : toute re-partition de sous-groupes (E13) est journalisée avec sa justification.
 - La normalisation d'ouverture ne modifie jamais les livrables ni les verdicts déjà rendus (R2) ; elle ne touche que la couche d'organisation/affichage du plan.
+
+### Leçons vagues parallèles — vérité source PM INSTALL (v3.26.0, Task 29/30, session web-fdf5963c)
+
+Dogfooding mesuré pendant la résorption A/B/C (19 skills en dérive, 43-104 skills selon périmètre) — ces leçons complètent la philosophie #4 et la règle d'or n°5 (SKILL.md §1.4/§1.5) pour l'exécution effective des vagues :
+
+- **Dégradation gracieuse** : une vague parallèle contre un service externe (API LLM, réseau) heurte des rate limits (429 mesurés : 17/19 échecs en burst ThreadPoolExecutor). Protocole : bascule sérielle + délai configurable entre appels + retry/backoff, puis reprise cache-first (seuls les manquants sont appelés). Le parallélisme reste le défaut (preuve d'indépendance v3.24.0) — la bascule sérielle est une adaptation tracée (règle d'or n°1), jamais un renoncement au défaut.
+- **Cache déterministe** : les verdicts coûteux ou non déterministes (jugement sémantique) sont figés UNE FOIS en cache (JSON traçable, re-arbitrages documentés dans l'entrée elle-même), puis consultés en lecture seule par les exécutions suivantes — neutralisation de la non-détermination, idempotence des rejeux.
+- **Code retour mensonger** : un CLI peut sortir rc=0 même en erreur (429 observé avec -o périmé) — purge du fichier de sortie AVANT l'appel et vérification du CONTENU (parse du format réel, ex. choices[0].message.content), jamais confiance au seul code retour.
+- **Question de routage** : la question posée au juge sémantique doit être la question de ROUTAGE du référentiel (conforme aux doctrines des SKILL.md — périmètres d'époque, exclusivités), pas une question d'appartenance de domaine ; 4 re-arbitrages mesurés (cas poster/scan). Le référentiel donné au juge est COMPLET (jamais tronqué — une troncature à 600 caractères coupait la doctrine placée en fin de description et inversait 3 verdicts).
+- **Anti-aspirant en exécution** : les chiffres de clôture (verdicts, vetos, cas) viennent d'un recensement mécanique du cache/artefacts — jamais d'un libellé de mémoire (précédent off-by-one « 14→13 vetos ») ; un journal pré-écrit qui annonce des artefacts inexistants est une contamination aspirante (règle d'or n°5).
 ```

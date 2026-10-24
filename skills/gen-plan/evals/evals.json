@@ -72,7 +72,7 @@
     },
     {
       "id": 7,
-      "name": "GP-mode-step — Enchaînement autonome des groupes avec structure hiérarchique (modes step/step-ok, v3.22.0-v3.25.0)",
+      "name": "GP-mode-step — Enchaînement autonome des groupes avec structure hiérarchique (modes step/step-ok, v3.22.0-v3.26.0)",
       "prompt": "gen-plan(step) : exécute le plan d'actions en cours en groupes séquentiels avec une vérification après chaque groupe",
       "expected_output": "Les groupes du plan s'enchaînent en autonome ; chaque groupe est divisé en sous-groupes de tâches (SG<k>.<j>) avec la liste de ses tâches (T<k>.<j>.<i>), leurs statuts d'avancement ([À FAIRE]/[EN COURS]/[TERMINÉ]/[BLOQUÉ]/[REPORTÉ]) et les compteurs n/m ; l'état du déroulement est affiché à l'ouverture du groupe, à chaque fin de tâche/sous-groupe et à la clôture ; correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction) et correct-work(projet) en fin de chaîne",
       "files": [],
@@ -82,7 +82,8 @@
         "Les statuts d'avancement et compteurs n/m reflètent l'état réel du déroulement, mis à jour à chaque transition",
         "Un plan à groupes plats est normalisé en sous-groupes de façon idempotente, sans réécriture destructrice (R2/R6)",
         "correct-work(groupe) est invoqué après chaque groupe (max 2 rounds de correction)",
-        "correct-work(projet) est invoqué en fin de chaîne"
+        "correct-work(projet) est invoqué en fin de chaîne",
+        "Les statuts et chiffres affichés dérivent de l'état vérifiable (artefacts existants, recensement mécanique) — jamais pré-écrits avant leur preuve (règle d'or n°5 anti-aspirant, v3.26.0)"
       ]
     },
     {
@@ -106,7 +107,8 @@
       "expectations": [
         "Les sous-tâches prouvées indépendantes (G-A, G-B) sont lancées en parallèle en un seul message multi-outils",
         "G-C (dépendante des sorties) reste séquentiel après la synthèse",
-        "La vague parallèle est tracée au worklog (Task IDs) et l'ensemble fusionné re-vérifié (arbitre + correct-work)"
+        "La vague parallèle est tracée au worklog (Task IDs) et l'ensemble fusionné re-vérifié (arbitre + correct-work)",
+        "Une vague contre un service externe dégrade gracieusement : 429 → bascule sérielle + retry/backoff + cache déterministe, code retour seul jamais suffisant, jugement sémantique = question de routage avec référentiel complet (v3.26.0)"
       ]
     }
   ]

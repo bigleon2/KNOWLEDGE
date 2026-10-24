@@ -1,0 +1,35 @@
+{
+  "history": "Leçons de la vérité source PM INSTALL (session web-fdf5963c — Tasks 29/30, dogfooding résorption A/B/C 19 skills, authentifiée SHA PM 31ed1a52) + règle d'or n°5 (directive propriétaire 2026-10-24, session web-f90062ce) : philosophie #4 — clause dégradation gracieuse des vagues contre service externe (429 → bascule sérielle + retry/backoff + cache déterministe figé une fois, code retour seul jamais suffisant, jugement sémantique = question de ROUTAGE du référentiel jamais tronqué) ; §1.5 — règle d'or n°5 anti-aspirant (journal/statuts/chiffres dérivés de l'état vérifiable — KO-L003 étendu à l'écriture, audit des journaux pré-existants en reprise post-coupure, recensement mécanique vs libellé de mémoire [précédent off-by-one « 14→13 vetos »], périmètre dépôt/miroir avant qualification — dépôt = source R4, corrections R2 append-only sur @historique) ; references/etapes-detaillees.md — section « Leçons vagues parallèles » ; evals.json — id 7 étendu (anti-aspirant) + id 9 étendu côté dépôt (dégradation gracieuse) ; écarts hérités consignés non masqués (KO-L003) : JSON evals §5.4 du PM = 8 evals ids 1-8 — l'eval id 9 GP-diamond-defaut (v3.24.0, complétion agent) n'y figure pas, evals.json du dépôt = source de vérité ; §9.1 snapshot etapes-detaillees.md pré-v3.22.0 (hérité — mode step absent) ; description frontmatter inchangée (non-régression triggers) ; aucun changement de contrat d'intégration : planchers de dépendances inchangés (SHARED §3.2 règle 5)",
+  "subs": [
+    {
+      "old": "4. **Parallélisation par défaut sur preuve d'indépendance** (v3.24.0 — inversion du défaut série hérité, directive propriétaire 2026-10-24) — Les sous-tâches PROUVÉES indépendantes (aucune écriture partagée, aucune dépendance d'ordre) s'exécutent en PARALLÈLE PAR DÉFAUT : le Graph Diamond s'ouvre automatiquement dès que la preuve d'indépendance existe (E9-E14). L'exécution série est l'exception justifiée et tracée : dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC. Toute vague parallèle est journalisée au worklog (Task IDs) et re-vérifiée (re-verdict resource-monitor entre les vagues, arbitre sur l'ensemble fusionné, correct-work par phase).",
+      "new": "4. **Parallélisation par défaut sur preuve d'indépendance** (v3.24.0 — inversion du défaut série hérité, directive propriétaire 2026-10-24) — Les sous-tâches PROUVÉES indépendantes (aucune écriture partagée, aucune dépendance d'ordre) s'exécutent en PARALLÈLE PAR DÉFAUT : le Graph Diamond s'ouvre automatiquement dès que la preuve d'indépendance existe (E9-E14). L'exécution série est l'exception justifiée et tracée : dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC. Toute vague parallèle est journalisée au worklog (Task IDs) et re-vérifiée (re-verdict resource-monitor entre les vagues, arbitre sur l'ensemble fusionné, correct-work par phase). **Dégradation gracieuse des vagues contre un service externe** (leçons Task 29/30, session web-fdf5963c — vérité source PM INSTALL, v3.26.0) : rate limit (429) détecté → bascule sérielle + retry/backoff + cache déterministe (verdicts figés une fois, consultés en lecture seule — jamais re-décidés) ; le code retour seul ne fait jamais foi (purge du fichier de sortie périmé avant appel — un CLI peut sortir rc=0 en erreur) ; tout jugement sémantique délégué pose la question de ROUTAGE du référentiel (jamais une appartenance de domaine) avec la référence complète, jamais tronquée.",
+      "count": 1
+    },
+    {
+      "old": "5. **Continuité** — la règle change le MOYEN d'accès (clone d'abord), jamais l'objectif des tâches ; première application : session web-b93f42fa (rate-limiting API 403 contourné par clone shallow au commit épinglé).",
+      "new": "5. **Continuité** — la règle change le MOYEN d'accès (clone d'abord), jamais l'objectif des tâches ; première application : session web-b93f42fa (rate-limiting API 403 contourné par clone shallow au commit épinglé).\n\n**Règle d'or n°5 — Journal, statuts et chiffres dérivés de l'état vérifiable — anti-aspirant** (leçons Task 30, session web-fdf5963c — discussion PM INSTALL, v3.26.0) :\n\nOpérationnalisation dans gen-plan :\n\n1. **Anti-aspirant** — aucun statut, compteur ou chiffre pré-écrit dans un plan ou un journal : tout statut dérive d'un artefact vérifiable existant sur disque (KO-L003 étendu à l'écriture) ; un journal qui annonce des artefacts inexistants est une contamination aspirante.\n2. **Reprise post-coupure** — tout journal pré-existant est audité contre ses artefacts annoncés (existence réelle sur disque) AVANT de lui faire confiance.\n3. **Chiffres mécaniques** — les chiffres documentés viennent d'un recensement mécanique, jamais d'un libellé de mémoire (précédent off-by-one « 14→13 vetos », Task 30).\n4. **Périmètre d'abord** — avant de qualifier des données d'aspirantes, vérifier le périmètre : dépôt et miroir hôte = deux copies distinctes (inodes différents) ; convention : dépôt = source R4, sync miroir dans cette direction uniquement.\n5. **Correction honnête** — contamination avérée → réécriture des livrables vivants + corrections apposées R2 (append-only) sur @historique, jamais de masquage.",
+      "count": 1
+    },
+    {
+      "old": "\"name\": \"GP-mode-step — Enchaînement autonome des groupes avec structure hiérarchique (modes step/step-ok, v3.22.0-v3.25.0)\",",
+      "new": "\"name\": \"GP-mode-step — Enchaînement autonome des groupes avec structure hiérarchique (modes step/step-ok, v3.22.0-v3.26.0)\",",
+      "count": 1
+    },
+    {
+      "old": "        \"correct-work(projet) est invoqué en fin de chaîne\"\n      ]",
+      "new": "        \"correct-work(projet) est invoqué en fin de chaîne\",\n        \"Les statuts et chiffres affichés dérivent de l'état vérifiable (artefacts existants, recensement mécanique) — jamais pré-écrits avant leur preuve (règle d'or n°5 anti-aspirant, v3.26.0)\"\n      ]",
+      "count": 1
+    },
+    {
+      "old": "│   ├── etapes-detaillees.md          # Détail des 15 étapes",
+      "new": "│   ├── etapes-detaillees.md          # Détail des 15 étapes + protocole mode step (v3.25.0) + leçons vagues parallèles (v3.26.0)",
+      "count": 1
+    },
+    {
+      "old": "7. **§5 — Conventions** : Nommage (SHARED §1.2), Python uniquement (N3), tagging, structure hiérarchique du mode step (§5.5 — v3.25.0)",
+      "new": "7. **§5 — Conventions** : Nommage (SHARED §1.2), Python uniquement (N3), tagging, règles d'or n°1-5 (n°5 anti-aspirant — v3.26.0), structure hiérarchique du mode step (§5.5 — v3.25.0)",
+      "count": 1
+    }
+  ]
+}

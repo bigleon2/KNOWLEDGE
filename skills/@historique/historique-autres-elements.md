@@ -24,6 +24,7 @@
 | v1.7.0 | 2026-10-11 | §7 matérialisation des définitions normatives des 3 disciplines n°54 dans la table de définitions (spec-driven development, memory engineering, fleet engineering — ancrage état de l'art dans `references/fondements-academiques.md` de chaque skill ; registre d'assignation inchangé — R4) — session web-b4d7dd19, objectif principal discussion Qwen |
 | v1.7.1 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.0 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver — adaptation locale journalisée : D010 + précédents v3.21.0) |
 | v1.7.2 | 2026-10-11 | §6.1 référence gen-plan portée à v3.22.1 (recalibrage mécanique KO-L004 v1.1.0 — `generer-pm-skill.py`, bump PATCH conformité semver ; cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
+| v1.7.13 | 2026-10-24 | §6.1 — référence PM GEN-PLAN portée à v3.26.0 (génération mécanique `scripts/generer-pm-skill.py` — session web-f90062ce — leçons vérité source PM INSTALL : dégradation gracieuse philosophie #4 + règle d'or n°5 anti-aspirant ; delta verrouillé 6 substitutions, 1495 L)
 | v1.7.12 | 2026-10-24 | §6.1 — référence PM GEN-PLAN portée à v3.25.0 (génération mécanique `scripts/generer-pm-skill.py` — SG7.4 Task B2, session web-f90062ce — re-matérialisation structure hiérarchique du mode step) |
 | v1.7.11 | 2026-10-24 | §6.1 — référence PM GEN-PLAN portée à v3.24.0 (génération mécanique `scripts/generer-pm-skill.py` — substitutions verrouillées, recalibrage inclus — Task 26, session web-fdf5963c ; note : lignes v1.7.9/v1.7.10 absentes de cette table — écart hérité documenté, la table §7 du PM vivant fait foi) |
 | v1.7.8 | 2026-10-23 | §6.1 — référence(s) PM portée(s) aux 4 versions générées mécaniquement (gen-plan v3.23.2, correct-work v2.8.0, clone-chat v2.0.2, refactor-guard v1.7.1) + référence PM-INSTALL portée à v1.8.0 (mécanisme dual d'installation + périmètre alias-eco — Task 18, session web-fdf5963c) ; complétion de la ligne de révision |
@@ -43,6 +44,7 @@
 | v1.4.4 | 2026-10-11 | Recalibrage état gen-plan v3.22.0 — v3.21.0 archivé (16 PMs GEN-PLAN) ; décision propagation N2 tracée : bloc §0 byte-identique v1.6.8→v1.7.1, aucune re-propagation requise (cascade n°54, session web-b4d7dd19) |
 | v1.4.5 | 2026-10-11 | Recalibrage état gen-plan v3.22.1 — v3.22.0 archivé (17 PMs GEN-PLAN) ; propagation marqueur §0 v1.7.1→v1.7.2 recalibrée et exécutée (cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
 | v1.5.0 | 2026-10-23 | Cascade Task 18 (session web-fdf5963c, KO-L004) : 4 PMs familles régénérés mécaniquement (gen-plan v3.23.2, correct-work v2.8.0, clone-chat v2.0.2, refactor-guard v1.7.1 — note §5 mécanisme dual) ; PM-INSTALL v1.7.2→v1.8.0 ; SHARED v1.7.8 ; propagation marqueur §0 v1.7.7→v1.7.8 exécutée (100 skills + 69 scripts + 2 agents, idempotent) ; skill alias-eco v1.0.0 créé (registre @historique/@Alias/ — état vivant) ; KB 34 entrées ; ULTRA régénéré ; archive rescellée round-trip 9/9 |
+| v1.5.6 | 2026-10-24 | Cascade gen-plan v3.26.0 (session web-f90062ce) : état du corpus recalibré — gen-plan v3.25.0→v3.26.0, PM v3.26.0 généré mécaniquement, v3.25.0 archivé R4 (SHA cc6cdcdf…), SHARED v1.7.13 / PM-INSTALL v1.8.6, propagate v1.7.13 (106 skills + 83 scripts + 2 agents)
 | v1.5.5 | 2026-10-24 | Cascade SG7.4 Task B2 (session web-f90062ce, GO propriétaire) : gen-plan v3.24.0→v3.25.0 — PM généré mécaniquement (delta verrouillé 7 substitutions), v3.24.0 archivé R4 (SHA scellé) ; SHARED v1.7.12 / PM-INSTALL v1.8.5 ; KB 39 entrées ; ULTRA régénéré ; propagate §0 v1.7.12 (106 skills + 110 scripts + 2 agents, idempotent ×2). Note : lignes v1.4.8→v1.5.4 héritées non consignées dans cette table (écart hérité documenté — les révisions vivent dans l'en-tête SYNC-CONTEXT) |
 | v1.4.7 | 2026-10-12 | Révision Task 8 (cascade gen-plan v3.23.1 — gen-plan(step), fusion discussion 468a4c26) : propagation marqueur §0 v1.7.3→v1.7.4 (constantes recalibrées — skills + scripts + agents, idempotent ×2) |
 | v1.4.6 | 2026-10-12 | Recalibrage état gen-plan v3.23.0 — v3.22.1 archivé (18 PMs GEN-PLAN) ; propagation marqueur §0 v1.7.2→v1.7.3 recalibrée et exécutée (97 skills + 51 scripts + 2 agents, idempotent ×2 — matérialisation n°55, session web-b4d7dd19 Task 7) |
@@ -57,6 +59,7 @@
 | v2.1.1 | 2026-10-11 | Dédup des PMs — corpus dernières versions seules, `@historique/` documenté, arborescence §2 recalibrée (Task 16) |
 | v2.1.2 | 2026-10-11 | Recalibrage état gen-plan v3.22.0 — §7 « 5 disciplines » → « 5 + 3 matérialisations n°54 », arborescence v3.22.0/v1.6.1/×16, SHARED v1.7.1 (cascade n°54, session web-b4d7dd19) |
 | v2.1.3 | 2026-10-11 | Recalibrage état gen-plan v3.22.1 — arborescence v3.22.1/v1.6.2/×17, SHARED v1.7.2 (cascade renommage step-ok + clause mode NULL, session web-b4d7dd19) |
+| v2.1.14 | 2026-10-24 | Cascade gen-plan v3.26.0 (session web-f90062ce) : leçons vérité source PM INSTALL (dégradation gracieuse + règle d'or n°5) ; arborescence v3.26.0/v1.8.6/SHARED v1.7.13 ; PM v3.26.0 généré mécaniquement, v3.25.0 archivé R4 (SHA cc6cdcdf…)
 | v2.1.13 | 2026-10-24 | Recalibrage état gen-plan v3.25.0 — arborescence v3.25.0/v1.8.5/SHARED v1.7.12, KB 39 entrées (+cahier-des-charges restaurée, +agent-prompt-engineering), SYNC v1.5.5 (cascade SG7.4 Task B2, session web-f90062ce). Note : lignes v2.1.5→v2.1.12 héritées non consignées dans cette table (écart hérité documenté — les révisions vivent dans l'en-tête README @mon-ecosysteme) |
 | v2.1.4 | 2026-10-12 | Recalibrage état gen-plan v3.23.0 — arborescence v3.23.0/v1.6.3/×18, SHARED v1.7.3, « 5 + 3 matérialisations n°54 » → « 5 + 3 n°54 + 2 n°55 » (matérialisation n°55, session web-b4d7dd19 Task 7) |
 
@@ -83,6 +86,7 @@
 | v1.6.0 | 2026-10-09 | §2quater — génération automatique du PM à toute montée de version (KO-L004 v1.1.0, `generer-pm-skill.py`) |
 | v1.6.1 | 2026-10-11 | §2ter + §A.3 instantané rafraîchi gen-plan v3.22.0 (recalibrage mécanique KO-L004 — `generer-pm-skill.py`, bump PATCH conformité semver — adaptation locale journalisée : D010 + précédents v3.21.0) |
 | v1.6.2 | 2026-10-11 | §2ter + §A.3 instantané rafraîchi gen-plan v3.22.1 (recalibrage mécanique KO-L004 — `generer-pm-skill.py`, bump PATCH conformité semver ; cascade renommage step-ok + clause mode NULL) |
+| v1.8.6 | 2026-10-24 | KO-L004 v1.1.0 — génération mécanique du PM (`scripts/generer-pm-skill.py`) : gen-plan v3.25.0→v3.26.0 ; recalibrage croisé : SHARED v1.7.13 (§6.1), §2ter, §A.3 — session web-f90062ce
 | v1.8.5 | 2026-10-24 | §2ter + §A.3 instantané rafraîchi gen-plan v3.25.0 (recalibrage mécanique KO-L004 — `generer-pm-skill.py` — SG7.4 Task B2, session web-f90062ce). Note : lignes v1.6.4→v1.8.4 héritées non consignées dans cette table (écart hérité documenté — la table §7/history du PM-INSTALL vivant fait foi) |
 | v1.6.3 | 2026-10-12 | §2ter + §A.3 instantané rafraîchi gen-plan v3.23.0 (recalibrage mécanique KO-L004 — `generer-pm-skill.py`, bump PATCH conformité semver ; matérialisation disciplines de refactoring n°55) |
 
@@ -92,7 +96,7 @@ Registre à 39 entrées — instantané des versions archivé ci-dessous (source
 
 | Skill | Version | Skill | Version |
 |-------|---------|-------|---------|
-| gen-plan | v3.25.0 | audit-provenance | v1.1.0 |
+| gen-plan | v3.26.0 | audit-provenance | v1.1.0 |
 | correct-work | v2.8.0 | autonomous-agent | v1.1.0 |
 | clone-chat | v2.0.2 | correct-py | v1.1.0 |
 | skills-inventory | v1.1.0 | fleet-engineering | v1.0.1 |
