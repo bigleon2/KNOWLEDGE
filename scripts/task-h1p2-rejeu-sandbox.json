@@ -1,0 +1,111 @@
+{
+  "norme": "CONFORME = rejeu ×2 produit le même état final observable (H1, jamais ajustée aux résultats)",
+  "methode": "sandbox étanche par fichier (copie texte du dépôt, unshare -Urn -m, bind-mount sandbox sur /home/z/my-project, réseau coupé, timeout 25 s), rejeu ×2, snapshots récursifs sha256 (E1/E2), comparaison par régime",
+  "unshare_etanche": true,
+  "nb_fichiers": 3,
+  "stats_verdicts": {
+    "ERREUR_STABLE": 3
+  },
+  "filet_global": {
+    "avant": {
+      "hote": "c04283da33beb397349763412bd7e68c0ff1f0b218ecbbdc5642a3f3edce2bb2",
+      "depot": "221c0b3bb0ac004f697374b01f051c04deaa9642a8bebf6ba5fa0e09864f7ea3",
+      "n_hote": 3467,
+      "n_depot": 1777,
+      "home_.npm": "dd4cd319b348a0f450bc63dfc08294276e69dbb3f56274e2244c1bba86f2bf98",
+      "n_home_.npm": 4,
+      "home_.cache": "d7445d9025ba8c275b936bb3f3c5aa78a008901f32285207aa8efa876b480e4d",
+      "n_home_.cache": 1199,
+      "home_.local": "c5af73edc0989f176f2a4cb7a49188891e4c24c8f1add773e6501085e6adf837",
+      "n_home_.local": 4535
+    },
+    "apres": {
+      "hote": "c04283da33beb397349763412bd7e68c0ff1f0b218ecbbdc5642a3f3edce2bb2",
+      "depot": "221c0b3bb0ac004f697374b01f051c04deaa9642a8bebf6ba5fa0e09864f7ea3",
+      "n_hote": 3467,
+      "n_depot": 1777,
+      "home_.npm": "dd4cd319b348a0f450bc63dfc08294276e69dbb3f56274e2244c1bba86f2bf98",
+      "n_home_.npm": 4,
+      "home_.cache": "d7445d9025ba8c275b936bb3f3c5aa78a008901f32285207aa8efa876b480e4d",
+      "n_home_.cache": 1199,
+      "home_.local": "c5af73edc0989f176f2a4cb7a49188891e4c24c8f1add773e6501085e6adf837",
+      "n_home_.local": 4535
+    },
+    "fuite_detectee": false
+  },
+  "resultats": [
+    {
+      "fichier": "scripts/_archive/generate-knowledge-v3.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "scan_securite": {
+          "chemins_absolus_detectes": 0,
+          "git_push_detecte": 0
+        },
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/knowledge_full.json'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/knowledge_full.json'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/_archive/task17-rapport-baseline.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "scan_securite": {
+          "chemins_absolus_detectes": 0,
+          "git_push_detecte": 0
+        },
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/ecosystem/scripts/baseline-a2-report.json'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/ecosystem/scripts/baseline-a2-report.json'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/_archive/task21-p2b-kb-sync.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "scan_securite": {
+          "chemins_absolus_detectes": 1,
+          "git_push_detecte": 0
+        },
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/ecosystem/skills/KNOWLEDGE.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/ecosystem/skills/KNOWLEDGE.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    }
+  ],
+  "duree_s": 6.9
+}

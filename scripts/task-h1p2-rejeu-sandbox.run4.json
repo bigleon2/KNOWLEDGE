@@ -1,0 +1,1457 @@
+{
+  "norme": "CONFORME = rejeu ×2 produit le même état final observable (H1, jamais ajustée aux résultats)",
+  "methode": "sandbox étanche par fichier (copie texte du dépôt, unshare -Urn -m, bind-mount sandbox sur /home/z/my-project, réseau coupé, timeout 25 s), rejeu ×2, snapshots récursifs sha256 (E1/E2), comparaison par régime",
+  "unshare_etanche": true,
+  "nb_fichiers": 84,
+  "stats_verdicts": {
+    "ERREUR_STABLE": 55,
+    "IDEMPOTENT": 8,
+    "INERT": 21
+  },
+  "filet_global": {
+    "avant": {
+      "hote": "8f0681be1d22d21520b2cd558ae31d401f58712f1d4a35300e8e81803068787b",
+      "depot": "221c0b3bb0ac004f697374b01f051c04deaa9642a8bebf6ba5fa0e09864f7ea3",
+      "n_hote": 3479,
+      "n_depot": 1777
+    },
+    "apres": {
+      "hote": "c28582c49713c66e4712bfe857dce7dd88f68c3a724550463c6671b4ce73645f",
+      "depot": "221c0b3bb0ac004f697374b01f051c04deaa9642a8bebf6ba5fa0e09864f7ea3",
+      "n_hote": 3479,
+      "n_depot": 1777
+    },
+    "fuite_detectee": true
+  },
+  "resultats": [
+    {
+      "fichier": "scripts/_archive/generate-knowledge-v3.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/knowledge_full.json'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/knowledge_full.json'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/_archive/task17-rapport-baseline.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/ecosystem/scripts/baseline-a2-report.json'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/ecosystem/scripts/baseline-a2-report.json'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/_archive/task21-p2b-kb-sync.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/ecosystem/skills/KNOWLEDGE.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/ecosystem/skills/KNOWLEDGE.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/create-pm-genplan-v3.11.0.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.10.0.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.10.0.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/g1a-corrections-n55.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE/skills/refactoring-test/SKILL.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE/skills/refactoring-test/SKILL.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/g1a-repair-dedup.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE/skills/refactoring-engineering/SKILL.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE/skills/refactoring-engineering/SKILL.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/g1b-kb-n55.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE/skills/KNOWLEDGE.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE/skills/KNOWLEDGE.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/g1c-genplan-shared-eco.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE/skills/gen-plan/SKILL.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE/skills/gen-plan/SKILL.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/install-ecosystem-skills.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/download/PROMPT-MAITRE-SHARED.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/download/PROMPT-MAITRE-SHARED.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/n60b-genplan-3170.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/r1-evals-coverage.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "IDEMPOTENT",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "mode": "strict (E1 == E2 byte-identique)"
+      }
+    },
+    {
+      "fichier": "scripts/r4-task-orchestrator.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "IDEMPOTENT",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "mode": "strict (E1 == E2 byte-identique)"
+      }
+    },
+    {
+      "fichier": "scripts/r5-token-dashboard.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "IDEMPOTENT",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "mode": "strict (E1 == E2 byte-identique)"
+      }
+    },
+    {
+      "fichier": "scripts/r7-agent-specialization.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/work_knowledge/skills/KNOWLEDGE.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/work_knowledge/skills/KNOWLEDGE.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/r8-loop-guard.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/repair-frontmatter-yaml.py",
+      "categorie": "OUTIL DE SESSION HISTORIQUE (scripts racine)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'yaml'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'yaml'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task-b2-port-refs-v3250.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE-repo/skills/context-engineering/SKILL.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE-repo/skills/context-engineering/SKILL.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task18-completion-pms.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.23.2.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.23.2.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task18-kb.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task18-pm-install-v180.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task18-shared-v178.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task20-registry-update.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE-repo/skills/@historique/@Alias/aliases.json'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE-repo/skills/@historique/@Alias/aliases.json'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task25ter-cascade.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE-repo/skills/@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE-repo/skills/@mon-ecosysteme/PROMPT-MAITRE-INSTALL-ECOSYSTEME.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task25ter-cascade2.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE-repo/skills/@mon-ecosysteme/SYNC-CONTEXT.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/KNOWLEDGE-repo/skills/@mon-ecosysteme/SYNC-CONTEXT.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task39-test-vue-upload-v120.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": false
+      }
+    },
+    {
+      "fichier": "scripts/task45c-generer-skills-photo.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: PosixPath('/home/z/my-project/tmp/KNOWLEDGE-repo')",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: PosixPath('/home/z/my-project/tmp/KNOWLEDGE-repo')",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task48-clone-checks.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "IDEMPOTENT",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "mode": "strict (E1 == E2 byte-identique)"
+      }
+    },
+    {
+      "fichier": "scripts/task48-historique-photos.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "subprocess.CalledProcessError: Command '['git', '-C', '/home/z/my-project/tmp/KNOWLEDGE-repo', 'show', 'e62f354:skills/@photos/iphone17-photos.md']' returned non-zero exit status 128.",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "subprocess.CalledProcessError: Command '['git', '-C', '/home/z/my-project/tmp/KNOWLEDGE-repo', 'show', 'e62f354:skills/@photos/iphone17-photos.md']' returned non-zero exit status 128.",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task48-ip19-v010-projection.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/tmp/KNOWLEDGE-repo/skills/@photos/iphone19-photos.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/tmp/KNOWLEDGE-repo/skills/@photos/iphone19-photos.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "scripts/task48-recalibrage-1944.py",
+      "categorie": "ONE-SHOT / OUTIL DE SESSION HISTORIQUE",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/tmp/KNOWLEDGE-repo/skills/KNOWLEDGE.md'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "FileNotFoundError: [Errno 2] No such file or directory: '/home/z/my-project/tmp/KNOWLEDGE-repo/skills/KNOWLEDGE.md'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/TTS/tts.ts",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "Node.js v24.21.0",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "Node.js v24.21.0",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/agent-creator/references/agent-creator.agent",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/autonomous-agent/references/autonomous-agent.agent",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/capture_forme.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'PIL'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'PIL'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mesurer_filet.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'PIL'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'PIL'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mesurer_profondeur.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'PIL'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'PIL'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mise_a_echelle.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "mise_a_echelle.py: error: spec.json + --cible-w + --cible-h requis",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "mise_a_echelle.py: error: spec.json + --cible-w + --cible-h requis",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/docx/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/docx/scripts/add_toc_placeholders.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "add_toc_placeholders.py: error: the following arguments are required: docx_file",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "add_toc_placeholders.py: error: the following arguments are required: docx_file",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/docx/setup.sh",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "IDEMPOTENT",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "mode": "strict (E1 == E2 byte-identique)"
+      }
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/scripts/build_api_request.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "build_api_request.py: error: the following arguments are required: -i/--input, -o/--output",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "build_api_request.py: error: the following arguments are required: -i/--input, -o/--output",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/gaokao-generate-report/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/image-edit/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/image-edit/scripts/image-edit.ts",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "Node.js v24.21.0",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "Node.js v24.21.0",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/image-generation/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/image-generation/scripts/image-generation.ts",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "Node.js v24.21.0",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "Node.js v24.21.0",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/interview-prep/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/interview-prep/scripts/star_story_builder.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "star_story_builder.py: error: the following arguments are required: --resume",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "star_story_builder.py: error: the following arguments are required: --resume",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/iphone17/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/iphone18/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/iphone19/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/jd-resume-tailor/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/jd-resume-tailor/scripts/jd_gap.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "jd_gap.py: error: the following arguments are required: --jd, --resume",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "jd_gap.py: error: the following arguments are required: --jd, --resume",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/job-intent-tracker/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/job-intent-tracker/scripts/profile_match.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "profile_match.py: error: the following arguments are required: --skills, --library",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "profile_match.py: error: the following arguments are required: --skills, --library",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/pdf-llm/scripts/extract_pdf.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "extract_pdf.py: error: the following arguments are required: --input/-i, --output/-o",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "extract_pdf.py: error: the following arguments are required: --input/-i, --output/-o",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/pdf/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/pdf/scripts/toc_validate.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "           from the ORIGINAL docx (without TOC) as reference.",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "           from the ORIGINAL docx (without TOC) as reference.",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/pptx/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/pptx/html2pptx1.js",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "IDEMPOTENT",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "mode": "strict (E1 == E2 byte-identique)"
+      }
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/validation/pptx.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'lxml'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'lxml'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/qingyan-research/generate_html.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "generate_html.py: error: the following arguments are required: --title",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "generate_html.py: error: the following arguments are required: --title",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/quiz-html/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/graph_scan.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 64,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 64,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/risk_score.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "IDEMPOTENT",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "mode": "strict (E1 == E2 byte-identique)"
+      }
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/shadow_run.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/resume-builder/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/fetch_playlist.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "fetch_playlist.py: error: the following arguments are required: --url, --out",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "fetch_playlist.py: error: the following arguments are required: --url, --out",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/fetch_transcripts.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "fetch_transcripts.py: error: the following arguments are required: --videos, --out",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "fetch_transcripts.py: error: the following arguments are required: --videos, --out",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/resume_youtube.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "resume_youtube.py: error: the following arguments are required: --url, --out",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "resume_youtube.py: error: the following arguments are required: --url, --out",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/summarize.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "summarize.py: error: the following arguments are required: --videos, --transcripts, --out",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "summarize.py: error: the following arguments are required: --videos, --transcripts, --out",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/verify_summary.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "verify_summary.py: error: the following arguments are required: --videos, --transcripts, --resumes, --out",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "verify_summary.py: error: the following arguments are required: --videos, --transcripts, --resumes, --out",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/skill-creator/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/skill-creator/eval-viewer/generate_review.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "generate_review.py: error: the following arguments are required: workspace",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "generate_review.py: error: the following arguments are required: workspace",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/generate_report.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "generate_report.py: error: the following arguments are required: input",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "generate_report.py: error: the following arguments are required: input",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/skill-finder-cn/scripts/search.sh",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/scripts/search.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 2,
+            "erreur": "search.py: error: the following arguments are required: query",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 2,
+            "erreur": "search.py: error: the following arguments are required: query",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/web-shader-extractor/SKILL.md",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "INERT",
+      "detail": {
+        "raison": "document sans mécanique d'exécution (rien à rejouer)"
+      }
+    },
+    {
+      "fichier": "skills/web-shader-extractor/scripts/scan-bundle.sh",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    },
+    {
+      "fichier": "skills/xlsx/setup.sh",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "IDEMPOTENT",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 0,
+            "erreur": "",
+            "timeout": false
+          }
+        },
+        "mode": "strict (E1 == E2 byte-identique)"
+      }
+    },
+    {
+      "fichier": "skills/xlsx/templates/base.py",
+      "categorie": "GÉNÉRATEUR DE LIVRABLES (miroirs plateforme)",
+      "verdict": "ERREUR_STABLE",
+      "detail": {
+        "runs": {
+          "run1": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'openpyxl'",
+            "timeout": false
+          },
+          "run2": {
+            "retour": 1,
+            "erreur": "ModuleNotFoundError: No module named 'openpyxl'",
+            "timeout": false
+          }
+        },
+        "etat_sandbox_stable": true
+      }
+    }
+  ],
+  "duree_s": 54.9
+}
