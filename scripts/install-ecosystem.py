@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
+# PATCH v2.0.1 (2026-10-24, H1 session web-f90062ce) : garde idempotence sur l'append
+# .gitignore (P2) — le rejeu dupliquait le bloc « Caches locaux écosystème » ; test
+# sandbox task-h1-test-install-ecosystem.py (rejeu ×2, jamais exécuté sur cible réelle)
 """
 ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.12)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
@@ -8,8 +11,8 @@ Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
 Script d'installation complète de l'écosystème Knowledge
 Phases P0-P8 : Clone, purge, injection, décentralisation, vérification
-Version : 2.0.0
-Date : 2026-09-14
+Version : 2.0.1
+Date : 2026-09-14 (v2.0.0) · 2026-10-24 (v2.0.1 — garde idempotence P2, H1)
 """
 
 import os
@@ -48,9 +51,14 @@ def phase_p2_purge():
             print(f"   🗑️ Supprimé : {t.name}")
     
     gitignore_path = REPO_DIR / ".gitignore"
-    with open(gitignore_path, 'a', encoding='utf-8') as f:
-        f.write("\n# Caches locaux écosystème\ndownload/\n.next/\n__pycache__/\n")
-    print("   ✅ .gitignore mis à jour")
+    bloc = "\n# Caches locaux écosystème\ndownload/\n.next/\n__pycache__/\n"
+    contenu = gitignore_path.read_text(encoding='utf-8') if gitignore_path.exists() else ""
+    if "# Caches locaux écosystème" in contenu:
+        print("   ✅ .gitignore déjà à jour (no-op idempotent — garde v2.0.1)")
+    else:
+        with open(gitignore_path, 'a', encoding='utf-8') as f:
+            f.write(bloc)
+        print("   ✅ .gitignore mis à jour")
 
 def phase_p3_inject_context():
     """P3 : Injection du Contexte Système dans les prompts maîtres"""

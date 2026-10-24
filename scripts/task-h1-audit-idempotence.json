@@ -1,0 +1,6184 @@
+{
+  "type": "audit-conformite-idempotence",
+  "tache": "H1 — audit de conformité idempotente des skills/agents/scripts",
+  "norme": "CONFORME = rejeu ×2 produit le même état final observable (fichiers, registres, dépôt) que l'exécution unique",
+  "perimetre": {
+    "python": 253,
+    "shell": 11,
+    "js_ts": 59,
+    "skills": 219,
+    "agents": 2
+  },
+  "stats": {
+    "LECTURE_SEULE": 334,
+    "EFFETS_NON_GARDES": 94,
+    "EFFETS_GARDES": 114,
+    "IRREVERSIBLE_PAR_DESIGN": 1,
+    "NON_ANALYSABLE": 1
+  },
+  "non_conformes": [
+    {
+      "fichier": "mini-services/compile-yaml.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/_archive/generate-knowledge-v3.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/_archive/task17-rapport-baseline.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task21-p2b-kb-sync.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/audit-provenance.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/create-pm-genplan-v3.11.0.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1a-corrections-n55.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1a-repair-dedup.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1b-kb-n55.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1c-genplan-shared-eco.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/install-ecosystem-skills.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/install-ecosystem.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/n60b-genplan-3170.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r1-evals-coverage.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r4-task-orchestrator.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r5-token-dashboard.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r7-agent-specialization.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r8-loop-guard.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/refactoring-test-graph.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/repair-frontmatter-yaml.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/task-b2-port-refs-v3250.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-completion-pms.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-kb.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-pm-install-v180.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-shared-v178.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task20-registry-update.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task25ter-cascade.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task25ter-cascade2.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task39-test-vue-upload-v120.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task45c-generer-skills-photo.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.mkdir",
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-clone-checks.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-historique-photos.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-ip19-v010-projection.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-recalibrage-1944.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "skills/TTS/tts.ts",
+      "famille": "script-js",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/agent-creator/references/agent-creator.agent",
+      "famille": "agent",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "agent à états"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/alias-eco/scripts/alias-manager.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/scripts/common.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/autonomous-agent/references/autonomous-agent.agent",
+      "famille": "agent",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "agent à états"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/capture_forme.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mesurer_filet.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mesurer_profondeur.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mise_a_echelle.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/scripts/add_toc_placeholders.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/setup.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/scripts/build_api_request.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-generate-report/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-edit/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-edit/scripts/image-edit.ts",
+      "famille": "script-js",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-generation/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-generation/scripts/image-generation.ts",
+      "famille": "script-js",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/inter-scripts/scripts/is_client.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/interview-prep/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/interview-prep/scripts/star_story_builder.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone17/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone18/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone19/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/jd-resume-tailor/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/jd-resume-tailor/scripts/jd_gap.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/job-intent-tracker/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/job-intent-tracker/scripts/profile_match.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/toc_validate.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf-llm/scripts/extract_pdf.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/html2pptx1.js",
+      "famille": "script-js",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/validation/pptx.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/qingyan-research/generate_html.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-html/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-html/scripts/build_quiz_html.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/graph_scan.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/risk_score.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/shadow_run.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-builder/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/fetch_playlist.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/fetch_transcripts.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/resume_youtube.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/summarize.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/verify_summary.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/eval-viewer/generate_review.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/aggregate_benchmark.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/generate_report.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-finder-cn/scripts/search.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skills-inventory/scripts/generate_skills_md.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/scripts/search.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-shader-extractor/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-shader-extractor/scripts/scan-bundle.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/xlsx/setup.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/xlsx/templates/base.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    }
+  ],
+  "fichiers": [
+    {
+      "fichier": "eslint.config.mjs",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "examples/websocket/server.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "mini-services/compile-yaml.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "mini-services/integrate-knowledge.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "next-env.d.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "next.config.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "postcss.config.mjs",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/_archive/generate-clone-genplan.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/_archive/generate-knowledge-v3.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/_archive/sync-download.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/_archive/task17-aveugle-pms.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task17-baseline-a2.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task17-rapport-baseline.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task18-baseline-a2-memory.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task21-f3-status-mesure.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task21-p2b-description-optimization-pass2.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task21-p2b-kb-decision.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task21-p2b-kb-sync.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task21-p4b-agents-fixes-pass2.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task23-complete-frontmatters.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task23-install-minimale.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/_archive/task40-cw-projet.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/alias_trigger_analysis.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/answer-key-checker.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/audit-provenance.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/back-depot.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/backup-historique.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/certification-complete.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/check-corps-phase2.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/check-ecosysteme-integrity.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/check-tool-routing.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/check-triggers-replay.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/create-pm-genplan-v3.11.0.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/eco_install_pipeline.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/ensure-installed.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/fix-frontmatter.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/fix-yaml-cases.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1-bootstrap-pm-refactor-guard.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1-extensions-d009.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1-recalibrage-task17.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/g1a-corrections-n55.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1a-repair-dedup.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1b-kb-n55.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1c-genplan-shared-eco.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g1d-cascade-n55.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "git commit/push/mv/rm/checkout/reset/clean/stash/apply/rebase/merge",
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g2-projection-hote-task8.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/g2b-description-optimization.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/g3-projection-hote-task9.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/gen-ultra-maitre.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/generer-pm-skill.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/git-deploy.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "git écriture",
+        "redirection écrasement (>)"
+      ],
+      "gardes": [
+        "garde shell (test -f/cmp/diff/hash)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/install-ecosystem-skills.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/install-ecosystem.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/install-ecosysteme-local.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs shell (rm/mv/cp/mkdir)",
+        "redirection écrasement (>)"
+      ],
+      "gardes": [
+        "garde shell (test -f/cmp/diff/hash)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/n60b-genplan-3170.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/phase1-nettoyage.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/phase2-nettoyage.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/propagate-context.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r1-evals-coverage.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r10-commit-review.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r2-critic-loop.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r3-memory-consolidation.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r4-task-orchestrator.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r5-token-dashboard.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r7-agent-specialization.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/r8-loop-guard.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/refactoring-test-graph.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/repair-frontmatter-yaml.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/scan-versions-reelles.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/spell-check.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/sync-context-block.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/task-b2-port-refs-v3250.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task-f5-seal-archive-v23.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task-h1-audit-idempotence.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task13-answer-key-check.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "comparaison contenu lu (== / !=)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task14-answer-key-check.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task14-deduplication.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task14-scan-doublons.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task15-answer-key-check.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task16-answer-key-check.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "dry-run / --check / no-op",
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task17-answer-key-check.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task17-remeasure-voie-l.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task17b-answer-key-check.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-cascade-historique.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-completion-pms.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-kb.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-pm-install-v180.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task18-shared-v178.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task20-answer-key-check.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task20-registry-update.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task20-tests-installation.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task21-baseline-a2-all.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task21-f2-rebuild-archive.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task21-p2-description-optimization.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task21-p4-agents-fixes.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task21-p5-equipment-decisions.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task22-apply-disciplines.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task22-aveugle-second-opinion.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "comparaison contenu lu (== / !=)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task22-cascade-docs.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task24-cascade-19bis.py",
+      "famille": "script-python",
+      "categorie": "IRREVERSIBLE_PAR_DESIGN",
+      "effets": [
+        "git commit/push/mv/rm/checkout/reset/clean/stash/apply/rebase/merge"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task24-resolve-conflicts.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task24-revise-19bis.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task24_contenu_19bis.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task25ter-cascade.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task25ter-cascade2.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task39-generer-pm-genplan.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task39-test-vue-upload-v120.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task45c-generer-skills-photo.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.mkdir",
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task45c-verifier-cible.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task47-cw-projet.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task47-migration-generate.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task47-pa005-qc.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task47_migration_blocks.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task47_skill_iphone19_assets.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-audit-1944.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-audit-ip19-v010.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-clone-checks.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-comparaison-liberation.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-comparaison-potos.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-cw-g1.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-cw-g2.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-cw-g3.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "comparaison contenu lu (== / !=)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-cw-g4.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-cw-projet.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "dry-run / --check / no-op",
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-historique-photos.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-install-ecosysteme.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-ip19-v010-projection.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-pa006-arbitrage-crop.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-pa006-arbitrage-full.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-pa006-arbitrage.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-pa006-qc.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-pa007-analyse.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-pa007-qc.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-recalibrage-1944.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-rescellage-archive.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-v1944-projections.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task48-validate-plan.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task8-tests-n55-fusion.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task9-baseline-a2-n55.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/task9-tests-reserves.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "open(mode lecture)"
+      ],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "scripts/test-acces-skills-agents.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/test-coherence-interactions.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/test-restauration-elargie.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "exists()/is_file()/is_dir()",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/verify-correct-work.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/verify-cross.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "scripts/verify-registry-sync.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ASR/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ASR/scripts/asr.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/LLM/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/LLM/scripts/chat.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/TTS/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/TTS/tts.ts",
+      "famille": "script-js",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/VLM/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/VLM/scripts/vlm.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/agent-browser/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/agent-creator/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/agent-creator/references/agent-creator.agent",
+      "famille": "agent",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "agent à états"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/agent-prompt-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ai-news-collectors/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/alias-eco/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/alias-eco/scripts/alias-manager.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-academic-search/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-academic-search/scripts/aminer_client.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/scripts/__init__.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/scripts/common.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/scripts/constants.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/scripts/handle_trigger.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/scripts/rec5_api.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-daily-paper/scripts/run_pipeline.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-deep-search/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-deep-search/scripts/aminer_api.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-deep-search/scripts/paper_set.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-deep-search/tests/test_aminer_api.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-deep-search/tests/test_paper_set.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/aminer-free-academic/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/anti-pua/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/audio-metadata/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/audit-provenance/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/auto-target-tracker/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/autonomous-agent/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/autonomous-agent/references/autonomous-agent.agent",
+      "famille": "agent",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "agent à états"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/blog-writer/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/blog-writer/manage_examples.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/cahier-des-charges/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/charts/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/charts/setup.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [
+        "garde shell (test -f/cmp/diff/hash)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/cheat-sheet/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/clone-chat/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/coding-agent/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/content-strategy/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/contentanalysis/ExtractWisdom/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/contentanalysis/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/context-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/context-engineering/scripts/context-utils.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/context-engineering/scripts/filter-utils.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/correct-py/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/correct-work/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/correct-work/scripts/verify-correct-work.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/cpp-analysis/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/agentic/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/ant/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/application/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/artistic/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/atelier-zero/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/bento/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/bold/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/brutalism/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/cafe/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/claude/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/claymorphism/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/clean/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/codex/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/colorful/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/contemporary/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/corporate/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/cosmic/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/creative/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/dashboard/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/default/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/dithered/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/doodle/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/dramatic/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/editorial/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/elegant/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/energetic/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/enterprise/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/expressive/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/fantasy/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/fiction/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/flat/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/friendly/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/futuristic/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/glassmorphism/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/gradient/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/hud/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/immersive/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/impeccable/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/levels/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/lingo/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/luxury/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/material/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/matrix/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/minimal/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/mission-control/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/modern/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/mono/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/neobrutalism/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/neon/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/neumorphism/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/pacman/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/paper/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/parchment/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/perspective/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/premium/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/professional/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/publication/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/refined/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/retro/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/riso/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/sega/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/shadcn/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/simple/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/sketch/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/skeumorphism/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/sleek/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/spacious/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/storytelling/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/terracotta/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/tetris/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/totality-festival/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/trading-terminal/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/urdu/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/vibrant/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/vintage/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-systems/style-skills/warm-editorial/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ascii-cosmos/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/audio-jingle/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/blog-post/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/dashboard/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/digital-eguide/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/dot-matrix-xhs/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/html-ppt-xhs-post/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/industrial-archive/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/portfolio-detail/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/guizang-ppt/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-biennale-yellow/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-grove/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/assets/deck-stage.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-windows/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-retro-zine/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/ppt/ib-pitch-book/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/pricing-page/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/project-brief/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/riso-product/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/saas-landing/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-data-kpi/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-editorial/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-editorial/assets/magazine-bg-webgl.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-image-led/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-map/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-quote/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-screenshot-explainer/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-swiss/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-card-swiss/assets/magazine-bg-webgl.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/social-carousel/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/team-okrs/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/video-shortform/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/vr-canvas/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/waitlist-page/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/wechat-cover-pair/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/wireframe-sketch/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/design/design-templates/xianying-tool/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/capture_forme.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/generer_dessin.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "dry-run / --check / no-op"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mesurer_filet.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mesurer_profondeur.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dessin-technique/scripts/mise_a_echelle.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/scripts/__init__.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/scripts/add_toc_placeholders.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/scripts/document.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "exists()/is_file()/is_dir()",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/scripts/postcheck.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/scripts/utilities.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/docx/setup.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dream-interpreter/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/dream-interpreter/scripts/example.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/experiment-suite/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/experiment-suite/figure_examples/make_fig_02_horizon_sweep.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/experiment-suite/figure_examples/make_fig_03_heatmap.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/experiment-suite/figure_examples/make_fig_04_ablation.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/experiment-suite/figure_examples/style_kit.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/finance/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/fleet-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/fullstack-dev/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-collect-student-info/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/scripts/build_api_request.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/scripts/fetch_volunteers.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/scripts/province_config.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-fetch-volunteers/scripts/test_batch_api.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-generate-report/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-generate-report/scripts/generate_html.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-generate-report/scripts/merge_analysis.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-recommend-majors/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gaokao-recommend-schools/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gen-plan/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gen-plan/scripts/ensure-installed.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/get-fortune-analysis/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/get-fortune-analysis/lunar_python.py",
+      "famille": "script-python",
+      "categorie": "NON_ANALYSABLE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gift-evaluator/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/gift-evaluator/html_tools.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/graph-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/harness-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-edit/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-edit/scripts/image-edit.ts",
+      "famille": "script-js",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-generation/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-generation/scripts/image-generation.ts",
+      "famille": "script-js",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-search/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-understand/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/image-understand/scripts/image-understand.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/inter-scripts/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/inter-scripts/scripts/is_client.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/inter-scripts/scripts/orchestrer.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/interview-designer/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/interview-prep/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/interview-prep/scripts/star_story_builder.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone17/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone17/scripts/editer-image.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone18/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone18/scripts/editer-image.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone19/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/iphone19/scripts/editer-image.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/jd-resume-tailor/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/jd-resume-tailor/scripts/jd_gap.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/jd-resume-tailor/scripts/parse_jd.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/job-intent-tracker/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/job-intent-tracker/scripts/init_tracker.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/job-intent-tracker/scripts/profile_match.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/knowledge-observer/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/literature-survey/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/literature-survey/templates/survey/compile.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs shell (rm/mv/cp/mkdir)",
+        "redirection écrasement (>)"
+      ],
+      "gardes": [
+        "garde shell (test -f/cmp/diff/hash)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/loop-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/market-research-reports/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/market-research-reports/scripts/generate_market_visuals.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/marketing-mode/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/memory-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/mindfulness-meditation/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/multi-search-engine/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/env_setup/env_check.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [
+        "garde shell (test -f/cmp/diff/hash)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/env_setup/setup_mac_linux.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs shell (rm/mv/cp/mkdir)",
+        "redirection écrasement (>)"
+      ],
+      "gardes": [
+        "garde shell (test -f/cmp/diff/hash)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/cover_validate.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/design_engine.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/html2pdf-next.js",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/html2poster.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/pdf.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "dry-run / --check / no-op",
+        "exists()/is_file()/is_dir()",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/pdf_qa.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/poster_validate.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/setup.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs shell (rm/mv/cp/mkdir)",
+        "redirection écrasement (>)"
+      ],
+      "gardes": [
+        "garde shell (test -f/cmp/diff/hash)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf/scripts/toc_validate.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf-llm/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pdf-llm/scripts/extract_pdf.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/podcast-generate/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/podcast-generate/generate.ts",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs async écriture",
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/batch_html2pptx.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/html2pptx1.js",
+      "famille": "script-js",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/pack.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "exists()/is_file()/is_dir()",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/unpack.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/validate.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/validation/__init__.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/validation/base.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/validation/docx.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/validation/pptx.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/ooxml/scripts/validation/redlining.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/scripts/check_slides.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/scripts/extract_html_style.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/pptx/scripts/extract_pptx_style.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/prompt-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/qingyan-research/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/qingyan-research/generate_html.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-html/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-html/scripts/build_quiz_html.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/scripts/generate_from_material.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/scripts/import_quiz.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/scripts/run_quiz.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/scripts/submit_answers.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/__init__.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/evaluator.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/file_parser.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/mastery_engine.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/models.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/planner.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/quiz_extractor.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/quiz_generator.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/repository.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/service.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/quiz-mastery/src/quiz_mastery/utils.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/audit_ledger.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/checker.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/config.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/graph_scan.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/human_gate.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/policy_engine.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/risk_score.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/rollout.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/sandbox_runner.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "comparaison contenu lu (== / !=)",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/shadow_run.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactor-guard/scripts/spec_builder.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactoring-engineering/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/refactoring-test/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/research-explorer/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resource-monitor/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resource-monitor/scripts/monitor.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-builder/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-builder/scripts/ats_check.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/fetch_playlist.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/fetch_transcripts.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/resume_youtube.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/summarize.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/resume-youtube/scripts/verify_summary.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/script-creator/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/script-mon-ecosysteme-infrastructure/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/script-reviewer/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/seo-content-writer/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/eval-viewer/generate_review.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/__init__.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/aggregate_benchmark.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "open(mode écriture)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/generate_report.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/improve_description.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/package_skill.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/quick_validate.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/run_eval.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/run_loop.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.write_text/write_bytes"
+      ],
+      "gardes": [
+        "exists()/is_file()/is_dir()"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-creator/scripts/utils.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-finder-cn/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skill-finder-cn/scripts/search.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skills-inventory/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/skills-inventory/scripts/generate_skills_md.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/spec-driven-development/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/stock-analysis-skill/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/stock-analysis-skill/src/analyzer.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/stock-analysis-skill/src/dataFetcher.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/stock-analysis-skill/src/dividend.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/stock-analysis-skill/src/index.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/stock-analysis-skill/src/rumorScanner.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/stock-analysis-skill/src/types.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/stock-analysis-skill/src/watchlist.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/storyboard-manager/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/storyboard-manager/index.js",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/storyboard-manager/scripts/consistency_checker.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/storyboard-manager/scripts/timeline_tracker.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/study-buddy/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/task-review/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "one-shot"
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/scripts/__init__.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/scripts/core.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/scripts/design_system.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/ui-ux-pro-max/scripts/search.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/version-management/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/video-generation/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/video-generation/scripts/video.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/video-understand/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/video-understand/scripts/video-understand.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/visual-design-foundations/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/vue-upload/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [
+        "idempotence déclarée"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/vue-upload/scripts/vue_upload_panel.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "os.rename/replace/remove/mkdir/makedirs/chmod",
+        "shutil.rmtree/copy/copytree/move"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/vue-upload/scripts/vue_upload_server.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "Path.rename/replace",
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-reader/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-reader/scripts/web-reader.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-search/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "processus documenté d'écriture"
+      ],
+      "gardes": [
+        "aucun script écrivant"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-search/scripts/web_search.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-shader-extractor/SKILL.md",
+      "famille": "skill",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "scripts écrivants"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-shader-extractor/scripts/fetch-rendered-dom.mjs",
+      "famille": "script-js",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "fs sync écriture"
+      ],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/web-shader-extractor/scripts/scan-bundle.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/writing-plans/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/xlsx/SKILL.md",
+      "famille": "skill",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/xlsx/setup.sh",
+      "famille": "script-shell",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "redirection écrasement (>)"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/xlsx/templates/base.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_NON_GARDES",
+      "effets": [
+        "Path.rename/replace"
+      ],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/xlsx/templates/palettes.py",
+      "famille": "script-python",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "skills/xlsx/xlsx.py",
+      "famille": "script-python",
+      "categorie": "EFFETS_GARDES",
+      "effets": [
+        "open(mode écriture)",
+        "os.rename/replace/remove/mkdir/makedirs/chmod"
+      ],
+      "gardes": [
+        "exists()/is_file()/is_dir()",
+        "open(mode lecture)"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/app/api/config/route.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/app/api/config/seed/route.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/app/api/knowledge/route.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/app/api/knowledge/seed/route.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/app/api/knowledge/stats/route.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/app/api/route.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/app/api/skills/relations/route.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/app/api/skills/route.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/hooks/use-mobile.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/hooks/use-toast.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/lib/db.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/lib/skills-reader.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [
+        "lecture/exists avant écriture"
+      ],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "src/lib/utils.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    },
+    {
+      "fichier": "tailwind.config.ts",
+      "famille": "script-js",
+      "categorie": "LECTURE_SEULE",
+      "effets": [],
+      "gardes": [],
+      "usage": "vivant"
+    }
+  ]
+}

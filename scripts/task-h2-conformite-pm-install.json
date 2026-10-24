@@ -1,0 +1,73 @@
+{
+  "type": "verif-conformite-pm-install",
+  "tache": "H2 — intégration de la règle de conformité au PM-INSTALL @ 97e09cc",
+  "reference": "97e09cc35f3c764e285b56ea544d6b70cc7c8b6e",
+  "base_courante": "HEAD (PM-INSTALL v1.8.5, lignée 97e09cc ⊂ e9a68a1 ⊂ da549af)",
+  "methode": "diff sémantique des invariants §1 : signatures verbatim des 8 règles extraites du PM-INSTALL @ 97e09cc, présence vérifiée dans le §1 courant",
+  "regles": [
+    {
+      "regle": "R1 socle d'abord",
+      "signature": "Rien ne s'interprète sans le socle",
+      "presente_97e09cc": true,
+      "presente_courant": true,
+      "verdict": "INTÉGRÉE"
+    },
+    {
+      "regle": "R2 source authentifiée",
+      "signature": "non authentifi",
+      "presente_97e09cc": true,
+      "presente_courant": true,
+      "verdict": "INTÉGRÉE"
+    },
+    {
+      "regle": "R3 archive byte-identité",
+      "signature": "byte-identité",
+      "presente_97e09cc": true,
+      "presente_courant": true,
+      "verdict": "INTÉGRÉE"
+    },
+    {
+      "regle": "R4 gen-plan avant skills",
+      "signature": "gen-plan avant les skills",
+      "presente_97e09cc": true,
+      "presente_courant": true,
+      "verdict": "INTÉGRÉE"
+    },
+    {
+      "regle": "R5 correct-work/clone-chat après gen-plan",
+      "signature": "correct-work et clone-chat après gen-plan",
+      "presente_97e09cc": true,
+      "presente_courant": true,
+      "verdict": "INTÉGRÉE"
+    },
+    {
+      "regle": "R6 registre KB après skills",
+      "signature": "registre KB après les skills",
+      "presente_97e09cc": true,
+      "presente_courant": true,
+      "verdict": "INTÉGRÉE"
+    },
+    {
+      "regle": "R7 outillage avant certification",
+      "signature": "outillage avant la certification",
+      "presente_97e09cc": true,
+      "presente_courant": true,
+      "verdict": "INTÉGRÉE"
+    },
+    {
+      "regle": "R8 rien ne se publie sans certification",
+      "signature": "Rien ne se publie sans certification",
+      "presente_97e09cc": true,
+      "presente_courant": true,
+      "verdict": "INTÉGRÉE"
+    }
+  ],
+  "regle_2_extension_dual": {
+    "forme_97e09cc": "Rien ne s'installe depuis un corpus non authentifié",
+    "forme_courante": "Rien ne s'installe depuis une source non authentifiée",
+    "ref_presente": true,
+    "courant_etendu": true,
+    "verdict": "INTÉGRÉE ET ÉTENDUE (mécanisme dual v1.8.0 — plus stricte : dépôt certifié OU corpus authentifié, jamais source non vérifiée)"
+  },
+  "verdict": "RÉSOLU PAR LIGNÉE — toutes les règles §1 du PM-INSTALL @ 97e09cc sont intégrées à la base courante v1.8.5 (aucune perte, règle 2 étendue par le mécanisme dual) ; l'installation hôte B4 est conforme au pipeline canonique (rapport B4 : arbitres verts)"
+}
