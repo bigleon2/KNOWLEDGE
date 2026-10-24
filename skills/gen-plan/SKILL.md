@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.26.0
+version: 3.27.0
 category: ecosystem
 language: fr
 tags:
@@ -88,6 +88,7 @@ read_when:
 |------|-------|-----------|-----------|
 | **Answer key obligatoire** | **E1** | Chaque décision E1 devient une entrée `D0NN` de l'answer key (criterion, verification exécutable, source, priority S1-S4, status pending) | `references/answer-key-template.md` |
 | **Arbitre answer-key-checker** | **E7/E8** | Le plan référence l'answer key ; à E8, l'arbitre mécanique `scripts/answer-key-checker.py` (16 checks) valide structure, fonctionnalité, idempotence et intégration — verdict PASS requis pour S1/S2 | `scripts/answer-key-checker.py` |
+| **E7-DISP — Affichage obligatoire du plan** | **E7/E8/E13** | Toute écriture/mise à jour du fichier plan (création E7, ajustement E13, re-génération règle d'or n°2/KO-L005, reprise) n'est TERMINÉE qu'après la chaîne complète : plan écrit + answer key + verdict E8 consigné (horodatages couplés) + worklog R5 avec marqueur `PLAN-AFFICHE` + bloc récapitulatif visible au chat — verdict mécanique bloquant ; affichage REJOUABLE à toute reprise (v3.27.0) | `scripts/check_plan_protocol.py` |
 | **Graph Diamond** | **E9-E14** | Parallélisation PAR DÉFAUT des actions prouvées indépendantes (le série est l'exception justifiée — philosophie #4 v3.24.0) — tracée au worklog | `references/graph-diamond-pattern.md` |
 | **Observer** | **E15** | Invoque knowledge-observer en modes M1-M2 (observation + analyse post-session) ; les modes M3-M4 exigent un verdict correct-work | `references/observation-patterns.md` |
 
@@ -95,9 +96,15 @@ read_when:
 
 <!-- PATTERN:GEN-PLAN-HOOKS-E1-RES-v1.0.0 -->
 
-**Hook E1-RES — ouverture de session (n67-1, reconstitué post-wipe — v3.17.0, N28)** : l'étape E1 ouvre par trois vérifications préalables, AVANT toute analyse : (1) **lecture seule préalable B-11** (règle D008 — état du worklog, du plan et des arbitres fait foi) ; (2) **collecte G-RES** via `skills/resource-monitor/scripts/monitor.py --state-file tmp/resource-monitor-state.json` (fonction de surveillance permanente §1.14 — verdict OK/PRESSION/CRITIQUE → mode d'exécution, décision journalisée) ; (3) **contrôle de fraîcheur du plan** (règle L005/D012 — si gen-plan a été modifiée et jugée valide depuis la génération du plan courant, le plan est re-généré AVANT toute reprise). Provenance : le hook n67-1 de la session B12 est PERDU au wipe inter-sessions (constat d'honnêteté Task 44) ; cette reconstitution est tracée comme telle (B13-r6, N28 — aucun faux lignage).
+**Hook E1-RES — ouverture de session (n67-1, reconstitué post-wipe — v3.17.0, N28)** : l'étape E1 ouvre par trois vérifications préalables, AVANT toute analyse : (1) **lecture seule préalable B-11** (règle D008 — état du worklog, du plan et des arbitres fait foi) ; (2) **collecte G-RES** via `skills/resource-monitor/scripts/monitor.py --state-file tmp/resource-monitor-state.json` (fonction de surveillance permanente §1.14 — verdict OK/PRESSION/CRITIQUE → mode d'exécution, décision journalisée) ; (3) **contrôle de fraîcheur du plan** (règle L005/D012 — si gen-plan a été modifiée et jugée valide depuis la génération du plan courant, le plan est re-généré AVANT toute reprise). Provenance : le hook n67-1 de la session B12 est PERDU au wipe inter-sessions (constat d'honnêteté Task 44) ; cette reconstitution est tracée comme telle (B13-r6, N28 — aucun faux lignage). **Extension v3.27.0 — reprise après interruption (leçons bug « plan non affiché » ×3, session web-dd290b0d + discussion s/64c90144)** : tout message utilisateur arrivant PENDANT un plan en vol — quelque soit le déclencheur de l'interruption (stop propriétaire pour préciser un prompt, coupure de contexte, erreur plateforme type « context canceled ») — déclenche ce hook : lecture préalable du worklog + contrôle de fraîcheur + intégration E13 des précisions + re-validation E8 (horodatages couplés rafraîchis) + R5 + affichage selon E7-DISP (ci-dessous) — l'état « plan en vol » se dérive du DISQUE (fichier plan + worklog + arbitre), jamais de la mémoire de session (leçon RC3 de l'analyse causes racines).
 
 <!-- FIN-PATTERN:GEN-PLAN-HOOKS-E1-RES-v1.0.0 -->
+
+<!-- PATTERN:GEN-PLAN-HOOKS-E7-DISP-v1.0.0 -->
+
+**Hook E7-DISP — affichage obligatoire du plan (v3.27.0, fusion des lignées — leçons bug « plan d'actions non fait/non affiché » ×3, session web-dd290b0d + discussion s/64c90144)** : la finalisation d'un plan (création E7, ajustement E13, re-génération règle d'or n°2/KO-L005, reprise après interruption) exige la chaîne complète en 5 points — (1) plan écrit dans `download/` ; (2) answer key présente (≥ 1 décision avec `verification` exécutable) ; (3) validation E8 exécutée et tracée (verdict consigné dans le plan, ligne « Verdict E8 : PASS (… — Horodatage vérifié : <ISO>) » couplée à la ligne « Horodatage plan : <ISO> » du plan ; TOUTE écriture ultérieure du plan (E13, re-génération) met à jour « Horodatage plan » et EXIGE la re-validation — un verdict dont l'horodatage diffère de celui du plan est PÉRIMÉ et bloque) ; (4) entrée worklog journalisant le plan (R5 — nom de fichier cité) avec marqueur `PLAN-AFFICHE` ; (5) **bloc récapitulatif affiché au chat** (titre, groupes d'exécution, #token total, verdict E8, chemin du fichier) — un plan n'est réputé livré que si le propriétaire a PU le voir. Garde mécanique bloquante : `python3 skills/gen-plan/scripts/check_plan_protocol.py --plan <plan.md> --worklog worklog.md` (checks P1-P5, verdict PASS/FAIL, `--json`, selftest sait échouer) — FAIL → la phase suivante ne démarre pas ; l'arbitre dérive ses invariants de l'état courant (KO-L003). **Affichage REJOUABLE** (leçon Task 22 — interruption plateforme « context canceled ») : l'écriture du marqueur PLAN-AFFICHE ne présuppose JAMAIS l'affichage effectif — à toute reprise E1-RES sur un plan protocolairement PASS dont l'affichage n'est pas prouvé pour la session courante, le bloc récapitulatif est RE-AFFICHÉ avant toute autre action (le dernier maillon de la chaîne est rejouable, jamais présumé).
+
+<!-- FIN-PATTERN:GEN-PLAN-HOOKS-E7-DISP-v1.0.0 -->
 
 ### §1.3 Normes
 
@@ -275,6 +282,9 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 ```
 skills/gen-plan/
 ├── SKILL.md                          # Skill opérationnel compact (~300 lignes)
+├── scripts/
+│   ├── ensure-installed.py           # Vérification / préemption installation (É1-INSTALL)
+│   └── check_plan_protocol.py        # Arbitre hook E7-DISP — protocole de finalisation de plan P1-P5 (v3.27.0, fusion lignées)
 ├── references/
 │   ├── etapes-detaillees.md          # Détail des 15 étapes + protocole mode step (v3.25.0) + leçons vagues parallèles (v3.26.0)
 │   ├── grille-token.md               # Grille de calibration #token
@@ -289,7 +299,7 @@ skills/gen-plan/
 │   └── observation-patterns.md       # Task Observer — cycle A-H (N20)
 └── evals/
     ├── evals.json                    # Cas de test d'évaluation (9 evals — id 7 GP-mode-step v3.22.0 étendu v3.25.0/v3.26.0, id 8 GP-mode-step-ok v3.22.1, id 9 GP-diamond-defaut v3.24.0 étendu v3.26.0 dégradation gracieuse)
-    └── trigger_evals.json            # Description Optimization (12 cas — verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm, cas step enrichi v3.25.0 sous-groupes)
+    └── trigger_evals.json            # Description Optimization (13 cas — verbatim v3.17.2 + modes step/step-ok v3.22.1, alias step-confirm, cas step enrichi v3.25.0 sous-groupes, cas interruption/reprise v3.27.0)
 ```
 
 ### §2.3 Auto-calibration E15
@@ -393,3 +403,7 @@ Dès qu'une phase du plan d'actions vient de se terminer, lancer `correct-work(l
 **Cadence d'affichage (optimisée)** : (1) ouverture de groupe — tableau complet du groupe (sous-groupes + tâches + statuts + compteurs), en step-ok APRÈS confirmation ; (2) fin de tâche — mise à jour de la ligne et des compteurs, sans ré-affichage complet ; (3) fin de sous-groupe — rappel compact du sous-groupe clôturé ; (4) clôture de groupe — tableau final + verdict correct-work(groupe). Une vue d'ensemble du plan (tous les groupes, statuts, compteurs) ouvre et clôt la chaîne.
 
 **Règles de cohérence (réconciliées avec la parallélisation par défaut v3.24.0)** : la structure hiérarchique est la couche d'ORGANISATION et de LECTURE du plan (sous-groupes par affinité, statuts, compteurs) — orthogonale à la couche d'EXÉCUTION : l'exécution conserve la parallélisation par défaut (Graph Diamond ouvert automatiquement dès preuve d'indépendance — y compris à travers les frontières de sous-groupes ; le séquentiel reste l'exception justifiée et tracée : dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC), chaque tâche d'une vague parallèle mettant à jour individuellement son statut et les compteurs de son sous-groupe ; un plan existant à groupes plats est normalisé à l'ouverture du mode (partition par affinité, idempotente R6, journalisée worklog — extension du plan, jamais réécriture destructrice R2) ; correct-work(groupe) reste calé sur le groupe, pas sur le sous-groupe (cadence v3.22.0 préservée, non-régression R2) ; step-ok hérite intégralement de la structure (confirmation avant chaque groupe, pas avant chaque sous-groupe).
+
+### §5.6 Journal des versions (fusion des lignées — v3.27.0)
+
+- **v3.27.0 (2026-10-25, session web-dd290b0d — directive propriétaire : reconstruction depuis la discussion s/64c90144 et l'historique GitHub)** : fusion de la lignée canonique du dépôt (v3.26.0 à e6a9595 — philosophie #4, règle d'or n°5 anti-aspirant, §5.5 mode step, dégradation gracieuse 429) et du fork local E7-DISP (créé en sandbox sur base v3.23.1 épinglée b75a6206). **COLLISION de version documentée** : deux versions indépendantes avaient réutilisé le numéro v3.24.0 — la v3.24.0 canonique « parallélisation par défaut » (commit e9a68a1) et un fork local homonyme « hook E7-DISP » ; la fusion re-numérote en v3.27.0 (MINOR) et journalise cette collision pour interdire toute référence ambiguë à « gen-plan v3.24.0 » (KB, PM, journaux, évals). Apports reportés du fork : hook E7-DISP + arbitre `scripts/check_plan_protocol.py` (P1-P5, garde anti-verdict-périmé, selftest sait échouer), extension E1-RES (reprise après interruption — tout déclencheur : stop propriétaire, coupure de contexte, erreur plateforme — état dérivé du disque, affichage REJOUABLE), évals 13 cas (cas interruption/reprise), §2.2 recalibré (scripts + arborescence). Analyse des causes racines RC1-RC4 : `download/analyse-causes-racines-gen-plan.md` (RC1 collision de lignée, RC2 double emplacement dépôt/miroir, RC3 reprise post-coupure incomplète, RC4 interruption plateforme). Non-régression R2 : aucun des leçons/modes/hook de la lignée v3.23.1→v3.26.0 n'est retiré — fusion additive uniquement.

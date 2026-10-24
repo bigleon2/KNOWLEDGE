@@ -46,5 +46,9 @@
   {
     "query": "Résume l'historique complet de cette conversation.",
     "should_trigger": false
+  },
+  {
+    "query": "J'ai stoppé l'exécution du plan en cours de route pour te préciser un point : reprends le plan, intègre cette précision et continue.",
+    "should_trigger": true
   }
 ]
