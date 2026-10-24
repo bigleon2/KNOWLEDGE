@@ -4,7 +4,7 @@
   "should_trigger": true
  },
  {
-  "query": "Je ne peux pas télécharger le document DOCX que tu as généré, ouvre-moi un accès.",
+  "query": "Ton chat me donne juste le chemin du fichier, je ne peux pas accéder au dossier des livrables.",
   "should_trigger": true
  },
  {
@@ -18,6 +18,10 @@
  {
   "query": "Comment je t'envoie mes fichiers ? Un portail d'upload serait pratique.",
   "should_trigger": true
+ },
+ {
+  "query": "Je ne peux pas télécharger le document DOCX que tu as généré, ouvre-moi un accès.",
+  "should_trigger": false
  },
  {
   "query": "Planifie le prochain sprint de développement de mon écosystème de skills.",

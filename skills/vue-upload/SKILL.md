@@ -1,6 +1,6 @@
 ---
 name: vue-upload
-version: 1.2.0
+version: 1.3.0
 category: ecosystem
 language: fr
 tags:
@@ -28,6 +28,15 @@ description: >
   doctor (diagnostic < 1 s + voie recommandée — répond à « pourquoi ça ne fonctionne pas
   à tous les coups »). Rétrocompatible : sans sous-commande = panel v1.1.0 inchangé
   (listing enrichi : tri --sort, filtre --filter, dates).
+  v1.3.0 (2026-10-24, session web-f90062ce — résorption du résiduel replay, directive
+  propriétaire) : frontière de déclenchement explicite MACRO/MICRO — MACRO (déclenche
+  vue-upload) = tout besoin d'ACCÈS AUX DOSSIERS download/ ou upload/ : démarrer le
+  portail, lister/télécharger/téléverser via l'interface, share, push, doctor (signal
+  de douleur : « je ne peux pas accéder au dossier », « les chemins s'affichent en
+  texte brut ») ; MICRO (HORS périmètre déclencheur) = la remise d'UN fichier précis
+  produit pendant la session (« je ne peux pas télécharger le document DOCX que tu as
+  généré ») → canal direct du canal de conversation (ex. send_message en IM) — le
+  portail n'est pas le routeur par défaut d'une demande de fichier unique.
 dependencies:
   - skill: gen-plan
     version: ">=3.20.0"

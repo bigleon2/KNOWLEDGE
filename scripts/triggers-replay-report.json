@@ -6,10 +6,9 @@
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
   "v6_1": "veto exclusifs avant scoring + cache voie L lecture seule sur désaccord (Task 30)",
   "sources_verdicts": {
-    "voie-m": 773,
-    "voie-l-cache": 18,
-    "veto-exclusif": 14,
-    "voie-l-cache-desaccord": 1
+    "voie-m": 774,
+    "voie-l-cache": 19,
+    "veto-exclusif": 14
   },
   "verdict_voie_m_seule": "FAIL (informatif)",
   "derive_voie_m_seule": [
@@ -25,12 +24,10 @@
     "vue-upload"
   ],
   "n_skills": 104,
-  "skills_ok": 103,
-  "skills_derive": 1,
-  "verdict": "FAIL",
-  "derives": [
-    "vue-upload"
-  ],
+  "skills_ok": 104,
+  "skills_derive": 0,
+  "verdict": "PASS",
+  "derives": [],
   "skills": {
     "ASR": {
       "version": "?",
@@ -9523,12 +9520,12 @@
       ]
     },
     "vue-upload": {
-      "version": "1.2.0",
-      "n_cases": 8,
-      "n_keywords": 106,
-      "score_officiel": "7/8",
-      "ok": false,
-      "derive_m": true,
+      "version": "1.3.0",
+      "n_cases": 9,
+      "n_keywords": 137,
+      "score_officiel": "9/9",
+      "ok": true,
+      "derive_m": false,
       "cases": [
         {
           "query": "Utilise vue-upload pour me donner accès au dossier des livrables.",
@@ -9546,24 +9543,32 @@
           "source": "voie-m"
         },
         {
-          "query": "Je ne peux pas télécharger le document DOCX que tu as généré, ouvre-moi un accès.",
+          "query": "Ton chat me donne juste le chemin du fichier, je ne peux pas accéder au dossier des livrables.",
           "expected": true,
-          "trigger_m": false,
-          "score": 0.1,
+          "trigger_m": true,
+          "score": 0.583,
           "hits": [
-            "acce"
+            "acceder",
+            "chat",
+            "chemin",
+            "dossier",
+            "fichier",
+            "livr",
+            "peux"
           ],
-          "ok": false,
-          "source": "voie-l-cache-desaccord"
+          "ok": true,
+          "source": "voie-m"
         },
         {
           "query": "Démarre le portail de fichiers pour que je puisse téléverser mes documents.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.222,
+          "score": 0.444,
           "hits": [
+            "docum",
             "fichier",
-            "portail"
+            "portail",
+            "televerser"
           ],
           "ok": true,
           "source": "voie-m"
@@ -9572,11 +9577,12 @@
           "query": "Crée une page web qui liste download/ et me laisse télécharger les fichiers.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.273,
+          "score": 0.364,
           "hits": [
             "download",
             "fichier",
-            "list"
+            "list",
+            "telecharger"
           ],
           "ok": true,
           "source": "voie-m"
@@ -9593,6 +9599,22 @@
           ],
           "ok": true,
           "source": "voie-m"
+        },
+        {
+          "query": "Je ne peux pas télécharger le document DOCX que tu as généré, ouvre-moi un accès.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.6,
+          "hits": [
+            "acce",
+            "docum",
+            "docx",
+            "gener",
+            "peux",
+            "telecharger"
+          ],
+          "ok": true,
+          "source": "voie-l-cache"
         },
         {
           "query": "Planifie le prochain sprint de développement de mon écosystème de skills.",
