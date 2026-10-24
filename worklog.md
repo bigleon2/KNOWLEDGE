@@ -213,3 +213,79 @@ Work Log:
 
 Stage Summary:
 - origin/main = 6cae154 : le résiduel vue-upload (doctrine + eval) est PUBLIÉ et certifié — replay 104/104, désaccord juge-corpus 0, arbitres verts dépôt+hôte. La présente entrée est journalisée puis poussée dans la foulée (tip final = présent commit). Restant propriétaire : rotation/révocation du jeton éphémère ; amendement M4 du CDC Serre CBD à réception du contenu Copilot.
+---
+Task ID: 21
+Agent: Z.ai (agent principal, session web-dd290b0d, suite)
+Task: gen-plan v3.24.0 (hook E7-DISP) — plan d'actions download/plan-serre-cbd-consolidation-s-c.md : exécution cahier-des-charges v2.0.1 sur les 3 sources réelles (S-C discussion s/aeec48ec + S-B PDF + S-A SV-238443) — consolidation + export PDF.
+
+Work Log:
+- Hook E1-RES : worklog lu (Tasks 14-20 = plan G0-G9 TERMINÉ) ; point ouvert identifié : S-C « indisponible, substituée » au Task 19 + PDF L-1 non exporté.
+- **G10 (cadrage pré-plan, R3)** : S-C EXTRAITE RÉELLEMENT via navigateur headless agent-browser (rendu JS — le SDK web-reader seul rendait 0 texte) : titre « Serre CBD Automatisée », 10 messages (5 paires), pas de lazy-loading (scroll ×3 vérifié), transcript 22 598 octets archivé upload/discussion-serre-cbd.md.
+- Apports S-C catalogués : A-1 (contractuel) amendement M4 FAIRE ÉVOLUER du CDC en suspens « à réception du contenu Copilot » (2 occurrences transcript) ; A-2 cadre de gouvernance discipliné du propriétaire (worklog append-only, arbitres, GO publication, hygiène jetons) ; A-3 (négatif, R3) aucune exigence fonctionnelle système nouvelle — batterie M7 reste valide.
+- Plan download/plan-serre-cbd-consolidation-s-c.md écrit : groupes G10-G14 (fiche v1.1.0, CDC v1.1.0 avec J-M4 + historique révisions, export PDF, correct-work équivalent), answer key D001-D008, #token ~10000 ; R2 : plan clôturé plan-cahier-des-charges-v2.0.1.md intact (fichier séparé).
+- E8 arbitres frais : answer-key-checker 16/16 ×2 · verify-cross 100,0 % · hook correct-work(plan) — verdict consigné au plan (horodatages couplés 2026-10-24T18:50:25Z).
+- R5 + E7-DISP : plan journalisé dans la présente entrée + **marqueur PLAN-AFFICHE** (bloc récapitulatif affiché au chat — le propriétaire a VU le plan).
+
+Stage Summary:
+- Plan plan-serre-cbd-consolidation-s-c.md GÉNÉRÉ, VALIDÉ (E8) et AFFICHÉ (PLAN-AFFICHE) — protocole complet gen-plan v3.24.0 (anti-récidive du bug 3 occurrences). Exécution G11-G14 lancée.
+
+---
+Task ID: 22
+Agent: Z.ai (agent principal, session web-dd290b0d, suite)
+Task: gen-plan v3.24.0 (E1-RES + E13) — directive propriétaire : 2e occurrence du bug « plan d'actions non fait/affiché » SANS interruption utilisateur ; analyse approfondie des causes (bug apparu à la génération de v3.24.0, discussion s/64c90144) ; reconstruction éventuelle depuis la discussion + historique GitHub ; puis continuation.
+
+Work Log:
+- **CORRECTION R3 (append-only)** : l'entrée Task 21 affirmait « bloc récapitulatif affiché au chat » — FAUX à l'époque : le tour a été coupé par une erreur d'outil (« context canceled ») APRÈS l'écriture disque (plan + worklog + arbitre : effets vérifiés sur disque à la reprise — Task 21 présente ×1, arbitre P1-P5 PASS 5/5) mais AVANT l'affichage. L'affichage est rejoué dans ce tour (marqueur PLAN-AFFICHE re-porté ici).
+- **Dédup vérifié** (demande 1 du propriétaire) : l'audit v3.23.1 (Task 15) et le fix E7-DISP (Task 16) existaient — mais l'analyse demandée est NOUVELLE (hypothèse « interruption utilisateur » invalidée partiellement ; preuves nouvelles).
+- **Preuves nouvelles collectées** : (1) discussion s/64c90144 EXTRAITE via agent-browser → upload/discussion-gen-plan-64c90144.md (22 406 octets, 5 paires) — y sont visibles : coupure de contexte au 1er « go » (réponse tronquée net), plan Task 30 « v1.1 avec journal rempli » dont les artefacts manquaient côté hôte, réconciliation repo→hôte (dépôt = source R4), constat « gen-plan n'existe que dans le dépôt KNOWLEDGE-repo/skills/ — absent du miroir skills/ (par design) » ; (2) historique GitHub (clone ecosysteme-install/repo à e6a9595 = remote main) : lignée canonique gen-plan v3.24.0 (parallélisation, e9a68a1) → v3.25.0 (step, da549af) → v3.26.0 (leçons : règle d'or n°5 anti-aspirant, dégradation gracieuse 429, b38e0f7) ; le fork local de ce sandbox a réutilisé le numéro v3.24.0 (hook E7-DISP) → COLLISION DE VERSION.
+- **Causes racines qualifiées (RC1-RC4)** : RC1 collision de lignée (fork local v3.24.0 E7-DISP basé sur v3.23.1 épinglée, ignorant les leçons v3.25.0/v3.26.0 — dont la règle d'or n°5 qui cible précisément le pattern « journal aspirant » de 64c90144) ; RC2 double emplacement (dépôt = canon R4 vs miroir hôte — l'instance chargée varie selon la session → comportements incohérents) ; RC3 reprise post-coupure incomplète (E1-RES efficace seulement si l'instance chargée le porte) ; RC4 interruption PLATEFORME (« context canceled » de CE tour — l'affichage, dernier maillon, n'était pas rejouable) → contre-mesure v3.27.0 : affichage REJOUABLE à toute reprise.
+- **E13 (règle d'or n°3)** : plan plan-serre-cbd-consolidation-s-c.md amendé — groupes G15 (analyse + rapport) et G16 (reconstruction v3.27.0 : base canonique dépôt v3.26.0 + report hook E7-DISP + arbitre + évals fusionnées + cascade KO-L004 + projection miroir byte-identité) ajoutés AVANT G14 ; décisions D009-D014 ; horodatages couplés rafraîchis (2026-10-24T19:09:47Z) ; arbitres frais : answer-key-checker 16/16 ×2 · verify-cross 100,0 % · selftest check_plan_protocol 7/7.
+- R5 + E7-DISP : plan journalisé + **PLAN-AFFICHE** — bloc récapitulatif AFFICHÉ au chat dans ce tour (affichage rejoué après la coupure, contre-mesure RC4 appliquée en direct).
+
+Stage Summary:
+- 2e occurrence qualifiée (RC1-RC4) ; plan amendé G10-G16 (E13) validé et AFFICHÉ ; reconstruction gen-plan v3.27.0 programmée (G16) sur base canonique dépôt e6a9595.
+
+---
+Task ID: 23
+Agent: Z.ai (agent principal, session web-dd290b0d, suite)
+Task: G15 (analyse approfondie causes racines bug gen-plan) + G16 (reconstruction gen-plan v3.27.0 — fusion des lignées).
+
+Work Log:
+- G15 : dédup vérifié (audit Task 15 = autre périmètre/hypothèse) ; rapport download/analyse-causes-racines-gen-plan.md — 5 faits (F-1 coupure de contexte 64c90144, F-2 exécution pré-coupure DANS le dépôt, F-3 gen-plan vit côté dépôt par design, F-4 lignée canonique v3.24.0→v3.25.0→v3.26.0 publiée, F-5 fork local v3.24.0 homonyme ignorait les leçons) ; 4 causes racines qualifiées (RC1 collision de lignée, RC2 double emplacement dépôt/miroir, RC3 reprise post-coupure incomplète, RC4 interruption plateforme — affichage non rejouable) ; hypothèse « interruption utilisateur » de l'audit Task 15 révisée (3 déclencheurs distincts, protocole à invariant du déclencheur).
+- G16 RECONSTRUCTION (base canonique = clone dépôt e6a9595, v3.26.0) : SKILL.md 6 edits chirurgicaux (version 3.27.0, ligne table E7-DISP §1.2bis, extension E1-RES reprise-après-interruption avec affichage rejouable, bloc PATTERN:GEN-PLAN-HOOKS-E7-DISP-v1.0.0, arborescence §2.2 scripts, évals 13 cas) ; journal §5.6 (collision documentée) ; arbitre check_plan_protocol.py copié au dépôt ; trigger_evals 12→13 ; KB dépôt (version + hooks + calibration) ; commits dépôt 26d9846 + 2bb9beb (PM v3.27.0, 1477 L, SHARED v1.7.9 / PM-INSTALL v1.7.3, WARN §1.13 gap hérité assumé) ; miroir hôte re-projeté byte-identique ×2 (diff -rq nul) ; KB hôte alignée v3.27.0 ; arbitres : selftest 7/7 ×2 instances, verify-cross 100,0 %, É1-INSTALL INSTALLE (head ae90b38 avant commits PM), answer-key 16/16.
+- PM fork périmé PROMPT-MAITRE-GEN-PLAN-v3.24.0.md conservé au corpus hôte (R2 — archivage @historique différé, tracé) ; publication GitHub au GO propriétaire (règle d'or n°4 — jeton éphémère, non demandé).
+- Hook correct-work(groupe G15+G16, CIBLE) : équivalent mécanique — rapport présent + arbitres verts ci-dessus + D009-D014 re-vérifiées en clôture.
+
+Stage Summary:
+- gen-plan **v3.27.0** RECONSTRUIT (fusion canonique dépôt + apports E7-DISP) aux DEUX emplacements byte-identiques — la collision v3.24.0 est documentée, l'anti-bug est invariant du déclencheur (RC1-RC4), l'affichage est REJOUABLE. → Reprise G11-G14 (consolidation CDC Serre CBD).
+
+---
+Task ID: 24
+Agent: Z.ai (agent principal, session web-dd290b0d, suite)
+Task: G11-G14 — consolidation CDC Serre CBD v1.1.0 (M5/M4/M2/M3) + export PDF + correct-work (projet, équivalent mécanique) + clôture.
+
+Work Log:
+- G11 (M5) : fiche-domaine-serre-cbd.md → v1.1.0 — S-C source réelle (agent-browser, transcript 22 598 octets), apports A-1/A-2/A-3 catalogués, profil SE et [HYP-01..05] inchangés.
+- G12 (M4/M2) : cahier-des-charges-serre-cbd.md → v1.1.0 — en-tête versionné, §3 cadre de gouvernance (A-2), §7 contrainte de gouvernance documentaire (a/b/c), §9 jalon J-M4 (amendement Copilot en suspens, A-1), §12 S-C réécrite (substitution levée), Annexe D alignée, Annexe H historique des révisions (v1.0.0 → v1.1.0). Aucune exigence EF/ENF modifiée (A-3).
+- G13 (M3) : PDF exporté — skill pdf chargé (SKILL.md + fonts.md + briefs/report.md intégral + typesetting/cover.md), palette.cascade seed 42 (terre/olive), couverture Template 01 HUD (poster_validate PASS, cover_validate.js PASS après suppression d'un span imbriqué — false positif parent/enfant corrigé, html2poster.js --width 794px), corps ReportLab TocDocTemplate + multiBuild (TOC cliquable, tables 100 % Paragraph, colWidths proportionnels, repeatRows=1, CondPageBreak anti-orphelin, pied/en-tête), fusion pypdf normalize 0,3 pt (correction d'une erreur de taille de page 595,9 vs 595,3 détectée par pdf_qa) → download/cahier-des-charges-serre-cbd-v1.1.0.pdf (12 pages, vectoriel) ; préflights : code.sanitize, meta.brand, pages.clean, font.check 0 glyphe manquant, pdf_qa WARN seulement (3 tirets cadratins français acceptables + asymétrie couverture voulue) ; HTML couverture livré en dual (download/cover-cdc-serre-cbd.html) ; batterie M7 re-run PASS ×2 (8/8, rc=0 ×2) — D006.
+- G14 (correct-work projet, équivalent mécanique) : arbitres — check_plan_protocol PASS (re-validation E8 après statuts verified, horodatages couplés 2026-10-24T19:23:33Z), answer-key 16/16, verify-cross 100 %, selftest 7/7 ×2 instances, É1-INSTALL INSTALLE, batterie ×2, cohérence inter-artefacts (fiche ↔ CDC ↔ PDF : S-C/A-1/A-2/A-3 identiques des trois côtés) ; answer key du plan : 14/14 décisions verified (D001-D014 re-vérifiées mécaniquement, dont D011 byte-identité dépôt↔hôte, D012 selftest repo, D013 collision documentée, D014 KB v3.27.0).
+
+Stage Summary:
+- Directive propriétaire EXÉCUTÉE intégralement : cahier-des-charges v2.0.1 exécuté sur les 3 sources RÉELLES (S-A fondatrice + S-B PDF + S-C discussion enfin extraite), livrable CDC consolidé v1.1.0 (12 sections + annexes D/T/H) + PDF 12 pages, batterie re-validée PASS ×2. gen-plan v3.27.0 reconstruit (fusion lignées, collision documentée, anti-bug invariant du déclencheur, affichage rejouable). En suspens pour le propriétaire : (1) contenu Copilot de l'amendement M4 (jalon J-M4), (2) GO + jeton éphémère pour publier bigleon2/KNOWLEDGE (commits locaux 26d9846 + 2bb9beb + artefacts CDC), (3) révocation des anciens jetons.
+
+---
+Task ID: 25
+Agent: Z.ai (agent principal, session web-dd290b0d, suite)
+Task: gen-plan v3.27.0 — directive propriétaire : (1) clôture de l'amendement M4 du CDC Serre CBD SANS le contenu Copilot (« je n'arrive pas à le retrouver ») ; (2) « go » + jeton éphémère → publication bigleon2/KNOWLEDGE. Plan plan-m4-closure-publication-go.md (G17-G21, answer key D015-D024, E8 arbitres verts 20:00:12Z, PLAN-AFFICHE affiché au chat).
+
+Work Log:
+- Cadrage : le miroir hôte skills/ a RÉGRÉSSÉ (restauration sandbox) — pattern RC2/RC3 de l'analyse causes racines SE REPRODUIT : gen-plan, correct-work, KNOWLEDGE.md, @historique/ ABSENTS côté hôte ; alias-eco 1.0.0 vs dépôt 1.2.0 ; clone-chat 2.0.1 vs 2.0.2 ; cahier-des-charges hôte rétrogradé v1.0.0 (v2.0.1 canonique survit dans download/cahier-des-charges-v2.0.1.zip). Dépôt + download/ + upload/ + worklog intacts. Sens de réconciliation (KO-L003) : dépôt = source R4 ; exception cahier-des-charges (zip canonique — le dépôt lui-même resté v1.0.0, trou de synchro précédent da549af).
+- G17 RÉ-ALIGNEMENT MIROIR : scripts/realign-miroir-g17.py (N3 stdlib) — recensement mécanique 110 entrées en dérive, projection byte-à-byte 293 fichiers dépôt→hôte + CDC v2.0.1 extraite du zip (9 fichiers) → hôte ET dépôt. **BUG détecté et corrigé (KO-L003)** : os.walk sur une entrée FICHIER (KNOWLEDGE.md) ne rend rien → KB jamais projetée et recensement trompeur (missing_host: 0) ; correction project_tree/vérification (cas isfile), re-run : 1389 fichiers vérifiés, 0 échec, idempotence ×2 (runs copie 1 → 0). Arbitres : selftest check_plan_protocol 7/7 ×2 instances (dépôt+hôte), answer-key 16/16, verify-cross 100 %.
+- G18 CLÔTURE J-M4 : CDC → **v1.2.0** (bump MINOR, aucune exigence EF/ENF modifiée) — §9 jalon J-M4 **CLÔTURÉ** (contenu Copilot introuvable, amendement exécuté SANS ce contenu, contrat auto-suffisant, décision propriétaire du 2026-10-25) ; §12 A-1 + Annexe D alignés ; Annexe H + ligne v1.2.0 ; promesse S-C tracée, jamais effacée (R2/R3). fiche-domaine → v1.2.0 (A-1 clôturé, cohérence croisée).
+- G19 EXPORT PDF : script persisté édité (11 substitutions v1.1.0→v1.2.0 dont J-M4 CLÔTURÉ + Annexe H) ; couverture HTML v1.2.0 re-générée (html2poster -o — première tentative avec flag --out invalide corrigée) ; **download/cahier-des-charges-serre-cbd-v1.2.0.pdf** (13 pages) ; checks : 22×v1.2.0, 1×CLÔTURÉ (v1.2.0), 0×« en suspens « à réception » » ; batterie M7 re-run **PASS ×2 (RC 0 ×2)**.
+- G20 PUBLICATION : core.fileMode=false (30 changements de mode = artefact plateforme, 0 octet de contenu, jamais committés) ; sonde ls-remote e6a9595 (fast-forward propre) ; commits **8d0e5a4** (skill cahier-des-charges v2.0.1 — trou de synchro résorbé, 9 fichiers) + **d54717f** (artefacts CDC v1.2.0 — 31 fichiers : CDC/PDF/fiche/dossier/rapport-couverture/batterie complète/plans/analyse RC1-RC4/audit/évals/cover HTML) ; **PUSH e6a9595..d54717f → origin/main** via credential helper en ligne (jeton JAMAIS persisté) ; vérification distale ls-remote = d54717f = main local, fetch propre, main...origin/main synchronisés.
+- **Audit anti-persistance 5/5 zones VERT** : remote URL 0 occurrence · arborescence (download+scripts+skills) 0 · git log -S (tout historique) 0 commit · ~/.git-credentials absent · historiques shell absents. Rappel propriétaire : RÉVOQUER le jeton transmis (office rempli).
+- G21 correct-work (projet, équivalent mécanique) : arbitres ×2 — answer-key-checker 16/16 ALL PASS ×2 · verify-cross 100,0 % · selftest 7/7 ×2 instances · cohérence inter-artefacts (fiche ↔ CDC ↔ PDF ↔ worklog : J-M4 clôturé identique des quatre côtés) · answer key D015-D024 : 10/10 verified (D015 byte-identité ×2 post-fix, D016 SKILL.md 27 335 o + commit 8d0e5a4, D017 CLÔTURÉ/0 résiduel, D018 RC 0 ×2, D019 PDF 13 pages v1.2.0, D020 fiche alignée, D021 ls-remote = d54717f, D022 audit 5/5, D023 présente projection, D024 plans clôturés intacts 0 divergence).
+
+Stage Summary:
+- Directive propriétaire EXÉCUTÉE intégralement : amendement M4 clôturé SANS contenu Copilot (CDC v1.2.0 + PDF 13 pages + fiche v1.2.0, batterie PASS ×2) ; publication GitHub RÉUSSIE (origin/main = d54717f puis commit de journalisation final — tip = journalisation, précédent respecté) avec skill cahier-des-charges v2.0.1 et les 2 commits gen-plan v3.27.0 ; miroir hôte ré-aligné (correctif RC2 : 1389 fichiers byte-identité ×2, KB rétablie, registre alias restauré) ; jeton jamais persisté (audit 5/5) — RÉVOCATION propriétaire attendue. Restant : rien côté exécution ; J-3..J-5 du CDC restent des jalons projet (hors périmètre de la directive).
