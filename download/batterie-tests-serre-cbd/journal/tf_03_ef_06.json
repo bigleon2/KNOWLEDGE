@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "detail": "champs complets pour stress_light et stress_severe",
+      "nom": "EF-06 : chaque décision non-healthy -> exactement 1 PLCCommand complète",
+      "ok": true
+    },
+    {
+      "detail": "aucune commande générée",
+      "nom": "EF-06 : décision healthy -> 0 commande",
+      "ok": true
+    },
+    {
+      "detail": "priority severe=1 < light=5",
+      "nom": "EF-06 : stress_severe prioritaire sur stress_light",
+      "ok": true
+    },
+    {
+      "detail": "même décision -> même commande, à l'identique",
+      "nom": "EF-06 : mapping déterministe (idempotence)",
+      "ok": true
+    }
+  ],
+  "exigences": [
+    "EF-06"
+  ],
+  "statut": "PRÊT",
+  "test": "TF-03",
+  "verdict": "PASS"
+}

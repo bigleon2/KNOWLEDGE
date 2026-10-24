@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "detail": "10/10 conformes",
+      "nom": "EF-03 : cas borniers des seuils pics/énergie",
+      "ok": true
+    },
+    {
+      "detail": "énergie = seuil exact -> 0,0005 : healthy ; 0,001 : light (severe non déclenché)",
+      "nom": "EF-03 : strictitude des inégalités d'énergie (> seuil, pas >=)",
+      "ok": true
+    },
+    {
+      "detail": "toutes les combinaisons au-delà des deux seuils -> stress_severe",
+      "nom": "EF-03 : priorité severe sur light",
+      "ok": true
+    }
+  ],
+  "exigences": [
+    "EF-03"
+  ],
+  "statut": "PRÊT",
+  "test": "TF-01",
+  "verdict": "PASS"
+}

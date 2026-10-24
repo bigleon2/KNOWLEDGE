@@ -1,0 +1,54 @@
+{
+ "campagne": "cahier-des-charges voie L (Description Optimization)",
+ "skill_version": "2.0.1",
+ "runs_prévus": 3,
+ "requêtes": 12,
+ "votes_total": 29,
+ "votes_valides": 29,
+ "votes_indéterminés": 0,
+ "métriques_par_run": {
+  "run1": {
+   "precision": 0.818,
+   "rappel": 1.0,
+   "f1": 0.9,
+   "exactitude": 0.833,
+   "tp": 9,
+   "fp": 2,
+   "fn": 0,
+   "tn": 1
+  },
+  "run2": {
+   "precision": 0.818,
+   "rappel": 1.0,
+   "f1": 0.9,
+   "exactitude": 0.833,
+   "tp": 9,
+   "fp": 2,
+   "fn": 0,
+   "tn": 1
+  },
+  "run3": {
+   "precision": 1.0,
+   "rappel": 1.0,
+   "f1": 1.0,
+   "exactitude": 1.0,
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "tn": 0
+  }
+ },
+ "agrégat": {
+  "precision": 0.852,
+  "rappel": 1.0,
+  "f1": 0.92,
+  "exactitude": 0.862,
+  "tp": 23,
+  "fp": 4,
+  "fn": 0,
+  "tn": 2
+ },
+ "verdict": "MESURÉE-PARTIELLE (29/36 — échec API persistant run 3 idx 5, KO-L001 : arrêt propre)",
+ "reprise": "python3 scripts/eval-campaign.py --skip-done (7 votes restants : run 3 idx 5-11)",
+ "KO-L001": "1 vote par appel, --skip-done idempotent, arrêt propre au premier échec"
+}

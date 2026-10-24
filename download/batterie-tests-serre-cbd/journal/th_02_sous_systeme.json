@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "detail": "taux=100.0 % à 5 m",
+      "nom": "ENF-08/[HYP-03] : >= 95 % des clics 40-60 kHz détectés à 5 m (RH 70 %)",
+      "ok": true
+    },
+    {
+      "detail": "4 m=100.0 % / 5 m=100.0 % / 6 m=100.0 %",
+      "nom": "TH-02 : monotonie en distance (4 m >= 5 m >= 6 m)",
+      "ok": true
+    },
+    {
+      "detail": "alpha(50 kHz, 30 %)=2.10 dB/m > alpha(90 %)=0.30 dB/m",
+      "nom": "TH-02 : absorption décroissante avec l'humidité (relaxation O2, approx.)",
+      "ok": true
+    },
+    {
+      "detail": "alpha(80 kHz)=2.30 > alpha(40 kHz)=0.58 dB/m",
+      "nom": "TH-02 : absorption croissante en f² (80 kHz plus atténué que 40 kHz)",
+      "ok": true
+    },
+    {
+      "detail": "taux stable = 100.0 %",
+      "nom": "TH-02 : déterminisme (graine 42)",
+      "ok": true
+    }
+  ],
+  "exigences": [
+    "ENF-08"
+  ],
+  "statut": "PRÊT",
+  "test": "TH-02",
+  "verdict": "PASS"
+}

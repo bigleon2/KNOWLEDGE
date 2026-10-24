@@ -1,0 +1,83 @@
+{
+  "projet": "serre-cbd",
+  "horodatage": "2026-10-24T20:03:23+00:00",
+  "verdict_global": "PASS",
+  "total": 8,
+  "passes": 8,
+  "echecs": 0,
+  "non_implementes": 0,
+  "tests": [
+    {
+      "id": "TF-01",
+      "test": "tf_01_ef_03.py",
+      "statut": "PRÊT",
+      "verdict": "PASS",
+      "code_retour": 0,
+      "duree_s": 0.023,
+      "sortie": "PASS EF-03 : cas borniers des seuils pics/énergie — 10/10 conformes\nPASS EF-03 : strictitude des inégalités d'énergie (> seuil, pas >=) — énergie = seuil exact -> 0,0005 : healthy ; 0,001 : light (severe non déclenché)\nPASS EF-03 : priorité severe sur light — toutes les combinaisons au-delà des deux seuils -> stress_severe"
+    },
+    {
+      "id": "TF-02",
+      "test": "tf_02_ef_04.py",
+      "statut": "PRÊT",
+      "verdict": "PASS",
+      "code_retour": 0,
+      "duree_s": 0.023,
+      "sortie": "PASS EF-04 : 100 % des schémas invalides rejetés (422 + détail) — 4/4 rejets avec détail de violation\nPASS EF-04 : charge valide acceptée (202) — code=202\nPASS ENF-02 : 100 % des requêtes non/sous-authentifiées rejetées (401) — sans en-tête=401; clé invalide=401 ; clé valide=200"
+    },
+    {
+      "id": "TF-03",
+      "test": "tf_03_ef_06.py",
+      "statut": "PRÊT",
+      "verdict": "PASS",
+      "code_retour": 0,
+      "duree_s": 0.023,
+      "sortie": "PASS EF-06 : chaque décision non-healthy -> exactement 1 PLCCommand complète — champs complets pour stress_light et stress_severe\nPASS EF-06 : décision healthy -> 0 commande — aucune commande générée\nPASS EF-06 : stress_severe prioritaire sur stress_light — priority severe=1 < light=5\nPASS EF-06 : mapping déterministe (idempotence) — même décision -> même commande, à l'identique"
+    },
+    {
+      "id": "TF-04",
+      "test": "tf_04_ef_01.py",
+      "statut": "PRÊT",
+      "verdict": "PASS",
+      "code_retour": 0,
+      "duree_s": 0.023,
+      "sortie": "PASS EF-01 : AcqWindow produite avec les 12 champs obligatoires du schéma S-B — 12/12 champs présents\nPASS EF-01 : bornes temporelles ordonnées (end > start) — 1060 > 1000\nPASS EF-01 : sample_rate >= 192 kS/s (Nyquist 80 kHz + marge 20 %) — sample_rate=250 kS/s >= 192 kS/s\nPASS EF-01 : champ manquant détecté (validation I-03) — median_freq absent -> incomplète"
+    },
+    {
+      "id": "TF-05",
+      "test": "tf_05_ef_05.py",
+      "statut": "PRÊT",
+      "verdict": "PASS",
+      "code_retour": 0,
+      "duree_s": 0.023,
+      "sortie": "PASS EF-05 : décision référence un model_id présent au registre — model_id=serre-seuils-v1 connu\nPASS EF-05 : 0 décision orpheline (model_id inconnu rejeté) — ValueError levée pour model_id hors registre\nPASS EF-05 : registre porte version + seuils utilisés (cohérence EF-03) — seuils={'light_pics': 8, 'light_energie': 0.0005, 'severe_pics': 20, 'severe_energie': 0.001}"
+    },
+    {
+      "id": "TF-06",
+      "test": "tf_06_ef_07.py",
+      "statut": "PRÊT",
+      "verdict": "PASS",
+      "code_retour": 0,
+      "duree_s": 0.022,
+      "sortie": "PASS EF-07 : /health renvoie 2xx avec l'état des 3 dépendances — code=200, dépendances={'api': True, 'registre': True, 'horloge': True}\nPASS EF-07 : réponse en moins d'une seconde — durée=0.0 ms < 1000 ms\nPASS EF-07 : dépendance dégradée détectée (503, non ok) — registre=False -> 503 dégradé"
+    },
+    {
+      "id": "TH-01",
+      "test": "th_01_sous_systeme.py",
+      "statut": "PRÊT",
+      "verdict": "PASS",
+      "code_retour": 0,
+      "duree_s": 0.026,
+      "sortie": "PASS EF-02 : sinus hors bande (20 kHz) -> 0 pic détecté — 0 pic(s) sur 5000 essais\nPASS EF-08/I-01 : détection >= 95 % des clics 40-80 kHz (régime stress) — 805/805 = 100.0 %\nPASS EF-08 : régime stress détecté à ~35 clics/h (tolérance 20 %) — 33.5 clics/h détectés (cible 35)\nPASS EF-08 : régime sain <= 1 son/h détecté (0 faux régimes confondus) — 0.67 son/h détecté vs 33.5 clics/h stress\nPASS TH-01 : déterminisme (graine 42) — re-simulation identique — 805 clics détectés aux mêmes instants"
+    },
+    {
+      "id": "TH-02",
+      "test": "th_02_sous_systeme.py",
+      "statut": "PRÊT",
+      "verdict": "PASS",
+      "code_retour": 0,
+      "duree_s": 0.032,
+      "sortie": "PASS ENF-08/[HYP-03] : >= 95 % des clics 40-60 kHz détectés à 5 m (RH 70 %) — taux=100.0 % à 5 m\nPASS TH-02 : monotonie en distance (4 m >= 5 m >= 6 m) — 4 m=100.0 % / 5 m=100.0 % / 6 m=100.0 %\nPASS TH-02 : absorption décroissante avec l'humidité (relaxation O2, approx.) — alpha(50 kHz, 30 %)=2.10 dB/m > alpha(90 %)=0.30 dB/m\nPASS TH-02 : absorption croissante en f² (80 kHz plus atténué que 40 kHz) — alpha(80 kHz)=2.30 > alpha(40 kHz)=0.58 dB/m\nPASS TH-02 : déterminisme (graine 42) — taux stable = 100.0 %"
+    }
+  ]
+}

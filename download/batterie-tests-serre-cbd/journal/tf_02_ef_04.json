@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "detail": "4/4 rejets avec détail de violation",
+      "nom": "EF-04 : 100 % des schémas invalides rejetés (422 + détail)",
+      "ok": true
+    },
+    {
+      "detail": "code=202",
+      "nom": "EF-04 : charge valide acceptée (202)",
+      "ok": true
+    },
+    {
+      "detail": "sans en-tête=401; clé invalide=401 ; clé valide=200",
+      "nom": "ENF-02 : 100 % des requêtes non/sous-authentifiées rejetées (401)",
+      "ok": true
+    }
+  ],
+  "exigences": [
+    "EF-04",
+    "ENF-02"
+  ],
+  "statut": "PRÊT",
+  "test": "TF-02",
+  "verdict": "PASS"
+}

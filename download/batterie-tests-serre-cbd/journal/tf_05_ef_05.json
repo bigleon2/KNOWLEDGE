@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "detail": "model_id=serre-seuils-v1 connu",
+      "nom": "EF-05 : décision référence un model_id présent au registre",
+      "ok": true
+    },
+    {
+      "detail": "ValueError levée pour model_id hors registre",
+      "nom": "EF-05 : 0 décision orpheline (model_id inconnu rejeté)",
+      "ok": true
+    },
+    {
+      "detail": "seuils={'light_pics': 8, 'light_energie': 0.0005, 'severe_pics': 20, 'severe_energie': 0.001}",
+      "nom": "EF-05 : registre porte version + seuils utilisés (cohérence EF-03)",
+      "ok": true
+    }
+  ],
+  "exigences": [
+    "EF-05"
+  ],
+  "statut": "PRÊT",
+  "test": "TF-05",
+  "verdict": "PASS"
+}

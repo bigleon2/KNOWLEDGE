@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "detail": "code=200, dépendances={'api': True, 'registre': True, 'horloge': True}",
+      "nom": "EF-07 : /health renvoie 2xx avec l'état des 3 dépendances",
+      "ok": true
+    },
+    {
+      "detail": "durée=0.0 ms < 1000 ms",
+      "nom": "EF-07 : réponse en moins d'une seconde",
+      "ok": true
+    },
+    {
+      "detail": "registre=False -> 503 dégradé",
+      "nom": "EF-07 : dépendance dégradée détectée (503, non ok)",
+      "ok": true
+    }
+  ],
+  "exigences": [
+    "EF-07"
+  ],
+  "statut": "PRÊT",
+  "test": "TF-06",
+  "verdict": "PASS"
+}

@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "detail": "12/12 champs présents",
+      "nom": "EF-01 : AcqWindow produite avec les 12 champs obligatoires du schéma S-B",
+      "ok": true
+    },
+    {
+      "detail": "1060 > 1000",
+      "nom": "EF-01 : bornes temporelles ordonnées (end > start)",
+      "ok": true
+    },
+    {
+      "detail": "sample_rate=250 kS/s >= 192 kS/s",
+      "nom": "EF-01 : sample_rate >= 192 kS/s (Nyquist 80 kHz + marge 20 %)",
+      "ok": true
+    },
+    {
+      "detail": "median_freq absent -> incomplète",
+      "nom": "EF-01 : champ manquant détecté (validation I-03)",
+      "ok": true
+    }
+  ],
+  "exigences": [
+    "EF-01"
+  ],
+  "statut": "PRÊT",
+  "test": "TF-04",
+  "verdict": "PASS"
+}
