@@ -1,8 +1,8 @@
 {
   "skill_name": "vue-upload",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
-  "note": "Convention resume-youtube : 5 evals fonctionnels positifs. Créé Task 31 (session web-bbbeab47). v1.1.0 (Task 36) : +1 eval panel rapide (VU-6), protocole deux temps intégré. v1.2.0 (Task 39, approfondissement) : +VU-7 share vérifié sha256, +VU-8 doctor — suite task39 14/14 PASS, régression Task 33 15/15.",
+  "note": "Convention resume-youtube : 5 evals fonctionnels positifs. Créé Task 31 (session web-bbbeab47). v1.1.0 (Task 36) : +1 eval panel rapide (VU-6), protocole deux temps intégré. v1.2.0 (Task 39, approfondissement) : +VU-7 share vérifié sha256, +VU-8 doctor — suite task39 14/14 PASS, régression Task 33 15/15. v1.3.0 (2026-10-24, session web-f90062ce) : champ version aligné v1.3.0 — doctrine MACRO/MICRO (description) + corpus trigger_evals révisé ; suite fonctionnelle inchangée (logique serveur stable depuis v1.0.0).",
   "evals": [
     {
       "id": 1,
