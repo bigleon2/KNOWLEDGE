@@ -115,6 +115,14 @@ Registre à 39 entrées — instantané des versions archivé ci-dessous (source
 | alias-eco | v1.2.0 | dessin-technique | v1.1.1 |
 | cahier-des-charges | v1.0.0 | agent-prompt-engineering | v1.0.1 |
 
+## 6bis. Journal des campagnes trigger_evals (arbitre replay — convention Task 30 vérité source)
+
+Journal des campagnes de résorption des dérives triggers (arbitre `scripts/check-triggers-replay.py`). Les skills avec journal dédié (gen-plan, refactor-guard) sont journalisés dans `historiques-par-skill/` ; les autres le sont ici (R2 append-only).
+
+| Date | Campagne | Éléments touchés | Résumé |
+|------|----------|------------------|--------|
+| 2026-10-24 | Task 30-ABC (GO propriétaire, session web-f90062ce — exécution de la Task 30 de la vérité source PM INSTALL, instrumentation jamais commitée) | arbitre V6→V6.1 · 11 corpus trigger_evals · voie-l-semantique.py + voie-l-cache.json (19 verdicts figés) · 4 scripts task30-* | Option A : 14 vetos exclusifs / 11 corpus (champ `exclusifs`, veto avant scoring — trio iphone périmètre d'époque, agent-creator, audio-metadata, prompt-engineering, script-reviewer, script-mon-ecosysteme-infrastructure, skills-inventory ×2, pdf-llm ×3, vue-upload) ; Option B : 16 verdicts figés de la discussion PM INSTALL réutilisés sans re-appel + 3 arbitrages réels (sériel, 429 blindé, description complète, question de ROUTAGE) ; Option C : replay ×2 byte-identique sha a75a1c0f — 103/104 skills, sources 773 voie-m · 14 veto · 18 voie-l-cache · 1 voie-l-cache-desaccord (résiduel vue-upload DOCX, divergence juge-corpus documentée, statu quo assumé) ; 0 bump semver (champ doctrinal additif, précédent Task 27-A) ; non-événement anti-aspirant : 2 REFUTE version-management déduites puis ANNULÉES après re-lecture du référentiel (description inclut création de page/dashboard — voie L true/true), bump 1.2.1 revert ; arbitres verts (verify-cross 100 %, integrity 82/82, interactions PASS AVEC RÉSERVES WARN B1 hérité, doublons 0) |
+
 ## 7. Mise à jour de ce fichier
 
 À chaque révision d'un élément du socle (montée de version du SHARED, du SYNC-CONTEXT, du README, de PM-INSTALL ou du registre KB) : ajouter une ligne à la table de la section correspondante (version, date, résumé fidèle à l'en-tête Révision du fichier vivant), sans réécrire l'historique antérieur. L'orchestrateur `PROMPT-ULTRA-MAITRE-ORCHESTRATION.md` n'entre dans ce fichier que si sa mécanique de génération change (il est régénéré mécaniquement). Procédure normative générale au `README.md` du présent dossier (§4) ; sweep arbitres avant tout commit.

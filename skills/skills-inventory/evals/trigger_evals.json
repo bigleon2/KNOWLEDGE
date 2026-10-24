@@ -1,30 +1,36 @@
 [
-  {
-    "query": "Utilise le skill skills-inventory pour scanner et inventorier les skills disponibles.",
-    "should_trigger": true
-  },
-  {
-    "query": "Fais l'inventaire des skills installés avec leurs versions.",
-    "should_trigger": true
-  },
-  {
-    "query": "Scanne le répertoire des skills : présences, versions, dépendances, lacunes — tableau d'inventaire.",
-    "should_trigger": true
-  },
-  {
-    "query": "Quels skills sont disponibles pour cette tâche ? Consulte le registre.",
-    "should_trigger": true
-  },
-  {
-    "query": "Cherche dans le hub ClawHub les skills correspondant à mon besoin et installe-les.",
-    "should_trigger": false
-  },
-  {
-    "query": "Cherche et installe de nouveaux skills depuis le hub.",
-    "should_trigger": false
-  },
-  {
-    "query": "Liste les applications installées sur mon ordinateur.",
-    "should_trigger": false
-  }
+ {
+  "query": "Utilise le skill skills-inventory pour scanner et inventorier les skills disponibles.",
+  "should_trigger": true
+ },
+ {
+  "query": "Fais l'inventaire des skills installés avec leurs versions.",
+  "should_trigger": true
+ },
+ {
+  "query": "Scanne le répertoire des skills : présences, versions, dépendances, lacunes — tableau d'inventaire.",
+  "should_trigger": true
+ },
+ {
+  "query": "Quels skills sont disponibles pour cette tâche ? Consulte le registre.",
+  "should_trigger": true
+ },
+ {
+  "query": "Cherche dans le hub ClawHub les skills correspondant à mon besoin et installe-les.",
+  "should_trigger": false,
+  "exclusifs": [
+   "clawhub"
+  ]
+ },
+ {
+  "query": "Cherche et installe de nouveaux skills depuis le hub.",
+  "should_trigger": false,
+  "exclusifs": [
+   "et installe"
+  ]
+ },
+ {
+  "query": "Liste les applications installées sur mon ordinateur.",
+  "should_trigger": false
+ }
 ]

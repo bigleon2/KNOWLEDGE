@@ -1,0 +1,154 @@
+{
+ "jd-resume-tailor::j'ai besoin de la tâche « jd » — quelle est la procédure ?": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "discussion PM INSTALL (Task 30, verdicts figés)",
+  "trace": "Cité : « jd → true ✓ » — convention de token de tâche (discussion PM INSTALL)"
+ },
+ "ai-news-collectors::la tâche « ai »": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "discussion PM INSTALL (Task 30, verdicts figés)",
+  "trace": "Cité : « true — cohérent avec la convention écosystème (même mécanique que « jd ») »"
+ },
+ "cahier-des-charges::Décompose la spécification exécutable de cette tâche en plan puis en tâches atomiques.": {
+  "verdict": false,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "discussion PM INSTALL (Task 30, verdicts figés)",
+  "trace": "Cité : « cahier → false ✓ » — décomposition en tâches = SDD/gen-plan, pas rédaction de CDC"
+ },
+ "iphone19::Prépare cette photo en poster A4 à 300 DPI pour impression.": {
+  "verdict": false,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "discussion PM INSTALL (Task 30, verdicts figés)",
+  "trace": "Cité : re-arbitrage de ROUTAGE documenté dans l'entrée (poster = capacité iphone19 MAIS doctrine d'époque → génération courante iphone18)"
+ },
+ "iphone19::Améliore cette photo qualité max.": {
+  "verdict": false,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "discussion PM INSTALL (Task 30, verdicts figés)",
+  "trace": "Cité : résiduel iphone19 « résorbé par le cache canonique (doctrine d'époque) » — amélioration générique → iphone18"
+ },
+ "iphone19::Restaure ce scan de photo ancienne des années 80, rendu propre et net.": {
+  "verdict": false,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "discussion PM INSTALL (Task 30, verdicts figés)",
+  "trace": "Cité : résiduel iphone19 « résorbé par le cache canonique (doctrine d'époque) » — restauration générique → iphone18"
+ },
+ "gen-plan::gen-plan (stp) : lance ce mode pour ce projet.": {
+  "verdict": false,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : « (stp) » n'est pas un mode nommé (E1-E15) — la doctrine gen-plan exige le mode explicitement demandé"
+ },
+ "refactor-guard::je veux découper cette God Class de 2000 lignes sans rien casser": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : découpe de God Class = cœur du périmètre refactor-guard (drift list citée : « refactor-guard (« God Class ») »)"
+ },
+ "agent-browser::Automatiser des interactions web": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : automatisation d'interactions web = périmètre littéral agent-browser (drift list citée)"
+ },
+ "agent-browser::j'ai besoin de Automatiser des interactions web — quelle est la procédure ?": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : idem, forme procédurale"
+ },
+ "agent-browser::peux-tu Automatiser des interactions web ?": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : idem, forme interrogative"
+ },
+ "agent-prompt-engineering::évalue ce SKILL.md selon la grille et propose des ajustements": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : évaluation selon grille + ajustements = périmètre agent-prompt-engineering (drift list citée)"
+ },
+ "agent-prompt-engineering::restructure la section §5 de ce PM sans perdre de sémantique": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : restructuration de prompt/PM = périmètre agent-prompt-engineering"
+ },
+ "version-management::看看这个项目都有哪些历史版本": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : re-arbitrage description-complète (Task 30 : « version-management ×3 » corrigés, verdicts conformes) — consultation historique versions"
+ },
+ "version-management::恢复到 V2，刚才那版改坏了": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : restauration de version = cœur du périmètre version-management"
+ },
+ "version-management::切回我上次的那个项目": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "source": "arbitrage Task 25/30 CONFIRME-eval (discussion PM INSTALL)",
+  "trace": "CONFIRME-eval : bascule vers le projet précédent = périmètre version-management"
+ },
+ "vue-upload::Je ne peux pas télécharger le document DOCX que tu as généré, ouvre-moi un accès.": {
+  "verdict": false,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "attendu_eval": true,
+  "source": "voie L z-ai chat (glm), description complète, sériel+backoff"
+ },
+ "version-management::帮我写一个个人主页 index.html": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "attendu_eval": true,
+  "source": "voie L z-ai chat (glm), description complète, sériel+backoff"
+ },
+ "version-management::给我做一个数据可视化仪表盘页面": {
+  "verdict": true,
+  "statut": "fige",
+  "question_type": "routage",
+  "date_fixation": "2026-10-24",
+  "attendu_eval": true,
+  "source": "voie L z-ai chat (glm), description complète, sériel+backoff"
+ }
+}

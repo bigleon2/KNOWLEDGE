@@ -1,34 +1,37 @@
 [
-  {
-    "query": "Améliore cette photo avec le rendu iPhone 17 Pro Max qualité max.",
-    "should_trigger": true
-  },
-  {
-    "query": "Applique le preset iphone17_max sur cette photo.",
-    "should_trigger": true
-  },
-  {
-    "query": "Fais un portrait serré avec la focale équivalente 85 mm sur cette photo.",
-    "should_trigger": true
-  },
-  {
-    "query": "Retouche ces deux vieilles photos en mode série, rendu iPhone 17.",
-    "should_trigger": true
-  },
-  {
-    "query": "Restaure ce tirage argentique abîmé des années 70.",
-    "should_trigger": true
-  },
-  {
-    "query": "Prépare un poster A4 300 DPI de cette photo de famille.",
-    "should_trigger": true
-  },
-  {
-    "query": "Améliore cette photo au rendu iPhone 18 Pro Max qualité max.",
-    "should_trigger": false
-  },
-  {
-    "query": "Reproduis cette pièce photographiée en dessin technique coté (isométrie CAO).",
-    "should_trigger": false
-  }
+ {
+  "query": "Améliore cette photo avec le rendu iPhone 17 Pro Max qualité max.",
+  "should_trigger": true
+ },
+ {
+  "query": "Applique le preset iphone17_max sur cette photo.",
+  "should_trigger": true
+ },
+ {
+  "query": "Fais un portrait serré avec la focale équivalente 85 mm sur cette photo.",
+  "should_trigger": true
+ },
+ {
+  "query": "Retouche ces deux vieilles photos en mode série, rendu iPhone 17.",
+  "should_trigger": true
+ },
+ {
+  "query": "Restaure ce tirage argentique abîmé des années 70.",
+  "should_trigger": true
+ },
+ {
+  "query": "Prépare un poster A4 300 DPI de cette photo de famille.",
+  "should_trigger": true
+ },
+ {
+  "query": "Améliore cette photo au rendu iPhone 18 Pro Max qualité max.",
+  "should_trigger": false,
+  "exclusifs": [
+   "iphone 18"
+  ]
+ },
+ {
+  "query": "Reproduis cette pièce photographiée en dessin technique coté (isométrie CAO).",
+  "should_trigger": false
+ }
 ]

@@ -8,13 +8,26 @@ Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 
 # -*- coding: utf-8 -*-
 """
-Arbitre V6 — check-triggers-replay.py (Task 21, campagne P0 — plan d'extension
-verifications-tous-skills-agents.md, recommandation R1 Task 19).
+Arbitre V6.1 — check-triggers-replay.py (Task 21 campagne P0 ; V6.1 Task 30 —
+campagne A/B/C de résorption des dérives triggers, GO propriétaire).
 
 Rôle institutionnel : re-jouer MÉCANIQUEMENT (voie M, zéro API) les corpus officiels
 de trigger_evals de TOUS les skills équipés, à chaque montée/optimisation (garde
 KO-L004). Résorbe l'angle mort Task 19 : aucun arbitre ne re-jouait les triggers
 (verify-cross = présence/schéma ; baselines task17/task18 one-shot limitées aux 3 n°54).
+
+V6.1 (Task 30, arbitrage download/arbitrage-derives-replay-iphone-task25.md §4) :
+1. VETO EXCLUSIFS AVANT SCORING — si un cas porte un champ optionnel `exclusifs`
+   (termes réservés d'AUTRES skills/générations — doctrine « périmètre » des
+   SKILL.md encodée comme donnée d'evals) et que la requête contient l'un de ces
+   termes (comparaison normalisée insensible à la casse/accents) → verdict false
+   immédiat (source `veto-exclusif`), avant tout scoring mots-clés.
+2. CONSULTATION CACHE VOIE L SUR DÉSACCORD UNIQUEMENT — si le verdict voie M
+   contredit l'attendu, l'arbitre consulte en LECTURE SEULE le cache déterministe
+   scripts/voie-l-cache.json (verdicts sémantiques figés une fois, R4) : accord →
+   OK (source `voie-l-cache`) ; désaccord cache → FAIL (source `voie-l-cache-desaccord`,
+   jamais masqué) ; entrée absente → FAIL (dégradation honnête, source `non-resorbe`).
+   La non-détermination LLM est neutralisée par le figeage (cache = verdict unique).
 
 Heuristique : réplique EXACTE de SHARED §7 v2 (stemmer français, keywords_for,
 routage « ≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill ») — identique au
@@ -30,7 +43,10 @@ Usage :
   python scripts/check-triggers-replay.py --quiet        # JSON seulement
   python scripts/check-triggers-replay.py --compare      # compare au rapport précédent
 
-Sortie : scripts/triggers-replay-report.json — exit 0 si 100 % voie M, exit 1 sinon.
+Sortie : scripts/triggers-replay-report.json — exit 0 si 100 % des cas résolus
+(vetos + voie M + cache voie L), exit 1 sinon. La répartition voie-m seule est
+conservée à titre informatif (transparence Task 30 : le FAIL de la voie M seule
+ne masque aucune régression).
 """
 import json
 import re
@@ -41,6 +57,7 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent.parent          # ecosystem/
 SKILLS = BASE / "skills"
 OUT_JSON = BASE / "scripts" / "triggers-replay-report.json"
+CACHE_VOIE_L = BASE / "scripts" / "voie-l-cache.json"
 QUIET = "--quiet" in sys.argv
 COMPARE = "--compare" in sys.argv
 
@@ -89,6 +106,26 @@ def heuristic_score(query, kws, strong):
     return (len(hits) / max(1, len(toks))), sorted(hits), trig
 
 
+def load_cache_voie_l():
+    """Cache voie L en LECTURE SEULE (V6.1) : verdicts figés une fois, jamais
+    réécrits par l'arbitre. Absent ou illisible → {} (dégradation honnête)."""
+    if not CACHE_VOIE_L.exists():
+        return {}
+    try:
+        return json.loads(CACHE_VOIE_L.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def veto_exclusif(query, exclusifs):
+    """V6.1 — veto AVANT scoring : True si la requête contient un terme réservé
+    d'un AUTRE skill/génération (comparaison normalisée, insensible casse/accents)."""
+    if not exclusifs:
+        return False
+    q = norm(query)
+    return any(norm(t) in q for t in exclusifs if isinstance(t, str) and t.strip())
+
+
 def load_skill(sdir):
     smd = (sdir / "SKILL.md").read_text(encoding="utf-8")
     fm = smd.split("---")[1]
@@ -119,6 +156,7 @@ def main():
 
     registry = {}
     ignores = []
+    cache_l = load_cache_voie_l()
     for sdir in equipped:
         sk = load_skill(sdir)
         if not (isinstance(sk["cases"], list)
@@ -131,9 +169,31 @@ def main():
         rows = []
         for c in sk["cases"]:
             q, exp = c["query"], c["should_trigger"]
+            # ── V6.1 étape 1 : veto exclusifs AVANT scoring ──
+            if veto_exclusif(q, c.get("exclusifs")):
+                rows.append({"query": q, "expected": exp, "trigger_m": False,
+                             "score": 0.0, "hits": [], "ok": exp is False,
+                             "source": "veto-exclusif"})
+                continue
+            # ── V6.1 étape 2 : voie M (scoring mots-clés, inchangé) ──
             score, hits, trig = heuristic_score(q, kws, strong)
-            rows.append({"query": q, "expected": exp, "trigger_m": trig,
-                         "score": round(score, 3), "hits": hits, "ok": trig == exp})
+            if trig == exp:
+                rows.append({"query": q, "expected": exp, "trigger_m": trig,
+                             "score": round(score, 3), "hits": hits, "ok": True,
+                             "source": "voie-m"})
+                continue
+            # ── V6.1 étape 3 : désaccord → cache voie L (lecture seule) ──
+            cle = f"{sk['name']}::{q}"
+            entree = cache_l.get(cle)
+            if isinstance(entree, dict) and "verdict" in entree:
+                ok = bool(entree["verdict"]) == bool(exp)
+                rows.append({"query": q, "expected": exp, "trigger_m": trig,
+                             "score": round(score, 3), "hits": hits, "ok": ok,
+                             "source": "voie-l-cache" if ok else "voie-l-cache-desaccord"})
+            else:
+                rows.append({"query": q, "expected": exp, "trigger_m": trig,
+                             "score": round(score, 3), "hits": hits, "ok": False,
+                             "source": "non-resorbe"})
         n_ok = sum(1 for r in rows if r["ok"])
         registry[sk["name"]] = {"version": sk["version"], "n_cases": len(rows),
                                 "n_keywords": len(kws),
@@ -173,12 +233,23 @@ def main():
                      or "2026-10-03")
     except Exception:
         _git_date = "2026-10-03"
+    sources = {}
+    for v in registry.values():
+        for r in v["cases"]:
+            sources[r["source"]] = sources.get(r["source"], 0) + 1
+    # Répartition voie M seule (informatif, transparence Task 30)
+    derive_m = sorted(k for k, v in registry.items()
+                      if any(r["trigger_m"] != r["expected"] for r in v["cases"]))
     report = {
         "date": _git_date,
-        "task": "Task 21 — campagne P0-P6, arbitre V6 (recommandation R1 Task 19)",
+        "task": "Task 30 — arbitre V6.1 (campagne A/B/C : vetos exclusifs + cache voie L, voie M inchangée)",
         "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
         "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
         "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
+        "v6_1": "veto exclusifs avant scoring + cache voie L lecture seule sur désaccord (Task 30)",
+        "sources_verdicts": sources,
+        "verdict_voie_m_seule": "PASS" if not derive_m else "FAIL (informatif)",
+        "derive_voie_m_seule": derive_m,
         "n_skills": len(registry),
         "skills_ok": n_ok_skills,
         "skills_derive": len(derives),
@@ -193,7 +264,9 @@ def main():
 
     if not QUIET:
         print("=" * 70)
-        print(f"ARBITRE V6 — rejeu voie M des corpus trigger_evals ({len(registry)} skills)")
+        print(f"ARBITRE V6.1 — rejeu hybride des corpus trigger_evals ({len(registry)} skills)")
+        print(f"sources : {sources}")
+        print(f"voie M seule (informatif) : {report['verdict_voie_m_seule']}")
         print("=" * 70)
         for k in sorted(registry):
             v = registry[k]
