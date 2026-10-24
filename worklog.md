@@ -163,3 +163,17 @@ Stage Summary:
 - gen-plan v3.24.0 : parallélisation par défaut sur preuve d'indépendance (philosophie #4 inversée) — la lenteur constatée par le propriétaire est résorbée à la racine, en cohérence avec fleet-engineering n°54 et resource-monitor.
 - Cascade KO-L004 complète, arbitres verts ×2, correct-work PASS AVEC RÉSERVES (2×S3 héritées).
 - Restant : GO publication (Task 25ter + Task 26) ; G1 rotation PAT ; options résorption dérives replay (A/B/C).
+
+---
+Task ID: PUB-web-f90062ce
+Agent: Main (Super Z — session web-f90062ce, GO propriétaire « go » + jeton éphémère PAT, 2026-10-24)
+Task: Publication des 3 commits locaux de la session web-f90062ce vers origin/main (règle d'or n°2/n°4 : GO propriétaire + jeton éphémère).
+
+Work Log:
+- Pré-pousse : état distant vérifié inchangé (ls-remote anonyme = e9a68a1, fast-forward propre) ; arbre de travail vérifié content-clean — 149 diffs mode-only du chmod wipe, 0 divergence contenu, 3 PNG numstat « - - » diagnostiqués mode-only (SHA worktree == HEAD, KO-L003) ; 4 arbitres re-vérifiés sur l'état à publier : verify-cross 100 % (0 warning/0 erreur), check-ecosysteme-integrity --check 82/82 PASS, test-coherence-interactions 51 PASS/1 WARN héritée/0 FAIL (PASS AVEC RÉSERVES, réserve B1 documentée), task14-scan-doublons 0 doublon.
+- Push (jeton éphémère via credential helper en ligne — jamais écrit dans remote.url, config, fichier ni historique) : e9a68a1..cad21a9 → origin/main — da549af (SG7.4/B2-B3 : gen-plan v3.25.0 re-matérialisation mode step hiérarchique réconciliée avec la parallélisation par défaut + KB 39 entrées, SHARED v1.7.12, PM-INSTALL v1.8.5) ; 0dad8e3 (B4 réinstallation certifiée post-re-wipe + H1 audit idempotence 544 fichiers/84 catégoriels + H2 conformité PM-INSTALL @ 97e09cc résolue par lignée) ; cad21a9 (H1-P2 rejeu sandbox par lot 84/84 preuves formelles individuelles + correct-work groupe G1 et projet PASS).
+- Vérification distale : ls-remote anonyme = cad21a9 (refs/heads/main) ; fetch propre, main...origin/main synchronisés.
+- Audit anti-persistance : 0 occurrence (remote.origin.url sans jeton ; arborescence my-project ; historique commits git log -S ; ~/.git-credentials absent ; historiques shell) — jeton transmis en conversation, rotation/révocation recommandée au propriétaire (précédent plan-task23 G3).
+
+Stage Summary:
+- origin/main = cad21a9 : l'intégralité du travail certifié de la session web-f90062ce est PUBLIÉE (gen-plan v3.25.0, SHARED v1.7.12, PM-INSTALL v1.8.5, KB 39, réinstallation B4, H1/H2/H1-P2 avec rapports download/rapport-h1-audit-idempotence.md et download/rapport-h1p2-rejeu-sandbox-84.md). La présente entrée est journalisée puis poussée dans la foulée (tip final = présent commit). Restant propriétaire : rotation/révocation du jeton éphémère ; amendement M4 du CDC Serre CBD à réception du contenu Copilot.
