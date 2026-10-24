@@ -199,3 +199,17 @@ Stage Summary:
 - RÉSIDUEL vue-upload RÉSORBÉ : replay 104/104 (était 103/104), désaccord juge-corpus 0 (était 1) — la doctrine distingue désormais explicitement le portail de dossiers (macro) de la remise d'un fichier précis (micro, canal direct).
 - Verdict : PASS — rapport download/rapport-vue-upload-doctrine-eval.md, plan 10/10 verified.
 - En suspens propriétaire : révocation PAT éphémère ; GO pour publier les 2 commits locaux (a9d3e30 + bc914db — recensement mécanique af303cc..HEAD = 2).
+---
+Task ID: PUB-vue-upload-doctrine-eval (final)
+Agent: Main [Super Z — session web-f90062ce, GO propriétaire + jeton éphémère transmis en conversation, 2026-10-24]
+
+Task: Exécution de la publication — push des commits en suspens vers origin/main (règle d'or n°2/n°4), entrée finale de journalisation (la présente) puis poussée dans la foulée.
+
+Work Log:
+- Pré-pousse complet reporté (entrée PUB-vue-upload-doctrine-eval ci-dessus) : sonde af303cc, delta 2 commits, 4 arbitres verts, content-clean.
+- Push (jeton éphémère via credential helper en ligne — jamais écrit dans remote.url, config, fichier ni historique persistant) : af303cc..6cae154 → origin/main — a9d3e30 (résiduel vue-upload résorbé : doctrine v1.3.0 frontière MACRO/MICRO + eval DOCX révisé should_trigger false + cas macro 9e cas + cascade KO-L004 complète + replay 104/104 désaccord 0) ; bc914db (alignement champ version evals.json v1.3.0 + note doctrine) ; 6cae154 (projection worklog G hôte→dépôt).
+- Vérification distale : ls-remote = 6cae154 (refs/heads/main) ; fetch propre ; main...origin/main synchronisés (référence locale périmée a076086 rafraîchie au passage).
+- Audit anti-persistance en cours à la suite de la présente entrée (remote.origin.url, arborescence my-project, git log -S, ~/.git-credentials, historiques shell) — jeton transmis en conversation, rotation/révocation recommandée au propriétaire.
+
+Stage Summary:
+- origin/main = 6cae154 : le résiduel vue-upload (doctrine + eval) est PUBLIÉ et certifié — replay 104/104, désaccord juge-corpus 0, arbitres verts dépôt+hôte. La présente entrée est journalisée puis poussée dans la foulée (tip final = présent commit). Restant propriétaire : rotation/révocation du jeton éphémère ; amendement M4 du CDC Serre CBD à réception du contenu Copilot.
