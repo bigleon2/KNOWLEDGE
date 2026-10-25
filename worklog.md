@@ -289,3 +289,19 @@ Work Log:
 
 Stage Summary:
 - Directive propriétaire EXÉCUTÉE intégralement : amendement M4 clôturé SANS contenu Copilot (CDC v1.2.0 + PDF 13 pages + fiche v1.2.0, batterie PASS ×2) ; publication GitHub RÉUSSIE (origin/main = d54717f puis commit de journalisation final — tip = journalisation, précédent respecté) avec skill cahier-des-charges v2.0.1 et les 2 commits gen-plan v3.27.0 ; miroir hôte ré-aligné (correctif RC2 : 1389 fichiers byte-identité ×2, KB rétablie, registre alias restauré) ; jeton jamais persisté (audit 5/5) — RÉVOCATION propriétaire attendue. Restant : rien côté exécution ; J-3..J-5 du CDC restent des jalons projet (hors périmètre de la directive).
+
+---
+Task ID: 26
+Agent: Z.ai (session web-eb6c8580) — écosystème local certifié v3.23.1 (environnement d'exécution) / publication sur lignée dépôt v3.27.0
+Task: Push sauvegarde P0 — artefacts session audit écosystème (plan task 3, directive propriétaire PAT « envoie les modifications avant d'effectuer certaines tâches »)
+
+Work Log:
+- Contexte session web-eb6c8580 : installation écosystème (archive v2.3 + tarball fork local gen-plan v3.23.1), certification 6/6 PASS AVEC RÉSERVES, audit complet (7 drifts : 3 corrigés/4 journalisés + propositions), test sandbox bug v3.24.0, correct-work projet, clone-chat ; reset plateforme → restauration état certifié + corrections @historique (e)/(g) ré-appliquées (arbitre ALL PASS 24/24)
+- Diagnostic divergence (pré-push) : historiques fork local (auto-commits workspace) et dépôt SANS ancêtre commun ; @historique dépôt plus riche (33 entrées §5 vs 24 locales) → corrections locales NON poussées (anti-régression) ; SKILL.md dépôt v3.27.0 (409 L) sans §A DÉCLENCHEURS → tâche 1 de la directive restera exécutée sur la lignée dépôt
+- Publication P0 additive only : 9 livrables download/ + 2 arbitres scripts/ — aucun fichier distant modifié/supprimé (D001 plan task 3)
+- Hygiène jeton : URL one-shot, zéro remote persistant, zéro commit du PAT ; audit anti-persistance 5 zones prévu en clôture P6 ; RÉVOCATION propriétaire rappelée (précédent task 25)
+
+Stage Summary:
+- Push sauvegarde P0 (fast-forward depuis dc6e81e) — artefacts session audit durables sur le dépôt : rapport-audit-ecosysteme-2026-10-25.md, rapport-test-bug-genplan-v3240.md (exonération du canal canonique par diff intégral — 6 points de substitution uniquement, H1/H2/H3 réfutées — complément d'analyse aux causes RC1-RC4 de la v3.27.0), rapports correct-work ×2, plans ×3 (dont plan-task3-directive-10-taches-github.md — phases P0-P7), clones ×2, arbitres audit-phaseA-historique.py (24/24) + audit-e15-lessons.py (L009-L011)
+- Correctif bug §6 du rapport local : statut OBSOLÈTE côté dépôt (v3.27.0 E7-DISP + check_plan_protocol.py) — adoption distante documentée au plan task 3 D004
+- Suite : phases P1-P7 plan task 3 (déclencheurs §A sur SKILL v3.27.0+ , francisation + dossiers Prompt Maitre par skill, recalibration grilles #token ×3-4, arbitrage drifts a/b/d/f, test robuste, correct-work projet, clone-chat)
