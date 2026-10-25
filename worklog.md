@@ -305,3 +305,22 @@ Stage Summary:
 - Push sauvegarde P0 (fast-forward depuis dc6e81e) — artefacts session audit durables sur le dépôt : rapport-audit-ecosysteme-2026-10-25.md, rapport-test-bug-genplan-v3240.md (exonération du canal canonique par diff intégral — 6 points de substitution uniquement, H1/H2/H3 réfutées — complément d'analyse aux causes RC1-RC4 de la v3.27.0), rapports correct-work ×2, plans ×3 (dont plan-task3-directive-10-taches-github.md — phases P0-P7), clones ×2, arbitres audit-phaseA-historique.py (24/24) + audit-e15-lessons.py (L009-L011)
 - Correctif bug §6 du rapport local : statut OBSOLÈTE côté dépôt (v3.27.0 E7-DISP + check_plan_protocol.py) — adoption distante documentée au plan task 3 D004
 - Suite : phases P1-P7 plan task 3 (déclencheurs §A sur SKILL v3.27.0+ , francisation + dossiers Prompt Maitre par skill, recalibration grilles #token ×3-4, arbitrage drifts a/b/d/f, test robuste, correct-work projet, clone-chat)
+
+---
+Task ID: 27
+Agent: Z.ai (session web-eb6c8580) — plan task 3, phase P1 (tâche 1 : déclencheurs §A)
+Task: gen-plan v3.27.0 → v3.28.0 — intégration du §A DÉCLENCHEURS du PM dans le SKILL.md
+
+Work Log:
+- Cible : lignée dépôt (worktree publication) — l'écosystème local certifié v3.23.1 reste l'environnement d'exécution (D002)
+- SKILL.md : section §A insérée en tête de corps (miroir fidèle du §A PM v3.27.0 — 10 déclencheurs, modes step/step-ok + clause NULL, verbatim E13, correct-work, orchestre, generate) + read_when enrichi + journal §5.6 + bump v3.28.0 (MINOR, addition pure R2 — description frontmatter inchangée)
+- PM v3.28.0 : génération mécanique KO-L004 (delta verrouillé : history + sub note §A — 1478 L) ; ABANDON code 2 au recalibrage croisé → complétion agent : SHARED §6.1 (double drift hérité v3.26.0/v3.23.1 résorbé → v3.28.0, note de révision sans bump — précédent complétion même jour) ; PM-INSTALL v1.8.x = dérivation dynamique KO-L003, ABANDON = faux positif pattern v1.7.x (générateur à recalibrer — consigné)
+- Vérification autres familles (tâche 1) : 16 SKILL.md portent une section DÉCLENCHEURS (correct-work ✓, clone-chat ✓) ; lacune §A confirmée chez refactor-guard (PM v1.8.1 sans section SKILL.md) — consignée, correction suivante ; check_plan_protocol.py absent du dépôt (« reporté » commit 26d9846 — consigné)
+- Archives R4 : v3.26.0 + v3.27.0 git mv byte-identité (SHAs scellés) + résorption lags hérités : index §5 README +6 lignes (v3.23.1→v3.25.0), 31→37 PMs ; historiques-par-skill/gen-plan +3 lignes
+- Arbitres : generer-pm-skill.py --check 4/4 COHERENT ; answer-key-checker 16/16 ALL PASS (arbre publication)
+
+Stage Summary:
+- P1 CLÔTURÉE : gen-plan v3.28.0 publié — le SKILL.md porte désormais la sémantique de déclenchement complète (§A), la découverte skill-side est alignée (read_when)
+- Résorptions de lags hérités au passage : SHARED §6.1 (v3.26.0), index @historique (4 lignes), historiques par skill (v3.26.0/v3.27.0)
+- Constats ouverts : lacune §A refactor-guard ; générateur à recalibrer pour PM-INSTALL v1.8.x ; check_plan_protocol.py à matérialiser
+- Prochaine phase : P2 (tâche 2 — francisation idempotente + dossiers Prompt Maitre par skill, lots resumables)
