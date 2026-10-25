@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.27.0
+version: 3.28.0
 category: ecosystem
 language: fr
 tags:
@@ -37,9 +37,22 @@ dependencies:
     used_at: "Hook E1-RES (collecte G-RES, ouverture de session)"
 read_when:
   - Déclencher quand la demande concerne : skill de planification de tâches pour assistant IA
-  - Déclencher si la demande mentionne : planification, adaptation, answer
+  - Déclencher si la demande mentionne : plan d'actions, planification, adaptation, answer, intègre dans le plan d'actions, gen-plan(step), gen-plan(step-ok), orchestre
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
+
+## §A — DÉCLENCHEURS (v3.28.0 — intégration du §A du PM GEN-PLAN, tâche 1 directive 10 tâches)
+
+- `gen-plan:` suivi d'une description de tâche
+- `gen-plan:correct-work(projet)` — vérification et correction d'un projet complet
+- `gen-plan:correct-work(<cible>)` — vérification/correction d'un élément spécifique
+- `plan d'actions` — demande explicite de planification
+- « intègre dans le plan d'actions » — intégration d'une nouvelle demande dans le plan courant (E13, règle d'or n°3 — extension, jamais réécriture destructrice R2 ; déclencheur verbatim v3.17.2, directive propriétaire)
+- `gen-plan(step) : <instructions>` — enchaînement autonome des groupes séquentiels du plan d'actions, correct-work(groupe) après chaque groupe (max 2 rounds de correction), correct-work(projet) en fin de chaîne (v3.22.0)
+- `gen-plan(step-ok) : <instructions>` — identique au mode step avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1) ; alias `step-confirm` (v3.22.0) et `step-confim` normalisés en `step-ok` (R4) ; **clause mode NULL** — toute invocation sans `<mode>` explicite (`gen-plan : <instructions>`, ex. « gen-plan : continue ») conserve le comportement antérieur à l'introduction des modes step/step-ok (v3.21.0) : intégration E13 ou exécution classique, sans portes de confirmation (directive propriétaire 2026-10-11) ; tout autre mode → clarification demandée, jamais d'invention de mode (R2)
+- `orchestre` — orchestration multi-agents
+- Toute demande impliquant plusieurs étapes séquentielles avec des livrables
+- `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
 ## §0 — Contexte Système (SHARED v1.7.13)
 
@@ -406,4 +419,5 @@ Dès qu'une phase du plan d'actions vient de se terminer, lancer `correct-work(l
 
 ### §5.6 Journal des versions (fusion des lignées — v3.27.0)
 
+- **v3.28.0 (2026-10-25, session web-eb6c8580 — directive propriétaire 10 tâches, tâche 1 : intégrer les déclencheurs)** : intégration du **§A — DÉCLENCHEURS** du PM GEN-PLAN dans le SKILL.md (nouvelle section en tête de corps, immédiatement après le frontmatter — miroir fidèle du §A du PM v3.27.0 : 10 déclencheurs dont modes `gen-plan(step)`/`gen-plan(step-ok)` + clause mode NULL, déclencheur verbatim « intègre dans le plan d'actions » E13/règle d'or n°3, invocations `gen-plan:correct-work(projet)`/`gen-plan:correct-work(<cible>)`, `orchestre`, `gen-plan:generate(<description>)`) + enrichissement du `read_when` frontmatter (mentions : plan d'actions, intègre dans le plan d'actions, gen-plan(step), gen-plan(step-ok), orchestre — découverte skill-side alignée sur le §A). Motivation : l'agent découvrant le skill via le SKILL.md seul (chemin canonique d'invocation) ne voyait pas la sémantique de déclenchement complète (read_when 3 lignes génériques) — la même lacune existe chez refactor-guard (PM §A v1.8.1 sans section DÉCLENCHEURS dans son SKILL.md — constat consigné, correction suivante). Non-régression R2 : §A du PM inchangé (source de vérité), description frontmatter inchangée, aucun mode/règle modifié — addition pure. Recalibrage croisé KO-L004 : SHARED §6.1 / PM-INSTALL §2ter+A.3 (générateur) ; PM v3.28.0 généré mécaniquement (delta : history verrouillé + note §A) ; PM v3.27.0 archivé @historique R4 git mv byte-identité.
 - **v3.27.0 (2026-10-25, session web-dd290b0d — directive propriétaire : reconstruction depuis la discussion s/64c90144 et l'historique GitHub)** : fusion de la lignée canonique du dépôt (v3.26.0 à e6a9595 — philosophie #4, règle d'or n°5 anti-aspirant, §5.5 mode step, dégradation gracieuse 429) et du fork local E7-DISP (créé en sandbox sur base v3.23.1 épinglée b75a6206). **COLLISION de version documentée** : deux versions indépendantes avaient réutilisé le numéro v3.24.0 — la v3.24.0 canonique « parallélisation par défaut » (commit e9a68a1) et un fork local homonyme « hook E7-DISP » ; la fusion re-numérote en v3.27.0 (MINOR) et journalise cette collision pour interdire toute référence ambiguë à « gen-plan v3.24.0 » (KB, PM, journaux, évals). Apports reportés du fork : hook E7-DISP + arbitre `scripts/check_plan_protocol.py` (P1-P5, garde anti-verdict-périmé, selftest sait échouer), extension E1-RES (reprise après interruption — tout déclencheur : stop propriétaire, coupure de contexte, erreur plateforme — état dérivé du disque, affichage REJOUABLE), évals 13 cas (cas interruption/reprise), §2.2 recalibré (scripts + arborescence). Analyse des causes racines RC1-RC4 : `download/analyse-causes-racines-gen-plan.md` (RC1 collision de lignée, RC2 double emplacement dépôt/miroir, RC3 reprise post-coupure incomplète, RC4 interruption plateforme). Non-régression R2 : aucun des leçons/modes/hook de la lignée v3.23.1→v3.26.0 n'est retiré — fusion additive uniquement.

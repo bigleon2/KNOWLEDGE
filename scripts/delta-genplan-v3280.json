@@ -1,0 +1,10 @@
+{
+  "history": "Intégration du §A — DÉCLENCHEURS du PM dans le SKILL.md (tâche 1 directive 10 tâches, session web-eb6c8580) : nouvelle section §A en tête du corps du SKILL.md (miroir fidèle — 10 déclencheurs : modes gen-plan(step)/gen-plan(step-ok) + clause mode NULL, verbatim « intègre dans le plan d'actions » E13/règle d'or n°3, correct-work(projet)/correct-work(<cible>), orchestre, gen-plan:generate) + enrichissement read_when frontmatter (mentions plan d'actions / intègre dans le plan d'actions / gen-plan(step) / gen-plan(step-ok) / orchestre) ; §A du PM inchangé (source de vérité), description frontmatter inchangée — addition pure R2 ; v3.27.0 archivé @historique R4 git mv byte-identité ; recalibrage croisé KO-L004 SHARED §6.1 / PM-INSTALL §2ter+A.3 ; constat : même lacune chez refactor-guard (PM §A v1.8.1 sans section SKILL.md — consignée)",
+  "subs": [
+    {
+      "old": "## §A — DÉCLENCHEURS",
+      "new": "## §A — DÉCLENCHEURS (également intégré au SKILL.md depuis v3.28.0 — miroir fidèle)",
+      "count": 1
+    }
+  ]
+}

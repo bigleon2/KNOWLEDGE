@@ -1,10 +1,10 @@
 {
   "mode": "check",
-  "date": "2026-10-24",
+  "date": "2026-10-25",
   "familles": {
     "gen-plan": {
-      "skill": "3.26.0",
-      "pm": "PROMPT-MAITRE-GEN-PLAN-v3.26.0.md",
+      "skill": "3.28.0",
+      "pm": "PROMPT-MAITRE-GEN-PLAN-v3.28.0.md",
       "etat": "COHERENT"
     },
     "correct-work": {
