@@ -324,3 +324,34 @@ Stage Summary:
 - Résorptions de lags hérités au passage : SHARED §6.1 (v3.26.0), index @historique (4 lignes), historiques par skill (v3.26.0/v3.27.0)
 - Constats ouverts : lacune §A refactor-guard ; générateur à recalibrer pour PM-INSTALL v1.8.x ; check_plan_protocol.py à matérialiser
 - Prochaine phase : P2 (tâche 2 — francisation idempotente + dossiers Prompt Maitre par skill, lots resumables)
+
+---
+Task ID: 28
+Agent: Z.ai (session web-eb6c8580 — suite) — phase P2 (tâche 2 directive)
+Task: Francisation idempotente + dossiers « Prompt Maitre » par skill (état intermédiaire commité — lots résumables D008)
+
+Work Log:
+- Outillage persisté : scripts/p2-franciser.py (traduction document-entier, morcelage 12k, wrapper <DOCUMENT À TRADUIRE>, gardes frontmatter/densité/JSON, backoff anti-rafale 45 s), scripts/p2-segments.py (blocs de lignes + mode --intra par segments CJK isolés), scripts/p2-prompt-maitre.py (génération dossiers autonomes, idempotent par SHA source), scripts/p2-cycle.sh (cycles de rattrapage) ; sceau SHA-256 des 233 fichiers avant traitement (scripts/p2-sceau-avant.json).
+- Scan initial : 233 fichiers zh (139 386 caractères) sous skills/ (38 SKILL.md + references/commands/evals/README).
+- Francisation : ~19 fichiers 0 zh en document-entier + nettoyage segments/intra (ex : html-ppt-zhangzara-8-bit-orbit 40→0, quiz-html 516→0, finance 14→0, resume-builder finance.md 556→0, interview-prep technical.md 817→0) ; incidents documentés : HTTP 429 récurrent (quota API z-ai épuisé — backoff 12-48 s + pause anti-rafale 45 s), réponses « true » du LLM sur YAML (fix wrapper), compaction de lignes (garde densité → restauration byte-identique), chinois dans les templates HTML (mode intra).
+- Dossiers « Prompt Maitre » : skills/PM skills/ — 106 dossiers générés + README racine (marqueur d'exclusion D010, index complet, idempotence par SHA source ; references/ copiées — autonomie réelle hors écosystème ; PAS de SKILL.md généré → 0 impact sur les arbitres ; PAS d'entrée KB — D010 respecté).
+- État au commit : ~214 fichiers restent avec résiduels zh (micro-résiduels noms propres + gros fichiers en attente de quota API) — cycles de rattrapage idempotents (reprise par p2-etat.json / p2-segments-etat.json), re-génération PM skills prévue à la clôture.
+
+Stage Summary:
+- P2 ÉTAT INTERMÉDIAIRE sauvegardé (anti-reset D008) — infrastructure de francisation complète et idempotente opérationnelle
+- Le rate-limit API (429) reste le facteur limitant — les cycles reprennent dès reconstitution du quota
+- Directive propriétaire respectée : sauvegarde UNIQUEMENT dans « skills/PM skills/ » (106 + README)
+
+---
+Task ID: 29
+Agent: Z.ai (session web-eb6c8580 — suite) — phases P3-P5 (tâches 3-7 directive)
+Task: Recalibration #token + arbitrage 4 propositions + test robuste
+
+Work Log:
+- P3 (tâches 3-5) : gen-plan v3.28.1 — coefficients « profil frais local ×3-4 » (preuve : audit 2026-10-25, estimé 12,2 k → réel 45-60 k) + « appels API en masse ×2-3 » + guidance parallélisation (ThreadPoolExecutor 2-4 workers, throttle 1-2 s, backoff 12-48 s + pause anti-rafale, journal d'état idempotent, tri par taille croissante) ajoutés au §4 SKILL + references/grille-token.md (coefficients + historique rows 12-13) ; PM v3.28.1 généré mécaniquement (canal canonique generer-pm-skill.py, 1479 L) ; PM-INSTALL v1.8.7 (§2ter/§A.3 recalibrés — drift hérité v3.26.0 résorbé) ; SHARED §6.1 complété (complétion agent — le générateur s'arrête en NO-OP sur corpus déjà cohérent, leçon consignée) ; KB gen-plan v3.28.1 ; PM v3.28.0 archivé @historique R4 git mv (SHA df8d43c1… scellé à l'index).
+- P4 (tâche 6) : arbitrage 4/4 statuté — correctif bug §6 : OBSOLÈTE-PARTIEL (adoption distante v3.27.0 ; arbitre check_plan_protocol.py toujours « reporté » — diagnostic sandbox C6 conservé comme complément d'analyse/spécification) ; drifts a/d/f : OBSOLÈTE (verify-correct-work distant sans PM_PATH, worklog B1 local sans portée, triggers distants 104/104) ; (b) --mode : JOURNALISÉ (non implémenté des deux côtés) — download/rapport-arbitrage-4-propositions.md.
+- P5 (tâche 7) : test robuste — certification locale 6/6 PASS AVEC RÉSERVES (D007, zéro-régression) ; py_compile 7/7 (scripts worktree) ; additivité 412 fichiers (0 suppression de fichier, D001) ; arbitre @historique local ALL PASS ; check-triggers-replay distant : 104/104 skills score maximal, dérives aucune — PASS ; generer-pm-skill.py --check : 4/4 familles COHERENT.
+
+Stage Summary:
+- P3-P5 CLÔTURÉES : grilles recalibrées (leçon E15 matérialisée), 4 propositions arbitragées et tracées, robustesse prouvée sur les deux environnements (local certifié 6/6 + distant PASS)
+- API z-ai toujours 429 en clôture de P5 — cycles francisation P2 repris dès reconstitution (états idempotents sur disque)
