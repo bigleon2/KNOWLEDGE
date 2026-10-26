@@ -92,6 +92,7 @@ Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.25.0.md | cc6cdcdf8cb89bd6da03552dc7e57d0b8c8d1681ec957ce8fa315823c1e95197 |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.26.0.md | 8d2a0fef281e1677796f9086dfa2de1dd49bf5f7347d1011e82736568679e5fe |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.27.0.md | 3e95949d8508d365803b4a31e9ebe5179678744fc0efe25cb2e97700ed119c98 |
+| gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.28.0.md | df8d43c1a5cb1301310f357ac51f43b9bdb057d79d9236d6f7d3159a5bebdc42 |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md | 16f82edb358ce36cfffbbfb9058ffda4d1d8a1e7d144791f11cbc82f67b60063 |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.5.0.md | 8dfc29a77633502609abc7a1d68a73cf53be40be7a7d5a6fd2670d1a40bfb8cf |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md | 9b3fad20a188aeb95a21cf251fb71a36a9a4b038bbb8a1fff96599f4adfba0b5 |
