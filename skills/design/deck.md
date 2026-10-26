@@ -1,6 +1,6 @@
 ---
 name: Deck Skill
-description: Design HTML-based slide decks, presentation decks, pitch decks, report decks, and narrative visual presentations.
+description: Conception de présentations HTML, présentations, pitch decks, rapports visuels et présentations narratives.
 mode: deck
 platform: presentation
 scenario: deck
@@ -15,8 +15,8 @@ default_for:
   - report deck
   - strategy deck
   - workshop deck
-  - 演示文稿
-  - 路演材料
+  - yǎnshì wén gǎo (présentation)
+  - lùyǎn cáiliào (matériel de pitch)
 speaker_notes: optional
 animations: optional
 fidelity: high
@@ -24,82 +24,82 @@ fidelity: high
 
 # Deck Skill
 
-Design a paged, one-screen-at-a-time presentation that carries a narrative — each slide makes
-one point, and the sequence builds an argument.
+Concevoir une présentation paginée, une diapositive à la fois, qui raconte une histoire — chaque diapositive fait
+un point, et la séquence construit un argument.
 
-Judgment, not a rulebook. Use taste. Techniques: `horizontal-craft/technique-library.md`; delivery
-check: `skills/design/quality-gate.md`. For a base runtime/template, see
-`skills/design/prototype-templates/` (html-ppt seed) and the Preset Template Rule in SKILL.md.
+Jugement, pas un manuel. Utilisez le goût. Techniques : `horizontal-craft/technique-library.md` ; vérification
+de la livraison : `skills/design/quality-gate.md`. Pour un runtime/template de base, voir
+`skills/design/prototype-templates/` (graine html-ppt) et la Règle de Modèle Prédéfini dans SKILL.md.
 
-## Route elsewhere if
+## Route ailleurs si
 
-- it's a scrollable web page (not paged) → `landing-page.md` / `content-page.md`
-- it's an interactive product → `prototype.md`
+- c'est une page web défilable (non paginée) → `landing-page.md` / `content-page.md`
+- c'est un produit interactif → `prototype.md`
 
-## What makes a deck succeed: one idea per slide, a story across slides
+## Ce qui fait réussir une présentation : une idée par diapositive, une histoire à travers les diapositives
 
-The failure mode is text-dumped slides with no narrative spine — bullet walls that should have
-been a doc. So:
+Le mode d'échec est des diapositives avec du texte déversé sans colonne vertébrale narrative — des murs de puces qui auraient
+dû être un document. Donc :
 
-- **One idea per slide.** Each slide has a single takeaway, stated clearly. If a slide needs two
-  points, it's two slides.
-- **A narrative arc.** The deck has a beginning (problem/context), middle (argument/evidence),
-  and end (ask/conclusion). Order the slides to build, not just enumerate.
-- **Show, don't dump.** Visualize relationships and data; a sentence + a strong visual beats a
-  paragraph. Speaker notes carry the detail, not the slide.
+- **Une idée par diapositive.** Chaque diapositive a un seul enseignement, clairement énoncé. Si une diapositive a besoin de deux
+  points, c'est deux diapositives.
+- **Un arc narratif.** La présentation a un début (problème/contexte), un milieu (argument/preuves),
+  et une fin (demande/conclusion). Organisez les diapositives pour construire, pas seulement énumérer.
+- **Montrez, ne déversez pas.** Visualisez les relations et les données ; une phrase + une forte visuelle bat un
+  paragraphe. Les notes de l'orateur portent le détail, pas la diapositive.
 
-## The few decisions that matter
+## Les quelques décisions qui comptent
 
-- **Deck type & tone** — pitch (persuasive, bold), report (clear, sober), strategy (structured),
-  workshop (interactive). This sets density, color, and pacing.
-- **Narrative spine** — the sequence of takeaways before any visuals. Get the story right first.
-- **Slide rhythm** — vary slide types (statement, data, comparison, quote, section break);
-  don't repeat the same layout 20 times. Use full-bleed moments for emphasis.
-- **Data honesty** — charts with correct axes/units/scales; the title states the insight; never
-  invent numbers.
+- **Type et ton de présentation** — pitch (persuasif, audacieux), rapport (clair, sobre), stratégie (structuré),
+  atelier (interactif). Cela définit la densité, la couleur et le rythme.
+- **Colonne vertébrale narrative** — la séquence des enseignements avant toute visuel. Mettez d'abord l'histoire au point.
+- **Rythme des diapositives** — variez les types de diapositives (affirmation, données, comparaison, citation, rupture de section) ;
+  ne répétez pas la même mise en page 20 fois. Utilisez des pleins écrans pour l'emphase.
+- **Honnêteté des données** — graphiques avec axes/unités/échelles corrects ; le titre indique l'insight ;
+  n'inventez jamais de nombres.
 
-## Non-negotiables
+## Non négociables
 
-- One idea per slide; speaker-facing detail goes in notes, not on the slide.
-- Never invent data, quotes, or metrics; charts faithful to real numbers.
-- Consistent system (type scale, color, spacing) across all slides.
-- No decorative emoji as icons (use SVG); no Lorem ipsum.
+- Une idée par diapositive ; les détails destinés à l'orateur vont dans les notes, pas sur la diapositive.
+- N'inventez jamais de données, citations ou métriques ; graphiques fidèles aux nombres réels.
+- Système cohérent (échelle de typographie, couleur, espacement) sur toutes les diapositives.
+- Pas d'emoji décoratifs comme icônes (utilisez du SVG) ; pas de Lorem ipsum.
 
-## Avoiding AI slop (one principle)
+## Éviter le biais IA (un principe)
 
-Catalog in `quality-gate.md`. Principle: each slide's layout serves its specific point, not a
-repeated template. A title + three bullets on every slide, a generic gradient title slide,
-identical icon-feature rows — reflexes. Vary with intent; when a slide feels like filler, cut it.
+Catalogué dans `quality-gate.md`. Principe : la mise en page de chaque diapositive sert son point spécifique, pas un
+modèle répété. Un titre + trois puces sur chaque diapositive, une diapositive de titre générique avec dégradé,
+des rangées d'icônes-fonction identiques — réflexes. Variez avec intention ; quand une diapositive semble être du remplissage, coupez-la.
 
 ## Workflow
 
-1. Define the deck type, audience, and the single ask/conclusion.
-2. Write the narrative spine (the ordered takeaways) before designing slides.
-3. Design slides — one idea each, varied rhythm, visuals over text; detail to speaker notes.
-4. Techniques/animations from `horizontal-craft/technique-library.md` only when they aid the point; reduced-motion.
-5. Quality gate before delivery; verify data honesty and one-idea-per-slide.
+1. Définissez le type de présentation, l'audience et la seule demande/conclusion.
+2. Écrivez la colonne vertébrale narrative (les enseignements ordonnés) avant de concevoir les diapositives.
+3. Concevez les diapositives — une idée chacune, rythme varié, visuels plutôt que texte ; détail dans les notes de l'orateur.
+4. Techniques/animations de `horizontal-craft/technique-library.md` seulement quand elles aident le point ; mouvement réduit.
+5. Porte de qualité avant livraison ; vérifiez l'honnêteté des données et une-idea-par-diapositive.
 
-## References (load only when relevant)
+## Références (chargez seulement quand pertinent)
 
-- `horizontal-craft/chinese-typography.md` — substantial Chinese text (Mandatory Runtime Baseline).
-- `horizontal-craft/icon-system.md` — when icons are used.
-- `canvas-and-device.md` — slide dimensions / export sizes.
-- `design-system-reference.md` — when a brand/style/template reference is given (see SKILL.md Style Routing).
-- `horizontal-craft/technique-library.md` — restrained transitions only when they aid the narrative.
+- `horizontal-craft/chinese-typography.md` — texte chinois substantiel (Baseline Runtime Obligatoire).
+- `horizontal-craft/icon-system.md` — quand des icônes sont utilisées.
+- `canvas-and-device.md` — dimensions des diapositives / tailles d'exportation.
+- `design-system-reference.md` — quand une référence marque/style/modèle est donnée (voir Routage de Style SKILL.md).
+- `horizontal-craft/technique-library.md` — transitions mesurées seulement quand elles aident la narration.
 
-## Creative Context
+## Contexte Créatif
 
-For open-ended requests, complete `SKILL.md` Creative Context (creative_positioning,
-first_impression, anti_default) before generating.
+Pour les demandes ouvertes, complétez le Contexte Créatif de SKILL.md (creative_positioning,
+first_impression, anti_default) avant de générer.
 
-## Mandatory Final Gate
+## Porte Finale Obligatoire
 
-Run `quality-gate.md` as a blocking check. Must satisfy: one idea per slide; honest data/charts;
-consistent system across slides; no invented numbers/quotes; no emoji-as-icons / Lorem ipsum;
-visible focus and reduced-motion where interactive; non-visible Design Compliance block matching
-the code. Apply `horizontal-craft/chinese-typography.md` if substantial Chinese text.
+Exécutez `quality-gate.md` comme vérification bloquante. Doit satisfaire : une idée par diapositive ; données/graphiques honnêtes ;
+système cohérent sur les diapositives ; pas de nombres/citations inventés ; pas d'emoji-comme-icônes / Lorem ipsum ;
+focus visible et mouvement réduit là où c'est interactif ; bloc de Conformité de Design non visible correspondant
+au code. Appliquez `horizontal-craft/chinese-typography.md` si texte chinois substantiel.
 
-## Handoff
+## Remise
 
-May continue to: `design-system-reference.md`, `design-system-generation.md`, `export.md`,
-`skills/version-management/SKILL.md`, built-in selected-region edits, and local parameter handling.
+Peut continuer vers : `design-system-reference.md`, `design-system-generation.md`, `export.md`,
+`skills/version-management/SKILL.md`, modifications intégrées de région sélectionnée, et gestion de paramètres locaux.

@@ -1,179 +1,179 @@
-# Color Palette System
+# Système de Palette de Couleurs
 
-> Color is the skeleton of design. Unified, restrained, systematic. Garish = amateur.
+> La couleur est le squelette du design. Unifié, mesuré, systématique. Voyant = amateur.
 
 ---
 
-## Cascade Palette System (V2 — Preferred)
+## Système de Palette en Cascade (V2 — Préféré)
 
-The cascade palette enforces one iron law: **Area ∝ 1/Saturation**.
-The larger the colored area, the lower its saturation must be.
+La palette de cascade applique une règle de fer : **Surface ∝ 1/Saturation**.
+Plus la surface colorée est grande, plus sa saturation doit être faible.
 
-### Tier System
+### Système de Niveaux
 
-| Tier | Area % | S Cap | Roles |
-|------|--------|-------|-------|
+| Niveau | Surface % | Saturation max | Rôles |
+|--------|-----------|----------------|-------|
 | **XL** | >50% | ≤ 0.08 | `page_bg`, `section_bg` |
 | **L** | 20-50% | ≤ 0.15 | `card_bg`, `table_stripe` |
 | **M** | 5-20% | ≤ 0.30 | `header_fill`, `cover_block` |
 | **S** | 1-5% | ≤ 0.50 | `border`, `icon` |
 | **XS** | <1% | ≤ 0.75 | `accent`, `accent_secondary` |
 
-### How It Works
+### Fonctionnement
 
-One base hue → 12 roles + 4 semantic colors. Cover, body, and charts all pull from the same palette:
+Une teinte de base → 12 rôles + 4 couleurs sémantiques. Couverture, corps et graphiques tirent tous de la même palette :
 
 ```
 palette.cascade
-  ├── cover subset  (page_bg, header_fill, cover_block, accent, text_primary...)
-  ├── body subset   (page_bg, section_bg, card_bg, table_stripe, border...)
-  ├── chart subset  (accent as series_1, accent_secondary as series_2, ...)
-  └── semantic      (success, warning, error, info — all low-sat)
+  ├── sous-ensemble cover  (page_bg, header_fill, cover_block, accent, text_primary...)
+  ├── sous-ensemble body   (page_bg, section_bg, card_bg, table_stripe, border...)
+  ├── sous-ensemble chart  (accent comme series_1, accent_secondary comme series_2, ...)
+  └── sémantique      (success, warning, error, info — tous à basse saturation)
 ```
 
-No orphan colors. No "cover finished, now pick new colors for body" drift.
+Pas de couleurs orphelines. Pas de dérive du type "couverture terminée, maintenant choisir de nouvelles couleurs pour le corps".
 
-### Primary Accent Hue Rule (V2.1)
+### Règle de la Teinte d'Accent Primaire (V2.1)
 
-**`accent` (XS tier) MUST use `base_hue`** — the same hue as `header_fill`, `cover_block`, `border`, `icon`, and all other structural roles. Only the saturation and lightness differ (S=0.50-0.70, L=0.40-0.55 for light modes).
+**`accent` (niveau XS) DOIT utiliser `base_hue`** — la même teinte que `header_fill`, `cover_block`, `border`, `icon`, et tous les autres rôles structurels. Seule la saturation et la luminosité diffèrent (S=0.50-0.70, L=0.40-0.55 pour les modes clairs).
 
-This ensures that cover structural lines, body H2 headings, table headers, and accent highlights all visibly belong to the **same color family**.
+Cela garantit que les lignes structurelles de couverture, les titres H2 du corps, les en-têtes de tableau et les surbrillons d'accent appartiennent tous visiblement à la **même famille de couleurs**.
 
-`accent_secondary` uses the geometric harmony hue (`accent_hue`) for chart series differentiation — this is the **only** role that may deviate from `base_hue`.
+`accent_secondary` utilise la teinte d'harmonie géométrique (`accent_hue`) pour la différenciation des séries de graphiques — c'est le **seul** rôle qui peut dévier de `base_hue`.
 
 ```
-base_hue (e.g. 200° steel blue)
-  ├── header_fill:  H=200°, S=0.22, L=0.25   (M tier, structural)
-  ├── accent:       H=200°, S=0.65, L=0.45   (XS tier, same hue, higher sat)
-  └── accent_2:     H=350°, S=0.50, L=0.50   (XS tier, geometric hue for charts)
+base_hue (ex: 200° bleu acier)
+  ├── header_fill:  H=200°, S=0.22, L=0.25   (niveau M, structurel)
+  ├── accent:       H=200°, S=0.65, L=0.45   (niveau XS, même teinte, saturation plus élevée)
+  └── accent_2:     H=350°, S=0.50, L=0.50   (niveau XS, teinte géométrique pour graphiques)
 ```
 
-### Usage
+### Utilisation
 
 ```bash
 # Via design_engine.py
 python3 "$PDF_SKILL_DIR/scripts/design_engine.py" palette-cascade --intent cold --mode minimal
 
-# Via pdf.py (auto-derives intent from title)
+# Via pdf.py (dérive automatiquement l'intention du titre)
 python3 "$PDF_SKILL_DIR/scripts/pdf.py" palette.cascade --title "2025年度报告" --format reportlab
 
-# Formats: summary (default) | json | css | reportlab
+# Formats: summary (défaut) | json | css | reportlab
 ```
 
-### Output Formats
+### Formats de Sortie
 
-- **summary**: Human-readable table with tier/role/hex/saturation
-- **json**: Full structured data (roles, cover, body, charts, semantic, meta)
-- **css**: CSS custom properties ready for HTML/Playwright
-- **reportlab**: Python code ready to paste into ReportLab scripts
+- **summary**: Tableau lisible par l'humain avec niveau/rôle/hex/saturation
+- **json**: Données structurées complètes (rôles, cover, body, charts, semantic, meta)
+- **css**: Propriétés personnalisées CSS prêtes pour HTML/Playwright
+- **reportlab**: Code Python prêt à être collé dans des scripts ReportLab
 
 ---
 
-## Core Iron Rules
+## Règles de Fer Fondamentales
 
-### 1. One Document, One Color Family
+### 1. Un Document, Une Famille de Couleurs
 
-**Not one color — one color family.**
+**Pas une couleur — une famille de couleurs.**
 
-- After choosing the primary color, all secondary, accent, and background colors must be derived from it
-- **`accent` must share the same hue as `header_fill`** — only saturation and lightness differ
-- Derivation methods: lightness shift, saturation shift, micro hue adjustment (within ±15°)
-- **Forbidden** to have unrelated colors in the same document
-- The only exception is `accent_secondary` which may use a geometric harmony hue for chart differentiation
+- Après avoir choisi la couleur primaire, toutes les couleurs secondaires, d'accent et d'arrière-plan doivent en être dérivées
+- **`accent` doit partager la même teinte que `header_fill`** — seule la saturation et la luminosité diffèrent
+- Méthodes de dérivation : décalage de luminosité, décalage de saturation, micro-ajustement de teinte (±15° max)
+- **Interdit** d'avoir des couleurs non liées dans le même document
+- La seule exception est `accent_secondary` qui peut utiliser une teinte d'harmonie géométrique pour la différenciation des graphiques
 
 ```
-Primary       → Headings, key data, primary buttons
-Secondary     → Primary lightness ±15-25%
-Accent        → Primary hue ±10-15°, for highlights/warnings
-Neutral       → Gray series for body text, not conflicting with primary
-Background    → Pure white / primary at opacity 3-8%
+Primaire       → Titres, données clés, boutons primaires
+Secondaire     → Luminosité primaire ±15-25%
+Accent        → Teinte primaire ±10-15°, pour surbrillons/avertissements
+Neutre        → Série de gris pour le corps du texte, sans conflit avec le primaire
+Arrière-plan  → Blanc pur / primaire à opacité 3-8%
 ```
 
-### 2. Color Count Limits
+### 2. Limites de Nombre de Couleurs
 
-| Element Type | Max Colors | Notes |
-|-------------|-----------|-------|
-| Entire document | 4-5 | Primary + secondary + accent + neutral + background |
-| Single component (card/table) | 2-3 | Don't give each card a different color |
-| Charts / data visualization | Same-family gradient | Differentiate by opacity/lightness, not different hues |
-| Tags / badges | 1 color + text color | No rainbow tags |
+| Type d'Élément | Nb Max de Couleurs | Notes |
+|----------------|-------------------|-------|
+| Document entier | 4-5 | Primaire + secondaire + accent + neutre + arrière-plan |
+| Composant unique (carte/tableau) | 2-3 | Ne pas donner à chaque carte une couleur différente |
+| Graphiques / visualisation de données | Dégradé de même famille | Différencier par opacité/luminosité, pas par teintes différentes |
+| Étiquettes / badges | 1 couleur + couleur du texte | Pas d'étiquettes arc-en-ciel |
 
-### 3. Table Color Rules (Iron Law)
+### 3. Règles de Couleur pour Tableaux (Règle de Fer)
 
-Tables are M+L tier elements. Their colors **must** come from the cascade palette's body_subset:
+Les tableaux sont des éléments de niveau M+L. Leurs couleurs **doivent** provenir du sous-ensemble body de la palette en cascade :
 
-| Table Element | Cascade Role | Tier | S Cap | ❌ Never Use |
-|---------------|-------------|------|-------|------------|
-| Header bg | `HEADER_FILL` | M | ≤ 0.30 | `ACCENT` (too vivid for header area) |
-| Header text | `colors.white` | — | — | Colored text on colored bg |
-| Even rows | `colors.white` | — | — | Colored fills |
-| Odd rows | `TABLE_STRIPE` | L | ≤ 0.15 | High-saturation stripes |
-| Borders/grid | `BORDER` | S | ≤ 0.50 | Pure black `#000` |
+| Élément de Tableau | Rôle Cascade | Niveau | Saturation max | ❌ Jamais Utiliser |
+|---------------------|-------------|--------|----------------|-------------------|
+| Arrière-plan en-tête | `HEADER_FILL` | M | ≤ 0.30 | `ACCENT` (trop vif pour une zone d'en-tête) |
+| Texte en-tête | `colors.white` | — | — | Texte coloré sur fond coloré |
+| Lignes paires | `colors.white` | — | — | Remplissages colorés |
+| Lignes impaires | `TABLE_STRIPE` | L | ≤ 0.15 | Rayures à haute saturation |
+| Bordures/grille | `BORDER` | S | ≤ 0.50 | Noir pur `#000` |
 
-**Why this matters:** Table headers occupy ~5-20% of visual area. The cascade tier system says M-tier elements (5-20% area) must have S ≤ 0.30. Using `ACCENT` (XS tier, S = 0.50-0.75) on table headers violates the area∝1/saturation rule and creates jarring color blocks that clash with the surrounding low-saturation body.
+**Pourquoi c'est important :** Les en-têtes de tableau occupent ~5-20% de la surface visuelle. Le système de niveau en cascade dit que les éléments de niveau M (5-20% de surface) doivent avoir S ≤ 0.30. Utiliser `ACCENT` (niveau XS, S = 0.50-0.75) pour les en-têtes de tableau viole la règle surface∝1/saturation et crée des blocs de couleurs discordants qui entrent en conflit avec le corps à faible environnant.
 
-**All tables in one document must use identical colors.** No per-table color themes.
+**Tous les tableaux d'un document doivent utiliser des couleurs identiques.** Pas de thèmes de couleur par tableau.
 
-### 3. Absolutely Forbidden Color Fills
+### 3. Remplissages de Couleur Absolument Interdits
 
-The following are automatic failures:
+Les suivants sont des échecs automatiques :
 
-- ❌ 4 cards using 4 completely different colors (red/blue/green/purple)
-- ❌ Alternating table rows in different colors (blue row/pink row)
-- ❌ Rainbow-colored pie charts/bar charts
-- ❌ Each section with a different theme color
-- ❌ Gradient transitioning from warm to cool tones (red → blue)
-- ❌ Using `ACCENT` (XS tier) for table header backgrounds — use `HEADER_FILL` (M tier)
-- ❌ Using any color outside the cascade palette for table styling
+- ❌ 4 cartes utilisant 4 couleurs complètement différentes (rouge/bleu/vert/violet)
+- ❌ Lignes de table alternant en différentes couleurs (ligne bleue/ligne rose)
+- ❌ Graphiques circulaires/barres en arc-en-ciel
+- ❌ Chaque section avec une couleur de thème différente
+- ❌ Dégradé transitionnant de tons chauds à froids (rouge → bleu)
+- ❌ Utiliser `ACCENT` (niveau XS) pour les arrière-plans d'en-tête de tableau — utiliser `HEADER_FILL` (niveau M)
+- ❌ Utiliser n'importe quelle couleur en dehors de la palette en cascade pour le style des tableaux
 
 ---
 
-## Color Generation Rules
+## Règles de Génération de Couleurs
 
-### Deriving a Full Palette from Primary
+### Dérivation d'une Palette Complète depuis une Couleur Primaire
 
 ```
-Given primary H(hue) S(saturation) L(lightness):
+Étant donné une primaire H(teinte) S(saturation) L(luminosité) :
 
-Primary:         hsl(H, S, L)           — Headings, key elements
-Dark variant:    hsl(H, S, L-15%)       — Hover, borders, icons
-Light variant:   hsl(H, S-10%, L+25%)   — Tag backgrounds, light fills
-Ultra-light bg:  hsl(H, S-20%, 96%)     — Section backgrounds, card base
-Accent:          hsl(H+15, S, L)        — Warnings, highlights (micro hue shift)
+Primaire:         hsl(H, S, L)           — Titres, éléments clés
+Variante foncée:  hsl(H, S, L-15%)       — Survol, bordures, icônes
+Variante claire:  hsl(H, S-10%, L+25%)   — Arrière-plans d'étiquettes, remplissages légers
+Arrière-plan ultra-léger: hsl(H, S-20%, 96%) — Arrière-plans de section, base de carte
+Accent:          hsl(H+15, S, L)        — Avertissements, surbrillons (micro-décalage de teinte)
 ```
 
-### Example: Deriving from a primary color
+### Exemple : Dérivation depuis une couleur primaire
 
-> ⚠️ The hex values below are **examples only**. In production, use `palette.cascade` or `palette.generate` to compute the full palette from intent.
+> ⚠️ Les valeurs hex ci-dessous sont **uniquement des exemples**. En production, utilisez `palette.cascade` ou `palette.generate` pour calculer la palette complète depuis l'intention.
 
 ```css
 :root {
-  --c-primary:    #2d5a87;   /* Primary (from palette.cascade) */
-  --c-primary-d:  #1e3d5c;   /* Dark variant */
-  --c-primary-l:  #5a8ab8;   /* Light variant */
-  --c-primary-bg: #f0f4f8;   /* Ultra-light background */
-  --c-accent:     #2d6a87;   /* Accent (hue +10°) */
-  --c-text:       #333;      /* Body text */
-  --c-text-muted: #888;      /* Secondary text */
-  --c-border:     #e0e4e8;   /* Border lines */
+  --c-primary:    #2d5a87;   /* Primaire (depuis palette.cascade) */
+  --c-primary-d:  #1e3d5c;   /* Variante foncée */
+  --c-primary-l:  #5a8ab8;   /* Variante claire */
+  --c-primary-bg: #f0f4f8;   /* Arrière-plan ultra-léger */
+  --c-accent:     #2d6a87;   /* Accent (teinte +10°) */
+  --c-text:       #333;      /* Texte du corps */
+  --c-text-muted: #888;      /* Texte secondaire */
+  --c-border:     #e0e4e8;   /* Lignes de bordure */
 }
 ```
 
 ---
 
-## Multi-Element Differentiation Strategies
+## Stratégies de Différenciation d'Éléments Multiples
 
-When distinguishing multiple sibling elements (e.g., multiple cards, categories), **don't use different colors — use these approaches instead**:
+Lors de la différenciation de plusieurs éléments frères (ex: plusieurs cartes, catégories), **n'utilisez pas de couleurs différentes — utilisez plutôt ces approches** :
 
-### Strategy A: Same Hue, Different Lightness
+### Stratégie A : Même Teinte, Luminosité Différente
 ```css
-.card-1 { background: hsl(220, 40%, 95%); }  /* Lightest */
+.card-1 { background: hsl(220, 40%, 95%); }  /* Le plus clair */
 .card-2 { background: hsl(220, 40%, 90%); }
 .card-3 { background: hsl(220, 40%, 85%); }
-.card-4 { background: hsl(220, 40%, 80%); }  /* Darkest */
+.card-4 { background: hsl(220, 40%, 80%); }  /* Le plus foncé */
 ```
 
-### Strategy B: Same Color, Different Opacity
+### Stratégie B : Même Couleur, Opacité Différente
 ```css
 .item-1 { background: rgba(30, 58, 95, 0.06); }
 .item-2 { background: rgba(30, 58, 95, 0.12); }
@@ -181,72 +181,72 @@ When distinguishing multiple sibling elements (e.g., multiple cards, categories)
 .item-4 { background: rgba(30, 58, 95, 0.24); }
 ```
 
-### Strategy C: Primary + Whitespace + Lines
+### Stratégie C : Primaire + Espace Blanc + Lignes
 ```css
-/* Differentiate by border color/weight/style, uniform white background */
+/* Différencier par couleur/épaisseur/style de bordure, arrière-plan blanc uniforme */
 .card-1 { border-left: 3px solid var(--primary); }
 .card-2 { border-left: 3px solid var(--primary-l); }
 .card-3 { border-left: 3px solid var(--primary-d); }
 ```
 
-### Strategy D: Icons / Numbering (Not Color)
+### Stratégie D : Icônes / Numérotation (Pas Couleur)
 ```css
-/* All cards same color, differentiated by icons, numbers, or layout variation */
+/* Toutes les cartes de même couleur, différenciées par icônes, nombres ou variations de mise en page */
 ```
 
 ---
 
-## Gradient Usage Rules
+## Règles d'Utilisation des Dégradés
 
-### Allowed Gradients
-- **Same-family gradient**: `linear-gradient(135deg, var(--c-primary), var(--c-primary-l))` — hue difference < 20°
-- **Lightness gradient**: `linear-gradient(180deg, #fff, #f5f5f5)` — pure lightness change
-- **Primary to transparent**: `linear-gradient(90deg, var(--c-primary), transparent)` — for decorative lines
+### Dégradés Autorisés
+- **Dégradé de même famille** : `linear-gradient(135deg, var(--c-primary), var(--c-primary-l))` — différence de teinte < 20°
+- **Dégradé de luminosité** : `linear-gradient(180deg, #fff, #f5f5f5)` — changement pur de luminosité
+- **Primaire à transparent** : `linear-gradient(90deg, var(--c-primary), transparent)` — pour lignes décoratives
 
-### Forbidden Gradients
-- ❌ Warm-to-cool crossover: `linear-gradient(#ff6b6b, #4ecdc4)`
-- ❌ More than 3 colors: `linear-gradient(red, yellow, green, blue)`
-- ❌ Neon gradients: Any high-saturation gradient
-- ❌ Gratuitous gradients: Gradients added purely for "looks nice" without purpose
+### Dégradés Interdits
+- ❌ Croisement chaud-froid : `linear-gradient(#ff6b6b, #4ecdc4)`
+- ❌ Plus de 3 couleurs : `linear-gradient(red, yellow, green, blue)`
+- ❌ Dégradés néons : N'importe quel dégradé à haute saturation
+- ❌ Dégradés gratuits : Dégradés ajoutés purement pour "ça a l' bien" sans but
 
 ---
 
-## Preset Palettes (Ready to Use)
+## Palettes Prédéfinies (Prêtes à l'Usage)
 
-### Business Blue
+### Bleu d'Affaires
 ```
 #1a365d → #2a5298 → #4a7ac7 → #dce6f5 → #f5f8fc
 ```
 
-### Warm Gray
+### Gris Chaud
 ```
 #2d2d2d → #5a5a5a → #8a8a8a → #e8e8e8 → #f9f9f9
 ```
 
-### Forest Green
+### Vert Forêt
 ```
 #1a3c2a → #2d6b4a → #4a9a6a → #d5ead8 → #f2f8f4
 ```
 
-### Terracotta Red
+### Rouge Terre Cuite
 ```
 #5c2018 → #8a3828 → #b85a48 → #f0d8d0 → #faf4f2
 ```
 
-### Indigo Purple
+### Indigo Violet
 ```
 #2d1b4e → #4a2d7a → #6a4aaa → #ddd0f0 → #f5f2fa
 ```
 
 ---
 
-## Quick Check
+## Vérification Rapide
 
 ```
-□ How many colors does the entire document use? (Target ≤ 5)
-□ Can every color be traced back to the primary?
-□ Are there any colors that "suddenly appear" without derivation?
-□ Are sibling elements rainbow-colored?
-□ Gradient endpoint hue difference < 20°?
-□ If you remove all color and look at grayscale only, is the hierarchy still clear?
+□ Combien de couleurs utilise le document entier ? (Cible ≤ 5)
+□ Chaque couleur peut-elle être tracée jusqu'à la couleur primaire ?
+□ Y a-t-il des couleurs qui "apparaissent soudainement" sans dérivation ?
+□ Les éléments frères sont-ils en arc-en-ciel ?
+□ La différence de teinte entre les extrémités du dégradé < 20° ?
+□ Si vous retirez toutes les couleurs et ne regardez qu'en niveaux de gris, la hiérarchie est-elle encore claire ?
 ```

@@ -1,6 +1,6 @@
 ---
 name: pricing-page
-description: Chinese-market SaaS pricing page template — soft sky-blue glass-morphism, 4-tier card grid with one elevated "recommended" tier, monthly/annual toggle, FAQ accordion, ¥ pricing with Inter numerals, careful CJK linebreaking, ICP filing footer.
+description: Modèle de page de tarification SaaS pour le marché chinois — verre de bleu ciel doux avec effet glass-morphism, grille de 4 niveaux avec un niveau "recommandé" surélevé, bascule mensuelle/annuelle, accordéon FAQ, tarifs en ¥ avec chiffres Inter, saut de ligne CJK soigné, pied de page avec dépôt ICP.
 visibility: public
 mode: template
 carrier: web-page
@@ -8,66 +8,68 @@ scenario: pricing
 pattern_source: pricing-cn.html
 source_priority: skill-first
 triggers:
-  - "做个 SaaS 定价页"
-  - "中文付费页"
-  - "月年套餐切换"
-  - "4 档卡片定价"
-  - "¥ 价格表"
-  - "定价 + FAQ"
+  - "Faire une page de tarification SaaS"
+  - "Page de paiement en chinois"
+  - "Bascule mensuelle/annuelle"
+  - "Cartes de tarification à 4 niveaux"
+  - "Tableau de prix en ¥"
+  - "Tarification + FAQ"
 ---
 
-# Pricing Page Template
+# Modèle de page de tarification
 
-Use this template when the artifact is a **Chinese-market SaaS / product pricing page** that needs to feel premium, calm, and design-led — not a generic 3-tier feature-checklist grid.
+Utilisez ce modèle lorsque l'artefact est une **page de tarification SaaS / produit pour le marché chinois** qui doit paraître premium, calme et pilotée par le design — pas une grille générique de 3 niveaux avec liste de fonctionnalités.
 
-## Use When
+## Utiliser lorsque
 
-- The product is sold to a Chinese audience (¥, 元/月, ICP filing, 微信/支付宝 implied).
-- The pricing model fits tier cards (3–4 tiers, optional monthly/annual toggle).
-- One tier should be visibly elevated (early-bird, most-popular, recommended).
-- The brand can carry soft sky-blue glassmorphism — or you intend to retheme the palette while keeping the structure.
+- Le produit est vendu à un public chinois (¥, yuan/mois, dépôt ICP, WeChat/Alipay implicite).
+- Le modèle de tarification correspond à des cartes de niveau (3-4 niveaux, bascule mensuelle/annuelle optionnelle).
+- Un niveau doit être visiblement surélevé (early-bird, le plus populaire, recommandé).
+- La marque peut supporter un effet glass-morphism doux en bleu ciel — ou vous avez l'intention de modifier la palette tout en conservant la structure.
 
-## Avoid When
+## Éviter lorsque
 
-- The product is global / EN-primary — re-theme heavily or use a different template.
-- Pricing is purely per-seat / usage-metered with no tiers — a tier grid is the wrong shape.
-- The page needs a deep feature-comparison matrix as the primary surface — start from a comparison-table-first template instead.
-- It's an OSS / free / waitlist product — use `waitlist-page/` or `saas-landing/`.
+- Le produit est mondial / principalement en anglais — modifiez fortement le thème ou utilisez un autre modèle.
+- Le tarif est purement par siège / mesuré par utilisation sans niveaux — une grille de niveaux est inappropriée.
+- La page nécessite une matrice de comparaison de fonctionnalités approfondie comme surface principale — partez plutôt d'un modèle axé sur le tableau de comparaison.
+- C'est un produit OSS / gratuit / en liste d'attente — utilisez `waitlist-page/` ou `saas-landing/`.
 
-## Required Reading
+## Lecture obligatoire
 
-Read this `SKILL.md` first. Do **not** read `pricing-cn.html` by default.
+Lisez d'abord ce `SKILL.md`. Ne lisez **pas** `pricing-cn.html` par défaut.
 
-Read `pricing-cn.html` only when you need concrete tier-card geometry, the elevated-tier transform values, the monthly/annual toggle behavior, or the FAQ single-open pattern. Extract patterns; do not copy DOM, classnames, brand copy, or placeholder prices wholesale.
+Lisez `pricing-cn.html` uniquement lorsque vous avez besoin de la géométrie concrète des cartes de niveau, des valeurs de transformation du niveau surélevé, du comportement de la bascule mensuelle/annuelle, ou du modèle d'accordéon FAQ avec une seule ouverture. Extrayez les modèles ; ne copiez pas le DOM, les noms de classes, le texte de marque ou les prix d'espace réservé.
 
-## Design Strategy
+## Stratégie de design
 
-Decide before building:
+Décidez avant de construire :
 
-1. **Tier count** — 3 (standard) or 4 (with an Observer / Free tier).
-2. **Recommended tier** — which one lifts and inverts (white CTA on dark) ?
-3. **Toggle model** — monthly / annual with discount %, or batch / cohort labels (第 N 批) for early-access.
-4. **Tier naming** — generic (Basic / Pro / Business) or atmospheric (Observer / Early Bird / Founder / Patron). The template's voice favors atmospheric.
+1. **Nombre de niveaux** — 3 (standard) ou 4 (avec un niveau Observateur / Gratuit).
+2. **Niveau recommandé** — lequel se lève et s'inverse (CTA blanc sur fond sombre) ?
+3. **Modèle de bascule** — mensuel / annuel avec remise en %, ou étiquettes par lot / cohorte (di N pi) pour l'accès anticipé.
+4. **Nom des niveaux** — générique (Basic / Pro / Business) ou atmosphérique (Observer / Early Bird / Founder / Patron). La voix du modèle favorise l'atmosphérique.
 
-## Layout Bias
+## Biais de mise en page
 
-Prefer:
+Privilégiez :
 
-- one elevated tier (3D lift + image-backed scrim + inverted CTA), the rest flat glass cards
-- ¥ + Inter tabular numerals for the price; PingFang / MiSans for surrounding copy
-- short feature lists (≤ 6 per tier), each prefixed by a single hairline check
-- a "value strip" below the cards (4 short callouts) rather than a giant comparison table
-- FAQ as single-open accordion, not all-expanded by default
-- ICP filing in the footer (real or placeholder)
+- un niveau surélevé (élévation 3D + voile avec image arrière + CTA inversé), les autres cartes plates en verre
+- ¥ + chiffres tabulaires Inter pour le prix ; PingFang / MiSans pour le texte environnant
+- listes de fonctionnalités courtes (≤ 6 par niveau), chaque préfixée par une coche unique
+- une "bande de valeur" sous les cartes (4 appels à l'action courts) plutôt qu'un grand tableau de comparaison
+- FAQ comme accordéon avec une seule ouverture, pas développé par défaut
+- dépôt ICP dans le pied de page (réel ou espace réservé)
 
-Avoid:
+Évitez :
 
-- multiple "推荐" badges across tiers — pick one
-- 黑金 gradients or neon accents (forbidden aesthetic)
-- generic emoji or 3D-icon feature bullets
-- forcing English tier names when the audience reads Chinese
-- pretending to be Stripe / Linear with a near-identical clone of their pricing page
+- plusieurs badges "Recommandé" (tuījiàn) sur les niveaux — choisissez-en un
+- dégradés 黑金 (hēijīn) (noir-or) ou accents néon (esthétique interdite)
+- emojis génériques ou puces d'icônes 3D pour les fonctionnalités
+- forcer les noms de niveau en anglais quand le public lit le chinois
+- prétendre être Stripe / Linear avec une quasi-copie identique de leur page de tarification
 
-## Platform / Size
+## Plateforme / Taille
 
-Desktop-first responsive web page. Cards reflow to 2 + 2 at tablet width and stack on mobile. Keep the elevated tier prominent at every breakpoint.
+Page web responsive prioritaire desktop. Les cartes se réorganisent en 2 + 2 en largeur tablette et s'empilent sur mobile. Gardez le niveau surélevé proéminent à chaque point de rupture.
+
+[INSTRUCTION COMPLÉMENTAIRE : il reste des caractères chinois dans ce document — traduis-les TOUS en français, y compris s'ils se trouvent dans des chaînes de caractères HTML/JS/CSS (attributs title, alt, placeholder, textes visibles, libellés d'interface), dans des tableaux ou des valeurs YAML. Ne garde du chinois que les noms propres (translittérés en pinyin). Renvoie le document intégral traduit, même structure, mêmes lignes.]

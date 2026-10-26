@@ -1,158 +1,158 @@
 ---
 name: data-integrity
-description: Data marker, chart, table, metric, and demo-data integrity rules for editable design artifacts.
+description: Règles d'intégrité pour les marqueurs de données, graphiques, tableaux, métriques et données de démonstration pour les artefacts de conception modifiables.
 mode: reference
 platform: web
 scenario: horizontal-craft
 preview:
   type: none
 default_for:
-  - data markers
-  - charts
-  - metrics
-  - tables
-  - dashboard data
-  - demo data
-  - editable artifact
+  - marqueurs de données
+  - graphiques
+  - métriques
+  - tableaux
+  - données de tableau de bord
+  - données de démonstration
+  - artefact modifiable
 fidelity: system
 ---
 
-# Data Integrity
+# Intégrité des données
 
-Use this file when an artifact contains data, metrics, charts, tables, proof-like numbers, or needs future editing.
+Utilisez ce fichier lorsqu'un artefact contient des données, des métriques, des graphiques, des tableaux, des nombres à prétention probante, ou a besoin d'être modifié ultérieurement.
 
-Core rule:
+Règle de base :
 
 ```text
-A design artifact may use demo data, but it must never disguise demo data as real evidence.
+Un artefact de conception peut utiliser des données de démonstration, mais il ne doit jamais dissimuler des données de démonstration comme de véritables preuves.
 ```
 
 ---
 
-## Data markers
+## Marqueurs de données
 
-Data markers preserve editability and later comment targeting.
+Les marqueurs de données préservent la modifiabilité et le ciblage ultérieur des commentaires.
 
-Use the artifact scaffold:
+Utilisez le squelette d'artefact :
 
 ```text
 portfolio        → data-portfolio / data-section / data-project / data-component
-deck             → data-deck / data-slide / data-component
+présentation     → data-deck / data-slide / data-component
 prototype        → data-prototype / data-screen / data-section / data-component / data-state
-content-page     → data-content-page / data-mode / data-section / data-component
-landing-page     → data-landing-page / data-section / data-component
-web-tool         → data-web-tool / data-tool-type / data-screen / data-component / data-state
+page de contenu  → data-content-page / data-mode / data-section / data-component
+page d'atterrissage → data-landing-page / data-section / data-component
+outil web        → data-web-tool / data-tool-type / data-screen / data-component / data-state
 ```
 
-If a marker would be excessive for a tiny edit, preserve existing markers and add the minimum missing markers around edited regions.
+Si un marqueur serait excessif pour une petite modification, préservez les marqueurs existants et ajoutez le minimum de marqueurs manquants autour des régions modifiées.
 
 ---
 
-## Metrics and demo data
+## Métriques et données de démonstration
 
-Specific numbers must be one of:
+Les nombres spécifiques doivent être l'un des suivants :
 
 ```text
-user-provided
+fourni par l'utilisateur
 sourced
 demo-labeled
 placeholder
 ```
 
-Do not invent impressive proof to improve a design.
+N'inventez pas de preuves impressionnantes pour améliorer une conception.
 
-Never invent:
+N'inventez jamais :
 
-- revenue
-- market size
-- user counts
-- growth rates
-- conversion rates
-- retention / churn
-- satisfaction scores
-- rankings
-- uptime
-- benchmark wins
-- customer counts
+- revenus
+- taille du marché
+- nombre d'utilisateurs
+- taux de croissance
+- taux de conversion
+- rétention / désabonnement
+- scores de satisfaction
+- classements
+- disponibilité
+- victoires de référence
+- nombre de clients
 
-If the number is illustrative, label it as demo.
+Si le nombre est illustratif, étiquetez-le comme démonstration.
 
-Example:
+Exemple :
 
 ```html
-<span data-proof="demo">92% demo</span>
-<p class="data-note">Demo data — replace with verified figures before publishing.</p>
+<span data-proof="demo">92% démo</span>
+<p class="data-note">Données de démonstration — remplacez par des chiffres vérifiés avant publication.</p>
 ```
 
 ---
 
-## Charts
+## Graphiques
 
-Charts must communicate a claim, not decorate a card.
+Les graphiques doivent communiquer une affirmation, pas décorer une carte.
 
-Required:
+Requis :
 
-- title or conclusion
-- axes or labels when quantitative
-- units
-- source / demo label when data is not user-provided
-- readable values
-- contrast that survives small screens
+- titre ou conclusion
+- axes ou étiquettes lorsque quantitatifs
+- unités
+- source / étiquette de démonstration lorsque les données ne sont pas fournies par l'utilisateur
+- valeurs lisibles
+- contraste qui survive sur petits écrans
 
-Avoid:
+Évitez :
 
-- fake trend lines with no data meaning
-- unlabeled sparkline decoration
-- impossible precision
-- random upward growth lines
-- chart colors with no legend or state meaning
-
----
-
-## Tables
-
-Tables must optimize scanning.
-
-Rules:
-
-- numeric columns align consistently
-- status labels use consistent vocabulary
-- filters/search/sort appear when the table implies operations
-- long text has wrap or truncation strategy
-- empty and error states exist
-- row actions are close to rows
-- units appear in header or values, not randomly
+- fausses lignes de tendance sans signification de données
+- décoration de sparkline non étiquetée
+- précision impossible
+- lignes de croissance aléatoires ascendantes
+- couleurs de graphique sans légende ou signification d'état
 
 ---
 
-## Data copy
+## Tableaux
 
-Prefer honest labels:
+Les tableaux doivent optimiser le balayage.
 
-- Demo data
-- 示例数据
-- 待填写
-- Replace with verified figures
-- Source pending
+Règles :
 
-Avoid pretending:
-
-- trusted by 10,000+ teams
-- 99.9% uptime
-- #1 platform
-- industry-leading
-- verified by experts
+- colonnes numériques alignées de manière cohérente
+- étiquettes de statut utilisent un vocabulaire cohérent
+- filtres/recherche/tri apparaissent lorsque le tableau implique des opérations
+- long texte a une stratégie de retour à la ligne ou de troncature
+- états vides et d'erreur existent
+- actions de ligne sont proches des lignes
+- unités apparaissent dans l'en-tête ou les valeurs, pas aléatoirement
 
 ---
 
-## Quality checks
+## Copie des données
+
+Préférez les étiquettes honnêtes :
+
+- Données de démonstration
+- 示例数据 (shìlì shùjù — données d'exemple)
+- 待填写 (dài tiánxiē — à remplir)
+- Remplacer par des chiffres vérifiés
+- Source en attente
+
+Évitez de prétendre :
+
+- fait confiance à 10 000+ équipes
+- 99.9% de disponibilité
+- plateforme n°1
+- leader du secteur
+- vérifié par des experts
+
+---
+
+## Contrôles qualité
 
 ```text
-[ ] Required data markers are present.
-[ ] Proof-like numbers have provenance.
-[ ] Demo data is visibly labeled.
-[ ] Charts have labels, units, and a conclusion.
-[ ] Tables are aligned, scannable, and have states.
-[ ] No invented impressive metric exists.
-[ ] Fake customer logos, quotes, awards, and press claims are absent.
+[ ] Les marqueurs de données requis sont présents.
+[ ] Les nombres à prétention probante ont une provenance.
+[ ] Les données de démonstration sont étiquetées visiblement.
+[ ] Les graphiques ont des étiquettes, des unités et une conclusion.
+[ ] Les tableaux sont alignés, balayables et ont des états.
+[ ] Aucune métrique impressionnante inventée n'existe.
+[ ] De fausses logos de clients, citations, récompenses et affirmations de presse sont absentes.
 ```

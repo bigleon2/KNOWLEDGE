@@ -110,23 +110,23 @@ Items marked **★** are strictly mandatory (palette, typography, per-page detai
 the rest should be asked unless the user's original request explicitly rules
 them out (e.g. "internal deck, no notes" → skip notes question).
 
-  1. **主题与目的 (Topic & purpose)** — the deck's core theme and the main
+**主题与目的 (Zhǔtǐ yǔ mùdì)** — the deck's core theme and the main
      aspects it should showcase. Ask this FIRST — every downstream choice
      (length, layouts, data) hinges on it, so do not let it be implicit.
-  2. **目标受众 (Audience & tone)** — who is this for, what register.
-  3. **篇幅 (Deck length)** — tight range. like 1–8 / 8–12 / 12以上 slides，you must give user short slides choice.
-  4. **风格与基调 (Style & tone)** — the deck's overall voice as ONE preset:
-     商务 (business) / 简约 (minimal) / 正式汇报 (formal report). This is the
+2. **目标受众 (Mùbiāo shòuzhòng) (Audience & tone)** — who is this for, what register.
+  3. **篇幅 (Piānfú) (Deck length)** — tight range. like 1–8 / 8–12 / 12以上 (yǐshàng) slides，you must give user short slides choice.
+  4. **风格与基调 (Fēnggé yǔ jīdiào) (Style & tone)** — the deck's overall voice as ONE preset:
+     商务 (Shāngwù) (business) / 简约 (Jiǎnyuē) (minimal) / 正式汇报 (Zhèngshì huìbào) (formal report). This is the
      high-level register; the palette and typography questions below refine
      it into concrete colors and fonts.
   5. **Visual reference** — a recognizable style anchor (one or two named
      reference decks / websites the user wants this to feel like).
-  6. **★ Palette (调色盘)** — ONE question that collects **all three** of
+6. **★ Palette (diàosèpán)** — ONE question that collects **all three** of
      `background` / `primary` / `accent` together (as a unified palette
      choice). Do NOT split into three separate questions. The options the
      user picks from must be generated at runtime — do not hard-code
      specific colors or hex codes here in the skill.
-  7. **Speaker notes (备注讲稿)** — none / short bullet hints / verbatim full script.
+7. **Speaker notes (备注讲稿)** — none / short bullet hints / verbatim full script.
   8. **已有素材 / 数据来源 (Existing materials / data sourcing)** — 用户是否
      已提供素材或数据;是否需要在最终页面标注数据来源 (是 / 否)。
   9. **Must include data**

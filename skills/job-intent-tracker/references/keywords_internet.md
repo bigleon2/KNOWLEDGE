@@ -1,54 +1,54 @@
-# 互联网产品 / 运营 / 项目管理 关键词库
+# Bibliothèque de mots-clés en produit / opérations / gestion de projet Internet
 
-用于：判断匹配度、生成画像、ATS 关键词覆盖率检查。
+Utilisé pour : évaluer la correspondance, générer des profils, vérifier la couverture de mots-clés ATS.
 
-## 产品经理（PM）
+## Chef de produit (PM)
 
-**Must-have 信号词**
-- 需求文档（PRD）、需求评审、产品规划、产品迭代
-- 用户访谈、用户画像、JTBD、Persona
-- 数据驱动、A/B 测试、漏斗分析、留存、转化率
-- 跨部门协作、推动落地、项目管理
-- 0-1、1-N、增长、商业化
+**Mots-clés obligatoires**
+- Document de besoins (PRD), revue des besoins, planification produit, itération produit
+- Entretiens utilisateurs, persona utilisateur, JTBD (Jobs to be Done), Persona
+- Pilotage par les données, A/B testing, analyse d'entonnoir, rétention, taux de conversion
+- Collaboration interfonctionnelles, mise en œuvre, gestion de projet
+- 0-1, 1-N, croissance, commercialisation
 
-**方向细分关键词**
-- C 端：用户增长、社交裂变、内容生态、ugc、推荐算法理解
-- B 端 / SaaS：客户成功、续约、ARR、PLG、CRM
-- 国际化 / 出海：本地化、合规、多语言、海外支付
-- AI 产品：LLM、prompt 工程、模型评估、RAG、Agent
-- 工具类：用户体验、效率、workflow、生产力
+**Mots-clés par spécialisation**
+- Côté client : croissance utilisateur, viralité sociale, écosystème de contenu, ugc, compréhension des algorithmes de recommandation
+- B2B / SaaS : succès client, renouvellement, ARR (revenu annuel récurrent), PLG (product-led growth), CRM
+- Internationalisation / expansion : localisation, conformité, multilingue, paiement international
+- Produits IA : LLM (grand modèle de langage), ingénierie de prompts, évaluation de modèle, RAG (retrieval-augmented generation), Agent
+- Outils : expérience utilisateur, efficacité, workflow, productivité
 
-**Nice-to-have**
-- SQL、Python、Figma、原型工具
-- 行业报告输出、PR 经验、对外发声
+**Bon à avoir**
+- SQL, Python, Figma, outils de prototypage
+- Rédaction de rapports sectoriels, expérience relations presse, communication externe
 
-## 运营
+## Opérations
 
-**Must-have**
-- 用户运营、内容运营、活动运营、社群运营
-- 增长黑客、AARRR、私域、公域
-- GMV、ROI、CAC、LTV、转化漏斗
-- SOP、流程化、可复制
+**Obligatoire**
+- Opérations utilisateur, opérations contenu, opérations événementielles, opérations communautaires
+- Growth hacking, AARRR, domaine privé, domaine public
+- GMV (volume de marchandises), ROI, CAC (coût d'acquisition client), LTV (valeur vie client), entonnoir de conversion
+- SOP (procédures standardisées), processus, reproductible
 
-**方向细分**
-- 内容运营：选题、内容矩阵、KOL、爆款方法论
-- 用户运营：分层、生命周期、push 策略、CRM
-- 活动运营：节点营销、品效合一、预算管理
-- 社群运营：社群分层、KOC、转化路径
-- 直播 / 电商运营：选品、达人合作、GMV、复购
+**Spécialisations**
+- Opérations contenu : sélection de sujets, matrice de contenu, KOL, méthodologie de contenu viral
+- Opérations utilisateur : segmentation, cycle de vie, stratégies de notification, CRM
+- Opérations événementielles : marketing saisonnier, combinaison marque-performance, gestion budgétaire
+- Opérations communautaires : segmentation communautaire, KOC, parcours de conversion
+- Opérations direct / e-commerce : sélection de produits, collaborations avec influenceurs, GMV, réachat
 
-## 项目经理（PMP / TPM）
+## Chef de projet (PMP / TPM)
 
-**Must-have**
-- 项目排期、里程碑、风险管理、stakeholder 管理
-- 敏捷 / Scrum / 看板、Sprint planning、retro
-- 跨团队协作、跨时区、escalation
+**Obligatoire**
+- Planification de projet, jalons, gestion des risques, gestion des parties prenantes
+- Agile / Scrum / Kanban, planification de Sprint, rétrospective
+- Collaboration interéquipes, décalages horaires, escalade
 
-**Nice-to-have**
-- PMP 证书、PRINCE2、CSM
-- 工具：Jira、Confluence、Asana、Notion、Linear、飞书项目
+**Bon à avoir**
+- Certificat PMP, PRINCE2, CSM (Certified ScrumMaster)
+- Outils : Jira, Confluence, Asana, Notion, Linear, Feishu Project
 
-## 反信号（出现这些词，不是好 PM / 运营画像）
-- 大段堆砌"参与了 ___"——没有 ownership
-- 没有任何数字 / 百分比 / 量化结果
-- 全是软技能描述，没有具体动作
+**Signes négatifs** (l'apparition de ces mots indique un mauvais profil de PM/opérations)
+- Longues séries de "j'ai participé à ___" — pas de prise d'ownership
+- Aucun chiffre / pourcentage / résultat quantifié
+- Toutes les descriptions sont des compétences douces, sans actions concrètes

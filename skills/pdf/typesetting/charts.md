@@ -1,214 +1,214 @@
-# Chart Design — Chart Typesetting & Anti-Stacking Rules
+# Conception de graphiques — Règles de mise en page et d'empilement anti-collision
 
-> Core principle: **Data-Ink Ratio** — delete every line that doesn't represent data. Then delete some more.
+> Principe fondamental : **Ratio Encre-Données** — supprimez chaque ligne qui ne représente pas de données. Puis supprimez encore un peu plus.
 
 ---
 
-## Part 1: Anti-Stacking (Collision Prevention)
+## Partie 1 : Empilement anti-collision (prévention des collisions)
 
-Text stacking is fundamentally "information density exceeding available physical space." Apply these dynamic degradation strategies.
+L'empilement de texte est fondamentalement une "densité d'informations dépassant l'espace physique disponible". Appliquez ces stratégies de dégradation dynamique.
 
-### 0. Universal Anti-Overlap Pre-Check (MANDATORY)
+### 0. Pré-vérification universelle anti-recouvrement (OBLIGATOIRE)
 
-**Before rendering ANY chart, run this pre-flight check:**
+**Avant de RENDRE N'IMPORTE QUEL graphique, exécutez cette vérification préalable :**
 
 ```python
-# Step 1: Reserve space for labels FIRST, then draw chart
-# WRONG: draw chart → add labels → discover overlap → cry
-# RIGHT: measure labels → reserve space → draw chart in remaining area
+# Étape 1 : Réserver de l'espace pour les étiquettes D'ABORD, puis dessiner le graphique
+# FAUX : dessiner le graphique → ajouter des étiquettes → découvrir un recouvrement → pleurer
+# CORRECT : mesurer les étiquettes → réserver de l'espace → dessiner le graphique dans l'espace restant
 
-# Step 2: Chart-to-text separation
-CHART_TEXT_MIN_GAP = 12  # pt — minimum gap between chart edge and adjacent text
-CHART_LABEL_MIN_GAP = 6  # pt — minimum gap between chart labels and chart elements
+# Étape 2 : Séparation graphique-texte
+CHART_TEXT_MIN_GAP = 12  # pt — espace minimum entre le bord du graphique et le texte adjacent
+CHART_LABEL_MIN_GAP = 6  # pt — espace minimum entre les étiquettes du graphique et les éléments du graphique
 
-# Step 3: Label-to-label collision check
+# Étape 3 : Vérification de collision étiquette-étiquette
 def labels_overlap(label_a, label_b):
-    """Check if two label bounding boxes overlap."""
+    """Vérifie si les boîtes englobantes de deux étiquettes se chevauchent."""
     return not (label_a.right < label_b.left or
                 label_a.left > label_b.right or
                 label_a.bottom < label_b.top or
                 label_a.top > label_b.bottom)
 
-# Step 4: Resolution cascade
-# 1. Reposition (nudge conflicting label)
-# 2. Reduce font size (min 8pt)
-# 3. Remove label (replace with legend entry)
-# 4. Merge small items ("Others" grouping)
+# Étape 4 : Cascade de résolution
+# 1. Repositionner (déplacer légèrement l'étiquette en conflit)
+# 2. Réduire la taille de la police (min 8pt)
+# 3. Supprimer l'étiquette (remplacer par une entrée de légende)
+# 4. Fusionner les petits éléments (regroupement "Autres")
 ```
 
-**Matplotlib-specific anti-overlap:**
+**Anti-recouvrement spécifique à Matplotlib :**
 ```python
-# MANDATORY for all matplotlib charts
+# OBLIGATOIRE pour tous les graphiques matplotlib
 import matplotlib.pyplot as plt
 from adjustText import adjust_text  # pip install adjustText
 
-# After adding text annotations:
+# Après avoir ajouté des annotations de texte :
 # adjust_text(texts, arrowprops=dict(arrowstyle='-', color='gray', lw=0.5))
 
-# For bar value labels:
-fig.tight_layout(pad=2.0)  # Always use generous padding
-plt.subplots_adjust(bottom=0.15)  # Reserve space for rotated labels
+# Pour les étiquettes de valeur de barre :
+fig.tight_layout(pad=2.0)  # Toujours utiliser un remplissage généreux
+plt.subplots_adjust(bottom=0.15)  # Réserver de l'espace pour les étiquettes tournées
 
-# For pie/donut:
-# autopct labels: check angular distance between adjacent slices
-# If angle < 15°, use external labels with leader lines
+# Pour les graphiques circulaires/anneaux :
+# étiquettes autopct : vérifier la distance angulaire entre les tranches adjacentes
+# Si l'angle < 15°, utiliser des étiquettes externes avec des lignes de liaison
 ```
 
-**Chart-to-body-text separation (ReportLab):**
+**Séparation graphique-texte corporel (ReportLab) :**
 ```python
-# MANDATORY spacers around chart flowables
-story.append(Spacer(1, 24))       # 24pt gap before chart
-story.append(chart_image)          # Chart
-story.append(Spacer(1, 8))        # 8pt gap
-story.append(chart_caption)        # Caption
-story.append(Spacer(1, 24))       # 24pt gap after chart
-# NEVER place chart without Spacer guards
+# Espaces obligatoires autour des éléments graphiques dans le flux
+story.append(Spacer(1, 24))       # espace de 24pt avant le graphique
+story.append(chart_image)          # Graphique
+story.append(Spacer(1, 8))        # espace de 8pt
+story.append(chart_caption)        # Légende
+story.append(Spacer(1, 24))       # espace de 24pt après le graphique
+# JAMAIS placer un graphique sans espaces de garde
 ```
 
-### 1. Pie / Donut Chart — Label Collision Prevention
+### 1. Graphique circulaire/Anneau — Prévention des collisions d'étiquettes
 
-When slices are too small, labels MUST NOT be placed inside the arc.
+Lorsque les tranches sont trop petites, les étiquettes NE DOIVENT PAS être placées à l'intérieur de l'arc.
 
-#### Strategy A: Leader Lines + Y-Axis Collision Avoidance
+#### Stratégie A : Lignes de liaison + Évitement de collision avec l'axe Y
 
-When slice angle `< 15°` (or area share `< 5%`), force external labels:
-- Draw a polyline (leader line) from the arc's outer edge to the label text
-- **Y-axis anti-collision logic**: Calculate adjacent label Y-coordinates. If `Y2 - Y1 < font_height + padding`, push `Y2` downward (or pull `Y1` upward). Extend/shorten the horizontal segment of the leader line accordingly.
-- Leader lines: 1pt, same color as slice at 60% opacity
+Lorsque l'angle de la tranche `< 15°` (ou la part de surface `< 5%`), forcer les étiquettes externes :
+- Dessiner une polyligne (ligne de liaison) du bord externe de l'arc au texte de l'étiquette
+- **Logique anti-collision axe Y** : Calculer les coordonnées Y des étiquettes adjacentes. Si `Y2 - Y1 < font_height + padding`, pousser `Y2` vers le bas (ou tirer `Y1` vers le haut). Allonger/raccourcir le segment horizontal de la ligne de liaison en conséquence.
+- Lignes de liaison : 1pt, même couleur que la tranche à 60% d'opacité
 
-#### Strategy B: "Others" Grouping (Long-Tail Merge)
+#### Stratégie B : Regroupement "Autres" (Fusion de la longue traîne)
 
-Before data reaches the renderer, intercept and merge:
-- Threshold: slices `< 3%` → merge into a single "其他 (Others)" slice
-- If detail is needed, add a minimal table beside the chart showing the breakdown
-- This prevents 5+ tiny slivers from cluttering the chart
+Avant que les données n'atteignent le moteur de rendu, intercepter et fusionner :
+- Seuil : tranches `< 3%` → fusionner en une seule tranche "其他 (Autres)"
+- Si des détails sont nécessaires, ajouter un tableau minimal à côté du graphique montrant le détail
+- Cela empêche 5+ petits fragments d'encombrer le graphique
 
-#### Strategy C: Strip Labels, Use Rich Legend
+#### Stratégie C : Étiquettes supprimées, légende riche
 
-The most premium approach — **zero text on the chart itself**:
-- Pie/donut body shows only pure shapes + colors
-- All names, percentages, and values are laid out in a grid-aligned legend to the right or below
-- This NEVER stacks, and looks the most professional
+L'approche premium — **zéro texte sur le graphique lui-même** :
+- Le corps du graphique circulaire/anneau montre uniquement des formes pures + couleurs
+- Tous les noms, pourcentages et valeurs sont disposés dans une grille alignée de légende à droite ou en dessous
+- Cela NE JAMAIS s'empile et a l'aspect le plus professionnel
 
-**Priority order**: C (best) → A (good) → B (acceptable fallback)
-
----
-
-### 2. Bar Chart — Label Collision Prevention
-
-#### Strategy A: Auto-Rotate to Horizontal Bar
-
-**Hard rule**: When X-axis label average length exceeds **5 Chinese characters** (or 10 Latin characters), automatically convert to a horizontal bar chart.
-- Y-axis has unlimited downward space for labels — stacking is impossible
-- This is the single most effective anti-collision measure for bar charts
-
-#### Strategy B: Tick Thinning + Stagger
-
-When there are many bars (e.g., 30-day trend):
-- **Thinning**: Show every 2nd or 5th label (skip intermediate ticks)
-- **Stagger**: Alternate labels between two rows (offset vertically)
-- **Tilt (last resort)**: 45° rotation works but reduces readability in premium reports. Prefer thinning or horizontal bars.
-
-#### Strategy C: Value Label Inside/Outside Flip
-
-- If bar is tall enough: place value label **inside** the bar near the top (use contrasting text color)
-- If bar is too short for internal label: place value **above** the bar
-- If value labels would overlap between adjacent bars: show values only on the tallest/shortest bars, or use tooltip-style callout boxes
+**Ordre de priorité** : C (meilleur) → A (bon) → B (solution acceptable)
 
 ---
 
-### 3. Line Chart — Data Point Label Prevention
+### 2. Graphique en barres — Prévention des collisions d'étiquettes
 
-Dense data points with labels on every point = visual chaos.
+#### Stratégie A : Rotation automatique en barres horizontales
 
-#### Strategy A: "First, Last, Max, Min" Rule (Data Journalism Standard)
+**Règle stricte** : Lorsque la longueur moyenne des étiquettes de l'axe X dépasse **5 caractères chinois** (ou 10 caractères latins), convertir automatiquement en graphique en barres horizontales.
+- L'axe Y a un espace inférieur vers le bas pour les étiquettes — l'empilement est impossible
+- C'est la mesure anti-collision la plus efficace pour les graphiques en barres
 
-Only auto-label **4 points** on any line:
-- **Start point** (first value)
-- **End point** (last value)
-- **Maximum** (peak)
-- **Minimum** (valley)
+#### Stratégie B : Éclaircissement des graduations + Alternance
 
-All other points show only the curve shape — no labels. This instantly elevates professionalism.
+Lorsqu'il y a de nombreuses barres (par exemple, tendance sur 30 jours) :
+- **Éclaircissement** : Afficher chaque 2ème ou 5ème étiquette (sauter les graduations intermédiaires)
+- **Alternance** : Alterner les étiquettes entre deux lignes (décalage vertical)
+- **Inclinaison (dernier recours)** : La rotation à 45° fonctionne mais réduit la lisibilité dans les rapports premium. Préférer l'éclaircissement ou les barres horizontales.
 
-#### Strategy B: Callout Boxes
+#### Stratégie C : Inversion intérieur/extérieur des étiquettes de valeur
 
-For points that must be highlighted:
-- Don't let text sit naked on the curve
-- Wrap in a rounded-corner background box (white fill, very light shadow or thin border)
-- Connect to the data point with a thin needle line
-- Boxes have physical boundaries → easier collision detection and displacement
+- Si la barre est suffisamment haute : placer l'étiquette de valeur **à l'intérieur** de la barre près du haut (utiliser une couleur de texte contrastée)
+- Si la barre est trop courte pour une étiquette interne : placer la valeur **au-dessus** de la barre
+- Si les étiquettes de valeur se chevauchent entre barres adjacentes : afficher les valeurs uniquement sur les barres les plus hautes/plus basses, ou utiliser des boîtes d'appel de style infobulle
 
 ---
 
-## Part 2: Visual Refinement (Eliminating "Cheap" Aesthetics)
+### 3. Graphique en courbe — Prévention des étiquettes de points de données
 
-### 1. Axis & Grid Line Treatment
+Des points de données denses avec des étiquettes sur chaque point = chaos visuel.
 
-**The #1 sign of amateur charts: thick black border frames and solid grid lines.**
+#### Stratégie A : Règle "Premier, Dernier, Max, Min" (Standard en journalisme de données)
 
-| Element | Rule |
+Ne mettre d'étiquettes automatiquement que sur **4 points** de n'importe quelle ligne :
+- **Point de départ** (première valeur)
+- **Point d'arrivée** (dernière valeur)
+- **Maximum** (pic)
+- **Minimum** (creux)
+
+Tous les autres points montrent uniquement la forme de la courbe — pas d'étiquettes. Cela élève instantanément le niveau de professionnalisme.
+
+#### Stratégie B : Boîtes d'appel
+
+Pour les points qui doivent être mis en évidence :
+- Ne laissez pas le texte nu sur la courbe
+- Enveloppez dans une boîte à coins arrondis (fond blanc, ombre très légère ou fine bordure)
+- Reliez au point de données avec une fine ligne aiguille
+- Les boîtes ont des limites physiques → détection et déplacement des collisions plus faciles
+
+---
+
+## Partie 2 : Affinement visuel (Élimination des "bon marché" Esthétiques)
+
+### 1. Traitement des axes et des lignes de grille
+
+**Le signe n°1 des graphiques amateurs : cadres de bordure épais et noirs et lignes de grille pleines.**
+
+| Élément | Règle |
 |---------|------|
-| Top spine | **DELETE** (unconditionally) |
-| Right spine | **DELETE** (unconditionally) |
-| Left Y-axis spine | Optional — can delete if values are labeled on bars directly |
-| Bottom X-axis | Keep as baseline reference (thin, gray) |
-| Grid lines | **Dashed only** (dotted or dashed), 0.5pt, 15-20% opacity. NEVER solid. |
-| Grid lines (when values shown) | **DELETE entirely** — if bar/line values are directly labeled, grid lines are redundant |
+| Épine supérieure | **SUPPRIMER** (sans condition) |
+| Épine droite | **SUPPRIMER** (sans condition) |
+| Épine de l'axe Y gauche | Optionnelle — peut être supprimée si les valeurs sont étiquetées directement sur les barres |
+| Axe X inférieur | Conserver comme référence de base (fin, gris) |
+| Lignes de grille | **Tiretées uniquement** (pointillées ou tiretées), 0.5pt, 15-20% d'opacité. JAMAIS pleines. |
+| Lignes de grille (lorsque les valeurs sont affichées) | **SUPPRIMER entièrement** — si les valeurs de barre/ligne sont étiquetées directement, les lignes de grille sont redondantes |
 
-### 2. Geometric Shape Refinement
+### 2. Affinement des formes géométriques
 
-#### Pie → Donut (Mandatory Default)
+#### Circulaire → Anneau (Défaut obligatoire)
 
-- **Always use donut (ring) charts** instead of solid pies
-- Inner radius = **60–70%** of outer radius
-- Center space: display the total value or core metric in large text (e.g., "100%" / "¥2.4M")
-- Visual weight is lighter, information hierarchy is clearer
+- **Toujours utiliser des graphiques en anneau** au lieu de cercles pleins
+- Rayon intérieur = **60–70%** du rayon extérieur
+- Espace central : afficher la valeur totale ou la métrique principale en gros texte (par exemple, "100%" / "¥2.4M")
+- Le poids visuel est plus léger, la hiérarchie d'information est plus claire
 
-#### Bar Styling
+#### Style des barres
 
-| Property | Value | Why |
+| Propriété | Valeur | Pourquoi |
 |----------|-------|-----|
-| Bar-to-gap ratio | `1.5:1` or `2:1` | Not too thin (bamboo sticks), not too fat (no breathing room) |
-| Top border-radius | `2px – 4px` | Micro-rounding removes machine harshness, adds modern UI feel |
-| Bottom border-radius | `0px` | Flat base anchors to the axis |
+| Rapport barre-espace | `1.5:1` ou `2:1` | Pas trop fin (baguettes), pas trop gros (pas d'espace pour respirer) |
+| Rayon de bordure supérieur | `2px – 4px` | L'arrondi micro supprime la dureté machine, ajoute un sentiment d'UI moderne |
+| Rayon de bordure inférieur | `0px` | Base plate ancrée à l'axe |
 
-#### Line Chart Refinement
+#### Affinement du graphique en courbe
 
-| Property | Value | Why |
+| Propriété | Valeur | Pourquoi |
 |----------|-------|-----|
-| Curve type | **Smooth (Bézier/spline)** | Unless showing strictly discrete data |
-| Line width | `2pt – 3pt` | Stands out against weakened grid |
-| Area fill | Gradient from line color at 20% opacity → 0% opacity downward | Adds volume and depth |
-| Data point markers | Small circles (3-4px radius), only on labeled points | Don't mark every point |
+| Type de courbe | **Lisse (Bézier/spline)** | À moins de montrer des données strictement discrètes |
+| Largeur de ligne | `2pt – 3pt` | Se détache contre une grille affaiblie |
+| Remplissage de zone | Dégradé de la couleur de ligne à 20% d'opacité → 0% d'opacité vers le bas | Ajoute du volume et de la profondeur |
+| Marqueurs de points de données | Petits cercles (rayon 3-4px), uniquement sur les points étiquetés | Ne pas marquer chaque point |
 
-### 3. Legend & Text Hierarchy
+### 3. Légende et hiérarchie de texte
 
-#### Chart Title Layout
+#### Mise en page du titre du graphique
 
-- **Main title**: Left-aligned above the chart, bold, 14-16pt
-- **Subtitle**: Below main title, regular weight, smaller (11-12pt), describes data source/period/units
-- Title and chart body must have clear visual separation (≥16px gap)
-- **⚠️ Caption vs Title rule**: When the chart has an external caption (figure caption / 图注, e.g. “图 1: XXX” below the chart), **do NOT add a title inside the chart** (`ax.set_title()`). The caption already serves as the chart’s identifier — an internal title would duplicate it and waste vertical space. Only add an internal title when the chart is standalone (no caption).
+- **Titre principal** : Aligné à gauche au-dessus du graphique, gras, 14-16pt
+- **Sous-titre** : Sous le titre principal, poids normal, plus petit (11-12pt), décrit la source/période/unités des données
+- Titre et corps du graphique doivent avoir une séparation visuelle claire (≥16px d'écart)
+- **⚠️ Règle légende vs titre** : Lorsque le graphique a une légende externe (légende de figure / 图注, par exemple "图 1: XXX" sous le graphique), **n'ajoutez PAS de titre à l'intérieur du graphique** (`ax.set_title()`). La légende sert déjà d'identifiant du graphique — un titre interne la dupliquerait et gaspillerait l'espace vertical. N'ajouter un titre interne que lorsque le graphique est autonome (pas de légende).
 
-#### Legend Rules
+#### Règles de légende
 
-| Rule | Details |
+| Règle | Détails |
 |------|---------|
-| Border | **NONE** — never put a box around the legend |
-| Position | Top-left horizontal row (preferred) or directly above chart area |
-| Markers | Small circles (4px) or short line segments — NOT chunky squares |
-| Font size | Same as axis labels (10-12pt) |
-| Spacing | Generous horizontal spacing between items (≥24px) |
+| Bordure | **AUCUNE** — ne jamais mettre de boîte autour de la légende |
+| Position | Ligne horizontale en haut à gauche (préférée) ou directement au-dessus de la zone du graphique |
+| Marqueurs | Petits cercles (4px) ou segments de ligne courts — PAS de carrés épais |
+| Taille de police | Identique aux étiquettes d'axe (10-12pt) |
+| Espacement | Espacement horizontal généreux entre les éléments (≥24px) |
 
 ---
 
-## Part 3: Default Chart Configuration
+## Partie 3 : Configuration par défaut des graphiques
 
-When generating any chart (HTML/SVG for Creative pipeline, or matplotlib/ReportLab for Report pipeline), apply these defaults:
+Lors de la génération de n'importe quel graphique (HTML/SVG pour le pipeline Créatif, ou matplotlib/ReportLab pour le pipeline Rapport), appliquez ces paramètres par défaut :
 
 ```
-Chart Defaults:
+Paramètres par défaut des graphiques :
   axes:
     top_spine: hidden
     right_spine: hidden
@@ -252,70 +252,49 @@ Chart Defaults:
 
 ---
 
-## Part 4: Pipeline-Specific Notes
+## Partie 4 : Notes spécifiques au pipeline
 
-### Creative Pipeline (Playwright HTML/CSS)
+### Pipeline Créatif (Playwright HTML/CSS)
 
-Charts in the Creative pipeline are rendered as HTML/SVG within the blueprint's components. Apply chart rules through:
-- Inline SVG with proper viewBox and text positioning
-- CSS classes for axis hiding, grid styling, legend layout
-- JavaScript-based collision detection for leader lines (if dynamic)
+Les graphiques dans le pipeline Créatif sont rendus en HTML/SVG au sein des composants du plan. Appliquez les règles de graphique via :
+- SVG inline avec viewBox et positionnement de texte appropriés
+- Classes CSS pour masquage d'axe, style de grille, mise en page de légende
+- Détection de collision basée sur JavaScript pour les lignes de liaison (si dynamique)
 
-### Report Pipeline (ReportLab)
+### Pipeline Rapport (ReportLab)
 
-Charts in the Report pipeline use ReportLab Drawing objects or embedded matplotlib figures:
-- Use matplotlib with `plt.rcParams` overrides matching the defaults above
+Les graphiques dans le pipeline Rapport utilisent des objets Drawing ReportLab ou des figures matplotlib intégrées :
+- Utiliser matplotlib avec `plt.rcParams` qui correspondent aux paramètres par défaut ci-dessus
 - `ax.spines['top'].set_visible(False)`, `ax.spines['right'].set_visible(False)`
 - `ax.grid(True, linestyle='--', alpha=0.2, linewidth=0.5)`
-- For pie charts: `plt.pie(..., wedgeprops=dict(width=0.35))` for donut effect
-- For bar charts: use `matplotlib.patches.FancyBboxPatch` or `bar(..., edgecolor='none')` with manual rounded rect patches
+- Pour les graphiques circulaires : `plt.pie(..., wedgeprops=dict(width=0.35))` pour l'effet anneau
+- Pour les graphiques en barres : utiliser `matplotlib.patches.FancyBboxPatch` ou `bar(..., edgecolor='none')` avec des patches rectangulaires arrondis manuels
 
-### Academic Pipeline (LaTeX/TikZ)
+### Pipeline Académique (LaTeX/TikZ)
 
-- Use `pgfplots` with similar axis/grid configuration
+- Utiliser `pgfplots` avec configuration axe/grille similaire
 - `\pgfplotsset{every axis/.append style={...}}`
-- Donut charts via `tikz` with arc drawing
+- Graphiques en anneau via `tikz` avec dessin d'arc
 
 ---
 
-## Part 5: Chart Spacing & Anti-Overlap Guarantees
+## Partie 5 : Espacement des graphiques et garanties anti-empilement
 
-### 5.1 Chart-to-Body-Text Separation
+### 5.1 Séparation graphique-texte corporel
 
-| Context | Minimum Gap | Notes |
+| Contexte | Écart minimum | Notes |
 |---------|-------------|-------|
-| Chart above/below body text | 24pt | Both above and below the chart |
-| Chart caption to chart | 8pt | Caption immediately below chart |
-| Chart caption to next body text | 18pt | Clear separation |
-| Two consecutive charts | 30pt | Prevent visual merging |
+| Graphique au-dessus/en dessous du texte corporel | 24pt | À la fois au-dessus et en dessous du graphique |
+| Légende du graphique au graphique | 8pt | Légende directement sous le graphique |
+| Légende du graphique au texte suivant | 18pt | Séparation claire |
+| Deux graphiques consécutifs | 30pt | Empêcher la fusion visuelle |
 
-### 5.2 Legend-to-Chart Overlap Prevention
+### 5.2 Prévention du chevauchement légende-graphique
 
-**Legend MUST NOT overlap chart data area.** This is a zero-tolerance rule.
+**La LÉGENDE NE DOIT PAS chevaucher la zone de données du graphique.** C'est une règle de tolérance zéro.
 
 ```python
-# matplotlib: move legend outside plot area when overlapping
+# matplotlib : déplacer la légende hors de la zone de tracé lorsqu'il y a chevauchement
 leg = ax.legend(loc='upper left', bbox_to_anchor=(0, 1), frameon=False)
-# If legend still overlaps, move to below chart:
-# leg = ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12),
-#                 ncol=3, frameon=False)
-
-# ALWAYS call tight_layout AFTER placing legend
-fig.tight_layout()
-```
-
-### 5.3 Value Label Anti-Collision
-
-**When value labels on adjacent bars/points overlap:**
-1. **Stagger vertically** — alternate above/below the bar
-2. **Rotate 45°** — angled labels take less horizontal space
-3. **Show only key values** — max, min, first, last
-4. **Remove all and use gridlines** — let the reader estimate from axis
-
-### 5.4 Multi-Chart Layout in Documents
-
-When a page contains 2+ charts:
-- Each chart gets its own bounding box with explicit dimensions
-- Charts must not share the same vertical space (no side-by-side unless explicitly designed)
-- For side-by-side charts: use a 2-column layout with `Spacer` between columns
-- Each chart’s title/subtitle/legend must be fully within its own bounding box
+# Si la légende chevauche toujours, la déplacer sous le graphique :
+# leg

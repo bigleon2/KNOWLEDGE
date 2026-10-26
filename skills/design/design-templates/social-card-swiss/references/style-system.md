@@ -1,188 +1,188 @@
-# Style System
+# Système de style
 
-This skill extracts Guizang PPT visual principles for static social images. It does not depend on the original PPT templates.
+Cette compétence extrait les principes visuels de Guizang PPT pour les images sociales statiques. Elle ne dépend pas des modèles PPT originaux.
 
-## Shared Rules
+## Règles partagées
 
-- Content shape decides layout. Do not pick a pretty layout first and invent content to fit it.
-- Use strong hierarchy: title, hook, evidence, caption, metadata.
-- Use real images as evidence or atmosphere, not decoration.
-- Avoid visible clutter: no random SVG circles, oval drops, blobs, bokeh, ornamental stickers, fake diagram decorations, or decorative gradients.
-- Keep all pages in a package visually related through grid, typography, palette, and recurring metadata.
-- Every page should have a clear focal point.
+- La forme du contenu détermine la mise en page. Ne choisissez pas d'abord une mise en page attrayante et inventez du contenu pour l'adapter.
+- Utilisez une forte hiérarchie : titre, accroche, preuve, légende, métadonnées.
+- Utilisez de vraies images comme preuves ou pour l'ambiance, pas comme décoration.
+- Évitez le désordre visible : aucun cercle SVG aléatoire, gouttes ovales, amas, bokeh, autocollants décoratifs, fausses décorations de diagrammes ou dégradés décoratifs.
+- Gardez toutes les pages d'un package visuellement liées par grille, typographie, palette et métadonnées récurrentes.
+- Chaque page doit avoir un point focal clair.
 
-## Style ↔ content type are decoupled
+## Style ↔ type de contenu sont découplés
 
-The two modes below are **visual stances, not content categories**. Any topic can be rendered in either mode — what changes is the page's feel and which structural devices are available (ledger / marginalia / pull quote vs matrix / KPI tower / h-bar). Pick by editorial intent ("feature story" vs "release note" / "system explainer"), not by topic lookup. The lists below are *good fits*, not exhaustive.
+Les deux modes ci-dessous sont **des positions visuelles, pas des catégories de contenu**. N'importe quel sujet peut être rendu dans l'un ou l'autre mode - ce qui change est le sentiment de la page et les dispositifs structurels disponibles (ledger / marginalia / citation extraite vs matrice / KPI tower / h-bar). Choisissez par intention éditoriale ("article à la une" vs "note de version" / "explicateur système"), pas par recherche de sujet. Les listes ci-dessous sont des *bonnes correspondances*, pas exhaustives.
 
-## Mode A: Editorial Magazine x E-ink
+## Mode A : Magazine éditorial x E-ink
 
-Good fits: outdoor, lifestyle, reflective, humanistic, cultural, narrative — but also workplace essays, AI think-pieces, product retrospectives, anything that wants a slow magazine-feature pace.
+Bonnes correspondances : outdoor, lifestyle, réfléchi, humaniste, culturel, narratif — mais aussi essais de lieu de travail, réflexions sur l'IA, rétrospectives de produit, tout ce qui veut un rythme de magazine à la une lent.
 
-Visual anchors:
+Ancres visuelles :
 
-- Serif or Songti-like display title plus quiet sans-serif body text.
-- Warm paper, deep ink, refined greys, restrained color.
-- WebGL or procedural ink/contour atmosphere, especially on covers, dividers, pull quotes, and sparse pages.
-- Documentary photography, field-note captions, issue labels, page numbers.
-- Large but purposeful whitespace.
-- Fine rules, magazine columns, image captions, pull quotes, and editorial contrast.
-- Subtle paper texture is allowed; it must not lower text readability.
+- Titre d'affiche Serif ou Songti-like (style de police chinoise traditionnelle) avec du corps de texte sans-serif discret.
+- Papier chaud, encre profonde, gris raffinés, couleurs mesurées.
+- WebGL ou atmosphère/encre procédurale/contour, surtout sur les couvertures, séparateurs, citations extraites et pages éparses.
+- Photographie documentaire, légendes de notes de terrain, étiquettes de numéro, numéros de page.
+- Grand blanc mais avec intention.
+- Lignes fines, colonnes de magazine, légendes d'images, citations extraites, contraste éditorial.
+- Une texture de papier subtile est autorisée ; elle ne doit pas réduire la lisibilité du texte.
 
-Use one of the 6 magazine palettes in `theme-presets.md`. Do not improvise arbitrary warm paper colors. Five palettes are light (paper-and-ink); one — **Midnight Ink** — is the only sanctioned dark variant, reserved for content where the source imagery is already dark (game art, night photography, cinematic covers). Do not invent a second dark palette.
+Utilisez l'une des 6 palettes magazine dans `theme-presets.md`. N'improvisez pas de couleurs de papier chaud arbitraires. Cinq palettes sont claires (papier-et-encre) ; une — **Midnight Ink** — est la seule variante sombre approuvée, réservée au contenu où l'imagerie source est déjà sombre (art de jeu, photographie de nuit, couvertures cinématiques). N'inventez pas une deuxième palette sombre.
 
-**Typography stance — "the larger, the lighter."** This rule is non-negotiable for Editorial. Display titles run at **weight 500** with **wide tracking** (`+.03em` to `+.04em`). Small text (kicker, meta, label) is the *only* place where weight 500 is paired with mono uppercase and wide letter-spacing (`+.20em` to `+.22em`). Body uses **serif-zh**, not sans. The anti-pattern — 700 to 900 weight display, sans body, negative tracking — collapses Editorial into a generic "infographic banner" look. If a page feels heavy or shouty, the title is too bold or the body switched to sans. See `local-tests/demo-showcase/editorial.html` for source-of-truth.
+**Position typographique — "plus grand, plus léger."** Cette règle est non négociable pour l'Éditorial. Les titres d'affiche s'exécutent à **weight 500** avec **tracking large** (`.+03em` à `.+04em`). Le petit texte (accroche, méta, étiquette) est le *seul* endroit où le weight 500 est associé à majuscules mono et espacement large (`.+20em` à `.+22em`). Le corps utilise **serif-zh**, pas sans. Le contre-modèle — poids d'affichage 700 à 900, corps sans, tracking négatif — réduit l'Éditorial à un look générique de "bannière d'infographie". Si une page semble lourde ou criarde, le titre est trop gras ou le corps est passé au sans. Voir `local-tests/demo-showcase/editorial.html` pour la source de vérité.
 
-Layout patterns:
+Motifs de mise en page :
 
-- Cover: big title top or left, large photo/image evidence, bottom checklist or issue-strip.
-- Feature page: one large image plus a narrow column of compressed explanation.
-- Checklist page: editorial header, numbered items, one supporting image crop or icon-free diagram.
-- Quote/takeaway page: large pull quote with small source/context row.
-- Comparison page: two-column tension, simple labels, one visual anchor.
+- Couverture : grand titre en haut ou à gauche, grande photo/image de preuve, liste de contrôle ou bande de numéro en bas.
+- Page à la une : une grande image plus une colonne étroite d'explication compressée.
+- Page de liste : en-tête éditorial, éléments numérotés, une image de support coupée ou un diagramme sans icône.
+- Page citation/enseignement : grande citation extraite avec petite ligne source/contexte.
+- Page de comparaison : tension à deux colonnes, étiquettes simples, une ancre visuelle.
 
-Background rule:
+Règle de fond :
 
-- A flat paper color is not enough for this mode. Use a layered background from `background-systems.md`: paper base, subtle grain, ink wash or contour field, and optional WebGL canvas. The background should create atmosphere while keeping text readable.
+- Une couleur de papier plate n'est pas suffisante pour ce mode. Utilisez un fond multicouche de `background-systems.md` : base de papier, grain subtil, lavis d'encre ou champ de contour, et toile WebGL optionnelle. Le fond doit créer de l'ambiance tout en maintenant la lisibilité du texte.
 
-## Mode B: Swiss International
+## Mode B : Suisse International
 
-Good fits: AI tools, product updates, engineering workflows, software explainers, release notes, comparison posts — but also travel ledgers, expense logs, fitness data, recipe step counts, anything that wants a engineered/quantified pace. Topic is not the gate; visual stance is.
+Bonnes correspondances : outils d'IA, mises à jour produit, workflows d'ingénierie, explicatifs logiciels, notes de version, publications de comparaison — mais aussi carnets de voyage, journaux de dépenses, données de fitness, décomptes d'étapes de recette, tout ce qui veut un rythme ingénieur/quantifié. Le sujet n'est pas la porte ; la position visuelle l'est.
 
-Visual anchors:
+Ancres visuelles :
 
-- Inter, Helvetica Neue, Noto Sans SC feeling.
-- Very light display weights for huge type; stronger weights for small labels.
-- Strict 12/16-column grid, left alignment, asymmetric whitespace.
-- White/off-white, black, refined greys, exactly one high-saturation accent.
-- Straight modules, hairline rules, no rounded cards, no shadows, no glassmorphism.
+- Inter, Helvetica Neue, sentiment Noto Sans SC.
+- Poids très légers pour le grand type ; poids plus forts pour les petites étiquettes.
+- Grille stricte 12/16 colonnes, alignement à gauche, blanc asymétrique.
+- Blanc/blanc cassé, noir, gris raffinés, exactement une accentuation haute saturation.
+- Modules droits, lignes fines, pas de cartes arrondies, pas d'ombres, pas de glassmorphism.
 
-Use one of the 4 Swiss accent palettes in `theme-presets.md`. One package gets exactly one accent.
+Utilisez l'une des 4 palettes d'accentuation Suisse dans `theme-presets.md`. Un package obtient exactement une accentuation.
 
-Rules:
+Règles :
 
-- Use one accent only. Do not mix blue, yellow, green, and orange.
-- Avoid gradients. Use pure color blocks, hairline rules, and grid modules.
-- Headings usually sit on the top-left content axis, not center, except special square covers or explicit poster compositions.
-- Huge text should be lighter; small text should be heavier.
-- Images are proof blocks. Use straight edges and stable aspect-ratio containers.
+- Utilisez une seule accentuation. Ne mélangez pas bleu, jaune, vert et orange.
+- Évitez les dégradés. Utilisez des blocs de couleur pure, des lignes fines et des modules de grille.
+- Les titres se situent généralement sur l'axe de contenu en haut à gauche, pas au centre, sauf pour les couvertures carrées spéciales ou les compositions d'affiche explicites.
+- Le grand texte doit être plus léger ; le petit texte doit être plus lourd.
+- Les images sont des blocs de preuve. Utilisez des bords droits et des conteneurs à ratio d'aspect stable.
 
-Typography guidance:
+Conseils typographiques :
 
-| Role | Size Guidance | Weight |
+| Rôle | Indication de taille | Poids |
 | --- | --- | --- |
-| Main cover title | 84-128px on 1080x1440 | 200-400 |
-| Page title | 52-82px | 300-500 |
-| Body copy | 28-42px | 400-500 |
-| Captions/meta | 20-28px | 500-650 |
+| Titre principal de couverture | 84-128px sur 1080x1440 | 200-400 |
+| Titre de page | 52-82px | 300-500 |
+| Copie du corps | 28-42px | 400-500 |
+| Légendes/méta | 20-28px | 500-650 |
 
-Chinese titles are visually dense. Shorten first, then reduce size. Do not solve overflow by shrinking body text below readability.
+Les titres chinois sont visuellement denses. Raccourcir d'abord, puis réduire la taille. Ne résolvez pas le dépassement en réduisant le texte du corps en dessous de la lisibilité.
 
-## Image Rules
+## Règles d'image
 
-- Photos: crop with intent. Keep faces, hands, products, and main objects in safe areas.
-- Product screenshots: preserve text; use `object-fit:contain` when detail matters.
-- Hardware photos: make the object a first-viewport signal. The photo should be large enough to inspect.
-- Generated images: generate only the image content, not the final poster with text.
-- Do not make generated images include page chrome, titles, borders, captions, or fake UI unless required by the concept.
+- Photos : coupez avec intention. Gardez les visages, mains, produits et objets principaux dans des zones sûres.
+- Captures d'écran de produit : préservez le texte ; utilisez `object-fit:contain` quand les détails sont importants.
+- Photos de matériel : faites de l'objet un signal de première vue. La photo doit être assez grande pour être inspectée.
+- Images générées : générez seulement le contenu de l'image, pas l'affiche finale avec texte.
+- Ne faites pas inclure des images générées avec chrome de page, titres, bordures, légendes ou fausses UI sauf si requis par le concept.
 
-## Bad Smells
+## Mauvaises odeurs
 
-Revise if you see:
+Réviser si vous voyez :
 
-- A page that looks like a generic template with the article pasted in.
-- Large empty lower area across multiple pages.
-- Decorative shapes that do not explain anything.
-- Screenshots too small to read.
-- Inconsistent margins between pages.
-- Blue text on black or dark photo with poor contrast.
-- A 1:1 cover that is a cramped crop of a 21:9 cover.
+- Une page qui ressemble à un modèle générique avec l'article collé dedans.
+- Grande zone vide en bas sur plusieurs pages.
+- Formes décoratives qui n'expliquent rien.
+- Captures d'écran trop petites pour être lues.
+- Marges incohérentes entre pages.
+- Texte bleu sur noir ou photo sombre avec mauvais contraste.
+- Une couverture 1:1 qui est un crop serré d'une couverture 21:9.
 
-## Style Identity Test
+## Test d'identité de style
 
-A poster compiles cleanly long before its style identity is right. Run this test on every page before delivering.
+Une affiche compile proprement bien avant que son identité de style soit correcte. Lancez ce test sur chaque page avant livraison.
 
-### Swiss identity test
+### Test d'identité Suisse
 
-A poster is Swiss only if **all four** hold:
+Une affiche est Suisse seulement si **les quatre** tiennent :
 
-1. Every large display title (>=72px on 1080x1440) uses a typed class from `components.md` (`.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`). Its computed `font-weight` is `<=300`.
-2. No serif family is loaded in the document head. No element uses `font-family: serif` or `Noto Serif SC` / `Playfair Display`.
-3. Section separators are hairline rules (1-2px) or grid gutters, not card borders + drop shadows.
-4. Exactly one accent palette is in use. No mixed accents across pages.
+1. Chaque grand titre d'affichage (>=72px sur 1080x1440) utilise une classe typée de `components.md` (`.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`). Son `font-weight` calculé est `<=300`.
+2. Aucune famille serif n'est chargée dans l'en-tête du document. Aucun élément n'utilise `font-family: serif` ou `Noto Serif SC` / `Playfair Display`.
+3. Les séparateurs de section sont des lignes fines (1-2px) ou des gouttières de grille, pas des bordures de carte + ombres portées.
+4. Exactement une palette d'accentuation est en utilisation. Pas d'accentuations mélangées entre pages.
 
-If any one of these fails, the poster is not Swiss — it is generic editorial or "Swiss-flavored card". Fix it or relabel the package.
+Si l'une de ces échoue, l'affiche n'est pas Suisse — elle est éditoriale générique ou "carte Suisse-aromatisée". Corrigez-la ou renommez le package.
 
-### Editorial identity test
+### Test d'identité Éditorial
 
-A poster is Editorial only if **all three** hold:
+Une affiche est Éditoriale seulement si **les trois** tiennent :
 
-1. The background has at least one atmosphere layer beyond a flat fill: paper grain, ink wash, frozen WebGL canvas, or contour field (see `background-systems.md`). A page-wide solid `#f3f0e8` with nothing on top is not Editorial.
-2. The display title uses a serif-zh / serif-en family (`Noto Serif SC` / `Songti SC` / `Playfair Display`).
-3. The poster contains at least one of: a large photo well, a serif pull-quote with em-italic English, a left/right marginalia column, or a ledger with real magazine row hierarchy.
+1. Le fond a au moins une couche d'ambiance au-delà d'un remplissage plat : grain de papier, lavis d'encre, toile WebGL gelée ou champ de contour (voir `background-systems.md`). Un `#f3f0e8` solide sur toute la page avec rien par-dessus n'est pas Éditorial.
+2. Le titre d'affichage utilise une famille serif-zh / serif-en (`Noto Serif SC` / Songti SC / Playfair Display).
+3. L'affiche contient au moins un des : un grand puits de photo, une citation extraite serif avec anglais en em-italic, une colonne de marginalia gauche/droite, ou un carnet avec vraie hiérarchie de rangée de magazine.
 
-If a poster has a serif title, mono labels everywhere, structured pill grids, and a flat paper background — it is **Swiss-with-a-serif**, not Editorial. Either add atmosphere + magazine structure, or switch the package to Swiss honestly.
+Si une affiche a un titre serif, étiquettes mono partout, grilles de pilotes structurées, et un fond de papier plat — c'est **Suisse-avec-serif**, pas Éditorial. Ajoutez soit ambiance + structure magazine, ou basculez le package en Suisse honnêtement.
 
-## Anti-Patterns From Real Demos
+## Anti-modèles à partir de vrais démos
 
-These all rendered without errors and looked plausible in isolation, but failed once compared against a clean reference.
+Tous ont été rendus sans erreur et semblaient plausibles en isolation, mais ont échoué une fois comparés à une référence propre.
 
-### Anti-pattern A: thick big title in Swiss
+### Anti-modèle A : gros titre épais en Suisse
 
 ```html
-<!-- WRONG: inline 700-800 weight on a huge title -->
+<!-- MAUVAIS : poids inline 700-800 sur un gros titre -->
 <h1 style="font-size: 92px; font-weight: 800">如果只能留 5 个,我留这些。</h1>
 
-<!-- RIGHT: typed class, automatic 200-300 weight -->
+<!-- BON : classe typée, poids automatique 200-300 -->
 <h1 class="h-statement">如果只能<br>留 <em>5 个</em>,<br>我留这些。</h1>
 ```
 
-"The larger, the lighter" is a hard rule. A 90px h1 at weight 700+ instantly downgrades the design from Swiss International to generic landing-page editorial. Always reach for `.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`. Do not bypass them with inline `font-size` + `font-weight`.
+"Plus grand, plus léger" est une règle stricte. Un h1 de 90px à weight 700+ dégrade instantanément le design de Suisse International en éditorial de page de générique. Toujours atteindre pour `.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`. Ne les contournez pas avec `font-size` + `font-weight` inline.
 
-### Anti-pattern B: Editorial without atmosphere
+### Anti-modèle B : Éditorial sans ambiance
 
-A page with all of the following looks Swiss-in-disguise even if you intended Editorial:
+Une page avec tout ce qui suit ressemble à Suisse-en-déguême même si vous vouliez Éditorial :
 
-- Single flat paper color, no grain, no ink wash, no WebGL,
-- Mono labels (`IBM Plex Mono uppercase`) on every kicker, foot, pill, and row label,
-- A serif headline floating alone with no large image, pull quote, or marginalia column.
+- Couleur de papier plate unique, pas de grain, pas de lavis d'encre, pas de WebGL,
+- Étiquettes mono (`IBM Plex Mono majuscules`) sur chaque accroche, pied, pilote et étiquette de rangée,
+- Un titre serif flottant seul sans grande image, citation extraite ou colonne de marginalia.
 
-Fix by **one** of:
+Corrigez par **une** de :
 
-- Add the paper grain + ink-wash background per `background-systems.md`.
-- Replace mono labels with serif / italic micro copy.
-- Introduce a large photo or serif pull quote with column structure.
-- Switch the package to Swiss honestly — the content might want Swiss.
+- Ajoutez le grain de papier + fond de lavis d'encre selon `background-systems.md`.
+- Remplacez les étiquettes mono par micro copie serif / italique.
+- Introduisez une grande photo ou citation extraite serif avec structure de colonne.
+- Basculez le package en Suisse honnêtement — le contenu pourrait vouloir Suisse.
 
-### Anti-pattern C: footer overlap (closing essay collides with `.foot`)
+### Anti-modèle C : chevauchement de pied de page (article de clôture entre en collision avec `.foot`)
 
-When `.foot` or `.issue-strip` is positioned with `position: absolute; bottom: ...`, any content above that grows past its expected height crashes through the footer. Use one of these safe patterns instead:
+Quand `.foot` ou `.issue-strip` est positionné avec `position: absolute; bottom: ...`, tout contenu au-dessus qui dépasse sa hauteur attendue traverse le pied de page. Utilisez à la place l'un de ces motifs sûrs :
 
 ```css
-/* Pattern A — flex column. Foot is the last child, pushed by margin-top: auto. */
+/* Motif A — colonne flex. Foot est le dernier enfant, poussé par margin-top: auto. */
 .poster .pad { display: flex; flex-direction: column; height: 100%; }
 .poster .foot { margin-top: auto; }
 
-/* Pattern B — grid with fixed footer row. */
+/* Motif B — grille avec ligne de pied de page fixe. */
 .poster .pad { display: grid; grid-template-rows: auto 1fr auto; height: 100%; }
 ```
 
-Both seed templates already use Pattern A. Preserve it. If a recipe truly needs an absolutely-positioned foot, reserve `padding-bottom: <foot-height + 24px>` on the content container.
+Les deux modèles de départ utilisent déjà le Motif A. Préservez-le. Si une recette a vraiment besoin d'un pied de positionné absolument, réservez `padding-bottom: <hauteur-pied + 24px>` sur le conteneur de contenu.
 
-### Anti-pattern D: full-bleed photo with title crossing the subject
+### Anti-modèle D : photo pleine page avec titre traversant le sujet
 
-The poster looks dramatic at 100% zoom and unreadable at thumbnail size. Two common subfailures:
+L'affiche semble dramatique à 100% de zoom et illisible en taille miniature. Deux sous-échecs courants :
 
-- A hero photo covers the entire poster, the title sits directly on whatever pixel happens to be behind it. The image's own brightness varies across the canvas, so the title is legible in some bands and invisible in others.
-- A mask layer is present but only on one band (bottom), while the subject's face was pushed to the top by `object-position: center top`. The display title lands across the face.
+- Une photo hero couvre toute l'affiche, le titre s'assied directement sur n'importe quel pixel se trouvant derrière. La propre luminosité de l'image varie sur la toile, donc le titre est lisible dans certaines bandes et invisible dans d'autres.
+- Une couche de masque est présente mais seulement sur une bande (bas), tandis que le visage du sujet a été poussé en haut par `object-position: center top`. Le titre d'affichage atterrit sur le visage.
 
-Both pass HTML linting; both fail the thumbnail readability test.
+Les deux passent le lint HTML ; les deux échouent le test de lisibilité miniature.
 
-Fix by following `image-overlay.md`:
+Corrigez en suivant `image-overlay.md` :
 
-1. **Qualify the photo first.** It needs a low-detail quiet zone and restrained light. If it fails, switch to a framed-photo recipe instead of forcing text on top.
-2. **Map the subject before placing the title.** Read the image, describe in plain language where the face/focal feature sits, record the subject map as an HTML comment next to the hero block. Place text only in documented safe zones.
-3. **Match `object-position` to subject location** — see the table in `image-overlay.md`. Never leave it at default for face / hero shots.
-4. **Thumbnail test** — render the PNG, downscale to 360 px wide, and look at the title. If it fights the photo, add a localized, image-toned tint only around the title area; if the photo looks dead, the tint is too heavy or the photo is wrong.
+1. **Qualifiez d'abord la photo.** Elle a besoin d'une zone calme de faible détail et de lumière mesurée. Si elle échoue, basculez vers une recette de photo encadrée au lieu de forcer le texte par-dessus.
+2. **Cartographiez le sujet avant de placer le titre.** Lisez l'image, décrivez en langage simple où le visage/point focal se situe, enregistrez la carte du sujet comme commentaire HTML à côté du bloc hero. Placez du texte seulement dans les zones sûres documentées.
+3. **Adaptez `object-position` à l'emplacement du sujet** — voir le tableau dans `image-overlay.md`. Ne le laissez jamais par défaut pour les visages / photos hero.
+4. **Test miniature** — rendez le PNG, réduisez à 360 px de large, et regardez le titre. S'il lutte contre la photo, ajoutez une teinte localisée, ton image, seulement autour de la zone du titre ; si la photo semble morte, la teinte est trop lourde ou la photo est mauvaise.
 
-This anti-pattern survives almost every other check because the HTML is valid, the image loads, and the title renders. The only way to catch it is to look at the rendered output at the size readers will actually see it.
+Cet anti-modèle survit à presque tous les autres tests car le HTML est valide, l'image charge et le titre rend. La seule façon de le repérer est de regarder le rendu à la taille où les lecteurs la verront réellement.

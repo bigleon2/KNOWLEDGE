@@ -1,65 +1,65 @@
-# 智能推荐志愿表 API 速查
+# Fiche de référence de l'API de recommandation de volontés intelligentes
 
-## 接口
+## Interface
 
-| 项 | 值 |
+| Élément | Valeur |
 |----|-----|
-| 路径 | `POST /zp/volunteer/intelligenceVolunteer` |
+| Chemin | `POST /zp/volunteer/intelligenceVolunteer` |
 | Content-Type | `application/json` |
-| 认证 | 无（公网 skill-test 接口） |
-| 默认 BASE_URL | `https://publicapi.chatglm.cn/chatglm_public/skill-test` |
-| 完整地址 | `{BASE_URL}/zp/volunteer/intelligenceVolunteer` |
+| Authentification | Aucune (interface skill-test publique) |
+| BASE_URL par défaut | `https://publicapi.chatglm.cn/chatglm_public/skill-test` |
+| Adresse complète | `{BASE_URL}/zp/volunteer/intelligenceVolunteer` |
 
-## 请求体字段
+## Champs du corps de la requête
 
-| 字段 | 类型 | 必填 | 说明 |
+| Champ | Type | Obligatoire | Description |
 |------|------|------|------|
-| province | string | ✓ | 高考省份 |
-| classify | string | ✓ | 文科/理科/物理/历史/综合 |
-| score | integer | ✓ | 高考成绩 |
-| batch | string | ✓ | 填报批次 |
-| subjects | string \| null | 模式相关 | 逗号分隔选科 |
-| gradeType | string \| null | 京沪津 | 本科 / 专科 |
-| rank | integer \| null | | 位次 |
-| universitys | string \| null | | 心仪高校，`,` 分隔 |
-| provinces | string \| null | | 省份意向 |
-| tags | string \| null | | 院校属性意向 |
-| majorClass | string \| null | | 专业类意向 |
-| universityNum | integer | | 推荐院校数，默认 30 |
-| majorNum | integer | | 每组专业数，默认 6 |
-| isAdjust | boolean | | 是否调剂 |
+| province | string | ✓ | Province du gaokao (examen d'entrée à l'université en Chine) |
+| classify | string | ✓ | Lettres/sciences/Physique/Histoire/Combiné |
+| score | integer | ✓ | Score du gaokao |
+| batch | string | ✓ | Lot de soumission |
+| subjects | string \| null | Dépendant du mode | Matières sélectionnées séparées par des virgules |
+| gradeType | string \| null | Pékin/Tianjin/Shanghai | Licence/Professionnel |
+| rank | integer \| null | | Rang |
+| universitys | string \| null | | Universités préférées, séparées par `,` |
+| provinces | string \| null | | Provinces préférées |
+| tags | string \| null | | Préférences d'attribut d'établissement |
+| majorClass | string \| null | | Préférences de classe de filière |
+| universityNum | integer | | Nombre d'universités recommandées, par défaut 30 |
+| majorNum | integer | | Nombre de filières par groupe, par défaut 6 |
+| isAdjust | boolean | | Ajustement activé |
 | volunteerType | string | | ACADEMY_GROUP / ACADEMY_MAJOR / MAJOR_GROUP |
-| returnUniversityNum | integer | | 已填志愿数 |
-| intentionNum | integer | | 已填意向数 |
+| returnUniversityNum | integer | | Nombre de volontés déjà remplies |
+| intentionNum | integer | | Nombre d'intentions déjà remplies |
 
-## 省份与选科模式
+## Provinces et modes de sélection de matières
 
-详见 [gaokao-fetch-volunteers/reference.md](../gaokao-fetch-volunteers/reference.md) 实测规律。采集 `student.json` 时务必按省填对 `classify` / `subjects` / `gradeType`：
+Voir [gaokao-fetch-volunteers/reference.md](../gaokao-fetch-volunteers/reference.md) pour les règles observées. Lors de la collecte de `student.json`, assurez-vous de remplir correctement `classify` / `subjects` / `gradeType` par province :
 
-| 模式 | 省份 | classify | subjects | gradeType |
+| Mode | Province | classify | subjects | gradeType |
 |------|------|----------|----------|-----------|
-| 老高考 | 新疆 | 文科/理科 | 不传 | 不传 |
-| 3+1+2 | 23省 | 物理/历史 | **完整三科**（含首选，如 `物理,化学,生物`） | 不传 |
-| 3+3 | 沪京津鲁浙琼 | 综合 | 三科（浙可选技术） | 仅京沪津：本科/专科 |
+| Ancien gaokao | Xinjiang | Lettres/sciences | Non transmis | Non transmis |
+| 3+1+2 | 23 provinces | Physique/Histoire | **Trois matières complètes** (y compris la première choix, comme `Physique,Chimie,Biologie`) | Non transmis |
+| 3+3 | Shanghai/Tianjin/Pékin/Shandong/Zhejiang/Hainan | Combiné | Trois matières (Zhejiang peut inclure Technologie) | Seulement Pékin/Tianjin/Shanghai : Licence/Professionnel |
 
-**西藏**：测试环境不支持。 **新疆**：score 必传，勿仅传 rank。
+**Tibet** : L'environnement de test ne prend pas en charge. **Xinjiang** : score doit être transmis, ne transmettez pas seulement rank.
 
-**批次 batch（静态兜底，优先走 batch/list API）**：
+**Lot batch (solution de secours statique, privilégier l'API batch/list)** :
 
-| 省份 | batch |
+| Province | batch |
 |------|-------|
-| 天津 | 本科批A段 |
-| 浙江 | 普通类一段 |
-| 山东 | 普通类一段 |
-| 四川、云南 | 本科批B段 |
-| 甘肃 | 本科批 |
-| 宁夏 | 本科批B段 |
-| 新疆 | 本科一批 |
-| 西藏 | 测试环境暂不支持（2222010 高考省份错误） |
+| Tianjin | Lot de licence A |
+| Zhejiang | Segment 1 de la catégorie générale |
+| Shandong | Segment 1 de la catégorie générale |
+| Sichuan/Yunnan | Lot de licence B |
+| Gansu | Lot de licence |
+| Ningxia | Lot de licence B |
+| Xinjiang | Premier lot de licence |
+| Tibet | Non pris en charge temporairement dans l'environnement de test (2222010 erreur de province gaokao) |
 
-## 响应结构
+## Structure de réponse
 
-公网 skill-test 接口返回 `{ status, message, result }`（`status=0` 为成功），脚本会自动转换为统一格式。
+L'interface skill-test publique renvoie `{ status, message, result }` (`status=0` pour succès), le script convertit automatiquement au format unifié.
 
 ```json
 {
@@ -81,8 +81,8 @@
 }
 ```
 
-旧版接口格式 `{ code, msg, body }`（`code=200`）同样兼容。
+L'ancien format d'interface `{ code, msg, body }` (`code=200`) est également compatible.
 
-`type` 枚举：`CHONG` 冲、`WEN` 稳、`BAO` 保、`NAN` 难、`YI` 易。
+`type` énumération : `CHONG` Risqué, `WEN` Stable, `BAO` Sécurisé, `NAN` Difficile, `YI` Facile.
 
-`score` / `parityScore` 常为 JSON 字符串，如 `[{"2025":"660,2153,60"}]`（分,位次,计划数）。
+`score` / `parityScore` sont souvent des chaînes JSON, comme `[{"2025":"660,2153,60"}]` (score, rang, nombre de places).

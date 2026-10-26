@@ -1,19 +1,19 @@
-# Deck Template Index
+# Index de Modèles de Présentation
 
-仅在顶层 `INDEX.md` 的 carrier gate 已确认用户要 PPT / deck / slides / 演示稿 / 幻灯片 / BP / 路演 后再读本文件。
+Ne lire ce fichier qu'après que le `INDEX.md` de niveau supérieur ait confirmé que l'utilisateur veut un PPT / deck / slides / présentation / 幻灯片 / BP / roadshow .
 
-当前 `ppt/` 下共 **8 套** deck 模板：
+Actuellement, il y a **8** modèles de deck dans `ppt/` :
 
-| Template | Mode | Scenario | Use when |
+| Modèle | Mode | Scénario | À utiliser quand |
 |---|---|---|---|
-| `guizang-ppt` | deck | marketing | "电子杂志 × 电子墨水" 横向翻页网页 PPT（单 HTML 文件），WebGL 流体背景 + 衬线标题 + 章节幕封 + 数据大字报 + 图片网格。用于分享 / 演讲 / 发布会风格，或用户提到「杂志风 PPT / horizontal swipe deck / editorial magazine / e-ink presentation」 |
-| `ib-pitch-book` | deck | finance | 投行 strategic-alternatives pitch book — trading comps / precedent transactions / valuation football field / DCF sensitivity / 战略选项矩阵 / 流程建议。用于 Board / sell-side 讨论材料。**不是** VC 融资 deck |
-| `html-ppt-zhangzara-8-bit-orbit` | deck | marketing | 像素艺术霓虹街机 × 深海军蓝。任何应该感觉像凌晨 2 点 CRT 屏幕的内容：cyberpunk、gaming、web3、indie dev tools、hackathon demo |
-| `html-ppt-zhangzara-biennale-yellow` | deck | marketing | 暖羊皮纸上的太阳黄 + 靛蓝衬线 + 阳光晕染渐变。艺术双年展海报 / 美术馆年度方案 / 展览 deck / 设计大会 / 策展提案 / 文学出版物 |
-| `html-ppt-zhangzara-grove` | deck | marketing | 森林绿底 + 奶油色字 + Playfair 古典衬线 + 单一锈红 accent。可持续 / wellness / 户外自然 / 酒庄餐厅 / 文学艺术 / 咨询交付 / 双语 EN/CN 报告 |
-| `html-ppt-zhangzara-pin-and-paper` | deck | marketing | 黄色纸面 + 安全别针插图 + 墨蓝手写 Caveat + 纸纹理。手作 / 温暖 / 文学感：定性研究发现、创始人反思、长篇品牌故事、workshop 复盘 |
-| `html-ppt-zhangzara-retro-windows` | deck | marketing | Windows 95 chrome：灰色标题栏 / MS Sans Serif / 像素字体 / 满满怀旧。有意为之的怀旧：retro gaming、Y2K 美学品牌、90 年代风创作者作品集、技术史 talk |
-| `html-ppt-zhangzara-retro-zine` | deck | marketing | 米色纸 + 绿色 accent + Bebas Neue + Caveat：HTML 形式的 riso 印刷 zine。印刷 / lo-fi / 手作：独立 zine、音乐艺术品牌、创作者作品集、小批量手作发布 |
+| `guizang-ppt` | deck | marketing | PPT web en feuilletage horizontal "magazine électronique × encre électronique" (fichier HTML unique), fond WebGL fluide + titres serif + intertitres de chapitre + affiches de données + grille d'images. Pour le style partage / présentation / conférence, ou quand l'utilisateur mentionne « magazine-style PPT / horizontal swipe deck / editorial magazine / e-ink presentation » |
+| `ib-pitch-book` | deck | finance | Pitch book de strategic-alternatives pour banque d'investissement — trading comps / transactions précédentes / valuation football field / sensibilité DCF / matrice d'options stratégiques / proposition de processus. Pour les discussions Board / sell-side. **Pas** un deck de financement VC |
+| `html-ppt-zhangzara-8-bit-orbit` | deck | marketing | Art pixel néon arcade × marine bleue foncée. Tout ce qui devrait ressembler à un écran CRT à 2 heures du matin : cyberpunk, gaming, web3, outils de dev indie, démos de hackathon |
+| `html-ppt-zhangzara-biennale-yellow` | deck | marketing | Jaune soleil sur parchemin chaud + serif indigo + dégradé de rayons de soleil. Affiche de biennale d'art / proposition annuelle de musée / deck d'exposition / conférence design / proposition de curation / publication littéraire |
+| `html-ppt-zhangzara-grove` | deck | marketing | Vert forêt en fond + crème pour le texte + Playfair serif classique + accent unique rouille oxydée. Durable / bien-être / nature extérieure / restaurant de domaine viticole / littérature et art / rapport bilingue EN/CN |
+| `html-ppt-zhangzara-pin-and-paper` | deck | marketing | Papier jaune + illustrations d'épingles de sûreté + Caveat écrit à la main bleu encre + texture de papier. Fait main / chaleureux / sens littéraire : résultats de recherche qualitative, réflexions du fondateur, longues histoires de marque, bilan d'atelier |
+| `html-ppt-zhangzara-retro-windows` | deck | marketing | Chrome Windows 95 : barre de titre grise / MS Sans Serif / polices pixel / pleine nostalgie. Nostalgie intentionnelle : rétro gaming, marques esthétique Y2K, portfolio de créateurs 90's, conférence sur l'histoire de la technologie |
+| `html-ppt-zhangzara-retro-zine` | deck | marketing | Papier beige + accent vert + Bebas Neue + Caveat : zine risograph au format HTML. Imprimé / lo-fi / fait main : zines indépendants, marques musicales et artistiques, portfolio de créateurs, petites publications artisanales |
 
-## Carrier rule
-Do not select these templates for ordinary reports, newsletters, web pages, or social cards unless the user asks for slides / PPT / deck output.
+## Règle de carrier
+Ne pas sélectionner ces modèles pour des rapports ordinaires, newsletters, pages web ou cartes sociales, sauf si l'utilisateur demande du contenu en slides / PPT / deck.

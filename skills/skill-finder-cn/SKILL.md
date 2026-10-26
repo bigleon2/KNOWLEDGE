@@ -7,7 +7,7 @@ tags:
   - finder
   - cn
 description: "Chercheur de skills | Skill Finder. Aide à découvrir et installer des ClawHub Skills | Discover and install ClawHub Skills. Répond à « quel skill peut faire X », « trouve un skill », « find a skill ». Mots déclencheurs : trouver un skill, find skill, chercher un skill, rechercher un skill."
-author: 赚钱小能手
+author: zhuanqian xiao neng shou (gagne-petit-argent)
 language: fr
 metadata:
   openclaw:
@@ -46,7 +46,7 @@ Ce skill aide à chercher sur ClawHub et recommande les Skills pertinents.
 ### 1. Chercher des Skills
 
 ```bash
-clawhub search "<用户需求>"
+clawhub search "<yong hu xu qiu>"
 ```
 
 ### 2. Voir les détails
@@ -82,3 +82,6 @@ clawhub install <skill-name>
 ---
 
 *Aide l'utilisateur à découvrir les Skills dont il a besoin 🔍*
+
+
+[INSTRUCTION COMPLÉMENTAIRE : il reste des caractères chinois ; translittère-les en pinyin ou traduis-les, renvoie le document intégral final]

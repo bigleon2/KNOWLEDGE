@@ -1,6 +1,6 @@
 ---
 name: Landing Page Skill
-description: Design single-subject product landing pages, SaaS homepages, pre-launch waitlists, service pages, agency/studio pages, pricing pages, and conversion-oriented product marketing pages as self-contained HTML artifacts.
+description: Concevez des pages de destination à thème unique, des pages d'accueil SaaS, des listes d'attente avant lancement, des pages de service, des pages d'agence/studio, des pages de tarification et des pages marketing produit axées sur la conversion, en tant qu'artefacts HTML autonomes.
 mode: artifact
 platform: responsive-web
 scenario: landing-page
@@ -31,157 +31,153 @@ fidelity: high
 
 # Landing Page Skill
 
-Design a landing page for **one product, service, offer, or subject** that makes a visitor answer three questions quickly:
+Concevez une page de destination pour **un produit, service, offre ou sujet** qui permet à un visiteur de rapidement répondre à trois questions :
 
-1. **What is this?**
-2. **Why should I care?**
-3. **What should I do next?**
+1. **Qu'est-ce que c'est ?**
+2. **Pourquoi devrais-je m'en soucier ?**
+3. **Que devrais-je faire ensuite ?**
 
-This file gives landing-page judgment, not a full rulebook. It plugs into the main `SKILL.md` flow — it does not replace it.
+Ce fichier donne des jugements sur les pages de destination, pas un manuel complet de règles. Il s'intègre au flux principal `SKILL.md` — il ne le remplace pas.
 
-## Route elsewhere if
+## Redirigez ailleurs si
 
-person / body-of-work showcase → `portfolio.md` · product UI / dashboard / app flow / clickable demo / “做一个 XX 的 demo” → `prototype.md` · single-task calculator/generator/checker → `web-tool.md` · linear reading / newsletter / editorial → `content-page.md` · information exploration / data story → `info-interactive.md` · social image / product brief image / report summary image / poster / cover / long-image → `social-card.md` · slides / pitch deck → `deck.md`
+person / body-of-work showcase → `portfolio.md` · product UI / dashboard / app flow / clickable demo / "做一个 XX 的 demo" → `prototype.md` · single-task calculator/generator/checker → `web-tool.md` · linear reading / newsletter / editorial → `content-page.md` · information exploration / data story → `info-interactive.md` · social image / product brief image / report summary image / poster / cover / long-image → `social-card.md` · slides / pitch deck → `deck.md`
 
-Studio/agency sites can be both portfolio and landing page — lead with the dominant intent: selling a service (clear offer, pricing/contact CTA, capability framing) → landing page; showing work and personality (case-led grid, project depth, distinctive voice) → `portfolio.md`.
+Les sites d'agence/studio peuvent être à la fois portfolio et page de destination — privilégiez l'intention dominante : vendre un service (offre claire, CTA de tarification/contact, cadre des compétences) → page de destination ; montrer le travail et la personnalité (grille menée par les études, profondeur des projets, voix distinctive) → `portfolio.md`.
 
-## The Two Non-Negotiables
+## Les deux non-négociables
 
-Everything else is flexible, but these two must be true:
+Tout le reste est flexible, mais ces deux doivent être vrais :
 
-1. **One audience, one action.** The page serves one primary audience and drives one primary CTA. Every section either moves the visitor toward that action or earns trust for it. If two CTAs compete at equal weight, the page has already failed.
+1. **Un public, une action.** La page sert un public principal et incite à une seule action principale. Chaque section soit fait avancer le visiteur vers cette action, soit construit la confiance pour celle-ci. Si deux CTA sont en compétition à poids égal, la page a déjà échoué.
 
-2. **Concrete value in the first screen.** The hero must say what the product actually is and does — in product terms, not positioning language. "AI-powered platform to supercharge your workflow" is a failure; "turn a CSV of orders into a tax-ready report in 30 seconds" is a hero. If the visitor can't restate the offer after one screen, rewrite the hero before styling anything.
+2. **Valeur concrète dans la première écran.** L'hero doit dire ce que le produit est et fait — en termes de produit, pas de positionnement. "Plateforme alimentée par IA pour booster votre flux de travail" est un échec ; "transformez un CSV de commandes en rapport fiscal prêt en 30 secondes" est un hero. Si le visiteur ne peut pas reformuler l'offre après un écran, réécrivez l'hero avant de styliser quoi que ce soit.
 
-## Choose a Structure
+## Choisissez une structure
 
-Pick **one** structure from the page's conversion job. Do not blend several into mush.
+Choisissez **une** structure en fonction de la mission de conversion de la page. Ne mélangez pas plusieurs structures en une bouillie.
 
-### A. Classic Narrative Scroll
-Hero → problem/value → product proof → how it works → objections → CTA. Each scroll section answers the visitor's next unspoken question, in order.
-**Best for:** products that need explanation before purchase; most SaaS and B2B pages.
-**The move:** section order = objection order. Map the skeptic's questions ("does it work with my stack?", "how long to set up?", "what does it cost?") and let the sections answer them in sequence. A section that answers no objection gets cut.
+### A. Défilement narratif classique
+Hero → problème/valeur → preuve produit → comment ça marche → objections → CTA. Chaque section de défilement répond à la question suivante non posée du visiteur, dans l'ordre.
+**Idéal pour :** les produits qui nécessitent une explication avant l'achat ; la plupart des pages SaaS et B2B.
+**Le mouvement :** l'ordre des sections = l'ordre des objections. Cartographiez les questions du sceptique ("est-ce que ça fonctionne avec ma stack ?", "combien de temps pour mettre en place ?", "ça coûte combien ?") et laissez les sections y répondre dans l'ordre. Une section qui ne répond à aucune objection est supprimée.
 
-### B. Product Showcase
-The product UI is the hero — shown big, real, and annotated. Copy supports the image, not the reverse.
-**Best for:** visually strong products: design tools, dashboards, dev tools with a UI worth seeing.
-**The move:** real interface at full scale with callout annotations on actual features. Never a floating laptop mockup at 30° with a glow — that adds three layers of distance and signals stock template.
+### B. Mise en avant produit
+L'interface produit est l'hero — montrée grande, réelle et annotée. Le texte soutient l'image, pas l'inverse.
+**Idéal pour :** les produits visuellement forts : outils de design, tableaux de bord, outils de dev avec une UI qui vaut le coup d'être vue.
+**Le mouvement :** interface réelle à pleine échelle avec annotations de pointage sur les fonctionnalités réelles. Jamais un mockup de portable flottant à 30° avec un effet glow — cela ajoute trois couches de distance et signale un modèle générique.
 
-### C. Sales / Pricing Page
-Built around the buying decision: plans, comparison, objection handling, guarantee.
-**Best for:** visitors who already know the product and are deciding whether and which tier.
-**The move:** answer objections at the point of doubt — FAQ adjacent to the pricing table, refund/cancel terms next to the buy button, plan-comparison rows that map to real usage situations ("you need this tier when…"), not feature-name checkmark soup.
+### C. Page de vente / tarification
+Construite autour de la décision d'achat : forfaits, comparaison, gestion des objections, garantie.
+**Idéal pour :** les visiteurs qui connaissent déjà le produit et décident s'ils l'achètent et quel forfait.
+**Le mouvement :** répondez aux objections au moment du doute — FAQ à côté du tableau de tarification, conditions de remboursement/annulation à côté du bouton d'achat, lignes de comparaison de forfaits qui correspondent à des situations d'utilisation réelles ("vous avez besoin de ce forfait quand…"), pas une soupe de cases à cocher de noms de fonctionnalités.
 
-### D. Waitlist / Launch Page
-Deliberately scarce: one promise, one visual, one field. Tension comes from restraint.
-**Best for:** pre-launch products collecting signups before there is a full story to tell.
-**The move:** make signup value explicit — what the subscriber gets (early access? founding price? build updates?) and roughly when. "Join the waitlist" with no stated payoff converts nobody. A confirmation state must exist (inline success message at minimum).
+### D. Page d'attente / lancement
+Scarcité délibérée : une promesse, une visuelle, un champ. La tension vient de la retenue.
+**Idéal pour :** les produits avant lancement qui collectent des inscriptions avant d'avoir une histoire complète à raconter.
+**Le mouvement :** rendez la valeur de l'inscription explicite — ce que l'abonné obtient (accès anticipé ? prix fondateur ? mises à jour de construction ?) et environ quand. "Rejoignez la liste d'attente" sans récompense déclarée ne convertit personne. Un état de confirmation doit exister (message de succès en ligne au minimum).
 
-### E. Service / Agency Page
-Capability framing + named process + proof of work + contact path.
-**Best for:** consultancies, studios, freelancers selling expertise rather than a product.
-**The move:** a named, numbered process ("Week 1: audit → Week 2–3: prototype → Week 4: ship") is the strongest trust signal a service page has — it proves the work is systematized, not improvised. Vague "we collaborate closely" paragraphs prove nothing.
+### E. Page de service / agence
+Cadre des compétences + processus nommé + preuve du travail + chemin de contact.
+**Idéal pour :** les cabinets de conseil, studios, freelances qui vendent leur expertise plutôt qu'un produit.
+**Le mouvement :** un processus nommé, numéroté ("Semaine 1 : audit → Semaine 2–3 : prototype → Semaine 4 : livraison") est le signal de confiance le plus fort qu'une page de service ait — cela prouve que le travail est systématisé, pas improvisé. Les paragraphes vagues "nous collaborons étroitement" ne prouvent rien.
 
-### F. Editorial Launch
-Manifesto-style, type-led. The copy IS the design; imagery is minimal or absent.
-**Best for:** opinionated products, brand-led launches, developer tools with a strong point of view.
-**The move:** oversized statement typography (clamp() up to ~10–14vw for the thesis line), long-form conviction copy with real paragraph rhythm, one accent color. Works only if the writing is genuinely sharp — weak copy at display scale is just louder weakness.
+### F. Lancement éditorial
+Style manifeste, mené par la typographie. Le texte EST le design ; l'imagerie est minimale ou absente.
+**Idéal pour :** les produits opinionnés, les lancements menés par la marque, les outils de développeurs avec un point de vue fort.
+**Le mouvement :** typographie de déclaration surdimensionnée (clamp() jusqu'à ~10–14vw pour la ligne thèse), texte convaincant de longue forme avec vrai rythme de paragraphe, une couleur d'accentuation. Fonctionne seulement si le texte est vraiment percutant — un texte faible à l'échelle d'affichage est juste une faiblesse amplifiée.
 
-### G. Interactive-Canvas Hero
-The product is usable inside the hero — a live demo, playground, or generated output.
-**Best for:** tools and APIs whose value is provable in under 10 seconds of interaction.
-**The move:** the visitor uses the product before reading about it. The demo must actually work with real logic (`web-tool.md` rigor applies to that component); a fake demo is worse than no demo.
+### G. Hero à toile interactive
+Le produit est utilisable à l'intérieur de l'hero — une démo en direct, une aire de jeu, ou une sortie générée.
+**Idéal pour :** les outils et API dont la valeur est prouvable en moins de 10 secondes d'interaction.
+**Le mouvement :** le visiteur utilise le produit avant de lire à son sujet. La démo doit vraiment fonctionner avec une logique réelle (`web-tool.md` s'applique strictement à ce composant) ; une fausse démo est pire que pas de démo.
 
-**Anti-pattern: the Interchangeable SaaS Page.**
-Soft gradient hero → vague headline → three equal feature cards → grayscale logo wall → testimonial carousel → CTA banner. Cover the product name and it could be any competitor. This is a template wearing a product's clothes — if a draft converges here, return to structure choice.
+**Anti-modèle : la page SaaS interchangeable.**
+Hero avec dégradé doux → accroche vague → trois cartes de fonctionnalités égales → mur de logos en niveaux de gris → carrousel de témoignages → bannière CTA. Cachez le nom du produit et cela pourrait être n'importe quel concurrent. C'est un modèle vêtu des habits d'un produit — si un projet converge vers cela, revenez au choix de structure.
 
-**Trust-sensitive / enterprise pages** (fintech, security, healthcare, infrastructure): distinctiveness comes from hierarchy, proof density, product clarity, and restraint — not loud visual moves. Structure A or C with a disciplined system beats an expressive concept here.
+**Pages sensibles à la confiance / entreprise** (fintech, sécurité, santé, infrastructure) : la distinction vient de la hiérarchie, de la densité de preuves, de la clarté du produit et de la retenue — pas de mouvements visuels audacieux. Structure A ou C avec un système discipliné bat un concept expressif ici.## Stratégie de preuve
 
-## Proof Strategy
+Décidez ce qui prétend la valeur du produit, puis concevez cette preuve comme une section de premier ordre — pas une après-thought avec bandeau logo.
 
-Decide what proves the value claim, then design that proof as a first-class section — not a logo strip afterthought.
+- **Le produit lui-même est la meilleure preuve.** UI réelle, flux de travail réel, exemple d'entrée→sortie réel. Privilégiez-le à tout témoignage.
+- **Choisissez une preuve que le produit peut réellement offrir :** parcours d'interface utilisateur/flux de travail/témoignage client/métrique/étude de cas/benchmark/presse/données de démo en direct. Une forme forte vaut mieux que quatre faibles.
+- **N'inventez jamais de preuve.** Aucun faux logos, témoignages, nombres d'utilisateurs, récompenses, données marché ou citations. Les preuves d'espace réservé doivent être visiblement marquées comme telles. Règles détaillées : `horizontal-craft/link-and-proof.md`, `horizontal-craft/data-integrity.md`.
 
-- **The product itself is the best proof.** Real UI, real workflow, real input→output example. Prefer it over any testimonial.
-- **Pick proof the product can actually offer:** product UI / workflow walkthrough / customer quote / metric / case / benchmark / press / live demo data. One strong form beats four weak ones.
-- **Never invent proof.** No fake logos, testimonials, usage numbers, awards, market data, or quotes. Placeholder proof must be visibly marked as placeholder. Detailed rules: `horizontal-craft/link-and-proof.md`, `horizontal-craft/data-integrity.md`.
+## Mouvements spécifiques aux pages d'atterrissage
 
-## Landing-Page-Specific Moves
+### Niveaux de poids visuel, jamais un CSV avec CSS
+Chaque section dense en informations a besoin d'au moins quatre niveaux de poids visibles : moment héroïque / modules primaires / modules secondaires / détails tertiaires. Une page de cartes de hauteur égale en colonne unique est un tableau avec padding. Donnez à l'affirmation la plus forte 2-3× l'espace des points de soutien ; laissez les fonctionnalités mineures se comprimer en une grille compacte ou une ligne chacune.
 
-### Visual-weight tiers, never CSV-with-CSS
-Every information-dense section needs at least four visible weight tiers: hero moment / primary modules / secondary modules / tertiary detail. A page of equal-height cards in a single column is a spreadsheet with padding. Give the strongest claim 2–3× the space of supporting points; let minor features compress into a compact grid or single line each.
+### Rythme de densité
+Alternez des moments de déclaration pleine page avec des sections informationnelles plus denses. Un moment dominant par page (l'héroïque ou une section milieu de page), tout le reste le soutient. Une page où chaque section crie au même volume est perçue comme du bruit ; une page de densité moyenne uniforme est perçue comme un document.
 
-### Density rhythm
-Alternate full-bleed statement moments with denser informational sections. One dominant moment per page (the hero or one mid-page section), everything else supports it. A page where every section shouts at the same volume reads as noise; a page of uniform medium density reads as a document.
+### L'appel à l'action répété, avec retenue
+CTA principal à l'héroïque, puis à chaque moment d'engagement naturel (après la section preuve, après les prix, en fin de page). Même formulation et style à chaque fois — la répétition crée la familiarité. Les actions secondaires ("lire docs", "regarder vidéo") reçoivent un traitement visuellement subordonné partout : lien texte ou bouton fantôme, jamais un deuxième bouton plein à côté du principal.
 
-### The repeated CTA, with restraint
-Primary CTA at the hero, then again at each natural commitment moment (after the proof section, after pricing, at page end). Identical wording and style each time — the repetition builds familiarity. Secondary actions ("read docs", "watch video") get visually subordinate treatment everywhere: text link or ghost button, never a second filled button beside the primary.
+### Héroïque asymétrique, pas la sécurité centrée
+Définissez par défaut une composition héroïque déséquilibrée — colonne de copie contre visuel produit à `1fr 1.2fr`, titre dépassant dans la marge, image produit déborderant sur un bord. Titre centré + sous-titre centré + bouton centré est le signal de modèle unique le plus fort. Centrez seulement quand la rareté de la structure D ou le manifeste de F l'exige vraiment.
 
-### Asymmetric hero, not centered safety
-Default to off-balance hero composition — copy column against product visual at `1fr 1.2fr`, headline hanging into the margin, product image bleeding off one edge. Centered headline + centered subline + centered button is the single strongest template signal. Center only when structure D's scarcity or F's manifesto genuinely calls for it.
+### Échelle d'objections pour les prix
+Là où un prix apparaît, les trois angoisses d'achat doivent être résolues dans un seul viewport : exactement quoi j'obtiens, que se passe-t-il si ça ne marche pas (conditions d'annulation/remboursement/essai), et quelle option est pour moi (niveau recommandé mis en évidence avec une raison, pas juste un badge "POPULAIRE").
 
-### Objection ladder for pricing
-Wherever a price appears, the three purchase anxieties must be answered within one viewport: what exactly do I get, what if it doesn't work out (cancel/refund/trial terms), and which option is for me (a highlighted recommended tier with a reason, not just a "POPULAR" badge).
+### Les nombres comme matériau de design
+Les métriques réelles (latence, précision, temps économisé, quantités) affichées à l'échelle d'affichage avec de petites étiquettes sont à la fois preuve et texture visuelle. Seulement des nombres réels ou clairement étiquetés comme démo — et respectez `horizontal-craft/data-integrity.md`.
 
-### Numbers as design material
-Real metrics (latency, accuracy, time saved, counts) set at display scale with small labels are both proof and visual texture. Only real or clearly-labeled-demo numbers — and respect `horizontal-craft/data-integrity.md`.
+## Liste de vérification de complétude
 
-## Completeness Checklist
+Une page d'atterrissage est terminée quand :
 
-A landing page is finished when:
+- [ ] L'héroïque répond à quoi/pourquoi/action-suivante en un écran, en termes concrets de produit
+- [ ] Une structure (A-G) est reconnaissable ; la page n'est pas un mélange
+- [ ] Chaque section dense en informations montre quatre niveaux de poids visuel — pas de murs de cartes égales
+- [ ] Le CTA principal apparaît à l'héroïque et revient aux moments d'engagement naturels ; les actions secondaires ne concurrencent jamais
+- [ ] Chaque CTA mène à une vraie étape suivante — formulaire fonctionnel avec état de succès, ancrage prix, mailto, ou vue de confirmation ; jamais `href="#"`
+- [ ] Toutes les preuves sont réelles ou visiblement marquées comme espace réservé
+- [ ] Les sections qui ne servent aucune objection ou objectif sont supprimées, pas remplies
+- [ ] Les pages prix/ventes répondent aux trois angoisses d'achat ; les pages liste d'attente indiquent la récompense de l'inscription
+- [ ] La page fonctionne sur mobile — la structure s'adapte, pas seulement se réduit
+- [ ] Le test de distinction passe : cachez le nom du produit — la page ne fonctionnerait pas inchangée pour un concurrent arbitraire
 
-- [ ] The hero answers what / why / next-action within one screen, in concrete product terms
-- [ ] One structure (A–G) is recognizable; the page is not a blend
-- [ ] Every information-dense section shows four visual-weight tiers — no equal-card walls
-- [ ] Primary CTA appears at hero and recurs at natural commitment moments; secondary actions never compete
-- [ ] Every CTA resolves to a real next step — working form with success state, pricing anchor, mailto, or confirmation view; never `href="#"`
-- [ ] All proof is real or visibly marked placeholder
-- [ ] Sections that serve no objection or goal are removed, not filled
-- [ ] Pricing/sales pages answer the three purchase anxieties; waitlist pages state the signup payoff
-- [ ] The page works on mobile — structure adapts, not just shrinks
-- [ ] Distinctiveness test passes: cover the product name — the page would not work unchanged for an arbitrary competitor
+## Comment cela s'intègre au flux de Design Skill
 
-## How this fits the Design Skill flow
+- **Type de scène.** Une page d'atterrissage est une scène **expressive** par défaut (selon `SKILL.md`) : concevez à partir des choix de structure de ce fichier + Contexte Créatif + horizontal craft. Ne la poussez pas vers un kit UI générique. Exception : les briefs sensibles à la confiance/entreprise peuvent aller volontairement sobre — c'est un jugement, pas un recours.
+- **Modèles.** Si `design-templates/TEMPLATE-ROUTER.md` + `INDEX.md` a un motif correspondant (atterrissage SaaS, prix, liste d'attente, lancement, service), il peut fournir le squelette — mais le choix de structure et le moment signature déterminent encore le résultat ; ne livrez jamais une mise en page de modèle inchangée.
 
-- **Scene type.** A landing page is an **expressive** scene by default (per `SKILL.md`): design from this file's structure choices + Creative Context + horizontal craft. Don't push it into a generic UI kit. Exception: trust-sensitive/enterprise briefs may deliberately go restrained — that's a judgment, not a fallback.
-- **Templates.** If `design-templates/TEMPLATE-ROUTER.md` + `INDEX.md` has a matching pattern (SaaS landing, pricing, waitlist, launch, service), it may seed the skeleton — but structure choice and the signature moment still drive the result; never ship a template's layout unchanged.
+## Contexte Créatif (de SKILL.md)
 
-## Creative Context (from SKILL.md)
+Pour les demandes ouvertes, complétez silencieusement avant de générer :
 
-For open-ended requests, silently complete before generating:
+- `creative_positioning` — de quoi le produit est vraiment au-delà de la liste des fonctionnalités (une ligne ; cela devient l'angle de l'héroïque).
+- `first_impression` — ce que le visiteur devrait ressentir dans les 3 premières secondes (liez-le au choix de structure et au traitement de l'héroïque).
+- `anti_default` — quel réflexe générique à éviter (généralement l'anti-modèle Page SaaS Interchangeable ; nommez le cliché spécifique dont ce produit est le plus à risque).
 
-- `creative_positioning` — what the product is really about beyond the feature list (one line; this becomes the hero's angle).
-- `first_impression` — what the visitor should feel in the first 3 seconds (tie it to the structure choice and hero treatment).
-- `anti_default` — which generic reflex to avoid (usually the Interchangeable SaaS Page anti-pattern; name the specific cliché this product is most at risk of).
+L'artefact doit refléter cela visiblement. N'imprimez pas le contexte sauf demande.
 
-The artifact must visibly reflect this. Don't print the context unless asked.
+## Références — chargez seulement quand déclenché
 
-## References — load only when triggered
+Ne lisez pas ces éléments par défaut. Un premier brouillon a généralement besoin de ce fichier + d'une référence modèle/système de design sélectionnée si présente + seulement 1-3 fichiers craft déclenchés.
 
-Don't read these by default. A first draft usually needs this file + a selected template/design-system reference if any + only 1–3 triggered craft files.
+- `horizontal-craft/chinese-typography.md` — texte chinois substantiel. **Si la page a du chinois, ses règles de police sont obligatoires** : les polices nommées doivent vraiment se charger, `font-family` doit contenir un nom de police CJK, et les webfonts se chargent non-bloquantes (preload + fetchpriority / print-onload / unicode-range subset / fallback système) — pas de FOIT sur les lents réseaux.
+- `horizontal-craft/color.md` — aucun système de design n'est fourni, ou la direction couleur est vague.
+- `horizontal-craft/icon-system.md` — icônes fonctionnelles, pictogrammes, icônes de nav. Pas d'emoji comme icônes.
+- `horizontal-craft/link-and-proof.md` — logos, témoignages, affirmations, récompenses, presse, citations, liens CTA, ou modules de preuve.
+- `horizontal-craft/data-integrity.md` — métriques, ROI, taille du marché, benchmarks, graphiques, ou tableaux.
+- `horizontal-craft/animation-discipline.md` — révélation au défilement, parallaxe, mouvement héroïque, micro-interactions. Pour une page d'atterrissage expressive, une page entièrement statique est généralement sous-délivrée ; prenez le CSS d'entrée prêt-à-coller d'ici.
+- `horizontal-craft/technique-library.md` — effets avancés au-delà du CSS pur qui servent réellement la compréhension ou l'histoire produit (notamment la structure G).
+- `design-system-reference.md` — un guide de marque, référence de style, modèle, ou `DESIGN.md` est fourni ou référencé.
+- `canvas-and-device.md` — viewport spécial, cadre d'appareil, taille d'export, ou contraintes de breakpoint.## Porte finale
 
-- `horizontal-craft/chinese-typography.md` — substantial Chinese text. **If the page has Chinese, its font rules are mandatory**: named fonts must actually load, `font-family` must contain a CJK font name, and webfonts load non-blockingly (preload + fetchpriority / print-onload / unicode-range subset / system fallback) — no FOIT on slow networks.
-- `horizontal-craft/color.md` — no design system is provided, or color direction is vague.
-- `horizontal-craft/icon-system.md` — feature icons, pictograms, nav icons. No emoji as icons.
-- `horizontal-craft/link-and-proof.md` — logos, testimonials, claims, awards, press, citations, CTA links, or proof modules.
-- `horizontal-craft/data-integrity.md` — metrics, ROI, market size, benchmarks, charts, or tables.
-- `horizontal-craft/animation-discipline.md` — scroll reveal, parallax, hero motion, micro-interactions. For an expressive landing page a fully static page is usually under-delivered; take paste-ready entrance CSS from here.
-- `horizontal-craft/technique-library.md` — advanced effects beyond plain CSS that genuinely serve comprehension or the product story (notably structure G).
-- `design-system-reference.md` — a brand guide, style reference, template, or `DESIGN.md` is provided or referenced.
-- `canvas-and-device.md` — special viewport, device frame, export size, or breakpoint constraints.
+Exécutez `quality-gate.md` comme la liste de contrôle finale bloquante avant la livraison. Il contient les vérifications globales (accessibilité, liens morts, fausses preuves, logique de placeholder, anti-AI-slop, commentaires de Conformité Design) — ne les dupliquez pas ici.
 
-## Final Gate
+Porte spécifique aux pages de destination, en plus de la Liste de Conformité ci-dessus :
 
-Run `quality-gate.md` as the blocking final checklist before delivery. It owns the global checks (accessibility, dead links, fake proof, placeholder logic, anti-AI-slop, Design Compliance comments) — don't duplicate them here.
+- le hero explique l'offre réelle, pas le positionnement flou ;
+- le "mouvement" de la structure choisie est présent, pas seulement son ordre de sections ;
+- les pages de prix/ventes répondent aux objections d'achat au moment du doute ;
+- les pages d'attente/lancement rendent le gain d'inscription explicite et confirment le succès ;
+- la direction visuelle fait écho au produit et à l'audience — chaque choix majeur (palette, composition du hero, typographie, mouvement, ordre des modules) a une raison produit ;
+- un haut niveau de finition ne cache pas une structure faible : retirez mentalement le style — la logique des sections doit encore tenir.
 
-Landing-page-specific gate, on top of the Completeness Checklist above:
+## Transmission
 
-- the hero explains the actual offer, not positioning vapor;
-- the chosen structure's "move" is present, not just its section order;
-- pricing/sales pages answer buying objections at the point of doubt;
-- waitlist/launch pages make the signup payoff explicit and confirm success;
-- the visual direction traces back to the product and audience — every major choice (palette, hero composition, type, motion, module order) has a product-side reason;
-- high polish is not hiding weak structure: strip the styling mentally — the section logic must still hold.
-
-## Handoff
-
-Use the standard Design Skill delivery, export, and version-management flow (`export.md`). Landing pages have no separate handoff process unless the user requests export/package/asset handoff.
+Utilisez le flux de livraison, d'exportation et de gestion de versions standard de Design Skill (`export.md`). Les pages de destination n'ont pas de processus de transmission séparé sauf si l'utilisateur demande une transmission/exportation/package d'actifs.

@@ -1,63 +1,64 @@
-# 金融 / 咨询 / 商科 简历模板
+# Finance / Conseil / Business CV Template
 
-## 结构（投行 / 咨询风格，强调 deal / case 列表）
+## Structure (Investment Banking / Consulting Style, Emphasizing Deal / Case List)
 
 ```
-姓名 ｜ 电话 ｜ 邮箱 ｜ LinkedIn ｜ 城市
+Nom | Téléphone | Email | LinkedIn | Ville
 
-【教育背景】（金融 / 咨询岗放最前面，因为学校 + GPA 是硬筛）
-学校 | 专业 | 学位 | 起止时间
-- GPA: X.XX/4.00 (Major: X.XX/4.00)
-- 排名 / 奖学金 / 荣誉
-- 相关核心课程：Corporate Finance, Financial Modeling, ...
-- 交换 / 海外经历
+【Éducation】(Pour les postes en finance/conseil, placer en premier car école + GPA sont des filtres stricts)
+École | Spécialité | Diplôme | Période
+- GPA: X.XX/4.00 (Spécialité: X.XX/4.00)
+- Classement / Bourse / Honneurs
+- Cours clés pertinents: Corporate Finance, Financial Modeling, ...
+- Échange / Expérience à l'étranger
 
-【工作经历】（按倒序）
-公司 | 部门 / 组 | 岗位 | 起止时间，地点
-- Deal / Case 1：项目名称 + 你的角色 + 关键贡献 + 成交规模 / 成果
-- Deal / Case 2：同上
-- Deal / Case 3：同上
-（投行/PE 一般 3~5 个 deal；咨询 3~5 个 case；研究员可写 coverage 行业 + 主要观点）
+【Expérience Professionnelle】(Par ordre chronologique inversé)
+Entreprise | Département / Groupe | Poste | Période, Lieu
+- Deal / Case 1: Nom du projet + Votre rôle + Contributions clés + Montant de la transaction / Résultats
+- Deal / Case 2: Idem
+- Deal / Case 3: Idem
+(IB/PE généralement 3~5 deals; conseil 3~5 cases; les chercheurs peuvent écrire sur les secteurs couverts + principales idées)
 
-【实习经历】（应届 / 早期必备，按倒序）
-（同上结构）
+【Expériences en Stage】(Indispensable pour les nouveaux diplômés/jeunes diplômés, par ordre chronologique inversé)
+(Idem structure ci-dessus)
 
-【技能 & 证书】
-- 财务建模：DCF / LBO / Comps / M&A model 熟练
-- Excel / PowerPoint 高阶
+【Compétences & Certifications】
+- Modélisation financière: DCF / LBO / Comps / M&A model maîtrisés
+- Excel / PowerPoint avancé
 - Bloomberg / Capital IQ / Wind / Choice
 - CFA Level X / CPA / FRM / ACCA
-- 编程（量化加分）：Python / SQL / VBA
-- 语言：英语（雅思 7.5 / GMAT 750）、其他
+- Programmation (bonus pour les postes quantitatifs): Python / SQL / VBA
+- Langues: Anglais (IELTS 7.5 / GMAT 750), autres
 
-【领导力 / 课外活动】（仅写有含金量的）
-- 学生会 / 社团：领导职务 + 量化结果
-- 公益项目：组织规模 + 影响
-- 国际比赛：CFA Research Challenge 区域第 X 等
+【Leadership / Activités Extra-scolaires】(Seulement celles qui ont de la valeur)
+- Bureau des étudiants / Clubs: Poste de direction + résultats quantifiés
+- Projets caritatifs: Échelle + Impact
+- Compétitions internationales: CFA Research Challenge Xème place régionale
+
 ```
 
-## 风格要点
+## Points de Style
 
-- **每个 deal / case 必须有**：项目类型、客户行业、自己的具体动作（建模 / 路演 / 调研）、成果（融资额 / 估值 / 报告页数 / 客户决策）
-- 投行强调 deal flow 数量 + 规模；咨询强调 case 类型多样 + 客户层级
-- 量化模板：
-  - 投行："参与 X 亿美金 ___ 行业 IPO/M&A，搭建 LBO / DCF 模型，输出 ___ 页投资人 deck"
-  - 咨询："为 X 行业 Top 3 客户开展 ___ 项目，定量分析 X 个细分市场，最终建议被客户采纳并执行 ___"
-- **学历分层敏感**：投行咨询 PE 一般只看 Tier 1 学校（清北复交浙、HKU、新加坡国立、藤校 / Top 30 美校等）。如果学校非 Tier 1，要更突出实习 / 比赛 / 自学
+- **Chaque deal / case doit inclure**: Type de projet, secteur du client, actions spécifiques (modélisation / présentation / recherche), résultats (montant de financement / évaluation / nombre de pages de rapport / décision client)
+- La finance met l'accent sur le volume + taille des deals; le conseil sur la diversité des types de cas + niveau des clients
+- Modèle de quantification:
+  - IB: "Participation à un IPO/M&A de ___ millions USD dans le secteur ___, construction de modèles LBO/DCF, présentation de ___ slides aux investisseurs"
+  - Conseil: "Pour un client du Top 3 du secteur ___, mené un projet de ___, analyse quantitative de X sous-secteurs, recommandations finalement adoptées et mises en œuvre par le client"
+- **Sensibilité au niveau académique**: IB/conseil/PE ne considèrent généralement que les écoles de premier niveau (Qinghua/Pékin/Fudan/Jiao Tong/Zhejiang, HKU, National University of Singapore, Ivy League / Top 30 US etc.). Si l'école n'est pas de premier niveau, mettre davantage l'accent sur les stages / compétitions / auto-apprentissage
 
-## 中英文版本
+## Versions Chinoise et Anglaise
 
-金融 / 咨询岗位**很多公司只接受英文简历**（外资行、MBB、IBD）。本 skill 默认产出中文版，但要主动问："你需要英文版本吗？我可以同时生成。"
+De nombreuses entreprises en finance/conseil**n'acceptent que des CV en anglais**(banques étrangères, MBB, IBD). Ce skill génère par défaut une version chinoise, mais demandez activement: "Besoin-vous une version anglaise? Je peux générer les deux."
 
-英文版本注意：
-- 用 American English（金融业以美式为主）
-- Action verb 用过去式：Led、Built、Drove、Analyzed、Advised
-- 不要用 we / our team，要用 I / my team；强调 individual contribution
-- 一页为限（除非 senior 候选人）
+Pour la version anglaise:
+- Utilisez l'anglais américain (prédominant dans la finance)
+- Utilisez des verbes d'action au passé: Led, Built, Drove, Analyzed, Advised
+- N'utilisez pas we / our team, utilisez I / my team; mettez l'accent sur les contributions individuelles
+- Limité à une page (sauf pour les candidats seniors)
 
-## 雷区
+## Pièges à éviter
 
-- 投行 / 咨询简历**没有 deal / case 列表** → 致命，重写
-- 把"在 ___ 实习"当工作经历写 → 必须改成 deal / case
-- GPA / 学校 / 标化分数缺失 → 即使低也要写（除非真的拉低很多）
-- 写"对金融感兴趣" / "希望进入投行" → 删，简历不是个人陈述
+- Un CV en finance/conseil**sans liste de deals/cases** → Fatal, réécrire
+- Écrire "stage en ___" comme expérience professionnelle → Doit être transformé en deal/case
+- GPA/école/scores standard manquants → Même si bas, écrivez-les (sauf si vraiment très bas)
+- Écrire "intéressé par la finance" / "souhaitant entrer en IB" → Supprimer, le CV n'est pas une déclaration personnelle

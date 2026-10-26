@@ -1,6 +1,6 @@
 ---
 name: Visual Explanation Craft
-description: Design rules for diagrams, charts, visual explanations, explorable models, and information graphics. Choose representation from information shape; interaction must improve understanding.
+description: Règles de conception pour les diagrammes, graphiques, explications visuelles, modèles explorables et infographies. Choisissez la représentation à partir de la forme de l'information ; l'interaction doit améliorer la compréhension.
 mode: reference
 platform: any
 scenario: visual-explanation
@@ -22,43 +22,43 @@ default_for:
   - timeline
   - comparison graphic
   - information graphic
-  - 可视化解释
-  - 信息图
-  - 交互式解释
-  - 流程图
-  - 架构图
-  - 系统关系图
-  - 业务流程图
-  - 用户旅程图
-  - 数据流图
-  - 时间线
+  - visual explanation
+  - infographic
+  - interactive explanation
+  - flowchart
+  - architecture diagram
+  - system relationship diagram
+  - business process diagram
+  - user journey map
+  - data flow diagram
+  - timeline
 fidelity: system
 ---
 
 # Visual Explanation Craft
 
-Use this file when an artifact contains a **diagram, chart, visual explanation, interactive explanation, timeline, map, relationship graph, comparison matrix, explorable model, or data/information graphic**.
+Utilisez ce fichier lorsqu'un artefact contient un **diagramme, graphique, explication visuelle, explication interactive, chronologie, carte, graphe de relations, matrice de comparaison, modèle explorable ou infographie/data**.
 
-This is not a style preset and not a chart-library guide. It decides **what visual form the information deserves**. Use `horizontal-craft/technique-library.md` only after the representation choice requires a specific implementation technique.
+Ce n'est pas un préréglage de style et ce n'est pas un guide de bibliothèque de graphiques. Il décide **quelle forme visuelle l'information mérite**. Utilisez `horizontal-craft/technique-library.md` seulement après que le choix de représentation nécessite une technique d'implémentation spécifique.
 
 ## Core Principle
 
-Pick the representation from the information shape, not from visual habit.
+Choisissez la représentation à partir de la forme de l'information, et non à partir de l'habitude visuelle.
 
-Every visual explanation must answer one of these:
+Chaque explication visuelle doit répondre à l'une de ces questions :
 
 ```text
-What is the structure?
-What changed over time?
-What causes what?
-What is larger / smaller / better / worse?
-Where is it?
-How does the process move?
-What happens if I change this input?
-What should the reader compare or decide?
+Quelle est la structure ?
+Qu'est-ce qui a changé avec le temps ?
+Qu'est-ce qui cause quoi ?
+Qu'est-ce qui est plus grand / plus petit / meilleur / pire ?
+Où est-ce ?
+Comment le processus se déplace-t-il ?
+Que se passe-t-il si je change cette entrée ?
+Que le lecteur devrait-il comparer ou décider ?
 ```
 
-If a chart, diagram, animation, or interaction does not change what the user can understand, decide, or do, remove it.
+Si un graphique, diagramme, animation ou interaction ne change pas ce que l'utilisateur peut comprendre, décider ou faire, supprimez-le.
 
 ---
 
@@ -78,13 +78,13 @@ If a chart, diagram, animation, or interaction does not change what the user can
 | Explorable model | input controls that update output or explanation | sliders that only animate decoration |
 | Collection / resource set | filterable grid/list, facets, search, detail drawer | endless undifferentiated cards |
 
-Use the simplest representation that makes the information clearer.
+Utilisez la représentation la plus simple qui rend l'information plus claire.
 
 ---
 
 ## Interaction Must Earn Its Place
 
-Use interaction only when it creates one of these values:
+Utilisez l'interaction seulement lorsqu'elle crée l'une de ces valeurs :
 
 ```text
 reveal detail on demand
@@ -96,7 +96,7 @@ highlight a relationship
 reduce cognitive load by progressive disclosure
 ```
 
-Interaction fails if:
+L'interaction échoue si :
 
 ```text
 it only creates motion;
@@ -107,15 +107,15 @@ it has fake controls or placeholder handlers;
 it is worse than a static chart or table.
 ```
 
-Every interactive control must have visible state, keyboard access, and a clear result.
+Chaque contrôle interactif doit avoir un état visible, un accès au clavier et un résultat clair.
 
 ---
 
 ## Chart and Data Explanation Rules
 
-For charts, use `horizontal-craft/data-integrity.md` together with this file.
+Pour les graphiques, utilisez `horizontal-craft/data-integrity.md` avec ce fichier.
 
-A chart must have:
+Un graphique doit avoir :
 
 ```text
 clear title that states the insight or question;
@@ -126,7 +126,7 @@ source/provenance or visible demo-data label;
 one main reading path.
 ```
 
-Do not use:
+N'utilisez pas :
 
 ```text
 3D charts for normal data;
@@ -136,17 +136,17 @@ precise-looking fake data;
 multiple chart types when one table would be clearer.
 ```
 
-For small charts in cards, decks, or mobile surfaces, prefer fewer data points and larger labels over visual completeness.
+Pour les petits graphiques dans des cartes, des présentations ou sur des mobiles, préférez moins de points de données et des étiquettes plus grandes plutôt que la complétion visuelle.
 
 ---
 
 ## Standalone Diagram Mode
 
-Use this mode when the user's final request is a flowchart, architecture diagram, system map, business process diagram, user journey map, dependency diagram, or data-flow diagram.
+Utilisez ce mode lorsque la demande finale de l'utilisateur est un organigramme, un diagramme d'architecture, une carte système, un diagramme de processus métier, une carte de parcours utilisateur, un diagramme de dépendances ou un diagramme de flux de données.
 
-A standalone diagram may be static. Do not add filters, hover states, or animations just to make it feel interactive. Interaction is only useful when it reveals detail, switches layers, compares variants, or reduces clutter.
+Un diagramme autonome peut être statique. N'ajoutez pas de filtres, d'états au survol ou d'animations simplement pour le rendre interactif. L'interaction n'est utile que lorsqu'elle révèle des détails, change de couches, compare des variantes ou réduit le encombrement.
 
-Before drawing, choose one diagram story:
+Avant de dessiner, choisissez une seule histoire de diagramme :
 
 ```text
 execution flow      → what happens first, next, last
@@ -157,9 +157,9 @@ dependency map      → what depends on what
 journey map         → what the user/actor experiences over time
 ```
 
-Do not mix incompatible stories in one diagram. If the request combines system inventory and execution sequence, split into two diagrams or separate layers.
+N' mélangez pas d'histoires incompatibles dans un seul diagramme. Si la demande combine un inventaire système et une séquence d'exécution, divisez en deux diagrammes ou en couches séparées.
 
-Default complexity:
+Complexité par défaut :
 
 ```text
 4–8 primary nodes
@@ -169,19 +169,19 @@ one clear reading direction: left-to-right, top-to-bottom, radial, or loop
 no unlabeled spaghetti connectors
 ```
 
-Node types should have meaning:
+Les types de nœuds doivent avoir un sens :
 
 ```text
 step · decision · data · external system · actor · component · annotation
 ```
 
-Relationship types should have meaning:
+Les types de relations doivent avoir un sens :
 
 ```text
 main pipeline · optional branch · feedback loop · async signal · dependency · ownership · data movement
 ```
 
-Connector rules:
+Règles de connecteur :
 
 - edge labels sit near the relationship, not on top of the line;
 - arrows should not cross through nodes;
@@ -189,7 +189,7 @@ Connector rules:
 - avoid unnecessary connector colors;
 - if labels or arrows need long explanation, simplify the diagram.
 
-Fail a standalone diagram if it requires long prose to understand, if nodes are too small to read, if every connector looks equally important, or if system structure and execution timing are confused.
+Échouez un diagramme autonome s'il nécessite un long texte pour être compris, si les nœuds sont trop petits pour être lus, si chaque connecteur semble également important, ou si la structure système et le timing d'exécution sont confondus.
 
 ---
 
@@ -298,3 +298,5 @@ Fail the visual explanation if:
 ```
 
 Fix by simplifying the representation before adding more decoration.
+
+</DOCUMENT>

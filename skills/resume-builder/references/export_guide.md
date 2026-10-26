@@ -1,55 +1,55 @@
-# 简历导出指南
+# Guide d'export de CV
 
-## 推荐组合
+## Combinaisons recommandées
 
-- **投递主用**：docx（HR 直接收的格式）+ pdf（最终版本，防排版错乱）
-- **备份**：md（自己迭代用、放 GitHub）
+- **Pour les candidatures principales** : docx (format directement reçu par les RH) + pdf (version finale, pour éviter les problèmes de mise en page)
+- **Sauvegarde** : md (pour ses propres itérations, à mettre sur GitHub)
 
-## docx 导出（默认）
+## Export docx (par défaut)
 
-调用 docx skill。模板优先级：
-1. 用户提供模板 → 用用户的
-2. `assets/resume_template.docx` 存在 → 用本 skill 的
-3. 都没有 → 用 docx skill 的默认样式（注意控制字体、行距、margin）
+Appeler la compétence docx. Priorité des modèles :
+1. Modèle fourni par l'utilisateur → utiliser celui de l'utilisateur
+2. `assets/resume_template.docx` existe → utiliser celui de cette compétence
+3. Aucun des deux → utiliser le style par défaut de la compétence docx (attention à contrôler la police, l'interligne, les marges)
 
-样式参数（推荐默认）：
-- 中文字体：思源宋体 / 宋体 / 微软雅黑（HR 电脑大概率有）
-- 英文字体：Arial / Helvetica / Calibri
-- 字号：正文 10.5~11pt，标题 12~14pt，姓名 16~18pt
-- 行距：1.15~1.3
-- 页边距：上下 1.5cm，左右 1.8cm
-- 颜色：通体黑色 + 一个低饱和度强调色（深蓝 / 深灰）
+Paramètres de style (par défaut recommandé) :
+- Police chinoise : Source Han Serif / SimSun / Microsoft YaHei (probablement présente sur l'ordinateur du RH)
+- Police latine : Arial / Helvetica / Calibri
+- Taille de police : corps 10.5~11pt, titres 12~14pt, nom 16~18pt
+- Interligne : 1.15~1.3
+- Marges : haut/bas 1.5cm, gauche/droite 1.8cm
+- Couleur : entièrement noir + une couleur d'accentuation à faible saturation (bleu foncé / gris foncé)
 
-## pdf 导出
+## Export pdf
 
-**推荐**：docx → libreoffice headless 转 pdf
+**Recommandé** : docx → conversion en pdf via libreoffice headless
 
 ```bash
 libreoffice --headless --convert-to pdf <input.docx> --outdir <out_dir>
 ```
 
-**不推荐**：直接用 reportlab / weasyprint 从头画，效果丑且容易踩字体坑。
+**Non recommandé** : dessiner directement depuis zéro avec reportlab / weasyprint, résultat moche et problèmes de police fréquents.
 
-## markdown 导出
+## Export markdown
 
-最简单直接：文件名建议 `resume_<姓名拼音>_<YYYYMM>.md`，例如 `resume_zhangsan_202605.md`。
+Le plus simple et direct : nom de fichier recommandé `resume_<nom en pinyin>_<YYYYMM>.md`, par exemple `resume_zhangsan_202605.md`.
 
-## 文件命名建议
+## Suggestions de nommage de fichier
 
-投递时的文件名极其重要（很多 HR 直接按文件名搜）：
+Le nom de fichier lors des candidatures est extrêmement important (beaucoup de RH recherchent directement par nom de fichier) :
 
-`<姓名>_<目标岗位>_<X 年经验>.<ext>`
+`<Nom>_<Poste visé>_<X années d'expérience>.<ext>`
 
-例：`张三_高级产品经理_5年.pdf`
+Ex : `张三_Zhang San_高级产品经理_5年.pdf`
 
-不要叫 `final.pdf` `final_v2.pdf` `修改版.docx`，HR 会觉得你不专业。
+Ne pas nommer `final.pdf` `final_v2.pdf` `修改版.docx` (version modifiée), les RH trouveront cela non professionnel.
 
-## 元数据清理（pdf）
+## Nettoyage des métadonnées (pdf)
 
-调用 pdf skill 清理 metadata（作者、创建工具），避免泄露原始 word 模板的来源（比如某些模板会留下"WPS 简历模板 v3.2"字样）。
+Appeler la compétence pdf pour nettoyer les métadonnées (auteur, outil de création), pour éviter de révéler l'origine du modèle Word original (certains modèles laissent des marques comme "Modèle de CV WPS v3.2").
 
-## 隐私 & 安全
+## Confidentialité & Sécurité
 
-- 简历**默认不写身份证号、家庭住址、紧急联系人**
-- 投行 / 公务员 / 国企等特殊岗位另外要求时再补
-- 如果用户上传的简历里有这些，导出新版本时**主动删除并提示用户**
+- Le CV **ne contient pas par défaut le numéro d'identité, l'adresse personnelle, les contacts d'urgence**
+- Ajouter uniquement si spécifiquement requis pour des postes particuliers (banque / fonction publique / entreprises d'État)
+- Si le CV téléchargé par l'utilisateur contient ces informations, **les supprimer activement et alerter l'utilisateur** lors de l'export d'une nouvelle version.

@@ -1,18 +1,18 @@
-# Brief: Creative Flow (Designed Long Documents)
+# Brief : Flux Créatif (Documents Longue Conception)
 
-**When to use this brief:** Text-heavy documents that need design flair but content flows naturally across pages — guides, handbooks, catalogs, introductions, collections, illustrated manuals. The content is the star; design supports readability.
+**Quand utiliser ce brief :** Documents textuels lourds qui ont besoin d'une touche de design mais dont le contenu s'écoule naturellement à travers les pages — guides, manuels, catalogues, introductions, collections, manuels illustrés. Le contenu est la star ; le design soutient la lisibilité.
 
-**How it differs from `creative.md`:** `creative.md` (Blueprint Mode) treats each page as a self-contained fixed-size visual canvas. This brief lets content flow continuously, with Chromium's `@page` auto-paginating at page boundaries.
+**Comment il diffère de `creative.md` :** `creative.md` (Mode Plan) traite chaque page comme une toile visuelle autoportée de taille fixe. Ce brief permet au contenu de s'écouler continuellement, avec le `@page` de Chromium qui s'autopagine automatiquement aux limites de page.
 
-**→ MUST READ: `typesetting/overflow.md`** for Playwright/HTML-specific overflow patterns.
+**→ DOIT LIRE : `typesetting/overflow.md`** pour les modèles de dépassement spécifiques à Playwright/HTML.
 
 ---
 
-## Core Principle: Content Flows, Design Wraps
+## Principe Fondamental : Le Contenu S'écoule, le Design Enveloppe
 
-You write raw HTML/CSS directly (no JSON Blueprint, no `design_engine.py`). The document is one continuous HTML body, and the browser's print engine splits it into pages automatically.
+Vous écrivez directement du HTML/CSS brut (pas de Plan JSON, pas de `design_engine.py`). Le document est un corps HTML continu, et le moteur d'impression du navigateur le divise automatiquement en pages.
 
-**⚠️ Iron rule: All HTML→PDF conversions MUST use `html2pdf-next.js` — do NOT write custom Python Playwright scripts.** It automatically handles @page injection, overflow detection, font waiting, Mermaid/KaTeX rendering, PDF metadata, etc.
+**⚠️ Règle de fer : Toutes les conversions HTML→PDF DOIVENT utiliser `html2pdf-next.js` — n'écrivez PAS de scripts Python Playwright personnalisés.** Il gère automatiquement l'injection @page, la détection de dépassement, l'attente des polices, le rendu Mermaid/KaTeX, les métadonnées PDF, etc.
 
 ```bash
 node "$PDF_SKILL_DIR/scripts/html2pdf-next.js" input.html --output output.pdf --width 720px --height 1020px
@@ -20,30 +20,30 @@ node "$PDF_SKILL_DIR/scripts/html2pdf-next.js" input.html --output output.pdf --
 
 ---
 
-## Pagination Model
+## Modèle de Pagination
 
-### The Iron Rules
+### Les Règles de Fer
 
-1. **NO fixed height on content containers.** Let content flow naturally. The browser decides where to cut pages.
-2. **NO `.page` divs for content sections.** Use a single `<div class="main-content">` with padding for all body content.
-3. **NO `break-before: page` between content sections.** This is the #1 cause of blank space — when the previous section doesn't fill a page, the remainder becomes a void. Use `margin-top` for visual chapter separation instead.
-4. **`break-inside: avoid`** on individual cards, items, and guide entries to prevent them from being split across pages.
-5. **`break-after: avoid`** on chapter headers (tag + title + divider group) to keep them attached to the first content block below.
-6. **Fixed-height containers ONLY for cover and ending pages** that must occupy a full page:
+1. **PAS de hauteur fixe sur les conteneurs de contenu.** Laissez le contenu s'écouler naturellement. Le navigateur décide où couper les pages.
+2. **PAS de divs `.page` pour les sections de contenu.** Utilisez un seul `<div class="main-content">` avec un padding pour tout le contenu du corps.
+3. **PAS de `break-before: page` entre les sections de contenu.** C'est la cause n°1 des espaces vides — quand la section précédente ne remplit pas une page, le reste devient un vide. Utilisez `margin-top` pour la séparation visuelle des chapitres à la place.
+4. **`break-inside: avoid`** sur les cartes individuelles, éléments et entrées de guide pour les empêcher d'être divisés entre plusieurs pages.
+5. **`break-after: avoid`** sur les en-têtes de chapitre (groupe étiquette + titre + séparateur) pour les garder attachés au premier bloc de contenu ci-dessous.
+6. **Conteneurs de hauteur fixe SEULEMENT pour les pages de couverture et de fin** qui doivent occuper une page entière :
 
 ```css
-/* Cover: fixed height, standalone page */
+/* Couverture : hauteur fixe, page autonome */
 .cover {
     width: 720px;
     height: 1020px;
     box-sizing: border-box;
     break-after: page;
-    overflow: hidden;  /* OK here — clips decorative elements on cover only */
-    /* ⚠️ Use justify-content: center (NOT flex-end) to avoid top-heavy blank */
-    /* Add decorative elements (circles, lines) + bottom edition label for visual balance */
+    overflow: hidden;  /* OK ici — ne coupe que les éléments décoratifs sur la couverture uniquement */
+    /* ⚠️ Utilisez justify-content: center (PAS flex-end) pour éviter un vide en haut trop important */
+    /* Ajoutez des éléments décoratifs (cercles, lignes) + étiquette d'édition en bas pour l'équilibre visuel */
 }
 
-/* Ending: fixed height, standalone page */
+/* Fin : hauteur fixe, page autonome */
 .ending {
     width: 720px;
     height: 1020px;
@@ -52,33 +52,33 @@ node "$PDF_SKILL_DIR/scripts/html2pdf-next.js" input.html --output output.pdf --
     overflow: hidden;
 }
 
-/* Content: flows naturally, NO fixed height */
+/* Contenu : s'écoule naturellement, PAS de hauteur fixe */
 .main-content {
     padding: 60px 65px 40px 65px;
-    /* NO height property */
-    /* NO overflow: hidden */
+    /* PAS de propriété height */
+    /* PAS de overflow: hidden */
 }
 ```
 
-### What NOT to Do (Common Mistakes)
+### Ce Qu'il Ne Faut PAS Faire (Erreurs Courantes)
 
-| Mistake | Why it breaks | Fix |
-|---------|--------------|-----|
-| `.content { height: 1020px; }` | Content that exceeds the height gets clipped or overflows | Remove fixed height |
-| Multiple `<div class="content">` each with `padding: 60px` | Double padding (60+60=120px) between sections creates voids | One container, chapters separated by `margin-top` |
-| `break-before: page` on chapter headers | Previous chapter doesn't fill the page → blank space before new chapter | Use `margin-top: 36px` instead |
-| `overflow: hidden` on content container | Clips content at page boundaries | Only use on fixed-height cover/ending |
-| `justify-content: flex-end` on cover | Title sinks to bottom, 60%+ blank above | Use `center` + decorative anchors for balance |
-| Chapter with < 3 paragraphs of content | Leaves half a page blank before next chapter | Write enough content to fill at least 50% of a page |
-| `margin-top: 50px+` on chapters | Compounds with `break-inside: avoid`, creates large voids | Keep chapter `margin-top` ≤ 30px |
+| Erreur | Pourquoi ça casse | Correction |
+|--------|------------------|------------|
+| `.content { height: 1020px; }` | Le contenu qui dépasse la hauteur est coupé ou déborde | Supprimez la hauteur fixe |
+| Plusieurs `<div class="content">` chacun avec `padding: 60px` | Double padding (60+60=120px) entre sections crée des vides | Un seul conteneur, chapitres séparés par `margin-top` |
+| `break-before: page` sur les en-têtes de chapitre | Le chapitre précédent ne remplit pas la page → espace vide avant le nouveau chapitre | Utilisez `margin-top: 36px` à la place |
+| `overflow: hidden` sur le conteneur de contenu | Coupe le contenu aux limites de page | N'utilisez que sur les couvertures/fins de hauteur fixe |
+| `justify-content: flex-end` sur la couverture | Le titre descend en bas, 60%+ de vide en haut | Utilisez `center` + ancres décoratives pour l'équilibre |
+| Chapitre avec < 3 paragraphes de contenu | Laisse une demi-page vide avant le chapitre suivant | Écrivez suffisamment de contenu pour remplir au moins 50% d'une page |
+| `margin-top: 50px+` sur les chapitres | Se combine avec `break-inside: avoid`, crée de grands vides | Gardez le `margin-top` de chapitre ≤ 30px |
 
 ---
 
-## CSS Template
+## Modèle CSS
 
 ```css
 @page {
-    size: 720px 1020px;   /* Concrete px values — CSS variables NOT supported in @page */
+    size: 720px 1020px;   /* Valeurs px concrètes — les variables CSS NE SONT PAS prises en charge dans @page */
     margin: 0;
 }
 :root {
@@ -108,87 +108,87 @@ html, body {
 }
 ```
 
-**⚠️ @page rules do NOT resolve CSS variables** (`var(--x)` is silently ignored, falls back to A4). Always use concrete `px` values in `@page`.
+**⚠️ Les règles @page NE RÉSOULENT PAS les variables CSS** (`var(--x)` est ignoré silencieusement, retombe sur A4). Utilisez toujours des valeurs `px` concrètes dans `@page`.
 
 ---
 
-## HTML Structure Template
+## Modèle de Structure HTML
 
 ```html
 <body>
 
-<!-- Cover: fixed height, occupies one full page -->
+<!-- Couverture : hauteur fixe, occupe une page entière -->
 <div class="cover">
-    <div class="tag">CATEGORY</div>
-    <div class="title">Document Title</div>
-    <div class="subtitle">Description text</div>
+    <div class="tag">CATÉGORIE</div>
+    <div class="title">Titre du Document</div>
+    <div class="subtitle">Texte descriptif</div>
 </div>
 
-<!-- All body content in ONE continuous container -->
+<!-- Tout le contenu du corps dans UN SEUL conteneur continu -->
 <div class="main-content">
 
-    <!-- Chapter 1 -->
-    <div class="section-tag">Chapter 1</div>
-    <div class="section-title">Title</div>
+    <!-- Chapitre 1 -->
+    <div class="section-tag">Chapitre 1</div>
+    <div class="section-title">Titre</div>
     <div class="divider"></div>
-    <div class="body-text">Paragraph content...</div>
-    <div class="body-text">More paragraphs...</div>
+    <div class="body-text">Contenu du paragraphe...</div>
+    <div class="body-text">Plus de paragraphes...</div>
 
-    <!-- Chapter 2: separated by margin-top, NOT break-before -->
+    <!-- Chapitre 2 : séparé par margin-top, PAS break-before -->
     <div class="chapter-header">
-        <div class="section-tag">Chapter 2</div>
-        <div class="section-title">Title</div>
+        <div class="section-tag">Chapitre 2</div>
+        <div class="section-title">Titre</div>
         <div class="divider"></div>
     </div>
 
-    <!-- Cards / items with break-inside: avoid -->
-    <div class="card">Card content...</div>
-    <div class="card">Card content...</div>
+    <!-- Cartes / éléments avec break-inside: avoid -->
+    <div class="card">Contenu de la carte...</div>
+    <div class="card">Contenu de la carte...</div>
 
 </div>
 
-<!-- Ending: fixed height, occupies one full page -->
+<!-- Fin : hauteur fixe, occupe une page entière -->
 <div class="ending">
-    <div class="big-text">Closing text</div>
+    <div class="big-text">Texte de clôture</div>
 </div>
 
 </body>
 ```
 
-Key CSS for chapter headers and cards:
+CSS clé pour les en-têtes de chapitre et les cartes :
 ```css
 .chapter-header {
-    break-after: avoid;    /* Keep header with first content block */
+    break-after: avoid;    /* Garde l'en-tête avec le premier bloc de contenu */
     break-inside: avoid;
-    margin-top: 28px;      /* ≤ 30px! Larger values compound with break-inside: avoid → blank pages */
+    margin-top: 28px;      /* ≤ 30px ! Les valeurs plus grandes se combinent avec break-inside: avoid → pages vides */
 }
 .card {
-    break-inside: avoid;   /* Don't split a single card across pages */
-    margin-bottom: 14px;   /* ≤ 16px! Every px of margin is lost space if card is pushed to next page */
+    break-inside: avoid;   /* Ne divise pas une seule carte entre plusieurs pages */
+    margin-bottom: 14px;   /* ≤ 16px ! Chaque px de marge est un espace perdu si la carte est poussée à la page suivante */
 }
 ```
 
 ---
 
-## Body Background Rule
+## Règle de Fond du Corps du Document
 
-Set `html, body { background }` to the document's dominant/darkest color. This prevents sub-pixel gap artifacts between content and page boundaries.
+Définissez `html, body { background }` sur la couleur dominante/la plus foncée du document. Cela empêche les artéfacts d'écart sous-pixel entre le contenu et les limites de page.
 
-- All pages same dark color → `body { background: <that color> }`
-- Mixed dark cover + light body → `body { background: <darkest color> }` (dark body is invisible under white content pages)
-- All pages white/light → `body { background: <lightest content bg> }` (e.g. `#f8fafc`)
+- Toutes les pages de même couleur sombre → `body { background: <cette couleur> }`
+- Couverture sombre mélangée + corps clair → `body { background: <couleur la plus foncée> }` (le corps sombre est invisible sous les pages de contenu blanc)
+- Toutes les pages blanches/claires → `body { background: <fond de contenu le plus clair> }` (ex: `#f8fafc`)
 
 ---
 
-## Shared Rules with creative.md
+## Règles Communes avec creative.md
 
-The following rules apply identically to both Creative Flow and Creative Blueprint pipelines:
+Les règles suivantes s'appliquent identiquement aux deux pipelines Creative Flow et Creative Blueprint :
 
-### Character Encoding Safety
-Never use Japanese kana (の, が, は), rare symbols, or Private Use Area characters. They corrupt to U+FFFD (�) during LLM→file write→read transit. Replace with plain Chinese equivalents: `の`→`之/的/缔`.
+### Sécurité d'Encodage de Caractères
+N'utilisez jamais les kana japonais (の, が, は), les symboles rares ou les caractères de la Zone d'Utilisation Privée. Ils se corrompent en U+FFFD (�) pendant le transit LLM→écriture fichier→lecture. Remplacez par des équivalents chinois simples : `の`→`之/的/缔`.
 
-### Vertical Chinese Text
-When using `writing-mode: vertical-rl`:
+### Texte Chinois Vertical
+Lors de l'utilisation de `writing-mode: vertical-rl` :
 ```css
 writing-mode: vertical-rl;
 text-orientation: upright;
@@ -196,60 +196,60 @@ white-space: nowrap;
 letter-spacing: 12px;
 ```
 
-### Font Coverage
-For CJK content, always load Google Fonts via `<link>` tag in `<head>` (NOT `@import`):
+### Couverture de Police
+Pour le contenu CJK, chargez toujours Google Fonts via la balise `<link>` dans `<head>` (PAS `@import`) :
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
 ```
 
-### Post-Generation Text Verification
-After Playwright renders the PDF, extract text and scan for `?` or `\ufffd`. If found, fix encoding-corrupted characters in the source HTML.
+### Vérification de Texte Post-Génération
+Après que Playwright a rendu le PDF, extrayez le texte et scannez pour `?` ou `\ufffd`. Si trouvé, corrigez les caractères corrompus par l'encodage dans le source HTML.
 
-### HTML Pre-Render Validation (MANDATORY)
-Before calling `html2pdf-next.js`, run the validator:
+### Validation Pré-Rendu HTML (OBLIGATOIRE)
+Avant d'appeler `html2pdf-next.js`, exécutez le validateur :
 ```bash
 python3 "$PDF_SKILL_DIR/scripts/poster_validate.py" check-html <file>.html
 ```
-- **ERROR** → must fix before PDF generation. Use `--fix --output <file>.html` for auto-repair.
-- **WARNING** → review and fix where appropriate.
+- **ERROR** → doit être corrigé avant génération PDF. Utilisez `--fix --output <file>.html` pour la réparation automatique.
+- **WARNING** → examinez et corrigez si approprié.
 
 ---
 
-## Quality Checklist — Creative Flow
+## Liste de Contrôle Qualité — Flux Créatif
 
-### Layout & Pagination
-- [ ] **No fixed height on content containers** (only cover/ending pages)
-- [ ] **No `break-before: page` between content sections**
-- [ ] **`break-inside: avoid`** on all cards/items/guide entries
-- [ ] **Chapter headers have `break-after: avoid`** to stay with first content block
-- [ ] **Single `<div class="main-content">`** wraps all body content
-- [ ] **No double padding** between sections (one container, not multiple)
+### Mise en Page & Pagination
+- [ ] **Pas de hauteur fixe sur les conteneurs de contenu** (seulement pages de couverture/fin)
+- [ ] **Pas de `break-before: page` entre les sections de contenu**
+- [ ] **`break-inside: avoid`** sur toutes les cartes/éléments/entrées de guide
+- [ ] **Les en-têtes de chapitre ont `break-after: avoid`** pour rester avec le premier bloc de contenu
+- [ ] **Un seul `<div class="main-content">** enveloppe tout le contenu du corps
+- [ ] **Pas de double padding** entre les sections (un seul conteneur, pas plusieurs)
 
-### Full-Bleed & Background
-- [ ] **`@page { margin: 0 }`** with concrete px size values
+### Pleine Page & Arrière-plan
+- [ ] **`@page { margin: 0 }`** avec des valeurs de taille px concrètes
 - [ ] **`html, body { margin: 0; padding: 0 }`**
-- [ ] **Body background matches dominant page color**
-- [ ] **No white edge artifacts** on dark pages
+- [ ] **L'arrière-plan du corps correspond à la couleur de page dominante**
+- [ ] **Pas d'artéfact blanc sur les bords** sur les pages sombres
 
-### Cover Page Design
-- [ ] **Cover `justify-content: center`** (not `flex-end`) — `flex-end` pushes content to the bottom and leaves 60%+ blank at top, making the page feel empty
-- [ ] **Add visual anchors** to fill the cover: decorative elements (circles, lines), edition/date label at bottom, badge at top. A cover with only title+subtitle will look hollow.
-- [ ] **Cover padding ≤ 70px** — excessive padding shrinks the visual footprint further
+### Conception de Page de Couverture
+- [ ] **Couverture `justify-content: center`** (pas `flex-end`) — `flex-end` pousse le contenu vers le bas et laisse 60%+ de vide en haut, rendant la page vide
+- [ ] **Ajoutez des ancres visuelles** pour remplir la couverture : éléments décoratifs (cercles, lignes), étiquette édition/date en bas, badge en haut. Une couverture avec seulement titre+sous-titre paraîtra creuse.
+- [ ] **Padding de couverture ≤ 70px** — un padding excessif réduit encore plus l'empreinte visuelle
 
-### Content Density (Anti-Blank-Page)
-- [ ] **Each chapter must have enough content to fill at least 50% of a page.** If a chapter (text + quote + cards) occupies < 50% of a page, it will leave a large blank area before the next chapter. Solution: expand the content (add 1-2 more paragraphs, examples, or context).
-- [ ] **Chapter `margin-top` ≤ 30px.** Larger values (50px+) compound with `break-inside: avoid` on cards, pushing content to the next page and leaving voids on the current page.
-- [ ] **Card/callout `margin` ≤ 16px.** Every pixel of vertical margin inside a `break-inside: avoid` block is space that cannot be reclaimed if the block is pushed to the next page.
-- [ ] **After generating PDF, visually check every page** for >30% trailing blank space. If found, either: (a) add more content to that chapter, (b) reduce margins/padding, or (c) reorder elements so a smaller block fills the gap.
+### Densité de Contenu (Anti-Page Vide)
+- [ ] **Chaque chapitre doit avoir suffisamment de contenu pour remplir au moins 50% d'une page.** Si un chapitre (texte + citation + cartes) occupe < 50% d'une page, il laissera une grande zone vide avant le chapitre suivant. Solution : étendez le contenu (ajoutez 1-2 paragraphes supplémentaires, exemples ou contexte).
+- [ ] **`margin-top` de chapitre ≤ 30px.** Des valeurs plus grandes (50px+) se combinent avec `break-inside: avoid` sur les cartes, poussant le contenu à la page suivante et laissant des vides sur la page actuelle.
+- [ ] **`margin` de carte/encart ≤ 16px.** Chaque pixel de marge verticale à l'intérieur d'un bloc `break-inside: avoid` est un espace qui ne peut pas être récupéré si le bloc est poussé à la page suivante.
+- [ ] **Après génération PDF, vérifiez visuellement chaque page** pour un vide de fin >30%. Si trouvé, soit : (a) ajoutez plus de contenu à ce chapitre, (b) réduisez marges/padding, ou (c) réordonnez les éléments pour qu'un bloc plus petit remplisse l'écart.
 
-### Design Quality
-- [ ] **Entire document ≤ 5 colors**: Primary + secondary + accent + neutral + background
-- [ ] **2-typeface maximum**: At most 2 font families
-- [ ] **Decorative elements ≤ 3 per page** (cover exempt)
-- [ ] **No stock images / clipart / AI-generated decorations** unless user-provided
+### Qualité de Conception
+- [ ] **Document entier ≤ 5 couleurs** : Primaire + secondaire + accent + neutre + arrière-plan
+- [ ] **2 familles de polices maximum** : Au plus 2 familles de polices
+- [ ] **Éléments décoratifs ≤ 3 par page** (couverture exempte)
+- [ ] **Pas d'images de stock / clipart / décorations générées par IA** sauf si fournies par l'utilisateur
 
-### Output
-- [ ] **Vector PDF** via `html2pdf-next.js` (not screenshot)
-- [ ] **HTML source file** delivered alongside PDF
-- [ ] **PDF metadata** set via `pdf.py meta.brand`
-- [ ] **QA passed** via `pdf_qa.py --no-tables`
+### Sortie
+- [ ] **PDF Vectoriel** via `html2pdf-next.js` (pas de capture d'écran)
+- [ ] **Fichier source HTML** livré avec le PDF
+- [ ] **Métadonnées PDF** définies via `pdf.py meta.brand`
+- [ ] **QA passé** via `pdf_qa.py --no-tables`

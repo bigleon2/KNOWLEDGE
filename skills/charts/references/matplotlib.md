@@ -1,9 +1,9 @@
 # matplotlib Template Library
 
-> **⚠️ Before writing any code, read [`_rules.md`](references/_rules.md) — three non-negotiable rules on overlap, hierarchy, and color.**
+> **⚠️ Avant d'écrire du code, lisez [`_rules.md`](references/_rules.md) — trois règles non négociables sur le chevauchement, la hiérarchie et la couleur.**
 
 
-## Environment Initialization (Must Execute Before Each Plot)
+## Initialisation de l'Environnement (Doit être exécuté avant chaque graphique)
 
 ```python
 import matplotlib
@@ -11,48 +11,48 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import numpy as np
 
-# ═══ Chinese Font Setup ═══
-# SimHei is the default; other fonts available:
-#   SimSun.ttf (Songti, formal docs), SimKai.ttf (Kaiti, artistic),
-#   SarasaMonoSC-*.ttf (monospace CJK, code scenes)
-# Run `fc-list :lang=zh` for system fonts (PingFang SC, Heiti TC, etc.)
-# Font path: adjust for your system. Common locations:
+# ═══ Configuration de la Police Chinoise ═══
+# SimHei est la police par défaut ; autres polices disponibles :
+#   SimSun.ttf (Songti, documents formels), SimKai.ttf (Kaiti, artistique),
+#   SarasaMonoSC-*.ttf (monospace CJK, scènes de code)
+# Exécutez `fc-list :lang=zh` pour les polices système (PingFang SC, Heiti TC, etc.)
+# Chemin de la police : ajustez pour votre système. Emplacements courants :
 #   macOS: '/System/Library/Fonts/Supplemental/SimHei.ttf'
 #   Linux: '/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc'
-#   Custom: './fonts/SimHei.ttf'
+#   Personnalisé: './fonts/SimHei.ttf'
 import os
 SIMHEI_PATH = os.environ.get('SIMHEI_FONT', '/System/Library/Fonts/Supplemental/SimHei.ttf')
 matplotlib.font_manager.fontManager.addfont(SIMHEI_PATH)
 
-# ═══ Global Style ═══
+# ═══ Style Global ═══
 plt.rcParams.update({
-    # Font
+    # Police
     'font.sans-serif': ['SimHei'],
     'axes.unicode_minus': False,
-    # Background
+    # Arrière-plan
     'figure.facecolor': '#FFFFFF',
     'axes.facecolor': '#FFFFFF',
-    # Border: only keep left and bottom
+    # Bordure : ne conserver que gauche et bas
     'axes.edgecolor': '#E5E7EB',
     'axes.linewidth': 0.8,
     'axes.spines.top': False,
     'axes.spines.right': False,
-    # Grid: off by default
+    # Grille : désactivée par défaut
     'axes.grid': False,
-    # Ticks: hide tick marks
+    # Graduations : masquer les marques de graduation
     'xtick.major.size': 0,
     'ytick.major.size': 0,
     'xtick.labelsize': 9,
     'ytick.labelsize': 9,
-    # Title
+    # Titre
     'axes.labelsize': 10,
     'axes.titlesize': 16,
     'axes.titleweight': 'bold',
     'axes.titlepad': 16,
-    # Legend: no frame
+    # Légende : sans cadre
     'legend.frameon': False,
     'legend.fontsize': 9,
-    # Export
+    # Exportation
     'figure.dpi': 200,
     'savefig.dpi': 200,
     'savefig.bbox': 'tight',
@@ -61,10 +61,10 @@ plt.rcParams.update({
 })
 ```
 
-## Color Constants
+## Constantes de Couleur
 
 ```python
-# ─── Cool Colors (Business/Tech) ───
+# ─── Couleurs Froides (Business/Tech) ───
 C_BLUE   = '#3B82F6'
 C_CYAN   = '#06B6D4'
 C_PURPLE = '#8B5CF6'
@@ -73,29 +73,29 @@ C_RED    = '#EF4444'
 C_GREEN  = '#10B981'
 COOL = [C_BLUE, C_CYAN, C_PURPLE, C_AMBER, C_RED, C_GREEN]
 
-# ─── Warm Colors (Warmth/Creative) ───
+# ─── Couleurs Chaudes (Chaleur/Créatif) ───
 WARM = ['#F59E0B', '#EF4444', '#8B5CF6', '#3B82F6', '#10B981', '#EC4899']
 
-# ─── Academic Grayscale ───
+# ─── Gris Académique ───
 ACADEMIC = ['#111827', '#6B7280', '#9CA3AF', '#D1D5DB', '#E5E7EB', '#F3F4F6']
 
-# ─── Colorblind-Safe (Paper Preferred) ───
+# ─── Couleurs Adaptées aux Daltoniens (Préférées pour les articles) ───
 CB_SAFE = ['#0077BB', '#33BBEE', '#009988', '#EE7733', '#CC3311', '#EE3377']
 
-# ─── Grayscale ───
+# ─── Gris ───
 G900, G700, G500, G400, G300, G200, G100, G50 = \
     '#111827', '#374151', '#6B7280', '#9CA3AF', '#D1D5DB', '#E5E7EB', '#F3F4F6', '#F9FAFB'
 
-# ─── Gain/Loss ───
+# ─── Gain/Perte ───
 POS = '#22C55E'
 NEG = '#EF4444'
 ```
 
-## Helper Functions
+## Fonctions Utilitaires
 
 ```python
 def clean_axis(ax, grid=True):
-    """Clean axis: remove top and right borders, add faint grid"""
+    """Nettoyer l'axe : supprimer les bordures supérieure et droite, ajouter une grille faible"""
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     if grid:
@@ -104,8 +104,8 @@ def clean_axis(ax, grid=True):
 
 def add_value_labels(ax, bars, values, highlight_idx=None, fmt='{:,.0f}',
                      offset_ratio=0.02):
-    """Add value labels on top of bars, highlight bar in bold.
-    ⚠️ Automatically extends Y-axis upper limit to ensure labels don't overflow chart area."""
+    """Ajouter des étiquettes de valeur au-dessus des barres, mettre en gras la barre en surbrillance.
+    ⚠️ Étend automatiquement la limite supérieure de l'axe Y pour s'assurer que les étiquettes ne dépassent pas la zone du graphique."""
     max_val = max(values)
     for i, (bar, val) in enumerate(zip(bars, values)):
         is_hl = (i == highlight_idx) if highlight_idx is not None else False
@@ -116,11 +116,11 @@ def add_value_labels(ax, bars, values, highlight_idx=None, fmt='{:,.0f}',
                 color=G900 if is_hl else G400,
                 fontweight='bold' if is_hl else 'normal')
 
-    # ⚠️ Critical: extend Y-axis upper limit to leave enough space for labels (at least 15%)
+    # ⚠️ Critique : étendre la limite supérieure de l'axe Y pour laisser suffisamment d'espace pour les étiquettes (au moins 15%)
     ax.set_ylim(0, max_val * 1.18)
 
 def save(fig, path, dpi=200):
-    """Unified save — prefer constrained_layout, fallback to tight_layout"""
+    """Sauvegarde unifiée — préfère constrained_layout, fallback sur tight_layout"""
     if not fig.get_constrained_layout():
         try:
             fig.tight_layout()
@@ -133,32 +133,32 @@ def save(fig, path, dpi=200):
     print(f'✅ {path} ({size_kb:.0f}KB)')
 ```
 
-### Label Text Avoidance (adjustText)
+### Évitement du Texte des Étiquettes (adjustText)
 
-When charts have multiple label annotations (e.g., scatter plot labels, box plot annotations), **must use adjustText library** to prevent text overlap:
+Lorsque les graphiques ont plusieurs annotations de texte (par exemple, étiquettes de nuage de points, annotations de boîte à moustaches), **doit utiliser la bibliothèque adjustText** pour éviter le chevauchement de texte :
 
 ```python
 # pip install adjustText
 from adjustText import adjust_text
 
-# Call after adding all annotations
+# Appeler après avoir ajouté toutes les annotations
 texts = []
 for i, (x, y, label) in enumerate(zip(x_data, y_data, labels)):
     texts.append(ax.text(x, y, label, fontsize=9, color='#374151'))
 
-# Auto-avoidance — pass all text objects, adjustText will move them to avoid overlap
+# Auto-évitement — passer tous les objets texte, adjustText les déplacera pour éviter le chevauchement
 adjust_text(texts, ax=ax,
             arrowprops=dict(arrowstyle='->', color='#9CA3AF', lw=0.8),
-            force_text=(0.5, 0.8),   # Force to push text away
-            force_points=(0.3, 0.5), # Repulsion from data points
-            expand=(1.2, 1.4))       # Expansion factor for text bbox
+            force_text=(0.5, 0.8),   # Force pour repousser le texte
+            force_points=(0.3, 0.5), # Répulsion depuis les points de données
+            expand=(1.2, 1.4))       # Facteur d'expansion pour le bbox du texte
 ```
 
 ---
 
-## Template 1: Insight Bar Chart
+## Modèle 1 : Graphique à Barres d'Analyse
 
-**Scenario**: Emphasize outstanding performance of one data item. Gray out others, highlight the focus.
+**Scénario** : Mettre en évidence la performance exceptionnelle d'un élément de données. Griser les autres, mettre en évidence l'élément cible.
 
 ```python
 def insight_bar(labels, values, highlight_idx, title, 
@@ -173,33 +173,33 @@ def insight_bar(labels, values, highlight_idx, title,
     add_value_labels(ax, bars, values, highlight_idx)
     
     ax.set_title(title, loc='left')
-    # ⚠️ add_value_labels already sets ylim automatically, no need to repeat here
+    # ⚠️ add_value_labels définit déjà ylim automatiquement, pas besoin de le répéter ici
     clean_axis(ax)
     save(fig, save_path)
 ```
 
 ---
 
-## Template 2: Trend Comparison Line Chart
+## Modèle 2 : Graphique Ligne de Comparaison de Tendance
 
-**Scenario**: This year vs last year, actual vs target. Main line in colored solid, comparison line in gray dashed.
+**Scénario** : Cette année vs l'année dernière, réel vs cible. Ligne principale en couleur pleine, ligne de comparaison en gris pointillée.
 
 ```python
 def trend_compare(x, y_main, y_ref, label_main, label_ref, title,
                   color=C_BLUE, save_path='trend_compare.png'):
     fig, ax = plt.subplots(figsize=(12, 6))
 
-    # Comparison line (gray dashed, at bottom layer)
+    # Ligne de comparaison (gris pointillé, en couche inférieure)
     ax.plot(x, y_ref, color=G300, linewidth=1.5, linestyle='--', zorder=2)
     ax.text(len(x)-0.5, y_ref[-1], label_ref, color=G400, fontsize=9, va='center')
 
-    # Main line (colored solid + white-center dots)
+    # Ligne principale (couleur pleine + points blancs au centre)
     ax.plot(x, y_main, color=color, linewidth=2.5, marker='o', markersize=5,
             markerfacecolor='white', markeredgewidth=2, markeredgecolor=color, zorder=3)
     ax.text(len(x)-0.5, y_main[-1], f'{label_main}  {y_main[-1]:,.0f}',
             color=color, fontsize=10, fontweight='bold', va='center')
 
-    # Difference area
+    # Zone de différence
     ax.fill_between(range(len(x)), y_ref, y_main, alpha=0.06, color=color)
 
     ax.set_title(title, loc='left')
@@ -209,11 +209,9 @@ def trend_compare(x, y_main, y_ref, label_main, label_ref, title,
     save(fig, save_path)
 ```
 
----
+---## Template 3: Barres Groupées
 
-## Template 3: Grouped Bar Chart
-
-**Scenario**: Comparison of multiple categories across multiple dimensions.
+**Scénario**: Comparaison de plusieurs catégories sur plusieurs dimensions.
 
 ```python
 def grouped_bar(labels, datasets, series_names, title,
@@ -234,7 +232,7 @@ def grouped_bar(labels, datasets, series_names, title,
     ax.set_title(title, loc='left')
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
-    ax.set_ylim(0, max(max(d) for d in datasets) * 1.20)  # Leave 20% space for labels
+    ax.set_ylim(0, max(max(d) for d in datasets) * 1.20)  # Laisser 20% d'espace pour les étiquettes
     ax.legend(loc='upper right', ncol=n)
     clean_axis(ax)
     save(fig, save_path)
@@ -242,9 +240,9 @@ def grouped_bar(labels, datasets, series_names, title,
 
 ---
 
-## Template 4: Horizontal Ranking Chart
+## Template 4: Graphique de Classement Horizontal
 
-**Scenario**: Rankings / Top N. Progressive highlight for top items.
+**Scénario**: Classements / Top N. Mise en progressif pour les éléments principaux.
 
 ```python
 def ranking_bar(labels, values, title, top_n=3,
@@ -281,9 +279,9 @@ def ranking_bar(labels, values, title, top_n=3,
 
 ---
 
-## Template 5: Donut Chart
+## Template 5: Graphique en Anneau
 
-**Scenario**: Proportion distribution (max 5 slices, avoid if possible — bar charts are usually better).
+**Scénario**: Distribution de proportions (max 5 tranches, à éviter si possible — les graphiques en barres sont généralement meilleurs).
 
 ```python
 def donut(labels, values, title, center_text=None,
@@ -304,7 +302,7 @@ def donut(labels, values, title, center_text=None,
     if center_text:
         ax.text(0, 0.06, str(center_text), ha='center', va='center',
                 fontsize=28, fontweight='bold', color=G900)
-        ax.text(0, -0.1, '总计', ha='center', va='center', fontsize=11, color=G500)
+        ax.text(0, -0.1, 'Total', ha='center', va='center', fontsize=11, color=G500)
     
     ax.legend(wedges, labels, loc='center left',
               bbox_to_anchor=(1, 0.5), fontsize=10)
@@ -314,9 +312,9 @@ def donut(labels, values, title, center_text=None,
 
 ---
 
-## Template 6: Scatter Plot + Trend Line
+## Template 6: Nuage de Points + Ligne de Tendance
 
-**Scenario**: Two-variable correlation analysis.
+**Scénario**: Analyse de corrélation à deux variables.
 
 ```python
 def scatter_trend(x, y, title, xlabel, ylabel,
@@ -326,7 +324,7 @@ def scatter_trend(x, y, title, xlabel, ylabel,
     ax.scatter(x, y, c=color, s=50, alpha=0.6,
                edgecolors='white', linewidth=1, zorder=3)
     
-    # Trend line
+    # Ligne de tendance
     z = np.polyfit(x, y, 1)
     p = np.poly1d(z)
     x_line = np.linspace(min(x), max(x), 100)
@@ -343,9 +341,9 @@ def scatter_trend(x, y, title, xlabel, ylabel,
 
 ---
 
-## Template 7: Heatmap
+## Template 7: Carte de Chaleur
 
-**Scenario**: Matrix data, correlations, time × category.
+**Scénario**: Données matricielles, corrélations, temps × catégorie.
 
 ```python
 def heatmap(data, row_labels, col_labels, title,
@@ -375,7 +373,7 @@ def heatmap(data, row_labels, col_labels, title,
     
     cbar = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.08, shrink=0.8)
     cbar.outline.set_visible(False)
-    cbar.ax.tick_params(labelsize=8)  # colorbar ticks should not be too large
+    cbar.ax.tick_params(labelsize=8)  # les graduations de la barre de couleur ne doivent pas être trop grandes
     
     for spine in ax.spines.values():
         spine.set_visible(True)
@@ -385,14 +383,14 @@ def heatmap(data, row_labels, col_labels, title,
 
 ---
 
-## Template 8: KPI Metric Cards
+## Template 8: Cartes de Métriques KPI
 
-**Scenario**: Dashboard top key number display.
+**Scénario**: Affichage des chiffres clés principaux d'un tableau de bord.
 
 ```python
 def kpi_cards(metrics, save_path='kpi.png'):
     """
-    metrics: [{'label': '总收入', 'value': '12.8M', 
+    metrics: [{'label': 'Revenu total', 'value': '12.8M', 
                'change': '+23%', 'positive': True}, ...]
     """
     from matplotlib.patches import FancyBboxPatch
@@ -423,11 +421,9 @@ def kpi_cards(metrics, save_path='kpi.png'):
     save(fig, save_path)
 ```
 
----
+---## Template 9: Radar Chart
 
-## Template 9: Radar Chart
-
-**Scenario**: Multi-dimensional capability comparison (max 8 dimensions, max 3 groups).
+**Scenario**: Comparaison des capacités multidimensionnelles (max 8 dimensions, max 3 groupes).
 
 ```python
 def radar(categories, datasets, series_names, title,
@@ -437,7 +433,7 @@ def radar(categories, datasets, series_names, title,
     
     N = len(categories)
     angles = np.linspace(0, 2*np.pi, N, endpoint=False).tolist()
-    angles += angles[:1]  # Close the polygon
+    angles += angles[:1]  # Ferme le polygone
     
     fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
     ax.set_theta_offset(np.pi / 2)
@@ -447,12 +443,12 @@ def radar(categories, datasets, series_names, title,
     ax.set_xticklabels(categories, fontsize=10)
     ax.yaxis.set_visible(False)
     
-    # Grid beautification
+    # Beautification de la grille
     ax.spines['polar'].set_color(G200)
     ax.grid(color=G200, linewidth=0.5, alpha=0.5)
     
     for data, name, color in zip(datasets, series_names, colors):
-        vals = data + data[:1]  # Close the polygon
+        vals = data + data[:1]  # Ferme le polygone
         ax.plot(angles, vals, color=color, linewidth=2, label=name)
         ax.fill(angles, vals, color=color, alpha=0.08)
     
@@ -465,11 +461,11 @@ def radar(categories, datasets, series_names, title,
 
 ## Template 10: Waterfall Chart
 
-**Scenario**: Show incremental changes from start to end value.
+**Scenario**: Montrer les changements incrémentaux de la valeur initiale à la valeur finale.
 
 ```python
 def waterfall(labels, values, title, save_path='waterfall.png'):
-    """labels and values correspond, positive=increase negative=decrease, last item auto-treated as total"""
+    """Les labels et valeurs correspondent, positif=augmentation négatif=diminution, dernier élément traité automatiquement comme total"""
     fig, ax = plt.subplots(figsize=(12, 6))
     
     cumulative = [0]
@@ -481,14 +477,14 @@ def waterfall(labels, values, title, save_path='waterfall.png'):
         if i == len(values) - 1:
             bar_colors.append(C_BLUE)      # Total
         elif v >= 0:
-            bar_colors.append(POS)          # Increase
+            bar_colors.append(POS)          # Augmentation
         else:
-            bar_colors.append(NEG)          # Decrease
+            bar_colors.append(NEG)          # Diminution
     
     bottoms = []
     for i, v in enumerate(values):
         if i == len(values) - 1:
-            bottoms.append(0)               # Total starts from 0
+            bottoms.append(0)               # Le total commence à 0
         elif v >= 0:
             bottoms.append(cumulative[i])
         else:
@@ -497,12 +493,12 @@ def waterfall(labels, values, title, save_path='waterfall.png'):
     bars = ax.bar(labels, [abs(v) for v in values], bottom=bottoms,
                   color=bar_colors, width=0.6, edgecolor='white', linewidth=0.5, zorder=3)
     
-    # Connecting lines
+    # Lignes de connexion
     for i in range(len(values) - 2):
         y = cumulative[i+1]
         ax.plot([i+0.3, i+0.7], [y, y], color=G300, linewidth=0.8, zorder=2)
     
-    # Value labels
+    # Étiquettes de valeur
     for i, (bar, val) in enumerate(zip(bars, values)):
         y_pos = bar.get_y() + bar.get_height() + max(abs(v) for v in values)*0.01
         prefix = '+' if val > 0 and i < len(values)-1 else ''
@@ -519,99 +515,99 @@ def waterfall(labels, values, title, save_path='waterfall.png'):
 
 ## Template 11: Multi-Subplot Dashboard (GridSpec Precision Layout)
 
-**Scenario**: Combine multiple subplots into a dashboard. ⚠️ Max 4 subplots per canvas, split if exceeded.
+**Scenario**: Combiner plusieurs sous-graphiques en un tableau de bord. ⚠️ Maximum 4 sous-graphiques par canevas, diviser si dépassé.
 
-**Core Principle**: Use `GridSpec` for precise control of each subplot's position and spacing, don't rely on `tight_layout()`.
+**Principe de base**: Utilisez `GridSpec` pour un contrôle précis de la position et de l'espacement de chaque sous-graphique, ne vous fiez pas à `tight_layout()`.
 
 ```python
 import matplotlib.gridspec as gridspec
 
 def dashboard(data_dict, title, save_path='dashboard.png'):
     """
-    2x2 dashboard layout example.
-    data_dict contains data needed for each subplot.
+    Exemple de mise en page de tableau de bord 2x2.
+    data_dict contient les données nécessaires pour chaque sous-graphique.
     """
-    # ⚠️ Use constrained_layout instead of tight_layout
+    # ⚠️ Utilisez constrained_layout au lieu de tight_layout
     fig = plt.figure(figsize=(16, 12), constrained_layout=True)
     fig.suptitle(title, fontsize=20, fontweight='bold', y=0.98)
     
-    # GridSpec: precise spacing control
+    # GridSpec : contrôle précis de l'espacement
     gs = gridspec.GridSpec(2, 2, figure=fig,
-                           wspace=0.35,  # Column spacing (at least 0.3)
-                           hspace=0.35,  # Row spacing (at least 0.3)
+                           wspace=0.35,  # Espacement des colonnes (au moins 0.3)
+                           hspace=0.35,  # Espacement des lignes (au moins 0.3)
                            left=0.08, right=0.92,
                            top=0.92, bottom=0.08)
     
-    # ─── Top-left: bar chart ───
+    # ─── Haut-gauche : graphique en barres ───
     ax1 = fig.add_subplot(gs[0, 0])
-    ax1.set_title('Quarterly Revenue', loc='left', fontsize=13, fontweight='bold')
-    # ... binddata ...
+    ax1.set_title('Revenu trimestriel', loc='left', fontsize=13, fontweight='bold')
+    # ... lier les données ...
     clean_axis(ax1)
     
-    # ─── Top-right: line chart ───
+    # ─── Haut-droite : graphique en ligne ───
     ax2 = fig.add_subplot(gs[0, 1])
-    ax2.set_title('Monthly Trend', loc='left', fontsize=13, fontweight='bold')
-    # ... bind data ...
+    ax2.set_title('Tendance mensuelle', loc='left', fontsize=13, fontweight='bold')
+    # ... lier les données ...
     clean_axis(ax2)
     
-    # ─── Bottom-left: pie chart ───
+    # ─── Bas-gauche : graphique circulaire ───
     ax3 = fig.add_subplot(gs[1, 0])
-    ax3.set_title('Category Share', loc='left', fontsize=13, fontweight='bold')
-    # ... bind data ...
+    ax3.set_title('Part par catégorie', loc='left', fontsize=13, fontweight='bold')
+    # ... lier les données ...
     
-    # ─── Bottom-right: scatter plot ───
+    # ─── Bas-droite : graphique de dispersion ───
     ax4 = fig.add_subplot(gs[1, 1])
-    ax4.set_title('Conversion Analysis', loc='left', fontsize=13, fontweight='bold')
-    # ... bind data ...
+    ax4.set_title('Analyse de conversion', loc='left', fontsize=13, fontweight='bold')
+    # ... lier les données ...
     clean_axis(ax4)
     
     fig.savefig(save_path, dpi=200, facecolor='white', bbox_inches='tight')
     plt.close(fig)
 ```
 
-### Dashboard Layout Golden Rules
+### Règles d'Or de la Mise en Page du Tableau de Bord
 
-| Rule | Description |
+| Règle | Description |
 |------|-------------|
-| **Max 4 subplots** | Split into multiple charts if exceeded |
-| **Use `constrained_layout=True`** | Smarter than `tight_layout()`, auto-avoids labels |
-| **`wspace/hspace ≥ 0.3`** | Subplot spacing too small causes overlap |
-| **Independent title per subplot** | Use `ax.set_title()` instead of `fig.suptitle()` |
-| **Consistent font sizes** | Subtitle 13px, axis labels 10px, data labels 9px |
-| **Colorbar in separate column** | If a subplot needs colorbar, allocate `gs[0, 2]` separately |
-| **Don't mix legend and direct labels** | Use either all legends or all direct labels in a dashboard |
+| **Maximum 4 sous-graphiques** | Diviser en plusieurs graphiques si dépassé |
+| **Utiliser `constrained_layout=True`** + Plus intelligent que `tight_layout()`, évite automatiquement les étiquettes |
+| **`wspace/hspace ≥ 0.3`** | Un espacement trop petit entre les sous-graphiques cause un chevauchement |
+| **Titre indépendant par sous-graphique** | Utilisez `ax.set_title()` au lieu de `fig.suptitle()` |
+| **Tailles de police cohérentes** | Sous-titre 13px, étiquettes d'axe 10px, étiquettes de données 9px |
+| **Barre de couleurs dans une colonne séparée** | Si un sous-graphique a besoin d'une barre de couleurs, attribuez `gs[0, 2]` séparément |
+| **Ne pas mélanger légende et étiquettes directes** | Utilisez soit toutes des légendes, soit toutes des étiquettes directes dans un tableau de bord |
 
-### Safe Layout with Colorbar
+### Mise en Page Sécurisée avec Barre de Couleurs
 
 ```python
-# When a subplot needs a colorbar, use 3-column layout, rightmost column for colorbar
+# Quand un sous-graphique a besoin d'une barre de couleurs, utilisez une mise en page à 3 colonnes, colonne de droite pour la barre de couleurs
 gs = gridspec.GridSpec(2, 3, figure=fig,
-                       width_ratios=[1, 1, 0.05],  # Third column very narrow, dedicated to colorbar
+                       width_ratios=[1, 1, 0.05],  # Troisième colonne très étroite, dédiée à la barre de couleurs
                        wspace=0.4, hspace=0.35)
 
 ax_heat = fig.add_subplot(gs[0, 1])
 im = ax_heat.imshow(data, cmap='Blues')
 
-# Colorbar placed in its own subplot position, won't obscure any content
+# Barre de couleurs placée dans sa propre position de sous-graphique, n'obstruira aucun contenu
 cbar_ax = fig.add_subplot(gs[0, 2])
 fig.colorbar(im, cax=cbar_ax)
-cbar_ax.set_ylabel('Value', fontsize=10)
+cbar_ax.set_ylabel('Valeur', fontsize=10)
 ```
 
-### Split Strategy for More Than 4 Subplots
+### Stratégie de Division pour Plus de 4 Sous-graphiques
 
 ```python
-# ❌ Wrong: 8 subplots crammed into one canvas
-fig, axes = plt.subplots(2, 4, figsize=(20, 10))  # Everything becomes unreadable
+# ❌ Faux : 8 sous-graphiques entassés dans un seul canevas
+fig, axes = plt.subplots(2, 4, figsize=(20, 10))  # Tout devient illisible
 
-# ✅ Correct: split into 2 figures, 4 subplots each
-# Figure 1: overview metrics
+# ✅ Correct : diviser en 2 figures, 4 sous-graphiques chacune
+# Figure 1 : indicateurs généraux
 fig1 = plt.figure(figsize=(16, 12), constrained_layout=True)
-# ... 4 subplots ...
+# ... 4 sous-graphiques ...
 fig1.savefig('dashboard_overview.png', dpi=200)
 
-# Figure 2: detailed analysis
+# Figure 2 : analyse détaillée
 fig2 = plt.figure(figsize=(16, 12), constrained_layout=True)
-# ... 4 subplots ...
+# ... 4 sous-graphiques ...
 fig2.savefig('dashboard_detail.png', dpi=200)
 ```

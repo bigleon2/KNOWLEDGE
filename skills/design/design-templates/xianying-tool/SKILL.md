@@ -1,6 +1,6 @@
 ---
 name: xianying-tool
-description: Chinese-first AI image-generation tool landing template — TwelveMei-style centered hero with floating icon-island nav, FlyFlowerSong serif display headline, textured pill CTAs, glass canvas mockup of the tool itself, monochrome ink palette. Built for Chinese creative-tool / generative-image / AI-工具 product pages aimed at designers and editors, not loud growth-marketing.
+description: Modèle de page d'atterrissage d'outil de génération d'images IA axé sur le chinois — hero centré de style TwelveMei avec navigation d'île flottante d'icônes, titre d'affichage avec police FlyFlowerSong (Fei Hua Ge) serif, CTAs en forme de pilule texturée, maquette de toile de verre de l'outil lui-même, palette d'encre monochrome. Conçu pour les pages de produit d'outils créatifs / d'images génératives / AI-工具 (gong ju) destinés aux concepteurs et éditeurs, pas au marketing agressif.
 visibility: public
 mode: template
 carrier: web-page
@@ -8,73 +8,73 @@ scenario: product-tool-landing
 pattern_source: index.standalone.html
 source_priority: skill-first
 triggers:
-  - "做个 AI 工具落地页"
-  - "生成图像工具 landing"
-  - "TwelveMei 风工具页"
-  - "玻璃画布 mockup"
-  - "中文 AI-工具产品页"
-  - "宋体 hero 工具页"
+- "做个 AI 工具落地页" (créer une page d'atterrissage pour un outil IA)
+  - "Générateur d'images landing" (page d'atterrissage pour un outil de génération d'images)
+  - "TwelveMei 风工具页" (page d'outil de style TwelveMei)
+  - "玻璃画布 mockup" (maquette de toile de verre)
+  - "<LIGNES À TRADUIRES> Outils d'IA (Zhongwen AI-tools) </LIGNES À TRADUIRES>" (page de produit d'outil IA en chinois)
+  - "宋体 hero 工具页" (page d'outil hero avec police Song)
 ---
 
-# Xianying Tool Template
+# Modèle Xianying Tool
 
-Use this template when the artifact is a **Chinese-language AI / generative-image creative-tool product page** that needs to feel like a quiet editorial workshop, not a SaaS pitch.
+Utilisez ce modèle lorsque l'artefact est une **page de produit d'outil créatif IA / d'images génératives en langue chinoise** qui doit donner l'impression d'un atelier éditorial tranquille, pas un argumentaire SaaS.
 
-## Use When
+## À utiliser quand
 
-- The product is a creative tool (生图 / 设计 / 编辑 / AI 工具) whose audience is Chinese designers, illustrators, or editors.
-- The hero needs to **show the tool itself** — a glass canvas mockup with case-tabs, presets, prompt card, seed/style chips — rather than a metaphor or stock illustration.
-- Navigation should be a **floating central icon-island** (首页 / 案例廊 / 模型 / 定价 / 文档), with brand mark on the left and one textured pill CTA on the right.
-- Look should be monochrome ink — paper background, deep ink type, one restrained accent — with FlyFlowerSong (or another high-contrast modern serif) for the display headline and MiSans for UI text.
-- The page is single-screen-led: hero + glass canvas + a short lookbook strip + footer. Long-scroll feature reels are out of scope.
+- Le produit est un outil créatif (shēng tú / shè jì / biān jí / AI gōng jù - génération d'images / design / édition / outil IA) dont l'audience est des concepteurs, illustrateurs ou éditeurs chinois.
+- Le hero doit **montrer l'outil lui-même** — une maquette de toile de verre avec onglets de cas, préréglages, carte de prompt, puces graine/style — plutôt qu'une métaphore ou une illustration générique.
+- La navigation doit être une **île centrale flottante d'icônes** (Shouye / Anlanglang / Moxing / Dingjia / Wenzhang - accueil / galerie de cas / modèles / tarification / documentation), avec la marque à gauche et un CTA en pilule texturée à droite.
+- L'apparence doit être monochrome encre — fond papier, typographie encre foncée, une accentuation mesurée — avec FlyFlowerSong (ou une autre serif moderne à fort contraste) pour le titre d'affichage et MiSans pour le texte de l'interface.
+- La page est menée par un seul écran : hero + toile de verre + une courte bande de portfolio + pied de page. Les longs rouleaux de fonctionnalités sont hors de portée.
 
-## Avoid When
+## À éviter quand
 
-- The product is a **B2B SaaS** with tiered pricing as the primary surface — use `pricing-page/` or `saas-landing/` instead.
-- The page is a **pre-launch waitlist** (no working canvas, just an email form) — use `waitlist-page/`.
-- The brand wants loud growth-marketing — bright gradients, hero video, social proof walls. This template is hushed and editorial.
-- The audience is English-primary — the type stack and rhythm are tuned for CJK display + Latin support, not the other way around.
-- The artifact is a dashboard, deck, social card, or PDF report — pick the matching template.
+- Le produit est un **SaaS B2B** avec tarification par paliers comme surface principale — utilisez plutôt `pricing-page/` ou `saas-landing/`.
+- La page est une **liste d'attente avant lancement** (pas de toile fonctionnelle, juste un formulaire d'email) — utilisez `waitlist-page/`.
+- La marque veut du marketing agressif — dégradés vifs, vidéo hero, murs de preuves sociales. Ce modèle est discret et éditorial.
+- L'audience est principalement anglophone — l'empilement de polices et le rythme sont réglés pour l'affichage CJK + support latin, et non l'inverse.
+- L'artefact est un tableau de bord, une présentation, une carte sociale ou un rapport PDF — choisissez le modèle correspondant.
 
-## Required Reading
+## Lecture obligatoire
 
-Read this `SKILL.md` first. Do **not** read `index.standalone.html` by default — it is ~11MB with inlined base64 webfonts and will flood context.
+Lisez d'abord ce `SKILL.md`. Ne lisez **pas** `index.standalone.html` par défaut — il fait ~11MB avec des polices web en base64 intégrées et inondera le contexte.
 
-Read `index.standalone.html` only when you need: the icon-island nav geometry, the glass canvas mockup composition (canvas-frame / canvas-glass / canvas-row / case-tabs / preset chips), the textured pill CTA treatment, the brand-mark lockup (`显影` + `XIANYING®`), or the footer column structure. Extract patterns; do not copy preset names (灵境 / 幻翼 / 缓光 / 霞照 / 触发显影), model labels (GEN-3 / GEN-2 / 线稿模型), or the ICP filing wholesale.
+Lisez `index.standalone.html` seulement quand vous en avez besoin : la géométrie de la navigation d'île d'icônes, la composition de la maquette de toile de verre (canvas-frame / canvas-glass / canvas-row / case-tabs / preset chips), le traitement du CTA en pilule texturée, le verrouillage de la marque (`Xianying` + `XIANYING®`), ou la structure de colonne du pied de page. Extrayez les modèles ; ne copiez pas les noms de préréglages (Lingjing / Huan yi / Huan guang / Xia zhao / Chu fa xianying), les étiquettes de modèle (GEN-3 / GEN-2 / Xian gao mo xing), ou le dépôt ICP en bloc.
 
-## Design Strategy
+## Stratégie de design
 
-Before placing components, decide what the hero is **selling**:
+Avant de placer les composants, décidez ce que le hero **vend** :
 
-- the **tool** (canvas + presets dominate, headline is a one-liner about the audience)
-- the **aesthetic** (one large generated frame dominates, controls are hinted)
-- the **model lineup** (case-tabs / model-card row dominates, canvas is secondary)
-- the **lookbook** (gallery strip rises into view, hero compresses)
+- l'**outil** (toile + préréglages dominent, le titre est une phrase sur l'audience)
+- l'**esthétique** (une seule image générée domine, les contrôles sont suggérés)
+- la **gamme de modèles** (onglets de cas / rangée de cartes de modèle dominent, la toile est secondaire)
+- le **portfolio** (la bande de galerie apparaît, le hero se comprime)
 
-Pick one. Mixing all four flattens the page into a feature list.
+Choisissez-en un. Mélanger les quatre aplatit la page en une liste de fonctionnalités.
 
-The headline pattern here is `显影 是一个面向[受众]的生图工具。` — a single sentence that names the audience inline. Keep that rhythm: one declarative sentence, audience in serif emphasis, period at the end. Don't replace it with a marketing slogan.
+Le modèle de titre ici est `显影 (Xianying) <LIGNES TRADUITES> est une destination pour </LIGNES TRADUITES>[Public]Outil de génération d'images.` — une seule phrase qui nomme l'audience en ligne. Gardez ce rythme : une phrase déclarative, audience en emphase serif, point à la fin. Ne le remplacez pas par un slogan marketing.
 
-## Layout Bias
+## Biais de mise en page
 
-Prefer:
+Préférer :
 
-- FlyFlowerSong (or a comparable modern Song with high stroke contrast) for the display headline; MiSans Heavy / Bold / Semibold for UI weights; Inter for numerals and Latin tags.
-- paper-tone background (#F7F4EE / 米白) with deep ink type (#1A1A1A), one warm-grey or single-hue accent — never two accents on the same screen.
-- textured pill buttons (subtle noise / paper grain), not flat solid fills.
-- floating icon-island nav with tooltip chips on hover; brand mark on the left, single CTA pill on the right.
-- glass canvas mockup with a thin hairline frame, light inner shadow, and visible canvas-row of preset chips at the bottom — show the tool working, don't fake it with a screenshot.
-- footer in four short columns (产品 / 公司 / 资源 / 条款) plus a 备案信息 line — Chinese internet compliance, not decorative.
+- FlyFlowerSong (ou une police Song moderne comparable avec fort contraste de trait) pour le titre d'affichage ; MiSans Heavy / Bold / Semibold pour les poids d'interface ; Inter pour les chiffres et les étiquettes latines.
+- fond de ton papier (#F7F4EE / mǐ bái - blanc de riz) avec typographie encre foncée (#1A1A1A), une accentuation gris chaud ou à une seule couleur — jamais deux accents sur le même écran.
+- boutons en forme de pilule texturés (bruit subtil / grain de papier), pas de remplissage plat uni.
+- navigation d'île flottante d'icônes avec puces d'info-bulle au survol ; marque à gauche, unique CTA en pilule à droite.
+- maquette de toile de verre avec un cadre fin, ombre interne légère et rangée de toile visible de puces de préréglages en bas — montrez l'outil en fonctionnement, ne le simulez pas avec une capture d'écran.
+- pied de page en quatre courtes colonnes (chanpin / gongsi / ziyuan / tiaokuan - produit / entreprise / ressources / termes) plus une ligne bei'an xinxi - conformité internet chinoise, pas décorative.
 
-Avoid:
+Éviter :
 
-- 黑金 / dark gradients / "executive premium" overlays — this template is monochrome ink on paper.
-- monospace fonts anywhere (the direction note explicitly says no mono).
-- dot-separators between nav items (`首页 · 案例廊 · 模型`) — the icon-island replaces them.
-- emoji in nav, CTAs, or preset chips.
-- 3D plastic stickers, glossy reflections, or AI-generated hero illustrations of the canvas.
-- forcing negative letter-spacing on CJK display type — FlyFlowerSong needs its native rhythm.
+- 黑金 (Heijin) / dégradés foncés / surcharges "premium exécutif" — ce modèle est de l'encre monochrome sur papier.
+- polices monospace n'importe où (la note de direction dit explicitement pas de mono).
+- séparateurs entre les éléments de nav (`首页 · 案例廊 · 模型`) — l'île d'icônes les remplace.
+- emoji dans la nav, les CTAs ou les puces de préréglage.
+- autocollants en 3D, reflets brillants ou illustrations hero générées par IA de la toile.
+- forcer l'espacement négatif entre les caractères CJK d'affichage — FlyFlowerSong a besoin de son rythme natif.
 
-## Platform / Size
+## Plateforme / Taille
 
-Desktop-first, ~ 1280–1440px design width. The icon-island nav and glass canvas mockup are the load-bearing elements — they need horizontal room. On tablet (~ 900px) the canvas collapses to a stacked preview; on mobile the icon-island becomes a top tab strip and the canvas drops to a single-frame card. Do not pretend this is a mobile-native app.
+Priorité au bureau, largeur de conception ~ 1280–1440px. La navigation d'île d'icônes et la maquette de toile de verre sont les éléments porteurs — elles ont besoin d'espace horizontal. Sur tablette (~ 900px) la toile se replie en aperçu empilé ; sur mobile l'île d'icônes devient une bande d'onglets en haut et la toile passe en carte à seule image. Ne faites pas semblant que ce soit une application native mobile.

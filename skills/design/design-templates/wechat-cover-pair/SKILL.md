@@ -1,6 +1,6 @@
 ---
 name: wechat-cover-pair
-description: 微信公众号封面对模板 — 主图（headline + subline + 视觉锚点）+ 次图/分享图（短标题 + logo / 账号标签）+ 长图头（文章标题 + 章节预览）。比小红书封面要求更强的标题腿粗、更明确的安全区、更克制的阅读节奏。必须按当前微信尺寸读 canvas-and-device.md。触发："做个公众号封面 / 微信首图次图对 / 视频号封面 / 公众号分享图 / 长图头"。NOT XHS 3:4 尺寸，NOT XHS 贴纸密集风。
+description: WeChat公众号封面对模板 — 主图（headline + subline + 视觉锚点）+ 次图/分享图（短标题 + logo / 账号标签）+ 长图头（文章标题 + 章节预览）。比小红书封面要求更强的标题腿粗、更明确的安全区、更克制的阅读节奏。必须按当前微信尺寸读 canvas-and-device.md。触发："做个公众号封面 / 微信首图次图对 / 视频号封面 / 公众号分享图 / 长图头"。NOT XHS 3:4 尺寸，NOT XHS 贴纸密集风。
 visibility: public
 mode: template
 carrier: fixed-image

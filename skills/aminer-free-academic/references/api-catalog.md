@@ -11,7 +11,7 @@
 - [Paper APIs](#paper-apis)
 - [Scholar APIs](#scholar-apis)
 - [Institution APIs](#institution-apis)
-- [Venue APIs](#venue-apis)
+- [Venue APIs]((#venue-apis)
 - [Patent APIs](#patent-apis)
 
 ---
@@ -134,7 +134,7 @@ curl -X POST \
   -H 'Content-Type: application/json;charset=utf-8' \
   -H "Authorization: ${AMINER_API_KEY}" \
   -H 'X-Platform: openclaw' \
-  -d '{"name":"王曙","offset":0,"org":"Shanghai Jiaotong","size":10}'
+  -d '{"name":"Wang Shu","offset":0,"org":"Shanghai Jiaotong","size":10}'
 ```
 
 ---
@@ -169,7 +169,7 @@ curl -X POST \
   -H 'Content-Type: application/json;charset=utf-8' \
   -H "Authorization: ${AMINER_API_KEY}" \
   -H 'X-Platform: openclaw' \
-  -d '{"orgs":["清华大学"]}'
+  -d '{"orgs":["Qinghua Daxue"]}'
 ```
 
 ---

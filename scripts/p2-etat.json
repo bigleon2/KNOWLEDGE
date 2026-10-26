@@ -1,0 +1,491 @@
+{
+ "traitements": {
+  "skills/finance/SKILL.md": {
+   "fichier": "skills/finance/SKILL.md",
+   "zh_avant": 14,
+   "sha_avant": "6875f4b69be7c9e9e34fda0e6e50f1ebf2fe27e30057ba2917d7ef80f7979ef3",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "3294ad057f55070e06fe828dd1b94f55c0732ad5dc6f22ec55b3bc0644c6d6c3"
+  },
+  "skills/pdf/briefs/creative-flow.md": {
+   "fichier": "skills/pdf/briefs/creative-flow.md",
+   "zh_avant": 3,
+   "sha_avant": "abd8e583f2d0000090d581bb94ef2dd94a694874ae1af8559f51a8491c934970",
+   "zh_apres": 3,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "8ed412a0dc5bf4ac0796980be19652ac35f8a1ca4eb434d5c17acd76bec64740"
+  },
+  "skills/design/design-systems/style-skills/parchment/DESIGN.md": {
+   "fichier": "skills/design/design-systems/style-skills/parchment/DESIGN.md",
+   "zh_avant": 4,
+   "sha_avant": "0e8be4fdb7521b10e0aecb6e1f6a2dab8a55ef0e3ab3a9813b2290ca42116e72",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "d309f9bd33ad23a3e2b9c13f118a126e3bdc9b3bed50c3a50e13aca127367648"
+  },
+  "skills/docx/scenes/resume.md": {
+   "fichier": "skills/docx/scenes/resume.md",
+   "zh_avant": 4,
+   "sha_avant": "1ac3669d0b2ce017cf368bc5932b3e3da37dc4deb1c10d4e2c0748319af51e8d",
+   "zh_apres": 4,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "8c5df3c5415a878a66175d5b31fc87509938f65d9f387eac88476f2d7b144988"
+  },
+  "skills/design/design-systems/brand-inspiration/kami/DESIGN.md": {
+   "fichier": "skills/design/design-systems/brand-inspiration/kami/DESIGN.md",
+   "zh_avant": 4,
+   "sha_avant": "8b149d8a8ec94ae5763ccbb38804b76d4fd0bf32b7f46f1cc5cd5046a7243773",
+   "zh_apres": 4,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "c1d0581c142843f1df20762f97b5960f0b85425063f73f5eaa192fba37fda841"
+  },
+  "skills/skill-finder-cn/package.json": {
+   "fichier": "skills/skill-finder-cn/package.json",
+   "zh_avant": 3,
+   "sha_avant": "9245c1c9472bc37d6ad55ac2f50c4c636320c9f3afc23bb95bec65a31b9f46da",
+   "zh_apres": 3,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "9245c1c9472bc37d6ad55ac2f50c4c636320c9f3afc23bb95bec65a31b9f46da"
+  },
+  "skills/charts/references/seaborn.md": {
+   "fichier": "skills/charts/references/seaborn.md",
+   "zh_avant": 4,
+   "sha_avant": "30b720ebbfb09b9caa7240af51dd7ff97c61d42d78c48e168b5b472aab06df55",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "bb14dd21a8ab2a095e2d5c7c404e0784cced391de287e1d59752f2ee3dd06d33"
+  },
+  "skills/pdf/configs/fonts.md": {
+   "fichier": "skills/pdf/configs/fonts.md",
+   "zh_avant": 4,
+   "sha_avant": "dcafc0a1a82b85d29a09cef4b7560950ac3f6305dbfeba4527c54ab496051876",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "88e4d812b8fdef63af4ab6d3f29190930060c6ea41a2f68dea0c7972a49e3153"
+  },
+  "skills/pdf/typesetting/palette.md": {
+   "fichier": "skills/pdf/typesetting/palette.md",
+   "zh_avant": 4,
+   "sha_avant": "9b80b0c86a741b9226ca9b2dc7ebad10be449170740663e60467fe515eeabc7c",
+   "zh_apres": 4,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "08ccbeb329ee9a4321f3a28474d843c66bda4f03593fcec0f04984cae8efcf76"
+  },
+  "skills/ui-ux-pro-max/SKILL.md": {
+   "fichier": "skills/ui-ux-pro-max/SKILL.md",
+   "zh_avant": 4,
+   "sha_avant": "5ec5214d0fb167af9b1c27e02977aa7593df54c8f59ad7ab8b7be386b29ea846",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "0a21da1ee3ca591c2bd735585ef15d4f754d11c97f84eab1a99846b3bc0af551"
+  },
+  "skills/charts/references/matplotlib.md": {
+   "fichier": "skills/charts/references/matplotlib.md",
+   "zh_avant": 5,
+   "sha_avant": "8cee6d70d33cbcc47a4db58ffe2a029c2ec6cfabe68121603ee0fbeaac4a4e30",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "7c0d3bdad6f4fdef317c99207457ecee3318e0cc929fa9ba20bbc70baed37410"
+  },
+  "skills/docx/SKILL.md": {
+   "fichier": "skills/docx/SKILL.md",
+   "zh_avant": 5,
+   "sha_avant": "c986e93466809b208e0f677d978998a7300ea6eccb26998ba4d410df12296b33",
+   "zh_apres": 5,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "eb08ff0e93075b2a67a45472fc18c57e29f9bab95b5088dd4caca42e9d014a9f"
+  },
+  "skills/pdf/briefs/resume.md": {
+   "fichier": "skills/pdf/briefs/resume.md",
+   "zh_avant": 5,
+   "sha_avant": "d747f5ed351856b6b8cf1c0f16f562c999de2430a9ad054544ad753ab439475b",
+   "zh_apres": 5,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "c3d584995cce5125d32afcae74c95db1068db9b06d723d45114e0c0e0d20fd2c"
+  },
+  "skills/pdf/typesetting/charts.md": {
+   "fichier": "skills/pdf/typesetting/charts.md",
+   "zh_avant": 5,
+   "sha_avant": "024b9103e97c49f714264a64f0fcc37565e4c3e6fab4e38bc97d1d9ad9f3c5c1",
+   "zh_apres": 5,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "725c24006de7e98c6b943fa8515b88a293b782bddccd583960d350b5a2b5497c"
+  },
+  "skills/aminer-free-academic/references/api-catalog.md": {
+   "fichier": "skills/aminer-free-academic/references/api-catalog.md",
+   "zh_avant": 6,
+   "sha_avant": "8ddd90814dcb33aa2d1ead76154d2018b87c3dff0f648c32bd85b0c3bfe92cd1",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "bc047ab1f1fb1caa25ecff8d4d6ccc5c964a5c91c926caaff15e97d1a3866536"
+  },
+  "skills/design/horizontal-craft/data-integrity.md": {
+   "fichier": "skills/design/horizontal-craft/data-integrity.md",
+   "zh_avant": 7,
+   "sha_avant": "597299bca774fa9f482023a8bd3693b29098564c490648ca2086d1dd4be31ff1",
+   "zh_apres": 7,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "712a5b2041f9d6eaa85742d78152ee2b2ab818a8855938d799c7529db38ff8bf"
+  },
+  "skills/design/deck.md": {
+   "fichier": "skills/design/deck.md",
+   "zh_avant": 8,
+   "sha_avant": "ebb26d2da28418def9a0cedf05b5d4061dd85c181c7b9f9ff58f6287b91e9c05",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "55d2d3903de94962fb729a55e862ce58966e616e6ca7183795f71fea6ad7d269"
+  },
+  "skills/pdf/configs/visual_framework.md": {
+   "fichier": "skills/pdf/configs/visual_framework.md",
+   "zh_avant": 5,
+   "sha_avant": "f27ba9d4bebb22e8f090d0e34787ac432df780acc0bcc5ada632f90fdbd2df39",
+   "zh_apres": 5,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "351d3e0139a97d0a1979157117bb360c15e6f207c3d134c0d2c5d22427bd66bb"
+  },
+  "skills/skill-finder-cn/SKILL.md": {
+   "fichier": "skills/skill-finder-cn/SKILL.md",
+   "zh_avant": 9,
+   "sha_avant": "f4ea2284bd14c1092520438e0055defc947d887a0dbb3416800d6b96c647f48f",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "e8b5b24e5dae6381db5c3ab6523b23a3919e899c917edaee7731bc00da78e13c"
+  },
+  "skills/design/horizontal-craft/icon-system.md": {
+   "fichier": "skills/design/horizontal-craft/icon-system.md",
+   "zh_avant": 9,
+   "sha_avant": "a5ea137801b9754d8e980be8ef45808f619c014da1a87d0c7a8de27c05fcd791",
+   "zh_apres": 9,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "adcb5b6eb8a1f5b6ea80c4a026b9f9cfb667a5241e5a6cb9f3cf55b8cae09245"
+  },
+  "skills/charts/references/d3.md": {
+   "fichier": "skills/charts/references/d3.md",
+   "zh_avant": 10,
+   "sha_avant": "de65d66c29e5c062fc2c0f01c9a81bd24cbffb8ceb0094b70fb29b0b69b91595",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "22d9b9e08213c0c50c61ae381dc8ae6d34725e354bf854830e0a54bf3ea916dd"
+  },
+  "skills/design/design-templates/social-card-editorial/references/image-overlay.md": {
+   "fichier": "skills/design/design-templates/social-card-editorial/references/image-overlay.md",
+   "zh_avant": 10,
+   "sha_avant": "324afb30185eec3b09d6310a220311624172474714f40faaad52a0ddd8802593",
+   "zh_apres": 10,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "8b2318ea5429f0edf208e62ccdd8cdaf40e821f192acd3ad20b854fb2ed8a042"
+  },
+  "skills/docx/references/common-rules.md": {
+   "fichier": "skills/docx/references/common-rules.md",
+   "zh_avant": 10,
+   "sha_avant": "6f59abd233ec73aca8fc1404ed53c7a24ad04e731db5eb45bb4f17cbb5831f44",
+   "zh_apres": 10,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "7372b8fadaf24346e44c0f9ac1f834162d529e73f1fef810c5b7b8a282ab0261"
+  },
+  "skills/gift-evaluator/SKILL.md": {
+   "fichier": "skills/gift-evaluator/SKILL.md",
+   "zh_avant": 11,
+   "sha_avant": "d00ebf34377efcf5adf85595e9663bba5ab396c0061326784853b377c5b82cc5",
+   "zh_apres": 11,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "65e298e08a73b10b0e80c804b0cadae4c4d3c5ff0e3d2f9f38b68f46d0b3e3f2"
+  },
+  "skills/design/design-templates/social-card-swiss/references/style-system.md": {
+   "fichier": "skills/design/design-templates/social-card-swiss/references/style-system.md",
+   "zh_avant": 20,
+   "sha_avant": "d4a76dd6362108e67f1ad601041da11f9fce84a1db9750d83aed91b0b9a7a188",
+   "zh_apres": 20,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "e3d8391e332cb509d0a8bcd78d0a730bed14dd5b30ad68ed3ab7696b703f0fbd"
+  },
+  "skills/charts/SKILL.md": {
+   "fichier": "skills/charts/SKILL.md",
+   "zh_avant": 21,
+   "sha_avant": "54588e7810be0c35eb7292bdce8a1cceea0f3f82ba2095c86541748e1e19e726",
+   "zh_apres": 21,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "cc27057ee6aafe4fda0584eaff6edfa71ec5308d3520433eb0b99ee56c77cbc0"
+  },
+  "skills/docx/routes/format.md": {
+   "fichier": "skills/docx/routes/format.md",
+   "zh_avant": 20,
+   "sha_avant": "158cf37a6197afe8b2771f760a4c1a813e0dcbb220396ccd52110ffecad878ab",
+   "zh_apres": 20,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "cbf8cd988859088cabd94266a28984f92d2c7ce4a674e8c71bbb927b2b503bd7"
+  },
+  "skills/design/landing-page.md": {
+   "fichier": "skills/design/landing-page.md",
+   "zh_avant": 21,
+   "sha_avant": "e92f6b189839859101149dd7b954d58b85b98705af294a083282b61479127314",
+   "zh_apres": 21,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "162d445ad1ef7a47e9ee145e7fb19fe394e3ffb652a0a3eb5fc14446d2a6efcf"
+  },
+  "skills/design/design-templates/social-card-swiss/references/platform-specs.md": {
+   "fichier": "skills/design/design-templates/social-card-swiss/references/platform-specs.md",
+   "zh_avant": 22,
+   "sha_avant": "07cf566163cbbb5de2048c5891445793f0255dc2a26ff61499a0de13120795ad",
+   "zh_apres": 22,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "524dcb86eeb3709e2b79eea5d3f2494fadd41b7a55fcbcf5371c7c777a6a6854"
+  },
+  "skills/design/design-templates/pricing-page/SKILL.md": {
+   "fichier": "skills/design/design-templates/pricing-page/SKILL.md",
+   "zh_avant": 37,
+   "sha_avant": "4fb074f3f17150633237451946572b6c4acb304479dd6a1869fe10732ee5ecc8",
+   "zh_apres": 11,
+   "passe2": 1,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "2fc4828fe27c4e1095876ac6e5b61435bc0eaa5b6cfa314b2a359ada929f8b01"
+  },
+  "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/SKILL.md": {
+   "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/SKILL.md",
+   "zh_avant": 40,
+   "sha_avant": "f1909faf67c7e37ea32914ad49c0612312d664ba2221bc6492f320b74105e7dd",
+   "zh_apres": 40,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "f1909faf67c7e37ea32914ad49c0612312d664ba2221bc6492f320b74105e7dd"
+  },
+  "skills/design/horizontal-craft/visual-explanation.md": {
+   "fichier": "skills/design/horizontal-craft/visual-explanation.md",
+   "zh_avant": 41,
+   "sha_avant": "2c0adfe59a5752dbeb44df23b8efe10f807cf61ad1fd2fb7f5d0b17748c80d47",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "7c0add10d1012eecd0d0177d9940fa597173a2db1bff8bbc2175c492b0322afb"
+  },
+  "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/SKILL.md": {
+   "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/SKILL.md",
+   "zh_avant": 67,
+   "sha_avant": "36e413b2f59278c2760b51ba30673e22b0c78ec7af1bcd824aece407d081baec",
+   "zh_apres": 67,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "36e413b2f59278c2760b51ba30673e22b0c78ec7af1bcd824aece407d081baec"
+  },
+  "skills/pptx/SKILL.md": {
+   "fichier": "skills/pptx/SKILL.md",
+   "zh_avant": 70,
+   "sha_avant": "eb0b71a4f5345773cd4ba5652acee7e7960fb3adcdaa271e7d5b77e88a316380",
+   "zh_apres": 39,
+   "passe2": 0,
+   "statut": "ECHEC",
+   "erreur": "densité de lignes altérée (520 → 327)"
+  },
+  "skills/design/horizontal-craft/anti-ai-slop.md": {
+   "fichier": "skills/design/horizontal-craft/anti-ai-slop.md",
+   "zh_avant": 107,
+   "sha_avant": "fcc1ebd32bb80d352a327c1f3bf0c37cef320c68f0861b99030adcd24f9410ca",
+   "zh_apres": 107,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "10dd08da682dce90cdf6d56bcbfd2f05c51498731de4782569cb5aed762aa709"
+  },
+  "skills/design/design-templates/xianying-tool/SKILL.md": {
+   "fichier": "skills/design/design-templates/xianying-tool/SKILL.md",
+   "zh_avant": 109,
+   "sha_avant": "bab5642dde93fe9acaaac0d1afe311f0af8e76796d546367f04af94bbd678404",
+   "zh_apres": 109,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "bab5642dde93fe9acaaac0d1afe311f0af8e76796d546367f04af94bbd678404"
+  },
+  "skills/xlsx/scenes/finance_lite.md": {
+   "fichier": "skills/xlsx/scenes/finance_lite.md",
+   "zh_avant": 168,
+   "sha_avant": "4b34bbcde90e49ca06254cd78450e2f0475ed820354ddaec63ecf8ee33030f14",
+   "zh_apres": 168,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "4b34bbcde90e49ca06254cd78450e2f0475ed820354ddaec63ecf8ee33030f14"
+  },
+  "skills/design/design-templates/wechat-cover-pair/SKILL.md": {
+   "fichier": "skills/design/design-templates/wechat-cover-pair/SKILL.md",
+   "zh_avant": 175,
+   "sha_avant": "c8976e26bdfee6ff35fd55720ec35baf0bad0a0169b3e92f55f9b1fdd490e135",
+   "zh_apres": 173,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "a77c775db34d51ea8f0193129c0f25bf60e9cbc237891154fda777819f12c42a"
+  },
+  "skills/gaokao-collect-student-info/examples/student_shandong.json": {
+   "fichier": "skills/gaokao-collect-student-info/examples/student_shandong.json",
+   "zh_avant": 168,
+   "sha_avant": "a034a7c3f6dba65ae5cebbd449535e11a361902a7822e377ff46b56b775c4b59",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "d52b842a0d5c01dd5bc15b717369bb72d9a39d9c4a477f9cc0de1fa66b099342"
+  },
+  "skills/design/quality-gate.md": {
+   "fichier": "skills/design/quality-gate.md",
+   "zh_avant": 191,
+   "sha_avant": "4103b95691a432adfe126ddc6c970d57c7321208e4a5d7f11e94936c4aef3760",
+   "zh_apres": 33,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "758b5b93813f3d2b8060af317b69744c5120e9a5a05bd5ed1ed8ea4095b2e190"
+  },
+  "skills/design/design-templates/ppt/INDEX.md": {
+   "fichier": "skills/design/design-templates/ppt/INDEX.md",
+   "zh_avant": 339,
+   "sha_avant": "477b2b0e8d399b31e14b84e01392e83ab28e89160e4fe988f92d8e01f0f36260",
+   "zh_apres": 3,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "cc3e9469002ea23ba6b734f754fe005ef52c9eadf8d5d8441cbf481f84514d1f"
+  },
+  "skills/gaokao-collect-student-info/reference.md": {
+   "fichier": "skills/gaokao-collect-student-info/reference.md",
+   "zh_avant": 356,
+   "sha_avant": "171682fc6957fd3dc0fc8359af0e8447c6054172a2e5806d54a4ebebee8b138f",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "4524b0b5c099102eb8cac8c779c754b05af60422272e50f3f881b969cd3ec9a6"
+  },
+  "skills/gaokao-recommend-majors/SKILL.md": {
+   "fichier": "skills/gaokao-recommend-majors/SKILL.md",
+   "zh_avant": 350,
+   "sha_avant": "c9c7d8008807da62880467a45f06cd86d6e36a77f9a930ffedb0a7a7e07cc9c5",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "503a2d5014c80ab7577aa8f07394be5a5eceb5ed27f8fec47b9c816902ee3c83"
+  },
+  "skills/resume-builder/references/export_guide.md": {
+   "fichier": "skills/resume-builder/references/export_guide.md",
+   "zh_avant": 359,
+   "sha_avant": "cbef33cfe96e0a0d15ef0cb68b48c0600ef83d52f572e01527986b00c4fd8eeb",
+   "zh_apres": 12,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "24b3d88a63c1db71a0a15cde9937cd25c48cf2409436f4caef9f86b09a0ca24c"
+  },
+  "skills/job-intent-tracker/references/keywords_internet.md": {
+   "fichier": "skills/job-intent-tracker/references/keywords_internet.md",
+   "zh_avant": 380,
+   "sha_avant": "cc54c8c9d90f6111c4a7101270a8489b32da510a0a64ca74d6826b776dee660f",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "625a13ee358bd7424514a5a99aea6946a6a08849f280e50fba92ab8891f109f6"
+  },
+  "skills/jd-resume-tailor/references/jd_parsing_signals.md": {
+   "fichier": "skills/jd-resume-tailor/references/jd_parsing_signals.md",
+   "zh_avant": 392,
+   "sha_avant": "7d9e12e9d830151eaae17cf43b99c5347e96983fab59780ae22bb350c055a284",
+   "zh_apres": 392,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "7d9e12e9d830151eaae17cf43b99c5347e96983fab59780ae22bb350c055a284"
+  },
+  "skills/task-review/SKILL.md": {
+   "fichier": "skills/task-review/SKILL.md",
+   "zh_avant": 505,
+   "sha_avant": "f0630f0a1d84e8f4dc8fde573ef59988041f3f34e13f8a22a8211c8d164d6f55",
+   "statut": "ECHEC",
+   "erreur": "après 4 essais : z-ai rc=1 : Failed to make API request:  98 |                 headers: headers,\n 99 |                 body: JSON.stringify(requestBody),\n100 |             });\n101 |             if (!response.ok) {\n102 |          "
+  },
+  "skills/quiz-html/README.md": {
+   "fichier": "skills/quiz-html/README.md",
+   "zh_avant": 516,
+   "sha_avant": "6796c14069361db546d0164196589f640fdb6ad7acf0b75d6990466ea8407d0d",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "3f6897b69a8984c75a00700cc17df5facee77c483988b597fe662526224526d1"
+  },
+  "skills/version-management/evals/evals.json": {
+   "fichier": "skills/version-management/evals/evals.json",
+   "zh_avant": 527,
+   "sha_avant": "848667291f4404dca2f3acc2ec03ca9dadb29fb5f0367a84d8d4f388ffcf8c48",
+   "zh_apres": 491,
+   "passe2": 1,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "082b5071d9b31b931c4c494e9add38b005c11e76dd1a6ba96f08917ff290397e"
+  },
+  "skills/podcast-generate/readme.md": {
+   "fichier": "skills/podcast-generate/readme.md",
+   "zh_avant": 537,
+   "sha_avant": "6f3aeaa5e9c607e0a490106759224fe2523e73e406eda1b15528b52c4b1466e3",
+   "zh_apres": 537,
+   "passe2": 0,
+   "statut": "TRADUIT-RESIDUEL",
+   "sha_apres": "6f3aeaa5e9c607e0a490106759224fe2523e73e406eda1b15528b52c4b1466e3"
+  },
+  "skills/resume-builder/references/templates/finance.md": {
+   "fichier": "skills/resume-builder/references/templates/finance.md",
+   "zh_avant": 556,
+   "sha_avant": "6f7aa14501e04dce78bb5d2a17210f39bd79ddf817382e8253125ebeffdf7d67",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "56c00f4e05b63b5f57ef82fccc99c7bc169610aa07663fa0935b65547f72d743"
+  },
+  "skills/interview-prep/references/technical.md": {
+   "fichier": "skills/interview-prep/references/technical.md",
+   "zh_avant": 817,
+   "sha_avant": "6528364806a9194744efc6e9b2f4c8f54df3b91706528e1e9edc0be8383fd5d3",
+   "zh_apres": 0,
+   "passe2": 0,
+   "statut": "TRADUIT",
+   "sha_apres": "a790baf3da98b282037c2a30c1ae9ffc4645af562d1d1d2acd7c161d7868c003"
+  },
+  "skills/web-shader-extractor/SKILL.md": {
+   "fichier": "skills/web-shader-extractor/SKILL.md",
+   "zh_avant": 866,
+   "sha_avant": "36691f8443c6990a31fdd4c34c23ef56aa53d2bf0ffabe2cdc60a61926070580",
+   "statut": "ECHEC",
+   "erreur": "après 5 essais : z-ai rc=1 : Failed to make API request:  98 |                 headers: headers,\n 99 |                 body: JSON.stringify(requestBody),\n100 |             });\n101 |             if (!response.ok) {\n102 |          "
+  },
+  "skills/web-shader-extractor/references/shaders-com.md": {
+   "fichier": "skills/web-shader-extractor/references/shaders-com.md",
+   "zh_avant": 878,
+   "sha_avant": "c6647024141eb344e7df48f61ec9b7f117e91b9d208db0ec77dafe9cf90c70c3",
+   "statut": "ECHEC",
+   "erreur": "après 5 essais : z-ai rc=1 : Failed to make API request:  98 |                 headers: headers,\n 99 |                 body: JSON.stringify(requestBody),\n100 |             });\n101 |             if (!response.ok) {\n102 |          "
+  },
+  "skills/interview-prep/references/salary_negotiation.md": {
+   "fichier": "skills/interview-prep/references/salary_negotiation.md",
+   "zh_avant": 889,
+   "sha_avant": "471b081ab44793ac5368c1230ac0a27698b21affd01f75c49a914c24b1c28e4d",
+   "statut": "ECHEC",
+   "erreur": "après 5 essais : z-ai rc=1 : Failed to make API request:  98 |                 headers: headers,\n 99 |                 body: JSON.stringify(requestBody),\n100 |             });\n101 |             if (!response.ok) {\n102 |          "
+  }
+ }
+}

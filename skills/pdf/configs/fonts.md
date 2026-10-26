@@ -1,103 +1,103 @@
-# Font System
+# Système de polices
 
-## Font Stacks (by pipeline)
+## Piles de polices (par pipeline)
 
-### Creative Pipeline (Playwright / HTML)
+### Pipeline Créative (Playwright / HTML)
 
-Fonts are loaded via Google Fonts CDN in the HTML `<head>`:
+Les polices sont chargées via Google Fonts CDN dans l'en-tête HTML `<head>` :
 
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
 ```
 
-#### Variable Font (for Tension Typesetting)
+#### Police variable (pour la mise en page de type tension)
 
-When `tension_score` is used on `Glass_Canvas`, the engine switches to **Inter Variable** for continuous weight interpolation (100–900):
+Lorsque `tension_score` est utilisé sur `Glass_Canvas`, le moteur bascule vers **Inter Variable** pour une interpolation de poids continue (100–900) :
 
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 ```
 
-This enables `font-variation-settings: 'wght' <value>` for smooth, non-discrete weight transitions. The standard discrete-weight URL is still used when tension is not active.
+Ceci permet `font-variation-settings: 'wght' <valeur>` pour des transitions de poids fluides et non discrètes. L'URL de poids standard discret est toujours utilisée lorsque la tension n'est pas active.
 
-| Variable | Stack | Usage |
+| Variable | Pile | Usage |
 |----------|-------|-------|
-| `--font-sans` | Inter, Noto Sans SC, Liberation Sans, Noto Color Emoji, sans-serif | Body text, UI elements, stats |
-| `--font-serif` | Playfair Display, Noto Serif SC, Cormorant Garamond, Noto Color Emoji, serif | Hero text, editorial headlines |
-| `--font-mono` | Liberation Mono, DejaVu Sans Mono, Noto Color Emoji, monospace | Floating meta, timestamps, codes |
+| `--font-sans` | Inter, Noto Sans SC, Liberation Sans, Noto Color Emoji, sans-serif | Texte du corps, éléments UI, statistiques |
+| `--font-serif` | Playfair Display, Noto Serif SC, Cormorant Garamond, Noto Color Emoji, serif | Texte principal, titres éditoriaux |
+| `--font-mono` | Liberation Mono, DejaVu Sans Mono, Noto Color Emoji, monospace | Métadonnées flottantes, horodatages, codes |
 
-### Report Pipeline (ReportLab)
+### Pipeline Rapport (ReportLab)
 
-ReportLab requires registered fonts. Primary Chinese font is **Noto Serif SC** (思源宋体, serif with sharp elegant strokes):
+ReportLab nécessite des polices enregistrées. La police chinoise principale est **Noto Serif SC** (siyuan songti, police serif avec des traits nets et élégants) :
 
 ```python
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.pdfmetrics import registerFontFamily
 
-# Primary Chinese font — Noto Serif SC (serif, high quality, OFL licensed)
-# FONT_DIR = '/usr/share/fonts' (Linux) or '~/.openclaw/workspace/fonts' (macOS)
+# Police chinoise principale — Noto Serif SC (serif, haute qualité, licence OFL)
+# FONT_DIR = '/usr/share/fonts' (Linux) ou '~/.openclaw/workspace/fonts' (macOS)
 pdfmetrics.registerFont(TTFont('NotoSerifSC', f'{FONT_DIR}/truetype/noto-serif-sc/NotoSerifSC-Regular.ttf'))
 pdfmetrics.registerFont(TTFont('NotoSerifSC-Bold', f'{FONT_DIR}/truetype/noto-serif-sc/NotoSerifSC-Bold.ttf'))
 registerFontFamily('NotoSerifSC', normal='NotoSerifSC', bold='NotoSerifSC-Bold')
 
-# Fallback / legacy Chinese fonts (sans-serif, static weight)
-pdfmetrics.registerFont(TTFont('Noto Sans SC', f'{FONT_DIR}/truetype/chinese/NotoSansSC-Regular.ttf'))  # sans-serif fallback
+# Polices chinoises de secours / héritées (sans-serif, poids statique)
+pdfmetrics.registerFont(TTFont('Noto Sans SC', f'{FONT_DIR}/truetype/chinese/NotoSansSC-Regular.ttf'))  # secours sans-serif
 pdfmetrics.registerFont(TTFont('Noto Sans SC Bold', f'{FONT_DIR}/truetype/chinese/NotoSansSC-Bold.ttf'))
-# Use 'NotoSerifSC' for body, 'NotoSerifSC-Bold' for headings
+# Utiliser 'NotoSerifSC' pour le corps, 'NotoSerifSC-Bold' pour les titres
 ```
 
-> **⚠️ ReportLab CANNOT render emoji.** If content has emoji, route to Creative pipeline.
+> **⚠️ ReportLab NE PEUT PAS restituer les emoji.** Si le contenu contient des emoji, rediriger vers le pipeline Créatif.
 
-### Academic Pipeline (Tectonic / LaTeX)
+### Pipeline Académique (Tectonic / LaTeX)
 
-CJK support via `ctex` package:
+Prise en charge CJK via le package `ctex` :
 ```latex
-\usepackage{ctex}  % Auto-selects appropriate CJK fonts
+\usepackage{ctex}  % Sélectionne automatiquement les polices CJK appropriées
 ```
 
-For manual font selection:
+Pour la sélection manuelle de polices :
 ```latex
 \setCJKmainfont{Noto Serif CJK SC}
 \setCJKsansfont{Noto Sans CJK SC}
 ```
 
-> **⚠️ LaTeX silently drops emoji characters.** If content has emoji, route to Creative pipeline.
+> **⚠️ LaTeX supprime silencieusement les caractères emoji.** Si le contenu contient des emoji, rediriger vers le pipeline Créatif.
 
-## Emoji Font Fallback
+## Police de secours pour emoji
 
-All Creative pipeline font stacks include emoji fallback:
-- **macOS**: `Noto Color Emoji` (cross-platform, full color emoji)
-- **Windows**: `Noto Color Emoji`
-- **Linux**: `Noto Color Emoji` (install: `apt install fonts-noto-color-emoji`)
+Toutes les piles de polices du pipeline Créatif incluent une police de secours pour emoji :
+- **macOS** : `Noto Color Emoji` (multiplateforme, emoji pleine couleur)
+- **Windows** : `Noto Color Emoji`
+- **Linux** : `Noto Color Emoji` (installation : `apt install fonts-noto-color-emoji`)
 
-Chromium (used by Playwright) on macOS renders emoji natively — no extra configuration needed.
+Chromium (utilisé par Playwright) sur macOS restitue les emoji nativement — aucune configuration supplémentaire n'est nécessaire.
 
-## CJK Font Weight Guide
+## Guide de poids de police CJK
 
-| Weight Value | Inter Equivalent | Noto Sans SC Name | Usage |
+| Valeur de poids | Équivalent Inter | Nom Noto Sans SC | Usage |
 |-------------|------------------|-------------------|-------|
-| 300 | Light | Light | Subtitles, captions, meta text |
-| 400 | Regular | Regular | Body text |
-| 500 | Medium | Medium | Semi-emphasis |
-| 700 | Bold | Bold | Headlines, emphasis |
-| 900 | Black | Black | Hero text, stat numbers |
+| 300 | Light | Light | Sous-titres, légendes, métadonnées |
+| 400 | Regular | Regular | Texte du corps |
+| 500 | Medium | Medium | Demi-emphase |
+| 700 | Bold | Bold | Titres, emphase |
+| 900 | Black | Black | Texte principal, nombres de statistiques |
 
-> **Tip**: Noto Sans SC weights 300–900 cover most use cases. Always load at least 400 and 700 via Google Fonts.
+> **Astuce** : Les poids Noto Sans SC 300–900 couvrent la plupart des cas d'utilisation. Toujours charger au moins 400 et 700 via Google Fonts.
 
-## Font Size Scale
+## Échelle de taille de police
 
-Recommended type scale (base: 16px body):
+Échelle de type recommandée (base : 16px pour le corps) :
 
-| Role | Size | Weight | Line-Height |
+| Rôle | Taille | Poids | Interligne |
 |------|------|--------|-------------|
-| Page Ghost Number | 240px | 900 | 1.0 |
-| Hero (large) | clamp(48px, 10vw, 110px) | 900 | 0.88 |
-| Hero (serif thin) | clamp(48px, 10vw, 110px) | 100 | 0.88 |
-| Stat Number | clamp(32px, 5vw, 56px) | 900 | 0.9 |
-| Section Title | 24px | 800 | 1.2 |
-| Subsection | 20px | 700 | 1.3 |
-| Body | 16px | 400 | 1.6–1.7 |
-| Caption | 14px | 400 | 1.5 |
-| Floating Meta | 10px | 400 (mono) | 1.4 |
-| Stat Label | 11px | 400 | 1.2 |
+| Numéro fantôme de page | 240px | 900 | 1.0 |
+| Héros (grand) | clamp(48px, 10vw, 110px) | 900 | 0.88 |
+| Héros (serif fin) | clamp(48px, 10vw, 110px) | 100 | 0.88 |
+| Nombre statistique | clamp(32px, 5vw, 56px) | 900 | 0.9 |
+| Titre de section | 24px | 800 | 1.2 |
+| Sous-section | 20px | 700 | 1.3 |
+| Corps | 16px | 400 | 1.6–1.7 |
+| Légende | 14px | 400 | 1.5 |
+| Métadonnées flottantes | 10px | 400 (mono) | 1.4 |
+| Étiquette statistique | 11px | 400 | 1.2 |

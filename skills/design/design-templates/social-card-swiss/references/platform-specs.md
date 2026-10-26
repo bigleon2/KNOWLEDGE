@@ -1,29 +1,29 @@
-# Platform Specs
+# Spécifications de Plateforme
 
-Use high-resolution exports. The user can downsample later.
+Utilisez des exports haute résolution. L'utilisateur pourra ensuite sous-échantillonner.
 
 ## Xiaohongshu / Rednote
 
-Default size:
+Taille par défaut :
 
 - `1080 x 1440`
-- Ratio: `3:4`
-- Export: PNG for text-heavy images, JPEG only when photo-only and file size matters.
+- Ratio : `3:4`
+- Export : PNG pour les images riches en texte, JPEG uniquement lorsque c'est une photo uniquement et que la taille du fichier compte.
 
-Safe area:
+Zone de sécurité :
 
-- Side margin: 72-96px.
-- Top margin: 72-112px.
-- Bottom margin: 80-120px.
-- Keep all text and key objects inside the safe area.
+- Marge latérale : 72-96px.
+- Marge supérieure : 72-112px.
+- Marge inférieure : 80-120px.
+- Gardez tout le texte et les objets clés à l'intérieur de la zone de sécurité.
 
-Recommended set:
+Ensemble recommandé :
 
-- 1 cover.
-- 4-8 content pages.
-- 1 summary or checklist page if the article benefits from it.
+- 1 couverture.
+- 4-8 pages de contenu.
+- 1 page de résumé ou de liste de vérification si l'article en bénéficie.
 
-Naming:
+Nommage :
 
 ```text
 output/xhs-01-cover.png
@@ -32,68 +32,68 @@ output/xhs-03-<topic>.png
 ...
 ```
 
-Cover structure:
+Structure de la couverture :
 
-- Big title with a sharp hook.
-- One strong visual: supplied image, screenshot, generated photo, or product object.
-- Bottom line with 3-5 key points or a compact issue strip.
-- Avoid long subtitles. Put nuance in later pages.
+- Grand titre avec un accroche percutante.
+- Une forte visuelle : image fournie, capture d'écran, photo générée ou objet produit.
+- Ligne du bas avec 3-5 points clés ou une bande de problèmes compacte.
+- Évitez les sous-titres longs. Mettez les nuances dans les pages suivantes.
 
-Content page structure:
+Structure de la page de contenu :
 
-- One idea per page.
-- 12-30 Chinese characters for the title when possible.
-- 2-4 short bullet fragments or one concise paragraph.
-- If a page has a screenshot, reduce the text and give the screenshot enough area.
-- If lower space is empty across pages, combine pages or add a functional element such as checklist, comparison row, quote, or image evidence.
+- Une idée par page.
+- 12-30 caractères chinois pour le titre lorsque c'est possible.
+- 2-4 fragments de puces courts ou un paragraphe concis.
+- Si une page a une capture d'écran, réduisez le texte et donnez à la capture d'écran assez d'espace.
+- Si l'espace inférieur est vide à travers les pages, combinez les pages ou ajoutez un élément fonctionnel tel que liste de vérification, ligne de comparaison, citation ou image de preuve.
 
-## WeChat Official Account Cover Pair
+## Paire de Couvertures pour Compte Officiel WeChat
 
-Generate a pair: one `21:9` main cover and one `1:1` square cover. Build both in the same HTML file, and include a combined preview section that places them together for visual checking.
+Générez une paire : une couverture principale `21:9` et une couverture carrée `1:1`. Construisez-les dans le même fichier HTML, et incluez une section d'aperçu combiné qui les place ensemble pour vérification visuelle.
 
-### 21:9 Main Cover
+### Couverture Principale 21:9
 
-Default size:
+Taille par défaut :
 
 - `2100 x 900`
-- Ratio: `21:9`
+- Ratio : `21:9`
 
-Use:
+Utilisation :
 
-- Main article cover.
-- Full or near-full headline, subtitle, and visual evidence.
-- Keep title readable near center-left or within a clear safe band.
-- Avoid an empty middle. Increase title scale, image scale, or spacing if the center feels hollow.
+- Couverture principale de l'article.
+- Titre complet ou presque complet, sous-titre et preuve visuelle.
+- Gardez le titre lisible près du centre-gauche ou à l'intérieur d'une bande de sécurité claire.
+- Évitez le centre vide. Augmentez l'échelle du titre, l'échelle de l'image ou l'espacement si le centre semble creux.
 
-### 1:1 Cover
+### Couverture 1:1
 
-Default size:
+Taille par défaut :
 
 - `1080 x 1080`
-- Ratio: `1:1`
+- Ratio : `1:1`
 
-Default style:
+Style par défaut :
 
-- Short title only, simplified from the long title.
-- Big type, center aligned.
-- No image unless the user explicitly asks for one.
-- No subtitle by default.
-- Strong contrast and enough breathing room.
+- Uniquement un court titre, simplifié à partir du long titre.
+- Gros texte, centré.
+- Pas d'image sauf si l'utilisateur le demande explicitement.
+- Pas de sous-titre par défaut.
+- Contraste fort et assez d'espace respiratoire.
 
-Short-title rule:
+Règle du titre court :
 
-- Extract the core object and action from the long title.
-- Keep it to roughly 4-10 Chinese characters, or 2 short lines when needed.
-- Do not squeeze the full `21:9` title into the square.
+- Extrayez l'objet et l'action clés du long titre.
+- Gardez-le à environ 4-10 caractères chinois, ou 2 lignes courtes si nécessaire.
+- N'essayez pas de faire tenir le titre complet `21:9` dans le carré.
 
-Example:
+Exemple :
 
 ```text
 Long: 开源了一个 Skill，让 AI 接管你屏幕边那张便签纸
 Square: AI 接管便签纸
 ```
 
-Naming:
+Nommage :
 
 ```text
 output/wechat-21x9-cover.png
@@ -101,22 +101,22 @@ output/wechat-1x1-cover.png
 output/wechat-cover-pair-preview.png
 ```
 
-## Screenshot And Photo Placement
+## Placement des Captures d'Écran et Photos
 
-For supplied screenshots/photos:
+Pour les captures d'écran/photos fournies :
 
-- Put originals in `assets/`.
-- Use CSS `object-fit:cover` only when cropping is safe.
-- Use CSS `object-fit:contain` for UI screenshots, dense text, code, tables, or app windows.
-- Set `object-position` deliberately: top for long UI when top matters, center for objects, 35%-45% vertical for portraits.
-- Do not pin images to the canvas edge unless the design intentionally uses bleed.
+- Mettez les originaux dans `assets/`.
+- Utilisez CSS `object-fit:cover` uniquement lorsque la recadrage est sûr.
+- Utilisez CSS `object-fit:contain` pour les captures d'écran d'interface utilisateur, texte dense, code, tableaux ou fenêtres d'application.
+- Réglez `object-position` intentionnellement : haut pour les longues interfaces utilisateur lorsque le haut compte, centre pour les objets, 35%-45% vertical pour les portraits.
+- Ne pas agrafer les images au bord du canevas sauf si la conception utilise intentionnellement un débordement (bleed).
 
-## Final Response Media
+## Média de la Réponse Finale
 
-In Codex desktop, local media can be shown with absolute paths:
+Dans Codex desktop, les médias locaux peuvent être affichés avec des chemins absolus :
 
 ```markdown
 ![cover](/absolute/path/to/output/xhs-01-cover.png)
 ```
 
-Do this for the most important images, especially the cover and any pages the user asked to inspect.
+Faites cela pour les images les plus importantes, en particulier la couverture et toutes les pages que l'utilisateur a demandé inspecter.

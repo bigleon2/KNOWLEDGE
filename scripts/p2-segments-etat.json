@@ -1,0 +1,130 @@
+{
+ "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/SKILL.md": {
+  "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-8-bit-orbit/SKILL.md",
+  "zh_avant": 40,
+  "blocs": 3,
+  "zh_apres": 0,
+  "echecs_bloc": 0,
+  "sha_apres": "aab75713bbb5019fbfc8f25a195589c4d697f154976a294fae7b71815c1a878f",
+  "statut": "TRADUIT"
+ },
+ "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/SKILL.md": {
+  "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/SKILL.md",
+  "zh_avant": 49,
+  "segments": 10,
+  "mode": "intra",
+  "zh_apres": 36,
+  "segments_traduits": 3,
+  "sha_apres": "e7a133cc8dabea31a98044f04dbde6a7b8af3ee6739b2481ef16737cc7d4a309",
+  "statut": "TRADUIT-RESIDUEL"
+ },
+ "skills/design/design-templates/xianying-tool/SKILL.md": {
+  "fichier": "skills/design/design-templates/xianying-tool/SKILL.md",
+  "zh_avant": 58,
+  "segments": 13,
+  "mode": "intra",
+  "zh_apres": 33,
+  "segments_traduits": 5,
+  "sha_apres": "7464a77d0c779d7fb9010e296d80338c92a40d8859c519307cfd10bd47a0b0d7",
+  "statut": "TRADUIT-RESIDUEL"
+ },
+ "skills/design/design-templates/pricing-page/SKILL.md": {
+  "fichier": "skills/design/design-templates/pricing-page/SKILL.md",
+  "zh_avant": 2,
+  "blocs": 1,
+  "zh_apres": 2,
+  "echecs_bloc": 1,
+  "sha_apres": "5c6df2529f59c0fc53de7786de609f2b42b7404a0da68fff3568ba893ce47c77",
+  "statut": "INCHANGE"
+ },
+ "skills/design/horizontal-craft/anti-ai-slop.md": {
+  "fichier": "skills/design/horizontal-craft/anti-ai-slop.md",
+  "zh_avant": 107,
+  "blocs": 3,
+  "zh_apres": 104,
+  "echecs_bloc": 0,
+  "sha_apres": "c20329a504836c13f4aec28a0d8894081683544fc4435ea9fe0641cf7e822d6e",
+  "statut": "TRADUIT-RESIDUEL"
+ },
+ "skills/pptx/SKILL.md": {
+  "fichier": "skills/pptx/SKILL.md",
+  "zh_avant": 70,
+  "blocs": 4,
+  "zh_apres": 67,
+  "echecs_bloc": 0,
+  "sha_apres": "9709166831e1b3b0293ac858a3da52188a493c4d1050d3e7e3f2ac0eb9972559",
+  "statut": "TRADUIT-RESIDUEL"
+ },
+ "skills/task-review/SKILL.md": {
+  "fichier": "skills/task-review/SKILL.md",
+  "zh_avant": 505,
+  "blocs": 15,
+  "zh_apres": 207,
+  "echecs_bloc": 0,
+  "sha_apres": "54f81e9d2608b8b6d497983fa0f37e656e0b87e3655d0ae5a5933938f19c40ff",
+  "statut": "TRADUIT-RESIDUEL"
+ },
+ "skills/design/design-templates/ppt/INDEX.md": {
+  "fichier": "skills/design/design-templates/ppt/INDEX.md",
+  "zh_avant": 3,
+  "blocs": 1,
+  "zh_apres": 3,
+  "echecs_bloc": 1,
+  "sha_apres": "cc3e9469002ea23ba6b734f754fe005ef52c9eadf8d5d8441cbf481f84514d1f",
+  "statut": "INCHANGE"
+ },
+ "skills/pdf/briefs/creative-flow.md": {
+  "fichier": "skills/pdf/briefs/creative-flow.md",
+  "zh_avant": 3,
+  "blocs": 1,
+  "zh_apres": 3,
+  "echecs_bloc": 1,
+  "sha_apres": "8ed412a0dc5bf4ac0796980be19652ac35f8a1ca4eb434d5c17acd76bec64740",
+  "statut": "INCHANGE"
+ },
+ "skills/skill-finder-cn/package.json": {
+  "fichier": "skills/skill-finder-cn/package.json",
+  "zh_avant": 3,
+  "blocs": 1,
+  "zh_apres": 3,
+  "echecs_bloc": 1,
+  "sha_apres": "9245c1c9472bc37d6ad55ac2f50c4c636320c9f3afc23bb95bec65a31b9f46da",
+  "statut": "INCHANGE"
+ },
+ "skills/design/design-systems/brand-inspiration/kami/DESIGN.md": {
+  "fichier": "skills/design/design-systems/brand-inspiration/kami/DESIGN.md",
+  "zh_avant": 4,
+  "blocs": 2,
+  "zh_apres": 4,
+  "echecs_bloc": 2,
+  "sha_apres": "c1d0581c142843f1df20762f97b5960f0b85425063f73f5eaa192fba37fda841",
+  "statut": "INCHANGE"
+ },
+ "skills/docx/scenes/resume.md": {
+  "fichier": "skills/docx/scenes/resume.md",
+  "zh_avant": 4,
+  "blocs": 1,
+  "zh_apres": 4,
+  "echecs_bloc": 1,
+  "sha_apres": "8c5df3c5415a878a66175d5b31fc87509938f65d9f387eac88476f2d7b144988",
+  "statut": "INCHANGE"
+ },
+ "skills/pdf/typesetting/palette.md": {
+  "fichier": "skills/pdf/typesetting/palette.md",
+  "zh_avant": 4,
+  "blocs": 1,
+  "zh_apres": 4,
+  "echecs_bloc": 1,
+  "sha_apres": "08ccbeb329ee9a4321f3a28474d843c66bda4f03593fcec0f04984cae8efcf76",
+  "statut": "INCHANGE"
+ },
+ "skills/docx/SKILL.md": {
+  "fichier": "skills/docx/SKILL.md",
+  "zh_avant": 5,
+  "blocs": 1,
+  "zh_apres": 5,
+  "echecs_bloc": 1,
+  "sha_apres": "eb08ff0e93075b2a67a45472fc18c57e29f9bab95b5088dd4caca42e9d014a9f",
+  "statut": "INCHANGE"
+ }
+}

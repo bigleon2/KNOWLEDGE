@@ -1,6 +1,6 @@
 ---
 name: quality-gate
-description: Final blocking delivery gate for generated or major-edited design artifacts. A short blocking core (must-pass every time) plus on-demand detail checks (only the relevant ones) and non-blocking polish. Run as a checklist, not a passive reference. Triggers on "质量检查", "交付检查", "delivery check", "design QA", "compliance check", or whenever an artifact is about to be handed off.
+description: Porte de livraison finale bloquante pour les artefacts générés ou édités de manière majeure. Un noyau de blocage court (doit être passé à chaque fois) plus des vérifications détaillées à la demande (seulement les pertinentes) et un polissage non bloquant. Exécuté comme une checklist, pas comme une référence passive. Déclenché par "质量检查", "交付检查", "delivery check", "design QA", "compliance check", ou chaque fois qu'un artefact est sur le point d'être transmis.
 mode: quality-gate
 platform: any
 scenario: delivery-quality
@@ -18,165 +18,166 @@ fidelity: system
 
 # Quality Gate
 
-Run **after** an artifact is generated or substantially edited, **before** delivery. This file only verifies that the right rules were actually applied and visible in the output — the rules themselves live in the artifact skills and `horizontal-craft/*.md`.
+Exécuté **après** qu'un artefact est généré ou édité de manière substantielle, **avant** la livraison. Ce fichier ne vérifie que les bonnes règles ont été réellement appliquées et sont visibles dans la sortie — les règles elles-mêmes résident dans les compétences de l'artefact et `horizontal-craft/*.md`.
 
 ```text
 Brief → Artifact Skill → Template / Design System / Craft → Artifact → [Quality Gate] → Delivery
 ```
 
-If a check fails, fix the **smallest** failing issue. Do not redesign the whole artifact unless the user asked for one.
+Si une vérification échoue, corrigez le **plus petit** problème ayant échoué. Ne rediseignez pas l'ensemble de l'artefact à moins que l'utilisateur ne vous le demande.
 
-This gate has three tiers — run them in order:
+Cette porte comporte trois niveaux — exécutez-les dans l'ordre :
 
-1. **Blocking core** — a short must-pass list. Run **every** time, every delivery, every turn. If you do nothing else, do this.
-2. **On-demand checks** — detailed checks that apply **only when the artifact has the relevant thing** (forms, charts, templates, motion…). Skip the ones that don't apply.
-3. **Non-blocking polish** — note in the summary; never block on these.
+1. **Noyau de blocage** — une courte liste obligatoire à passer. Exécuté **chaque** fois, à chaque livraison, à chaque tour. Si vous ne faites rien d'autre, faites celui-ci.
+2. **Vérifications à la demande** — vérifications détaillées qui s'appliquent **uniquement lorsque l'artefact a l'élément pertinent** (formulaires, graphiques, modèles, animations…). Ignorez ceux qui ne s'appliquent pas.
+3. **Polissage non bloquant** — notez dans le résumé ; ne bloquez jamais sur ces points.
 
 ---
 
-## TIER 1 — Blocking core (must pass, every time)
+## NIVEAU 1 — Noyau de blocage (doit passer, à chaque fois)
 
-These are交付事故级 failures: the artifact reaches the user broken, off-target, dishonest, or visibly cheap. Check all of them on every delivery — this list is short on purpose so it actually gets run.
+Il s'agit d'échecs de niveau **事故级** (échec de niveau incident) : l'artefact atteint l'utilisateur cassé, hors-cible, malhonnête ou visivement bon marché. Vérifiez tous ces points à chaque livraison — cette liste est courte intentionnellement pour qu'elle soit réellement exécutée.
 
 ```text
-[ ] 1. Right artifact type / carrier — matches what the user asked for
-       (a poster delivered as a scrollable page, or a product brief treated as a landing page, fails). [§A]
-[ ] 2. Relevant to the brief — visibly solves the actual request, not a polished wrong answer. [§A]
-[ ] 3. No dead links / no fake JS in a publish-ready artifact —
-       no href="#" / javascript:void(0) unless visibly marked placeholder; no alert('todo'),
-       TODO handler, or console-only "interaction"; every CTA has a real destination or visible pending state. [§B]
-[ ] 4. Content truthfulness AND completeness —
-       content comes from a real read of the source: it neither fabricates what isn't there
-       (fake data, fake works/projects, fake logos/testimonials/awards/metrics/press),
-       NOR omits or waters down what IS there (for source-grounded tasks, each real project/section's
-       substance is actually extracted and shown — not left as vague filler or a thin placeholder).
-       Depth over bulk: the test is "did it faithfully represent the source", not "is there more text". [§B]
-[ ] 5. Chinese fonts actually load — for Chinese content, every named font is really loaded
-       (<link> or @font-face) and font-family contains a CJK font; it must NOT fall straight through to system-ui. [§C]
-[ ] 6. Interactive artifacts have real behavior — controls are clickable and do something real;
-       relevant states (loading / empty / error / success / populated) exist; no placeholder-only interaction. [§D]
-[ ] 7. Anti-AI-slop (whole section, blocking — this is what most affects visual quality) —
-       no decorative emoji as icons/bullets; no default blue-purple gradient as the visual system;
-       no fake proof (logos/testimonials/awards/rankings/press/metrics presented as real);
-       no feature-card filler grid (vague 3-up/4-up); no generic "hero + three cards + CTA" with no
-       content-specific idea; no stock-photo / floating-device / fake-mockup evidence; no Chinese AI-cliché
-       copy; no decorative blobs/orbs to fill space; consistent icon family (no emoji/icon mix);
-       no visualization or interaction added only to look advanced. [§E]
-[ ] 8. Editability markers — sections / slides / screens / components / states are individually
-       identifiable; stable structural anchors exist (semantic HTML, named sections, or selected-region
-       comments); no opaque generated blobs that block local edits; placeholder content is labeled. [§F]
+[ ] 1. Bon type de support / bon format d'artefact — correspond à ce que l'utilisateur a demandé
+       (une affiche livrée comme une page défilante, ou un brief produit traité comme une page de destination, échoue). [§A]
+[ ] 2. Pertinent par rapport au brief — résout visiblement la demande réelle, pas une réponse faussement polie. [§A]
+[ ] 3. Aucun lien mort / aucun faux JS dans un artefact prêt à être publié —
+       pas de href="#" / javascript:void(0) sauf s'ils sont visiblement marqués comme des espaces réservés ; pas d'alert('todo'),
+       de gestionnaire TODO, ou d'« interaction » uniquement pour la console ; chaque CTA a une destination réelle ou un état d'attente visible. [§B]
+[ ] 4. Vérité et intégrité du contenu —
+       le contenu provient d'une lecture réelle de la source : il ne fabrique pas ce qui n'existe pas
+       (données factices, projets/travaux factices, logos/témoignages/récompenses/metrics/presse factices),
+       NI omet ou dilue ce qui EXISTE (pour les tâches basées sur une source, la substance de chaque projet/section réel
+       est effectivement extraite et affichée — pas laissée comme un remplissage vague ou un espace réservé mince).
+       Profondeur plutôt que quantité : le test est « a-t-il fidèlement représenté la source », pas « y a-t-il plus de texte ». [§B]
+[ ] 5. Les polices chinoises se chargent réellement — pour le contenu chinois, chaque police nommée est réellement chargée
+       (<link> ou @font-face) et font-family contient une police CJK ; elle ne DOIT PAS tomber directement sur system-ui. [§C]
+[ ] 6. Les artefacts interactifs ont un comportement réel — les contrôles sont cliquables et font quelque chose de réel ;
+       les états pertinents (chargement / vide / erreur / succès / peuplé) existent ; pas d'interaction uniquement des espaces réservés. [§D]
+[ ] 7. Anti-AI-slop (section entière, bloquante — c'est ce qui affecte le plus la qualité visuelle) —
+       pas d'emoji décoratifs comme icônes/puces ; pas de dégradé bleu-violet par défaut comme système visuel ;
+       pas de fausse preuve (logos/témoignages/récompenses/classements/presse/metrics présentés comme réels) ;
+       pas de grille de remplissage de cartes de fonctionnalités (vague 3-up/4-up) ; pas de « héros + trois cartes + CTA » générique
+       sans idée spécifique au contenu ; pas de preuve par photo de stock / appareil flottant / fausse maquette ;
+       pas de clichés d'IA chinoise (chinese AI-cliché) ; pas de taches/orbes décoratives pour remplir l'espace ;
+       famille d'icônes cohérente (pas de mélange emoji/icone) ; pas de visualisation ou d'interaction ajoutée
+       uniquement paraître avancée. [§E]
+[ ] 8. Marqueurs d'éditabilité — sections / diapositives / écrans / composants / états sont individuellement
+       identifiables ; des ancres structurelles stables existent (HTML sémantique, sections nommées, ou commentaires de région sélectionnée) ;
+       pas de blocs générés opaques qui bloquent les éditions locales ; le contenu d'espace réservé est étiqueté. [§F]
 ```
 
-If any blocking item fails, fix it before delivery. Fix the specific failure — do not redesign by default.
+Si un élément de blocage échoue, corrigez-le avant livraison. Corrigez l'échec spécifique — ne rediseignez pas par défaut.
 
 ---
 
-## TIER 2 — On-demand checks (only when relevant)
+## NIVEAU 2 — Vérifications à la demande (uniquement pertinentes)
 
-Run a check below **only if the artifact actually contains that thing**. Don't run a forms check on a page with no forms. These deepen the blocking core; they are where you confirm craft was really applied.
+Exécutez une vérification ci-dessous **uniquement si l'artefact contient réellement cet élément**. N'exécutez pas une vérification de formulaires sur une page sans formulaires. Ces vérifications approfondissent le noyau de blocage ; c'est là que vous confirmez que le savoir-faire a vraiment été appliqué.
 
-### On-demand: which horizontal-craft to verify
+### À la demande : quel horizontal-craft vérifier
 
-For the craft that actually applies, open that file and confirm its rules are visibly applied. Don't load files that don't apply.
+Pour le savoir-faire qui s'applique réellement, ouvrez ce fichier et confirmez que ses règles sont visiblement appliquées. Ne chargez pas les fichiers qui ne s'appliquent pas.
 
-| Only if the artifact has… | Verify against |
+| Uniquement si l'artefact a… | Vérifier contre |
 |---|---|
-| **(always, final pass)** the anti-slop core above | `horizontal-craft/anti-ai-slop.md` (full file, for the blocking §E check) |
-| Substantial Chinese text / typography-led titles/covers | `horizontal-craft/chinese-typography.md` (+ `reference/fonts.md` when font choice matters) |
-| Charts, diagrams, timelines, maps, explorable models | `horizontal-craft/visual-explanation.md` |
-| UI icons / pictograms / icon buttons | `horizontal-craft/icon-system.md` |
-| Forms / inputs / validation | `horizontal-craft/form-validation.md` |
-| Interactive states / dashboards / tools / prototypes | `horizontal-craft/state-coverage.md` |
-| Metrics / charts / tables / demo data / claims | `horizontal-craft/data-integrity.md` |
-| CTAs / links / proof / citations / logos | `horizontal-craft/link-and-proof.md` |
-| Unclear color direction / no design system | `horizontal-craft/color.md` |
-| Motion / transitions / animated charts | `horizontal-craft/animation-discipline.md` |
-| Pricing / onboarding / dashboards / H5 / conversion flows | `horizontal-craft/laws-of-ux.md` |
-| Advanced effects beyond plain CSS/SVG | `horizontal-craft/technique-library.md` |
+| **(toujours, passage final)** le noyau anti-slop ci-dessus | `horizontal-craft/anti-ai-slop.md` (fichier complet, pour la vérification de blocage §E) |
+| Texte chinois substantiel / titres/couverts menés par la typographie | `horizontal-craft/chinese-typography.md` (+ `reference/fonts.md` quand le choix de police est important) |
+| Graphiques, diagrammes, chronologies, cartes, modèles explorables | `horizontal-craft/visual-explanation.md` |
+| Icônes UI / pictogrammes / boutons avec icône | `horizontal-craft/icon-system.md` |
+| Formulaires / entrées / validation | `horizontal-craft/form-validation.md` |
+| États interactifs / tableaux de bord / outils / prototypes | `horizontal-craft/state-coverage.md` |
+| Metrics / graphiques / tableaux / données de démonstration / affirmations | `horizontal-craft/data-integrity.md` |
+| CTAs / liens / preuves / citations / logos | `horizontal-craft/link-and-proof.md` |
+| Direction de couleur peu claire / pas de système de design | `horizontal-craft/color.md` |
+| Animation / transitions / graphiques animés | `horizontal-craft/animation-discipline.md` |
+| Tarification / intégration / tableaux de bord / H5 / flux de conversion | `horizontal-craft/laws-of-ux.md` |
+| Effets avancés au-delà du CSS/SVG standard | `horizontal-craft/technique-library.md` |
 
-### On-demand: Template adaptation — only if a template/seed was used
-
-```text
-[ ] markdown / SKILL.md instructions were treated as primary over pattern.html
-[ ] pattern.html was not copied wholesale; output isn't a shallow text/color reskin
-[ ] placeholder copy / fake assets are replaced or labeled; unused sections removed, not filled with fake content
-[ ] template structure serves the current artifact skill and the user's goal
-```
-
-### On-demand: Design-system / visual consistency — only if a system/reference applies or visual coherence is at risk
+### À la demande : Adaptation de modèle — uniquement si un modèle/graine a été utilisé
 
 ```text
-[ ] typography, color, spacing, radius, shadows, components share one visual language
-[ ] accent color has a role and isn't overused; no unrelated style systems mixed by accident
-[ ] system constraints don't override usability or carrier fit
+[ ] les instructions markdown / SKILL.md ont été traitées comme primaires sur pattern.html
+[ ] pattern.html n'a pas été copié en bloc ; la sortie n'est pas un re-skinage superficiel de texte/couleur
+[ ] le texte d'espace réservé / les faux actifs sont remplacés ou étiquetés ; les sections inutilisées sont supprimées, pas remplies de contenu factice
+[ ] la structure de modèle sert la compétence d'artefact actuelle et l'objectif de l'utilisateur
 ```
 
-### On-demand: Interaction & state detail — only for interactive artifacts (beyond blocking #6)
+### À la demande : Système de design / cohérence visuelle — uniquement si un système/référence s'applique ou si la cohérence visuelle est à risque
 
 ```text
-[ ] form validation preserves input and explains recovery
-[ ] dangerous actions have confirm / undo / clear prevention
-[ ] keyboard and focus behavior are usable
+[ ] typographie, couleur, espacement, rayon, ombres, composants partagent un langage visuel
+[ ] la couleur d'accent a un rôle et n'est pas trop utilisée ; aucun système de style non lié n'est mélangé par accident
+[ ] les contraintes système ne remplacent pas l'utilisabilité ou l'adéquation au support
 ```
-Reference: `horizontal-craft/state-coverage.md`, `horizontal-craft/form-validation.md`.
 
-### On-demand: Visual explanation — only if charts / diagrams / timelines / maps / explorable models exist
+### À la demande : Détail d'interaction & d'état — uniquement pour les artefacts interactifs (au-delà du blocage #6)
 
 ```text
-[ ] representation matches the information shape; has a clear comprehension goal
-[ ] interaction changes what the user can understand/compare/filter/decide (no decorative-only controls or fake filters)
-[ ] charts have readable labels, units, scales, conclusions; diagrams have legible nodes, clear arrows, labeled branches
-[ ] labels stay readable at target viewport / export scale
-[ ] it explains MORE than a clear paragraph or table would (if not, simplify)
+[ ] la validation de formulaire préserve la saisie et explique la récupération
+[ ] les actions dangereuses ont confirmation / annulation / prévention d'effacement
+[ ] le comportement clavier et focus est utilisable
 ```
-Reference: `horizontal-craft/visual-explanation.md`.
+Référence : `horizontal-craft/state-coverage.md`, `horizontal-craft/form-validation.md`.
 
-### On-demand: Accessibility — verify when it matters; NOT blocking for marketing/display artifacts
-
-Design artifacts are mostly marketing/display, so accessibility is **not** a blocking gate here. Apply it when the artifact is a real interactive tool, a form, or when the user/brand requires compliance. Even then, only two items rise toward "really should fix": **severe contrast that hurts readability**, and **icon-only controls with no accessible name** (these affect actual usability). The rest below are good practice, noted not blocked.
+### À la demande : Explication visuelle — uniquement si des graphiques / diagrammes / chronologies / cartes / modèles explorables existent
 
 ```text
-[ ] text + non-text contrast sufficient
-[ ] focus-visible exists; interactive elements keyboard reachable
-[ ] buttons/links use correct semantics; inputs have labels; icon-only controls have accessible names
-[ ] decorative icons aria-hidden; chart info not conveyed by color alone
-[ ] reduced-motion fallback when motion exists
+[ ] la représentation correspond à la forme de l'information ; a un objectif de compréhension clair
+[ ] l'interaction change ce que l'utilisateur peut comprendre/comparer/filtrer/décider (pas de contrôles purement décoratifs ou de filtres factices)
+[ ] les graphiques ont des étiquettes lisibles, unités, échelles, conclusions ; les diagrammes ont des nœuds lisibles, des flèches claires, des branches étiquetées
+[ ] les étiquettes restent lisibles à l'échelle de vue/export cible
+[ ] cela explique PLUS qu'un paragraphe ou tableau clair ne le ferait (sinon, simplifier)
 ```
-Reference: `horizontal-craft/accessibility.md`.
+Référence : `horizontal-craft/visual-explanation.md`.
+
+### À la demande : Accessibilité — vérifier quand cela compte ; PAS bloquant pour les artefacts marketing/d'affichage
+
+Les artefacts de design sont principalement marketing/d'affichage, donc l'accessibilité **n'est pas** une porte de blocage ici. Appliquez-la lorsque l'artefact est un outil interactif réel, un formulaire, ou lorsque l'utilisateur/la marque exige la conformité. Même alors, seuls deux éléments tendent vers « devrait vraiment être corrigé » : **contraste sévéré qui nuit à la lisibilité**, et **contrôles uniquement avec icônes sans nom accessible** (ceux-ci affectent l'utilisabilité réelle). Le reste ci-dessous est une bonne pratique, noté mais non bloquant.
+
+```text
+[ ] contraste texte + non-texte suffisant
+[ ] focus-visible existe ; les éléments interactifs sont accessibles au clavier
+[ ] les boutons/liens utilisent la sémantique correcte ; les entrées ont des étiquettes ; les contrôles uniquement avec icônes ont des noms accessibles
+[ ] les icônes décoratives aria-hidden ; les informations du graphique ne sont pas transmises uniquement par la couleur
+[ ] repli en cas de réduction du mouvement quand le mouvement existe
+```
+Référence : `horizontal-craft/accessibility.md`.
 
 ---
 
-## TIER 3 — Non-blocking polish
+## NIVEAU 3 — Polissage non bloquant
 
-Note in the delivery summary; do not block unless severe. Do not over-polish by adding decoration — fix structure, hierarchy, content, proof, interaction, and representation first.
+Notez dans le résumé de livraison ; ne bloquez pas sauf cas graves. Ne sur-polissez pas en ajoutant de la décoration — réparez d'abord la structure, la hiérarchie, le contenu, les preuves, l'interaction et la représentation.
 
 ```text
-[ ] visual rhythm could be more distinctive
-[ ] one section feels generic
-[ ] motion could be more purposeful
-[ ] a chart could be simplified further
-[ ] the design system could be made more explicit
+[ ] le rythme visuel pourrait être plus distinctif
+[ ] une section semble générique
+[ ] l'animation pourrait être plus intentionnelle
+[ ] un graphique pourrait être simplifié davantage
+[ ] le système de design pourrait être rendu plus explicite
 ```
 
 ---
 
-## Section references (for the blocking core)
+## Références de section (pour le noyau de blocage)
 
-The blocking items above point to these short clarifications:
+Les éléments de blocage ci-dessus pointent vers ces courtes clarifications :
 
-- **§A Brief & carrier** — artifact type matches request; audience/use case visible; language matches; output surface matches platform; major constraints respected; the carrier behaves like its kind (landing = single-subject conversion; portfolio = work/identity hierarchy + project detail; prototype = reachable states + real interaction; content-page = linear reading; info-interactive = explorable info, not a product demo; web-tool = input→logic→result; social-card = fixed canvas, one role; deck = one idea per slide).
-- **§B Truthfulness & completeness** — verifiable honesty (links, data, demo labels) AND faithful, complete representation of real source content. Don't invent; don't omit. Demo/sample data labeled; numbers sourced or softened.
-- **§C Chinese typography** — named fonts really loaded; CJK font in the stack; never fall through to an uncontrolled fallback. (Full rules: `chinese-typography.md`.)
-- **§D Interaction** — real behavior, no placeholder JS, relevant states present. (Full rules: `state-coverage.md`.)
-- **§E Anti-AI-slop** — the whole anti-slop list is blocking because it is what most affects visual quality. (Full rules: `anti-ai-slop.md`.)
-- **§F Editability** — identifiable sections/components, stable anchors, no opaque blobs, labeled placeholders — so the user can locally edit and iterate.
+- **§A Brief & support** — le type d'artefact correspond à la demande ; public/cas d'utilisation visible ; langue correspondante ; surface de sortie correspondant à la plateforme ; contraintes majeures respectées ; le support se comporte comme son genre (landing = conversion à sujet unique ; portfolio = hiérarchie travail/identité + détail projet ; prototype = états atteignables + interaction réelle ; content-page = lecture linéaire ; info-interactive = information explorables, pas une démo produit ; web-tool = saisie→logique→résultat ; social-card = canevas fixe, un rôle ; deck = une idée par diapositive).
+- **§B Vérité & intégrité** — honnêté vérifiable (liens, données, étiquettes de démo) ET représentation fidèle et complète du contenu source réel. Ne fabriquez pas ; omettez pas. Données de démo/échantillon étiquetées ; nombres sources ou adoucis.
+- **§C Typographie chinoise** — polices nommées réellement chargées ; police CJK dans la pile ; ne tombe jamais sur un repli non contrôlé. (Règles complètes : `chinese-typography.md`.)
+- **§D Interaction** — comportement réel, pas de JS d'espace réservé, états pertinents présents. (Règles complètes : `state-coverage.md`.)
+- **§E Anti-AI-slop** — toute la liste anti-AI-slop est bloquante car c'est ce qui affecte le plus la qualité visuelle. (Règles complètes : `anti-ai-slop.md`.)
+- **§F Editabilité** — sections/composants identifiables, ancres stables, pas de blocs opaques, espaces réservés étiquetés — afin que l'utilisateur puisse éditer localement et itérer.
 
 ---
 
 ## 交付（门禁内部跑，不向用户念清单）
 
-质量门禁是**内部动作**——跑它，但**不要把检查清单逐条汇报给用户**（不要输出 pass/fail 表、不要列「①产物类型 pass ②相关 pass…」）。这和输出纪律一致：用户要的是做好的产物，不是质检过程。
+La porte de qualité est une **action interne** — exécutez-la, mais **ne rapportez pas la checklist point par point à l'utilisateur** (ne sortez pas de tableaux pass/fail, ne listez pas « ① type d'artefact pass ② pertinent pass… »). Cela est cohérent avec la discipline de sortie : l'utilisateur veut un bien fait produit, pas le processus de contrôle qualité.
 
-- 默认：检查通过就**直接交付产物**，不附任何门禁清单 / 汇总表。
-- 仅当确实**修复了**某个问题、或有**用户该知道的非阻塞提示**（如「项目图用了占位，建议你发真实图替换」）时，用**一句自然的话**说明，而不是念清单。
-- 绝不在产物里嵌入 compliance 注释块。
+- Par défaut : si la vérification passe, **livrez directement l'artefact**, sans aucune checklist / tableau récapitulatif de porte.
+- Uniquement si un problème a été effectivement **corrigé**, ou s'il y a des **non-bloques que l'utilisateur devrait savoir** (comme « les images du projet sont des espaces réservés, je vous suggère de les remplacer par de vraies images »), expliquez-le avec **une phrase naturelle**, pas en lisant la checklist.
+- Ne mettez JAMAIS de blocs de commentaires de conformité dans l'artefact.

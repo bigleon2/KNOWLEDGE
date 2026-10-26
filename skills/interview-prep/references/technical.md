@@ -1,100 +1,100 @@
-# 技术面题库
+# Banque de questions techniques
 
-适用：研发 / 算法 / 数据 / DevOps 岗位的 1~2 面（技术轮）。
+Applicable : aux 1ère et 2ème entrevues (tours techniques) pour les postes R&D / Algorithme / Données / DevOps.
 
-按职级分层：
-- **初级（0-3 年）**：基础八股 + 简单算法 + 项目细节
-- **中级（3-5 年）**：系统设计 + 复杂场景题 + 项目深度追问
-- **高级（5+ 年）**：架构权衡 + 跨团队问题 + 业务理解
+Organisé par niveau de compétence :
+- **Débutant (0-3 ans)** : fondamentaux de base + algorithmes simples + détails du projet
+- **Intermédiaire (3-5 ans)** : conception de systèmes + questions de scénarios complexes + approfondissement du projet
+- **Avancé (5+ ans)** : compromis architecturaux + problèmes inter-équipes + compréhension métier
 
-## 一、后端 / 服务端
+## I. Backend / Serveur
 
-### 基础八股（每家都问）
-1. HTTP / HTTPS / TLS 流程，session vs cookie vs token
-2. TCP 三握四挥，为什么是 4 次挥手
-3. MySQL 索引底层（B+ 树）、何时失效、最左前缀
-4. MySQL 事务隔离级别 + 各自解决什么问题
-5. Redis 持久化（RDB / AOF）+ 主从 + 哨兵 + 集群
-6. Redis 缓存击穿 / 穿透 / 雪崩 怎么解
-7. 分布式锁 3 种实现（Redis / Zookeeper / 数据库）+ 各自坑
-8. Kafka 怎么保证消息不丢、不重复、有序
-9. JVM 内存模型 + GC（Java 岗）/ Goroutine 调度（Go 岗）
-10. 一致性哈希、CAP、BASE、Raft / Paxos 简述
+### Fondamentaux de base (posés par chaque entreprise)
+1. Flux HTTP / HTTPS / TLS, session vs cookie vs token
+2. Les trois poignées de main et quatre fermetures de TCP, pourquoi quatre fermetures
+3. Fondamentaux des index MySQL (arbre B+), quand ils deviennent inefficaces, préfixe le plus à gauche
+4. Niveaux d'isolation des transactions MySQL + problèmes que chacun résout
+5. Persistance de Redis (RDB / AOF) + réplication maître-esclave + sentinel + cluster
+6. Comment résoudre la panne de cache / la perforation de cache / l'effondrement de cache Redis
+7. Trois implémentations de verrouillage distribué (Redis / Zookeeper / base de données) + leurs pièges respectifs
+8. Comment Kafka garantit que les messages ne sont ni perdus, ni dupliqués, et ordonnés
+9. Modèle mémoire JVM + GC (poste Java) / Ordonnancement Goroutine (poste Go)
+10. Bref aperçu du hachage de consistence, CAP, BASE, Raft / Paxos
 
-### 系统设计高频
-- 设计一个秒杀系统（QPS 10w）
-- 设计一个短链服务（生成 / 重定向 / 统计）
-- 设计一个分布式 ID 生成器
-- 设计微博 feed 流（推 / 拉 / 推拉结合）
-- 设计一个限流器（令牌桶 / 漏桶 / 滑动窗口）
+### Questions fréquentes de conception de systèmes
+- Concevoir un système de vente flash (10k QPS)
+- Concevoir un service de raccourcissement d'URL (génération / redirection / statistiques)
+- Concevoir un générateur d'ID distribués
+- Concevoir un flux de fil de Weibo (push / pull / push-pull combiné)
+- Concevoir un limiteur de débit (seau de jetons / seufre d'écoulement / fenêtre glissante)
 
-### 系统设计回答框架
+### Cadre de réponse pour la conception de systèmes
 ```
-1. 澄清需求（问清 QPS、读写比、数据量、SLA）
-2. 估容量（QPS × 平均请求大小 = 带宽；数据量 × 时间 = 存储）
-3. 高层架构（接入层 → 业务层 → 存储层 → 数据流）
-4. 关键模块深挖（讲清楚选型为什么）
-5. 扩展性 / 高可用 / 容灾
-6. 主动指出 trade-off
+1. Clarifier les besoins (demander QPS, ratio lecture/écriture, volume de données, SLA)
+2. Estimer la capacité (QPS × taille moyenne de requête = bande passante ; volume de données × temps = stockage)
+3. Architecture de haut niveau (couche d'accès → couche métier → couche de stockage → flux de données)
+4. Exploration approfondie des modules clés (expliquer pourquoi le choix a été fait)
+5. Extensibilité / haute disponibilité / récupération de catastrophe
+6. Mentionner activement les compromis (trade-offs)
 ```
 
-## 二、前端
+## II. Frontend
 
-1. 浏览器渲染流程（DNS → TCP → TLS → HTTP → HTML 解析 → 布局 → 绘制）
-2. 事件循环 + 微任务 / 宏任务
-3. 闭包、原型链、this 绑定
-4. React / Vue 响应式原理
-5. 性能优化（FCP / LCP / CLS 指标 + 实操）
-6. SSR vs CSR vs SSG，何时用哪个
-7. 跨域方案（CORS / JSONP / 反向代理）
-8. webpack / vite 区别 + 原理
+1. Processus de rendu du navigateur (DNS → TCP → TLS → HTTP → analyse HTML → mise en page → dessin)
+2. Boucle d'événements + micro-tâches / macro-tâches
+3. Fermetures, chaîne de prototypes, liaison this
+4. Principes de réactivité React / Vue
+5. Optimisation des performances (indicateurs FCP / LCP / CLS + mise en pratique)
+6. SSR vs CSR vs SSG, quand les utiliser
+7. Solutions de cross-domain (CORS / JSONP / proxy inverse)
+8. Différences webpack / vite + principes
 
-## 三、算法 / 机器学习
+## III. Algorithmes / Machine Learning
 
-### 基础
-1. 偏差 / 方差，过拟合怎么解
-2. L1 / L2 正则的区别
-3. 随机森林 vs GBDT vs XGBoost
-4. 梯度消失 / 爆炸 + 解决（BatchNorm / 残差 / 激活函数）
-5. Attention 机制讲清，Transformer 与 RNN 对比
-6. 样本不平衡处理（采样 / 类权重 / Focal Loss）
-7. 模型评估：准确率、精确率、召回率、AUC、F1，何时用哪个
+### Fondamentaux
+1. Biais / variance, comment résoudre le surajustement
+2. Différence entre régularisation L1 / L2
+3. Forêt aléatoire vs GBDT vs XGBoost
+4. Disparition / explosion de gradient + solutions (BatchNorm / résidus / fonctions d'activation)
+5. Expliquer le mécanisme d'Attention, comparaison Transformer vs RNN
+6. Gestion des déséquilibres d'échantillons (échantillonnage / poids de classe / Focal Loss)
+7. Évaluation de modèle : précision, precision, rappel, AUC, F1, quand les utiliser
 
-### LLM / GenAI 方向（2024+ 热门）
-1. SFT vs RLHF vs DPO，原理 + 何时用
-2. RAG 完整 pipeline：分块策略、Embedding 选型、检索融合、Reranker
-3. Agent 的 tool use / planning / memory，与单 LLM 的区别
-4. 长上下文（YARN / RoPE 缩放、Context window 扩展）
-5. 推理优化：KV cache、speculative decoding、量化
-6. 大模型评估：benchmark、人工评估、LLM-as-Judge 各自坑
+### Direction LLM / GenAI (tendu en 2024+)
+1. SFT vs RLHF vs DPO, principes + quand les utiliser
+2. Pipeline complet RAG : stratégie de segmentation, choix d'Embedding, fusion de recherche, Reranker
+3. Utilisation d'outil / planification / mémoire d'Agent, différence avec un LLM unique
+4. Long contexte (mise à l'échelle YARN / RoPE, extension de la fenêtre de contexte)
+5. Optimisation d'inférence : cache KV, décodage spéculatif, quantification
+6. Évaluation de grands modèles : benchmarks, évaluation humaine, pièges respectifs de LLM-as-Judge
 
-### 项目深挖（每个面试官必问）
-- 你这个模型为什么选 ___ 而不是 ___
-- 数据是怎么标注 / 清洗的，量级
-- 训练用了什么硬件、跑了多久、超参怎么调
-- 上线后效果怎么评估，与基线对比
-- 失败 / bug 的 case，怎么 debug
+### Approfondissement de projet (chaque intervieweur le demande obligatoirement)
+- Pourquoi avez-vous choisi ___ plutôt que ___ pour ce modèle
+- Les données ont-elles été étiquetées / nettoyées, quel volume
+- Quels matériels ont été utilisés pour l'entraînement, combien de temps, comment les hyperparamètres ont été ajustés
+- Comment l'efficacité a-t-elle été évaluée après la mise en ligne, comparaison avec la ligne de base
+- Cas d'échec / bug, comment les debuguer
 
-## 四、数据 / 数仓 / 分析
+## IV. Données / Entrepôt de données / Analyse
 
-### SQL（必考）
-- 行转列 / 列转行 / 透视
-- 窗口函数（rank / dense_rank / lead / lag）
-- 计算 7 日 / 30 日活跃用户
-- 同 user 连续登录天数
-- 留存率 / 漏斗 / 同期群分析
-- 性能优化（索引、explain、分区、避免子查询）
+### SQL (obligatoire)
+- Ligne à colonne / colonne à ligne / tableau croisé dynamique
+- Fonctions de fenêtre (rank / dense_rank / lead / lag)
+- Calcul des utilisateurs actifs sur 7 jours / 30 jours
+- Nombre de jours de connexion consécutifs pour le même utilisateur
+- Taux de rétention / entonnoir / analyse de cohorte
+- Optimisation des performances (index, explain, partitionnement, éviter les sous-requêtes)
 
-### 业务题
-- 给你一个业务场景，让你设计指标体系
-- DAU 跌了 5%，怎么排查
-- 设计一个 A/B 测试（样本量计算、显著性、停损）
-- 用户分层模型（RFM / 生命周期）
+### Questions métier
+- Vous donnez un scénario métier, vous devez concevoir un système d'indicateurs
+- DAU a baissé de 5%, comment investiguer
+- Concevoir un A/B test (calcul de taille d'échantillon, signification, arrêt des pertes)
+- Modèle de segmentation utilisateur (RFM / cycle de vie)
 
-## 五、技术面回答原则
+## V. Principes de réponse aux questions techniques
 
-1. **澄清问题再答**：模糊的题先问 1~2 个澄清问题
-2. **结构化输出**：分点 / 分模块讲，不要意识流
-3. **trade-off 思维**：选 A 而不选 B 时，主动说"因为 ___"
-4. **诚实**：不会的题说"这个我没研究过，但根据我对 X 的理解，可能可以这样想 ___"
-5. **画图 / 写代码**：白板题写代码先讲思路，再写，最后跑测试用例
+1. **Clarifier avant de répondre** : pour les questions floues, poser d'abord 1-2 questions de clarification
+2. **Sortie structurée** : expliquer par points / modules, pas en flux de conscience
+3. **Pensée des compromis** : quand on choisit A plutôt que B, dire activement "parce que ___"
+4. **Honnêteté** : pour les questions qu'on ne connaît pas, dire "je n'ai pas étudié cela, mais selon ma compréhension de X, on pourrait penser ___"
+5. **Dessiner / écrire du code** : pour les exercices au tableau, expliquer d'abord l'approche, puis écrire, et enfin exécuter des cas de test

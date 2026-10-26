@@ -3,8 +3,8 @@ name: docx
 metadata:
   author: Z.AI
   version: "1.0"
-description: "Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. When GLM needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks"
-license: Proprietary. LICENSE.txt has complete terms
+description: "Création, édition et analyse de documents complets avec prise en charge des modifications suivies, des commentaires, de la préservation du formatage et de l'extraction de texte. Lorsque GLM doit travailler avec des documents professionnels (fichiers .docx) pour : (1) Créer de nouveaux documents, (2) Modifier ou éditer du contenu, (3) Travailler avec des modifications suivies, (4) Ajouter des commentaires, ou toute autre tâche documentaire"
+license: Propriétaire. LICENSE.txt contient les termes complets
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -15,45 +15,45 @@ license: Proprietary. LICENSE.txt has complete terms
 
 
 
-# DOCX Creation, Editing, and Analysis
+# DOCX Création, Édition et Analyse
 
-## Quick Setup
+## Installation Rapide
 
 ```bash
-bash "$SKILL_DIR/setup.sh"    # Interactive environment check + install
+bash "$SKILL_DIR/setup.sh"    # Vérification interactive de l'environnement + installation
 ```
 
-## Overview
+## Vue d'ensemble
 
-A .docx file is a ZIP archive containing XML files. This skill provides tools for creating, editing, reading, and reviewing Word documents.
+Un fichier .docx est une archive ZIP contenant des fichiers XML. Cette compétence fournit des outils pour créer, éditer, lire et réviser des documents Word.
 
-## Quick Route — Read This First
+## Itinéraire Rapide — Lisez ceci d'abord
 
-**Step 1**: Determine task type → load the corresponding route file
-**Step 2**: Determine business scene → load the corresponding scene file (if applicable)
-**Step 3**: Load `references/design-system.md` for cover recipes, palettes, and chart colors
-**Step 4**: Load `references/common-rules.md` for shared layout, font, and quality rules
-**Step 5**: Execute per route instructions
-**Step 6**: Run the post-generation checklist
+**Étape 1** : Déterminer le type de tâche → charger le fichier d'itinéraire correspondant
+**Étape 2** : Déterminer le contexte métier → charger le fichier de scène correspondant (si applicable)
+**Étape 3** : Charger `references/design-system.md` pour les modèles de couverture, palettes et couleurs de graphiques
+**Étape 4** : Charger `references/common-rules.md` pour les règles de mise en page, police et qualité partagées
+**Étape 5** : Exécuter les instructions par itinéraire
+**Étape 6** : Exécuter la liste de contrôle post-génération
 
-⚠️ **MANDATORY — Cover Recipe Enforcement (Step 3):**
-When creating a document that needs a cover page, you MUST use one of the 7 validated cover recipes (R1–R7) from `design-system.md`. **Free-form cover code is FORBIDDEN.** The recipe provides the wrapper table, background, layout structure, border settings, and spacing — do not reinvent any of these.
+⚠️ **OBLIGATOIRE — Application du modèle de couverture (Étape 3) :**
+Lors de la création d'un document nécessitant une page de couverture, vous DEVEZ utiliser l'un des 7 modèles de couverture validés (R1–R7) de `design-system.md`. **Le code de couverture libre est INTERDIT.** Le modèle fournit le tableau d'enveloppe, l'arrière-plan, la structure de mise en page, les paramètres de bordure et l'espacement — ne réinventez aucun de ces éléments.
 
-Workflow: (1) Call `selectCoverRecipe(docType, industry)` to get recipe + palette → (2) Use the corresponding `buildCoverRX()` function code from `design-system.md` → (3) Pass your `config` (title, subtitle, metaLines, etc.) into the recipe builder. If you skip this and write cover code from scratch, the cover WILL have compatibility issues (blank pages in MS Office, missing borders, overflow, etc.).
+Workflow : (1) Appeler `selectCoverRecipe(docType, industry)` pour obtenir le modèle + palette → (2) Utiliser le code de fonction correspondant `buildCoverRX()` de `design-system.md` → (3) Passer votre `config` (titre, sous-titre, metaLines, etc.) dans le constructeur de modèle. Si vous sautez cette étape et écrivez le code de couverture à partir de zéro, la couverture AURA des problèmes de compatibilité (pages blanches dans MS Office, bordures manquantes, débordement, etc.).
 
-### Script Path Setup (MANDATORY before any script call)
+### Configuration du chemin de script (OBLIGATOIRE avant tout appel de script)
 
-All CLI tools live in `scripts/` relative to this skill's directory. Before calling any script, resolve the absolute path once:
+Tous les outils CLI résident dans `scripts/` par rapport au répertoire de cette compétence. Avant d'appeler un script, résoudre le chemin absolu une seule fois :
 
 ```bash
-DOCX_SCRIPTS="<skill_directory>/scripts"   # ← parent directory of this SKILL.md
+DOCX_SCRIPTS="<skill_directory>/scripts"   # ← répertoire parent de ce SKILL.md
 
-# Then all commands use $DOCX_SCRIPTS:
+# Ensuite, toutes les commandes utilisent $DOCX_SCRIPTS :
 python3 "$DOCX_SCRIPTS/postcheck.py" output.docx
 python3 "$DOCX_SCRIPTS/add_toc_placeholders.py" output.docx --auto
 ```
 
-**For Python imports** (when generation code needs to import skill modules):
+**Pour les imports Python** (lorsque le code de génération doit importer des modules de compétence) :
 
 ```python
 import sys, os
@@ -62,148 +62,144 @@ if DOCX_SCRIPTS not in sys.path:
     sys.path.insert(0, DOCX_SCRIPTS)
 ```
 
-**⚠️ NEVER use bare `python3 scripts/...`** — it only works if cwd happens to be the skill directory. Always use the absolute `$DOCX_SCRIPTS` path.
+**⚠️ JAMAIS utiliser `python3 scripts/...` nu** — cela ne fonctionne que si le répertoire de travail courant est justement le répertoire de compétence. Utilisez toujours le chemin absolu `$DOCX_SCRIPTS`.
 
-### Task Router
+### Routeur de Tâche
 
-| User Intent | Route | Files to Load |
-|-------------|-------|---------------|
-| Create/write/generate (no attachment) | **Create** | `routes/create.md` + `references/docx-js-core.md` |
-| Edit/modify/revise (has attachment) | **Edit** | `routes/edit.md` + `references/ooxml.md` |
-| Format/layout/font/margin | **Format** | `routes/format.md` |
-| Comment/annotate/review | **Comment** | `routes/comment.md` |
-| Read/analyze/extract | **Read** | `routes/read.md` |
+| Intention Utilisateur | Itinéraire | Fichiers à Charger |
+|-----------------------|------------|--------------------|
+| Créer/écrire/générer (sans pièce jointe) | **Créer** | `routes/create.md` + `references/docx-js-core.md` |
+| Modifier/réviser (avec pièce jointe) | **Modifier** | `routes/edit.md` + `references/ooxml.md` |
+| Formatage/mise en page/police/marges | **Formater** | `routes/format.md` |
+| Commenter/annoter/réviser | **Commenter** | `routes/comment.md` |
+| Lire/analyser/extraire | **Lire** | `routes/read.md` |
 
-### Scene Router (Optional — load after route)
+### Routeur de Scène (Optionnel — charger après l'itinéraire)
 
-| User Keywords | Scene | File |
-|---------------|-------|------|
-| thesis, academic, research, paper, dissertation, abstract, journal | Academic | `scenes/academic.md` |
-| report, analysis, experiment, testing, survey, review, summary, proposal, feasibility, competitor, industry, operations | Report | `scenes/report.md` |
-| contract, agreement, terms, transfer, NDA, confidential, framework, cooperation, service terms, user agreement, procurement | Contract | `scenes/contract.md` |
-| resume, CV, job application | Resume | `scenes/resume.md` |
-| exam, test, quiz, paper (exam context), lesson plan | Exam | `scenes/exam.md` |
-| official document, notice, letter, reply, minutes, red header, government, issuance | Official | `scenes/official-doc.md` |
-| broadcast script, product copy, livestream, speech, presentation script, video script | Copywriting | `scenes/copywriting.md` |
-| plan, proposal (if not report context) | Report | `scenes/report.md` |
-| policy, regulation, standard, management rules | Official | `scenes/official-doc.md` |
+| Mots-clés Utilisateur | Scène | Fichier |
+|-----------------------|-------|---------|
+| thesis, academic, research, paper, dissertation, abstract, journal | Académique | `scenes/academic.md` |
+| report, analysis, experiment, testing, survey, review, summary, proposal, feasibility, competitor, industry, operations | Rapport | `scenes/report.md` |
+| contract, agreement, terms, transfer, NDA, confidential, framework, cooperation, service terms, user agreement, procurement | Contrat | `scenes/contract.md` |
+| resume, CV, job application | CV | `scenes/resume.md` |
+| exam, test, quiz, paper (contexte examen), lesson plan | Examen | `scenes/exam.md` |
+| official document, notice, letter, reply, minutes, red header, government, issuance | Officiel | `scenes/official-doc.md` |
+| broadcast script, product copy, livestream, speech, presentation script, video script | Rédaction | `scenes/copywriting.md` |
+| plan, proposal (si contexte rapport) | Rapport | `scenes/report.md` |
+| policy, regulation, standard, management rules | Officiel | `scenes/official-doc.md` |
 
-**If no scene matches**, use default design rules from `references/design-system.md` and `references/common-rules.md`.
+**Si aucune scène ne correspond**, utiliser les règles de conception par défaut de `references/design-system.md` et `references/common-rules.md`.
 
-## Formatting Standards (Always Apply)
+## Normes de Formatage (Toujours Appliquer)
 
-→ See `references/common-rules.md` for full font profiles, spacing, indent, and layout rules.
+→ Voir `references/common-rules.md` pour les profils de police complets, espacement, retrait et règles de mise en page.
 
-**Key rules (quick reference):**
-- **Line spacing**: 1.3x (`line: 312`) — MANDATORY. Exceptions: resume 1.15x, official doc 28pt fixed, copywriting `400`, contract 1.5x
-- **CJK body**: Justified + 2-char indent (`firstLine: 480` SimSun / `420` YaHei)
-- **Tables**: `margins` set, `ShadingType.CLEAR`, `tableHeader: true`, `cantSplit: true`, title `keepNext: true`
-- **Images**: `type` parameter required, preserve aspect ratio via `image-size`, PageBreak inside Paragraph
-- **Full-page Table row**: `rule: "exact"` with 1200 twips safety margin
+**Règles clés (référence rapide) :**
+- **Espacement des lignes** : 1.3x (`line: 312`) — OBLIGATOIRE. Exceptions : CV 1.15x, document officiel 28pt fixe, rédaction `400`, contrat 1.5x
+- **Corps CJK** : Justifié + retrait de 2 caractères (`firstLine: 480` SimSun / `420` YaHei)
+- **Tableaux** : `margins` définis, `ShadingType.CLEAR`, `tableHeader: true`, `cantSplit: true`, titre `keepNext: true`
+- **Images** : paramètre `type` requis, préserver les proportions via `image-size`, saut de page dans le Paragraphe
+- **Ligne de tableau pleine page** : `rule: "exact"` avec une marge de sécurité de 1200 twips
 
-## Unit Quick Reference
+## Référence Rapide des Unités
 
-| Unit | Value |
-|------|-------|
+| Unité | Valeur |
+|-------|--------|
 | 1 cm | 567 twips |
 | 1 inch | 1440 twips |
 | 1 pt | 20 half-points |
 | A4 | 11906 × 16838 twips |
 
-For Chinese font size table and common margins, see `references/common-rules.md`.
+Pour le tableau de taille de police chinoise et les marges courantes, voir `references/common-rules.md`.## Post-Generation — Vérification en Deux Couches
 
-## Post-Generation — Two-Layer Verification
+### Couche 1 : Liste de contrôle manuelle (auto-vérification pendant la génération)
 
-### Layer 1: Manual Checklist (self-check during generation)
+#### Format de base
+- [ ] L'interligne est de 1.3x (`line: 312`) ou substitution spécifique à la scène
+- [ ] Le corps CJK a une indentation de 2 caractères (`firstLine: 480` ou `420`)
+- [ ] Les tableaux ont des marges définies
+- [ ] Les images conservent leur ratio d'aspect via `image-size` — NE JAMAIS coder en dur la largeur et la hauteur en même temps
+- [ ] PageBreak à l'intérieur d'un Paragraph
+- [ ] ShadingType utilise CLEAR
+- [ ] Chaque liste numérotée utilise un `reference` unique
+- [ ] **⚠️ CRITIQUE — Les guillemets dans les chaînes JS sont correctement échappés.** Les guillemets courbes chinois (`""` `''`) DOIVENT utiliser des échappements Unicode (`\u201c` `\u201d` `\u2018` `\u2019`) ; les guillemets droits (`"` `'`) utilisent `\"` `\'` ou des délimiteurs alternatifs. **C'est le bug #1 le plus courant dans la génération de code.** Le texte chinois contient fréquemment `""` pour l'emphase ou les noms propres (par exemple, "双11", "前低后高", "618") — chaque occurrence DOIT être échappée. L'échappement manquant produit des erreurs de syntaxe JS qui cassent silencieusement la génération de document.
+- [ ] ImageRun inclut le paramètre `type`
+- [ ] En-tête/pied de page présents (sauf indication contraire de la scène)
 
-#### Basic Format
-- [ ] Line spacing is 1.3x (`line: 312`) or scene-specific override
-- [ ] CJK body has 2-char indent (`firstLine: 480` or `420`)
-- [ ] Tables have margins set
-- [ ] Images preserve aspect ratio via `image-size` — NEVER hardcode both width and height
-- [ ] PageBreak inside Paragraph
-- [ ] ShadingType uses CLEAR
-- [ ] Each numbered list uses unique `reference`
-- [ ] **⚠️ CRITICAL — Quotation marks in JS strings properly escaped.** Chinese curly quotes (`""` `''`) MUST use Unicode escapes (`\u201c` `\u201d` `\u2018` `\u2019`); straight quotes (`"` `'`) use `\"` `\'` or alternate delimiters. **This is the #1 most common code generation bug.** Chinese text frequently contains `""` for emphasis or proper nouns (e.g., "双11", "前低后高", "618") — every occurrence MUST be escaped. Failure to escape produces JS syntax errors that silently break document generation.
-- [ ] ImageRun includes `type` parameter
-- [ ] Header/footer present (unless scene says otherwise)
+#### Styles de titre
+- [ ] Tous les titres de chapitre du corps utilisent `heading: HeadingLevel.HEADING_X` (jamais simulé avec gras + grande police)
+- [ ] Le titre de couverture peut ignorer le style Heading (pas dans la TOC), mais les titres du corps DOIVENT utiliser le style Heading
 
-#### Heading Styles
-- [ ] All body chapter headings use `heading: HeadingLevel.HEADING_X` (never simulate with bold + large font)
-- [ ] Cover title may skip Heading style (not in TOC), but body headings MUST use Heading style
-
-#### Page Break & Blank Page Prevention
-- [ ] Cover/content in separate sections
-- [ ] Three rules to prevent blank pages:
-  - ① When using section(NEXT_PAGE), previous section must NOT end with PageBreak (double break = blank page)
-  - ② PageBreak paragraph SHOULD contain visible text — **exception**: section-ending empty para + PageBreak is allowed (normal section separator, e.g., after cover page)
-  - ③ No more than 3 consecutive empty paragraphs
-- [ ] Full-page Table row height uses `rule: "exact"` (never `"atLeast"` for tall tables)
-- [ ] No unwanted blank pages (check each section ending)
+#### Saut de page et prévention des pages blanches
+- [ ] Couverture/contenu dans des sections séparées
+- [ ] Trois règles pour éviter les pages blanches :
+  - ① Lors de l'utilisation de section(NEXT_PAGE), la section précédente NE DOIT PAS se terminer par PageBreak (double saut = page blanche)
+  - ② Le paragraphe PageBreak DEVRAIT contenir du texte visible — **exception** : paragraphe vide de fin de section + PageBreak est autorisé (séparateur de section normal, par exemple après la page de couverture)
+  - ③ Pas plus de 3 paragraphes vides consécutifs
+- [ ] La hauteur de ligne de tableau pleine page utilise `rule: "exact"` (jamais `"atLeast"` pour les tableaux hauts)
+- [ ] Pas de pages blanches indésirées (vérifier chaque fin de section)
 
 #### TOC
-→ See `references/toc.md` for the complete TOC reference and checklist.
-- [ ] If TOC title exists → `TableOfContents` element must be present
-- [ ] **⚠️ MANDATORY PageBreak after TableOfContents** — a Paragraph containing PageBreak MUST immediately follow the `TableOfContents` element; without it, TOC and body content will render on the same page. This is the #1 TOC formatting failure — never omit it
-- [ ] `add_toc_placeholders.py --auto` runs after generation; exit code = 0
-- [ ] **TOC MUST be in its own section** — body section sets `page: { pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL } }` so page numbers start from the first body page, not from the TOC pages
-- [ ] **Page number API nesting** — `pageNumbers` MUST be inside `page: {}`, NOT at properties top level (see toc.md § Page Number API)
-- [ ] **3-section page numbering** — Cover (no page#) → Front matter (Roman i,ii,iii, start=1) → Body (Arabic 1,2,3, start=1)
-- [ ] **Post-process footers** — Roman section footer instrText must contain `PAGE \* ROMAN \* MERGEFORMAT`; Arabic section `PAGE \* arabic \* MERGEFORMAT` (WPS ignores pgNumType fmt). **⚠️ NEVER use `\* decimal` in instrText** — `decimal` is a docx-js API enum value (`NumberFormat.DECIMAL`), NOT a valid Word field format switch; using it causes page numbers to render as "1decimal", "2decimal". The correct Word field switch for Arabic numerals is `\* arabic`.
-- [ ] **Remove empty pgNumType** — Post-process to strip `<w:pgNumType/>` from cover section (docx-js emits empty element that confuses WPS)
-- [ ] **⚠️ TOC Refresh Hint MANDATORY** — between `TableOfContents` element and the PageBreak, MUST add an italic gray note paragraph telling users to right-click TOC → "Update Field" to refresh page numbers (see toc.md § TOC Refresh Hint)
+→ Voir `references/toc.md` pour la référence et la checklist de la TOC complète.
+- [ ] Si le titre de TOC existe → l'élément `TableOfContents` DOIT être présent
+- [ ] **⚠️ OBLIGATOIRE PageBreak après TableOfContents** — un Paragraph contenant PageBreak DOIT suivre immédiatement l'élément `TableOfContents` ; sans cela, la TOC et le contenu du corps s'afficheront sur la même page. C'est l'échec de formatage TOC #1 — ne jamais l'omettre
+- [ ] `add_toc_placeholders.py --auto` s'exécute après la génération ; code de sortie = 0
+- [ ] **LA TOC DOIT être dans sa propre section** — la section corps définit `page: { pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL } }` afin que les numéros de page commencent à partir de la première page du corps, pas des pages de la TOC
+- [ ] **Imbrication de l'API de numérotation de page** — `pageNumbers` DOIT être à l'intérieur de `page: {}`, PAS au niveau supérieur des propriétés (voir toc.md § API de numérotation de page)
+- [ ] **Numérotation de page en 3 sections** — Couverture (pas de #) → Matière frontale (romain i,ii,iii, start=1) → Corps (arabe 1,2,3, start=1)
+- [ ] **Post-traitement des pieds de page** — Le pied de page de la section romaine DOIT contenir `PAGE \* ROMAN \* MERGEFORMAT` ; la section arabe `PAGE \* arabic \* MERGEFORMAT` (WPS ignore le format pgNumType). **⚠️ JAMAIS utiliser `\* decimal` dans instrText** — `decimal` est une valeur enum de l'API docx-js (`NumberFormat.DECIMAL`), PAS un commutateur de format de champ Word valide ; son utilisation fait que les numéros de page s'affichent comme "1decimal", "2decimal". Le commutateur de champ Word correct pour les chiffres arabes est `\* arabic`.
+- [ ] **Supprimer pgNumType vide** — Post-traitement pour supprimer `<w:pgNumType/>` de la section de couverture (docx-js émet un élément vide qui perturbe WPS)
+- [ ] **⚠️ ASTUCE DE RAFRAÎCHISSEMENT TOC OBLIGATOIRE** — entre l'élément `TableOfContents` et le PageBreak, DOIT ajouter un paragraphe de note en italique gris informant les utilisateurs de faire clic droit sur la TOC → "Update Field" pour rafraîchir les numéros de page (voir toc.md § Astuce de rafraîchissement TOC)
 
-#### Table Cross-Page
-- [ ] Header rows: `tableHeader: true`
-- [ ] All rows: `cantSplit: true`
-- [ ] Title paragraph: `keepNext: true`
+#### Tableau multi-page
+- [ ] Lignes d'en-tête : `tableHeader: true`
+- [ ] Toutes les lignes : `cantSplit: true`
+- [ ] Paragraphe de titre : `keepNext: true`
 
-#### Cover
-- [ ] **Cover MUST use a validated recipe (R1–R7)** from `design-system.md` — free-form cover code is forbidden
-- [ ] Cover recipe matches document type (per `selectCoverRecipe()` in `design-system.md`)
-- [ ] Cover uses the 16838 outer wrapper table with `allNoBorders` (all recipes provide this)
-- [ ] Cover title uses `calcTitleLayout()` — never hardcoded font size above 40pt
-- [ ] Cover spacing uses `calcCoverSpacing()` — never hardcoded large spacing values
-- [ ] Cover content does not overflow (total height ≤ 15638 twips, Table uses `rule: "exact"`)
-- [ ] Every TextRun on dark/colored background has explicit `color` set (Rule 9 — never rely on default black)
-- [ ] Cover section has no trailing PageBreak or empty paragraphs
-- [ ] Title lines split at semantic boundaries (no mid-word breaks, no single-char orphan lines)
-- [ ] No text-character decorative lines (`───`, `━━━`) — use paragraph borders only
+#### Couverture
+- [ ] **LA COUVERTURE DOIT utiliser une recette validée (R1–R7)** de `design-system.md` — le code de couverture libre est interdit
+- [ ] La recette de couverture correspond au type de document (selon `selectCoverRecipe()` dans `design-system.md`)
+- [ ] La couverture utilise le wrapper externe de table 16838 avec `allNoBorders` (toutes les recettes le fournissent)
+- [ ] Le titre de couverture utilise `calcTitleLayout()` — jamais de taille de police codée en dur au-dessus de 40pt
+- [ ] L'espacement de couverture utilise `calcCoverSpacing()` — jamais de grandes valeurs d'espacement codées en dur
+- [ ] Le contenu de couverture ne déborde pas (hauteur totale ≤ 15638 twips, Table utilise `rule: "exact"`)
+- [ ] Chaque TextRun sur un fond foncé/couleur a une `color` explicite définie (Règle 9 — ne jamais compter sur le noir par défaut)
+- [ ] La section de couverture n'a pas de PageBreak ou de paragraphes vides en fin
+- [ ] Les lignes de titre se divisent aux limites sémantiques (pas de coupure au milieu d'un mot, pas de lignes orphelines d'un seul caractère)
+- [ ] Pas de lignes décoratives avec caractères de texte (`───`, `━━━`) — utiliser uniquement les bordures de paragraphe
 
-### Layer 2: Automated Post-Check Script
+### Couche 2 : Script de vérification post-génération automatisée
 
 ```bash
 python3 "$DOCX_SCRIPTS/postcheck.py" output.docx
 ```
 
-Automatically checks 14 business rules: blank pages, **cover overflow (font size/spacing/trailing content)**, line spacing consistency, table margins, table cross-page control (cantSplit/tblHeader), image overflow, image aspect ratio distortion, font fallback, CJK indent, heading hierarchy, ShadingType misuse, TOC quality, document cleanliness (placeholder text/Markdown/HTML residuals), report content quality (abstract presence/heading specificity/vague conclusion detection).
+Vérifie automatiquement 14 règles métier : pages blanches, **débordement de couverture (taille de police/espacement/contenu de fin)**, cohérence de l'interligne, marges de tableau, contrôle de tableau multi-page (cantSplit/tblHeader), débordement d'image, distorsion du ratio d'aspect d'image, police de secours, indentation CJK, hiérarchie de titres, mauvais usage de ShadingType, qualité de TOC, propreté du document (texte d'espace réservé/Markdown/HTML résiduel), qualité du contenu du rapport (présence de résumé/spécificité de titre/détection de conclusion vague).
 
-⚠️ **After generating any document, MUST run postcheck.py and fix all ❌ errors.**
+⚠️ **Après avoir généré n'importe quel document, DOIT exécuter postcheck.py et corriger toutes les erreurs ❌.**
 
-## Math Formulas
+## Formules mathématiques
 
-Formula input uses **LaTeX syntax**, internally converted to docx-js Math objects.
+L'entrée de formule utilise la syntaxe **LaTeX**, convertie internement en objets Math docx-js.
 
-- **Basic formulas** (fractions, sub/superscript, roots, summation) → docx-js Math components
-- **Complex formulas** (3+ nesting, matrices, piecewise functions) → matplotlib PNG fallback
+- **Formules de base** (fractions, indices/exposants, racines, sommes) → composants Math docx-js
+- **Formules complexes** (imbrication 3+, matrices, fonctions par morceaux) → secours matplotlib PNG
 
-See `references/math-formulas.md`.
+Voir `references/math-formulas.md`.
 
-## Charts
+## Graphiques
 
-Default: **matplotlib template library** generates PNG for embedding.
+Par défaut : **bibliothèque de modèles matplotlib** génère un PNG pour l'intégration.
 
-6 ready-to-use templates: bar, line, pie, box, radar, heatmap.
-Colors auto-derived from document palette.accent for style consistency.
-Default palette: Morandi low-saturation (see design-system.md).
+6 modèles prêts à l'emploi : barre, ligne, camembert, boîte, radar, heatmap.
+Les couleurs sont dérivées automatiquement de palette.accent du document pour la cohérence de style.
+Palette par défaut : basse saturation Morandi (voir design-system.md).
 
-See `references/chart-templates.md`.
+Voir `references/chart-templates.md`.## Dépendances
 
-## Dependencies
-
-- **pandoc**: Text extraction
-- **docx**: `bun add docx` or `npm install docx` (creating)
-- **LibreOffice**: PDF conversion, .doc support
-- **Poppler**: PDF to image (`pdftoppm`)
-- **defusedxml**: Secure XML parsing
-- **python-docx**: Simple comment operations
+- **pandoc**: Extraction de texte
+- **docx**: `bun add docx` or `npm install docx` (création)
+- **LibreOffice**: Conversion PDF, support .doc
+- **Poppler**: PDF vers image (`pdftoppm`)
+- **defusedxml**: Analyse XML sécurisée
+- **python-docx**: Opérations simples sur les commentaires

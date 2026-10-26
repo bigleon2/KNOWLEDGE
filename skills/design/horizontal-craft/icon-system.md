@@ -341,3 +341,5 @@ Recommended fallback style:
 ```
 
 Do not call fallback icons Streamline, Lucide, Heroicons, or any other named library.
+
+</DOCUMENT>

@@ -8,8 +8,8 @@ preview:
   type: none
 default_for:
   - anti AI slop
-  - AI味
-  - 反AI味
+- AI wèi (Wei)
+  - fǎn AI wèi (Fan Wei)
   - generic design
   - template-looking design
   - design polish
@@ -52,11 +52,11 @@ Fix these before delivery.
    - Use inline SVG, typographic numbers, CSS shapes, or no icon.
 
 4. **Invented proof**
-   - Do not invent “10× faster”, “99.9% uptime”, “3× productivity”, fake customer logos, fake testimonials, fake awards, fake press quotes, fake benchmarks, or fake market data.
+   - Do not invent "10× faster", "99.9% uptime", "3× productivity", fake customer logos, fake testimonials, fake awards, fake press quotes, fake benchmarks, or fake market data.
    - Use `horizontal-craft/link-and-proof.md`.
 
 5. **Filler content**
-   - No `lorem ipsum`, “feature one / two / three”, “placeholder text”, fake console handlers, TODO comments, or empty demo logic.
+   - No `lorem ipsum`, "feature one / two / three", "placeholder text", fake console handlers, TODO comments, or empty demo logic.
 
 6. **Rounded-card dashboard default**
    - Avoid the reflexive pattern: rounded white card + 1px border + subtle shadow + colored left border.
@@ -74,8 +74,8 @@ Avoid as defaults:
 - purple / blue two-stop gradients as hero, button fill, text gradient, progress bar, or accent
 - generic AI dark mode: near-black background + indigo / purple glow
 - mesh gradients without a strong reason
-- pastel pink / lavender / peach as automatic “soft polish”
-- black + gold / muddy bronze as automatic “premium”
+- pastel pink / lavender / peach as automatic "soft polish"
+- black + gold / muddy bronze as automatic "premium"
 - dirty earth tones on dark backgrounds
 - Tailwind / Vercel tutorial defaults: indigo, slate, gray ramp, emerald accent, tutorial-blue
 - low-contrast muted text, especially opacity `0.4–0.6`
@@ -184,9 +184,9 @@ This is not a copywriting rulebook. Only fix copy when it makes the artifact fee
 
 Common visual-quality smells:
 
-- 赋能、打造、匠心、极致、丝滑、惊艳、震撼、颠覆、革新、引爆、解锁、加持、沉浸、深度、全方位、一站式
-- 闭环、抓手、心智、链路、生态、矩阵、势能、心智占位
-- 全新升级、隆重推出、强势来袭、火热进行中
+- 赋能 (fù néng - empowerment), 打造 (dà zào - build), 匠心 (jiàng xīn - craftsmanship), 极致 (jí zhì - extreme), 丝滑 (sī huá - silky), 惊艳 (jīng yàn - stunning), 震撼 (zhèn hàn - shocking), 颠覆 (diān fù - subvert), 革新 (gé xīn - innovate), 引爆 (yǐn bào - trigger), 解锁 (jiě suǒ - unlock), 加持 (jiā chí - empower), 沉浸 (chén jìn - immersive), 深度 (shēn dù - depth), 全方位 (quán fāng wèi - all-round), 一站式 (yī zhàn shì - one-stop)
+- 闭环 (bì huán - closed loop), 抓手 (zhuā shǒu - handle), 心智 (xīn zhì - mindset), 链路 (liàn lù - chain), 生态 (shēng tài - ecosystem), 矩阵 (jǔ zhèn - matrix), 势能 (shì néng - potential), 心智占位 (xīn zhì zhàn wèi - mindshare)
+- 全新升级 (quán xīn shēng jí - brand new upgrade), 隆重推出 (lóng zhòng tuī chū - grandly launched), 强势来袭 (qiáng shì lái xí - strong arrival), 火热进行中 (huǒ rè jìn xíng zhōng - in progress)
 - 「X，让 Y 更 Z」
 - 「不止 X，更是 Y」
 - 「重新定义 X」
@@ -195,7 +195,7 @@ Common visual-quality smells:
 
 Prefer concrete verbs:
 
-- 查、算、生成、对比、导出、预约、上传、筛选、复盘、发送
+- 查 (chá - check), 算 (suàn - calculate), 生成 (shēng chéng - generate), 对比 (duì bǐ - compare), 导出 (dǎo chū - export), 预约 (yù yuē - book), 上传 (shàng chuán - upload), 筛选 (shāi xuǎn - filter), 复盘 (fù pán - review), 发送 (fā sòng - send)
 
 ---
 
@@ -268,7 +268,7 @@ Forbidden emoji usage:
 - navigation icons
 - status labels
 - CTA decoration
-- fake excitement or “friendly” ornament
+- fake excitement or "friendly" ornament
 
 Allowed emoji usage:
 
@@ -297,3 +297,5 @@ U+2300–U+23FF
 U+FE0F
 U+200D
 ```
+
+</DOCUMENT>

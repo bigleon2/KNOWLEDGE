@@ -1,0 +1,161 @@
+---
+nom: prompt-engineering
+version: 2.3.1
+source: skills/prompt-engineering/SKILL.md
+sha256_source: ff515dc6678a
+genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
+---
+
+> ⚠️ **MARQUEUR D'EXCLUSION (garde D010)** — CE DOSSIER N'EST PAS LU PAR L'ORCHESTRATION. Les dossiers « Prompt Maitre » sont des prompts autonomes à usage HORS écosystème : ils ne sont pas indexés au registre KB, ne sont mobilisés par aucun arbitre, et ne remplacent jamais la forme installée `skills/<skill>/` (source de vérité).
+
+# Prompt Maître autonome — prompt-engineering (v2.3.1)
+
+## Comment utiliser ce prompt (hors écosystème)
+
+Ce document encapsule la compétence sous forme autonome : copiez-le intégralement
+dans un assistant IA (ou ouvrez-le en référence directe) — aucune installation,
+aucun registre, aucune dépendance à l'écosystème Knowledge d'origine n'est requise.
+Les variables de l'écosystème d'origine ont été résolues en valeurs littérales ;
+si des ressources `references/` accompagnent ce dossier, elles sont jointes au même
+emplacement et le prompt y renvoie par leur chemin relatif. La version d'origine
+(source de vérité) vit dans `skills/prompt-engineering/SKILL.md` du dépôt KNOWLEDGE.
+
+---
+
+## Le prompt
+
+---
+name: prompt-engineering
+version: 2.3.1
+category: ecosystem
+language: fr
+tags:
+  - prompt-engineering
+  - optimisation
+  - evaluation
+  - ecosystem
+description: >
+  Skill d'optimisation fine des prompts complexes : rédaction, restructuration
+  (restructure, restructurer), évaluation et validation des
+  déclencheurs officiels des artefacts de prompts (PMs, SKILL.md).
+  Spécialise la méthode prompt-engineering (méthode-mère : gen-plan ; source de vérité : SHARED §7)
+  ; matérialisé le 2026-09-06 (recommandation de session, §5.2).
+dependencies:
+  - skill: gen-plan
+    version: ">=3.7.0"
+    used_at: "Consultation du contexte écosystème (planification E1-E8, méthode-mère §1.9)"
+read_when:
+  - "Déclencher quand la demande concerne : skill d'optimisation fine des prompts complexes : rédaction, restructuration (restructure, restructurer), éval…"
+  - Déclencher si la demande mentionne : skill, prompts, méthode
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
+---
+
+## §0 — Contexte Système (SHARED v1.7.13)
+
+> Écosystème Knowledge : `skills/`=skills/ | `skills/KNOWLEDGE.md`=skills/KNOWLEDGE.md | `true`=true | `NORMAL`=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+
+
+
+## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
+
+Les fichiers des sessions précédentes n'existent pas dans une nouvelle session : tout est
+à reconstruire à partir des documents de la lignée. Ne jamais utiliser le verbe « conserver ».
+Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
+
+## §1 — SPÉCIFICATION FONCTIONNELLE
+
+### §1.1 Mission
+
+prompt-engineering est le skill d'**optimisation fine des prompts complexes** de l'écosystème. Il reçoit en délégation (gen-plan §1.9, SHARED §3.1) les artefacts de prompts exigeant un travail spécialisé : rédaction, restructuration, évaluation et itération. Il ne redéfinit JAMAIS la méthode prompt-engineering (source de vérité : SHARED §7 ; registre d'assignation : SHARED §7 ; orchestration gen-plan : PM gen-plan §1.9) — il la spécialise sur les artefacts de haut niveau (Prompts Maîtres, SKILL.md, evals, rapports de vérification).
+
+### §1.2 Les 4 opérations
+
+| Opération | Description | Artefacts typiques |
+|-----------|-------------|--------------------|
+| **Rédaction** | Production d'un prompt nouveau à partir d'une intention (objectif, contraintes, formats de sortie) | PM, SKILL.md, evals |
+| **Restructuration** | Réorganisation d'un prompt existant (sections, hiérarchie, tableaux, suppression de duplication) | PM, SKILL.md |
+| **Évaluation** | Notation d'un prompt selon la grille (§1.4) : clarté, précision, structure, économie, robustesse | Tout artefact de prompt |
+| **Itération** | Boucle évaluer → ajuster → re-évaluer jusqu'au seuil de qualité (loop engineering) | Tout artefact de prompt |
+
+### §1.3 Modes
+
+| Mode | Nom | Description |
+|------|-----|-------------|
+| M1 | **CIBLE** | Optimisation d'un artefact unique (un SKILL.md, une section de PM) |
+| M2 | **PROJET** | Optimisation d'un ensemble cohérent (les §5 de plusieurs PMs, un corpus) |
+| M3 | **ÉVALUATION** | Notation seule, sans modification (rapport + recommandations) |
+| M4 | **DÉCLENCHEURS** | Validation Description Optimization : trigger_evals (true/false) sur le frontmatter d'un skill |
+| M5 | **IDÉATION** | Idéation Tree of Thought avant rédaction/restructuration d'un prompt complexe (pre-check 3 questions, ToT 5 étapes, 6 frames, N + V + F >= 20) |
+
+
+<!-- PATTERN:PE-M5-IDEATION-v1.0.0 -->
+
+**M5 — IDÉATION (v2.1.0, propositions-qwen.md §2/§8.3)** : avant toute rédaction ou
+restructuration d'un prompt complexe, mener une idéation **Tree of Thought** — pre-check
+3 questions (problème ouvert ? enjeux élevés ? demande explicite ?), exploration de 5 étapes
+ToT, 6 frames de recadrage, quota d'idées N + V + F >= 20 (nouvelles / variantes / folles)
+avant convergence. Protocole complet : `references/ideation-protocol.md`.
+
+<!-- FIN-PATTERN:PE-M5-IDEATION-v1.0.0 -->
+
+### §1.4 Grille d'évaluation (5 axes)
+
+| Axe | Question | Seuil PASS |
+|-----|----------|------------|
+| Clarté | Chaque instruction a-t-elle une seule lecture possible ? | 0 ambiguïté S1/S2 |
+| Précision | Les critères sont-ils mesurables (seuils, formats, versions) ? | Critères vérifiables |
+| Structure | Les sections suivent-elles les conventions (SHARED §5) ? | Conformes |
+| Économie | Le prompt évite-t-il duplication et verbiage (SHARED §6.3) ? | 0 duplication détectée |
+| Robustesse | Le prompt survit-il aux cas limites (blocage, wipe, ressource) ? | Règle d'or n°1 couverte |
+
+Détail d'usage : `references/grille-evaluation-prompt.md`.
+
+### §1.5 Boucle d'itération
+
+1. Évaluation initiale (grille §1.4) — rapport M3.
+2. Ajustements proposés (un par axe sous seuil), classés par impact.
+3. Re-évaluation après application. L'itération s'arrête quand tous les axes PASS, ou après 3 itérations (dérive documentée au worklog, décision utilisateur).
+
+### §1.9bis — Apports de veille 2025-2026 (Task 22 — recherches web ciblées)
+
+- **Catalogue technique → cas d'usage** : CoT (raisonnement multi-étapes) · self-consistency (réduction de variance par vote N chemins) · least-to-most (décomposition progressive) · plan-and-act (plans long-horizon, arXiv 2503.09572) · JSON-schema (sortie vérifiable — > 99 % d'adhérence avec validation + retry). → *Application locale* : self-consistency = prototype des 3 runs de confirm des baselines A2 ; JSON-schema = verdicts et answer keys machine-vérifiables.
+- **Couplage itération ↔ evals mesurés** : la boucle d'itération §1.5 s'ancre sur une métrique objective (trigger_evals, baselines A2) — itérer sans métrique optimise du bruit ; le cap 3 itérations est inchangé ; la grille §1.4 demeure l'outil d'audit. → *Application locale* : trigger_evals + baselines A2 MESURÉES avant toute itération de description ou de prompt.
+- **Règle « artefact générable = schéma + check déterministe »** (arXiv 2601.22025) : tout artefact générable (plan, verdict, answer key) s'accompagne d'un check mécanique — alignement sur la philosophie arbitres de gen-plan. → *Application locale* : tout verdict est re-jouable mécaniquement (arbitres stdlib, pas de LLM).
+- **Veille prompt-as-code** (APE, OPRO, DSPy+GEPA) : horizon d'automatisation de l'optimisation, applicable dès que les evals sont mesurés ; le métier migre vers eval engineering + context engineering (non-duplication SHARED §7 respectée). → *Application locale* : veille consignée, adoption conditionnée à des evals mesurées (baseline A2).
+- **Sources** : platform.claude.com prompt-eng best practices · arxiv 2503.09572 · arxiv 2601.22025 · arize.com GEPA.
+
+> **Révision Task 24** (2026-10-23, session web-fdf5963c — directive propriétaire « révisez les §1.9bis des 16 éléments ») : restructuration en bullets actionnables — chaque apport porte son application locale explicite ; bullet Sources normalisé ; contenu factuel Task 22 inchangé (garde anti-perte : lead-ins et sources préservés).
+
+## §2 — SPÉCIFICATION TECHNIQUE
+
+- **Langage** : Markdown (rapports), Python (scripts de mesure), YAML (frontmatter)
+- **Environnement** : ``skills/`prompt-engineering/`
+- **Arbitres mobilisés** : verify-cross.py (cohérence PM ↔ formes), spell-check.py, verify-correct-work.py
+- **Sorties** : rapport d'évaluation (grille §1.4), prompt restructuré (diff documenté), trigger_evals.json (M4)
+
+## §3 — RELATIONS (extrait de SHARED §3.1)
+
+| Avec | Nature | Détails |
+|------|--------|---------|
+| gen-plan | consulte | Contexte écosystème, planification E1-E8, méthode-mère (SHARED §7), version >= v3.7.0 |
+| gen-plan | délégué par | Optimisation fine des prompts complexes (SHARED §3.1) |
+| install-ecosystem | utilisé par | Bootstrap P6-P7 (PROMPT-MAITRE-INSTALL-ECOSYSTEME.md §A.3 — source d'installation unique v1.1.0) |
+| correct-work | vérifié par | Conformité des artefacts produits, version >= v2.5.0 |
+
+## §4 — CONVENTIONS
+
+- Nommage kebab-case (SHARED §1.2) ; worklog SHARED §1.4 ; Python uniquement (N3).
+- Non-duplication (SHARED §6.3) : la définition des disciplines reste dans SHARED §7 (source de vérité, session A11) ; l'orchestration gen-plan dans PM gen-plan §1.9 ; le présent skill enregistre uniquement ses opérations et sa grille.
+- Toute optimisation d'un artefact PM-gouverné passe par une révision de prompt (modèle de toilettage, SHARED en-tête) — jamais d'édition silencieuse.
+
+
+---
+
+## Ressources locales du dossier
+
+Ressources jointes (usage autonome — lire au besoin pendant l'application du prompt) :
+- `references/grille-evaluation-prompt.md`
+- `references/ideation-protocol.md`

@@ -1,238 +1,236 @@
-# Scene: Resume / CV
+# Scène : CV / Résumé
 
-## Goal
+## Objectif
 
-Generate a complete, authentic, well-structured, position-targeted resume with stable Word formatting. Must simultaneously meet:
-- Authentic and credible content, clear position targeting
-- ATS-friendly, stable Word layout
-- Clean structure, professional visual design, easy to scan
+Générer un CV complet, authentique, bien structuré, ciblé sur un poste et avec une mise en forme Word stable. Doit simultanément répondre aux critères :
+- Contenu authentique et crédible, ciblage de poste clair
+- Compatible avec les systèmes de suivi des candidatures (ATS), mise en page Word stable
+- Structure propre, design visuel professionnel, facile à parcourir
 
-**Execution priority** (when conflicting): Position relevance > Information readability > ATS compatibility > Visual decoration
+**Priorité d'exécution** (en cas de conflit) : Pertinence du poste > Lisibilité de l'information > Compatibilité ATS > Décoration visuelle
 
-**Forbidden:** Producing advice-only / fragments / half-finished drafts; outputting chat-style explanations.
+**Interdit** : Produire uniquement des conseils / des fragments / des brouillons inachevés ; fournir des explications de style chat.
 
-→ Font profile: **B (Visual)** — see `references/common-rules.md`
-→ Placeholder convention & universal prohibitions — see `references/common-rules.md`
-
----
-
-## Scope
-
-Default: generate a position-oriented general resume. Switch to English resume, academic CV, international format, or design portfolio style only when explicitly requested by the user.
+→ Profil de police : **B (Visuel)** — voir `references/common-rules.md`
+→ Convention de placeholder et interdits universels — voir `references/common-rules.md`
 
 ---
 
-## Resume Type Routing
+## Portée
 
-Auto-select module order based on user background and target:
-
-### General Resume (default)
-Name & Contact → Target Position → Profile Summary (optional) → Core Skills → Work Experience → Projects → Education → Certifications / Awards
-
-### New Graduate Resume
-Name & Contact → Target Position → Education → Internship Experience → Projects → Campus Activities / Competitions / Awards → Skills & Certifications
-
-### Technical Role Resume
-Name & Contact → Target Direction → Profile Summary (optional) → Tech Stack / Core Skills → Work Experience → Projects → Education → Open Source / Papers / Patents / Competitions
-
-### Academic CV
-Name & Contact → Research Direction / Target → Education → Research Experience → Papers / Patents / Projects / Grants → Teaching / Academic Service → Awards / Skills / Languages
+Par défaut : générer un CV général orienté poste. Passer au CV en anglais, CV académique, format international ou style portfolio uniquement lorsque l'utilisateur le demande explicitement.
 
 ---
 
-## Input Processing Rules
+## Routage de type de CV
 
-1. If user provides a target position or JD → **must reorganize and rewrite content around position requirements**
-2. If user provides a raw draft → prioritize restructuring, phrasing refinement, and priority reordering; do not rewrite into an unfamiliar career
-3. **Never fabricate** companies, positions, degrees, projects, certifications, awards, papers, patents, data results, or achievements
-4. If critical data is missing → use conservative expressions or placeholder `【Please fill in: ______】`; never fabricate precise numbers
-5. A single resume should generally serve only one primary career direction
+Sélection automatique de l'ordre des modules en fonction du profil utilisateur et de la cible :
 
----
+### CV général (par défaut)
+Informations personnelles → Poste ciblé → Résumé de profil (optionnel) : Compétences clés → Expérience professionnelle → Projets → Formation → Certifications / Récompenses
 
-## Content Quality Constraints
+### CV pour jeune diplômé
+Informations personnelles → Poste ciblé → Formation → Expérience en stage → Projets → Activités universitaires / Compétitions / Récompenses → Compétences & Certifications
 
-### Core Principles
-1. Resume must revolve around the target position — do not spread all experiences equally
-2. Most relevant experiences, projects, and skills must be **placed first and detailed**
-3. Terminology, company names, position titles, date formats, and skill names must be consistent
-4. Must demonstrate: **personal positioning → capability tags → relevant experience → provable results**
-5. No piling of vague self-praise; no inspirational writing or chronological dumps
+### CV pour poste technique
+Informations personnelles → Orientation ciblée → Résumé de profil (optionnel) → Stack technique / Compétences clés → Expérience professionnelle → Projets → Formation → Open Source / Publications / Brevets / Compétitions
 
-### Experience Writing Standards
-
-Each experience bullet should demonstrate: **Action + Object/Context + Method + Result/Impact**
-
-**Recommended verbs:** Led, built, drove, optimized, refactored, designed, delivered, coordinated, improved, reduced, achieved
-
-**Rules:**
-- "Responsible for" / "participated in" are not absolutely forbidden, but must include scope and results
-- Each bullet is concise — one core contribution per bullet
-- Quantify when possible, but do not force-bold all numbers
-- Recent experience gets detail; low-relevance/low-value experience gets compressed or removed
-- Reverse chronological order — most recent and relevant first
-- Expand the most recent 2 experiences; compress earlier ones
-
-### Profile Summary / Self-Assessment
-1. Not mandatory
-2. If included, frame as "Profile Summary" — **3–4 lines max**
-3. Focus on: years of experience, career direction, core capabilities, representative achievements, position fit
-4. **Forbidden** as main content: "hardworking", "strong sense of responsibility", "team player", "quick learner", "outgoing personality"
-
-### Truthfulness & Risk Control
-1. Never fabricate experiences, achievements, education, awards, or certifications
-2. Never upgrade "participated in" to "led" unless user information supports it
-3. Never attribute team results entirely to the individual
-4. Never fabricate revenue, conversion rates, headcount, budgets, or technical metrics
-5. If no data available, use restrained expressions: "improved delivery efficiency", "shortened processing cycle", "supported core business launch"
+### CV académique
+Informations personnelles → Axe de recherche / Cible → Formation → Expérience de recherche → Publications / Brevets / Projets / Subventions → Enseignement / Service académique → Récompenses / Compétences / Langues
 
 ---
 
-## Length Control
+## Règles de traitement des entrées
 
-| Candidate Type | Target Pages |
-|---------------|-------------|
-| New graduate / <3 years experience | **1 page** |
-| 3–10 years experience | 1–2 pages |
-| Senior manager / researcher / academic CV | May exceed 2 pages, but must maintain information density |
-
-**Compression rules:**
-- Experiences >5 years old with low relevance should be compressed
-- Experiences >10 years old and irrelevant may be omitted
-- Never pad low-value experiences just to "look comprehensive"
+1. Si l'utilisateur fournit un poste ciblé ou une description de poste (JD) → **doit réorganiser et réécrire le contenu autour des exigences du poste**
+2. Si l'utilisateur fournit un brouillon brut → prioriser la restructuration, l'amélioration de la formulation et le réordonnancement des priorités ; ne pas réécrire dans une carrière inconnue
+3. **Jamais inventer** d'entreprises, de postes, de diplômes, de projets, de certifications, de récompenses, de publications, de brevets, de résultats de données ou de réalisations
+4. Si des données critiques sont manquantes → utiliser des expressions conservatrices ou un placeholder `【Veuillez remplir : ______】` ; jamais inventer de nombres précis
+5. Un seul CV doit généralement servir une seule direction de carrière principale
 
 ---
 
-## ATS & Structure Constraints
+## Contraintes de qualité du contenu
 
-1. Core information must be plain text — never rely on images, icons, text boxes, or headers/footers for key content
-2. No embedded charts, objects, SmartArt, or WordArt
-3. Experience descriptions use consistent bullet symbols — no complex auto-numbering
-4. Bullets within the same position should be compact — no excess blank lines
+### Principes fondamentaux
+1. Le CV doit tourner autour du poste ciblé → ne pas répartir équitablement toutes les expériences
+2. Les expériences, projets et compétences les plus pertinents doivent être **placés en premier et détaillés**
+3. Terminologie, noms d'entreprise, titres de poste, formats de date et noms de compétences doivent être cohérents
+4. Doit démontrer : **positionnement personnel → étiquettes de capacité → expérience pertinente → résultats vérifiables**
+5. Pas d'accumulation de louanges vagues ; pas d'écriture inspirante ou de vidanges chronologiques
 
-**Table layout vs. ATS balance:** The 3 visual templates (A/B/C) use Table-based layouts for Word visual quality. In strict ATS scenarios (user explicitly says "ATS priority"), prefer Template B (single-column) with reduced table dependency. Default: visual quality first.
+### Normes de rédaction d'expérience
 
----
+Chaque élément d'expérience doit démontrer : **Action + Objet/Contexte + Méthode + Résultat/Impact**
 
-## Module Naming
+**Verbes recommandés** : Mené, construit, piloté, optimisé, refactoré, conçu, livré, coordonné, amélioré, réduit, atteint
 
-Use only standard, universal, recruiter-familiar names:
-- Personal Info, Target Position, Profile Summary, Core Skills, Work Experience, Projects, Education, Certifications, Awards, Languages
+**Règles** :
+- "Responsable de" / "participant à" ne sont pas absolument interdits, mais doivent inclure le périmètre et les résultats
+- Chaque élément est concis → une contribution centrale par élément
+- Quantifier lorsque possible, mais ne pas forcer la mise en gras de tous les nombres
+- L'expérience récente est détaillée ; l'expérience peu pertinente/pas de valeur est compressée ou supprimée
+- Ordre chronologique inversé → le plus récent et pertinent en premier
+- Développer les 2 expériences les plus récentes ; compresser les plus anciennes
 
-**Forbidden fancy names:** "My Growth Journey", "Self-Appreciation", "Shining Moments", "Life Motto"
+### Résumé de profil / Auto-évaluation
+1. Non obligatoire
+2. Si inclus, formater comme "Résumé de profil" → **maximum 3-4 lignes**
+3. Se concentrer sur : années d'expérience, orientation de carrière, capacités fondamentales, réalisations représentatives, adéquation au poste
+4. **Interdit** comme contenu principal : "travailleur acharné", "forte sens des responsabilités", "bon joueur d'équipe", "apprentissage rapide", "personnalité extravertie"
 
----
-
-## Template Disease Prevention
-
-1. Do not include irrelevant identity tags (political affiliation, hometown, etc.) unless user explicitly requests
-2. Do not place low-priority modules (hobbies, languages, personality traits) before work experience
-3. Do not combine cover letter and resume in one document (unless user explicitly requests)
-4. Do not let template feel overpower actual personal information
-5. Do not let "self-assessment" occupy the golden area of the page (should come after core skills/experience)
-
----
-
-## Template Selection
-
-Three templates are provided, auto-selected based on user needs:
-
-| Template | Layout | Best For | Color Style |
-|----------|--------|----------|-------------|
-| A | Left sidebar + right body | General purpose, tech roles | Dark grey sidebar + blue bar headings |
-| B | Dark header banner + single column | Content-heavy / senior candidates | Dark blue header + underline headings |
-| C | Left sidebar + vertical-line headings | International / bilingual / foreign companies | Blue sidebar + left-border headings |
-
-**Selection logic:**
-- Default: Template A
-- Lots of content (expected > 1 page) → Template B (no sidebar, better space utilization)
-- User explicitly requests bilingual / English → Template C
-
-### Industry Color Suggestions
-
-| Career Direction | Sidebar BG | Accent Color | Recommended Template |
-|-----------------|-----------|-------------|---------------------|
-| Tech / Internet | `#1A1F36` (deep blue-purple) | `#667eea` (amethyst) | A or C |
-| Finance / Consulting | `#0F2027` (deep sea blue) | `#D4AF37` (gold) | A or B |
-| Design / Creative | `#2D1B30` (deep purple) | `#f5576c` (coral pink) | A or C |
-| Education / Training | `#1A3A3A` (dark green) | `#3CB4A0` (mint green) | A |
-| Medical / Health | `#0E2030` (dark cyan) | `#3888A8` (medical blue) | B |
-| General / Default | `#303030` (warm dark neutral) | `#B89870` (warm accent) | A |
-
-When industry is unspecified, use default warm neutral palette. This aligns with the Visual Profile warm-neutral guidance in `design-system.md`.
-
-## Key Rules
-
-- **NO cover page / NO TOC**
-- **Target: 1 page** (2 pages max for senior roles)
-- **Compact spacing**: `line: 276` (1.15x)
-- All templates use **bilingual section headings** (e.g., "Work Experience 工作经历")
+### Vérité & Contrôle des risques
+1. Jamais inventer d'expériences, de réalisations, de formation, de récompenses ou de certifications
+2. Jamais transformer "participant à" en "mené" sauf si les informations utilisateur le permettent
+3. Jamais attribuer entièrement à l'individuel des résultats d'équipe
+4. Jamais inventer de revenus, taux de conversion, effectif, budgets ou métriques techniques
+5. Si aucune donnée disponible, utiliser des expressions mesurées : "amélioration de l'efficacité de livraison", "raccourcissement du cycle de traitement", "prise en charge du lancement du cœur de métier"
 
 ---
 
-## Template A: Left Sidebar + Color Bar Headings
+## Contrôle de longueur
 
-### Color Palette
+| Type de candidat | Nombre de pages cible |
+|----------------|---------------------|
+| Jeune diplômé / <3 ans expérience | **1 page** |
+| 3-10 ans expérience | 1-2 pages |
+| Cadre supérieur / chercheur / CV académique | Peut dépasser 2 pages, mais doit maintenir une densité d'information |
+
+**Règles de compression** :
+- Expériences de plus de 5 ans avec faible pertinence doivent être compressées
+- Expériences de plus de 10 ans et non pertinentes peuvent être omises
+- Jamais gonfler les expériences peu valorisantes juste pour "paraître complet"
+
+---
+
+## Contraintes ATS & Structure
+
+1. Les informations clés doivent être en texte brut → jamais dépendre d'images, d'icônes, de boîtes de texte ou d'en-têtes/pieds de page pour le contenu clé
+2. Pas de graphiques intégrés, d'objets, de SmartArt ou de WordArt
+3. Les descriptions d'expérience utilisent des symboles de puces cohérents → pas de numérotation automatique complexe
+4. Les puces au sein du même poste doivent être compactes → pas d'excessive ligne blanche
+
+**Équilibre mise en page tableau vs ATS** : Les 3 modèles visuels (A/B/C) utilisent des mises en page basées sur des tableaux pour la qualité visuelle Word. Dans des scénarios ATS stricts (l'utilisateur dit explicitement "priorité ATS"), préférer le Modèle B (mono-colonne) avec réduction de la dépendance aux tableaux. Par défaut : qualité visuelle en priorité.
+
+---
+
+## Nommage des modules
+
+Utiliser uniquement des noms standards, universels, familiers des recruteurs :
+- Informations personnelles, Poste ciblé, Résumé de profil, Compétences clés, Expérience professionnelle, Projets, Formation, Certifications, Récompenses, Langues
+
+**Noms fantaisistes interdits** : "Mon parcours de croissance", "Auto-évaluation", "Moments brillants", "Mot de vie"
+
+---
+
+## Prévention des maladies de modèle
+
+1. Ne pas inclure d'étiquettes d'identité non pertinentes (affiliation politique, ville natale, etc.) sauf demande explicite de l'utilisateur
+2. Ne pas placer les modules de faible priorité (loisirs, langues, traits de personnalité) avant l'expérience professionnelle
+3. Ne pas combiner lettre de motivation et CV dans un seul document (sauf demande explicite de l'utilisateur)
+4. Ne pas laisser le modèle écraser les informations personnelles réelles
+5. Ne pas laisser l'"auto-évaluation" occuper la zone d'or de la page (devrait venir après compétences/expérience clés)
+
+---## Sélection de modèle
+
+Trois modèles sont fournis, sélectionnés automatiquement en fonction des besoins de l'utilisateur :
+
+| Modèle | Mise en page | Idéal pour | Style de couleur |
+|--------|--------------|------------|------------------|
+| A | Barre latérale gauche + corps droit | Usage général, postes techniques | Barre latérale gris foncé + barres de titre bleues |
+| B | Bannière d'en-tête sombre + colonne unique | Contenu important / candidats seniors | En-tête bleu fondu + soulignements de titre |
+| C | Barre latérale gauche + titres à ligne verticale | International / bilingue / entreprises étrangères | Barre latérale bleue + titres avec bordure gauche |
+
+**Logique de sélection :**
+- Par défaut : Modèle A
+- Beaucoup de contenu (prévu > 1 page) → Modèle B (pas de barre latérale, meilleure utilisation de l'espace)
+- L'utilisateur demande explicitement du bilingue / anglais → Modèle C
+
+### Suggestions de couleurs par secteur
+
+| Orientation de carrière | Arrière-plan barre latérale | Couleur d'accent | Modèle recommandé |
+|------------------------|----------------------------|-----------------|-------------------|
+| Tech / Internet | `#1A1F36` (bleu violet profond) | `#667eea` (améthyste) | A ou C |
+| Finance / Conseil | `#0F2027` (bleu mer profond) | `#D4AF37` (doré) | A ou B |
+| Design / Créatif | `#2D1B30` (violet profond) | `#f5576c` (corail rose) | A ou C |
+| Éducation / Formation | `#1A3A3A` (vert foncé) | `#3CB4A0` (menthe verte) | A |
+| Médical / Santé | `#0E2030` (cyan foncé) | `#3888A8` (bleu médical) | B |
+| Général / Par défaut | `#303030` (neutre sombre chaud) | `#B89870` (accent chaud) | A |
+
+Lorsque le secteur n'est pas spécifié, utilisez la palette neutre chaude par défaut. Cela correspond aux directives de profil visuel neutre-chaude dans `design-system.md`.
+
+## Règles clés
+
+- **Pas de page de couverture / PAS DE SOMMAIRE**
+- **Cible : 1 page** (2 pages max pour les postes seniors)
+- **Espacement compact** : `line: 276` (1.15x)
+- Tous les modèles utilisent des **titres de section bilingues** (par exemple, "Work Experience 工作经历")
+
+---
+
+## Modèle A : Barre latérale gauche + barres de titre colorées
+
+### Palette de couleurs
 ```js
 const S = {
-  bg: "3B4F5C",      // sidebar background (dark grey-blue)
-  text: "D8E2E8",    // sidebar text
-  label: "8BA0AD",   // sidebar secondary text
-  accent: "2F97B8",  // accent color (blue-cyan)
-  title: "1A2D38",   // body heading
-  body: "2C3E4A",    // body content
-  sec: "6B8592",     // secondary info (dates etc.)
+  bg: "3B4F5C",      // arrière-plan barre latérale (gris-bleu foncé)
+  text: "D8E2E8",    // texte barre latérale
+  label: "8BA0AD",   // texte secondaire barre latérale
+  accent: "2F97B8",  // couleur d'accentuation (bleu-cyan)
+  title: "1A2D38",   // titre corps
+  body: "2C3E4A",    // contenu corps
+  sec: "6B8592",     // informations secondaires (dates etc.)
 };
 ```
 
-### Layout Structure
+### Structure de mise en page
 ```
 ┌──────────┬──────────────────────┐
-│ [Photo]  │ ██ Profile ██        │  ← Blue bar heading
-│          │ Summary text...      │
-│ Name     │                      │
-│ Title    │ ██ Work Experience ██│
-│          │ Company  Role  Date  │
-│ ──────── │ ▸ Achievement...     │
-│ Basic    │ ▸ Achievement...     │
-│ Info     │                      │
+│ [Photo]  │ ██ Profile ██        │  ← Barre de titre bleue
+│          │ Texte du résumé...   │
+│ Nom      │                      │
+│ Fonction │ ██ Work Experience ██│
+│          │ Société  Rôle  Date  │
+│ ──────── │ ▸ Réalisation...     │
+│ Info     │ ▸ Réalisation...     │
+│ de base  │                      │
 │          │ ██ Projects ██       │
 │ ──────── │ ...                  │
 │ Contact  │                      │
 │          │ ██ Education ██      │
 │ ──────── │ ...                  │
-│ Skills   │                      │
-│ Java ●●●●○│                     │
-│ Go   ●●●○○│                     │
+| Compétences |                      │
+| Java ●●●●○│                     │
+| Go   ●●●○○│                     │
 │          │                      │
 │ ──────── │                      │
-│ Certs    │                      │
+| Certifs  │                      │
 └──────────┴──────────────────────┘
      30%             70%
 ```
 
-### Implementation Notes
+### Notes de mise en œuvre
 
-**Page setup:**
+**Configuration de la page :**
 ```js
 page: { margin: { top: 0, bottom: 0, left: 0, right: 0 } }
-// Use Table to simulate columns: columnWidths: [3400, 8506]
-// ⚠️ Row height must use "exact" with safety margin to prevent overflow blank pages
-// Row height: height: { value: 16038, rule: "exact" }
-// 16038 = 16838(A4 height) - 1200(safety margin for cross-engine compatibility)
+// Utiliser Table pour simuler les colonnes : columnWidths: [3400, 8506]
+// ⚠️ La hauteur de ligne doit utiliser "exact" avec marge de sécurité pour éviter le débordement
+// Hauteur de ligne : height: { value: 16038, rule: "exact" }
+// 16038 = 16838(hauteur A4) - 1200(marge de sécurité pour compatibilité multi-moteurs)
 ```
 
-**Sidebar element order:**
-1. Photo placeholder (rectangle + border, width 2400 DXA, height 1800)
-2. Name (32pt bold white SimHei) + Title (18pt accent)
-3. Basic info (DOB / degree / school)
-4. Contact info (phone / email / address)
-5. Skill ratings (name + ●○ dot rating, 5 levels each)
-6. Certificates list
+**Ordre des éléments de la barre latérale :**
+1. Espace photo (rectangle + bordure, largeur 2400 DXA, hauteur 1800)
+2. Nom (32pt gras blanc SimHei) + Fonction (18pt accent)
+3. Info de base (date de naissance / diplôme / école)
+4. Info de contact (téléphone / email / adresse)
+5. Évaluations de compétences (nom + évaluation ●○, 5 niveaux chacun)
+6. Liste des certificats
 
-**Right-side section headings (color bar style):**
+**Titres de section côté droit (style barre colorée) :**
 ```js
-// Full-width bar background + white Chinese text + lighter English text
+// Barre pleine largeur + texte chinois blanc + texte anglais plus clair
 new Table({ columnWidths:[7600], rows:[new TableRow({ children:[
   new TableCell({
     shading: { fill: S.accent, type: ShadingType.CLEAR },
@@ -245,82 +243,82 @@ new Table({ columnWidths:[7600], rows:[new TableRow({ children:[
 ] })] });
 ```
 
-**Experience entry format:**
+**Format d'entrée d'expérience :**
 ```js
-// Line 1: Company(bold) + Title(accent) + Date(right-aligned)
+// Ligne 1 : Société(gras) + Fonction(accent) + Date(aligné à droite)
 new Paragraph({
   tabStops: [{ type: TabStopType.RIGHT, position: 7200 }],
   children: [
-    new TextRun({ text: "Company Name", size:22, bold:true, color:S.title }),
-    new TextRun({ text: "    Role Title", size:20, color:S.accent }),
-    new TextRun({ text: "\t2023.06 — Present", size:17, color:S.sec }),
+    new TextRun({ text: "Nom de l'entreprise", size:22, bold:true, color:S.title }),
+    new TextRun({ text: "    Intitulé du poste", size:20, color:S.accent }),
+    new TextRun({ text: "\t2023.06 — Présent", size:17, color:S.sec }),
   ]
 });
-// Line 2+: ▸ bullet points
+// Ligne 2+ : ▸ puces
 ```
 
 ---
 
-## Template B: Dark Header Banner + Single Column
+## Modèle B : Bannière d'en-tête sombre + colonne unique
 
-### Color Palette
+### Palette de couleurs
 ```js
 const C = {
-  dark: "1A3352",    // header background (dark blue)
-  accent: "2980B9",  // accent color
-  title: "1A2636",   // heading
-  body: "2C3E50",    // body text
-  sec: "6B8599",     // secondary info
-  light: "E8EFF5",   // light background
+  dark: "1A3352",    // arrière-plan en-tête (bleu foncé)
+  accent: "2980B9",  // couleur d'accent
+  title: "1A2636",   // titre
+  body: "2C3E50",    // texte corps
+  sec: "6B8599",     // informations secondaires
+  light: "E8EFF5",   // arrière-plan clair
 };
 ```
 
-### Layout Structure
+### Structure de mise en page
 ```
 ┌────────────────────────────────┐
-│ ██████████████████████████████ │  ← Dark blue background banner
-│ █  Name    Title             █ │    Contains name / title /
-│ █  Phone | Email | Location  █ │    contact / basic info
-│ █  DOB | Degree | School     █ │
+│ ██████████████████████████████ │  ← Bannière d'arrière-plan bleu foncé
+│ █  Nom    Fonction            █ │    Contient nom / fonction /
+│ █  Téléphone | Email | Localité █ │    contact / info de base /
+│ █  DN | Diplôme | École        █ │    date de naissance / diplôme / école
 │ ██████████████████████████████ │
 │                                │
-│ Profile                        │  ← Underline heading
+│ Profile                        │  ← Titre souligné
 │ ─────────────────────────────  │
-│ Summary text...                │
+│ Texte du résumé...             │
 │                                │
 │ Work Experience                │
 │ ─────────────────────────────  │
-│ Company | Role        Date     │
-│ • Achievement...               │
+│ Société | Rôle        Date     │
+│ • Réalisation...               │
 │ ...                            │
 │                                │
 │ Skills                         │
 │ ─────────────────────────────  │
-│ Programming ●●●●○  Java/Go/...│  ← Rating + details
+| Programmation ●●●●○  Java/Go/...│  ← Évaluation + détails
 └────────────────────────────────┘
 ```
 
-### Implementation Notes
+### Notes de mise en œuvre
 
-**Header banner:**
+**Bannière d'en-tête :**
 ```js
-// Table single row single column, dark background, height 2400 DXA
+// Tableau une ligne une colonne, arrière-plan sombre, hauteur 2400 DXA
 new Table({ columnWidths:[11906], rows:[new TableRow({
   height: { value:2400, rule:"exact" },
   children:[new TableCell({
     shading: { fill: C.dark },
     margins: { top:300, bottom:200, left:800, right:800 },
-    verticalAlign: VerticalAlign.TOP, // Never use CENTER in exact-height rows (WPS incompatible)
+    verticalAlign: VerticalAlign.TOP, // Jamais utiliser CENTER dans les lignes de hauteur exacte (incompatible WPS)
     children: [
-      // Line 1: Name(48pt white) + Title
-      // Line 2: Phone | Email | Location
-      // Line 3: DOB | Degree | School
+      // Ligne 1 : Nom(48pt blanc) + Fonction
+      // Ligne 2 : Téléphone | Email | Localité
+      // Ligne 3 : DN | Diplôme | École
     ]
   })]
 })] });
 ```
 
-**Section headings (underline style):**
+**Titres de section (style souligné) :**
 ```js
 new Paragraph({
   borders: { bottom: { style: BorderStyle.SINGLE, size: 2, color: C.accent } },
@@ -331,9 +329,9 @@ new Paragraph({
 });
 ```
 
-**Skills display (rating + details):**
+**Affichage des compétences (évaluation + détails) :**
 ```js
-// Name(bold) + ●○ rating + specific tools list
+// Nom(gras) + évaluation ●○ + liste d'outils spécifiques
 new Paragraph({ children: [
   new TextRun({ text: "Programming  ", size:19, bold:true, color:C.title }),
   new TextRun({ text: "●●●●○  ", size:13, color:C.accent }),
@@ -341,131 +339,129 @@ new Paragraph({ children: [
 ] });
 ```
 
----
+---## Template C : Barre latérale bleue + Titres avec ligne verticale
 
-## Template C: Blue Sidebar + Vertical-Line Headings
-
-### Color Palette
+### Palette de couleurs
 ```js
 const C = {
-  side: "4A7C8F",     // sidebar background (teal-blue)
-  text: "FFFFFF",     // sidebar text
-  label: "A0C4D0",   // sidebar secondary text
-  accent: "357A8F",   // accent color
-  dot: "2F8FAD",      // skill dot fill color
-  dotDim: "B8D4DE",   // skill dot empty color
-  title: "1A3040",    // body heading
-  body: "2C4050",     // body content
-  sec: "6B8A98",      // secondary info
+  side: "4A7C8F",     // arrière-plan de la barre latérale (bleu-turquoise)
+  text: "FFFFFF",     // texte de la barre latérale
+  label: "A0C4D0",   // texte secondaire de la barre latérale
+  accent: "357A8F",   // couleur d'accentuation
+  dot: "2F8FAD",      // couleur de remplissage des points de compétences
+  dotDim: "B8D4DE",   // couleur vide des points de compétences
+  title: "1A3040",    // titre du corps
+  body: "2C4050",     // contenu du corps
+  sec: "6B8A98",      // informations secondaires
 };
 ```
 
-### Sidebar-Specific Elements
+### Éléments spécifiques à la barre latérale
 
-**Circular photo placeholder:**
+**Espace réservé pour photo circulaire :**
 ```js
 new Paragraph({ alignment: AlignmentType.CENTER,
   children: [new TextRun({ text: "◯", size:80, color:C.label })]
 });
 ```
 
-**Language proficiency matrix:**
+**Matrice de compétence linguistique :**
 ```js
-"English  ● ● ● ● ○"
-"Japanese ● ● ○ ○ ○"
+"Anglais  ● ● ● ● ○"
+"Japonais ● ● ○ ○ ○"
 ```
 
-**Right-side section headings (left-border style):**
+**Titres de section côté droit (style bordure gauche) :**
 ```js
 new Paragraph({
   borders: { left: { style: BorderStyle.SINGLE, size:8, color:C.accent, space:8 } },
   indent: { left: 120 },
   children: [
-    new TextRun({ text: "Work Experience", size:24, bold:true, color:C.title, font:"SimHei" }),
-    new TextRun({ text: "  Experience", size:18, color:C.sec, italics:true }),
+    new TextRun({ text: "Expérience professionnelle", size:24, bold:true, color:C.title, font:"SimHei" }),
+    new TextRun({ text: "  Expérience", size:18, color:C.sec, italics:true }),
   ]
 });
 ```
 
-**Experience entry format (differs from A):**
+**Format d'entrée d'expérience (diffère de A) :**
 ```js
-// Line 1: Company name (bold)
-// Line 2: Role (accent color) + Date
-// Line 3+: ▸ bullet points
+// Ligne 1 : Nom de l'entreprise (gras)
+// Ligne 2 : Rôle (couleur d'accentuation) + Date
+// Ligne 3+ : ▸ puces
 ```
 
 ---
 
-## Universal Rules
+## Règles universelles
 
-### Font Specifications
-| Element | Font | Size | Style |
-|---------|------|------|-------|
-| Name (sidebar) | SimHei | 32pt (size:64) | Bold, white |
-| Name (header) | SimHei | 24pt (size:48) | Bold, white |
-| Section heading | SimHei | 11pt (size:22) | Bold |
-| Company / School | Microsoft YaHei | 11pt (size:22) | Bold |
-| Role title | Microsoft YaHei | 10pt (size:20) | accent color |
-| Date range | Microsoft YaHei | 8.5pt (size:17) | sec color |
-| Bullet description | Microsoft YaHei | 9.5pt (size:19) | body color |
-| Skill dots | Default | 6.5pt (size:13) | accent / dimColor |
+### Spécifications de police
+| Élément | Police | Taille | Style |
+|---------|--------|--------|-------|
+| Nom (barre latérale) | SimHei | 32pt (size:64) | Gras, blanc |
+| Nom (en-tête) | SimHei | 24pt (size:48) | Gras, blanc |
+| Titre de section | SimHei | 11pt (size:22) | Gras |
+| Entreprise / École | Microsoft YaHei | 11pt (size:22) | Gras |
+| Titre de fonction | Microsoft YaHei | 10pt (size:20) | couleur d'accentuation |
+| Période | Microsoft YaHei | 8.5pt (size:17) | couleur secondaire |
+| Description en puces | Microsoft YaHei | 9.5pt (size:19) | couleur du corps |
+| Points de compétences | Par défaut | 6.5pt (size:13) | accent / couleurDim |
 
-### Bullet Symbols
-- Template A / C: `▸` (small triangle)
-- Template B: `•` (round dot)
+### Symboles de puce
+- Template A / C : `▸` (petit triangle)
+- Template B : `•` (point rond)
 
-### Skill Rating Rules
-- 1–5 levels using filled ● and empty ○ dots
-- One skill per line, name on the left, dots on the right
-- Filled dot color: accent; empty dot color: dimColor
+### Règles d'évaluation des compétences
+- 1–5 niveaux utilisant des points ● remplis et ○ vides
+- Une compétence par ligne, nom à gauche, points à droite
+- Couleur du point rempli : accent ; couleur du point vide : couleurDim
 
-### JD Matching Logic
-When user provides a job description:
-1. Extract key requirements (skills, experience, education)
-2. Prioritize matching experience items to the top
-3. Naturally incorporate JD keywords into descriptions
-4. Highlight relevant skills
+### Logique de correspondance JD
+Lorsque l'utilisateur fournit une description de poste :
+1. Extraire les exigences clés (compétences, expérience, éducation)
+2. Prioriser les éléments d'expérience correspondants en haut
+3. Intégrer naturellement les mots-clés JD dans les descriptions
+4. Mettre en évidence les compétences pertinentes
 
-### Multi-Page Handling
+### Gestion multi-pages
 
-- 1 page content: Sidebar templates (A/C) or single-column template (B)
-- Over 1 page: Prefer Template B; if using A/C, switch page 2 to full-width layout with a name bar at the top (Name | Title)
+- 1 page de contenu : Templates barre latérale (A/C) ou template mono-colonne (B)
+- Plus de 1 page : Préférer Template B ; si utilisation de A/C, passer la page 2 en mise en page pleine largeur avec une barre de nom en haut (Nom | Titre)
 
-⚠️ **Multi-page resumes must use multi-section structure:**
+⚠️ **Les CV multi-pages doivent utiliser une structure multi-sections :**
 
-Page 1 and Page 2 must be **different sections** for independent margin and layout control:
+La page 1 et la page 2 doivent être des **sections différentes** pour un contrôle indépendant des marges et de la mise en page :
 
 ```js
 sections: [
   {
-    // Page 1 section — margin 0 (sidebar layout needs full-page)
+    // Section page 1 — marge 0 (la mise en page barre latérale a besoin de pleine page)
     properties: { page: { margin: { top: 0, bottom: 0, left: 0, right: 0 } } },
     children: [page1Table],
   },
   {
-    // Page 2 section — normal margins with header bar
+    // Section page 2 — marges normales avec barre d'en-tête
     properties: { page: { margin: { top: 800, bottom: 600, left: 800, right: 800 } } },
     children: [pageHeader(name, title), ...page2Content],
   },
 ]
 ```
 
-⚠️ **Template B multi-page handling:**
+⚠️ **Gestion multi-pages du Template B :**
 
-Template B header banner uses Table simulation:
-1. Banner `columnWidths` must equal **page content area width** (pageWidth - marginLeft - marginRight), not full page width
-2. If banner needs full page width → set page 1 section margin to 0, banner columnWidths to 11906
-3. Page 2+ must be independent sections, margin.top ≥ 800
+La bannière d'en-tête du Template B utilise une simulation de Tableau :
+1. La `columnWidths` de la bannière doit être égale à la **largeur de la zone de contenu de la page** (pageWidth - marginLeft - marginRight), pas la pleine largeur de page
+2. Si la bannière a besoin d'une pleine largeur de page → définir la marge de la section page 1 à 0, columnWidths de la bannière à 11906
+3. Page 2+ doivent être des sections indépendantes, margin.top ≥ 800
 
-⚠️ **Page 2+ top spacing rules (mandatory):**
+⚠️ **Règles d'espacement en haut de la page 2+ (obligatoire) :**
 
-1. **Page margin.top must be ≥ 800 twips** (~1.4 cm), never 0
-2. **Page 2+ needs a header info bar:** concise `Name | Title` bar, height ~400–600 twips, separated from body with light background or bottom line
-3. **200–300 twips spacing between header bar and body content**
-4. **Forbidden: content touching the very top of page 2**
+1. **La marge page.top doit être ≥ 800 twips** (~1.4 cm), jamais 0
+2. **La page 2+ a besoin d'une barre d'info d'en-tête :** barre concise `Nom | Titre`, hauteur ~400–600 twips, séparée du corps par un arrière-plan clair ou une ligne du bas
+3. **Espacement de 200–300 twips entre la barre d'en-tête et le contenu du corps**
+4. **Interdit : le contenu touchant très haut de la page 2**
 
 ```js
-// Concise header bar for page 2+
+// Barre d'en-tête concise pour page 2+
 function pageHeader(name, title) {
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
@@ -491,44 +487,44 @@ function pageHeader(name, title) {
 
 ---
 
-## Scene-Specific Quality Checks
+## Contrôles de qualité spécifiques à la scène
 
-In addition to universal checks (see `references/common-rules.md`):
+En plus des contrôles universels (voir `references/common-rules.md`) :
 
 ### Format
-- [ ] Fits within 1 page (senior ≤ 2 pages)
-- [ ] **Single-page fill rate ≥ 85%** (bottom whitespace ≤ 15%, ~2500 twips)
-- [ ] Section headings are bilingual
-- [ ] Skill rating dots correct (●○)
-- [ ] Experience in reverse chronological order
-- [ ] No cover page, no TOC
-- [ ] Line spacing 1.15x (line: 276)
-- [ ] No extra blank pages
-- [ ] **Table row height uses `rule: "exact"` with value ≤ 16038** (prevent overflow blank pages)
-- [ ] **Multi-page: page 2+ has header info bar + proper top spacing**
+- [ ] Tient sur 1 page (senior ≤ 2 pages)
+- [ ] **Taux de remplissage mono-page ≥ 85%** (espace blanc en bas ≤ 15%, ~2500 twips)
+- [ ] Les titres de section sont bilingues
+- [ ] Les points d'évaluation des compétences sont corrects (●○)
+- [ ] L'expérience est en ordre chronologique inversé
+- [ ] Pas de page de couverture, pas de sommaire
+- [ ] Espacement des lignes 1.15x (line: 276)
+- [ ] Pas de pages blanches supplémentaires
+- [ ] **La hauteur de ligne de tableau utilise `rule: "exact"` avec valeur ≤ 16038** (empêcher le débordement de pages blanches)
+- [ ] **Multi-page : la page 2+ a une barre d'info d'en-tête + espacement en haut approprié**
 
-### Content
-- [ ] Clearly organized around target position
-- [ ] No vague self-assessments ("hardworking", "responsible", "team player")
-- [ ] No fabricated data or exaggerated results
-- [ ] Most relevant experience placed first and detailed
-- [ ] Each bullet demonstrates action + object + method + result
-- [ ] No long narrative blocks / excessive long sentences / information density imbalance
-- [ ] Module names are standardized
-- [ ] Contact info is plain text, clearly positioned
-- [ ] Header area forms visual center
-- [ ] Work experience and projects are the visual main body
-- [ ] Page count matches candidate seniority
+### Contenu
+- [ ] Clair et organisé autour de la position cible
+- [ ] Pas d'auto-évaluations vagues ("travailleur", "responsable", "joueur d'équipe")
+- [ ] Pas de données fabriquées ou de résultats exagérés
+- [ ] L'expérience la plus pertinente est placée en premier et détaillée
+- [ ] Chaque puce démontre action + objet + méthode + résultat
+- [ ] Pas de blocs narratifs longs / phrases excessivement longues / déséquilibre de densité d'information
+- [ ] Les noms de module sont standardisés
+- [ ] Les informations de contact sont en texte brut, bien positionnées
+- [ ] La zone d'en-tête forme le centre visuel
+- [ ] L'expérience professionnelle et les projets forment le corps principal visuel
+- [ ] Le nombre de pages correspond au niveau de seniorité du candidat
 
-### Single-Page Fill Rules
+### Règles de remplissage mono-page
 
-Single-page resumes must fully utilize page space — **large bottom whitespace is forbidden:**
+Les CV mono-page doivent utiliser pleinement l'espace de la page — **un grand espace blanc en bas est interdit :**
 
-1. If content is insufficient → **proactively expand:**
-   - Add project details, skill keywords, achievement data
-   - Add supplementary modules: profile summary, interests, awards
-2. Use section spacing (`spacing.before/after`) to **distribute content evenly**
-3. Sidebar templates (A/C): sidebar height should approach full page
-   - If sidebar content is sparse, increase element spacing
-   - Or add supplementary modules: "Languages", "Interests"
-4. Assessment: after generation, check last content element position; if >2500 twips from page bottom, adjust
+1. Si le contenu est insuffisant → **agrandir proactivement :**
+   - Ajouter des détails de projet, mots-clés de compétences, données de réalisation
+   - Ajouter des modules supplémentaires : résumé de profil, intérêts, récompenses
+2. Utiliser l'espacement de section (`spacing.before/after`) pour **répartir le contenu uniformément**
+3. Templates barre latérale (A/C) : la hauteur de la barre latérale devrait approcher la pleine page
+   - Si le contenu de la barre latérale est clairsemé, augmenter l'espacement des éléments
+   - Ou ajouter des modules supplémentaires : "Langues", "Intérêts"
+4. Évaluation : après génération, vérifier la position du dernier élément de contenu ; si >2500 twips du bas de page, ajuster

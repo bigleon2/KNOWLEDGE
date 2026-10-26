@@ -1,0 +1,744 @@
+{
+ "ASR": {
+  "skill": "ASR",
+  "version": "non déclarée",
+  "sha_source": "261960a9f152270909653fbec20680a847c7de35398b4f08b52731a7ad7d45a6",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "LLM": {
+  "skill": "LLM",
+  "version": "non déclarée",
+  "sha_source": "6f81a648fe6ff6d7dc3ba3c78116bf4ea6f21dde5787f4512277946bdf0ec301",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "TTS": {
+  "skill": "TTS",
+  "version": "non déclarée",
+  "sha_source": "54a9caaa1e45f05bb398d9ff0a4940dce34e8c24db048bcdf8c211851a5a4b5c",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "VLM": {
+  "skill": "VLM",
+  "version": "non déclarée",
+  "sha_source": "cf710c261a42ea28944cab78e5bb782d321ff4d9812e5d946a924aa08926bba9",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "agent-browser": {
+  "skill": "agent-browser",
+  "version": "non déclarée",
+  "sha_source": "b105129d64437f56377f169d02201146283af2e50948c7fd020ed41d99b7a883",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "agent-creator": {
+  "skill": "agent-creator",
+  "version": "2.3.0",
+  "sha_source": "e13c6ae08299f92e11b51f46113bbbf3dbba754dcda3f7c2fb4c10164cafbcf0",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "agent-prompt-engineering": {
+  "skill": "agent-prompt-engineering",
+  "version": "1.0.1",
+  "sha_source": "d6ec8d0102f5e9bc6fc6127e7a2b7aa91acb18abbcf1c630c7e643f981e188cb",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "ai-news-collectors": {
+  "skill": "ai-news-collectors",
+  "version": "non déclarée",
+  "sha_source": "9b4b36b5cd0c9e837a06316d6ea150651ccf8a804d4a2ec566f05458909cfc1d",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "alias-eco": {
+  "skill": "alias-eco",
+  "version": "1.2.0",
+  "sha_source": "8788088762a6119f1b03eacb6de4238842030d2bb335cc9ef22d2e09dd83f844",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "aminer-academic-search": {
+  "skill": "aminer-academic-search",
+  "version": "1.2.1",
+  "sha_source": "ce3e164ccac1ecf3ab89c108e13e05031dcf7fcfe8aa581ed9ca5d359454eaed",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "aminer-daily-paper": {
+  "skill": "aminer-daily-paper",
+  "version": "1.1.2",
+  "sha_source": "53a748669fb870f2da22dd047ac1c5700def21d0cf1e57e001673eab6798a502",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "aminer-deep-search": {
+  "skill": "aminer-deep-search",
+  "version": "2.0.0",
+  "sha_source": "2121a355cd07a49b4133c5eba8d9f50c78f643a8988e15466c43e725e1e16769",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "aminer-free-academic": {
+  "skill": "aminer-free-academic",
+  "version": "1.1.1",
+  "sha_source": "57aac3f9f61703b215bbed5c2af4fd81b096b5a92e0f4eeef7c04b919017bc6b",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "anti-pua": {
+  "skill": "anti-pua",
+  "version": "non déclarée",
+  "sha_source": "5942f0e7017545696b8dfed0da112e6df38c58c2912419ad92a9c858df5d7a94",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "audio-metadata": {
+  "skill": "audio-metadata",
+  "version": "1.1.0",
+  "sha_source": "683517e4c3796caf6a03e537ab5ce366367263f815d7cba835350b4130fa4966",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "audit-provenance": {
+  "skill": "audit-provenance",
+  "version": "1.1.0",
+  "sha_source": "70e7fb9d1c1c6e4861a58ef13687f76e6673a222a380581e661f8a3c55bd3aaf",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "auto-target-tracker": {
+  "skill": "auto-target-tracker",
+  "version": "non déclarée",
+  "sha_source": "dd44f49778489e0b73a0c6493451f50a3aaf2930e4e6c100eca18f11097775f0",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "autonomous-agent": {
+  "skill": "autonomous-agent",
+  "version": "1.2.1",
+  "sha_source": "677b6e5af527b70539e2bb6052b7bbd2457550c92076b47ccb442daa49ce700b",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "blog-writer": {
+  "skill": "blog-writer",
+  "version": "non déclarée",
+  "sha_source": "4b4a2853f5587f7f587d79ebb9934108ac2bcea6a82f2d510f1aef2dd8eb735e",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "cahier-des-charges": {
+  "skill": "cahier-des-charges",
+  "version": "2.0.1",
+  "sha_source": "bc7d9b93e3fbb28c56db10eb1ccb5fbcb3387be13d39e63b8be0b813955b1bc4",
+  "statut": "GENERE",
+  "references": 4
+ },
+ "charts": {
+  "skill": "charts",
+  "version": "1.0",
+  "sha_source": "cc27057ee6aafe4fda0584eaff6edfa71ec5308d3520433eb0b99ee56c77cbc0",
+  "statut": "GENERE",
+  "references": 9
+ },
+ "cheat-sheet": {
+  "skill": "cheat-sheet",
+  "version": "non déclarée",
+  "sha_source": "295f53aa54617c0e66f9c355a7ca81fe05a38287f99a317052e53129008829fb",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "clone-chat": {
+  "skill": "clone-chat",
+  "version": "2.0.2",
+  "sha_source": "34780482b02ddc9cb317e86a4cadbf5bb229ba140d1f487c4e31e05eefd41209",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "coding-agent": {
+  "skill": "coding-agent",
+  "version": "1.0.4",
+  "sha_source": "f75b4dc962eea464018a4ced5b754bbbb42f0452338eb4fc9f35e954a0c2ebff",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "content-strategy": {
+  "skill": "content-strategy",
+  "version": "non déclarée",
+  "sha_source": "e4fecc1bb93dcad581bdc9a248d9b77931a28facbe723aec7424bccf384aff25",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "contentanalysis": {
+  "skill": "contentanalysis",
+  "version": "non déclarée",
+  "sha_source": "ca4830e8e349b920ad84f8f56bdddb4c1d337355464f79a40f378b17137149ba",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "context-engineering": {
+  "skill": "context-engineering",
+  "version": "1.2.1",
+  "sha_source": "674e7f11c28f809d33a3bca25cf1a2d3e078dd0cb68dc5a2f6890ca112fd9585",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "correct-py": {
+  "skill": "correct-py",
+  "version": "1.1.0",
+  "sha_source": "0ebf4f4dbfa2586a138b0e0b4d0255ce59ad0d08e55b738e7b9e8f9634bb24f9",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "correct-work": {
+  "skill": "correct-work",
+  "version": "2.8.0",
+  "sha_source": "dccf85e42dcf763fbe398298a1aab13afa728533369269e504199eb3da11703a",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "cpp-analysis": {
+  "skill": "cpp-analysis",
+  "version": "1.1.0",
+  "sha_source": "dc7f7b4041d13416ce3c54d1fef32e535803a86e7b4223d95c1bbd2cd450affb",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "design": {
+  "skill": "design",
+  "version": "non déclarée",
+  "sha_source": "9a7c8ff9bd190179ffdb9b3a3ba5532cda8cf7e7927397106aa7189048188572",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "dessin-technique": {
+  "skill": "dessin-technique",
+  "version": "1.1.1",
+  "sha_source": "1184ccaad3c18a60e018e41897365263ff5d14003875eb9ee71a3233ea9a2996",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "docx": {
+  "skill": "docx",
+  "version": "1.0",
+  "sha_source": "eb08ff0e93075b2a67a45472fc18c57e29f9bab95b5088dd4caca42e9d014a9f",
+  "statut": "GENERE",
+  "references": 10
+ },
+ "dream-interpreter": {
+  "skill": "dream-interpreter",
+  "version": "non déclarée",
+  "sha_source": "9df5e46d48673046f43eb5874a57d51cfed1845af8dafa07093fc07ebd737145",
+  "statut": "GENERE",
+  "references": 5
+ },
+ "experiment-suite": {
+  "skill": "experiment-suite",
+  "version": "non déclarée",
+  "sha_source": "2186b423aa2db72d189b6ad0b3dee6d20e1d8567c0d032ef0bc013558dbfb27c",
+  "statut": "GENERE",
+  "references": 10
+ },
+ "finance": {
+  "skill": "finance",
+  "version": "non déclarée",
+  "sha_source": "3294ad057f55070e06fe828dd1b94f55c0732ad5dc6f22ec55b3bc0644c6d6c3",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "fleet-engineering": {
+  "skill": "fleet-engineering",
+  "version": "1.1.1",
+  "sha_source": "57558057e25a0900c68f3bf81f99f24eaf3f6c53e92e337525facb5776ed2532",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "fullstack-dev": {
+  "skill": "fullstack-dev",
+  "version": "1.0.0",
+  "sha_source": "d5b7839441287f8cb536572bc9c34753b98c11ff4b6293c1f28b6c900967e3d4",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "gaokao-collect-student-info": {
+  "skill": "gaokao-collect-student-info",
+  "version": "non déclarée",
+  "sha_source": "fb94da7b80457e68cafd739ff0cb0b3250b11ea89972380b30370aecf9011539",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "gaokao-fetch-volunteers": {
+  "skill": "gaokao-fetch-volunteers",
+  "version": "non déclarée",
+  "sha_source": "71e369f0263caf4ab9958c44c4c7566cfc48570e50572d4a6fc4308a5f37fc8f",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "gaokao-generate-report": {
+  "skill": "gaokao-generate-report",
+  "version": "non déclarée",
+  "sha_source": "9438c6eb1212a3829a2a58f487ccfc3ce821b5cf9612e3f8ef9a1c9be14130e0",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "gaokao-recommend-majors": {
+  "skill": "gaokao-recommend-majors",
+  "version": "non déclarée",
+  "sha_source": "503a2d5014c80ab7577aa8f07394be5a5eceb5ed27f8fec47b9c816902ee3c83",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "gaokao-recommend-schools": {
+  "skill": "gaokao-recommend-schools",
+  "version": "non déclarée",
+  "sha_source": "060d868fe24ab0bfac13dc829fa6b6ceb60183eb9e93a49cccc0816ba0811fb9",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "gen-plan": {
+  "skill": "gen-plan",
+  "version": "3.28.0",
+  "sha_source": "97233cbde0cdabc131cd578f676a937cfd21aa504d383a14e4a913f7eeb74460",
+  "statut": "GENERE",
+  "references": 11
+ },
+ "get-fortune-analysis": {
+  "skill": "get-fortune-analysis",
+  "version": "non déclarée",
+  "sha_source": "f3cfdf9d243cd7dc2c57c2da27766908da0d2fb85dd7602c0af9a3ad49e01cb7",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "gift-evaluator": {
+  "skill": "gift-evaluator",
+  "version": "non déclarée",
+  "sha_source": "65e298e08a73b10b0e80c804b0cadae4c4d3c5ff0e3d2f9f38b68f46d0b3e3f2",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "graph-engineering": {
+  "skill": "graph-engineering",
+  "version": "1.1.1",
+  "sha_source": "505830c96f25c2f4497b7056c31dbd8552501b26926e9e2c51970f2db685c177",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "harness-engineering": {
+  "skill": "harness-engineering",
+  "version": "1.2.1",
+  "sha_source": "14b8aa055e0359ece9564600ea55ced46fb1cbcf760b279097202db2d3886471",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "image-edit": {
+  "skill": "image-edit",
+  "version": "non déclarée",
+  "sha_source": "bd434b9334c7714caa141b3bf21656e9b52d1d0990569c0724042c8d40bb661c",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "image-generation": {
+  "skill": "image-generation",
+  "version": "non déclarée",
+  "sha_source": "0f8d80528eaa7b2bd1faa36fcfec8b26a2a16c38d5f541c2c05c15902857e3b3",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "image-search": {
+  "skill": "image-search",
+  "version": "1.0.0",
+  "sha_source": "b3f61d5a8ce94d0b5fc13dafd675564b6eb4c269056e781c093f09f88c92e407",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "image-understand": {
+  "skill": "image-understand",
+  "version": "non déclarée",
+  "sha_source": "bccf4533e8a6cbeeb6ee9fc66ca170b671420b829460928c32331e5e0bb88558",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "inter-scripts": {
+  "skill": "inter-scripts",
+  "version": "1.0.0",
+  "sha_source": "5564d18a4184ee3048fe1f5d702ee21299d7b9eb6df841b4f234853d7c4180bf",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "interview-designer": {
+  "skill": "interview-designer",
+  "version": "non déclarée",
+  "sha_source": "a93070a4db276ce5e87f6283eb1e38d423099ea068245e483564a3c8638bf3f9",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "interview-prep": {
+  "skill": "interview-prep",
+  "version": "non déclarée",
+  "sha_source": "acac301816ad491f494b7e919c4ad559149b8aadcb39a934366c66ac2e1e421c",
+  "statut": "GENERE",
+  "references": 9
+ },
+ "iphone17": {
+  "skill": "iphone17",
+  "version": "1.1.0",
+  "sha_source": "27e95f784e6b8fc433a1d2173caf52ca2637efbe9cb78f354d04aadb709ad6cf",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "iphone18": {
+  "skill": "iphone18",
+  "version": "1.1.0",
+  "sha_source": "453cffe30bbcf808c7b72d804471dcdb1b72c8a9a07073ad5a8f7f52e38a0be4",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "iphone19": {
+  "skill": "iphone19",
+  "version": "0.11.0",
+  "sha_source": "3abea5060b4040225b59b2c8cb1b1c7b504c008d18e2f71d77625251c5b71668",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "jd-resume-tailor": {
+  "skill": "jd-resume-tailor",
+  "version": "non déclarée",
+  "sha_source": "6216aa3696c01df23c1d68da007a4d705726732540c274ba8af667222aae5834",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "job-intent-tracker": {
+  "skill": "job-intent-tracker",
+  "version": "non déclarée",
+  "sha_source": "bdde1aae9ceb54d1ad18900d61c46830f0f7551953f4bb76a0ac031717564333",
+  "statut": "GENERE",
+  "references": 5
+ },
+ "knowledge-observer": {
+  "skill": "knowledge-observer",
+  "version": "1.0.0",
+  "sha_source": "91f8da15933d71bf2549ed6bb477848ce7d90f42ded606f4b9849e0f2c3c17a1",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "literature-survey": {
+  "skill": "literature-survey",
+  "version": "non déclarée",
+  "sha_source": "766c942761007d905c8f36991e2549921362c12d548ea4490be87120a1c40fa2",
+  "statut": "GENERE",
+  "references": 6
+ },
+ "loop-engineering": {
+  "skill": "loop-engineering",
+  "version": "1.2.1",
+  "sha_source": "b7b539d0117b0a3c735f0cf54fc0f39e92499021e67a15cd33cfb2f78d797ffe",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "market-research-reports": {
+  "skill": "market-research-reports",
+  "version": "non déclarée",
+  "sha_source": "aa8f6258f821e584d35dce181408106abdb8f1de7b221b0d3c0b1c8aa74ede76",
+  "statut": "GENERE",
+  "references": 3
+ },
+ "marketing-mode": {
+  "skill": "marketing-mode",
+  "version": "1.0.0",
+  "sha_source": "b6f73f8dfca620493b8949bdee7cadb9debcbe004e9c5b46d8ce8744199af543",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "memory-engineering": {
+  "skill": "memory-engineering",
+  "version": "1.2.1",
+  "sha_source": "daa083faba27a3d72f56b37b2cf73052465da16047a862c062ed88124b77e4fb",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "mindfulness-meditation": {
+  "skill": "mindfulness-meditation",
+  "version": "1.0.0",
+  "sha_source": "487e91af930913fb67ab3ba73d87a1e103ceb44280741b6775f692928f3f508e",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "multi-search-engine": {
+  "skill": "multi-search-engine",
+  "version": "non déclarée",
+  "sha_source": "21cc95f694949ca63ad05769f68668d912d3d7edc999655eb287bbb69e2a8fce",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "pdf": {
+  "skill": "pdf",
+  "version": "1.0",
+  "sha_source": "77f9b49b29891e00880c75a3c47e2bff72224ab66fb0cd91cc83ee52f2fa786a",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "pdf-llm": {
+  "skill": "pdf-llm",
+  "version": "1.0.0",
+  "sha_source": "d0a57eee755df9696f5290e417f8ae39ae3b38c682a38d44113429178bf5b6a6",
+  "statut": "GENERE",
+  "references": 5
+ },
+ "podcast-generate": {
+  "skill": "podcast-generate",
+  "version": "non déclarée",
+  "sha_source": "d6faac43783483a95cd968f7cc48843eed1d0c697106949a4fd0010bbbcc7d71",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "pptx": {
+  "skill": "pptx",
+  "version": "1.0",
+  "sha_source": "9709166831e1b3b0293ac858a3da52188a493c4d1050d3e7e3f2ac0eb9972559",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "prompt-engineering": {
+  "skill": "prompt-engineering",
+  "version": "2.3.1",
+  "sha_source": "ff515dc6678a152a78f656dad6b249446d0067085eca7de5cece5b2ed2f8634d",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "qingyan-research": {
+  "skill": "qingyan-research",
+  "version": "non déclarée",
+  "sha_source": "616f40c114c534fa356e142176c36e19c956d510ccbbbe15863466ee2a81ea36",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "quiz-html": {
+  "skill": "quiz-html",
+  "version": "non déclarée",
+  "sha_source": "81975d1b11182713be526b236427dbd1c74904c3a0fb93d2cf521efc78076812",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "quiz-mastery": {
+  "skill": "quiz-mastery",
+  "version": "non déclarée",
+  "sha_source": "08ff7058cec53dfbadad01f4bd48ec1d60ebec43ede9b387c4412a7f32bc6be0",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "refactor-guard": {
+  "skill": "refactor-guard",
+  "version": "1.8.1",
+  "sha_source": "c7e3430fae9515fe0f3a232b49f1147a181ae5b724ab606b220d436b5a10ec46",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "refactoring-engineering": {
+  "skill": "refactoring-engineering",
+  "version": "1.1.1",
+  "sha_source": "32448f8f7d7bf4ada6a4e87fd17cf78235d9c3737860880105f94dd64a7d325a",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "refactoring-test": {
+  "skill": "refactoring-test",
+  "version": "1.1.1",
+  "sha_source": "3c1ef564686097e2e2571700e6923818466c98870dc727b88c0cfa0eadc547a0",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "research-explorer": {
+  "skill": "research-explorer",
+  "version": "non déclarée",
+  "sha_source": "1d03ecd77849abcd3f01d3ca37e2547eae83ea51fb7c37bd86f462438cf4af46",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "resource-monitor": {
+  "skill": "resource-monitor",
+  "version": "1.1.1",
+  "sha_source": "867f018dec4b6138dc1a900cee12e7dbd6152dacd2eade2ff994440eb0ba9285",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "resume-builder": {
+  "skill": "resume-builder",
+  "version": "non déclarée",
+  "sha_source": "e95eb65b6d250a0b6f02711e4e938b1dc2783055b3b9900c21839ff24d4dcf52",
+  "statut": "GENERE",
+  "references": 11
+ },
+ "resume-youtube": {
+  "skill": "resume-youtube",
+  "version": "1.1.0",
+  "sha_source": "806f5b4fb57ecd18220fb28b5a17d6fb7239fdc7ca867cfa0f73d0b31ce1d12f",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "script-creator": {
+  "skill": "script-creator",
+  "version": "1.1.0",
+  "sha_source": "cdbfd1f1be7dab06a24f60b6764fee6b14a8b36d411b39db5c8e6e837359585d",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "script-mon-ecosysteme-infrastructure": {
+  "skill": "script-mon-ecosysteme-infrastructure",
+  "version": "1.1.0",
+  "sha_source": "4dbb0f077e24da50b22e19e0e2f3ee6b197465cf180e73bf48dba39bbdb78910",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "script-reviewer": {
+  "skill": "script-reviewer",
+  "version": "1.0.0",
+  "sha_source": "8b0d13f138b62ddbb69c13ce43426c4b70ab94b8387072e9de95877611b90576",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "seo-content-writer": {
+  "skill": "seo-content-writer",
+  "version": "2.0.0",
+  "sha_source": "23dcb846aa4a45c2804e644e8fa6cc67991d5f467e60bb6dd6b10c48e0577eed",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "skill-creator": {
+  "skill": "skill-creator",
+  "version": "1.1.0",
+  "sha_source": "a30b3831fb0e740e061510aef10a359c537f939044cb53763e5bfd9534578ff2",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "skill-finder-cn": {
+  "skill": "skill-finder-cn",
+  "version": "1.0.0",
+  "sha_source": "e8b5b24e5dae6381db5c3ab6523b23a3919e899c917edaee7731bc00da78e13c",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "skills-inventory": {
+  "skill": "skills-inventory",
+  "version": "1.1.0",
+  "sha_source": "688a32c2bfc7662bcd31c333f6ec8cf5e0a349f47f2cff2e80401138a5a3ec62",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "spec-driven-development": {
+  "skill": "spec-driven-development",
+  "version": "1.1.1",
+  "sha_source": "bef84bfc9441ba3f064cf249cfae53e0f8196268eff3d2bd9cd78f4b3633bb4d",
+  "statut": "GENERE",
+  "references": 1
+ },
+ "stock-analysis-skill": {
+  "skill": "stock-analysis-skill",
+  "version": "non déclarée",
+  "sha_source": "f34e727e45286f30b65a4bcbda2db5a7b93fb9baa9fc35ee379ae7ea758a2388",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "storyboard-manager": {
+  "skill": "storyboard-manager",
+  "version": "non déclarée",
+  "sha_source": "89fcb00e026c12fef9453ae3ee4fd244db6b929b2720d70052824fcd026957f2",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "study-buddy": {
+  "skill": "study-buddy",
+  "version": "non déclarée",
+  "sha_source": "f59e13fba9fde7830ae0ce7e0dd4c71d338df5df0343f6d89b606a1c8112415a",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "task-review": {
+  "skill": "task-review",
+  "version": "non déclarée",
+  "sha_source": "54f81e9d2608b8b6d497983fa0f37e656e0b87e3655d0ae5a5933938f19c40ff",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "ui-ux-pro-max": {
+  "skill": "ui-ux-pro-max",
+  "version": "non déclarée",
+  "sha_source": "0a21da1ee3ca591c2bd735585ef15d4f754d11c97f84eab1a99846b3bc0af551",
+  "statut": "GENERE",
+  "references": 2
+ },
+ "version-management": {
+  "skill": "version-management",
+  "version": "1.2.0",
+  "sha_source": "351699ffe514865e2841ad14a2924e32e4d2a6065a2fcf8e7a55499c835e0e11",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "video-generation": {
+  "skill": "video-generation",
+  "version": "non déclarée",
+  "sha_source": "b96c597cb68b24dad07961fbf2ef2a25a89a745576733f359091fd5fec710c26",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "video-understand": {
+  "skill": "video-understand",
+  "version": "non déclarée",
+  "sha_source": "613f45bef3a6043a4d3bd4b95497dfb2facd5cf3d5715b8e89beeabd0c292721",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "visual-design-foundations": {
+  "skill": "visual-design-foundations",
+  "version": "non déclarée",
+  "sha_source": "d43c465b25afe04618a83bf63aadebddf179e2e82dc4f3842320028cb8b3aa51",
+  "statut": "GENERE",
+  "references": 3
+ },
+ "vue-upload": {
+  "skill": "vue-upload",
+  "version": "1.3.0",
+  "sha_source": "de0783ae4c2557b64d09e23bd12917c21ca4a67159d30b1ee5f6236b50a4f0cc",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "web-reader": {
+  "skill": "web-reader",
+  "version": "1.0.0",
+  "sha_source": "799dda635041470843fb61b2a670c6e0b579cfa41fbbc43caccc2d89b9ffe0a2",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "web-search": {
+  "skill": "web-search",
+  "version": "1.0.0",
+  "sha_source": "09efd61bbcd0be92ac7c3674c510474f839fce4693a2de4b28bf3f2e11c158dc",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "web-shader-extractor": {
+  "skill": "web-shader-extractor",
+  "version": "non déclarée",
+  "sha_source": "36691f8443c6990a31fdd4c34c23ef56aa53d2bf0ffabe2cdc60a61926070580",
+  "statut": "GENERE",
+  "references": 9
+ },
+ "writing-plans": {
+  "skill": "writing-plans",
+  "version": "non déclarée",
+  "sha_source": "9875d215ed53d982fc65b66a3033c3c79ef23b4eb06b53231053fbc76e5d9ec1",
+  "statut": "GENERE",
+  "references": 0
+ },
+ "xlsx": {
+  "skill": "xlsx",
+  "version": "1.0",
+  "sha_source": "ddd1be5d928eb8b35ab53874968fe4e78d5f2bf77f5093e175b0c4b070e1e9bc",
+  "statut": "GENERE",
+  "references": 0
+ }
+}

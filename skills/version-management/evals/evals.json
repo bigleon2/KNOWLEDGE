@@ -6,7 +6,7 @@
   "evals": [
     {
       "id": 1,
-      "name": "VM-save — 首个文件写出前保存版本",
+      "name": "VM-save — shouge wenxie chu xian qian bao cun banben",
       "prompt": "帮我写一个带有轮播图的单页网站 index.html。",
       "expected_output": "在写出第一个 .html 文件之前确定项目目录与落盘路径，然后保存为 V1 并通过 send_file 吐出版本卡片",
       "files": [],
@@ -18,7 +18,7 @@
     },
     {
       "id": 2,
-      "name": "VM-history — 查看版本历史",
+      "name": "VM-history — chakan banben lishi",
       "prompt": "看看这个项目到现在都有哪些版本。",
       "expected_output": "读取 meta.json 版本流水，以版本卡片形式展示历史，不展示底层 git 操作",
       "files": [],
@@ -30,7 +30,7 @@
     },
     {
       "id": 3,
-      "name": "VM-restore — 恢复历史版本",
+      "name": "VM-restore — huifu lishi banben",
       "prompt": "恢复到上一版，刚才改坏了。",
       "expected_output": "执行版本恢复，恢复后重新 send_file 吐出文件，并告知当前版本状态",
       "files": [],
@@ -42,7 +42,7 @@
     },
     {
       "id": 4,
-      "name": "VM-switch — 切换项目",
+      "name": "VM-switch — qiehuan xiangmu",
       "prompt": "我不做这个项目了，切回我上次的那个待办清单应用。",
       "expected_output": "定位目标项目目录并切换上下文，恢复该项目当前状态后继续工作",
       "files": [],
@@ -54,7 +54,7 @@
     },
     {
       "id": 5,
-      "name": "VM-implicit — 未提「项目」二字也触发",
+      "name": "VM-implicit — wei ti「xiangmu」er zi chufa",
       "prompt": "给我做一个数据可视化仪表盘页面。",
       "expected_output": "任务可能写出 .html 入口文件，因此 skill 在写出第一个文件之前即被读取并遵循（隐式触发）",
       "files": [],
