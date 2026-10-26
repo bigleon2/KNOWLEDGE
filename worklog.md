@@ -355,3 +355,18 @@ Work Log:
 Stage Summary:
 - P3-P5 CLÔTURÉES : grilles recalibrées (leçon E15 matérialisée), 4 propositions arbitragées et tracées, robustesse prouvée sur les deux environnements (local certifié 6/6 + distant PASS)
 - API z-ai toujours 429 en clôture de P5 — cycles francisation P2 repris dès reconstitution (états idempotents sur disque)
+
+---
+Task ID: 30
+Agent: Z.ai (session web-eb6c8580 — clôture) — phases P6-P7 (tâches 8-9 directive)
+Task: correct-work PROJET fin de chaîne + audit anti-persistance + clone-chat clôture
+
+Work Log:
+- P6 (tâche 8) : correct-work Mode PROJET — 5 étapes sur les livrables P2-P5 : 9 problèmes traités (5 CORRIGÉ : wipe plateforme/dessin-technique/§0 stale/statut p2/wrapper LLM ; 2 CONTORNE : 429 quota API + NO-OP générateur complété agent ; 1 fix scan PM skills ; 1 JOURNALISÉ : PAT tronqué) ; answer key D001-D012 vérifiée (12/12 preuves) ; verdict PASS AVEC RÉSERVES — download/rapport-correct-work-projet-directive-2026-10-26.md
+- Audit anti-persistance 5 zones (D006) : VERT — Z1 remote URL 0 · Z2 13 fichiers = motifs documentaires préexistants (scripts propriétaire task47/48) · Z3 17 commits = historique préexistant + 1 motif documentaire D006 (0 valeur réelle sur les 8 commits de session, vérifié commit par commit) · Z4 credentials 0 · Z5 valeur PAT 0
+- P7 (tâche 9) : rapport final consolidé (phases, re-projection D011, bilan E15 ×1,43, leçons L-P2-a..d) + clone auto-suffisant — download/rapport-final-directive-10-taches-2026-10-26.md + download/clone-discussion-2026-10-26-directive-10-taches-execution.md
+- État de sortie : 6 commits session (P2 5a2427→P6 8c6e32a + journal b792f4f + P6 rapport + P7) en attente de push (PAT frais requis) ; francisation P2 en état intermédiaire idempotent (214 fichiers résiduels — reprise `bash scripts/p2-cycle.sh` puis re-génération PM skills) ; écosystème local certifié 6/6
+
+Stage Summary:
+- DIRECTIVE 10 TÂCHES : 9/9 tâches avec livrable vérifiable (tâche 2 en état intermédiaire documenté + reprise mécanique prête — cause externe quota API)
+- RAPPEL SÉCURITÉ PROPRIÉTAIRE : RÉVOQUER/ROTATION le PAT (circulé en clair + fragments publics préexistants)
