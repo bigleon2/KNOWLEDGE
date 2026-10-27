@@ -9,14 +9,14 @@ typography:
   fonts: "JetBrains Mono"
 note: "Le frontmatter est extrait automatiquement ; le corps de texte ci-dessous est la source autorisée pour les jetons complets, composants et règles."
 ---
-# Système de design inspiré par kami (紙 / 纸)
+# Système de design inspiré par kami (papier)
 
 > Catégorie : Éditorial & Impression
 > Système de papier éditorial : toile de parchemin chaleureuse, accent bleu encre, hiérarchie menée par les empattements. Conçu pour les CV, les pages uniques, les livres blancs, les portfolios, les présentations — tout ce qui devrait avoir l'air d'une impression de haute qualité plutôt que d'une interface utilisateur. Multilingue par conception (EN · zh-CN · ja).
 
 ## 1. Thème visuel & Atmosphère
 
-kami se résume en une phrase : **toile de parchemin chaleureuse, accent bleu encre, serif porte la hiérarchie, aucun gris froid, aucune ombre dure.** Ce n'est pas un framework d'interface utilisateur — c'est un système de contraintes pour la page, conçu pour garder les livrables stables, clairs et incontestablement *imprimés*. Le nom se lit comme **kami / 紙 / 纸** — le même mot pour "papier" en japonais et en chinois — et le système est co-conçu en anglais, chinois simplifié et composition japonaise dès le départ, pas adapté a posteriori.
+kami se résume en une phrase : **toile de parchemin chaleureuse, accent bleu encre, serif porte la hiérarchie, aucun gris froid, aucune ombre dure.** Ce n'est pas un framework d'interface utilisateur — c'est un système de contraintes pour la page, conçu pour garder les livrables stables, clairs et incontestablement *imprimés*. Le nom se lit comme **kami** — le même mot pour « papier » en japonais et en chinois — et le système est co-conçu en anglais, chinois simplifié et composition japonaise dès le départ, pas adapté a posteriori.
 
 L'arrière-plan de la page est du parchemin (`#f5f4ed`), jamais blanc pur. Le texte repose sur un crème. Le seul mouvement chromatique est le bleu encre (`#1B365D`) — utilisé sur les numéros de section, les CTAs primaires, la règle gauche d'une citation, le poids W500 dans une métrique. Tout le reste est un neutre chaud avec une sous-teinte jaune-brun ; les gris bleus froids sont intentionnellement absents.
 

@@ -69,7 +69,7 @@ Que vous ayez appliqué une teinte ou non :
 
 ## Rule 2 — Place text away from subject / face zones
 
-Les affiches dans 旅行 / 游戏 / 影视 / 穿搭 / 美食 (voyage / jeu / cinéma / mode / gastronomie) utilisent souvent une vraie photo comme élément principal. La photo a un sujet — un visage, une main, un produit, un sommet. Un texte qui chevauche le sujet se lit comme du graffiti, pas comme de l'éditorial.
+Les affiches dans les catégories voyage / jeu / cinéma / mode / gastronomie utilisent souvent une vraie photo comme élément principal. La photo a un sujet — un visage, une main, un produit, un sommet. Un texte qui chevauche le sujet se lit comme du graffiti, pas comme de l'éditorial.
 
 ### Subject zone discovery — multimodal first
 

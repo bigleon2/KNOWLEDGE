@@ -220,7 +220,7 @@ Cover pages (`archetype: "cover_hero"`) are the first impression. They must be r
 5. **No `Glass_Canvas` on cover pages.** Dense reading text kills the visual impact. Push all body content to page 2+.
 6. **Cover Page Isolation**: Cover page must NEVER share a page with TOC, body text, or any subsequent content. The cover is always a standalone full page. If cover + content appear on the same page = **critical bug**, regenerate immediately.
 7. **Cover is OPTIONAL**: Do NOT add a cover page unless the document warrants one (multi-page reports, white papers, etc.) or the user explicitly requests it. Short documents, letters, memos, forms, and quick outputs skip the cover.
-8. **Background Layer (optional)**: See `typesetting/cover-backgrounds.md` for 3 recipes - A (极简弧线), B (工程十字轴+立柱), C (锐角切割+出血文字). Background renders BELOW all foreground at 2-5% opacity. Pick a recipe that matches the document tone. Never combine elements across recipes.
+8. **Background Layer (optional)**: See `typesetting/cover-backgrounds.md` for 3 recipes - A (arcs minimalistes), B (croix d'ingénieur + colonnes), C (coupes angulaires + texte saignant). Background renders BELOW all foreground at 2-5% opacity. Pick a recipe that matches the document tone. Never combine elements across recipes.
 
 #### 7 Cover Layouts (Pick One)
 
@@ -387,11 +387,11 @@ This table is the **sole authority** for mapping document intent to concrete des
 
 | Intent | palette_mode | color_harmony | background_svg | Cover Templates | Cover BG Recipe | Base Hue |
 |--------|-------------|---------------|----------------|-----------------|-----------------|----------|
-| **Calm** | minimal | analogous | flow / none | 07 Crystal Blue, 01 HUD | A (极简弧线) | 210° (steel blue-grey) |
-| **Tension** | dark | complementary | grid | 01 HUD | C (锐角切割) | 0° (warm vs cold) |
-| **Energy** | pastel / light | triadic | flow (5+ curves) | 07 Crystal Blue, 04 Academic Symmetric | B (工程十字轴) | 30° (amber) |
+| **Calm** | minimal | analogous | flow / none | 07 Crystal Blue, 01 HUD | A (arcs minimalistes) | 210° (steel blue-grey) |
+| **Tension** | dark | complementary | grid | 01 HUD | C (coupes angulaires) | 0° (warm vs cold) |
+| **Energy** | pastel / light | triadic | flow (5+ curves) | 07 Crystal Blue, 04 Academic Symmetric | B (croix d'ingénieur) | 30° (amber) |
 | **Authority** | minimal | split_complementary | noise | 04 Academic Symmetric, 03 Academic Anchor, 07 Crystal Blue | A or B | 280° (muted violet) |
-| **Warmth** | pastel / light | analogous | flow (soft) | 07 Crystal Blue, 01 HUD | A (极简弧线) | 20° (terracotta) |
+| **Warmth** | pastel / light | analogous | flow (soft) | 07 Crystal Blue, 01 HUD | A (arcs minimalistes) | 20° (terracotta) |
 
 **How to use this table:**
 1. Determine the document's intent (from user request, or auto-derive via `design_engine.py derive`)

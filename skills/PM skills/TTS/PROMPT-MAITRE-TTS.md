@@ -1,8 +1,8 @@
 ---
 nom: TTS
 source: skills/TTS/SKILL.md
-sha256_source: 54a9caaa1e45
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: 81d457d94bd7
+genere: 2026-10-27 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -471,7 +471,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       {
-        error: error instanceof Error ? error.message : '生成语音失败，请稍后重试',
+        error: error instanceof Error ? error.message : 'Échec de la génération vocale, veuillez réessayer plus tard',
       },
       { status: 500 }
     );
@@ -730,13 +730,13 @@ const buffer = Buffer.from(response.audio); // response.audio is undefined
 
 ### Available Voices
 
-- `tongtong` - 温暖亲切
-- `chuichui` - 活泼可爱
-- `xiaochen` - 沉稳专业
-- `jam` - 英音绅士
-- `kazi` - 清晰标准
-- `douji` - 自然流畅
-- `luodo` - 富有感染力
+- `tongtong` - chaleureuse et bienveillante
+- `chuichui` - vive et espiègle
+- `xiaochen` - posée et professionnelle
+- `jam` - gentleman à l'accent britannique
+- `kazi` - claire et standard
+- `douji` - naturelle et fluide
+- `luodo` - expressive et entraînante
 
 ### Speed Range
 

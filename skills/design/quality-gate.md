@@ -1,6 +1,6 @@
 ---
 name: quality-gate
-description: Porte de livraison finale bloquante pour les artefacts générés ou édités de manière majeure. Un noyau de blocage court (doit être passé à chaque fois) plus des vérifications détaillées à la demande (seulement les pertinentes) et un polissage non bloquant. Exécuté comme une checklist, pas comme une référence passive. Déclenché par "质量检查", "交付检查", "delivery check", "design QA", "compliance check", ou chaque fois qu'un artefact est sur le point d'être transmis.
+description: Porte de livraison finale bloquante pour les artefacts générés ou édités de manière majeure. Un noyau de blocage court (doit être passé à chaque fois) plus des vérifications détaillées à la demande (seulement les pertinentes) et un polissage non bloquant. Exécuté comme une checklist, pas comme une référence passive. Déclenché par "contrôle qualité", "contrôle de livraison", "delivery check", "design QA", "compliance check", ou chaque fois qu'un artefact est sur le point d'être transmis.
 mode: quality-gate
 platform: any
 scenario: delivery-quality
@@ -11,8 +11,8 @@ default_for:
   - design QA
   - delivery check
   - compliance check
-  - 交付检查
-  - 质量检查
+  - Contrôle de livraison
+  - Contrôle qualité
 fidelity: system
 ---
 
@@ -36,7 +36,7 @@ Cette porte comporte trois niveaux — exécutez-les dans l'ordre :
 
 ## NIVEAU 1 — Noyau de blocage (doit passer, à chaque fois)
 
-Il s'agit d'échecs de niveau **事故级** (échec de niveau incident) : l'artefact atteint l'utilisateur cassé, hors-cible, malhonnête ou visivement bon marché. Vérifiez tous ces points à chaque livraison — cette liste est courte intentionnellement pour qu'elle soit réellement exécutée.
+Il s'agit d'échecs de niveau **incident** : l'artefact atteint l'utilisateur cassé, hors-cible, malhonnête ou visivement bon marché. Vérifiez tous ces points à chaque livraison — cette liste est courte intentionnellement pour qu'elle soit réellement exécutée.
 
 ```text
 [ ] 1. Bon type de support / bon format d'artefact — correspond à ce que l'utilisateur a demandé
@@ -174,7 +174,7 @@ Les éléments de blocage ci-dessus pointent vers ces courtes clarifications :
 
 ---
 
-## 交付（门禁内部跑，不向用户念清单）
+## Livraison (la porte tourne en interne, ne pas réciter la liste à l'utilisateur)
 
 La porte de qualité est une **action interne** — exécutez-la, mais **ne rapportez pas la checklist point par point à l'utilisateur** (ne sortez pas de tableaux pass/fail, ne listez pas « ① type d'artefact pass ② pertinent pass… »). Cela est cohérent avec la discipline de sortie : l'utilisateur veut un bien fait produit, pas le processus de contrôle qualité.
 

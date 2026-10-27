@@ -21,19 +21,19 @@ default_for:
   - timer
   - QR generator
   - decision tool
-  - 小工具
-  - Web 小工具
-  - H5 小工具
-  - 计算器
-  - 生成器
-  - 转换器
-  - 测试
-  - 答题
-  - 抽签
-  - 抽奖
-  - 决策器
-  - 占卜
-  - 运势
+  - Petit outil
+  - Petit outil Web
+  - Petit outil H5
+  - Calculateur
+  - Générateur
+  - Convertisseur
+  - Test / quiz
+  - Questionnaire à remplir
+  - Tirage au sort
+  - Loterie
+  - Aide à la décision
+  - Divination
+  - Horoscope
 fidelity: high
 ---
 

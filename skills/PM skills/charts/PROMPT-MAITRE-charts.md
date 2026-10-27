@@ -2,8 +2,8 @@
 nom: charts
 version: 1.0
 source: skills/charts/SKILL.md
-sha256_source: cc27057ee6aa
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: fd9b22011fc1
+genere: 2026-10-27 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -93,7 +93,7 @@ Chaque fichier modèle contient ses propres règles spécifiques au framework (e
 
 | L'utilisateur dit | Vous DEVEZ faire | Interdit |
 |-----------|------------|-----------|
-| "use mermaid code" / "用Mermaid格式输出" / "转化为mermaid" / "mermaid流程" | ① Sortir un bloc de code Mermaid (```mermaid ... ```) ② Fournir également un aperçu d'image rendu | ❌ Ne peut donner que l'image sans code ; ❌ Ne peut prendre une capture d'écran du code brut comme image |
+| "use mermaid code" / "sortir au format Mermaid" / "convertir en Mermaid" / "diagramme Mermaid" | ① Sortir un bloc de code Mermaid (```mermaid ... ```) ② Fournir également un aperçu d'image rendu | ❌ Ne peut donner que l'image sans code ; ❌ Ne peut prendre une capture d'écran du code brut comme image |
 | "use markdown code" | Sortir une hiérarchie formatée en markdown | ❌ Ne peut passer à HTML/CSS |
 | "via mermaid or markdown code" | Choisir l'un des deux, sortir le code texte | ❌ Ne peut passer à tout format non spécifié |
 | "flowchart" / "mind map" (aucun format spécifié) | Libre de choisir la meilleure approche | - |
@@ -124,7 +124,7 @@ Lorsqu'un outil spécifié rencontre des difficultés de rendu (ex: échec du CD
 
 #### 🔴 Organigramme par Défaut: Vertical Phasé (PRIORITÉ MAXIMALE)
 
-**Lorsque l'utilisateur demande de "générer/créer un organigramme XXX/流程图" sans spécifier de format, la disposition par DÉFAUT est Verticale Phasée (Mise en page C dans `references/playwright-css.md`).**
+**Lorsque l'utilisateur demande de « générer/créer un organigramme XXX » sans spécifier de format, la disposition par DÉFAUT est Verticale Phasée (Mise en page C dans `references/playwright-css.md`).**
 
 C'est parce que presque tous les processus du monde réel (fabrication, procédures légales, gestion de projet, opérations commerciales, recettes de cuisine, etc.) ont des phases/stages naturels. La mise en page C produit le résultat le plus professionnel, lisible.
 
@@ -134,7 +134,7 @@ C'est parce que presque tous les processus du monde réel (fabrication, procédu
 3. **Tout le reste** → **Playwright + CSS, Mise en page C (Verticale Phasée)** → `references/playwright-css.md`
 
 **Détection de phase — considérer comme "a des phases" si AU MOINS un est vrai:**
-- Le contenu a des sections numérotées (一、二、三 ou 1. 2. 3. ou Phase 1/Stage 1)
+- Le contenu a des sections numérotées (1. 2. 3., numérotation chinoise, ou Phase 1/Stage 1)
 - Le processus peut être groupé par temps/étape/rôle (ex: "préparation → exécution → révision")
 - Total des étapes ≥ 5 (presque toujours groupable en 2+ phases)
 - Le processus implique plusieurs rôles/départements
@@ -224,13 +224,13 @@ Ces règles s'appliquent à TOUS les diagrammes quel que soit le framework. Les 
 **Arbre de décision anti-chevauchement :**
 1. **Vérifier si les étiquetages directs passent** — si toutes les étiquettes ont assez d'espace (sommets de barres, extrémités de lignes, grandes parts de camembert), étiqueter directement. Pas de légende nécessaire.
 2. **Si certaines étiquettes entreraient en collision** (petites parts de camembert, points de dispersion denses, barres groupées) → utiliser une légende en dehors de la zone de diagramme au lieu de forcer les étiquettes dans des espaces étroits.
-3. **Approche mixte** — étiqueter directement les éléments principaux, grouper les petits éléments dans "其他" ou utiliser des lignes de liaison + légende pour les petits.
+3. **Approche mixte** — étiqueter directement les éléments principaux, grouper les petits éléments dans « Autres » ou utiliser des lignes de liaison + légende pour les petits.
 
 **Spécifique aux diagrammes circulaires (le pire coupable) :**
 - Parts < 5% : DOIT utiliser des lignes de liaison (`wedgeprops + texts` repositionnement manuel, ou `matplotlib.patches.ConnectionPatch`) pour sortir les étiquettes. Ne pas se fier uniquement à `autopct` — il place le texte à l'intérieur/près de la part.
 - Plusieurs petites parts adjacentes : utiliser une légende `bbox_to_anchor` en dehors, PAS d'étiquetage direct
 - `labeldistance=1.25` minimum pour garder les étiquettes à l'extérieur du camembert
-- Quand >2 parts sont < 5%, envisager de grouper toutes les < 3% en "其他（X项）"
+- Quand >2 parts sont < 5%, envisager de grouper toutes les < 3% en « Autres (X éléments) »
 - Utiliser la bibliothèque `adjustText` pour résoudre automatiquement les collisions d'étiquettes quand disponible
 
 **Placement de la légende (quand une légende est nécessaire) :**

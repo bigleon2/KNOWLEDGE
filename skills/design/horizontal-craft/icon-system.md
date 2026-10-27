@@ -13,9 +13,9 @@ default_for:
   - icon set
   - SVG icons
   - UI icons
-  - 图标
-  - 图标库
-  - 成套图标
+  - Icône
+  - Bibliothèque d'icônes
+  - Jeu d'icônes complet
 fidelity: system
 ---
 

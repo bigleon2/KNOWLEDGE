@@ -38,6 +38,8 @@
 | Complexité critique | 1.5x | Projet nouveau, aucune référence |
 | Profil ECO | 0.7x | Réduction surveillance, snippets simplifiés |
 | Profil VIEUX PC | 0.5x | Scripts légers, pas de graphiques |
+| **Profil frais local** | **3-4x** (v3.28.1) | Première exécution sur profil restauré/réinstallé — coût de découverte du corpus (lectures multi-fichiers, PMs longs, KB, outillage) non couvert par les grilles calibrées sur environnement établi |
+| **Appels API en masse** | **2-3x** (v3.28.1) | Phases avec appels LLM/API répétés — rate-limit 429, retries, backoff 12-48 s + pause anti-rafale 45 s ; guidance : ThreadPoolExecutor 2-4 workers, throttle 1-2 s/appel, journal d'état idempotent, tri par taille croissante |
 
 ## Historique de calibration
 
@@ -54,4 +56,6 @@
 | 9 | 2026-08-30 | correct-work PROJET + archéologie versions + lignée clones | 9500 | ~9800 | +3.2% | Aucune (0-20%) |
 | 10 | 2026-08-30 | correct-work PROJET + alignement gen-plan v3.7.0 au sein de correct-work | 9000 | ~9200 | +2.2% | Aucune (0-20%) |
 | 11 | 2026-08-30 | Propagation knowledge-repo (Tasks 8-9, commit c79fdb6) | 4500 | ~4700 | +4.4% | Aucune (0-20%) |
+| 12 | 2026-10-25 | Audit écosystème complet (profil frais local — session web-eb6c8580, Tasks 1-5) | 12200 | ~52000 | ×3-4 (326 %) | **Recalibration complète** : + coefficient profil frais local ×3-4 (row v3.28.1) |
+| 13 | 2026-10-26 | Directive 10 tâches P0-P2 (session web-eb6c8580 — 233 fichiers API en masse, rate-limit 429) | 78000 | ~120000 (partiel) | ×1,5-1,7 (grille déjà recalibrée ×3-4 au plan) | Contingence API en masse ×2-3 + guidance parallélisation ajoutées (row v3.28.1) |
 ```

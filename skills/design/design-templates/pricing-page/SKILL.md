@@ -63,7 +63,7 @@ Privilégiez :
 Évitez :
 
 - plusieurs badges "Recommandé" (tuījiàn) sur les niveaux — choisissez-en un
-- dégradés 黑金 (hēijīn) (noir-or) ou accents néon (esthétique interdite)
+- dégradés noir-or (hēijīn) ou accents néon (esthétique interdite)
 - emojis génériques ou puces d'icônes 3D pour les fonctionnalités
 - forcer les noms de niveau en anglais quand le public lit le chinois
 - prétendre être Stripe / Linear avec une quasi-copie identique de leur page de tarification

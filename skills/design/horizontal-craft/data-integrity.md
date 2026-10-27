@@ -130,8 +130,8 @@ Règles :
 Préférez les étiquettes honnêtes :
 
 - Données de démonstration
-- 示例数据 (shìlì shùjù — données d'exemple)
-- 待填写 (dài tiánxiē — à remplir)
+- Données d'exemple (shìlì shùjù)
+- À remplir (dài tiánxiē)
 - Remplacer par des chiffres vérifiés
 - Source en attente
 

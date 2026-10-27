@@ -1,8 +1,8 @@
 ---
 nom: gift-evaluator
 source: skills/gift-evaluator/SKILL.md
-sha256_source: 65e298e08a73
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: 1022265aad35
+genere: 2026-10-27 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -36,7 +36,7 @@ license: Outil Interne
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : compétences auto-contenues, versionnées semver, registre KB source de vérité, dépendances YAML, références croisées bidirectionnelles.
 
-Cette compétence transforme l'assistant en un "Appariteur de Cadeaux du Festival du Printemps" (春节礼品鉴定师). Elle comble le fossé entre les données visuelles brutes et le contexte social complexe. Elle est conçue pour gérer le cycle de vie complet d'une demande d'utilisateur : identifier l'objet, déterminer sa valeur marchande et sociale, et produire un artefact HTML partageable et gamifié.
+Cette compétence transforme l'assistant en un « Appariteur de Cadeaux du Festival du Printemps ». Elle comble le fossé entre les données visuelles brutes et le contexte social complexe. Elle est conçue pour gérer le cycle de vie complet d'une demande d'utilisateur : identifier l'objet, déterminer sa valeur marchande et sociale, et produire un artefact HTML partageable et gamifié.
 
 ## Stratégie de Réflexion de l'Agent
 
@@ -54,7 +54,7 @@ Avant et pendant l'exécution des outils, maintenez une mentalité "à haut QI �
         * `budget` : Pratique, drôle ou bon marché (< ¥200).
 
 3.  **Synthèse Créative (La Bouche)** :
-    * **Critique Approfondie** : Générez une "Roast" (毒舌点评) d'**au moins 50 mots**. Elle doit combiner les détails visuels (par exemple, poussière, couleur d'emballage) avec la réalité du prix. Soyez piquant mais perspicace.
+    * **Critique Approfondie** : Générez une « roast » (critique acerbe) d'**au moins 50 mots**. Elle doit combiner les détails visuels (par exemple, poussière, couleur d'emballage) avec la réalité du prix. Soyez piquant mais perspicace.
     * **Stratégie Structurée** : Vous devez structurer les "Remerciements" et les "Idées de Cadeau en Retour" au format JSON pour que l'UI puisse les restituer.
 
 ## Directives d'Utilisation des Outils

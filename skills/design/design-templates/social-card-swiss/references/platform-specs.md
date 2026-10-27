@@ -89,8 +89,8 @@ Règle du titre court :
 Exemple :
 
 ```text
-Long: 开源了一个 Skill，让 AI 接管你屏幕边那张便签纸
-Square: AI 接管便签纸
+Long: An open-sourced Skill that lets AI take over the sticky note at the edge of your screen
+Square: AI takes over the sticky note
 ```
 
 Nommage :

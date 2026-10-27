@@ -445,7 +445,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       {
-        error: error instanceof Error ? error.message : '生成语音失败，请稍后重试',
+        error: error instanceof Error ? error.message : 'Échec de la génération vocale, veuillez réessayer plus tard',
       },
       { status: 500 }
     );
@@ -704,13 +704,13 @@ const buffer = Buffer.from(response.audio); // response.audio is undefined
 
 ### Available Voices
 
-- `tongtong` - 温暖亲切
-- `chuichui` - 活泼可爱
-- `xiaochen` - 沉稳专业
-- `jam` - 英音绅士
-- `kazi` - 清晰标准
-- `douji` - 自然流畅
-- `luodo` - 富有感染力
+- `tongtong` - chaleureuse et bienveillante
+- `chuichui` - vive et espiègle
+- `xiaochen` - posée et professionnelle
+- `jam` - gentleman à l'accent britannique
+- `kazi` - claire et standard
+- `douji` - naturelle et fluide
+- `luodo` - expressive et entraînante
 
 ### Speed Range
 

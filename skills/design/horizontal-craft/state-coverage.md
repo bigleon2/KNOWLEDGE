@@ -103,7 +103,7 @@ Something went wrong.
 Better:
 
 ```text
-未能保存表单。网络连接中断，请检查后重试。
+Échec de l'enregistrement du formulaire. Connexion réseau interrompue — vérifiez puis réessayez.
 ```
 
 Severity tiers:

@@ -55,7 +55,7 @@ base_hue (ex: 200° bleu acier)
 python3 "$PDF_SKILL_DIR/scripts/design_engine.py" palette-cascade --intent cold --mode minimal
 
 # Via pdf.py (dérive automatiquement l'intention du titre)
-python3 "$PDF_SKILL_DIR/scripts/pdf.py" palette.cascade --title "2025年度报告" --format reportlab
+python3 "$PDF_SKILL_DIR/scripts/pdf.py" palette.cascade --title "Rapport annuel 2025" --format reportlab
 
 # Formats: summary (défaut) | json | css | reportlab
 ```

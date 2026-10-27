@@ -20,12 +20,12 @@ default_for:
   - agency homepage
   - studio homepage
   - pricing page
-  - 产品落地页
-  - 产品官网
-  - SaaS 主页
-  - 官网
-  - waitlist 页
-  - 定价页
+  - Page d'atterrissage produit
+  - Site officiel produit
+  - Accueil SaaS
+  - Site officiel
+  - Page de liste d'attente
+  - Page de tarification
 fidelity: high
 ---
 
@@ -41,7 +41,7 @@ Ce fichier donne des jugements sur les pages de destination, pas un manuel compl
 
 ## Redirigez ailleurs si
 
-person / body-of-work showcase → `portfolio.md` · product UI / dashboard / app flow / clickable demo / "做一个 XX 的 demo" → `prototype.md` · single-task calculator/generator/checker → `web-tool.md` · linear reading / newsletter / editorial → `content-page.md` · information exploration / data story → `info-interactive.md` · social image / product brief image / report summary image / poster / cover / long-image → `social-card.md` · slides / pitch deck → `deck.md`
+person / body-of-work showcase → `portfolio.md` · product UI / dashboard / app flow / clickable demo / « faire une démo de XX » → `prototype.md` · single-task calculator/generator/checker → `web-tool.md` · linear reading / newsletter / editorial → `content-page.md` · information exploration / data story → `info-interactive.md` · social image / product brief image / report summary image / poster / cover / long-image → `social-card.md` · slides / pitch deck → `deck.md`
 
 Les sites d'agence/studio peuvent être à la fois portfolio et page de destination — privilégiez l'intention dominante : vendre un service (offre claire, CTA de tarification/contact, cadre des compétences) → page de destination ; montrer le travail et la personnalité (grille menée par les études, profondeur des projets, voix distinctive) → `portfolio.md`.
 

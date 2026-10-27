@@ -1,7 +1,7 @@
 {
   "name": "stock-analysis-skill",
   "version": "1.0.0",
-  "description": "A股/港股/美股 决策仪表盘 + 传闻扫描 + 自选股提醒",
+  "description": "Tableau de décision actions A / HK / US + scan de rumeurs + alertes watchlist",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

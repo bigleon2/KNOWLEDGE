@@ -79,7 +79,7 @@ Lorsque l'angle de la tranche `< 15°` (ou la part de surface `< 5%`), forcer le
 #### Stratégie B : Regroupement "Autres" (Fusion de la longue traîne)
 
 Avant que les données n'atteignent le moteur de rendu, intercepter et fusionner :
-- Seuil : tranches `< 3%` → fusionner en une seule tranche "其他 (Autres)"
+- Seuil : tranches `< 3%` → fusionner en une seule tranche « Autres »
 - Si des détails sont nécessaires, ajouter un tableau minimal à côté du graphique montrant le détail
 - Cela empêche 5+ petits fragments d'encombrer le graphique
 
@@ -189,7 +189,7 @@ Pour les points qui doivent être mis en évidence :
 - **Titre principal** : Aligné à gauche au-dessus du graphique, gras, 14-16pt
 - **Sous-titre** : Sous le titre principal, poids normal, plus petit (11-12pt), décrit la source/période/unités des données
 - Titre et corps du graphique doivent avoir une séparation visuelle claire (≥16px d'écart)
-- **⚠️ Règle légende vs titre** : Lorsque le graphique a une légende externe (légende de figure / 图注, par exemple "图 1: XXX" sous le graphique), **n'ajoutez PAS de titre à l'intérieur du graphique** (`ax.set_title()`). La légende sert déjà d'identifiant du graphique — un titre interne la dupliquerait et gaspillerait l'espace vertical. N'ajouter un titre interne que lorsque le graphique est autonome (pas de légende).
+- **⚠️ Règle légende vs titre** : Lorsque le graphique a une légende externe (légende de figure, par exemple « Fig. 1 : XXX » sous le graphique), **n'ajoutez PAS de titre à l'intérieur du graphique** (`ax.set_title()`). La légende sert déjà d'identifiant du graphique — un titre interne la dupliquerait et gaspillerait l'espace vertical. N'ajouter un titre interne que lorsque le graphique est autonome (pas de légende).
 
 #### Règles de légende
 

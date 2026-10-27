@@ -8,11 +8,11 @@ scenario: audio-showcase
 pattern_source: music-player.html
 source_priority: skill-first
 triggers:
-  - "做个音乐播放器 mockup"
-  - "单曲展示页"
-  - "播客单期封面"
-  - "iOS Music 风播放器卡"
-  - "玻璃感播放器"
+  - « Faire une maquette de lecteur de musique »
+  - « Page de présentation d'un single »
+  - « Couverture d'un épisode de podcast »
+  - « Carte lecteur style Musique iOS »
+  - « Lecteur effet verre »
 ---
 
 # Audio Jingle Template

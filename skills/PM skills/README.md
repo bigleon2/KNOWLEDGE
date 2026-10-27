@@ -6,7 +6,7 @@ Chaque sous-dossier encapsule une skill sous forme de prompt autonome,
 copiable hors écosystème. Ces dossiers ne sont PAS la forme installée :
 la source de vérité reste `skills/<skill>/SKILL.md` (règle zéro, registre KB).
 
-Généré le 2026-10-26 — phase P2 (directive 10 tâches, tâche 2). Idempotent :
+Généré le 2026-10-27 — phase P2 (directive 10 tâches, tâche 2). Idempotent :
 un dossier n'est réécrit que si sa source a changé (SHA-256 scellé par dossier).
 
 ## Index
@@ -56,7 +56,7 @@ un dossier n'est réécrit que si sa source a changé (SHA-256 scellé par dossi
 | `gaokao-generate-report` | vnon déclarée | `gaokao-generate-report/PROMPT-MAITRE-gaokao-generate-report.md` |
 | `gaokao-recommend-majors` | vnon déclarée | `gaokao-recommend-majors/PROMPT-MAITRE-gaokao-recommend-majors.md` |
 | `gaokao-recommend-schools` | vnon déclarée | `gaokao-recommend-schools/PROMPT-MAITRE-gaokao-recommend-schools.md` |
-| `gen-plan` | v3.28.0 | `gen-plan/PROMPT-MAITRE-gen-plan.md` |
+| `gen-plan` | v3.28.1 | `gen-plan/PROMPT-MAITRE-gen-plan.md` |
 | `get-fortune-analysis` | vnon déclarée | `get-fortune-analysis/PROMPT-MAITRE-get-fortune-analysis.md` |
 | `gift-evaluator` | vnon déclarée | `gift-evaluator/PROMPT-MAITRE-gift-evaluator.md` |
 | `graph-engineering` | v1.1.1 | `graph-engineering/PROMPT-MAITRE-graph-engineering.md` |

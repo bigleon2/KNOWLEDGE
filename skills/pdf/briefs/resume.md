@@ -25,7 +25,7 @@ Mise en page propre en colonne unique, optimisée pour les systèmes de suivi de
 ### Règles de Saut de Ligne de CV (Conscient de la Langue)
 - **Anglais** : Préférer les sauts aux limites de mots (espaces, traits d'union). Si un long mot doit être divisé pour éviter un excès d'espace blanc, diviser à une limite de syllabe valide et insérer un trait d'union (`-`) - c'est une pratique typographique standard (par exemple, `experi-\nence`, `develop-\nment`). ReportLab prend en charge `wordWrap='CJK'` uniquement pour le contenu CJK ; pour l'anglais, utiliser le retour par défaut de paragraphe avec `allowWidows=0, allowOrphans=0`.
 - **Chinois/CJK** : Saut autorisé entre n'importe quelle paire de caractères CJK. Ne jamais couper entre un caractère CJK et sa ponctuation adjacente (、。,)》 etc. doivent rester avec le caractère précédent.
-- **Contenu mixte** (par exemple, "Python 开发工程师") : Sauter aux limites CJK ou aux limites de mots anglais. Ne jamais diviser un mot anglais dans un paragraphe CJK sauf s'il est traité avec un trait d'union.
+- **Contenu mixte** (par exemple, « Ingénieur développement Python ») : Sauter aux limites CJK ou aux limites de mots anglais. Ne jamais diviser un mot anglais dans un paragraphe CJK sauf s'il est traité avec un trait d'union.
 - **Ligne de contact** : E-mail, téléphone, lieu séparés par `|` ou `·`. Chaque segment doit rester sur une ligne - trop long, passer à la ligne suivante au séparateur, pas au milieu du segment.
 - **Dates et plages** : "Jan 2022 - Présent" doit rester comme une unité. Ne jamais couper une plage de dates sur plusieurs lignes.
 

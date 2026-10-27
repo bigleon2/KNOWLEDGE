@@ -8,12 +8,12 @@ scenario: marketing-landing
 pattern_source: reference.html
 source_priority: skill-first
 triggers:
-  - "做个 calm-tech SaaS 落地页"
-  - "双语 SaaS landing"
-  - "森林夜调 SaaS"
-  - "Three.js hero 落地页"
-  - "高端 SaaS 官网"
-  - "氛围型 AI 工具落地页"
+  - « Faire une page d'atterrissage SaaS calm-tech »
+  - « Landing SaaS bilingue »
+  - « SaaS tons nuit-forêt »
+  - « Page d'atterrissage hero Three.js »
+  - « Site officiel SaaS haut de gamme »
+  - « Page d'atterrissage outil IA à ambiance »
 ---
 
 # SaaS Landing Template

@@ -1,6 +1,6 @@
 # Index de Modèles de Présentation
 
-Ne lire ce fichier qu'après que le `INDEX.md` de niveau supérieur ait confirmé que l'utilisateur veut un PPT / deck / slides / présentation / 幻灯片 / BP / roadshow .
+Ne lire ce fichier qu'après que le `INDEX.md` de niveau supérieur ait confirmé que l'utilisateur veut un PPT / deck / slides / présentation / diapositives / BP / roadshow .
 
 Actuellement, il y a **8** modèles de deck dans `ppt/` :
 
