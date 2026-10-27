@@ -6,7 +6,7 @@
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
   "v6_1": "veto exclusifs avant scoring + cache voie L lecture seule sur désaccord (Task 30)",
   "sources_verdicts": {
-    "voie-m": 774,
+    "voie-m": 780,
     "voie-l-cache": 19,
     "veto-exclusif": 14
   },
@@ -1657,10 +1657,10 @@
       ]
     },
     "cahier-des-charges": {
-      "version": "1.0.0",
-      "n_cases": 7,
-      "n_keywords": 73,
-      "score_officiel": "7/7",
+      "version": "2.0.1",
+      "n_cases": 12,
+      "n_keywords": 112,
+      "score_officiel": "12/12",
       "ok": true,
       "derive_m": false,
       "cases": [
@@ -1685,17 +1685,12 @@
           "query": "Établis le document d'exigences : objectifs, périmètre inclus et exclus, exigences fonctionnelles et non-fonctionnelles, critères d'acceptation.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.818,
+          "score": 0.364,
           "hits": [
             "accept",
             "criter",
             "docum",
-            "exclu",
-            "exig",
-            "fonctionnell",
-            "inclu",
-            "object",
-            "perimetr"
+            "exig"
           ],
           "ok": true,
           "source": "voie-m"
@@ -1704,13 +1699,10 @@
           "query": "Rédige le CDC complet du projet avant de lancer le développement.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.714,
+          "score": 0.286,
           "hits": [
-            "avant",
             "cdc",
-            "complet",
-            "projet",
-            "redig"
+            "projet"
           ],
           "ok": true,
           "source": "voie-m"
@@ -1719,15 +1711,13 @@
           "query": "Le périmètre du projet a changé : fais évoluer le cahier des charges avec des amendements tracés.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.636,
+          "score": 0.455,
           "hits": [
             "cahier",
             "charg",
             "des",
             "evoluer",
-            "perimetr",
-            "projet",
-            "trac"
+            "projet"
           ],
           "ok": true,
           "source": "voie-m"
@@ -1736,14 +1726,83 @@
           "query": "Cadrage du nouveau projet : parties prenantes, indicateurs de succès, livrables et jalons.",
           "expected": true,
           "trigger_m": true,
-          "score": 0.667,
+          "score": 0.333,
           "hits": [
             "cadrag",
-            "jalon",
             "livr",
-            "parti",
-            "prenant",
             "projet"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Analyse ce projet (lien + fichiers joints) : détermine automatiquement le domaine technique, instruis-le par recherche web et calibre la rigueur d'ingénierie.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.688,
+          "hits": [
+            "analys",
+            "automatiqu",
+            "calibr",
+            "domain",
+            "fichier",
+            "ingenieri",
+            "lien",
+            "projet",
+            "recherch",
+            "rigu",
+            "techn"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Conçois intégralement ce système mécatronique à partir de son cahier des charges : architecture, sous-systèmes, interfaces, allocation des exigences.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.857,
+          "hits": [
+            "alloc",
+            "architectur",
+            "cahier",
+            "charg",
+            "des",
+            "exig",
+            "integral",
+            "interfac",
+            "mecatron",
+            "partir",
+            "sous",
+            "system"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Génère les tests fonctionnels qui prouvent les exigences du CDC, avec matrice de couverture.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.455,
+          "hits": [
+            "cdc",
+            "couvertur",
+            "exig",
+            "fonctionn",
+            "test"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Simule le système matériel (modèle thermique + boucle PID + capteurs virtuels) pour vérifier les exigences de performance.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.286,
+          "hits": [
+            "exig",
+            "materi",
+            "simul",
+            "system"
           ],
           "ok": true,
           "source": "voie-m"
@@ -1752,10 +1811,11 @@
           "query": "Décompose la spécification exécutable de cette tâche en plan puis en tâches atomiques.",
           "expected": false,
           "trigger_m": true,
-          "score": 0.375,
+          "score": 0.5,
           "hits": [
             "atom",
             "execut",
+            "puis",
             "specific"
           ],
           "ok": true,
@@ -1771,13 +1831,24 @@
           ],
           "ok": true,
           "source": "voie-m"
+        },
+        {
+          "query": "Reproduis cette pièce en dessin technique isométrique avec cotation normalisée.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.111,
+          "hits": [
+            "techn"
+          ],
+          "ok": true,
+          "source": "voie-m"
         }
       ]
     },
     "charts": {
       "version": "1.0",
       "n_cases": 8,
-      "n_keywords": 92,
+      "n_keywords": 106,
       "score_officiel": "8/8",
       "ok": true,
       "derive_m": false,
@@ -1786,9 +1857,10 @@
           "query": "utilise le skill charts pour cette tâche : la tâche « charts »",
           "expected": true,
           "trigger_m": true,
-          "score": 0.167,
+          "score": 0.333,
           "hits": [
-            "chart"
+            "chart",
+            "utilis"
           ],
           "ok": true,
           "source": "voie-m"
@@ -1859,8 +1931,10 @@
           "query": "analyse ce CSV et donne-moi des statistiques",
           "expected": false,
           "trigger_m": false,
-          "score": 0.0,
-          "hits": [],
+          "score": 0.167,
+          "hits": [
+            "statist"
+          ],
           "ok": true,
           "source": "voie-m"
         }
@@ -2949,7 +3023,7 @@
     "docx": {
       "version": "1.0",
       "n_cases": 8,
-      "n_keywords": 27,
+      "n_keywords": 29,
       "score_officiel": "8/8",
       "ok": true,
       "derive_m": false,
@@ -2958,9 +3032,10 @@
           "query": "utilise le skill docx pour cette tâche : la tâche « docx »",
           "expected": true,
           "trigger_m": true,
-          "score": 0.167,
+          "score": 0.333,
           "hits": [
-            "docx"
+            "docx",
+            "tach"
           ],
           "ok": true,
           "source": "voie-m"
@@ -2969,9 +3044,10 @@
           "query": "la tâche « docx »",
           "expected": true,
           "trigger_m": true,
-          "score": 0.5,
+          "score": 1.0,
           "hits": [
-            "docx"
+            "docx",
+            "tach"
           ],
           "ok": true,
           "source": "voie-m"
@@ -2980,9 +3056,10 @@
           "query": "j'ai besoin de la tâche « docx » — quelle est la procédure ?",
           "expected": true,
           "trigger_m": true,
-          "score": 0.167,
+          "score": 0.333,
           "hits": [
-            "docx"
+            "docx",
+            "tach"
           ],
           "ok": true,
           "source": "voie-m"
@@ -2991,9 +3068,10 @@
           "query": "aide-moi à la tâche « docx » avec docx",
           "expected": true,
           "trigger_m": true,
-          "score": 0.2,
+          "score": 0.4,
           "hits": [
-            "docx"
+            "docx",
+            "tach"
           ],
           "ok": true,
           "source": "voie-m"
@@ -3002,9 +3080,10 @@
           "query": "peux-tu la tâche « docx » ?",
           "expected": true,
           "trigger_m": true,
-          "score": 0.333,
+          "score": 0.667,
           "hits": [
-            "docx"
+            "docx",
+            "tach"
           ],
           "ok": true,
           "source": "voie-m"
@@ -3031,8 +3110,10 @@
           "query": "analyse ce CSV et donne-moi des statistiques",
           "expected": false,
           "trigger_m": false,
-          "score": 0.0,
-          "hits": [],
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
           "ok": true,
           "source": "voie-m"
         }
@@ -3807,7 +3888,7 @@
     "gaokao-recommend-majors": {
       "version": "?",
       "n_cases": 8,
-      "n_keywords": 5,
+      "n_keywords": 27,
       "score_officiel": "8/8",
       "ok": true,
       "derive_m": false,
@@ -3893,8 +3974,10 @@
           "query": "analyse ce CSV et donne-moi des statistiques",
           "expected": false,
           "trigger_m": false,
-          "score": 0.0,
-          "hits": [],
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
           "ok": true,
           "source": "voie-m"
         }
@@ -3997,10 +4080,10 @@
       ]
     },
     "gen-plan": {
-      "version": "3.26.0",
-      "n_cases": 12,
+      "version": "3.28.1",
+      "n_cases": 13,
       "n_keywords": 54,
-      "score_officiel": "12/12",
+      "score_officiel": "13/13",
       "ok": true,
       "derive_m": false,
       "cases": [
@@ -4153,6 +4236,19 @@
           "hits": [],
           "ok": true,
           "source": "voie-m"
+        },
+        {
+          "query": "J'ai stoppé l'exécution du plan en cours de route pour te préciser un point : reprends le plan, intègre cette précision et continue.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.231,
+          "hits": [
+            "execut",
+            "integr",
+            "plan"
+          ],
+          "ok": true,
+          "source": "voie-m"
         }
       ]
     },
@@ -4255,7 +4351,7 @@
     "gift-evaluator": {
       "version": "?",
       "n_cases": 8,
-      "n_keywords": 30,
+      "n_keywords": 32,
       "score_officiel": "8/8",
       "ok": true,
       "derive_m": false,
@@ -4339,8 +4435,10 @@
           "query": "analyse ce CSV et donne-moi des statistiques",
           "expected": false,
           "trigger_m": false,
-          "score": 0.0,
-          "hits": [],
+          "score": 0.167,
+          "hits": [
+            "analys"
+          ],
           "ok": true,
           "source": "voie-m"
         }
@@ -8972,7 +9070,7 @@
     "task-review": {
       "version": "?",
       "n_cases": 8,
-      "n_keywords": 2,
+      "n_keywords": 17,
       "score_officiel": "8/8",
       "ok": true,
       "derive_m": false,
@@ -8981,10 +9079,12 @@
           "query": "utilise le skill task-review pour cette tâche : la tâche « task »",
           "expected": true,
           "trigger_m": true,
-          "score": 0.286,
+          "score": 0.571,
           "hits": [
             "review",
-            "task"
+            "tach",
+            "task",
+            "utilis"
           ],
           "ok": true,
           "source": "voie-m"
@@ -8993,8 +9093,9 @@
           "query": "la tâche « task »",
           "expected": true,
           "trigger_m": true,
-          "score": 0.5,
+          "score": 1.0,
           "hits": [
+            "tach",
             "task"
           ],
           "ok": true,
@@ -9004,8 +9105,9 @@
           "query": "j'ai besoin de la tâche « task » — quelle est la procédure ?",
           "expected": true,
           "trigger_m": true,
-          "score": 0.167,
+          "score": 0.333,
           "hits": [
+            "tach",
             "task"
           ],
           "ok": true,
@@ -9015,9 +9117,10 @@
           "query": "aide-moi à la tâche « task » avec task-review",
           "expected": true,
           "trigger_m": true,
-          "score": 0.333,
+          "score": 0.5,
           "hits": [
             "review",
+            "tach",
             "task"
           ],
           "ok": true,
@@ -9027,8 +9130,9 @@
           "query": "peux-tu la tâche « task » ?",
           "expected": true,
           "trigger_m": true,
-          "score": 0.333,
+          "score": 0.667,
           "hits": [
+            "tach",
             "task"
           ],
           "ok": true,
@@ -9066,7 +9170,7 @@
     "ui-ux-pro-max": {
       "version": "?",
       "n_cases": 8,
-      "n_keywords": 49,
+      "n_keywords": 48,
       "score_officiel": "8/8",
       "ok": true,
       "derive_m": false,
@@ -9075,10 +9179,11 @@
           "query": "utilise le skill ui-ux-pro-max pour cette tâche : la tâche « ui »",
           "expected": true,
           "trigger_m": true,
-          "score": 0.286,
+          "score": 0.429,
           "hits": [
             "max",
-            "pro"
+            "pro",
+            "utilis"
           ],
           "ok": true,
           "source": "voie-m"
