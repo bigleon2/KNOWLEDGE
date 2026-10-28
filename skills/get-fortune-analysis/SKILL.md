@@ -1,6 +1,6 @@
 ---
 name: get-fortune-analysis
-description: 生成视觉华丽、内容详实、具有仪式感的流年运势报告（流金星象风格）。
+description: Génère un rapport d'horoscope annuel (liunian yunshi) visuellement somptueux, détaillé et rituel, dans le style « astres fluents dorés » (liujin xingxiang).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -12,31 +12,31 @@ description: 生成视觉华丽、内容详实、具有仪式感的流年运势�
 
 # Skill Name: get-fortune-analysis
 # Version: 4.1.0
-# Description: 生成视觉华丽、内容详实、具有仪式感的流年运势报告（流金星象风格）。
+# Description: Génère un rapport d'horoscope annuel visuellement somptueux, détaillé et rituel (style « astres fluents dorés »).
 
 ## 1. Input Parameters
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| `birth_year`, `birth_month`, `birth_day`, `birth_hour` | Integer | 用户出生时间 |
-| `focus_type` | String | (可选) "事业", "财运", "情感" |
+| `birth_year`, `birth_month`, `birth_day`, `birth_hour` | Integer | Date et heure de naissance de l'utilisateur |
+| `focus_type` | String | (optionnel) « 事业 » (carrière), « 财运 » (fortune), « 情感 » (relations) — valeurs API littérales |
 
 ## 2. Workflow
 
-### Step 1: Calculation (Python)
-调用 `get_cyber_divination_data` 获取 `bazi` (八字基础) 和 `fortune` (流年十神) 数据。
+### Step 1: Calcul (Python)
+Appelle `get_cyber_divination_data` pour obtenir les données `bazi` (fondements du bazi 八字) et `fortune` (dix dieux de l'année fluente, liunian shishen).
 
-### Step 2: Reasoning (深度分析模式)
-基于 `bazi` 和 `fortune` 进行多维度推理。
-**文案要求：**
-* **口吻**：温暖、笃定、专业，类似资深命理师或星座专家的语气。
-* **结构**：
-    1.  **年度关键词**：4个字，精准概括全年基调（如“破茧成蝶”）。
-    2.  **核心能量**：解释流年十神对用户命局的深层影响（30-50字）。
-    3.  **事业/财运**：具体的职场发展路径和财富机遇分析（50-80字）。
-    4.  **情感/人际**：人际关系模式与情感走向分析（50-80字）。
+### Step 2: Raisonnement (mode analyse approfondie)
+Raisonnement multidimensionnel à partir de `bazi` et `fortune`.
+**Exigences rédactionnelles :**
+* **Ton** : chaleureux, assuré, professionnel — semblable à un maître en astrologie chinoise ou un expert en astrologie occidentale chevronné.
+* **Structure** :
+    1.  **Mot-clé de l'année** : 4 caractères résumant la tonalité de l'année (ex. « 破茧成蝶 » — « sortir du cocon et devenir papillon »).
+    2.  **Énergie centrale** : explique l'influence profonde des dix dieux de l'année fluente sur le thème natal de l'utilisateur (30-50 caractères).
+    3.  **Carrière/fortune** : analyse concrète des trajectoires professionnelles et des opportunités de richesse (50-80 caractères).
+    4.  **Relations/entourage** : analyse des schémas relationnels et de l'évolution affective (50-80 caractères).
 
-### Step 3: JSON Output
-生成适配前端的 JSON 数据。
+### Step 3: Sortie JSON
+Génère les données JSON adaptées au frontend.
 
 ```json
 {
@@ -58,9 +58,9 @@ description: 生成视觉华丽、内容详实、具有仪式感的流年运势�
 }```
 
 
-### 2. 前端展示代码 (`result_card.html`)
+### 2. Code d'affichage frontend (`result_card.html`)
 
-*修改点：在首页（`ritual-layer`）增加了动态生成漂浮二进制代码的逻辑。代码粒子是半透明的金色/白色，缓慢上升并消散，营造神秘的数据空间感。*
+*Point modifié : logique de génération dynamique de codes binaires flottants ajoutée sur la page d'ouverture (`ritual-layer`). Les particules de code, dorées/blanches semi-transparentes, montent lentement puis se dissipent, créant une atmosphère d'espace de données mystérieux.*
 
 ```html
 <!DOCTYPE html>
