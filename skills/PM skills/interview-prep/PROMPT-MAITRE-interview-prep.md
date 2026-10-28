@@ -1,8 +1,8 @@
 ---
 nom: interview-prep
 source: skills/interview-prep/SKILL.md
-sha256_source: acac301816ad
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: a5c6584c2d28
+genere: 2026-10-28 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -26,7 +26,18 @@ emplacement et le prompt y renvoie par leur chemin relatif. La version d'origine
 
 ---
 name: interview-prep
-description: 帮用户准备面试。基于目标 JD、公司、岗位方向，生成"高频面试题 + 参考回答 + 行为面 / 技术面 / Case 面分类题库"，并产出可打印的『面试备战手册』。当用户说"帮我准备面试""明天有面试 / 后天面试""面试题""面经""模拟面试""我要面 X 公司 Y 岗位""帮我准备 STAR 故事""怎么回答这道面试题""自我介绍 / 离职原因 / 优缺点 怎么答"，必须触发本 skill。请勿用本 skill 改简历（去 jd-resume-tailor / resume-builder）或推荐方向（去 job-intent-tracker）。
+description: >-
+  Aide l'utilisateur à préparer un entretien. À partir de l'offre cible, de la société et de
+  l'orientation du poste, génère « questions fréquentes + réponses de référence + banques de
+  questions classées (comportemental / technique / case) » et produit un « manuel de
+  préparation à l'entretien » imprimable. Se déclenche obligatoirement pour « 帮我准备面试 »
+  (aide-moi à préparer un entretien), « 明天有面试 / 后天面试 » (entretien demain / après-demain),
+  « 面试题 / 面经 » (questions d'entretien / retours d'expérience), « 模拟面试 » (simulation),
+  « 我要面 X 公司 Y 岗位 » (je passe l'entretien X société Y poste), « 帮我准备 STAR 故事 »
+  (prépare mes histoires STAR), « 怎么回答这道面试题 » (comment répondre à cette question),
+  « 自我介绍 / 离职原因 / 优缺点 怎么答 » (présentation / motif de départ / qualités-défauts :
+  que répondre). Ne pas utiliser ce skill pour modifier un CV (→ jd-resume-tailor /
+  resume-builder) ni pour recommander une orientation (→ job-intent-tracker).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -37,132 +48,132 @@ description: 帮用户准备面试。基于目标 JD、公司、岗位方向，�
 
 
 
-# Interview Prep（面试准备）
+# Interview Prep (préparation d'entretien)
 
-干 4 件事：
+Quatre missions :
 
-1. **拆解面试场景**：明确目标公司 / 岗位 / 面试轮次（一面 / 二面 / 终面 / HR 面）
-2. **生成题库**：从 4 类题库（行为面、技术面、Case 面、岗位特定）中按需取题
-3. **生成参考回答**：用 STAR / SCQA / MECE 等框架，结合用户简历事实
-4. **产出"备战手册"**：一份可打印的 .md / .docx / .pdf，含题目 + 参考思路 + 自检清单
-
----
-
-## 何时触发
-
-强信号：
-- "帮我准备面试 / 模拟面试 / 模面"
-- "明天 / 下周面试"
-- 提到了具体公司 + 岗位
-- "高频面试题 / 经典面试题"
-- "怎么回答 ___ 这个问题"
-- "自我介绍怎么说 / 离职原因怎么答 / 期望薪资怎么谈"
-
-弱信号（先确认）：
-- 只说"想了解一下面试" → 问是哪个方向 / 什么轮次
+1. **Décortiquer le contexte d'entretien** : préciser société cible / poste / tour d'entretien (1er tour / 2e tour / final / RH)
+2. **Générer la banque de questions** : puiser à la demande dans 4 banques (comportemental, technique, case, spécifique au poste)
+3. **Générer les réponses de référence** : avec les cadres STAR / SCQA / MECE, ancrées dans les faits du CV de l'utilisateur
+4. **Produire le « manuel de préparation »** : un .md / .docx / .pdf imprimable avec questions + pistes de réponse + checklist d'auto-contrôle
 
 ---
 
-## 工作流
+## Quand se déclencher
 
-### Step 1: 锁定面试场景
+Signaux forts :
+- « 帮我准备面试 / 模拟面试 / 模面 » (aide-moi à préparer / simule l'entretien)
+- « 明天 / 下周面试 » (entretien demain / la semaine prochaine)
+- Société + poste précisément cités
+- « 高频面试题 / 经典面试题 » (questions fréquentes / classiques)
+- « 怎么回答 ___ 这个问题 » (comment répondre à ___)
+- « 自我介绍怎么说 / 离职原因怎么答 / 期望薪资怎么谈 » (présentation / motif de départ / salaire : que dire)
 
-用 AskUserQuestion 收集：
-- 目标公司（具体名字 / 大厂 vs 创业 vs 外资 / 公司类型）
-- 目标岗位（精确到方向，如"用户增长 PM"而不是"产品经理"）
-- 面试轮次（一面 / 二面 / 终面 / HR 面 / 全流程演练）
-- 时间紧迫度（明天 / 这周 / 下周以上）—— 影响"广度 vs 深度"
-- 用户已有材料（JD / 简历 / 公司公开信息 / 已知面试官背景）
+Signaux faibles (confirmer d'abord) :
+- Simple « je voudrais me renseigner sur les entretiens » → demander l'orientation et le tour concernés
 
-如果用户给了 JD 和简历，**先调用 jd-resume-tailor 的 parse_jd.py** 抽出岗位关键信息，避免重复拆。
+---
 
-### Step 2: 选题策略
+## Flux de travail
 
-按"轮次 + 方向 + 时间"决定题库结构。读取对应文件：
+### Étape 1 : Verrouiller le contexte d'entretien
 
-- 行为面（任何轮次都会问）→ `references/behavioral.md`
-- 技术面（技术 / 数据岗主战场）→ `references/technical.md`
-- Case 面（咨询 / 战略 / 高级 PM）→ `references/case.md`
-- HR 面（任何岗位的最后一公里）→ `references/hr_round.md`
-- 岗位特定题库：
-  - 互联网产品 / 运营 / PM → `references/role_internet.md`
-  - 技术 / 研发 / 数据 → `references/role_tech.md`
-  - 金融 / 咨询 / 商科 → `references/role_finance.md`
+Collecter via AskUserQuestion :
+- Société cible (nom précis / grand groupe vs startup vs entreprise étrangère / type)
+- Poste visé (précis jusqu'à l'orientation, ex. « PM croissance utilisateurs » et non « chef de produit »)
+- Tour d'entretien (1er tour / 2e tour / final / RH / répétition du parcours complet)
+- Degré d'urgence (demain / cette semaine / plus tard) — influe sur « largeur vs profondeur »
+- Matériel déjà disponible (offre, CV, informations publiques sur la société, profil connu des intervieweurs)
 
-题量推荐：
-- **明天就面**：每类 5~8 题，重点高频题
-- **3~7 天**：每类 10~15 题
-- **>1 周**：完整覆盖 + 模拟轮次
+Si l'utilisateur fournit offre + CV, **appeler d'abord parse_jd.py de jd-resume-tailor** pour extraire les informations clés du poste et éviter un double découpage.
 
-### Step 3: 生成参考回答
+### Étape 2 : Stratégie de sélection des questions
 
-**关键原则：参考回答必须基于用户简历里的真实经历，不是泛答。**
+Structure de la banque selon « tour + orientation + délai ». Lire les fichiers correspondants :
 
-调用 `scripts/star_story_builder.py`（如果有简历）：
+- Comportemental (demandé à tous les tours) → `references/behavioral.md`
+- Technique (terrain principal des postes techniques / data) → `references/technical.md`
+- Case (conseil / stratégie / PM senior) → `references/case.md`
+- RH (dernier kilomètre pour tous les postes) → `references/hr_round.md`
+- Banques spécifiques au poste :
+  - Produit internet / operations / PM → `references/role_internet.md`
+  - Technique / R&D / data → `references/role_tech.md`
+  - Finance / conseil / école de commerce → `references/role_finance.md`
+
+Volumes recommandés :
+- **Entretien demain** : 5-8 questions par catégorie, concentrées sur les questions fréquentes
+- **3-7 jours** : 10-15 par catégorie
+- **Plus d'une semaine** : couverture complète + tours simulés
+
+### Étape 3 : Générer les réponses de référence
+
+**Principe clé : les réponses de référence s'appuient sur les expériences réelles du CV de l'utilisateur, jamais de réponses génériques.**
+
+Appeler `scripts/star_story_builder.py` (si un CV existe) :
 
 ```bash
 python scripts/star_story_builder.py --resume resume.md \
     --questions questions.json --out answers.md
 ```
 
-或者，如果没有简历，用通用回答框架（从 references/answer_frameworks.md 读取）作为模板，让用户填空。
+Sans CV, utiliser les cadres de réponse génériques (lus depuis references/answer_frameworks.md) comme gabarits à trous pour l'utilisateur.
 
-参考回答的格式：
+Format d'une réponse de référence :
 ```
-【题目】___
-【考察点】HR / 面试官想看你的什么能力
-【回答框架】STAR / SCQA / MECE / 5W1H 之一
-【建议长度】X 分钟（一般 1.5~3 分钟）
-【参考回答 (基于你简历里的 ___ 经历)】
-  S: 当时的背景 / 问题
-  T: 你的任务 / 目标
-  A: 你的具体动作（重点，要细节）
-  R: 量化结果 + reflect
-【可能的追问】1. ___ 2. ___ 3. ___
-```
-
-### Step 4: 产出"备战手册"
-
-调用 docx skill 生成一份完整的 `interview_prep_<公司>_<岗位>.docx`，结构：
-
-```
-封面：公司 + 岗位 + 面试日期 + 倒计时
-1. 公司 / 岗位 速览（1 页）
-2. 自我介绍（中 + 英两版，针对该岗位定制）
-3. 行为面题库（X 题）+ 参考回答
-4. 技术面 / Case 面 题库（X 题）+ 参考思路
-5. 反向提问清单（你向面试官问什么）
-6. 薪资谈判脚本
-7. 面试当天 Checklist（路线 / 着装 / 物品 / 心态）
+【Question】___
+【Point évalué】la compétence que la RH / l'intervieweur veut vérifier
+【Cadre de réponse】STAR / SCQA / MECE / 5W1H
+【Durée conseillée】X minutes (en général 1,5-3 minutes)
+【Réponse de référence (ancrée dans ton expérience ___ du CV)】
+  S : contexte / problème du moment
+  T : ta mission / objectif
+  A : tes actions concrètes (le cœur, avec du détail)
+  R : résultat quantifié + regard rétrospectif
+【Relances possibles】1. ___ 2. ___ 3. ___
 ```
 
-**同时输出一份精简版 .md**，方便用户在地铁里 / 路上 review。
+### Étape 4 : Produire le « manuel de préparation »
 
-### Step 5: 模拟面试（可选 - 用户主动要才做）
+Appeler le skill docx pour générer un `interview_prep_<société>_<poste>.docx` complet, structure :
 
-如果用户说"模拟一下"，进入互动模式：
-- 一次问 1 题
-- 等用户回答（语音 / 文字）
-- 给反馈：内容 / 结构 / 表达 三维度
-- 如果用户说"换一题"或"再来一道难的"，继续
+```
+Couverture : société + poste + date d'entretien + compte à rebours
+1. Aperçu société / poste (1 page)
+2. Présentation de soi (versions chinoise + anglaise, adaptées au poste)
+3. Banque comportementale (X questions) + réponses de référence
+4. Banque technique / case (X questions) + pistes de réponse
+5. Liste des questions à poser en retour (ce que TU demandes à l'intervieweur)
+6. Script de négociation salariale
+7. Checklist du jour J (itinéraire / tenue / affaires / état d'esprit)
+```
 
-模拟时**保持面试官人设**：用真实面试官的口吻、追问方式、压力点（但不要变成 attacker，要 constructive）。
+**Produire aussi une version allégée .md**, à relire dans les transports.
+
+### Étape 5 : Entretien simulé (optionnel — uniquement à la demande)
+
+Si l'utilisateur dit « simulons », passer en mode interactif :
+- Poser 1 question à la fois
+- Attendre sa réponse (voix / texte)
+- Donner un retour sur trois axes : contenu / structure / expression
+- S'il dit « change de question » ou « une plus dure », continuer
+
+Pendant la simulation, **rester dans le rôle de l'intervieweur** : ton d'un vrai recruteur, relances, points de pression (sans devenir un attaquant — rester constructif).
 
 ---
 
-## 反模式（不要做）
+## Anti-patterns (à ne pas faire)
 
-- ❌ 给一份"通用 50 题"应付了事 → 必须按公司 / 岗位定制
-- ❌ 参考回答全是"我具有出色的沟通能力"这种空话 → 必须用具体故事
-- ❌ 不让用户自己练，全程"我替你答" → 错过模拟价值
-- ❌ 编造用户没有的经历做 STAR 故事 → 用户面试时会穿帮
-- ❌ HR 面问题答得太"训练痕迹重"（机械化） → 要给"3 个不同风格的版本"让用户选
+- ❌ Servir « 50 questions génériques » pour expédier → personnaliser société / poste obligatoirement
+- ❌ Réponses de référence pleines de formules creuses (« j'ai d'excellentes capacités de communication ») → des histoires concrètes, toujours
+- ❌ Répondre à la place de l'utilisateur du début à la fin → il perd la valeur de la simulation
+- ❌ Inventer des expériences que l'utilisateur n'a pas pour les histoires STAR → ça se retourne contre lui le jour J
+- ❌ Réponses RH trop « apprises par cœur » (mécaniques) → proposer « 3 versions de styles différents » à l'utilisateur
 
-## 与其他 skill 的协作
+## Collaboration avec les autres skills
 
-- 用户说"我简历不够强，先改简历再来面试" → 转 `jd-resume-tailor` 或 `resume-builder`
-- 用户说"我还在犹豫要不要投" → 转 `job-intent-tracker`
-- 面试结束后用户说"我想复盘一下" → 留在本 skill，进入"面试复盘模式"，问表现、卡点、追问，帮用户为下一轮做准备
+- « Mon CV n'est pas assez solide, je veux le retravailler d'abord » → transférer à `jd-resume-tailor` ou `resume-builder`
+- « J'hésite encore à postuler » → transférer à `job-intent-tracker`
+- Après l'entretien, « je voudrais débriefer » → rester dans ce skill, passer en « mode débriefing » : interroger sur la prestation, les blocages, les relances, et préparer le tour suivant
 
 
 ---

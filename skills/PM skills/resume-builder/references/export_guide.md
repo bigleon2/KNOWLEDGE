@@ -40,9 +40,9 @@ Le nom de fichier lors des candidatures est extrêmement important (beaucoup de 
 
 `<Nom>_<Poste visé>_<X années d'expérience>.<ext>`
 
-Ex : `张三_Zhang San_高级产品经理_5年.pdf`
+Ex : `Zhang_San_Directeur_Produit_Senior_5ans.pdf`
 
-Ne pas nommer `final.pdf` `final_v2.pdf` `修改版.docx` (version modifiée), les RH trouveront cela non professionnel.
+Ne pas nommer `final.pdf`, `final_v2.pdf` ou `version-modifiee.docx`, les RH trouveront cela non professionnel.
 
 ## Nettoyage des métadonnées (pdf)
 

@@ -55,9 +55,9 @@
 
 ### 数仓建模题
 - 你怎么设计一个 ___ 业务的数据模型
-- 维度建模 vs 范式建模 怎么选
-- 拉链表 / 缓慢变化维度 怎么处理
-- 数据质量怎么保障（监控 / 巡检 / 复盘）
+- Modélisation dimensionnelle vs modélisation normalisée : comment choisir
+- Liste de zippers / Dimensions à changement lent (Lajianbiao / Huanshuai biandu zeme chuli) comment traiter
+- Comment garantir la qualité des données (surveillance / inspection / analyse post-mortem)
 
 ## 软技能题（技术岗也要答）
 
@@ -65,19 +65,19 @@
 
 1. 跟其他团队 / 产品经理 / 设计师 意见不合，你怎么办
 2. 你怎么 review 别人的代码 / 文档
-3. 你怎么带新人
-4. 一个技术决策没人响应，你怎么推动
+3. Comment former les nouveaux arrivants (Nin zen dai xin ren)
+4. Un décision technique ne reçoit aucune réponse, comment la faites-vous avancer
 5. 你接手了一个屎山代码，怎么改造
-6. 你怎么管理自己的技术成长
+6. Comment gérez-vous votre croissance technique (Nǐ zěnme guǎnlǐ zìjǐ de jìshù chéngzhǎng)
 
 ## 反向提问（技术面 / leader 面）
 
-技术面：
-- 团队的技术栈和未来规划是什么？
-- 团队最近的技术挑战是什么？
-- code review / on-call / 周会 流程是怎样的？
+技术面 (Jìshùmiàn)
+- Quels sont le stack technique et les plans d'avenir de l'équipe ?
+- Quels sont les défis techniques récents de l'équipe ?
+- code review / on-call / 周会 (zhōuhuì) 流程是怎样的？
 
-Leader 面：
-- 您怎么看 ___ 技术 / 业务方向的未来？
-- 团队的技术债务现在怎么样？
-- 您觉得在这个团队最有挑战的事情是什么？
+Leader 面 (Mian) :
+- Que pensez-vous de l'avenir de la technologie / de la direction commerciale ___ ?
+- Comment est la dette technique de l'équipe (Tuandui) ?
+- 您觉得在这个团队最有挑战的事情是什么？ (Nǐ juéde zài zhège tuánduì zuì yǒu tiǎozhàn de shìqíng shì shénme ?)

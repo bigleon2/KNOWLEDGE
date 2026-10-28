@@ -1,9 +1,9 @@
-# 互联网产品 / 运营 / PM 简历模板
+# Modèle de CV pour Produits Internet / Opérations / PM
 
-## 结构（顺序很重要）
+## Structure (l'ordre est important)
 
 ```
-姓名｜电话｜邮箱｜城市｜目标岗位
+姓名 (Xingming)｜电话 (Dianhua)｜邮箱 (Youxiang)｜城市 (Chengshi)｜目标岗位 (Mubiao Gangwei)
 （应届可加：在读学校 + 期望毕业时间）
 
 【个人简介 / Summary】（2~3 行，可选）
@@ -11,7 +11,7 @@
 
 【工作经历】（社招放最前；应届放教育下面）
 公司 A | 岗位 | 起止时间
-- bullet 1（核心成绩，量化）
+- bullet 1 (chengji, lianghua)
 - bullet 2（次重要成绩）
 - bullet 3（横向能力 / 影响力）
 
@@ -31,11 +31,11 @@
 - 协作：Notion / 飞书 / Jira
 - 语言：英语 CET-6 / 雅思 7.0
 
-【其他】（可选）
-证书 / 自媒体 / 开源项目 / 演讲 / 获奖
+【Autre】(optionnel)
+Certificat / Média indépendant (zimeiti) / Projet open source / Conférence (yanjiang) / Prix
 ```
 
-## 风格要点
+## Points de style (feng ge yao dian)
 
 - bullet 句式："动词 + 对象 + 方法 + 结果（数字）"
 - 突出 ownership：用"主导/负责/推动"，不要用"参与/协助"
