@@ -1,12 +1,12 @@
-# 简历信息收集问题清单
+# Liste des questions de collecte d'informations sur le CV (Jianli)
 
-分 3 轮问，不要一次性塞给用户。
+Divisez en 3 tours de questions, ne donnez pas tout à l'utilisateur en une seule fois.
 
 ## 第 1 轮：基本信息（必问）
 
-1. 你的姓名 + 联系方式（手机、邮箱，可选 GitHub / 作品集）
-2. 学历（学校 + 专业 + 学历层次 + 毕业年份；多段教育依次列）
-3. 你目前 / 最近一份工作的：公司、岗位、起止时间
+1. Votre nom et coordonnées (téléphone, e-mail, optionnel GitHub / portfolio)
+2. Diplôme(s) (établissement + spécialité + niveau d'études + année d'obtention ; plusieurs formations à lister dans l'ordre chronologique)
+3. 你的 / 最近一份工作的：公司、岗位、起止时间
 
 ## 第 2 轮：经历主体（必问）
 
@@ -24,21 +24,21 @@
 
 ## 第 3 轮：补充信息（可选）
 
-- 技能 / 工具：编程语言、框架、设计 / 数据 / 办公工具
-- 语言能力：英语 / 其他语种 + 等级
-- 证书 / 获奖：仅写有含金量的（CFA Level 2、ACM 区域赛、PMP 等）
-- 兴趣 / 其他：除非真的有亮点（比如马拉松、独立游戏作品），否则不写
+- Compétences / Outils : langages de programmation, frameworks, design / données / outils de bureau
+- Compétences linguistiques : anglais / autres langues + niveau
+- Certifications / Récompenses : mentionner uniquement celles qui ont de la valeur (CFA Niveau 2, ACM Regional Contest, PMP, etc.)
+- Centres d'intérêt / Autres : ne mentionner que s'il y a un réel intérêt (par exemple marathon, œuvre de jeu vidéo indépendant)
 
 ## 应届生补充问
 
-- 校园经历（学生会、社团、志愿者）—— 但只挑能体现"领导 / 组织 / 推动力"的写
-- 课程项目 —— 挑跟目标岗位相关的 1~2 个
-- GPA / 排名 / 奖学金 —— 高于 3.5/4.0 或专业前 20% 才写
+- Expériences universitaires (Bureau des étudiants, clubs, bénévolat) — mais ne sélectionnez que celles qui illustrent "leadership / organisation / capacité à promouvoir"
+- Projets de cours — choisissez 1 à 2 en lien avec le poste visé
+- GPA / classement / bourses — à mentionner seulement si supérieur à 3.5/4.0 ou si dans le top 20% de la promotion
 
-## 转行候选人补充问
+## Candidats en reconversion (questions supplémentaires)
 
 - 你为什么想转到这个方向？
 - 你已经为转行做了哪些准备（自学、项目、副业、证书）？
 - 原岗位有哪些**可迁移技能**？（举具体例子）
 
-把这些信息会用到一段简短的"个人简介 / Career Summary"里，化解 HR 看到转行简历时的困惑。
+Ces informations seront utilisées dans une brève section "Présentation personnelle / Résumé de carrière" pour dissiper le perplexité des RH lorsqu'ils voient un CV de reconversion.

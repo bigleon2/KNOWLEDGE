@@ -5,7 +5,7 @@ visibility: public
 mode: template
 carrier: long-form-article
 scenario: weekly-digest
-pattern_source: 清言周报-VOL18-notebook.html
+pattern_source: Qing Yan Zhou Bao (Qing Yan Zhou Bao)-VOL18-notebook.html
 source_priority: skill-first
 triggers:
   - « Faire un rapport hebdo notebook »
@@ -35,7 +35,7 @@ Use this template for **weekly / periodic digests** that should feel like a hand
 
 ## Required Reading
 
-Read this `SKILL.md` first. Do **not** read `清言周报-VOL18-notebook.html` by default.
+Read this `SKILL.md` first. Do **not** read `Qingyan Zhoubao-VOL18-notebook.html` by default.
 
 Read the pattern only when you need concrete geometry — spiral hole spacing, tape angle and deckle, binder-clip placement, receipt-grid pattern, the 31px ruled baseline. Extract patterns; do not copy placeholder issue numbers, dates, feature names, or class names wholesale.
 

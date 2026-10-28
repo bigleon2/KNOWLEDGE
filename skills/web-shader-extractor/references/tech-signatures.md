@@ -2,7 +2,7 @@
 
 ## Three.js
 
-**未混淆**：`THREE.`, `WebGLRenderer`, `ShaderMaterial`, `BufferGeometry`
+**未混淆** : `THREE.`, `WebGLRenderer`, `ShaderMaterial`, `BufferGeometry`
 
 **混淆后**（通过构造参数推断）：
 
@@ -13,7 +13,7 @@
 | `new X(-1, 1, 1, -1, 0, 1)` — 6 参数 | `OrthographicCamera` |
 | `new X(w, h, {wrapS, minFilter})` | `WebGLRenderTarget` |
 | `new X(data, w, h, format, type)` — Float32Array | `DataTexture` |
-| `new X(2, 2)` 作为几何体 | `PlaneGeometry` |
+| `new X(2, 2)` comme géométrie | `PlaneGeometry` |
 | `new X({uniforms, vertexShader, fragmentShader})` | `ShaderMaterial` |
 | `X.getElapsedTime()` | `Clock` |
 
@@ -40,13 +40,13 @@ gl.bindBuffer / gl.bindFramebuffer / gl.drawArrays
 
 `BABYLON.Engine`, `BABYLON.ShaderMaterial`, `BABYLON.Effect.ShadersStore`
 
-## GPGPU 模式
+## GPGPU 模式 (Móshì)
 
-两个 `WebGLRenderTarget`（ping-pong）+ `OrthographicCamera(-1,1,1,-1,0,1)` + `PlaneGeometry(2,2)` + `DataTexture` 初始位置 + `setRenderTarget` 循环
+Deux `WebGLRenderTarget` (ping-pong) + `OrthographicCamera(-1,1,1,-1,0,1)` + `PlaneGeometry(2,2)` + `DataTexture` position initiale + boucle `setRenderTarget`
 
-## 常见噪声
+## Bruit courant
 
-| 函数 | 类型 |
+| 函数 (hánshù) | 类型 (lèixíng) |
 |------|------|
 | `snoise` | Simplex noise (Ashima) |
 | `cnoise` | Classic Perlin |

@@ -47,7 +47,7 @@ Confirm with the user:
 **Title Page (Cover) Rules:**
 - **Academic route covers are generated via HTML/Playwright**, using Templates 03-04 and 06 from `typesetting/cover.md`. Templates 03-04 replicate LaTeX title page aesthetics (dark backgrounds, serif titles, symmetric layouts) in HTML/CSS. **Template 06 (Institutional)** is for thesis proposals, dissertations, and formal institutional submissions (white bg + black border frame).
 - **Pipeline:** Generate body PDF via Tectonic (no title page in `.tex`) → Generate cover HTML (Template 03/04/05/06) → Playwright `page.pdf()` → Merge cover as page 0 via pypdf
-- **Template selection:** For thesis proposals (开题报告), dissertations (毕业论文), and institutional submissions → **default to Template 06**. For research papers, preprints, journal submissions → Templates 03-04.
+- **Template selection:** For thesis proposals (kàití bàogào), dissertations (bìyè lùnwén), and institutional submissions → **default to Template 06**. For research papers, preprints, journal submissions → Templates 03-04.
 - **NEVER use `\maketitle`** - it produces ugly default output with cramped spacing
 - **NEVER use `\begin{titlepage}...\end{titlepage}`** - the cover is generated separately via HTML/Playwright
 - **NEVER use LaTeX TikZ overlay for full-page covers** - TikZ `current page` coordinates are unreliable with `margin=0pt`, causing backgrounds to not fill the page (right/bottom white edges). HTML/CSS full-bleed is pixel-exact.
@@ -787,10 +787,10 @@ Initialize $\theta$ randomly\;
 
 % ❌ ALSO WRONG — even without blank line, if \parskip is large
 \noindent\textbf{3.}  % line break here
-某工厂原计划生产1200件产品……  % LaTeX treats this as same paragraph, but confusing
+Une usine prévoyait initialement de produire 1200 produits......  % LaTeX traite cela comme le même paragraphe, mais c'est confus
 
 % ✅ CORRECT — number and text on the SAME LINE, no break
-\noindent\textbf{3.}\;某工厂原计划生产1200件产品……
+\noindent\textbf{3.}\;某工厂 (Mou gongchang) 原计划生产1200件产品……
 ```
 
 ### Iron Rules
@@ -812,12 +812,12 @@ Instead of manual `\noindent\textbf{1.}\;`, prefer `enumitem` with custom format
 ```latex
 \usepackage{enumitem}
 
-% Section-level numbering: 一、二、三
+% Section-level numbering: 一、二、三 (yi、er、san)
 % Question-level: use enumerate with custom label
 \begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=0pt, itemindent=2em,
                    labelsep=0.5em, itemsep=0.8em, parsep=0pt]
-  \item 2024年巴黎奥运会共设有32个大项……
-  \item 中国空间站“天宫”在距地面……
+\item Les Jeux olympiques de Paris 2024 comprendront 32 grands sports...
+  \item La station spatiale chinoise "Tiangong" (Tiāngōng) se trouve à une altitude de...
 \end{enumerate}
 ```
 This guarantees number and text are in the same paragraph (LaTeX `\item` handles it internally).
@@ -845,7 +845,7 @@ This guarantees number and text are in the same paragraph (LaTeX `\item` handles
 | Drawing / graphing | TikZ grid or `\vspace{4cm}` |
 
 **Rule E6 — Page breaks for exams:**
-- `page-break-after: always` between major sections (一、二、三) is OK
+- `page-break-after: always` between major sections (Yi, Er, San) is OK
 - NEVER break within a single question (keep question + options + answer space together)
 - Use `\needspace{5cm}` before long questions to prevent orphaning
 

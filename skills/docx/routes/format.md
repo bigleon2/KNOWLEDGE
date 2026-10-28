@@ -29,8 +29,8 @@ for para in doc.paragraphs:
     para.paragraph_format.line_spacing = 1.5
     para.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     for run in para.runs:
-        run.font.name = "宋体"
-        run.font.size = Pt(12)  # Xiao Si 小四
+run.font.name = "Songti (Songti)"
+run.font.size = Pt(12)  # Xiao Si (Xiao Si)
 
 doc.save("output.docx")
 ```
@@ -52,10 +52,10 @@ for section in doc.sections:
     section.right_margin = Cm(2.5)
 
 # Polices
-# Corps : SimSun 宋体 Xiao Si 小四 (12pt)
-# H1 : SimHei 黑体 San Hao 三号 (16pt) centré
-# H2 : SimHei 黑体 Si Hao 四号 (14pt)
-# H3 : SimHei 黑体 Xiao Si 小四 (12pt)
+# Corps : SimSun (Songti) Xiao Si (Xiao Si) (12pt)
+# H1 : SimHei (Heiti) San Hao (San Hao) (16pt) centré
+# H2 : SimHei (Heiti) Si Hao (Si Hao) (14pt)
+# H3 : SimHei (Heiti) Xiao Si (Xiao Si) (12pt)
 # Anglais : Times New Roman, mêmes tailles
 ```
 

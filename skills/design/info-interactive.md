@@ -26,19 +26,19 @@ default_for:
   - process map
   - user journey map
   - relationship diagram
-  - 独立流程图
-  - 架构图
-  - 系统关系图
-  - 业务流程图
-  - 用户旅程图
-  - 交互式报告
-  - 数据故事
-  - 可交互讲解
-  - 可视化解释
-  - 可筛选资料
-  - 交互式信息
-  - 互动信息图
-  - 交互式时间线
+- 流程图 indépendant (Duli liuchengtu)
+  - 架构图 (Jiagotu)
+  - 系统关系图 (Xitong guanxitu)
+  - 业务流程图 (Yewu liuchengtu)
+  - 用户旅程图 (Yonghu lvchengtu)
+  - 报告 interactif
+- Histoire des données (Shuju gushi)
+  - Explication interactive
+  - Explication visuelle
+  - Données filtrables
+  - Information interactive
+  - Infographie interactive
+  - Chronologie interactive
 fidelity: high
 ---
 

@@ -185,7 +185,7 @@ Définissez `html, body { background }` sur la couleur dominante/la plus foncée
 Les règles suivantes s'appliquent identiquement aux deux pipelines Creative Flow et Creative Blueprint :
 
 ### Sécurité d'Encodage de Caractères
-N'utilisez jamais les kana japonais (の, が, は), les symboles rares ou les caractères de la Zone d'Utilisation Privée. Ils se corrompent en U+FFFD (�) pendant le transit LLM→écriture fichier→lecture. Remplacez par des équivalents chinois simples : `の`→`之/的/缔`.
+N'utilisez jamais les kana japonais (の, が, は), les symboles rares ou les caractères de la Zone d'Utilisation Privée. Ils se corrompent en U+FFFD (�) pendant le transit LLM→écriture fichier→lecture. Remplacez par des équivalens chinois simples : `の`→`之/的/缔`.
 
 ### Texte Chinois Vertical
 Lors de l'utilisation de `writing-mode: vertical-rl` :

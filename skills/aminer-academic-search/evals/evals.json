@@ -91,7 +91,7 @@
     },
     {
       "id": 8,
-      "prompt": "帮我查一下唐杰的学术信息，我的 token 是 <YOUR_TOKEN>",
+"prompt": "Aidez-moi à rechercher les informations académiques de Tang Jie (Tang Jie), mon token est <YOUR_TOKEN>",
       "expected_output": "Handle Chinese input: search for the scholar by Chinese name, return profile information with AMiner URLs.",
       "files": [],
       "expectations": [

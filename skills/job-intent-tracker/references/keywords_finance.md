@@ -22,23 +22,23 @@
 
 **Must-have**
 - 结构化思维（MECE、issue tree、hypothesis-driven）
-- Case Interview 能力：market sizing、profitability、M&A、market entry
-- 行业知识 + 客户沟通
-- 工具：PowerPoint（必）、Excel（必）、Tableau / Alteryx（加分）
+- Case Interview 能力 (Nénglì) : market sizing、profitability、M&A、market entry
+- Connaissances sectorielles + Communication client
+- Outils : PowerPoint (indispensable), Excel (indispensable), Tableau / Alteryx (un plus)
 
 **MBB 信号**：先 sizing 再框架，框架要 collectively exhaustive，假设清晰可证伪
 
-**典型雇主**
+**Employeurs typiques**
 - MBB：McKinsey、BCG、Bain
 - Big 4 战略：Strategy&（PwC）、Monitor Deloitte、EY-Parthenon、KPMG Strategy
-- 二线：Roland Berger、Oliver Wyman、A.T. Kearney、L.E.K.
+- 二线 (er xian)：Roland Berger、Oliver Wyman、A.T. Kearney、L.E.K.
 - 内资：埃森哲战略（已并入）、华兴 Alpha、艾瑞、易观、罗兰贝格本土化团队
 
 ## 买方 / 二级市场（Buy Side）
 
 **Must-have**
-- 行业研究、公司研究、估值模型
-- 投资逻辑、催化剂、风险点
+- Recherche sectorielle, recherche d'entreprises, modèle de valorisation
+- Logique d'investissement, catalyseurs, points de risque
 - 写作能力（投研报告）
 
 **细分**

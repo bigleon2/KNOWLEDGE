@@ -110,7 +110,7 @@ Items marked **★** are strictly mandatory (palette, typography, per-page detai
 the rest should be asked unless the user's original request explicitly rules
 them out (e.g. "internal deck, no notes" → skip notes question).
 
-**主题与目的 (Zhǔtǐ yǔ mùdì)** — the deck's core theme and the main
+**Thème et objectif (Zhǔtǐ yǔ mùdì)** — le thème principal du deck et le principal
      aspects it should showcase. Ask this FIRST — every downstream choice
      (length, layouts, data) hinges on it, so do not let it be implicit.
 2. **目标受众 (Mùbiāo shòuzhòng) (Audience & tone)** — who is this for, what register.

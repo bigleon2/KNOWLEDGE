@@ -238,7 +238,7 @@ Celles-ci s'appliquent à TOUS les scénarios. Les fichiers de scénario peuvent
 3. **Aucun faux SOMMAIRE / numéros de page / en-têtes** — utilisez les structures docx-js appropriées
 4. **Aucune ligne blanche excessive** pour remplir la mise en page
 5. **Aucun formatage sale** — aucune annotation parasite, fragment de modèle, hyperlien cassé, marqueurs illisibles
-6. **Aucun placeholder négligent** — "TBD", "omis", "略", "à affiner" sont interdits ; utilisez des placeholders `【】` appropriés
+6. **Aucun placeholder négligent** — "TBD", "omis", "略 (lüè)", "à affiner" sont interdits ; utilisez des placeholders `【】` appropriés
 7. **Aucune donnée fabriquée** — n'inventez pas de statistiques, citations, références juridiques ou faits pour paraître professionnel
 8. **Aucune numérotation/titres incohérents** — un système de numérotation par document, sans saut de niveau
 9. **Aucun artéfact Markdown** — aucun `#`, `**`, marqueurs de liste `-`, `>` citations en bloc et **aucune syntaxe de tableau Markdown** (`| col1 | col2 |`, `|---|---|`) dans le docx final. Toute donnée tabulaire DOIT être rendue comme un objet `Table` docx approprié — jamais comme des lignes de texte délimitées par des pipes. Ceci s'applique à TOUS les scénarios y compris les tableaux de données d'examens, statistiques de rapport et tables de résultats académiques.
@@ -306,7 +306,7 @@ Si la dernière ligne d'un titre ne contient que 1-2 caractères, la fusionner a
 
 Les sauts de ligne doivent se produire aux limites sémantiques : après des particules (par exemple, de/yu/he/ji/zhi), de la ponctuation, des connecteurs, des espaces ou des underscores. Jamais séparer un terme composé (par exemple, un terme de 4 caractères comme une spécification de gestion ne doit pas être divisé en 3+1 caractères).
 
-Pour les titres mixtes chinois+anglais (par exemple, "基于Transformer架构的..." — "Basé sur l'architecture Transformer..."), utiliser `estimateTextWidth()` au lieu du nombre de caractères pour le calcul des sauts de ligne. Les caractères chinois sont environ 2× plus larges que les caractères anglais à la même taille de police.
+Pour les titres mixtes chinois+anglais (par exemple, "Jiyu Transformer jiegou de..." — "Basé sur l'architecture Transformer..."), utiliser `estimateTextWidth()` au lieu du nombre de caractères pour le calcul des sauts de ligne. Les caractères chinois sont environ 2× plus larges que les caractères anglais à la même taille de police.
 
 ### Règle 4 : Maximum 3 lignes de titre sur la couverture
 
@@ -377,7 +377,7 @@ Tous les documents multi-sections DOIVENT suivre ce schéma de numérotation de 
 | 5. Références | Bibliographie | Continue le corps (pas de réinitialisation) | Même que le corps | Si le corps se termine à la p.42, les références continuent à la p.43 |
 
 **Règles clés :**
-0. **JAMAIS utiliser le format dénominateur "Page X de Y".** Le pied de page ne doit afficher que le numéro de page actuel (par exemple, `1`, `2`, `iii`). NE PAS afficher le nombre total de pages. Aucun `Page 3 of 12`, aucun `3 / 12`, aucun `第3页/共12页`. Juste le numéro seul. `PageNumber.TOTAL_PAGES` / `NUMPAGES` est **INTERDIT** dans les pieds de page.
+0. **JAMAIS utiliser le format dénominateur "Page X de Y".** Le pied de page ne doit afficher que le numéro de page actuel (par exemple, `1`, `2`, `iii`). NE PAS afficher le nombre total de pages. Aucun `Page 3 of 12`, aucun `3 / 12`, aucun `di3 ye/gong 12 ye`. Juste le numéro seul. `PageNumber.TOTAL_PAGES` / `NUMPAGES` est **INTERDIT** dans les pieds de page.
 1. **La couverture est toujours la page 1 en interne** mais le numéro de page n'est jamais affiché. Supprimer le pied de page dans la section couverture.
 2. **La matière préliminaire utilise des chiffres romains indépendants** commençant à `i`. Cette séquence est séparée du corps.
 3. **Le corps est réinitialisé à 1 arabe.** La première page du contenu principal est toujours la page `1`.

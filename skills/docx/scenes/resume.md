@@ -164,7 +164,7 @@ Lorsque le secteur n'est pas spécifié, utilisez la palette neutre chaude par d
 - **Pas de page de couverture / PAS DE SOMMAIRE**
 - **Cible : 1 page** (2 pages max pour les postes seniors)
 - **Espacement compact** : `line: 276` (1.15x)
-- Tous les modèles utilisent des **titres de section bilingues** (par exemple, "Work Experience 工作经历")
+- Tous les modèles utilisent des **titres de section bilingues** (par exemple, "Work Experience (Gongzuo Jingli)")
 
 ---
 

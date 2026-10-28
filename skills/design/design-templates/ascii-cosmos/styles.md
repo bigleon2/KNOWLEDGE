@@ -24,25 +24,25 @@
 }
 .hero{ background: radial-gradient(ellipse at 30% 20%, #1a0a2e 0%, #05060f 55%, #000 100%); }
 #ascii-nebula  { color:#a87bd6; }   /* 星云 */
-#ascii-stars   { color:#cfe6ff; }   /* 星点 */
-#ascii-planet  { color:#8be9ff; }   /* 行星 */
-#ascii-asteroids{ color:#f5b971; }  /* 小行星 */
-#ascii-comets  { color:#ff8fd2; }   /* 彗星 */
+#ascii-stars   { color:#cfe6ff; }   /* 星点 (xingdian) */
+#ascii-planet  { color:#8be9ff; }   /* 行星 (xing xing) */
+#ascii-asteroids{ color:#f5b971; }  /* xiao xing xing (Xiao Xing Xing) */
+#ascii-comets  { color:#ff8fd2; }   /*彗星 */
 ```
 图片滤镜：`hue-rotate(200deg) saturate(.9) contrast(1.1) brightness(.6)`
 
 ---
 
-## 2. 暖色羊皮纸（letterpress-warm · 原墨思配色）
+## 2. Papier parchemin chaud (letterpress-warm · Yuansè configuration de couleur)
 
-宋体凸印 + 米色背景，复古旧报纸感。适合中文写作工具、独立出版、设计工作室、小众杂志。
+宋体凸印 (Songti tūyin) + 米色背景 (mísè bèijǐng)，复古旧报纸感。适合中文写作工具、独立出版、设计工作室、小众杂志。
 
 ```css
 :root{
   --bg:#F3E4D4;
   --fg:#1f1510;
   --dim:#8a7560;
-  --accent:#660125;     /* 酒红 */
+--accent:#660125;     /* vin rouge (jiǔ hóng) */
   --accent2:#a83344;
   --accent3:#7a4a1f;
   --line:#d8c4af;
@@ -57,11 +57,11 @@
 #ascii-comets  { color:#a83344; }
 ```
 图片滤镜：`sepia(.3) contrast(1.05) saturate(.85) brightness(.95)`
-注：暖色背景下要把 `mix-blend-mode: screen` 改成 `multiply`，让 ASCII 是"压在纸上"而不是"发光"。
+Note : sur un fond chaud, il faut remplacer `mix-blend-mode: screen` par `multiply` pour que l'ASCII soit "posé sur le papier" plutôt qu'"éclairé".
 
 ---
 
-## 3. 赛博紫（cyber-violet）
+## 3. Cyber-violet (Zǐbó)
 
 霓虹紫 + 电子粉，赛博朋克招牌色。适合 AI / Web3 / 游戏外设 / 电竞订阅。
 
@@ -70,9 +70,9 @@
   --bg:#0a0118;
   --fg:#f0e6ff;
   --dim:#7e5cab;
-  --accent:#ff00aa;     /* 霓虹品红 */
-  --accent2:#00ffe0;    /* 青电流 */
-  --accent3:#b14aff;    /* 紫 */
+--accent:#ff00aa;     /* néi hóng pín hóng */
+--accent2:#00ffe0;    /* Qingdianliu (青电流) */
+--accent3:#b14aff;    /* (zi) */
   --line:#2a0d4a;
   --hl:#150327;
   --paper:#10021f;
@@ -82,7 +82,7 @@
 #ascii-stars   { color:#e0d4ff; }
 #ascii-planet  { color:#00ffe0; }
 #ascii-asteroids{ color:#ff00aa; }
-#ascii-comets  { color:#ffd400; }   /* 黄电流彗星 */
+#ascii-comets  { color:#ffd400; }   /* Huang dian liu xing hui (黄电流彗星) */
 ```
 图片滤镜：`hue-rotate(280deg) saturate(1.4) contrast(1.1) brightness(.65)`
 

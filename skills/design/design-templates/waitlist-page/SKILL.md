@@ -5,7 +5,7 @@ visibility: public
 mode: template
 carrier: web-page
 scenario: pre-launch
-pattern_source: 层云-waitlist.html
+pattern_source: céng yún (Ceng Yun)-waitlist.html
 source_priority: skill-first
 triggers:
   - « Faire une pré-sortie waitlist »
@@ -35,9 +35,9 @@ Use this template when the artifact is a **pre-launch / private-beta / early-acc
 
 ## Required Reading
 
-Read this `SKILL.md` first. Do **not** read `层云-waitlist.html` by default.
+Read this `SKILL.md` first. Do **not** read `Céng yún-waitlist.html` by default.
 
-Read `层云-waitlist.html` only when you need: the floating-card drift loop (8 cards, 14–19s with staggered entrance), the fade-up cascade timing, the live-counter bump-on-submit animation, the glass-nav backdrop blur, or the form success / error states. Extract patterns; do not copy the placeholder brand voice, the 820+ counter starting value, or class names wholesale.
+Read `层云-waitlist.html` (Cengyun-waitlist.html) only when you need: the floating-card drift loop (8 cards, 14–19s with staggered entrance), the fade-up cascade timing, the live-counter bump-on-submit animation, the glass-nav backdrop blur, or the form success / error states. Extract patterns; do not copy the placeholder brand voice, the 820+ counter starting value, or class names wholesale.
 
 ## Design Strategy
 

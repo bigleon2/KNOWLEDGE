@@ -131,10 +131,10 @@ Tous ont été rendus sans erreur et semblaient plausibles en isolation, mais on
 
 ```html
 <!-- MAUVAIS : poids inline 700-800 sur un gros titre -->
-<h1 style="font-size: 92px; font-weight: 800">如果只能留 5 个,我留这些。</h1>
+<h1 style="font-size: 92px; font-weight: 800">Si je ne devais en garder que 5, ce seraient ceux-ci.</h1>
 
 <!-- BON : classe typée, poids automatique 200-300 -->
-<h1 class="h-statement">如果只能<br>留 <em>5 个</em>,<br>我留这些。</h1>
+<h1 class="h-statement">Si je devais n'en garder<br>que <em>5</em>,<br>je garderais ceux-ci.</h1>
 ```
 
 "Plus grand, plus léger" est une règle stricte. Un h1 de 90px à weight 700+ dégrade instantanément le design de Suisse International en éditorial de page de générique. Toujours atteindre pour `.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`. Ne les contournez pas avec `font-size` + `font-weight` inline.

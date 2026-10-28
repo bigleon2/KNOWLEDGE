@@ -130,7 +130,7 @@
       "亲和/友好"
     ],
     "scheme": "light",
-    "era": "现代",
+"era": "Moderne",
     "formality": "medium",
     "best_for": "Current-era minimalist design with bento grids, dark mode su"
   },
@@ -142,11 +142,11 @@
     "mood": [
       "极简",
       "精密/工程感",
-      "奢华",
-      "企业/可信"
+"Luxe",
+"Entreprise/Confiance"
     ],
     "scheme": "light",
-    "era": "现代",
+"era": "Moderne",
     "formality": "high",
     "best_for": "Professional, brand-aligned design with structured grids, mi"
   },
@@ -156,12 +156,12 @@
     "skillPath": "skills/cosmic/SKILL.md",
     "designPath": "skills/cosmic/DESIGN.md",
     "mood": [
-      "未来/科幻",
-      "戏剧化",
-      "暗黑原生"
+"Futur/Science-fiction",
+"Dramatique (Juhua)",
+"Dark Native (An Hei Yuan Sheng)"
     ],
     "scheme": "dark",
-    "era": "未来",
+"era": "avenir",
     "formality": "medium",
     "best_for": "Futuristic sci-fi aesthetic with dark themes, vibrant neon a"
   },
@@ -171,11 +171,11 @@
     "skillPath": "skills/creative/SKILL.md",
     "designPath": "skills/creative/DESIGN.md",
     "mood": [
-      "戏剧化",
-      "亲和/友好"
+"Dramatique (Juhuà)",
+"Amical/convivial"
     ],
     "scheme": "light",
-    "era": "现代",
+"era": "Moderne",
     "formality": "low",
     "best_for": "Playful, character-driven design with expressive typography "
   },
@@ -185,9 +185,9 @@
     "skillPath": "skills/dithered/SKILL.md",
     "designPath": "skills/dithered/DESIGN.md",
     "mood": [
-      "极简",
-      "戏剧化",
-      "复古/玩味"
+"Minimaliste",
+"Dramatique",
+"Rétro/Saveur"
     ],
     "scheme": "light",
     "era": "复古",
@@ -200,8 +200,8 @@
     "skillPath": "skills/doodle/SKILL.md",
     "designPath": "skills/doodle/DESIGN.md",
     "mood": [
-      "亲和/友好",
-      "插画丰富"
+"Amical/Convivial",
+"Illustrations riches"
     ],
     "scheme": "light",
     "era": "现代",

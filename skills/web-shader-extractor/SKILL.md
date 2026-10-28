@@ -1,9 +1,9 @@
 ---
 name: web-shader-extractor
 description: |
-  从网页中提取 WebGL/Canvas/Shader 视觉特效代码，反混淆后移植为独立原生 JS 项目。
-  触发条件：用户提供网址并要求提取 shader、提取特效、提取动画效果、提取 canvas 效果、
-  复刻某网站的视觉效果、"把这个网站的背景效果扒下来" 等。
+Extraire le code de effets visuels WebGL/Canvas/Shader des pages web, le déobfusquer et le porter en projet JS natif autonome.
+  Conditions de déclenchement : l'utilisateur fournit une URL et demande l'extraction de shader, d'effets spéciaux, d'animations, d'effets canvas,
+  de répliquer les effets visuels d'un site, de "récupérer l'effet de fond de ce site", etc.
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -22,7 +22,7 @@ description: |
 - **先 1:1 复刻，确认正确后再考虑简化框架**
 - **全程自主执行，不中断用户** — 提取是只读操作，安全性无风险。除 Phase 6 简化提议外，所有步骤自动完成，不询问用户确认。遇到问题自行判断最佳方案继续推进，只在需要用户做产品决策时才询问。
 
-## Phase 0: 环境检查（首次自动执行）
+## Phase 0: Vérification de l'environnement (première exécution automatique)
 
 在开始提取前，检查并自动安装所需依赖。**不要询问用户，直接安装**。
 
@@ -32,12 +32,12 @@ node --version 2>/dev/null || {
   echo "Node.js not found, installing..."
   # macOS
   brew install node 2>/dev/null || {
-    # fallback: 直接下载 LTS
+# fallback: 直接下载 LTS
     curl -fsSL https://nodejs.org/dist/v22.15.0/node-v22.15.0-darwin-arm64.tar.gz | tar xz -C /usr/local --strip-components=1
   }
 }
 
-# 2. Playwright 及浏览器（fetch-rendered-dom.mjs 内置自动安装，但这里预检可提前发现问题）
+# 2. Playwright (Pūláiwéitè) 及浏览器（fetch-rendered-dom.mjs 内置自动安装，但这里预检可提前发现问题）
 RUNNER_DIR="$HOME/.cache/playwright-runner"
 if [ ! -d "$RUNNER_DIR/node_modules/playwright" ]; then
   echo "Installing Playwright (one-time setup)..."

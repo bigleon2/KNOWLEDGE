@@ -8,12 +8,12 @@ scenario: product-tool-landing
 pattern_source: index.standalone.html
 source_priority: skill-first
 triggers:
-- "做个 AI 工具落地页" (créer une page d'atterrissage pour un outil IA)
+- "créer une page d'atterrissage pour un outil IA"
   - "Générateur d'images landing" (page d'atterrissage pour un outil de génération d'images)
-  - "TwelveMei 风工具页" (page d'outil de style TwelveMei)
+- "TwelveMei 风工具页" (page d'outil de style TwelveMei)
   - "玻璃画布 mockup" (maquette de toile de verre)
   - "<LIGNES À TRADUIRES> Outils d'IA (Zhongwen AI-tools) </LIGNES À TRADUIRES>" (page de produit d'outil IA en chinois)
-  - "宋体 hero 工具页" (page d'outil hero avec police Song)
+- "Songti hero 工具页" (page d'outil hero avec police Song)
 ---
 
 # Modèle Xianying Tool

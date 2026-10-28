@@ -1,22 +1,22 @@
-# 主题色预设（Themes）
+# Couleurs de thème prédéfinies (Themes)
 
-5 套精心调配的主题色板,保证"电子杂志 × 电子墨水"的美学不垮。**不允许用户自定义颜色——色彩搭配错了画面瞬间变丑**,只从以下预设中挑选。
+5 thèmes méticuleusement ajustés de palettes de couleurs, garantissant que l'esthétique "magazine électronique × encre électronique" ne s'effondre pas. **L'utilisateur n'est pas autorisé à personnaliser les couleurs - un mauvais agencement de couleurs instantanément gâche l'aspect**, choisissez uniquement parmi les préréglages suivants.
 
 ---
 
 ## 使用方法
 
-1. 问用户选哪套(或基于内容推荐一套)
-2. 打开 `assets/template.html` 的 `<style>` 块
+1. Demander à l'utilisateur quel ensemble il choisit (ou recommander un ensemble basé sur le contenu)
+2. Ouvrir le bloc `<style>` de `assets/template.html`
 3. 找到开头的 `:root{` 块
-4. **整体替换**标有"主题色"注释的那几行 `--ink` / `--ink-rgb` / `--paper` / `--paper-rgb` / `--paper-tint` / `--ink-tint`
+4. **Remplacement complet** remplacer les lignes marquées de la note "couleur du thème" (zhǔtísè) `--ink` / `--ink-rgb` / `--paper` / `--paper-rgb` / `--paper-tint` / `--ink-tint`
 5. 其他 CSS 都走 `var(--...)`,无需任何其他改动
 
 ---
 
-## 🖋 墨水经典 (Monocle 默认)
+## 🖋 Encre classique (Monocle par défaut)
 
-**适合**:通用分享、商业发布、科技产品、任何场景都安全的默认选择。
+**Convient à**: partage universel, publication commerciale, produits technologiques, choix par défaut sûr pour toutes les situations.
 **调性**:纯墨黑 + 暖米白,杂志感最强,Monocle / Apricot / A Book Apart 风。
 
 ```css
@@ -32,8 +32,8 @@
 
 ## 🌊 靛蓝瓷 (Indigo Porcelain)
 
-**适合**:科技/研究/数据分享、工程师文化、深度内容、技术发布会。
-**调性**:深靛蓝 + 瓷白,冷静、理性、有深度,像学术期刊或蓝印花瓷器。
+**Convient à**: technologie/recherche/partage de données, culture d'ingénierie, contenu approfondi, conférences technologiques.
+**Ton**: bleu indigo profond + blanc de porcelaine, calme, rationnel, avec profondeur, comme une revue académique ou de la porcelaine à bleu imprimé.
 
 ```css
 --ink:#0a1f3d;

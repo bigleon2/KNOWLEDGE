@@ -590,7 +590,7 @@ HTML skeleton (21:9, the natural format for this recipe):
       <div class="hero-img-wrap">
         <img src="assets/hero.jpg" alt="hero">
         <div class="hero-overlay-block">
-          <p class="t-cat">Cover · 主封面</p>
+<p class="t-cat">Cover · Zhǔ fēngmiàn</p>
           <h1 class="h-statement">下一代<br>写作工作流</h1>
         </div>
       </div>
@@ -676,7 +676,7 @@ HTML skeleton (3:4):
 <section class="poster xhs" id="xhs-rank" data-accent="ikb">
   <div class="content stack gap-7">
     <p class="t-cat">Ranking · TOP 6</p>
-    <h2 class="h-xl">本月最受欢迎的工具</h2>
+<h2 class="h-xl">Outils les plus populaires du mois (Ben yue zui shou huan ying de gong ju)</h2>
     <div class="h-bar-chart">
       <div class="bar-row">
         <div class="row-lbl">Claude Code</div>
@@ -730,8 +730,8 @@ HTML skeleton (3:4):
 ```html
 <section class="poster xhs" id="xhs-spend" data-accent="safety-orange">
   <div class="content stack gap-7">
-    <p class="t-cat">Spend · 五月账单</p>
-    <h2 class="h-xl">这个月我把钱花在哪</h2>
+<p class="t-cat">Spend · 五月账单 (Wu Yue Zhang Dan)</p>
+<h2 class="h-xl">这个月我把钱花在哪</h2>
     <div class="stacked-ledger">
       <div class="ledger-row">
         <p class="ledger-num">¥1,280</p>
@@ -743,21 +743,21 @@ HTML skeleton (3:4):
       <div class="ledger-row">
         <p class="ledger-num">¥860</p>
         <div class="ledger-lbl">书 · Books
-          <span class="sub">6 本中文 · 2 本英文</span>
+<span class="sub">6 本中文 · 2 本英文</span>
         </div>
         <i class="ledger-icn" data-lucide="book-open"></i>
       </div>
       <div class="ledger-row">
         <p class="ledger-num">¥540</p>
         <div class="ledger-lbl">咖啡 · Coffee
-          <span class="sub">主要在 Manner 和 Seesaw</span>
+<span class="sub">Principalement à Manner et Seesaw (Manner et Seesaw)</span>
         </div>
         <i class="ledger-icn" data-lucide="coffee"></i>
       </div>
       <div class="ledger-row">
         <p class="ledger-num">¥320</p>
         <div class="ledger-lbl">硬件 · Hardware
-          <span class="sub">键盘配件 · 一根 USB-C</span>
+<span class="sub">Accessoires clavier · Un câble USB-C</span>
         </div>
         <i class="ledger-icn" data-lucide="keyboard"></i>
       </div>

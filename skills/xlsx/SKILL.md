@@ -3,7 +3,7 @@ name: xlsx
 metadata:
   author: Z.AI
   version: "1.0"
-description: "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file; create a new spreadsheet from scratch or from other data sources; analyze data and output results as an Excel file with charts; convert between tabular file formats (CSV/JSON/PDF → XLSX or vice versa); clean, merge, pivot, or transform tabular data. Trigger especially when the user references a spreadsheet file by name or path, says 'make a table/report/model', mentions Excel/CSV/数据分析/报表/汇总, or wants data visualization inside a spreadsheet."
+description: "Utilisez cette compétence chaque fois qu'un fichier de feuille de calcul est l'entrée ou la sortie principale. Cela signifie toute tâche où l'utilisateur souhaite : ouvrir, lire, modifier ou corriger un fichier existant .xlsx, .xlsm, .csv ou .tsv ; créer une nouvelle feuille de calcul à partir de zéro ou à partir d'autres sources de données ; analyser des données et exporter les résultats sous forme de fichier Excel avec des graphiques ; convertir entre les formats de fichiers tabulaires (CSV/JSON/PDF → XLSX ou vice versa) ; nettoyer, fusionner, pivoter ou transformer des données tabulaires. Déclenchez particulièrement lorsque l'utilisateur fait référence à un fichier de feuille de calcul par son nom ou son chemin, dit 'crée un tableau/rapport/modèle', mentionne Excel/CSV/dànjù fēnxī/bàobiǎo/huìzǒng, ou souhaite une visualisation de données dans une feuille de calcul."
 license: Proprietary. LICENSE.txt has complete terms
 ---
 
@@ -26,9 +26,9 @@ bash "$XLSX_SKILL_DIR/setup.sh"    # Interactive environment check + install
 
 Before touching any code, confirm the user actually needs a spreadsheet:
 
-- Report / analysis summary (述职, 调研报告) → **docx skill**
-- Presentation (汇报, 演示, pitch deck) → **pptx skill**
-- Formal print document (合同, 证书, "PDF") → **pdf skill**
+- Report / analysis summary (shuzhi, diaoyan baogao) → **docx skill**
+- Presentation (hui bao, yan shi, pitch deck) → **pptx skill**
+- Formal print document (he tong, zheng shu, "PDF") → **pdf skill**
 - Charts only, no data table needed → **charts skill**
 - User explicitly says a format → respect it
 
@@ -99,9 +99,9 @@ User Request
 │
 ├─ Create from scratch?
 │  ├─ Financial / budget / forecast / cost tracking?
-│  │  ├─ Complex (DCF / LBO / three-statement linkage (三表联动) / sensitivity / IB model)?
+│  │  ├─ Complex (DCF / LBO / three-statement linkage (sān biǎo lián dòng) / sensitivity / IB model)?
 │  │  │  └─ Yes ─────────────────────── → scenes/finance.md
-│  │  └─ Simple (budget table (预算表) / expense report (费用报表) / revenue vs cost (收支对比) / project cost (项目成本) / personal finance (个人记账))?
+│  │  └─ Simple (budget table (yusuan biao) / expense report (feiyong baobiao) / revenue vs cost (shouzhi dui bi) / project cost (xiangmu chengben) / personal finance (geren jizhang))?
 │  │     └─ Yes ─────────────────────── → scenes/finance_lite.md
 │  └─ General table / report / template
 │     └─ ──────────────────────────── → scenes/create.md
@@ -122,10 +122,10 @@ User Request
 **Mixed requests**: load all matching files. Engine files always **append** to a scene.
 
 **Finance detection**:
-- **finance.md** (complex): DCF, LBO, P&L, 利润表, 资产负债, valuation, 估值, IRR, 三表联动, sensitivity, scenario
-- **finance_lite.md** (simple): 预算, budget, 费用, expense, 收支, 记账, 项目成本, cost tracking, 报销, ROI
+- **finance.md** (complex): DCF, LBO, P&L, 利润表 (lirun biao), 资产负债 (zichan fuzhai), valuation, 估值 (guzhi), IRR, 三表联动 (sanbiao liandong), sensitivity, scenario
+- **finance_lite.md** (simple): 预算 (yusuan), budget, 费用 (feiyong), expense, 收支 (shouzhi), 记账 (jizhang), 项目成本 (xiangmu chengben), cost tracking, 报销 (baoxiao), ROI
 
-**VBA detection**: 宏, macro, VBA, 自动化, automation, .xlsm, 按钮, button, auto-run, 批量处理脚本
+**VBA detection**: 宏 (hong), macro, VBA, 自动化 (zidonghua), automation, .xlsm, 按钮 (anniu), button, auto-run, 批量处理脚本 (piliang chuli juben)
 
 ---
 

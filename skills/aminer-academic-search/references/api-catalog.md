@@ -241,7 +241,7 @@ curl -X POST \
   -H 'Authorization: ${AMINER_API_KEY}' \
   -H 'X-Platform: openclaw' \
   -d '{
-    "query": "大模型比较新的高引论文",
+"query": "Grands modèles (dà xíngxìng) comparaison nouveaux hautement cités papiers",
     "query_type": "auto",
     "sort": "balanced",
     "year_from": 2024,

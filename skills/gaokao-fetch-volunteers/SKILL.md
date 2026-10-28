@@ -22,7 +22,7 @@ description: >-
 - **上游**：[gaokao-collect-student-info](../gaokao-collect-student-info/SKILL.md) → `student.json`
 - **下游**：[gaokao-recommend-majors](../gaokao-recommend-majors/SKILL.md)、[gaokao-recommend-schools](../gaokao-recommend-schools/SKILL.md)、[gaokao-generate-report](../gaokao-generate-report/SKILL.md)
 
-## 环境准备
+## Préparation de l'environnement (Huanjing zhunbei)
 
 ```bash
 cd gaokao-fetch-volunteers
@@ -30,13 +30,13 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 执行步骤
+## Étapes d'exécution
 
 ### 1. 从辅助信息提取倾向（Agent 必做）
 
-读取 `student.json`，根据 [preference_mapping.md](preference_mapping.md) 将考生倾向补全/写入以下字段：
+Lire `student.json` et compléter/écrire les préférences des candidats dans les champs suivants selon [preference_mapping.md](preference_mapping.md) :
 
-| 字段 | 映射到 API |
+| Champ | Mappé à l'API |
 |------|-----------|
 | `preferred_universities` | `universitys` |
 | `preferred_provinces` / `preferred_cities` | `provinces` |
@@ -45,9 +45,9 @@ pip install -r requirements.txt
 
 提取来源：`interests`、`career_direction`、`preferred_cities`、`notes` 及对话中的院校/专业/层次偏好。
 
-若 Step1 已结构化写入，本步核对并补全；**调用 API 前倾向字段不得为空数组**（考生无偏好时除外）。
+Si Step1 a été structuré et écrit, cette étape vérifie et complète ; **les champs requis avant l'appel API ne doivent pas être un tableau vide** (sauf si le candidat n'a aucune préférence).
 
-### 2. 构建 API 请求
+### 2. Construire la requête API
 
 ```bash
 python3 scripts/build_api_request.py \
@@ -56,17 +56,17 @@ python3 scripts/build_api_request.py \
   --summary output/preference_summary.json
 ```
 
-脚本将 `preferred_*` 转为 API 选填参数；`preferred_cities` 会自动推导 `provinces`（见 `preference_mapping.md`）。
+Le script convertit `preferred_*` en paramètres optionnels de l'API ; `preferred_cities` déduit automatiquement `provinces` (voir `preference_mapping.md`).
 
 `build_api_request.py` 会调用 `province_config.validate_classify` 校验 `classify` 是否与省份模式匹配。
 
-### 2.5 调用前参数核对（必做）
+### 2.5 Vérification des paramètres avant appel (obligatoire)
 
-在调用 API 前，对照 [reference.md](reference.md) 核对 `student.json` / `api_request.json`：
+Avant d'appeler l'API, consultez [reference.md](reference.md) pour vérifier `student.json` / `api_request.json` :
 
 | 检查项 | 规则 |
 |--------|------|
-| `classify` | 新疆→文科/理科；3+1+2 省→物理/历史；3+3 省→综合。**传错会导致批次列表为空** |
+| `classify` | 新疆→文科/理科；3+1+2 省→物理/历史；3+3 省→综合。**Chuan cuo hui dao zhi pi ci lie biao wei kong** |
 | `subjects` | 3+1+2：**完整三科**（首选+两门再选，如 `物理,化学,生物`）；3+3：完整三科；新疆不传；京沪津专科由脚本处理 |
 | `gradeType` | **仅北京/上海/天津**填本科或专科；其他省必须为 `null` 或不传 |
 | `score` | 新疆**必传**（无一分一段表，仅 rank 无效） |

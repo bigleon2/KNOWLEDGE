@@ -1,24 +1,24 @@
 {
   "student": {
-    "interests": "考生兴趣爱好",
-    "family_situation": "家庭情况",
-    "career_direction": "就业方向",
-    "subject_scores": { "语文": 125, "数学": 138 },
-    "preferred_cities": ["北京", "上海"],
-    "notes": "补充说明"
+"interests": "Intérêts et passe-temps du candidat",
+    "family_situation": "Situation familiale",
+    "career_direction": "Orientation professionnelle",
+    "subject_scores": { "Chinois (Yuwu)": 125, "Mathématiques (Shuxue)": 138 },
+    "preferred_cities": ["Pékin (Beijing)", "Shanghai"],
+    "notes": "Remarques complémentaires"
   },
   "analysis": {
-    "intro": "来自 major_recommendation.intro",
-    "strategy": "来自 major_recommendation.strategy",
+"intro": "de major_recommendation.intro",
+    "strategy": "de major_recommendation.strategy",
     "major_directions": [
       {
         "icon": "🧑‍💻",
-        "title": "专业方向名称",
-        "match_level": "极高",
-        "description": "方向说明"
+"title": "Nom de la spécialisation (Zhuan ye fang xiang)",
+        "match_level": "Très élevé",
+        "description": "Description de la spécialisation (Fang xiang shuo ming)"
       }
     ],
-    "school_strategy": "来自 school_recommendation.school_strategy"
+"school_strategy": "provenant de school_recommendation.school_strategy"
   },
   "recommended_majors": [],
   "recommended_schools": []

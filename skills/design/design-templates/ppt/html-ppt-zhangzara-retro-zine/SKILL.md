@@ -1,6 +1,6 @@
 ---
 name: html-ppt-zhangzara-retro-zine
-description: Retro Zine — 米色纸 + 绿色 accent + Bebas Neue + Caveat：HTML 形式的 riso 印刷 zine。任何应该感觉印刷 / lo-fi / 手作的 deck：独立 zine 与刊物 / 音乐艺术品牌 / 创作者作品集 / 小批量手作发布 / 社区 deck。
+description: Retro Zine — 米色纸 (Miseizhi) + 绿色 accent (Lüse accent) + Bebas Neue + Caveat：HTML 形式的 riso 印刷 zine。任何应该感觉印刷 / lo-fi / 手作的 deck：独立 zine 与刊物 / 音乐艺术品牌 / 创作者作品集 / 小批量手作发布 / 社区 deck。
 visibility: public
 mode: template
 carrier: deck
@@ -8,9 +8,9 @@ scenario: marketing
 pattern_source: pattern.html
 source_priority: skill-first
 triggers:
-  - "做个 riso 风 PPT"
-  - "做个独立刊物 deck"
-  - "做个 zine 风演讲稿"
+- "Faire un PPT de style riso (feng)"
+  - "Faire un deck de publication indépendante"
+- "Faire un discours de style zine (zine)"
   - "retro-zine"
   - "zhangzara-retro-zine"
   - "Retro Zine"
