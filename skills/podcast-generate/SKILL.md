@@ -24,7 +24,7 @@ license: MIT
 
 ---
 
-## 能力说明
+## Description des capacités
 
 ### 本 Skill 可以做什么
 - **从文件生成**：接收一篇资料（txt/md/docx/pdf等文本格式），生成对谈播客脚本和音频
@@ -42,7 +42,7 @@ license: MIT
 
 ## 文件与职责说明
 
-本 Skill 由以下文件组成：
+Ce Skill est composé des fichiers suivants :
 
 - `generate.ts`
   统一入口（支持文件模式和搜索模式）
@@ -54,16 +54,16 @@ license: MIT
   - 只输出最终文件
 
 - `readme.md`
-  使用说明文档
+Guide d'utilisation
 
 - `SKILL.md`
   当前文件，描述 Skill 能力、边界与使用约定
 
 - `package.json`
-  Node.js 项目配置与依赖
+Configuration du projet Node.js et dépendances
 
 - `tsconfig.json`
-  TypeScript 编译配置
+Configuration de compilation TypeScript
 
 ---
 
