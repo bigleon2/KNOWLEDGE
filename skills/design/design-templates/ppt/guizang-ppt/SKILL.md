@@ -1,6 +1,6 @@
 ---
 name: guizang-ppt
-description: 生成"电子杂志 × 电子墨水"风格的横向翻页网页 PPT（单 HTML 文件），含 WebGL 流体背景、衬线标题 + 非衬线正文、章节幕封、数据大字报、图片网格等模板。当用户需要制作分享 / 演讲 / 发布会风格的网页 PPT，或提到"杂志风 PPT"、"horizontal swipe deck"、"editorial magazine"、"e-ink presentation"时使用。
+description: Générer un PPT web à pagination horizontale façon « magazine électronique × encre électronique » (fichier HTML unique), avec fond WebGL fluides, titres serif + corps sans-serif, volets de chapitre, grands chiffres, grilles d'images et autres gabarits. À utiliser quand l'utilisateur veut produire un PPT web de partage / conférence / lancement, ou mentionne « PPT façon magazine », « horizontal swipe deck », « editorial magazine », « e-ink presentation ».
 visibility: public
 mode: template
 carrier: deck
@@ -13,15 +13,15 @@ triggers:
   - "slides"
   - "presentation"
   - "magazine"
-  - "杂志"
-  - "杂志风 PPT"
+  - « 杂志 (magazine) »
+  - « PPT façon magazine »
   - "horizontal swipe"
   - "horizontal swipe deck"
   - "editorial magazine"
   - "e-ink presentation"
-  - "网页 PPT"
-  - "发布会"
-  - "分享 PPT"
+  - « PPT web »
+  - « conférence de lancement »
+  - « PPT de partage »
 od:
   default_for: deck
   upstream: "https://github.com/op7418/guizang-ppt-skill"
@@ -30,288 +30,286 @@ od:
     entry: index.html
   design_system:
     requires: false
-  example_prompt: "帮我做一份杂志风的 PPT —— 关于'一人公司 · 被 AI 折叠的组织'，25 分钟分享会，目标受众是设计师 + 创业者。先推荐一个方向（Monocle / WIRED / Kinfolk / Domus / Lab）让我选。"
+  example_prompt: « Fais-moi un PPT façon magazine — sur "l'entreprise d'une personne : l'organisation repliée par l'IA", un partage de 25 minutes, audience : designers + entrepreneurs. Recommande-moi d'abord une orientation (Monocle / WIRED / Kinfolk / Domus / Lab) à choisir. »
 ---
 
 # Magazine Web Ppt
 
-## 这个 Skill 做什么
+## Ce que fait ce skill
 
-生成一份**单文件 HTML**的横向翻页 PPT，视觉基调是：
+Produire un PPT à pagination horizontale en **HTML monofichier**, au ton visuel :
 
-- **电子杂志 + 电子墨水**混血风格
-- **WebGL 流体 / 等高线 / 色散背景**（hero 页可见）
-- **衬线标题（Noto Serif SC + Playfair Display）+ 非衬线正文（Noto Sans SC + Inter）+ 等宽元数据（IBM Plex Mono）**
-- **Lucide 线性图标**（不用 emoji）
-- **横向左右翻页**（键盘 ← →、滚轮、触屏滑动、底部圆点、ESC 索引）
-- **主题平滑插值**：翻到 hero 页时颜色和 shader 柔顺过渡
+- hybride **magazine électronique + encre électronique**
+- **fond WebGL fluides / lignes de niveau / dispersion** (visible sur les pages hero)
+- **titres serif (Noto Serif SC + Playfair Display) + corps sans-serif (Noto Sans SC + Inter) + métadonnées monospace (IBM Plex Mono)**
+- **icônes linéaires Lucide** (pas d'emoji)
+- **pagination horizontale** (clavier ← →, molette, glisser tactile, pastilles en bas, index ESC)
+- **interpolation douce des thèmes** : en tournant vers une page hero, couleurs et shader transitionnent en douceur
 
-这个 skill 的美学不是"商务 PPT"，也不是"消费互联网 UI"——它像 *Monocle* 杂志贴上了代码后的样子。
+L'esthétique de ce skill n'est ni « PPT corporate », ni « UI internet grand public » — c'est le magazine *Monocle* après qu'on lui a plaqué du code.
 
-## 何时使用
+## Quand l'utiliser
 
-**合适的场景**：
-- 线下分享 / 行业内部讲话 / 私享会
-- AI 新产品发布 / demo day
-- 带有强烈个人风格的演讲
-- 需要"一次做完，不用翻页工具"的网页版 slides
+**Scénarios adaptés** :
+- partage en présentiel / discours internes au secteur / rencontres privées
+- lancement de produit IA / demo day
+- conférences à forte personnalité
+- des slides web « tout en une fois, sans outil de pagination »
 
-**不合适的场景**：
-- 大段表格数据、图表叠加（用常规 PPT）
-- 培训课件（信息密度不够）
-- 需要多人协作编辑（这是静态 HTML）
+**Scénarios inadaptés** :
+- gros tableaux de données, empilements de graphiques (prendre un PPT classique)
+- supports de formation (densité d'information insuffisante)
+- édition collaborative multi-auteurs (c'est du HTML statique)
 
-## 工作流
+## Workflow
 
-### Step 0 · 选方向(Direction · 必做的第一步)
+### Étape 0 · Choisir l'orientation (Direction — premier geste obligatoire)
 
-**在问 6 个澄清问题之前,先让用户在 5 个 magazine 方向里挑一个**。每个方向都把"主题色 / 推荐 layout / chrome 风格 / 推荐 slide 数"打包好,挑了方向就回答掉一半澄清问题。
+**Avant les 6 questions de clarification, faire d'abord choisir une des 5 orientations magazine.** Chaque orientation regroupe « thème / layouts recommandés / style chrome / nombre de slides conseillé » : l'orientation répond d'avance à la moitié des questions.
 
-打开 `references/styles.md`,**整段拷过来**给用户看 5 个方向的 1-line summary,然后让他选:
+Ouvrir `references/styles.md`, **copier tout le passage** pour montrer à l'utilisateur les résumés en une ligne des 5 orientations, puis le laisser choisir :
 
 ```
-1. Monocle Editorial · 国际杂志风 ✦ 默认
-2. WIRED Tech · 数据 + 工程
-3. Kinfolk Slow · 慢生活 / 人文
-4. Domus Architectural · 建筑 / 空间感
-5. Lab / Reference · 学术 + 工艺手册
+1. Monocle Editorial · magazine international ✦ défaut
+2. WIRED Tech · données + ingénierie
+3. Kinfolk Slow · art de vivre / humanités
+4. Domus Architectural · architecture / sens de l'espace
+5. Lab / Reference · académique + manuel de savoir-faire
 ```
 
-如果用户说"不知道,你推荐"——**默认推 Monocle Editorial**,因为它失败概率最低。如果用户提到"AI / benchmark / 技术发布"——推 WIRED;"读书 / 私享 / 朋友圈"——推 Kinfolk;"设计 / 建筑 / portfolio"——推 Domus;"研究 / 学术 / 方法论"——推 Lab。
+Si l'utilisateur dit « je ne sais pas, recommande » — **proposer Monocle Editorial par défaut**, le risque d'échec le plus faible. S'il mentionne « IA / benchmark / lancement technique » → WIRED ; « lecture / rencontres privées / cercle d'amis » → Kinfolk ; « design / architecture / portfolio » → Domus ; « recherche / académique / méthodologie » → Lab.
 
-挑完方向后,在项目目录下创建或更新 `项目记录.md`,第一行写清方向 + 主题色 + 受众 + 时长(模板见 `styles.md` 末尾)。**全程不要换方向**——半路换 = 前面全废。
+Après le choix, créer ou mettre à jour `projet.md` dans le répertoire projet, avec en première ligne orientation + thème + audience + durée (gabarit en fin de `styles.md`). **Ne jamais changer d'orientation en cours** — changer à mi-chemin = tout recommencer.
 
-### Step 1 · 需求澄清(**动手前必做**)
+### Étape 1 · Clarification du besoin (**avant d'agir, obligatoire**)
 
-**如果用户已经给了完整的大纲 + 图片**,可以跳过直接进 Step 2。
+**Si l'utilisateur a déjà fourni plan complet + images**, passer directement à l'étape 2.
 
-**如果用户只给了主题或一个模糊想法**,用这 6 个问题逐个对齐后再动手。不要基于猜测就开始写 slide——一旦结构定错,后期翻修代价很高:
+**S'il n'a donné qu'un thème ou une idée vague**, aligner avec ces 6 questions avant d'écrire. Ne jamais écrire des slides au doigt mouillé — une structure mal posée coûte très cher à reprendre :
 
-#### 6 问澄清清单
+#### La liste des 6 questions
 
-> 第 5 题已在 Step 0 选方向时一并回答(方向→主题色)。下面的 5 题里,第 5 题留白即可。
+> La question 5 a déjà trouvé sa réponse à l'étape 0 (orientation → thème). Sur les 5 restantes, laisser la 5e en blanc.
 
-| # | 问题 | 为什么要问 |
+| # | Question | Pourquoi la poser |
 |---|------|-----------|
-| 1 | **受众是谁?分享场景?**(行业内部 / 商业发布 / demo day / 私享会) | 决定语言风格和深度 |
-| 2 | **分享时长?** | 15 分钟 ≈ 10 页,30 分钟 ≈ 20 页,45 分钟 ≈ 25-30 页(每个方向的推荐范围见 `styles.md`) |
-| 3 | **有没有原始素材?**(文档 / 数据 / 旧 PPT / 文章链接) | 有素材就基于素材,没有就帮他搭 |
-| 4 | **有没有图片?放在哪?** | 详见下方"图片约定" |
-| 5 | ~~**想要哪套主题色?**~~ | ✓ 已在 Step 0 由方向决定 |
-| 6 | **有没有硬约束?**(必须包含 XX 数据 / 不能出现 YY) | 避免返工 |
+| 1 | **Qui est l'audience ? Quel cadre ?** (interne au secteur / publication commerciale / demo day / rencontre privée) | détermine ton et profondeur |
+| 2 | **Quelle durée ?** | 15 min ≈ 10 pages, 30 min ≈ 20 pages, 45 min ≈ 25-30 pages (fourchettes par orientation dans `styles.md`) |
+| 3 | **Y a-t-il des supports d'origine ?** (documents / données / ancien PPT / liens d'articles) | avec supports, partir des supports ; sans, l'aider à bâtir |
+| 4 | **Y a-t-il des images ? Où ?** | voir « conventions images » ci-dessous |
+| 5 | ~~**Quel thème de couleurs ?**~~ | ✓ déjà tranché par l'orientation à l'étape 0 |
+| 6 | **Y a-t-il des contraintes dures ?** (inclure la donnée XX / ne jamais montrer YY) | éviter les reprises |
 
-#### 大纲协助(如果用户没有大纲)
+#### Aide au plan (si l'utilisateur n'en a pas)
 
-用"叙事弧"模板搭骨架,再填内容:
+Bâtir la ossature sur l'« arc narratif », puis remplir :
 
 ```
-钩子(Hook)       → 1 页   : 抛一个反差 / 问题 / 硬数据让人停下来
-定调(Context)    → 1-2 页 : 说明背景 / 你是谁 / 为什么讲这个
-主体(Core)       → 3-5 页 : 核心内容,用 Layout 4/5/6/9/10 穿插
-转折(Shift)      → 1 页   : 打破预期 / 提出新观点
-收束(Takeaway)   → 1-2 页 : 金句 / 悬念问题 / 行动建议
+Crochet (Hook)       → 1 page   : un contraste / une question / un chiffre dur qui arrête
+Mise en ton (Context) → 1-2 pages : le contexte / qui vous êtes / pourquoi ce sujet
+Corps (Core)         → 3-5 pages : le cœur, en alternant Layouts 4/5/6/9/10
+Bascule (Shift)      → 1 page   : briser l'attendu / introduire l'idée nouvelle
+Chute (Takeaway)     → 1-2 pages : citation forte / question en suspens / appel à l'action
 ```
 
-叙事弧 + 页数规划 + 主题节奏表(见 `layouts.md`),**三张表对齐后**再进 Step 2。
+Arc narratif + plan de pagination + table de rythme des thèmes (voir `layouts.md`) : **les trois tableaux alignés**, puis étape 2.
 
-大纲建议保存为 `项目记录.md` 或 `大纲-v1.md`,便于后续迭代。
+Conserver le plan dans `projet.md` ou `plan-v1.md` pour les itérations.
 
-#### 图片约定(告知用户)
+#### Conventions images (à dire à l'utilisateur)
 
-在动手前向用户说清:
+Avant d'agir, préciser :
+- **emplacement** : sous `projet/XXX/ppt/images/` (au même niveau qu'`index.html`)
+- **nommage** : `{n° de page}-{sémantique}.{ext}`, ex. `01-cover.jpg` / `03-figma.jpg` / `05-dashboard.png`
+  - numéro de page complété par des zéros, pour le tri
+  - sémantique en anglais, courte, précise, cohérente avec le contenu
+- **spécifications conseillées** :
+  - chaque image ≥ 1600 px de large (éviter le flou sur grand écran)
+  - JPG pour photos/captures, PNG pour UI transparents/graphiques
+  - poids total sous 10 Mo (fluidité de pagination)
+- **comment remplacer** : garder **le même nom et écraser**, c'est le plus sûr (aucun chemin à changer dans le HTML) ; sinon, rechercher-remplacer globalement `images/ancien-nom`
+- **pas d'images ?** : s'aligner avec l'utilisateur — on peut d'abord générer la structure avec des blocs de couleur, puis compléter ; mais prévenir que les pages mixtes 4/5/10 ne pourront pas être validées visuellement sans images
 
-- **文件夹位置**:`项目/XXX/ppt/images/` 下(和 `index.html` 同级)
-- **命名规范**:`{页号}-{语义}.{ext}`,例如 `01-cover.jpg` / `03-figma.jpg` / `05-dashboard.png`
-  - 页号补零便于排序
-  - 语义用英文,短、具体、和内容对应
-- **规格建议**:
-  - 单张 ≥ 1600px 宽(避免大屏模糊)
-  - JPG 用于照片/截图,PNG 用于透明 UI/图表
-  - 总大小控制在 10MB 内(影响翻页流畅度)
-- **如何替换**:保持**同名覆盖**最稳(HTML 里不用改路径);如果文件名变了,记得全局搜 `images/旧名` 改成新名
-- **没图怎么办**:和用户对齐,可以先用占位色块生成结构,等图片后期补;但要告知 layout 4/5/10 等图文混排页没图就没法验证视觉效果
+### Étape 2 · Copier le gabarit
 
-### Step 2 · 拷贝模板
-
-从 `assets/template.html` 拷贝一份到目标位置（通常是 `项目/XXX/ppt/index.html`），同时在同级建一个 `images/` 文件夹准备接图片。
+Copier `assets/template.html` vers la cible (généralement `projet/XXX/ppt/index.html`), et créer au même niveau un dossier `images/`.
 
 ```bash
-mkdir -p "项目/XXX/ppt/images"
-cp "<SKILL_ROOT>/assets/template.html" "项目/XXX/ppt/index.html"
+mkdir -p "projet/XXX/ppt/images"
+cp "<SKILL_ROOT>/assets/template.html" "projet/XXX/ppt/index.html"
 ```
 
-`template.html` 是一个**完整可运行**的文件——CSS、WebGL shader、翻页 JS、字体/图标 CDN 全已预设好，只有 `<main id="deck">` 里面是 3 个示例 slide（封面、章节幕封、空白填充页）。
+`template.html` est un fichier **complet et exécutable** — CSS, shaders WebGL, JS de pagination, CDN polices/icônes déjà préréglés ; seul `<main id="deck">` contient 3 slides d'exemple (couverture, volet de chapitre, page vide de remplissage).
 
-#### 2.1 · 必改占位符（**容易漏**）
+#### 2.1 · Placeholders à remplacer (**souvent oubliés**)
 
-拷贝后立刻改掉以下占位符，否则浏览器 Tab 会显示"[必填] 替换为 PPT 标题"这种尴尬文字：
+Juste après la copie, remplacer les placeholders suivants, sinon l'onglet du navigateur affichera « [à renseigner] remplacer par le titre du PPT » :
 
-| 位置 | 原始 | 需改为 |
+| Emplacement | Origine | À remplacer par |
 |------|------|--------|
-| `<title>` | `[必填] 替换为 PPT 标题 · Deck Title` | 实际 deck 标题(如 `一种新的工作方式 · Luke Wroblewski`) |
+| `<title>` | `[必填] 替换为 PPT 标题 · Deck Title` | le vrai titre du deck (ex. `Une nouvelle façon de travailler · Luke Wroblewski`) |
 
-每次拷贝完 template.html 第一件事:grep 一下"[必填]" 确认全部替换完。
+Après chaque copie de template.html, premier réflexe : grep « [必填] » pour confirmer que tout est remplacé.
 
-#### 2.2 · 选定主题色(5 套预设 · 不允许自定义)
+#### 2.2 · Choisir le thème (5 préréglages · pas de personnalisation)
 
-本 skill **只允许从 5 套精心调配的预设里选一套**,不接受用户自定义 hex 值——颜色搭配错了画面瞬间变丑,保护美学比给自由更重要。
+Ce skill **autorise uniquement le choix parmi 5 préréglages méticuleusement réglés** ; aucune valeur hex libre — une couleur fausse ruine l'image à la seconde ; protéger l'esthétique compte plus que la liberté.
 
-| # | 主题 | 适合 |
+| # | Thème | Adapté à |
 |---|------|------|
-| 1 | 🖋 墨水经典 | 通用 / 商业发布 / 不知道选啥的默认 |
-| 2 | 🌊 靛蓝瓷 | 科技 / 研究 / 数据 / 技术发布会 |
-| 3 | 🌿 森林墨 | 自然 / 可持续 / 文化 / 非虚构 |
-| 4 | 🍂 牛皮纸 | 怀旧 / 人文 / 文学 / 独立杂志 |
-| 5 | 🌙 沙丘 | 艺术 / 设计 / 创意 / 画廊 |
+| 1 | 🖋 Encre classique | universel / publication commerciale / le défaut quand on ne sait pas |
+| 2 | 🌊 Indigo porcelaine | tech / recherche / données / conférences techniques |
+| 3 | 🌿 Encre forêt | nature / durabilité / culture / documentaire |
+| 4 | 🍂 Papier kraft | nostalgie / humanités / littérature / magazine indépendant |
+| 5 | 🌙 Dune | art / design / création / galerie |
 
-**操作**:
-1. 基于内容主题推荐一套,或直接问用户选哪一套
-2. 打开 `references/themes.md`,找到对应主题的 `:root` 块
-3. **整体替换** `assets/template.html`(已拷贝版本)开头 `:root{` 块里标有"主题色"注释的那几行(`--ink` / `--ink-rgb` / `--paper` / `--paper-rgb` / `--paper-tint` / `--ink-tint`)
-4. 其他 CSS 都走 `var(--...)`,无需任何其他改动
+**Opération** :
+1. Recommander un ensemble selon le contenu, ou demander directement à l'utilisateur
+2. Ouvrir `references/themes.md`, repérer le bloc `:root` du thème
+3. **Remplacer en bloc** dans `assets/template.html` (la copie) les lignes marquées du commentaire « couleur du thème » du `:root{` initial (`--ink` / `--ink-rgb` / `--paper` / `--paper-rgb` / `--paper-tint` / `--ink-tint`)
+4. Tout le reste du CSS passe par des `var(--...)` : aucune autre modification
 
-**硬规则**:
-- 一份 deck 只用一套主题,不要中途换色
-- 不要接受用户给的任意 hex 值——委婉拒绝并展示 5 套让选
-- 不要混搭(例如 ink 取墨水经典、paper 取沙丘)——会彻底违和
+**Règles dures** :
+- un seul thème par deck, pas de changement de couleur en route
+- refuser poliment toute valeur hex donnée par l'utilisateur — montrer les 5 préréglages et faire choisir
+- pas de mélange (ex. l'encre de l'Encre classique + le papier de la Dune) — rupture totale d'harmonie
 
-### Step 3 · 填充内容
+### Étape 3 · Remplir le contenu
 
-#### 3.0 · 预检:类名必须在 template.html 里有定义（**最重要**）
+#### 3.0 · Pré-contrôle : chaque classe doit exister dans template.html (**le plus important**)
 
-**这是所有生成问题的源头**。layouts.md 的骨架使用了很多类名(`h-hero` / `h-xl` / `stat-card` / `pipeline` / `grid-2-7-5` 等),如果 `assets/template.html` 的 `<style>` 里没有对应定义,浏览器会 fallback 到默认样式——大标题变成非衬线、数据卡片挤成一团、pipeline 糊成一行、图片堆到页面底部。
+**C'est la source de tous les problèmes de génération.** Les squelettes de layouts.md utilisent beaucoup de classes (`h-hero` / `h-xl` / `stat-card` / `pipeline` / `grid-2-7-5`…) : si le `<style>` d'`assets/template.html` ne les définit pas, le navigateur retombe sur ses styles par défaut — grands titres en sans-serif, cartes de données écrasées, pipeline en une ligne, images empilées en bas.
 
-**在写任何 slide 代码之前:**
+**Avant d'écrire le moindre slide :**
+1. **Read `assets/template.html`** (au moins jusqu'à la fin du bloc `<style>`)
+2. **Contrôler avec la liste Pre-flight de layouts.md** : chaque classe à utiliser existe dans le `<style>`
+3. Si une classe manque : **l'ajouter dans le `<style>` de template.html**, pas la réécrire en inline dans chaque slide
+4. **template.html est la seule source des noms de classes** — n'en pas inventer ; pour du sur-mesure, `style="..."` en inline
 
-1. **先 Read `assets/template.html`**(至少读到 `<style>` 块末尾)
-2. **对照 layouts.md 的 Pre-flight 列表**,确认你要用的每个类都在 `<style>` 里存在
-3. 如果某个类缺失:**在 template.html 的 `<style>` 里补上**,不要在每个 slide 里 inline 重写
-4. **template.html 是唯一的类名来源**——不要发明新类名,如需自定义用 `style="..."` inline
-
-常见容易遗漏的类(必须预先确认存在):
+Classes fréquemment oubliées (dont l'existence doit être confirmée d'abord) :
 `h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / `kicker` / `meta-row` / `stat-card` / `stat-label` / `stat-nb` / `stat-unit` / `stat-note` / `pipeline-section` / `pipeline-label` / `pipeline` / `step` / `step-nb` / `step-title` / `step-desc` / `grid-2-7-5` / `grid-2-6-6` / `grid-2-8-4` / `grid-3-3` / `grid-6` / `grid-3` / `grid-4` / `frame` / `frame-img` / `img-cap` / `callout` / `callout-src` / `chrome` / `foot`
 
-#### 3.0.5 · 规划主题节奏（**和类预检同等重要**)
+#### 3.0.5 · Planifier le rythme des thèmes (**aussi important que le pré-contrôle des classes**)
 
-**在挑布局之前**,必须先列出每一页的主题 class(`hero dark` / `hero light` / `light` / `dark`)并写到文档或草稿里对齐。详细规则看 `references/layouts.md` 开头的"主题节奏规划"一节。
+**Avant de choisir les mises en page**, lister la classe de thème de chaque page (`hero dark` / `hero light` / `light` / `dark`) et l'aligner dans un document ou un brouillon. Règles détaillées dans « planification du rythme des thèmes » en tête de `references/layouts.md`.
 
-**强制规则**:
+**Règles impératives** :
 
-- 每页 section 必须带 `light` / `dark` / `hero light` / `hero dark` 之一,不要只写 `hero`
-- 连续 3 页以上同主题 = 视觉疲劳,不允许
-- 8 页以上必须有 ≥1 个 `hero dark` + ≥1 个 `hero light`
-- 整个 deck 不能只有 `light` 正文页,必须有 `dark` 正文页制造呼吸
-- 每 3-4 页插入 1 个 hero 页(封面/幕封/问题/大引用)
+- chaque section doit porter `light` / `dark` / `hero light` / `hero dark` — jamais `hero` seul
+- plus de 3 pages consécutives au même thème = fatigue visuelle, interdit
+- au-delà de 8 pages : ≥1 `hero dark` + ≥1 `hero light`
+- le deck ne peut pas ne contenir que des pages de contenu `light` : il faut des pages `dark` pour la respiration
+- une page hero (couverture/volet/question/grande citation) toutes les 3-4 pages
 
-**生成后自检**:`grep 'class="slide' index.html` 列出所有主题,人工确认节奏合理再交付。
+**Auto-contrôle après génération** : `grep 'class="slide' index.html` pour lister les thèmes, validation humaine du rythme avant livraison.
 
-#### 3.1 · 挑布局
+#### 3.1 · Choisir la mise en page
 
-**不要从零写 slide**。打开 `references/layouts.md`,里面有 10 种现成布局骨架,每种都是完整可粘贴的 `<section>` 代码块:
+**Ne jamais écrire un slide de zéro.** Ouvrir `references/layouts.md` : 10 squelettes prêts, chacun un bloc `<section>` complet à coller :
 
-| Layout | 用途 |
+| Layout | Usage |
 |---|---|
-| 1. 开场封面 | 第 1 页 |
-| 2. 章节幕封 | 每幕开场 |
-| 3. 数据大字报 | 抛硬数据 |
-| 4. 左文右图(Quote + Image) | 身份反差 / 故事 |
-| 5. 图片网格 | 多图对比 / 截图实证 |
-| 6. 两列流水线(Pipeline) | 工作流程 |
-| 7. 悬念收束 / 问题页 | 幕末 / 收尾 |
-| 8. 大引用页(Big Quote) | 衬线金句 / takeaway |
-| 9. 并列对比(Before / After) | 旧模式 vs 新模式 |
-| 10. 图文混排(Lead Image + Side Text) | 信息密集的图文页 |
+| 1. Couverture d'ouverture | la page 1 |
+| 2. Volet de chapitre | ouverture de chaque acte |
+| 3. Grands chiffres | lancer des données dures |
+| 4. Texte-gauche image-droite (Quote + Image) | contraste d'identité / récit |
+| 5. Grille d'images | comparaisons / preuves par captures |
+| 6. Pipeline deux colonnes | flux de travail |
+| 7. Conclusion en suspens / page-question | fin d'acte / clôture |
+| 8. Grande citation (Big Quote) | phrase forte serif / takeaway |
+| 9. Comparaison côte à côte (Avant / Après) | ancien mode vs nouveau |
+| 10. Mixte texte-image (Lead Image + Side Text) | pages denses en texte et image |
 
-选对应 layout,粘过去,改文案和图片路径即可。**务必先完成 3.0 预检**。
+Choisir le layout, coller, changer textes et chemins d'images. **Le pré-contrôle 3.0 d'abord, impérativement.**
 
-#### 3.2 · 图片比例规范
+#### 3.2 · Normes de ratios d'images
 
-永远用**标准比例**,不要用原图奇葩比例(如 `2592/1798`):
+Toujours des **ratios standards**, jamais les ratios bizarres des images d'origine (ex. `2592/1798`) :
 
-| 场景 | 推荐比例 |
+| Scénario | Ratio recommandé |
 |------|---------|
-| 左文右图 主图 | 16:10 或 4:3 + `max-height:56vh` |
-| 图片网格(多图对比) | **固定 `height:26vh`**,不用 aspect-ratio |
-| 左小图 + 右文字 | 1:1 或 3:2 |
-| 全屏主视觉 | 16:9 + `max-height:64vh` |
-| 图文混排小插图 | 3:2 或 3:4 |
+| Image principale texte-gauche image-droite | 16:10 ou 4:3 + `max-height:56vh` |
+| Grille d'images (comparaison) | **`height:26vh` fixe**, pas d'aspect-ratio |
+| Petite image à gauche + texte à droite | 1:1 ou 3:2 |
+| Visuel plein écran | 16:9 + `max-height:64vh` |
+| Vignettes du mixte | 3:2 ou 3:4 |
 
-**图片绝不使用 `align-self:end`**——会滑到 cell 底被浏览器工具栏遮挡。用 grid 容器 + `align-items:start`(template 已预设)让图片贴顶即可;左列若想贴底,用 flex column + `justify-content:space-between`。
+**Jamais `align-self:end` sur les images** — elles glisseraient au fond de la cellule, masquées par la barre du navigateur. Utiliser le conteneur grid + `align-items:start` (préréglé dans le template) pour caler les images en haut ; si la colonne de gauche doit être calée en bas : flex column + `justify-content:space-between`.
 
-组件细节(字体、颜色、网格、图标、callout、stat-card 等)在 `references/components.md`。
+Les détails de composants (typographie, couleurs, grille, icônes, callout, stat-card…) sont dans `references/components.md`.
 
-### Step 4 · 对照检查清单自检
+### Étape 4 · Auto-contrôle avec la liste de contrôle
 
-生成完一定要打开 `references/checklist.md`，逐项对照。里面总结了**真实迭代过程中踩过的所有坑**，P0 级别的问题（emoji、图片撑破、标题换行、字体分工）必须全部通过。
+Après génération, ouvrir `references/checklist.md` et contrôler point par point. Elle condense **tous les pièges des itérations réelles** ; les problèmes P0 (emoji, images qui débordent, retours de titres, répartition des polices) doivent tous passer.
 
-特别要注意的几条：
+Points particulièrement sensibles :
 
-1. **大标题必须是衬线字体**——如果显示成非衬线,99% 是 Step 3.0 预检没做,`h-hero` 类在 template.html 里缺失
-2. **图片网格里只用 `height:Nvh`,不用 `aspect-ratio`**(会撑破)
-3. **图片不能堆到页面底部**——不要用 `align-self:end`,用 grid + `align-items:start`(见 Step 3.2)
-4. **图片只能用标准比例**(16:10 / 4:3 / 3:2 / 1:1 / 16:9),不要复制原图的奇葩比例
-5. **中文大标题 ≤ 5 字且 `nowrap`**(避免 1 字 1 行)
-6. **用 Lucide,不用 emoji**
-7. **标题用衬线,正文用非衬线,元数据用等宽**
+1. **Les grands titres doivent être en serif** — si l'affichage est sans-serif, à 99 % le pré-contrôle 3.0 n'a pas été fait : la classe `h-hero` manque dans template.html
+2. **Dans les grilles d'images, uniquement `height:Nvh`, jamais `aspect-ratio`** (débordement)
+3. **Les images ne doivent pas s'empiler en bas de page** — pas d'`align-self:end` ; grid + `align-items:start` (voir 3.2)
+4. **Uniquement des ratios standards** (16:10 / 4:3 / 3:2 / 1:1 / 16:9), ne pas copier les ratios bizarres des images d'origine
+5. **Grands titres chinois ≤ 5 caractères + `nowrap`** (éviter un caractère par ligne)
+6. **Lucide, pas d'emoji**
+7. **Titres serif, corps sans-serif, métadonnées monospace**
 
-### Step 5 · 本地预览
+### Étape 5 · Prévisualisation locale
 
-直接在浏览器打开 `index.html` 就行。macOS 下：
+Ouvrir simplement `index.html` dans le navigateur. Sous macOS :
 
 ```bash
-open "项目/XXX/ppt/index.html"
+open "projet/XXX/ppt/index.html"
 ```
 
-不需要本地服务器。图片走相对路径 `images/xxx.png`。
+Pas de serveur local nécessaire. Images en chemins relatifs `images/xxx.png`.
 
-### Step 6 · 迭代
+### Étape 6 · Itération
 
-根据用户反馈修改——模板的 CSS 已经高度参数化，90% 的调整都是改 inline style（字号 `font-size:Xvw` / 高度 `height:Yvh` / 间距 `gap:Zvh`）。
+Ajuster selon les retours — le CSS du gabarit est très paramétré : 90 % des retouches se font en inline style (corps `font-size:Xvw` / hauteur `height:Yvh` / espacement `gap:Zvh`).
 
 ---
 
-## 资源文件导览
+## Guide des ressources
 
 ```
 magazine-web-ppt/
-├── SKILL.md              ← 你正在读
+├── SKILL.md              ← vous êtes ici
 ├── assets/
-│   ├── template.html     ← 完整的可运行模板（种子文件）
-│   └── pattern-slides.html ← 9 页样例 deck（用于 Examples 预览）
+│   ├── template.html     ← le gabarit complet exécutable (fichier semence)
+│   └── pattern-slides.html ← un deck d'exemple de 9 pages (pour l'aperçu Examples)
 └── references/
-    ├── styles.md         ← 5 个 magazine 方向（Monocle / WIRED / Kinfolk / Domus / Lab）
-    ├── components.md     ← 组件手册（字体、色、网格、图标、callout、stat、pipeline...）
-    ├── layouts.md        ← 10 种页面布局骨架（可直接粘贴）
-    ├── themes.md         ← 5 套主题色预设（只能选不能自定义）
-    └── checklist.md      ← 质量检查清单（P0/P1/P2/P3 分级）
+    ├── styles.md         ← les 5 orientations magazine (Monocle / WIRED / Kinfolk / Domus / Lab)
+    ├── components.md     ← manuel des composants (typo, couleurs, grille, icônes, callout, stat, pipeline...)
+    ├── layouts.md        ← 10 squelettes de pages (collables directement)
+    ├── themes.md         ← 5 préréglages de thème (à choisir, pas de personnalisation)
+    └── checklist.md      ← liste de contrôle qualité (niveaux P0/P1/P2/P3)
 ```
 
-**加载顺序建议**：
-1. 先读完 `SKILL.md`(这个文件)了解整体
-2. **Step 0 选方向时,读 `styles.md`**——5 个方向各自打包好了主题色 + 推荐 layout + chrome 风格
-3. Step 1 需求澄清完成后,如果方向需要确认,再读 `themes.md` 看色板细节
-4. **动手前 Read `assets/template.html` 的 `<style>` 块**——这是类名的唯一来源,缺类会导致整页样式崩
-5. 读 `layouts.md` 挑布局(顶部有 Pre-flight 类名清单和主题节奏规划)
-6. 细节调整时读 `components.md` 查组件
-7. 生成后读 `checklist.md` 自检(顶部 P0-0 规则强制预检)
+**Ordre de lecture conseillé** :
+1. Lire d'abord `SKILL.md` (ce fichier) pour la vue d'ensemble
+2. **À l'étape 0, lire `styles.md`** — chaque orientation regroupe thème + layouts recommandés + style chrome
+3. Après l'étape 1, si l'orientation demande confirmation, lire `themes.md` pour les palettes
+4. **Avant d'agir, Read le bloc `<style>` d'`assets/template.html`** — l'unique source des classes ; une classe manquante casse la page entière
+5. Lire `layouts.md` pour choisir les mises en page (avec la liste Pre-flight et la planification du rythme en tête)
+6. Pour les détails, consulter les composants dans `components.md`
+7. Après génération, lire `checklist.md` pour l'auto-contrôle (la règle P0-0 impose le pré-contrôle)
 
-## 核心设计原则（哲学）
+## Principes de design cardinaux (philosophie)
 
-> 这些原则是"一人公司"分享 PPT 的 5 轮迭代总结出来的。违反其中任何一条，视觉感都会垮。
+> Ces principes viennent des 5 tours d'itération du PPT « l'entreprise d'une seule personne ». Enfreindre l'un d'eux fait s'effondrer la sensation visuelle.
 
-1. **克制优于炫技** — WebGL 背景只在 hero 页透出，普通页几乎看不见
-2. **结构优于装饰** — 不用阴影、不用浮动卡片、不用 padding box，一切信息靠**大字号 + 字体对比 + 网格留白**
-3. **内容层级由字号和字体共同定义** — 最大衬线 = 主标题，中衬线 = 副标，大非衬线 = lead，小非衬线 = body，等宽 = 元数据
-4. **图片是第一公民** — 图片只裁底部，保证顶部和左右完整；网格用 `height:Nvh` 固定，不要用 `aspect-ratio` 撑
-5. **节奏靠 hero 页** — hero 和 non-hero 交替，才不累眼睛
-6. **术语统一** — Skills 就是 Skills，不要中英混合翻译
+1. **La retenue prime sur la démonstration** — le fond WebGL ne transparaît que sur les pages hero, presque invisible ailleurs
+2. **La structure prime sur la décoration** — ni ombres, ni cartes flottantes, ni padding box : toute l'information repose sur **grands corps + contrastes typographiques + grille et blancs**
+3. **La hiérarchie du contenu naît des corps et des polices** — serif max = titre principal, serif moyen = sous-titre, sans-serif grand = lead, sans-serif petit = corps, monospace = métadonnées
+4. **L'image est citoyenne de première classe** — rogne en bas seulement, haut et côtés intacts ; la grille fige avec `height:Nvh`, jamais `aspect-ratio`
+5. **Le rythme vient des pages hero** — alterner hero et non-hero, sinon l'œil se fatigue
+6. **Terminologie stable** — Skills reste Skills, pas de traduction mi-chinoise mi-anglaise
 
-## 参考作品
+## Références
 
-本 skill 的视觉基调参考了：
+Le ton visuel de ce skill s'inspire de :
 
-- 歸藏 "一人公司：被 AI 折叠的组织" 分享（2026-04-22，27 页）
-- *Monocle* 杂志的版式
-- YC 总裁 Garry Tan "Thin Harness, Fat Skills" 那篇博客的 demo
+- le partage de 歸藏 « l'entreprise d'une personne : l'organisation repliée par l'IA » (2026-04-22, 27 pages)
+- la mise en page du magazine *Monocle*
+- la démo du billet « Thin Harness, Fat Skills » de Garry Tan (YC)
 
-可以把它们当做风格锚点。
+À considérer comme ancres de style.
