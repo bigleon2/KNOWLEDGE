@@ -1,8 +1,8 @@
 ---
 nom: multi-search-engine
 source: skills/multi-search-engine/SKILL.md
-sha256_source: 21cc95f69494
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: 83c520b97a61
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -65,10 +65,10 @@ web_fetch({"url": "https://cn.bing.com/search?q=site:github.com+react&ensearch=0
 web_fetch({"url": "https://www.baidu.com/s?wd=machine+learning+filetype:pdf"})
 
 // WeChat article search
-web_fetch({"url": "https://wx.sogou.com/weixin?type=2&query=人工智能+最新进展"})
+web_fetch({"url": "https://wx.sogou.com/weixin?type=2&query=intelligence artificielle (Rengong Zhineng) derniers progrès (Zuijin Jinzhan)"})
 
 // Toutiao search
-web_fetch({"url": "https://so.toutiao.com/search?keyword=新能源+政策"})
+web_fetch({"url": "https://so.toutiao.com/search?keyword=Xin Neng Yuan + Zhengce"})
 
 // Jisilu financial data
 web_fetch({"url": "https://www.jisilu.cn/explore/?keyword=REITs"})

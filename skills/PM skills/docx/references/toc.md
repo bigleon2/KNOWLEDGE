@@ -18,7 +18,7 @@ All 3 steps are **mandatory**. Skipping any step results in a broken or empty TO
 
 - **Recommended**: Long or complex documents with many headings (reports, theses, papers, manuals)
 - **Do NOT add**: Resumes, contracts, letters, exam papers, short documents
-- **postcheck rule**: If document contains a "目录" title but no `TableOfContents` element → error
+- **postcheck rule**: If document contains a "目录 (mulu)" title but no `TableOfContents` element → error
 
 ## Step A: Code Generation (docx-js)
 
@@ -65,12 +65,12 @@ new Paragraph({ children: [new PageBreak()] }),
 // ✅ Correct — Heading style, TOC can index
 new Paragraph({
   heading: HeadingLevel.HEADING_1,
-  children: [new TextRun({ text: "第一章 引言", bold: true, size: 32, color: c(P.primary) })]
+children: [new TextRun({ text: "Chapitre 1 Introduction", bold: true, size: 32, color: c(P.primary) })]
 })
 
 // ❌ Wrong — manual bold + large font, TOC cannot detect
 new Paragraph({
-  children: [new TextRun({ text: "第一章 引言", bold: true, size: 32, color: c(P.primary) })]
+children: [new TextRun({ text: "第一章 引言 (Diyizhang Yinyan)", bold: true, size: 32, color: c(P.primary) })]
 })
 ```
 
@@ -244,7 +244,7 @@ new Paragraph({
 
 | # | Bug | Symptom | Fix |
 |---|-----|---------|-----|
-| 1 | "目录" heading uses `HeadingLevel.HEADING_1` | TOC includes "目录" as an entry | Remove `heading:` from TOC title paragraph |
+| 1 | "目录" heading uses `HeadingLevel.HEADING_1` | TOC includes "目录" (mulu) as an entry | Remove `heading:` from TOC title paragraph |
 | 2 | No `PageBreak` after `TableOfContents` | TOC and body text on same page | Add `new Paragraph({ children: [new PageBreak()] })` after TOC |
 | 3 | Missing `TableOfContents` element | Script cannot inject placeholders, TOC is empty | Always include `new TableOfContents(...)` in code |
 | 4 | Headings use bold+large instead of `HeadingLevel` | TOC is empty even after running script | Change all body headings to `heading: HeadingLevel.HEADING_X` |
@@ -253,7 +253,7 @@ new Paragraph({
 ## Checklist (for self-check during generation)
 
 - [ ] Document has 3+ H1 → TOC is included
-- [ ] "目录" heading does NOT use `HeadingLevel` (prevents self-indexing)
+- [ ] "目录" (mulu) heading does NOT use `HeadingLevel` (prevents self-indexing)
 - [ ] `new TableOfContents(...)` element present (not just plain text)
 - [ ] `PageBreak` exists after TOC element (prevents merging with body)
 - [ ] All body chapter headings use `heading: HeadingLevel.HEADING_X`

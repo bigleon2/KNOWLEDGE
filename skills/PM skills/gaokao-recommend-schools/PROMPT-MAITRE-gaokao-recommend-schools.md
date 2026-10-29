@@ -1,8 +1,8 @@
 ---
 nom: gaokao-recommend-schools
 source: skills/gaokao-recommend-schools/SKILL.md
-sha256_source: 060d868fe24a
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: 8cf8c9c1f5ea
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -27,8 +27,8 @@ emplacement et le prompt y renvoie par leur chemin relatif. La version d'origine
 ---
 name: gaokao-recommend-schools
 description: >-
-  基于推荐专业列表、考生画像与志愿列表，由 Agent 分析推荐院校并给出个性化理由，
-  输出结构化 school_recommendation.json。适用于高考院校推荐、选大学、冲稳保院校布局。
+  À partir de la liste de filières recommandées, du profil du candidat et de la liste de vœux, l'Agent analyse et recommande des établissements avec des raisons personnalisées,
+  et produit un school_recommendation.json。Convient à la recommandation d'établissements gaokao, au choix d'universités et à la répartition ambitif/stable/sécurisé (chong-wen-bao).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -39,67 +39,67 @@ description: >-
 
 
 
-# 推荐院校与理由
+# Recommander des établissements et justifier
 
-本 Skill 是流水线的**第四步**：在已确定专业方向的基础上，从 `parsed.json` 中推荐院校并说明理由。
+Cette skill est la **quatrième étape**：sur la base des orientations de filière déjà déterminées, recommander depuis `parsed.json` et justifier.
 
-## 上下游
+## Amont et aval
 
-- **上游**：`student.json` + `parsed.json` + `major_recommendation.json`
-- **下游**：[gaokao-generate-report](../gaokao-generate-report/SKILL.md)
+- **Amont**：`student.json` + `parsed.json` + `major_recommendation.json`
+- **Aval**：[gaokao-generate-report](../gaokao-generate-report/SKILL.md)
 
-## 输入
+## Entrées
 
-1. `student.json` — 意向城市、家庭、就业方向等
-2. `parsed.json` — 院校标签、城市、冲稳保档位、录取概率
-3. `major_recommendation.json` — 已推荐专业及方向，用于判断院校专业契合度
+1. `student.json` — villes visées, situation familiale, orientation d'emploi, etc.
+2. `parsed.json` — étiquettes d'établissement, ville, palan ambitif/stable/sécurisé, probabilité d'admission
+3. `major_recommendation.json` — filières et orientations déjà recommandées, pour juger l'adéquation établissement-filière
 
-## Agent 分析任务
+## Agent Tâche d'analyse
 
-1. 优先推荐**包含已推荐专业**或**优势学科与专业方向契合**的院校。
-2. 结合 `preferred_cities`、城市产业机会（可参考 [career_reference.md](career_reference.md) 城市表）、院校层次（985/211/双一流等）。
-3. 兼顾冲/稳/保布局：核心目标放稳档，冲顶名校与保底院校均需有代表。
-4. 挑选 **6–12 所**院校，每所撰写个性化 `modal` 推荐理由。
+1. Recommander en priorité **les établissements qui contiennent les filières recommandées**ou**dont les disciplines fortes correspondent à l'orientation**.
+2. Combiner `preferred_cities`、opportunités industrielles de la ville (voir [career_reference.md](career_reference.md) la table des villes), le niveau d'établissement (985/211/Double première classe, etc.).
+3. Équilibrer la répartition ambitif/stable/sécurisé : objectifs centraux en palan stable, avec des représentants parmi les établissements d'élite ambitieux et les établissements de sécurité.
+4. Sélectionner **6–12 établissements**, avec pour chacun une `modal` raison de recommandation personnalisée.
 
-## 推荐理由应覆盖
+## La raison de recommandation doit couvrir
 
-- **地域优势**：城市产业与实习就业资源
-- **院校层次**：标签与社会认可度
-- **专业契合**：与 `major_recommendation.json` 的关联
-- **录取性价比**：档位与概率是否匹配考生诉求
+- **avantage géographique**：ressources industrielles, stages et emploi de la ville
+- **niveau de l'établissement**：étiquettes et reconnaissance sociale
+- **adéquation de filière**：et son lien avec `major_recommendation.json` .
+- **rapport admission/valeur**：palan et probabilité en adéquation avec la demande du candidat
 
-## 硬性约束
+## Contraintes dures
 
-`recommended_schools` 每项的 `university_name`、`university_code` 必须与 `parsed.json` **完全一致**。
+`recommended_schools` pour chaque élément, `university_name`、`university_code` doivent être `parsed.json` **strictement identiques**。
 
-## 输出
+## Sortie
 
-保存为 `output/school_recommendation.json`，结构见 [examples/school_recommendation_template.json](examples/school_recommendation_template.json)。
+Enregistrer sous `output/school_recommendation.json`，structure voir [examples/school_recommendation_template.json](examples/school_recommendation_template.json)。
 
 ```json
 {
-  "school_strategy": "院校布局策略（冲/稳/保如何分配）",
+  "school_strategy": "stratégie de répartition des établissements (comment répartir ambitif/stable/sécurisé)",
   "recommended_schools": [
     {
       "university_name": "...",
       "university_code": "...",
       "modal": {
-        "title": "学校推荐原因：...",
-        "body": "<h4>推荐原因</h4><ul><li>...</li></ul>"
+        "title": "raisons de recommandation des écoles :...",
+        "body": "<h4>raison de recommandation</h4><ul><li>...</li></ul>"
       }
     }
   ]
 }
 ```
 
-## 向用户交付
+## Livrer à l'utilisateur
 
-- 保存 JSON 绝对路径
-- 用自然语言解读院校推荐逻辑与梯度布局
+- enregistrer le chemin absolu du JSON
+- expliquer en langage naturel la logique de recommandation et la répartition en gradins
 
-## 附加资源
+## Ressources complémentaires
 
-- [career_reference.md](career_reference.md) — 城市产业与院校层次参考
+- [career_reference.md](career_reference.md) — référence industries urbaines et niveaux d'établissements
 
 
 ---

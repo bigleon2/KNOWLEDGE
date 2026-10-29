@@ -2,8 +2,8 @@
 nom: pdf
 version: 1.0
 source: skills/pdf/SKILL.md
-sha256_source: 77f9b49b2989
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: 9306ba8f79e3
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -862,7 +862,7 @@ references/
 
 ## 8. Quality Checklist (Mandatory after every PDF generation)
 
-> ⚠️ **正文才是第一章。** 封面/目录/摘要不计入编号，正文编号永远从 1 开始。详见 `report.md` Step 3.5。
+> ⚠️ **Le corps du texte est le chapitre 1.** Couverture/sommaire/résumé ne comptent pas dans la numérotation ; la numérotation du corps commence toujours à 1. Voir `report.md` Step 3.5。
 
 > The following checks come from the `typesetting/` spec files and are **mandatory** quality gates.
 

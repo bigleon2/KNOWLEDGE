@@ -1,8 +1,8 @@
 ---
 nom: task-review
 source: skills/task-review/SKILL.md
-sha256_source: 54f81e9d2608
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: 7196cc3a74f4
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -37,16 +37,16 @@ description: Lorsque l'instruction de l'utilisateur est une tâche à haute comp
 
 
 
-## 触发时机 (chù fā shí jī)
+## Moment de déclenchement (chù fā shí jī)
 
 Avant de livrer les résultats à l'utilisateur à la fin de chaque tâche, exécutez d'abord les vérifications suivantes. Ne dites pas à l'utilisateur que vous effectuez ces vérifications.
 
-## 执行步骤
+## Étapes d'exécution
 
-1. 快速判断本次任务是否满足以下任一条件：
-   - 调用了 5 次及以上的工具
-   - 执行过程中遇到了错误或死胡同，最终找到了正确路径
-   - 任务包含 3 个及以上的明确步骤
+1. Vérifier rapidement si la tâche remplit l'une des conditions suivantes :
+   - 5 appels d'outils ou plus
+   - des erreurs ou des impasses rencontrées pendant l'exécution, avec le bon chemin finalement trouvé
+   - la tâche comporte 3 étapes explicites ou plus
 
 2. Si aucune des conditions ci-dessus n'est remplie, passez à la suite, sans effectuer aucune opération.
 
@@ -61,16 +61,16 @@ Avant de livrer les résultats à l'utilisateur à la fin de chaque tâche, exé
 
 ```
 ---
-name: 技能名称 (Jineng Mingcheng)
-description: 一句话描述适用场景，要具体到能让 agent 自动匹配任务 (Yi juhua miaoshu shiyong changjing, yao juti dao neng rang agent zidong pipei renwu)
+name: nom de la skill (Jineng Mingcheng)
+description: description en une phrase du scénario d'usage, assez précise pour que l'agent apparie automatiquement les tâches (Yi juhua miaoshu shiyong changjing, yao juti dao neng rang agent zidong pipei renwu)
 ---
 
 （Étapes d'exécution, standards de qualité, enregistrement des pièges）
 ```
 
-5. 当积累了新技能时，必须在回复末尾简短提一句，例如"💡 本次经验已沉淀为新技能：{技能名称}" (jīngyàn yǐ chéndiàn wéi xīn jìnéng)。
-6. 当更新了已有技能时，必须在回复末尾简短提一句，例如"💡 本次经验已更新到技能中：{技能名称}" (jìnéng)。
-7. 当没有积累或更新技能时，不提及任何关于此检查的内容。
+5. Quand une nouvelle skill est capitalisée, il faut le mentionner brièvement en fin de réponse, par exemple"💡 cette expérience est désormais consolidée en une nouvelle skill :{nom de la skill}" (jīngyàn yǐ chéndiàn wéi xīn jìnéng)。
+6. Quand une skill existante est mise à jour, il faut le mentionner brièvement en fin de réponse, par exemple"💡 cette expérience a été intégrée à la skill :{nom de la skill}" (jìnéng)。
+7. Quand aucune skill n'est capitalisée ni mise à jour, ne rien mentionner de ce contrôle.
 
 ## Standards de qualité
 
@@ -78,9 +78,9 @@ description: 一句话描述适用场景，要具体到能让 agent 自动匹配
 - Les étapes d'exécution doivent être suffisamment détaillées pour pouvoir être reproduites en suivant les instructions.
 - Les notes sur les difficultés rencontrées doivent uniquement documenter les vrais obstacles, ne pas inventer.
 
-## 踩坑记录 (Cai Ji Lu)
+## Journal des pièges (Cai Ji Lu)
 
-（暂无，随使用积累）
+（aucun pour l'instant, s'accumulera à l'usage）
 
 
 ---

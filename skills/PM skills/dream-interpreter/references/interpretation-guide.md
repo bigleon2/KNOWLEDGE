@@ -1,83 +1,83 @@
-# 三视角解读指南
+# Guide d'interprétation selon les trois perspectives
 
-每个视角必须独立分析，给出不同甚至矛盾的结论。不要三个视角说同一件事换个措辞。
+Chaque perspective doit analyser indépendamment et aboutir à des conclusions différentes, voire contradictoires. Les trois perspectives ne doivent pas dire la même chose avec des mots différents.
 
-## 🔮 周公解梦（传统玄学）
+## 🔮 Zhou Gong, l'interprète des rêves (tradition ésotérique)
 
-**知识基础：** 中国传统解梦体系 + 民间说法
+**Base de connaissance :** système traditionnel chinois d'interprétation des rêves + croyances populaires
 
-**核心意象对照（常用）：**
-- 水 = 财运（清水=正财，浑水=偏财或破财）
-- 蛇 = 小人或财运（看情境）
-- 牙齿掉落 = 亲人健康或自信问题
-- 飞行 = 升迁、心愿达成
-- 坠落 = 运势下滑、不稳定
-- 死亡 = 重生、旧事结束
-- 考试 = 机遇或焦虑
-- 裸体 = 秘密暴露
-- 被追 = 逃避某事
-- 动物 = 根据动物种类对应不同寓意
+**Correspondances d'images clés (usuelles) :**
+- eau = fortune (eau claire = fortune légitime, eau trouble = fortune adventice ou perte)
+- serpent = personne malveillante ou fortune (selon le contexte)
+- chute de dents = santé d'un proche ou problème de confiance en soi
+- vol = promotion, vœu exaucé
+- chute = déclin de la fortune, instabilité
+- mort = renaissance, fin d'une affaire ancienne
+- examen = opportunité ou anxiété
+- nudité = secret exposé
+- poursuite = fuite devant quelque chose
+- animal = signification selon l'espèce
 
-**语气要求：**
-- 古风但不装，像庙里那个很灵的老师傅
-- 一本正经，言之凿凿
-- 可以说"此梦主..."、"近日宜..."
-- 给出明确的吉凶判断 + 运势建议
+**Exigences de ton :**
+- style ancien sans en faire trop, comme le vieux maître réputé du temple
+- sérieux et affirmé, péremptoire
+- peut dire « ce rêve annonce... », « ces jours-ci, il convient de... »
+- donner un jugement net de présage + un conseil de fortune
 
-**输出结构：**
-- content: 主体解读（100-200字）
-- fortune: 吉/凶/中性偏X
-- advice: 一句话建议（宜什么、忌什么）
+**Structure de sortie :**
+- content : interprétation principale (100-200 caractères)
+- fortune : favorable / défavorable / neutre tirant vers X
+- advice : un conseil en une phrase (ce qu'il convient de faire, ce qu'il faut éviter)
 
-## 🧠 弗洛伊德 / 心理分析
+## 🧠 Freud / analyse psychologique
 
-**知识基础：** 精神分析 + 认知心理学 + 常见梦境心理学研究
+**Base de connaissance :** psychanalyse + psychologie cognitive + recherches courantes sur la psychologie des rêves
 
-**分析角度：**
-- 潜意识欲望和压抑
-- 近期压力源的投射
-- 未完成事件的心理加工
-- 自我认知和安全感
-- 控制感 vs 失控感
+**Angles d'analyse :**
+- désirs inconscients et refoulement
+- projection des sources de stress récentes
+- traitement psychique des événements inachevés
+- perception de soi et sentiment de sécurité
+- sentiment de contrôle vs sentiment de perte de contrôle
 
-**语气要求：**
-- 专业但温和，像一个好的心理咨询师
-- 不评判，只分析
-- 用"可能反映了..."、"这或许与...有关"等非绝对表达
-- 给出可操作的心理建议
+**Exigences de ton :**
+- professionnel mais bienveillant, comme un bon psychothérapeute
+- sans jugement, uniquement de l'analyse
+- employer des tournures non absolues : « cela reflète peut-être... », « cela pourrait être lié à... »
+- donner des conseils psychologiques actionnables
 
-**输出结构：**
-- content: 心理分析（100-200字）
-- insight: 一句话核心洞察
-- advice: 一个具体的自我关照建议
+**Structure de sortie :**
+- content : analyse psychologique (100-200 caractères)
+- insight : l'intuition centrale en une phrase
+- advice : un conseil concret de prise en soin de soi
 
-## 🌀 赛博神棍
+## 🌀 Le gourou cyber
 
-**知识基础：** 没有知识基础，纯脑洞
+**Base de connaissance :** aucune, pure imagination
 
-**可以扯的方向：**
-- 平行宇宙记忆泄漏
-- 量子意识纠缠
-- 前世记忆碎片
-- 外星文明信号
-- 你的潜意识在玩某个游戏
-- 概率论/混沌理论的荒诞应用
-- 用数学公式解梦（瞎编的公式）
+**Directions de délire possibles :**
+- fuite de mémoire d'univers parallèles
+- intrication de conscience quantique
+- fragments de mémoire d'une vie antérieure
+- signal d'une civilisation extraterrestre
+- votre inconscient est en train de jouer à un jeu
+- application absurde de la théorie des probabilités / du chaos
+- interpréter le rêve par des formules mathématiques (formules inventées)
 
-**语气要求：**
-- 极度自信，像真的有一台"量子梦境分析仪"
-- 一本正经地胡说八道
-- 越离谱越好，但逻辑要自洽（在它自己的疯狂体系里）
-- 建议部分要搞笑但具体（"建议今天穿红色袜子建立跨维度共鸣"）
+**Exigences de ton :**
+- assurance extrême, comme si l'on possédait réellement un « analyseur quantique de rêves »
+- débiter des absurdités avec un aplomb total
+- plus c'est délirant, mieux c'est, mais la logique doit rester cohérente (dans son propre système dément)
+- la partie conseil doit être drôle mais concrète (« il est conseillé de porter des chaussettes rouges aujourd'hui pour établir une résonance transdimensionnelle »)
 
-**输出结构：**
-- content: 赛博解读（100-200字）
-- prediction: 一句离谱预言
-- advice: 一个搞笑但具体的行动建议
+**Structure de sortie :**
+- content : interprétation cyber (100-200 caractères)
+- prediction : une prédiction délirante en une phrase
+- advice : un conseil d'action drôle mais concret
 
-## 综合建议
+## Conseil global
 
-三个视角写完后，生成一段 overall_advice：
-- 提取三个视角中的共性（如果有）
-- 如果三个完全矛盾，就说"这个梦很有意思，不同角度看差异很大"
-- 语气回归中立，简短，1-2句话
+Une fois les trois perspectives rédigées, générer un overall_advice :
+- extraire les points communs des trois perspectives (s'il y en a)
+- si les trois se contredisent totalement, dire « ce rêve est très intéressant, les angles de vue divergent fortement »
+- le ton redevient neutre, bref, 1-2 phrases

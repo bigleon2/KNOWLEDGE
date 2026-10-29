@@ -2,8 +2,8 @@
 nom: docx
 version: 1.0
 source: skills/docx/SKILL.md
-sha256_source: eb08ff0e9307
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: a4f2fbeff3a0
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -149,7 +149,7 @@ Pour le tableau de taille de police chinoise et les marges courantes, voir `refe
 - [ ] PageBreak à l'intérieur d'un Paragraph
 - [ ] ShadingType utilise CLEAR
 - [ ] Chaque liste numérotée utilise un `reference` unique
-- [ ] **⚠️ CRITIQUE — Les guillemets dans les chaînes JS sont correctement échappés.** Les guillemets courbes chinois (`""` `''`) DOIVENT utiliser des échappements Unicode (`\u201c` `\u201d` `\u2018` `\u2019`) ; les guillemets droits (`"` `'`) utilisent `\"` `\'` ou des délimiteurs alternatifs. **C'est le bug #1 le plus courant dans la génération de code.** Le texte chinois contient fréquemment `""` pour l'emphase ou les noms propres (par exemple, "双11", "前低后高", "618") — chaque occurrence DOIT être échappée. L'échappement manquant produit des erreurs de syntaxe JS qui cassent silencieusement la génération de document.
+- [ ] **⚠️ CRITIQUE — Les guillemets dans les chaînes JS sont correctement échappés.** Les guillemets courbes chinois (`""` `''`) DOIVENT utiliser des échappements Unicode (`\u201c` `\u201d` `\u2018` `\u2019`) ; les guillemets droits (`"` `'`) utilisent `\"` `\'` ou des délimiteurs alternatifs. **C'est le bug #1 le plus courant dans la génération de code.** Le texte chinois contient fréquemment `""` pour l'emphase ou les noms propres (par exemple, "shuang11", "qian di hou gao", "618") — chaque occurrence DOIT être échappée. L'échappement manquant produit des erreurs de syntaxe JS qui cassent silencieusement la génération de document.
 - [ ] ImageRun inclut le paramètre `type`
 - [ ] En-tête/pied de page présents (sauf indication contraire de la scène)
 

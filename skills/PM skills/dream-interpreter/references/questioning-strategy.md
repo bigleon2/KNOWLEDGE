@@ -1,62 +1,62 @@
-# 追问策略
+# Stratégie de relance par questions
 
-## 原则
+## Principe
 
-追问是为了让解读更准，不是为了凑数。用户说得清楚就少问，说得模糊才补问。
+Les relances servent à rendre l'interprétation plus précise, pas à faire du remplissage. Si l'utilisateur s'exprime clairement, poser peu de questions ; seulement si c'est flou, compléter par des relances.
 
-## 追问维度
+## Dimensions des relances
 
-按优先级排序，每次最多选 3 个最相关的：
+Classées par priorité, en choisir au maximum 3 des plus pertinentes à chaque fois :
 
-### 1. 情绪状态（最高优先）
-梦中的情绪决定解读基调。同样是"飞"，兴奋的飞和恐惧的飞完全不同。
+### 1. État émotionnel (priorité maximale)
+L'émotion ressentie dans le rêve détermine le ton de l'interprétation. Pour un même « vol », un vol exaltant et un vol terrifié sont totalement différents.
 
-示例：
-- "掉下去的时候是害怕，还是反而有种如释重负的感觉？"
-- "被追的时候你是拼命跑，还是跑不动那种？"
-- "见到那个人的时候你开心吗？"
+Exemples :
+- « Au moment de la chute, étais-tu effrayé, ou au contraire soulagé ? »
+- « Quand on te poursuit, tu cours de toutes tes forces, ou c'est plutôt l'impuissance, les jambes qui ne répondent pas ? »
+- « Étais-tu content de voir cette personne ? »
 
-### 2. 环境/场所
-场所关联生活领域（公司=事业、家=家庭、学校=成长/压力）。
+### 2. Environnement / lieu
+Le lieu renvoie à un domaine de vie (bureau = carrière, maison = famille, école = croissance/pression).
 
-示例：
-- "那个地方你认识吗？还是从没见过？"
-- "室内还是室外？白天还是晚上？"
-- "周围有别人吗？"
+Exemples :
+- « Ce lieu, tu le connais, ou tu ne l'avais jamais vu ? »
+- « Intérieur ou extérieur ? Jour ou nuit ? »
+- « Y avait-il d'autres personnes autour ? »
 
-### 3. 人物关系
-梦中人物通常是投射。认识的人 vs 陌生人解读方向完全不同。
+### 3. Relations avec les personnages
+Les personnes du rêve sont généralement des projections. Une personne connue et un inconnu orientent l'interprétation dans des directions totalement différentes.
 
-示例：
-- "梦里那个人你认识吗？什么关系？"
-- "ta 在梦里对你是什么态度？"
+Exemples :
+- « La personne dans le rêve, tu la connais ? Quel lien avec elle ? »
+- « Quelle attitude avait-elle envers toi dans le rêve ? »
 
-### 4. 结局/走向
-有结局和没结局的梦含义不同。
+### 4. Dénouement / évolution
+Un rêve avec fin et un rêve sans fin n'ont pas la même signification.
 
-示例：
-- "最后怎么样了？醒了还是有个结局？"
-- "你在梦里解决了那个问题吗？"
+Exemples :
+- « Comment ça s'est terminé ? Tu t'es réveillé, ou il y avait une fin ? »
+- « As-tu résolu ce problème dans le rêve ? »
 
-## 追问风格
+## Style des relances
 
-带角色感，像一个老练的解梦师在跟你聊天，不是在填问卷。
+Avec une présence de personnage, comme un interprète de rêves chevronné qui discute avec vous — pas comme un questionnaire à remplir.
 
-好的追问：
+Bonne relance :
 ```
-嗯...水里啊...
-那个水是清的还是浑的？你是自己跳进去的还是不知道怎么就在水里了？
-```
-
-坏的追问：
-```
-请补充以下信息：
-1. 水的颜色和清澈度
-2. 进入水中的方式
+Hmm... dans l'eau donc...
+Cette eau, elle était claire ou trouble ? Tu y as plongé de toi-même, ou tu ne sais pas comment tu t'y es retrouvé ?
 ```
 
-## 跳过规则
+Mauvaise relance :
+```
+Merci de compléter les informations suivantes :
+1. La couleur et la limpidité de l'eau
+2. Le mode d'entrée dans l'eau
+```
 
-- 用户说"不记得了"/"不知道" → 用最常见的默认值，继续解读
-- 用户明确表示不想多说 → 直接进入解读，不追问了
-- 用户描述已经很完整（包含情绪+环境+结局）→ 可以直接解读，最多追问 1 个
+## Règles de passage
+
+- L'utilisateur répond « je ne me souviens plus » / « je ne sais pas » → utiliser la valeur par défaut la plus courante et poursuivre l'interprétation
+- L'utilisateur indique clairement qu'il ne veut pas s'étendre → passer directement à l'interprétation, sans relance
+- La description de l'utilisateur est déjà complète (émotion + environnement + dénouement) → interpréter directement, au plus une relance

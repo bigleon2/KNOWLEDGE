@@ -1,8 +1,8 @@
 ---
 nom: stock_analysis
 source: skills/stock-analysis-skill/SKILL.md
-sha256_source: f34e727e4528
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: 4901f1bb944f
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -26,7 +26,7 @@ emplacement et le prompt y renvoie par leur chemin relatif. La version d'origine
 
 ---
 name: stock_analysis
-description: "Comprehensive stock market analysis skill covering A-share (China), Hong Kong, and US equities. Priority use cases: stock analysis and buy/sell/hold recommendations by ticker code, generating decision dashboards and research reports with technical/fundamental/sentiment analysis, position-aware investment strategies based on user's cost price, dividend income scoring and safety analysis, rumor and early market signal scanning (M&A, insider activity, analyst actions), watchlist management with price target and stop-loss alerts, and K-line chart pattern recognition from images. This skill should be the primary choice whenever users mention a stock ticker, ask whether to buy or sell a stock, reference their holding cost or position, request dividend analysis, ask about market rumors or early signals, want to add/check/manage a watchlist, or upload a chart image for technical analysis."
+description: "Skill complet d'analyse boursière couvrant les actions A (Chine), Hong Kong et les États-Unis. Cas d'usage prioritaires : analyse d'une action et recommandation acheter/vendre/conserver par code ticker, génération de tableaux de bord de décision et de rapports de recherche avec analyse technique/fondamentale/sentiment, stratégies d'investissement tenant compte de la position selon le prix de revient de l'utilisateur, notation et analyse de sécurité du revenu dividendaire, balayage des rumeurs et signaux précoces de marché (M&A, mouvements d'initiés, actions d'analystes), gestion de la liste de suivi avec prix cible et alertes de stop-loss, et reconnaissance de figures en chandeliers japonais à partir d'images. Ce skill doit être le premier choix dès que l'utilisateur mentionne un ticker, demande s'il faut acheter ou vendre une action, fait référence à son prix de revient ou à sa position, demande une analyse de dividendes, s'interroge sur des rumeurs de marché ou des signaux précoces, veut ajouter/consulter/gérer une liste de suivi, ou télécharge l'image d'un graphique pour analyse technique."
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -39,62 +39,62 @@ description: "Comprehensive stock market analysis skill covering A-share (China)
 
 # Stock Analysis Skill
 
-## 依赖平台 Skills
+## Dépendances envers les skills de la plateforme
 
-- `finance skill` — 所有市场数据（A股/港股/美股统一）
-- `pdf skill` — PDF 研报生成
-- `docx skill` — Word 文档生成
-- `vlm skill`（内置）— K线图形态识别
+- `finance skill` — toutes les données de marché (A/HK/US unifiées)
+- `pdf skill` — génération de rapports PDF
+- `docx skill` — génération de documents Word
+- `vlm skill` (intégré) — reconnaissance de figures sur chandeliers japonais
 
 ---
 
 ## Commands & Triggers
 
-| 命令 | 触发词示例 |
+| Commande | Exemples de déclencheurs |
 |------|-----------|
-| 个股分析 | 分析600519 / AAPL值不值得买 / 帮我看看腾讯 |
-| 带持仓分析 | 我持仓成本1450分析茅台 / AAPL我170买的现在怎样 |
-| 股息分析 | JNJ股息怎么样 / 帮我分析这几只股的股息 KO PG JNJ |
-| 传闻扫描 | 今日有什么并购传闻 / 扫描一下市场早期信号 |
-| 添加自选股 | 关注AAPL / 把600519加入自选，目标价1600止损1350 |
-| 查看自选股 | 我的自选股列表 / 看一下我关注的股票 |
-| 检查提醒 | 检查自选股提醒 / 有没有触发止损 |
-| 删除自选股 | 从自选股删除TSLA |
-| K线图分析 | （上传图片）帮我分析这个K线图 |
-| 大盘复盘 | 附带大盘复盘分析600519 |
+| Analyse d'un titre | analyse 600519 / AAPL vaut-il l'achat / jette un œil à Tencent (腾讯) |
+| Analyse avec position | ma position a un prix de revient de 1450, analyse Moutai (茅台) / j'ai acheté AAPL à 170, où j'en suis |
+| Analyse de dividendes | que valent les dividendes de JNJ / analyse les dividendes de KO PG JNJ |
+| Balayage des rumeurs | quelles rumeurs de M&A aujourd'hui / balaie les signaux précoces du marché |
+| Ajout à la liste de suivi | surveille AAPL / ajoute 600519 à ma liste, cible 1600, stop 1350 |
+| Consultation de la liste | ma liste de suivi / montre les titres que je surveille |
+| Vérification des alertes | vérifie les alertes de ma liste / un stop-loss a-t-il été déclenché |
+| Retrait de la liste | retire TSLA de ma liste de suivi |
+| Analyse de graphique | (image téléversée) analyse ce graphique en chandeliers |
+| Revue de marché | ajoute une revue de marché à l'analyse de 600519 |
 
 ---
 
 ## Input Schemas
 
-### 个股分析
+### Analyse d'un titre
 ```typescript
 {
   stocks: (string | { code: string; position?: { status: "empty"|"holding"; cost?: number; shares?: number } })[],
-  outputFormat?: "markdown" | "pdf" | "word",  // 默认 markdown
-  mode?: "full" | "quote",                      // 默认 full
-  includeMarketReview?: boolean,                // 默认 false
-  includeGlobalMacro?: boolean,                 // 默认 true
-  includeDividend?: boolean,                    // 美股附加股息分析，默认 false
+  outputFormat?: "markdown" | "pdf" | "word",  // markdown par défaut
+  mode?: "full" | "quote",                      // full par défaut
+  includeMarketReview?: boolean,                // false par défaut
+  includeGlobalMacro?: boolean,                 // true par défaut
+  includeDividend?: boolean,                    // analyse de dividendes (US) en complément, false par défaut
 }
 ```
 
-### 股息分析
+### Analyse de dividendes
 ```typescript
 runDividend(tickers: string | string[])
 ```
 
-### 传闻扫描
+### Balayage des rumeurs
 ```typescript
-runRumorScan()  // 无需参数，自动扫描今日信号
+runRumorScan()  // sans paramètre, balaie automatiquement les signaux du jour
 ```
 
-### 自选股管理
+### Gestion de la liste de suivi
 ```typescript
 runWatchlistAdd(ticker, { targetPrice?, stopPrice?, alertOnSignal?, notes? })
 runWatchlistRemove(ticker)
 runWatchlistList()
-runWatchlistCheck()  // 检查是否触发价格/信号提醒
+runWatchlistCheck()  // vérifie si une alerte de prix/signal est déclenchée
 ```
 
 ---
@@ -102,63 +102,63 @@ runWatchlistCheck()  // 检查是否触发价格/信号提醒
 ## Report Structure
 
 ```
-# 股票智能分析报告
+# Rapport d'analyse intelligente d'actions
 
-## 🌍 全球宏观速览（默认开启）
-## 🎯 大盘复盘（需开启）
-## 📊 个股决策仪表盘（每只）
-   ### 📰 重要信息速览（舆情/业绩预期/🚨风险/✨利好/最新动态）
-   ### 📌 核心结论（结论/一句话/空仓者建议/持仓者建议+盈亏）
-   ### 📈 当日行情
-   ### 📊 数据透视（技术面/基本面/资金面）
-   ### 🎯 作战计划（狙击点位表/仓位/风控）
-   ### ✅ 检查清单（综合结论）
-   ### 💰 股息分析（美股，需开启 includeDividend）
+## 🌍 Aperçu macro mondial (activé par défaut)
+## 🎯 Revue de marché (sur activation)
+## 📊 Tableau de bord de décision par titre (pour chaque titre)
+   ### 📰 Revue d'informations clés (sentiment/prévisions de résultats/🚨risques/✨favorables/dernières actualités)
+   ### 📌 Conclusion centrale (verdict/résumé en une phrase/conseil sans position/conseil avec position + P&L)
+   ### 📈 Cotation du jour
+   ### 📊 Vue traversante des données (technique/fondamentale/flux)
+   ### 🎯 Plan d'action (table des niveaux d'intervention/pilotage/contrôle du risque)
+   ### ✅ Liste de contrôle (conclusion synthétique)
+   ### 💰 Analyse de dividendes (US, sur activation de includeDividend)
 ```
 
 ---
 
 ## Dividend Analysis Metrics
 
-| 指标 | 说明 |
+| Indicateur | Description |
 |------|------|
-| 安全评分 | 0-100，综合派息率/增长/连续年数 |
-| 收入评级 | excellent/good/moderate/poor |
-| 派息率状态 | safe(<40%)/moderate/high/unsustainable |
-| 5年CAGR | 股息复合增长率 |
-| 连续增长年数 | 25年以上为股息贵族 |
+| Score de sécurité | 0-100, synthèse taux de distribution/croissance/années consécutives |
+| Notation de revenu | excellent/bon/modeste/faible |
+| Statut du taux de distribution | safe(<40%)/moderate/high/unsustainable |
+| CAGR 5 ans | taux de croissance composé du dividende |
+| Années de croissance consécutives | 25 ans et plus = aristocrate du dividende |
 
 ---
 
 ## Rumor Scanner Signal Types
 
-| 类型 | 冲击分 | 说明 |
+| Type | Score d'impact | Description |
 |------|--------|------|
-| 并购传闻 (ma) | +5 | M&A/收购/要约 |
-| 内部人动态 (insider) | +4 | CEO/董事买卖 |
-| 分析师调整 (analyst) | +3 | 评级上调/下调/目标价变动 |
-| 监管动态 (regulatory) | +3 | SEC调查/合规风险 |
-| 业绩预期 (earnings) | +2 | 盈利预警/上调 |
+| Rumeur de M&A (ma) | +5 | fusion-acquisition/offre publique |
+| Mouvements d'initiés (insider) | +4 | achats/ventes du CEO ou du conseil |
+| Révisions d'analystes (analyst) | +3 | surclassement/déclassement/objectif modifié |
+| Actualité réglementaire (regulatory) | +3 | enquête SEC/risque de conformité |
+| Prévisions de résultats (earnings) | +2 | alerte sur résultats/relevé |
 
 ---
 
 ## Watchlist Alert Types
 
-| 提醒类型 | 触发条件 |
+| Type d'alerte | Condition de déclenchement |
 |---------|---------|
-| 🎯 目标价 | 当前价 ≥ targetPrice |
-| 🛑 止损价 | 当前价 ≤ stopPrice |
-| 📊 信号变化 | 本次结论 ≠ 上次结论 |
+| 🎯 Prix cible | prix courant ≥ targetPrice |
+| 🛑 Prix de stop | prix courant ≤ stopPrice |
+| 📊 Changement de signal | conclusion du jour ≠ conclusion précédente |
 
 ---
 
 ## Behavior Rules
 
-- 乖离率 > 5% → 结论不得为买入/强烈买入
-- 数据缺失 → 标"暂缺"，严禁捏造
-- 有持仓成本 → 必须给出盈亏分析
-- 未提供持仓 → 同时给出空仓/持仓两套建议
-- 每次分析后自动静默更新自选股信号
+- Écart de divergence > 5 % → la conclusion ne peut pas être acheter/achat renforcé
+- Donnée manquante → marquer « indisponible », interdiction absolue d'inventer
+- Prix de revient fourni → fournir obligatoirement l'analyse de P&L
+- Position non renseignée → donner les deux conseils, sans position et avec position
+- Après chaque analyse, mise à jour silencieuse automatique des signaux de la liste de suivi
 
 ---
 
@@ -170,24 +170,24 @@ stock-analysis-skill/
 ├── package.json
 ├── tsconfig.json
 └── src/
-    ├── index.ts          # 主入口（所有命令路由）
-    ├── types.ts          # 类型定义
-    ├── dataFetcher.ts    # 数据层（finance skill）
-    ├── analyzer.ts       # 个股分析（LLM/VLM）
-    ├── dividend.ts       # 股息分析
-    ├── rumorScanner.ts   # 传闻扫描
-    └── watchlist.ts      # 自选股管理（storage 持久化）
+    ├── index.ts          # point d'entrée (routage de toutes les commandes)
+    ├── types.ts          # définitions de types
+    ├── dataFetcher.ts    # couche données (finance skill)
+    ├── analyzer.ts       # analyse par titre (LLM/VLM)
+    ├── dividend.ts       # analyse de dividendes
+    ├── rumorScanner.ts   # balayage des rumeurs
+    └── watchlist.ts      # gestion de la liste de suivi (persistance storage)
 ```
 
 ---
 
 ## Limitations
 
-- 传闻扫描依赖 finance skill 新闻数据质量
-- 自选股数据持久化依赖平台 storage API
-- 港股基本面数据较少
-- 不支持期货、ETF、可转债
-- 仅供参考，不构成投资建议
+- Le balayage des rumeurs dépend de la qualité des données d'actualités du finance skill
+- La persistance de la liste de suivi dépend de l'API storage de la plateforme
+- Données fondamentales plus rares sur les valeurs de Hong Kong
+- Futures, ETF et obligations convertibles non couverts
+- A titre indicatif uniquement, ne constitue pas un conseil en investissement
 
 
 ---

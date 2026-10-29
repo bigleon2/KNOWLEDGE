@@ -241,7 +241,7 @@ styles: {
     heading2: {
       run: {
         font: { ascii: "Calibri", eastAsia: "SimHei" },
-        size: 28, // Si Hao 四号 14pt
+size: 28, // Si Hao (Si Hao) 四号 14pt
         bold: true,
         color: palette.primary,
       },
@@ -256,7 +256,7 @@ styles: {
 
 **Profile routing:** Profile A (Formal: report, academic, contract, exam) → Three-Line Table or Horizontal-Only Table. Profile B (Visual: resume, copywriting) → Zebra Stripe (preferred) or Horizontal-Only Table.
 
-### 1. Three-Line Table (三线表) — Academic
+### 1. Three-Line Table (Sanxianbiao) — Academic
 
 Only three horizontal lines: top of table, bottom of header, bottom of table.
 

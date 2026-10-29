@@ -2,8 +2,8 @@
 nom: image-search
 version: 1.0.0
 source: skills/image-search/SKILL.md
-sha256_source: b3f61d5a8ce9
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: f7a48ea74306
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -34,8 +34,8 @@ description: |
   captions, and get back OSS-hosted direct URLs that are guaranteed reachable.
   Use when the user wants to find, fetch, illustrate, or embed images — e.g.
   "search for images of X", "find a picture of Y", "I need cover art for Z",
-  "give me reference photos of W", "插图", "配图", "找图", "找张图",
-  "搜张图", "搜图".
+"give me reference photos of W", "illustration", "image correspondante", "trouver une image", "trouver une photo",
+  "rechercher une image", "rechercher des photos".
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -110,7 +110,7 @@ z-ai image-search -q "a cute orange tabby kitten playing with yarn" --count 5
 z-ai image-search -q "vintage red sports car on a mountain road" --count 5 --gl us --no-rank
 
 # Chinese query — captions come back in Chinese.
-z-ai image-search -q "中国传统水墨山水画" --count 5 -o results.json
+z-ai image-search -q "zhongguo chuan tong shui mo shan shui hua" --count 5 -o results.json
 ```
 
 ## Choosing parameters

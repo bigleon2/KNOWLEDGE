@@ -1,8 +1,8 @@
 ---
 nom: quiz-mastery
 source: skills/quiz-mastery/SKILL.md
-sha256_source: 08ff7058cec5
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: 7fbbca7a1791
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -26,7 +26,7 @@ emplacement et le prompt y renvoie par leur chemin relatif. La version d'origine
 
 ---
 name: quiz-mastery
-description: 出题、测验、复习、掌握度追踪工具。**用户说"复习"、"巩固"、"回顾"任一关键词时优先触发本 skill**。当用户的请求与"题目/复习"相关时触发：把学习资料/PDF/材料转成题目练习（"给这个 PDF 出几道题"）、导入题目文件做练习（"我有一份题目文件，帮我做"）、复习已学内容（"复习一下昨天的"、"巩固一下"、"回顾下昨天"、"用艾宾浩斯帮我安排"）、遗忘曲线追踪、掌握度评分。**🔴 强制规则**：每次出题/导入题目成功后，**首轮展示题目前必须问一句**"要不要生成网页练习页？"，用户说要 → 调用 quiz-html skill。**不处理**：长期学习项目的进度管理、计划制定（→ study-buddy）。
+description: Outil de génération de quiz, tests, révisions et suivi de maîtrise. **Ce skill se déclenche en priorité dès que l'utilisateur dit « réviser », « consolider », « revoir »**. Il s'active quand la demande touche aux « questions / révision » : transformer un support d'apprentissage/PDF en exercices (« fais-moi quelques questions sur ce PDF »), importer un fichier de questions pour s'exercer (« j'ai un fichier de questions, aide-moi »), réviser des acquis (« révise hier », « consolide », « revois hier », « planifie-moi avec Ebbinghaus »), suivi de la courbe de l'oubli, notation du niveau de maîtrise. **🔴 Règle impérative** : après chaque génération/import réussi, **avant de montrer les questions au premier tour, il FAUT demander** « veux-tu une page web d'exercices ? » ; si oui → appeler le skill quiz-html. **Ne traite pas** : le suivi de progression et la planification des projets d'apprentissage au long cours (→ study-buddy).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -37,213 +37,212 @@ description: 出题、测验、复习、掌握度追踪工具。**用户说"复�
 
 
 
-# 测验大师 (Quiz Mastery)
+# Quiz Mastery
 
-## 两大核心能力
+## Deux capacités principales
 
-### 能力一：从学习资料出题
-1. 用户提供学习资料（.md / .txt / .docx / .pdf / .ppt / .pptx）
-2. 调用 `generate_from_material.py` 获取知识点提取 prompt
-3. 将 prompt 发给 LLM，得到知识点 JSON
-4. 调用 `service.save_knowledge_points()` 保存知识点
-5. 调用 `run_quiz.py` 生成出题 prompt
-6. 将 prompt 发给 LLM，得到题目 JSON
-7. **⭐ 询问用户是否生成网页练习页**（见下方"网页练习联动"章节）
-   - 用户说要 → 调用 `quiz-html` skill 生成 HTML 并打开
-   - 用户说不用 → 走原流程
-8. 逐题展示给用户，收集答案
-9. 调用 `submit_answers.py` 提交评分
+### Capacité 1 : générer des questions depuis un support d'apprentissage
+1. L'utilisateur fournit un support (.md / .txt / .docx / .pdf / .ppt / .pptx)
+2. Appeler `generate_from_material.py` pour obtenir le prompt d'extraction des points de savoir
+3. Envoyer le prompt au LLM, obtenir le JSON des points de savoir
+4. Appeler `service.save_knowledge_points()` pour les enregistrer
+5. Appeler `run_quiz.py` pour générer le prompt de questions
+6. Envoyer le prompt au LLM, obtenir le JSON des questions
+7. **⭐ Demander à l'utilisateur s'il veut une page web d'exercices** (voir « Articulation avec la page web » ci-dessous)
+   - Oui → appeler le skill `quiz-html` pour générer le HTML et l'ouvrir
+   - Non → poursuivre le flux normal
+8. Présenter les questions une à une, collecter les réponses
+9. Appeler `submit_answers.py` pour soumettre la notation
 
-### 能力二：从题目文件练习
-1. 用户提供题目文件（.md / .txt / .docx / .pdf / .ppt / .pptx）
-2. 调用 `import_quiz.py` 获取题目解析 prompt
-3. 将 prompt 发给 LLM，得到标准化题目 JSON
-4. 调用 `service.import_questions()` 导入题目并创建 session
-5. **⭐ 询问用户是否生成网页练习页**（见下方"网页练习联动"章节）
-   - 用户说要 → 调用 `quiz-html` skill 生成 HTML 并打开
-   - 用户说不用 → 走原流程
-6. 逐题展示给用户，收集答案
-7. 调用 `submit_answers.py` 提交评分
+### Capacité 2 : s'exercer depuis un fichier de questions
+1. L'utilisateur fournit un fichier de questions (.md / .txt / .docx / .pdf / .ppt / .pptx)
+2. Appeler `import_quiz.py` pour obtenir le prompt d'analyse des questions
+3. Envoyer le prompt au LLM, obtenir le JSON normalisé des questions
+4. Appeler `service.import_questions()` pour importer et créer la session
+5. **⭐ Demander à l'utilisateur s'il veut une page web d'exercices** (voir « Articulation avec la page web » ci-dessous)
+   - Oui → appeler le skill `quiz-html` pour générer le HTML et l'ouvrir
+   - Non → poursuivre le flux normal
+6. Présenter les questions une à une, collecter les réponses
+7. Appeler `submit_answers.py` pour soumettre la notation
 
-## 何时使用（触发条件）
+## Quand l'utiliser (conditions de déclenchement)
 
-1. **用户主动要求**："出几道题"、"测试一下"、"来个小测"、"练习题"、"考考我"
-2. **用户说"复习"、"巩固"、"回顾"**：直接触发
-3. **基于已有题目文件练习**：用户上传题目文件后触发
+1. **Demande explicite** : « fais-moi des questions », « teste-moi », « un petit quiz », « des exercices », « interroge-moi »
+2. **L'utilisateur dit « réviser », « consolider », « revoir »** : déclenchement direct
+3. **Exercice depuis un fichier de questions** : se déclenche après le téléversement du fichier
 
-> ⚠️ **不处理 study-buddy 的"即时练习"**——那条链路由 study-buddy 走外部 `exam_take`，不调本 skill。
+> ⚠️ **Ne pas traiter l'« exercice immédiat » de study-buddy** — cette chaîne passe par study-buddy avec son `exam_take` externe, sans appeler ce skill.
 
-## 没历史数据时的兜底
+## Repli quand il n'y a pas d'historique
 
-当用户说"复习"但 `data/user_progress/` 是空的（新用户/没答过题）：
-- **不要硬启动复习流程**——没数据可复习
-- 主动告诉用户："还没有可复习的历史数据，要不要先用一份学习资料出题练一下？"
-- 引导用户走"能力一：从学习资料出题"
+Quand l'utilisateur dit « réviser » mais que `data/user_progress/` est vide (nouvel utilisateur / aucune réponse) :
+- **Ne pas lancer mécaniquement le flux de révision** — rien à réviser
+- Dire activement à l'utilisateur : « il n'y a pas encore d'historique à réviser ; veux-tu d'abord générer des questions depuis un support d'apprentissage ? »
+- L'orienter vers la « Capacité 1 : générer des questions depuis un support »
 
-## 难度系统
+## Système de difficulté
 
-| 级别 | 含义 | 说明 |
+| Niveau | Signification | Description |
 |------|------|------|
-| L1 | 识记 | 基础记忆和理解，考察概念辨认和基本事实 |
-| L2 | 理解 | 深层理解，考察概念区分、原理解释和简单应用 |
-| L3 | 应用 | 综合运用，考察实际场景应用、分析和问题解决 |
+| L1 | mémorisation | mémoire et compréhension de base, reconnaissance de concepts et faits élémentaires |
+| L2 | compréhension | compréhension approfondie, distinction de concepts, explication de principes et application simple |
+| L3 | application | usage combiné, application à des cas réels, analyse et résolution de problèmes |
 
-- **首次出题**：强制从 L1 开始
-- **答对当前难度**：升一级（最高 L3）
-- **答错当前难度**：降一级（最低 L1）
+- **Première génération** : départ obligatoire en L1
+- **Bonne réponse au niveau courant** : monter d'un cran (L3 maximum)
+- **Mauvaise réponse au niveau courant** : descendre d'un cran (L1 minimum)
 
-## 题型分配规则
+## Répartition des types de questions
 
-| 级别 | 选择题 | 判断题 | 填空题 | 简答题 |
+| Niveau | Choix multiple | Vrai-faux | Texte à trous | Réponse courte |
 |------|--------|--------|--------|--------|
-| L1 | 70% | 30% | - | - |
-| L2 | 50% | 20% | 30% | - |
-| L3 | 40% | 20% | 20% | 20% |
+| L1 | 70 % | 30 % | - | - |
+| L2 | 50 % | 20 % | 30 % | - |
+| L3 | 40 % | 20 % | 20 % | 20 % |
 
-## 出题数量
+## Nombre de questions
 
-- **默认每次出 3 道题**（一次对话展示 3 题，用户一次性回答后统一评分）
-- 每轮最多 **15 题**（用户可要求调整数量）
-- 简答题尽量少出，不自动评分（标记为 `needs_review`，由外部 LLM/人工评判）
+- **Par défaut, 3 questions par génération** (3 questions affichées dans un même tour, l'utilisateur répond à tout puis notation globale)
+- Maximum **15 questions par tour** (l'utilisateur peut demander à ajuster)
+- Réponses courtes aussi rares que possible : pas de notation automatique (marquées `needs_review`, jugées par un LLM/contrôle humain externe)
 
-## 薄弱知识点追踪
+## Suivi des points de savoir faibles
 
-- **标记为薄弱**：累计错误次数 ≥ 3
-- **不解除**：薄弱知识点只增不减，作为历史档案保留
-- 内部数据保存在 `data/user_progress/`（错误次数、艾宾浩斯阶段等）
-- **同步到 USER.md 第 3 节"薄弱知识点"**（由本 skill 直接写入，来源=`quiz-mastery`）：
-  | 知识点 | 错误次数 | 来源 | 备注 |
-  - 已有该知识点 → 更新错误次数
-  - 未在表中 → 新增一行
+- **Marquage en point faible** : nombre cumulé d'erreurs ≥ 3
+- **Jamais levé** : les points faibles ne font que s'accumuler, conservés comme archive historique
+- Les données internes sont dans `data/user_progress/` (compte d'erreurs, phases Ebbinghaus, etc.)
+- **Synchronisation vers la section 3 « points de savoir faibles » de USER.md** (écrite directement par ce skill, source=`quiz-mastery`) :
+  | Point de savoir | Nombre d'erreurs | Source | Notes |
+  - déjà présent → mettre à jour le compte d'erreurs
+  - absent → ajouter une ligne
 
-## 遗忘曲线复习机制
+## Mécanisme de révision par courbe de l'oubli
 
-基于艾宾浩斯遗忘曲线，按 **1天 → 2天 → 4天 → 7天 → 15天** 间隔安排复习：
-- 答对：review_stage +1（推进到下一个间隔）
-- 答错：review_stage 重置为 0（从头开始）
-- 复习推荐包含：即将遗忘的知识点 + 最近 3 天薄弱知识点
+Basé sur la courbe d'Ebbinghaus, révisions espacées selon **1 jour → 2 jours → 4 jours → 7 jours → 15 jours** :
+- Bonne réponse : review_stage +1 (passe à l'intervalle suivant)
+- Mauvaise réponse : review_stage remis à 0 (on repart du début)
+- Les révisions recommandées regroupent : les points de savoir sur le point d'être oubliés + les points faibles des 3 derniers jours
 
-## 脚本调用方式
+## Mode d'appel des scripts
 
-### 1. 从学习资料提取知识点
+### 1. Extraire les points de savoir d'un support
 
 ```bash
 python3 scripts/generate_from_material.py <file_path> <document_id>
 ```
 
-输出知识点提取 prompt（JSON），将 prompts.system_prompt 和 prompts.user_prompt 发给 LLM。
+Produit le prompt d'extraction (JSON) ; envoyer prompts.system_prompt et prompts.user_prompt au LLM.
 
-### 2. 从题目文件导入题目
+### 2. Importer des questions depuis un fichier
 
 ```bash
 python3 scripts/import_quiz.py <file_path> <document_id> <user_id>
 ```
 
-输出题目解析 prompt（JSON），将 prompts.system_prompt 和 prompts.user_prompt 发给 LLM。
+Produit le prompt d'analyse (JSON) ; envoyer prompts.system_prompt et prompts.user_prompt au LLM.
 
-### 3. 生成测验
+### 3. Générer un quiz
 
 ```bash
 python3 scripts/run_quiz.py <user_id> <document_id>
 ```
 
-根据已保存的知识点和用户当前掌握度自动决定难度，输出出题 prompt（JSON）。
+Détermine automatiquement la difficulté selon les points de savoir enregistrés et la maîtrise courante ; produit le prompt de questions (JSON).
 
-### 4. 提交答案
+### 4. Soumettre les réponses
 
 ```bash
 python3 scripts/submit_answers.py <user_id> <document_id> <session_id> '<answers_json>'
 ```
 
-参数说明：
-- `answers_json`：JSON 格式的答案字典，如 `{"q_001": "A", "q_002": "True"}`
+Description du paramètre :
+- `answers_json` : dictionnaire de réponses en JSON, ex. `{"q_001": "A", "q_002": "True"}`
 
-返回评分结果：score、total、accuracy、逐题 results。
+Retourne la notation : score, total, accuracy, results question par question.
 
-## 出题流程（面向 study-buddy 的调用说明）
+## Flux de génération (notice pour study-buddy)
 
-1. 确定知识点来源（学习资料 or 已有题目文件）
-2. 执行对应的提取/导入流程
-3. 调用 `run_quiz.py` 生成出题 prompt
-4. **每次展示 3 道题给用户**（一次性展示，编号清晰，不要逐题出），用户一次性回答后再统一评分
-5. 收集用户回答（用户可以一次性回复 3 道题的答案）
-6. 调用 `submit_answers.py` 提交评分
-7. 将评分结果返回给 study-buddy，由其写入 memory 文件
+1. Déterminer la source des points de savoir (support d'apprentissage ou fichier de questions)
+2. Exécuter le flux d'extraction/import correspondant
+3. Appeler `run_quiz.py` pour générer le prompt de questions
+4. **Présenter 3 questions à l'utilisateur à chaque fois** (en une seule fois, numérotation claire, pas une par une) ; après une réponse globale unique, notation groupée
+5. Collecter les réponses (l'utilisateur peut répondre aux 3 questions d'un coup)
+6. Appeler `submit_answers.py` pour soumettre la notation
+7. Renvoyer le résultat de notation à study-buddy, qui l'écrit dans ses fichiers memory
 
-⚠️ **本 skill 仅写入 USER.md 第 3 节"薄弱知识点"**（来源=`quiz-mastery`）；不写其他分区，也不写 `memory/`。其他持久化由 study-buddy 统一负责。
+⚠️ **Ce skill n'écrit que dans la section 3 « points de savoir faibles » de USER.md** (source=`quiz-mastery`) ; aucune autre section, ni `memory/`. Le reste de la persistance relève de study-buddy.
 
-## 数据目录结构
+## Structure du répertoire de données
 
 ```
 skills/quiz-mastery/data/
-├── knowledge_points/     ← 知识点定义（按 document_id）
-├── sessions/             ← 测验会话记录
-└── user_progress/        ← 用户掌握度数据（含薄弱标记、遗忘曲线）
+├── knowledge_points/     ← définitions des points de savoir (par document_id)
+├── sessions/             ← historique des sessions de quiz
+└── user_progress/        ← données de maîtrise (marquage des faiblesses, courbe de l'oubli)
 ```
 
-## ⭐ 网页练习联动（与 quiz-html 协作）
+## ⭐ Articulation avec la page web d'exercices (collaboration avec quiz-html)
 
-每次拿到题目 JSON 之后（"能力一"步骤 7、"能力二"步骤 5），都要**主动问用户一句**：
+Chaque fois qu'un JSON de questions est obtenu (capacité 1 étape 7, capacité 2 étape 5), **poser activement la question** :
 
-> "题目准备好啦～ 要不要我把它们生成一个网页练习页？你可以在浏览器里慢慢做，错题会自动记下来，还能切换主题、模拟考试 🎯"
+> « Les questions sont prêtes ! Veux-tu que j'en fasse une page web d'exercices ? Tu pourras les faire à ton rythme dans le navigateur, les erreurs seront notées automatiquement, avec bascule de thème et mode examen 🎯 »
 
-### 用户回应判定
+### Interprétation des réponses
 
-| 用户说 | 判定 | 行动 |
+| L'utilisateur dit | Interprétation | Action |
 |---|---|---|
-| "要 / 好 / 嗯 / 来一个 / 生成 / 网页 / 浏览器" | ✅ 要 | 调用 `quiz-html` |
-| "不用 / 不要 / 算了 / 直接做 / 这里做" | ❌ 不要 | 走原对话流程 |
-| 没回应 / 不明确 | 默认 ❌ 不要 | 直接走原流程，不强推 |
+| « oui / ok / hm / vas-y / génère / page web / navigateur » | ✅ oui | appeler `quiz-html` |
+| « pas besoin / non / laisse / je fais ici » | ❌ non | poursuivre le flux conversationnel |
+| pas de réponse / ambigu | ❌ non par défaut | poursuivre le flux, sans insister |
 
-### 调用 quiz-html 的具体步骤
+### Étapes concrètes d'appel de quiz-html
 
 ```python
 import json, subprocess, tempfile
 from pathlib import Path
 
-# 1. 把已经拿到的题目 JSON 写到临时文件
+# 1. Écrire le JSON de questions dans un fichier temporaire
 tmp_dir = Path(tempfile.mkdtemp(prefix="quiz_"))
 qjson = tmp_dir / "questions.json"
 qjson.write_text(json.dumps(questions, ensure_ascii=False), encoding="utf-8")
 
-# 2. 决定输出路径（推荐放 ~/Desktop）
+# 2. Décider du chemin de sortie (~/Desktop recommandé)
 output = Path.home() / "Desktop" / f"quiz_{title_slug}.html"
 
-# 3. 调脚本
+# 3. Appeler le script
 result = subprocess.run([
     "python3",
     str(Path.home() / "Desktop/studybuddy_4.0/skills/quiz-html/scripts/build_quiz_html.py"),
     str(qjson),
-    "--title", page_title,        # 如 "📚 物理 · 电学练习"
+    "--title", page_title,        # ex. « 📚 Physique · exercices électricité »
     "--output", str(output),
-    "--open",                     # 生成后自动用浏览器打开
+    "--open",                     # ouvrir automatiquement dans le navigateur après génération
 ], capture_output=True, text=True)
 
 info = json.loads(result.stdout)  # {"success": true, "output_path": "...", ...}
 ```
 
-### 题目字段补全建议
+### Recommandations de complément des champs
 
-调用前，最好给每道题补上以下字段（如果出题时没生成）：
-- `category`：**一级分类，短词**（建议 2-6 字），用于网页顶部分类筛选 chip。
-  - ✅ 推荐：`物理` / `数学` / `法律` / `历史` / `编程` / `通用`
-  - ❌ 避免：`通用类 / 1.中华人民共和国证券法（1998年12月29日…）` 这种长串、含日期/编号/斜杠的写法
-  - 如果非要分两级，用 `/` 分隔且二级也要短：`物理 / 电学`
-- `knowledge_point`：知识点名（侧边栏分组用，可与 quiz-mastery 的 KP title 一致，不要带层级前缀）
-- `memory_tip`：记忆口诀（可选，K12 学生很需要）
+Avant l'appel, idéalement compléter chaque question avec les champs suivants (s'ils n'ont pas été générés) :
+- `category` : **catégorie de premier niveau, mot court** (2 à 6 caractères conseillés), pour les chips de filtrage en haut de page.
+  - ✅ recommandé : `Physique` / `Maths` / `Droit` / `Histoire` / `Programmation` / `Général`
+  - ❌ à éviter : les longues chaînes avec dates/numéros/barres obliques du type `Général / 1. Loi sur les valeurs mobilières (29/12/1998…)`
+  - Si deux niveaux sont nécessaires, séparer par `/` avec un second niveau court : `Physique / Électricité`
+- `knowledge_point` : nom du point de savoir (regroupement en barre latérale ; peut reprendre le titre du KP de quiz-mastery, sans préfixe hiérarchique)
+- `memory_tip` : moyen mnémotechnique (optionnel, très utile aux élèves)
 
-这样网页的分类筛选、侧栏分组、记忆卡片才能发挥作用。
+Ainsi les filtres de catégories, le regroupement latéral et les cartes mémoire de la page pourront pleinement jouer.
 
-### 边界
+## Frontières
 
-| 任务 | 用谁 |
+| Tâche | Qui s'en charge |
 |---|---|
-| 出题、提取题目 | 本 skill (quiz-mastery) |
-| 评分、掌握度追踪 | 本 skill (quiz-mastery) |
-| **题目 → 网页练习页** | **quiz-html** |
+| Générer et extraire des questions | ce skill (quiz-mastery) |
+| Notation, suivi de maîtrise | ce skill (quiz-mastery) |
+| **Questions → page web d'exercices** | **quiz-html** |
 
-调完 quiz-html 之后，**仍然要走 quiz-mastery 的评分流程**——网页里的答题状态是给用户自查用的，正式的 mastery 数据要靠 `submit_answers.py` 写入。两者并行不冲突。
-
+Après l'appel de quiz-html, **le flux de notation de quiz-mastery reste à exécuter** — l'état des réponses dans la page sert à l'auto-vérification de l'utilisateur ; les données officielles de maîtrise passent par `submit_answers.py`. Les deux chemins sont parallèles et sans conflit.
 
 
 ---

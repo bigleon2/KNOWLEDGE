@@ -1,8 +1,8 @@
 ---
 nom: job-intent-tracker
 source: skills/job-intent-tracker/SKILL.md
-sha256_source: bdde1aae9ceb
-genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
+sha256_source: db0adbcdeeac
+genere: 2026-10-29 (phase P2 — directive 10 tâches, tâche 2)
 usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'orchestration)
 ---
 
@@ -26,7 +26,7 @@ emplacement et le prompt y renvoie par leur chemin relatif. La version d'origine
 
 ---
 name: job-intent-tracker
-description: 帮助用户梳理求职意向、生成目标岗位画像，并维护一份结构化的"岗位投递追踪表"。当用户说"我想换工作 / 不知道投什么岗 / 帮我看看我适合什么岗位 / 帮我管理投递进度 / 我投了好几家但记不住状态了 / 想做一个求职 OKR / 整理一下求职方向"，或上传简历但没说要改简历时，应该主动触发本 skill。本 skill 也适用于实习生、应届生、转行候选人在求职启动阶段做"自我盘点 + 目标画像 + 投递管理"三件事。
+description: Aider l'utilisateur à clarifier ses intentions de recherche d'emploi, générer des profils de postes cibles et tenir un « tableau de suivi de candidatures » structuré. Quand l'utilisateur dit « je veux changer de travail / je ne sais pas quoi viser / regarde quels postes me conviennent / aide-moi à suivre mes candidatures / j'ai postulé à plein d'endroits mais je ne retiens plus où j'en suis / je veux un OKR de recherche / clarifie mon orientation », ou dépose un CV sans demander de réécriture, ce skill doit se déclencher activement. Il convient aussi aux stagiaires, jeunes diplômés et candidats en reconversion au moment du lancement de leur recherche, pour les trois volets « auto-inventaire + profil cible + gestion des candidatures ».
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -37,137 +37,137 @@ description: 帮助用户梳理求职意向、生成目标岗位画像，并维�
 
 
 
-# Job Intent Tracker（求职意向 + 岗位追踪）
+# Job Intent Tracker (intentions de recherche + suivi des candidatures)
 
-这个 skill 解决"求职启动期"的三个核心问题：
+Ce skill répond aux trois questions clés de la phase de lancement d'une recherche :
 
-1. **我适合投什么岗？** —— 从用户背景里抽取信号，反推 2~3 个目标方向
-2. **目标岗位长什么样？** —— 为每个方向生成"岗位画像 / Target Profile"
-3. **投了哪些、进度如何？** —— 维护一份结构化追踪表（Excel / Markdown 表）
+1. **Quels postes me conviennent ?** — extraire les signaux du parcours de l'utilisateur pour déduire 2~3 orientations cibles
+2. **À quoi ressemble le poste visé ?** — générer pour chaque orientation un « profil de poste / Target Profile »
+3. **Où j'en suis de mes candidatures ?** — tenir un tableau de suivi structuré (Excel / table Markdown)
 
-不要把这个 skill 用成"简历改写"或"面试题生成"——那是 resume-builder / jd-resume-tailor / interview-prep 的事。本 skill 只关心"方向"和"管理"。
-
----
-
-## 何时触发本 skill
-
-强信号（基本必须用）：
-- "我想换工作 / 想跳槽 / 想找下一份工作"
-- "帮我看看我适合什么岗位"
-- "帮我管理投递进度 / 跟踪一下我投的公司"
-- "我有 X 年 Y 经验，下一步该往哪走"
-- "我投了好多家但忘了进度"
-
-弱信号（先确认再用）：
-- 用户只丢了一份简历，没说目的 → 先问"你是想梳理方向、改简历，还是准备面试？"
-- 用户说"想找工作"但很模糊 → 先问"你心里有目标方向吗？还是想让我帮你判断方向？"
+Ne pas détourner ce skill en « réécriture de CV » ou « générateur de questions d'entretien » — c'est l'affaire de resume-builder / jd-resume-tailor / interview-prep. Ce skill ne traite que « l'orientation » et « la gestion ».
 
 ---
 
-## 工作流程
+## Quand ce skill se déclenche
 
-按这个顺序走，一步都不要跳：
+Signaux forts (usage quasiment obligatoire) :
+- « je veux changer de travail / je veux bouger / je cherche mon prochain poste »
+- « regarde quels postes me conviennent »
+- « aide-moi à suivre mes candidatures / suis les entreprises où j'ai postulé »
+- « j'ai X ans d'expérience en Y, quelle est la prochaine étape »
+- « j'ai postulé à plein d'endroits et j'ai perdu le fil »
 
-### Step 1: 自我盘点（Background Intake）
+Signaux faibles (confirmer avant) :
+- L'utilisateur dépose juste un CV sans préciser l'objectif → demander « tu veux clarifier ton orientation, retravailler le CV, ou préparer des entretiens ? »
+- « je veux retrouver un travail » très vague → demander « as-tu déjà une orientation en tête, ou veux-tu que je t'aide à en déterminer une ? »
 
-用 AskUserQuestion（或在没有该工具时直接问）收集以下信息。**不要一次问完，分 2~3 轮，每轮 2~3 个问题**，否则用户会被"问卷感"劝退。
+---
 
-第一轮（必问）：
-- 当前 / 最近一份工作的岗位、公司类型、年限
-- 核心技能 3~5 个（关键词即可）
-- 目标行业 / 目标方向（如果用户有）—— 没有也没关系，跳到 Step 2
+## Workflow
 
-第二轮（看情况问）：
-- 期望薪资 range（用户不愿意说就跳过）
-- 城市偏好 / 是否接受 remote
-- 排除项（"不想做销售 / 不想加班 / 不接受出差"等）
+Suivre cet ordre, sans sauter d'étape :
 
-第三轮（深度信号，仅在前两轮信息不足以画像时问）：
-- 最有成就感的 1~2 个项目
-- 最不喜欢做的事
-- 5 年后的画面
+### Étape 1 : auto-inventaire (Background Intake)
 
-如果用户上传了简历 .pdf / .docx，**先调用 pdf 或 docx skill 解析出文本**，再从中抽取以上信息，避免用户重复打字。
+Collecter les informations suivantes avec AskUserQuestion (ou en questionnant directement à défaut). **Ne pas tout demander d'un coup : 2~3 salves de 2~3 questions**, sinon l'utilisateur décroche face au questionnaire.
 
-### Step 2: 推荐求职方向
+Première salve (indispensable) :
+- poste, type d'entreprise et ancienneté du poste actuel / dernier poste
+- 3~5 compétences clés (des mots-clés suffisent)
+- secteur / orientation cibles (si l'utilisateur en a) — sinon, peu importe, passer à l'étape 2
 
-基于 Step 1 的信息，生成 2~3 个候选方向。每个方向都要写清楚：
+Deuxième salve (selon le cas) :
+- fourchette de rémunération souhaitée (passer si l'utilisateur préfère ne pas dire)
+- préférences de ville / acceptation du remote
+- exclusions (« pas de commercial / pas d'heures sup / pas de déplacements » etc.)
+
+Troisième salve (signaux de profondeur, seulement si les deux premières salves ne suffisent pas à bâtir le profil) :
+- 1~2 projets dont il est le plus fier
+- ce qu'il déteste le plus faire
+- où il se voit dans 5 ans
+
+Si l'utilisateur a téléversé un CV .pdf / .docx, **appeler d'abord le skill pdf ou docx pour extraire le texte**, puis en tirer les informations ci-dessus — éviter de lui faire retaper.
+
+### Étape 2 : recommander des orientations
+
+À partir de l'étape 1, produire 2~3 orientations candidates. Chacune doit exposer clairement :
 
 ```
-方向 N：<岗位名>（如：互联网产品经理 / 数据分析师 / 量化研究员）
-- 匹配度：高 / 中 / 低（高=核心技能直接命中；中=需补 1~2 个关键技能；低=需要转岗叙事）
-- 匹配理由：基于用户的 ___ 经验和 ___ 技能
-- 缺口：用户还需要补 ___ 才能成为强候选人
-- 典型雇主：<3~5 个具体公司或公司类型>
-- 薪资带（仅供参考）：__k - __k（注明"市场行情，仅供参考，建议用户自行通过职级查询"）
+Orientation N : <intitulé du poste> (ex. : product manager internet / data analyst / chercheur quantitatif)
+- Adéquation : haute / moyenne / basse (haute = compétences clés directement en jeu ; moyenne = 1~2 compétences clés à acquérir ; basse = récit de reconversion nécessaire)
+- Justification de l'adéquation : au vu de l'expérience ___ et de la compétence ___ de l'utilisateur
+- Manque : ce que l'utilisateur doit encore acquérir pour devenir un candidat fort
+- Employeurs types : <3~5 entreprises ou types d'entreprises précis>
+- Fourchette de rémunération (indicative) : __k - __k (préciser « tendance de marché, à titre indicatif ; inviter l'utilisateur à vérifier selon le niveau et la ville »)
 ```
 
-**重要：不要只推荐"安全"的方向。** 如果用户技能允许，至少给一个"跳一跳能够到"的方向，并诚实标注缺口。
+**Important : ne pas ne recommander que des orientations « sûres ».** Si les compétences le permettent, donner au moins une orientation « atteignable en se stretchant un peu », avec un étiquetage honnête des manques.
 
-### Step 3: 生成岗位画像（Target Profile）
+### Étape 3 : générer le profil de poste (Target Profile)
 
-为用户**最终选定**的 1~2 个方向（让用户主动选），生成详细画像。模板在 `references/target_profile_template.md`，需要读取这个文件后再填充。
+Pour les 1~2 orientations **finalement retenues** (laisser l'utilisateur choisir activement), générer le profil détaillé. Le gabarit est dans `references/target_profile_template.md` — lire ce fichier avant de le remplir.
 
-画像要包含：岗位职责典型描述、技能要求 must-have / nice-to-have、面试流程预期、对标公司列表（按 tier 分层）。
+Le profil doit contenir : description type des responsabilités, must-have / nice-to-have, attentes sur le processus de recrutement, liste des entreprises de référence (par paliers).
 
-读取行业关键词库决定 must-have / nice-to-have：
-- 互联网产品 / 运营 / PM → `references/keywords_internet.md`
-- 技术 / 研发 / 数据 → `references/keywords_tech.md`
-- 金融 / 咨询 / 商科 → `references/keywords_finance.md`
-- 通用 / 跨行业 → `references/keywords_general.md`
+Lire la bibliothèque de mots-clés sectoriels pour arbitrer must-have / nice-to-have :
+- produit internet / opérations / PM → `references/keywords_internet.md`
+- technique / R&D / data → `references/keywords_tech.md`
+- finance / conseil / commerce → `references/keywords_finance.md`
+- généraliste / intersectoriel → `references/keywords_general.md`
 
-### Step 4: 创建投递追踪表
+### Étape 4 : créer le tableau de suivi des candidatures
 
-调用 `scripts/init_tracker.py` 生成初始追踪表。脚本支持两种格式：
+Appeler `scripts/init_tracker.py` pour générer le tableau initial. Deux formats :
 
 ```bash
 python scripts/init_tracker.py --format xlsx --output /path/to/tracker.xlsx
-# 或
+# ou
 python scripts/init_tracker.py --format md --output /path/to/tracker.md
 ```
 
-默认推荐 xlsx（用户可以排序、加 conditional formatting）。如果用户明确要求轻量，用 md。
+xlsx recommandé par défaut (l'utilisateur peut trier, ajouter des mises en forme conditionnelles). Si l'utilisateur veut du léger, prendre md.
 
-追踪表的列结构（脚本里已经预设好，不要改）：
-公司、岗位、来源（猎头/官网/内推/招聘网站）、JD 链接、投递日期、当前阶段（投递/笔试/一面/二面/HR 面/Offer/Reject/沉默）、下一步动作、Deadline、薪资范围、内推人、备注
+Structure des colonnes du tableau (pré-réglée dans le script, ne pas modifier) :
+entreprise, poste, source (chasseur/site officiel/recommandation/plateforme), lien de l'offre, date de candidature, étape en cours (candidature/test écrit/entretien 1/entretien 2/RH/offre/refus/silence), prochaine action, échéance, fourchette de rémunération, parrain interne, notes
 
-### Step 5: 用 Artifact 做"求职看板"（可选但推荐）
+### Étape 5 : un « tableau de bord emploi » en Artifact (optionnel mais recommandé)
 
-如果当前环境里有 `mcp__cowork__create_artifact` 工具，主动提议："要不要我把这个追踪表做成一个可以每天打开看的看板？"
+Si l'environnement propose l'outil `mcp__cowork__create_artifact`, proposer activement : « veux-tu que je transforme ce tableau en un tableau de bord que tu peux ouvrir chaque jour ? »
 
-如果用户同意，创建一个 HTML artifact，从追踪表数据渲染：
-- 顶部 KPI：投递总数 / 进入面试数 / Offer 数 / 待跟进数
-- 中部表格：按"当前阶段"分组的 Kanban 视图
-- 底部提醒：3 天没动静的公司、deadline 临近的任务
-
----
-
-## 输出风格
-
-- **结构化、可执行**，不要泛泛而谈"建议你多投简历"这种话
-- 涉及薪资、行业判断时，**明确标注"市场参考、非承诺"**
-- 推荐方向时不要谄媚（不要把所有用户都推向"高薪 AI 岗"），诚实评估匹配度
-- 用户拒绝某个方向时不要劝，问清楚为什么然后调整
+Si l'utilisateur accepte, créer un artifact HTML rendu depuis les données du tableau :
+- KPI en haut : total des candidatures / passages en entretien / offres / relances en attente
+- Table au milieu : vue Kanban groupée par « étape en cours »
+- Rappels en bas : entreprises sans nouvelles depuis 3 jours, tâches dont l'échéance approche
 
 ---
 
-## 与其他 skill 的协作
+## Style de sortie
 
-- 用户选定方向后说"那帮我改简历" → 调用 `resume-builder`，把岗位画像传过去
-- 用户说"那针对这家公司的 JD 改一下" → 调用 `jd-resume-tailor`
-- 用户说"帮我准备面试" → 调用 `interview-prep`，把岗位画像传过去
-
-输出"我已经把你的岗位画像存到 ___，下一步可以让我用 resume-builder 改简历"这样的衔接句，让 agent 在多步任务里能流转。
+- **Structuré, actionnable**, pas de généralités du type « tu devrais postuler davantage »
+- Pour toute mention de rémunération ou de jugement sectoriel, **étiqueter explicitement « référence de marché, non contractuel »**
+- Ne pas être flatteur dans les recommandations (ne pas pousser tout le monde vers « les postes IA très payants »), évaluer l'adéquation avec honnêteté
+- Si l'utilisateur refuse une orientation, ne pas insister : comprendre pourquoi puis ajuster
 
 ---
 
-## 反模式（不要做）
+## Collaboration avec les autres skills
 
-- ❌ 一上来就问 8 个问题
-- ❌ 不问用户偏好，直接推 5 个方向
-- ❌ 不给追踪表，只在聊天里讲一通
-- ❌ 把"运营 / 产品 / 项目经理"塞给所有文科背景用户
-- ❌ 看到"AI / 大模型"就无脑推 LLM 岗，不评估实际技能匹配
+- Orientation retenue puis « retravaille mon CV » → appeler `resume-builder` en transmettant le profil de poste
+- « Adapte pour l'offre de cette entreprise » → appeler `jd-resume-tailor`
+- « Prépare-moi pour l'entretien » → appeler `interview-prep` en transmettant le profil de poste
+
+Formuler des phrases de transition du type « j'ai enregistré ton profil de poste dans ___, prochaine étape possible : me demander de retravailler le CV avec resume-builder », pour que l'agent enchaîne dans les tâches multi-étapes.
+
+---
+
+## Anti-patterns (à ne pas faire)
+
+- ❌ Poser 8 questions d'emblée
+- ❌ Recommander 5 orientations sans demander les préférences
+- ❌ Parler sans fournir le tableau de suivi
+- ❌ Fourguer « opérations / produit / chef de projet » à tout profil littéraire
+- ❌ Pousser sans réfléchir vers les postes LLM dès qu'on voit « IA / grand modèle », sans évaluer l'adéquation réelle des compétences
 
 
 ---
