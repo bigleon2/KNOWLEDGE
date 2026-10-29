@@ -1,6 +1,6 @@
 ---
 name: ascii-cosmos
-description: Generate a single-file product landing page with a layered ASCII cosmos hero (rotating ASCII planet, drifting irregular asteroids, comet trails, nebula gas clouds — each in its own harmonious color) plus full marketing sections (about / features grid / showcase / spec / pricing / CTA / footer). Takes a natural-language description of one product (any kind — a note app, a coffee subscription, a CLI tool, an indie hardware, a hosting service…) and outputs ONE working .html file with deep-space dark or warm-letterpress theme. Runs in BOTH Claude Code (writes to ~/Desktop) and GLM / online chat (outputs HTML inline). Trigger phrases: "做个宇宙风产品落地页", "生成 ASCII 产品官网", "ascii-cosmos-gen ...", "做个独立软件 / 独立硬件落地页", or when user drags this skill folder into chat asking for an atmospheric product landing page.
+description: Generate a single-file product landing page with a layered ASCII cosmos hero (rotating ASCII planet, drifting irregular asteroids, comet trails, nebula gas clouds — each in its own harmonious color) plus full marketing sections (about / features grid / showcase / spec / pricing / CTA / footer). Takes a natural-language description of one product (any kind — a note app, a coffee subscription, a CLI tool, an indie hardware, a hosting service…) and outputs ONE working .html file with deep-space dark or warm-letterpress theme. Runs in BOTH Claude Code (writes to ~/Desktop) and GLM / online chat (outputs HTML inline). Trigger phrases : « fais une landing produit façon cosmos », « génère un site produit ASCII », « ascii-cosmos-gen ... », « fais une landing logiciel indépendant / matériel indépendant », ou quand l'utilisateur glisse ce dossier de skill dans le chat en demandant une landing produit atmosphérique.
 visibility: public
 mode: template
 carrier: web-page
@@ -8,121 +8,121 @@ scenario: marketing-landing
 pattern_source: reference.html
 source_priority: skill-first
 triggers:
-  - "做个宇宙风产品落地页"
-  - "生成 ASCII 产品官网"
-  - "做个独立软件落地页"
-  - "做个独立硬件落地页"
-  - "ascii 落地页"
-  - "ascii hero"
+  - « fais une landing produit façon cosmos »
+  - « génère un site produit ASCII »
+  - « fais une landing logiciel indépendant »
+  - « fais une landing matériel indépendant »
+  - « landing ascii »
+  - « hero ascii »
 legacy_gen: true
 ---
 
-# ascii-cosmos — ASCII 宇宙调性产品落地页生成器
+# ascii-cosmos — générateur de landing produit à l'univers ASCII
 
-## 作品长什么样
+## À quoi ressemble le résultat
 
-单文件 HTML 产品官网，hero 是动态分层 ASCII 宇宙：
+Un site produit HTML monofichier, dont le hero est un cosmos ASCII animé en couches :
 
-- **星云气体云**（紫，柔和散点）
-- **闪烁星点**（冷白，带 ★ ✦ 装饰）
-- **旋转 ASCII 行星**（青，带 3 圈卫星轨道）
-- **漂浮不规则小行星**（琥珀金，6 种带陨石坑的多行 ASCII 形状，自旋 + 缓慢漂移）
-- **彗星拖尾**（粉，从屏幕掠过）
+- **nuages de nébuleuse** (violet, points diffus et doux)
+- **étoiles scintillantes** (blanc froid, avec décor ★ ✦)
+- **planète ASCII en rotation** (cyan, avec 3 anneaux d'orbites satellites)
+- **astéroïdes irréguliers en flottaison** (or ambré, 6 formes ASCII multi-lignes avec cratères, rotation + dérive lente)
+- **traînées de comète** (rose, frôlant l'écran)
 
-下面是常规 marketing 区块：关于 / 核心功能 6 卡片网格 / 界面预览 2 块 / 技术规格 / 订阅方案 3 档 / CTA / 页脚。所有强调字段都有"hover 时打乱-解码"的字符滚动动效（`.pt` 类）。
+Puis les blocs marketing classiques : à propos / grille de 6 cartes fonctionnalités / 2 blocs d'aperçu d'interface / spécifications techniques / 3 paliers d'abonnement / CTA / pied de page. Tous les champs en valeur possèdent l'animation de brouillage-décodage des caractères au survol (classe `.pt`).
 
-适合：独立软件、笔记/写作工具、本地优先 AI、CLI、独立硬件、订阅服务、SaaS、电子书、播客、任何"安静 / 克制 / 有手作味"的产品。
+Adapté à : logiciels indépendants, outils de notes/écriture, IA locale-first, CLI, matériel indépendant, services par abonnement, SaaS, livres numériques, podcasts — tout produit « calme / retenu / avec une touche artisanale ».
 
-## 何时触发
+## Quand se déclencher
 
-用户说：
-- "做个宇宙风产品落地页"
-- "做个 ASCII 风格的产品官网"
-- "生成一个像墨思那样的落地页 — 我的产品是 ..."
-- "ascii-cosmos-gen ..."
-- 把本 skill 文件夹拖进对话框并描述一个产品
+L'utilisateur dit :
+- « fais une landing produit façon cosmos »
+- « fais un site produit façon ASCII »
+- « génère une landing comme MoSI — mon produit est ... »
+- « ascii-cosmos-gen ... »
+- glisse le dossier de ce skill dans le chat et décrit un produit
 
-提供：
-- **产品名字 + 一句话定位**（必需）
-- **核心卖点 / 功能清单**（推荐 — 给 6 张卡片用）
-- **定价档位**（可选 — 没说就编 3 档：免费 / 专业 / 团队）
-- **风格**（可选 — 深空青 / 暖色羊皮纸 / 赛博紫 / 终端绿 …，照抄 `styles.md` 预设名或自由描述。不写就用默认深空青）
+Il fournit :
+- **nom du produit + positionnement en une phrase** (obligatoire)
+- **arguments clés / liste de fonctionnalités** (recommandé — pour les 6 cartes)
+- **paliers de prix** (optionnel — sinon en inventer 3 : gratuit / pro / équipe)
+- **style** (optionnel — cyan cosmos / parchemin chaud / violet cyber / vert terminal…, reprendre un nom de préréglage de `styles.md` ou décrire librement. À défaut, le cyan cosmos par défaut)
 
-如果用户**只给产品名一句话**：自己围绕这个产品把 6 个功能、3 档价、技术规格全部脑补出来。语气要克制、有手作味，不要 marketing 鸡血。
+Si l'utilisateur **ne donne qu'un nom et une phrase** : imaginer soi-même autour du produit les 6 fonctionnalités, les 3 paliers de prix et les spécifications. Ton retenu, artisanal, sans enthousiasme marketing forcé.
 
-## 两种运行模式
+## Deux modes d'exécution
 
-### 模式 A · Claude Code / 本地（有文件系统）
-- 输出位置：`~/Desktop/{slug}.html`（**单文件**，所有图片走 unsplash URL 或用户给的链接）
-- slug 用产品英文名小写连字符
-- 一句话报告：路径 + 用了什么风格 + 多少卡片
+### Mode A · Claude Code / local (avec système de fichiers)
+- Sortie : `~/Desktop/{slug}.html` (**monofichier**, toutes les images en URL unsplash ou liens fournis)
+- slug = nom anglais du produit, minuscules et tirets
+- rapport en une phrase : chemin + style + nombre de cartes
 
-### 模式 B · GLM / 在线对话（无文件系统）
-- 直接把完整 HTML 包在 ` ```html ` 代码块里输出
-- 图片全部用 `https://images.unsplash.com/photo-XXX?...` 或 `https://picsum.photos/seed/{slug}-NN/W/H` 占位
-- 不要尝试访问本地文件、不要建议命令行操作
-- 末尾一行说明：保存为 .html 双击打开即可
+### Mode B · GLM / dialogue en ligne (sans système de fichiers)
+- Sortir le HTML complet dans un bloc ` ```html `
+- images toutes en `https://images.unsplash.com/photo-XXX?...` ou `https://picsum.photos/seed/{slug}-NN/W/H`
+- ne pas tenter d'accéder aux fichiers locaux, pas de ligne de commande
+- une ligne finale : enregistrer en .html et double-cliquer
 
-判断：如果你**无法 Read 看到本地图片**或工作目录不是用户家目录 → 默认走 B。
+Décision : si vous **ne pouvez pas Read les images locales** ou si le répertoire de travail n'est pas le home de l'utilisateur → mode B.
 
-## 工作步骤
+## Étapes de travail
 
-### 1. 读模板
-读取本 skill 同目录下的 `template.html`。这是完整骨架，包含：
-- 全部 CSS（深空主题色 + 5 个 ASCII 层 + 卡片 / 价格 / 规格 / hero 网点字 …）
-- 全部 JS（5 层 ASCII 渲染、信息区轨道、字符滚动、标签筛选、平滑滚动、实时时钟）
-- 12 处 `<!-- SWAP-N -->` 注释标记需要替换的位置
+### 1. Lire le gabarit
+Lire `template.html` dans le répertoire du skill. C'est le squelette complet, avec :
+- tout le CSS (thème cosmos + 5 couches ASCII + cartes / prix / specs / police tramée du hero…)
+- tout le JS (rendu ASCII 5 couches, orbites de la zone info, brouillage de caractères, filtrage par tags, défilement doux, horloge temps réel)
+- 12 marqueurs de commentaire `<!-- SWAP-N -->` aux emplacements à remplacer
 
-**JS / CSS 不要改**（除了主题色变量与字体可以按 styles 改）。
+**Ne pas toucher au JS / CSS** (hors variables de thème et polices, ajustables selon styles).
 
-### 2. 读风格预设
-看 `styles.md`：5 种预设。如果用户的风格描述匹配某个名字，照那份的 CSS 变量替换 `:root`。否则按用户描述自己设计 6 个变量（`--bg / --fg / --dim / --accent / --accent2 / --accent3 / --line / --paper`）+ 5 个 ASCII 层颜色（`#ascii-nebula / -stars / -planet / -asteroids / -comets`）。
+### 2. Lire les préréglages de style
+Voir `styles.md` : 5 préréglages. Si la description de l'utilisateur correspond à un nom, remplacer `:root` par les variables CSS de ce préréglage. Sinon, concevoir soi-même 6 variables (`--bg / --fg / --dim / --accent / --accent2 / --accent3 / --line / --paper`) + les couleurs des 5 couches ASCII (`#ascii-nebula / -stars / -planet / -asteroids / -comets`) selon la description.
 
-> 配色铁律：5 个 ASCII 层颜色必须**互相和谐 + 都能在背景上读出来**。深色背景 → 高饱和发光色；浅色背景 → 中低明度有重量的色。
+> Règle de fer des couleurs : les 5 couches ASCII doivent être **harmonieuses entre elles + toutes lisibles sur le fond**. Fond sombre → couleurs saturées lumineuses ; fond clair → couleurs de luminosité moyenne-basse, avec du poids.
 
-### 3. 解析用户输入抽信息
+### 3. Analyser l'entrée utilisateur
 
-抽：
-- **PRODUCT_EN** — 英文 logo 名，全大写 ASCII 字（用于 hero 大字 ASCII title）
-- **PRODUCT_CN** — 1-2 个中文字（hero 副标题大字，会渲染为网点字）
-- **TAGLINE** — 一句话副标语（30-50 字）
-- **VERSION / TYPE / PLATFORM** — 3 个 meta 标签
-- **ABOUT_PARAGRAPH** — 80-150 字关于段落，3-5 个 `<span class="pt">` 强调短语
-- **3 HIGHLIGHT** — 3 个 cell（标题 + 一句话描述）
-- **6 FEATURES** — 6 张卡片：图片 URL + ASCII overlay（5-6 行小图） + 标题 + 副标题 + 1-2 个标签 + 分类（ai/write/graph/sync 任选或自定义）
-- **2 SHOWCASE** — 2 段界面介绍（截图 URL + mini-ascii 装饰 + 标题带 `<em>` 强调 + 2 段 60-100 字描述）
-- **10 SPEC ROWS** — 10 行键值对（版本 / 平台 / 引擎 / 数据格式 / 同步协议 …）
-- **3 PRICING** — 3 档（名字 / 价格数字 / 价格单位 / 描述 / 5-6 条特性 / CTA 按钮文案）。**中间一档加 `featured` 类**
-- **CTA_BIG** — 大字号 CTA 文案（带 `<em>` 强调）+ 副文案 + 3 个按钮 + 6-7 个平台标签
+Extraire :
+- **PRODUCT_EN** — nom de logo anglais, lettres ASCII en capitales (pour le grand titre ASCII du hero)
+- **PRODUCT_CN** — 1-2 caractères chinois (grand sous-titre du hero, rendu en police tramée)
+- **TAGLINE** — sous-devise en une phrase (30-50 caractères)
+- **VERSION / TYPE / PLATFORM** — 3 étiquettes meta
+- **ABOUT_PARAGRAPH** — paragraphe à propos de 80-150 caractères, avec 3-5 expressions mises en valeur par `<span class="pt">`
+- **3 HIGHLIGHT** — 3 cellules (titre + description en une phrase)
+- **6 FEATURES** — 6 cartes : URL d'image + overlay ASCII (petit motif 5-6 lignes) + titre + sous-titre + 1-2 tags + catégorie (ai/write/graph/sync au choix ou libre)
+- **2 SHOWCASE** — 2 présentations d'interface (URL de capture + déco mini-ascii + titre avec emphase `<em>` + 2 paragraphes de 60-100 caractères)
+- **10 SPEC ROWS** — 10 lignes clé-valeur (version / plateforme / moteur / format de données / protocole de synchronisation…)
+- **3 PRICING** — 3 paliers (nom / chiffre du prix / unité / description / 5-6 caractéristiques / libellé du bouton CTA). **Ajouter la classe `featured` au palier du milieu**
+- **CTA_BIG** — CTA en grands corps (avec emphase `<em>`) + sous-texte + 3 boutons + 6-7 étiquettes de plateforme
 
-### 4. 替换 12 处 SWAP
+### 4. Remplacer les 12 SWAP
 
-| SWAP | 位置 | 内容 |
+| SWAP | Emplacement | Contenu |
 |---|---|---|
 | 1 | `<title>` | `{PRODUCT_CN}{PRODUCT_EN} — {TAGLINE}` |
-| 2 | header logo + 5 项 nav | logo 文字 + 导航锚点（默认：功能 / 界面 / 规格 / 订阅 / 关于） |
-| 3 | hero ASCII title | `PRODUCT_EN` 的 ANSI Shadow 风 ASCII（用 https://patorjk.com/software/taag 风格，5 行高） |
-| 4 | hero 中文大字 + tagline + 3 meta | `PRODUCT_CN` + `TAGLINE` + 3 个 meta span |
-| 5 | intro 段落 + 3 cells | `ABOUT_PARAGRAPH`（含 `<span class="pt">` 强调）+ 3 个 `<div class="cell">` |
-| 6 | 6 张 features 卡片 | 每张：`data-cat` + `<img src>` + ASCII overlay + 标题 + small + tags |
-| 7 | 4 个 filter tag | 分类 chip（all + 你定的 3-4 个分类，匹配卡片的 data-cat） |
-| 8 | 2 块 showcase | 每块：截图 + mini-ascii + h3（含 em） + 2 段 p（含 pt 强调） |
-| 9 | 10 行 spec table | 每行：`<b>` 字段名 + `<span class="pt">` 值 |
-| 10 | 3 档 pricing | name / num / desc / ul li / btn |
-| 11 | info 区 CTA | info-big 大字（含 em）+ hero-sub 副文案 + 3 个按钮 + platforms |
-| 12 | footer | 版权 + 一句署名 |
+| 2 | logo du header + nav 5 items | texte du logo + ancres de navigation (défaut : fonctionnalités / interface / specs / abonnement / à propos) |
+| 3 | titre ASCII du hero | ASCII de `PRODUCT_EN` façon ANSI Shadow (style https://patorjk.com/software/taag, 5 lignes de haut) |
+| 4 | grands caractères chinois du hero + tagline + 3 meta | `PRODUCT_CN` + `TAGLINE` + 3 spans meta |
+| 5 | paragraphe d'intro + 3 cellules | `ABOUT_PARAGRAPH` (avec emphases `<span class="pt">`) + 3 `<div class="cell">` |
+| 6 | 6 cartes features | chacune : `data-cat` + `<img src>` + overlay ASCII + titre + small + tags |
+| 7 | 4 tags de filtre | chips de catégorie (all + vos 3-4 catégories, appariées aux data-cat des cartes) |
+| 8 | 2 blocs showcase | chacun : capture + mini-ascii + h3 (avec em) + 2 p (avec emphase pt) |
+| 9 | table de specs 10 lignes | chaque ligne : champ `<b>` + valeur `<span class="pt">` |
+| 10 | 3 paliers pricing | name / num / desc / ul li / btn |
+| 11 | CTA de la zone info | grands caractères info-big (avec em) + sous-texte hero-sub + 3 boutons + platforms |
+| 12 | footer | copyright + une ligne de signature |
 
-**强制保留**（不能动）：
-- 全部 `<script>` 块（5 层 ASCII 渲染 / 信息区轨道 / scramble / 标签筛选 / 平滑滚动 / 时钟）
-- `.pt` 类的字符滚动机制（要在用户文案里手动撒 `<span class="pt" data-text="...">...</span>`）
-- 5 个 ascii-layer 的 `<pre id="ascii-...">` 节点
-- `<pre id="info-ascii">` 节点
-- 6 张卡片的 data-cat 和筛选逻辑
-- featured 价格档的样式
+**À conserver impérativement** (ne pas toucher) :
+- tous les blocs `<script>` (rendu ASCII 5 couches / orbites de la zone info / scramble / filtrage de tags / défilement doux / horloge)
+- le mécanisme de brouillage de la classe `.pt` (parsemés à la main dans les textes : `<span class="pt" data-text="...">...</span>`)
+- les nœuds `<pre id="ascii-...">` des 5 couches ascii
+- le nœud `<pre id="info-ascii">`
+- les data-cat des 6 cartes et la logique de filtrage
+- le style du palier featured
 
-### 5. 写 ASCII 大字标题（SWAP-3）
+### 5. Écrire le grand titre ASCII (SWAP-3)
 
-用 ANSI Shadow / ANSI Regular 字体的 5 行 ASCII 文字。每个字母用 ╗╔═║║║╝╚═╝ 这种线条字符。例如 INKWEAVE 是：
+Un ASCII 5 lignes en police ANSI Shadow / ANSI Regular. Chaque lettre avec les caractères de trait ╗╔═║║║╝╚═╝. Exemple pour INKWEAVE :
 ```
 ██╗███╗   ██╗██╗  ██╗██╗    ██╗███████╗ █████╗ ██╗   ██╗███████╗
 ██║████╗  ██║██║ ██╔╝██║    ██║██╔════╝██╔══██╗██║   ██║██╔════╝
@@ -132,87 +132,87 @@ legacy_gen: true
 ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝
 ```
 
-**如果产品英文名超过 8 字母** → 缩到 8 字母内的简称（如 `INTERSTELLAR` → `STELLAR`），或者用更窄的 ANSI 字体（更细的 `▌▐█`）。
+**Si le nom anglais dépasse 8 lettres** → raccourcir à 8 lettres ou moins (ex. `INTERSTELLAR` → `STELLAR`), ou utiliser une police ANSI plus étroite (`▌▐█` plus fins).
 
-**如果你不确定字模长什么样** → 至少给个看得过去的 5 行 ASCII，不要留空。
+**En cas de doute sur le gabarit de lettres** → fournir au moins un ASCII 5 lignes présentable, ne jamais laisser vide.
 
-### 6. 写卡片 ASCII overlay（SWAP-6 内嵌）
+### 6. Écrire les overlays ASCII des cartes (dans SWAP-6)
 
-每张卡片右下盖一段 4-5 行的小 ASCII 装饰，对应这张卡片的功能。例如：
-- "智能续写" → `╭─────╮ │ ... │ ╰──→──╯`
-- "知识图谱" → `●─●─● │\\ │/│ ●─●`
-- "搜索" → `┌─────┐ │ ⌕ 找到 │ │  3 处 │ └─────┘`
-- "同步" → `▣ ⇄ ▢ ╲ ╱ ⇅ ╱ ╲ ▤ ⇄ ▥`
-- "时间线" → `←─◆─◆─◆─→ ░░▒▒▓▓██`
+Chaque carte reçoit en bas à droite un petit décor ASCII de 4-5 lignes, en rapport avec sa fonction. Exemples :
+- « complétion intelligente » → `╭─────╮ │ ... │ ╰──→──╯`
+- « graphe de connaissances » → `●─●─● │\ │/│ ●─●`
+- « recherche » → `┌─────┐ │ ⌕ trouvé │ │  3 occurrences │ └─────┘`
+- « synchronisation » → `▣ ⇄ ▢ ╲ ╱ ⇅ ╱ ╲ ▤ ⇄ ▥`
+- « frise chronologique » → `←─◆─◆─◆─→ ░░▒▒▓▓██`
 
-不要超过 5 行，不要超过 14 字符宽。
+Pas plus de 5 lignes, pas plus de 14 caractères de large.
 
-### 7. 撒 `<span class="pt" data-text="...">` 强调
+### 7. Parsemer les emphases `<span class="pt" data-text="...">`
 
-模板里所有需要"hover 时字符乱码再解码"的强调短语都用：
+Dans le gabarit, toutes les expressions à « brouiller puis décoder au survol » :
 ```html
-<span class="pt" data-text="原文">原文</span>
+<span class="pt" data-text="texte original">texte original</span>
 ```
-- intro 段落里撒 3-5 处
-- showcase p 里每段撒 1-2 处
-- spec 每行的值都包一层 `<span class="pt">`
-- pricing btn 文字也加 `pt`
-- 标题里的色字用 `<span class="em">...</span>`（不是 `pt`）
+- 3-5 occurrences dans le paragraphe d'intro
+- 1-2 par paragraphe des showcase
+- la valeur de chaque ligne de spec enveloppée dans `<span class="pt">`
+- le texte des boutons pricing également en `pt`
+- les mots colorés dans les titres via `<span class="em">...</span>` (pas `pt`)
 
-### 8. 风格变体（可选）
-如果用户指定了风格，照 `styles.md` 改：
-- `:root` 8 个变量
-- `.hero` background 渐变
-- 5 个 `#ascii-{layer}` 颜色
-- 图片滤镜（深色用 `hue-rotate(200deg) brightness(.7)`，暖色用 `sepia(.3) saturate(.85)`）
+### 8. Variantes de style (optionnel)
+Si l'utilisateur précise un style, ajuster selon `styles.md` :
+- les 8 variables de `:root`
+- le dégradé de fond de `.hero`
+- les couleurs des 5 `#ascii-{layer}`
+- les filtres d'images (sombre : `hue-rotate(200deg) brightness(.7)` ; chaud : `sepia(.3) saturate(.85)`)
 
-> **没有指定风格时**：根据产品的"调性词"自动选色 — 见下面「调性 → 配色映射」。
+> **Sans style précisé** : choisir automatiquement les couleurs selon les « mots de tempérament » du produit — voir « correspondance tempérament → couleurs » ci-dessous.
 
-### 8.5 替换 ASCII 场景 motif（推荐！）
+### 8.5 Remplacer le motif de scène ASCII (recommandé !)
 
-模板的 hero 默认是宇宙（行星 + 小行星 + 彗星 + 星云）。**这个 motif 应该跟着产品调性换** — 一个咖啡订阅不该飘小行星，一个森林漫步 app 不该有彗星。
+Le hero du gabarit est par défaut un cosmos (planète + astéroïdes + comètes + nébuleuse). **Ce motif doit suivre le tempérament du produit** — un abonnement café n'a pas à voir flotter des astéroïdes, une app de balade en forêt n'a pas à avoir de comètes.
 
-改法**只改一个对象**：找到 `<script>` 里的 `// SWAP-13 · ASCII 场景资产` 标记，整体替换里面的 `SCENE = { ... }`。其它 JS 不要动。
+La modification ne touche **qu'un seul objet** : repérer le marqueur `// SWAP-13 · ASCII 场景资产` dans le `<script>` et remplacer entièrement le `SCENE = { ... }`. Tout le reste du JS reste intact.
 
-`SCENE` 11 个键各自的角色：
+Les 11 clés de `SCENE` et leurs rôles :
 
-| 键 | 默认（宇宙） | 角色 / 视觉职责 |
+| Clé | Défaut (cosmos) | Rôle / responsabilité visuelle |
 |---|---|---|
-| `floaters` | 6 个不规则小行星 ASCII 形状（多行数组） | 屏幕里漂浮 + 自旋的"主物体" |
-| `centerShade` | `" .,:;-~+*=%#@█"` | 中央旋转球体的明暗梯度（暗→亮 14 字符） |
-| `diffuseChars` | `"·∙∶⋮⋯░▒"` | 弥漫底层的"气体云"密度梯度（淡→浓） |
-| `sparkRare` | `"★"` | 稀有大亮点 (4% 概率) |
-| `sparkBright` | `"✦"` | 中频亮点 (15%) |
-| `sparkDim` | `".∙"` | 普通暗点 |
-| `streakHead` | `"☄"` | 飞掠物的"头"（最亮的一格） |
-| `streakTailNear/Mid/Far/End` | `"*","∙","·","."` | 拖尾从近到远 4 段渐隐 |
-| `centerSats` | `"◉◎○"` | 围绕中央球体的 3 颗"卫星"，由内向外 |
-| `orbitDots` | `".∙•"` | 3 圈轨道线的点字符，由内向外 |
+| `floaters` | 6 formes ASCII irrégulières d'astéroïdes (tableaux multi-lignes) | les « corps principaux » flottant et tournant à l'écran |
+| `centerShade` | `" .,:;-~+*=%#@█"` | le dégradé d'ombrage de la sphère centrale en rotation (14 caractères, sombre→clair) |
+| `diffuseChars` | `"·∙∶⋮⋯░▒"` | le dégradé de densité de la « nappe gazeuse » diffuse (pâle→dense) |
+| `sparkRare` | `"★"` | point lumineux rare (4 %) |
+| `sparkBright` | `"✦"` | point lumineux fréquent (15 %) |
+| `sparkDim` | `".∙"` | points ordinaires, discrets |
+| `streakHead` | `"☄"` | la « tête » de l'objet volant (la case la plus brillante) |
+| `streakTailNear/Mid/Far/End` | `"*","∙","·","."` | la traînée, 4 segments s'estompant du proche au lointain |
+| `centerSats` | `"◉◎○"` | les 3 « satellites » autour de la sphère centrale, de l'intérieur vers l'extérieur |
+| `orbitDots` | `".∙•"` | les points des 3 anneaux d'orbite, de l'intérieur vers l'extérieur |
 
-#### Motif 库（按产品类型选）
+#### Bibliothèque de motifs (selon le type de produit)
 
-| 产品类型 | floaters 主体 | centerShade | diffuseChars | sparks | streakHead/tail | centerSats | 视觉故事 |
+| Type de produit | floaters | centerShade | diffuseChars | sparks | streakHead/tail | centerSats | Histoire visuelle |
 |---|---|---|---|---|---|---|---|
-| **咖啡 / 茶 / 饮品** | 咖啡豆 / 茶叶 形状 | `" .'-=+oO0@#"` | `"·~,'\""` (蒸汽) | `★ ✧ . ∙` | `"☕"` 头 + `"*∙·."` 拖尾 | `"●◐○"` (三种烘焙) | 一杯咖啡 + 飘豆 + 蒸汽 + 偶尔一颗豆掉过 |
-| **森林 / 自然 / 户外** | 树叶 / 松果 形状 | `" .,;:!|tT#"` (年轮) | `"~^,'\""` (雾) | `"⁂"` 萤火 + `"·"` 露珠 | `"𓅯"` 鸟 + `"~~~~"` 飞行轨迹 | `"❀✿✾"` (花) | 一棵树 + 落叶 + 雾 + 萤火虫 + 偶尔飞鸟 |
-| **音乐 / 播客 / 音频** | 音符 / 唱片碎片 | `" .─=≡▪▫■□"` | `"·∶⋮⁞"` (噪点) | `"♪♫"` + `"·"` | `"♬"` 头 + `"~∼≈"` 波 | `"◉◎○"` (黑胶圈) | 一张唱片 + 飘音符 + 频谱噪点 + 节拍 |
-| **代码 / CLI / 开发者** | `{}` `[]` `()` `<>` 包裹的小 ASCII 块 | `" 01[](){}<>#"` | `"·.,:|"` | `"★ ✦ . _"` | `"_"` 光标 + `"   "` (闪现型) | `"◉⊞⊟"` 模块 | 一个调用图 + 飞过的 commit + 闪烁光标 + 矩阵雨 |
-| **手作 / 工艺 / 极物** | 锤 / 刨花 / 钉 / 锈点 | `" .·°*+x#X@"` | `"·:.,"` (尘) | `"✦ ▪ ▫"` | `"→"` 头 + `"-—"` 切线 | `"◉○⊙"` (齿轮) | 一个工作台 + 飘刨花 + 木屑 + 偶尔一记 |
-| **冥想 / 健康 / 慢生活** | 涟漪 / 圆 / 波浪 形状 | `" ··∘○●"` | `"~∼≈"` (呼吸波) | `". ∙ °"` | `"◌"` 头 + `"·· ··"` 散点 | `"◯◌○"` (空圆) | 一个呼吸圆 + 涟漪 + 暖色尘埃 + 缓慢 |
-| **极客硬件 / 电子** | 芯片 / 电路块 (`├┤├ ┐└┘`) | `" .·•◊◆■"` | `"⋅¨"` (电气噪) | `"⚡"` 偶现 + `"·"` | `"►"` 头 + `"==="` 数据流 | `"⊙⊚⊛"` (LED) | PCB + 漂浮电容 + 数据流飞过 |
-| **写作 / 笔记 / 思考** | `"…"` `"——"` `"§"` 标点形状 | `" .,;:!?¶§"` | `"··¨"` | `". ∶ ⋮"` | `"✒"` 头 + `"~~~"` 笔迹 | `"◉◯●"` (墨点) | 一支笔 + 飘标点 + 笔迹划过 + 思绪点 |
-| **意式 / 复古 / 80s** | 像素方块 / 撞色几何 | `" .░▒▓█"` | `"·:|"` | `"◆ ◇ ▰"` | `"◉"` 头 + `"━━"` 实线 | `"■□▣"` | 一个 CRT + 像素粒子 + 扫描线 |
-| **海洋 / 旅行 / 远方** | 鱼 / 帆 / 船 / 浪 | `" .~≈≋"` 水波 | `"~∼≈≋"` (波纹) | `"·°"` (气泡) | `"⛵"` 头 + `"~~~"` 尾流 | `"◐◑◯"` (月相) | 一艘船 + 浪 + 气泡 + 海鸟划过 |
+| **café / thé / boissons** | formes grains de café / feuilles de thé | `" .'-=+oO0@#"` | `"·~,'\""` (vapeur) | `★ ✧ . ∙` | `"☕"` en tête + `"*∙·."` | `"●◐○"` (trois torréfactions) | une tasse + grains flottants + vapeur + un grain qui passe |
+| **forêt / nature / plein air** | formes feuilles / pommes de pin | `" .,;:!|tT#"` (anneaux de croissance) | `"~^,'\""` (brume) | `"⁂"` lucioles + `"·"` rosée | `"𓅯"` oiseau + `"~~~~"` trajectoire | `"❀✿✾"` (fleurs) | un arbre + feuilles qui tombent + brume + lucioles + un oiseau qui passe |
+| **musique / podcast / audio** | notes / fragments de disque | `" .─=≡▪▫■□"` | `"·∶⋮⁞"` (bruit) | `"♪♫"` + `"·"` | `"♬"` en tête + `"~∼≈"` onde | `"◉◎○"` (cercles vinyl) | un disque + notes flottantes + bruit de spectre + le rythme |
+| **code / CLI / développeurs** | petits blocs ASCII dans `{}` `[]` `()` `<>` | `" 01[](){}<>#"` | `"·.,:|"` | `"★ ✦ . _"` | `"_"` curseur + `"   "` (clignotant) | `"◉⊞⊟"` modules | un graphe d'appels + un commit qui passe + curseur clignotant + pluie de rectangles |
+| **artisanat / fait main** | marteau / copeaux / clous / points de rouille | `" .·°*+x#X@"` | `"·:.,"` (poussière) | `"✦ ▪ ▫"` | `"→"` en tête + `"-—"` tangente | `"◉○⊙"` (engrenages) | un établi + copeaux au vent + sciure + un coup de temps en temps |
+| **méditation / bien-être / slow life** | formes ondulations / cercles / vagues | `" ··∘○●"` | `"~∼≈"` (onde respirante) | `". ∙ °"` | `"◌"` en tête + `"·· ··"` pointillés | `"◯◌○"` (cercles vides) | un cercle de respiration + ondulations + poussière chaude + lenteur |
+| **matériel geek / électronique** | puces / blocs de circuit (`├┤├ ┐└┘`) | `" .·•◊◆■"` | `"⋅¨"` (bruit électrique) | `"⚡"` occasionnel + `"·"` | `"►"` en tête + `"==="` flux de données | `"⊙⊚⊛"` (LED) | un PCB + condensateurs flottants + un flux de données qui passe |
+| **écriture / notes / pensée** | formes de ponctuation `"…"` `"——"` `"§"` | `" .,;:!?¶§"` | `"··¨"` | `". ∶ ⋮"` | `"✒"` en tête + `"~~~"` trait de plume | `"◉◯●"` (taches d'encre) | une plume + ponctuation flottante + un trait qui passe + des points de pensée |
+| **rétro italien / années 80** | carrés pixel / géométries contrastées | `" .░▒▓█"` | `"·:|"` | `"◆ ◇ ▰"` | `"◉"` en tête + `"━━"` trait plein | `"■□▣"` | un CRT + particules pixel + lignes de balayage |
+| **océan / voyage / ailleurs** | poissons / voiles / bateaux / vagues | `" .~≈≋"` ondulation | `"~∼≈≋"` (moirures) | `"·°"` (bulles) | `"⛵"` en tête + `"~~~"` sillage | `"◐◑◯"` (phases de lune) | un bateau + vagues + bulles + un oiseau de mer qui frôle |
 
-#### 怎么写 floaters 形状
+#### Comment écrire les formes floaters
 
-每个形状是 3-4 行的多行 ASCII，宽 8-12 字符。一定要：
-- 形状轮廓闭合（比如树叶 `,/^\,` `(   )` `'\_/'` ）
-- 多个变体不要长得一模一样，至少 3-6 个不同的
-- 单字符宽度，不要用全角
-- 留 1 格 padding 让旋转抖动好看
+Chaque forme est un ASCII multi-lignes de 3-4 lignes, large de 8-12 caractères. Impérativement :
+- contour fermé (ex. feuille `,/^\,` `(   )` `'\_/'`)
+- des variantes différentes entre elles, au moins 3-6 distinctes
+- largeur d'un caractère, pas de pleine chasse
+- garder 1 case de padding pour que le tremblement en rotation soit joli
 
-**树叶示例**：
+**Exemple feuilles** :
 ```js
 floaters: [
   [" ,-^-, ",
@@ -227,7 +227,7 @@ floaters: [
 ]
 ```
 
-**音符示例**：
+**Exemple notes de musique** :
 ```js
 floaters: [
   ["  ♪    ",
@@ -242,52 +242,52 @@ floaters: [
 ]
 ```
 
-**写完检查**：把 SCENE 直接贴进控制台，跑一下 `JSON.stringify(SCENE)` 不报错就 OK。
+**Contrôle après écriture** : coller SCENE dans la console, lancer `JSON.stringify(SCENE)` sans erreur, c'est bon.
 
-#### 自由发挥的判定
+#### Critères d'improvisation
 
-如果用户的产品**不在上表 10 类**里 → 自己设计 motif，遵守原则：
-1. **floaters** 选 3-6 个跟产品有具象关联的小图形（"它会让人想到这个产品"）
-2. **centerShade** 14 字符明暗梯度，暗的字符（` .,`）开头，亮的（`@#█`）结尾，中间渐变
-3. **diffuseChars** 5-8 个"半透明"字符（点 / 顿点 / 小方块 / 波浪），表现氛围底层
-4. **streak** 整套要"前重后轻"渐隐
-5. **sat / orbitDots** 各 3 个，表现轻重三级
+Si le produit de l'utilisateur **n'est pas dans les 10 catégories** → concevoir le motif soi-même, en respectant :
+1. **floaters** : 3-6 petits graphiques en lien concret avec le produit (« ça fait penser au produit »)
+2. **centerShade** : 14 caractères de dégradé sombre→clair, débutant par les caractères sombres (` .,`) et finissant par les lumineux (`@#█`), transition continue
+3. **diffuseChars** : 5-8 caractères « semi-transparents » (points / petits carrés / ondulations), pour l'atmosphère de fond
+4. **streak** : l'ensemble doit s'estomper « lourd devant, léger derrière »
+5. **sat / orbitDots** : 3 chacun, pour trois niveaux de poids
 
-> 一句话原则：**让人不戴眼镜、3 米外瞄一眼，能猜出这是个什么产品的网站。**
+> Le principe en une phrase : **sans lunettes, à 3 mètres, on doit deviner de quel produit il s'agit.**
 
-### 9. 调性 → 配色映射（用户没指定风格时按这个选）
+### 9. Correspondance tempérament → couleurs (sans style précisé)
 
-| 用户描述里的关键词 | 推荐预设 | 主色 |
+| Mots-clés dans la description | Préréglage recommandé | Couleur dominante |
 |---|---|---|
-| 安静 / 克制 / 思考 / 写作 / 笔记 / 本地优先 | **深空青**（默认） | `#8be9ff` 青 |
-| 温暖 / 手作 / 中式 / 文艺 / 慢 / 茶 / 复古 | **暖色羊皮纸** | `#660125` 酒红 |
-| 高能 / 未来 / AI / Web3 / 游戏 / 极客 | **赛博紫** | `#ff00aa` 霓虹品红 |
-| CLI / 终端 / 安全 / 复古 80s / phosphor | **终端绿** | `#00ff66` |
-| 自然 / 健康 / 冥想 / 旅行 / 北欧 | **极光** | `#7fe3c4` 极光绿 |
-| 咖啡 / 烘焙 / 工艺 / 食品 / 沙漠 / 大地 | **沙漠日落** | `#ff8b3d` 烤橙 |
-| 海洋 / 远方 / 蓝色 / 冷静 / 数据 | 自由设计 | `#4fc3f7` 海洋蓝 |
-| 黑金 / 奢侈 / 精确 / 钟表 / 高端硬件 | 自由设计 | `#d4af37` 香槟金 + 黑底 |
+| calme / retenu / réflexion / écriture / notes / local-first | **cyan cosmos** (défaut) | `#8be9ff` cyan |
+| chaleureux / fait main / à la chinoise / littéraire / lent / thé / rétro | **parchemin chaud** | `#660125` bordeaux |
+| énergie / futur / IA / Web3 / jeu / geek | **violet cyber** | `#ff00aa` magenta néon |
+| CLI / terminal / sécurité / rétro 80s / phosphor | **vert terminal** | `#00ff66` |
+| nature / santé / méditation / voyage / nordique | **aurore** | `#7fe3c4` vert aurore |
+| café / torréfaction / artisanat / alimentaire / désert / terre | **coucher de désert** | `#ff8b3d` orange brûlé |
+| océan / ailleurs / bleu / calme / données | design libre | `#4fc3f7` bleu océan |
+| noir et or / luxe / précision / horlogerie / matériel haut de gamme | design libre | `#d4af37` or champagne + fond noir |
 
-判定流程：
-1. **用户明确说了风格名** → 照 `styles.md` 改
-2. **用户没说，但产品有明显调性** → 按上表选最贴的预设
-3. **完全开放** → 默认深空青
+Procédure de décision :
+1. **L'utilisateur nomme le style** → suivre `styles.md`
+2. **Pas de nom, mais tempérament évident** → prendre le préréglage le plus proche du tableau
+3. **Tout ouvert** → cyan cosmos par défaut
 
-### 10. 报告
+### 10. Rapport
 
-**模式 A**：一句话。
-> 已生成 ~/Desktop/{slug}.html — {产品名}产品落地页，6 个功能卡片 + 3 档价格，深空青风格。双击打开。
+**Mode A** : une phrase.
+> Généré ~/Desktop/{slug}.html — landing produit {nom}, 6 cartes fonctionnalités + 3 paliers de prix, style cyan cosmos. Double-cliquez pour ouvrir.
 
-**模式 B**：完整 HTML 代码块 + 一行说明。
-> 保存为 `{slug}.html` 双击打开。要换图就把图片 URL 换成你自己的。要改 ASCII 主标题去顶部的 `<pre class="ascii-title lg">` 替换字模。
+**Mode B** : le bloc HTML complet + une ligne.
+> Enregistrez sous `{slug}.html` et double-cliquez. Pour changer les images, remplacez les URL par les vôtres. Pour modifier le grand titre ASCII, remplacez le gabarit dans le `<pre class="ascii-title lg">` en haut.
 
-## 易错速查
+## Aide-mémoire des pièges
 
-- **5 个 ASCII 层颜色互相打架**：测试一下深色背景下 5 色都要清晰可读。粉太亮、紫太暗都会塌
-- **ASCII 大字模板对不上**：5 行 ANSI Shadow 字符高度必须严格 5-6 行，不要 3 行
-- **`<pre>` 里换行用真换行**，不要 `\n` 字符串字面量
-- **卡片 data-cat 和 filter 不匹配** → 筛选失效。一致性检查
-- **pricing 中间档忘加 `featured`** → 视觉重心丢
-- **JSON / 对象里中文引号**：ASCII overlay 里如果用引号一律用全角 `""`
-- **删了 `<pre id="ascii-comets">` 之类的层** → JS 报错。5 层节点必须全部保留
-- **没给图片 URL** → 用 unsplash 的横图（`?auto=format&fit=crop&w=900&q=70`）或 picsum
+- **5 couches ASCII qui se bagarrent** : tester — sur fond sombre, les 5 couleurs doivent rester lisibles. Un rose trop vif ou un violet trop sombre fait tout s'effondrer
+- **Grand ASCII mal gabarié** : le titre ANSI Shadow doit faire strictement 5-6 lignes de haut, pas 3
+- **Dans `<pre>`, de vrais retours à la ligne**, pas des littéraux `\n`
+- **data-cat des cartes non apparié au filtre** → le filtrage casse. Contrôler la cohérence
+- **Palier du milieu sans `featured`** → le centre de gravité visuel se perd
+- **Guillemets chinois dans les objets JSON** : dans les overlays ASCII, des guillemets → toujours des formes pleines `""`
+- **Suppression d'une couche type `<pre id="ascii-comets">`** → erreur JS. Les 5 nœuds doivent tous rester
+- **Pas d'URL d'images** → images paysage unsplash (`?auto=format&fit=crop&w=900&q=70`) ou picsum
