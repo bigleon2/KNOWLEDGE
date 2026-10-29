@@ -1,6 +1,6 @@
 ---
 name: auto-target-tracker
-description: 自动目标进度追踪器。在对话中检测到目标相关图片（笔记、进度、截图、记录）时，自动调用 VLM 识别关键信息并记录到目标日记。适用于学习管理、健身追踪、工作进度、习惯养成、创作记录等所有目标管理场景。
+description: Traqueur automatique de progression des objectifs. Quand la conversation contient des images liées à un objectif (notes, progrès, captures, journaux), il appelle automatiquement le VLM pour reconnaître les informations clés et les consigner dans le journal d'objectif. Convient à tous les scénarios de gestion d'objectif : gestion des études, suivi sportif, avancement professionnel, installation d'habitudes, journal de création.
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -11,249 +11,249 @@ description: 自动目标进度追踪器。在对话中检测到目标相关图�
 
 
 
-# 自动目标进度追踪器
+# Traqueur automatique de progression des objectifs
 
-## 触发条件
+## Conditions de déclenchement
 
-当对话中出现以下条件时自动触发：
+Se déclenche automatiquement quand la conversation présente l'une des conditions suivantes :
 
-1. **用户发送了图片**（特别是学习笔记、进度截图、健身记录、任务清单、创作作品等）。
-2. **用户在设定的目标时间段**（如 08:30, 10:00, 20:00）发送了图片。
-3. **用户明确说**"帮我记一下"、"看下进度"、"打卡"、"更新一下"等。
+1. **L'utilisateur envoie une image** (notamment notes d'étude, captures de progression, relevés sportifs, listes de tâches, travaux de création, etc.).
+2. **L'utilisateur envoie une image dans un créneau horaire d'objectif défini** (ex. 08:30, 10:00, 20:00).
+3. **L'utilisateur le demande explicitement** : « note ça pour moi », « regarde où j'en suis », « pointage », « mets à jour », etc.
 
 ---
 
-## 工作流程
+## Workflow
 
-### 1. 检测图片
+### 1. Détecter l'image
 
-当检测到图片时，检查：
-- 图片文件名是否包含目标关键词（progress, goal, task, workout, note等）
-- 图片内容是否包含目标元素（进度条、文字、代码、图表、计划表等）
-- 是否在预定的目标提醒时间附近
-- 用户最近的对话上下文是否涉及目标的执行
+À la détection d'une image, vérifier :
+- si le nom de fichier contient des mots-clés d'objectif (progress, goal, task, workout, note, etc.)
+- si le contenu de l'image comporte des éléments d'objectif (barres de progression, texte, code, graphiques, plannings, etc.)
+- si l'on est proche d'un créneau de rappel d'objectif
+- si le contexte récent de la conversation porte sur l'exécution de l'objectif
 
-### 2. 调用 VLM 识别
+### 2. Appeler le VLM pour la reconnaissance
 
-使用 vlm 工具识别图片：
+Utiliser l'outil vlm pour analyser l'image :
 
-**通用 prompt 模板**：
+**Gabarit de prompt générique** :
 ```
-"识别图片中的关键信息，根据目标类型提取以下内容：
-- 核心任务/内容
-- 完成进度或数量
-- 关键数据（如时间、重量、字数等）
-- 给出一段简短的执行反馈"
+« Reconnaître les informations clés de l'image et, selon le type d'objectif, en extraire :
+- la tâche/le contenu principal
+- la progression ou les quantités accomplies
+- les données clés (durée, charge, nombre de mots, etc.)
+- puis fournir un bref retour d'exécution »
 ```
 
-**目标类型专用 prompt**：
+**Prompts dédiés par type d'objectif** :
 
-| 目标类型 | Prompt |
+| Type d'objectif | Prompt |
 |---------|--------|
-| 学习 | "识别学习笔记，提取知识点、完成度" |
-| 健身 | "识别健身记录，提取运动类型、组数、次数、重量" |
-| 工作 | "识别工作进度，提取完成任务、完成率" |
-| 创作 | "识别创作作品，提取创作类型、进度、关键元素" |
-| 习惯 | "识别打卡记录，提取打卡内容、连续天数" |
+| Étude | « Reconnaître des notes d'étude, extraire les points de savoir et le taux d'achèvement » |
+| Sport | « Reconnaître un relevé d'entraînement, extraire le type d'exercice, les séries, les répétitions, la charge » |
+| Travail | « Reconnaître une progression de travail, extraire les tâches accomplies et le taux d'achèvement » |
+| Création | « Reconnaître un travail de création, extraire le type, l'avancement et les éléments clés » |
+| Habitude | « Reconnaître un journal de pointage, extraire le contenu pointé et le nombre de jours consécutifs » |
 
-### 3. 解析目标信息
+### 3. Analyser les informations de l'objectif
 
-从 VLM 返回的结果中提取：
-- **任务/内容清单**：识别出的具体行动或任务
-- **完成度**：基于图片内容的进度估算
-- **关键数据**：时间、数量、重量、字数等量化指标
-- **认知反馈**：对当前目标状态的简评
+Extraire du retour du VLM :
+- **la liste des tâches/contenus** : actions ou tâches précises reconnues
+- **le taux d'achèvement** : estimation de progression fondée sur le contenu de l'image
+- **les données clés** : indicateurs quantifiés — durée, quantités, charges, nombre de mots…
+- **le retour cognitif** : bref commentaire sur l'état courant de l'objectif
 
-### 4. 记录到目标日记
+### 4. Consigner dans le journal d'objectif
 
-调用`edit_daily`工具将识别结果记录到当天的日常笔记中
+Appeler l'outil `edit_daily` pour enregistrer le résultat de la reconnaissance dans la note quotidienne du jour
 
 
-### 5. 反馈给用户
+### 5. Retour à l'utilisateur
 
-向用户确认识别结果：
+Faire confirmer le résultat de la reconnaissance à l'utilisateur :
 
 ```
-已记录你的目标打卡：
+Votre pointage d'objectif est enregistré :
 
-📝 识别结果：
-核心内容：你拍的是今天的英语单词表，一共记了 15 个新词。
-进度估算：今天的单词任务全部搞定，进度打败了 80% 的学习党。
-建议：有两个单词的拼写有点模糊，明天复习的时候记得多看两眼。
+📝 Résultat de la reconnaissance :
+Contenu principal : la photo montre votre tableau de vocabulaire anglais du jour, 15 nouveaux mots appris.
+Estimation de progression : la tâche de vocabulaire du jour est bouclée, vous faites mieux que 80 % des étudiants.
+Conseil : l'orthographe de deux mots reste floue, repassez-y demain en révision.
 
-记录准确吗？要帮你存进今天的目标日记里吗？
+L'enregistrement est-il exact ? Veux-tu que je le conserve dans le journal d'objectif du jour ?
 ```
 
 ---
 
-## 记录格式
+## Format d'enregistrement
 
-### 目标日记条目示例
+### Exemple d'entrée de journal d'objectif
 
 ```markdown
-## 20:00 打卡记录
+## 20:00 Pointage
 
-**目标类型**: 📚 学习
+**Type d'objectif** : 📚 Étude
 
-**图片**: ![目标图片](path/to/image.jpg)
+**Image** : ![image d'objectif](path/to/image.jpg)
 
-**VLM识别结果**:
+**Résultat VLM** :
 
-| 任务/内容 | 进度/数量 | 状态 |
+| Tâche/contenu | Progression/quantité | Statut |
 |----------|----------|------|
-| 英语单词 (Unit 1) | 15 个 | 已完成 |
-| 数学练习 (第3章) | 80% | 进行中 |
+| Vocabulaire anglais (Unité 1) | 15 mots | accompli |
+| Exercices de maths (chap. 3) | 80 % | en cours |
 
-| **总计** | | **今日达成 2/3** |
+| **Total** | | **2/3 atteints aujourd'hui** |
 
-**关键数据**:
-- 学习时长: 2小时
-- 专注度: 高
+**Données clés** :
+- Durée d'étude : 2 heures
+- Concentration : haute
 
-**备注**: 自动识别，用户确认正确
+**Note** : reconnaissance automatique, validée par l'utilisateur
 
 ---
 
-## 10:30 健身打卡
+## 10:30 Pointage sport
 
-**目标类型**: 🏃 健身
+**Type d'objectif** : 🏃 Sport
 
-**图片**: ![健身记录](path/to/gym.jpg)
+**Image** : ![relevé d'entraînement](path/to/gym.jpg)
 
-**VLM识别结果**:
+**Résultat VLM** :
 
-| 运动类型 | 组数 | 次数 | 重量 | 状态 |
+| Exercice | Séries | Répétitions | Charge | Statut |
 |---------|------|------|------|------|
-| 卧推 | 4 | 12 | 60kg | ✅ 完成 |
-| 深蹲 | 4 | 10 | 80kg | ✅ 完成 |
-| 引体向上 | 3 | 8 | 自重 | ⚠️ 少一组 |
+| Développé couché | 4 | 12 | 60 kg | ✅ fait |
+| Squat | 4 | 10 | 80 kg | ✅ fait |
+| Tractions | 3 | 8 | poids du corps | ⚠️ une série en moins |
 
-| **总计** | | | **今日达标** |
+| **Total** | | | **objectif du jour atteint** |
 
-**关键数据**:
-- 总重量: 2640kg
-- 训练时长: 45分钟
+**Données clés** :
+- Charge totale : 2640 kg
+- Durée d'entraînement : 45 minutes
 
-**备注**: 引体向上少完成一组，下次补上
+**Note** : une série de tractions manquante, à rattraper la prochaine fois
 ```
 
 ---
 
-## 与目标系统的集成
+## Intégration au système d'objectifs
 
-### 每日汇总
+### Récapitulatif quotidien
 
-在每天晚上 22:00 的汇总中，包含：
-- 今日所有打卡记录
-- 目标达成率分析
-- 与目标的对比（如果设置了目标）
+Dans le récapitulatif de 22:00 chaque soir, inclure :
+- tous les pointages du jour
+- l'analyse du taux d'atteinte des objectifs
+- la comparaison aux cibles (si des cibles sont définies)
 
-### 周/月报告
+### Rapports hebdomadaires/mensuels
 
-在周报告中，包含：
-- 本周有效执行时长
-- 目标覆盖范围
-- 连续打卡天数
-- 动态难度调整建议：如果连续达标，则建议提升下周任务量
+Dans le rapport hebdomadaire, inclure :
+- la durée effective d'exécution de la semaine
+- la couverture des objectifs
+- le nombre de jours de pointage consécutifs
+- des suggestions d'ajustement de difficulté : en cas de réussite consécutive, proposer d'augmenter la charge de la semaine suivante
 
 ---
 
-## 常见使用场景
+## Scénarios d'usage courants
 
-### 场景1：学习打卡
+### Scénario 1 : pointage d'étude
 
-**用户行为**：发送手写笔记照片
+**Comportement utilisateur** : envoi d'une photo de notes manuscrites
 
-**自动识别**：
-- 提取知识点
-- 计算学习进度
-- 记录到学习日志
+**Reconnaissance automatique** :
+- extraction des points de savoir
+- calcul de la progression d'étude
+- enregistrement dans le journal d'étude
 
-**反馈示例**：
+**Exemple de retour** :
 ```
-📚 识别到学习笔记：
-- 机器学习监督学习算法（已完成）
-- 梯度下降优化器（进行中）
-- 正则化防过拟合（未开始）
+📚 Notes d'étude reconnues :
+- algorithmes supervisés du machine learning (accompli)
+- optimiseurs à descente de gradient (en cours)
+- régularisation contre le surapprentissage (non commencé)
 
-进度：33% | 预计还需 2 小时完成
-```
-
-### 场景2：健身打卡
-
-**用户行为**：发送健身记录照片
-
-**自动识别**：
-- 提取运动类型
-- 统计组数、次数、重量
-- 计算训练量
-
-**反馈示例**：
-```
-🏃 健身记录已识别：
-- 卧推 60kg × 12 × 4组 ✅
-- 深蹲 80kg × 10 × 4组 ✅
-- 引体向上 自重 × 8 × 3组 ✅
-
-总训练量：2640kg | 时长：45分钟
+Progression : 33 % | environ 2 heures restantes
 ```
 
-### 场景3：工作进度
+### Scénario 2 : pointage sport
 
-**用户行为**：发送项目进度截图
+**Comportement utilisateur** : envoi d'une photo de relevé d'entraînement
 
-**自动识别**：
-- 提取已完成任务
-- 计算完成百分比
-- 识别剩余任务
+**Reconnaissance automatique** :
+- extraction du type d'exercice
+- comptage des séries, répétitions, charges
+- calcul du volume d'entraînement
 
-**反馈示例**：
+**Exemple de retour** :
 ```
-💼 工作进度已识别：
-- 需求文档（已完成）✅
-- 原型设计（已完成）✅
-- 前端开发（进行中）🔄 80%
-- 后端开发（未开始）⏳
+🏃 Relevé d'entraînement reconnu :
+- Développé couché 60 kg × 12 × 4 séries ✅
+- Squat 80 kg × 10 × 4 séries ✅
+- Tractions poids du corps × 8 × 3 séries ✅
 
-项目总进度：67%
-```
-
-### 场景4：创作打卡
-
-**用户行为**：发送创作作品照片
-
-**自动识别**：
-- 提取创作类型
-- 识别关键元素
-- 估算完成度
-
-**反馈示例**：
-```
-🎨 创作记录已识别：
-类型：插画创作
-元素：人物角色、背景场景
-完成度：线稿100%，上色60%
-
-建议：今天完成了角色线稿，明天可以开始背景上色
+Volume total : 2640 kg | Durée : 45 minutes
 ```
 
-### 场景5：习惯打卡
+### Scénario 3 : progression de travail
 
-**用户行为**：发送打卡日历截图
+**Comportement utilisateur** : envoi d'une capture d'avancement de projet
 
-**自动识别**：
-- 提取连续打卡天数
-- 识别今日打卡状态
-- 计算打卡率
+**Reconnaissance automatique** :
+- extraction des tâches accomplies
+- calcul du pourcentage d'achèvement
+- identification des tâches restantes
 
-**反馈示例**：
+**Exemple de retour** :
 ```
-✅ 习惯打卡已识别：
-早起：连续 15 天 | 打卡率 100%
-阅读：连续 8 天 | 打卡率 73%
-运动：连续 21 天 | 打卡率 100%
+💼 Avancement de travail reconnu :
+- cahier des besoins (accompli) ✅
+- conception des maquettes (accompli) ✅
+- développement front-end (en cours) 🔄 80 %
+- développement back-end (non commencé) ⏳
 
-🎉 运动已连续打卡 3 周，继续保持！
+Progression globale du projet : 67 %
+```
+
+### Scénario 4 : pointage de création
+
+**Comportement utilisateur** : envoi d'une photo d'un travail de création
+
+**Reconnaissance automatique** :
+- extraction du type de création
+- identification des éléments clés
+- estimation du taux d'achèvement
+
+**Exemple de retour** :
+```
+🎨 Journal de création reconnu :
+Type : illustration
+Éléments : personnages, arrière-plans
+Avancement : crayonné 100 %, colorisation 60 %
+
+Conseil : le crayonné des personnages est terminé aujourd'hui, la colorisation des décors peut commencer demain
+```
+
+### Scénario 5 : pointage d'habitude
+
+**Comportement utilisateur** : envoi d'une capture du calendrier de pointage
+
+**Reconnaissance automatique** :
+- extraction du nombre de jours consécutifs
+- identification du statut du jour
+- calcul du taux de pointage
+
+**Exemple de retour** :
+```
+✅ Pointage d'habitude reconnu :
+Lever tôt : 15 jours consécutifs | taux 100 %
+Lecture : 8 jours consécutifs | taux 73 %
+Sport : 21 jours consécutifs | taux 100 %
+
+🎉 Sport pointé sans interruption depuis 3 semaines, continuez !
 ```
 
 ---
@@ -261,65 +261,65 @@ description: 自动目标进度追踪器。在对话中检测到目标相关图�
 ## Scope
 
 This skill ONLY:
-- 识别目标相关图片并提取关键信息
-- 记录打卡数据到日常笔记文件
-- 提供进度反馈和建议
+- reconnaît les images liées aux objectifs et en extrait les informations clés
+- enregistre les données de pointage dans les fichiers de notes quotidiennes
+- fournit retours et conseils sur la progression
 
 This skill NEVER:
-- 自动执行任何基于识别结果的操作
-- 上传图片到外部服务（除 VLM API）
-- 访问用户未授权的图片资源
-- 修改用户的目标计划（仅记录进度）
+- n'exécute automatiquement aucune action fondée sur la reconnaissance
+- ne téléverse pas les images vers des services externes (hors API VLM)
+- n'accède pas aux images non autorisées par l'utilisateur
+- ne modifie pas le plan d'objectif de l'utilisateur (enregistrement de la progression seulement)
 
 ---
 
 ## Security & Privacy
 
 **Data that stays local:**
-- 识别后的结构化结果
-- 记录到 日常笔记或长期记忆 和 USER.md 的内容
-- 打卡历史数据
+- les résultats structurés de la reconnaissance
+- les contenus consignés dans les notes quotidiennes ou la mémoire longue et USER.md
+- l'historique des pointages
 
 **This skill does NOT:**
-- 分享目标进度或打卡数据给第三方
-- 自动发布打卡信息到社交平台
-- 访问用户的其他图片资源
+- partager la progression des objectifs ou les données de pointage avec des tiers
+- publier automatiquement les pointages sur les réseaux sociaux
+- accéder aux autres ressources d'images de l'utilisateur
 
 ---
 
-## 注意事项
+## Points d'attention
 
-1. **隐私保护**: 图片和识别结果仅存储在本地，不会上传到云端（除了调用 VLM API 进行识别）
-2. **准确性**: VLM 识别的内容仅供参考，可能因字迹模糊、图片质量等原因有所偏差
-3. **及时确认**: 建议用户在记录后及时确认识别结果，如有偏差可手动修正
-4. **目标类型识别**: 系统会根据图片内容自动判断目标类型，如有误可手动调整
-5. **进度估算**: 进度百分比基于图片内容估算，可能不准确，建议用户定期手动更新
+1. **Protection de la vie privée** : les images et résultats de reconnaissance restent stockés localement, aucun téléversement cloud (hors appel de l'API VLM pour la reconnaissance)
+2. **Exactitude** : les contenus reconnus par le VLM sont indicatifs ; des écarts sont possibles selon l'écriture ou la qualité de l'image
+3. **Confirmation rapide** : inviter l'utilisateur à confirmer sans tarder le résultat et à corriger manuellement en cas d'écart
+4. **Reconnaissance du type d'objectif** : le système déduit le type d'objectif du contenu de l'image ; ajustement manuel possible en cas d'erreur
+5. **Estimation de progression** : les pourcentages sont estimés depuis l'image et peuvent être imprécis ; une mise à jour manuelle régulière est conseillée
 
 ---
 
-## 集成建议
+## Suggestions d'intégration
 
-### 与 SOUL.md 配合
+### Avec SOUL.md
 
-将自动追踪器整合到目标管理日常工作流中：
+Intégrer le traqueur automatique au workflow quotidien de gestion des objectifs :
 
 ```markdown
-### 2. 智能记录与估算 (Logging & Estimation)
+### 2. Enregistrement et estimation intelligents (Logging & Estimation)
 
-- 当用户发送任何与目标相关的图片时：
-  1. 自动调用 auto-target-tracker 识别内容
-  2. 提取关键信息并估算进度
-  3. 立刻记录到日常笔记中
-  4. 同步更新 USER.md 的目标进度
+- Quand l'utilisateur envoie une image liée à un objectif :
+  1. appeler automatiquement auto-target-tracker pour reconnaître le contenu
+  2. extraire les informations clés et estimer la progression
+  3. consigner immédiatement dans la note quotidienne
+  4. mettre à jour en synchronisation la progression de l'objectif dans USER.md
 ```
 
-### 与 HEARTBEAT.md 配合
+### Avec HEARTBEAT.md
 
-在心跳检查中包含：
+Inclure dans le contrôle de pulsation :
 
 ```markdown
-## 每日汇总
-- 22:00 自动读取今日所有打卡记录
-- 生成目标进度报告
-- 发送给用户
+## Récapitulatif quotidien
+- 22:00 lecture automatique de tous les pointages du jour
+- génération du rapport de progression des objectifs
+- envoi à l'utilisateur
 ```
