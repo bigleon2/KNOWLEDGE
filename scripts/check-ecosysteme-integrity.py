@@ -70,7 +70,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.26.0",  # KO-L004 (session web-f90062ce, 2026-10-24) : leçons vérité source PM INSTALL (dégradation gracieuse philosophie #4 + règle d'or n°5 anti-aspirant) ; précédent SG7.4 Task B2 : re-matérialisation structure hiérarchique ; précédent Task 26 : parallélisation par défaut
+    "gen-plan": "3.28.1",  # KO-L004 (session web-eb6c8580, 2026-10-30 — résorption réserves héritées P3-P7) : v3.26.0→v3.28.1 (v3.27.0 fusion lignée canonique+fork E7-DISP, web-dd290b0d ; v3.28.0 §A déclencheurs ; v3.28.1 recalibration E15 #token) ; précédent (web-f90062ce, 2026-10-24) : leçons vérité source PM INSTALL (dégradation gracieuse philosophie #4 + règle d'or n°5 anti-aspirant) ; précédent SG7.4 Task B2 : re-matérialisation structure hiérarchique ; précédent Task 26 : parallélisation par défaut
     "knowledge-observer": "1.0.0",
     "correct-work": "2.8.0",
     "clone-chat": "2.0.2",
@@ -101,7 +101,7 @@ ECO_SKILLS = {
     "refactoring-engineering": "1.1.1",  # n°55 — Task 9 (2026-10-12) : Description Optimization A2 (dérive voie M résorbée, re-mesure 7/7) ; Task 8 : seule discipline de refactoring, outil refactoring-test ; Task 12 : recalibrage doc (§5 baseline MESURÉE 7/7, plancher ref-test >=1.0.1)
     "refactor-guard": "1.8.1",
     "alias-eco": "1.2.0",  # KO-L004 Task 25bis/25ter (2026-10-23) : Description Optimization v1.1.0 + grammaire B --trigger v1.2.0 ; créé Task 18 (registre d'alias $<ALIAS> — délégation correct-work mode PROJET),  # Task 8 (fusion discussion 468a4c26) : garde-fous de refactoring — lignée externe v1.7.0, base hôte v1.2.0 portée
-    "cahier-des-charges": "1.0.0",  # KO-L004 (SG7.4 Task B2, session web-f90062ce, 2026-10-24) : entrée KB restaurée — forme publiée e9a68a1 sans entrée KB (trou de synchronisation analyse B2 résorbé) ; créé v1.0.0 directive propriétaire 2026-10-23
+    "cahier-des-charges": "2.0.1",  # KO-L004 (session web-eb6c8580, 2026-10-30 — résorption réserve héritée P3-P7) : v1.0.0→v2.0.1 (v2.0.0 web-dd290b0d 2026-10-25 : extension cycle System Engineering complet ; v2.0.1 : reconnaissance discipline Engineering Design — tags discipline/engineering, description au canon, synchronisation différée R3 résorbée) ; précédent (SG7.4 Task B2, web-f90062ce, 2026-10-24) : entrée KB restaurée — forme publiée e9a68a1 sans entrée KB (trou de synchronisation analyse B2 résorbé) ; créé v1.0.0 directive propriétaire 2026-10-23
     "agent-prompt-engineering": "1.0.1",  # KO-L004 (SG7.4 Task B2, session web-f90062ce, 2026-10-24) : entrée KB créée — forme au dépôt depuis e9a68a1 sans entrée KB (trou de synchronisation analyse B2 résorbé) ; matérialisé 2026-09-06
     "fullstack-dev": "1.0.0",  # Task 8 (fusion discussion 468a4c26 Task 27 externe) : inscrit au registre — précédent vue-upload
     "refactoring-test": "1.1.1",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire) ; Task 12 : §5 baseline MESURÉE 7/7

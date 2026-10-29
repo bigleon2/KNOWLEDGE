@@ -101,7 +101,7 @@ Kebab-case ; semver strict ; verdicts OK/PRESSION/CRITIQUE (même vocabulaire qu
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées de la recherche web (détection, SQALE, impact analysis, blast radius, anti-auto-certification).
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.26.0 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
+- gen-plan v3.28.1 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
 - `scripts/refactoring-test-graph.py` — bras mécanique (graphe + verdict).
 
 ## §8 — Rattachement à la discipline n°55 (décentralisé du SHARED §7)
