@@ -1,80 +1,80 @@
-# 互联网产品 / 运营 / PM 面试专题
+# Spécial entretien produit internet / opérations / PM
 
-## 产品经理（PM）
+## Product Manager (PM)
 
-### 高频题
-1. 介绍一款你最喜欢的产品 / APP，分析它的优势和不足
-2. 如果让你优化 ___（具体产品），你会怎么做
-3. 怎么衡量一个产品 / 功能的成功
-4. 一个新功能上线后留存提了 5%，怎么归因
-5. 你怎么定义产品的 north star metric
-6. 设计一个 ___ 功能（如：抖音的"不感兴趣"按钮）
-7. 给你一个用户反馈集合，怎么决定要做哪些
-8. PRD 写过吗？怎么写一个高质量的 PRD
-9. 你怎么和开发 / 设计 / 运营 协作
-10. 你做的最得意的一个数据驱动决策是什么
+### Questions récurrentes
+1. Présenter le produit / l'app que vous préférez, analyser ses forces et faiblesses
+2. Si vous deviez optimiser ___ (produit précis), comment procéderiez-vous
+3. Comment mesurer le succès d'un produit / d'une fonctionnalité
+4. Une nouvelle fonctionnalité améliore la rétention de 5 %, comment l'attribuer
+5. Comment définiriez-vous la north star metric d'un produit
+6. Concevoir une fonctionnalité ___ (ex. : le bouton « ça ne m'intéresse pas » de TikTok)
+7. Avec un ensemble de retours utilisateurs, comment décider quoi traiter
+8. Avez-vous rédigé des PRD ? comment écrire un PRD de qualité
+9. Comment collaborez-vous avec les devs / designers / ops
+10. La décision data-driven dont vous êtes le plus fier
 
-### PM 案例题答题套路（CIRCLES 框架）
+### Trame de réponse aux études de cas PM (cadre CIRCLES)
 ```
-C - Comprehend the situation（澄清问题）
-I - Identify the customer（明确目标用户）
-R - Report the customer's needs（用户痛点）
-C - Cut, through prioritization（功能优先级）
-L - List solutions（具体方案 2~3 个）
-E - Evaluate trade-offs（取舍）
-S - Summarize recommendation（最终建议）
+C - Comprehend the situation (clarifier la question)
+I - Identify the customer (préciser les utilisateurs cibles)
+R - Report the customer's needs (points de douleur utilisateurs)
+C - Cut, through prioritization (priorité des fonctionnalités)
+L - List solutions (2~3 solutions concrètes)
+E - Evaluate trade-offs (arbitrages)
+S - Summarize recommendation (recommandation finale)
 ```
 
-### PM 面试官想看
-- 用户思维（不是站在自己角度）
-- 数据敏感度（你怎么用数据说服 / 验证）
-- 业务理解（不只是功能，还有 unit economics）
-- 跨职能沟通（你怎么处理与开发 / 设计的冲突）
-- ownership（你 own 一个功能从设计到上线到复盘的全流程）
+### Ce que l'intervieweur PM cherche
+- la pensée utilisateur (pas depuis son propre point de vue)
+- la sensibilité aux données (comment vous convainquez / validez par les chiffres)
+- la compréhension métier (au-delà des fonctionnalités, jusqu'aux unit economics)
+- la communication transverse (comment vous gérez les conflits avec dev / design)
+- l'ownership (vous portez une fonctionnalité de bout en bout : conception, lancement, rétrospective)
 
-## 运营
+## Opérations
 
-### 高频题
-1. DAU 跌了 X%，怎么排查
-2. 给你 100 万预算，做 ___ 活动，你怎么规划
-3. 怎么搭建一个用户分层运营体系
-4. 内容运营 / 用户运营 / 活动运营 你最想做哪个，为什么
-5. 你怎么衡量一个活动的 ROI
-6. 你做过的爆款活动 / 内容，复盘一下
-7. 私域 / 公域 你怎么打配合
-8. 怎么提升新用户次留 / 7 留 / 30 留
-9. 你怎么和产品 / 数据 / 设计 协作
-10. 一个失败的活动，你怎么复盘
+### Questions récurrentes
+1. La DAU chute de X %, comment investiguer
+2. Avec 1 M€ de budget pour l'opération ___, comment planifiez-vous
+3. Comment bâtir un dispositif d'opérations segmenté par typologie d'utilisateurs
+4. Opérations de contenu / d'utilisateurs / d'événements — laquelle préférez-vous, et pourquoi
+5. Comment mesurez-vous le ROI d'une opération
+6. Racontez en rétrospective votre opération / votre contenu le plus viral
+7. Comment articulez-vous audiences détenues (private) et audiences louées (public)
+8. Comment améliorer la rétention J+1 / J+7 / J+30 des nouveaux utilisateurs
+9. Comment collaborez-vous avec produit / data / design
+10. Une opération qui a échoué : votre rétrospective
 
-### 运营常用框架
-- AARRR / RARRA：用户生命周期 5 个阶段
-- 活动复盘：目标 - 策略 - 执行 - 数据 - 反思
-- 内容运营三板斧：选题 - 制作 - 分发 - 数据反馈
+### Cadres usuels des opérations
+- AARRR / RARRA : les 5 étapes du cycle de vie utilisateur
+- Rétrospective d'opération : objectifs - stratégie - exécution - données - enseignements
+- Les « trois haches » des opérations de contenu : choix des sujets - production - distribution - retour des données
 
-### 运营面试官想看
-- 数据敏感度（每个动作配数字）
-- 用户洞察（不是"我觉得"，是"用户说"）
-- 资源整合（怎么撬动第三方 / 跨部门）
-- 闭环思维（活动结束 ≠ 工作结束，复盘 + 沉淀 SOP）
-- 创意 + 落地（既能想点子，又能落地到 SOP）
+### Ce que l'intervieweur ops cherche
+- la sensibilité aux données (chaque action assortie d'un chiffre)
+- l'intuition utilisateur (pas « je pense que », mais « les utilisateurs disent »)
+- l'intégration des ressources (comment mobiliser des tiers / d'autres départements)
+- la pensée en boucle fermée (fin d'opération ≠ fin du travail : rétrospective + capitalisation en SOP)
+- créativité + exécution (aussi bon pour trouver l'idée que pour la couler dans un SOP)
 
-## 项目经理 / TPM
+## Chef de projet / TPM
 
-### 高频题
-1. 你怎么管理一个 ___ 人 / ___ 月的项目
-2. 项目延期了，你怎么办
-3. 跨部门 / 跨时区 / 跨语种 协作的挑战和经验
-4. 你怎么管理项目风险
-5. 敏捷 vs 瀑布，你怎么选
-6. Scrum / Sprint planning / Retro 你怎么主持
-7. 怎么和 stakeholder 同步进度（汇报方式）
-8. 一个 stakeholder 不配合，你怎么 escalate
-9. 你管过的最大 / 最复杂的项目讲讲
-10. 项目失败 / 没达成目标，你怎么复盘
+### Questions récurrentes
+1. Comment gérez-vous un projet de ___ personnes / ___ mois
+2. Le projet prend du retard, que faites-vous
+3. Défis et retours d'expérience de la coordination inter-départements / inter-fuseaux / inter-langues
+4. Comment gérez-vous les risques de projet
+5. Agile vs cycle en V, comment choisir
+6. Comment animez-vous Scrum / Sprint planning / Retro
+7. Comment tenez-vous les parties prenantes informées (format de reporting)
+8. Une partie prenante ne coopère pas, comment escaladez-vous
+9. Racontez le plus grand / le plus complexe des projets que vous avez pilotés
+10. Un projet qui a échoué / n'a pas atteint ses objectifs : votre rétrospective
 
-### TPM 面试官想看
-- 结构化思维（项目拆解、依赖管理）
-- 沟通能力（向上 / 平行 / 向下）
-- 风险预判（不是事后救火，是事前预防）
-- 数据 / 工具熟练度（Jira / 飞书 / 自建 dashboard）
-- 推动力（drive 一群你管不到的人）
+### Ce que l'intervieweur TPM cherche
+- la pensée structurée (décomposition du projet, gestion des dépendances)
+- la communication (vers le haut / latérale / vers le bas)
+- l'anticipation des risques (éteindre avant l'incendie, pas après)
+- la maîtrise des données / outils (Jira / Feishu / dashboards maison)
+- la force d'entraînement (faire avancer des gens sur qui vous n'avez pas d'autorité)
