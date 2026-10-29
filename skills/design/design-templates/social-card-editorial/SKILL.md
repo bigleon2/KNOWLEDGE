@@ -1,6 +1,6 @@
 ---
 name: social-card-editorial
-description: 杂志感 / 电子墨水风社交卡 — 纸感留白、张力标题、克制装饰；卡角色含封面 / 期号封面 / 引言 / 编辑型短文分栏 / field note 照片 / 证据特写 / 结语 / 章节分隔 / hero 问句。用于观点 / 书摘 / 旅行 / 生活方式 / 文化 / 品牌故事 / 深度解释。触发："做个杂志感卡 / 公众号封面 / 留白卡 / 编辑型卡 / 引言卡"。NOT 强运营 KPI 卡，NOT cyber/工业科技调，NOT 商业大字海报。
+description: carte sociale style magazine / encre électronique — blancs papier, titres en tension, décor retenu ; rôles de cartes : couverture / couverture numérotée / citation / courts textes éditoriaux en colonnes / photo field note / gros plan de preuve / conclusion / séparateur de chapitre / question hero. Pour opinions / extraits de livres / voyage / lifestyle / culture / récits de marque / explications approfondies. Déclencheurs :"fais-moi une carte magazine / couverture de compte officiel / carte à blancs / carte éditoriale / carte citation"。NOT carte KPI de growth agressive, NOT ton cyber/tech industriel, NOT grande affiche commerciale.
 visibility: public
 mode: template
 carrier: fixed-image
@@ -8,13 +8,13 @@ scenario: social-content
 pattern_source: pattern.html
 source_priority: skill-first
 triggers:
-  - "做个杂志感卡"
-  - "公众号封面"
-  - "留白卡"
-  - "编辑型卡"
-  - "引言卡"
-  - "电子墨水风卡"
-  - "纸感卡"
+  - "fais-moi une carte magazine"
+  - "couverture de compte officiel"
+  - "carte à blancs"
+  - "carte éditoriale"
+  - "carte citation"
+  - "carte encre électronique"
+  - "carte papier"
 related_patterns: social-card-quote, social-card-image-led
 ---
 
@@ -24,9 +24,9 @@ Use this template for social cards that should feel editorial, literary, reflect
 
 ## Use When
 
-- 小红书 / 公众号 / 社媒封面需要杂志感、纸感、留白、标题张力。
-- 内容是观点、书摘、旅行、生活方式、文化、品牌故事、深度解释。
-- 图片、引用、标题、短段落需要共同构成一张“可保存”的卡片。
+- Couvertures Xiaohongshu / compte officiel / réseaux sociaux nécessitant effet magazine, toucher papier, blancs, tension de titre.
+- Le contenu est opinion, extrait de livre, voyage, lifestyle, culture, récit de marque, explication approfondie.
+- Images, citations, titres et courts paragraphes doivent former ensemble une carte “sauvegardable” au sens fort.
 - The artifact is fixed-canvas and will be delivered as HTML-to-image.
 
 ## Avoid When

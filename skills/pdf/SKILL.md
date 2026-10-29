@@ -835,7 +835,7 @@ references/
 
 ## 8. Quality Checklist (Mandatory after every PDF generation)
 
-> ⚠️ **正文才是第一章。** 封面/目录/摘要不计入编号，正文编号永远从 1 开始。详见 `report.md` Step 3.5。
+> ⚠️ **Le corps du texte est le chapitre 1.** Couverture/sommaire/résumé ne comptent pas dans la numérotation ; la numérotation du corps commence toujours à 1. Voir `report.md` Step 3.5。
 
 > The following checks come from the `typesetting/` spec files and are **mandatory** quality gates.
 

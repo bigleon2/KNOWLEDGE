@@ -50,12 +50,12 @@ Use this skill when the user asks for:
 - design spec
 - generation trace
 - comment history
-- 导出
-- 下载
-- 打包
-- 交付
-- 生成文件
-- 保存成 HTML / PDF / PPTX
+- exporter
+- télécharger
+- empaqueter
+- livrer
+- générer des fichiers
+- enregistrer en HTML / PDF / PPTX
 
 Do not use this skill when:
 
@@ -148,21 +148,21 @@ For deck exports, support:
 - cover slide
 - social preview cover
 
-#### 截图技术规则（Playwright，现写脚本时照此做）
+#### Règles techniques de capture (Playwright, à suivre en écrivant les scripts)
 
-用 Playwright 无头浏览器渲染 HTML 再对元素截图。`file://` 协议下本地图片、字体会被 CORS 拦截，
-Canvas 读不到像素、字体不加载。**正确解法是用 `page.route()` 把本地资源映射进去——不要改 HTML
-（不要去掉 `crossorigin`、不要被迫把图片转 base64）。**
+Utiliser le navigateur headless Playwright pour rendre le HTML puis capturer l'élément.`file://` les images et polices locales sont bloquées par CORS,
+Canvas ne lit pas les pixels, les polices ne chargent pas.**La bonne solution est d'utiliser `page.route()` pour mapper les ressources locales — ne pas modifier le HTML
+（ne pas retirer `crossorigin`、et ne pas être forcé de convertir les images en base64).**
 
-必做：
+À faire obligatoirement :
 
-- **自动扫描页面引用的所有本地资源**（`<img>`、CSS `url()`、`@font-face` 的 woff2 等），逐个用
-  `page.route()` 拦截并 `route.fulfill(path=本地文件)` 喂入。不要手写死单个路径——会漏图。
-- 字体响应要带 `Content-Type: font/woff2`（otf 用 `font/otf`）。
-- `goto` 之后留足渲染时间（等字体 + Canvas，通常 3–4 秒）再截图。
-- 用**元素级截图** `element.screenshot()` 只截目标容器（如 `.frame`），不是整页。
+- **Scanner automatiquement toutes les ressources locales référencées par la page**（`<img>`、CSS `url()`、`@font-face`  en woff2, etc.), alimenter une par une via
+  `page.route()` intercepter et `route.fulfill(path=fichier local)` alimenter. Ne pas coder en dur des chemins isolés — des images seront manquantes.
+- La réponse de police doit porter `Content-Type: font/woff2`（otf → `font/otf`）。
+- `goto` après le goto, laisser assez de temps de rendu (polices + Canvas，généralement 3–4  s) puis capturer.
+- Utiliser **la capture au niveau élément** `element.screenshot()` ne capturer que le conteneur cible (ex. `.frame`），pas la page entière.
 
-Paste-ready 模板（把资源映射做成自动扫描，按实际目录改 base 路径）：
+Paste-ready gabarit (mappage des ressources en scan automatique, adapter le chemin base au répertoire réel) :
 
 ```python
 import re, pathlib
@@ -170,7 +170,7 @@ from playwright.async_api import async_playwright
 
 async def capture(html_path, target_selector, out_path, assets_dir):
     html = pathlib.Path(html_path).read_text(encoding="utf-8")
-    # 扫描页面里所有本地资源引用（img src / url() / woff2 等）
+    # Scanner toutes les références de ressources locales dans la page (img src / url() / woff2  etc.)
     refs = set(re.findall(r'(?:src|href)=["\']([^"\']+)["\']', html)) \
          | set(re.findall(r'url\(["\']?([^"\')]+)["\']?\)', html))
     locals_ = [r for r in refs if not r.startswith(("http://", "https://", "data:"))]
@@ -179,7 +179,7 @@ async def capture(html_path, target_selector, out_path, assets_dir):
         browser = await p.chromium.launch()
         page = await browser.new_page(viewport={"width": 1400, "height": 1800})
 
-        # 为每个本地资源建立 route 映射，绕过 file:// CORS
+        # Établir un mapping route pour chaque ressource locale, contourner file:// CORS
         for ref in locals_:
             fname = ref.split("/")[-1]
             fpath = pathlib.Path(assets_dir) / fname
@@ -192,14 +192,14 @@ async def capture(html_path, target_selector, out_path, assets_dir):
                        lambda route, fp=str(fpath), h=headers: route.fulfill(path=fp, headers=h))
 
         await page.goto(f"file://{pathlib.Path(html_path).resolve()}")
-        await page.wait_for_timeout(4000)  # 等字体 + Canvas 渲染
+        await page.wait_for_timeout(4000)  # attendre le rendu des polices + Canvas + Canvas
         el = await page.query_selector(target_selector)
         await el.screenshot(path=out_path)
         await browser.close()
 ```
 
-如果某个本地资源在磁盘上找不到（route 没命中），截图会缺图——交付前确认所有引用都映射成功，
-缺失的要报给用户，不要假装截图完整。
+Si une ressource locale est introuvable sur le disque (route sans correspondance), la capture manquera des images — avant livraison, vérifier que toutes les références sont mappées,
+signaler les manques à l'utilisateur, ne pas prétendre que la capture est complète.
 
 ---
 
@@ -438,7 +438,7 @@ Do not include a long recap unless the user asks.
 
 Use `horizontal-craft/chinese-typography.md` when the artifact contains substantial Chinese / Chinese / CJK text, Chinese editorial layout, public-account formatting, Xiaohongshu content, Chinese deck typography, Chinese UI labels, or print-design-inspired HTML.
 
-Translate print-design methods into HTML structure: 版心, 网格, 留白, 标题组, 图版, 边注, 章节 rhythm, and proper punctuation.
+Translate print-design methods into HTML structure: zone de texte, grille, blancs, groupe de titres, bloc d'images, notes marginales, rythme de chapitres, and proper punctuation.
 
 
 ## Icon System Reference
@@ -469,7 +469,7 @@ If the source artifact contains fake proof, decorative emoji, dead links, missin
 
 
 
-When substantial Chinese text is present, use `horizontal-craft/chinese-typography.md` Mandatory Runtime Baseline. Read deeper typography references only for typography-heavy tasks such as 版心、网格、模数、出版感、诊断 or formal report layout.
+When substantial Chinese text is present, use `horizontal-craft/chinese-typography.md` Mandatory Runtime Baseline. Read deeper typography references only for typography-heavy tasks such as zone de texte, grille, module, sens éditorial, diagnostic ou mise en page de rapport formel.
 
 ## Mandatory Final Gate
 

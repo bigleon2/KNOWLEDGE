@@ -274,26 +274,26 @@ def content_sanitize(text: str) -> str:
 
 ---
 
-## Step 3.5: NUMBERING — 正文才是第一章 (MANDATORY)
+## Step 3.5: NUMBERING — le corps du texte est le chapitre 1 (MANDATORY)
 
-> ⚠️ **封面、目录、摘要、前言都不是章节。正文第一节 = 第一章/Chapter 1，永远。** Outline 的 `index` 是排序序号，不是章节号。混淆两者会导致文档从“第三章”或“第四章”开始。
+> ⚠️ **Couverture, sommaire, résumé, avant-propos ne sont pas des chapitres. La première section du corps = chapitre 1/Chapter 1, pour toujours.** Outline  : son `index` est un numéro d'ordre, pas un numéro de chapitre. Confondre les deux fait démarrer le document au “chapitre 3”ou“chapitre 4”.
 
-**写代码前必须输出编号映射表：**
+**Avant d'écrire le code, afficher obligatoirement la table de correspondance de numérotation :**
 
 ```
 | Outline Index | Type    | Chapter # | Title            |
 |---------------|---------|-----------|------------------|
-| 1             | cover   | —         | 封面               |
-| 2             | toc     | —         | 目录               |
-| 3             | content | 第一章    | 概要               |
-| 4             | content | 第二章    | 引言               |
+| 1             | cover   | —         | Couverture         |
+| 2             | toc     | —         | Sommaire           |
+| 3             | content | Chapitre 1| Synthèse           |
+| 4             | content | Chapitre 2| Introduction       |
 | ...           | ...     | ...       | ...              |
 ```
 
-**铁律：**
-- cover/toc/back_cover/摘要/前言 → 无编号
-- 第一个 content 节点 = 第一章，永远从 1 开始
-- `page_title()` 必须用此表的章节号，不是 Outline `index`
+**Règles absolues :**
+- cover/toc/back_cover/résumé/avant-propos → sans numérotation
+- Le premier nœud content = chapitre 1, toujours numéroté à partir de 1
+- `page_title()` doit utiliser les numéros de chapitre de cette table, pas l'Outline `index`
 
 ---
 
@@ -730,7 +730,7 @@ def insert_cover(cover_pdf, body_pdf, output_pdf):
 - **Pick a layout (01/03/04/06/07)** from `typesetting/cover.md` that matches the document tone. No global default - every selection must be a deliberate design decision.
 - **Maximum 4 components** on any cover. Typical recipe: Title + subtitle + 1 geometric accent + metadata.
 - **Typography Scale**: Title ≈ 45pt, Subtitle ≈ 25pt, Meta ≥ 18pt (never below 14pt). Tiny text = FAIL.
-- **Background layer (optional)**: See `typesetting/cover-backgrounds.md` for 3 recipes (A=极简弧线, B=工程十字轴+立柱, C=锐角切割+出血文字). Background renders BELOW all foreground content at 2-5% opacity.
+- **Background layer (optional)**: See `typesetting/cover-backgrounds.md` for 3 recipes (A=arcs minimalistes, B=croix d'ingénierie+colonnes, C=découpes anguleuses+texte en plein bord). Background renders BELOW all foreground content at 2-5% opacity.
 - **Mandatory `<br>` chunking**: Title MUST break every 2-4 words (CJK) or 3-5 words (English). Single-line title = FAIL.
 - **Bounding Box spatial dispersion**: Group elements into 2-3 bounding boxes at opposite regions (e.g., top-left + bottom-right). Never cluster everything into middle 40%.
 - **Safe Zone**: 12% top/bottom, 14% left/right padding on cover pages.
@@ -1628,7 +1628,7 @@ story.append(KeepTogether(callout))
 
 - [ ] **Font restriction**: Only 6 registered fonts used
 - [ ] **Font family registered**: `registerFontFamily()` called for all used fonts
-- [ ] **⚠️ MANDATORY font fallback**: `install_font_fallback()` called after font registration — **#1 cause of Helvetica garbled text (乱码)**
+- [ ] **⚠️ MANDATORY font fallback**: `install_font_fallback()` called after font registration — **#1 cause of Helvetica garbled text (luanma)**
 - [ ] **Rich text tags**: Only inside `Paragraph()` objects
 - [ ] **Table cells**: ALL text wrapped in `Paragraph()` — no plain strings
 - [ ] **Scientific notation**: Large/small numbers use `<super>` tags
@@ -1663,7 +1663,7 @@ story.append(KeepTogether(callout))
 
 ### Cover
 
-- [ ] **正文编号从 1 开始**: 封面/目录不是章节，Step 3.5 映射表已输出
+- [ ] **La numérotation du corps commence à 1**: couverture/sommaire ne sont pas des chapitres, la table Step 3.5 a déjà été affichée
 - [ ] **Cover default ON** for reports/proposals/analysis ≥ 3 pages
 - [ ] **Single PDF output**: Cover merged as page 0 via pypdf
 - [ ] **Page isolation**: Cover never shares page with TOC/body

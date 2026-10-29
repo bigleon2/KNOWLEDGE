@@ -1,6 +1,6 @@
 ---
 name: social-card-quote
-description: 一句话主导的社交卡 — 论点 / 引言 / 原则 / 关键问句 / 一句话洞察占满版心，配 source / 章节标签 / 边注 / 三个锚点。必须按语义断行（不靠自动 wrap），至少一个锚点防止 floating。触发："做个引言卡 / 论点卡 / 金句卡 / 原则卡 / hero 问句卡"。NOT 长段落伪装成引言，NOT 空洞鸡汤口号，NOT 居中文字无任何锚点结构。
+description: carte sociale dominée par une phrase — thèse / citation / principe / question clé / insight en une phrase occupant toute la surface, avec source / étiquette de chapitre / note de marge / trois ancres. Retours à la ligne sémantiques obligatoires (pas de wrap automatique), au moins une ancre contre le flottement. Déclencheurs :"fais-moi une carte citation / carte thèse / carte punchline / carte principe / carte question hero"。NOT un long paragraphe déguisé en citation, NOT slogan développement-personnel creux, NOT texte centré sans aucune structure d'ancrage.
 visibility: public
 mode: template
 carrier: fixed-image
@@ -8,13 +8,13 @@ scenario: social-content
 pattern_source: pattern.html
 source_priority: skill-first
 triggers:
-  - "做个引言卡"
-  - "论点卡"
-  - "金句卡"
-  - "原则卡"
-  - "hero 问句卡"
-  - "一句话卡"
-  - "书摘卡"
+  - "fais-moi une carte citation"
+  - "carte thèse"
+  - "carte punchline"
+  - "carte principe"
+  - "hero carte question"
+  - "carte une-phrase"
+  - "carte extrait-de-livre"
 related_patterns: social-card-editorial
 ---
 

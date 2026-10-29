@@ -31,7 +31,7 @@ metadata:
 Personalized paper recommendation via AMiner rec5 API. Token required: set `AMINER_API_KEY` env var.
 - Docs: https://open.aminer.cn/open/docs | Console: https://open.aminer.cn/open/board?tab=control
 
-**When to activate**: any time the user asks for paper recommendations — explicit command (`/aminer-dp ...`) or natural language (`recommend me papers on RAG`, `帮我推荐最近的多模态论文`).
+**When to activate**: any time the user asks for paper recommendations — explicit command (`/aminer-dp ...`) or natural language (`recommend me papers on RAG`, `recommande-moi des articles récents sur le multimodal`).
 
 ---
 
@@ -67,7 +67,7 @@ Content-Type: application/json;charset=utf-8
 | `topics` | string[] | conditional | Research topic phrases. **Use the user’s wording** (Chinese, English, or mixed). The API accepts multi-language topic strings. |
 | `size` | int | optional | Number of papers per call (1–20). Omit to let the model decide (see below). |
 | `offset` | int | optional | Pagination offset (0–100, default 0). |
-| `language_sort` | string | optional | `zh` or `en` **only when the user explicitly asks** for Chinese- or English-biased ranking (e.g. “优先中文论文” / “prefer English papers”). Otherwise omit; the request will not include this field. |
+| `language_sort` | string | optional | `zh` or `en` **only when the user explicitly asks** for Chinese- or English-biased ranking (e.g. “privilégie les articles chinois” / “prefer English papers”). Otherwise omit; the request will not include this field. |
 
 At least one of `author_name` or `topics` should be provided. When none are given, the API returns personalized recommendations based on the account associated with `AMINER_API_KEY`.
 
@@ -146,18 +146,18 @@ Example (Chinese topics — **keep as-is**):
   (Do **not** rewrite `topics` into unrelated English.)
 
 Example:
-- User: `/aminer-dp 我做多模态智能体和 tool-use，帮我推荐最近论文`
+- User: `/aminer-dp je travaille sur les agents multimodaux et le tool-use, recommande-moi des articles récents`
 - You extract: `topics: multimodal agents, tool-use`
 - You call: `handle_trigger.py --text "/aminer-dp topics: multimodal agents, tool-use size: 5"`
 
 Example (scholar):
-- User: `/aminer-dp 我是唐杰，清华大学，做多模态和知识图谱`
+- User: `/aminer-dp je suis Tang Jie, université Tsinghua, multimodal et graphes de connaissances`
 - You extract: `scholar: Jie Tang, org: Tsinghua University, topics: multimodal, knowledge graph`
 - You call: `handle_trigger.py --text "/aminer-dp scholar: Jie Tang org: Tsinghua University topics: multimodal, knowledge graph"`
 
 Example (ambiguous name, ask user):
-- User: `/aminer-dp 推荐张伟方向的论文`
-- You: "张伟是一个常见名字，请提供机构信息以便精确匹配，例如：张伟，北京大学。或者直接提供 aminer_author_id。"
+- User: `/aminer-dp recommande des articles dans la direction de Zhang Wei`
+- You: "Zhang Wei est un nom courant, merci de fournir l'affiliation pour un appariement précis, par exemple : Zhang Wei, université de Pékin. Ou fournissez directement un aminer_author_id。"
 
 **`papers` field**: representative paper titles (e.g. `papers: OAG-Bench | RPC-Bench`) accompany `scholar`/`author_name` for disambiguation context. They do not map directly to an API field.
 

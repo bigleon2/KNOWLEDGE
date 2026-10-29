@@ -1,7 +1,7 @@
 # Magazine Web PPT · Skill de PPT estilo revista eletrônica em web
 
 > 🌏 **English version: [README.en.md](./README.en.md)**
-> 🌏 **中文版: [README.md](./README.md)**
+> 🌏 **Versão em chinês: [README.md](./README.md)**
 
 Uma skill do [Claude Code / Claude Agent Skills](https://agentskills.io/) para gerar **PPTs HTML em arquivo único com swipe horizontal**. O tom visual é "**revista eletrônica × tinta digital**" — como se a *Monocle* tivesse colado código.
 
@@ -69,15 +69,15 @@ Detalhes em [`SKILL.md`](./SKILL.md).
 
 ```
 magazine-web-ppt/
-├── SKILL.md              ← Skill 主文件:工作流、原则、常见错误
-├── README.md             ← 本文件
+├── SKILL.md              ← Skill arquivo principal:fluxo de trabalho, princípios, erros comuns
+├── README.md             ← este arquivo
 ├── assets/
-│   └── template.html     ← 完整可运行的种子 HTML(CSS + WebGL + 翻页 JS 全配好)
+│   └── template.html     ← HTML semente completo e executável(CSS + WebGL + JS de virada de página todo configurado)
 └── references/
-    ├── components.md     ← 组件手册(字体、色、网格、图标、callout、stat、pipeline)
-    ├── layouts.md        ← 10 种页面布局骨架(可直接粘贴)
-    ├── themes.md         ← 5 套主题色预设(只能选不能自定义)
-    └── checklist.md      ← 质量检查清单(P0 / P1 / P2 / P3 分级)
+    ├── components.md     ← manual de componentes(fontes, cores, grid, ícones, callout, stat, pipeline)
+    ├── layouts.md        ← 10 esqueletos de layout de página(prontos para colar)
+    ├── themes.md         ← 5 presets de paleta temática(somente escolha, sem customização)
+    └── checklist.md      ← checklist de qualidade(P0 / P1 / P2 / P3 por níveis)
 ```
 
 ## Paletas predefinidas

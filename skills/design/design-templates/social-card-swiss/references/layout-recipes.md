@@ -67,7 +67,7 @@ Structure:
 
 Use to create rhythm between dense pages.
 
-**Minimum density (3:4)**: this is the **one recipe** where ≤60% canvas content is allowed (hero statement = intentional whitespace). BUT you must add (a) source/context row 18-20px mono ≤15% from bottom, (b) date-stamp or 章号 kicker at top, (c) hairline rule above the source row. Without these three "anchor points," whitespace reads as missing content. Don't use M04 if you can't supply at least one anchor.
+**Minimum density (3:4)**: this is the **one recipe** where ≤60% canvas content is allowed (hero statement = intentional whitespace). BUT you must add (a) source/context row 18-20px mono ≤15% from bottom, (b) date-stamp or kicker de numéro de chapitre en haut, (c) hairline rule above the source row. Without these three "anchor points," whitespace reads as missing content. Don't use M04 if you can't supply at least one anchor.
 
 ### M05 Checklist / Buying Guide
 
@@ -180,7 +180,7 @@ HTML skeleton (3:4):
   <div class="grain"></div>
   <div class="content stack gap-4" style="justify-content:center; align-items:flex-start">
     <p class="kicker">Act II · Part 2</p>
-    <h1 class="h-display">实测结果</h1>
+    <h1 class="h-display">Résultats mesurés</h1>
     <p class="h-sub">What actually happened.</p>
   </div>
   <div class="issue-strip">
@@ -200,7 +200,7 @@ Best for the last page of a Rednote carousel or for a sharp pivot mid-set. The q
 Structure:
 
 - WebGL ink-flow background.
-- Quiet kicker like `The Question` or `留给你的`.
+- Quiet kicker like `The Question` or `laissé pour toi`.
 - Big serif question, broken into 2-3 lines on `<br>` at semantic breakpoints (not random wraps).
 - One short single-sentence prompt in `lead`, often a hint or invitation to comment.
 - Minimal metadata at bottom.
@@ -214,18 +214,18 @@ HTML skeleton (3:4):
   <canvas class="mag-bg" data-bg="ink-flow"></canvas>
   <div class="grain"></div>
   <div class="content stack gap-4" style="justify-content:center">
-    <p class="kicker">The Question · 留给你的</p>
+    <p class="kicker">The Question · laissé pour toi</p>
     <h1 class="h-display">
-      下一次<br>
-      你会先<br>
-      问 AI 还是问朋友?
+      La prochaine fois<br>
+      commenceras-tu par<br>
+      demander à l'IA ou à un ami?
     </h1>
-    <p class="lead">在评论区告诉我你的答案。</p>
+    <p class="lead">Dis-moi ta réponse en commentaire.</p>
   </div>
   <div class="issue-strip">
     <span>End · Page 9</span>
     <span>—</span>
-    <span>欢迎留言</span>
+    <span>Commentaires bienvenus</span>
   </div>
 </section>
 ```
@@ -250,35 +250,35 @@ HTML skeleton (3:4):
   <canvas class="mag-bg" data-bg="ink-flow"></canvas>
   <div class="grain"></div>
   <div class="content stack gap-3">
-    <p class="kicker">Workflow · 4 步</p>
-    <h2 class="h-xl">我的写作流水线</h2>
+    <p class="kicker">Workflow · 4  étapes</p>
+    <h2 class="h-xl">Mon pipeline d'écriture</h2>
     <div class="pipeline-v">
       <div class="step">
         <div class="step-nb">01</div>
         <div>
           <h3 class="step-title">Draft</h3>
-          <p class="step-desc">用语音备忘录把想法说出来</p>
+          <p class="step-desc">Dire les idées en mémo vocal</p>
         </div>
       </div>
       <div class="step">
         <div class="step-nb">02</div>
         <div>
           <h3 class="step-title">Reorder</h3>
-          <p class="step-desc">用 AI 把段落顺序重新排</p>
+          <p class="step-desc">Laisser l'IA réordonner les paragraphes</p>
         </div>
       </div>
       <div class="step">
         <div class="step-nb">03</div>
         <div>
           <h3 class="step-title">Polish</h3>
-          <p class="step-desc">人工逐句去 AI 味</p>
+          <p class="step-desc">Retirer le goût IA phrase par phrase à la main</p>
         </div>
       </div>
       <div class="step">
         <div class="step-nb">04</div>
         <div>
           <h3 class="step-title">Ship</h3>
-          <p class="step-desc">同时发小红书、推特、公众号</p>
+          <p class="step-desc">Publier simultanément sur Xiaohongshu, Twitter et compte officiel</p>
         </div>
       </div>
     </div>
@@ -306,24 +306,24 @@ HTML skeleton (3:4):
   <div class="grain"></div>
   <div class="content stack gap-3">
     <p class="kicker">Before · After</p>
-    <h2 class="h-xl">写作流的演变</h2>
+    <h2 class="h-xl">L'évolution du flux d'écriture</h2>
     <div class="beforeafter">
       <div class="ba-block before">
-        <p class="kicker">Before · 旧</p>
-        <h3 class="h-md">在 Notion 里反复修</h3>
+        <p class="kicker">Before · ancien</p>
+        <h3 class="h-md">Retravailler sans fin dans Notion</h3>
         <ul class="body" style="margin:0; padding-left:1.2em">
-          <li>开头改了 20 遍</li>
-          <li>每个段落都想精雕</li>
-          <li>一周才发一条</li>
+          <li>L'intro refaite 20 fois</li>
+          <li>Chaque paragraphe surpoli</li>
+          <li>Une publication par semaine à peine</li>
         </ul>
       </div>
       <div class="ba-block">
-        <p class="kicker">After · 新</p>
-        <h3 class="h-md">先发版,再迭代</h3>
+        <p class="kicker">After · nouveau</p>
+        <h3 class="h-md">Publier d'abord,, itérer ensuite</h3>
         <ul class="body" style="margin:0; padding-left:1.2em">
-          <li>20 分钟出初稿</li>
-          <li>评论区做精修</li>
-          <li>一天发三条</li>
+          <li>20  minutes pour le premier jet</li>
+          <li>Affiner via les commentaires</li>
+          <li>Trois publications par jour</li>
         </ul>
       </div>
     </div>
@@ -335,7 +335,7 @@ Adapt for 21:9: switch to left/right split (use `.col-2` grid). Adapt for 1:1: u
 
 ### M16 Image-Led Cover (Full-Bleed Hero)
 
-Best for **lifestyle, image-heavy** content where the user has 1+ excellent photos: 旅行目的地 / 户外场景 / 自家成菜 / 家居一角 / 情感场景照. Photo fills the canvas; title rides on top with restraint. This is what M01 is **not** — M01 splits the canvas into photo + text blocks. M16 lets the photo own the canvas.
+Best for **lifestyle, image-heavy** content where the user has 1+ excellent photos: destinations de voyage / scènes outdoor / plats maison / coin de maison / photos d'ambiance émotionnelle. Photo fills the canvas; title rides on top with restraint. This is what M01 is **not** — M01 splits the canvas into photo + text blocks. M16 lets the photo own the canvas.
 
 **Reference look**: Kinfolk / Cereal / Apartamento / Monocle covers. Quiet photo, serif title, paper-cream text, generous negative space, asymmetric placement. **NOT** game key-art with heavy black gradient. **NOT** travel poster with chunky bold caption.
 
@@ -366,10 +366,10 @@ Never run two M16 in a row. After a full-bleed photo the eye needs text. P2 must
 
 | Mode | Subject location | Title position | Tint (only if Step 4 contrast fails) |
 | ---- | ---------------- | -------------- | ------------------------------------ |
-| **A · 顶压底沉** (top kicker + bottom title) | Subject in middle third (face, peak, hero object), top + bottom open | Top: kicker 0-12% y. Bottom: 1-2 line title 72-92% y. | Try no tint. If needed: bottom-only radial, image-toned, peak α ≤ 0.30 over title block. |
-| **B · 侧栏立柱** (vertical column) | Subject occupies a **clean** vertical column with ≥40% width safe opposite side. Skip B if subject edge is irregular (e.g. tree canopy spilling sideways) — use A or D instead. | Opposite column (~36-40% of width), stacked: kicker → title → subtitle | Try no tint. If needed: one-sided horizontal falloff `radial-gradient(45% 60% at 18% 50%, …)`, image-toned. |
-| **C · 角落徽章** (corner badge) | Subject fills most of the frame; one corner is genuinely empty | Small block in the empty corner (≤35% w × ≤25% h): kicker / short title / meta | Light vignette only in that corner — never darken the whole image |
-| **D · 下沉条带** (bottom ribbon) | Wide landscape / atmospheric scene / no single subject; abundant negative space at bottom | Bottom band 78-92% y: title + meta strip; align flush-left or flush-right (not centered) | Try no tint. If needed: bottom-only radial, image-toned, peak α 0.20-0.30 |
+| **A · kicker haut, titre bas** (top kicker + bottom title) | Subject in middle third (face, peak, hero object), top + bottom open | Top: kicker 0-12% y. Bottom: 1-2 line title 72-92% y. | Try no tint. If needed: bottom-only radial, image-toned, peak α ≤ 0.30 over title block. |
+| **B · colonne latérale** (vertical column) | Subject occupies a **clean** vertical column with ≥40% width safe opposite side. Skip B if subject edge is irregular (e.g. tree canopy spilling sideways) — use A or D instead. | Opposite column (~36-40% of width), stacked: kicker → title → subtitle | Try no tint. If needed: one-sided horizontal falloff `radial-gradient(45% 60% at 18% 50%, …)`, image-toned. |
+| **C · badge d'angle** (corner badge) | Subject fills most of the frame; one corner is genuinely empty | Small block in the empty corner (≤35% w × ≤25% h): kicker / short title / meta | Light vignette only in that corner — never darken the whole image |
+| **D · bandeau bas** (bottom ribbon) | Wide landscape / atmospheric scene / no single subject; abundant negative space at bottom | Bottom band 78-92% y: title + meta strip; align flush-left or flush-right (not centered) | Try no tint. If needed: bottom-only radial, image-toned, peak α 0.20-0.30 |
 
 **Typography spec on 1080×1440 (Editorial × E-ink) — restrained, NOT chunky**:
 
@@ -407,7 +407,7 @@ Never run two M16 in a row. After a full-bleed photo the eye needs text. P2 must
 - **1:1**: Use Mode A or Mode D only. Mode B's column squeeze, Mode C's corner are too tight on square. Shorten title to 6-10 chars.
 - **21:9**: Use Mode B (left text column + right photo bleed) or Mode D (full-width bottom band). Mode A works but the bottom title competes with the WeChat caption strip — prefer D.
 
-**HTML skeleton (Mode A — 顶压底沉 on 3:4, no mask)**:
+**HTML skeleton (Mode A — kicker haut, titre bas on 3:4, no mask)**:
 
 ```html
 <section class="poster xhs" id="cover-image-led">
@@ -430,14 +430,14 @@ Never run two M16 in a row. After a full-bleed photo the eye needs text. P2 must
     <p class="kicker" style="color: #f5f1e8; opacity: .85;
         font-family: var(--mono); font-size: 22px;
         letter-spacing: 0.22em; text-transform: uppercase; margin: 0">
-      Vol. 04 — 2026 — 户外
+      Vol. 04 — 2026 — Outdoor
     </p>
     <div style="flex: 1"></div>
     <h1 style="font-family: 'Noto Serif SC', serif;
         font-weight: 500; font-size: 96px; line-height: 1.12;
         letter-spacing: 0.12em; color: #f5f1e8;
         margin: 0 0 18px 0">
-      在稻城<br/>看见冬天
+      À Daocheng<br/>voir l'hiver
     </h1>
     <div style="border-top: 1px solid rgba(245,241,232,.35);
          padding-top: 14px; font-family: var(--mono); font-size: 19px;
@@ -449,7 +449,7 @@ Never run two M16 in a row. After a full-bleed photo the eye needs text. P2 must
 </section>
 ```
 
-**HTML skeleton (Mode D — 下沉条带 on 21:9, for WeChat main cover)**:
+**HTML skeleton (Mode D — bandeau bas on 21:9, for WeChat main cover)**:
 
 ```html
 <section class="poster wide" id="wechat-21x9-led">
@@ -465,7 +465,7 @@ Never run two M16 in a row. After a full-bleed photo the eye needs text. P2 must
     <h1 style="font-family: 'Noto Serif SC', serif; font-weight: 500;
          font-size: 108px; line-height: 1.05; letter-spacing: 0.14em;
          margin: 0; color: #f5f1e8">
-      在稻城看见冬天
+      À Daocheng, voir l'hiver
     </h1>
     <div style="margin-top: 18px; border-top: 1px solid rgba(245,241,232,.35);
          padding-top: 14px; font-family: var(--mono); font-size: 20px;
@@ -583,7 +583,7 @@ HTML skeleton (21:9, the natural format for this recipe):
 <section class="poster wide" id="wechat-21x9-hero" data-accent="ikb">
   <div class="content stack gap-7">
     <div class="chrome-min">
-      <span class="t-cat">Release · 产品</span>
+      <span class="t-cat">Release · Produit</span>
       <span class="t-meta">2026.05 · v3.0</span>
     </div>
     <div class="image-hero">
@@ -591,7 +591,7 @@ HTML skeleton (21:9, the natural format for this recipe):
         <img src="assets/hero.jpg" alt="hero">
         <div class="hero-overlay-block">
 <p class="t-cat">Cover · Zhǔ fēngmiàn</p>
-          <h1 class="h-statement">下一代<br>写作工作流</h1>
+          <h1 class="h-statement">La nouvelle génération<br>de workflow d'écriture</h1>
         </div>
       </div>
       <div class="hero-stats">
@@ -630,8 +630,8 @@ HTML skeleton (3:4 — template auto-collapses to 2 columns):
 ```html
 <section class="poster xhs" id="xhs-data" data-accent="lemon-yellow">
   <div class="content stack gap-7">
-    <p class="t-cat">Data · 半年增长</p>
-    <h2 class="h-xl">六个月,四组数字</h2>
+    <p class="t-cat">Data · croissance sur six mois</p>
+    <h2 class="h-xl">Six mois,, quatre séries de chiffres</h2>
     <div class="kpi-tower-row">
       <div class="tower-col">
         <p class="num">132K</p>
@@ -730,33 +730,33 @@ HTML skeleton (3:4):
 ```html
 <section class="poster xhs" id="xhs-spend" data-accent="safety-orange">
   <div class="content stack gap-7">
-<p class="t-cat">Spend · 五月账单 (Wu Yue Zhang Dan)</p>
-<h2 class="h-xl">这个月我把钱花在哪</h2>
+<p class="t-cat">Spend · factures de mai (Wu Yue Zhang Dan)</p>
+<h2 class="h-xl">Où est passée ma dépense ce mois-ci</h2>
     <div class="stacked-ledger">
       <div class="ledger-row">
         <p class="ledger-num">¥1,280</p>
-        <div class="ledger-lbl">订阅 · Subscriptions
+        <div class="ledger-lbl">Abonnements · Subscriptions
           <span class="sub">Claude · Cursor · Linear</span>
         </div>
         <i class="ledger-icn" data-lucide="square-stack"></i>
       </div>
       <div class="ledger-row">
         <p class="ledger-num">¥860</p>
-        <div class="ledger-lbl">书 · Books
-<span class="sub">6 本中文 · 2 本英文</span>
+        <div class="ledger-lbl">Livres · Books
+<span class="sub">6  en chinois · 2 en anglais</span>
         </div>
         <i class="ledger-icn" data-lucide="book-open"></i>
       </div>
       <div class="ledger-row">
         <p class="ledger-num">¥540</p>
-        <div class="ledger-lbl">咖啡 · Coffee
+        <div class="ledger-lbl">Café · Coffee
 <span class="sub">Principalement à Manner et Seesaw (Manner et Seesaw)</span>
         </div>
         <i class="ledger-icn" data-lucide="coffee"></i>
       </div>
       <div class="ledger-row">
         <p class="ledger-num">¥320</p>
-        <div class="ledger-lbl">硬件 · Hardware
+        <div class="ledger-lbl">Matériel · Hardware
 <span class="sub">Accessoires clavier · Un câble USB-C</span>
         </div>
         <i class="ledger-icn" data-lucide="keyboard"></i>
@@ -784,22 +784,22 @@ HTML skeleton (3:4 — matrix collapses to 2 columns):
 ```html
 <section class="poster xhs" id="xhs-matrix" data-accent="lemon-green">
   <div class="content stack gap-7">
-    <p class="t-cat">Capabilities · 能力清单</p>
-    <h2 class="h-xl">一个 Agent,十二件事</h2>
+    <p class="t-cat">Capabilities · liste de capacités</p>
+    <h2 class="h-xl">Un Agent,, douze tâches</h2>
     <div class="matrix-fill">
-      <div class="matrix-cell"><p class="cell-nb">01</p><p class="cell-title">读取项目结构</p></div>
-      <div class="matrix-cell"><p class="cell-nb">02</p><p class="cell-title">运行测试</p></div>
-      <div class="matrix-cell is-accent"><p class="cell-nb">03</p><p class="cell-title">起草 PR 描述</p></div>
-      <div class="matrix-cell"><p class="cell-nb">04</p><p class="cell-title">回滚错误改动</p></div>
-      <div class="matrix-cell"><p class="cell-nb">05</p><p class="cell-title">迁移 lockfile</p></div>
-      <div class="matrix-cell"><p class="cell-nb">06</p><p class="cell-title">检查类型</p></div>
-      <div class="matrix-cell"><p class="cell-nb">07</p><p class="cell-title">追踪 issue</p></div>
-      <div class="matrix-cell"><p class="cell-nb">08</p><p class="cell-title">阅读日志</p></div>
+      <div class="matrix-cell"><p class="cell-nb">01</p><p class="cell-title">Lire la structure du projet</p></div>
+      <div class="matrix-cell"><p class="cell-nb">02</p><p class="cell-title">Lancer les tests</p></div>
+      <div class="matrix-cell is-accent"><p class="cell-nb">03</p><p class="cell-title">Rédiger la description de PR</p></div>
+      <div class="matrix-cell"><p class="cell-nb">04</p><p class="cell-title">Annuler les mauvaises modifications</p></div>
+      <div class="matrix-cell"><p class="cell-nb">05</p><p class="cell-title">Migrer le lockfile</p></div>
+      <div class="matrix-cell"><p class="cell-nb">06</p><p class="cell-title">Vérifier les types</p></div>
+      <div class="matrix-cell"><p class="cell-nb">07</p><p class="cell-title">Suivre les issues</p></div>
+      <div class="matrix-cell"><p class="cell-nb">08</p><p class="cell-title">Journal de lecture</p></div>
     </div>
     <div class="hero-stat-bottom">
       <div>
-        <p class="t-cat">In total · 累计</p>
-        <p class="lead">在 6 个仓库上,持续 4 周。</p>
+        <p class="t-cat">In total · cumulés</p>
+        <p class="lead">Sur 6 dépôts,, pendant 4 semaines.</p>
       </div>
       <p class="num-mega">12</p>
     </div>

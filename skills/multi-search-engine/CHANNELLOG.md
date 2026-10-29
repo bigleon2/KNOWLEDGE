@@ -1,47 +1,47 @@
 # Multi Search Engine
 
-## 基本信息
+## Informations de base
 
-- **名称**: multi-search-engine
-- **版本**: v2.0.1
-- **描述**: 集成17个搜索引擎（8国内+9国际），支持高级搜索语法
-- **发布时间**: 2026-02-06
+- **Nom**: multi-search-engine
+- **Version**: v2.0.1
+- **Description**: intègre 17 moteurs de recherche (8 domestiques+9internationaux), prend en charge la syntaxe de recherche avancée
+- **Date de publication**: 2026-02-06
 
-## 搜索引擎
+## Moteurs de recherche
 
-**国内（8个）**: 百度、必应、360、搜狗、微信、头条、集思录
-**国际（9个）**: Google、DuckDuckGo、Yahoo、Brave、Startpage、Ecosia、Qwant、WolframAlpha
+**Domestiques (8)**: Baidu, Bing, 360, Sogou, WeChat, Toutiao, Jisilu
+**Internationaux (9)**: Google、DuckDuckGo、Yahoo、Brave、Startpage、Ecosia、Qwant、WolframAlpha
 
-## 核心功能
+## Fonctionnalités clés
 
-- 高级搜索操作符（site:, filetype:, intitle:等）
-- DuckDuckGo Bangs快捷命令
-- 时间筛选（小时/天/周/月/年）
-- 隐私保护搜索
-- WolframAlpha知识计算
+- opérateurs de recherche avancée (site:, filetype:, intitle: etc.)
+- DuckDuckGo Bangscommandes rapides
+- filtrage temporel (heures/jours/semaines/mois/années)
+- recherche respectueuse de la vie privée
+- WolframAlphacalcul de connaissances
 
-## 更新记录
+## Historique des mises à jour
 
 ### v2.0.1 (2026-02-06)
-- 精简文档，优化发布
+- documentation allégée, publication optimisée
 
 ### v2.0.0 (2026-02-06)
-- 新增9个国际搜索引擎
-- 强化深度搜索能力
+- ajout de 9 moteurs de recherche internationaux
+- renforcement des capacités de recherche approfondie
 
 ### v1.0.0 (2026-02-04)
-- 初始版本：8个国内搜索引擎
+- version initiale : 8 moteurs de recherche domestiques
 
-## 使用示例
+## Exemples d'utilisation
 
 ```javascript
-// Google搜索
+// Google (recherche)
 web_fetch({"url": "https://www.google.com/search?q=python"})
 
-// 隐私搜索
+// recherche privée
 web_fetch({"url": "https://duckduckgo.com/html/?q=privacy"})
 
-// 站内搜索
+// recherche dans le site
 web_fetch({"url": "https://www.google.com/search?q=site:github.com+python"})
 ```
 

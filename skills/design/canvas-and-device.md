@@ -15,11 +15,11 @@ default_for:
   - phone frame
   - desktop frame
   - export size
-  - 尺寸
-  - 分辨率
-  - 画布
-  - 手机比例
-  - 导出尺寸
+  - Dimensions
+  - Résolution
+  - Canevas
+  - Ratio mobile
+  - Taille d'export
 fidelity: system
 ---
 
@@ -84,14 +84,14 @@ These presets are collected from the user's provided social-media size reference
 
 | Preset | Size | Ratio | Use |
 |---|---:|---:|---|
-| `xhs-avatar` | 400 × 400 | 1:1 | 头像 |
-| `xhs-profile-background` | 1000 × 800 | 5:4 | 个人背景图 |
-| `xhs-note-cover-portrait` | 1242 × 1660 | ~3:4 | 图文封面，竖版 |
-| `xhs-note-cover-square` | 1080 × 1080 | 1:1 | 图文封面，方版 |
-| `xhs-note-cover-landscape` | 2560 × 1440 | 16:9 | 图文封面，横版 |
-| `xhs-video-cover-portrait` | 1080 × 1440 | 3:4 | 视频封面，竖版 |
-| `xhs-video-cover-landscape-4x3` | 1440 × 1080 | 4:3 | 视频封面，横版；source image labels it as 3:4, but the pixel ratio is 4:3 |
-| `xhs-video-cover-landscape-16x9` | 1920 × 1080 | 16:9 | 视频封面，横版 / widescreen |
+| `xhs-avatar` | 400 × 400 | 1:1 | avatar |
+| `xhs-profile-background` | 1000 × 800 | 5:4 | arrière-plan de profil |
+| `xhs-note-cover-portrait` | 1242 × 1660 | ~3:4 | couverture de note, portrait |
+| `xhs-note-cover-square` | 1080 × 1080 | 1:1 | couverture de note, carré |
+| `xhs-note-cover-landscape` | 2560 × 1440 | 16:9 | couverture de note, paysage |
+| `xhs-video-cover-portrait` | 1080 × 1440 | 3:4 | couverture vidéo, portrait |
+| `xhs-video-cover-landscape-4x3` | 1440 × 1080 | 4:3 | couverture vidéo, paysage ; source image labels it as 3:4, but the pixel ratio is 4:3 |
+| `xhs-video-cover-landscape-16x9` | 1920 × 1080 | 16:9 | couverture vidéo, paysage / widescreen |
 
 Recommended markers:
 
@@ -106,11 +106,11 @@ Recommended markers:
 
 | Preset | Size | Ratio | Use |
 |---|---:|---:|---|
-| `douyin-avatar` | 400 × 400 | 1:1 | 头像 |
-| `douyin-profile-background` | 1125 × 633 | ~16:9 | 个人背景图 |
-| `douyin-cover-portrait-3x4` | 1242 × 1660 | ~3:4 | 封面，竖版 |
-| `douyin-cover-portrait-9x16` | 1080 × 1920 | 9:16 | 封面，竖版 |
-| `douyin-cover-landscape-16x9` | 1080 × 608 | ~16:9 | 封面，横版 |
+| `douyin-avatar` | 400 × 400 | 1:1 | avatar |
+| `douyin-profile-background` | 1125 × 633 | ~16:9 | arrière-plan de profil |
+| `douyin-cover-portrait-3x4` | 1242 × 1660 | ~3:4 | couverture, portrait |
+| `douyin-cover-portrait-9x16` | 1080 × 1920 | 9:16 | couverture, portrait |
+| `douyin-cover-landscape-16x9` | 1080 × 608 | ~16:9 | couverture, paysage |
 
 Recommended markers:
 
@@ -123,15 +123,15 @@ Recommended markers:
 
 | Preset | Size | Ratio | Use |
 |---|---:|---:|---|
-| `wechat-official-account-avatar` | 240 × 240 | 1:1 | 公众号头像 |
-| `wechat-official-account-cover` | 900 × 383 | ~2.35:1 | 公众号封面 |
-| `wechat-official-account-thumbnail` | 200 × 200 | 1:1 | 公众号小图 |
-| `wechat-official-account-qrcode-card` | 600 × 600 | 1:1 | 公众号二维码名片 |
-| `wechat-official-account-guide-image` | 1080 × 300 | 18:5 | 公众号内容引导图 |
-| `wechat-channels-cover-portrait` | 1080 × 1260 | 6:7 | 视频号封面，竖版 |
-| `wechat-channels-cover-landscape` | 1080 × 608 | ~16:9 | 视频号封面，横版 |
-| `wechat-miniprogram-cover` | 520 × 416 | 5:4 | 小程序封面 |
-| `wechat-moments-cover` | 1280 × 1184 | ~1.08:1 | 朋友圈封面 |
+| `wechat-official-account-avatar` | 240 × 240 | 1:1 | avatar de compte officiel |
+| `wechat-official-account-cover` | 900 × 383 | ~2.35:1 | couverture de compte officiel |
+| `wechat-official-account-thumbnail` | 200 × 200 | 1:1 | vignette de compte officiel |
+| `wechat-official-account-qrcode-card` | 600 × 600 | 1:1 | carte QR code de compte officiel |
+| `wechat-official-account-guide-image` | 1080 × 300 | 18:5 | image de guidage de contenu de compte officiel |
+| `wechat-channels-cover-portrait` | 1080 × 1260 | 6:7 | couverture de chaîne vidéo, portrait |
+| `wechat-channels-cover-landscape` | 1080 × 608 | ~16:9 | couverture de chaîne vidéo, paysage |
+| `wechat-miniprogram-cover` | 520 × 416 | 5:4 | couverture de mini-programme |
+| `wechat-moments-cover` | 1280 × 1184 | ~1.08:1 | couverture de Moments |
 
 Recommended markers:
 

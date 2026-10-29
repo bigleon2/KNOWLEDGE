@@ -49,17 +49,17 @@ Use this skill when:
 
 Examples:
 
-- “用 Ant Design 做”
-- “用 shadcn/ui”
-- “做成 editorial 风格”
-- “更 minimal”
-- “像 Apple 一点”
-- “参考 Linear”
-- “小红书风格”
-- “按这个截图的风格”
-- “沿用上次那个页面的风格”
-- “这是我们的设计规范，按这个来”
-- “按这个 HTML 模板改”
+- “fais-le avec Ant Design”
+- “avec shadcn/ui”
+- “fais un style editorial”
+- “plus minimal”
+- “un peu plus Apple”
+- “inspire-toi de Linear”
+- “style Xiaohongshu”
+- “dans le style de cette capture”
+- “garde le style de la page précédente”
+- “voici notre design system, suis-le”
+- “adapte ce gabarit HTML”
 
 Do not use this skill when:
 
@@ -146,7 +146,7 @@ Behavior:
 Example:
 
 ```text
-“做一个 editorial 风格的个人作品集”
+“fais un portfolio personnel style editorial”
 → `portfolio.md`
 → `design-system-reference.md`
 → `design-systems/style-skills/editorial/`
@@ -189,7 +189,7 @@ Behavior:
 Example:
 
 ```text
-“做一个 Apple 风格的作品集”
+“fais un portfolio style Apple”
 → `portfolio.md`
 → `design-system-reference.md`
 → `design-systems/brand-inspiration/apple/`
@@ -235,12 +235,12 @@ Behavior:
 
 Use when the user says:
 
-- “按我们的设计规范”
-- “沿用这个项目的风格”
-- “参考这个页面”
-- “基于这个截图”
-- “用这个组件库”
-- “跟之前那个版本保持一致”
+- “selon notre design system”
+- “garde le style de ce projet”
+- “inspire-toi de cette page”
+- “à partir de cette capture”
+- “utilise cette bibliothèque de composants”
+- “cohérent avec la version précédente”
 
 ---
 
@@ -305,12 +305,12 @@ Behavior:
 
 Use when the user says:
 
-- “用 Ant Design 组件”
-- “用 antd”
-- “用 Material UI”
-- “用 shadcn/ui”
-- “用 Bootstrap”
-- “做成 MUI 风格”
+- “utilise des composants Ant Design”
+- “avec antd”
+- “avec Material UI”
+- “avec shadcn/ui”
+- “avec Bootstrap”
+- “fais un style MUI”
 
 Important:
 
@@ -330,7 +330,7 @@ Examples:
 - Stripe style
 - Airbnb style
 - Nike style
-- 小红书风格
+- style Xiaohongshu
 - magazine style
 - premium style
 
@@ -398,11 +398,11 @@ Do not apply a preset template by default if the user did not select one.
 
 Use when the user says:
 
-- “用这个模板”
-- “基于这个 HTML 模板改”
-- “我选这个模板”
-- “按这个模板生成”
-- “从这个模板开始”
+- “utilise ce gabarit”
+- “adapte à partir de ce gabarit HTML”
+- “je choisis ce gabarit”
+- “génère selon ce gabarit”
+- “commence avec ce gabarit”
 
 ---
 
@@ -412,11 +412,11 @@ Use this when the user asks to continue, match, reuse, or modify a previous arti
 
 Examples:
 
-- “沿用刚才那个风格”
-- “保持上一版的感觉”
-- “这个页面也用同样的布局”
-- “把这个模板复用到另一个页面”
-- “只改文案，视觉不要动”
+- “garde le style d'à l'instant”
+- “conserve l'esprit de la version précédente”
+- “la même mise en page pour cette page aussi”
+- “réutilise ce gabarit sur une autre page”
+- “change seulement les textes, ne touche pas au visuel”
 
 Priority:
 
@@ -449,23 +449,23 @@ When selecting a design system reference:
 Examples:
 
 ```text
-“用 Ant Design 做一个后台原型”
+“fais un prototype d'admin avec Ant Design”
 → `prototype.md` + `design-system-reference.md`
 → `design-systems/style-skills/ant/` or an open-source Ant Design reference
 
-“Apple 风格的个人作品集”
+“Apple style — portfolio personnel”
 → `portfolio.md` + `design-system-reference.md`
 → `design-systems/brand-inspiration/apple/`
 
-“editorial 风格的作品集”
+“editorial style — portfolio”
 → `portfolio.md` + `design-system-reference.md`
 → `design-systems/style-skills/editorial/`
 
-“按这个 HTML 模板做产品落地页”
+“fais une landing produit avec ce gabarit HTML”
 → `landing-page.md` + `design-system-reference.md`
 → selected preset HTML template
 
-“沿用上一版风格，改成 H5 工具”
+“garde le style de la version précédente, convertis en outil H5”
 → `web-tool.md` + `design-system-reference.md`
 → prior artifact reference
 ```
@@ -577,7 +577,7 @@ When useful, record:
 
 Use `horizontal-craft/chinese-typography.md` when the artifact contains substantial Chinese / Chinese / CJK text, Chinese editorial layout, public-account formatting, Xiaohongshu content, Chinese deck typography, Chinese UI labels, or print-design-inspired HTML.
 
-Translate print-design methods into HTML structure: 版心, 网格, 留白, 标题组, 图版, 边注, 章节 rhythm, and proper punctuation.
+Translate print-design methods into HTML structure: zone de texte, grille, blancs, groupe de titres, bloc d'images, notes marginales, rythme de chapitres, and proper punctuation.
 
 
 ## Quality Gate

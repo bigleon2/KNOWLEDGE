@@ -1,6 +1,6 @@
 ---
 name: social-card-screenshot-explainer
-description: 截图 / UI / 工具流解释类社交卡 — 必须给截图一个"舞台"：可读裁切 + 标注层级 + 出现的理由。骨架：封面 + 大截图 + 3 个标注 / 截图裁切 + 放大细节 + 结论 / before-after 截图对 / 产品 UI 框 + 编号 callout / 3 步工作流。截图要大到手机能看清，箭头节制，加一个 takeaway 标题。触发："做个工具教程卡 / AI 工作流卡 / UI 解释卡 / 截图说明卡 / before-after 卡"。NOT 原图直接丢上画布，NOT 装饰性无关截图。
+description: carte sociale d'explication capture / UI / flux d'outil — la capture doit avoir une "scène"：recadrage lisible + hiérarchie d'annotations + raison d'être. Squelette : couverture + grande capture + 3 annotations / recadrage de capture + détail agrandi + conclusion / paire de captures before-after / cadre UI produit + callouts numérotés / workflow en 3 étapes. La capture doit être assez grande pour être lisible sur mobile, flèches avec retenue, ajouter un titre takeaway. Déclencheurs :"fais-moi une carte tutoriel d'outil / carte workflow IA / carte explication UI / carte capture expliquée / carte before-after"。NOT l'image d'origine balancée sur le canevas, NOT captures décoratives hors sujet.
 visibility: public
 mode: template
 carrier: fixed-image
@@ -8,12 +8,12 @@ scenario: social-content
 pattern_source: pattern.html
 source_priority: skill-first
 triggers:
-  - "做个工具教程卡"
-  - "AI 工作流卡"
-  - "UI 解释卡"
-  - "截图说明卡"
-  - "before-after 卡"
-  - "产品功能拆解卡"
+  - "fais-moi une carte tutoriel d'outil"
+  - "AI carte workflow"
+  - "UI carte explication"
+  - "carte capture expliquée"
+  - "before-after carte"
+  - "carte décorticage de fonctionnalité produit"
 related_patterns: social-card-swiss
 ---
 

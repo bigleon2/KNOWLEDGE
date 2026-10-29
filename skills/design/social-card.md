@@ -6,17 +6,17 @@ type: artifact-skill
 output_target: html-to-image
 primary_when:
   - social card
-  - 小红书封面
-  - 小红书图文
-  - 小红书卡片
+  - couverture Xiaohongshu
+  - note image-texte Xiaohongshu
+  - carte Xiaohongshu
   - Rednote carousel
-  - 微信公众号封面
-  - 视频号封面
-  - 抖音封面
-  - 社媒海报
-  - 知识卡片
-  - 长图
-  - 截图讲解卡
+  - couverture de compte officiel WeChat
+  - couverture de chaîne vidéo
+  - couverture Douyin
+  - poster réseaux sociaux
+  - carte de connaissances
+  - image longue
+  - carte d'explication par capture
   - quote card
   - product brief card
   - product update card
@@ -28,16 +28,16 @@ primary_when:
   - hiring poster
   - report summary card
   - data summary card
-  - 社媒产品简报
-  - 产品更新图
-  - 功能发布图
-  - 版本说明图
-  - 产品发布图
-  - 活动预告图
-  - 招聘海报
-  - 公司动态图
-  - 报告摘要图
-  - 数据摘要图
+  - brief produit réseaux sociaux
+  - visuel de mise à jour produit
+  - visuel de lancement de fonctionnalité
+  - visuel de notes de version
+  - visuel de lancement produit
+  - visuel d'annonce d'événement
+  - poster de recrutement
+  - visuel d'actualité d'entreprise
+  - visuel de synthèse de rapport
+  - visuel de synthèse de données
 avoid_when:
   - full slide deck / PPT / presentation
   - long-form webpage meant for scrolling and reading in-browser
@@ -145,7 +145,7 @@ Rules:
 
 ### WeChat Official Account Cover Pair
 
-Use when the user asks for 微信公众号封面, 公众号首图, article cover pair, or both main + square cover.
+Use when the user asks for couverture de compte officiel WeChat, première image de compte officiel, article cover pair, or both main + square cover.
 
 Rules:
 
@@ -156,7 +156,7 @@ Rules:
 
 ### Douyin / Video / Video Account Cover
 
-Use when the user asks for 抖音封面, 视频号封面, short-video cover, or vertical video thumbnail.
+Use when the user asks for couverture Douyin, couverture de chaîne vidéo, short-video cover, or vertical video thumbnail.
 
 Rules:
 
@@ -182,7 +182,7 @@ Route by final medium, not topic keyword alone.
 - If the user wants a slide presentation, use `deck.md`.
 - If the user wants a product interface prototype, use `prototype.md`.
 - If the user wants a social-distribution image, image sequence, cover, poster, product brief image, update card, or long image, use `social-card.md`.
-- If the user says “产品简报 / 周报 / 报告摘要 / 发布图” without specifying slides or webpage, prefer `social-card.md` when the deliverable is clearly image-first.
+- If the user says “brief produit / hebdo / synthèse de rapport / visuel d'annonce” without specifying slides or webpage, prefer `social-card.md` when the deliverable is clearly image-first.
 
 ## Content Role Planning
 

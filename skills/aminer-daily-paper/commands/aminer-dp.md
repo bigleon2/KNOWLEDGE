@@ -1,6 +1,6 @@
 ---
-description: AMiner 个性化论文推荐 (AMiner Personalized Paper Recommendation) — 按主题或学者画像 (By Topic or Scholar Profile)
-argument-hint: [topics: 主题1, 主题2 | scholar: 姓名 org: 机构 | 自然语言]
+description: AMiner recommandation d'articles personnalisée (AMiner Personalized Paper Recommendation) — par sujet ou profil de chercheur (By Topic or Scholar Profile)
+argument-hint: [topics: sujet1, sujet2 | scholar: nom org: institution | langage naturel]
 allowed-tools: Read, Bash, Glob, Grep
 ---
 

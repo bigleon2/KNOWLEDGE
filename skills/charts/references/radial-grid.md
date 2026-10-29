@@ -163,8 +163,8 @@ body {
 </head>
 <body>
 <div id="root">
-  <div class="diagram-title">平衡计分卡四维评价体系</div>
-  <div class="diagram-subtitle">基于战略目标的绩效管理框架</div>
+  <div class="diagram-title">Système d'évaluation en quatre dimensions du Balanced Scorecard</div>
+  <div class="diagram-subtitle">Cadre de gestion de la performance fondé sur les objectifs stratégiques</div>
   
   <div class="cross-layout" id="crossLayout">
     <!-- SVG connectors drawn by script -->
@@ -172,10 +172,10 @@ body {
     
     <!-- Row 1: top dimension -->
     <div class="dim-card dim-blue" data-pos="top">
-      <div class="dim-title"><div class="dim-icon">F</div> 财务维度</div>
+      <div class="dim-title"><div class="dim-icon">F</div> Dimension financière</div>
       <ul class="dim-items">
-        <li>营收增长率</li>
-        <li>利润率</li>
+        <li>Taux de croissance du chiffre d'affaires</li>
+        <li>Marge bénéficiaire</li>
         <li>ROI</li>
       </ul>
     </div>
@@ -183,33 +183,33 @@ body {
     <!-- Row 2: left + center + right -->
     <div class="middle-row">
       <div class="dim-card dim-green" data-pos="left">
-        <div class="dim-title"><div class="dim-icon">I</div> 内部流程</div>
+        <div class="dim-title"><div class="dim-icon">I</div> Processus internes</div>
         <ul class="dim-items">
-          <li>流程效率</li>
-          <li>质量管控</li>
-          <li>创新能力</li>
+          <li>Efficacité des processus</li>
+          <li>Contrôle qualité</li>
+          <li>Capacité d'innovation</li>
         </ul>
       </div>
       
-      <div class="center-node">战略目标</div>
+      <div class="center-node">Objectif stratégique</div>
       
       <div class="dim-card dim-amber" data-pos="right">
-        <div class="dim-title"><div class="dim-icon">C</div> 客户维度</div>
+        <div class="dim-title"><div class="dim-icon">C</div> Dimension clients</div>
         <ul class="dim-items">
-          <li>客户满意度</li>
-          <li>市场份额</li>
-          <li>客户留存率</li>
+          <li>Satisfaction client</li>
+          <li>Part de marché</li>
+          <li>Taux de rétention client</li>
         </ul>
       </div>
     </div>
     
     <!-- Row 3: bottom dimension -->
     <div class="dim-card dim-purple" data-pos="bottom">
-      <div class="dim-title"><div class="dim-icon">L</div> 学习与成长</div>
+      <div class="dim-title"><div class="dim-icon">L</div> Apprentissage et croissance</div>
       <ul class="dim-items">
-        <li>员工能力提升</li>
-        <li>信息系统建设</li>
-        <li>组织文化</li>
+        <li>Développement des compétences des employés</li>
+        <li>Construction du système d'information</li>
+        <li>Culture d'organisation</li>
       </ul>
     </div>
   </div>
@@ -454,43 +454,43 @@ body {
 </head>
 <body>
 <div id="root">
-  <div class="diagram-title">SWOT 分析</div>
-  <div class="diagram-subtitle">企业战略定位评估</div>
+  <div class="diagram-title">SWOT analyse</div>
+  <div class="diagram-subtitle">Évaluation du positionnement stratégique de l'entreprise</div>
   
   <div class="quadrant-grid">
     <div class="quadrant q-strengths">
-      <div class="q-title"><div class="q-icon">S</div> 优势 Strengths</div>
+      <div class="q-title"><div class="q-icon">S</div> Forces</div>
       <ul class="q-items">
-        <li>核心技术领先</li>
-        <li>品牌知名度高</li>
-        <li>供应链成熟</li>
+        <li>Avance technologique majeure</li>
+        <li>Notoriété de marque élevée</li>
+        <li>Chaîne d'approvisionnement mature</li>
       </ul>
     </div>
     
     <div class="quadrant q-weaknesses">
-      <div class="q-title"><div class="q-icon">W</div> 劣势 Weaknesses</div>
+      <div class="q-title"><div class="q-icon">W</div> Faiblesses</div>
       <ul class="q-items">
-        <li>国际化经验不足</li>
-        <li>产品线单一</li>
-        <li>人才储备有限</li>
+        <li>Expérience internationale insuffisante</li>
+        <li>Gamme de produits unique</li>
+        <li>Vivier de talents limité</li>
       </ul>
     </div>
     
     <div class="quadrant q-opportunities">
-      <div class="q-title"><div class="q-icon">O</div> 机会 Opportunities</div>
+      <div class="q-title"><div class="q-icon">O</div> Opportunités</div>
       <ul class="q-items">
-        <li>新兴市场需求增长</li>
-        <li>政策利好</li>
-        <li>技术融合趋势</li>
+        <li>Croissance de la demande sur les marchés émergents</li>
+        <li>Politiques favorables</li>
+        <li>Tendance à la convergence technologique</li>
       </ul>
     </div>
     
     <div class="quadrant q-threats">
-      <div class="q-title"><div class="q-icon">T</div> 威胁 Threats</div>
+      <div class="q-title"><div class="q-icon">T</div> Menaces</div>
       <ul class="q-items">
-        <li>竞争加剧</li>
-        <li>原材料价格波动</li>
-        <li>法规变化风险</li>
+        <li>Concurrence accrue</li>
+        <li>Volatilité des prix des matières premières</li>
+        <li>Risque d'évolution réglementaire</li>
       </ul>
     </div>
   </div>
