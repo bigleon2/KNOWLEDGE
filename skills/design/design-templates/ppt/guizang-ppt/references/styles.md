@@ -1,195 +1,195 @@
-# 杂志风方向（Magazine Directions）
+# Orientations magazine (Magazine Directions)
 
-5 个**预设方向**，每个方向都把"用哪套主题色 / 哪些 layout / 多少 slide / 怎么写 chrome 文案"打包好，避免你在 6 问澄清里给出 5 个不相关的选项。
+5 **orientations prédéfinies**, chacune regroupant « quel thème / quels layouts / combien de slides / comment rédiger les chrome » — pour éviter de proposer 5 options sans lien lors des 6 questions de clarification.
 
-> 灵感来源：[alchaincyf/huashu-design](https://github.com/alchaincyf/huashu-design) 的 "20 design philosophies × 5 streams" — 我们把它压缩到 5 个 magazine-flavored 的方向，每个都对应到 `themes.md` 的某一套 + `layouts.md` 的某些组合。
+> Source d'inspiration : les « 20 philosophies de design × 5 streams » de [alchaincyf/huashu-design](https://github.com/alchaincyf/huashu-design) — condensées ici en 5 orientations magazine, chacune reliée à un ensemble de `themes.md` et à des combinaisons de `layouts.md`.
 
 ---
 
-## 何时用这份文档
+## Quand utiliser ce document
 
-在 SKILL.md `Step 1 · 需求澄清` 的开头：**先让用户在这 5 个方向里挑一个**，再去问主题色 / 时长 / 受众 / 大纲。流程是：
+Au début de l'`Étape 1 · clarification du besoin` du SKILL.md : **d'abord faire choisir une de ces 5 orientations à l'utilisateur**, avant de demander thème / durée / audience / plan. Le déroulé :
 
 ```
-1. 用户讲一句"想做个分享 PPT"
-2. 你（agent）介绍 5 个方向（拷贝下面的 1-line summary）
-3. 用户挑一个方向（或说"不知道, 你推荐"）
-4. 你按所选方向回答了"主题色"和"slide 数量"两个问题, 再问剩下的 4 个
+1. L'utilisateur dit en une phrase « je veux faire un PPT de partage »
+2. Toi (l'agent), tu présentes les 5 orientations (copier les résumés en une ligne ci-dessous)
+3. L'utilisateur en choisit une (ou dit « je ne sais pas, recommande »)
+4. Avec l'orientation choisie, tu réponds déjà aux questions « thème » et « nombre de slides », puis tu poses les 4 restantes
 ```
 
-**硬规则**：方向只能从下面 5 个里选,不能混搭。混搭 = 走 huashu-design 验证过的失败路径(品牌资产协议 v1)。如果用户对 5 个都不满意,委婉劝他选最接近的,然后允许在 `chrome` / `kicker` 里轻微定制语气,**绝不调色**。
+**Règle dure** : le choix se fait uniquement parmi ces 5, aucun mélange. Mélanger = emprunter le chemin d'échec documenté par huashu-design (protocole d'actifs de marque v1). Si aucune des 5 ne satisfait l'utilisateur, le convaincre gentiment de prendre la plus proche, en tolérant une légère personnalisation du ton dans `chrome` / `kicker`, **jamais de retouche des couleurs**.
 
 ---
 
-## 1. Monocle Editorial · 国际杂志风 ✦ 默认推荐
+## 1. Monocle Editorial · magazine international ✦ recommandé par défaut
 
-**关键词**：克制、知识感、跨国、有 *taste*
+**Mots-clés** : retenue, esprit de connaissance, dimension internationale, du *taste*
 
-| 配方 | 选择 |
+| Recette | Choix |
 |---|---|
-| 主题色 | 🖋 墨水经典 |
-| 推荐 slide 数 | 18–24 页(60% non-hero / 40% hero) |
-| 主力 layouts | **1 封面 / 2 章节幕 / 4 左文右图 / 8 大引用 / 10 图文混排** |
-| Chrome 文案 | `Vol.04 · Spring 2026` / `Act II · 12 / 24` / `lukew.com · 2026.04` |
-| Kicker 风格 | 短英文 + 中点：`THE TWIST` / `BUT` / `DEC.` |
-| Foot 文案 | `Page 12 · 一种新的工作方式` |
+| Thème | 🖋 Encre classique |
+| Slides conseillés | 18–24 pages (60 % non-hero / 40 % hero) |
+| Layouts principaux | **1 couverture / 2 volet de chapitre / 4 texte-gauche image-droite / 8 grande citation / 10 mixte texte-image** |
+| Chrome | `Vol.04 · Spring 2026` / `Act II · 12 / 24` / `lukew.com · 2026.04` |
+| Style Kicker | anglais court + point médian : `THE TWIST` / `BUT` / `DEC.` |
+| Foot | `Page 12 · Une nouvelle façon de travailler` |
 
-**适合**：商业发布、行业内部讲话、产品宣发、个人品牌沉淀分享。**默认就选这个**，跑不出大错。
+**Adapté à** : publications commerciales, discours internes au secteur, lancements produit, partages de marque personnelle. **Choix par défaut** — le risque d'erreur est minimal.
 
-**反例**：技术深度报告（密度太低），表格数据很多的 ops 复盘（没有合适的 layout）。
+**Contre-exemples** : rapport technique approfondi (densité trop faible), rétrospective ops riche en tableaux (aucun layout adapté).
 
-**视觉锚点**：*Monocle* / *Apricot Magazine* / *A Book Apart* / *Apartamento*。
+**Ancrages visuels** : *Monocle* / *Apricot Magazine* / *A Book Apart* / *Apartamento*.
 
 ---
 
-## 2. WIRED Tech · 数据 + 工程
+## 2. WIRED Tech · données + ingénierie
 
-**关键词**：硬数据、流水线、对比、未来感
+**Mots-clés** : données dures, pipeline, comparaison, futurisme
 
-| 配方 | 选择 |
+| Recette | Choix |
 |---|---|
-| 主题色 | 🌊 靛蓝瓷 |
-| 推荐 slide 数 | 14–18 页(轻巧、数据密) |
-| 主力 layouts | **1 封面 / 3 数据大字报 / 6 Pipeline / 7 问题页 / 9 Before/After** |
-| Chrome 文案 | `Q2 / 2026 · Field Report` / `Data · 03` / `Eng Notes` |
-| Kicker 风格 | 全大写 + 数字：`38× FASTER` / `RUNTIME 04` / `CASE 02` |
-| Foot 文案 | `Page 03 · benchmark` / `methodology footnote` |
+| Thème | 🌊 Indigo porcelaine |
+| Slides conseillés | 14–18 pages (léger, dense en données) |
+| Layouts principaux | **1 couverture / 3 grands chiffres / 6 Pipeline / 7 page-question / 9 Avant/Après** |
+| Chrome | `Q2 / 2026 · Field Report` / `Data · 03` / `Eng Notes` |
+| Style Kicker | tout en capitales + chiffres : `38× FASTER` / `RUNTIME 04` / `CASE 02` |
+| Foot | `Page 03 · benchmark` / `methodology footnote` |
 
-**适合**：技术发布会、研究分享、benchmark 报告、工程团队对内沟通、AI 产品 demo day。
+**Adapté à** : conférences techniques, partages de recherche, rapports de benchmark, communication interne d'équipes d'ingénierie, demo day de produits IA.
 
-**反例**：人文类金句分享（太冷）、艺术品牌（不够温度）。
+**Contre-exemples** : partage de citations humanistes (trop froid), marque artistique (pas assez de chaleur).
 
-**视觉锚点**：*WIRED* 长文版 / *MIT Technology Review* / *The Pudding* / *Stripe Press*。
+**Ancrages visuels** : *WIRED* version long format / *MIT Technology Review* / *The Pudding* / *Stripe Press*.
 
-**特殊建议**：每个 stat-card 的 `stat-label` 用英文等宽（这是 WIRED 风的核心），数字别加千分位逗号（不够工程），用 `K` / `M` / `×` 简写。
+**Conseil particulier** : le `stat-label` de chaque stat-card en monospace anglais (c'est le cœur du style WIRED) ; pas de séparateur de milliers sur les chiffres (pas assez ingénieur) — utiliser les abréviations `K` / `M` / `×`.
 
 ---
 
-## 3. Kinfolk Slow · 慢生活 / 人文
+## 3. Kinfolk Slow · art de vivre / humanités
 
-**关键词**：留白、衬线、温度、私享会
+**Mots-clés** : espaces de respiration, serif, chaleur, rencontres privées
 
-| 配方 | 选择 |
+| Recette | Choix |
 |---|---|
-| 主题色 | 🍂 牛皮纸 |
-| 推荐 slide 数 | 9–12 页(慢、放空、低密度) |
-| 主力 layouts | **1 封面 / 4 左文右图 / 8 大引用 / 10 图文混排 / 2 章节幕** |
-| Chrome 文案 | `Vol.07 · Autumn` / `一封信 · 03` / `Notes from Kyoto` |
-| Kicker 风格 | 中文短语 + 标点："给一个朋友。" / "晚秋。" / "Letter Three" |
-| Foot 文案 | `Page 03 · Letter Three` / `2026 · Spring Issue` |
+| Thème | 🍂 Papier kraft |
+| Slides conseillés | 9–12 pages (lent, aéré, faible densité) |
+| Layouts principaux | **1 couverture / 4 texte-gauche image-droite / 8 grande citation / 10 mixte texte-image / 2 volet de chapitre** |
+| Chrome | `Vol.07 · Autumn` / `une lettre · 03` / `Notes from Kyoto` |
+| Style Kicker | phrase courte + ponctuation : « à un ami. » / « fin d'automne. » / `Letter Three` |
+| Foot | `Page 03 · Letter Three` / `2026 · Spring Issue` |
 
-**适合**：私享会、读书分享、人物访谈复盘、生活方式品牌、个人随笔。
+**Adapté à** : rencontres privées, clubs de lecture, rétrospectives d'entretiens, marques art de vivre, chroniques personnelles.
 
-**反例**：产品发布（太慢）、技术分享（太软）、严肃数据（信息密度不够）。
+**Contre-exemples** : lancement produit (trop lent), partage technique (trop doux), données sérieuses (densité insuffisante).
 
-**视觉锚点**：*Kinfolk* / *The Gentlewoman* / *Cereal* / *Drift Magazine*。
+**Ancrages visuels** : *Kinfolk* / *The Gentlewoman* / *Cereal* / *Drift Magazine*.
 
-**特殊建议**：
-- **故意把 slide 数压到 10 页以下**——Kinfolk 的核心是"少即是多"，不要塞满
-- 大量使用 Layout 8（大引用）和 Layout 10（图文混排）
-- 不要用 Layout 3（数据大字报）——和气质冲突
-- `<title>` 文字、章节名、kicker 全部用衬线 + 中文短句
+**Conseils particuliers** :
+- **Volontairement rester sous 10 pages** — le cœur de Kinfolk est « moins, c'est plus », ne pas remplir
+- Usage abondant du Layout 8 (grande citation) et du Layout 10 (mixte texte-image)
+- Ne pas utiliser le Layout 3 (grands chiffres) — heurte le tempérament
+- `<title>`, titres de chapitres et kicker intégralement en serif + phrases courtes
 
 ---
 
-## 4. Domus Architectural · 建筑 / 空间感
+## 4. Domus Architectural · architecture / sens de l'espace
 
-**关键词**：尺度、几何、不对称、克制的炫耀
+**Mots-clés** : échelle, géométrie, asymétrie, ostentation retenue
 
-| 配方 | 选择 |
+| Recette | Choix |
 |---|---|
-| 主题色 | 🌙 沙丘 |
-| 推荐 slide 数 | 12–18 页(中密度，强视觉) |
-| 主力 layouts | **1 封面 / 2 章节幕 / 5 图片网格 / 9 Before/After / 10 图文混排** |
-| Chrome 文案 | `Spazio 09 · Project File` / `Plan · 03` / `Fig.4` |
-| Kicker 风格 | 数字 + 类别：`PROJECT 04` / `SECTION B` / `FIGURE 12` |
-| Foot 文案 | `Page 09 · West Wing` / `1:200 scale` |
+| Thème | 🌙 Dune |
+| Slides conseillés | 12–18 pages (densité moyenne, forte visibilité) |
+| Layouts principaux | **1 couverture / 2 volet de chapitre / 5 grille d'images / 9 Avant/Après / 10 mixte texte-image** |
+| Chrome | `Spazio 09 · Project File` / `Plan · 03` / `Fig.4` |
+| Style Kicker | chiffres + catégorie : `PROJECT 04` / `SECTION B` / `FIGURE 12` |
+| Foot | `Page 09 · West Wing` / `1:200 scale` |
 
-**适合**：设计 / 建筑案例分享、产品设计 review、品牌视觉发布、画廊式 portfolio 展示。
+**Adapté à** : partages de cas design / architecture, revues de design produit, lancements d'identité visuelle, portfolios façon galerie.
 
-**反例**：金句分享（太硬）、技术 deep dive（不擅长流水线）。
+**Contre-exemples** : partage de citations (trop rigide), deep dive technique (peu adapté au pipeline).
 
-**视觉锚点**：*Domus* / *Apartamento* / *Mark Magazine* / *Pin-Up*。
+**Ancrages visuels** : *Domus* / *Apartamento* / *Mark Magazine* / *Pin-Up*.
 
-**特殊建议**：
-- **每个 hero 页都要"留 60% 空"** — 不要塞满，建筑感来自呼吸
-- 大量使用 Layout 5（图片网格）但**只放 4 张大图**，不要放 6 张小图
-- `chrome` 文案保持冷峻，全用英文 + 数字
+**Conseils particuliers** :
+- **Chaque page hero doit « garder 60 % de vide »** — ne pas remplir, le sens architectural vient de la respiration
+- Usage abondant du Layout 5 (grille d'images) mais **seulement 4 grandes images**, pas 6 petites
+- Les `chrome` restent froids, tout en anglais + chiffres
 
 ---
 
-## 5. Lab / Reference · 学术 + 工艺手册
+## 5. Lab / Reference · académique + manuel de savoir-faire
 
-**关键词**：克制、有图有表、可复现、工程师爱看
+**Mots-clés** : retenue, figures et tableaux, reproductible, plaisir des ingénieurs
 
-| 配方 | 选择 |
+| Recette | Choix |
 |---|---|
-| 主题色 | 🌿 森林墨 |
-| 推荐 slide 数 | 16–24 页(密度高、有图表) |
-| 主力 layouts | **1 封面 / 2 章节幕 / 3 数据大字报 / 6 Pipeline / 9 Before/After** |
-| Chrome 文案 | `Field Notes · Vol.II` / `Section 3.2 · Method` / `Reference 04` |
-| Kicker 风格 | 编号：`§ 3.2` / `Ref. 04` / `Method 01` |
-| Foot 文案 | `Page 12 · 3.2 Calibration` / `appendix A` |
+| Thème | 🌿 Encre forêt |
+| Slides conseillés | 16–24 pages (forte densité, avec figures) |
+| Layouts principaux | **1 couverture / 2 volet de chapitre / 3 grands chiffres / 6 Pipeline / 9 Avant/Après** |
+| Chrome | `Field Notes · Vol.II` / `Section 3.2 · Method` / `Reference 04` |
+| Style Kicker | numérotation : `§ 3.2` / `Ref. 04` / `Method 01` |
+| Foot | `Page 12 · 3.2 Calibration` / `appendix A` |
 
-**适合**：学术分享、内部研究复盘、可持续 / 自然主题、长期产品复盘、有方法论的工艺型分享（咖啡 / 香水 / 茶）。
+**Adapté à** : partages académiques, rétrospectives de recherche internes, thématiques durabilité / nature, rétrospectives produit au long cours, partages de savoir-faire méthodologique (café / parfum / thé).
 
-**反例**：商业发布（太冷静）、营销活动（不够 catchy）。
+**Contre-exemples** : publication commerciale (trop froid), campagne marketing (pas assez accrocheur).
 
-**视觉锚点**：*National Geographic*（旧版）/ *Hand-Eye Magazine* / *Nautilus* / *MIT Press* book layouts。
+**Ancrages visuels** : *National Geographic* (anciens numéros) / *Hand-Eye Magazine* / *Nautilus* / mises en page des ouvrages *MIT Press*.
 
-**特殊建议**：
-- 大量 `meta-row` 标注来源、方法、引用
-- 比其他方向**更频繁地用 `<figcaption class="img-cap">`** 给每张图标编号
-- `kicker` 用 § 章节编号，不用感叹句
+**Conseils particuliers** :
+- Usage abondant des `meta-row` pour sourcer, méthodes et citations
+- **Numéroter chaque figure plus souvent que dans les autres orientations** avec `<figcaption class="img-cap">`
+- Le `kicker` en numérotation §, sans phrases exclamatives
 
 ---
 
-## 推荐速查（如果用户描述了一个意图，你应该选哪个）
+## Aide-mémoire de recommandation (selon l'intention décrite par l'utilisateur)
 
-| 用户说的话 | 推荐方向 |
+| Ce que dit l'utilisateur | Orientation recommandée |
 |---|---|
-| "通用分享" / "不知道选啥" | **1. Monocle** |
-| "一人公司 / AI 折叠 / 创业 demo day" | **1. Monocle**（默认）或 **2. WIRED**（如果偏技术） |
-| "AI / benchmark / 模型评测" | **2. WIRED** |
-| "产品发布会 / 工程团队分享" | **2. WIRED** |
-| "读书分享 / 人物访谈 / 一个人的故事" | **3. Kinfolk** |
-| "私享会 / 朋友间分享 / 周末闲聊式" | **3. Kinfolk** |
-| "设计案例 / 品牌发布 / portfolio 展示" | **4. Domus** |
-| "建筑 / 空间 / 装置" | **4. Domus** |
-| "学术 / 研究 / 方法论 / 教程" | **5. Lab** |
-| "可持续 / 环保 / 自然主题" | **5. Lab** |
+| « partage généraliste » / « je ne sais pas quoi choisir » | **1. Monocle** |
+| « entreprise d'une personne / IA qui replie / demo day de start-up » | **1. Monocle** (défaut) ou **2. WIRED** (si très technique) |
+| « IA / benchmark / évaluation de modèles » | **2. WIRED** |
+| « lancement produit / partage d'équipe d'ingénierie » | **2. WIRED** |
+| « club de lecture / entretien / l'histoire d'une personne » | **3. Kinfolk** |
+| « rencontre privée / partage entre amis / bavardage du week-end » | **3. Kinfolk** |
+| « cas design / lancement de marque / portfolio » | **4. Domus** |
+| « architecture / espace / installation » | **4. Domus** |
+| « académique / recherche / méthodologie / tutoriel » | **5. Lab** |
+| « durabilité / écologie / nature » | **5. Lab** |
 
 ---
 
-## 决策记录（生成前必做）
+## Trace de décision (obligatoire avant génération)
 
-挑完方向后，**在项目目录下生成或更新 `项目记录.md`**（或 `大纲-v1.md`），第一行写清：
+Après le choix de l'orientation, **créer ou mettre à jour `projet.md`** (ou `plan-v1.md`) dans le répertoire projet, avec en première ligne :
 
 ```markdown
-# [演讲标题] · 项目记录
+# [titre de la présentation] · trace projet
 
-- 方向（Direction）：**Monocle Editorial** （from `references/styles.md`）
-- 主题色（Theme）：🖋 墨水经典
-- 受众：内部团队（产品 + 设计）
-- 时长：25 min · 约 18 slides
-- Chrome 风格：Vol.04 / Act II / 12 of 18
-- Kicker 风格：短英文 + 中点
+- Orientation (Direction) : **Monocle Editorial** (issue de `references/styles.md`)
+- Thème : 🖋 Encre classique
+- Audience : équipe interne (produit + design)
+- Durée : 25 min · environ 18 slides
+- Style Chrome : Vol.04 / Act II / 12 of 18
+- Style Kicker : anglais court + point médian
 ```
 
-后续迭代每次调整方向都更新这一节。**不要中途换方向**——5 个方向之间的"语气"差异比想象的大，混着写就会撕裂。
+À chaque itération suivante, actualiser cette section à chaque ajustement. **Ne jamais changer d'orientation en cours de route** — les écarts de « ton » entre les 5 orientations sont plus grands qu'on ne croit ; écrire en mélangeant les déchire.
 
 ---
 
-## ❌ 不要做的事
+## ❌ À ne pas faire
 
-- ❌ 把 5 个方向的 layout 选择混着用（例如 Monocle 配 Layout 6 Pipeline 多页 + Kinfolk 风的 chrome）—— 杂乱
-- ❌ 自己造第 6 个方向（"我想做'科技 + 文艺'风"）—— 委婉劝他选最近的，告诉他混搭历史失败率超高
-- ❌ 中途换方向，例如做到第 8 页突然觉得"换 Kinfolk 更好"——前 7 页就废了，要么全推倒重来，要么坚持原方向到底
-- ❌ 在不属于该方向的 layout 上花时间（例如 Kinfolk 写 4 页 Layout 6 Pipeline）—— 信号是用错方向了
+- ❌ Mélanger les layouts des 5 orientations (ex. Monocle avec plusieurs pages de Layout 6 Pipeline + des chrome façon Kinfolk) — incohérence
+- ❌ Inventer une 6e orientation (« je voudrais un style tech + littéraire ») — orienter gentiment vers la plus proche, en rappelant le taux d'échec historique des mélanges
+- ❌ Changer d'orientation en route, ex. à la page 8 se dire « Kinfolk serait mieux » — les 7 premières pages sont perdues : soit tout refaire, soit tenir l'orientation jusqu'au bout
+- ❌ Passer du temps sur un layout étranger à l'orientation (ex. 4 pages de Layout 6 Pipeline en Kinfolk) — c'est le signal d'une orientation mal choisie
 
-## ✅ 应当做的事
+## ✅ Ce qu'il faut faire
 
-- ✅ 只在 5 个方向里挑，挑完用方向去回答其他 5 个澄清问题
-- ✅ 在 `项目记录.md` 第一行明确方向，全程不变
-- ✅ 让 chrome / kicker / foot 三个文字位为方向"代言"——它们承担了一半的方向辨识度
-- ✅ 如果不确定，**默认选 Monocle Editorial**——它是 5 个方向里失败概率最低的兜底
+- ✅ Choisir parmi les 5 orientations seulement, puis laisser l'orientation répondre aux 5 autres questions de clarification
+- ✅ Inscrire l'orientation en première ligne de `projet.md` et ne plus y toucher
+- ✅ Laisser les trois zones de texte chrome / kicker / foot « porter » l'orientation — elles portent la moitié de son identité
+- ✅ En cas de doute, **choisir par défaut Monocle Editorial** — c'est l'orientation au plus faible risque d'échec des cinq

@@ -1,121 +1,121 @@
-# 专业与职业方向参考（供 Agent 分析时查阅）
+# Référentiel spécialités et orientations professionnelles (à consulter par l'agent lors de l'analyse)
 
-本文档为**参考知识库**，不替代个性化判断。Agent 应结合考生画像、`parsed.json` 中的真实志愿数据，产出 `analysis.json`。
+Ce document est une **base de connaissances de référence** ; il ne remplace pas le jugement personnalisé. L'agent doit croiser le profil du candidat et les données réelles des vœux dans `parsed.json` pour produire `analysis.json`.
 
 ---
 
-## 分析维度（Agent 必须考虑）
+## Dimensions d'analyse (à considérer obligatoirement par l'agent)
 
-| 维度 | 说明 |
+| Dimension | Description |
 |------|------|
-| 选科与专业要求 | 核对 `claim` 字段（如「物且化」），避免推荐选科不符的专业 |
-| 各科成绩 | 数学/物理强 → 工科、计算机、电子信息；生物/化学强 → 医学、生命科学；语文/英语强 → 经管、法学、人文 |
-| 兴趣爱好 | 映射到具体专业大类，而非泛泛而谈 |
-| 就业方向 | 区分「首选方向」与「备选方向」，说明理由 |
-| 家庭情况 | 深造意愿、经济承受力、地域偏好、是否接受长线培养（如医学） |
-| 城市机会 | 意向城市产业与实习/就业资源 |
-| 录取概率 | 结合冲/稳/保档位，说明为何将该校/专业标为推荐 |
+| Matières choisies et prérequis de spécialité | vérifier le champ `claim` (ex. « physique et chimie ») pour éviter de recommander une spécialité incompatible avec les matières choisies |
+| Notes par matière | maths/physique solides → ingénierie, informatique, électronique ; biologie/chimie solides → médecine, sciences du vivant ; chinois/anglais solides → gestion, droit, humanités |
+| Centres d'intérêt | les projeter sur de grandes familles de spécialités concrètes, pas de généralités |
+| Orientation professionnelle | distinguer « orientation prioritaire » et « orientations de repli », en justifiant |
+| Situation familiale | volonté de poursuivre en études longues, capacité financière, préférence géographique, acceptation d'un cursus long (ex. médecine) |
+| Opportunités de la ville | industries de la ville visée et ressources de stages/emploi |
+| Probabilité d'admission | en croisant les paliers ambitieux/stables/garantis, expliquer pourquoi tel établissement/spécialité est marqué recommandé |
 
-**硬性约束**：`recommended_majors` / `recommended_schools` 中的 `university_name`、`university_code`、`major_name`、`major_code` 必须来自 `parsed.json`，否则 HTML 无法打上推荐标签。
+**Contrainte dure** : les `university_name`, `university_code`, `major_name`, `major_code` de `recommended_majors` / `recommended_schools` doivent provenir de `parsed.json`, sinon le HTML ne pourra pas apposer les labels de recommandation.
 
 ---
 
-## 常见专业方向与职业出口
+## Grandes familles de spécialités et débouchés
 
-### 🧑‍💻 信息与硬核科技
+### 🧑‍💻 Informatique et technologies dures
 
-| 专业大类 | 典型专业名关键词 | 就业出口 | 培养特点 |
+| Famille | Mots-clés types des spécialités | Débouchés | Caractéristiques de formation |
 |----------|------------------|----------|----------|
-| 计算机类 | 计算机、软件、人工智能、大数据 | 互联网、AI、金融科技、游戏 | 就业面广，竞争激烈，需持续学习 |
-| 电子信息类 | 电子信息、通信、微电子、集成电路 | 芯片、通信设备、消费电子 | 硬核科技核心，数理要求高 |
-| 自动化类 | 自动化、机器人、控制 | 智能制造、自动驾驶、工业软件 | 交叉学科，工科基础扎实 |
+| Informatique | informatique, génie logiciel, IA, big data | internet, IA, fintech, jeu vidéo | débouchés larges, concurrence forte, apprentissage continu requis |
+| Électronique et information | électronique et information, télécoms, micro-électronique, circuits intégrés | puces, équipements télécoms, électronique grand public | cœur des technologies dures, fort exigence maths-physique |
+| Automatique | automatique, robotique, contrôle | fabrication intelligente, conduite autonome, logiciels industriels | discipline croisée, solide socle d'ingénierie |
 
-**适合考生**：数理成绩突出、对编程/科技有兴趣、家庭支持深造或接受高强度学习。
+**Candidats adaptés** : excellents résultats en maths-physique, goût pour le code/la technologie, famille soutenant des études longues ou acceptant une charge de travail intense.
 
 ---
 
-### 🩺 医药卫生
+### 🩺 Santé et médecine
 
-| 专业大类 | 典型专业名关键词 | 就业出口 | 培养特点 |
+| Famille | Mots-clés types | Débouchés | Caractéristiques |
 |----------|------------------|----------|----------|
-| 临床医学 | 临床医学、口腔医学 | 三甲医院、基层医疗、科研 | 学制长（5+），考研/规培常见 |
-| 基础/预防医学 | 基础医学、预防医学、公共卫生 | 疾控、科研、公卫管理 | 偏研究与管理 |
-| 药学/护理 | 药学、护理学 | 制药企业、医院护理岗 | 就业相对稳定 |
+| Médecine clinique | médecine clinique, chirurgie dentaire | hôpitaux de tierce catégorie A, médecine de proximité, recherche | cursus long (5 ans et +), master/residanat fréquents |
+| Médecine fondamentale/préventive | médecine fondamentale, médecine préventive, santé publique | contrôle épidémiologique, recherche, administration sanitaire | plutôt recherche et gestion |
+| Pharmacie / soins infirmiers | pharmacie, sciences infirmières | industrie pharmaceutique, postes hospitaliers | emploi relativement stable |
 
-**适合考生**：生物/化学较好、能接受长周期培养、家庭支持读研、追求职业稳定性。
+**Candidats adaptés** : bons résultats en biologie/chimie, acceptation d'une formation longue, famille soutenant les études supérieures, recherche de stabilité professionnelle.
 
 ---
 
-### ⚙️ 工科与先进制造
+### ⚙️ Ingénierie et fabrication avancée
 
-| 专业大类 | 典型专业名关键词 | 就业出口 | 培养特点 |
+| Famille | Mots-clés types | Débouchés | Caractéristiques |
 |----------|------------------|----------|----------|
-| 机械/车辆 | 机械、车辆、智能制造 | 汽车、装备制造、新能源 | 传统工科底盘稳 |
-| 航空航天 | 航空航天、飞行器 | 军工、航天、民航 | 院校集中，国防七子值得关注 |
-| 电气/能源 | 电气、能源动力、新能源 | 电网、新能源、电力设备 | 国企/央企机会多 |
-| 材料/土木 | 材料、土木、建筑 | 基建、新材料、房地产相关 | 行业周期性强，需结合城市 |
+| Mécanique / automobile | mécanique, véhicule, fabrication intelligente | automobile, équipementier, énergies nouvelles | socle classique de l'ingénierie, très stable |
+| Aérospatial | aérospatial, aéronefs | industrie de défense, spatial, aviation civile | établissements concentrés, les « Sept Fils de la Défense » méritent l'attention |
+| Électrique / énergie | électrotechnique, énergie, énergies nouvelles | réseaux électriques, énergies nouvelles, équipementiers | nombreuses opportunités en entreprises publiques |
+| Matériaux / génie civil | matériaux, génie civil, architecture | infrastructures, nouveaux matériaux, immobilier | forte cyclicité sectorielle, à croiser avec la ville |
 
-**适合考生**：物理扎实、偏好实体产业、可接受工程师成长路径。
+**Candidats adaptés** : physique solide, goût pour l'industrie réelle, acceptation d'un parcours de croissance d'ingénieur.
 
 ---
 
-### 📊 经济金融与管理
+### 📊 Économie, finance et gestion
 
-| 专业大类 | 典型专业名关键词 | 就业出口 | 培养特点 |
+| Famille | Mots-clés types | Débouchés | Caractéristiques |
 |----------|------------------|----------|----------|
-| 金融学/经济学 | 金融、经济、财政 | 银行、证券、咨询、企业财务 | 名校与实习资源重要 |
-| 工商管理 | 工商管理、市场营销、会计学 | 企业管理、审计、运营 | 宽口径，需尽早积累实习 |
-| 统计学 | 统计学、经济统计 | 数据分析、风控、研究岗 | 数理+商业复合 |
+| Finance / économie | finance, économie, finances publiques | banque, titres, conseil, finance d'entreprise | le prestige de l'école et les stages comptent beaucoup |
+| Gestion des entreprises | gestion, marketing, comptabilité | management, audit, opérations | spectre large, stages à accumuler tôt |
+| Statistique | statistique, statistique économique | analyse de données, gestion des risques, recherche | profil maths + business |
 
-**适合考生**：语文英语较好、沟通能力强、意向一线城市金融/商科资源。
+**Candidats adaptés** : bons résultats en chinois/anglais, forte capacité de communication, visant les ressources finance/gestion des villes de premier rang.
 
 ---
 
-### ⚖️ 法学、教育与公共服务
+### ⚖️ Droit, éducation et service public
 
-| 方向 | 关键词 | 说明 |
+| Orientation | Mots-clés | Description |
 |------|--------|------|
-| 法学 | 法学、知识产权 | 法考门槛，就业分化大 |
-| 师范/教育 | 师范、教育学、心理学 | 稳定性高，需关注部属/省属师范 |
-| 公共管理 | 行政管理、公共事业管理 | 考公、事业单位方向 |
+| Droit | droit, propriété intellectuelle | barreau exigeant, forte dispersion des débouchés |
+| Enseignement / éducation | enseignement (normales), sciences de l'éducation, psychologie | forte stabilité, privilégier les écoles normales nationales/provinciales |
+| Administration publique | administration, gestion des affaires publiques | concours de la fonction publique, établissements publics |
 
 ---
 
-## 意向城市与产业参考
+## Villes cibles et industries de référence
 
-| 城市 | 优势产业与就业特点 |
+| Ville | Industries fortes et particularités d'emploi |
 |------|-------------------|
-| 北京 | 互联网总部、央企、科研院所、金融总部密集；实习与深造资源丰富 |
-| 上海 | 金融、外企、生物医药、集成电路；国际化程度高 |
-| 深圳 | 硬科技、互联网、创新创业；民营与科技企业活跃 |
-| 杭州 | 电商、数字经济、AI 应用；阿里系及创业公司生态 |
-| 武汉 | 光谷科创、高校资源、制造业；性价比高的中部枢纽 |
-| 成都 | 游戏、互联网、电子信息；新一线生活成本相对友好 |
-| 西安 | 航空航天、电子信息、军工；科教底蕴深厚 |
-| 广州 | 大湾区制造、医疗、贸易；省属高校与产业结合紧密 |
-| 南京 | 软件、先进制造、高校云集 |
-| 天津 | 制造业、港口经济、工科院校集中 |
+| Pékin | sièges internet, entreprises publiques centrales, instituts de recherche, sièges financiers ; stages et études longues abondants |
+| Shanghai | finance, entreprises étrangères, biopharmacie, circuits intégrés ; très international |
+| Shenzhen | technologies dures, internet, innovation et création d'entreprise ; secteur privé et tech très dynamiques |
+| Hangzhou | e-commerce, économie numérique, applications IA ; écosystème Alibaba et start-ups |
+| Wuhan | pôle optique-électronique de la vallée de la lumière, ressources universitaires, industrie ; plaque tournante du centre au bon rapport qualité/prix |
+| Chengdu | jeu vidéo, internet, électronique et information ; coût de la vie des villes du nouveau premier rang relativement doux |
+| Xi'an | aérospatial, électronique et information, défense ; riche héritage scientifique et éducatif |
+| Guangzhou | industrie de la Grande Baie, santé, commerce ; forte articulation entre universités provinciales et industrie |
+| Nanjing | logiciel, fabrication avancée, forte densité universitaire |
+| Tianjin | industrie, économie portuaire, concentration d'écoles d'ingénieurs |
 
 ---
 
-## 院校层次速查（辅助学校推荐）
+## Aide-mémoire des niveaux d'établissements (en appui de la recommandation)
 
-| 标签 | 填报策略提示 |
+| Label | Conseil de stratégie de saisie |
 |------|--------------|
-| 985 / 双一流 | 冲/稳核心目标，关注优势学科与保研率 |
-| 211 | 稳/保主力，结合城市与专业排名 |
-| 保研资格 | 有深造计划时优先加权 |
-| 部属 / 省属 | 师范、医学等行业认可度高 |
-| 国防七子 / 军工六校 | 工科、国防相关方向 |
+| 985 / Double première classe | cible des paliers ambitieux/stables, regarder les disciplines d'excellence et le taux d'accès direct au master |
+| 211 | fer de lance des paliers stable/garanti, croiser ville et classement de spécialité |
+| Accès master sans examen | à pondérer en priorité si poursuite d'études envisagée |
+| National / provincial | forte reconnaissance sectorielle pour l'enseignement, la médecine etc. |
+| Sept Fils de la Défense / Six écoles de défense | ingénierie, orientations liées à la défense |
 
 ---
 
-## 产出建议数量
+## Volumes recommandés pour la production
 
-| 字段 | 建议数量 | 说明 |
+| Champ | Nombre conseillé | Description |
 |------|----------|------|
-| `major_directions` | 2–4 条 | 按匹配度排序，每条含个性化描述 |
-| `recommended_majors` | 8–15 条 | 覆盖冲/稳/保，优先「稳」档核心专业 |
-| `recommended_schools` | 6–12 所 | 去重院校，冲稳保均有代表 |
+| `major_directions` | 2–4 entrées | triées par adéquation, chacune avec une description personnalisée |
+| `recommended_majors` | 8–15 entrées | couvrant ambitieux/stable/garanti, priorité aux spécialités cœur du palier « stable » |
+| `recommended_schools` | 6–12 établissements | dédupliqués, chaque palier représenté |
 
-`modal.body` 使用 HTML 片段（`<h4>`、`<ul>`、`<li>`、`<strong>`），内容需**针对该考生**撰写，避免模板化套话。
+`modal.body` utilise un fragment HTML (`<h4>`, `<ul>`, `<li>`, `<strong>`), rédigé **pour ce candidat précis**, en évitant les formules toutes faites.
