@@ -1,94 +1,94 @@
-# 行为面题库（Behavioral Interview）
+# Banque de questions d'entretien comportemental (Behavioral Interview)
 
-行为面问题考察"过去如何"来预测"未来如何"。所有行为题用 STAR 答。
+Les questions comportementales évaluent « comment c'était dans le passé » pour prédire « comment ce sera à l'avenir ». Répondre à toutes en STAR.
 
-## 高频题 Top 20（中外企通用）
+## Top 20 des questions fréquentes (entreprises locales et internationales)
 
-### 自我类
-1. 自我介绍 / 简单介绍一下你自己
-2. 介绍你最有成就感的一个项目
-3. 介绍你失败 / 挫折最大的一次经历
-4. 你最大的优点 / 缺点是什么
-5. 你五年后的职业规划
+### Sur soi
+1. Présentation de soi / parlez-nous de vous en quelques mots
+2. Présenter le projet dont vous êtes le plus fier
+3. Raconter votre plus grand échec / votre revers le plus dur
+4. Quelle est votre plus grande qualité / votre principal défaut
+5. Votre projet professionnel dans cinq ans
 
-### 协作 / 影响力
-6. 讲一个你跨部门 / 跨团队推动事情的例子
-7. 讲一次你和同事意见不合，最后怎么解决的
-8. 讲一次你说服别人改变想法的经历
-9. 讲一次你帮 / 带新人成长的经历
-10. 你怎么处理一个不配合的合作方
+### Collaboration / influence
+6. Un exemple où vous avez fait aboutir quelque chose en transverse / entre équipes
+7. Un désaccord avec un collègue, et comment cela s'est résolu
+8. Une fois où vous avez convaincu quelqu'un de changer d'avis
+9. Une fois où vous avez aidé / fait grandir un nouveau venu
+10. Comment gérez-vous un partenaire qui ne coopère pas
 
-### 推动 / 执行
-11. 讲一次你在资源 / 时间不足的情况下完成目标
-12. 讲一次你主动推动一件事（没人要求你做）
-13. 讲一次你做了一个艰难决策的经历
-14. 讲一次你 ownership 体现得最好的一次
-15. 讲一次你打破常规 / 创新的经历
+### Passage à l'action / exécution
+11. Une fois où vous avez atteint l'objectif avec des ressources / un temps insuffisants
+12. Une fois où vous avez pris l'initiative d'une action (personne ne vous l'avait demandé)
+13. Une décision difficile que vous avez prise
+14. La fois où votre ownership a été la plus visible
+15. Une fois où vous avez sorti du cadre / innové
 
-### 失败 / 挫折
-16. 讲一次你犯过的最大错误及怎么处理
-17. 讲一次你接到负面反馈，怎么应对
-18. 讲一次你的项目失败 / 没达成目标，怎么复盘
-19. 讲一次你被 reject / 被否决的经历
+### Échec / revers
+16. La plus grosse erreur que vous avez commise et comment vous l'avez gérée
+17. Un retour négatif reçu, et votre réaction
+18. Un projet qui a échoué / n'a pas atteint son objectif : votre rétrospective
+19. Une fois où vous avez essuyé un refus / un rejet
 
-### 学习 / 适应
-20. 讲一次你快速学会一个全新领域的经历
+### Apprentissage / adaptation
+20. Une fois où vous avez appris très vite un domaine totalement nouveau
 
-## STAR 回答模板
+## Gabarit de réponse STAR
 
 ```
-S - Situation（背景，30 秒以内）
-- 时间 / 地点 / 项目背景
-- 当时的关键约束（资源 / 时间 / 复杂度 / 干系人）
+S - Situation (le contexte, 30 secondes max)
+- date / lieu / contexte du projet
+- les contraintes clés du moment (ressources / temps / complexité / parties prenantes)
 
-T - Task（你的任务）
-- 你具体要解决什么问题 / 达成什么目标
-- 一句话讲清"我的角色 + 我的目标"
+T - Task (votre mission)
+- le problème précis à résoudre / l'objectif à atteindre
+- une phrase pour poser « mon rôle + mon objectif »
 
-A - Action（你的具体动作，重点，60% 时长）
-- 分 2~4 个步骤讲，每步有动词 + 决策依据
-- 强调"我做的"而不是"我们做的"
-- 关键决策点要解释"为什么这么做"
+A - Action (vos actions concrètes, le cœur, 60 % du temps)
+- 2~4 étapes, chacune avec un verbe + le fondement de la décision
+- souligner « ce que j'ai fait » et non « ce que nous avons fait »
+- aux points de décision clés, expliquer « pourquoi ce choix »
 
-R - Result（结果 + 反思，30 秒）
-- 量化结果（数字 / 百分比 / 排名）
-- 1 句反思：你学到了什么 / 如果再做一次会怎么改
+R - Result (résultat + réflexion, 30 secondes)
+- résultat quantifié (chiffres / pourcentages / classement)
+- 1 phrase de recul : ce que vous avez appris / ce que vous changeriez en la refaisant
 ```
 
-## 高频题的"考察点"参考
+## Grille des « points évalués » des questions fréquentes
 
-| 题目 | 考察点 |
+| Question | Point évalué |
 |------|-------|
-| 自我介绍 | 表达能力、对岗位匹配度的自我认知 |
-| 最成功的项目 | ownership、量化思维、复盘能力 |
-| 最失败的项目 | 抗挫折、自我反思、成长型心态 |
-| 优缺点 | 自我认知、坦诚、成长意识（缺点别答得像优点） |
-| 跨部门推动 | 影响力、沟通、利益对齐能力 |
-| 意见不合 | 同理心、说服力、底线思维 |
-| 资源不足 | 创造力、优先级管理、边界谈判 |
-| 主动推动 | ownership、商业 sense、推动力 |
-| 接到负反馈 | 情商、成长型心态、改进行动 |
-| 五年规划 | 职业稳定性、自驱力、与公司路径的契合度 |
+| Présentation de soi | expression, conscience de son adéquation au poste |
+| Projet le plus réussi | ownership, pensée chiffrée, capacité de rétrospective |
+| Projet le plus raté | résistance à l'échec, introspection, état d'esprit de croissance |
+| Qualités / défauts | connaissance de soi, franchise, volonté de progresser (un défaut ne se raconte pas comme une qualité) |
+| Passage en transverse | influence, communication, alignement des intérêts |
+| Désaccord | empathie, force de conviction, pensée des limites |
+| Ressources insuffisantes | créativité, gestion des priorités, négociation des périmètres |
+| Initiative | ownership, sens du business, force d'entraînement |
+| Retour négatif | intelligence émotionnelle, état d'esprit de croissance, actions correctives |
+| Projet à 5 ans | stabilité, autonomie, cohérence avec la trajectoire de l'entreprise |
 
-## 常见反模式（用户会答错的）
+## Anti-patterns courants (là où les candidats se trompent)
 
-- 答"优点"答得像招聘广告（"勤奋、责任心强、抗压"）→ 应该挑 1 个，配 1 个故事
-- 答"缺点"答得像反向夸自己（"太追求完美""工作太投入"）→ 必须真实，加上正在做的改进
-- "失败经历" 不敢说真失败 → HR 一眼识破，反而扣分
-- 答"五年规划" 直接说"做你们的总监" → 太 ambitious 不真诚；要结合公司业务和个人能力路径
-- 用大量"我们"代替"我" → 听不出你做了什么
-- 一个故事讲 5 分钟 → 控制在 2~3 分钟，留追问空间
+- Répondre à « qualité » comme une annonce de recrutement (« travailleur, très responsable, résiste à la pression ») → n'en choisir qu'UNE, avec UNE histoire
+- Répondre à « défaut » comme un compliment inversé (« trop perfectionniste », « trop impliqué ») → il faut un vrai défaut, plus ce que vous faites pour progresser
+- Ne pas oser raconter un vrai échec pour « expérience d'échec » → les RH le voient immédiatement, c'est perdant
+- Pour « projet à 5 ans », lâcher « devenir votre directeur » → trop ambitieux, peu sincère ; relier plutôt le métier de l'entreprise et votre trajectoire de compétences
+- Noyer le récit de « nous » au lieu de « je » → on ne distingue plus votre part
+- Une histoire de 5 minutes → tenir en 2~3 minutes pour laisser de la place aux relances
 
-## 故事矩阵（提前准备）
+## Matrice d'histoires (à préparer à l'avance)
 
-让用户准备一个"故事矩阵"，3~5 个故事可以回答 80% 的行为题：
+Faire préparer à l'utilisateur une « matrice d'histoires » : 3~5 histoires couvrant 80 % des questions comportementales :
 
-| 故事编号 | 项目名 | 主要展示能力 | 可以回答哪些题 |
+| N° | Projet | Compétence principale | Questions couvertes |
 |---------|------|------------|-------------|
-| 故事 1 | XX 项目 | ownership + 推动力 | 最成功项目 / 主动推动 / 跨部门 |
-| 故事 2 | XX 项目 | 数据驱动 + 决策 | 艰难决策 / 数据驱动 / 创新 |
-| 故事 3 | XX 项目 | 失败 + 复盘 | 最失败 / 负反馈 / 学习 |
-| 故事 4 | XX 项目 | 沟通 + 说服 | 意见不合 / 说服别人 |
-| 故事 5 | XX 项目 | 跨界 / 学习 | 快速学习 / 跨界 |
+| Histoire 1 | projet XX | ownership + entraînement | plus grande réussite / initiative / transverse |
+| Histoire 2 | projet XX | data-driven + décision | décision difficile / data-driven / innovation |
+| Histoire 3 | projet XX | échec + rétrospective | plus gros échec / retour négatif / apprentissage |
+| Histoire 4 | projet XX | communication + conviction | désaccord / convaincre |
+| Histoire 5 | projet XX | reconversion / apprentissage | apprentissage rapide / changement de domaine |
 
-每个故事提前打磨"S 30s + T 30s + A 90s + R 30s"四段，面试时按题目灵活组合。
+Polir à l'avance les quatre segments de chaque histoire « S 30 s + T 30 s + A 90 s + R 30 s », puis composer librement le jour J selon la question.

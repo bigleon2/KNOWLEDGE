@@ -1,120 +1,120 @@
-# Magazine Web PPT · 电子杂志风网页 PPT Skill
+# Magazine Web PPT · Skill de PPT web façon magazine électronique
 
 > 🌏 **English version: [README.en.md](./README.en.md)**
 
-一个 [Claude Code / Claude Agent Skills](https://agentskills.io/) 技能,用于生成**单文件 HTML 横向翻页 PPT**,视觉基调是"**电子杂志 × 电子墨水**"——像 *Monocle* 贴上了代码的样子。
+Un skill [Claude Code / Claude Agent Skills](https://agentskills.io/) pour générer des **PPT HTML monofichiers à défilement horizontal**, dont le ton visuel est « **magazine électronique × encre électronique** » — comme *Monocle* avec du code plaqué dessus.
 
-> 由 [歸藏](https://x.com/op7418) 在"一人公司:被 AI 折叠的组织"、"一种新的工作方式"等线下分享中沉淀而成,踩过的每一个坑都写进了 `checklist.md`。
+> Distillé par [歸藏](https://x.com/op7418) lors de partages en présentiel comme « L'entreprise d'une seule personne : l'organisation pliée par l'IA » et « Une nouvelle façon de travailler » ; chaque piège rencontré est consigné dans `checklist.md`.
 
-![Magazine Web PPT 效果展示](https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470)
+![Démonstration Magazine Web PPT](https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470)
 
-## 效果
+## Effets
 
-- 🖋 **衬线大标题 + 非衬线正文 + 等宽元数据**的三级字体分工
-- 🌊 **WebGL 流体/色散背景**,hero 页可见,正文页克制
-- 📐 **横向左右翻页**:键盘 ← → / 滚轮 / 触屏滑动 / 底部圆点 / ESC 索引
-- 🎨 **5 套主题色预设**:墨水经典 / 靛蓝瓷 / 森林墨 / 牛皮纸 / 沙丘
-- 🧩 **10 种页面布局**:开场封面、章节幕封、数据大字报、左文右图、图片网格、Pipeline、悬念问题、大引用、Before/After 对比、图文混排
-- 📄 **单文件 HTML**:不需要构建、不需要服务器,浏览器直接打开
+- 🖋 **Grands titres serif + corps sans-serif + métadonnées monospace** : une répartition typographique à trois niveaux
+- 🌊 **Fond WebGL fluides/dispersion**, visible sur la page héro, retenu sur les pages de contenu
+- 📐 **Défilement horizontal gauche-droite** : clavier ← → / molette / glisser tactile / pastilles en bas / index ESC
+- 🎨 **5 préréglages de thèmes** : Encre classique / Indigo porcelaine / Encre forêt / Papier kraft / Dune
+- 🧩 **10 gabarits de pages** : couverture d'ouverture, volet de chapitre, grands chiffres, texte à gauche/image à droite, grille d'images, Pipeline, question en suspens, grande citation, comparaison Avant/Après, mixte texte-image
+- 📄 **HTML monofichier** : ni build ni serveur, ouverture directe dans le navigateur
 
-## 适合 / 不适合
+## Adapté / inadapté
 
-**✅ 合适**:线下分享 / 行业内部讲话 / 私享会 / AI 产品发布 / demo day / 带强烈个人风格的演讲
+**✅ Adapté** : partage en présentiel / discours internes au secteur / rencontres privées / lancement de produit IA / demo day / présentations à forte personnalité
 
-**❌ 不合适**:大段表格数据 / 培训课件(信息密度不够)/ 需要多人协作编辑(静态 HTML)
+**❌ Inadapté** : gros tableaux de données / supports de formation (densité d'information insuffisante) / édition collaborative à plusieurs (HTML statique)
 
-## 安装
+## Installation
 
-### 方式一:把下面这段话直接发给 AI(推荐)
+### Méthode 1 : envoyer directement ce texte à l'IA (recommandé)
 
-> 帮我安装 `guizang-ppt-skill` 这个 Claude Code skill。请按下面步骤做:
+> Aide-moi à installer le skill Claude Code `guizang-ppt-skill`. Suis ces étapes :
 >
-> 1. 确保 `~/.claude/skills/` 目录存在(不存在就创建)
-> 2. 执行 `git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/magazine-web-ppt`
-> 3. 验证:`ls ~/.claude/skills/magazine-web-ppt/` 应该看到 `SKILL.md`、`assets/`、`references/` 三项
-> 4. 告诉我安装好了,之后我说"做一份杂志风 PPT"之类的话就会触发这个 skill
+> 1. T'assurer que le répertoire `~/.claude/skills/` existe (le créer sinon)
+> 2. Exécuter `git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/magazine-web-ppt`
+> 3. Vérifier : `ls ~/.claude/skills/magazine-web-ppt/` doit montrer `SKILL.md`, `assets/`, `references/`
+> 4. Me confirmer l'installation ; ensuite, quand je dirai « fais-moi un PPT façon magazine » le skill se déclenchera
 
-把这段话复制粘贴给 Claude Code / Cursor / 任何有 shell 权限的 AI Agent,它会自动完成安装。
+Copier-coller ce texte dans Claude Code / Cursor / tout agent IA avec accès shell, l'installation se fera automatiquement.
 
-### 方式二:手动命令行
+### Méthode 2 : ligne de commande manuelle
 
 ```bash
 git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/magazine-web-ppt
 ```
 
-### 触发方式
+### Mode de déclenchement
 
-装好后,Claude Code 会在对话里自动发现并调用这个 skill。触发关键词:
+Une fois installé, Claude Code découvre et invoque ce skill automatiquement dans la conversation. Mots-clés déclencheurs :
 
-- "帮我做一份杂志风 PPT"
-- "生成一个 horizontal swipe deck"
-- "editorial magazine style presentation"
-- "electronic ink 风格演讲 slides"
+- « fais-moi un PPT façon magazine »
+- « génère un horizontal swipe deck »
+- « editorial magazine style presentation »
+- « slides de présentation style encre électronique »
 
-## 使用流程
+## Flux d'utilisation
 
-Skill 本身是结构化的 6 步工作流,Claude 会逐步引导:
+Le skill est un workflow structuré en 6 étapes, que Claude guide pas à pas :
 
-1. **需求澄清** — 6 问清单:受众、时长、素材、图片、主题色、硬约束
-2. **拷贝模板** — `assets/template.html` → 项目目录,改 `<title>`,换主题色
-3. **填充内容** — 从 10 种 layout 骨架里挑、粘、改文案(先做类名预检 + 主题节奏规划)
-4. **自检** — 对照 `references/checklist.md`,P0 级问题必须全过
-5. **预览** — 浏览器直接打开
-6. **迭代** — inline style 改字号/高度/间距
+1. **Clarification du besoin** — liste de 6 questions : audience, durée, supports, images, thème, contraintes dures
+2. **Copie du gabarit** — `assets/template.html` → répertoire projet, modifier `<title>`, changer le thème
+3. **Remplissage du contenu** — choisir parmi les 10 gabarits de layout, coller, adapter les textes (avec pré-contrôle des classes + planification du rythme des thèmes)
+4. **Auto-contrôle** — conformément à `references/checklist.md`, les problèmes de niveau P0 doivent tous passer
+5. **Prévisualisation** — ouverture directe dans le navigateur
+6. **Itération** — ajuster tailles/hauteurs/espacements via inline style
 
-详细说明见 [`SKILL.md`](./SKILL.md)。
+Description détaillée dans [`SKILL.md`](./SKILL.md).
 
-## 目录结构
+## Structure du répertoire
 
 ```
 magazine-web-ppt/
-├── SKILL.md              ← Skill 主文件:工作流、原则、常见错误
-├── README.md             ← 本文件
+├── SKILL.md              ← fichier principal du skill : workflow, principes, erreurs courantes
+├── README.md             ← ce fichier
 ├── assets/
-│   └── template.html     ← 完整可运行的种子 HTML(CSS + WebGL + 翻页 JS 全配好)
+│   └── template.html     ← HTML de départ complet et exécutable (CSS + WebGL + JS de pagination tout prêt)
 └── references/
-    ├── components.md     ← 组件手册(字体、色、网格、图标、callout、stat、pipeline)
-    ├── layouts.md        ← 10 种页面布局骨架(可直接粘贴)
-    ├── themes.md         ← 5 套主题色预设(只能选不能自定义)
-    └── checklist.md      ← 质量检查清单(P0 / P1 / P2 / P3 分级)
+    ├── components.md     ← manuel des composants (typo, couleurs, grille, icônes, callout, stat, pipeline)
+    ├── layouts.md        ← 10 gabarits de pages (collables directement)
+    ├── themes.md         ← 5 préréglages de thème (à choisir, pas de personnalisation)
+    └── checklist.md      ← liste de contrôle qualité (niveaux P0 / P1 / P2 / P3)
 ```
 
-## 主题色预设
+## Préréglages de thème
 
-从 `references/themes.md` 里选一套——**不允许自定义 hex 值**,保护美学比给自由更重要。
+Choisir un ensemble dans `references/themes.md` — **les valeurs hex personnalisées sont interdites** : protéger l'esthétique compte plus que la liberté.
 
-| 主题 | 适合场景 |
+| Thème | Contextes adaptés |
 |------|---------|
-| 🖋 墨水经典 | 通用默认、商业发布、不知道选啥 |
-| 🌊 靛蓝瓷 | 科技 / 研究 / AI / 技术发布会 |
-| 🌿 森林墨 | 自然 / 可持续 / 文化 / 非虚构 |
-| 🍂 牛皮纸 | 怀旧 / 人文 / 文学 / 独立杂志 |
-| 🌙 沙丘 | 艺术 / 设计 / 创意 / 画廊 |
+| 🖋 Encre classique | défaut universel, publication commerciale, quand on ne sait pas quoi choisir |
+| 🌊 Indigo porcelaine | tech / recherche / IA / conférences techniques |
+| 🌿 Encre forêt | nature / durabilité / culture / documentaire |
+| 🍂 Papier kraft | nostalgie / humanités / littérature / magazine indépendant |
+| 🌙 Dune | art / design / création / galerie |
 
-切换主题只需替换 `template.html` 开头 `:root{}` 里的 6 行变量,其他 CSS 全走 `var(--...)`。
+Changer de thème = remplacer les 6 lignes de variables du `:root{}` en tête de `template.html` ; tout le reste du CSS passe par des `var(--...)`.
 
-## 核心设计原则
+## Principes de design fondamentaux
 
-1. **克制优于炫技** — WebGL 背景只在 hero 页透出
-2. **结构优于装饰** — 信息靠字号 + 字体对比 + 网格留白,不用阴影和浮动卡片
-3. **图片是第一公民** — 只裁底部,顶部和左右完整
-4. **节奏靠 hero 页** — hero / non-hero 交替,才不累眼睛
-5. **术语统一** — Skills 就是 Skills,不中英混译
+1. **La retenue prime sur la démonstration technique** — le fond WebGL n'apparaît que sur la page héro
+2. **La structure prime sur la décoration** — l'information repose sur les tailles + contrastes typographiques + grilles et blancs, pas sur les ombres et cartes flottantes
+3. **L'image est citoyenne de première classe** — rogner seulement en bas, le haut et les côtés restent entiers
+4. **Le rythme vient de la page héro** — alterner héro / non-héro, sinon l'œil se fatigue
+5. **Terminologie stable** — Skills reste Skills, pas de traduction mi-chinoise mi-anglaise
 
-## 视觉参考
+## Références visuelles
 
-- [*Monocle*](https://monocle.com) 杂志的版式
-- YC Garry Tan "Thin Harness, Fat Skills"
-- 歸藏线下分享 PPT 系列
+- La mise en page du magazine [*Monocle*](https://monocle.com)
+- YC Garry Tan « Thin Harness, Fat Skills »
+- La série de PPT des partages en présentiel de 歸藏
 
-## 贡献
+## Contribuer
 
-Bug、排版问题、新布局需求——欢迎开 Issue 或 PR。改动请优先:
+Bugs, problèmes de mise en page, demandes de nouveaux gabarits — Issues et PR bienvenus. Pour les modifications, privilégier :
 
-- 在 `template.html` 里补类,不要让 layouts.md 使用未定义的类
-- 把踩过的坑写到 `checklist.md` 对应的 P0 / P1 / P2 / P3 级别
-- 新主题色进 `themes.md` 并给出适合的场景
+- Ajouter les classes dans `template.html`, ne pas faire utiliser à layouts.md des classes non définies
+- Consigner les pièges rencontrés dans `checklist.md` au niveau P0 / P1 / P2 / P3 correspondant
+- Les nouveaux thèmes vont dans `themes.md` avec leurs contextes d'usage
 
-## License
+## Licence
 
 MIT © 2026 [op7418](https://github.com/op7418)
