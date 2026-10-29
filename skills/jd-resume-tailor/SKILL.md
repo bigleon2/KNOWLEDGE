@@ -1,6 +1,6 @@
 ---
 name: jd-resume-tailor
-description: 给定一份 JD 和一份现有简历，做"JD 拆解 + 简历定向改写"。拆 JD 抽出硬技能、软技能、加分项；对照简历做 gap 分析；产出针对该岗位重写后的简历，突出相关经验、补齐关键词缺口、并保留候选人真实经历不编造。当用户说"针对这个岗位 / 这家公司改简历""帮我对一下这个 JD""我想投这个职位你看怎么改""把这份简历针对 X 公司优化""做一份定向版简历"，或同时给出 JD 文本 + 简历文件时，必须触发本 skill。**请勿用本 skill 做"从零写简历"**——那是 resume-builder 的事。
+description: À partir d'une offre (JD) et d'un CV existant, réaliser « décomposition de l'offre + réécriture ciblée du CV ». Décomposer l'offre pour en extraire compétences dures, soft skills et points bonus ; analyser les écarts avec le CV ; produire une version du CV réécrite pour ce poste, mettant en avant l'expérience pertinente, comblant les trous de mots-clés, et préservant le parcours réel du candidat sans rien inventer. Quand l'utilisateur dit « adapte mon CV pour ce poste / cette entreprise », « compare avec cette offre », « je veux postuler à ce poste, comment modifier », « optimise ce CV pour l'entreprise X », « fais-moi une version ciblée », ou fournit à la fois le texte de l'offre + le fichier du CV, ce skill doit se déclencher. **Ne pas utiliser ce skill pour « écrire un CV de zéro »** — c'est l'affaire de resume-builder.
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.13)
@@ -11,125 +11,125 @@ description: 给定一份 JD 和一份现有简历，做"JD 拆解 + 简历定�
 
 
 
-# JD ⇄ Resume Tailor（JD 拆解 + 简历定向改写）
+# JD ⇄ Resume Tailor (décomposition de l'offre + réécriture ciblée du CV)
 
-这个 skill 的边界很窄：**只解决"已有 JD + 已有简历，要改一份命中率最高的版本"**。
+Le périmètre de ce skill est très resserré : **traiter uniquement le cas « offre existante + CV existant, produire la version au meilleur taux de réussite »**.
 
-不做的事：
-- 写新简历（去 `resume-builder`）
-- 找方向 / 推荐岗位（去 `job-intent-tracker`）
-- 出面试题（去 `interview-prep`）
-
----
-
-## 何时触发
-
-强信号：
-- 用户给了 JD 链接 / JD 文本 + 一份简历 → **必触发**
-- "针对这个岗位帮我改简历"
-- "对照一下这个 JD"
-- "我想投 X 公司的 Y 岗，帮我看简历"
-- "做一份定向版"
-
-弱信号（先确认）：
-- 只给了 JD 没有简历 → 问"你的简历方便发我看一下吗？没有的话，我可以先帮你从零做一份（resume-builder）"
-- 只给了简历说"改简历" → 问"是针对哪个 JD 改？没有 JD 就用 resume-builder 通用优化"
+Ce qu'il ne fait pas :
+- écrire un CV neuf (voir `resume-builder`)
+- trouver une orientation / recommander des postes (voir `job-intent-tracker`)
+- produire des questions d'entretien (voir `interview-prep`)
 
 ---
 
-## 工作流
+## Quand se déclencher
 
-### Step 1: 解析 JD
+Signaux forts :
+- L'utilisateur donne un lien d'offre / le texte de l'offre + un CV → **déclenchement obligatoire**
+- « adapte mon CV pour ce poste »
+- « compare avec cette offre »
+- « je veux postuler au poste Y de l'entreprise X, regarde mon CV »
+- « fais-moi une version ciblée »
 
-输入可能是：
-- 纯文本（用户粘贴）
-- 链接（**不要**自动 fetch，提醒用户复制 JD 文本进来；若用户授权 fetch，使用 web_fetch）
-- 截图（用 OCR / 视觉识别，让用户确认抽取结果）
-- doc/pdf 文件
+Signaux faibles (confirmer d'abord) :
+- Offre seule sans CV → demander « pouvez-vous m'envoyer votre CV ? Sinon, je peux d'abord vous en composer un de zéro (resume-builder) »
+- CV seul avec « modifie mon CV » → demander « pour quelle offre ? Sans offre, on passe par l'optimisation générale de resume-builder »
 
-调用脚本：
+---
+
+## Workflow
+
+### Étape 1 : analyser l'offre
+
+L'entrée peut être :
+- du texte brut (collé par l'utilisateur)
+- un lien (**ne pas** fetcher automatiquement ; inviter l'utilisateur à coller le texte de l'offre ; s'il autorise le fetch, utiliser web_fetch)
+- une capture d'écran (OCR / reconnaissance visuelle, avec validation de l'extraction par l'utilisateur)
+- un fichier doc/pdf
+
+Appeler le script :
 
 ```bash
 python scripts/parse_jd.py --jd-file <jd.txt> --out jd_parsed.json
 ```
 
-脚本会从 JD 抽出：
-- **硬技能 must-have**（"必须" / "要求" / "至少 X 年" 等强信号词后面的技能）
-- **硬技能 nice-to-have**（"加分" / "优先" / "熟悉者优先" 等弱信号）
-- **软技能信号**（沟通 / 推动 / 跨部门 / 抗压 等）
-- **职责动词 + 对象**（"负责 X" / "搭建 Y" / "推动 Z"）
-- **特殊要求**（出差 / 学历 / 证书 / 语言 / 城市）
+Le script extrait de l'offre :
+- **compétences dures must-have** (celles qui suivent les marqueurs forts — 必须 « obligatoire », 要求 « exigé », « au moins X ans » etc. — tels que détectés par le script dans les offres)
+- **compétences dures nice-to-have** (marqueurs faibles — 加分 « un plus », 优先 « apprécié » etc.)
+- **signaux de soft skills** (communication / entraînement / transverse / résistance à la pression etc.)
+- **verbes de responsabilité + objet** (« responsable de X » / « construire Y » / « faire aboutir Z »)
+- **exigences particulières** (déplacements / diplôme / certifications / langues / ville)
 
-把结果展示给用户，让用户**确认 / 修正抽取是否准确**（关键 must-have 不能漏）。
+Présenter le résultat à l'utilisateur pour **validation / correction de l'extraction** (aucun must-have clé ne doit manquer).
 
-### Step 2: 解析简历
+### Étape 2 : analyser le CV
 
-输入：用户上传的简历文件（.pdf / .docx / .md / .txt）。
+Entrée : le fichier de CV téléversé (.pdf / .docx / .md / .txt).
 
-调用对应 skill 解析：
-- pdf → pdf skill
-- docx → docx skill
+Appeler le skill correspondant :
+- pdf → skill pdf
+- docx → skill docx
 
-抽出：基本信息、教育、每段工作 / 项目经历的（公司、岗位、时间、职责 bullet）、技能列表。
+Extraire : informations de base, formation, pour chaque expérience pro/projet (entreprise, poste, période, puces de responsabilités), liste de compétences.
 
-### Step 3: Gap 分析
+### Étape 3 : analyse des écarts
 
-调用：
+Appeler :
 
 ```bash
 python scripts/jd_gap.py --jd jd_parsed.json --resume resume.txt --out gap.md
 ```
 
-脚本输出三类清单：
+Le script produit trois listes :
 
-1. **完美命中**（JD must-have 在简历里有明确证据）
-2. **隐性命中**（JD 要求 X，简历里有 X 的近义经验，但用词不一样 → 改写时可以"提一下"）
-3. **真缺口**（JD 要求但简历完全没有）
+1. **Correspondances parfaites** (un must-have de l'offre avec preuve explicite dans le CV)
+2. **Correspondances implicites** (l'offre demande X, le CV contient une expérience synonyme mais formulée autrement → possible de « le mentionner » en réécrivant)
+3. **Vraies lacunes** (demandé par l'offre, totalement absent du CV)
 
-对"真缺口"分两类：
-- **可补救**：简历里其实做过类似的事，只是没写出来 → 追问用户"你做过 X 吗？"
-- **不可补救**：用户确实没做过 → **不能编**，建议用户在 cover letter 或 summary 里诚实说明并强调 transferable skill
+Pour les vraies lacunes, deux cas :
+- **Rattrapables** : le candidat a fait des choses similaires sans les avoir écrites → lui demander « avez-vous déjà fait X ? »
+- **Non rattrapables** : le candidat ne l'a vraiment jamais fait → **ne rien inventer** ; suggérer de l'expliquer honnêtement dans la lettre de motivation ou le Summary en valorisant les compétences transférables
 
-### Step 4: 定向改写
+### Étape 4 : réécriture ciblée
 
-按以下原则重写简历：
+Réécrire le CV selon les principes suivants :
 
-**a. 重排经历顺序**：与 JD 最相关的工作 / 项目放最前（不改时间真实性，但可以把项目经历拆成两块"相关项目 / 其他项目"）
+**a. Réordonner les expériences** : placer en tête le travail/projet le plus pertinent pour l'offre (sans toucher à la vérité des dates, mais les projets peuvent être scindés en deux blocs « projets pertinents / autres projets »)
 
-**b. 重写每条 bullet**：
-- 把 JD 里的"职责动词"自然嵌入 bullet（如 JD 说"主导 ___ 系统设计"，简历里就把"参与"改成"主导"——前提是用户确实主导了）
-- 数字保留并放大（"用户 100 万"是好事，别藏起来）
-- 补 JD 关键词（如 JD 说"A/B 测试"，但简历里写的是"灰度对比"，改成"A/B 测试（灰度对比）"）
+**b. Réécrire chaque puce** :
+- Insérer naturellement les « verbes de responsabilité » de l'offre dans la puce (ex. l'offre dit « piloter la conception du système ___ » : dans le CV, transformer « participé à » en « piloté » — à condition que l'utilisateur l'ait réellement piloté)
+- Conserver et mettre en avant les chiffres (« 1 million d'utilisateurs » est un atout, ne pas le cacher)
+- Combler les mots-clés de l'offre (ex. l'offre dit « tests A/B » alors que le CV écrit « comparaisons en déploiement progressif » : reformuler en « tests A/B (comparaisons en déploiement progressif) »)
 
-**c. 重写 Summary**：用 2~3 行总结你为什么是这个岗位的合适人选，**直接对应 JD 的 must-have**
+**c. Réécrire le Summary** : 2~3 lignes résumant pourquoi vous êtes le bon candidat pour CE poste, **en réponse directe aux must-have de l'offre**
 
-**d. 调整技能列表**：把 JD 提到的技能移到最前面（前提是真的会）
+**d. Ajuster la liste de compétences** : remonter les compétences citées par l'offre (à condition de les maîtriser réellement)
 
-**e. 不改的事实**：
-- 公司名、岗位名、起止时间、学历 —— 一字不改
-- 项目规模、用户量、收入数据 —— 不能编，只能让用户确认后填准
+**e. Les faits intouchables** :
+- noms d'entreprises, intitulés de postes, dates, diplômes — inchangés au mot près
+- échelle des projets, volumes d'utilisateurs, chiffres de revenus — rien à inventer, seulement à faire confirmer et préciser par l'utilisateur
 
-### Step 5: 自检 + 报告
+### Étape 5 : auto-contrôle + rapport
 
-输出三个文件：
-1. `resume_tailored_<公司>_<岗位>.md`（改写后的简历）
-2. `gap_analysis.md`（gap 分析报告）
-3. 聊天里给一个 ATS 命中率对比："改前 X% → 改后 Y%"
+Produire trois livrables :
+1. `resume_tailored_<entreprise>_<poste>.md` (le CV réécrit)
+2. `gap_analysis.md` (le rapport d'analyse des écarts)
+3. Dans le chat, une comparaison du taux de réussite ATS : « avant X % → après Y % »
 
-附：诚实提醒用户**哪些 bullet 是基于现有信息推测改写的**，让用户复核后再投。
+En annexe : rappeler honnêtement à l'utilisateur **quelles puces ont été réécrites par inférence à partir des informations existantes**, pour relecture avant envoi.
 
 ---
 
-## 反模式（不要做）
+## Anti-patterns (à ne pas faire)
 
-- ❌ 编造经历（"加上一段你没做过的项目"——绝对禁止，哪怕用户要求）
-- ❌ 把 JD 的整段话直接粘进简历（很容易被 HR 一眼识破，且 ATS 反作弊会标记）
-- ❌ 关键词堆砌（在末尾塞一长串技能词凑命中率，HR 一眼能看出）
-- ❌ 把"参与"改成"主导"但没有问用户实际角色 → 必须先核实
-- ❌ 不给用户看 gap，自己默默改 → 用户会失去对简历的"理解"
+- ❌ Inventer des expériences (« ajouter un projet que vous n'avez pas vécu » — interdit absolu, même à la demande de l'utilisateur)
+- ❌ Coller des paragraphes entiers de l'offre dans le CV (les RH le repèrent immédiatement, et l'anti-triche ATS le signale)
+- ❌ Le bourrage de mots-clés (une longue traîne de compétences en fin de CV pour gonfler le score, visible au premier coup d'œil)
+- ❌ Transformer « participé à » en « piloté » sans avoir interrogé l'utilisateur sur son rôle réel → vérifier d'abord
+- ❌ Modifier en cachette sans montrer les écarts à l'utilisateur → il perdrait la « compréhension » de son propre CV
 
-## 与其他 skill 的协作
+## Collaboration avec les autres skills
 
-- 改完后用户说"帮我准备这家公司的面试" → 转 `interview-prep`，把 JD + 改写简历传过去
-- 用户说"我想知道还能投哪些类似的岗" → 转 `job-intent-tracker`
-- 用户说"我现在简历不太行，能不能整体重做" → 转 `resume-builder`
+- Après la réécriture, si l'utilisateur dit « prépare-moi l'entretien de cette entreprise » → passer à `interview-prep` en transmettant l'offre + le CV réécrit
+- Si l'utilisateur dit « je veux savoir à quels postes similaires postuler » → passer à `job-intent-tracker`
+- Si l'utilisateur dit « mon CV est vraiment faible, peut-on tout refaire » → passer à `resume-builder`
