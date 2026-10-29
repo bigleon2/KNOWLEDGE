@@ -1,6 +1,6 @@
 ---
 name: dot-matrix-xhs
-description: Bayer 抖动黑白点阵的小红书封面 / 杂志感海报 / 独立刊物封面模板 — 黑底 + Canvas 真做 Bayer 8×8 有序抖动把任意图片转成纯黑白点阵 + 上下双向 vignette + 杂志栏目式四角文字（刊号 / 栏目 / wordmark / credit）+ Noto Sans JP Black 中文超大粗黑标题 2×2 网格 + 中心方括号期号。4 套版式骨架（单图封面 / 上图下字 / 系列三联 / 内页长文），容器查询 cqh 适配任意尺寸。触发：用户要"点阵感 / dither / 1-bit / 黑白颗粒 / 小红书封面 / Vol 期号海报 / 独立刊物 / 报纸印刷感"。NOT 多区块产品页，NOT 彩色海报。
+description: Gabarit de couverture Xiaohongshu / affiche magazine / couverture de publication indépendante en trame de points noir et blanc par dithering de Bayer — fond noir + vrai Bayer 8×8 exécuté dans un Canvas pour convertir n'importe quelle image en trame pure noir et blanc + vignette double haut-bas + textes aux quatre coins façon rubriques de magazine (numéro / rubrique / wordmark / credit) + très grands titres chinois gras Noto Sans JP Black en grille 2×2 + numéro de livraison entre crochets au centre. 4 squelettes de mise en page (couverture image unique / image en haut texte en bas / triptyque de série / page intérieure long format), requêtes de conteneur cqh pour s'adapter à toute taille. Déclencheurs : l'utilisateur réclame « trame de points / dither / 1-bit / grain noir et blanc / couverture Xiaohongshu / affiche Vol numéro / publication indépendante / impression journal ». NOT page produit multi-blocs, NOT affiche en couleurs.
 visibility: public
 mode: template
 carrier: fixed-image
@@ -8,101 +8,101 @@ scenario: social-content
 pattern_source: 点阵.html
 source_priority: skill-first
 triggers:
-  - "做个点阵小红书封面"
-  - "黑白颗粒封面"
-  - "1-bit 海报"
-  - "Vol 期号封面"
-  - "独立刊物封面"
-  - "报纸印刷感封面"
-  - "dither 抖动"
+  - « fais une couverture Xiaohongshu en trame de points »
+  - « couverture grain noir et blanc »
+  - « affiche 1-bit »
+  - « couverture Vol numéro »
+  - « couverture de publication indépendante »
+  - « couverture à l'impression journal »
+  - « dither, tramage »
 related_patterns: social-card-editorial
 ---
 
-# dot-matrix-xhs — Bayer 抖动黑白点阵封面
+# dot-matrix-xhs — couverture en trame de points noir et blanc par dithering Bayer
 
-把任意一张照片实时做 Bayer 8×8 有序抖动，变成"报纸印刷点阵"，叠在杂志感四角文字 + 中文 2×2 大标题骨架上。**容器比例固定 1280×1644（小红书纵版封面）**，但用 container-query (cqh) 单位排版，缩到任何尺寸都不糊。
+Soumettre n'importe quelle photo en temps réel à un dithering ordonné Bayer 8×8 pour la transformer en « trame d'impression journal », posée sur un squelette de textes aux quatre coins façon magazine + grand titre chinois 2×2. **Ratio de conteneur fixe 1280×1644 (couverture verticale Xiaohongshu)**, mais mise en page en unités de requête de conteneur (cqh) : réduite à n'importe quelle taille, jamais floue.
 
-## 怎么用这份 skill
+## Comment utiliser ce skill
 
-1. **看气质**：先 Read `点阵.html`（深夜篝火 / a fire at midnight 范例），重点看 Bayer dithering 的颗粒密度、暗角强度、四角栏目字的层级关系。**这一步只是为了"知道对的样子长什么样"。**
-2. **挑骨架**：从下面 4 个版式骨架里选一个（单图封面 / 上图下字 / 系列三联 / 内页长文），**禁止整张 clone 深夜篝火**（同样的 2×2 + 中部方括号 + 底部 wordmark 一起出现就是撞脸）。
-3. **抄积木**：Canvas Bayer 函数、容器查询排版、四角文字布局可以直接搬。
-4. **过红线**：写完对照"必须 / 禁止"清单自检。
+1. **Saisir le ton** : d'abord Read `点阵.html` (exemple « feu de camp nocturne / a fire at midnight »), en regardant la densité de grain du Bayer, l'intensité du vignettage, la hiérarchie des textes des quatre coins. **Cette étape sert uniquement à « savoir à quoi ressemble le juste résultat ».**
+2. **Choisir le squelette** : prendre l'un des 4 squelettes ci-dessous (couverture image unique / image haut texte bas / triptyque / page intérieure), **interdiction de cloner intégralement le feu de camp nocturne** (le combo 2×2 + crochets centraux + wordmark en bas = resemblance assurée).
+3. **Copier les briques** : la fonction Canvas Bayer, la mise en page par requêtes de conteneur, la disposition des quatre coins se transplantent telles quelles.
+4. **Passer la ligne rouge** : auto-contrôle avec la liste « obligatoire / interdit » après écriture.
 
-## 视觉 DNA — 这些不能丢
+## ADN visuel — à ne jamais perdre
 
-少了任意一条就不再是点阵杂志感：
+S'il manque un seul de ces éléments, ce n'est plus la trame magazine :
 
-1. **黑底 + Canvas 真做 Bayer 抖动**：底层一定是一张被 Bayer 8×8 抖动过的图，**不是 CSS noise，不是 SVG filter，不是预渲染好的 PNG，必须 Canvas 实时跑**。任何图（人物、风景、物件）经过 `adjustBrightness(-20~-30) + adjustLevels(60~80, 190~210) + bayerDither` 后才是对的。
-2. **像素硬边渲染**：canvas 必须 `image-rendering:pixelated`，缩放时点阵保持硬边，不能因放大变模糊变灰。
-3. **上下双向 vignette**：`linear-gradient(180deg, rgba(0,0,0,.55) 0%, transparent 18%, transparent 70%, rgba(0,0,0,.45) 100%)`，让顶部刊号和底部 wordmark 有底气；**不要四角 vignette**（圆形会立刻变成手机相机镜头味）。
-4. **杂志栏目式四角**：左上=刊号 (`No 04 / 2026`)、右上=栏目英文+中文小字、左下=主 wordmark、右下=年份+credit。**至少填 3 角**，这是独立刊物的标识；少于 3 角就只是张图配字。
-5. **超大粗黑中文标题**：`Noto Sans JP Black` + `PingFang SC` 兜底，`font-weight:900`，`line-height:1.1`，`letter-spacing:0`（中文密排不加字距）。**禁止细体 / 楷书 / 隶书 / 圆体**。
-6. **白字带轻 text-shadow**：所有覆盖在点阵图上的文字都要 `text-shadow:0 0 .8cqh rgba(0,0,0,.85)`，让白字在浅色点阵区域也读得清。
+1. **Fond noir + vrai dithering Bayer dans un Canvas** : la couche de fond est toujours une image tramée par Bayer 8×8, **pas du CSS noise, pas un filtre SVG, pas un PNG pré-rendu — le Canvas doit tourner en temps réel**. Toute image (personne, paysage, objet) ne devient juste qu'après `adjustBrightness(-20~-30) + adjustLevels(60~80, 190~210) + bayerDither`.
+2. **Rendu aux bords nets de pixels** : le canvas doit avoir `image-rendering:pixelated`, pour que la trame garde ses bords durs au redimensionnement, sans flouter ni griser à l'agrandissement.
+3. **Vignette double haut-bas** : `linear-gradient(180deg, rgba(0,0,0,.55) 0%, transparent 18%, transparent 70%, rgba(0,0,0,.45) 100%)`, pour asseoir le numéro en haut et le wordmark en bas ; **pas de vignette aux quatre coins** (l'arrondi ferait immédiatement « objectif d'appareil photo »).
+4. **Quatre coins façon rubriques de magazine** : haut-gauche = numéro (`No 04 / 2026`), haut-droit = rubrique anglaise + petit chinois, bas-gauche = wordmark principal, bas-droit = année + credit. **Remplir au moins 3 coins** — c'est la marque des publications indépendantes ; en dessous de 3, ce n'est qu'une image avec du texte.
+5. **Très grand titre chinois ultra-gras** : `Noto Sans JP Black` + repli `PingFang SC`, `font-weight:900`, `line-height:1.1`, `letter-spacing:0` (composition serrée du chinois, sans interlettrage). **Interdits : corps fins / kai / lishu / ronds**.
+6. **Texte blanc avec léger text-shadow** : tout texte posé sur la trame doit recevoir `text-shadow:0 0 .8cqh rgba(0,0,0,.85)`, pour rester lisible sur les zones claires de la trame.
 
-## 必须 / 禁止（写完自检）
+## Obligatoire / Interdit (auto-contrôle après écriture)
 
-**必须**：
-- [ ] Canvas 真做了 Bayer dithering（不是 CSS 滤镜、不是 SVG noise、不是预渲染图）
-- [ ] 容器有固定 `aspect-ratio`（封面用 1280/1644，海报可自由）
-- [ ] 容器加 `container-type:size`，排版单位用 `cqh` / `cqw`
-- [ ] 四角至少 3 角有内容（刊号、栏目、wordmark、credit 选 3）
-- [ ] 主标题字重 ≥ 800
-- [ ] 中文 webfont 按"四件套"加载（preconnect + preload + print-onload + noscript）
-- [ ] canvas 三行 `image-rendering:pixelated / -moz-crisp-edges / crisp-edges` 一个不能少
+**Obligatoire** :
+- [ ] un vrai dithering Bayer dans le Canvas (pas de filtre CSS, pas de SVG noise, pas d'image pré-rendue)
+- [ ] le conteneur a un `aspect-ratio` fixe (couverture 1280/1644, affiche libre)
+- [ ] le conteneur porte `container-type:size`, et la mise en page utilise `cqh` / `cqw`
+- [ ] au moins 3 coins remplis (numéro, rubrique, wordmark, credit — en choisir 3)
+- [ ] graisse du titre principal ≥ 800
+- [ ] webfont chinoise chargée en « quatre pièces » (preconnect + preload + print-onload + noscript)
+- [ ] les trois lignes `image-rendering:pixelated / -moz-crisp-edges / crisp-edges` du canvas, aucune ne manque
 
-**禁止**：
-- [ ] 不要照抄"2×2 中文字阵列 + 中心方括号 + 底部 wordmark"完整组合 — 那是深夜篝火的指纹
-- [ ] 不要用 SVG noise / `filter: contrast` / `background-image: radial-gradient(...dot)` 模拟点阵 — 一眼假
-- [ ] 不要让点阵保留灰阶（Bayer 输出必须是纯黑 0 或纯白 255 二值，不允许中间值）
-- [ ] 不要给图加饱和色调（黄昏滤镜、青蓝调、奶油色）— 这套审美就是 1-bit 纯黑白
-- [ ] 不要圆角 — 框架、按钮、卡片全是直角
-- [ ] 不要 emoji / 3D 贴纸 / 渐变色 / 玻璃拟态 / 阴影漂浮
-- [ ] 标题不要 PingFang Regular / Source Han Sans Light — 必须 Heavy / Black 字重
-- [ ] 不要照搬"深/夜/篝/火 + VOL IV / 2026 + 夜火 wordmark + 小红书号 955873829" — 那是范例的指纹
+**Interdit** :
+- [ ] ne pas recopier le combo complet « matrice 2×2 de caractères chinois + crochets centraux + wordmark en bas » — c'est l'empreinte du feu de camp nocturne
+- [ ] ne pas simuler la trame par SVG noise / `filter: contrast` / `background-image: radial-gradient(...dot)` — ça se voit immédiatement
+- [ ] la trame ne doit pas garder de niveaux de gris (la sortie Bayer est binaire : noir pur 0 ou blanc pur 255, aucune valeur intermédiaire)
+- [ ] pas de teinte saturée sur l'image (filtre crépuscule, dominante bleu-vert, crème) — cette esthétique est du 1-bit noir et blanc pur
+- [ ] pas d'arrondis — cadres, boutons, cartes : tout à angles droits
+- [ ] pas d'emoji / stickers 3D / dégradés de couleur / glassmorphism / ombres flottantes
+- [ ] pas de titres en PingFang Regular / Source Han Sans Light — graisse Heavy / Black obligatoire
+- [ ] ne pas reprendre « 深/夜/篝/火 + VOL IV / 2026 + wordmark 夜火 + identifiant Xiaohongshu 955873829 » — c'est l'empreinte de l'exemple
 
-## 四套版式骨架（任选一套，不要再做"深夜篝火"组合）
+## Quatre squelettes de mise en page (en choisir un ; plus jamais le combo « feu de camp nocturne »)
 
-每套都自带点阵 + 四角文字 DNA，但**结构截然不同**，让产物不撞脸。
+Chacun porte l'ADN trame + quatre coins, mais avec des **structures radicalement différentes**, pour éviter les ressemblances.
 
-### 骨架 A — 单图封面（深夜篝火原型，可参考但慎用）
+### Squelette A — couverture image unique (prototype du feu de camp nocturne, à consulter mais à utiliser avec prudence)
 ```
-[底层]  Bayer 点阵全屏图 + 上下 vignette
-[四角]  左上刊号 / 右上栏目+中文 / 左下 wordmark / 右下 credit
-[上中]  hr 分割线 + 2×2 中文超大标题 + 英文斜体副标
-[正中]  方括号期号或主题词
+[fond]  image plein écran en trame Bayer + vignette haut-bas
+[coins] haut-gauche numéro / haut-droit rubrique+chinois / bas-gauche wordmark / bas-droit credit
+[haut-centre] filet hr + très grand titre chinois 2×2 + sous-titre anglais italique
+[centre] numéro de livraison ou mot-thème entre crochets
 ```
-适合：单张视觉强烈的照片做封面（人物特写、风景、静物）。1280×1644。
+Adapté à : une seule photo à forte présence visuelle en couverture (portrait, paysage, nature morte). 1280×1644.
 
-### 骨架 B — 上图下字
+### Squelette B — image en haut, texte en bas
 ```
-[上 60%]  Bayer 点阵图 + 顶部刊号 + 栏目
-[下 40%]  纯黑区，左侧大标题（横排单行或两行），右侧引文 + 出处
-[底栏]    细线 + wordmark + 期号
+[haut 60 %]  image en trame Bayer + numéro en haut + rubrique
+[bas 40 %]   zone noir pur, grand titre à gauche (une ou deux lignes horizontales), citation + source à droite
+[bandeau bas] filet fin + wordmark + numéro
 ```
-适合：长标题或要放副文、引文、署名（不强求 2×2 网格的项目）。1280×1644 或 1080×1350。
+Adapté à : longs titres, ou présence de texte secondaire, citation, signature (pas de grille 2×2 obligatoire). 1280×1644 ou 1080×1350.
 
-### 骨架 C — 系列三联封面
+### Squelette C — couverture triptyque de série
 ```
-[整张分 3 列]  每列一张独立 Bayer 点阵图（人物特写 / 物件 / 环境）
-              每列底部各有自己的小标题 + 编号 01 / 02 / 03
-[顶栏]        统一刊号 + 栏目
-[底栏]        统一 wordmark + 总集名
+[toute la surface en 3 colonnes]  chaque colonne une image Bayer indépendante (portrait / objet / décor)
+                                 chaque colonne a en bas son propre sous-titre + numéro 01 / 02 / 03
+[bandeau haut]  numéro + rubrique unifiés
+[bandeau bas]   wordmark + nom de l'ensemble unifiés
 ```
-适合：系列报道、人物组照、产品组合、旅行游记封面。横版 1644×1280 或纵版 1280×1644。
+Adapté à : reportages en série, portfolios de portraits, gammes de produits, couvertures de carnet de voyage. Paysage 1644×1280 ou portrait 1280×1644.
 
-### 骨架 D — 内页 / 长文版心
+### Squelette D — page intérieure / long format
 ```
-[顶栏]   刊号 + 栏目 + hr
-[左栏]   sticky 大标题 + 引文（占 40% 宽）
-[右栏]   长正文（多段 p + 行内引用），插 1-2 张 Bayer 小图
-[底栏]   页码 + wordmark
+[bandeau haut] numéro + rubrique + filet
+[colonne gauche] titre sticky + citation (40 % de la largeur)
+[colonne droite] long corps de texte (paragraphes + citations en ligne), avec 1-2 petites images Bayer insérées
+[bandeau bas] pagination + wordmark
 ```
-适合：刊物内文页、长 essay、采访稿（不只是封面，还有阅读内容）。1280×1800+ 或 A4 比例。
+Adapté à : pages intérieures de publication, longs essais, entretiens (au-delà de la couverture, du contenu à lire). 1280×1800+ ou ratio A4.
 
-## 可直接抄的代码积木
+## Briques de code à copier directement
 
-### Bayer 8×8 抖动（核心，不能简化）
+### Dithering Bayer 8×8 (cœur, à ne pas simplifier)
 ```js
 function bayerDither(ctx, W, H){
   const d = ctx.getImageData(0,0,W,H), px = d.data;
@@ -122,9 +122,9 @@ function bayerDither(ctx, W, H){
   ctx.putImageData(d,0,0);
 }
 ```
-**关键**：8×8 矩阵不要换 4×4（颗粒过粗）、不要换 Floyd-Steinberg（变成误差扩散的另一种味道，颗粒会"流"）。点阵密度 = canvas 内部分辨率：W=600 H=771 是封面默认，要更细就开到 900×1158，要更糙就 400×514。
+**Point clé** : ne pas remplacer la matrice 8×8 par du 4×4 (grain trop grossier), ni par Floyd-Steinberg (une autre saveur de diffusion d'erreur, le grain « coule »). La densité de la trame = résolution interne du canvas : W=600 H=771 par défaut pour la couverture ; plus fin : 900×1158 ; plus rugueux : 400×514.
 
-### 预处理：压暗 + 拉对比（让 Bayer 出黑白分明的点阵）
+### Prétraitement : assombrir + renforcer le contraste (pour une trame nettement binaire)
 ```js
 function adjustBrightness(ctx, W, H, delta){
   const d = ctx.getImageData(0,0,W,H), px = d.data;
@@ -139,9 +139,9 @@ function adjustLevels(ctx, W, H, lo, hi){
   ctx.putImageData(d,0,0);
 }
 ```
-**调用顺序固定**：`drawImage → adjustBrightness(-25) → adjustLevels(70, 195) → bayerDither`。**不要先 dither 再调对比** — dither 已是二值化，之后调对比无效。
+**Ordre d'appel fixe** : `drawImage → adjustBrightness(-25) → adjustLevels(70, 195) → bayerDither`. **Ne jamais dither avant d'ajuster le contraste** — le dither est déjà binaire, ajuster ensuite est sans effet.
 
-### Canvas 元素配置
+### Configuration de l'élément Canvas
 ```html
 <canvas class="bg" id="bg" width="600" height="771"></canvas>
 <img class="src" id="src" src="YOUR_IMG_URL" crossorigin="anonymous" alt="">
@@ -157,9 +157,9 @@ canvas.bg{
 }
 img.src{ display:none }
 ```
-源图 `<img>` 只用来给 canvas drawImage，不直接显示。`crossorigin="anonymous"` 必须 — 否则 getImageData 跨域报错。
+L'image source `<img>` sert uniquement au drawImage du canvas, jamais affichée directement. `crossorigin="anonymous"` est obligatoire — sinon getImageData échoue en cross-origin.
 
-### 完整 Canvas 处理流程
+### Flux complet de traitement Canvas
 ```js
 (async function(){
   if (document.fonts && document.fonts.ready){ try { await document.fonts.ready; } catch(e){} }
@@ -183,7 +183,7 @@ img.src{ display:none }
 })();
 ```
 
-### 容器查询排版（适配任意尺寸不糊）
+### Mise en page par requête de conteneur (netteté à toute taille)
 ```css
 .frame{
   position:relative;
@@ -196,9 +196,9 @@ img.src{ display:none }
 .title{ font-size:12cqh; }
 .credit{ font-size:.85cqh; letter-spacing:.28em; }
 ```
-**为什么 cqh 不用 vh**：vh 跟视口走，容器尺寸变了文字不跟。cqh 跟 `.frame` 容器走，封面缩到一半也保持版式比例。
+**Pourquoi cqh plutôt que vh** : vh suit le viewport — si le conteneur change de taille, le texte ne suit pas. cqh suit le conteneur `.frame` : la couverture réduite de moitié garde ses proportions.
 
-### 上下双向 vignette
+### Vignette double haut-bas
 ```css
 .vignette{
   position:absolute; inset:0; z-index:1; pointer-events:none;
@@ -207,9 +207,9 @@ img.src{ display:none }
     rgba(0,0,0,0) 70%, rgba(0,0,0,.45) 100%);
 }
 ```
-顶部更重一些（.55 vs .45），因为刊号比 credit 字号小、需要更多对比保护。
+Le haut est plus appuyé (.55 vs .45) car le numéro est plus petit que le credit et demande plus de protection par le contraste.
 
-### 四角栏目布局
+### Disposition des quatre coins
 ```css
 .layer{
   position:absolute; inset:0; z-index:2;
@@ -227,9 +227,9 @@ img.src{ display:none }
   display:flex; justify-content:space-between; align-items:flex-end;
 }
 ```
-`margin-top:auto` 让 footer 一定贴底，无论中间内容多少。
+Le `margin-top:auto` garantit le footer en bas, quel que soit le volume du contenu intermédiaire.
 
-### 中文 2×2 标题（仅骨架 A）
+### Titre chinois 2×2 (squelette A seulement)
 ```html
 <div class="title-grid">
   <div class="col"><span class="sm">深</span><span class="sm">篝</span></div>
@@ -245,9 +245,9 @@ img.src{ display:none }
 .title-grid .col{ display:flex; flex-direction:column }
 .title-grid .sm, .title-grid .lg{ font-size:12cqh }
 ```
-**约束**：必须 4 个汉字，按词组拆成两列（深/篝 一列、夜/火 一列），不是按阅读顺序。3 字、5 字、6 字不用这个骨架。
+**Contrainte** : exactement 4 caractères chinois, scindés en deux colonnes selon les mots (深/篝 d'un côté, 夜/火 de l'autre), pas dans l'ordre de lecture. 3, 5 ou 6 caractères : autre squelette.
 
-### 方括号期号装饰
+### Numéro entre crochets (décor)
 ```css
 .brackets{
   position:relative; padding:1cqh 2.6cqh;
@@ -261,11 +261,11 @@ img.src{ display:none }
 .brackets::before{ top:0; left:0; border-right:none; border-bottom:none }
 .brackets::after{ bottom:0; right:0; border-left:none; border-top:none }
 ```
-左上 + 右下两个 L 角，模拟相机取景框 / 印刷裁切标记。
+Deux angles en L, haut-gauche et bas-droite, comme un viseur d'appareil / des traits de coupe d'imprimerie.
 
-## 中文 webfont 加载（必做）
+## Chargement des webfonts chinoises (obligatoire)
 
-`Noto Sans JP` Heavy 是大字重日文体（带中文汉字 fallback），文件大；中文优先本地 PingFang/Heiti。按"四件套"：
+`Noto Sans JP` Heavy est une police japonaise en très forte graisse (avec repli sur les caractères chinois), volumineuse ; le chinois privilégie d'abord PingFang/Heiti locaux. En « quatre pièces » :
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -277,42 +277,42 @@ img.src{ display:none }
 <noscript><link rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+JP:wght@900&display=swap"></noscript>
 ```
-字体栈一定带 `'PingFang SC','Heiti SC'` 兜底；英文小字用 Inter（italic 给副标用）。
+La pile de polices doit toujours inclure les replis `'PingFang SC','Heiti SC'` ; les petits textes anglais en Inter (italique pour les sous-titres).
 
-## 输入信息核对
+## Vérification des informations d'entrée
 
-让用户给齐再动手：
-1. **一张底图**（必需）— URL 或本地路径。人脸 / 风景 / 静物都可，但**明暗对比要强**，灰蒙蒙的图 dither 后糊一片；建议先在图编软件里看一眼，能分清主体与背景就行
-2. **刊号 + 栏目**（必需）— `No 04 / 2026` + 栏目英文 (CAMPING / TRAVEL / FOOD…) + 中文小字 2-4 字
-3. **标题**（必需）— 骨架 A 是 4 字 + 英文斜体副标；骨架 B/C/D 自由长度
-4. **wordmark + credit**（必需）— 主品牌大字 2-4 字 + 年份 / 小红书号 / 作者名 / 出处
-5. **比例**（可选）— 默认 1280/1644，可指定 1080/1350、1644/1280、1×1
-6. **dither 颗粒密度**（可选）— "细 / 中 / 粗" 对应 canvas 内部宽度 900 / 600 / 400
+Faire rassembler ceci à l'utilisateur avant de commencer :
+1. **Une image de fond** (obligatoire) — URL ou chemin local. Visage / paysage / nature morte, tous conviennent, mais **le contraste doit être fort** : une image terne devient une nappe après le dither ; vérifier d'abord dans un éditeur que sujet et fond se distinguent
+2. **Numéro + rubrique** (obligatoires) — `No 04 / 2026` + rubrique anglaise (CAMPING / TRAVEL / FOOD…) + 2-4 caractères chinois
+3. **Titre** (obligatoire) — squelette A : 4 caractères + sous-titre anglais italique ; squelettes B/C/D : longueur libre
+4. **wordmark + credit** (obligatoires) — grande marque 2-4 caractères + année / identifiant Xiaohongshu / auteur / source
+5. **Ratio** (optionnel) — défaut 1280/1644 ; possibles 1080/1350, 1644/1280, 1×1
+6. **Densité du grain dither** (optionnel) — « fin / moyen / grossier » correspond à une largeur interne du canvas de 900 / 600 / 400
 
-## 反模式速查（看到这些就回头改）
+## Aide-mémoire des anti-patterns (corriger dès qu'on les voit)
 
-| 症状 | 错在哪 | 修正 |
+| Symptôme | Erreur | Correction |
 |---|---|---|
-| 点阵糊一片，看不出原图 | 没做 adjustLevels 拉对比 | 加 `adjustLevels(70, 195)`，没有就不出点阵感 |
-| 点阵全黑或全白 | brightness/levels 调过头 | brightness ∈ [-30, -10]，levels lo<80 hi>180 |
-| 字飘在图上读不清 | 没加 text-shadow / 没 vignette | `text-shadow:0 0 .8cqh rgba(0,0,0,.85)` + 上下渐变 |
-| 缩放后点阵变模糊 | 漏了 `image-rendering:pixelated` | canvas 三行 image-rendering 全加 |
-| 字号缩放后不跟容器 | 用了 vh 而不是 cqh | 容器加 `container-type:size`，所有字号用 cqh |
-| 标题字太细看起来软 | 用了 PingFang Regular / Light | 换 Noto Sans JP 900 + PingFang Heavy 兜底 |
-| 中文标题字距大像招牌 | 加了 letter-spacing | 中文密排 `letter-spacing:0` |
-| 四角文字只填 1-2 角 | 杂志感塌成"图配字" | 至少填 3 角（刊号 / 栏目 / wordmark / credit 选 3） |
-| 用了 emoji / 圆角 / 彩色 | 违反 1-bit 黑白审美 | 删掉，回到纯黑白 + 直角 |
-| 点阵看着像 CSS noise | 没真做 Canvas Bayer | 必须 Canvas 跑 `bayerDither`，不能 SVG/CSS 模拟 |
-| 整张和深夜篝火一模一样 | 没选其他骨架 | 强制走 B/C/D 之一 |
+| La trame devient une nappe, l'image se devine à peine | pas d'adjustLevels | ajouter `adjustLevels(70, 195)`, sinon pas d'effet trame |
+| Trame toute noire ou toute blanche | brightness/levels trop poussés | brightness ∈ [-30, -10], levels lo<80 hi>180 |
+| Le texte flotte et devient illisible | pas de text-shadow / pas de vignette | `text-shadow:0 0 .8cqh rgba(0,0,0,.85)` + dégradés haut-bas |
+| La trame floue après redimensionnement | `image-rendering:pixelated` oublié | les trois lignes image-rendering du canvas |
+| Les tailles de texte ne suivent pas le conteneur | vh au lieu de cqh | `container-type:size` sur le conteneur, tailles en cqh |
+| Titre trop fin, rendu mou | PingFang Regular / Light | Noto Sans JP 900 + repli PingFang Heavy |
+| Titre chinois espacé façon enseigne | letter-spacing ajouté | composition serrée `letter-spacing:0` |
+| Un ou deux coins seulement remplis | l'effet magazine s'effondre en « image avec texte » | au moins 3 coins (numéro / rubrique / wordmark / credit — en choisir 3) |
+| Emoji / arrondis / couleur présents | violation de l'esthétique 1-bit | supprimer, retour au noir et blanc pur + angles droits |
+| La trame ressemble à du CSS noise | pas de vrai Bayer dans Canvas | Canvas obligatoire avec `bayerDither`, jamais de simulation SVG/CSS |
+| Copie conforme du feu de camp nocturne | aucun autre squelette choisi | imposer B/C/D |
 
-## 关于 点阵.html
+## À propos de 点阵.html
 
-放在 skill 同目录，是「深夜篝火 · a fire at midnight」的完整范例（骨架 A 实现）。**只看 Bayer 调用顺序、cqh 排版结构、四角层级关系**，不要把"深/夜/篝/火 + VOL IV / 2026 + 夜火 wordmark + 小红书号 955873829"原文搬到新项目里 — 那是范例的指纹。
+Placé dans le même répertoire que le skill, c'est l'exemple complet « feu de camp nocturne · a fire at midnight » (squelette A implémenté). **N'en retenir que l'ordre d'appel du Bayer, la structure cqh, la hiérarchie des quatre coins** ; ne pas transposer tels quels « 深/夜/篝/火 + VOL IV / 2026 + wordmark 夜火 + identifiant Xiaohongshu 955873829 » dans un nouveau projet — c'est l'empreinte de l'exemple.
 
-## 输出要求
+## Exigences de sortie
 
-- 单文件 HTML（HTML + CSS + Canvas 处理 JS）
-- 容器查询 + 固定 `aspect-ratio`，缩放不糊
-- 中文 webfont 四件套加载
-- canvas 三行 `image-rendering` 全加
-- 不写注释解释 Bayer 是什么 — 调用顺序对就行
+- HTML monofichier (HTML + CSS + JS de traitement Canvas)
+- Requêtes de conteneur + `aspect-ratio` fixe, netteté au redimensionnement
+- Webfont chinoise chargée en quatre pièces
+- Les trois lignes `image-rendering` du canvas
+- Pas de commentaires expliquant ce qu'est Bayer — l'ordre d'appel suffit
