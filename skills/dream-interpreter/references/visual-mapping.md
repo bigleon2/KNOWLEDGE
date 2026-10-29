@@ -1,81 +1,81 @@
-# 梦境意象 → 视觉元素映射
+# Correspondance images du rêve → éléments visuels
 
-## 情绪 → 配色方案
+## Émotion → palette de couleurs
 
-| mood 值 | 情绪 | 主色 | 辅色 | 背景 |
+| Valeur mood | Émotion | Couleur dominante | Couleur d'appui | Fond |
 |---------|------|------|------|------|
-| anxious | 焦虑/恐惧 | #2D1B69 深紫 | #1A1A2E 暗蓝 | 暗色渐变 |
-| peaceful | 平静/美好 | #F4D35E 暖黄 | #83C5BE 柔绿 | 浅色渐变 |
-| sad | 悲伤/失落 | #4A6FA5 灰蓝 | #2D3142 深灰 | 冷色渐变 |
-| surreal | 奇幻/荒诞 | #FF006E 霓虹粉 | #8338EC 电紫 | 深色+霓虹点缀 |
-| exciting | 兴奋/刺激 | #FF6B35 橙红 | #FFD700 金色 | 暖色渐变 |
-| nostalgic | 怀旧/温馨 | #DDA15E 琥珀 | #BC6C25 暖棕 | 柔光渐变 |
+| anxious | anxiété/peur | #2D1B69 violet profond | #1A1A2E bleu sombre | dégradé sombre |
+| peaceful | calme/heureux | #F4D35E jaune chaud | #83C5BE vert tendre | dégradé clair |
+| sad | tristesse/abattement | #4A6FA5 bleu gris | #2D3142 gris profond | dégradé froid |
+| surreal | fantastique/absurde | #FF006E rose néon | #8338EC violet électrique | fond sombre + touches néon |
+| exciting | excitation/stimulation | #FF6B35 rouge orangé | #FFD700 or | dégradé chaud |
+| nostalgic | nostalgie/tendresse | #DDA15E ambre | #BC6C25 brun chaud | dégradé en lumière douce |
 
-## 意象 → 视觉元素
+## Image → élément visuel
 
-每个视觉元素对应 p5.js 中的一个绘制模块。
+Chaque élément visuel correspond à un module de dessin p5.js.
 
-### 自然元素
+### Éléments naturels
 
-| 意象关键词 | visual_element 值 | p5.js 表现 |
+| Mots-clés d'image | Valeur visual_element | Rendu p5.js |
 |-----------|-------------------|------------|
-| 水、海、河、湖、游泳 | water_ripple | 正弦波纹，从底部向上扩散 |
-| 雨 | rain_drops | 细线粒子从上方下落 |
-| 火、燃烧 | fire_particles | 橙红粒子向上飘散 |
-| 风、暴风 | wind_lines | 水平方向的曲线流动 |
-| 星空、夜空 | starfield | 随机闪烁的小光点 |
-| 月亮 | moon_glow | 圆形光晕，缓慢脉动 |
-| 太阳、光 | sun_rays | 放射状光线 |
-| 森林、树 | tree_silhouettes | 底部的树形剪影 |
-| 花、花园 | floating_petals | 缓慢飘落的花瓣形状 |
+| eau, mer, rivière, lac, nage | water_ripple | ondulations sinusoïdales diffuses depuis le bas |
+| pluie | rain_drops | fines lignes de particules tombant du haut |
+| feu, combustion | fire_particles | particules orange-rouge s'élevant |
+| vent, tempête | wind_lines | écoulement de courbes horizontales |
+| ciel étoilé, nuit | starfield | petits points lumineux scintillant aléatoirement |
+| lune | moon_glow | halo circulaire pulsant lentement |
+| soleil, lumière | sun_rays | rayons en éventail |
+| forêt, arbres | tree_silhouettes | silhouettes d'arbres en pied de cadre |
+| fleurs, jardin | floating_petals | formes de pétales tombant lentement |
 
-### 空间/建筑
+### Espace / architecture
 
-| 意象关键词 | visual_element 值 | p5.js 表现 |
+| Mots-clés d'image | Valeur visual_element | Rendu p5.js |
 |-----------|-------------------|------------|
-| 高楼、大厦、塔 | building | 几何线条搭建的建筑轮廓 |
-| 房间、室内 | room_frame | 透视线条构成的房间框架 |
-| 门 | door_shape | 中央的门形轮廓，可能开/关 |
-| 楼梯、阶梯 | stairs | 递进的台阶线条 |
-| 迷宫、走廊 | maze_lines | 随机生成的路径线条 |
-| 桥 | bridge_arc | 弧形桥梁轮廓 |
+| tour, immeuble, high-rise | building | silhouette architecturale en lignes géométriques |
+| pièce, intérieur | room_frame | cadre de pièce en traits en perspective |
+| porte | door_shape | contour de porte au centre, ouverte/fermée possible |
+| escaliers, marches | stairs | lignes de marches en progression |
+| labyrinthe, couloir | maze_lines | tracés générés aléatoirement |
+| pont | bridge_arc | silhouette de pont en arc |
 
-### 动作/状态
+### Actions / états
 
-| 意象关键词 | visual_element 值 | p5.js 表现 |
+| Mots-clés d'image | Valeur visual_element | Rendu p5.js |
 |-----------|-------------------|------------|
-| 坠落、掉下 | falling_particles | 粒子加速下落 |
-| 飞、飘 | rising_particles | 粒子缓慢上升 |
-| 追逐、逃跑 | speed_lines | 高速水平线条 |
-| 困住、封闭 | cage_lines | 围合的线条逐渐收缩 |
-| 迷路 | scattered_dots | 随机漂移的光点 |
+| chute, tomber | falling_particles | particules en accélération descendante |
+| voler, flotter | rising_particles | particules en ascension lente |
+| poursuite, fuite | speed_lines | lignes horizontales à grande vitesse |
+| enfermé, encerclé | cage_lines | lignes d'enceinte se resserrant |
+| être perdu | scattered_dots | points lumineux dérivant au hasard |
 
-### 人物/生物
+### Personnages / créatures
 
-| 意象关键词 | visual_element 值 | p5.js 表现 |
+| Mots-clés d'image | Valeur visual_element | Rendu p5.js |
 |-----------|-------------------|------------|
-| 人、人影 | human_silhouette | 抽象人形剪影，淡入淡出 |
-| 人群 | crowd_dots | 多个小圆点聚散 |
-| 蛇 | snake_curve | S形曲线缓慢游动 |
-| 猫/狗/动物 | animal_shape | 简笔动物轮廓 |
-| 鸟/飞行生物 | bird_flight | V形轮廓横穿画面 |
-| 鱼/水生物 | fish_swim | 椭圆形在水纹中穿行 |
+| personne, silhouette humaine | human_silhouette | silhouette humaine abstraite en fondu |
+| foule | crowd_dots | petits cercles s'agrégeant et se dispersant |
+| serpent | snake_curve | courbe en S ondulant lentement |
+| chat/chien/animal | animal_shape | contour animalier stylisé |
+| oiseau/créature volante | bird_flight | silhouette en V traversant l'écran |
+| poisson/créature aquatique | fish_swim | ellipses glissant entre les ondulations |
 
-### 氛围修饰
+### Ambiances
 
-| 意象关键词 | visual_element 值 | p5.js 表现 |
+| Mots-clés d'image | Valeur visual_element | Rendu p5.js |
 |-----------|-------------------|------------|
-| 黑暗、看不清 | dark_bg | 整体低亮度 + 模糊光斑 |
-| 模糊、朦胧 | blur_lights | 高斯模糊的光点 |
-| 闪烁、不稳定 | flicker_effect | 画面整体亮度随机波动 |
-| 旋转、眩晕 | spiral_motion | 螺旋运动的粒子 |
-| 安静、空旷 | minimal_space | 大面积留白 + 极少元素 |
+| obscurité, visibilité faible | dark_bg | faible luminosité globale + taches floues |
+| flou, brume | blur_lights | points lumineux flous gaussiens |
+| scintillement, instabilité | flicker_effect | luminosité globale fluctuant aléatoirement |
+| rotation, vertige | spiral_motion | particules en mouvement spiralé |
+| silence, vide | minimal_space | vastes espaces vides + très peu d'éléments |
 
-## 映射规则
+## Règles de correspondance
 
-1. 从梦境描述中提取所有可识别意象
-2. 每个意象对应一个 visual_element
-3. visual_elements 数组最多 5 个元素（防止画面太乱）
-4. 优先选择与主要情节相关的意象
-5. 必须包含至少 1 个氛围修饰元素
-6. mood 取梦境中最强烈的情绪，color_scheme 对应 mood
+1. Extraire de la description du rêve toutes les images identifiables
+2. Chaque image correspond à un visual_element
+3. Le tableau visual_elements compte au maximum 5 éléments (pour éviter une image surchargée)
+4. Prioriser les images liées à l'intrigue principale
+5. Inclure au minimum 1 élément d'ambiance
+6. Le mood retient l'émotion la plus forte du rêve, color_scheme correspond au mood

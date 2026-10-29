@@ -1,77 +1,77 @@
-# 考生倾向 → API 选填参数映射参考
+# Correspondance entre les préférences du candidat et les paramètres optionnels de l'API
 
-Agent 在**第二步获取志愿前**，须从 `student.json` 辅助信息中提取倾向，写入结构化字段，再构建 API 请求。
+Avant **l'étape 2 de récupération des vœux**, l'agent doit extraire les préférences des informations complémentaires de `student.json`, les écrire dans les champs structurés, puis construire la requête API.
 
-## 映射总表
+## Table de correspondance générale
 
-| student.json 字段 | API 字段 | 格式 | 说明 |
+| Champ student.json | Champ API | Format | Description |
 |-------------------|----------|------|------|
-| `preferred_universities` | `universitys` | 逗号分隔字符串 | 心仪高校全称，如 `北京航空航天大学,华东师范大学` |
-| `preferred_provinces` | `provinces` | 逗号分隔字符串 | 意向就读省份；若未填，由 `preferred_cities` 自动推导 |
-| `preferred_cities` | `provinces`（推导） | — | 城市映射见下方；脚本 `build_api_request.py` 自动处理 |
-| `preferred_tags` | `tags` | 逗号分隔字符串 | 院校属性，如 `985,211,双一流` |
-| `preferred_major_classes` | `majorClass` | 逗号分隔字符串 | 教育部专业类名称，如 `计算机类,电子信息类` |
+| `preferred_universities` | `universitys` | chaîne séparée par virgules | noms complets des universités visées, ex. `北京航空航天大学,华东师范大学` |
+| `preferred_provinces` | `provinces` | chaîne séparée par virgules | provinces d'études souhaitées ; si vide, déduit automatiquement de `preferred_cities` |
+| `preferred_cities` | `provinces` (déduit) | — | correspondance villes ci-dessous ; traité automatiquement par le script `build_api_request.py` |
+| `preferred_tags` | `tags` | chaîne séparée par virgules | attributs des établissements, ex. `985,211,双一流` |
+| `preferred_major_classes` | `majorClass` | chaîne séparée par virgules | catégories de spécialités du ministère de l'Éducation, ex. `计算机类,电子信息类` |
 
-## Agent 提取规则
+## Règles d'extraction par l'agent
 
-从自然语言中识别倾向，**写入 student.json 对应字段**（可在 Step1 采集时写入，或在 Step2 调用 API 前补全）：
+Identifier les préférences à partir du langage naturel et **les écrire dans les champs correspondants de student.json** (possible dès la collecte de l'étape 1, ou en complément avant l'appel API de l'étape 2) :
 
-### 院校倾向 → `preferred_universities`
+### Préférence d'établissement → `preferred_universities`
 
-用户提及的具体学校、「想上清北复交」「考虑国防科大」等。
+Écoles précises mentionnées par l'utilisateur, « viser Tsinghua-Pékinard-Fudan-Jiaotong (清北复交) », « envisager l'Université de défense nationale (国防科大) », etc.
 
-### 城市倾向 → `preferred_cities` + `preferred_provinces`
+### Préférence de ville → `preferred_cities` + `preferred_provinces`
 
-- 收集城市列表到 `preferred_cities`
-- 同时推导省份写入 `preferred_provinces`（可与城市映射结果合并去重）
+- Collecter la liste des villes dans `preferred_cities`
+- En déduire les provinces et les écrire dans `preferred_provinces` (à fusionner et dédupliquer avec le résultat de la correspondance ville→province)
 
-常见城市→省份：深圳/广州→广东，武汉→湖北，杭州→浙江，南京/苏州→江苏，成都→四川，西安→陕西。
+Correspondances ville→province usuelles : Shenzhen/Guangzhou → Guangdong, Wuhan → Hubei, Hangzhou → Zhejiang, Nanjing/Suzhou → Jiangsu, Chengdu → Sichuan, Xi'an → Shaanxi.
 
-### 院校层次倾向 → `preferred_tags`
+### Préférence de niveau d'établissement → `preferred_tags`
 
-| 用户表述 | tags 值 |
+| Formulation utilisateur | Valeur tags |
 |----------|---------|
-| 985 / 顶尖 | `985` |
+| 985 / haut niveau | `985` |
 | 211 | `211` |
-| 双一流 | `双一流` |
-| 保研 | `保研资格` |
-| 师范 | `师范` |
-| 医学强校 | 结合具体院校，或 tag 填 `医学院`（若 API 支持） |
+| Double première classe (双一流) | `双一流` |
+| Accès au master sans examen (保研) | `保研资格` |
+| Enseignement (normal) | `师范` |
+| Grande école de médecine | à combiner avec l'établissement précis, ou renseigner le tag `医学院` (si l'API le permet) |
 
-### 专业倾向 → `preferred_major_classes`
+### Préférence de spécialité → `preferred_major_classes`
 
-结合 `interests`、`career_direction`、`subject_scores` 推断：
+Déduire à partir de `interests`, `career_direction`, `subject_scores` :
 
-| 兴趣/就业方向 | 建议 majorClass |
+| Orientation intérêt/emploi | majorClass suggéré |
 |--------------|-----------------|
-| 编程、互联网、AI | `计算机类,软件工程,电子信息类` |
-| 电子、芯片、通信 | `电子信息类,微电子科学与工程,集成电路` |
-| 医学、临床 | `临床医学类,口腔医学类,药学类` |
-| 机械、制造、航天 | `机械类,航空航天类,自动化类` |
-| 经济、金融、管理 | `经济学类,金融学类,工商管理类` |
-| 法学 | `法学类` |
-| 师范、教育 | `教育学类,中国语言文学类,数学类` |
+| Programmation, internet, IA | `计算机类,软件工程,电子信息类` |
+| Électronique, puces, télécoms | `电子信息类,微电子科学与工程,集成电路` |
+| Médecine, clinique | `临床医学类,口腔医学类,药学类` |
+| Mécanique, fabrication, aérospatial | `机械类,航空航天类,自动化类` |
+| Économie, finance, gestion | `经济学类,金融学类,工商管理类` |
+| Droit | `法学类` |
+| Enseignement, éducation | `教育学类,中国语言文学类,数学类` |
 
-> 使用教育部本科专业类标准名称；多个类用英文逗号分隔，不超过 5 个为宜。
+> Utiliser les appellations standard des catégories de licence du ministère chinois de l'Éducation ; séparer plusieurs catégories par des virgules (format anglais), sans dépasser 5 entrées de préférence.
 
-### 禁忌与排除 → `notes` + 不传参
+### Exclusions et interdits → `notes` + absence de paramètre
 
-「不接受偏远地区」等**排除性**偏好写入 `notes`，供后续推荐 Skill 使用；**不要**把排斥省份填入 `provinces`。
+Les préférences **d'exclusion** comme « pas de régions reculées » vont dans `notes`, pour le Skill de recommandation en aval ; **ne surtout pas** mettre les provinces rejetées dans `provinces`.
 
-## 工作流
+## Workflow
 
 ```
-student.json（含倾向字段）
-    → Agent 核对/补全 preferred_* 字段
+student.json (avec champs de préférence)
+    → l'agent vérifie/complète les champs preferred_*
     → build_api_request.py
     → api_request.json
     → fetch_volunteers.py
     → parsed.json
 ```
 
-## 山东示例
+## Exemple Shandong
 
-考生：兴趣编程/AI，意向北京上海深圳，希望 985，专业偏计算机。
+Candidat : intéressé par la programmation/l'IA, vise Pékin-Shanghai-Shenzhen, souhaite du 985, orientation informatique.
 
 ```json
 {
@@ -83,7 +83,7 @@ student.json（含倾向字段）
 }
 ```
 
-生成的 API 片段：
+Fragment API généré :
 
 ```json
 {
