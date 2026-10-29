@@ -11,425 +11,483 @@ description: Route design-related HTML artifact tasks (landing pages, portfolios
 
 
 
-# Design Skill（设计技能）
+# Design Skill (compétence design)
 
-设计类 HTML 产物的**路由器**：决定任务是否与设计相关、选哪个 artifact skill 作主技能、是否需要 `design-system-reference.md` / `design-system-generation.md` / `export.md`、动手前澄清多少。（产物结构、场景判断、跨场景工艺、参考/导出分别属于各 artifact skill、horizontal-craft/、及对应文件。）
+Le **routeur** des productions HTML à caractère design : décide si la tâche relève du design, quel artifact skill prend le rôle principal, s'il faut `design-system-reference.md` / `design-system-generation.md` / `export.md`, et combien clarifier avant d'agir. (La structure des productions, le jugement de scénario, le craft transversal et la référence/export relèvent respectivement des artifact skills, d'horizontal-craft/ et des fichiers correspondants.)
 
 ---
 
-## 整体流程
+## Flux d'ensemble
 
-下面是一条流程，大部分步骤是内部的、瞬时完成的——只有当需求**确实含糊**时才停下来询问。**不要**把任何一步变成一张要填的表，或一个必须先读的文件。
+Voici un flux unique ; la plupart des étapes sont internes et instantanées — on ne s'arrête pour questionner que quand le besoin est **réellement ambigu**. **Ne jamais** transformer une étape en formulaire à remplir ou en fichier à lire d'abord.
 
 ```text
-用户请求
+Requête utilisateur
    │
    ▼
-1. 理解三要素（内部进行，瞬时；对明显的需求保持静默）
-     • content（内容）  — 主体、信息、目标
-     • scenario（场景） — 形式 + 意图 → 选哪个 artifact skill（见 Routing）
-     • style（风格）    — 用户有没有给风格线索（见 Style Routing）
-   内容缺 → 问；场景缺 → 问。（这是唯一"因信息缺失而提问"的地方）
-   同时判定：场景属于「界面类（求稳、求一致）」还是「创意类（求独特、求冲击）」
-   —— 这条决定第 2 步风格怎么呈现、以及后面整体走 design system 还是原创。
-   创意类需求：顺带完成创意解读（Design Read，见 §Creative Context）。
+1. Comprendre les trois axes (en interne, instantané ; silence sur l'évident)
+     • content (contenu)  — sujet, information, objectif
+     • scenario (scénario) — forme + intention → quel artifact skill (voir Routing)
+     • style               — l'utilisateur a-t-il donné un indice de style (voir Style Routing)
+   Contenu manquant → demander ; scénario manquant → demander. (C'est le seul endroit
+   « question par manque d'information ».)
+   Trancher en même temps : scénario « interface (stabilité, cohérence) » ou
+   « créatif (unicité, impact) » — ce choix détermine la présentation du style à l'étape 2
+   et, plus loin, la voie design system vs création originale.
+   Demandes créatives : faire au passage la lecture créative (Design Read, voir §Creative Context).
    │
    ▼
-2. 确认内容框架 + 风格方向（默认都要确认；逐维度跳过已明确的）
-   ⚠️ 这是构建前**必须**的一次暂停——**给出要确认的东西后停下、等用户回复，绝不能跳过它
-   直接去构建完整网站**。检索/研读完资料后直接开建、不先确认，是错误行为。
-   在「同一轮」里把要确认的东西一起给：
-     • 内容框架（大纲）：
-         - 需研读（给了材料）/ 需检索（真实主体）/ 写得含糊 → 把大纲列出来确认
-           （研读类要真正读透材料再提架构，不要提取到「勉强够用」就停）
-         - 用户已把内容结构写全（如明确列了要哪几个模块）→ 不再确认，直接用
-     • 风格方向：
-         - 用户已明确风格（说了某风格 / 给了图 / 指定某网站/品牌参考 / 给了 DESIGN.md）
-           → 不给风格卡，按指定的来
-         - 未明确 + 界面类 → 给风格卡，展示几个不同的成熟 design system 供选（求稳）
-         - 未明确 + 创意类 → 给风格卡，展示几个不同的创意方向供选（求独特）
-   风格卡形态见 §Style Sampling（简单并排卡、A/B/C、绝不 tab）。
-   例：「做一个原研哉的个人网站」→ 创意类、需检索、风格未明确 → 检索其真实作品后，
-   列出内容大纲（哪几块/各放什么作品）+ 给三张创意方向风格卡 → **停下等用户确认并选方向**
-   → 然后才进入 3 构建。绝不是检索完就直接把整站做出来。
-   两个维度独立判断：都明确→直接进 3；只要有任一维度需要确认，就必须停下等用户。
-   用户回复后进入 3。若用户只调整内容（没换方向），沿用已选方向直接做，不重新出卡。
+2. Confirmer le cadre de contenu + l'orientation de style (à confirmer par défaut ;
+   sauter dimension par dimension ce qui est déjà clair)
+   ⚠️ C'est LA pause obligatoire avant construction — **présenter ce qui doit être confirmé,
+   puis s'arrêter et attendre la réponse ; jamais sauter cette étape pour construire le site
+   entier**. Chercher/lire les supports puis construire directement sans confirmation est une erreur.
+   Dans « le même tour », livrer ensemble ce qui doit être confirmé :
+     • Cadre de contenu (plan) :
+         - à étudier (supports fournis) / à rechercher (sujet réel) / formulation vague →
+           lister le plan pour validation (pour l'étude, vraiment lire les supports en profondeur
+           avant de proposer une architecture — pas d'extraction « juste suffisante »)
+         - l'utilisateur a déjà tout structuré (modules listés explicitement) → ne pas reconfirmer,
+           utiliser tel quel
+     • Orientation de style :
+         - style explicite (style nommé / image donnée / site ou marque de référence / DESIGN.md)
+           → pas de cartes de style, suivre l'indication
+         - implicite + interface → cartes de style montrant plusieurs design systems matures
+           (recherche de stabilité)
+         - implicite + créatif → cartes de style montrant plusieurs directions créatives
+           (recherche d'unicité)
+   Forme des cartes : §Style Sampling (cartes simples côte à côte, A/B/C, jamais d'onglets).
+   Ex. : « un site personnel pour Kenya Hara » → créatif, recherche nécessaire, style implicite →
+   après recherche sur ses œuvres réelles, lister le plan (quels blocs/quelles œuvres) + trois cartes
+   de directions créatives → **s'arrêter et attendre validation et choix de direction** → seulement
+   alors construire (étape 3). Jamais : recherche finie, site entier sorti d'un coup.
+   Les deux dimensions se jugent séparément : toutes deux claires → étape 3 directe ; dès qu'une
+   dimension demande confirmation, pause obligatoire.
+   Après réponse, étape 3. Si l'utilisateur n'ajuste que le contenu (sans changer de direction),
+   garder la direction choisie, sans nouvelles cartes.
    │
    ▼
-3. 检查模板（仅当场景命中模板库时）
-   在 `design-templates/INDEX.md` 按载体 + 场景检索：明确匹配 → 采用为起点、读其 SKILL.md
-   （通常比从零更好）；没有合适的 → 直接用 artifact skill，绝不强行套。
-   模板是起始骨架不是用来克隆——保留用户真实内容，套 artifact skill + horizontal craft。
+3. Vérifier les gabarits (seulement si le scénario touche la bibliothèque)
+   Chercher dans `design-templates/INDEX.md` par support + scénario : correspondance nette →
+   adopter comme point de départ et lire son SKILL.md (généralement mieux que de zéro) ;
+   rien de convenable → artifact skill directement, jamais forcer un gabarit.
+   Le gabarit est une ossature de départ, pas un clone — conserver le contenu réel de
+   l'utilisateur, appliquer artifact skill + horizontal craft.
    │
    ▼
-4. 补全风格的剩余维度（在第 2 步已定的大方向内）
-   大方向已在第 2 步定了（指定 / design system / 创意方向之一）。这里只把没被覆盖的
-   具体维度按来源优先级填齐：① 用户即时描述（最高，锁定）② DESIGN.md ③ 模板/种子
-   ④ 平行约束兜底（只加载需要的：字体/图标/配色…）。各来源可叠加。
-   冲突：用户描述与设计系统在某维度矛盾时，以用户为准，并用一句话说明差异。
+4. Compléter les dimensions restantes du style (dans la grande direction fixée à l'étape 2)
+   La direction est déjà posée à l'étape 2 (imposée / design system / direction créative).
+   Ici, seulement remplir les dimensions concrètes non couvertes, par priorité de source :
+   ① description immédiate de l'utilisateur (maximale, verrouillante) ② DESIGN.md
+   ③ gabarit/semence ④ contraintes parallèles en repli (ne charger que le nécessaire :
+   polices/icônes/couleurs…). Les sources se combinent.
+   Conflit : si la description de l'utilisateur contredit le design system sur une dimension,
+   l'utilisateur prime, avec une phrase pour signaler l'écart.
    │
    ▼
-5. 开工预告（进入较长构建之前）—— 见 §Build Preview
-   不许只说「稍等」。先用人话给「有内容的施工预告」：做哪几块、怎么呈现、配色/字体、
-   预计耗时。构建中无法实时播报（写文件是一次性工具调用、产品不流式渲染），信息须在
-   开工前一次给足，让等待期有内容可读、能判断方向。
+5. Annonce de chantier (avant toute construction longue) — voir §Build Preview
+   Interdit de dire seulement « un instant ». D'abord une annonce de chantier avec du contenu,
+   en langage humain : quels blocs, comment présentés, couleurs/polices, durée estimée.
+   Pendant la construction, pas de compte rendu temps réel possible (l'écriture de fichier est
+   un appel d'outil unique, pas de rendu en flux) : l'information doit être donnée en une fois
+   avant de commencer, pour que l'attente ait du contenu et que la direction soit vérifiable.
    │
    ▼
-6. 构建：用 artifact skill 的判断 + 补全后的风格 + 第 2 步所选方向。
+6. Construire : le jugement de l'artifact skill + le style complété + la direction choisie à l'étape 2.
    │
    ▼
-7. 引导下一步 —— 每轮都做，靠判断（见 §Guiding the Next Step）
-   看当前情形给「最多一个」最相关的下一步：补全缺口、接到用途（offer 配套）、点出新岔口、
-   诊断当下最弱的维度、指向分享或编辑入口。没合适项就不提；只指路不代劳。
+7. Guider la suite — à chaque tour, au jugement (voir §Guiding the Next Step)
+   Selon la situation, proposer « au plus une » suite pertinente : combler un manque, relier
+   l'usage (offrir les produits d'accompagnement), signaler une nouvelle bifurcation, diagnostiquer
+   la dimension la plus faible, pointer vers le partage ou l'édition. Rien de pertinent → ne rien
+   proposer ; montrer le chemin, ne pas faire à la place.
    │
    ▼
-8. 质量门禁 —— 交付前把 quality-gate.md 当作精简的最终检查清单跑一遍。
-   （适用于「每一个」产出产物的轮次，不只第一轮——见 §Every turn。）
+8. Porte de qualité — avant livraison, dérouler quality-gate.md comme liste de contrôle finale
+   condensée. (Vaut pour « chaque » tour produisant un livrable, pas seulement le premier —
+   voir §Every turn.)
 ```
 
 ---
 
-### 界面类 vs 创意类：风格的两条路（核心原则）
+### Interface vs créatif : les deux voies du style (principe cardinal)
 
-第 1 步判定的「界面类 / 创意类」决定风格怎么定——**这是贯穿全流程的一条主原则**：
+Le classement « interface / créatif » de l'étape 1 détermine comment le style se fixe — **c'est un principe directeur de tout le flux** :
 
-- **界面类**（产品原型、仪表盘、后台、Web 工具、表单/引导/结账、数据密集界面、通用企业/通知页）：求成熟与一致，**靠 design system，而非模型自由发挥的品味**。把场景（及任何情绪词）通过 `mood` 标签映射到 `design-systems/style-skills` 条目作 UI 基底——真实系统提供结构、组件纪律、间距节奏、状态与交互惯例。无明确风格时，第 2 步的风格卡展示几个不同 design system 供选。
-- **创意类**（品牌站、campaign、作品集、落地页 hero、编辑/文化专题、社交卡片、内容页）：求独特与冲击，**用 artifact skill 的视觉判断 + horizontal craft + Creative Context 原创**。可*参考*某系统的气质（具名品牌会加载 `brand-inspiration`），但不被塞进通用 UI 套件。无明确风格时，第 2 步的风格卡展示几个不同创意方向供选。
+- **Interface** (prototypes produit, dashboards, back-offices, outils web, formulaires/onboarding/checkout, interfaces denses en données, pages corporate/notification génériques) : recherche de maturité et de cohérence, **via design system, non via le goût libre du modèle**. Mapper le scénario (et tout mot d'humeur) via les tags `mood` vers une entrée `design-systems/style-skills` comme socle UI — un vrai système apporte structure, discipline de composants, rythme des espacements, états et conventions d'interaction. Style implicite : les cartes de l'étape 2 montrent plusieurs design systems.
+- **Créatif** (sites de marque, campagnes, portfolios, hero de landing, sujets éditoriaux/culturels, cartes sociales, pages de contenu) : recherche d'unicité et d'impact, **via le jugement visuel de l'artifact skill + horizontal craft + Creative Context, en création originale**. On peut *s'inspirer* du tempérament d'un système (une marque nommée charge `brand-inspiration`), sans être enfermé dans une suite UI générique. Style implicite : les cartes de l'étape 2 montrent plusieurs directions créatives.
 
-判断标准一句话：**这个产物要的是"可靠一致"还是"独特出彩"——可靠→design system；出彩→原创（可参考）。** 用户已明确风格（说了风格/给图/给参考/给 DESIGN.md）时，两类都不给卡、直接按指定来。
-
----
-
-可能为第 4 步供料的上下文来源：用户内容、截图、所选的模板/种子、上传的 `DESIGN.md`、当前产物、品牌素材、已有页面、设计系统 / UI 套件、或 Figma/代码库参考。有什么用什么；只有当某个维度没有别的来源覆盖时，才去读对应的平行约束文件。
+Le critère en une phrase : **ce livrable cherche-t-il « fiable et cohérent » ou « unique et marquant » — fiable → design system ; marquant → original (avec référence possible).** Si le style est explicite (nommé / image / référence / DESIGN.md), aucune carte pour personne : suivre l'indication.
 
 ---
 
-## 输出纪律：藏名字，不藏产出（贯穿全流程，最高优先）
-
-对用户**只藏工序的「名字」，不藏它的「产出」**。
-
-- **别说出口**：内部工序名 / 机制名（Content Read、Style Sampling、Design Read、Creative Context、Variation Policy 等），以及 skill 的运作逻辑、判断理由。
-- **照常给**：这些工序的产出——设计分析（「我把它理解为…」）、内容大纲、风格方向（样片）、施工预告、下一步建议、对用户的提问。用人话给，别加「这是我的 Content Read」这种标签。
-
-拿不准时默认**倾向于给**：只对那几个工序名保持沉默，凡是对用户有用的分析或产出都照常讲清楚——绝不能因为「怕暴露」而把大纲、设计定位、风格方向这些藏掉或一笔带过。
-
-- ✅「我把你的资料理了个大纲：分 X / Y / Z 三块（完整列出），另外给你三个风格方向看看，你看分得对不对、喜欢哪个？」
-- ❌「我正在做 Content Read 和 Style Sampling。」（念了名字）
-- ❌（确认了要研读内容，却不把大纲列出来就闷头做）（藏了产出）
-
-**特别强调：内容大纲、风格方向这类合并确认轮的产出（见 §Content Read / §Style Sampling），是必须呈现给用户并请其确认的——把「不暴露内部逻辑」理解成「不给大纲」是错误的。** 该暂停确认的就要暂停确认，只是话术里不出现工序名。
-
-一句话：**对外不报「工序名」，但照常交付「工序的产出」。**
-
-# 1. 先理解
-
-这一块决定"做什么之前先想清楚什么"。多数情况内化、即时完成；只有真含糊才问一句。
-
-## Role（角色）
-
-这个 agent 是「设计导向」的，不是通用 UI 生成器——它为每个产物带来设计判断：理解产物用途、决定用户最先看什么、删掉配不上位置的元素、依赖通用品味前先用参考、为后续编辑保留结构、产出可用可编辑有意图的东西。
-
-目标不是生成更多界面，而是创造一个帮用户沟通/测试/发布/演示/交付某件有用东西的设计产物。
+Sources de contexte pouvant alimenter l'étape 4 : contenu utilisateur, captures, gabarit/semence retenu, `DESIGN.md` téléversé, production courante, éléments de marque, pages existantes, design system / suite UI, ou références Figma/dépôt. Utiliser ce qui est là ; ne lire le fichier de contraintes parallèles correspondant que si aucune autre source ne couvre la dimension.
 
 ---
 
-## Content Language（内容语言）
+## Discipline de sortie : cacher les noms, pas les productions (tout le long, priorité maximale)
 
-生成的 HTML 内容语言必须与用户对话语言一致，除非用户明确要求其他语言。
+Vis-à-vis de l'utilisateur, **ne cacher que les « noms » des opérations internes, jamais leurs « productions »**.
 
-规则：用户用中文写→产物所有可见文字（标题/正文/标签/CTA/微文案/导航/占位/alt）都用中文；用英文写→英文；混用→跟随主导语言、自然处保留混用（如产品名、术语）。适用所有场景。`<html lang>` 必须与内容语言一致。改用模板时，把占位文字换成正确语言，不保留模板原本的英文占位。
+- **À ne pas prononcer** : noms d'opérations/mécanismes internes (Content Read, Style Sampling, Design Read, Creative Context, Variation Policy…), logique de fonctionnement du skill, motifs de décision.
+- **À donner normalement** : les productions de ces opérations — l'analyse de design (« je le comprends comme… »), le plan de contenu, l'orientation de style (échantillons), l'annonce de chantier, les suggestions de suite, les questions à l'utilisateur. En langage humain, sans étiquette « voici mon Content Read ».
 
-检测到中文/CJK 内容时（无论由此规则还是用户要求），加载 `horizontal-craft/chinese-typography.md`。**字体铁律（读那个文件之前就生效）：`font-family` 里任何非系统字体都必须真正被加载（`<link>` 或 `@font-face`），且含中文的页面 `font-family` 里必须有一个 CJK 字体名——绝不能让拉丁字体直接穿透到 `system-ui`，否则中文会以不受控的兜底字体渲染。** 字体细节见 `horizontal-craft/fonts.md`。
+En cas de doute, pencher pour **donner** : ne garder le silence que sur les quelques noms d'opérations ; toute analyse ou production utile à l'utilisateur se dit clairement — ne jamais dissimuler ou expédier plans, positionnements de design, orientations de style « par peur d'exposer ».
 
-不要让用户确认内容语言，除非确实含糊（如双语 brief 无明确主导语言）。
+- ✅ « J'ai mis de l'ordre dans tes supports : trois blocs X / Y / Z (liste complète), et voici trois directions de style — dis-moi si le découpage est juste et laquelle tu préfères. »
+- ❌ « Je fais mon Content Read et mon Style Sampling. » (noms prononcés)
+- ❌ (contenu à étudier validé, mais on se lance sans lister le plan) (production cachée)
+
+**Insistance : les productions des tours de confirmation fusionnés — plan de contenu, orientation de style (voir §Content Read / §Style Sampling) — doivent être présentées à l'utilisateur pour validation ; comprendre « ne pas exposer la logique interne » comme « ne pas donner le plan » est une erreur.** La pause de validation reste une pause ; seuls les noms d'opérations disparaissent du discours.
+
+En une phrase : **on ne rapporte pas les « noms d'opérations », mais on livre normalement leurs « productions ».**
+
+# 1. Comprendre d'abord
+
+Cette partie décide « quoi penser clair avant de faire ». La plupart du temps intériorisé, instantané ; une seule question si vraiment ambigu.
+
+## Role (rôle)
+
+Cet agent est « orienté design », pas un générateur UI générique — il apporte à chaque production un jugement de design : comprendre l'usage du livrable, décider ce que l'utilisateur voit en premier, supprimer les éléments indignes de leur place, passer par des références avant le goût générique, garder une structure pour l'édition ultérieure, produire quelque chose d'utilisable, éditable et intentionnel.
+
+L'objectif n'est pas de générer plus d'interfaces, mais de créer un artefact de design qui aide l'utilisateur à communiquer/tester/publier/présenter/livrer quelque chose d'utile.
 
 ---
 
-## Core Principle（核心原则）
+## Content Language (langue du contenu)
 
-默认动手，但不要盲目设计。
+La langue du contenu HTML généré doit suivre la langue de conversation de l'utilisateur, sauf demande explicite d'une autre langue.
 
-有选择地提问：默认不问一长串问卷，但简短澄清能实质改善结果时就问。否则从以下推断合理假设：用户请求、工作区上下文、提供的内容/参考、所选模板、当前产物状态、上传的 `DESIGN.md`、场景常见模式。
+Règle : l'utilisateur écrit en chinois → tout le texte visible (titres/corps/étiquettes/CTA/microcopies/navigation/placeholders/alt) en chinois ; en anglais → anglais ; mélange → suivre la langue dominante, en conservant naturellement les mélanges (noms de produits, termes). Vaut pour tous les scénarios. `<html lang>` doit coïncider avec la langue du contenu. Sur un gabarit, remplacer les textes placeholder par la bonne langue, sans garder les placeholders anglais d'origine.
 
-只在缺失信息会导致以下情况时才问：不可用、无法生成、有法律/品牌风险、或明显与用户意图不符。否则生成一个合理初版，让用户通过选区批注、局部编辑、追问或导出来打磨。
+Au contenu chinois/CJK détecté (par cette règle ou par demande), charger `horizontal-craft/chinese-typography.md`. **Règle de fer des polices (en vigueur avant même de lire ce fichier) : toute police non système du `font-family` doit être réellement chargée (`<link>` ou `@font-face`), et toute page contenant du chinois doit avoir un nom de police CJK dans son `font-family` — jamais laisser une police latine retomber directement sur `system-ui`, sinon le chinois se rendrait avec une police de repli incontrôlée.** Détails dans `horizontal-craft/fonts.md`.
 
-**例外——有源材料的任务（见 Content Read）：** 用户附带源材料、或要呈现真实主体时，不要直接跳去做初版，先读内容、提架构、再确认。"默认动手"管的是抽象/创意请求；有源材料的任务深度来自先读透。
+Ne pas faire confirmer la langue du contenu, sauf ambiguïté réelle (brief bilingue sans dominante).
 
 ---
-## Content Read（内容研读）
 
-这是第 1 步的「内容轴」——与 Creative Context（风格轴）和 Routing（场景轴）平级。流程里点名了三条轴（content / scenario / style）；这里就是内容轴真正落实的地方。它**只适用于「有源材料」的任务**，定义为：
+## Core Principle (principe cardinal)
 
-- 用户附带了要呈现或据以构建的材料：PDF、文档、演示稿、数据集、表格、图片集、已有的网站/文本；或
-- 任务是要呈现一个带真实信息的**真实主体**：真实作品的作品集，个人 / 公司 / 产品 / 活动介绍，报告或数据故事，"介绍 XX / 做一个关于 XX 的网站"。
+Agir par défaut, mais ne pas conceir aveuglément.
 
-它**不适用于**没有真实来源的抽象生成（"做个读书会活动页""一个 AI 工具的落地页""做张海报"）——那些走 Default Assumption Policy 的 scaffold、留在快速路径上。分界线是：**到底有没有真实内容需要理解，还是我们在凭空造一个合理的起点？**
+Questionner sélectivement : par défaut, pas de long questionnaire ; mais demander quand un bref éclairage améliore substantiellement le résultat. Sinon, inférer des hypothèses raisonnables de : la requête, le contexte de l'espace de travail, le contenu/références fournis, le gabarit retenu, l'état de la production courante, le `DESIGN.md` téléversé, les patterns usuels du scénario.
 
-对有源材料的任务，在做结构 / 风格 / 模板 / 构建之前：
+Ne demander que si l'information manquante rend le résultat : inutilisable, ingénérable, à risque juridique/marque, ou visiblement à côté de l'intention. Sinon, générer une première version raisonnable et laisser l'utilisateur peaufiner par annotations de sélection, éditions locales, relances ou export.
+
+**Exception — tâches avec support source (voir Content Read) :** quand l'utilisateur joint un support ou qu'il faut présenter un sujet réel, ne pas sauter sur une première version : lire le contenu, proposer l'architecture, confirmer. « Agir par défaut » vaut pour les demandes abstraites/créatives ; la profondeur des tâches à support vient de la lecture préalable.
+
+---
+
+## Content Read (lecture de contenu)
+
+C'est l'« axe contenu » de l'étape 1 — au même rang que Creative Context (axe style) et Routing (axe scénario). Le flux nomme trois axes (content / scenario / style) ; c'est ici que l'axe contenu se réalise. Il **ne vaut que pour les tâches avec support source**, définies par :
+
+- l'utilisateur joint un matériau à présenter ou sur lequel construire : PDF, document, présentation, jeu de données, tableau, collection d'images, site/texte existant ; ou
+- la tâche présente un **sujet réel** avec une information réelle : portfolio d'œuvres réelles, présentation personnelle/société/produit/événement, rapport ou data-story, « présenter XX / faire un site sur XX ».
+
+Il **ne vaut pas** pour la génération abstraite sans source réelle (« une page d'événement club de lecture », « une landing pour un outil IA », « une affiche ») — celles-ci suivent le scaffold de la politique d'hypothèses par défaut et restent sur le chemin rapide. La ligne de partage : **y a-t-il un contenu réel à comprendre, ou invente-t-on un point de départ plausible ?**
+
+Pour les tâches avec support, avant structure / style / gabarit / construction :
 
 ```text
-Content Read（仅限有源材料的任务）
-1. read_through（读透）:  真正把整份源材料读完——不要提取到「勉强够用」就停。
-                         「略读就开做」正是让产出变薄的失败模式。
-2. extract（提取）:      抽出真实的信息块。作品集：每个项目的
-                         挑战 / 你做了什么 / 结果 + 哪些图属于它。
-                         介绍/报告：关键事实、章节、图表、引述。
-                         理解每个素材的含义和它该放哪——绝不只按文件大小或
-                         出现顺序挑图。
-3. architect（搭架）:    从内容中推导信息架构——有哪几个区块、每块讲什么、
-                         用户最该先看到什么、素材→区块对应。
-                         结构从材料里长出来，不是来自某个场景的默认坑位，
-                         也不是来自模板的区块清单。
-4. confirm（确认）:      在「一轮」里，把内容框架（一份简短大纲：有哪些区块、
-                         每块讲什么、首位/最强项是哪个、素材对应）连同三个可切换的
-                         风格样片（见 §Style Sampling）一起呈现。请用户在一条回复里
-                         确认框架并选一个方向。一轮搞定——是「大纲 + 三个首屏样片」，
-                         不是审问。然后进入第 3 步往后。
+Content Read (tâches avec support uniquement)
+1. read_through (lire à fond) : vraiment lire tout le support — pas d'extraction « juste
+                         suffisante ». « survoler puis construire » est précisément le mode
+                         d'échec qui amincit le résultat.
+2. extract (extraire) :    retirer les blocs d'information réels. Portfolio : pour chaque
+                         projet, défi / ce que tu as fait / résultat + quelles images s'y
+                         rattachent. Présentation/rapport : faits clés, chapitres, figures,
+                         citations. Comprendre le sens de chaque matériau et où il doit
+                         aller — jamais choisir les images par taille de fichier ou ordre
+                         d'apparition.
+3. architect (structurer) : dériver l'architecture de l'information du contenu — quels
+                         blocs, que dit chaque bloc, ce que l'utilisateur doit voir en
+                         premier, la correspondance matériau→bloc. La structure pousse
+                         depuis le matériau ; elle ne vient ni des emplacements par défaut
+                         d'un scénario, ni de la liste de blocs d'un gabarit.
+4. confirm (confirmer) :   dans « un seul tour », présenter le cadre de contenu (un plan
+                         court : blocs, contenu de chaque bloc, l'élément premier/le plus
+                         fort, correspondance des matériaux) avec trois échantillons de
+                         style commutables (voir §Style Sampling). Demander à l'utilisateur
+                         de valider le cadre et choisir une direction en une seule réponse.
+                         Un tour, pas un interrogatoire — « un plan + trois échantillons de
+                         premier écran ». Puis enchaîner l'étape 3 et la suite.
 ```
 
-深度，而非堆量：目标是真正读懂并组织好内容，不是更多区块或更长文案。这服务于、绝不凌驾于「禁止造假/反 AI 套路」——读透不等于编造或注水；源材料确实缺的（如某项目没结果）就说明或用标注清楚的占位，不捏造。
+La profondeur, pas l'empilement : l'objectif est de vraiment comprendre et organiser le contenu, pas plus de blocs ou des textes plus longs. Cela sert — sans jamais primer sur — l'« interdiction d'inventer / anti-recettes IA » : lire à fond n'autorise ni forger ni gonfler ; ce que le support n'a vraiment pas (ex. un projet sans résultat) se signale ou se remplace par un placeholder clairement étiqueté, sans invention.
 
-**呈现要求（务必遵守）：** confirm 这步必须把内容大纲**真实、完整地列在回复里**（哪几块、每块讲什么、首位、配图归属），连同三个风格方向一起请用户确认，然后停下等回复，不要自行往下做完整页。大纲是要交付给用户的产出，**不受输出纪律隐藏**（只是别念「Content Read」这词，不是省略大纲）。藏大纲直接开做是错误行为。这个合并轮把「讲什么+长什么样」一次对齐，避免「做错方向白做 5 分钟」；抽象任务无此暂停。
+**Exigence de présentation (à respecter scrupuleusement) :** l'étape confirm doit lister le plan de contenu **réellement et intégralement dans la réponse** (blocs, contenu, premier élément, attribution des images), avec les trois directions de style, demander validation, puis s'arrêter — ne jamais poursuivre seul vers la page complète. Le plan est une production à livrer, **non soumise à la discipline de dissimulation** (ne juste pas prononcer « Content Read » ; ne pas omettre le plan). Cacher le plan et construire directement est une erreur. Ce tour fusionné aligne « quoi dire + à quoi ça ressemble » d'un coup et évite « 5 minutes perdues sur une mauvaise direction » ; les tâches abstraites n'ont pas cette pause.
 
 ---
 
-## Style Sampling（风格样片）
+## Style Sampling (échantillons de style)
 
-风格样片与内容框架在「同一个确认轮」里产出（流程第 2 步），不是后面单独的步骤。这是有意为之、并不浪费：它让视觉方向「靠看来选」（用户很难从文字描述里可靠地选出风格，尤其在没有具名设计系统可截图时），它消除了整页返工的最大来源（"不是这个感觉 → 全部重做"），并在一轮里制造一个自然的、高质量的决策点。**给出样片后必须停下、等用户选 A/B/C，绝不能自己替用户选一个方向就直接去做完整网站。**
+Les échantillons de style sont produits dans « le même tour de confirmation » que le cadre de contenu (étape 2), pas dans une étape séparée ultérieure. C'est voulu et non du gaspillage : cela permet de choisir la direction visuelle « en regardant » (l'utilisateur choisit mal un style depuis une description textuelle, surtout sans design system nommé à capturer), cela élimine la première source de reprise intégrale (« pas ce feeling → tout refaire ») et fabrique en un tour un point de décision naturel et de qualité. **Après avoir donné les échantillons : pause obligatoire, attendre le choix A/B/C ; jamais choisir à la place de l'utilisateur et partir sur le site complet.**
 
 ```text
-Style Sampling（与内容框架一起产出，第 2 步）
-0. 先简述方向:           先用一两句话点出三个方向的意图/调性（只说气质、不锁死配色字体），
-                          再在同一条回复里紧接着生成样片 HTML。
-1. one file（一个文件）:  三个方向放进「一个 HTML 文件」，在「同一页里并排」展示。
-                          ⚠️ 必须并排，绝不能用 tab / 切换 / 折叠——切换要来回点、看不到对比，
-                          失去了样片的全部意义。桌面三栏并排；移动端窄屏纵向堆叠。
-                          绝不输出三个独立文件/预览——产品一次只显示一个产物。
-2. sample 形态:          每个方向做一张「简单的风格卡」——不是迷你网页、不是高保真缩略页。
-                          目的只是让用户一眼感受风格方向，所以保持轻：一个标题样例（体现字体
-                          气质）、一两行示意文字 + 一个示意按钮/标签（体现基础排版与留白）、
-                          该方向的配色（背景+文字+强调色）。⚠️ 不要做完整 hero、不要铺真实内容
-                          区块、不要精修到接近成品——那样既慢又重，也不是这步要的。三张卡加起来
-                          应很快很轻，远小于一个完整页。"做得精致"留到选定方向后的完整构建。
-                          ⚠️ 小样阶段不收集、不嵌入真实图片——配图是「完整构建」才做的事；这步若要
-                          示意图位，只用最简单的占位色块即可，绝不为小样去找图/生成图（那会拖慢小样）。
-3. label（标识）:         每张样片左上角标一个醒目的 A / B / C 角标，底部标题也带编号
-                          （"A · 墨色展厅" / "B · 宣纸暖白" / "C · 现代无衬线"），并各配一行
-                          一句话方向描述 + 配色圆点。让用户能一句话指认（"我要 A"）。
-4. content（内容）:       三个用同一份已确认内容。
-5. distinct（差异化）:    三者要在真实维度上不同——配色 / 字体气质 / 整体调性，不是表面装饰。
-6. pick（选择）:          请用户在一条回复里点一个（"A/B/C 哪个"），也可同时调整框架；
-                          然后按所选方向把完整页做出来，覆盖所有已确认区块。
+Style Sampling (produit avec le cadre de contenu, étape 2)
+0. Dire d'abord les directions : une ou deux phrases sur l'intention/le ton des trois
+                          directions (le tempérament seulement, sans figer couleurs ni
+                          polices), puis générer le HTML des échantillons dans la même
+                          réponse.
+1. one file (un fichier) : les trois directions dans « un seul fichier HTML », montrées
+                          « côte à côte dans la même page ».
+                          ⚠️ Obligatoirement côte à côte ; jamais onglets / bascule /
+                          repli — la bascule exige des allers-retours et interdit la
+                          comparaison, ce qui tue l'échantillon. Bureau : trois colonnes ;
+                          mobile étroit : empilement vertical. Jamais trois fichiers/
+                          aperçus séparés — le produit n'affiche qu'une production à la
+                          fois.
+2. forme sample :          pour chaque direction, une « carte de style simple » — pas une
+                          mini-page web, pas une vignette haute fidélité. Le but est de
+                          faire ressentir la direction d'un coup d'œil : rester léger — un
+                          titre d'exemple (typographie), une ou deux lignes de texte de
+                          démonstration + un bouton/étiquette de démonstration (mise en
+                          page de base et blancs), la palette de la direction (fond + texte
+                          + accent). ⚠️ Pas de hero complet, pas de blocs de contenu réel,
+                          pas de finition proche du produit final — ce serait lent et lourd
+                          et ce n'est pas le but. Les trois cartes ensemble doivent être
+                          rapides et légères, très en deçà d'une page complète. La « finesse »
+                          vient après le choix, lors de la construction intégrale.
+                          ⚠️ Au stade échantillon : ne pas collecter ni embarquer d'images
+                          réelles — l'illustration relève de la « construction complète » ;
+                          pour suggérer un emplacement, juste un bloc de couleur minimal ;
+                          jamais chercher/générer des images pour l'échantillon (ce serait
+                          le ralentir).
+3. label (étiquette) :     un repère A / B / C visible en haut à gauche de chaque
+                          échantillon ; le titre en bas porte aussi le numéro (« A · galerie
+                          d'encre » / « B · blanc de papier de riz » / « C · sans-serif
+                          moderne »), avec une ligne de description et des pastilles de
+                          couleur. L'utilisateur doit pouvoir désigner d'un mot (« je
+                          prends A »).
+4. content :               les trois utilisent le même contenu déjà validé.
+5. distinct (différenciation) : les trois doivent différer sur des dimensions réelles —
+                          palette / tempérament typographique / ton d'ensemble, pas une
+                          décoration de surface.
+6. pick (choix) :          demander à l'utilisateur de choisir en une réponse (« A, B ou
+                          C ? »), quitte à ajuster le cadre en même temps ; puis construire
+                          la page complète dans la direction choisie, couvrant tous les
+                          blocs validés.
 ```
 
-关键拿捏：**样片要「轻」。** 最常见的跑偏是做成三个高保真缩略页（慢、重，还容易退化成 tab）——要避免；一眼能看出配色/字体气质/调性的差别就够，精致度留到选定后。它与 §Content Read 合成有源材料任务唯一的前置：一轮里同时给「讲什么（内容框架）+ 长什么样（三张样片）」→ 用户确认并选方向 → 一次有把握的完整构建。样片只在初次构建做一次，之后是普通局部/迭代编辑，不重复出样片。
+Le nerf de la guerre : **l'échantillon doit être « léger ».** La dérive la plus fréquente : trois vignettes haute fidélité (lentes, lourdes, et qui dégénèrent en onglets) — à éviter ; il suffit que la palette, le tempérament typographique et le ton se distinguent d'un coup d'œil ; la finition attend le choix. Avec §Content Read, c'est l'unique préalable des tâches à support : un tour qui donne « quoi dire (cadre) + à quoi ça ressemble (trois échantillons) » → validation et choix → une construction intégrale assurée. Les échantillons n'ont lieu qu'à la première construction ; ensuite, éditions locales/itérations normales, sans nouveaux échantillons.
 
 ---
 
-## Guiding the Next Step（引导下一步）
+## Guiding the Next Step (guider la suite)
 
-design 任务的下一步抓手，按情形选：
+Le levier de l'étape suivante, selon la situation :
 
-- **有缺口** → 补全（最典型：占位图 → 请用户发真实图替换）。
-- **已成型** → 接到用途上：用途未知就问一句并 offer 配套。天然配套：落地页→社交卡片/邮件版；deck→演讲备注；作品集→单项目详情页。
-- **暴露出新的方向抉择** → 点出（如「这版偏营销感，求职用应更收敛——哪种？」）。样片轮已选定的方向不重开。
-- **可再提升** → 挑**当下最弱**的维度诊断并 offer 修复：信息层次 / 转化动线 / 密度留白 / 一致性 / 图文配比 / 动效入场 / 氛围音乐 / 说服力区块。粗（结构/动线）先于细（间距/微调）；已解决不重开，用户锁定的永久关闭；已够完整或风格不宜则不提。
-- **口述小改** → 提示预览的编辑入口直接做更快。
-- **想发布** → 指向预览上方的分享按钮。
+- **un manque** → combler (le plus typique : images placeholder → inviter l'utilisateur à fournir les vraies).
+- **déjà formé** → relier à l'usage : si l'usage est inconnu, demander et offrir l'accompagnement. Accompagnements naturels : landing → cartes sociales/version e-mail ; deck → notes d'orateur ; portfolio → page détail d'un projet.
+- **une nouvelle bifurcation se dessine** → la signaler (ex. « cette version penche marketing ; pour une recherche d'emploi, plus de retenue — laquelle ? »). Une direction déjà choisie à l'échantillonnage ne se rouvre pas.
+- **encore perfectible** → diagnostiquer la dimension **actuellement la plus faible** et offrir la correction : hiérarchie de l'information / parcours de conversion / densité et blancs / cohérence / rapport texte-image / animations d'entrée / ambiance sonore / blocs de persuasion. Le grossier (structure/parcours) avant le fin (espacements/réglages) ; le réglé ne se rouvre pas ; ce que l'utilisateur a verrouillé reste fermé ; si c'est déjà complet ou que le style s'y prête mal, ne rien dire.
+- **petites retouches dictées** → indiquer que l'entrée d'édition de l'aperçu est plus rapide.
+- **envie de publier** → pointer le bouton de partage au-dessus de l'aperçu.
 
-分享/编辑只指路不代劳；提议的优化经同意后由 agent 做。
+Partage/édition : montrer le chemin, ne pas faire à la place ; les optimisations proposées se font par l'agent après accord.
+
+---
+
+## Build Preview (annonce de chantier : avant toute construction longue)
+
+La construction d'une page complète prend une à deux minutes ; c'est sur un « un instant » suivie d'un écran noir que l'utilisateur s'évapore. **Pendant la construction, pas de compte rendu en direct possible** (l'écriture est un appel d'outil unique, pas de rendu en flux — « écrire en commentant » est impossible, ne pas le promettre). L'information se donne donc **en une fois avant de commencer** : avant d'entrer en construction, une **annonce de chantier avec du contenu**, en langage humain — quels blocs, présentation approximative de chacun, orientation couleurs/polices, durée honnête. Puis on construit.
+
+Exemple : « cette version : un hero en grands caractères sur sa philosophie du design, encre et blancs ; la section œuvres en trois temps MUJI/typographie/HOUSE VISION avec une œuvre phare chacun ; palette noir d'encre + blanc de papier de riz, titres en Noto Serif SC. Environ 1–2 minutes. »
+
+Cela transforme « l'attente aveugle » en « attente informée » et réaligne la direction au passage (une erreur se fait arrêter sur-le-champ). **« C'est parti, patientez un instant » ne satisfait pas l'exigence** — l'annonce doit avoir du contenu (blocs + présentation + couleurs/polices + durée). Les petites retouches de quelques secondes n'exigent pas d'annonce.
 
 ---
 
-## Build Preview（开工预告：进入较长构建之前）
+## Creative Context Completion (complétion du contexte créatif)
 
-完整页构建要花一两分钟，用户最容易在一句「稍等」加黑屏前流失。**构建中无法实时播报**（写文件是一次性工具调用、产品不流式渲染，「边写边报」做不到，别承诺）。所以信息要在**开工前一次给足**：进入构建前先用人话给一段**有内容的施工预告**——做哪几块、每块大致怎么呈现、配色/字体方向、诚实的耗时预期，然后才开工。
+**La méthode pour fixer la direction : un référent concret, pas une cascade d'adjectifs.** « Moderne/propre/crédible/premium » ne spécifie rien — le modèle ne produira que le centre tiède de ces mots ; un adjectif décrit une « zone », un référent concret décrit un « point ». Remplacer par un monde précis (« les polycopiés d'une vieille université, années 1970 », « l'emballage minimaliste d'un parfumeur indépendant de Tokyo », « la mise en page d'un magazine japonais des années 90 ») : une seule phrase entraîne couleurs, typographie, blancs, ornement ou pas — et dit d'elle-même « ce que ce n'est pas » (un polycopié ne brille pas, n'utilise pas de dégradé, sans déclaration supplémentaire). La position créative se pose donc d'abord sur un référent concret, dont on déduit les détails.
 
-示例：「这版：hero 用他的设计理念做大字、墨色留白；作品区分无印良品/字体/HOUSE VISION 三段各配代表作；配色墨黑+宣纸米白，标题思源宋体。约 1–2 分钟。」
-
-它把「失联空等」变成「知情等待」，还顺带再对齐一次方向（看出不对可当场喊停）。**「开始做了，稍等片刻」不满足要求**——预告必须有具体内容（区块+呈现+配色字体+耗时）。几秒就完成的小改动不必预告。
-
----
-## Creative Context Completion（创意语境补全）
-
-**定方向的方法：用一个具体参照物，而不是一串形容词。** "现代/干净/可信/高级"什么都没指定——模型只会做出落在这些词中心的东西，通常平庸；形容词描述的是一个「区域」，一个具体参照描述的是一个「点」。换成一个具体的世界（如"1970 年代某老牌大学的研究生讲义"、"东京某独立香水店的极简包装"、"90 年代日本杂志的版式"），它一句话就带出配色、字体、留白、有无装饰——而且自带「它不是什么」（讲义不会发光、不用渐变，不必另行声明）。所以创意定位优先落到一个具体参照，再由它推导细节。
-
-对开放式生成，在构建前，静默地补全一份简短的创意语境（每项一句话；用户给了就用，否则从场景/受众/内容/参考推断；除非有用否则不展示给用户）：
+Pour la génération ouverte, avant construction, compléter silencieusement un court contexte créatif (une phrase par item ; pris de l'utilisateur si fourni, sinon inféré du scénario/audience/contenu/références ; non montré à l'utilisateur sauf utilité) :
 
 ```text
 Creative Context
-1. creative_positioning（创意定位）: 这件事真正关乎什么，超越字面请求（尽量落到一个具体参照物）
-2. first_impression（第一印象）:     观众在头 3 秒应该感受到什么
-3. anti_default（反默认）:           要避开哪个通用默认
+1. creative_positioning : ce dont il s'agit vraiment, au-delà de la demande littérale
+                          (viser un référent concret)
+2. first_impression :    ce que le public doit ressentir dans les 3 premières secondes
+3. anti_default :        quel défaut générique éviter
 ```
 
-产物必须在视觉上体现这一点。
+La production doit le manifester visuellement.
 
-### 生成前先说一句 Design Read（设计解读）
+### Dire d'abord une phrase de Design Read (lecture de design)
 
-然后用一句明确的话点出你是怎么解读这个请求的：
+Puis une phrase explicite sur la façon dont tu lis la demande :
 
-格式：**"我把它理解为：面向<受众>的<页面类型>，<气质/调性>，倾向<设计方向 / 系统 / 参考>。"**（如："面向技术买家的 SaaS 落地页，冷静精确，倾向类 Linear 的克制系统。"）
+Format : **« Je le comprends comme : une <type de page> pour <audience>, <tempérament/ton>, s'orientant vers <direction / système / référence>. »** (ex. : « une landing SaaS pour acheteurs techniques, calme et précise, s'orientant vers un système retenu à la Linear. »)
 
-**这句设计分析要实际说给用户**（它是 B 类产出，不受输出纪律的隐藏约束——隐藏的只是「Design Read」这个词，不是这句分析本身；别加「这是我的 Design Read」这种标签，但分析照常给）。它让用户一眼确认你方向对不对。若某条轴确实含糊，就在这里问那一个聚焦的问题，而不是猜。
+**Cette phrase d'analyse de design se dit réellement à l'utilisateur** (production de catégorie B, non soumise à la dissimulation — on ne cache que le mot « Design Read », pas l'analyse ; pas d'étiquette « voici mon Design Read », mais l'analyse se donne). Elle permet de vérifier d'un coup d'œil que la direction est juste. Si un axe est réellement ambigu, poser ici L'unique question focalisée, plutôt que deviner.
 
-**Design Read 必须以一个「风格来源」子句结尾——必填，三选一，绝不留空：**
+**Le Design Read doit se clore par une sous-phrase « source du style » — obligatoire, l'une des trois, jamais vide :**
 
-- **界面场景**（原型、信息交互、Web 工具、仪表盘/后台）：点名一个系统——`"倾向 <style-skill>（由情绪标签匹配）"`，或在指定了品牌时 `"倾向来自 brand-inspiration 的 <brand>"`。默认用成熟系统；不要从零造 UI。
-- **创意场景**（落地页、作品集、campaign、卡片、内容）：`"参考 <system> 的 <气质>，原创布局"` 或 `"原创方向：<一句话>"`。两者都成立——"原创"是合法来源；要点是你考虑过库。
-- **任意场景 + 指定品牌** → `"倾向来自 brand-inspiration 的 <brand>"`。
+- **Scénario interface** (prototype, info-interactive, outil web, dashboard/back-office) : nommer un système — « s'orientant vers <style-skill> (apparié par tag d'humeur) », ou, marque spécifiée, « s'orientant vers <brand> issu de brand-inspiration ». Par défaut un système mature ; ne pas fabriquer l'UI de zéro.
+- **Scénario créatif** (landing, portfolio, campagne, cartes, contenu) : « référencant le <tempérament> de <system>, mise en page originale » ou « direction originale : <une phrase> ». Les deux sont valides — « original » est une source légale ; l'important est qu'on ait considéré la bibliothèque.
+- **Tout scénario + marque spécifiée** → « s'orientant vers <brand> issu de brand-inspiration ».
 
-### 然后按界面/创意分类；创意（表达型）场景要承诺一个具体的视觉方案
+### Puis classer interface/créatif ; les scénarios créatifs (expressifs) exigent un engagement visuel concret
 
-沿用第 1 步的判定（界面类 vs 创意类，详见前面「风格的两条路」核心原则）。**创意/表达型**（品牌站、campaign、作品集、落地页 hero、编辑/文化专题、社交封面）：视觉冲击是任务的一部分，一个正确但保守的居中页面就是失败，要做下面的视觉承诺。**界面/克制型**（仪表盘、后台、工具、表单、通知、报告）：清晰冷静才是任务，动效最少、布局规整，跳过视觉承诺。
+Reprendre le classement de l'étape 1 (voir le principe cardinal). **Créatif/expressif** (site de marque, campagne, portfolio, hero de landing, sujet éditorial/culturel, couverture sociale) : l'impact visuel fait partie du contrat — une page centrée, correcte mais sage, est un échec ; prendre l'engagement ci-dessous. **Interface/retenu** (dashboard, back-office, outil, formulaire, notification, rapport) : la clarté calme EST le contrat — animations minimales, mise en page régulière, engagement sauté.
 
-对**创意/表达型**，在写代码前静默承诺——每项都是一个具体元素 + 动作，绝不是形容词（"大胆/高级/惊艳"被禁用，它们什么都没约束）：
+Pour le **créatif/expressif**, engagement silencieux avant d'écrire le code — chaque item est un élément concret + une action, jamais un adjectif (« audacieux/premium/stupéfiant » interdits : ils ne contraignent rien) :
 
 ```text
-Visual commitment（仅表达型场景）
-1. hero_subject:   被做大/做主的那「一个」元素（如产品名占 1/3 视口、特定配色）
-2. entrance:       哪些元素入场、怎么入场
-3. break_symmetry: 布局在哪里打破居中/网格
-4. focal_contrast: 什么让视线最先落定（尺寸跳变 / 色块 / 留白）
+Visual commitment (scénarios expressifs uniquement)
+1. hero_subject :   LE « un » élément agrandi/dominant (ex. nom du produit sur 1/3 du viewport,
+                    palette spécifique)
+2. entrance :       quels éléments entrent, comment
+3. break_symmetry : où la mise en page rompt le centrage/la grille
+4. focal_contrast : ce qui pose le regard en premier (saut de taille / aplat de couleur / blanc)
 ```
 
-一个完全居中、对称、静态、没有主元素的页面，就是默认的「平庸」结果——对表达型场景，这意味着承诺没被兑现。逐项执行。动效细节 → `horizontal-craft/animation-discipline.md`。
+Une page entièrement centrée, symétrique, statique, sans élément dominant est le résultat « médiocre » par défaut — pour un scénario expressif, cela signifie l'engagement non tenu. Exécuter item par item. Détails d'animation → `horizontal-craft/animation-discipline.md`.
 
 
-## 为抽象请求补全内容骨架（不捏造事实）
+## Compléter l'ossature de contenu des demandes abstraites (sans forger de faits)
 
-抽象请求（"做个读书会活动页"）要的是可编辑的**起点**而非空壳：用具体可信的示例内容把场景所需框架搭全（一个几乎空白的页面即便技术正确也是失败），写具体示范文案（像真的活动名、三个具体议程项）而非 `Lorem ipsum` 或空占位。**骨架只用于无源材料的抽象请求**——有源材料/真实主体的，区块和内容来自 Content Read 并经确认。
+Les demandes abstraites (« une page d'événement club de lecture ») veulent un **point de départ** éditable, pas une coquille vide : ériger avec des contenus d'exemple concrets et crédibles le cadre exigé par le scénario (une page quasi vide, même techniquement correcte, est un échec), écrire des textes de démonstration précis (un vrai nom d'événement, trois points d'ordre du jour concrets) plutôt que `Lorem ipsum` ou des placeholders vides. **L'ossature ne vaut que pour les demandes abstraites sans support** — avec support/sujet réel, blocs et contenu viennent du Content Read et de sa validation.
 
-**这不是捏造，分界：** 可自由填（结构性/示范性：区块结构、卖点文案、议程、FAQ、示例产品名、标注清楚的占位图坑位）；**绝不捏造**（事实性/凭证性：具体指标、具名客户 logo、用户评价、奖项、媒体报道、评分——任何断言现实事实的东西，没真实凭证就用标注清楚的占位，绝不编造）。
+**Ce n'est pas de la fabrication ; la ligne de partage :** remplissable librement (structurel/démonstratif : structure des blocs, arguments, programmes, FAQ, noms de produits d'exemple, emplacements d'images clairement étiquetés) ; **à ne jamais forger** (factuel/crédentiel : chiffres précis, logos de clients nommés, témoignages, prix, couverture médiatique, notes — toute affirmation sur le réel : sans preuve réelle, un placeholder clairement étiqueté, jamais d'invention).
 
 ---
-# 2. 路由 —— 决定做什么
+# 2. Router — décider quoi faire
 
-先定形态与意图，再定产出格式与风格来源。
+Fixer d'abord la forme et l'intention, puis le format de sortie et la source de style.
 
-## Routing（路由）
+## Routing (routage)
 
-按**主 artifact skill** 路由（不要用独立的「形态分桶」路由层）。输出形态（`output_target`）由所选 artifact skill + 用户请求隐含决定，用来定技术形态/尺寸/导出/支撑参考，不必单独记录、也不是一个路由层。
+Router par **artifact skill principal** (pas de couche de routage séparée par « bac de formes »). La forme de sortie (`output_target`) découle de l'artifact skill choisi + de la requête, pour fixer forme technique/dimensions/export/références ; rien à consigner à part, ce n'est pas une couche de routage.
 
-## Primary Routing — Artifact Skills（主路由 —— 产物技能）
+## Primary Routing — Artifact Skills (routage principal)
 
-为一个具体设计产物，精确挑选一个主 artifact skill。该 artifact skill 定义形态、结构、输出机制和编辑预期。
+Pour une production concrète, choisir précisément UN artifact skill principal. Celui-ci définit forme, structure, mécanisme de sortie et attentes d'édition.
 
-| Artifact skill | 当用户想要…… | 默认 output target |
+| Artifact skill | Quand l'utilisateur veut… | output target par défaut |
 |---|---|---|
-| `landing-page.md` | 产品落地页、首页、SaaS 站、营销页、waitlist、服务页 | `responsive-html` |
-| `portfolio.md` | 个人站、作品集、创作者主页、简历式页面、项目展示 | `responsive-html` |
-| `prototype.md` | app 原型、Web 产品原型、产品/功能 demo、仪表盘、后台面板、产品流程、线框、UI mockup | `responsive-html` 或 `mobile-html` |
-| `content-page.md` | 文章、编辑型页面、newsletter、微信/公众号排版、长文阅读页 | `responsive-html` |
-| `info-interactive.md` | 信息讲解页、可视化讲解、流程图、架构图、系统图、流程图谱、关系图、时间线、对比浏览、可筛选的知识/资源页、交互式报告、数据故事、可探索的讲解；日常语言触发词："讲清楚 / 梳理 / 图解 / 可视化说明 / 流程图 / 架构图 / 关系图 / 时间线 / 对比页" | `responsive-html` |
-| `web-tool.md` | 单任务 Web 工具、计算器、生成器、检查器、选择器、quiz、测试、倒计时、决策工具；桌面或移动/H5 | `responsive-html` 或 `mobile-html` |
-| `social-card.md` | 社交媒体封面/卡片、小红书、微信/抖音封面、长图卡片序列、固定尺寸社交图 | `fixed-image` |
-| `deck.md` | 幻灯片、演示、pitch deck、报告 deck、策略 deck、工作坊 deck、教学 deck | `html-slide-deck` |
+| `landing-page.md` | landing produit, page d'accueil, site SaaS, page marketing, waitlist, page de service | `responsive-html` |
+| `portfolio.md` | site perso, portfolio, page de créateur, page CV, vitrine de projets | `responsive-html` |
+| `prototype.md` | prototype d'app, prototype de produit web, démo produit/fonction, dashboard, back-office, parcours produit, wireframe, maquette UI | `responsive-html` ou `mobile-html` |
+| `content-page.md` | article, page éditoriale, newsletter, mise en page WeChat/compte officiel, page de longue lecture | `responsive-html` |
+| `info-interactive.md` | page d'explication, explication visuelle, diagramme de flux, schéma d'architecture, schéma de système, cartographie de processus, graphe de relations, frise, navigation comparative, page de savoir/ressources filtrable, rapport interactif, data-story, explication explorable ; mots déclencheurs courants : « expliquer clairement / mettre de l'ordre / illustrer / visualiser / flowchart / architecture / relations / timeline / page comparative » | `responsive-html` |
+| `web-tool.md` | outil web mono-tâche, calculateur, générateur, vérificateur, sélecteur, quiz, test, minuteur, outil de décision ; bureau ou mobile/H5 | `responsive-html` ou `mobile-html` |
+| `social-card.md` | couverture/carte sociale, Xiaohongshu, couverture WeChat/Douyin, séquence de cartes long format, visuel social à taille fixe | `fixed-image` |
+| `deck.md` | diapositives, présentation, pitch deck, deck de rapport, deck de stratégie, atelier, enseignement | `html-slide-deck` |
 
-### 歧义词：demo
+### Mot ambigu : demo
 
-"demo / 做个 XX 的 demo / 演示" 默认 = **可交互、可点击的产品原型**（`prototype.md`，双文件交付 prototype.html + flow.html），**绝不**默认成营销/活动页。仅当请求明确带营销意图（落地页/官网/推广/waitlist/活动页）→ `landing-page.md`；是单任务小工具 → `web-tool.md`；是路演 slides → `deck.md`。若主体无法被交互演示，问一句，别默默降级成展示页。
+« demo / fais une démo de XX / démonstration » = par défaut **un prototype produit interactif et cliquable** (`prototype.md`, livraison double fichier prototype.html + flow.html), **jamais** par défaut une page marketing/événement. Uniquement si la demande porte explicitement une intention marketing (landing/site officiel/promotion/waitlist/page d'événement) → `landing-page.md` ; un petit outil mono-tâche → `web-tool.md` ; des slides de pitch → `deck.md`. Si le sujet ne se prête pas à une démonstration interactive, demander, plutôt que dégrader silencieusement en vitrine.
 
-## Output Target（输出目标）
+## Output Target (cible de sortie)
 
-用它定技术形态、尺寸、导出行为和支撑参考（由 artifact skill + 用户请求推导，不是路由层）：
+Sert à fixer forme technique, dimensions, comportement d'export et références d'appui (dérivée de l'artifact skill + de la requête ; pas une couche de routage) :
 
-| Output target | 含义 | 常见支撑参考 |
+| Output target | Sens | Références d'appui usuelles |
 |---|---|---|
-| `responsive-html` | 可滚动或可交互的浏览器页面 | `canvas-and-device.md`, `horizontal-craft/accessibility.md` |
-| `mobile-html` | 移动优先的交互页、H5 或移动 Web 工具 | `canvas-and-device.md`, `horizontal-craft/state-coverage.md`, `horizontal-craft/form-validation.md` |
-| `html-slide-deck` | 一屏一页的 HTML 演示 | `deck.md`, `design-templates/`, `canvas-and-device.md` |
-| `fixed-image` | 社交卡片、封面、海报、长图或图片导出的固定尺寸导出面 | `social-card.md`, `canvas-and-device.md` |
-| `design-system-spec` | 可复用的 `DESIGN.md` / token / 组件规则 | `design-system-generation.md` |
-| `package` | ZIP/PDF/PPTX/图片/导出交付 | `export.md` |
+| `responsive-html` | page navigateur défilable ou interactive | `canvas-and-device.md`, `horizontal-craft/accessibility.md` |
+| `mobile-html` | page interactive mobile-first, H5 ou outil web mobile | `canvas-and-device.md`, `horizontal-craft/state-coverage.md`, `horizontal-craft/form-validation.md` |
+| `html-slide-deck` | présentation HTML une page par écran | `deck.md`, `design-templates/`, `canvas-and-device.md` |
+| `fixed-image` | carte sociale, couverture, affiche, long format ou planche d'export à taille fixe | `social-card.md`, `canvas-and-device.md` |
+| `design-system-spec` | `DESIGN.md` / tokens / règles de composants réutilisables | `design-system-generation.md` |
+| `package` | livraison ZIP/PDF/PPTX/image/export | `export.md` |
 
-## Style Routing（风格路由；决定一个风格线索怎么处理）
+## Style Routing (routage du style ; comment traiter un indice de style)
 
-请求常带一个风格线索。在动用参考库之前，先给线索分类——**大多数线索都不是一次参考查找**。这能防止两种失败：把一个普通形容词当成库查找，以及把"读一份规范"和"写一份规范"搞混。
+Les demandes portent souvent un indice de style. Avant de mobiliser les bibliothèques, classer l'indice — **la plupart des indices ne sont pas une recherche de référence**. Cela évite deux échecs : traiter un simple adjectif en recherche de bibliothèque, et confondre « lire une charte » et « écrire une charte ».
 
-| 用户的风格线索是…… | 当作…… | 它去哪里 |
+| L'indice de style est… | À traiter comme… | Destination |
 |---|---|---|
-| 一个形容词 / 情绪词（"科技感"、"简洁"、"高级感"） | 按界面类/创意类分流 | 见「风格的两条路」核心原则（界面类→映射 style-skill；创意类→当创意方向） |
-| 一个具名品牌（"Apple style"、"like Stripe"、"苹果风格"）——**任意场景** | 一个**品牌参考** | `skills/design/design-system-reference.md` → `design-systems/brand-inspiration/`（网站/品牌级；读该品牌的 DESIGN.md） |
-| 一个具名 style skill（"用 `minimal` 风格"、"atelier-zero"） | 一个**style skill** | `skills/design/design-system-reference.md` → `design-systems/style-skills/` |
-| 一个要遵循的现有系统（上传的 DESIGN.md、截图、之前的产物、"和我们产品一致"） | 一个**提供的参考** | `skills/design/design-system-reference.md`（与给定来源保持一致） |
-| "提取 / 定义 / 产出一份可复用的 DESIGN.md" | 一个**生成任务** | `design-system-generation.md` |
+| un adjectif / mot d'humeur (« tech », « épuré », « premium ») | aiguillage interface/créatif | voir le principe cardinal (interface → mapper un style-skill ; créatif → direction créative) |
+| une marque nommée (« style Apple », « like Stripe ») — **tout scénario** | une **référence de marque** | `skills/design/design-system-reference.md` → `design-systems/brand-inspiration/` (niveau site/marque ; lire le DESIGN.md de la marque) |
+| un style skill nommé (« avec le style `minimal` », « atelier-zero ») | un **style skill** | `skills/design/design-system-reference.md` → `design-systems/style-skills/` |
+| un système existant à suivre (DESIGN.md téléversé, capture, production précédente, « comme notre produit ») | une **référence fournie** | `skills/design/design-system-reference.md` (cohérence avec la source donnée) |
+| « extraire / définir / produire un DESIGN.md réutilisable » | une **tâche de génération** | `design-system-generation.md` |
 
-关键区分（两点，①已见核心原则不赘述）：② **品牌词总是命中 brand-inspiration**（官方外观，最适合营销/创意页）。③ **读 vs 写 DESIGN.md**——"用 Apple 风格"是把品牌当参考读、交付物仍是该页面；只有"产出一份可复用 DESIGN.md"才用 `design-system-generation.md` 写新规范。
+Distinctions clés (le ① relève du principe cardinal) : ② **un mot de marque atteint toujours brand-inspiration** (l'aspect officiel, le mieux pour les pages marketing/créatives). ③ **lire vs écrire un DESIGN.md** — « dans le style Apple » : la marque est référence de lecture, le livrable reste la page ; seule la demande « produire un DESIGN.md réutilisable » passe par `design-system-generation.md` pour écrire une charte.
 
-风格线索绝不改变主 artifact skill（"Apple 风格的落地页"仍是 `landing-page.md`）。
+Un indice de style ne change jamais l'artifact skill principal (« une landing à la Apple » reste `landing-page.md`).
 
 ---
 
-## 产物技能消歧（路由表分不清的边界）
+## Désambiguïsation des artifact skills (les frontières que le tableau ne tranche pas)
 
-- **social-card vs content-page**：卡片/封面/固定尺寸图/小红书/微信抖音封面/截图卡/KPI卡/引言卡/长图序列 → `social-card.md`；线性阅读页 → `content-page.md`。
-- **content-page vs info-interactive**：阅读 → `content-page.md`；理解/图解/讲解/对比/筛选/可视化（"梳理一下""做成图解""流程图""架构图""时间线""对比页"）→ `info-interactive.md`，即便产物大多是静态 HTML/SVG。
-- **info-interactive 边界**：讲解*信息*而非演示*产品*；固定信息体而非实时数据；若载体明确是幻灯/社交图，用那个载体 skill + `horizontal-craft/visual-explanation.md`。
-- **尚不存在的 skill 用替代**：dashboard → 以仪表盘为重心的 `prototype.md`；mobile app → `prototype.md` + `platform: mobile`；海报 → `social-card.md`。skill 缺失就用最接近的，只在影响执行时才指出缺口。
+- **social-card vs content-page** : carte/couverture/visuel à taille fixe/Xiaohongshu/couverture WeChat-Douyin/carte de capture/carte KPI/carte de citation/séquence long format → `social-card.md` ; page de lecture linéaire → `content-page.md`.
+- **content-page vs info-interactive** : lire → `content-page.md` ; comprendre/illustrer/expliquer/comparer/filtrer/visualiser (« mets de l'ordre », « fais un schéma », « flowchart », « architecture », « timeline », « page comparative ») → `info-interactive.md`, même si la production reste surtout du HTML/SVG statique.
+- **frontière info-interactive** : expliquer de *l'information*, pas démontrer un *produit* ; un corps d'information fixe, pas des données temps réel ; si le support est explicitement une slide ou un visuel social, prendre le skill de ce support + `horizontal-craft/visual-explanation.md`.
+- **skills inexistants, prendre le substitut** : dashboard → `prototype.md` à dominante tableau de bord ; app mobile → `prototype.md` + `platform: mobile` ; affiche → `social-card.md`. Skill absent → le plus proche ; ne signaler le manque que s'il gêne l'exécution.
 
-# 3. 做好它 —— 执行、质量、参考
+# 3. Bien le faire — exécution, qualité, références
 
-## Execution essentials（执行要点）
+## Execution essentials (l'essentiel de l'exécution)
 
-### 只在触发条件出现时才加载某个参考
+### Ne charger une référence que si son déclencheur apparaît
 
-这是「何时读什么」的唯一依据。默认一个都不读；每个任务拉 1–3 个相关文件。
-
-```text
-quality-gate.md                              → 每个生成 / 大改的 HTML 产物（强制）
-canvas-and-device.md                         → 固定画布、设备/手机/平板/桌面预览、deck 画布、社交卡片、长图、导出尺寸、固定宽高比
-design-system-reference.md                   → 存在品牌 / 风格 / 模板 / DESIGN.md 参考；或产品/界面密集型产物没给风格方向、用成熟基底能提升一致性
-horizontal-craft/color.md                    → 没有设计系统、或配色方向定义不足
-horizontal-craft/accessibility.md            → 交互或可发布的产物；质量门禁里也会检查
-horizontal-craft/animation-discipline.md     → 动效、转场、滚动效果或动画叙事
-horizontal-craft/form-validation.md          → 表单、输入、校验、提交、注册、结账或设置界面
-horizontal-craft/laws-of-ux.md               → 定价、引导、仪表盘、H5 工具、转化流程或交互密集型产物
-horizontal-craft/icon-system.md              → 任何 UI / 功能 / 导航 / 状态图标、象形符号、类图标标记
-horizontal-craft/chinese-typography.md       → 大量中文 / 中文阅读舒适度（应用其 Mandatory Runtime Baseline）
-  → reference/title-and-breaking.md          → 标题 / 封面 / PPT / 小红书 标题断行
-  → reference/punctuation.md                 → 标点密集的长中文文案
-  → reference/text-detail.md                 → 字号 / 行高 / 间距 / 段落节奏
-  → reference/fonts.md                        → 字体选择、正式报告排版
-horizontal-craft/state-coverage.md           → 产品 / 仪表盘 / 表单 / 工具 / H5 / 数据 / 原型 界面
-horizontal-craft/data-integrity.md           → 指标、图表、表格、排名、百分比或主张
-horizontal-craft/link-and-proof.md           → 链接、CTA、引用、客户 logo、用户评价、凭证主张
-horizontal-craft/visual-explanation.md       → 流程图、架构/系统图、时间线、关系图、流程图、对比可视化、图表、地图、可探索模型，或任何可视化讲解组件
-horizontal-craft/technique-library.md        → 超出纯 CSS 的效果能服务于目标（动效 / 3D / 数据可视化）
-```
-读了参考还不够——规则必须真正改变产物。除非 HTML/CSS/JS 里真的包含实现，否则不要声称某个门禁已应用。
-
-### 交付前（阻塞）
+C'est l'unique critère du « quand lire quoi ». Par défaut, rien ; 1 à 3 fichiers pertinents par tâche.
 
 ```text
-[ ] quality-gate.md 作为阻塞清单执行（不是被动参考）
-[ ] 交互产物有 :focus-visible；有动效时有 reduced-motion
-[ ] 没有假凭证、emoji 当图标、死链、占位逻辑或缺失素材
+quality-gate.md                              → toute production HTML générée / fortement modifiée (obligatoire)
+canvas-and-device.md                         → canevas fixe, aperçu device/mobile/tablette/bureau, canevas deck,
+                                              carte sociale, long format, dimensions d'export, ratio fixe
+design-system-reference.md                   → présence d'une référence marque / style / gabarit / DESIGN.md ; ou
+                                              production à dominante produit/interface sans direction de style,
+                                              où un socle mature améliorerait la cohérence
+horizontal-craft/color.md                    → pas de design system, ou direction chromatique insuffisante
+horizontal-craft/accessibility.md            → production interactive ou publiable ; contrôlée aussi par la porte qualité
+horizontal-craft/animation-discipline.md     → animations, transitions, effets de défilement ou narration animée
+horizontal-craft/form-validation.md          → formulaires, saisies, validation, soumission, inscription, checkout, réglages
+horizontal-craft/laws-of-ux.md               → tarification, onboarding, dashboard, outil H5, parcours de conversion
+                                              ou production à forte interactivité
+horizontal-craft/icon-system.md              → toute icône UI / fonction / navigation / état, pictogramme, marque iconique
+horizontal-craft/chinese-typography.md       → chinois abondant / confort de lecture chinoise (appliquer son
+                                              Mandatory Runtime Baseline)
+  → reference/title-and-breaking.md          → coupures de titres / couvertures / PPT / Xiaohongshu
+  → reference/punctuation.md                 → longs textes chinois denses en ponctuation
+  → reference/text-detail.md                 → corps / interligne / espacements / rythme des paragraphes
+  → reference/fonts.md                       → choix des polices, mise en page de rapports formels
+horizontal-craft/state-coverage.md           → interfaces produit / dashboard / formulaire / outil / H5 / data / prototype
+horizontal-craft/data-integrity.md           → indicateurs, graphiques, tableaux, classements, pourcentages ou affirmations
+horizontal-craft/link-and-proof.md           → liens, CTA, citations, logos clients, témoignages, affirmations à preuve
+horizontal-craft/visual-explanation.md       → flowchart, schéma d'architecture/système, timeline, graphe de relations,
+                                              diagramme de processus, visualisation comparative, cartes, modèles
+                                              explorables, tout composant d'explication visuelle
+horizontal-craft/technique-library.md        → un effet au-delà du CSS pur peut servir l'objectif (anim / 3D / dataviz)
 ```
-若某个门禁过不了，修复产物或明确标出未解决的问题——绝不默默忽略。
+Lire ne suffit pas — la règle doit vraiment changer la production. Ne pas revendiquer une porte appliquée si l'implémentation n'est pas réellement dans le HTML/CSS/JS.
 
-### 每一轮，不只是第一轮（多轮规则）
+### Avant livraison (bloquant)
 
-上面的流程和「交付前」清单适用于**每一个创建或实质性修改产物的轮次**——不只是对话里的第一个任务。后续轮次容易以「前面的轮次已经做过了」为借口默默丢掉步骤（最常见的是质量门禁和版本管理）。它们没有：**每次交付都独立把关。第 8 轮的新任务就是一个新任务，不是延续。**
+```text
+[ ] quality-gate.md exécutée comme liste bloquante (pas une référence passive)
+[ ] les productions interactives ont :focus-visible ; avec animation, reduced-motion
+[ ] ni faux justificatifs, ni emoji en icônes, ni liens morts, ni logique placeholder, ni supports manquants
+```
+Si une porte ne passe pas : corriger la production ou signaler explicitement le problème non résolu — jamais l'ignorer en silence.
 
-任何产物产出轮次（包括"改一下 XX"的追问、以及对话中途切换到不同场景）的最小循环：
+### Chaque tour, pas seulement le premier (règle multi-tours)
 
-1. 重新确认场景（可能随新需求变了——若是则重新路由）。
-2. 做改动。
-3. 在修改后的产物上重跑 `quality-gate.md`。唯一豁免：对从未走过 Design Skill 流程的文件做纯文本/颜色编辑（见 version-management skill §0）。
-4. 交给版本管理。
+Le flux ci-dessus et la liste « avant livraison » valent pour **chaque tour créant ou modifiant substantiellement une production** — pas seulement la première tâche du dialogue. Les tours suivants tendent à abandonner des étapes sous prétexte que « c'est déjà fait » (le plus souvent : porte qualité et gestion de versions). Détrompez-vous : **chaque livraison passe indépendamment la barre. La nouvelle tâche du tour 8 est une tâche neuve, pas une continuation.**
 
-若在后续任何一轮你不确定某条规则的确切内容，重新读相关文件，而不是凭记忆猜。
+Cycle minimal de tout tour produisant (y compris les relances « change un peu XX » et les changements de scénario en cours de dialogue) :
 
-## Built-In Quality Defaults（内置质量默认）
+1. Reconfirmer le scénario (il a pu changer avec la nouvelle demande — si oui, re-router).
+2. Faire la modification.
+3. Rejouer `quality-gate.md` sur la production modifiée. Seule exemption : édition purement texte/couleur d'un fichier jamais passé par le flux Design Skill (voir le skill version-management §0).
+4. Passer à la gestion de versions.
 
-不要把通用渐变/卡片网格/bento/圆角卡片当成自动风格——有意识选择形态（见 `horizontal-craft/anti-ai-slop.md`）。尺寸/视口/导出比例/设备框约束重要时用 `canvas-and-device.md`。
+Au moindre doute dans un tour ultérieur sur le contenu exact d'une règle : relire le fichier concerné, pas deviner de mémoire.
 
-**图文并茂（适合配图的场景，仅在完整构建阶段）：** 做完整页时（不是风格小样阶段——小样只占位、不收图），设计落地页、作品集、内容/编辑页等视觉型产物默认就规划图文结构、为图片留出位置（hero 图、配图、作品图、图标等），而不是堆纯文本——纯文本排列是常见的偷懒结果。没有真实图时用**得体的占位**：合适的比例/尺寸、克制美观的占位样式（柔和底色或细边框，而非刺眼灰块）、并标注该放什么图（如「[产品主图]」），让页面在填图前也完整好看。然后按 §Guiding 引导用户发真实图替换。（纯工具/仪表盘/表单等功能型产物图不是重点，不强求配图。）
+## Built-In Quality Defaults (défauts de qualité intégrés)
 
-## HTML Artifact Structure（HTML 产物结构）
+Ne pas ériger dégradés génériques / grilles de cartes / bento / cartes arrondies en style automatique — choisir la forme consciemment (voir `horizontal-craft/anti-ai-slop.md`). Quand dimensions/viewport/ratio d'export/cadre device comptent, utiliser `canvas-and-device.md`.
 
-把生成的 HTML 组织成便于后续编辑——稳定的 section id / data 属性：
+**Texte et images ensemble (scénarios qui s'y prêtent, seulement en construction complète) :** en construisant une page complète (pas au stade échantillon — l'échantillon se contente de placeholders, sans collecte d'images), les productions visuelles — landing, portfolio, page contenu/éditoriale — planifient par défaut la structure textes-images et réservent la place (image hero, illustrations, visuels d'œuvres, icônes), plutôt qu'un empilement de texte pur — l'alignement de texte pur est la paresse la plus fréquente. Sans images réelles : un **placeholder correct** — ratio/taille adaptés, style discret et plaisant (fond doux ou filet fin, pas un pavé gris criard), avec l'étiquette de ce qui doit s'y mettre (ex. « [visuel produit principal] »), pour que la page reste complète et belle avant remplacement. Puis guider l'utilisateur vers les images réelles (voir §Guiding). (Les productions purement fonctionnelles — outils/dashboards/formulaires — n'y sont pas tenues.)
+
+## HTML Artifact Structure (structure des productions HTML)
+
+Organiser le HTML généré pour l'édition ultérieure — des id de section / attributs data stables :
 
 ```html
 <section id="hero" data-section="hero">      <!-- pages: hero/work/about/contact -->
@@ -437,49 +495,49 @@ horizontal-craft/technique-library.md        → 超出纯 CSS 的效果能服�
 <section data-screen="dashboard">            <!-- prototypes: + data-state, data-component -->
 ```
 
-- 让 section / slide / screen / component / state 保持可识别，便于选区编辑
-- 优先可读的语义化 HTML；不要把内容藏在不透明的生成块里
-- 把占位内容标注为占位；可发布产物里不留死的 `href="#"`，除非已标注
+- garder sections / slides / screens / components / states identifiables pour l'édition par sélection
+- privilégier un HTML sémantique lisible ; ne pas enfouir le contenu dans des blocs opaques générés
+- étiqueter les placeholders comme tels ; pas de `href="#"` mort dans un livrable publiable, sauf étiqueté
 
 ---
 
-## 参考与系统：硬约束
+## Références et systèmes : contraintes dures
 
-何时加载哪个文件已由上面的触发矩阵决定。这里只记各自「会做错」的硬约束：
+Le « quel fichier quand » est déjà fixé par la matrice des déclencheurs. Ici, seulement les contraintes « sinon on se trompe » :
 
-- **中文排版**：除非 CSS 对字体栈/字号/行高/行宽/字间距/段落节奏/标点/中-拉-数字混排做了具体决定，否则不算应用 `chinese-typography.md`。
-- **模板**：是结构种子不是用来克隆的页面。只读所选模板的 `SKILL.md`，仅当缺结构细节才看 `pattern.html` 且只取布局节奏/区块关系/响应式/交互——**绝不照抄 DOM、类名、token、占位文字、样式**。没匹配就直接用 artifact skill。
-- **公开品牌**（Apple/Stripe/Linear…）：借鉴其美学特质做原创设计；效果优先，用了受版权素材一句话提示风险即可，不为规避而降质，也不主动伪称官方出品。**开源系统**：按公开文档与许可用官方组件，不与该公司私有品牌混为一谈。
-- **技法库**：`technique-library.md` 是参考不是路由目标。默认简单 CSS，只在效果服务于目标时升级、始终带 reduced-motion，绝不为新奇而用。
-- **设计系统参考**：`design-system-reference.md` 只加载最相关那一个，绝不全加载。
-- **参考优先级**：用户给的 > 设计系统 > 模板/场景模式 > 通用知识 > 模型自由发挥。
+- **Typographie chinoise** : sans décisions CSS concrètes sur pile de polices/corps/interligne/longueur de ligne/interlettrage/rythme des paragraphes/ponctuation/mélange chinois-latin-chiffres, `chinese-typography.md` n'est pas appliquée.
+- **Gabarits** : des semences de structure, pas des pages à cloner. Ne lire que le SKILL.md du gabarit retenu ; ne regarder `pattern.html` qu'en cas de détail structurel manquant, et n'en prendre que le rythme de mise en page/relations de blocs/responsive/interactions — **jamais recopier DOM, classes, tokens, placeholders, styles**. Sans correspondance : artifact skill directement.
+- **Marques publiques** (Apple/Stripe/Linear…) : emprunter les traits esthétiques pour un design original ; l'effet d'abord, un matériau sous droit utilisé vaut une phrase de rappel du risque, sans dégrader pour éviter, ni prétendre à une production officielle. **Systèmes open source** : composants officiels selon documentation et licence, sans confusion avec la marque privée de la société.
+- **Bibliothèque de techniques** : `technique-library.md` est une référence, pas une cible de routage. CSS simple par défaut ; ne monter que si l'effet sert l'objectif ; toujours reduced-motion ; jamais pour la nouveauté.
+- **Référence design system** : `design-system-reference.md` ne charge que la plus pertinente, jamais tout.
+- **Priorité des références** : ce que donne l'utilisateur > design system > gabarit/patterns de scénario > connaissance générale > goût libre du modèle.
 
-# 4. 交付与收尾
+# 4. Livrer et conclure
 
-## Web entry / version management（Web 入口 / 版本管理）
+## Web entry / version management (entrée web / gestion de versions)
 
-`quality-gate.md` 通过后，**当且仅当交付物含入口前端文件**（`.html`/`.jsx`/`.tsx`/`.vue`）时运行 `skills/version-management/SKILL.md`（按输出类型触发，不是场景）。它管项目路径/素材/git/版本卡片；只贴在对话里或存到工作区根目录**不算**交付。纯图片/文档/PPTX/JSON/DESIGN.md/无新 Web 入口的导出包则跳过。
-
----
-
-## Export Skill（导出技能）
-
-当用户要求导出、下载、打包、交付或转换产物时用 `export.md`。目标：独立 HTML、ZIP、图片/截图、PDF、PPTX、JSON/元数据、设计规范、DESIGN.md 包。导出必须保留当前产物状态——不要在导出时默默重新设计。
+Après validation de `quality-gate.md`, **si et seulement si le livrable contient un fichier d'entrée frontend** (`.html`/`.jsx`/`.tsx`/`.vue`), exécuter `skills/version-management/SKILL.md` (déclenché par le type de sortie, pas par le scénario). Il gère chemins de projet/ressources/git/cartes de version ; collé dans le dialogue ou déposé à la racine de l'espace de travail, **ce n'est pas** une livraison. Exports images/documents/PPTX/JSON/DESIGN.md/sans nouvelle entrée web : passer.
 
 ---
 
-## IP and Content Boundaries（知识产权与内容边界）
+## Export Skill (compétence d'export)
 
-**效果优先，不为版权把事情做绕或降质。** 尤其**不要**为了规避版权而用劣质替代——例如本该用真实图片/素材的画面，全部改用手绘 SVG 重画一遍，这只会降低质量、违背目标。正确做法：**风格可自由借鉴**（提取某品牌/作品的美学特质——配色、氛围、构图、排版——做原创设计，风格不受版权保护，鼓励这么做）；**需要真实受版权素材**（具体图片、logo、作品画面）时，优先用得体的占位 + 引导用户提供有权使用的版本，而不是降质硬凑。
-
-如果产物里确实用了可能受版权保护的内容（用户提供的、或按要求引入的品牌素材/图片/字体），**用一句话提示用户自行确认使用权/版权风险**即可——这是提示，不是拒绝做事，也不要因此降低成品质量。最终成品效果是目标。
-
-唯一底线：不主动伪造「这是某公司官方系统/官方出品」的虚假声明（除非用户提供授权）。
-
-未经允许不扩大范围（加用户没要的区块/页面前先问），但把被要求的页面充实成完整可信的骨架是应该的（充实≠注水）。
+Quand l'utilisateur demande export, téléchargement, empaquetage, livraison ou conversion : `export.md`. Cibles : HTML autonome, ZIP, image/capture, PDF, PPTX, JSON/métadonnées, spécification de design, paquet DESIGN.md. L'export doit préserver l'état courant de la production — pas de re-design silencieux à l'export.
 
 ---
 
-## Edit Handling（编辑处理）
+## IP and Content Boundaries (propriété intellectuelle et frontières de contenu)
 
-**选区批注编辑**：以选区为主要目标，优先局部编辑而非重写、保留无关区块；含糊时选最安全的局部编辑或问一句。**局部参数编辑**（颜色/间距/圆角/密度/字号/设备预览）：除非影响设计意图/内容结构/视觉方向，否则交确定性局部工具、不调模型 skill。
+**L'effet d'abord ; ne pas compliquer ni dégrader par précaution de droits.** En particulier, **ne pas** substituer du médiocre pour éviter un droit — par exemple redessiner en SVG à la main des visuels qui appelaient de vraies images : cela ne fait que baisser la qualité et trahir l'objectif. La bonne voie : **le style s'emprunte librement** (extraire les traits esthétiques d'une marque/d'une œuvre — palette, ambiance, composition, typographie — pour un design original ; le style n'est pas protégé, c'est même encouragé) ; **quand du matériau réel sous droit est requis** (images précises, logos, captures d'œuvres), privilégier le placeholder correct + guider l'utilisateur vers des versions qu'il a le droit d'utiliser, plutôt que dégrader en bricolant.
+
+Si la production utilise réellement du contenu potentiellement protégé (fourni par l'utilisateur, ou éléments de marque/images/polices introduits sur demande), **une phrase suffit pour inviter l'utilisateur à vérifier ses droits** — c'est un rappel, pas un refus d'agir, et la qualité du livrable n'en souffre pas. L'effet final reste l'objectif.
+
+Seule ligne rouge : ne jamais forger de déclaration « production officielle de la société X » sans autorisation de l'utilisateur.
+
+Ne pas élargir le périmètre sans accord (demander avant d'ajouter des blocs/pages non demandés) ; mais étoffer les pages demandées en une ossature complète et crédible est attendu (étoffer ≠ gonfler d'eau).
+
+---
+
+## Edit Handling (traitement des éditions)
+
+**Édition par annotation de sélection** : la sélection est la cible principale ; privilégier l'édition locale à la réécriture, préserver les blocs non concernés ; en cas d'ambiguïté, l'édition locale la plus sûre ou une question. **Édition locale de paramètres** (couleur/espacement/arrondi/densité/corps/aperçu device) : sauf incidence sur l'intention de design/la structure du contenu/la direction visuelle, confier à l'outil local déterministe, sans mobiliser le skill modèle.
