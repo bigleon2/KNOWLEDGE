@@ -8,12 +8,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "技术感",
-        "克制"
+        "minimaliste",
+        "technophile",
+        "retenu"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Conversational AI-first interface with minimal controls, cle"
     },
@@ -25,12 +25,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "企业/可信",
-        "精密/工程感",
-        "极简"
+        "corporate/digne de confiance",
+        "précision/ingénierie",
+        "minimaliste"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Structured, enterprise-focused design system emphasizing cla"
     },
@@ -42,12 +42,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "技术感",
-        "戏剧化"
+        "minimaliste",
+        "technophile",
+        "théâtral"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "App dashboard with purple-themed aesthetic, top-bar navigati"
     },
@@ -59,11 +59,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "活力/明亮"
+        "théâtral",
+        "énergique/lumineux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "High-contrast, expressive style with creative typography and"
     },
@@ -75,11 +75,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "克制",
-        "编辑/杂志感"
+        "retenu",
+        "éditorial/magazine"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": ""
     },
@@ -91,12 +91,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "精密/工程感"
+        "minimaliste",
+        "retenu",
+        "précision/ingénierie"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Modular grid layout with card-like blocks, clear hierarchy, "
     },
@@ -108,11 +108,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "活力/明亮"
+        "théâtral",
+        "énergique/lumineux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Strong visual presence with heavyweight typography, high-con"
     },
@@ -124,12 +124,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "技术感",
-        "复古/玩味"
+        "théâtral",
+        "technophile",
+        "rétro/espiègle"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Raw, anti-design aesthetic inspired by concrete architecture"
     },
@@ -141,11 +141,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "温暖"
+        "minimaliste",
+        "chaleureux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Cozy cafe-inspired interface with warm tones, soft typograph"
     },
@@ -157,14 +157,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "暗黑原生",
-        "编辑/杂志感",
-        "温暖"
+        "minimaliste",
+        "retenu",
+        "dark natif",
+        "éditorial/magazine",
+        "chaleureux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Research-journal aesthetic on warm stone with near-black ink"
     },
@@ -176,12 +176,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "亲和/友好",
-        "活力/明亮"
+        "théâtral",
+        "accessible/amical",
+        "énergique/lumineux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Soft, rounded 3D-like shapes mimicking malleable clay with p"
     },
@@ -193,11 +193,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "未来/科幻"
+        "minimaliste",
+        "futuriste/science-fiction"
       ],
       "scheme": "light",
-      "era": "未来",
+      "era": "futur",
       "formality": "medium",
       "best_for": "Simplicity-focused design with ample whitespace, legible typ"
     },
@@ -209,12 +209,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "暗黑原生",
-        "技术感"
+        "minimaliste",
+        "dark natif",
+        "technophile"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Radically minimal blank-canvas interface where black carries"
     },
@@ -226,14 +226,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "奢华",
-        "戏剧化",
-        "亲和/友好",
-        "活力/明亮",
-        "渐变氛围"
+        "luxueux",
+        "théâtral",
+        "accessible/amical",
+        "énergique/lumineux",
+        "atmosphère en dégradés"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Vibrant, high-contrast palettes and gradients for engaging, "
     },
@@ -245,14 +245,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "精密/工程感",
-        "戏剧化",
-        "暗黑原生",
-        "亲和/友好"
+        "minimaliste",
+        "précision/ingénierie",
+        "théâtral",
+        "dark natif",
+        "accessible/amical"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Current-era minimalist design with bento grids, dark mode su"
     },
@@ -264,13 +264,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "精密/工程感",
-        "奢华",
-        "企业/可信"
+        "minimaliste",
+        "précision/ingénierie",
+        "luxueux",
+        "corporate/digne de confiance"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Professional, brand-aligned design with structured grids, mi"
     },
@@ -282,12 +282,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "未来/科幻",
-        "戏剧化",
-        "暗黑原生"
+        "futuriste/science-fiction",
+        "théâtral",
+        "dark natif"
       ],
       "scheme": "dark",
-      "era": "未来",
+      "era": "futur",
       "formality": "medium",
       "best_for": "Futuristic sci-fi aesthetic with dark themes, vibrant neon a"
     },
@@ -299,11 +299,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "亲和/友好"
+        "théâtral",
+        "accessible/amical"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Playful, character-driven design with expressive typography "
     },
@@ -315,14 +315,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "精密/工程感",
-        "暗黑原生",
-        "渐变氛围"
+        "minimaliste",
+        "retenu",
+        "précision/ingénierie",
+        "dark natif",
+        "atmosphère en dégradés"
       ],
       "scheme": "dark",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Dark-themed cloud-platform aesthetic with modular grids, gla"
     },
@@ -336,11 +336,11 @@
         "tokens.css"
       ],
       "mood": [
-        "极简",
-        "克制"
+        "minimaliste",
+        "retenu"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": ""
     },
@@ -352,12 +352,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "复古/玩味"
+        "minimaliste",
+        "théâtral",
+        "rétro/espiègle"
       ],
       "scheme": "light",
-      "era": "复古",
+      "era": "rétro",
       "formality": "medium",
       "best_for": "Dot-pattern rendering technique that simulates shades with a"
     },
@@ -369,11 +369,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "亲和/友好",
-        "插画丰富"
+        "accessible/amical",
+        "illustration riche"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Hand-drawn, sketch-like style with doodles, handwritten font"
     },
@@ -385,12 +385,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "影像优先"
+        "minimaliste",
+        "théâtral",
+        "image d'abord"
       ],
       "scheme": "dark",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "High-contrast, theatrical design with bold layouts, immersiv"
     },
@@ -402,14 +402,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "克制",
-        "精密/工程感",
-        "奢华",
-        "编辑/杂志感",
-        "内容优先"
+        "retenu",
+        "précision/ingénierie",
+        "luxueux",
+        "éditorial/magazine",
+        "contenu d'abord"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Magazine-inspired editorial layout with refined serif typogr"
     },
@@ -421,12 +421,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "奢华"
+        "minimaliste",
+        "retenu",
+        "luxueux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Graceful, refined aesthetic with delicate typography, minima"
     },
@@ -438,11 +438,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "活力/明亮"
+        "théâtral",
+        "énergique/lumineux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Dynamic, vibrant style with thick borders, geometric shapes,"
     },
@@ -454,12 +454,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "企业/可信"
+        "minimaliste",
+        "théâtral",
+        "corporate/digne de confiance"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Clean, high-contrast enterprise design for data-driven workf"
     },
@@ -471,12 +471,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "亲和/友好",
-        "活力/明亮"
+        "théâtral",
+        "accessible/amical",
+        "énergique/lumineux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Vibrant, personality-driven design with bold colors, playful"
     },
@@ -488,11 +488,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "奢华",
-        "戏剧化"
+        "luxueux",
+        "théâtral"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Game-inspired fantasy aesthetic with bold, premium visuals, "
     },
@@ -504,13 +504,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "温暖",
-        "亲和/友好",
-        "未来/科幻"
+        "théâtral",
+        "chaleureux",
+        "accessible/amical",
+        "futuriste/science-fiction"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Playful, storybook-inspired interface with warm surfaces, ch"
     },
@@ -522,13 +522,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "亲和/友好",
-        "活力/明亮",
-        "企业/可信"
+        "minimaliste",
+        "accessible/amical",
+        "énergique/lumineux",
+        "corporate/digne de confiance"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Two-dimensional minimalist style with vibrant colors, clean "
     },
@@ -540,14 +540,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "奢华",
-        "戏剧化",
-        "亲和/友好",
-        "未来/科幻"
+        "minimaliste",
+        "luxueux",
+        "théâtral",
+        "accessible/amical",
+        "futuriste/science-fiction"
       ],
       "scheme": "light",
-      "era": "未来",
+      "era": "futur",
       "formality": "high",
       "best_for": "Approachable, intuitive design with rounded elements, ample "
     },
@@ -559,12 +559,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "未来/科幻",
-        "技术感",
-        "精密/工程感"
+        "futuriste/science-fiction",
+        "technophile",
+        "précision/ingénierie"
       ],
       "scheme": "dark",
-      "era": "未来",
+      "era": "futur",
       "formality": "medium",
       "best_for": "Forward-looking design with tech-inspired typography, modern"
     },
@@ -576,12 +576,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "渐变氛围",
-        "未来/科幻",
-        "克制"
+        "atmosphère en dégradés",
+        "futuriste/science-fiction",
+        "retenu"
       ],
       "scheme": "light",
-      "era": "未来",
+      "era": "futur",
       "formality": "medium",
       "best_for": "Frosted glass effect with translucent layers, subtle blur, a"
     },
@@ -593,11 +593,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "亲和/友好",
-        "渐变氛围"
+        "accessible/amical",
+        "atmosphère en dégradés"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "low",
       "best_for": "Smooth color transitions and gradient-rich surfaces for mode"
     },
@@ -609,13 +609,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "技术感",
-        "未来/科幻",
-        "精密/工程感",
-        "暗黑原生"
+        "technophile",
+        "futuriste/science-fiction",
+        "précision/ingénierie",
+        "dark natif"
       ],
       "scheme": "dark",
-      "era": "未来",
+      "era": "futur",
       "formality": "medium",
       "best_for": ""
     },
@@ -627,11 +627,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化"
+        "minimaliste",
+        "théâtral"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Exhibit-style interface that blends storytelling and game-li"
     },
@@ -643,13 +643,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "编辑/杂志感",
-        "温暖"
+        "minimaliste",
+        "théâtral",
+        "éditorial/magazine",
+        "chaleureux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Graphic editorial-poster aesthetic with warm cream and burnt"
     },
@@ -661,11 +661,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "企业/可信"
+        "minimaliste",
+        "corporate/digne de confiance"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Conversion-focused design that removes friction and guides u"
     },
@@ -677,14 +677,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "亲和/友好",
-        "活力/明亮",
-        "插画丰富"
+        "minimaliste",
+        "théâtral",
+        "accessible/amical",
+        "énergique/lumineux",
+        "illustration riche"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Playful, minimal design with bright colors, rounded shapes, "
     },
@@ -696,12 +696,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "奢华",
-        "戏剧化",
-        "暗黑原生"
+        "luxueux",
+        "théâtral",
+        "dark natif"
       ],
       "scheme": "dark",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "High-end dark aesthetic with bold headings, monochromatic pa"
     },
@@ -713,12 +713,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "企业/可信",
-        "极简",
-        "活力/明亮"
+        "corporate/digne de confiance",
+        "minimaliste",
+        "énergique/lumineux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Google's Material Design with layered surfaces, dynamic them"
     },
@@ -730,13 +730,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "技术感",
-        "戏剧化",
-        "暗黑原生",
-        "未来/科幻"
+        "technophile",
+        "théâtral",
+        "dark natif",
+        "futuriste/science-fiction"
       ],
       "scheme": "light",
-      "era": "未来",
+      "era": "futur",
       "formality": "medium",
       "best_for": "Dark cyber-terminal visual language with mono typography, de"
     },
@@ -748,12 +748,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "内容优先"
+        "minimaliste",
+        "retenu",
+        "contenu d'abord"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Stripped-back design emphasizing whitespace, clean typograph"
     },
@@ -765,12 +765,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "技术感",
-        "精密/工程感",
-        "暗黑原生"
+        "technophile",
+        "précision/ingénierie",
+        "dark natif"
       ],
       "scheme": "dark",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": ""
     },
@@ -782,11 +782,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "编辑/杂志感"
+        "minimaliste",
+        "éditorial/magazine"
       ],
       "scheme": "dark",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Contemporary editorial style with serif typography, minimal "
     },
@@ -798,14 +798,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "技术感",
-        "戏剧化",
-        "亲和/友好",
-        "未来/科幻"
+        "minimaliste",
+        "technophile",
+        "théâtral",
+        "accessible/amical",
+        "futuriste/science-fiction"
       ],
       "scheme": "light",
-      "era": "未来",
+      "era": "futur",
       "formality": "medium",
       "best_for": "Monospace-driven, matrix-inspired design with high-contrast "
     },
@@ -817,12 +817,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "温暖"
+        "minimaliste",
+        "théâtral",
+        "chaleureux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Modern take on brutalism with bold borders, vivid accent col"
     },
@@ -834,12 +834,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "未来/科幻",
-        "渐变氛围"
+        "théâtral",
+        "futuriste/science-fiction",
+        "atmosphère en dégradés"
       ],
       "scheme": "dark",
-      "era": "未来",
+      "era": "futur",
       "formality": "low",
       "best_for": "Electric neon glow effects with high-contrast color pairings"
     },
@@ -851,13 +851,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "亲和/友好",
-        "未来/科幻"
+        "minimaliste",
+        "théâtral",
+        "accessible/amical",
+        "futuriste/science-fiction"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Soft, extruded UI elements with inner and outer shadows on m"
     },
@@ -869,12 +869,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "亲和/友好",
-        "复古/玩味"
+        "théâtral",
+        "accessible/amical",
+        "rétro/espiègle"
       ],
       "scheme": "dark",
-      "era": "复古",
+      "era": "rétro",
       "formality": "low",
       "best_for": "Retro arcade-inspired design with pixel fonts, dotted border"
     },
@@ -886,12 +886,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "温暖",
-        "编辑/杂志感",
-        "内容优先"
+        "chaleureux",
+        "éditorial/magazine",
+        "contenu d'abord"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Paper-textured, print-inspired design with minimal colors, c"
     },
@@ -903,11 +903,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化"
+        "minimaliste",
+        "théâtral"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Spatial depth design with isometric views, vanishing points,"
     },
@@ -919,12 +919,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "克制",
-        "精密/工程感",
-        "奢华"
+        "retenu",
+        "précision/ingénierie",
+        "luxueux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Apple-inspired premium aesthetic with precise spacing, moder"
     },
@@ -936,12 +936,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "企业/可信",
-        "克制",
-        "极简"
+        "corporate/digne de confiance",
+        "retenu",
+        "minimaliste"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Polished, business-ready design with modern typography, stru"
     },
@@ -953,12 +953,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "精密/工程感",
-        "戏剧化",
-        "编辑/杂志感"
+        "précision/ingénierie",
+        "théâtral",
+        "éditorial/magazine"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Print-inspired visual language for books, magazines, and rep"
     },
@@ -970,12 +970,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "奢华"
+        "minimaliste",
+        "retenu",
+        "luxueux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Carefully curated, modern minimal style with elegant serif t"
     },
@@ -987,11 +987,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "复古/玩味"
+        "théâtral",
+        "rétro/espiègle"
       ],
       "scheme": "light",
-      "era": "复古",
+      "era": "rétro",
       "formality": "low",
       "best_for": "Throwback design with vintage-inspired typography, high-cont"
     },
@@ -1003,14 +1003,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "温暖",
-        "亲和/友好",
-        "复古/玩味"
+        "minimaliste",
+        "théâtral",
+        "chaleureux",
+        "accessible/amical",
+        "rétro/espiègle"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Playful two-color risograph-inspired system with paper-like "
     },
@@ -1022,11 +1022,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "亲和/友好",
-        "复古/玩味"
+        "accessible/amical",
+        "rétro/espiègle"
       ],
       "scheme": "light",
-      "era": "复古",
+      "era": "rétro",
       "formality": "low",
       "best_for": "Arcade-inspired game interface with pixel typography, hard e"
     },
@@ -1038,12 +1038,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "技术感"
+        "minimaliste",
+        "retenu",
+        "technophile"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Shadcn/ui-inspired design with minimal, clean components, mo"
     },
@@ -1055,12 +1055,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "亲和/友好"
+        "minimaliste",
+        "retenu",
+        "accessible/amical"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Straightforward, no-frills design with clean typography, neu"
     },
@@ -1072,13 +1072,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "温暖",
-        "插画丰富"
+        "minimaliste",
+        "théâtral",
+        "chaleureux",
+        "illustration riche"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Hand-drawn sketch aesthetic on warm paper with soft teal acc"
     },
@@ -1090,11 +1090,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "复古/玩味",
-        "插画丰富"
+        "rétro/espiègle",
+        "illustration riche"
       ],
       "scheme": "light",
-      "era": "复古",
+      "era": "rétro",
       "formality": "low",
       "best_for": "Real-world mimicry with textured surfaces, 3D effects, and f"
     },
@@ -1106,11 +1106,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "克制"
+        "minimaliste",
+        "retenu"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Modern minimalist aesthetic with clean lines, intentional co"
     },
@@ -1122,12 +1122,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "精密/工程感",
-        "未来/科幻"
+        "minimaliste",
+        "précision/ingénierie",
+        "futuriste/science-fiction"
       ],
       "scheme": "light",
-      "era": "未来",
+      "era": "futur",
       "formality": "medium",
       "best_for": "Generous whitespace, consistent padding, and grid-based layo"
     },
@@ -1139,12 +1139,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "编辑/杂志感",
-        "亲和/友好",
-        "内容优先"
+        "éditorial/magazine",
+        "accessible/amical",
+        "contenu d'abord"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Narrative-driven design using visuals, copy, and interaction"
     },
@@ -1156,14 +1156,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "编辑/杂志感",
-        "温暖",
-        "亲和/友好"
+        "minimaliste",
+        "théâtral",
+        "éditorial/magazine",
+        "chaleureux",
+        "accessible/amical"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Sun-baked, clay-toned editorial system with warm cream surfa"
     },
@@ -1175,12 +1175,12 @@
         "SKILL.md"
       ],
       "mood": [
-        "奢华",
-        "戏剧化",
-        "亲和/友好"
+        "luxueux",
+        "théâtral",
+        "accessible/amical"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": "Classic block-game inspired design with playful colors, bold"
     },
@@ -1192,13 +1192,13 @@
         "SKILL.md"
       ],
       "mood": [
-        "戏剧化",
-        "暗黑原生",
-        "渐变氛围",
-        "影像优先"
+        "théâtral",
+        "dark natif",
+        "atmosphère en dégradés",
+        "image d'abord"
       ],
       "scheme": "dark",
-      "era": "未来",
+      "era": "futur",
       "formality": "low",
       "best_for": ""
     },
@@ -1210,11 +1210,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "企业/可信",
-        "技术感"
+        "corporate/digne de confiance",
+        "technophile"
       ],
       "scheme": "dark",
-      "era": "现代",
+      "era": "moderne",
       "formality": "high",
       "best_for": ""
     },
@@ -1226,11 +1226,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "编辑/杂志感",
-        "内容优先"
+        "éditorial/magazine",
+        "contenu d'abord"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": ""
     },
@@ -1242,14 +1242,14 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "戏剧化",
-        "温暖",
-        "亲和/友好",
-        "活力/明亮"
+        "minimaliste",
+        "théâtral",
+        "chaleureux",
+        "accessible/amical",
+        "énergique/lumineux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": "Lively, colorful design with bold playful typography, warm a"
     },
@@ -1261,11 +1261,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "极简",
-        "复古/玩味"
+        "minimaliste",
+        "rétro/espiègle"
       ],
       "scheme": "light",
-      "era": "复古",
+      "era": "rétro",
       "formality": "medium",
       "best_for": "1950s-1990s nostalgia with skeuomorphic touches, grainy text"
     },
@@ -1277,11 +1277,11 @@
         "SKILL.md"
       ],
       "mood": [
-        "编辑/杂志感",
-        "温暖"
+        "éditorial/magazine",
+        "chaleureux"
       ],
       "scheme": "light",
-      "era": "现代",
+      "era": "moderne",
       "formality": "medium",
       "best_for": ""
     },
@@ -1293,15 +1293,15 @@
         "SKILL.md"
       ],
       "mood": [
-        "编辑杂志感",
-        "正式",
-        "温暖",
-        "内容优先"
+        "esprit magazine éditorial",
+        "formel",
+        "chaleureux",
+        "contenu d'abord"
       ],
       "scheme": "light",
-      "era": "经典",
+      "era": "classique",
       "formality": "high",
-      "best_for": "简历/报告/白皮书/正式信函/编辑长文的可打印文档"
+      "best_for": "documents imprimables : CV/rapports/livres blancs/courriers formels/longs formats éditoriaux"
     }
   ],
   "brand_inspiration": [
@@ -1317,24 +1317,24 @@
       "slug": "airbnb",
       "description": "A warm, generous consumer marketplace anchored on a clean white canvas and Airbnb Rausch (#ff385c), the single brand voltage that carries every primary CTA, search-button orb, and rating dot. Type runs Airbnb Cereal VF at modest weights —…",
       "industry": [
-        "电商/零售",
-        "出行/本地生活"
+        "e-commerce/retail",
+        "mobilité/vie locale"
       ],
       "product_type": [
-        "官网/营销页",
-        "消费App"
+        "site vitrine/page marketing",
+        "app grand public"
       ],
       "mood": [
-        "温暖",
-        "亲和/友好",
-        "影像优先"
+        "chaleureux",
+        "accessible/amical",
+        "image d'abord"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "温暖的消费市场/民宿/本地生活官网，强照片+亲和感",
-      "avoid_for": "冷峻技术风或企业级正式场景"
+      "era": "moderne",
+      "best_for": "Site vitrine chaleureux pour marché grand public/gîtes/vie locale, photos fortes + accessibilité",
+      "avoid_for": "Style technophile froid ou contexte corporate très formel"
     },
     {
       "name": "Airtable",
@@ -1346,22 +1346,22 @@
       "slug": "airtable",
       "description": "A sober, editorial workflow-software interface anchored on white canvas and dark-ink type, where brand voltage comes from full-bleed signature cards in coral, dark green, peach, and dark navy that punctuate long-scroll explainer pages.…",
       "industry": [
-        "生产力/协作"
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "克制",
-        "编辑/杂志感"
+        "retenu",
+        "éditorial/magazine"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "沉稳的工作流软件官网，编辑感强、信息克制",
-      "avoid_for": "活力鲜明或暗黑戏剧化的场景"
+      "era": "moderne",
+      "best_for": "Site posé d'un logiciel de workflow, très éditorial, information retenue",
+      "avoid_for": "Contextes énergiques contrastés ou théâtraux sombres"
     },
     {
       "name": "Apple",
@@ -1375,23 +1375,23 @@
       "slug": "apple",
       "description": "A photography-first interface that turns marketing into a museum gallery. Edge-to-edge product tiles alternate light and dark canvases, framed by SF Pro Display headlines with negative letter-spacing and a single Action Blue (#0066cc)…",
       "industry": [
-        "消费电子/科技"
+        "électronique grand public/tech"
       ],
       "product_type": [
-        "官网/营销页",
-        "产品发布页"
+        "site vitrine/page marketing",
+        "page de lancement produit"
       ],
       "mood": [
-        "克制",
-        "影像优先",
-        "奢华"
+        "retenu",
+        "image d'abord",
+        "luxueux"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "以产品大图为主角的发布/营销页，UI 隐形让影像说话",
-      "avoid_for": "信息密集仪表盘或缺乏高质量影像"
+      "era": "moderne",
+      "best_for": "Page de lancement/marketing portée par les grandes images produit, UI invisible pour laisser parler l'image",
+      "avoid_for": "Dashboards denses en information ou absence d'images de qualité"
     },
     {
       "name": "Arc",
@@ -1403,24 +1403,24 @@
       "description": "'The browser that browses for you.' Translucent surfaces, gradient warmth, sidebar-first layout.",
       "category": "Productivity & SaaS",
       "industry": [
-        "开发者工具",
-        "消费电子/科技"
+        "outils développeur",
+        "électronique grand public/tech"
       ],
       "product_type": [
-        "官网/营销页",
-        "消费App"
+        "site vitrine/page marketing",
+        "app grand public"
       ],
       "mood": [
-        "渐变氛围",
-        "温暖",
-        "活力/明亮"
+        "atmosphère en dégradés",
+        "chaleureux",
+        "énergique/lumineux"
       ],
       "formality": "medium",
       "density": "low",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "温暖渐变、侧栏优先的现代浏览器/工具营销页",
-      "avoid_for": "严肃企业或纯暗黑技术风"
+      "era": "moderne",
+      "best_for": "Page marketing d'un navigateur/outil moderne, dégradés chaleureux, priorité à la barre latérale",
+      "avoid_for": "Corporate sérieux ou technophile purement dark"
     },
     {
       "name": "Binance",
@@ -1432,23 +1432,23 @@
       "slug": "binance",
       "description": "A confident financial-platform interface anchored on a deep near-black canvas, where Binance's iconic yellow (#FCD535) carries every primary CTA, brand accent, and value-claim moment. Type runs Binance's custom BinanceNova / BinancePlex…",
       "industry": [
-        "金融/支付"
+        "finance/paiement"
       ],
       "product_type": [
-        "官网/营销页",
-        "电商/交易"
+        "site vitrine/page marketing",
+        "e-commerce/transaction"
       ],
       "mood": [
-        "企业/可信",
-        "技术感",
-        "暗黑原生"
+        "corporate/digne de confiance",
+        "technophile",
+        "dark natif"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "加密交易所的暗色高密度可信界面",
-      "avoid_for": "轻盈温暖或低密度展示页"
+      "era": "moderne",
+      "best_for": "Interface sombre, dense et digne de confiance pour un exchange crypto",
+      "avoid_for": "Pages de présentation légères et chaleureuses ou à faible densité"
     },
     {
       "name": "BMW",
@@ -1460,23 +1460,23 @@
       "slug": "bmw",
       "description": "BMW's corporate site — distinct from BMW M's motorsport-bombastic variant, this is a measured and settled corporate-automotive interface. On a light (cream-tinted white) canvas, BMW corporate blue (#1c69d4) carries every primary CTA; dark…",
       "industry": [
-        "汽车"
+        "automobile"
       ],
       "product_type": [
-        "官网/营销页",
-        "品牌展示页"
+        "site vitrine/page marketing",
+        "page de marque"
       ],
       "mood": [
-        "克制",
-        "企业/可信",
-        "影像优先"
+        "retenu",
+        "corporate/digne de confiance",
+        "image d'abord"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "沉稳测量感的汽车企业官网",
-      "avoid_for": "玩味活泼或极简工具风"
+      "era": "moderne",
+      "best_for": "Site corporate automobile posé, esprit de mesure",
+      "avoid_for": "Style espiègle et vivant ou outil minimaliste"
     },
     {
       "name": "BMW M",
@@ -1488,25 +1488,25 @@
       "slug": "bmw-m",
       "description": "A motorsport-engineering interface anchored on a near-black canvas with white BMW Type Next Latin display headlines in confident UPPERCASE. The brand carries no decorative voltage — its energy comes from full-bleed automotive photography…",
       "industry": [
-        "汽车",
-        "奢侈品"
+        "automobile",
+        "luxe"
       ],
       "product_type": [
-        "品牌展示页",
-        "官网/营销页"
+        "page de marque",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "戏剧化",
-        "技术感",
-        "暗黑原生",
-        "影像优先"
+        "théâtral",
+        "technophile",
+        "dark natif",
+        "image d'abord"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "暗色运动工程感的高性能汽车展示",
-      "avoid_for": "亲和友好或明亮活泼场景"
+      "era": "moderne",
+      "best_for": "Vitrine automobile haute performance, sombre, esprit sport-ingénierie",
+      "avoid_for": "Contextes accessibles/amicaux ou lumineux et vivants"
     },
     {
       "name": "Bugatti",
@@ -1518,24 +1518,24 @@
       "slug": "bugatti",
       "description": "An austere luxury-automotive interface that uses near-pure black canvas, white uppercase letterspaced display, and full-bleed automotive photography as the only voltage. The system runs three custom Bugatti typefaces — Bugatti Display,…",
       "industry": [
-        "汽车",
-        "奢侈品"
+        "automobile",
+        "luxe"
       ],
       "product_type": [
-        "品牌展示页"
+        "page de marque"
       ],
       "mood": [
-        "奢华",
-        "极简",
-        "暗黑原生",
-        "戏剧化"
+        "luxueux",
+        "minimaliste",
+        "dark natif",
+        "théâtral"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "极致克制的纯黑超豪华汽车展示",
-      "avoid_for": "信息密集或亲和活泼场景"
+      "era": "moderne",
+      "best_for": "Vitrine automobile ultra-luxe en noir absolu, retenue extrême",
+      "avoid_for": "Contextes denses en information ou accessibles et vivants"
     },
     {
       "name": "Cal.com",
@@ -1547,24 +1547,24 @@
       "slug": "cal",
       "description": "A clean, calendar-software-first interface anchored on white canvas with black primary CTAs and custom Cal Sans display typography. The system reads as friendly modern SaaS — generous whitespace, soft-rounded cards (~12px), product UI…",
       "industry": [
-        "生产力/协作",
-        "开发者工具"
+        "productivité/collaboration",
+        "outils développeur"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "极简",
-        "克制",
-        "技术感"
+        "minimaliste",
+        "retenu",
+        "technophile"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "干净的日程软件官网，黑白克制",
-      "avoid_for": "奢华戏剧化或插画丰富场景"
+      "era": "moderne",
+      "best_for": "Site épuré d'un logiciel d'agenda, noir et blanc retenu",
+      "avoid_for": "Contextes luxueux théâtraux ou à illustration riche"
     },
     {
       "name": "Canva",
@@ -1576,23 +1576,23 @@
       "description": "Visual creation platform. Vivid purple-blue gradient, generous spacing, friendly geometry.",
       "category": "Design & Creative",
       "industry": [
-        "内容/创意工具"
+        "contenu/outils créatifs"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "渐变氛围",
-        "活力/明亮",
-        "亲和/友好"
+        "atmosphère en dégradés",
+        "énergique/lumineux",
+        "accessible/amical"
       ],
       "formality": "low",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "活力渐变、亲和的创意工具官网",
-      "avoid_for": "严肃企业或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Site d'un outil créatif, dégradés énergiques, accessible",
+      "avoid_for": "Corporate sérieux ou technophile dark"
     },
     {
       "name": "Cisco",
@@ -1604,22 +1604,22 @@
       "description": "Enterprise infrastructure brand. Dark trust surfaces, Cisco Blue signal, technical clarity.",
       "category": "Backend & Data",
       "industry": [
-        "基础设施/企业"
+        "infrastructure/entreprise"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "企业/可信",
-        "技术感",
-        "暗黑原生"
+        "corporate/digne de confiance",
+        "technophile",
+        "dark natif"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "暗色信任面+技术清晰度的企业基础设施",
-      "avoid_for": "亲和活泼或低密度消费场景"
+      "era": "moderne",
+      "best_for": "Infrastructure corporate, façade sombre de confiance + clarté technique",
+      "avoid_for": "Grand public accessible et vif ou faible densité"
     },
     {
       "name": "Claude",
@@ -1631,22 +1631,22 @@
       "slug": "claude",
       "description": "A warm-canvas editorial interface for Anthropic's Claude product. The system anchors on a tinted cream canvas with serif display headlines, warm coral CTAs, and dark navy product surfaces (code editor mockups, model showcase cards). Brand…",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "温暖",
-        "克制",
-        "编辑/杂志感"
+        "chaleureux",
+        "retenu",
+        "éditorial/magazine"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "暖色编辑感的 AI 产品官网，克制亲和",
-      "avoid_for": "冷峻暗黑或高密度数据场景"
+      "era": "moderne",
+      "best_for": "Site de produit IA à l'éditorial chaleureux, retenu et accessible",
+      "avoid_for": "Contextes dark froids ou données à forte densité"
     },
     {
       "name": "Clay",
@@ -1658,24 +1658,24 @@
       "slug": "clay",
       "description": "A vibrant claymation-meets-data interface for Clay.com (GTM data-orchestration platform). Anchors on white canvas with dark-navy primary CTAs, custom rounded display type, and saturated single-color feature cards — hot pink, deep teal,…",
       "industry": [
-        "开发者工具",
-        "AI"
+        "outils développeur",
+        "IA"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "活力/明亮",
-        "插画丰富",
-        "技术感"
+        "énergique/lumineux",
+        "illustration riche",
+        "technophile"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "claymation+数据气质的 GTM 工具，鲜活",
-      "avoid_for": "严肃克制或奢华暗黑场景"
+      "era": "moderne",
+      "best_for": "Outil GTM claymation + tempérament data, plein de vie",
+      "avoid_for": "Contextes sérieux et retenus ou luxe sombre"
     },
     {
       "name": "ClickHouse",
@@ -1687,24 +1687,24 @@
       "slug": "clickhouse",
       "description": "A high-performance database interface anchored on near-pure black canvas with electric yellow as the brand voltage. White typography in confident sans, yellow CTAs, and yellow-text stat numbers carry the brand voice across every page.…",
       "industry": [
-        "基础设施/企业",
-        "开发者工具"
+        "infrastructure/entreprise",
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "暗黑原生",
-        "精密/工程感"
+        "technophile",
+        "dark natif",
+        "précision/ingénierie"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "高性能数据库的暗色电黄技术界面",
-      "avoid_for": "亲和温暖或低密度场景"
+      "era": "moderne",
+      "best_for": "Interface technique sombre à l'ambre électrique jaune pour base de données haute performance",
+      "avoid_for": "Contextes accessibles et chaleureux ou faible densité"
     },
     {
       "name": "Cohere",
@@ -1716,23 +1716,23 @@
       "slug": "cohere",
       "description": "Cohere's 2026 web system is a controlled enterprise AI interface built from stark white editorial space, deep green-black product bands, soft mineral surfaces, rounded media cards, and a distinctive type split between monospaced-feeling…",
       "industry": [
-        "AI",
-        "基础设施/企业"
+        "IA",
+        "infrastructure/entreprise"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "克制",
-        "企业/可信",
-        "极简"
+        "retenu",
+        "corporate/digne de confiance",
+        "minimaliste"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "受控的企业 AI 白底锐利界面",
-      "avoid_for": "活力玩味或暗黑戏剧化"
+      "era": "moderne",
+      "best_for": "Interface corporate IA maîtrisée, fond blanc acéré",
+      "avoid_for": "Énergie espiègle ou théâtral sombre"
     },
     {
       "name": "Coinbase",
@@ -1744,23 +1744,23 @@
       "slug": "coinbase",
       "description": "An institutional-grade crypto exchange whose marketing surfaces read like a quietly-confident financial-services brand. The base canvas is pure white; Coinbase Blue (`#0052ff`) is the single brand voltage, used scarcely on primary CTAs,…",
       "industry": [
-        "金融/支付"
+        "finance/paiement"
       ],
       "product_type": [
-        "官网/营销页",
-        "电商/交易"
+        "site vitrine/page marketing",
+        "e-commerce/transaction"
       ],
       "mood": [
-        "企业/可信",
-        "克制",
-        "技术感"
+        "corporate/digne de confiance",
+        "retenu",
+        "technophile"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "机构级加密交易所的克制可信营销面",
-      "avoid_for": "玩味活泼或奢华戏剧化"
+      "era": "moderne",
+      "best_for": "Façade marketing retenue et crédible pour un exchange crypto institutionnel",
+      "avoid_for": "Espiègle et vif ou luxe théâtral"
     },
     {
       "name": "Composio",
@@ -1772,24 +1772,24 @@
       "slug": "composio",
       "description": "A developer-tools brand for AI-agent tool integration whose marketing surfaces lean into a dark, technical aesthetic with a single deep-electric-blue voltage (`#0007cd`). The page floor is near-black (`#0f0f0f`); cards float above on…",
       "industry": [
-        "开发者工具",
-        "AI"
+        "outils développeur",
+        "IA"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "暗黑原生",
-        "精密/工程感"
+        "technophile",
+        "dark natif",
+        "précision/ingénierie"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "AI-agent 工具集成的开发者暗色站",
-      "avoid_for": "亲和温暖或编辑杂志感"
+      "era": "moderne",
+      "best_for": "Site développeur sombre pour l'intégration d'outils AI-agent",
+      "avoid_for": "Accessible et chaleureux ou esprit magazine éditorial"
     },
     {
       "name": "Cursor",
@@ -1803,24 +1803,24 @@
       "slug": "cursor",
       "description": "An AI-first code editor whose marketing site reads like a quietly-confident developer-tools brand with a warm-cream editorial canvas (`#f7f7f4`) instead of the typical dark IDE atmosphere. Near-black warm ink (`#26251e`) carries body and…",
       "industry": [
-        "开发者工具",
-        "AI"
+        "outils développeur",
+        "IA"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "克制",
-        "暗黑原生"
+        "technophile",
+        "retenu",
+        "dark natif"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "AI 代码编辑器的克制开发者营销站",
-      "avoid_for": "活力插画或奢华场景"
+      "era": "moderne",
+      "best_for": "Site marketing développeur retenu pour un éditeur de code IA",
+      "avoid_for": "Illustration énergique ou contextes de luxe"
     },
     {
       "name": "Discord",
@@ -1834,23 +1834,23 @@
       "description": "Voice / chat platform. Deep blurple, dark-first surfaces, playful accent moments.",
       "category": "Productivity & SaaS",
       "industry": [
-        "社交/通讯"
+        "social/communication"
       ],
       "product_type": [
-        "消费App",
-        "官网/营销页"
+        "app grand public",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "亲和/友好",
-        "暗黑原生",
-        "活力/明亮"
+        "accessible/amical",
+        "dark natif",
+        "énergique/lumineux"
       ],
       "formality": "low",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "blurple 暗色+玩味的语音/聊天平台",
-      "avoid_for": "严肃企业或编辑克制场景"
+      "era": "moderne",
+      "best_for": "Plateforme vocale/chat blurple sombre + espiègle",
+      "avoid_for": "Corporate sérieux ou contextes éditoriaux retenus"
     },
     {
       "name": "Duolingo",
@@ -1862,23 +1862,23 @@
       "description": "Language-learning platform. Bright owl green, chunky shadows, gamified joy.",
       "category": "Productivity & SaaS",
       "industry": [
-        "文档/教育"
+        "documentation/éducation"
       ],
       "product_type": [
-        "消费App",
-        "官网/营销页"
+        "app grand public",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "活力/明亮",
-        "亲和/友好",
-        "插画丰富"
+        "énergique/lumineux",
+        "accessible/amical",
+        "illustration riche"
       ],
       "formality": "low",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "明亮游戏化的语言学习消费产品",
-      "avoid_for": "严肃企业或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Produit grand public ludique et lumineux d'apprentissage des langues",
+      "avoid_for": "Corporate sérieux ou technophile dark"
     },
     {
       "name": "ElevenLabs",
@@ -1890,22 +1890,22 @@
       "slug": "elevenlabs",
       "description": "A voice-AI brand whose marketing surfaces read like a quietly editorial print magazine. The base canvas is off-white (`#f5f5f5`) holding warm near-black ink (`#292524`); the brand voltage is photographic, not chromatic — soft pastel…",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "编辑/杂志感",
-        "克制",
-        "温暖"
+        "éditorial/magazine",
+        "retenu",
+        "chaleureux"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "印刷杂志气质的语音 AI 编辑感官网",
-      "avoid_for": "高密度数据或暗黑技术场景"
+      "era": "moderne",
+      "best_for": "Site éditorial d'une IA vocale, esprit magazine imprimé",
+      "avoid_for": "Données à forte densité ou contextes technophiles dark"
     },
     {
       "name": "Expo",
@@ -1917,23 +1917,23 @@
       "slug": "expo",
       "description": "A React Native developer-platform whose marketing site reads like a quietly-confident infrastructure brand. The base canvas is pure white with a soft sky-blue gradient atmospheric wash behind the hero; near-black ink (`#171717`) carries…",
       "industry": [
-        "开发者工具"
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "文档站"
+        "plateforme développeur",
+        "site de documentation"
       ],
       "mood": [
-        "技术感",
-        "克制",
-        "精密/工程感"
+        "technophile",
+        "retenu",
+        "précision/ingénierie"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "React Native 开发平台的克制基础设施站",
-      "avoid_for": "奢华戏剧化或活力插画"
+      "era": "moderne",
+      "best_for": "Site d'infrastructure retenu pour une plateforme de développement React Native",
+      "avoid_for": "Luxe théâtral ou illustration énergique"
     },
     {
       "name": "Ferrari",
@@ -1945,24 +1945,24 @@
       "slug": "ferrari",
       "description": "A luxury-automotive brand whose marketing surfaces read as cinematic editorial. The base canvas is **near-black** (`#181818`) holding pure white display type; white-canvas bands appear only inside specific editorial contexts (preowned…",
       "industry": [
-        "汽车",
-        "奢侈品"
+        "automobile",
+        "luxe"
       ],
       "product_type": [
-        "品牌展示页"
+        "page de marque"
       ],
       "mood": [
-        "奢华",
-        "影像优先",
-        "戏剧化",
-        "编辑/杂志感"
+        "luxueux",
+        "image d'abord",
+        "théâtral",
+        "éditorial/magazine"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "电影编辑感的豪华汽车品牌展示",
-      "avoid_for": "信息密集或亲和活泼场景"
+      "era": "moderne",
+      "best_for": "Vitrine de marque automobile premium, esprit éditorial cinématographique",
+      "avoid_for": "Contextes denses en information ou accessibles et vivants"
     },
     {
       "name": "Figma",
@@ -1976,23 +1976,23 @@
       "slug": "figma",
       "description": "A confident black-and-white editorial frame interrupted by oversized, hand-cut pastel color blocks. The marketing canvas is rigorously monochrome — figmaSans variable type, pure white surfaces, pure black ink, pill-shaped CTAs — while…",
       "industry": [
-        "内容/创意工具"
+        "contenu/outils créatifs"
       ],
       "product_type": [
-        "官网/营销页",
+        "site vitrine/page marketing",
         "SaaS"
       ],
       "mood": [
-        "编辑/杂志感",
-        "活力/明亮",
-        "影像优先"
+        "éditorial/magazine",
+        "énergique/lumineux",
+        "image d'abord"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "黑白编辑框+手裁拼贴色块的设计工具",
-      "avoid_for": "严肃企业或暗黑克制场景"
+      "era": "moderne",
+      "best_for": "Outil de design, cadre éditorial noir et blanc + collages de blocs découpés main",
+      "avoid_for": "Corporate sérieux ou contextes sombres retenus"
     },
     {
       "name": "Framer",
@@ -2004,24 +2004,24 @@
       "slug": "framer",
       "description": "A confident dark-canvas builder marketing site that treats the page like a working artboard — pure black surfaces, white display type set in GT Walsheim Medium with aggressive negative tracking, and a single confident blue (#0099ff)…",
       "industry": [
-        "内容/创意工具",
-        "开发者工具"
+        "contenu/outils créatifs",
+        "outils développeur"
       ],
       "product_type": [
-        "官网/营销页",
+        "site vitrine/page marketing",
         "SaaS"
       ],
       "mood": [
-        "暗黑原生",
-        "技术感",
-        "影像优先"
+        "dark natif",
+        "technophile",
+        "image d'abord"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "暗色画板感的建站工具营销站",
-      "avoid_for": "亲和温暖或编辑克制"
+      "era": "moderne",
+      "best_for": "Site marketing d'un outil de création de sites, esprit tableau sombre",
+      "avoid_for": "Accessible et chaleureux ou éditorial retenu"
     },
     {
       "name": "Github",
@@ -2035,23 +2035,23 @@
       "description": "Code-forward platform. Functional density, blue-on-white precision, Primer foundations.",
       "category": "Developer Tools",
       "industry": [
-        "开发者工具"
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "精密/工程感",
-        "克制"
+        "technophile",
+        "précision/ingénierie",
+        "retenu"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "功能密集、蓝白精确的代码平台",
-      "avoid_for": "奢华戏剧化或活力插画"
+      "era": "moderne",
+      "best_for": "Plateforme de code riche en fonctions, bleu-blanc de précision",
+      "avoid_for": "Luxe théâtral ou illustration énergique"
     },
     {
       "name": "HashiCorp",
@@ -2063,24 +2063,24 @@
       "slug": "hashicorp",
       "description": "An enterprise-infrastructure marketing canvas built around a near-black ground (#000000) and a system of per-product accent colors — Terraform purple, Vault yellow, Consul pink, Waypoint cyan, Vagrant blue — that act as identity tokens…",
       "industry": [
-        "基础设施/企业",
-        "开发者工具"
+        "infrastructure/entreprise",
+        "outils développeur"
       ],
       "product_type": [
-        "官网/营销页",
-        "开发者平台"
+        "site vitrine/page marketing",
+        "plateforme développeur"
       ],
       "mood": [
-        "企业/可信",
-        "暗黑原生",
-        "技术感"
+        "corporate/digne de confiance",
+        "dark natif",
+        "technophile"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "near-black 企业基础设施营销面",
-      "avoid_for": "亲和温暖或低密度场景"
+      "era": "moderne",
+      "best_for": "Façade marketing d'infrastructure corporate quasi noire",
+      "avoid_for": "Contextes accessibles et chaleureux ou faible densité"
     },
     {
       "name": "Huggingface",
@@ -2092,23 +2092,23 @@
       "description": "ML community hub. Sunny yellow accent, monospace identity, cheerful and dense.",
       "category": "AI & LLM",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "开发者平台",
-        "内容平台"
+        "plateforme développeur",
+        "plateforme de contenu"
       ],
       "mood": [
-        "活力/明亮",
-        "亲和/友好",
-        "技术感"
+        "énergique/lumineux",
+        "accessible/amical",
+        "technophile"
       ],
       "formality": "low",
       "density": "high",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "sunny 黄+monospace 的 ML 社区中枢",
-      "avoid_for": "严肃克制或奢华场景"
+      "era": "moderne",
+      "best_for": "Hub communautaire ML, jaune ensoleillé + monospace",
+      "avoid_for": "Sérieux et retenu ou contextes de luxe"
     },
     {
       "name": "IBM",
@@ -2120,22 +2120,22 @@
       "slug": "ibm",
       "description": "An enterprise-marketing canvas faithful to Carbon Design System: white surfaces, charcoal type, IBM Blue (#0f62fe) as the single confident accent, and a deliberately flat-square aesthetic where corners stay at 0–4px. Type runs IBM Plex…",
       "industry": [
-        "基础设施/企业"
+        "infrastructure/entreprise"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "企业/可信",
-        "克制",
-        "精密/工程感"
+        "corporate/digne de confiance",
+        "retenu",
+        "précision/ingénierie"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "Carbon 体系的企业营销画布",
-      "avoid_for": "活力玩味或暗黑戏剧化"
+      "era": "moderne",
+      "best_for": "Canevas marketing corporate dans le système Carbon",
+      "avoid_for": "Énergie espiègle ou théâtral sombre"
     },
     {
       "name": "Intercom",
@@ -2147,23 +2147,23 @@
       "slug": "intercom",
       "description": "An editorial customer-service marketing canvas built around a soft cream-white ground, charcoal type set in Saans (Intercom's proprietary geometric sans), and a single confident Fin Orange (#ff5600) reserved for the Fin AI brand. Cards…",
       "industry": [
-        "生产力/协作"
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "编辑/杂志感",
-        "温暖",
-        "克制"
+        "éditorial/magazine",
+        "chaleureux",
+        "retenu"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "cream 底编辑感的客服营销画布",
-      "avoid_for": "暗黑技术或高密度场景"
+      "era": "moderne",
+      "best_for": "Canevas marketing support client, fond crème éditorial",
+      "avoid_for": "Technophile dark ou forte densité"
     },
     {
       "name": "Kami",
@@ -2177,24 +2177,24 @@
       "description": "Editorial paper system: warm parchment canvas, ink-blue accent, serif-led hierarchy. Built for resumes, one-pagers, white papers, portfolios, slide decks — anything that should feel like high-quality print rather than UI. Multilingual by…",
       "category": "Editorial & Print",
       "industry": [
-        "媒体/出版",
-        "文档/教育"
+        "médias/édition",
+        "documentation/éducation"
       ],
       "product_type": [
-        "内容平台",
-        "官网/营销页"
+        "plateforme de contenu",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "编辑/杂志感",
-        "温暖",
-        "克制"
+        "éditorial/magazine",
+        "chaleureux",
+        "retenu"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "parchment+ink-blue 衬线的编辑纸张系统",
-      "avoid_for": "暗黑技术或活力鲜明场景"
+      "era": "moderne",
+      "best_for": "Système éditorial papier, parchemin + serif bleu encre",
+      "avoid_for": "Technophile dark ou contextes énergiques contrastés"
     },
     {
       "name": "Kraken",
@@ -2206,22 +2206,22 @@
       "slug": "kraken",
       "description": "Kraken's website is a clean, trustworthy crypto exchange that uses purple as its commanding brand color.",
       "industry": [
-        "金融/支付"
+        "finance/paiement"
       ],
       "product_type": [
-        "官网/营销页",
-        "电商/交易"
+        "site vitrine/page marketing",
+        "e-commerce/transaction"
       ],
       "mood": [
-        "企业/可信",
-        "克制"
+        "corporate/digne de confiance",
+        "retenu"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "紫色统领的可信加密交易所",
-      "avoid_for": "玩味活泼或奢华戏剧化"
+      "era": "moderne",
+      "best_for": "Exchange crypto crédible régi par le violet",
+      "avoid_for": "Espiègle et vif ou luxe théâtral"
     },
     {
       "name": "Lamborghini",
@@ -2233,23 +2233,23 @@
       "slug": "lamborghini",
       "description": "Lamborghini's website is a cathedral of darkness — a digital stage where jet-black surfaces stretch infinitely and every element emerges from the void like a machine under a spotlight.",
       "industry": [
-        "汽车",
-        "奢侈品"
+        "automobile",
+        "luxe"
       ],
       "product_type": [
-        "品牌展示页"
+        "page de marque"
       ],
       "mood": [
-        "奢华",
-        "戏剧化",
-        "暗黑原生"
+        "luxueux",
+        "théâtral",
+        "dark natif"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "纯黑舞台式豪华汽车展示，金色点睛",
-      "avoid_for": "信息密集或亲和明亮场景"
+      "era": "moderne",
+      "best_for": "Vitrine automobile premium en noir pur scénographié, touches dorées",
+      "avoid_for": "Forte densité d'information ou contextes accessibles et lumineux"
     },
     {
       "name": "Linear App",
@@ -2263,24 +2263,24 @@
       "description": "Project management. Ultra-minimal, precise, purple accent.",
       "category": "Productivity & SaaS",
       "industry": [
-        "开发者工具",
-        "生产力/协作"
+        "outils développeur",
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "极简",
-        "精密/工程感",
-        "暗黑原生"
+        "minimaliste",
+        "précision/ingénierie",
+        "dark natif"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "暗色精密的开发/生产力工具官网",
-      "avoid_for": "色彩叙事或温暖明亮场景"
+      "era": "moderne",
+      "best_for": "Site d'un outil de développement/productivité, sombre et précis",
+      "avoid_for": "Narration par la couleur ou contextes chaleureux et lumineux"
     },
     {
       "name": "Loom",
@@ -2292,23 +2292,23 @@
       "description": "Loom async video. Purple primary, friendly surfaces, video-first layout. Clean and professional without being corporate.",
       "category": "Themed & Unique",
       "industry": [
-        "生产力/协作"
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "亲和/友好",
-        "影像优先",
-        "克制"
+        "accessible/amical",
+        "image d'abord",
+        "retenu"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "紫色友好、视频优先的异步视频工具",
-      "avoid_for": "严肃企业或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Outil vidéo asynchrone violet amical, vidéo d'abord",
+      "avoid_for": "Corporate sérieux ou technophile dark"
     },
     {
       "name": "Lovable",
@@ -2320,24 +2320,24 @@
       "slug": "lovable",
       "description": "Lovable's website radiates warmth through restraint.",
       "industry": [
-        "AI",
-        "开发者工具"
+        "IA",
+        "outils développeur"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "温暖",
-        "克制",
-        "亲和/友好"
+        "chaleureux",
+        "retenu",
+        "accessible/amical"
       ],
       "formality": "medium",
       "density": "low",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "以克制传递温暖的 AI 建站产品",
-      "avoid_for": "冷峻暗黑或高密度场景"
+      "era": "moderne",
+      "best_for": "Produit de création de sites par IA, chaleur par la retenue",
+      "avoid_for": "Dark froid ou forte densité"
     },
     {
       "name": "Mastercard",
@@ -2349,23 +2349,23 @@
       "slug": "mastercard",
       "description": "Mastercard's experience reads like a warm, editorial magazine built from soft stone and signal orange.",
       "industry": [
-        "金融/支付"
+        "finance/paiement"
       ],
       "product_type": [
-        "品牌展示页",
-        "官网/营销页"
+        "page de marque",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "编辑/杂志感",
-        "温暖",
-        "企业/可信"
+        "éditorial/magazine",
+        "chaleureux",
+        "corporate/digne de confiance"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "soft stone 编辑杂志感的支付品牌",
-      "avoid_for": "暗黑技术或活力玩味"
+      "era": "moderne",
+      "best_for": "Marque de paiement à l'esprit magazine éditorial soft stone",
+      "avoid_for": "Technophile dark ou énergie espiègle"
     },
     {
       "name": "Meta",
@@ -2377,24 +2377,24 @@
       "slug": "meta",
       "description": "Meta's design system spans hardware commerce (Quest VR, Ray-Ban Meta AI glasses) and brand surfaces with a confident product-merchandising voice. The system pairs a stark white canvas with full-bleed photographic product cards, a…",
       "industry": [
-        "消费电子/科技",
-        "社交/通讯"
+        "électronique grand public/tech",
+        "social/communication"
       ],
       "product_type": [
-        "官网/营销页",
-        "产品发布页"
+        "site vitrine/page marketing",
+        "page de lancement produit"
       ],
       "mood": [
-        "影像优先",
-        "克制",
-        "未来/科幻"
+        "image d'abord",
+        "retenu",
+        "futuriste/science-fiction"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "横跨 VR/AI 硬件与品牌的科技营销",
-      "avoid_for": "编辑杂志或亲和插画场景"
+      "era": "moderne",
+      "best_for": "Marketing tech couvrant matériel VR/IA et marque",
+      "avoid_for": "Magazine éditorial ou contextes d'illustration accessible"
     },
     {
       "name": "MiniMax",
@@ -2406,22 +2406,22 @@
       "slug": "minimax",
       "description": "MiniMax presents itself as a premium AI infrastructure brand through a striking duality — bold black-pill CTAs and stark white canvas for marketing, paired with vibrant gradient product cards (orange-red, magenta-pink, purple, blue) that…",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "渐变氛围",
-        "技术感",
-        "未来/科幻"
+        "atmosphère en dégradés",
+        "technophile",
+        "futuriste/science-fiction"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "premium 二元性的 AI 基础设施品牌",
-      "avoid_for": "亲和温暖或编辑克制"
+      "era": "moderne",
+      "best_for": "Marque d'infrastructure IA à la dualité premium",
+      "avoid_for": "Accessible et chaleureux ou éditorial retenu"
     },
     {
       "name": "Mintlify",
@@ -2433,24 +2433,24 @@
       "slug": "mintlify",
       "description": "Mintlify presents documentation infrastructure with a dual-mode aesthetic — atmospheric sky-gradient marketing heroes (cloud illustration backdrops, soft cream-to-blue washes) paired with dense developer-grade documentation surfaces. The…",
       "industry": [
-        "文档/教育",
-        "开发者工具"
+        "documentation/éducation",
+        "outils développeur"
       ],
       "product_type": [
-        "文档站",
-        "官网/营销页"
+        "site de documentation",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "渐变氛围",
-        "克制"
+        "technophile",
+        "atmosphère en dégradés",
+        "retenu"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "双模式文档基础设施，氛围天空感",
-      "avoid_for": "奢华戏剧化或高密度企业场景"
+      "era": "moderne",
+      "best_for": "Infrastructure de documentation bimodale, atmosphère céleste",
+      "avoid_for": "Luxe théâtral ou contextes corporate à forte densité"
     },
     {
       "name": "Miro",
@@ -2462,23 +2462,23 @@
       "slug": "miro",
       "description": "Miro presents itself as the AI-powered visual workspace through a confident, almost playful brand voice — anchored by its signature canary yellow ({colors.brand-yellow}) wordmark over white canvas, broken open by colorful pastel feature…",
       "industry": [
-        "生产力/协作"
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "插画丰富",
-        "活力/明亮",
-        "亲和/友好"
+        "illustration riche",
+        "énergique/lumineux",
+        "accessible/amical"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "AI 视觉工作空间的玩味自信感",
-      "avoid_for": "严肃克制或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Assurance espiègle d'un espace de travail visuel IA",
+      "avoid_for": "Sérieux et retenu ou technophile dark"
     },
     {
       "name": "Mistral Ai",
@@ -2490,22 +2490,22 @@
       "description": "Open-weight LLM provider. French-engineered minimalism, purple-toned.",
       "category": "AI & LLM",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "极简",
-        "渐变氛围",
-        "克制"
+        "minimaliste",
+        "atmosphère en dégradés",
+        "retenu"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "法式工程极简、紫调的开源 LLM",
-      "avoid_for": "活力玩味或高密度企业场景"
+      "era": "moderne",
+      "best_for": "LLM open source, minimalisme d'ingénierie à la française, tonalités violettes",
+      "avoid_for": "Énergie espiègle ou contextes corporate à forte densité"
     },
     {
       "name": "Mistral AI",
@@ -2517,22 +2517,22 @@
       "slug": "mistral.ai",
       "description": "Mistral AI brands itself with a singular signature — atmospheric sunset gradients (mustard, orange, deep red) layered over photography of mountains, plus a horizontal \"sunset stripe\" bar that closes every page. The system pairs warm…",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "渐变氛围",
-        "克制",
-        "极简"
+        "atmosphère en dégradés",
+        "retenu",
+        "minimaliste"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "标志性日落渐变的 Mistral AI 品牌",
-      "avoid_for": "暗黑技术或活力插画场景"
+      "era": "moderne",
+      "best_for": "Marque Mistral AI au dégradé crépusculaire signature",
+      "avoid_for": "Technophile dark ou contextes d'illustration énergique"
     },
     {
       "name": "MongoDB",
@@ -2544,24 +2544,24 @@
       "slug": "mongodb",
       "description": "MongoDB carries a strong dual-mode visual identity — dark deep-teal hero bands with bright MongoDB green ({colors.brand-green}) CTAs paired with stark white documentation surfaces. The signature green pill button is unmistakable across…",
       "industry": [
-        "基础设施/企业",
-        "开发者工具"
+        "infrastructure/entreprise",
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "企业/可信",
-        "活力/明亮"
+        "technophile",
+        "corporate/digne de confiance",
+        "énergique/lumineux"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "deep-teal 双模式的数据库品牌",
-      "avoid_for": "奢华戏剧化或编辑克制"
+      "era": "moderne",
+      "best_for": "Marque de base de données bimodale deep-teal",
+      "avoid_for": "Luxe théâtral ou éditorial retenu"
     },
     {
       "name": "Nike",
@@ -2573,23 +2573,23 @@
       "slug": "nike",
       "description": "A photography-first commerce system built on extreme typographic contrast — towering uppercase Futura display lockups burned into editorial campaign imagery, sitting above a dense, neutral, near-monochrome retail chrome of pill-shaped…",
       "industry": [
-        "电商/零售"
+        "e-commerce/retail"
       ],
       "product_type": [
-        "官网/营销页",
-        "品牌展示页"
+        "site vitrine/page marketing",
+        "page de marque"
       ],
       "mood": [
-        "影像优先",
-        "戏剧化",
-        "极简"
+        "image d'abord",
+        "théâtral",
+        "minimaliste"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "照片说话、chrome 隐形的运动电商",
-      "avoid_for": "信息密集或编辑文字主导"
+      "era": "moderne",
+      "best_for": "E-commerce sportif où la photo parle, chrome invisible",
+      "avoid_for": "Forte densité d'information ou primauté du texte éditorial"
     },
     {
       "name": "Notion",
@@ -2603,24 +2603,24 @@
       "slug": "notion",
       "description": "Notion presents itself as the all-in-one workspace through a confident, illustration-rich brand voice — anchored by a deep navy hero band ({colors.brand-navy}) decorated with brand-colored sticky-note dots and mesh wire illustrations, a…",
       "industry": [
-        "生产力/协作",
-        "消费电子/科技"
+        "productivité/collaboration",
+        "électronique grand public/tech"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "亲和/友好",
-        "插画丰富",
-        "内容优先"
+        "accessible/amical",
+        "illustration riche",
+        "contenu d'abord"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "插画+真实截图+紫色点睛的一体化工具",
-      "avoid_for": "极简冷峻或纯暗黑技术风"
+      "era": "moderne",
+      "best_for": "Outil tout-en-un, illustrations + captures réelles + touches violettes",
+      "avoid_for": "Minimalisme froid ou technophile purement dark"
     },
     {
       "name": "NVIDIA",
@@ -2632,24 +2632,24 @@
       "slug": "nvidia",
       "description": "An engineering-grade marketing system organized around two surface modes — a deep black canvas for hero and footer chapters and a flat paper-white canvas for body content — connected by a single, almost violently saturated NVIDIA Green…",
       "industry": [
-        "基础设施/企业",
-        "AI"
+        "infrastructure/entreprise",
+        "IA"
       ],
       "product_type": [
-        "官网/营销页",
-        "开发者平台"
+        "site vitrine/page marketing",
+        "plateforme développeur"
       ],
       "mood": [
-        "精密/工程感",
-        "技术感",
-        "未来/科幻"
+        "précision/ingénierie",
+        "technophile",
+        "futuriste/science-fiction"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "工程文档学会平面设计的科技营销",
-      "avoid_for": "亲和温暖或编辑杂志场景"
+      "era": "moderne",
+      "best_for": "Marketing tech où la documentation d'ingénierie apprend le graphisme",
+      "avoid_for": "Accessible et chaleureux ou esprit magazine éditorial"
     },
     {
       "name": "Ollama",
@@ -2661,24 +2661,24 @@
       "slug": "ollama",
       "description": "An almost defiantly minimal documentation-first system that treats the home page like a Markdown README — paper-white canvas, 36px center-aligned heading, a single black pill CTA, an inline terminal install snippet, and a hand-drawn llama…",
       "industry": [
-        "AI",
-        "开发者工具"
+        "IA",
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "极简",
-        "技术感",
-        "克制"
+        "minimaliste",
+        "technophile",
+        "retenu"
       ],
       "formality": "low",
       "density": "low",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "极度欠设计、纯粹的 AI 工具站",
-      "avoid_for": "奢华戏剧化或影像优先场景"
+      "era": "moderne",
+      "best_for": "Site d'outil IA pur, volontairement sous-designé à l'extrême",
+      "avoid_for": "Luxe théâtral ou contextes image d'abord"
     },
     {
       "name": "Openai",
@@ -2692,22 +2692,22 @@
       "description": "Calm, near-monochrome system anchored in deep teal-black with generous white space and editorial typography.",
       "category": "AI & LLM",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "克制",
-        "极简",
-        "编辑/杂志感"
+        "retenu",
+        "minimaliste",
+        "éditorial/magazine"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "近单色 teal-black、大量留白的克制 AI",
-      "avoid_for": "活力玩味或高密度数据场景"
+      "era": "moderne",
+      "best_for": "IA retenue quasi monochrome teal-black, vastes espaces",
+      "avoid_for": "Énergie espiègle ou données à forte densité"
     },
     {
       "name": "Opencode Ai",
@@ -2719,23 +2719,23 @@
       "description": "AI coding platform. Developer-centric dark theme.",
       "category": "AI & LLM",
       "industry": [
-        "AI",
-        "开发者工具"
+        "IA",
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台"
+        "plateforme développeur"
       ],
       "mood": [
-        "技术感",
-        "暗黑原生",
-        "克制"
+        "technophile",
+        "dark natif",
+        "retenu"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "开发者中心暗色主题的 AI 编码平台",
-      "avoid_for": "亲和温暖或编辑杂志场景"
+      "era": "moderne",
+      "best_for": "Plateforme de codage IA sombre, centrée développeur",
+      "avoid_for": "Accessible et chaleureux ou esprit magazine éditorial"
     },
     {
       "name": "OpenCode",
@@ -2747,23 +2747,23 @@
       "slug": "opencode.ai",
       "description": "A terminal-native marketing system rendered entirely in Berkeley Mono — every word on the page, from the hero headline down to the footer fine print, is monospaced. The page itself reads like a manpage or a static-site README: warm cream…",
       "industry": [
-        "AI",
-        "开发者工具"
+        "IA",
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台"
+        "plateforme développeur"
       ],
       "mood": [
-        "技术感",
-        "暗黑原生",
-        "克制"
+        "technophile",
+        "dark natif",
+        "retenu"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "开发者中心暗色的 AI 编码平台",
-      "avoid_for": "亲和温暖或编辑杂志场景"
+      "era": "moderne",
+      "best_for": "Plateforme de codage IA sombre, centrée développeur",
+      "avoid_for": "Accessible et chaleureux ou esprit magazine éditorial"
     },
     {
       "name": "Perplexity",
@@ -2775,23 +2775,23 @@
       "description": "Conversational AI search engine. Deep-dark canvas, sharp typography, single violet accent, dense information hierarchy.",
       "category": "AI & LLM",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页",
-        "消费App"
+        "site vitrine/page marketing",
+        "app grand public"
       ],
       "mood": [
-        "暗黑原生",
-        "极简",
-        "技术感"
+        "dark natif",
+        "minimaliste",
+        "technophile"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "深色锐利排版、单一紫点的对话搜索",
-      "avoid_for": "活力插画或温暖亲和场景"
+      "era": "moderne",
+      "best_for": "Recherche conversationnelle, typographie sombre acérée, point violet unique",
+      "avoid_for": "Illustration énergique ou contextes chaleureux et accessibles"
     },
     {
       "name": "Pinterest",
@@ -2803,24 +2803,24 @@
       "slug": "pinterest",
       "description": "A photography-first discovery system organized around the Pinterest Red CTA, the masonry pin grid, and a soft warm-cream chrome that gets out of the imagery's way. The home page is a content-discovery tool wearing the chrome of a magazine…",
       "industry": [
-        "媒体/出版",
-        "社交/通讯"
+        "médias/édition",
+        "social/communication"
       ],
       "product_type": [
-        "内容平台",
-        "消费App"
+        "plateforme de contenu",
+        "app grand public"
       ],
       "mood": [
-        "内容优先",
-        "影像优先",
-        "亲和/友好"
+        "contenu d'abord",
+        "image d'abord",
+        "accessible/amical"
       ],
       "formality": "low",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "让位于图片的内容/视觉发现平台",
-      "avoid_for": "严肃企业或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Plateforme de découverte de contenu/visuel qui s'efface devant l'image",
+      "avoid_for": "Corporate sérieux ou technophile dark"
     },
     {
       "name": "PlayStation",
@@ -2832,23 +2832,23 @@
       "slug": "playstation",
       "description": "A three-surface marketing system organized around alternating black, white, and PlayStation Blue chapters that scroll past the viewer like a console launch trailer. Each section has a single editorial purpose — hero photography, console…",
       "industry": [
-        "消费电子/科技"
+        "électronique grand public/tech"
       ],
       "product_type": [
-        "品牌展示页",
-        "产品发布页"
+        "page de marque",
+        "page de lancement produit"
       ],
       "mood": [
-        "戏剧化",
-        "影像优先",
-        "未来/科幻"
+        "théâtral",
+        "image d'abord",
+        "futuriste/science-fiction"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "主机发布预告片式的章节化展示",
-      "avoid_for": "克制极简或编辑文字场景"
+      "era": "moderne",
+      "best_for": "Présentation chapitrée façon bande-annonce de lancement",
+      "avoid_for": "Minimalisme retenu ou contextes de texte éditorial"
     },
     {
       "name": "PostHog",
@@ -2860,24 +2860,24 @@
       "slug": "posthog",
       "description": "A playful developer-tools system rendered on a warm cream canvas with hand-drawn hedgehog mascots dotted across every page like marginalia in a sketchbook. The chrome reads like a friendly engineering blog: olive-gray ink (#4d4f46) for…",
       "industry": [
-        "开发者工具",
-        "基础设施/企业"
+        "outils développeur",
+        "infrastructure/entreprise"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "复古/玩味",
-        "技术感",
-        "插画丰富"
+        "rétro/espiègle",
+        "technophile",
+        "illustration riche"
       ],
       "formality": "medium",
       "density": "high",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "严肃开源工程+玩味矛盾的产品分析",
-      "avoid_for": "奢华克制或纯影像场景"
+      "era": "moderne",
+      "best_for": "Analyse produit alliant ingénierie open source sérieuse et contradiction espiègle",
+      "avoid_for": "Luxe retenu ou contextes purement visuels"
     },
     {
       "name": "Raycast",
@@ -2889,24 +2889,24 @@
       "slug": "raycast",
       "description": "Raycast's marketing system reads like an extended product screenshot. The chrome IS the in-product chrome at marketing scale: pure-near-black canvas, hairline 1px borders, command-palette-style cards, Inter typography with the ss03…",
       "industry": [
-        "开发者工具",
-        "生产力/协作"
+        "outils développeur",
+        "productivité/collaboration"
       ],
       "product_type": [
-        "官网/营销页",
+        "site vitrine/page marketing",
         "SaaS"
       ],
       "mood": [
-        "暗黑原生",
-        "技术感",
-        "克制"
+        "dark natif",
+        "technophile",
+        "retenu"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "延伸的产品截图式开发者暗色站",
-      "avoid_for": "亲和温暖或活力插画场景"
+      "era": "moderne",
+      "best_for": "Site développeur sombre en captures de produit étendues",
+      "avoid_for": "Accessible et chaleureux ou contextes d'illustration énergique"
     },
     {
       "name": "Renault",
@@ -2918,23 +2918,23 @@
       "slug": "renault",
       "description": "Renault's web presence pairs the freshly-modernised Renault diamond (the 2021 flat-line rhombus mark) with a stark black-and-white canvas, a signature Sunlight Yellow accent, and the proprietary NouvelR display typeface. The system reads…",
       "industry": [
-        "汽车"
+        "automobile"
       ],
       "product_type": [
-        "官网/营销页",
-        "品牌展示页"
+        "site vitrine/page marketing",
+        "page de marque"
       ],
       "mood": [
-        "活力/明亮",
-        "影像优先",
-        "戏剧化"
+        "énergique/lumineux",
+        "image d'abord",
+        "théâtral"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "高对比、鲜明的汽车营销面",
-      "avoid_for": "克制极简或暗黑企业场景"
+      "era": "moderne",
+      "best_for": "Façade marketing automobile à fort contraste, très nette",
+      "avoid_for": "Minimalisme retenu ou contextes corporate sombres"
     },
     {
       "name": "Replicate",
@@ -2946,24 +2946,24 @@
       "slug": "replicate",
       "description": "Replicate's marketing surfaces pair the warm-cream developer-tools aesthetic of an indie ML playground with a confident hot-orange brand accent and a signature display typeface (rb-freigeist-neue) sized aggressively large at 72px+. The…",
       "industry": [
-        "开发者工具",
-        "AI"
+        "outils développeur",
+        "IA"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "复古/玩味",
-        "编辑/杂志感",
-        "技术感"
+        "rétro/espiègle",
+        "éditorial/magazine",
+        "technophile"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "复古",
-      "best_for": "开发者工具+art zine 灵魂的平台",
-      "avoid_for": "严肃企业或奢华戏剧化"
+      "era": "rétro",
+      "best_for": "Plateforme outil développeur à l'âme de art zine",
+      "avoid_for": "Corporate sérieux ou luxe théâtral"
     },
     {
       "name": "Resend",
@@ -2975,23 +2975,23 @@
       "slug": "resend",
       "description": "Resend's marketing surfaces sit on a near-pure black canvas with off-white text and a single signature color — the deep editorial-serif Domaine Display headline mark — that gives an otherwise utilitarian developer-tool brand its…",
       "industry": [
-        "开发者工具"
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "编辑/杂志感",
-        "技术感",
-        "克制"
+        "éditorial/magazine",
+        "technophile",
+        "retenu"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "开发工具+编辑排版的邮件 API",
-      "avoid_for": "奢华戏剧化或活力插画"
+      "era": "moderne",
+      "best_for": "API e-mail, outil de développement + typographie éditoriale",
+      "avoid_for": "Luxe théâtral ou illustration énergique"
     },
     {
       "name": "Revolut",
@@ -3003,23 +3003,23 @@
       "slug": "revolut",
       "description": "Revolut's marketing surfaces pair a stark black canvas with the brand's cobalt-violet (`#494fdf`) and a wide accent palette of deep, fully-saturated product colours — teal, light-blue, deep pink, light-green, warning orange. The system…",
       "industry": [
-        "金融/支付"
+        "finance/paiement"
       ],
       "product_type": [
-        "消费App",
-        "官网/营销页"
+        "app grand public",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "活力/明亮",
-        "企业/可信"
+        "technophile",
+        "énergique/lumineux",
+        "corporate/digne de confiance"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "高对比双模式的金融消费品牌",
-      "avoid_for": "编辑克制或奢华场景"
+      "era": "moderne",
+      "best_for": "Marque financière grand public bimodale à fort contraste",
+      "avoid_for": "Éditorial retenu ou contextes de luxe"
     },
     {
       "name": "Runwayml",
@@ -3031,24 +3031,24 @@
       "slug": "runwayml",
       "description": "Runway's interface is a cinematic reel brought to life as a website — a dark, editorial, film-production-grade design where full-bleed photography and video ARE the primary UI elements.",
       "industry": [
-        "AI",
-        "内容/创意工具"
+        "IA",
+        "contenu/outils créatifs"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "影像优先",
-        "暗黑原生",
-        "编辑/杂志感",
-        "戏剧化"
+        "image d'abord",
+        "dark natif",
+        "éditorial/magazine",
+        "théâtral"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "电影胶片感的 AI 创意暗色编辑站",
-      "avoid_for": "亲和明亮或高密度数据场景"
+      "era": "moderne",
+      "best_for": "Site éditorial sombre de création IA, esprit pellicule",
+      "avoid_for": "Accessible et lumineux ou données à forte densité"
     },
     {
       "name": "Sanity",
@@ -3060,24 +3060,24 @@
       "slug": "sanity",
       "description": "Sanity's website is a developer-content platform rendered as a nocturnal command center -- dark, precise, and deeply structured.",
       "industry": [
-        "开发者工具",
-        "内容/创意工具"
+        "outils développeur",
+        "contenu/outils créatifs"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "暗黑原生",
-        "技术感",
-        "克制"
+        "dark natif",
+        "technophile",
+        "retenu"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "夜间指挥中心式的开发者内容平台",
-      "avoid_for": "温暖亲和或活力插画场景"
+      "era": "moderne",
+      "best_for": "Plateforme de contenu développeur façon centre de commandement nocturne",
+      "avoid_for": "Chaleureux et accessible ou contextes d'illustration énergique"
     },
     {
       "name": "Sentry",
@@ -3089,23 +3089,23 @@
       "slug": "sentry",
       "description": "An inspired interpretation of Sentry's design language — a developer-tools brand built on a deep purple-violet midnight canvas, electric lime accents, and a slightly subversive illustrated personality. The system pairs a custom display…",
       "industry": [
-        "开发者工具"
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "暗黑原生",
-        "精密/工程感"
+        "technophile",
+        "dark natif",
+        "précision/ingénierie"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "错误监控的开发者技术暗色站",
-      "avoid_for": "奢华戏剧化或温暖编辑场景"
+      "era": "moderne",
+      "best_for": "Site développeur technique sombre pour le monitoring d'erreurs",
+      "avoid_for": "Luxe théâtral ou contextes éditoriaux chaleureux"
     },
     {
       "name": "Shopify",
@@ -3119,23 +3119,23 @@
       "slug": "shopify",
       "description": "An inspired interpretation of Shopify's design language — a cinematic commerce platform that runs two parallel design tracks. The marketing-hero and product-narrative pages live on near-black canvases with full-bleed photography of…",
       "industry": [
-        "电商/零售"
+        "e-commerce/retail"
       ],
       "product_type": [
-        "官网/营销页",
-        "电商/交易"
+        "site vitrine/page marketing",
+        "e-commerce/transaction"
       ],
       "mood": [
-        "影像优先",
-        "戏剧化",
-        "温暖"
+        "image d'abord",
+        "théâtral",
+        "chaleureux"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "电影化商业平台的电商营销",
-      "avoid_for": "严肃克制或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Marketing e-commerce d'une plateforme commerciale cinématographique",
+      "avoid_for": "Sérieux et retenu ou technophile dark"
     },
     {
       "name": "Slack",
@@ -3148,24 +3148,24 @@
       "slug": "slack",
       "description": "An inspired interpretation of Slack's design language — a workplace messaging brand built on a deep aubergine primary, with cream-lavender hero gradients, blue inline links, and pill CTAs. The system pairs a proprietary humanist sans for…",
       "industry": [
-        "社交/通讯",
-        "生产力/协作"
+        "social/communication",
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "活力/明亮",
-        "亲和/友好",
-        "插画丰富"
+        "énergique/lumineux",
+        "accessible/amical",
+        "illustration riche"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "职场消息品牌，鲜明友好+插画",
-      "avoid_for": "严肃企业或暗黑克制场景"
+      "era": "moderne",
+      "best_for": "Marque de messagerie pro, nette et amicale + illustrations",
+      "avoid_for": "Corporate sérieux ou contextes sombres retenus"
     },
     {
       "name": "SpaceX",
@@ -3177,24 +3177,24 @@
       "slug": "spacex",
       "description": "An inspired interpretation of SpaceX's design language — a mission-oriented aerospace brand built on pure black canvas, full-bleed photographic and video heroes of rockets and Mars landscapes, and uppercase D-DIN display type set in tight…",
       "industry": [
-        "消费电子/科技"
+        "électronique grand public/tech"
       ],
       "product_type": [
-        "品牌展示页",
-        "官网/营销页"
+        "page de marque",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "未来/科幻",
-        "影像优先",
-        "戏剧化",
-        "暗黑原生"
+        "futuriste/science-fiction",
+        "image d'abord",
+        "théâtral",
+        "dark natif"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "纯黑+火箭全屏影像的航天展示",
-      "avoid_for": "信息密集或亲和明亮场景"
+      "era": "moderne",
+      "best_for": "Vitrine aérospatiale noir pur + images plein écran de fusée",
+      "avoid_for": "Forte densité d'information ou contextes accessibles et lumineux"
     },
     {
       "name": "Spotify",
@@ -3208,24 +3208,24 @@
       "slug": "spotify",
       "description": "Spotify's web interface is a dark, immersive music player that wraps listeners in a near-black cocoon (#121212, #181818, #1f1f1f) where album art and content become the primary source of color.",
       "industry": [
-        "媒体/出版",
-        "消费电子/科技"
+        "médias/édition",
+        "électronique grand public/tech"
       ],
       "product_type": [
-        "消费App",
-        "官网/营销页"
+        "app grand public",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "暗黑原生",
-        "影像优先",
-        "活力/明亮"
+        "dark natif",
+        "image d'abord",
+        "énergique/lumineux"
       ],
       "formality": "low",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "近黑沉浸、专辑图主导色彩的音乐播放器",
-      "avoid_for": "严肃企业或编辑文字场景"
+      "era": "moderne",
+      "best_for": "Lecteur de musique immersif quasi noir, couleurs dictées par les pochettes",
+      "avoid_for": "Corporate sérieux ou contextes de texte éditorial"
     },
     {
       "name": "Starbucks",
@@ -3237,23 +3237,23 @@
       "slug": "starbucks",
       "description": "Starbucks' design system is a warm, confident retail flagship wearing the green of their storefront apron across every surface.",
       "industry": [
-        "电商/零售"
+        "e-commerce/retail"
       ],
       "product_type": [
-        "官网/营销页",
-        "品牌展示页"
+        "site vitrine/page marketing",
+        "page de marque"
       ],
       "mood": [
-        "温暖",
-        "企业/可信",
-        "影像优先"
+        "chaleureux",
+        "corporate/digne de confiance",
+        "image d'abord"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "暖色自信的零售旗舰，品牌绿",
-      "avoid_for": "暗黑技术或极简冷峻场景"
+      "era": "moderne",
+      "best_for": "Flagship retail aux tons chauds assurés, vert de marque",
+      "avoid_for": "Technophile dark ou minimalisme froid"
     },
     {
       "name": "Stripe",
@@ -3267,26 +3267,26 @@
       "slug": "stripe",
       "description": "An inspired interpretation of Stripe's design language — a financial-infrastructure brand built on a deep navy ink, an electric indigo primary, and a recurring atmospheric gradient mesh that occupies the upper third of nearly every…",
       "industry": [
-        "金融/支付",
-        "开发者工具"
+        "finance/paiement",
+        "outils développeur"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页",
-        "开发者平台"
+        "site vitrine/page marketing",
+        "plateforme développeur"
       ],
       "mood": [
-        "精密/工程感",
-        "技术感",
-        "克制",
-        "渐变氛围"
+        "précision/ingénierie",
+        "technophile",
+        "retenu",
+        "atmosphère en dégradés"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "金融/支付/开发者平台官网，技术可信+渐变网格",
-      "avoid_for": "活泼手作或强情绪叙事的消费品"
+      "era": "moderne",
+      "best_for": "Site de plateforme finance/paiement/développeur, crédibilité technique + grille en dégradé",
+      "avoid_for": "Produit grand public artisanal vivant ou à forte narration émotionnelle"
     },
     {
       "name": "Supabase",
@@ -3298,24 +3298,24 @@
       "slug": "supabase",
       "description": "An inspired interpretation of Supabase's design language — an open-source database platform built on a clean white-and-near-black system with a single signature emerald-green CTA, a custom humanist sans display tier, and dense product UI…",
       "industry": [
-        "开发者工具",
-        "基础设施/企业"
+        "outils développeur",
+        "infrastructure/entreprise"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "克制",
-        "暗黑原生"
+        "technophile",
+        "retenu",
+        "dark natif"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "开源数据库平台，绿色 CTA 点睛",
-      "avoid_for": "奢华戏剧化或温暖编辑场景"
+      "era": "moderne",
+      "best_for": "Plateforme de base de données open source, CTA vert en touche finale",
+      "avoid_for": "Luxe théâtral ou contextes éditoriaux chaleureux"
     },
     {
       "name": "Superhuman",
@@ -3327,23 +3327,23 @@
       "slug": "superhuman",
       "description": "An inspired interpretation of Superhuman's design language — a fast-email productivity brand split between an editorial dark hero (deep indigo navy with violet-sky atmospheric backdrop and a portrait subject) and a quiet white content…",
       "industry": [
-        "生产力/协作"
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "克制",
-        "精密/工程感",
-        "暗黑原生"
+        "retenu",
+        "précision/ingénierie",
+        "dark natif"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "快速邮件生产力品牌，精密克制",
-      "avoid_for": "活力插画或奢华戏剧化"
+      "era": "moderne",
+      "best_for": "Marque d'e-mail productivité rapide, précision retenue",
+      "avoid_for": "Illustration énergique ou luxe théâtral"
     },
     {
       "name": "Tesla",
@@ -3355,24 +3355,24 @@
       "slug": "tesla",
       "description": "Tesla's website is an exercise in radical subtraction — a digital showroom where the product is everything and the interface is almost nothing.",
       "industry": [
-        "汽车",
-        "消费电子/科技"
+        "automobile",
+        "électronique grand public/tech"
       ],
       "product_type": [
-        "品牌展示页",
-        "官网/营销页"
+        "page de marque",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "极简",
-        "影像优先",
-        "克制"
+        "minimaliste",
+        "image d'abord",
+        "retenu"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "激进减法的数字展厅，产品主导",
-      "avoid_for": "信息密集或活力插画场景"
+      "era": "moderne",
+      "best_for": "Showroom digital à la soustraction radicale, produit en vedette",
+      "avoid_for": "Forte densité d'information ou contextes d'illustration énergique"
     },
     {
       "name": "Theverge",
@@ -3384,23 +3384,23 @@
       "slug": "theverge",
       "description": "The Verge's 2024 redesign feels like somebody wired a Condé Nast magazine to a chiptune soundboard.",
       "industry": [
-        "媒体/出版"
+        "médias/édition"
       ],
       "product_type": [
-        "内容平台",
-        "官网/营销页"
+        "plateforme de contenu",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "复古/玩味",
-        "编辑/杂志感",
-        "活力/明亮"
+        "rétro/espiègle",
+        "éditorial/magazine",
+        "énergique/lumineux"
       ],
       "formality": "medium",
       "density": "high",
       "scheme": "both",
-      "era": "复古",
-      "best_for": "Condé Nast 接 chiptune 的科技杂志",
-      "avoid_for": "严肃企业或极简克制场景"
+      "era": "rétro",
+      "best_for": "Magazine tech où Condé Nast rencontre la chiptune",
+      "avoid_for": "Corporate sérieux ou contextes minimalistes retenus"
     },
     {
       "name": "Together Ai",
@@ -3412,24 +3412,24 @@
       "description": "Open-source AI infrastructure. Technical, blueprint-style design.",
       "category": "AI & LLM",
       "industry": [
-        "AI",
-        "基础设施/企业"
+        "IA",
+        "infrastructure/entreprise"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "精密/工程感",
-        "暗黑原生"
+        "technophile",
+        "précision/ingénierie",
+        "dark natif"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "蓝图风的开源 AI 基础设施",
-      "avoid_for": "亲和温暖或编辑杂志场景"
+      "era": "moderne",
+      "best_for": "Infrastructure IA open source façon blueprint",
+      "avoid_for": "Accessible et chaleureux ou esprit magazine éditorial"
     },
     {
       "name": "Together AI",
@@ -3441,24 +3441,24 @@
       "slug": "together.ai",
       "description": "An inspired interpretation of Together AI's design language — an AI infrastructure platform whose surface alternates between near-black hero bands (with a three-color orange-magenta-periwinkle gradient as the single piece of brand chrome)…",
       "industry": [
-        "AI",
-        "基础设施/企业"
+        "IA",
+        "infrastructure/entreprise"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "精密/工程感",
-        "暗黑原生"
+        "technophile",
+        "précision/ingénierie",
+        "dark natif"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "蓝图风的 AI 基础设施平台",
-      "avoid_for": "亲和温暖或编辑杂志场景"
+      "era": "moderne",
+      "best_for": "Plateforme d'infrastructure IA façon blueprint",
+      "avoid_for": "Accessible et chaleureux ou esprit magazine éditorial"
     },
     {
       "name": "Uber",
@@ -3472,23 +3472,23 @@
       "slug": "uber",
       "description": "An inspired interpretation of Uber's design language — a transportation-and-delivery super-app brand whose web surface is a black-and-white duet, framed by a custom geometric display sans, accented by a single signature pill shape (radius…",
       "industry": [
-        "出行/本地生活"
+        "mobilité/vie locale"
       ],
       "product_type": [
-        "消费App",
-        "官网/营销页"
+        "app grand public",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "克制",
-        "影像优先",
-        "企业/可信"
+        "retenu",
+        "image d'abord",
+        "corporate/digne de confiance"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "出行与配送超级品牌的克制营销",
-      "avoid_for": "奢华戏剧化或活力插画"
+      "era": "moderne",
+      "best_for": "Marketing retenu d'un super-brand mobilité et livraison",
+      "avoid_for": "Luxe théâtral ou illustration énergique"
     },
     {
       "name": "Vercel",
@@ -3502,23 +3502,23 @@
       "slug": "vercel",
       "description": "An inspired interpretation of Vercel's design language — a developer-platform brand whose surface is a stark black-and-ink duet on near-white canvas, broken at hero scale by a multi-color mesh gradient (cyan / blue / magenta / amber) that…",
       "industry": [
-        "开发者工具"
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "极简",
-        "技术感",
-        "克制"
+        "minimaliste",
+        "technophile",
+        "retenu"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "开发者平台品牌，黑白极简技术感",
-      "avoid_for": "奢华戏剧化或温暖插画场景"
+      "era": "moderne",
+      "best_for": "Marque de plateforme développeur, noir et blanc minimaliste technophile",
+      "avoid_for": "Luxe théâtral ou contextes d'illustration chaleureuse"
     },
     {
       "name": "Vodafone",
@@ -3530,23 +3530,23 @@
       "slug": "vodafone",
       "description": "An inspired interpretation of Vodafone's design language — a telecom super-brand whose web surface alternates between editorial photography hero bands with massive uppercase display headlines and clean white content bands, anchored by the…",
       "industry": [
-        "电信"
+        "télécoms"
       ],
       "product_type": [
-        "官网/营销页",
-        "品牌展示页"
+        "site vitrine/page marketing",
+        "page de marque"
       ],
       "mood": [
-        "企业/可信",
-        "活力/明亮",
-        "影像优先"
+        "corporate/digne de confiance",
+        "énergique/lumineux",
+        "image d'abord"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "电信超级品牌的营销画布",
-      "avoid_for": "极简克制或编辑杂志场景"
+      "era": "moderne",
+      "best_for": "Canevas marketing d'un super-brand télécom",
+      "avoid_for": "Minimalisme retenu ou esprit magazine éditorial"
     },
     {
       "name": "VoltAgent",
@@ -3558,24 +3558,24 @@
       "slug": "voltagent",
       "description": "An inspired interpretation of Voltagent's design language — a developer-focused AI agent engineering platform whose surface is an unrelenting near-black canvas broken only by a single electric-green brand accent, code-editor mockups…",
       "industry": [
-        "开发者工具",
-        "AI"
+        "outils développeur",
+        "IA"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "暗黑原生",
-        "精密/工程感"
+        "technophile",
+        "dark natif",
+        "précision/ingénierie"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "开发者向 AI agent 引擎",
-      "avoid_for": "亲和温暖或编辑场景"
+      "era": "moderne",
+      "best_for": "Moteur d'agents IA orienté développeur",
+      "avoid_for": "Accessible et chaleureux ou contextes éditoriaux"
     },
     {
       "name": "Warp",
@@ -3587,23 +3587,23 @@
       "slug": "warp",
       "description": "An inspired interpretation of Warp's design language — an agentic terminal-and-development-environment brand whose surface is a warm near-charcoal canvas (a tint warmer than pure black), broken only by clean Inter typography, the…",
       "industry": [
-        "开发者工具"
+        "outils développeur"
       ],
       "product_type": [
-        "开发者平台",
-        "官网/营销页"
+        "plateforme développeur",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "技术感",
-        "暗黑原生",
-        "精密/工程感"
+        "technophile",
+        "dark natif",
+        "précision/ingénierie"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "dark",
-      "era": "现代",
-      "best_for": "agentic 终端与开发环境",
-      "avoid_for": "奢华戏剧化或活力插画"
+      "era": "moderne",
+      "best_for": "Terminal et environnement de développement agentic",
+      "avoid_for": "Luxe théâtral ou illustration énergique"
     },
     {
       "name": "Webex",
@@ -3615,23 +3615,23 @@
       "description": "Collaboration platform. Momentum typography, blue action system, multi-user accent spectrum.",
       "category": "Productivity & SaaS",
       "industry": [
-        "生产力/协作"
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "活力/明亮",
-        "技术感",
-        "企业/可信"
+        "énergique/lumineux",
+        "technophile",
+        "corporate/digne de confiance"
       ],
       "formality": "high",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "momentum 排版+蓝色行动系统的协作平台",
-      "avoid_for": "奢华戏剧化或编辑克制"
+      "era": "moderne",
+      "best_for": "Plateforme collaborative, typographie momentum + système d'action bleu",
+      "avoid_for": "Luxe théâtral ou éditorial retenu"
     },
     {
       "name": "Webflow",
@@ -3643,24 +3643,24 @@
       "slug": "webflow",
       "description": "An inspired interpretation of Webflow's design language — a visual web development platform whose surface contrasts a deep near-black `#080808` primary against a generous white canvas, broken by a five-stop chromatic accent system (purple…",
       "industry": [
-        "内容/创意工具",
-        "开发者工具"
+        "contenu/outils créatifs",
+        "outils développeur"
       ],
       "product_type": [
-        "官网/营销页",
+        "site vitrine/page marketing",
         "SaaS"
       ],
       "mood": [
-        "技术感",
-        "影像优先",
-        "克制"
+        "technophile",
+        "image d'abord",
+        "retenu"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "可视化建站平台",
-      "avoid_for": "奢华戏剧化或活力插画"
+      "era": "moderne",
+      "best_for": "Plateforme de création de sites en visuel",
+      "avoid_for": "Luxe théâtral ou illustration énergique"
     },
     {
       "name": "Wechat",
@@ -3672,23 +3672,23 @@
       "description": "Brand visual language for WeChat Mini Programs, official accounts, and open ecosystem extensions.",
       "category": "Social & Messaging",
       "industry": [
-        "社交/通讯"
+        "social/communication"
       ],
       "product_type": [
-        "消费App",
-        "内容平台"
+        "app grand public",
+        "plateforme de contenu"
       ],
       "mood": [
-        "内容优先",
-        "克制",
-        "亲和/友好"
+        "contenu d'abord",
+        "retenu",
+        "accessible/amical"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "小程序/公众号/开放生态的品牌视觉",
-      "avoid_for": "奢华戏剧化或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Identité de marque pour mini-programmes/comptes officiels/écosystème ouvert",
+      "avoid_for": "Luxe théâtral ou technophile dark"
     },
     {
       "name": "WIRED",
@@ -3700,23 +3700,23 @@
       "slug": "wired",
       "description": "An inspired interpretation of Wired's design language — a flagship technology-magazine brand whose surface is a strict editorial duet of stark black wordmark on white canvas, anchored by a tall narrow custom display serif for hero…",
       "industry": [
-        "媒体/出版"
+        "médias/édition"
       ],
       "product_type": [
-        "内容平台",
-        "官网/营销页"
+        "plateforme de contenu",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "编辑/杂志感",
-        "复古/玩味",
-        "影像优先"
+        "éditorial/magazine",
+        "rétro/espiègle",
+        "image d'abord"
       ],
       "formality": "high",
       "density": "high",
       "scheme": "both",
-      "era": "现代",
-      "best_for": "旗舰科技杂志品牌",
-      "avoid_for": "极简克制或企业场景"
+      "era": "moderne",
+      "best_for": "Marque phare de magazine technologique",
+      "avoid_for": "Minimalisme retenu ou contextes corporate"
     },
     {
       "name": "Wise",
@@ -3728,23 +3728,23 @@
       "slug": "wise",
       "description": "An inspired interpretation of Wise's design language — a global money-transfer brand whose surface combines an unusually heavy near-black display sans (weight 900 at 64–126 px) with a vivid lime-green brand accent, sage-tinted surface…",
       "industry": [
-        "金融/支付"
+        "finance/paiement"
       ],
       "product_type": [
-        "消费App",
-        "官网/营销页"
+        "app grand public",
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "活力/明亮",
-        "亲和/友好",
-        "克制"
+        "énergique/lumineux",
+        "accessible/amical",
+        "retenu"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "全球汇款品牌，明亮亲和",
-      "avoid_for": "奢华戏剧化或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Marque de transfert d'argent mondial, lumineuse et accessible",
+      "avoid_for": "Luxe théâtral ou technophile dark"
     },
     {
       "name": "X Ai",
@@ -3756,22 +3756,22 @@
       "description": "Elon Musk's AI lab. Stark monochrome, futuristic minimalism.",
       "category": "AI & LLM",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "极简",
-        "未来/科幻",
-        "暗黑原生"
+        "minimaliste",
+        "futuriste/science-fiction",
+        "dark natif"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "dark",
-      "era": "未来",
-      "best_for": "stark 单色、未来极简的 AI 实验室",
-      "avoid_for": "温暖亲和或活力插画场景"
+      "era": "futur",
+      "best_for": "Laboratoire IA stark monochrome, futurisme minimaliste",
+      "avoid_for": "Chaleureux et accessible ou contextes d'illustration énergique"
     },
     {
       "name": "xAI",
@@ -3783,22 +3783,22 @@
       "slug": "x.ai",
       "description": "An inspired interpretation of xAI's design language — Elon Musk's frontier-AI company whose web surface is a strict near-black canvas broken only by white pill outlines, occasional warm sunset / dusk gradient accents, a custom geometric…",
       "industry": [
-        "AI"
+        "IA"
       ],
       "product_type": [
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "极简",
-        "未来/科幻",
-        "暗黑原生"
+        "minimaliste",
+        "futuriste/science-fiction",
+        "dark natif"
       ],
       "formality": "high",
       "density": "low",
       "scheme": "dark",
-      "era": "未来",
-      "best_for": "Elon 前沿 AI 公司的极简未来感",
-      "avoid_for": "温暖亲和或活力插画场景"
+      "era": "futur",
+      "best_for": "Futurisme minimaliste d'une entreprise IA de pointe à la Elon",
+      "avoid_for": "Chaleureux et accessible ou contextes d'illustration énergique"
     },
     {
       "name": "Xiaohongshu",
@@ -3810,24 +3810,24 @@
       "description": "Lifestyle UGC social platform. Singular brand red, generous radius, content-first.",
       "category": "Media & Consumer",
       "industry": [
-        "社交/通讯",
-        "媒体/出版"
+        "social/communication",
+        "médias/édition"
       ],
       "product_type": [
-        "消费App",
-        "内容平台"
+        "app grand public",
+        "plateforme de contenu"
       ],
       "mood": [
-        "内容优先",
-        "亲和/友好",
-        "活力/明亮"
+        "contenu d'abord",
+        "accessible/amical",
+        "énergique/lumineux"
       ],
       "formality": "low",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "UGC 内容为核心、UI 透明画框的消费产品",
-      "avoid_for": "强品牌存在感或暗黑技术风"
+      "era": "moderne",
+      "best_for": "Produit grand public centré UGC, UI en cadre transparent",
+      "avoid_for": "Forte présence de marque ou technophile dark"
     },
     {
       "name": "Zapier",
@@ -3839,24 +3839,24 @@
       "slug": "zapier",
       "description": "An inspired interpretation of Zapier's design language — a workflow-automation platform whose surface combines warm-cream neutrals (`#fffefb` canvas, `#f8f4f0` soft cream) with deep coffee ink (`#201515`) and a single saturated orange CTA…",
       "industry": [
-        "开发者工具",
-        "生产力/协作"
+        "outils développeur",
+        "productivité/collaboration"
       ],
       "product_type": [
         "SaaS",
-        "官网/营销页"
+        "site vitrine/page marketing"
       ],
       "mood": [
-        "亲和/友好",
-        "技术感",
-        "活力/明亮"
+        "accessible/amical",
+        "technophile",
+        "énergique/lumineux"
       ],
       "formality": "medium",
       "density": "medium",
       "scheme": "light",
-      "era": "现代",
-      "best_for": "工作流自动化平台",
-      "avoid_for": "奢华戏剧化或暗黑克制场景"
+      "era": "moderne",
+      "best_for": "Plateforme d'automatisation de workflows",
+      "avoid_for": "Luxe théâtral ou contextes sombres retenus"
     }
   ],
   "source_notes": {
