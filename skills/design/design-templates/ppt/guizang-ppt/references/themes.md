@@ -1,23 +1,23 @@
 # Couleurs de thème prédéfinies (Themes)
 
-5 thèmes méticuleusement ajustés de palettes de couleurs, garantissant que l'esthétique "magazine électronique × encre électronique" ne s'effondre pas. **L'utilisateur n'est pas autorisé à personnaliser les couleurs - un mauvais agencement de couleurs instantanément gâche l'aspect**, choisissez uniquement parmi les préréglages suivants.
+5 thèmes de palettes de couleurs méticuleusement ajustés, garantissant que l'esthétique « magazine électronique × encre électronique » ne s'effondre pas. **L'utilisateur n'est pas autorisé à personnaliser les couleurs — un mauvais agencement gâche instantanément l'aspect** ; choisir uniquement parmi les préréglages suivants.
 
 ---
 
-## 使用方法
+## Mode d'emploi
 
-1. Demander à l'utilisateur quel ensemble il choisit (ou recommander un ensemble basé sur le contenu)
+1. Demander à l'utilisateur quel ensemble il choisit (ou recommander un ensemble en fonction du contenu)
 2. Ouvrir le bloc `<style>` de `assets/template.html`
-3. 找到开头的 `:root{` 块
-4. **Remplacement complet** remplacer les lignes marquées de la note "couleur du thème" (zhǔtísè) `--ink` / `--ink-rgb` / `--paper` / `--paper-rgb` / `--paper-tint` / `--ink-tint`
-5. 其他 CSS 都走 `var(--...)`,无需任何其他改动
+3. Repérer le bloc `:root{` au début
+4. **Remplacement complet** des lignes marquées de la note « couleur du thème » `--ink` / `--ink-rgb` / `--paper` / `--paper-rgb` / `--paper-tint` / `--ink-tint`
+5. Tout le reste du CSS passe par des `var(--...)`, aucune autre modification n'est nécessaire
 
 ---
 
 ## 🖋 Encre classique (Monocle par défaut)
 
-**Convient à**: partage universel, publication commerciale, produits technologiques, choix par défaut sûr pour toutes les situations.
-**调性**:纯墨黑 + 暖米白,杂志感最强,Monocle / Apricot / A Book Apart 风。
+**Convient à** : partage universel, publication commerciale, produits technologiques — choix par défaut sûr en toutes circonstances.
+**Ton** : noir encre pur + blanc cassé chaud, effet magazine maximal, style Monocle / Apricot / A Book Apart.
 
 ```css
 --ink:#0a0a0b;
@@ -30,10 +30,10 @@
 
 ---
 
-## 🌊 靛蓝瓷 (Indigo Porcelain)
+## 🌊 Indigo porcelaine (Indigo Porcelain)
 
-**Convient à**: technologie/recherche/partage de données, culture d'ingénierie, contenu approfondi, conférences technologiques.
-**Ton**: bleu indigo profond + blanc de porcelaine, calme, rationnel, avec profondeur, comme une revue académique ou de la porcelaine à bleu imprimé.
+**Convient à** : technologie/recherche/partage de données, culture d'ingénierie, contenu approfondi, conférences technologiques.
+**Ton** : bleu indigo profond + blanc porcelaine, calme, rationnel, avec de la profondeur, comme une revue académique ou une porcelaine à décor bleu.
 
 ```css
 --ink:#0a1f3d;
@@ -46,10 +46,10 @@
 
 ---
 
-## 🌿 森林墨 (Forest Ink)
+## 🌿 Encre forêt (Forest Ink)
 
-**适合**:自然/可持续/文化/非虚构内容、户外品牌、环保主题。
-**调性**:深森林绿 + 象牙,沉稳、有呼吸感,像旧版《国家地理》。
+**Convient à** : nature/durabilité/culture/documentaire, marques liées au plein air, thématiques environnementales.
+**Ton** : vert forêt profond + ivoire, posé, respirant, comme les anciens numéros de « National Geographic ».
 
 ```css
 --ink:#1a2e1f;
@@ -62,10 +62,10 @@
 
 ---
 
-## 🍂 牛皮纸 (Kraft Paper)
+## 🍂 Papier kraft (Kraft Paper)
 
-**适合**:怀旧/人文/阅读/历史/文学分享、独立杂志、手作品牌。
-**调性**:深棕 + 暖米,像牛皮信封或老笔记本,温暖、有年代感。
+**Convient à** : nostalgie/humanités/lecture/histoire/littérature, magazines indépendants, marques artisanales.
+**Ton** : brun profond + beige chaud, comme une enveloppe kraft ou un vieux carnet, chaleureux, avec une patine d'époque.
 
 ```css
 --ink:#2a1e13;
@@ -78,10 +78,10 @@
 
 ---
 
-## 🌙 沙丘 (Dune)
+## 🌙 Dune
 
-**适合**:艺术/设计/创意/时尚分享、画廊手册、审美优先的私享会。
-**调性**:炭灰 + 沙色,克制、高级、中性,像沙漠黄昏或建筑设计图册。
+**Convient à** : art/design/création/mode, catalogues de galeries, rencontres privées où l'esthétique prime.
+**Ton** : gris anthracite + couleur de sable, retenu, raffiné, neutre, comme un crépuscule dans le désert ou un album d'architecture.
 
 ```css
 --ink:#1f1a14;
@@ -94,29 +94,29 @@
 
 ---
 
-## 推荐选择参考
+## Table de recommandation
 
-| 如果是... | 推荐主题 |
+| Si le contenu est... | Thème recommandé |
 |---|---|
-| 不知道选啥 / 第一次用 | 🖋 墨水经典 |
-| AI / 技术 / 产品发布 | 🌊 靛蓝瓷 |
-| 内容 / 行业观察 / 文化 | 🌿 森林墨 |
-| 书评 / 生活方式 / 人文 | 🍂 牛皮纸 |
-| 设计 / 艺术 / 品牌 | 🌙 沙丘 |
+| Aucune idée / première utilisation | 🖋 Encre classique |
+| IA / technologie / lancement produit | 🌊 Indigo porcelaine |
+| Contenu / veille sectorielle / culture | 🌿 Encre forêt |
+| Critiques de livres / art de vivre / humanités | 🍂 Papier kraft |
+| Design / art / marque | 🌙 Dune |
 
 ---
 
-## 切换原则
+## Principes de bascule
 
-- **一份 deck 只用一套主题**,不要中途换色
-- WebGL shader 的默认主色(钛金色散 / 银色流动)适配所有 5 套(经测试可接受)
-- `currentColor` 驱动的 border / icon 会跟随 section 的 text color 自动适配,无需额外调整
-- 选定主题后,`<title>` 文字和 `chrome` 文案可以强化该主题的语义(例如牛皮纸配"Vol.03 · 秋"这种)
+- **Un seul et même thème par deck**, ne pas changer de couleur en cours de route
+- La couleur principale par défaut du shader WebGL (dispersion or titane / flux argenté) est compatible avec les 5 ensembles (testé et validé)
+- Les bordures et icônes pilotées par `currentColor` s'adaptent automatiquement à la couleur de texte de la section, aucun réglage supplémentaire n'est nécessaire
+- Une fois le thème choisi, le texte `<title>` et les libellés du `chrome` peuvent renforcer la sémantique du thème (par exemple associer Papier kraft à un « Vol.03 · Automne »)
 
-## ❌ 不要做的事
+## ❌ À ne pas faire
 
-- ❌ **不允许混搭**(例如 ink 取墨水经典的,paper 取沙丘的)——会彻底违和
-- ❌ **不允许用户随便给一个 hex 值**——需委婉拒绝并展示 5 套预设让选
-- ❌ **不要直接修改 template.html 其他地方的颜色**——所有散落 rgba 都走 var,改 :root 一处即可
+- ❌ **Aucun mélange autorisé** (par exemple encre de l'Encre classique + papier de la Dune) — cela produirait une rupture totale d'harmonie
+- ❌ **Refuser poliment toute valeur hex donnée au hasard par l'utilisateur** — présenter les 5 préréglages et faire choisir
+- ❌ **Ne pas modifier directement les couleurs ailleurs dans template.html** — tous les rgba épars passent par des var, modifier `:root` suffit
 
-选定主题后在 skill 对话中告诉用户:"用 🖋 墨水经典 / 🌊 靛蓝瓷 ..."并在 deck 项目记录里备注,方便后续迭代时保持一致。
+Une fois le thème choisi, indiquer à l'utilisateur dans le dialogue du skill : « avec 🖋 Encre classique / 🌊 Indigo porcelaine... » et le consigner dans le dossier projet du deck, pour garder la cohérence lors des itérations suivantes.

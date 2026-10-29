@@ -1,53 +1,53 @@
-# 技术 / 研发 / 数据 简历模板
+# Modèle de CV technique / R&D / data
 
-## 结构
+## Structure
 
 ```
-姓名｜电话｜邮箱｜GitHub｜城市｜目标岗位
+Nom｜Téléphone｜E-mail｜GitHub｜Ville｜Poste visé
 
-【个人简介 / Summary】（可选，1~2 行）
-X 年 ___ 经验，专注 ___（高并发后端 / 推荐系统 / LLM 应用 / ...），熟悉 ___ 技术栈
+【Résumé / Summary】(facultatif, 1~2 lignes)
+X ans d'expérience en ___, spécialisé ___ (back-end forte concurrence / système de recommandation / applications LLM / ...), maîtrise de la stack ___
 
-【技能】（技术岗放前面，让 HR 一眼看到栈是否对口）
-- 语言：Java（精通）、Python（熟练）、Go（了解）
-- 后端：Spring Boot、Spring Cloud、gRPC、Kafka、Redis、MySQL、ClickHouse
-- 大数据 / 算法：Spark、Flink、Hive、PyTorch（如果是算法岗）
-- 工程：Docker、Kubernetes、Linux、Git、CI/CD
-- 其他：TypeScript、AWS
+【Compétences】(en tête pour les postes techniques, pour que le RH voie d'un coup d'œil si la stack correspond)
+- Langages : Java (expert), Python (avancé), Go (notions)
+- Back-end : Spring Boot, Spring Cloud, gRPC, Kafka, Redis, MySQL, ClickHouse
+- Big data / algorithmes : Spark, Flink, Hive, PyTorch (si poste algorithme)
+- Ingénierie : Docker, Kubernetes, Linux, Git, CI/CD
+- Autres : TypeScript, AWS
 
-【工作经历】
-公司 A | 职级（高级工程师 / 资深工程师 / Tech Lead）| 起止
-- 系统级成绩（含 QPS、延迟、可用性、规模等数字）
-- 架构 / 设计贡献（你设计了什么、为什么这么选）
-- 业务影响（推动了什么业务结果）
+【Expérience professionnelle】
+Entreprise A | Niveau (ingénieur senior / ingénieur expert / Tech Lead) | Période
+- Résultats au niveau système (avec chiffres : QPS, latence, disponibilité, échelle)
+- Contributions d'architecture / conception (ce que vous avez conçu, pourquoi ce choix)
+- Impact métier (quel résultat métier vous avez fait avancer)
 
-【项目经历】
-项目名 | 角色 | 技术栈 | 时间
-- 背景：业务规模 / 痛点（一句话）
-- 方案：你的核心设计 + 关键技术决策（讲为什么）
-- 结果：性能 / 稳定性 / 成本 数字
+【Projets】
+Nom du projet | Rôle | Stack | Période
+- Contexte : échelle métier / point de douleur (une phrase)
+- Solution : votre conception centrale + décisions techniques clés (expliquer le pourquoi)
+- Résultat : chiffres de performance / stabilité / coût
 
-【教育背景】
+【Formation】
 
-【开源 / 论文 / 比赛】（强加分）
-- GitHub 项目（star 数 / 主要 contributor）
-- 论文（标注会议 / 期刊）
-- 比赛（Kaggle / ACM / 天池 / 黑客松，含名次）
+【Open source / publications / compétitions】(fort bonus)
+- Projets GitHub (nombre d'étoiles / contributeur principal)
+- Publications (préciser conférence / revue)
+- Compétitions (Kaggle / ACM / Tianchi / hackathons, avec classement)
 ```
 
-## 风格要点
+## Points de style
 
-- **少形容词，多数字 + 技术细节**
-  - 弱："优化了系统性能"
-  - 强："通过引入二级缓存 + SQL 改写，将商品详情接口 P99 从 480ms 降至 110ms"
-- **讲清楚『你做了什么』vs『团队做了什么』**：用"主导"/"负责"明确 ownership 边界
-- 算法岗：技能列表里**强调具体模型 / 框架版本**（避免堆砌 buzzword）
-- LLM / Agent 岗：明确写"训练 / 微调 / 推理 / 应用"中你做的部分，避免被以为是 prompt-only
-- 长度：1~2 页
+- **Peu d'adjectifs, beaucoup de chiffres + détails techniques**
+  - Faible : « optimisé les performances du système »
+  - Fort : « en introduisant un cache secondaire + réécriture SQL, fait passer le P99 de l'API fiche produit de 480 ms à 110 ms »
+- **Distinguer clairement « ce que vous avez fait » de « ce que l'équipe a fait »** : utiliser « piloté » / « responsable de » pour délimiter le périmètre de responsabilité
+- Poste algorithme : dans la liste de compétences, **mettre en avant les modèles / versions de frameworks précis** (éviter l'empilement de buzzwords)
+- Poste LLM / Agent : préciser explicitement la part « entraînement / fine-tuning / inférence / application » qui est la vôtre, pour ne pas passer pour un profil prompt-only
+- Longueur : 1~2 pages
 
-## 常见雷区
+## Pièges fréquents
 
-- 简历里写"精通"，面试问到一脸懵 → 不熟就写"熟练 / 了解"
-- 列出 20+ 技能，问哪个都不深 → 删到 8~12 个真正会的
-- 把课程内容当项目经历 → 标注"课程项目 (Course Project)"，不要假装是工业项目
-- 项目描述只有"什么是 ___"，没有"我做了什么" → 重写
+- Écrire « expert » dans le CV et rester muet à la question en entretien → si la maîtrise est incertaine, écrire « avancé / notions »
+- Lister 20+ compétences sans profondeur sur aucune → réduire à 8~12 réellement maîtrisées
+- Présenter un travail de cours comme une expérience projet → l'étiqueter « projet de cours (Course Project) », ne pas le déguiser en projet industriel
+- Description de projet limitée à « ce qu'est ___ », sans « ce que j'ai fait » → réécrire

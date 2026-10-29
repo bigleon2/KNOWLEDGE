@@ -1,97 +1,97 @@
-# 面试回答框架速查
+# Aide-mémoire des cadres de réponse en entretien
 
-## STAR（行为面通用）
-
-```
-S - Situation：背景（30s）
-T - Task：你的任务（20s）
-A - Action：你的具体动作（90s，重点）
-R - Result：量化结果 + 反思（30s）
-```
-
-## SCQA（开场陈述 / 自我介绍）
+## STAR (entretiens comportementaux, usage général)
 
 ```
-S - Situation：当前的状态 / 背景
-C - Complication：变化 / 问题 / 触发点
-Q - Question：核心问题
-A - Answer：你的答案 / 行动
+S - Situation : le contexte (30 s)
+T - Task : votre mission (20 s)
+A - Action : vos actions concrètes (90 s, le cœur)
+R - Result : résultat quantifié + réflexion (30 s)
 ```
 
-例：自我介绍可以用 SCQA：
-- S: "我目前在 X 公司做 ___ 5 年"
-- C: "上一份工作业务进入成熟期，我希望去做更早期 / 更有挑战的事"
-- Q: "什么样的岗位最适合我下一步？"
-- A: "贵司的 ___ 岗位 + 我的 ___ 经验，正好契合，所以来面试"
+## SCQA (déclaration d'ouverture / présentation de soi)
 
-## MECE（结构化分析）
+```
+S - Situation : l'état actuel / le contexte
+C - Complication : le changement / le problème / le déclencheur
+Q - Question : la question centrale
+A - Answer : votre réponse / votre action
+```
 
-Mutually Exclusive, Collectively Exhaustive。
-拆问题时分类不重不漏。常见维度：
-- 时间：短期 / 中期 / 长期
-- 用户：新 / 老 / 流失
-- 业务：自营 / 三方 / B 端 / C 端
-- 地理：一线 / 二线 / 下沉
-- 价格 / 量 / 渠道
+Exemple : la présentation de soi peut suivre SCQA :
+- S : « J'occupe depuis 5 ans un poste de ___ chez X »
+- C : « Mon précédent poste est entré en phase de maturité, je souhaite passer à quelque chose de plus early stage / plus stimulant »
+- Q : « Quel poste convient le mieux à ma prochaine étape ? »
+- A : « Le poste de ___ de votre entreprise + mon expérience de ___ coïncident exactement, d'où ma candidature »
 
-## 5W1H（问题诊断）
+## MECE (analyse structurée)
+
+Mutually Exclusive, Collectively Exhaustive.
+Décomposer un problème en catégories sans recouvrement ni trou. Dimensions courantes :
+- temps : court terme / moyen terme / long terme
+- utilisateurs : nouveaux / existants / perdus
+- business : propre / tierce / B2B / B2C
+- géographie : métropoles / villes moyennes / zones rurales
+- prix / volume / canal
+
+## 5W1H (diagnostic de problème)
 
 Who / What / When / Where / Why / How
-任何模糊问题，先用 5W1H 澄清。
+Pour toute question floue, clarifier d'abord avec 5W1H.
 
-## CIRCLES（PM 案例题）
+## CIRCLES (études de cas PM)
 
-C - Comprehend（澄清）
-I - Identify customer（用户）
-R - Report needs（需求）
-C - Cut by priority（优先级）
-L - List solutions（方案）
-E - Evaluate trade-offs（取舍）
-S - Summarize（推荐）
+C - Comprehend (clarifier)
+I - Identify customer (utilisateurs)
+R - Report needs (besoins)
+C - Cut by priority (priorisation)
+L - List solutions (solutions)
+E - Evaluate trade-offs (arbitrages)
+S - Summarize (recommandation)
 
-## SOAR（适用 senior 候选人讲战略经验）
+## SOAR (pour les candidats seniors racontant une expérience stratégique)
 
 S - Situation
 O - Obstacle
 A - Action
 R - Result
 
-强调"突破障碍"的能力。
+Mettre l'accent sur la capacité à « franchir les obstacles ».
 
-## 自我介绍 3 段式（最稳的）
-
-```
-1. "我是 ___，目前在 ___ 做 ___，到现在 ___ 年"
-2. "我最近 / 最有代表性的一个项目是 ___，简单讲就是 ___，结果 ___"
-3. "我了解贵司 ___ 业务，与我的 ___ 经验 / ___ 兴趣高度契合，所以来面试"
-```
-
-时长：1~1.5 分钟。
-
-中文 + 英文版本都要准备（外企 / 投行 / 咨询 / 海外岗位常考英文）。
-
-## 谈"缺点"的标准模板
+## Présentation de soi en 3 temps (la plus sûre)
 
 ```
-1. 真实的缺点（不是反向夸自己）
-2. 你怎么察觉的
-3. 这个缺点带来过什么后果（说一个具体小事）
-4. 你正在 / 已经在做什么改进
+1. « Je suis ___, actuellement ___ chez ___, depuis ___ ans »
+2. « Mon projet le plus récent / le plus représentatif est ___, en deux mots ___, avec pour résultat ___ »
+3. « Je connais le cœur de métier ___ de votre entreprise, qui rejoint directement mon expérience de ___ / mon intérêt pour ___, d'où ma candidature »
 ```
 
-例：
-- "我以前在表达自己的反对意见时会过于含蓄，导致一次方案讨论里我不同意 PM 的方向，但没明说，结果上线后效果不好，我才意识到。"
-- "现在我会刻意在每次方案讨论后写一段『我的反对意见 + 数据依据』给 PM，先打字再口头沟通，这样表达更清晰也不情绪化。"
+Durée : 1 à 1,5 minute.
 
-## 谈"职业规划"的标准模板
+Préparer les versions française et anglaise (les postes en entreprise internationale / banque d'affaires / conseil / à l'étranger exigent souvent l'anglais).
+
+## Gabarit standard pour parler de ses « défauts »
 
 ```
-1. 短期（1~2 年）：在这个岗位做出 ___ 成果
-2. 中期（3~5 年）：在 ___ 方向深耕，从 IC 到 senior IC / 小 lead
-3. 长期：希望成为 ___ 领域的专家 / 业务 owner
+1. Un défaut réel (pas un compliment déguisé)
+2. Comment vous l'avez repéré
+3. Les conséquences qu'il a déjà eues (un petit fait concret)
+4. Ce que vous faites / avez fait pour vous améliorer
 ```
 
-避免：
-- "做你们的总监"（太 ambitious 显得不真诚）
-- "等我 5 年后看吧"（显得没规划）
-- "创业 / 转行 / 出国"（HR 听了直接拒）
+Exemple :
+- « Avant, j'étais trop allusif quand j'exprimais mon désaccord : lors d'une discussion de solution, je n'étais pas d'accord avec la direction du PM mais sans le dire clairement ; le lancement a mal marché et j'ai alors pris conscience du problème. »
+- « Désormais, après chaque discussion de solution, j'écris systématiquement au PM une note « mon objection + les données qui l'appuient », d'abord à l'écrit puis à l'oral : l'expression est plus claire et moins émotionnelle. »
+
+## Gabarit standard pour le « projet professionnel »
+
+```
+1. Court terme (1~2 ans) : livrer ___ sur ce poste
+2. Moyen terme (3~5 ans) : approfondir la direction ___, passer de IC à senior IC / petit lead
+3. Long terme : devenir expert / responsable du domaine ___
+```
+
+À éviter :
+- « Devenir votre directeur » (trop ambitieux, paraît peu sincère)
+- « On verra dans 5 ans » (paraît sans projet)
+- « Créer ma boîte / me reconvertir / partir à l'étranger » (refus quasi assuré côté RH)

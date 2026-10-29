@@ -1,11 +1,11 @@
-# 风格预设 — 改 `:root` 那 8 个 CSS 变量就能切换
+# Préréglages de style — changer les 8 variables CSS du `:root` suffit pour basculer
 
-每个预设都是 8 行 CSS。换风格时把 `template.html` 里 `:root` 块的对应行替换即可。
-不要去动字体（除非用户明确要求换字体），保持工业 / 博物馆质感。
+Chaque préréglage fait 8 lignes de CSS. Pour changer de style, remplacer les lignes correspondantes du bloc `:root` dans `template.html`.
+Ne pas toucher aux polices (sauf si l'utilisateur demande explicitement un changement), afin de préserver la texture industrielle / musée.
 
 ---
 
-## 1. default — 冷调钢蓝（默认 / "克制之物"原版）
+## 1. default — bleu acier froid (par défaut / version originale « objets retenus »)
 
 ```css
 :root{
@@ -19,12 +19,12 @@
   --steel:     #3a4a5a;
 }
 ```
-适合：北欧工业、机械藏品、灰色金属、仪器、铸铁器物
-触发词：克制 / 北欧 / 工业 / 钢铁 / 灰
+Convient à : industriel scandinave, collections mécaniques, métal gris, instruments, objets en fonte
+Mots-clés déclencheurs : retenu / scandinave / industriel / acier / gris
 
 ---
 
-## 2. warm-leather — 暖棕复古
+## 2. warm-leather — brun chaud rétro
 
 ```css
 :root{
@@ -35,32 +35,32 @@
   --ink-soft:  #6e5e44;
   --line:      #b6a787;
   --line-soft: #cdc1a5;
-  --steel:     #8a5a2e;   /* 棕铜 */
+  --steel:     #8a5a2e;   /* cuivre brun */
 }
 ```
-适合：皮革、木作、烟斗、相机、老钟表、复古家具
-触发词：暖 / 复古 / 棕 / 皮革 / 怀旧 / 老件
+Convient à : cuir, bois, pipes, appareils photo, vieilles horloges, mobilier vintage
+Mots-clés déclencheurs : chaud / rétro / brun / cuir / nostalgie / objets anciens
 
 ---
 
-## 3. night-iron — 暗夜铁
+## 3. night-iron — fer de nuit
 
 ```css
 :root{
   --bg:        #14161a;
   --bg-soft:   #1c1f24;
   --paper:     #2a2e35;
-  --ink:       #e8eaee;     /* 反色：底深字浅 */
+  --ink:       #e8eaee;     /* inversion : fond sombre, texte clair */
   --ink-soft:  #9aa0a8;
   --line:      #3a3f46;
   --line-soft: #2a2e34;
-  --steel:     #c9a35a;   /* 暗金 */
+  --steel:     #c9a35a;   /* or sombre */
 }
 ```
-适合：高端音响、机械键盘、烟火、暗色系产品、灯具
-触发词：暗 / 深色 / 夜 / 暗金 / 黑色
+Convient à : hi-fi haut de gamme, claviers mécaniques, pétards et feux d'artifice, produits en tons sombres, luminaires
+Mots-clés déclencheurs : sombre / foncé / nuit / or sombre / noir
 
-注：用此预设时还要把 body `background-image` 的两个 radial 颜色调整为更深，建议：
+Note : avec ce préréglage, ajuster aussi les deux couleurs radiales du `background-image` du body vers des tons plus profonds, suggestion :
 ```css
 body{
   background-image:
@@ -71,7 +71,7 @@ body{
 
 ---
 
-## 4. paper-press — 纸张印刷
+## 4. paper-press — papier imprimé
 
 ```css
 :root{
@@ -82,15 +82,15 @@ body{
   --ink-soft:  #5a4f3e;
   --line:      #b9ac8e;
   --line-soft: #cec3a6;
-  --steel:     #9a3324;   /* 铅红 */
+  --steel:     #9a3324;   /* rouge plomb */
 }
 ```
-适合：书籍、文具、印刷品、手作笔记、新闻类
-触发词：纸 / 印刷 / report / 文具 / 报刊 / 出版
+Convient à : livres, papeterie, imprimés, carnets artisanaux, contenu presse
+Mots-clés déclencheurs : papier / impression / report / papeterie / presse / édition
 
 ---
 
-## 5. navy-blueprint — 海军蓝图
+## 5. navy-blueprint — blueprint marine
 
 ```css
 :root{
@@ -101,17 +101,17 @@ body{
   --ink-soft:  #aab6c8;
   --line:      #4a5568;
   --line-soft: #2e3a4d;
-  --steel:     #ffffff;     /* 白线条 */
+  --steel:     #ffffff;     /* traits blancs */
 }
 ```
-适合：海事仪器、航空、导航、舰船零件、深色仪表
-触发词：海军 / 蓝图 / blueprint / 航海 / 舰
+Convient à : instruments maritimes, aéronautique, navigation, pièces navales, cadrans sombres
+Mots-clés déclencheurs : marine / blueprint / blueprint / navigation / navire
 
-注：建议同时把跑马灯 `.ticker` 的背景改 `var(--bg-soft)`、文字改 `var(--ink)`，否则浅底深字看不清。
+Note : il est conseillé de passer aussi le fond du bandeau défilant `.ticker` à `var(--bg-soft)` et son texte à `var(--ink)`, sinon le texte sombre sur fond clair devient illisible.
 
 ---
 
-## 6. ceramic-clay — 陶土黏土
+## 6. ceramic-clay — terre cuite et argile
 
 ```css
 :root{
@@ -122,15 +122,15 @@ body{
   --ink-soft:  #6b4f38;
   --line:      #b39472;
   --line-soft: #c8ad8c;
-  --steel:     #5e3a1f;   /* 炉火棕 */
+  --steel:     #5e3a1f;   /* brun de four */
 }
 ```
-适合：陶器、瓷、土耳其器物、东亚老物件、有泥土感的工艺品
-触发词：陶 / 瓷 / 土 / 窑 / 泥 / 黏土
+Convient à : poteries, porcelaines, objets ottomans, antiquités d'Asie de l'Est, artisanat aux accents terreux
+Mots-clés déclencheurs : poterie / porcelaine / terre / four / argile
 
 ---
 
-## 7. mint-laboratory — 实验室薄荷
+## 7. mint-laboratory — menthe de laboratoire
 
 ```css
 :root{
@@ -141,25 +141,25 @@ body{
   --ink-soft:  #4f655a;
   --line:      #99ada3;
   --line-soft: #b9c7bf;
-  --steel:     #2a6e5a;   /* 苔藓绿 */
+  --steel:     #2a6e5a;   /* vert mousse */
 }
 ```
-适合：医疗器械、玻璃容器、实验室仪器、植物类、中性医疗
-触发词：实验 / 医疗 / 玻璃 / 苔藓 / 绿
+Convient à : matériel médical, verrerie, instruments de laboratoire, végétal, médical neutre
+Mots-clés déclencheurs : laboratoire / médical / verre / mousse / vert
 
 ---
 
-## 怎么挑
+## Comment choisir
 
-如果用户没说风格，根据品类自动挑：
+Si l'utilisateur n'a pas précisé de style, choisir automatiquement selon la catégorie :
 
-| 品类 | 默认风格 |
+| Catégorie | Style par défaut |
 |---|---|
-| 铸铁、钢、机械、北欧器物 | default |
-| 木作、皮革、复古、相机 | warm-leather |
-| 音响、灯具、深色高端 | night-iron |
-| 文具、纸品、书 | paper-press |
-| 海事、航空、导航 | navy-blueprint |
-| 陶瓷、东亚器物 | ceramic-clay |
-| 实验仪器、医疗、玻璃 | mint-laboratory |
-| 不确定 | default（最安全） |
+| Fonte, acier, mécanique, objets scandinaves | default |
+| Bois, cuir, rétro, photo | warm-leather |
+| Audio, luminaires, haut de gamme sombre | night-iron |
+| Papeterie, articles papier, livres | paper-press |
+| Maritime, aéronautique, navigation | navy-blueprint |
+| Céramique, objets d'Asie de l'Est | ceramic-clay |
+| Instruments de laboratoire, médical, verre | mint-laboratory |
+| Incertain | default (le plus sûr) |

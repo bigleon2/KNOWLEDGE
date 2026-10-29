@@ -1,41 +1,43 @@
-# Brand 标签受控词表
+# Vocabulaire contrôlé des tags de marque
 
-`index.json` 的 `brand_inspiration` 条目使用下列受控词表打多维标签。**新增或修改品牌标签时，
-词条应从此表中选**，避免近义词分裂（如"克制 / 简约 / 极简"）导致检索漏匹配。
+Les entrées `brand_inspiration` de `index.json` utilisent le vocabulaire contrôlé suivant pour un étiquetage multidimensionnel. **Pour ajouter ou modifier un tag de marque,
+le terme doit être choisi dans cette table**, afin d'éviter l'éclatement en synonymes (comme « minimaliste / épuré / minimal ») qui provoquerait des ratés d'appariement lors de la recherche.
 
-词表从 89 个品牌 DESIGN.md 的真实内容归纳而来，并与 `deck-templates` 的 `template.json`
-维度设计对齐。
-
----
-
-## `industry`（行业，数组，≥1）
-AI · 开发者工具 · 生产力/协作 · 金融/支付 · 汽车 · 奢侈品 · 社交/通讯 · 电商/零售 ·
-媒体/出版 · 基础设施/企业 · 消费电子/科技 · 内容/创意工具 · 出行/本地生活 · 电信 · 文档/教育
-
-## `product_type`（产品形态，数组，≥1）
-SaaS · 官网/营销页 · 开发者平台 · 消费App · 内容平台 · 电商/交易 · 品牌展示页 ·
-产品发布页 · 文档站 · 作品集/个人
-
-## `mood`（情绪气质，数组，≥2）
-极简 · 克制 · 精密/工程感 · 技术感 · 奢华 · 戏剧化 · 暗黑原生 · 影像优先 · 编辑/杂志感 ·
-温暖 · 亲和/友好 · 活力/明亮 · 内容优先 · 企业/可信 · 渐变氛围 · 插画丰富 · 复古/玩味 · 未来/科幻
-
-说明（保留的近义区分，刻意不合并）：
-- `极简` = 结构性减法；`克制` = 安静不喧哗。二者可共存也可单独出现。
-- `精密/工程感` = 精确校准的视觉；`技术感` = 代码/开发者气质。
-
-## 单值维度
-- `formality`（正式度）：high / medium / low
-- `density`（信息密度）：high / medium / low
-- `scheme`（明暗）：light / dark / both
-- `era`（年代感）：复古 / 现代 / 未来
-
-## 自然语言字段
-- `best_for`：最适合的场景（一句话）
-- `avoid_for`：不适合的场景（一句话）
+Le vocabulaire est dérivé du contenu réel des DESIGN.md des 89 marques, et aligné sur la conception
+des dimensions du `template.json` de `deck-templates`.
 
 ---
 
-## 检索用法
-按需求维度过滤 `index.json` → 锁定候选品牌 → 只读命中品牌的 `DESIGN.md` 获取完整 token 与规则。
-数组维度支持多对多：一个品牌可在同一维度命中多个值（如 Stripe 同属 金融/支付 与 开发者工具）。
+## `industry` (secteur, tableau, ≥1)
+IA · outils développeur · productivité/collaboration · finance/paiement · automobile · luxe · social/communication ·
+e-commerce/retail · médias/édition · infrastructure/entreprise · électronique grand public/tech ·
+contenu/outils créatifs · mobilité/vie locale · télécoms · documentation/éducation
+
+## `product_type` (forme du produit, tableau, ≥1)
+SaaS · site vitrine/page marketing · plateforme développeur · app grand public · plateforme de contenu ·
+e-commerce/transaction · page de marque · page de lancement produit · site de documentation · portfolio/personnel
+
+## `mood` (tempérament émotionnel, tableau, ≥2)
+minimaliste · retenu · précision/ingénierie · technophile · luxueux · théâtral · dark natif · image d'abord ·
+éditorial/magazine · chaleureux · accessible/amical · énergique/lumineux · contenu d'abord · corporate/digne de confiance ·
+atmosphère en dégradés · illustration riche · rétro/espiègle · futuriste/science-fiction
+
+Notes (distinctions de synonymes conservées volontairement, non fusionnées) :
+- `minimaliste` = soustraction structurelle ; `retenu` = calme, sans éclat. Les deux peuvent coexister ou apparaître seuls.
+- `précision/ingénierie` = visuel calibré avec exactitude ; `technophile` = tempérament code/développeur.
+
+## Dimensions à valeur unique
+- `formality` (niveau de formalité) : high / medium / low
+- `density` (densité d'information) : high / medium / low
+- `scheme` (clair/obscur) : light / dark / both
+- `era` (époques) : rétro / moderne / futur
+
+## Champs en langage naturel
+- `best_for` : contextes les plus adaptés (une phrase)
+- `avoid_for` : contextes inadaptés (une phrase)
+
+---
+
+## Usage en recherche
+Filtrer `index.json` selon les dimensions du besoin → présélectionner des marques candidates → ne lire que les `DESIGN.md` des marques retenues pour obtenir les tokens complets et les règles.
+Les dimensions de type tableau supportent le plusieurs-à-plusieurs : une marque peut correspondre à plusieurs valeurs d'une même dimension (ex. Stripe appartient à la fois à finance/paiement et à outils développeur).

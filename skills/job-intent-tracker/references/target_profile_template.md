@@ -1,74 +1,74 @@
-# 岗位画像（Target Profile）模板
+# Modèle de profil de poste cible (Target Profile)
 
-填写时把所有 `<占位>` 都换成具体内容。空着不填等于没画像。
-
----
-
-## 一、岗位基本信息
-
-- **岗位名称**：<如：高级产品经理 - 用户增长方向>
-- **方向定位**：<如：B 端 SaaS / C 端工具 / 内容平台 / Fintech>
-- **职级范围**：<如：P6-P7 / 中级-高级 / Senior IC>
-- **目标城市**：<北京 / 上海 / 深圳 / 杭州 / Remote / 海外>
-- **薪资带（市场参考）**：<__k × __ 月，仅供参考，建议核实职级和城市差异>
+En remplissant, remplacer tous les `<placeholders>` par du contenu concret. Un champ laissé vide équivaut à aucune définition du profil.
 
 ---
 
-## 二、典型职责描述（JD 共性）
+## 1. Informations de base sur le poste
 
-罗列 3~5 条该岗位常见的职责动词 + 对象：
-- <如：负责 ___ 业务线的产品规划与迭代>
-- <如：通过数据分析定位用户流失环节并设计实验>
-- <如：跨部门协作，推动 ___ 项目落地>
-
----
-
-## 三、技能要求
-
-### Must-have（缺一票否决）
-- <硬技能 1，如：5+ 年 C 端产品经验>
-- <硬技能 2，如：熟练使用 SQL，能独立完成数据分析>
-- <硬技能 3，如：有从 0 到 1 的产品案例>
-
-### Nice-to-have（加分项）
-- <如：有海外市场或跨境业务经验>
-- <如：懂基础前端，能跟开发深度沟通>
-- <如：有大厂背景或被收购初创经验>
-
-### 软技能信号（HR / 终面会 probe）
-- <如：跨部门协调能力>
-- <如：业务 sense / 商业化 sense>
-- <如：用户同理心>
+- **Intitulé du poste** : <ex. : Product Manager senior — orientation croissance utilisateur>
+- **Positionnement** : <ex. : SaaS B2B / outil grand public / plateforme de contenu / Fintech>
+- **Fourchette de niveau** : <ex. : P6-P7 / intermédiaire-senior / Senior IC>
+- **Villes cibles** : <Paris / Lyon / remote / international>
+- **Fourchette de rémunération (référence marché)** : <__k × __ mois, indicatif, vérifier les écarts selon niveau et ville>
 
 ---
 
-## 四、面试流程预期
+## 2. Description type des responsabilités (invariants des offres)
 
-按公司 tier 分层估算，给用户一个心理预期：
+Lister 3~5 responsabilités récurrentes de ce poste, verbe + objet :
+- <ex. : piloter la roadmap produit et les itérations de la ligne de business ___>
+- <ex. : localiser par analyse de données les étapes de churn et concevoir les expérimentations>
+- <ex. : coordonner transversalement et faire aboutir le projet ___>
 
-| 公司类型 | 流程长度 | 典型环节 |
+---
+
+## 3. Exigences de compétences
+
+### Must-have (critère éliminatoire)
+- <compétence technique 1, ex. : 5+ ans d'expérience produit grand public>
+- <compétence technique 2, ex. : maîtrise de SQL, capable de mener seul une analyse de données>
+- <compétence technique 3, ex. : une référence produit construite de 0 à 1>
+
+### Nice-to-have (points bonus)
+- <ex. : expérience de marchés internationaux ou transfrontaliers>
+- <ex. : notions de front-end, capable de dialoguer en profondeur avec les développeurs>
+- <ex. : passé dans une grande entreprise ou une start-up rachetée>
+
+### Signaux de soft skills (ce que les RH / derniers tours sondent)
+- <ex. : capacité de coordination transverse>
+- <ex. : sens du business / sens de la monétisation>
+- <ex. : empathie utilisateur>
+
+---
+
+## 4. Attentes sur le processus de recrutement
+
+Estimation par palier d'entreprise, pour donner un repère à l'utilisateur :
+
+| Type d'entreprise | Durée du processus | Étapes typiques |
 |---------|---------|----------|
-| 大厂 / Tier 1 | 4~6 周 | 简历 → 笔试 → 1 面（专业）→ 2 面（深度）→ 3 面（leader）→ HR 面 → Offer |
-| 中厂 / Tier 2 | 2~4 周 | 简历 → 1 面 → 2 面 → HR → Offer |
-| 创业 / Tier 3 | 1~2 周 | 简历 → 1~2 面（含创始人）→ Offer |
+| Grand groupe / Tier 1 | 4~6 semaines | CV → test écrit → entretien 1 (technique) → entretien 2 (profondeur) → entretien 3 (manager) → RH → offre |
+| Entreprise intermédiaire / Tier 2 | 2~4 semaines | CV → entretien 1 → entretien 2 → RH → offre |
+| Start-up / Tier 3 | 1~2 semaines | CV → 1~2 entretiens (fondateur inclus) → offre |
 
-填写实际预期：<具体到该方向的常见流程>
-
----
-
-## 五、对标公司清单
-
-按 tier 分层列 3~5 家：
-
-- **Tier 1（梦想 offer，匹配度需达 80%+）**：<公司 1>、<公司 2>、<公司 3>
-- **Tier 2（合理选择，匹配度 60%+）**：<公司 1>、<公司 2>、<公司 3>
-- **Tier 3（保底 / 练手，匹配度 40%+）**：<公司 1>、<公司 2>、<公司 3>
+À remplir avec le processus réel : <préciser le déroulé courant pour cette orientation>
 
 ---
 
-## 六、求职策略提示
+## 5. Liste des entreprises de référence
 
-- **简历重点**：突出 ___ 经验，弱化 ___
-- **作品集 / case**：建议准备 ___（如：一个完整的产品分析报告 / 一份 SQL 项目）
-- **网络渠道**：优先走 ___（内推 / 猎头 / 官网 / 拉勾 / 脉脉），少用 ___
-- **时间预算**：从准备到拿 offer，建议留 <8~12 周> 缓冲
+Lister 3~5 entreprises par palier :
+
+- **Tier 1 (offre rêve, adéquation à atteindre : 80%+)** : <entreprise 1>, <entreprise 2>, <entreprise 3>
+- **Tier 2 (choix raisonnable, adéquation 60%+)** : <entreprise 1>, <entreprise 2>, <entreprise 3>
+- **Tier 3 (filet de sécurité / entraînement, adéquation 40%+)** : <entreprise 1>, <entreprise 2>, <entreprise 3>
+
+---
+
+## 6. Conseils stratégiques de recherche
+
+- **Priorités du CV** : mettre en avant l'expérience ___, atténuer ___
+- **Portfolio / études de cas** : préparer ___ (ex. : un rapport d'analyse produit complet / un projet SQL)
+- **Canaux réseau** : privilégier ___ (recommandation interne / chasseur de têtes / site officiel / LinkedIn), éviter ___
+- **Budget temps** : de la préparation à l'offre, prévoir une marge de <8~12 semaines>
