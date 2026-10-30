@@ -1,0 +1,17 @@
+[
+ {
+  "id": "LG-1",
+  "objectif": "boucle fermée CONFIRME — cible épinglée AVANT la fenêtre, journal surveillé, arrêt ANTICIPÉ dès que la cible est téléchargée, verdict CONFIRME + guidance de consignation",
+  "verdict": "PASS (test-livraison-garantie.py, 2026-10-31)"
+ },
+ {
+  "id": "LG-2",
+  "objectif": "boucle fermée PARTIEL — un mauvais fichier au nom proche est pris pendant la fenêtre : verdict PARTIEL, mauvais_fichiers nommé avec nom_proche=true, guidance de re-ciblage (épinglé conservé, réouverture, hygiène)",
+  "verdict": "PASS (test-livraison-garantie.py, 2026-10-31)"
+ },
+ {
+  "id": "LG-3",
+  "objectif": "boucle fermée AUCUN + gardes — fenêtre expirée sans téléchargement → verdict AUCUN (guidance preview/share) ; cible absente → rc 6 ; dépendance vue-upload < 1.5.0 → rc 7 ; famille multi-versions signalée (avertissement_famille) sans être modifiée",
+  "verdict": "PASS (test-livraison-garantie.py, 2026-10-31)"
+ }
+]

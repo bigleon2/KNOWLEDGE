@@ -1,0 +1,26 @@
+[
+ {
+  "query": "Utilise livraison-garantie pour me livrer le GIF final avec confirmation.",
+  "should_trigger": true
+ },
+ {
+  "query": "Vérifie que j'ai bien téléchargé le bon fichier et ferme la boucle sur la livraison.",
+  "should_trigger": true
+ },
+ {
+  "query": "Épingle et surveille la livraison du rapport, je me suis encore trompé de fichier.",
+  "should_trigger": true
+ },
+ {
+  "query": "Ouvre-moi simplement le portail des livrables, je vais regarder moi-même.",
+  "should_trigger": false
+ },
+ {
+  "query": "Nettoie les anciennes versions en doublon dans download.",
+  "should_trigger": false
+ },
+ {
+  "query": "Partage ce fichier sur un lien externe vérifié.",
+  "should_trigger": false
+ }
+]
