@@ -1,6 +1,6 @@
 ---
 nom: cahier-des-charges
-version: 2.0.1
+version: 2.0.2
 source: skills/cahier-des-charges/SKILL.md
 sha256_source: bc7d9b93e3fb
 genere: 2026-10-26 (phase P2 — directive 10 tâches, tâche 2)
@@ -9,7 +9,7 @@ usage: AUTONOME hors écosystème (dossier « Prompt Maitre » — non lu par l'
 
 > ⚠️ **MARQUEUR D'EXCLUSION (garde D010)** — CE DOSSIER N'EST PAS LU PAR L'ORCHESTRATION. Les dossiers « Prompt Maitre » sont des prompts autonomes à usage HORS écosystème : ils ne sont pas indexés au registre KB, ne sont mobilisés par aucun arbitre, et ne remplacent jamais la forme installée `skills/<skill>/` (source de vérité).
 
-# Prompt Maître autonome — cahier-des-charges (v2.0.1)
+# Prompt Maître autonome — cahier-des-charges (v2.0.2)
 
 ## Comment utiliser ce prompt (hors écosystème)
 
@@ -27,7 +27,7 @@ emplacement et le prompt y renvoie par leur chemin relatif. La version d'origine
 
 ---
 name: cahier-des-charges
-version: 2.0.1
+version: 2.0.2
 category: ecosystem
 language: fr
 tags:
@@ -40,7 +40,6 @@ tags:
   - system-engineering
   - exigences
   - cadrage
-  - specification
   - conception
   - tests-fonctionnels
   - tests-materiels
@@ -48,25 +47,25 @@ tags:
   - projet
 description: >-
   Skill discipline d'Engineering Design (conception de cahiers des charges) : conçoit le cahier
-  des charges d'un système complexe PUIS conçoit intégralement le système lui-même, comme un Ingénieur Concepteur en System Engineering expert
+  des charges d'un système complexe et en étend la mission à la conception intégrale du système lui-même, comme un Ingénieur Concepteur en System Engineering expert
   du domaine technique du projet — domaine détecté AUTOMATIQUEMENT à partir des informations
   compilées du projet (mécatronique, ingénierie du son, prompt engineering, robotique, IoT,
-  électronique, domotique…), puis recherché sur le web (normes, état de l'art, méthodes du
-  domaine). 7 modes : M1 CADRER, M2 RÉDIGER (CDC 12 sections, exigences EF-xx/ENF-xx atomiques à
+  électronique, domotique…), et instruit par recherche web (normes, état de l'art, méthodes du
+  domaine). 7 modes : M1 CADRER, M2 RÉDIGER (CDC 12 sections, exigences EF-xx/ENF-xx granulaires à
   critères d'acceptation MÉCANIQUES), M3 VALIDER, M4 FAIRE ÉVOLUER, M5 ANALYSER (analyse
   approfondie du projet — lien, fichier, discussion — compilation des informations, détection du
   domaine technique, recherche web ciblée, calibration SE adaptative), M6 CONCEVOIR (conception
   intégrale à partir du CDC : architecture, sous-systèmes SS-xx, interfaces I-xx, allocation des
   exigences, choix techniques justifiés), M7 TESTER (batteries de tests fonctionnels ET matériels
-  simulés — scripts Python exécutables, ex : simuler un système méchatronique — + rapport de
+  simulés — harnais Python stdlib à verdicts déterministes (ex : simuler un système méchatronique) — + rapport de
   couverture exigences↔tests). Rigueur System Engineering ADAPTATIVE (profil mini/standard/
   complexe calibré dès l'analyse), aligné spec-driven-development, livrables Markdown versionnés
-  semver + export PDF, idempotent (re-exécution = consolidation, jamais de duplication). Utiliser
+  semver + export PDF, idempotent (une re-passe consolide, jamais de duplication). Utiliser
   dès que l'utilisateur demande de concevoir, rédiger, établir, produire ou faire évoluer un
-  cahier des charges, un CDC, un document d'exigences, une spécification de projet ; ou d'analyser
+  cahier des charges, un CDC, un document d'exigences de projet ; ou d'analyser
   un projet décrit pour le cadrer ; ou de concevoir intégralement un système complexe à partir de
   son cahier des charges ; ou de générer des tests fonctionnels ou matériels (simulés) sur un
-  système — même sans mention explicite de « cahier des charges » ni d'« engineering design ».
+  système — même sans mention explicite de « cahier des charges » ni d'« engineering design ». Frontière de discipline — chaque compétence sœur couvre son propre domaine : le présent skill couvre le contrat de projet (le CDC) et son aval System Engineering (analyse du projet, conception intégrale, preuves par tests) ; toute demande hors de ce périmètre (en particulier la contractualisation d'un travail individuel et la conduite d'un travail en cours) relève des compétences sœurs dédiées.
 dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
@@ -92,7 +91,7 @@ dependencies:
 read_when:
   - Déclencher quand la demande concerne : concevoir, rédiger, établir, produire ou faire évoluer un cahier des charges (CDC) ou un document d'exigences de projet ; analyser un projet décrit (lien, fichier, discussion) pour le cadrer ; concevoir intégralement un système complexe à partir de son CDC ; générer une batterie de tests fonctionnels ou de tests matériels simulés pour un système…
   - Déclencher si la demande mentionne : cahier des charges, CDC, engineering design, system engineering, ingénieur concepteur, exigences, fonctionnelles, cadrage, conception, conception intégrale, sous-systèmes, interfaces, tests fonctionnels, tests matériels, simulation matérielle, mécatronique, domaine technique, spécification de projet, parties prenantes, périmètre, livrables…
-  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28) — dessin technique → dessin-technique ; orchestration d'agents → fleet-engineering.
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28) — la spécification exécutable d'une tâche et sa décomposition → spec-driven-development ; le plan d'actions et l'enchaînement de groupes → gen-plan ; le dessin technique → dessin-technique ; l'orchestration d'agents → fleet-engineering.
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.7)
@@ -237,10 +236,11 @@ Kebab-case (dossiers/fichiers) ; semver strict ; tags `#token` ; `{{VARIABLE}}` 
 
 ## §5 — Évaluations et déclencheurs
 
-`evals/trigger_evals.json` : 12 requêtes (9 positives — couvrant CDC, analyse projet, conception intégrale, tests fonctionnels, tests matériels simulés ; 3 contrôles négatifs — spec-driven-development, gen-plan, dessin-technique) ; déclenchement sur les demandes de cadrage, d'analyse de projet, de conception de système et de batteries de tests. Validation v2.0.0 : voie mécanique (arbitre `scripts/verifier_structure.py` + selftest scaffold) — voir verdict dans la traçabilité §6 ; voie L (votes LLM) : **MESURÉE-PARTIELLE** — campagne 2026-10-25 (runner `scripts/eval-campaign.py`, 3 runs × 12 requêtes : 29/36 votes avant échec API, KO-L001 arrêt propre, reprise `--skip-done` armée) : **rappel 1.0** (9/9 positifs ×2 runs complets), **précision 0.852**, **F1 0.92**, exactitude 0.862 ; 4 FP concentrés sur les 2 négatives frontières (spec-driven-development / gen-plan — over-triggering de la description, réserve documentée §6) ; rapport : `download/eval-campaign-report.json`. Reconnaissance discipline (v2.0.1) : le skill est identifié comme **discipline d'Engineering Design** dans l'écosystème — tags `discipline`/`engineering`/`cahier des charges`, description au canon « Skill discipline … », entrée registre KB (`skills/KNOWLEDGE.md`).
+`evals/trigger_evals.json` : 12 requêtes (9 positives — couvrant CDC, analyse projet, conception intégrale, tests fonctionnels, tests matériels simulés ; 3 contrôles négatifs — spec-driven-development, gen-plan, dessin-technique) ; déclenchement sur les demandes de cadrage, d'analyse de projet, de conception de système et de batteries de tests. Validation v2.0.0 : voie mécanique (arbitre `scripts/verifier_structure.py` + selftest scaffold) — voir verdict dans la traçabilité §6 ; voie L (votes LLM) : **MESURÉE-PARTIELLE** — campagne 2026-10-25 (runner `scripts/eval-campaign.py`, 3 runs × 12 requêtes : 29/36 votes avant échec API, KO-L001 arrêt propre, reprise `--skip-done` armée) : **rappel 1.0** (9/9 positifs ×2 runs complets), **précision 0.852**, **F1 0.92**, exactitude 0.862 ; 4 FP concentrés sur les 2 négatives frontières (spec-driven-development / gen-plan — over-triggering de la description, réserve documentée §6) ; rapport : `download/eval-campaign-report.json`. Résorption S3 (v2.0.2, 2026-10-30) : description élargie en M4 (voir §6) — rejeu voie M 12/12, cas spec-driven [9] source voie-m ; re-mesure voie L différée (KO-L001, --skip-done armée). Reconnaissance discipline (v2.0.2) : le skill est identifié comme **discipline d'Engineering Design** dans l'écosystème — tags `discipline`/`engineering`/`cahier des charges`, description au canon « Skill discipline … », entrée registre KB (`skills/KNOWLEDGE.md`).
 
 ## §6 — Traçabilité
 
+- **v2.0.2 (2026-10-30, directive propriétaire session web-eb6c8580 — « effectue réserve documentée restante (S3, élargissement de description cahier-des-charges) est à réévaluer en M4 »)** : élargissement de la description en M4 FAIRE ÉVOLUER (jamais en cours de campagne — aucune campagne en cours, R2) — résorption de la réserve S3 (voie L 2026-10-25 : 29/36 votes, rappel 1.0, précision 0.852, F1 0.92, 4 FP négatives frontières) : (1) dépollution des 4 radicaux over-triggerants (rapport replay : hits [9] = atom/execut/puis/specific — aucune positive n'en dépend, hits 9/9 sur d'autres radicaux) : « une spécification de projet » → « un document d'exigences de projet » ; « scripts Python exécutables » → « harnais Python stdlib à verdicts déterministes » ; « atomiques » → « granulaires » ; « PUIS »/« puis » éliminés, « re-exécution » reformulé (« une re-passe consolide ») et tag « specification » retiré (découverte couverte par « exigences »/« cahier des charges ») ; (2) clause de frontière de discipline générique ajoutée en fin de description (pattern alias-eco — chaque compétence sœur couvre son propre domaine, zéro radical matchant les négatives [9][10][11]) ; (3) read_when enrichi (spec-driven-development, gen-plan en exclusions sœurs). Validation des déclencheurs (prompt-engineering M4 DÉCLENCHEURS, dépendance déclarée) : rejeu voie M 12/12 — cas spec-driven [9] routé false par voie-m (fin du recours au cache voie L) ; voie L : re-mesure différée (KO-L001 — économie API, reprise --skip-done armée). Cascade KO-L004 : PM miroir (version ×2 + description + changelog), registre KB v2.0.2, evals.json 2.0.2 (note voie M/voie L), ECO_SKILLS check-ecosysteme-integrity 2.0.2. Aucun changement de contrat ni de modes (M1-M7 inchangés) — bump PATCH semver.
 - **v2.0.1 (2026-10-25, directives propriétaires session web-dd290b0d)** : reconnaissance **discipline** — (1) tags frontmatter : `discipline`, `engineering`, `cahier des charges` ajoutés (existants conservés, R1) ; (2) description alignée sur le canon des disciplines (« Skill discipline d'Engineering Design (conception de cahiers des charges) : … » — convention graph-engineering) ; (3) entrée registre KB `## cahier-des-charges v2.0.1` créée (synchronisation différée R3 de la v2.0.0 résorbée — registre désormais installé, byte-identique au dépôt b75a6206) ; (4) cascade mécanique KO-L003 : arbitre `verifier_structure.py` VERSION_CIBLE 2.0.1 (re-verdict ×2 exigé), `evals.json` version 2.0.1, annotation compat dans les 4 références (contenus inchangés) ; (5) correction S3 : bannière §0 « SHARED v1.7.10 » (référence forward sans existence) alignée sur la version réellement installée v1.7.7 ; (6) ré-amorçage registre alias (S3 wipe inter-sessions — `$FACON`). Aucun changement de contrat ni de modes (M1-M7 inchangés) — bump PATCH semver. Campagne voie L (2026-10-25, G2) : 29/36 votes mesurés (run 1-2 complets 12/12, run 3 interrompu 5/12 — échec API persistant, KO-L001 arrêt propre ; reprise --skip-done armée) — rappel 1.0, précision 0.852, F1 0.92 ; réserve S3 : 4 FP sur les négatives frontières → élargissement de description à réévaluer en M4 FAIRE ÉVOLUER (jamais en cours de campagne, R2).
 - **v2.0.0 (2026-10-24, directive propriétaire session web-dd290b0d)** : extension Engineering Design en place — « génère-moi $FACON un skill spécialisé dans l'Engineering Design dont l'objectif sera de concevoir des cahiers des charges de système complexe. Inspire-toi du fichier TXT que je t'ai envoyé pour le concevoir. Si j'ai déjà un skill qui est déjà dédié à la conception de cahiers des charges, optimise-le à la place de concevoir un nouveau skill » (alias `$FACON` = « de façon cohérente, optimisée et fonctionnelle », résolu et inscrit au registre alias-eco). DNA : 4 directives de `upload/Engineering Design.txt` — (1) analyse approfondie du projet + détection/auto-recherche du domaine technique (ex : mécatronique, prompt engineering, ingénierie du son) + CDC rédigé comme un Ingénieur Concepteur SE expert du domaine ; (2) conception intégrale du système à partir du CDC ; (3) batterie de tests fonctionnels sur les éléments indispensables ; (4) batterie de tests matériels simulés (ex : simuler un système méchatronique). Arbitrages propriétaire (AskUserQuestion) : extension en place v2.0.0, cycle complet, détection auto du domaine, tests mixtes (scripts + rapport de couverture), rigueur SE adaptative, Markdown + PDF, evals mécaniques, 4 intégrations. Nouveautés : modes M5/M6/M7, règles 9-12, formats SS/I/TF/TH, fiche domaine + dossier conception + batterie + rapport de couverture, `scripts/scaffold_tests.py` (idempotent, selftest) + `scripts/verifier_structure.py` (arbitre), 3 nouvelles references (`workflow-engineering-design.md`, `domaines-techniques.md`, `simulation-materielle.md`), template v2.0.0 (annexes D/T), trigger_evals 9+3, 7 dépendances YAML. M1-M4 inchangés (compatibilité v1.0.0 garantie). Synchronisation registre KB : DIFFÉRÉE — registre absent de ce sandbox (R3, à rejouer au dépôt portant).
 - **v1.0.0 (2026-10-23, directive propriétaire session web-f90062ce)** : création — « génère-moi un skill (cohérent, optimisé et fonctionnel) qui aura pour objectif de concevoir des cahiers des charges tel que celui que tu dois concevoir pour ce projet ». SKILL.md + `references/template-cahier-des-charges.md` + evals 5+2 ; inscription registre KB + ECO_SKILLS + porteur evals §8 (recalibrage KO-L004) ; ULTRA régénéré (route §1 + ligne §3). Nom interprété « cahier-des-charges » (coquille « chier-des-charges » dans la directive — interprétation évidente, tracée). Première application : projet Serre CBD Automatisée (directive « conçois le cahier des charges », 2026-10-23).
