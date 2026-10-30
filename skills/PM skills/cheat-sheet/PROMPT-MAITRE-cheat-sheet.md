@@ -29,7 +29,7 @@ name: cheat-sheet
 description: Transformer des supports d'apprentissage PDF/Word/Markdown en fiches de synthèse condensée. Trois styles (fiches de repérage / carte mentale / questions-réponses), sortie PDF deux colonnes en petit corps. Se déclenche quand l'utilisateur dit « génère des fiches de synthèse », « génère une Cheatsheet », « fais-moi une table de repérage rapide », « condense ce document en une page », « fais des fiches de savoir ». **Ne traite pas** : la génération de quiz à partir d'un support (→ quiz-mastery), les projets d'apprentissage au long cours (→ study-buddy).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.13)
+## §0 — Contexte Système (SHARED v1.7.14)
 
 > Écosystème Knowledge : `skills/`=skills/ | `skills/KNOWLEDGE.md`=skills/KNOWLEDGE.md | `true`=true | `NORMAL`=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

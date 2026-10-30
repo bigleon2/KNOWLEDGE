@@ -31,7 +31,7 @@ description: >-
   produisant un major_recommendation.json structuré. Convient pour la recommandation de spécialités pour le gaokao (examen national d'entrée à l'université en Chine), le choix de spécialité et l'analyse des orientations professionnelles.
 ---
 
-## §0 — Contexte Système (SHARED v1.7.13)
+## §0 — Contexte Système (SHARED v1.7.14)
 
 > Écosystème Knowledge : `skills/`=skills/ | `skills/KNOWLEDGE.md`=skills/KNOWLEDGE.md | `true`=true | `NORMAL`=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

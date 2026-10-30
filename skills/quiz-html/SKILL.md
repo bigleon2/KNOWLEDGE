@@ -3,7 +3,7 @@ name: quiz-html
 description: Générer à partir d'un tableau de questions une **page web d'exercices autonome** (fichier HTML). Quand l'utilisateur termine le flux « quiz depuis un support » ou « import de questions depuis un fichier » de quiz-mastery, proposer activement de « s'exercer dans une page web » ; après accord, appeler ce skill pour injecter les questions dans le gabarit et produire le HTML. Se déclenche aussi quand l'utilisateur dit directement « transforme ces questions en page web / HTML / page d'exercices ». **Ne traite pas** : la génération de quiz (→ quiz-mastery), la notation (→ quiz-mastery), les plans de révision au long cours (→ study-buddy).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.13)
+## §0 — Contexte Système (SHARED v1.7.14)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

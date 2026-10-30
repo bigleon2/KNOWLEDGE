@@ -3,7 +3,7 @@ name: ui-ux-pro-max
 description: Intelligence de conception UI/UX et directives de mise en œuvre pour la construction d'interfaces soignées. À utiliser lorsque l'utilisateur demande une conception UI, des parcours UX, une architecture d'information, une direction de style visuel, des systèmes/tokens de design, des spécifications de composants, du texte/microcopy, l'accessibilité, ou pour générer/critiquer/affiner une interface frontend (HTML/CSS/JS, React, Next.js, Vue, Svelte, Tailwind). Inclut des workflows pour (1) générer de nouvelles mises en page et styles UI, (2) améliorer l'UI/UX existante, (3) produire des tokens de système de design et des directives de composants, et (4) transformer les recommandations UX en modifications de code concrètes.
 ---
 
-## §0 — Contexte Système (SHARED v1.7.13)
+## §0 — Contexte Système (SHARED v1.7.14)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

@@ -29,7 +29,7 @@ name: dream-interpreter
 description: Maître de l'interprétation des rêves par IA. L'utilisateur décrit son rêve, l'assistant pose des relances ciblées sur les détails clés, puis génère une interprétation selon trois perspectives (Zhou Gong / analyse psychologique / gourou cyber), avec un JSON structuré pour le rendu frontend d'une « carte d'analyse de rêve ».
 ---
 
-## §0 — Contexte Système (SHARED v1.7.13)
+## §0 — Contexte Système (SHARED v1.7.14)
 
 > Écosystème Knowledge : `skills/`=skills/ | `skills/KNOWLEDGE.md`=skills/KNOWLEDGE.md | `true`=true | `NORMAL`=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

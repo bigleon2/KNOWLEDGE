@@ -29,7 +29,7 @@ name: auto-target-tracker
 description: Traqueur automatique de progression des objectifs. Quand la conversation contient des images liées à un objectif (notes, progrès, captures, journaux), il appelle automatiquement le VLM pour reconnaître les informations clés et les consigner dans le journal d'objectif. Convient à tous les scénarios de gestion d'objectif : gestion des études, suivi sportif, avancement professionnel, installation d'habitudes, journal de création.
 ---
 
-## §0 — Contexte Système (SHARED v1.7.13)
+## §0 — Contexte Système (SHARED v1.7.14)
 
 > Écosystème Knowledge : `skills/`=skills/ | `skills/KNOWLEDGE.md`=skills/KNOWLEDGE.md | `true`=true | `NORMAL`=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

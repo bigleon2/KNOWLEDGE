@@ -13,8 +13,8 @@
     "piliers/scripts/check-ecosysteme-integrity.py": "8e77f4c7f7f4270a4602aa1b4f8fab0c716525d3338aba584e9342a6bef98a7b",
     "piliers/scripts/install-ecosysteme-local.sh": "a4d1339958e31d61602eb9b94db6e35132e89abbdb64baced4f6fa699d228175",
     "piliers/skills/KNOWLEDGE.md": "c88e369a250e8185cb2e5e06ba24bf911e1b43ae6295d44e0a7435969bf6ce6b",
-    "piliers/skills/correct-work/SKILL.md": "dccf85e42dcf763fbe398298a1aab13afa728533369269e504199eb3da11703a",
-    "piliers/skills/gen-plan/SKILL.md": "5f4b2204b361bf6959c148673fb2437f0778e69c10d72c09caeaefc382955a28"
+    "piliers/skills/correct-work/SKILL.md": "842b3676bfb9fd07fb16ef0126a06b759c48bf9c65a37572e83a8099afc1e95c",
+    "piliers/skills/gen-plan/SKILL.md": "41878cb56ccb921a007efb1e06e20ea5b0ef54b0b0f9a54e13262f6771e76256"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md": "3be1ce9f95f83bdf9caca20115403a21548834ae14f9912090f22cfb29235d77",
@@ -28,163 +28,163 @@
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "566f03278e2ef92022954887d35f7cc34975cefed8932068d68b1bf7d275e0e5"
+    "mon-ecosysteme_archive.zip": "9cd78a4ae94ea9d9eca03623af6110601bf8b1fd2241579891befb73162acc5f"
   },
   "skills": {
     "agent-creator": {
-      "sha256": "e13c6ae08299f92e11b51f46113bbbf3dbba754dcda3f7c2fb4c10164cafbcf0",
+      "sha256": "856a22ceffa55b101c44d1483d31e6081c23005f45cf83e0497103eb42d6b654",
       "version": "2.3.0"
     },
     "agent-prompt-engineering": {
-      "sha256": "d6ec8d0102f5e9bc6fc6127e7a2b7aa91acb18abbcf1c630c7e643f981e188cb",
+      "sha256": "cdcfe42032f4443f91e35ced1e59b4e101433c3c5400e4551822d0a850873b58",
       "version": "1.0.1"
     },
     "alias-eco": {
-      "sha256": "8788088762a6119f1b03eacb6de4238842030d2bb335cc9ef22d2e09dd83f844",
+      "sha256": "7c4e3b5200779ccd8cc4e5dbd50c25f4f1e85298067fa1d2f1d8bf00ab857b6a",
       "version": "1.2.0"
     },
     "audio-metadata": {
-      "sha256": "683517e4c3796caf6a03e537ab5ce366367263f815d7cba835350b4130fa4966",
+      "sha256": "a61ec7405cb3dece942681816840fb693ecb804f2f8a8eea997c7c4a4eaad133",
       "version": "1.1.0"
     },
     "audit-provenance": {
-      "sha256": "70e7fb9d1c1c6e4861a58ef13687f76e6673a222a380581e661f8a3c55bd3aaf",
+      "sha256": "f8dc27ac8acb3039bc31156d7a8c5199185a23e05df4479d6396f392acbc9113",
       "version": "1.1.0"
     },
     "autonomous-agent": {
-      "sha256": "677b6e5af527b70539e2bb6052b7bbd2457550c92076b47ccb442daa49ce700b",
+      "sha256": "ce4f83876a29f27e646ec1302d226b66dd8a7ce6abc1abcc8595c03b9156e75c",
       "version": "1.2.1"
     },
     "cahier-des-charges": {
-      "sha256": "f8058146f2ed32a32119c9a98b568c2284cbac80f78f5c5556af7095cb4087bc",
+      "sha256": "b10278181a0f2a2db070568f81885c6b86a8fba9c750b4c77d3e1f60a014428b",
       "version": "2.0.2"
     },
     "clone-chat": {
-      "sha256": "34780482b02ddc9cb317e86a4cadbf5bb229ba140d1f487c4e31e05eefd41209",
+      "sha256": "1d3ce858d6832cc73ec3ff42bfbf872c05a953f98a93d837f75dd2036898893d",
       "version": "2.0.2"
     },
     "context-engineering": {
-      "sha256": "91ec68af08d2042866670bdf0bbc754f57c24580cbe5661689bda53b4566e217",
+      "sha256": "a05724b99d3f4c3b6d41a6e8d3a9b35cdf8f655a541d539caef147a6aa1afed2",
       "version": "1.2.1"
     },
     "correct-py": {
-      "sha256": "0ebf4f4dbfa2586a138b0e0b4d0255ce59ad0d08e55b738e7b9e8f9634bb24f9",
+      "sha256": "eab06c7e3b7021ebc49415293275eb43c1af97b4375fa038f0576254831f3a5a",
       "version": "1.1.0"
     },
     "correct-work": {
-      "sha256": "dccf85e42dcf763fbe398298a1aab13afa728533369269e504199eb3da11703a",
+      "sha256": "842b3676bfb9fd07fb16ef0126a06b759c48bf9c65a37572e83a8099afc1e95c",
       "version": "2.8.0"
     },
     "cpp-analysis": {
-      "sha256": "dc7f7b4041d13416ce3c54d1fef32e535803a86e7b4223d95c1bbd2cd450affb",
+      "sha256": "a1a4d2248e631d4d16bfaa444f2f74c0b8fa4a9ec3c270f5aaa19e143b672beb",
       "version": "1.1.0"
     },
     "dessin-technique": {
-      "sha256": "1184ccaad3c18a60e018e41897365263ff5d14003875eb9ee71a3233ea9a2996",
+      "sha256": "7c82b41e647b38a00f5dae372469772cc71d03d2f1dbc8346df50727975c36b7",
       "version": "1.1.1"
     },
     "fleet-engineering": {
-      "sha256": "54f47c4dba073bc814033b02cc3577b2b503609c0184c5d5d393e1085d429e41",
+      "sha256": "fc3526ef5c90b88120d8172bca5380d1d1fa9f5050e0725aa6caeff183d1d366",
       "version": "1.1.1"
     },
     "fullstack-dev": {
-      "sha256": "d5b7839441287f8cb536572bc9c34753b98c11ff4b6293c1f28b6c900967e3d4",
+      "sha256": "b14fd1c8375181da74d0bbaec7d20bb1b080fd196f91975f4b59de53005ee094",
       "version": "1.0.0"
     },
     "gen-plan": {
-      "sha256": "5f4b2204b361bf6959c148673fb2437f0778e69c10d72c09caeaefc382955a28",
+      "sha256": "41878cb56ccb921a007efb1e06e20ea5b0ef54b0b0f9a54e13262f6771e76256",
       "version": "3.28.2"
     },
     "graph-engineering": {
-      "sha256": "1f4484fb97262445de6fb7dd5dbc9e24c95e1f8c0ecb39691391b190750ca9be",
+      "sha256": "cbc9144906da715da85471140a8b1283952d5bd167ae52a3f4bbdffd9d853c6d",
       "version": "1.1.1"
     },
     "harness-engineering": {
-      "sha256": "c0efcbd59c8297506c417f5cc8ecbf9ab929138e5cdfc56b180a1a430ab95c35",
+      "sha256": "a925a12b5b058a26afcdaba3bce856a4482d033f753eb09954f28890fd18a579",
       "version": "1.2.1"
     },
     "iphone17": {
-      "sha256": "27e95f784e6b8fc433a1d2173caf52ca2637efbe9cb78f354d04aadb709ad6cf",
+      "sha256": "22c9afa7c52ef466ced7de1cfe4c7b9d5745d82e4a8e843e3822c0d9ac11210c",
       "version": "1.1.0"
     },
     "iphone18": {
-      "sha256": "453cffe30bbcf808c7b72d804471dcdb1b72c8a9a07073ad5a8f7f52e38a0be4",
+      "sha256": "072f77b5428d0b08280270caae3cfb381349170b5956a21b639b74275b44af5a",
       "version": "1.1.0"
     },
     "iphone19": {
-      "sha256": "3abea5060b4040225b59b2c8cb1b1c7b504c008d18e2f71d77625251c5b71668",
+      "sha256": "a73e229fe5cb7b8e5e9e9d515c6a904de112cc3d8052a67f6a33a57da8681c4b",
       "version": "0.11.0"
     },
     "knowledge-observer": {
-      "sha256": "91f8da15933d71bf2549ed6bb477848ce7d90f42ded606f4b9849e0f2c3c17a1",
+      "sha256": "da8918c4654de7dea2df7ebc8702de462c78b4a83c3df3e4f95547f67a051f1c",
       "version": "1.0.0"
     },
     "loop-engineering": {
-      "sha256": "ff2a1fe0a5533317638a8d4a0067a194ecc57977b506c430c27397839a648e6e",
+      "sha256": "f013f6686e460b7393b2ddd2cef5a371f56e238a430cd7fd747163547ff13a6c",
       "version": "1.2.1"
     },
     "memory-engineering": {
-      "sha256": "5940083d48952f5939e2af16c29effdf153fcf6596b138ec1fd4865549ce7b77",
+      "sha256": "092161b6526595a226791a343d43666650d64f46dddb9dc90e0a3877e7ec5751",
       "version": "1.2.1"
     },
     "pdf-llm": {
-      "sha256": "d0a57eee755df9696f5290e417f8ae39ae3b38c682a38d44113429178bf5b6a6",
+      "sha256": "8fb640b63947ce434108c117f8c377585429ab681e503ae06f61e10342ddc247",
       "version": "1.0.0"
     },
     "prompt-engineering": {
-      "sha256": "ff515dc6678a152a78f656dad6b249446d0067085eca7de5cece5b2ed2f8634d",
+      "sha256": "6c8884d00535c8137ca5b380d6cb69e6d1c9480d725583c2b35f43778395743a",
       "version": "2.3.1"
     },
     "refactor-guard": {
-      "sha256": "c7e3430fae9515fe0f3a232b49f1147a181ae5b724ab606b220d436b5a10ec46",
+      "sha256": "204afb896d1bb3fe68f352b97f28a063159072095d20b59daa9c2e35498d5ffd",
       "version": "1.8.1"
     },
     "refactoring-engineering": {
-      "sha256": "9c6119d522f268f5e00828acc5f4fea11186ad370a854e1a7ce8665be30fa2b0",
+      "sha256": "5be4d7b355f45fc01cfcb759f0c623422fd20dc48fa5130f14c4dc11bd5bdbac",
       "version": "1.1.1"
     },
     "refactoring-test": {
-      "sha256": "b9c7de60e31d0712574fefd6ca1e72408c1e6e9103ded156c5ca0cc465d079a8",
+      "sha256": "73a803314d2f7c95f8cd66c82b5123d2a5357b60de5673feefdce4b0625be1d8",
       "version": "1.1.1"
     },
     "resource-monitor": {
-      "sha256": "867f018dec4b6138dc1a900cee12e7dbd6152dacd2eade2ff994440eb0ba9285",
+      "sha256": "72b3a398637db490d33819d105ae8e6dba77978dfb5c5dcc2d42669c45c41d06",
       "version": "1.1.1"
     },
     "script-creator": {
-      "sha256": "cdbfd1f1be7dab06a24f60b6764fee6b14a8b36d411b39db5c8e6e837359585d",
+      "sha256": "15e1418e46a8d8d760f294be0a62e78f078121bc6a2717458f8614cb0343aaa5",
       "version": "1.1.0"
     },
     "script-mon-ecosysteme-infrastructure": {
-      "sha256": "4dbb0f077e24da50b22e19e0e2f3ee6b197465cf180e73bf48dba39bbdb78910",
+      "sha256": "7bff075d1019cd5af143b4ea6617ef57ef71868691fac02424cbac70b14e7169",
       "version": "1.1.0"
     },
     "script-reviewer": {
-      "sha256": "8b0d13f138b62ddbb69c13ce43426c4b70ab94b8387072e9de95877611b90576",
+      "sha256": "d0f8dadb0cd1bb391d468b4a265bcb6e150cd86dc2902e14f1a1d0d684419120",
       "version": "1.0.0"
     },
     "skill-creator": {
-      "sha256": "a30b3831fb0e740e061510aef10a359c537f939044cb53763e5bfd9534578ff2",
+      "sha256": "a4cb76c517a8def1975a6a7bfc21de69f8e4f75f62b40a4febaa7aba79896113",
       "version": "1.1.0"
     },
     "skill-finder-cn": {
-      "sha256": "e8b5b24e5dae6381db5c3ab6523b23a3919e899c917edaee7731bc00da78e13c",
+      "sha256": "100a8f597c8f4940f8f9ad286e85ae1d2a3c6c238cea39511373760005d99762",
       "version": "1.0.0"
     },
     "skills-inventory": {
-      "sha256": "688a32c2bfc7662bcd31c333f6ec8cf5e0a349f47f2cff2e80401138a5a3ec62",
+      "sha256": "4c4860639efbb1fb91c7b4ecde0b18ef218e14b66d0361642093904bfd81c1ce",
       "version": "1.1.0"
     },
     "spec-driven-development": {
-      "sha256": "b8aba01ae3f3450e4b6b1e8f5497f24f1ccb6449b7c880292784f1ae6be40978",
+      "sha256": "8e4af5ad4266fa8ceddaae1d1593af43ca4f7d319ed972fd0602c354496b109e",
       "version": "1.1.1"
     },
     "version-management": {
-      "sha256": "351699ffe514865e2841ad14a2924e32e4d2a6065a2fcf8e7a55499c835e0e11",
+      "sha256": "3cee85a3b336f1e722e42e03be7971fca077e2a85f45c3e61f9cab00586b03d0",
       "version": "1.2.0"
     },
     "vue-upload": {
-      "sha256": "3a785040f0b20b666a20bbd3c08a86643e3970f00a730d1ba5aca58cf439ae7f",
+      "sha256": "5f796f5254ed7bd63921e685b3c71339510c9ebb2dadec89be3d30a832fbe04c",
       "version": "1.4.0"
     }
   }

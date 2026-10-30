@@ -29,7 +29,7 @@ name: job-intent-tracker
 description: Aider l'utilisateur à clarifier ses intentions de recherche d'emploi, générer des profils de postes cibles et tenir un « tableau de suivi de candidatures » structuré. Quand l'utilisateur dit « je veux changer de travail / je ne sais pas quoi viser / regarde quels postes me conviennent / aide-moi à suivre mes candidatures / j'ai postulé à plein d'endroits mais je ne retiens plus où j'en suis / je veux un OKR de recherche / clarifie mon orientation », ou dépose un CV sans demander de réécriture, ce skill doit se déclencher activement. Il convient aussi aux stagiaires, jeunes diplômés et candidats en reconversion au moment du lancement de leur recherche, pour les trois volets « auto-inventaire + profil cible + gestion des candidatures ».
 ---
 
-## §0 — Contexte Système (SHARED v1.7.13)
+## §0 — Contexte Système (SHARED v1.7.14)
 
 > Écosystème Knowledge : `skills/`=skills/ | `skills/KNOWLEDGE.md`=skills/KNOWLEDGE.md | `true`=true | `NORMAL`=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

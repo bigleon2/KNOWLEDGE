@@ -3,7 +3,7 @@ name: anti-pua
 description: Outil professionnel d'analyse psychologique pour identifier et analyser les comportements PUA (Pickup Artist) et la manipulation émotionnelle. Capacités d'analyse de personnalité, de profilage psychologique et d'analyse émotionnelle : reconnaître les schémas de relation toxiques (manipulation émotionnelle, gaslighting, maltraitance), évaluer les traits de personnalité (triade sombre, narcissisme vulnérable, etc.), prédire le comportement de l'autre et formuler des conseils relationnels concrets. À utiliser quand l'utilisateur souhaite : analyser les motivations des propos et actes d'autrui, identifier des comportements PUA/manipulation émotionnelle, évaluer une tendance NPD (trouble de la personnalité narcissique), repérer la manipulation, prédire le comportement futur d'autrui, chercher des conseils de relation saine, ou analyser la triade sombre / la triade lumineuse.
 ---
 
-## §0 — Contexte Système (SHARED v1.7.13)
+## §0 — Contexte Système (SHARED v1.7.14)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
