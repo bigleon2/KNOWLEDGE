@@ -31,6 +31,19 @@ v1.4.0 (2026-10-30, directive propriétaire — discussion partagée du 2026-10-
   chaque /get/ réussi) — le panel expose `featured` + `derniers_telechargements` :
   vérification après la fenêtre d'accès que le bon fichier a été téléchargé.
 
+v1.5.0 (2026-10-31, Task 8 — directive propriétaire « crée $facon ces trois skills »,
+suggestion D018-1, douleur du 2026-10-25) : HYGIÈNE DES VERSIONS — l'épinglage v1.4.0
+corrigait l'affichage, pas la COEXISTENCE des versions :
+  versions          → détection des familles multi-versions (radical purgé des motifs
+                      _vN/V1/final/nouvelle/copie/(N)) + suspects au nom proche
+                      (1er token commun) + contenu des dossiers archive/.
+  push --no-archive → ARCHIVAGE AUTOMATIQUE des versions exactes supersédées vers
+                      <dir>/archive/ au push d'une nouvelle version (no-op honnête si
+                      aucune ; l'épinglé ★ est conservé et signalé ; suspects listés) —
+                      une seule version reste visible en tête de listing.
+  Panel + UI        → section repliée « versions archivées » (affichage seul, sans lien
+                      — anti-mauvais-clic) + avertissement familles multi-versions.
+
 Recherche z.ai (D036-06, Task 36) : AUCUNE commande/fonction plateforme pour un
 panneau de livrables (API storage = jeton absent) — mécanisme réel = preview
 edge :81 → :3000. share/push/doctor = voies fiables indépendantes du preview.
@@ -39,13 +52,14 @@ Codes retour : 0 OK · 2 bind impossible · 3 portail mort · 4 share/push sans
 vérification possible · 5 push destination existante (sans --force) · 6 source ou
 nom invalide (y compris featured : fichier introuvable). Options globales (--json,
 --port, --root, --sort, --filter, --featured) peuvent précéder OU suivre la
-sous-commande.
+sous-commande. L'archivage v1.5.0 ne change AUCUN code retour (échec d'archivage
+= avertissement, jamais une erreur de push).
 """
 import argparse, hashlib, http.server, importlib.util, json, os, re, secrets, shutil, socket, sys, threading, time
 import urllib.parse, urllib.request
 
 SERVER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vue_upload_server.py")
-VERSION = "1.4.0"
+VERSION = "1.5.0"
 MAX_TAILLE = 200 * 1024 * 1024  # même garde que le serveur
 UA = {"User-Agent": "vue-upload/%s" % VERSION}
 MARKER = ".featured-vue-upload.json"   # marker d'épinglage (racine — lu par le serveur)
@@ -163,6 +177,7 @@ def cmd_panel(a):
     vivant = port_alive(a.port, 0.3)
     fl = listing(a.root, a.filter, a.sort)
     feat = lit_featured(a.root)
+    det = detect_versions(a.root)
     panel = {
         "skill": "vue-upload",
         "version": VERSION,
@@ -178,11 +193,15 @@ def cmd_panel(a):
         "tri": a.sort,
         "featured": feat,
         "derniers_telechargements": lit_journal(a.root, 5),
+        "versions": {"familles_exactes": len(det["exactes"]),
+                     "suspects_nom_proche": len(det["suspects"])},
+        "versions_archivees": listing_archive(a.root),
         "download": fl["download"],
         "upload": fl["upload"],
         "limites": ("processus éphémère (sandbox fauche les démons entre les appels) — session "
                     "d'accès = --hold ≤ 540 s pendant le clic preview ; repli = share (liens "
-                    "externes vérifiés) ; livrable ciblé = featured/--featured (★ en tête du portail)"),
+                    "externes vérifiés) ; livrable ciblé = featured/--featured (★ en tête du portail) ; "
+                    "hygiène = versions (familles + archive)"),
     }
     if a.hold > 0:
         panel["hold_s"] = a.hold
@@ -237,6 +256,21 @@ def print_panel(p):
     for e in dl:
         print("║   · %s — %s/%s — %s" % (e.get("instant", "?"), e.get("dossier", "?"),
                                         e.get("fichier", "?"), human(e.get("octets", 0))))
+    # v1.5.0 — hygiène : avertissement familles + section repliée des versions archivées
+    det = p.get("versions") or {}
+    if det.get("familles_exactes") or det.get("suspects_nom_proche"):
+        print("╠═ ⚠ hygiène des versions : %d famille(s) multi-versions, %d suspect(s) au nom proche"
+              % (det.get("familles_exactes", 0), det.get("suspects_nom_proche", 0)))
+        print("║   → `versions` pour le détail ; au push d'une nouvelle version, les supersédées sont archivées")
+    arch = p.get("versions_archivees") or {}
+    n_arch = sum(len(v) for v in arch.values())
+    print("╠═ ▸ versions archivées (%d) — repli : %s" % (n_arch,
+          ", ".join("%s/archive/" % d for d in ("download", "upload") if arch.get(d)) or "n/a"))
+    for d in ("download", "upload"):
+        for f in (arch.get(d) or [])[:10]:
+            print("║     · %s/archive/%s — %s — %s" % (d, f["fichier"], human(f["octets"]), f["mtime"]))
+        if len(arch.get(d) or []) > 10:
+            print("║     … +%d archivée(s)" % (len(arch[d]) - 10))
     print("║ note : %s" % p["limites"])
     print("╚═" + "═" * 60)
 
@@ -330,6 +364,156 @@ def cmd_featured(a):
         print("╔═ vue-upload v%s — FEATURED (épinglage livrable courant)" % VERSION)
         print("║ ★ %s/%s — %s — posé %s" % (dossier, nom, human(st.st_size), ent["horodatage"]))
         print("║ %s" % res["note"])
+        print("╚═" + "═" * 60)
+    return 0
+
+
+# ────────────────────────── hygiène des versions (v1.5.0) ──────────────────────────
+
+MOTIFS_VERSION = re.compile(
+    r"(?:[_\-\s]*v\d+)|(?:[_\-\s]*final\w*)|(?:[_\-\s]*nouvelle\w*)|(?:[_\-\s]*new)"
+    r"|(?:[_\-\s]*copie)|(?:[_\-\s]*copy)|(?:[_\-\s]*definitive\w*)|(?:\s*\(\d+\))",
+    re.IGNORECASE)
+
+
+def radical_livrable(nom):
+    """Radical normalisé d'un livrable : extension ôtée, motifs de version purgés
+    (boucle jusqu'à stabilité — rapport_v3_final → rapport). Vide si tout est purgé."""
+    base = os.path.splitext(os.path.basename(nom))[0].lower().strip()
+    while True:
+        n = MOTIFS_VERSION.sub("", base).strip(" _-")
+        if n == base:
+            return n
+        base = n
+
+
+def detect_versions(root, dossier=None):
+    """v1.5.0 — familles de versions multiples d'un même livrable.
+    exactes  : >= 2 fichiers de même radical (candidats à l'archivage au push) ;
+    suspects : >= 2 fichiers partageant le 1er token du radical (>= 3 car.), nom proche
+               — signalés mais JAMAIS archivés automatiquement (garde anti-faux positif).
+    Les dossiers archive/ ne participent pas (les archivées sont hors livraison)."""
+    exactes, suspects = [], []
+    for d in ((dossier,) if dossier else ("download", "upload")):
+        p = os.path.join(root, d)
+        if not os.path.isdir(p):
+            continue
+        fich = [f for f in sorted(os.listdir(p))
+                if os.path.isfile(os.path.join(p, f)) and not f.startswith(".")]
+        rad = {}
+        for f in fich:
+            r = radical_livrable(f)
+            if r:
+                rad.setdefault(r, []).append(f)
+        for r, grp in sorted(rad.items()):
+            if len(grp) >= 2:
+                exactes.append({"radical": r, "dossier": d, "fichiers": grp})
+        exact_set = {f for e in exactes if e["dossier"] == d for f in e["fichiers"]}
+        tok = {}
+        for f in fich:
+            r = radical_livrable(f)
+            t = r.split("_")[0] if r else ""
+            if len(t) >= 3:
+                tok.setdefault(t, []).append(f)
+        for t, grp in sorted(tok.items()):
+            hors = [f for f in grp if f not in exact_set]
+            if len(grp) >= 2 and hors:
+                suspects.append({"token": t, "dossier": d, "fichiers": grp,
+                                 "hors_famille_exacte": hors})
+    return {"exactes": exactes, "suspects": suspects}
+
+
+def listing_archive(root):
+    """v1.5.0 — contenu des dossiers download/archive/ et upload/archive/ (best-effort)."""
+    out = {}
+    for d in ("download", "upload"):
+        p = os.path.join(root, d, "archive")
+        items = []
+        if os.path.isdir(p):
+            for f in sorted(os.listdir(p)):
+                fp = os.path.join(p, f)
+                if os.path.isfile(fp) and not f.startswith("."):
+                    st = os.stat(fp)
+                    items.append({"fichier": f, "octets": st.st_size,
+                                  "mtime": time.strftime("%Y-%m-%d %H:%M",
+                                                         time.localtime(st.st_mtime))})
+        out[d] = items
+    return out
+
+
+def archive_supersedees(root, dossier, nom_pousse, feat=None):
+    """v1.5.0 — archive les versions EXACTES supersédées du livrable poussé vers
+    <dir>/archive/ (shutil.move, collisions résolues honnêtement). L'épinglé courant
+    est CONSERVÉ et signalé — jamais déplacé sournoisement. Retourne (archives, notes)."""
+    archives, notes = [], []
+    cible = radical_livrable(nom_pousse)
+    if not cible:
+        return archives, notes
+    p = os.path.join(root, dossier)
+    arch_dir = os.path.join(p, "archive")
+    for f in sorted(os.listdir(p)):
+        fp = os.path.join(p, f)
+        if not os.path.isfile(fp) or f == nom_pousse or f.startswith("."):
+            continue
+        if radical_livrable(f) != cible:
+            continue
+        if feat and feat.get("dossier") == dossier and feat.get("fichier") == f:
+            notes.append("%s conservé (épinglé ★ — featured --off si archivage voulu)" % f)
+            continue
+        try:
+            os.makedirs(arch_dir, exist_ok=True)
+            dest = os.path.join(arch_dir, f)
+            if os.path.exists(dest):
+                if sha256_file(fp) == sha256_file(dest):
+                    os.remove(fp)
+                    archives.append({"fichier": f, "action": "déjà en archive (identique) — doublon supprimé"})
+                else:
+                    b, ext = os.path.splitext(f)
+                    dest = os.path.join(arch_dir, "%s-%s%s" % (b, time.strftime("%Y%m%d%H%M%S"), ext))
+                    shutil.move(fp, dest)
+                    archives.append({"fichier": f, "action": "archivé (renommé — collision de nom)"})
+            else:
+                shutil.move(fp, dest)
+                archives.append({"fichier": f, "action": "archivé"})
+        except Exception as e:
+            notes.append("%s NON archivé (%s: %s) — avertissement, push inchangé"
+                         % (f, type(e).__name__, str(e)[:80]))
+    return archives, notes
+
+
+def cmd_versions(a):
+    t0 = time.perf_counter()
+    root = os.path.realpath(a.root)
+    det = detect_versions(root)
+    arch = listing_archive(root)
+    n_arch = sum(len(v) for v in arch.values())
+    res = {"commande": "versions", "skill": "vue-upload", "version": VERSION,
+           "duree_s": round(time.perf_counter() - t0, 3),
+           "familles_exactes": det["exactes"], "suspects_nom_proche": det["suspects"],
+           "versions_archivees": arch, "total_archive": n_arch,
+           "regle": ("familles exactes = même livrable en N versions (radical purgé des motifs "
+                     "_vN/final/nouvelle/copie/(N)) — au push d'une nouvelle version, les "
+                     "supersédées sont archivées vers <dir>/archive/ (--no-archive pour "
+                     "désactiver) ; suspects = 1er token commun (nom proche) — signalés, "
+                     "jamais archivés automatiquement")}
+    if a.json:
+        print(json.dumps(res, ensure_ascii=False, indent=2))
+    else:
+        print("╔═ vue-upload v%s — VERSIONS (hygiène des livrables) — %.3f s" % (VERSION, res["duree_s"]))
+        if det["exactes"]:
+            for e in det["exactes"]:
+                print("║ ⚠ %s/ « %s » — %d versions : %s" % (e["dossier"], e["radical"],
+                      len(e["fichiers"]), ", ".join(e["fichiers"])))
+        else:
+            print("║ ✓ aucune famille multi-versions (un seul livrable par radical)")
+        for s in det["suspects"]:
+            print("║ ? nom proche « %s » — %s (hors famille exacte : %s)"
+                  % (s["token"], ", ".join(s["fichiers"]), ", ".join(s["hors_famille_exacte"])))
+        print("╠═ versions archivées : %d" % n_arch)
+        for d in ("download", "upload"):
+            for f in arch[d]:
+                print("║   · %s/archive/%s — %s — %s" % (d, f["fichier"], human(f["octets"]), f["mtime"]))
+        print("║ %s" % res["regle"])
         print("╚═" + "═" * 60)
     return 0
 
@@ -529,12 +713,24 @@ def cmd_push(a):
         shutil.copy2(src, dest)
     sha = sha256_file(src)
     verifie = os.path.isfile(dest) and sha256_file(dest) == sha
+    # v1.5.0 — hygiène des versions : archivage automatique des supersédées
+    # (uniquement sur push RÉEL — le no-op honnête ne touche à rien)
+    archives, notes, suspects = [], [], []
+    if not no_op and not getattr(a, "no_archive", False):
+        archives, notes = archive_supersedees(a.root, a.dir, nom, lit_featured(a.root))
+        cible = radical_livrable(nom)
+        for s in detect_versions(a.root, a.dir)["suspects"]:
+            if cible.startswith(s["token"] + "_") or (cible == s["token"]) or nom in s["fichiers"]:
+                suspects.append({"token": s["token"], "fichiers": s["fichiers"],
+                                 "hors_famille_exacte": s["hors_famille_exacte"]})
     res = {
         "commande": "push", "skill": "vue-upload", "version": VERSION,
         "source": src, "destination": dest, "dossier": a.dir, "nom": nom,
         "octets": taille, "taille": human(taille), "sha256": sha,
         "no_op": no_op, "verifie": verifie,
-        "note": "le fichier est désormais listé par le panel/serveur (download/ ou upload/)",
+        "archives": archives, "notes_hygiene": notes, "suspects_nom_proche": suspects,
+        "note": ("le fichier est désormais listé par le panel/serveur (download/ ou upload/)"
+                 + (" — %d version(s) supersédée(s) archivée(s) vers %s/archive/" % (len(archives), a.dir) if archives else "")),
     }
     if a.json:
         print(json.dumps(res, ensure_ascii=False, indent=2))
@@ -542,6 +738,12 @@ def cmd_push(a):
         print("╔═ vue-upload v%s — PUSH%s" % (VERSION, " NO-OP (contenu identique)" if no_op else ""))
         print("║ %s → %s — %s" % (src, dest, human(taille)))
         print("║ sha256 %s… — copie %s" % (sha[:16], "VÉRIFIÉE" if verifie else "EN ÉCHEC"))
+        for arc in archives:
+            print("║ 🗄 %s — %s" % (arc["fichier"], arc["action"]))
+        for nt in notes:
+            print("║ ⚠ %s" % nt)
+        for s in suspects:
+            print("║ ? nom proche « %s » : %s — vérifiez `versions`" % (s["token"], ", ".join(s["fichiers"])))
         print("╚═" + "═" * 60)
     return 0 if verifie else 4
 
@@ -654,9 +856,16 @@ Sous-commandes :
   share <fichier> [--as NOM] [--bin BIN] [--no-filebin] [--no-tmpfiles]
       Repli externe AUTOMATISÉ : filebin.net (≈ 6 jours) + tmpfiles.org (≈ 60 min),
       vérification sha256 par re-téléchargement — seuls les liens VÉRIFIÉS sont annoncés.
-  push <source> [--as NOM] [--dir download|upload] [--force]
+  push <source> [--as NOM] [--dir download|upload] [--force] [--no-archive]
       Inscription dans download/ ou upload/ (règles serveur : assainissement, cachés
       refusés, 200 Mo max) ; no-op honnête si identique ; --force pour écraser.
+      v1.5.0 : ARCHIVAGE AUTOMATIQUE des versions supersédées (même radical) vers
+      <dir>/archive/ — une seule version reste en listing (--no-archive pour désactiver ;
+      l'épinglé ★ est conservé ; suspects au nom proche signalés).
+  versions
+      Hygiène des versions (v1.5.0) : familles multi-versions (radical purgé des motifs
+      _vN/V1/final/nouvelle/copie/(N)), suspects au nom proche (1er token commun),
+      contenu des dossiers download/archive/ et upload/archive/.
   doctor
       Diagnostic < 1 s + voie recommandée (preview / --hold / share).
 Sans sous-commande → PANEL (voie chaude < 1 s, voie froide in-process < 2 s, --hold N,
@@ -674,8 +883,10 @@ exemples :
                                                        épinglage seul
   vue_upload_panel.py featured --off                   retirer l'épingle
   vue_upload_panel.py --filter docx --sort taille      listing filtré et trié
+  vue_upload_panel.py versions                         hygiène : familles + archive
+  vue_upload_panel.py push /tmp/rapport_v3.docx --as rapport_v3.docx
+                                                       inscription + archivage des supersédées
   vue_upload_panel.py share rapport.docx               liens externes vérifiés sha256
-  vue_upload_panel.py push /tmp/notes.md --as notes.md inscription dans download/
   vue_upload_panel.py doctor                           diagnostic + voie recommandée
 """
 
@@ -702,7 +913,7 @@ def main():
             elif t == "--json":
                 g["json"] = True
                 i += 1
-            elif t in ("featured", "share", "push", "doctor") and cmd is None:
+            elif t in ("featured", "share", "push", "doctor", "versions") and cmd is None:
                 cmd = t
                 i += 1
             elif cmd is not None:
@@ -735,14 +946,19 @@ def main():
         a.no_filebin, a.no_tmpfiles = o.get("--no-filebin", False), o.get("--no-tmpfiles", False)
         return cmd_share(a)
     if cmd == "push":
-        pos, o = _extrait(rargs, cmd, {"--as", "--dir"}, {"--force"}, 1,
-                          "push <source> [--as NOM] [--dir download|upload] [--force]")
+        pos, o = _extrait(rargs, cmd, {"--as", "--dir"}, {"--force", "--no-archive"}, 1,
+                          "push <source> [--as NOM] [--dir download|upload] [--force] [--no-archive]")
         a.source, a.as_name = pos[0], o.get("--as")
         a.dir = o.get("--dir", "download")
         if a.dir not in ("download", "upload"):
             raise SystemExit("[push] --dir doit valoir download ou upload")
         a.force = o.get("--force", False)
+        a.no_archive = o.get("--no-archive", False)
         return cmd_push(a)
+    if cmd == "versions":
+        if rargs:
+            raise SystemExit("[versions] ne prend pas d'argument")
+        return cmd_versions(a)
     if rargs:
         raise SystemExit("[doctor] ne prend pas d'argument")
     return cmd_doctor(a)

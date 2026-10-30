@@ -1,113 +1,123 @@
 {
-  "skill_name": "vue-upload",
-  "version": "1.4.0",
-  "schema": "skill-creator v1.0.0 (references/schemas.md)",
-  "note": "Convention resume-youtube : 5 evals fonctionnels positifs. Créé Task 31 (session web-bbbeab47). v1.1.0 (Task 36) : +1 eval panel rapide (VU-6), protocole deux temps intégré. v1.2.0 (Task 39, approfondissement) : +VU-7 share vérifié sha256, +VU-8 doctor — suite task39 14/14 PASS, régression Task 33 15/15. v1.3.0 (2026-10-24, session web-f90062ce) : champ version aligné v1.3.0 — doctrine MACRO/MICRO (description) + corpus trigger_evals révisé ; suite fonctionnelle inchangée (logique serveur stable depuis v1.0.0). v1.4.0 (2026-10-30, Task 7 G0, session web-eb6c8580 — directive propriétaire, discussion partagée du 2026-10-25) : épinglage du livrable courant (featured/--featured, bannière ★ + rangée en tête — douleur : 2 mauvais fichiers pris sur 3 au nom proche) + journal des téléchargements (.journal-vue-upload.jsonl, panel derniers_telechargements) ; test mécanique dédié scripts/zip-tsi/test-vue-upload-v140.py : 16 checks PASS.",
-  "evals": [
-    {
-      "id": 1,
-      "name": "VU-demarrage — démarrage du portail",
-      "prompt": "Donne-moi accès aux fichiers du dossier download, je ne peux pas les télécharger.",
-      "expected_output": "Le garde É1-INSTALL s'exécute, le serveur vue-upload démarre sur le port 3000 si absent, /files répond 200 et l'URL de preview est communiquée.",
-      "files": [],
-      "expectations": [
-        "La garde É1-INSTALL précède le démarrage",
-        "Le serveur écoute et /files retourne le JSON des deux dossiers",
-        "L'agent communique une URL d'accès (preview) à l'utilisateur"
-      ]
-    },
-    {
-      "id": 2,
-      "name": "VU-idempotent — no-op si déjà actif",
-      "prompt": "Lance le serveur de fichiers vue-upload.",
-      "expected_output": "Si le port 3000 répond déjà 200 sur /files, l'agent ne redémarre pas le serveur (no-op honnête) et donne l'URL.",
-      "files": [],
-      "expectations": [
-        "Aucun second processus serveur lancé si le port est déjà en écoute",
-        "La réponse mentionne que le portail est déjà actif"
-      ]
-    },
-    {
-      "id": 3,
-      "name": "VU-televersement — upload via le portail",
-      "prompt": "Je veux t'envoyer mes fichiers, comment faire ?",
-      "expected_output": "L'agent indique le portail vue-upload (glisser-déposer, destination upload/ ou download/) ou démarre s'il est inactif.",
-      "files": [],
-      "expectations": [
-        "Le formulaire de téléversement est mentionné (ou l'endpoint POST /upload/<dir>)",
-        "La destination upload/ est proposée pour les fichiers destinés à l'agent"
-      ]
-    },
-    {
-      "id": 4,
-      "name": "VU-repli — preview indisponible",
-      "prompt": "L'URL de preview affiche une erreur 502, je n'arrive toujours pas au document.",
-      "expected_output": "L'agent applique le repli §1.2-4 : hébergement externe temporaire du fichier, lien direct vérifié par comparaison d'octets avant communication.",
-      "files": [],
-      "expectations": [
-        "Un lien externe temporaire est fourni",
-        "L'intégrité du fichier servi est vérifiée (taille/cmp) avant de communiquer le lien"
-      ]
-    },
-    {
-      "id": 5,
-      "name": "VU-securite — traversée refusée",
-      "prompt": "Teste la sécurité du portail avec un chemin ../etc/passwd.",
-      "expected_output": "La traversée est refusée (400/404) par safe_join ; l'agent confirme que la racine est verrouillée sur download/ et upload/.",
-      "files": [],
-      "expectations": [
-        "GET /get/download/../… ne sert aucun fichier hors racine",
-        "La réponse documente la protection (realpath + basename)"
-      ]
-    },
-    {
-      "id": 6,
-      "name": "VU-6 — panel rapide (voie chaude/froide, --hold)",
-      "prompt": "Affiche-moi rapidement le panneau d'accès aux livrables de la session, sans attendre ton ancien démarrage long.",
-      "expected_output": "L'agent exécute vue_upload_panel.py : voie chaude < 1 s si le portail vit déjà, voie froide in-process < 2 s sinon ; --hold N maintient le portail pendant la session d'accès deux temps ; --json pour un verdict machine-readable.",
-      "files": [],
-      "expectations": [
-        "La voie chaude ne redémarre PAS le serveur (idempotence préservée)",
-        "La voie froide démarre le serveur in-process (zéro subprocess/setsid) en < 2 s",
-        "Le panel liste download/ et upload/ avec les tailles et l'état du routage preview edge :81",
-        "--hold maintient le portail vivant pendant l'appel (vérifié par requête HTTP 200 concurrente)"
-      ]
-    },
-    {
-      "id": 7,
-      "name": "VU-7 — share : repli externe AUTOMATISÉ vérifié sha256",
-      "prompt": "Partage le rapport DOCX qui est dans download, l'URL de preview ne marche pas à tous les coups.",
-      "expected_output": "L'agent exécute vue_upload_panel.py share <fichier> : dépôt sur filebin.net (≈ 6 jours) et tmpfiles.org (≈ 60 min), VÉRIFICATION sha256 par re-téléchargement intégrée ; seuls les liens VÉRIFIÉS sont communiqués avec leur rétention (rc 4 si aucun lien vérifié — jamais de lien non prouvé).",
-      "files": [],
-      "expectations": [
-        "La commande share remplace la procédure manuelle curl/cmp de v1.1.0",
-        "Chaque lien communiqué porte la preuve d'intégrité sha256 (re-téléchargement identique)",
-        "La rétention de chaque service est annoncée (≈ 6 jours / ≈ 60 min)",
-        "Aucun lien n'est communiqué si sa vérification a échoué (rc 4)"
-      ]
-    },
-    {
-      "id": 8,
-      "name": "VU-8 — doctor : diagnostic et voie recommandée",
-      "prompt": "Ton portail ne fonctionne pas à tous les coups, diagnostique et dis-moi comment accéder à mes livrables.",
-      "expected_output": "L'agent exécute vue_upload_panel.py doctor (< 1 s) : contrôles racine/dossiers/port/edge :81/disque/python, verdict (pret / local / a-demarrer / repli) et VOIE RECOMMANDÉE explicite (preview --hold, accès local, ou share) ; push <source> pour inscrire un fichier dans download/ selon les règles serveur (no-op si identique, --force sinon).",
-      "files": [],
-      "expectations": [
-        "Le diagnostic s'exécute en moins d'une seconde avec un verdict explicite",
-        "La voie recommandée est formulée en instruction actionnable pour l'utilisateur",
-        "push respecte les gardes serveur : cachés refusés, 200 Mo max, rc 5 sans --force sur contenu différent",
-        "L'agent n'invente pas un accès preview quand doctor conclut « repli »"
-      ]
-    },
-    {
-      "id": "VU-9",
-      "objectif": "épinglage du livrable courant — featured écrit le marker, le serveur expose l'épinglé en tête (bannière ★), --off le retire (no-op honnête), rc 6 si introuvable",
-      "verdict": "PASS (test-vue-upload-v140.py, 2026-10-30)"
-    },
-    {
-      "id": "VU-10",
-      "objectif": "journal des téléchargements — chaque /get/ réussi ajoute une entrée JSONL {instant, dossier, fichier, octets} ; le panel expose derniers_telechargements (vérification post-fenêtre d'accès)",
-      "verdict": "PASS (test-vue-upload-v140.py, 2026-10-30)"
-    }
-  ]
+ "skill_name": "vue-upload",
+ "version": "1.4.0",
+ "schema": "skill-creator v1.0.0 (references/schemas.md)",
+ "note": "Convention resume-youtube : 5 evals fonctionnels positifs. Créé Task 31 (session web-bbbeab47). v1.1.0 (Task 36) : +1 eval panel rapide (VU-6), protocole deux temps intégré. v1.2.0 (Task 39, approfondissement) : +VU-7 share vérifié sha256, +VU-8 doctor — suite task39 14/14 PASS, régression Task 33 15/15. v1.3.0 (2026-10-24, session web-f90062ce) : champ version aligné v1.3.0 — doctrine MACRO/MICRO (description) + corpus trigger_evals révisé ; suite fonctionnelle inchangée (logique serveur stable depuis v1.0.0). v1.4.0 (2026-10-30, Task 7 G0, session web-eb6c8580 — directive propriétaire, discussion partagée du 2026-10-25) : épinglage du livrable courant (featured/--featured, bannière ★ + rangée en tête — douleur : 2 mauvais fichiers pris sur 3 au nom proche) + journal des téléchargements (.journal-vue-upload.jsonl, panel derniers_telechargements) ; test mécanique dédié scripts/zip-tsi/test-vue-upload-v140.py : 16 checks PASS.",
+ "evals": [
+  {
+   "id": 1,
+   "name": "VU-demarrage — démarrage du portail",
+   "prompt": "Donne-moi accès aux fichiers du dossier download, je ne peux pas les télécharger.",
+   "expected_output": "Le garde É1-INSTALL s'exécute, le serveur vue-upload démarre sur le port 3000 si absent, /files répond 200 et l'URL de preview est communiquée.",
+   "files": [],
+   "expectations": [
+    "La garde É1-INSTALL précède le démarrage",
+    "Le serveur écoute et /files retourne le JSON des deux dossiers",
+    "L'agent communique une URL d'accès (preview) à l'utilisateur"
+   ]
+  },
+  {
+   "id": 2,
+   "name": "VU-idempotent — no-op si déjà actif",
+   "prompt": "Lance le serveur de fichiers vue-upload.",
+   "expected_output": "Si le port 3000 répond déjà 200 sur /files, l'agent ne redémarre pas le serveur (no-op honnête) et donne l'URL.",
+   "files": [],
+   "expectations": [
+    "Aucun second processus serveur lancé si le port est déjà en écoute",
+    "La réponse mentionne que le portail est déjà actif"
+   ]
+  },
+  {
+   "id": 3,
+   "name": "VU-televersement — upload via le portail",
+   "prompt": "Je veux t'envoyer mes fichiers, comment faire ?",
+   "expected_output": "L'agent indique le portail vue-upload (glisser-déposer, destination upload/ ou download/) ou démarre s'il est inactif.",
+   "files": [],
+   "expectations": [
+    "Le formulaire de téléversement est mentionné (ou l'endpoint POST /upload/<dir>)",
+    "La destination upload/ est proposée pour les fichiers destinés à l'agent"
+   ]
+  },
+  {
+   "id": 4,
+   "name": "VU-repli — preview indisponible",
+   "prompt": "L'URL de preview affiche une erreur 502, je n'arrive toujours pas au document.",
+   "expected_output": "L'agent applique le repli §1.2-4 : hébergement externe temporaire du fichier, lien direct vérifié par comparaison d'octets avant communication.",
+   "files": [],
+   "expectations": [
+    "Un lien externe temporaire est fourni",
+    "L'intégrité du fichier servi est vérifiée (taille/cmp) avant de communiquer le lien"
+   ]
+  },
+  {
+   "id": 5,
+   "name": "VU-securite — traversée refusée",
+   "prompt": "Teste la sécurité du portail avec un chemin ../etc/passwd.",
+   "expected_output": "La traversée est refusée (400/404) par safe_join ; l'agent confirme que la racine est verrouillée sur download/ et upload/.",
+   "files": [],
+   "expectations": [
+    "GET /get/download/../… ne sert aucun fichier hors racine",
+    "La réponse documente la protection (realpath + basename)"
+   ]
+  },
+  {
+   "id": 6,
+   "name": "VU-6 — panel rapide (voie chaude/froide, --hold)",
+   "prompt": "Affiche-moi rapidement le panneau d'accès aux livrables de la session, sans attendre ton ancien démarrage long.",
+   "expected_output": "L'agent exécute vue_upload_panel.py : voie chaude < 1 s si le portail vit déjà, voie froide in-process < 2 s sinon ; --hold N maintient le portail pendant la session d'accès deux temps ; --json pour un verdict machine-readable.",
+   "files": [],
+   "expectations": [
+    "La voie chaude ne redémarre PAS le serveur (idempotence préservée)",
+    "La voie froide démarre le serveur in-process (zéro subprocess/setsid) en < 2 s",
+    "Le panel liste download/ et upload/ avec les tailles et l'état du routage preview edge :81",
+    "--hold maintient le portail vivant pendant l'appel (vérifié par requête HTTP 200 concurrente)"
+   ]
+  },
+  {
+   "id": 7,
+   "name": "VU-7 — share : repli externe AUTOMATISÉ vérifié sha256",
+   "prompt": "Partage le rapport DOCX qui est dans download, l'URL de preview ne marche pas à tous les coups.",
+   "expected_output": "L'agent exécute vue_upload_panel.py share <fichier> : dépôt sur filebin.net (≈ 6 jours) et tmpfiles.org (≈ 60 min), VÉRIFICATION sha256 par re-téléchargement intégrée ; seuls les liens VÉRIFIÉS sont communiqués avec leur rétention (rc 4 si aucun lien vérifié — jamais de lien non prouvé).",
+   "files": [],
+   "expectations": [
+    "La commande share remplace la procédure manuelle curl/cmp de v1.1.0",
+    "Chaque lien communiqué porte la preuve d'intégrité sha256 (re-téléchargement identique)",
+    "La rétention de chaque service est annoncée (≈ 6 jours / ≈ 60 min)",
+    "Aucun lien n'est communiqué si sa vérification a échoué (rc 4)"
+   ]
+  },
+  {
+   "id": 8,
+   "name": "VU-8 — doctor : diagnostic et voie recommandée",
+   "prompt": "Ton portail ne fonctionne pas à tous les coups, diagnostique et dis-moi comment accéder à mes livrables.",
+   "expected_output": "L'agent exécute vue_upload_panel.py doctor (< 1 s) : contrôles racine/dossiers/port/edge :81/disque/python, verdict (pret / local / a-demarrer / repli) et VOIE RECOMMANDÉE explicite (preview --hold, accès local, ou share) ; push <source> pour inscrire un fichier dans download/ selon les règles serveur (no-op si identique, --force sinon).",
+   "files": [],
+   "expectations": [
+    "Le diagnostic s'exécute en moins d'une seconde avec un verdict explicite",
+    "La voie recommandée est formulée en instruction actionnable pour l'utilisateur",
+    "push respecte les gardes serveur : cachés refusés, 200 Mo max, rc 5 sans --force sur contenu différent",
+    "L'agent n'invente pas un accès preview quand doctor conclut « repli »"
+   ]
+  },
+  {
+   "id": "VU-9",
+   "objectif": "épinglage du livrable courant — featured écrit le marker, le serveur expose l'épinglé en tête (bannière ★), --off le retire (no-op honnête), rc 6 si introuvable",
+   "verdict": "PASS (test-vue-upload-v140.py, 2026-10-30)"
+  },
+  {
+   "id": "VU-10",
+   "objectif": "journal des téléchargements — chaque /get/ réussi ajoute une entrée JSONL {instant, dossier, fichier, octets} ; le panel expose derniers_telechargements (vérification post-fenêtre d'accès)",
+   "verdict": "PASS (test-vue-upload-v140.py, 2026-10-30)"
+  },
+  {
+   "id": "VU-11",
+   "objectif": "hygiène des versions (v1.5.0) — la sous-commande versions détecte les familles multi-versions (radical purgé des motifs _vN/V1/final/nouvelle/copie/(N)), les suspects au nom proche (1er token commun) et le contenu des dossiers download/archive/ et upload/archive/",
+   "verdict": "PASS (test-vue-upload-v150.py, 2026-10-31)"
+  },
+  {
+   "id": "VU-12",
+   "objectif": "push avec archivage automatique (v1.5.0) — au push d'une nouvelle version, les supersédées (même radical) sont déplacées vers <dir>/archive/ (une seule version reste en listing), no-op honnête si aucune, --no-archive désactive, l'épinglé ★ est conservé et signalé, suspects au nom proche listés sans archivage, codes retour inchangés",
+   "verdict": "PASS (test-vue-upload-v150.py, 2026-10-31)"
+  }
+ ]
 }

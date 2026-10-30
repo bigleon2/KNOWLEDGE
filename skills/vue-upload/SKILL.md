@@ -1,6 +1,6 @@
 ---
 name: vue-upload
-version: 1.4.0
+version: 1.5.0
 category: ecosystem
 language: fr
 tags:
@@ -43,6 +43,14 @@ description: >
   fichiers au nom proche) + journal des téléchargements (.journal-vue-upload.jsonl, exposé
   par le panel : vérifier après la fenêtre d'accès que le bon fichier a bien été téléchargé —
   douleur constatée le 2026-10-25 : 2 mauvais fichiers pris sur 3 au nom proche).
+  v1.5.0 (2026-10-31, Task 8 — directive « crée $facon ces trois skills », suggestion D018-1) :
+  HYGIÈNE DES VERSIONS — l'épinglage v1.4.0 corrigeait l'affichage, pas la coexistence :
+  versions (détection des familles multi-versions par radical purgé des motifs
+  _vN/V1/final/nouvelle/copie/(N) + suspects au nom proche [1er token commun] + contenu
+  des dossiers archive/), push avec ARCHIVAGE AUTOMATIQUE des versions exactes supersédées
+  vers <dir>/archive/ (--no-archive pour désactiver, no-op honnête si aucune, épinglé ★
+  conservé et signalé) et section repliée « versions archivées » au panel et à l'UI du
+  portail (affichage seul, sans lien — anti-mauvais-clic).
 dependencies:
   - skill: gen-plan
     version: ">=3.20.0"
@@ -51,6 +59,7 @@ read_when:
   - Déclencher quand la demande concerne : donner accès au propriétaire aux fichiers générés (download/, upload/)
   - Déclencher si la demande mentionne : vue-upload, portail, accès fichiers, télécharger livrable, téléverser
   - Déclencher aussi si la demande mentionne : share, partager un fichier, lien externe vérifié, push vers download, doctor, diagnostic portail, « ça ne fonctionne pas à tous les coups »
+  - Déclencher aussi (v1.5.0) si la demande mentionne : hygiène des versions, versions multiples, doublons livrables, archiver les anciennes versions, versions archivées, nom proche
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
@@ -70,6 +79,7 @@ read_when:
 - « partage ce fichier / donne-moi un lien vérifié » (share)
 - « mets ce fichier dans download / dans les livrables » (push)
 - « pourquoi ça ne fonctionne pas / diagnostique le portail » (doctor)
+- « il y a plusieurs versions du même fichier / nettoie download / archive les anciennes versions » (versions — hygiène v1.5.0)
 
 ## §1 — SPÉCIFICATION FONCTIONNELLE
 
@@ -111,10 +121,18 @@ rafraîchissement automatique 15 s.
      VÉRIFICATION sha256 par re-téléchargement intégrée — un lien n'est annoncé VÉRIFIÉ
      qu'après preuve d'intégrité (rc 4 si aucun lien vérifié ; filebin exige un bin ≥ 16
      caractères — défaut : bin aléatoire) ;
-   - `push <source> [--as NOM] [--dir download|upload] [--force]` : inscription d'un
+   - `push <source> [--as NOM] [--dir download|upload] [--force] [--no-archive]` : inscription d'un
      fichier dans download/ ou upload/ avec les MÊMES règles que le serveur (assainissement,
      cachés refusés, 200 Mo max) ; no-op honnête si contenu identique ; --force requis
-     pour écraser un contenu différent (rc 5 sinon) ;
+     pour écraser un contenu différent (rc 5 sinon) ; **v1.5.0 — archivage AUTOMATIQUE des
+     versions supersédées** (même radical que le fichier poussé) vers `<dir>/archive/` —
+     une seule version reste en listing (--no-archive pour désactiver ; no-op honnête si
+     aucune ; l'épinglé ★ est conservé et signalé, jamais déplacé sournoisement ; échec
+     d'archivage = avertissement, JAMAIS une erreur de push) ;
+   - `versions` (v1.5.0) : hygiène des versions — familles multi-versions (radical purgé
+     des motifs _vN/V1/final/nouvelle/copie/(N)), suspects au nom proche (1er token commun,
+     signalés JAMAIS archivés automatiquement — garde anti-faux positif), contenu des
+     dossiers download/archive/ et upload/archive/ ; JSON + texte ;
    - `doctor` : diagnostic < 1 s (racine, dossiers, port, edge :81, disque, python) +
      VOIE RECOMMANDÉE (pret / local / a-demarrer / repli) — répond à « pourquoi ça
      ne fonctionne pas à tous les coups » ;
@@ -129,6 +147,10 @@ rafraîchissement automatique 15 s.
    que le bon fichier a été téléchargé — si un mauvais fichier (nom proche) a été pris,
    réouvrir en pointant l'épinglé. Le journal JSONL (append best-effort sur chaque /get/
    réussi) ne fait jamais échouer un téléchargement.
+   **v1.5.0 — hygiène préalable** : si `versions` révèle des familles multi-versions ou des
+   suspects au nom proche, pousser la version FINALE d'abord (l'archivage automatique
+   nettoie les supersédées) et n'épingler qu'elle — la coexistence des versions est la
+   cause racine des mauvais téléchargements du 2026-10-25.
 5. **Vérification** : intégrée au panel (portail_vivant, listing download/upload, routage
    preview edge :81, épinglé, derniers téléchargements) ; contrôle croisé : `curl 127.0.0.1:3000/files` → JSON 200.
 6. **Communication** : donner l'URL de preview de la session (format plateforme) + préciser
@@ -146,7 +168,7 @@ rafraîchissement automatique 15 s.
 | Méthode | Route | Effet |
 |---------|-------|-------|
 | GET | `/` | UI (liste + formulaire de téléversement, palette DM-1) |
-| GET | `/files` | JSON des deux dossiers (nom, taille, mtime) + `featured` (épinglé v1.4.0, null si aucun) |
+| GET | `/files` | JSON des deux dossiers (nom, taille, mtime) + `featured` (épinglé v1.4.0, null si aucun) + `versions_archivees` (v1.5.0 — contenu de download/archive/ et upload/archive/) |
 | GET | `/get/<dir>/<fichier>` | téléchargement (Content-Disposition attachment) |
 | POST | `/upload/<dir>` | téléversement multipart (dir ∈ {download, upload}) |
 
@@ -173,9 +195,10 @@ rafraîchissement automatique 15 s.
 ├── scripts/
 │   ├── vue_upload_server.py    # serveur + UI (un fichier, stdlib) — v1.4.0 : bannière ★
 │   │                           #   + rangée épinglée + journal des téléchargements
-│   └── vue_upload_panel.py     # v1.4.0 — panel (voie chaude/froide, --hold, --json,
+│   │                           #   v1.5.0 : /files versions_archivees + section repliée <details>
+│   └── vue_upload_panel.py     # v1.5.0 — panel (voie chaude/froide, --hold, --json,
 │                               #   tri/filtre, --featured) + sous-commandes
-│                               #   featured / share / push / doctor
+│                               #   featured / share / push / versions / doctor
 └── evals/
     ├── evals.json
     └── trigger_evals.json
@@ -184,7 +207,10 @@ rafraîchissement automatique 15 s.
 Fichiers d'état (racine du projet, hors dépôt) : `.featured-vue-upload.json` (marker
  d'épinglage — posé/retiré par `featured`, lu par le serveur à chaque requête) et
 `.journal-vue-upload.jsonl` (journal des téléchargements — append par le serveur sur
-chaque /get/ réussi, lu par le panel pour `derniers_telechargements`).
+chaque /get/ réussi, lu par le panel pour `derniers_telechargements`). Dossiers d'hygiène
+v1.5.0 : `download/archive/` et `upload/archive/` (créés à la demande par l'archivage
+automatique du push ; hors listing principal — leurs contenus n'apparaissent que dans la
+section repliée « versions archivées », affichage sans lien).
 
 ### §2.3 Provenance et journal
 
@@ -204,6 +230,10 @@ chaque /get/ réussi, lu par le panel pour `derniers_telechargements`).
   perdus en voie chaude). Test mécanique : `scripts/zip-tsi/test-vue-upload-v140.py` (16 checks,
   reproduit le scénario 3-fichiers-au-nom-proche).
 - Intégration KB : entrée registre (Task 31) — voir {{KB_PATH}}.
+  **v1.5.0 (Task 8, 2026-10-31)** : hygiène des versions (détection familles `versions`,
+  archivage automatique au push `--no-archive`, section repliée panel + UI, épinglé ★
+  conservé) — test mécanique `scripts/task8/test-vue-upload-v150.py` (scénario 3-fichiers :
+  push _v3 → supersédées archivées, suspect nom proche signalé, non-régression v1.4.0 re-vérifiée).
 
 ## §3 — LIMITES CONNUES (honnêteté R3)
 

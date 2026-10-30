@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-vue-upload v1.2.0 — Serveur de fichiers local (portail d'accès aux livrables).
-(Marqueur aligné v1.2.0, Task 39 — logique inchangée depuis v1.0.0.)
+vue-upload v1.5.0 — Serveur de fichiers local (portail d'accès aux livrables).
+(Task 31, Task 39 v1.2.0, Task 7 v1.4.0 épinglage+journal, Task 8 v1.5.0 hygiène :
+_listing expose `versions_archivees` [contenu de download/archive/ et upload/archive/]
+et l'UI ajoute la section repliée « versions archivées » — affichage seul, sans lien,
+anti-mauvais-clic.)
 Task 31 (directive propriétaire 2026-10-05) : donner au propriétaire un accès
 direct au dossier download/ (et upload/) depuis son navigateur.
 
@@ -81,6 +84,11 @@ a.f:hover {{ text-decoration:underline; }}
 #featbox .fs {{ font-size:.82rem; opacity:.85; }}
 tr.feat td {{ background:rgba(55,220,242,.10); }}
 tr.feat a.f {{ font-weight:700; }}
+details.arch {{ background:{surface}; border:1px solid {line}; border-radius:12px;
+               padding:10px 18px; margin-bottom:18px; }}
+details.arch summary {{ cursor:pointer; color:{muted}; font-size:.85rem; }}
+details.arch td {{ font-size:.85rem; color:{muted}; }}
+details.arch .note {{ color:{muted}; font-size:.78rem; margin-top:8px; }}
 #toast {{ position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
          background:{accentDark}; color:#fff; padding:10px 22px; border-radius:99px;
          font-size:.88rem; opacity:0; pointer-events:none; transition:.25s; }}
@@ -101,6 +109,14 @@ tr.feat a.f {{ font-weight:700; }}
   <table><thead><tr><th>Fichiers reçus (upload/)</th><th>Taille</th><th>Modifié</th></tr></thead>
   <tbody id="up"></tbody></table>
 </div>
+
+<details class="arch" id="archbox">
+  <summary>▸ Versions archivées (<span id="archn">0</span>) — download/archive/ · upload/archive/ — hors livraison courante</summary>
+  <table><tbody id="archtb"></tbody></table>
+  <div class="note">Archivées automatiquement au push d'une nouvelle version (hygiène v1.5.0)
+  — affichage seul, sans lien volontairement : une version archivée ne doit PAS être
+  téléchargée par erreur. Restauration : demandez-le à l'agent.</div>
+</details>
 
 <div class="card">
   <form id="form" action="/upload/{{DIR}}" method="post" enctype="multipart/form-data">
@@ -146,6 +162,14 @@ async function refresh() {{
     document.querySelector(tb).innerHTML =
       rows.length ? rows.join('') : '<tr><td colspan="3" class="empty">— vide —</td></tr>';
   }}
+  // v1.5.0 — section repliée des versions archivées (affichage seul, sans lien)
+  const arch = j.versions_archivees || {{}};
+  const all = [...(arch.download || []), ...(arch.upload || [])];
+  document.getElementById('archn').textContent = all.length;
+  document.getElementById('archbox').style.display = all.length ? 'block' : 'none';
+  document.getElementById('archtb').innerHTML = all.map(f =>
+    `<tr><td>${{esc(f.name)}}</td><td class="sz">${{fmt(f.size)}}</td><td class="dt">${{f.mtime}}</td></tr>`)
+    .join('') || '<tr><td colspan="3" class="empty">— archive vide —</td></tr>';
 }}
 const drop = document.getElementById('drop'), input = document.getElementById('files');
 document.getElementById('pick').onclick = e => {{ e.stopPropagation(); input.click(); }};
@@ -210,7 +234,7 @@ def journalise(root, dossier, fichier, octets):
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "vue-upload/1.4.0"
+    server_version = "vue-upload/1.5.0"
     root = "/home/z/my-project"
 
     def log_message(self, fmt, *args):
@@ -253,6 +277,21 @@ class Handler(BaseHTTPRequestHandler):
                 out["featured"] = None  # épinglé pointant un fichier disparu : caché (honnête)
         else:
             out["featured"] = None
+        # v1.5.0 — versions archivées (section repliée UI ; affichage seul, sans lien)
+        arch = {}
+        for d in DIRS:
+            ad = os.path.join(self.root, d, "archive")
+            if os.path.isdir(ad):
+                items = []
+                for n in sorted(os.listdir(ad)):
+                    p2 = os.path.join(ad, n)
+                    if os.path.isfile(p2) and not n.startswith("."):
+                        st = os.stat(p2)
+                        items.append({"name": n, "size": st.st_size,
+                                      "mtime": time.strftime("%Y-%m-%d %H:%M",
+                                                             time.localtime(st.st_mtime))})
+                arch[d] = items
+        out["versions_archivees"] = arch
         return out
 
     # ── GET ──────────────────────────────────────────────────
@@ -363,7 +402,7 @@ def main():
     except OSError:
         ThreadingHTTPServer.address_family = socket.AF_INET
         srv = ThreadingHTTPServer(("0.0.0.0", a.port), Handler)
-    print("vue-upload v1.4.0 — écoute [::]:%d (dual-stack) — racine %s" % (a.port, Handler.root), flush=True)
+    print("vue-upload v1.5.0 — écoute [::]:%d (dual-stack) — racine %s" % (a.port, Handler.root), flush=True)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:
