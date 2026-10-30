@@ -22,18 +22,18 @@
 
 | ID | Décision (criterion) | Priorité | Statut |
 |----|----------------------|----------|--------|
-| D001 | Le plan couvre exactement les 4 tâches de la directive : contingence grille #token, analyse du ZIP, validation des agents TSI, calibration midi-doc-expert + tsi-validator — et rien d'autre (pas de publication du trio) | S1 | pending |
-| D002 | G1 : coefficient « Récupération externe bloquée ×3-4 » ajouté au `references/grille-token.md` (tableau coefficients) ET une row 14 à l'historique de calibration (preuve E15 Task 6) ; puce miroir au §4 SKILL.md ; version 3.28.2 (PATCH — précédent v3.28.1) | S1 | pending |
-| D003 | G1 : cascade KO-L004 complète — PM v3.28.2 généré (canal canonique), v3.28.1 archivé R4 (SHA scellé index §5), KB registre, ECO_SKILLS + manifeste rescellé, projections hôte, `integrity --check` re-vert | S1 | pending |
-| D004 | G2 : décodage du format réel exécuté et chiffré (blob décodé ~1,35 Mo, frames FourCC dénombrées, métadonnées cmdr_metadata extraites, inventaire mappings > 0) — script stdlib persisté `scripts/zip-tsi/` | S1 | pending |
-| D005 | G2 : rapport `download/analyse-zip-djtt-s4mk2-v2.1.0.md` (hôte + miroir repo) avec sections : inventaire, structure format réel, mappings extraits, documentation JPG (VLM), écart spec↔réel | S1 | pending |
-| D006 | G3 : rapport `download/rapport-validation-agents-tsi-2026-10-30.md` consignant les verdicts BRUTS pré-calibration des 3 agents sur le corpus ZIP (valider-tsi ×3 fichiers, generer-doc-midi, audit tsi-architect) + self-tests golden non-régression PASS | S1 | pending |
-| D007 | G4 : versions v1.1.0 ×2 (MINOR, addition pure R2) + module décodeur format réel (tsi-validator/scripts, détenteur R4) + self-tests étendus PASS (samples spec + réel) | S1 | pending |
-| D008 | G4 : re-validation sur corpus réel — valider-tsi.py rend un verdict exploitable sur le TSI principal (plus AUCUN échec de parsing : PASS, ou FAIL sur erreurs réelles catégorisées E1-E8 adaptées) ; generer-doc-midi.py génère doc md+json du mapping réel | S1 | pending |
-| D009 | G4 : non-régression voie M — rejeu `check-triggers-replay` host 47/47 PASS (trio 6/6 ×3 inchangé) après edits descriptions/versions | S1 | pending |
-| D010 | G5 : commits dépôt (G1 cascade + rapports) poussés `HEAD:main` → distant ≡ local (ls-remote) ; PAT one-shot jamais persisté | S1 | pending |
-| D011 | G5 : audit anti-persistance 5 zones — 0 remote, 0 credential, 0 valeur PAT complète | S1 | pending |
-| D012 | Clôture : worklog (entrées Task 7 : plan + groupes + bilan E15) + ligne §6bis (calibration trio) + clone-chat 8/8 checks | S2 | pending |
+| D001 | Le plan couvre exactement les 4 tâches de la directive : contingence grille #token, analyse du ZIP, validation des agents TSI, calibration midi-doc-expert + tsi-validator — et rien d'autre (pas de publication du trio) | S1 | verified |
+| D002 | G1 : coefficient « Récupération externe bloquée ×3-4 » ajouté au `references/grille-token.md` (tableau coefficients) ET une row 14 à l'historique de calibration (preuve E15 Task 6) ; puce miroir au §4 SKILL.md ; version 3.28.2 (PATCH — précédent v3.28.1) | S1 | verified |
+| D003 | G1 : cascade KO-L004 complète — PM v3.28.2 généré (canal canonique), v3.28.1 archivé R4 (SHA scellé index §5), KB registre, ECO_SKILLS + manifeste rescellé, projections hôte, `integrity --check` re-vert | S1 | verified |
+| D004 | G2 : décodage du format réel exécuté et chiffré (blob décodé ~1,35 Mo, frames FourCC dénombrées, métadonnées cmdr_metadata extraites, inventaire mappings > 0) — script stdlib persisté `scripts/zip-tsi/` | S1 | verified |
+| D005 | G2 : rapport `download/analyse-zip-djtt-s4mk2-v2.1.0.md` (hôte + miroir repo) avec sections : inventaire, structure format réel, mappings extraits, documentation JPG (VLM), écart spec↔réel | S1 | verified |
+| D006 | G3 : rapport `download/rapport-validation-agents-tsi-2026-10-30.md` consignant les verdicts BRUTS pré-calibration des 3 agents sur le corpus ZIP (valider-tsi ×3 fichiers, generer-doc-midi, audit tsi-architect) + self-tests golden non-régression PASS | S1 | verified |
+| D007 | G4 : versions v1.1.0 ×2 (MINOR, addition pure R2) + module décodeur format réel (tsi-validator/scripts, détenteur R4) + self-tests étendus PASS (samples spec + réel) | S1 | verified |
+| D008 | G4 : re-validation sur corpus réel — valider-tsi.py rend un verdict exploitable sur le TSI principal (plus AUCUN échec de parsing : PASS, ou FAIL sur erreurs réelles catégorisées E1-E8 adaptées) ; generer-doc-midi.py génère doc md+json du mapping réel | S1 | verified |
+| D009 | G4 : non-régression voie M — rejeu `check-triggers-replay` host 47/47 PASS (trio 6/6 ×3 inchangé) après edits descriptions/versions | S1 | verified |
+| D010 | G5 : commits dépôt (G1 cascade + rapports) poussés `HEAD:main` → distant ≡ local (ls-remote) ; PAT one-shot jamais persisté | S1 | verified |
+| D011 | G5 : audit anti-persistance 5 zones — 0 remote, 0 credential, 0 valeur PAT complète | S1 | verified |
+| D012 | Clôture : worklog (entrées Task 7 : plan + groupes + bilan E15) + ligne §6bis (calibration trio) + clone-chat 8/8 checks | S2 | accompli |
 
 ```yaml
 decisions:
@@ -96,7 +96,7 @@ decisions:
     verification: "python3 -c \"import subprocess; h=subprocess.run(['git','-C','.staging/KNOWLEDGE-publish','rev-parse','HEAD'],capture_output=True,text=True).stdout.strip(); r=subprocess.run(['git','-C','.staging/KNOWLEDGE-publish','ls-remote','https://github.com/bigleon2/KNOWLEDGE.git','refs/heads/main'],capture_output=True,text=True).stdout; assert h in r, (h, r[:80])\""
     source: "règle d'or n°4 (GO donné avec la clé) + précédent Task 6 G1 (HEAD:main obligatoire)"
     priority: "S1"
-    status: "différé"
+    status: "verified"
   - id: "D011"
     criterion: "Audit anti-persistance 5 zones : git remote -v vide ; ~/.git-credentials et ~/.config/git sans jeton ; arborescence worktree+hôte sans valeur PAT complète (motifs documentaires préexistants exclus, identifiés) ; historique commits du tour sans valeur ; /tmp sans askpass résiduel"
     verification: "python3 -c \"import subprocess,glob; rem=subprocess.run(['git','-C','.staging/KNOWLEDGE-publish','remote','-v'],capture_output=True,text=True).stdout; assert rem.strip()=='', rem; assert not glob.glob('/tmp/pat-askpass*'); import os; [print(f) for f in ['/home/z/.git-credentials'] if os.path.exists(f)]\""
@@ -234,6 +234,10 @@ Coefficients appliqués : complexité standard 1.0x ; contingence « récupérat
 
 **Horodatage plan : 2026-10-30T19:35:00+01:00** (initial 2026-10-30T19:15:00+01:00 — amendement 1 directive propriétaire ; retouches vérifications D002/D003 19:52+01:00 : proxy casse corrigé, critères inchangés — pattern Task 5)
 
-**Answer key finale : 19/19 traitées** — 17 verified mécaniquement (rejeu G5), D010 DIFFÉRÉ (PAT absent du contexte — commits locaux prêts, demande de re-provision), D012/D018 accomplies en clôture (clone 8/8 + suggestions worklog). Corrections de vérificateurs tracées : D002/D003 (casse), D009 (statu quo 5 héritées), D004 (phrasing) — critères inchangés (pattern Task 5).
+**Answer key finale : 19/19 traitées** — 17 verified mécaniquement (rejeu G5), D010 EXÉCUTÉ EN CLÔTURE (2026-10-31 — PAT re-provisionné par le propriétaire, push vérifié ls-remote ≡ local, voir **Clôture D010/D011** ci-dessous), D012/D018 accomplies en clôture (clone 8/8 + suggestions worklog). Corrections de vérificateurs tracées : D002/D003 (casse), D009 (statu quo 5 héritées), D004 (phrasing) — critères inchangés (pattern Task 5).
 
 **Verdict E8 : PASS** (amendement 1 — answer-key-checker 16/16 ALL PASS arbre publication, re-exécuté 2026-10-30T19:38+01:00 ; check_plan_protocol P1-P5 PASS : P1 plan 34 k car. · P2 19 décisions/19 vérifications · P3 worklog R5 · P4 PLAN-AFFICHE · P5 verdict frais ; décisions D001-D019 criterion/verification/source/priority complets — Horodatage vérifié : 2026-10-30T19:35:00+01:00)
+
+---
+
+> **Clôture D010/D011** (2026-10-31, directive propriétaire « continue avec ma clé » — PAT re-provisionné au tour, one-shot jamais persisté) : push `HEAD:main` exécuté depuis le worktree de publication — distant **3e2f076** vérifié avant (ls-remote ≡ attendu) puis **3e2f076 → 225a389** (6 commits Task 7 : 652b193 G0+G1 · 2da49f7 G2+G3 · d131141 G4 · 4a5619f G5 sweep+rescellage · 5c6051d G5 clôture · 225a389 clôture finale), puis commit de clôture (présent document + worklog) poussé à son tour — distant ≡ local vérifié par ls-remote après chaque push. Audit anti-persistance **5 zones VERT** (re-exécution post-push) : ① git remote -v vide (dépôt hôte + worktree) ; ② ~/.git-credentials absent, ~/.config/git et ~/.gitconfig sans jeton ; ③ valeur PAT complète : 0 occurrence dans l'arborescence worktree+hôte et dans l'historique des commits poussés 3e2f076..HEAD (motifs documentaires tronqués « github_pat_… » préexistants exclus, identifiés) ; ④ historique commits du tour sans valeur ; ⑤ /tmp sans résidu (fichier jeton /tmp/kp umask 077 détruit après usage, aucun askpass). Answer key finale : **19/19 verified**.
