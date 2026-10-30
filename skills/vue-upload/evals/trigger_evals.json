@@ -36,6 +36,9 @@
  },
  {
   "query": "Réinstalle la dernière version du skill gen-plan.",
-  "should_trigger": false
+  "should_trigger": false,
+  "exclusifs": [
+   "réinstalle"
+  ]
  }
 ]
