@@ -1,0 +1,391 @@
+{
+  "date": "2026-10-30",
+  "skill": "cahier-des-charges",
+  "version": "2.0.2",
+  "tache": "Task 6 / G3 — re-mesure voie L (clôture réserve S3)",
+  "methodologie": "canon Task 30 (voie-l-semantique.py) : question de ROUTAGE, description complète v2.0.2, sériel + throttle 3 s, retry/backoff, parse strict — runner eval-campaign.py reconstruit (perdu)",
+  "statut": "MESURÉE",
+  "campagne_precedente_2026_10_25": {
+    "votes": "29/36",
+    "rappel": 1.0,
+    "precision": 0.852,
+    "f1": 0.92,
+    "note": "MESURÉE-PARTIELLE, 4 FP négatives frontières — réserve S3"
+  },
+  "metriques": {
+    "n_votes": 36,
+    "n_indecis": 0,
+    "tp": 27,
+    "fp": 0,
+    "fn": 0,
+    "tn": 9,
+    "rappel": 1.0,
+    "precision": 1.0,
+    "f1": 1.0,
+    "exactitude": 1.0
+  },
+  "requetes": {
+    "Conçois le cahier des charges de ce projet à partir de la discussion de cadrage fournie.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Établis le document d'exigences : objectifs, périmètre inclus et exclus, exigences fonctionnelles et non-fonctionnelles, critères d'acceptation.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Rédige le CDC complet du projet avant de lancer le développement.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Le périmètre du projet a changé : fais évoluer le cahier des charges avec des amendements tracés.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Cadrage du nouveau projet : parties prenantes, indicateurs de succès, livrables et jalons.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Analyse ce projet (lien + fichiers joints) : détermine automatiquement le domaine technique, instruis-le par recherche web et calibre la rigueur d'ingénierie.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Conçois intégralement ce système mécatronique à partir de son cahier des charges : architecture, sous-systèmes, interfaces, allocation des exigences.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Génère les tests fonctionnels qui prouvent les exigences du CDC, avec matrice de couverture.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Simule le système matériel (modèle thermique + boucle PID + capteurs virtuels) pour vérifier les exigences de performance.": {
+      "attendu": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "unanime_ok": true
+    },
+    "Décompose la spécification exécutable de cette tâche en plan puis en tâches atomiques.": {
+      "attendu": false,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "unanime_ok": true
+    },
+    "Génère le plan d'actions de la session et enchaîne les groupes en mode step.": {
+      "attendu": false,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "unanime_ok": true
+    },
+    "Reproduis cette pièce en dessin technique isométrique avec cotation normalisée.": {
+      "attendu": false,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "unanime_ok": true
+    }
+  },
+  "votes": [
+    {
+      "run": 1,
+      "query": "Conçois le cahier des charges de ce projet à partir de la discussion de cadrage fournie.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:36:57"
+    },
+    {
+      "run": 1,
+      "query": "Établis le document d'exigences : objectifs, périmètre inclus et exclus, exigences fonctionnelles et non-fonctionnelles, critères d'acceptation.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:00"
+    },
+    {
+      "run": 1,
+      "query": "Rédige le CDC complet du projet avant de lancer le développement.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:04"
+    },
+    {
+      "run": 1,
+      "query": "Le périmètre du projet a changé : fais évoluer le cahier des charges avec des amendements tracés.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:07"
+    },
+    {
+      "run": 1,
+      "query": "Cadrage du nouveau projet : parties prenantes, indicateurs de succès, livrables et jalons.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:11"
+    },
+    {
+      "run": 1,
+      "query": "Analyse ce projet (lien + fichiers joints) : détermine automatiquement le domaine technique, instruis-le par recherche web et calibre la rigueur d'ingénierie.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:14"
+    },
+    {
+      "run": 1,
+      "query": "Conçois intégralement ce système mécatronique à partir de son cahier des charges : architecture, sous-systèmes, interfaces, allocation des exigences.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:18"
+    },
+    {
+      "run": 1,
+      "query": "Génère les tests fonctionnels qui prouvent les exigences du CDC, avec matrice de couverture.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:21"
+    },
+    {
+      "run": 1,
+      "query": "Simule le système matériel (modèle thermique + boucle PID + capteurs virtuels) pour vérifier les exigences de performance.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:25"
+    },
+    {
+      "run": 1,
+      "query": "Décompose la spécification exécutable de cette tâche en plan puis en tâches atomiques.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:37:28"
+    },
+    {
+      "run": 1,
+      "query": "Génère le plan d'actions de la session et enchaîne les groupes en mode step.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:37:32"
+    },
+    {
+      "run": 1,
+      "query": "Reproduis cette pièce en dessin technique isométrique avec cotation normalisée.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:37:35"
+    },
+    {
+      "run": 2,
+      "query": "Conçois le cahier des charges de ce projet à partir de la discussion de cadrage fournie.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:39"
+    },
+    {
+      "run": 2,
+      "query": "Établis le document d'exigences : objectifs, périmètre inclus et exclus, exigences fonctionnelles et non-fonctionnelles, critères d'acceptation.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:42"
+    },
+    {
+      "run": 2,
+      "query": "Rédige le CDC complet du projet avant de lancer le développement.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:45"
+    },
+    {
+      "run": 2,
+      "query": "Le périmètre du projet a changé : fais évoluer le cahier des charges avec des amendements tracés.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:49"
+    },
+    {
+      "run": 2,
+      "query": "Cadrage du nouveau projet : parties prenantes, indicateurs de succès, livrables et jalons.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:52"
+    },
+    {
+      "run": 2,
+      "query": "Analyse ce projet (lien + fichiers joints) : détermine automatiquement le domaine technique, instruis-le par recherche web et calibre la rigueur d'ingénierie.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:56"
+    },
+    {
+      "run": 2,
+      "query": "Conçois intégralement ce système mécatronique à partir de son cahier des charges : architecture, sous-systèmes, interfaces, allocation des exigences.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:37:59"
+    },
+    {
+      "run": 2,
+      "query": "Génère les tests fonctionnels qui prouvent les exigences du CDC, avec matrice de couverture.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:38:03"
+    },
+    {
+      "run": 2,
+      "query": "Simule le système matériel (modèle thermique + boucle PID + capteurs virtuels) pour vérifier les exigences de performance.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:38:06"
+    },
+    {
+      "run": 2,
+      "query": "Décompose la spécification exécutable de cette tâche en plan puis en tâches atomiques.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:38:10"
+    },
+    {
+      "run": 2,
+      "query": "Génère le plan d'actions de la session et enchaîne les groupes en mode step.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:38:13"
+    },
+    {
+      "run": 2,
+      "query": "Reproduis cette pièce en dessin technique isométrique avec cotation normalisée.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:38:16"
+    },
+    {
+      "run": 3,
+      "query": "Conçois le cahier des charges de ce projet à partir de la discussion de cadrage fournie.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:38:20"
+    },
+    {
+      "run": 3,
+      "query": "Établis le document d'exigences : objectifs, périmètre inclus et exclus, exigences fonctionnelles et non-fonctionnelles, critères d'acceptation.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:38:23"
+    },
+    {
+      "run": 3,
+      "query": "Rédige le CDC complet du projet avant de lancer le développement.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:38:27"
+    },
+    {
+      "run": 3,
+      "query": "Le périmètre du projet a changé : fais évoluer le cahier des charges avec des amendements tracés.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:38:33"
+    },
+    {
+      "run": 3,
+      "query": "Cadrage du nouveau projet : parties prenantes, indicateurs de succès, livrables et jalons.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:38:36"
+    },
+    {
+      "run": 3,
+      "query": "Analyse ce projet (lien + fichiers joints) : détermine automatiquement le domaine technique, instruis-le par recherche web et calibre la rigueur d'ingénierie.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:38:40"
+    },
+    {
+      "run": 3,
+      "query": "Décompose la spécification exécutable de cette tâche en plan puis en tâches atomiques.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:40:05"
+    },
+    {
+      "run": 3,
+      "query": "Génère le plan d'actions de la session et enchaîne les groupes en mode step.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:40:08"
+    },
+    {
+      "run": 3,
+      "query": "Reproduis cette pièce en dessin technique isométrique avec cotation normalisée.",
+      "attendu": false,
+      "verdict": false,
+      "ts": "2026-10-30T17:40:12"
+    },
+    {
+      "run": 3,
+      "query": "Conçois intégralement ce système mécatronique à partir de son cahier des charges : architecture, sous-systèmes, interfaces, allocation des exigences.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:41:19"
+    },
+    {
+      "run": 3,
+      "query": "Génère les tests fonctionnels qui prouvent les exigences du CDC, avec matrice de couverture.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:41:23"
+    },
+    {
+      "run": 3,
+      "query": "Simule le système matériel (modèle thermique + boucle PID + capteurs virtuels) pour vérifier les exigences de performance.",
+      "attendu": true,
+      "verdict": true,
+      "ts": "2026-10-30T17:41:26"
+    }
+  ]
+}
