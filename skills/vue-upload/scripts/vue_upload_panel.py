@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""vue-upload v1.2.0 — PANEL RAPIDE + BOÎTE À OUTILS d'accès aux livrables.
+"""vue-upload v1.4.0 — PANEL RAPIDE + BOÎTE À OUTILS d'accès aux livrables.
 
 v1.1.0 (Task 36) : voie CHAUDE < 1 s (portail déjà vivant, zéro démarrage),
 voie FROIDE in-process < 2 s (thread daemon, import du Handler — zéro subprocess,
@@ -17,8 +17,19 @@ v1.2.0 (Task 39 — approfondissement) : ce qui était MANUEL devient une comman
                      --force requis pour écraser un contenu différent (rc 5 sinon).
   doctor           → diagnostic < 1 s (racine, dossiers, port, edge :81, disque)
                      + VOIE RECOMMANDÉE — répond à « pourquoi ça ne fonctionne pas ».
-Sans sous-commande → PANEL (comportement v1.1.0 inchangé ; listing enrichi :
-tri --sort nom|taille|date, filtre --filter, dates de modification).
+
+v1.4.0 (2026-10-30, directive propriétaire — discussion partagée du 2026-10-25) :
+  featured <fichier> → épingle le LIVRABLE COURANT (marker .featured-vue-upload.json)
+                       lu par le serveur à chaque requête : bannière ★ + entrée en
+                       tête du portail — le propriétaire voit immédiatement quel
+                       fichier télécharger, même parmi des dénominations proches.
+                       Douleur constatée le 2026-10-25 : 2 mauvais fichiers pris
+                       sur 3 au nom proche. --off retire l'épingle (no-op honnête) ;
+                       sans argument = affichage de l'épinglé courant.
+  --featured <fichier> (drapeau panel) : épinglage + fenêtre d'accès en un appel.
+  Journal des téléchargements (.journal-vue-upload.jsonl, tenu par le serveur sur
+  chaque /get/ réussi) — le panel expose `featured` + `derniers_telechargements` :
+  vérification après la fenêtre d'accès que le bon fichier a été téléchargé.
 
 Recherche z.ai (D036-06, Task 36) : AUCUNE commande/fonction plateforme pour un
 panneau de livrables (API storage = jeton absent) — mécanisme réel = preview
@@ -26,16 +37,19 @@ edge :81 → :3000. share/push/doctor = voies fiables indépendantes du preview.
 
 Codes retour : 0 OK · 2 bind impossible · 3 portail mort · 4 share/push sans
 vérification possible · 5 push destination existante (sans --force) · 6 source ou
-nom invalide. Options globales (--json, --port, --root, --sort, --filter) peuvent
-précéder OU suivre la sous-commande.
+nom invalide (y compris featured : fichier introuvable). Options globales (--json,
+--port, --root, --sort, --filter, --featured) peuvent précéder OU suivre la
+sous-commande.
 """
 import argparse, hashlib, http.server, importlib.util, json, os, re, secrets, shutil, socket, sys, threading, time
 import urllib.parse, urllib.request
 
 SERVER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vue_upload_server.py")
-VERSION = "1.2.0"
+VERSION = "1.4.0"
 MAX_TAILLE = 200 * 1024 * 1024  # même garde que le serveur
 UA = {"User-Agent": "vue-upload/%s" % VERSION}
+MARKER = ".featured-vue-upload.json"   # marker d'épinglage (racine — lu par le serveur)
+JOURNAL = ".journal-vue-upload.jsonl"  # journal des téléchargements (tenu par le serveur)
 
 
 # ────────────────────────── noyau panel (v1.1.0) ──────────────────────────
@@ -119,6 +133,19 @@ def listing(root, filtre=None, tri="nom"):
 
 
 def cmd_panel(a):
+    # épinglage préalable si --featured (un seul appel : épingler + fenêtre d'accès)
+    if getattr(a, "featured", None):
+        nom = sanitize_name(a.featured)
+        dossier = None
+        for d in ("download", "upload"):
+            if nom and os.path.isfile(os.path.join(a.root, d, nom)):
+                dossier = d
+                break
+        if dossier is None:
+            return _fin(a.json, "panel", "--featured : fichier introuvable dans download/ ni upload/ : %s" % a.featured, 6)
+        with open(os.path.join(a.root, MARKER), "w", encoding="utf-8") as f:
+            json.dump({"fichier": nom, "dossier": dossier,
+                       "horodatage": time.strftime("%Y-%m-%dT%H:%M:%S%z")}, f, ensure_ascii=False, indent=1)
     t0 = time.perf_counter()
     voie = "CHAUDE (portail déjà vivant)" if port_alive(a.port, 0.15) else "FROIDE (démarrage in-process)"
     bind_mode = "préexistant"
@@ -135,6 +162,7 @@ def cmd_panel(a):
     duree = time.perf_counter() - t0
     vivant = port_alive(a.port, 0.3)
     fl = listing(a.root, a.filter, a.sort)
+    feat = lit_featured(a.root)
     panel = {
         "skill": "vue-upload",
         "version": VERSION,
@@ -148,11 +176,13 @@ def cmd_panel(a):
                            else "edge :81 absent — voie locale seulement",
         "filtre": a.filter,
         "tri": a.sort,
+        "featured": feat,
+        "derniers_telechargements": lit_journal(a.root, 5),
         "download": fl["download"],
         "upload": fl["upload"],
         "limites": ("processus éphémère (sandbox fauche les démons entre les appels) — session "
                     "d'accès = --hold ≤ 540 s pendant le clic preview ; repli = share (liens "
-                    "externes vérifiés)"),
+                    "externes vérifiés) ; livrable ciblé = featured/--featured (★ en tête du portail)"),
     }
     if a.hold > 0:
         panel["hold_s"] = a.hold
@@ -161,6 +191,15 @@ def cmd_panel(a):
         else:
             print_panel(panel)
         time.sleep(a.hold)
+        # après la fenêtre : les téléchargements survenus sont dans le journal
+        panel["derniers_telechargements"] = lit_journal(a.root, 5)
+        if a.json:
+            print(json.dumps({"commande": "panel", "apres_fenetre": True,
+                              "derniers_telechargements": panel["derniers_telechargements"]},
+                             ensure_ascii=False, indent=2))
+        else:
+            print("[panel] après la fenêtre — derniers téléchargements : %s"
+                  % (json.dumps(panel["derniers_telechargements"], ensure_ascii=False) or "aucun"))
         return 0
     if a.json:
         print(json.dumps(panel, ensure_ascii=False, indent=2))
@@ -174,15 +213,125 @@ def print_panel(p):
     print("║ durée totale : %s s · bind %s · portail vivant : %s" % (p["duree_s"], p["bind"], p["portail_vivant"]))
     print("║ URL locale   : %s" % p["url_locale"])
     print("║ preview      : %s" % p["routage_preview"])
+    feat = p.get("featured")
+    if feat:
+        print("║ ★ LIVRABLE COURANT (épinglé) : %s/%s — c'est CE fichier que le propriétaire doit cliquer"
+              % (feat["dossier"], feat["fichier"]))
+    else:
+        print("║ ★ aucun livrable épinglé (featured <fichier> pour cibler une livraison)")
     for d in ("download", "upload"):
         print("╠═ %s/ (%d fichier(s)%s)" % (d, len(p[d]),
               ", filtre « %s »" % p["filtre"] if p.get("filtre") else ""))
-        for f in p[d][:40]:
-            print("║   · %s — %s — modifié %s" % (f["fichier"], human(f["octets"]), f["mtime"]))
+        feat_nom = feat["fichier"] if feat and feat["dossier"] == d else None
+        lignes = list(p[d][:40])
+        if feat_nom:
+            # l'épinglé passe en tête de l'affichage, marqueur ★ (le serveur fait de même côté UI)
+            lignes.sort(key=lambda x: (x["fichier"] != feat_nom,))
+        for f in lignes:
+            marque = "★ " if f["fichier"] == feat_nom else "  "
+            print("║ %s· %s — %s — modifié %s" % (marque, f["fichier"], human(f["octets"]), f["mtime"]))
         if len(p[d]) > 40:
             print("║   … +%d fichier(s) non affiché(s)" % (len(p[d]) - 40))
+    dl = p.get("derniers_telechargements") or []
+    print("╠═ derniers téléchargements (journal) : %s" % ("aucun" if not dl else ""))
+    for e in dl:
+        print("║   · %s — %s/%s — %s" % (e.get("instant", "?"), e.get("dossier", "?"),
+                                        e.get("fichier", "?"), human(e.get("octets", 0))))
     print("║ note : %s" % p["limites"])
     print("╚═" + "═" * 60)
+
+
+# ────────────────────────── featured (épinglage livrable courant, v1.4.0) ──────────────────────────
+
+def lit_featured(root):
+    """Lit le marker d'épinglage (None si absent/corrompu — dégradation honnête)."""
+    p = os.path.join(root, MARKER)
+    try:
+        with open(p, encoding="utf-8") as f:
+            j = json.load(f)
+        if isinstance(j, dict) and j.get("fichier") and j.get("dossier") in ("download", "upload"):
+            return j
+    except Exception:
+        pass
+    return None
+
+
+def lit_journal(root, n=5):
+    """Lit les n dernières entrées du journal des téléchargements (best-effort)."""
+    p = os.path.join(root, JOURNAL)
+    try:
+        with open(p, encoding="utf-8") as f:
+            lignes = [l.strip() for l in f if l.strip()]
+        out = []
+        for l in reversed(lignes[-200:]):  # borne de lecture : 200 dernières lignes
+            try:
+                out.append(json.loads(l))
+            except Exception:
+                continue
+            if len(out) >= n:
+                break
+        return out
+    except Exception:
+        return []
+
+
+def cmd_featured(a):
+    t0 = time.perf_counter()
+    root = os.path.realpath(a.root)
+    marker_path = os.path.join(root, MARKER)
+    if a.off:
+        # retrait de l'épingle — no-op honnête si absente
+        present = os.path.exists(marker_path)
+        if present:
+            os.remove(marker_path)
+        res = {"commande": "featured", "skill": "vue-upload", "version": VERSION,
+               "action": "retire", "retire": present, "featured": None,
+               "duree_s": round(time.perf_counter() - t0, 3),
+               "note": "épingle retirée" if present else "aucune épingle présente (no-op honnête)"}
+        print(json.dumps(res, ensure_ascii=False, indent=2) if a.json else
+              "[featured] %s" % res["note"])
+        return 0
+    if not a.fichier:
+        # affichage de l'épinglé courant
+        j = lit_featured(root)
+        if j and os.path.isfile(os.path.join(root, j["dossier"], j["fichier"])):
+            msg = "épinglé actuel : %s/%s (posé %s)" % (j["dossier"], j["fichier"], j.get("horodatage", "?"))
+        elif j:
+            msg = "épinglé actuel : %s/%s — ATTENTION fichier absent du dossier" % (j["dossier"], j["fichier"])
+        else:
+            msg = "aucune épingle posée (featured <fichier> pour épingler)"
+        print(json.dumps({"commande": "featured", "featured": j, "message": msg},
+                         ensure_ascii=False, indent=2) if a.json else "[featured] %s" % msg)
+        return 0
+    nom = sanitize_name(a.fichier)
+    if not nom:
+        return _fin(a.json, "featured", "nom refusé (caché ou vide après assainissement)", 6)
+    dossier = None
+    for d in ("download", "upload"):
+        if os.path.isfile(os.path.join(root, d, nom)):
+            dossier = d
+            break
+    if dossier is None:
+        return _fin(a.json, "featured", "fichier introuvable dans download/ ni upload/ : %s "
+                    "(poussez-le d'abord : push <source>)" % nom, 6)
+    ent = {"fichier": nom, "dossier": dossier,
+           "horodatage": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
+    with open(marker_path, "w", encoding="utf-8") as f:
+        json.dump(ent, f, ensure_ascii=False, indent=1)
+    st = os.stat(os.path.join(root, dossier, nom))
+    res = {"commande": "featured", "skill": "vue-upload", "version": VERSION,
+           "action": "epingle", "featured": ent, "octets": st.st_size,
+           "taille": human(st.st_size), "duree_s": round(time.perf_counter() - t0, 3),
+           "note": ("le portail affiche désormais ce fichier en tête avec marqueur ★ "
+                    "(bannière LIVRABLE COURANT) — ouvrez/rafraîchissez la fenêtre d'accès")}
+    if a.json:
+        print(json.dumps(res, ensure_ascii=False, indent=2))
+    else:
+        print("╔═ vue-upload v%s — FEATURED (épinglage livrable courant)" % VERSION)
+        print("║ ★ %s/%s — %s — posé %s" % (dossier, nom, human(st.st_size), ent["horodatage"]))
+        print("║ %s" % res["note"])
+        print("╚═" + "═" * 60)
+    return 0
 
 
 # ────────────────────────── utilitaires communs ──────────────────────────
@@ -494,9 +643,14 @@ def _extrait(args, cmd, drapeaux_valeur, drapeaux_bool, n_positionnels, usage):
     return pos, opts
 
 
-USAGE = """usage : vue_upload_panel.py [--port N] [--root RACINE] [--hold N] [--json] [--sort nom|taille|date] [--filter MOTIF] [sous-commande]
+USAGE = """usage : vue_upload_panel.py [--port N] [--root RACINE] [--hold N] [--json] [--sort nom|taille|date] [--filter MOTIF] [--featured FICHIER] [sous-commande]
 
 Sous-commandes :
+  featured <fichier> [--off]
+      Épingle le LIVRABLE COURANT (★ bannière + entrée en tête du portail) —
+      le propriétaire voit immédiatement quel fichier télécharger, même parmi
+      des dénominations proches (douleur constatée 2026-10-25). --off retire
+      l'épingle (no-op honnête) ; sans argument = affiche l'épinglé courant.
   share <fichier> [--as NOM] [--bin BIN] [--no-filebin] [--no-tmpfiles]
       Repli externe AUTOMATISÉ : filebin.net (≈ 6 jours) + tmpfiles.org (≈ 60 min),
       vérification sha256 par re-téléchargement — seuls les liens VÉRIFIÉS sont annoncés.
@@ -505,14 +659,20 @@ Sous-commandes :
       refusés, 200 Mo max) ; no-op honnête si identique ; --force pour écraser.
   doctor
       Diagnostic < 1 s + voie recommandée (preview / --hold / share).
-Sans sous-commande → PANEL (voie chaude < 1 s, voie froide in-process < 2 s, --hold N).
+Sans sous-commande → PANEL (voie chaude < 1 s, voie froide in-process < 2 s, --hold N,
+featured + derniers téléchargements du journal exposés).
 
 Codes retour : 0 OK · 2 bind impossible · 3 portail mort · 4 vérification impossible ·
-5 push destination existante (sans --force) · 6 source ou nom invalide.
+5 push destination existante (sans --force) · 6 source ou nom invalide (featured y c.
+fichier introuvable).
 
 exemples :
   vue_upload_panel.py                                  panel (voie chaude ou froide)
-  vue_upload_panel.py --hold 540                       fenêtre d'accès 9 min (clic preview)
+  vue_upload_panel.py --hold 540 --featured rapport_v3.docx
+                                                       épingler + fenêtre d'accès 9 min
+  vue_upload_panel.py featured mouton_rasta_sauts_photo_v3.gif
+                                                       épinglage seul
+  vue_upload_panel.py featured --off                   retirer l'épingle
   vue_upload_panel.py --filter docx --sort taille      listing filtré et trié
   vue_upload_panel.py share rapport.docx               liens externes vérifiés sha256
   vue_upload_panel.py push /tmp/notes.md --as notes.md inscription dans download/
@@ -529,9 +689,9 @@ def main():
         print(USAGE, end="")
         return 0
     g = {"port": 3000, "root": "/home/z/my-project", "hold": 0, "json": False,
-         "sort": "nom", "filter": None}
+         "sort": "nom", "filter": None, "featured": None}
     drapeaux = {"--port": "port", "--root": "root", "--hold": "hold",
-                "--sort": "sort", "--filter": "filter"}
+                "--sort": "sort", "--filter": "filter", "--featured": "featured"}
     cmd, rargs, i = None, [], 0
     try:
         while i < len(argv):
@@ -542,7 +702,7 @@ def main():
             elif t == "--json":
                 g["json"] = True
                 i += 1
-            elif t in ("share", "push", "doctor") and cmd is None:
+            elif t in ("featured", "share", "push", "doctor") and cmd is None:
                 cmd = t
                 i += 1
             elif cmd is not None:
@@ -562,6 +722,12 @@ def main():
     a = argparse.Namespace(**g)
     if cmd is None:
         return cmd_panel(a)
+    if cmd == "featured":
+        pos, o = _extrait(rargs, cmd, set(), {"--off"}, 0 if ("--off" in rargs or not rargs) else 1,
+                          "featured <fichier> [--off] (ou sans argument = affichage)")
+        a.fichier = pos[0] if pos else None
+        a.off = o.get("--off", False)
+        return cmd_featured(a)
     if cmd == "share":
         pos, o = _extrait(rargs, cmd, {"--as", "--bin"}, {"--no-filebin", "--no-tmpfiles"}, 1,
                           "share <fichier> [--as NOM] [--bin BIN] [--no-filebin] [--no-tmpfiles]")

@@ -2,27 +2,33 @@
   "archive": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md": "3be1ce9f95f83bdf9caca20115403a21548834ae14f9912090f22cfb29235d77",
     "PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md": "6ab07329fb9a21ef10b755cf91c2efd2279c28dd9a229b906c7147e38cb16cbe",
-    "PROMPT-MAITRE-GEN-PLAN-v3.28.1.md": "8d4ae99fd2bd074487df8c648eefcbfc0a6a1f92cabf98b0832e8ca3e6f93501",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "f3c7010760f976207256730fda74c031813d2f32c5aeb1d77796598174e73a3c",
+    "PROMPT-MAITRE-GEN-PLAN-v3.28.2.md": "5282084fc092b174c4f781846f0c88c3a284b9cc8dc28f203e7b9d1a2594b05f",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "adc6c8e5cd725a8848314d997a5614d86a9897d7f1dba8e9e6a086f2d102e066",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "70968b8ffec07aa3993ec08b8f27b41158ff84a19b28ce561c77c8d9cb47bdcc",
-    "PROMPT-MAITRE-SHARED.md": "94fb13dd9fdbc2a5ba8367bf83a87151947b12bc5adf12290fda604562e8e6fa",
+    "PROMPT-MAITRE-SHARED.md": "17ef46f4161f7d5b545d588fa09cebfd6624b47d87b14f8aa6a40a6a60a96e25",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "99fca3d12a5992e2ecd86fda05a37a9d6eb7f58ea835a31f0dd3846030565271",
     "README.md": "83920e456f2e609be63cec50e7375790553c64f1573ac52508df635a8c10ab7e",
-    "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
+    "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f",
+    "piliers/scripts/certification-complete.py": "64bca75237283164044921165d32f495bd5168d3b9e2440e2928a4abf1c7b9bf",
+    "piliers/scripts/check-ecosysteme-integrity.py": "8e77f4c7f7f4270a4602aa1b4f8fab0c716525d3338aba584e9342a6bef98a7b",
+    "piliers/scripts/install-ecosysteme-local.sh": "a4d1339958e31d61602eb9b94db6e35132e89abbdb64baced4f6fa699d228175",
+    "piliers/skills/KNOWLEDGE.md": "c88e369a250e8185cb2e5e06ba24bf911e1b43ae6295d44e0a7435969bf6ce6b",
+    "piliers/skills/correct-work/SKILL.md": "dccf85e42dcf763fbe398298a1aab13afa728533369269e504199eb3da11703a",
+    "piliers/skills/gen-plan/SKILL.md": "5f4b2204b361bf6959c148673fb2437f0778e69c10d72c09caeaefc382955a28"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md": "3be1ce9f95f83bdf9caca20115403a21548834ae14f9912090f22cfb29235d77",
     "PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md": "6ab07329fb9a21ef10b755cf91c2efd2279c28dd9a229b906c7147e38cb16cbe",
-    "PROMPT-MAITRE-GEN-PLAN-v3.28.1.md": "8d4ae99fd2bd074487df8c648eefcbfc0a6a1f92cabf98b0832e8ca3e6f93501",
-    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "f3c7010760f976207256730fda74c031813d2f32c5aeb1d77796598174e73a3c",
+    "PROMPT-MAITRE-GEN-PLAN-v3.28.2.md": "5282084fc092b174c4f781846f0c88c3a284b9cc8dc28f203e7b9d1a2594b05f",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "adc6c8e5cd725a8848314d997a5614d86a9897d7f1dba8e9e6a086f2d102e066",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "70968b8ffec07aa3993ec08b8f27b41158ff84a19b28ce561c77c8d9cb47bdcc",
-    "PROMPT-MAITRE-SHARED.md": "94fb13dd9fdbc2a5ba8367bf83a87151947b12bc5adf12290fda604562e8e6fa",
+    "PROMPT-MAITRE-SHARED.md": "17ef46f4161f7d5b545d588fa09cebfd6624b47d87b14f8aa6a40a6a60a96e25",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "99fca3d12a5992e2ecd86fda05a37a9d6eb7f58ea835a31f0dd3846030565271",
     "README.md": "83920e456f2e609be63cec50e7375790553c64f1573ac52508df635a8c10ab7e",
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "02781f5f6f13626d32f85e2c70debc21d286bc51e1b4812b258ce55f0ae1a589"
+    "mon-ecosysteme_archive.zip": "566f03278e2ef92022954887d35f7cc34975cefed8932068d68b1bf7d275e0e5"
   },
   "skills": {
     "agent-creator": {
@@ -86,8 +92,8 @@
       "version": "1.0.0"
     },
     "gen-plan": {
-      "sha256": "fef0d15bd5260b93b5c052cc6b1f1914c8f51c8b9e29ea5ffa0a094a7a0fd6af",
-      "version": "3.28.1"
+      "sha256": "5f4b2204b361bf6959c148673fb2437f0778e69c10d72c09caeaefc382955a28",
+      "version": "3.28.2"
     },
     "graph-engineering": {
       "sha256": "1f4484fb97262445de6fb7dd5dbc9e24c95e1f8c0ecb39691391b190750ca9be",
@@ -178,8 +184,8 @@
       "version": "1.2.0"
     },
     "vue-upload": {
-      "sha256": "de0783ae4c2557b64d09e23bd12917c21ca4a67159d30b1ee5f6236b50a4f0cc",
-      "version": "1.3.0"
+      "sha256": "3a785040f0b20b666a20bbd3c08a86643e3970f00a730d1ba5aca58cf439ae7f",
+      "version": "1.4.0"
     }
   }
 }

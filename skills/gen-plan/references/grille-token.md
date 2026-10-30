@@ -40,6 +40,7 @@
 | Profil VIEUX PC | 0.5x | Scripts légers, pas de graphiques |
 | **Profil frais local** | **3-4x** (v3.28.1) | Première exécution sur profil restauré/réinstallé — coût de découverte du corpus (lectures multi-fichiers, PMs longs, KB, outillage) non couvert par les grilles calibrées sur environnement établi |
 | **Appels API en masse** | **2-3x** (v3.28.1) | Phases avec appels LLM/API répétés — rate-limit 429, retries, backoff 12-48 s + pause anti-rafale 45 s ; guidance : ThreadPoolExecutor 2-4 workers, throttle 1-2 s/appel, journal d'état idempotent, tri par taille croissante |
+| **Récupération externe bloquée** | **3-4x** (v3.28.2) | Contenu externe adversarial (WAF CDN 405, SPA non rendue en headless, rate-limit API web) — multi-tours de contournement règle d'or n°1 avant la voie gagnante (escalade : WebFetch → curl → agent-browser [double-open] → z-ai function `page_reader`), puis lecture intégrale du contenu récupéré ; la campagne de récupération porte son budget propre AVANT l'étape qui la requiert (preuve : Task 6 E15 — 2 liens chat.z.ai, 10+ tours d'adaptation, ~60 k de texte ; recommandation E15 consignée au worklog, sollicitée par le propriétaire) |
 
 ## Historique de calibration
 
@@ -58,4 +59,5 @@
 | 11 | 2026-08-30 | Propagation knowledge-repo (Tasks 8-9, commit c79fdb6) | 4500 | ~4700 | +4.4% | Aucune (0-20%) |
 | 12 | 2026-10-25 | Audit écosystème complet (profil frais local — session web-eb6c8580, Tasks 1-5) | 12200 | ~52000 | ×3-4 (326 %) | **Recalibration complète** : + coefficient profil frais local ×3-4 (row v3.28.1) |
 | 13 | 2026-10-26 | Directive 10 tâches P0-P2 (session web-eb6c8580 — 233 fichiers API en masse, rate-limit 429) | 78000 | ~120000 (partiel) | ×1,5-1,7 (grille déjà recalibrée ×3-4 au plan) | Contingence API en masse ×2-3 + guidance parallélisation ajoutées (row v3.28.1) |
+| 14 | 2026-10-30 | Task 6 publication GO + trio TSI + re-mesure voie L (session web-eb6c8580 — récupération externe adversariale : 2 liens chat.z.ai, WAF CDN 405 + SPA non rendue) | 17000 | ~60000-70000 (ressenti, non instrumenté) | ×3,5-4 (> 35 %) | **Contingence « récupération externe bloquée ×3-4 » ajoutée** (row v3.28.2 — recommandation E15 Task 6 consignée au worklog, sollicitée par le propriétaire le 2026-10-30) |
 ```

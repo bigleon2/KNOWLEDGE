@@ -53,7 +53,7 @@ Versions documentées SANS fichier archivé : GEN-PLAN v2.0.0 → v3.6.0 (antér
 5. La présente table §2 est rafraîchie et l'index §5 mis à jour ;
 6. Recalibrage croisé KO-L004 standard (CORPUS_ATTENDU, manifeste integrity, archive, orchestrateur ULTRA) et sweep arbitres avant tout commit.
 
-## 5. Index des fichiers sources archivés (37 PMs — sceau SHA-256)
+## 5. Index des fichiers sources archivés (38 PMs — sceau SHA-256)
 
 Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git mv` (Task 16, 2026-10-11) — byte-identité prouvée contre les blobs du commit de référence `b36f177` (script `/home/z/my-project/scripts/task16-move-pms.py`, all-or-nothing, garde anti-homonyme R4). Table complète au rapport `download/rapport-task16-corpus-pms-historique-reinstallation.md`. Complément cascade Task 24 (2026-10-23, session web-fdf5963c — directive « révisez les §1.9bis des 16 éléments ») : `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.0.md` archivé par `git mv` byte-identité (R4 — SHA-256 scellé ci-dessous ; fichier suivi au dépôt depuis le commit des couches 18/20/22). Complément cascade Task 22 (2026-10-23, session web-fdf5963c — directive « disciplines/techniques », veille 2025-2026) : `PROMPT-MAITRE-REFACTOR-GUARD-v1.7.1.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité, adaptation règle d'or n°1 journalisée ; SHA-256 scellé ci-dessous ; provenance : le fichier corpus v1.7.1 était la source de l'archive scellée Task 20 — même octets). Complément cascade gen-plan v3.22.1 (2026-10-11, session web-b4d7dd19) : `PROMPT-MAITRE-GEN-PLAN-v3.22.0.md` archivé par `mv` byte-identité (fichier non suivi — jamais commité ; adaptation règle d'or n°1 journalisée, SHA-256 scellé ci-dessous).
 
@@ -93,6 +93,7 @@ Déplacés du corpus `skills/@mon-ecosysteme/` vers le présent dossier par `git
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.26.0.md | 8d2a0fef281e1677796f9086dfa2de1dd49bf5f7347d1011e82736568679e5fe |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.27.0.md | 3e95949d8508d365803b4a31e9ebe5179678744fc0efe25cb2e97700ed119c98 |
 | gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.28.0.md | df8d43c1a5cb1301310f357ac51f43b9bdb057d79d9236d6f7d3159a5bebdc42 |
+| gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.28.1.md | 8d4ae99fd2bd074487df8c648eefcbfc0a6a1f92cabf98b0832e8ca3e6f93501 |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.4.0.md | 16f82edb358ce36cfffbbfb9058ffda4d1d8a1e7d144791f11cbc82f67b60063 |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.5.0.md | 8dfc29a77633502609abc7a1d68a73cf53be40be7a7d5a6fd2670d1a40bfb8cf |
 | correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md | 9b3fad20a188aeb95a21cf251fb71a36a9a4b038bbb8a1fff96599f4adfba0b5 |

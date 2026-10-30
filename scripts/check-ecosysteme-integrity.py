@@ -70,7 +70,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.28.1",  # KO-L004 (session web-eb6c8580, 2026-10-30 — résorption réserves héritées P3-P7) : v3.26.0→v3.28.1 (v3.27.0 fusion lignée canonique+fork E7-DISP, web-dd290b0d ; v3.28.0 §A déclencheurs ; v3.28.1 recalibration E15 #token) ; précédent (web-f90062ce, 2026-10-24) : leçons vérité source PM INSTALL (dégradation gracieuse philosophie #4 + règle d'or n°5 anti-aspirant) ; précédent SG7.4 Task B2 : re-matérialisation structure hiérarchique ; précédent Task 26 : parallélisation par défaut
+    "gen-plan": "3.28.2",  # KO-L004 (session web-eb6c8580, Task 7 2026-10-30 — directive propriétaire : recommandation E15 Task 6) : v3.28.1→v3.28.2 contingence « récupération externe bloquée ×3-4 » au §4 SKILL + grille-token.md (row 14) ; précédent (2026-10-30 — résorption réserves héritées P3-P7) : v3.26.0→v3.28.1 (v3.27.0 fusion lignée canonique+fork E7-DISP, web-dd290b0d ; v3.28.0 §A déclencheurs ; v3.28.1 recalibration E15 #token) ; précédent (web-f90062ce, 2026-10-24) : leçons vérité source PM INSTALL (dégradation gracieuse philosophie #4 + règle d'or n°5 anti-aspirant) ; précédent SG7.4 Task B2 : re-matérialisation structure hiérarchique ; précédent Task 26 : parallélisation par défaut
     "knowledge-observer": "1.0.0",
     "correct-work": "2.8.0",
     "clone-chat": "2.0.2",
@@ -105,7 +105,7 @@ ECO_SKILLS = {
     "agent-prompt-engineering": "1.0.1",  # KO-L004 (SG7.4 Task B2, session web-f90062ce, 2026-10-24) : entrée KB créée — forme au dépôt depuis e9a68a1 sans entrée KB (trou de synchronisation analyse B2 résorbé) ; matérialisé 2026-09-06
     "fullstack-dev": "1.0.0",  # Task 8 (fusion discussion 468a4c26 Task 27 externe) : inscrit au registre — précédent vue-upload
     "refactoring-test": "1.1.1",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire) ; Task 12 : §5 baseline MESURÉE 7/7
-    "vue-upload": "1.3.0",  # KO-L004 (session web-b93f42fa, 2026-10-09) : KB=registre fait foi (## vue-upload v1.3.0) — occurrence L004 résorbée, arbitre dynamisé
+    "vue-upload": "1.4.0",  # KO-L004 (Task 7 G0, session web-eb6c8580, 2026-10-30 — directive propriétaire, discussion partagée du 2026-10-25) : v1.3.0→v1.4.0 épinglage livrable courant + journal des téléchargements ; précédent (web-b93f42fa, 2026-10-09) : KB=registre fait foi — occurrence L004 résorbée, arbitre dynamisé
     "dessin-technique": "1.1.1",
     "iphone18": "1.1.0",  # Task 48 (session web-38713acd) : bump v1.1.0 extension 1944 (chemin argentique N&B années 1930-1950) ; création v1.0.0 Task 45 (R18 ouverture variable, PA-TEST-001 QC 12/12)
     "iphone19": "0.11.0",  # Task 48 (session web-38713acd) : bump v0.11.0 extension 1944 (chemin argentique N&B années 1930-1950) ; v0.10.0 pixel binning R19 (frandroid 27/03/2026) ; création v0.9.0 Task 47 (migration ANTICIPÉE)

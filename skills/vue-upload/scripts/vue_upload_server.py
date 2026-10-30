@@ -32,6 +32,8 @@ from urllib.parse import urlparse, parse_qs, unquote
 
 MAX_UPLOAD = 200 * 1024 * 1024  # 200 Mo
 DIRS = {"download", "upload"}
+MARKER = ".featured-vue-upload.json"    # marker d'épinglage (racine — posé par le panel)
+JOURNAL = ".journal-vue-upload.jsonl"  # journal des téléchargements (append sur /get/)
 
 PALETTE = {
     "bg": "162235", "surface": "1C2A3D", "line": "2A3B52",
@@ -73,6 +75,12 @@ a.f:hover {{ text-decoration:underline; }}
 .tag {{ font-size:.68rem; border:1px solid {accentDark}; color:{accent};
        border-radius:99px; padding:2px 8px; margin-left:8px; vertical-align:middle; }}
 .empty {{ color:{muted}; padding:14px 6px; }}
+#featbox {{ display:none; background:{accentDark}; color:#fff; border-radius:10px;
+           padding:14px 18px; margin-bottom:14px; font-size:1rem; }}
+#featbox a {{ color:#fff; font-weight:700; text-decoration:underline; word-break:break-all; }}
+#featbox .fs {{ font-size:.82rem; opacity:.85; }}
+tr.feat td {{ background:rgba(55,220,242,.10); }}
+tr.feat a.f {{ font-weight:700; }}
 #toast {{ position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
          background:{accentDark}; color:#fff; padding:10px 22px; border-radius:99px;
          font-size:.88rem; opacity:0; pointer-events:none; transition:.25s; }}
@@ -80,6 +88,9 @@ a.f:hover {{ text-decoration:underline; }}
 </style></head><body><div class="wrap">
 <h1>vue-upload<span class="dot"> ▮</span></h1>
 <div class="sub">Portail d'accès aux livrables — dossier racine : {root}</div>
+
+<div id="featbox">★ LIVRABLE COURANT — cliquez ici : <a id="featlink" href="#"></a>
+  <span class="fs" id="featinfo"></span></div>
 
 <div class="card">
   <table><thead><tr><th>Livrables (download/)</th><th>Taille</th><th>Modifié</th></tr></thead>
@@ -115,9 +126,22 @@ const fmt = b => b<1024 ? b+' o' : b<1048576 ? (b/1024).toFixed(1)+' Ko' : (b/10
 const esc = s => s.replace(/[&<>"']/g, c => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}})[c]);
 async function refresh() {{
   const r = await fetch('/files'); const j = await r.json();
+  const feat = j.featured || null;
+  const box = document.getElementById('featbox');
+  if (feat) {{
+    const a = document.getElementById('featlink');
+    a.href = '/get/' + feat.dossier + '/' + encodeURIComponent(feat.fichier);
+    a.textContent = feat.fichier;
+    document.getElementById('featinfo').textContent = ' — ' + feat.taille + " — c'est ce fichier qu'il faut télécharger";
+    box.style.display = 'block';
+  }} else {{ box.style.display = 'none'; }}
   for (const [dir, tb] of [['download', '#dl'], ['upload', '#up']]) {{
-    const rows = (j[dir] || []).map(f =>
-      `<tr><td><a class="f" href="/get/${{dir}}/${{encodeURIComponent(f.name)}}">${{esc(f.name)}}</a></td>` +
+    let files = (j[dir] || []).slice();
+    if (feat && feat.dossier === dir)
+      files.sort((x, y) => (y.name === feat.fichier) - (x.name === feat.fichier));
+    const rows = files.map(f =>
+      `<tr class="${{feat && feat.dossier === dir && f.name === feat.fichier ? 'feat' : ''}}">` +
+      `<td>${{feat && feat.dossier === dir && f.name === feat.fichier ? '★ ' : ''}}<a class="f" href="/get/${{dir}}/${{encodeURIComponent(f.name)}}">${{esc(f.name)}}</a></td>` +
       `<td class="sz">${{fmt(f.size)}}</td><td class="dt">${{f.mtime}}</td></tr>`);
     document.querySelector(tb).innerHTML =
       rows.length ? rows.join('') : '<tr><td colspan="3" class="empty">— vide —</td></tr>';
@@ -161,8 +185,32 @@ def safe_join(root, name):
     return p
 
 
+def lit_featured(root):
+    """v1.4.0 — lit le marker d'épinglage (None si absent — dégradation honnête)."""
+    try:
+        with open(os.path.join(root, MARKER), encoding="utf-8") as f:
+            j = json.load(f)
+        if isinstance(j, dict) and j.get("fichier") and j.get("dossier") in DIRS:
+            return j
+    except Exception:
+        pass
+    return None
+
+
+def journalise(root, dossier, fichier, octets):
+    """v1.4.0 — append best-effort d'un téléchargement au journal JSONL.
+    Un échec de journal ne fait JAMAIS échouer le téléchargement."""
+    try:
+        ent = {"instant": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+               "dossier": dossier, "fichier": fichier, "octets": int(octets)}
+        with open(os.path.join(root, JOURNAL), "a", encoding="utf-8") as f:
+            f.write(json.dumps(ent, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
+
+
 class Handler(BaseHTTPRequestHandler):
-    server_version = "vue-upload/1.2.0"
+    server_version = "vue-upload/1.4.0"
     root = "/home/z/my-project"
 
     def log_message(self, fmt, *args):
@@ -191,6 +239,20 @@ class Handler(BaseHTTPRequestHandler):
                     items.append({"name": n, "size": st.st_size,
                                   "mtime": time.strftime("%Y-%m-%d %H:%M", time.localtime(st.st_mtime))})
             out[d] = items
+        # v1.4.0 — épinglé exposé au /files (l'UI en fait bannière + rangée ★ en tête)
+        feat = lit_featured(self.root)
+        if feat:
+            fp = os.path.join(self.root, feat["dossier"], feat["fichier"])
+            if os.path.isfile(fp):
+                feat["octets"] = os.path.getsize(fp)
+                feat["taille"] = ("%d o" % feat["octets"] if feat["octets"] < 1024 else
+                                  "%.1f Ko" % (feat["octets"] / 1024) if feat["octets"] < 1048576 else
+                                  "%.1f Mo" % (feat["octets"] / 1048576))
+                out["featured"] = feat
+            else:
+                out["featured"] = None  # épinglé pointant un fichier disparu : caché (honnête)
+        else:
+            out["featured"] = None
         return out
 
     # ── GET ──────────────────────────────────────────────────
@@ -224,6 +286,8 @@ class Handler(BaseHTTPRequestHandler):
             with open(p, "rb") as f:
                 while chunk := f.read(65536):
                     self.wfile.write(chunk)
+            # v1.4.0 — journal du téléchargement (best-effort, après envoi complet)
+            journalise(self.root, parts[0], parts[1], size)
         else:
             self._json({"error": "introuvable"}, 404)
 
@@ -299,7 +363,7 @@ def main():
     except OSError:
         ThreadingHTTPServer.address_family = socket.AF_INET
         srv = ThreadingHTTPServer(("0.0.0.0", a.port), Handler)
-    print("vue-upload v1.2.0 — écoute [::]:%d (dual-stack) — racine %s" % (a.port, Handler.root), flush=True)
+    print("vue-upload v1.4.0 — écoute [::]:%d (dual-stack) — racine %s" % (a.port, Handler.root), flush=True)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

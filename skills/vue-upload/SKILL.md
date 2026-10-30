@@ -1,6 +1,6 @@
 ---
 name: vue-upload
-version: 1.3.0
+version: 1.4.0
 category: ecosystem
 language: fr
 tags:
@@ -37,6 +37,12 @@ description: >
   produit pendant la session (« je ne peux pas télécharger le document DOCX que tu as
   généré ») → canal direct du canal de conversation (ex. send_message en IM) — le
   portail n'est pas le routeur par défaut d'une demande de fichier unique.
+  v1.4.0 (2026-10-30, directive propriétaire — discussion partagée du 2026-10-25) : épinglage
+  du livrable courant (featured <fichier> — affiché en tête du portail, marqueur ★ et
+  bannière : le propriétaire voit immédiatement quel fichier télécharger, même parmi des
+  fichiers au nom proche) + journal des téléchargements (.journal-vue-upload.jsonl, exposé
+  par le panel : vérifier après la fenêtre d'accès que le bon fichier a bien été téléchargé —
+  douleur constatée le 2026-10-25 : 2 mauvais fichiers pris sur 3 au nom proche).
 dependencies:
   - skill: gen-plan
     version: ">=3.20.0"
@@ -93,7 +99,13 @@ rafraîchissement automatique 15 s.
    (L'ancienne voie setsid de v1.0.0 reste possible pour un démon détaché mais n'est plus
    recommandée : processus fauché entre les appels — constats Tasks 31/33 ; jamais
    `python -c` inline — règle Script Persistence.)
-3. **SOUS-COMMANDES (v1.2.0 — boîte à outils ; sans sous-commande = panel v1.1.0 inchangé)** :
+3. **SOUS-COMMANDES (v1.4.0 — boîte à outils ; sans sous-commande = panel v1.1.0 inchangé)** :
+   - `featured <fichier> [--off]` (v1.4.0) : épingle le LIVRABLE COURANT — le serveur l'affiche
+     en tête du portail (bannière ★ LIVRABLE COURANT + rangée marquée ★, lien direct) ;
+     `--off` retire l'épingle (no-op honnête) ; sans argument = affiche l'épinglé courant ;
+     rc 6 si le fichier est introuvable dans download/ et upload/ (le pousser d'abord).
+     Drapeau équivalent sur le panel : `--featured <fichier>` (épinglage + fenêtre d'accès
+     en un appel : `vue_upload_panel.py --hold 540 --featured <fichier>`).
    - `share <fichier> [--as NOM] [--bin BIN] [--no-filebin] [--no-tmpfiles] [--json]` :
      repli externe AUTOMATISÉ — filebin.net (≈ 6 jours) + tmpfiles.org (≈ 60 min) ;
      VÉRIFICATION sha256 par re-téléchargement intégrée — un lien n'est annoncé VÉRIFIÉ
@@ -110,20 +122,31 @@ rafraîchissement automatique 15 s.
      sont acceptés AVANT ou APRÈS la sous-commande.
    Codes retour : 0 OK · 2 bind impossible · 3 portail mort · 4 vérification impossible ·
    5 push destination existante (sans --force) · 6 source ou nom invalide.
-4. **Vérification** : intégrée au panel (portail_vivant, listing download/upload, routage
-   preview edge :81) ; contrôle croisé : `curl 127.0.0.1:3000/files` → JSON 200.
-5. **Communication** : donner l'URL de preview de la session (format plateforme) + préciser
+4. **Protocole de livraison ciblée (v1.4.0 — leçons du 2026-10-25)** : AVANT d'ouvrir une
+   fenêtre d'accès (`--hold`) pour UN livrable précis, l'épingler (`featured` ou `--featured`)
+   et annoncer au propriétaire le nom EXACT + la taille du fichier à cliquer ; APRÈS la
+   fenêtre, lire le journal (`derniers_telechargements` dans la sortie panel) pour vérifier
+   que le bon fichier a été téléchargé — si un mauvais fichier (nom proche) a été pris,
+   réouvrir en pointant l'épinglé. Le journal JSONL (append best-effort sur chaque /get/
+   réussi) ne fait jamais échouer un téléchargement.
+5. **Vérification** : intégrée au panel (portail_vivant, listing download/upload, routage
+   preview edge :81, épinglé, derniers téléchargements) ; contrôle croisé : `curl 127.0.0.1:3000/files` → JSON 200.
+6. **Communication** : donner l'URL de preview de la session (format plateforme) + préciser
    que le portail liste download/ et upload/. Si l'URL de preview est indisponible pour
    l'utilisateur, solution de repli : `share <fichier>` (§1.2-3) — l'hébergement externe
-   temporaire est désormais UNE COMMANDE, avec vérification sha256 automatique.
-6. **Journalisation** : entrée worklog (Task ID, port, fichiers servis).
+   temporaire est désormais UNE COMMANDE, avec vérification sha256 automatique. Leçon
+   filebin (2026-10-25) : si le propriétaire ouvre l'aperçu plein écran de l'image sur
+   filebin (bouton « Fermer » visible), guider : revenir à la page du fichier, ou clic droit
+   sur l'image → « Enregistrer l'image sous » (le fichier complet y est chargé).
+7. **Journalisation** : entrée worklog (Task ID, port, fichiers servis, épinglé posé/retiré,
+   téléchargements constatés au journal).
 
 ### §1.3 Endpoints du serveur
 
 | Méthode | Route | Effet |
 |---------|-------|-------|
 | GET | `/` | UI (liste + formulaire de téléversement, palette DM-1) |
-| GET | `/files` | JSON des deux dossiers (nom, taille, mtime) |
+| GET | `/files` | JSON des deux dossiers (nom, taille, mtime) + `featured` (épinglé v1.4.0, null si aucun) |
 | GET | `/get/<dir>/<fichier>` | téléchargement (Content-Disposition attachment) |
 | POST | `/upload/<dir>` | téléversement multipart (dir ∈ {download, upload}) |
 
@@ -148,13 +171,20 @@ rafraîchissement automatique 15 s.
 {{SKILLS_ROOT}}vue-upload/
 ├── SKILL.md
 ├── scripts/
-│   ├── vue_upload_server.py    # serveur + UI (un fichier, stdlib)
-│   └── vue_upload_panel.py     # v1.2.0 — panel (voie chaude/froide, --hold, --json,
-│                               #   tri/filtre) + sous-commandes share / push / doctor
+│   ├── vue_upload_server.py    # serveur + UI (un fichier, stdlib) — v1.4.0 : bannière ★
+│   │                           #   + rangée épinglée + journal des téléchargements
+│   └── vue_upload_panel.py     # v1.4.0 — panel (voie chaude/froide, --hold, --json,
+│                               #   tri/filtre, --featured) + sous-commandes
+│                               #   featured / share / push / doctor
 └── evals/
     ├── evals.json
     └── trigger_evals.json
 ```
+
+Fichiers d'état (racine du projet, hors dépôt) : `.featured-vue-upload.json` (marker
+ d'épinglage — posé/retiré par `featured`, lu par le serveur à chaque requête) et
+`.journal-vue-upload.jsonl` (journal des téléchargements — append par le serveur sur
+chaque /get/ réussi, lu par le panel pour `derniers_telechargements`).
 
 ### §2.3 Provenance et journal
 
@@ -166,7 +196,13 @@ rafraîchissement automatique 15 s.
   automatisés + listing trié/filtré ; suite task39 14/14 PASS dont régression Task 33
   15/15 (scripts/task39-test-vue-upload-v120.json).
 - Journal serveur : `/home/z/my-project/scripts/vue-upload.log` (voie setsid héritée) ;
-  v1.1.0 : panneau éphémère in-process, sans journal persistant (état = listing filesystem).
+  v1.1.0 : panneau éphémère in-process, sans journal persistant (état = listing filesystem) ;
+  **v1.4.0 : journal des téléchargements `.journal-vue-upload.jsonl`** (append best-effort
+  sur chaque /get/ réussi — boucle de vérification fermée : le panel expose
+  `derniers_telechargements`, l'agent SAIT quel fichier a été pris après la fenêtre d'accès —
+  douleur du 2026-10-25 : erreur détectée uniquement via les logs stderr de la voie froide,
+  perdus en voie chaude). Test mécanique : `scripts/zip-tsi/test-vue-upload-v140.py` (16 checks,
+  reproduit le scénario 3-fichiers-au-nom-proche).
 - Intégration KB : entrée registre (Task 31) — voir {{KB_PATH}}.
 
 ## §3 — LIMITES CONNUES (honnêteté R3)
