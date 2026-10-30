@@ -1,6 +1,6 @@
 # Simulation matérielle — patrons Python stdlib pour les tests TH (M7 TESTER)
 
-> Compatibilité : skill `cahier-des-charges` v2.0.0 → v2.0.1 (reconnaissance discipline + tags — contenu de cette référence inchangé, R2).
+> Compatibilité : skill `cahier-des-charges` v2.0.1 → v2.0.2 (résorption réserve S3 — élargissement de la description ; contenu de cette référence inchangé, R2).
 
 
 > Skill cahier-des-charges v2.0.0 — reference des patrons de tests matériels SIMULÉS. Un test

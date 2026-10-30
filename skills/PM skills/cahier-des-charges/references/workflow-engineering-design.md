@@ -1,6 +1,6 @@
 # Workflow Engineering Design — pipeline 5 phases et V-cycle adaptatif
 
-> Compatibilité : skill `cahier-des-charges` v2.0.0 → v2.0.1 (reconnaissance discipline + tags — contenu de cette référence inchangé, R2).
+> Compatibilité : skill `cahier-des-charges` v2.0.1 → v2.0.2 (résorption réserve S3 — élargissement de la description ; contenu de cette référence inchangé, R2).
 
 
 > Skill cahier-des-charges v2.0.0 — reference exécutable du cycle complet (M5 → M7).
