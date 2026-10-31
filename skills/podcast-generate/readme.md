@@ -66,8 +66,8 @@ npm run generate -- --input=material.txt --out_dir=out
 ### Mode 2 : génération via recherche web
 
 ```bash
-npm run generate -- --topic="最新AI新闻" --out_dir=out
-npm run generate -- --topic="量子计算应用" --out_dir=out --duration=8
+npm run generate -- --topic="Dernières actualités IA" --out_dir=out
+npm run generate -- --topic="Applications de l'informatique quantique" --out_dir=out --duration=8
 ```
 
 ### Description des paramètres
@@ -124,13 +124,13 @@ npm run generate -- --input=material.txt --out_dir=out --voice_host=tongtong --v
 
 ```bash
 # rechercher selon le sujet puis générer le podcast
-npm run generate -- --topic="最新AI技术突破" --out_dir=out
+npm run generate -- --topic="Dernières percées en IA" --out_dir=out
 
 # préciser le sujet de recherche et la durée
-npm run generate -- --topic="量子计算应用场景" --out_dir=out --duration=8
+npm run generate -- --topic="Scénarios d'application de l'informatique quantique" --out_dir=out --duration=8
 
 # rechercher puis générer un podcast solo
-npm run generate -- --topic="气候变化影响" --out_dir=out --mode=single-male
+npm run generate -- --topic="Impacts du changement climatique" --out_dir=out --mode=single-male
 ```
 
 ---

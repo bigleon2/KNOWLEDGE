@@ -1,6 +1,6 @@
 ---
 name: html-ppt-zhangzara-pin-and-paper
-description: Pin & Paper — 黄色纸面 (huang se zhi mian) + Illustration de trombone de sécurité(an quan bie zhen tu) + <Mòlán shǒuxiě>(mo lan shou xie) Caveat + Texture de papier(zhi wen li)。任何应该感觉手作 (shou zuo) / 温暖 (wen nuan) / 文学的 deck：定性研究发现 (ding xing yan jiu fa xian) / 创始人反思 (chuang shi fan si) / 长篇品牌故事 (chang pian pin pai gu shi) / workshop 复盘 (fu pan)。
+description: Pin & Paper — papier jaune (huangse zhimian) + illustration de trombone de sécurité (anquan biezhentu) + annotation manuscrite en marge (Mòlán shǒuxiě) + texture de papier (zhiwenli). Tout deck qui doit sembler fait main (shouzuo) / chaleureux (wennuan) / littéraire (wenxue) : étude qualitative (dingxing yanjiu) / réflexion de fondateur (chuangshi fansi) / longue histoire de marque (changpian pinpai gushi) / rétrospective d'atelier (fupan).
 visibility: public
 mode: template
 carrier: deck

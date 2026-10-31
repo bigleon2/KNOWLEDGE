@@ -292,46 +292,56 @@
    "fichier": "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/SKILL.md",
    "zh_avant": 67,
    "sha_avant": "36e413b2f59278c2760b51ba30673e22b0c78ec7af1bcd824aece407d081baec",
-   "zh_apres": 67,
+   "zh_apres": 0,
    "passe2": 0,
-   "statut": "TRADUIT-RESIDUEL",
-   "sha_apres": "36e413b2f59278c2760b51ba30673e22b0c78ec7af1bcd824aece407d081baec"
+   "statut": "TRADUIT",
+   "sha_apres": "36e413b2f59278c2760b51ba30673e22b0c78ec7af1bcd824aece407d081baec",
+   "note_finition": "description francisée, translittérations pinyin conservées (36 CJK → 0)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
   },
   "skills/pptx/SKILL.md": {
    "fichier": "skills/pptx/SKILL.md",
    "zh_avant": 70,
    "sha_avant": "eb0b71a4f5345773cd4ba5652acee7e7960fb3adcdaa271e7d5b77e88a316380",
-   "zh_apres": 39,
+   "zh_apres": 0,
    "passe2": 0,
-   "statut": "ECHEC",
-   "erreur": "densité de lignes altérée (520 → 327)"
+   "statut": "TRADUIT",
+   "erreur": "densité de lignes altérée (520 → 327)",
+   "note_finition": "section « questions de clarification » réécrite en français (62 CJK résiduels → 0)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
   },
   "skills/design/horizontal-craft/anti-ai-slop.md": {
    "fichier": "skills/design/horizontal-craft/anti-ai-slop.md",
    "zh_avant": 107,
    "sha_avant": "fcc1ebd32bb80d352a327c1f3bf0c37cef320c68f0861b99030adcd24f9410ca",
-   "zh_apres": 107,
+   "zh_apres": 104,
    "passe2": 0,
-   "statut": "TRADUIT-RESIDUEL",
-   "sha_apres": "10dd08da682dce90cdf6d56bcbfd2f05c51498731de4782569cb5aed762aa709"
+   "statut": "INTENTIONNEL",
+   "sha_apres": "10dd08da682dce90cdf6d56bcbfd2f05c51498731de4782569cb5aed762aa709",
+   "note_finition": "vocabulaire « IA-slop » chinois = données du référentiel (104 CJK conservés à dessein)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
   },
   "skills/design/design-templates/xianying-tool/SKILL.md": {
    "fichier": "skills/design/design-templates/xianying-tool/SKILL.md",
    "zh_avant": 109,
    "sha_avant": "bab5642dde93fe9acaaac0d1afe311f0af8e76796d546367f04af94bbd678404",
-   "zh_apres": 109,
+   "zh_apres": 24,
    "passe2": 0,
-   "statut": "TRADUIT-RESIDUEL",
-   "sha_apres": "bab5642dde93fe9acaaac0d1afe311f0af8e76796d546367f04af94bbd678404"
+   "statut": "INTENTIONNEL",
+   "sha_apres": "bab5642dde93fe9acaaac0d1afe311f0af8e76796d546367f04af94bbd678404",
+   "note_finition": "exemples de contenu de page chinoise — template destiné à un public chinois (24 CJK)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
   },
   "skills/xlsx/scenes/finance_lite.md": {
    "fichier": "skills/xlsx/scenes/finance_lite.md",
    "zh_avant": 168,
    "sha_avant": "4b34bbcde90e49ca06254cd78450e2f0475ed820354ddaec63ecf8ee33030f14",
-   "zh_apres": 168,
+   "zh_apres": 0,
    "passe2": 0,
-   "statut": "TRADUIT-RESIDUEL",
-   "sha_apres": "4b34bbcde90e49ca06254cd78450e2f0475ed820354ddaec63ecf8ee33030f14"
+   "statut": "TRADUIT",
+   "sha_apres": "4b34bbcde90e49ca06254cd78450e2f0475ed820354ddaec63ecf8ee33030f14",
+   "note_finition": "scene guidée en français : tableaux de périmètre, layouts d'exemple, littéraux de code (168 CJK → 0)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
   },
   "skills/design/design-templates/wechat-cover-pair/SKILL.md": {
    "fichier": "skills/design/design-templates/wechat-cover-pair/SKILL.md",
@@ -409,10 +419,12 @@
    "fichier": "skills/jd-resume-tailor/references/jd_parsing_signals.md",
    "zh_avant": 392,
    "sha_avant": "7d9e12e9d830151eaae17cf43b99c5347e96983fab59780ae22bb350c055a284",
-   "zh_apres": 392,
+   "zh_apres": 227,
    "passe2": 0,
-   "statut": "TRADUIT-RESIDUEL",
-   "sha_apres": "7d9e12e9d830151eaae17cf43b99c5347e96983fab59780ae22bb350c055a284"
+   "statut": "TRADUIT-DONNÉES",
+   "sha_apres": "7d9e12e9d830151eaae17cf43b99c5347e96983fab59780ae22bb350c055a284",
+   "note_finition": "prose française ; listes de signaux chinoises conservées = données du parsing JD chinois",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
   },
   "skills/task-review/SKILL.md": {
    "fichier": "skills/task-review/SKILL.md",
@@ -443,10 +455,12 @@
    "fichier": "skills/podcast-generate/readme.md",
    "zh_avant": 537,
    "sha_avant": "6f3aeaa5e9c607e0a490106759224fe2523e73e406eda1b15528b52c4b1466e3",
-   "zh_apres": 537,
+   "zh_apres": 4,
    "passe2": 0,
-   "statut": "TRADUIT-RESIDUEL",
-   "sha_apres": "6f3aeaa5e9c607e0a490106759224fe2523e73e406eda1b15528b52c4b1466e3"
+   "statut": "TRADUIT",
+   "sha_apres": "6f3aeaa5e9c607e0a490106759224fe2523e73e406eda1b15528b52c4b1466e3",
+   "note_finition": "démos --topic en français ; défauts 小谱/锤锤 conservés (valeurs réelles du script)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
   },
   "skills/resume-builder/references/templates/finance.md": {
    "fichier": "skills/resume-builder/references/templates/finance.md",
@@ -486,6 +500,86 @@
    "sha_avant": "471b081ab44793ac5368c1230ac0a27698b21affd01f75c49a914c24b1c28e4d",
    "statut": "ECHEC",
    "erreur": "après 5 essais : z-ai rc=1 : Failed to make API request:  98 |                 headers: headers,\n 99 |                 body: JSON.stringify(requestBody),\n100 |             });\n101 |             if (!response.ok) {\n102 |          "
+  },
+  "skills/gaokao-collect-student-info/SKILL.md": {
+   "fichier": "skills/gaokao-collect-student-info/SKILL.md",
+   "zh_avant": 140,
+   "zh_apres": 140,
+   "statut": "INTENTIONNEL",
+   "note_finition": "valeurs littérales de l'API gaokao (山东/综合/本科批/物理,化学,生物…) — jamais traduire (140 CJK)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
+  },
+  "skills/job-intent-tracker/scripts/init_tracker.py": {
+   "fichier": "skills/job-intent-tracker/scripts/init_tracker.py",
+   "zh_avant": 488,
+   "zh_apres": 488,
+   "statut": "INTENTIONNEL",
+   "note_finition": "outil du marché de l'emploi chinois — chaînes fonctionnelles (en-têtes de colonnes, options de listes déroulantes)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
+  },
+  "skills/job-intent-tracker/scripts/profile_match.py": {
+   "fichier": "skills/job-intent-tracker/scripts/profile_match.py",
+   "zh_avant": 262,
+   "zh_apres": 262,
+   "statut": "INTENTIONNEL",
+   "note_finition": "outil du marché de l'emploi chinois — chaînes fonctionnelles du rapport de correspondance",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
+  },
+  "skills/job-intent-tracker/references/keywords_finance.md": {
+   "fichier": "skills/job-intent-tracker/references/keywords_finance.md",
+   "zh_avant": 411,
+   "zh_apres": 411,
+   "statut": "INTENTIONNEL",
+   "note_finition": "bibliothèque de mots-clés chinois (finance) = données de correspondance",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
+  },
+  "skills/job-intent-tracker/references/keywords_general.md": {
+   "fichier": "skills/job-intent-tracker/references/keywords_general.md",
+   "zh_avant": 264,
+   "zh_apres": 264,
+   "statut": "INTENTIONNEL",
+   "note_finition": "bibliothèque de mots-clés chinois (général) = données de correspondance",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
+  },
+  "skills/job-intent-tracker/references/keywords_tech.md": {
+   "fichier": "skills/job-intent-tracker/references/keywords_tech.md",
+   "zh_avant": 412,
+   "zh_apres": 412,
+   "statut": "INTENTIONNEL",
+   "note_finition": "bibliothèque de mots-clés chinois (tech) = données de correspondance",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
+  },
+  "skills/job-intent-tracker/SKILL.md": {
+   "fichier": "skills/job-intent-tracker/SKILL.md",
+   "zh_avant": 0,
+   "zh_apres": 0,
+   "statut": "TRADUIT",
+   "note_finition": "déjà soldé avant ce cycle (0 CJK — liste prioritaire propriétaire)",
+   "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
   }
+ },
+ "finition_p2": {
+  "session": "web-4f989063",
+  "date": "2026-10-31",
+  "plan": "download/plan-analyse-integrale-s1bf18a23-bloc-par-bloc.md (D505)",
+  "politique": "P1 traduire (prose, démos) / P2 conserver (données fonctionnelles, valeurs API, vocabulaire de référentiel) — jamais de traduction aveugle",
+  "traduits": [
+   "skills/pptx/SKILL.md",
+   "skills/design/design-templates/ppt/html-ppt-zhangzara-pin-and-paper/SKILL.md",
+   "skills/podcast-generate/readme.md",
+   "skills/xlsx/scenes/finance_lite.md",
+   "skills/jd-resume-tailor/references/jd_parsing_signals.md",
+   "skills/job-intent-tracker/SKILL.md"
+  ],
+  "intentionnels": [
+   "skills/design/horizontal-craft/anti-ai-slop.md",
+   "skills/design/design-templates/xianying-tool/SKILL.md",
+   "skills/gaokao-collect-student-info/SKILL.md",
+   "skills/job-intent-tracker/scripts/init_tracker.py",
+   "skills/job-intent-tracker/scripts/profile_match.py",
+   "skills/job-intent-tracker/references/keywords_finance.md",
+   "skills/job-intent-tracker/references/keywords_general.md",
+   "skills/job-intent-tracker/references/keywords_tech.md"
+  ]
  }
 }
