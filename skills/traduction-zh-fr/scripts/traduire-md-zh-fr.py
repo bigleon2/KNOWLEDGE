@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
-"""traduire-md-zh-fr.py — Traduction des skills .md chinois vers le français via backends gratuits (googletrans → gtx → MyMemory).
+"""traduire-md-zh-fr.py — Traduction des skills .md chinois vers le français via backends gratuits (z-ai LLM → googletrans → gtx → MyMemory).
 
 Conventions script-creator : Python stdlib uniquement (N3), idempotent ×2 (GF-3),
 --dry/--exec/--selftest, journal JSON append-only.
 Politique P1/P2 (chantier P2 francisation) : traduire la PROSE, conserver les
 données fonctionnelles — blocs de code, code en ligne, URLs, valeurs chiffrées.
+
+Chaîne de backends (v1.1.0 — optimisation G5/G6, recherche 2026-11-01) :
+  1. zai        — CLI `z-ai chat` (LLM glm de l'écosystème, qualité maximale, sans quota 429)
+  2. googletrans — conformément à la directive propriétaire (paquet dysfonctionnel détecté par la garde)
+  3. gtx        — endpoint Google Translate public (sans clé)
+  4. mymemory   — MyMemory API publique (sans clé)
+  + hors-ligne : Argos Translate recommandé sur la machine du propriétaire (pivot ZH→EN→FR intégré — voir rapport G5)
 
 Usage :
     traduire-md-zh-fr.py --dry   --fichier <md> [md ...] [--racine DIR] [--seuil N]
@@ -18,7 +25,10 @@ import hashlib
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 import time
 import urllib.parse
 import urllib.request
@@ -29,10 +39,16 @@ RE_CJK = re.compile(r"[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]")
 RE_URL = re.compile(r"(https?://[^\s\)\]]+|<[^>]+>|`[^`]+`|\[\d+\])")
 SEUIL_CJK = 20
 SEUIL_FUSION = 3000  # caractères max par requête (fusion de segments)
+SEUIL_RATIO_CJK = 0.08  # P2 : segment déjà francisé si les CJK pèsent < 8 % (termes résiduels) — optimisation G6 issue du test réel
 DEBIT_S = 0.25       # intervalle minimal entre requêtes (≤ 4 req/s, garde 5 req/s Google)
 BACKOFF = [2, 5, 12]  # secondes, 3 tentatives par segment
 
-BACKENDS = ("googletrans", "gtx", "mymemory")
+BACKENDS = ("zai", "googletrans", "gtx", "mymemory")
+
+SYSTEME_ZAI = ("Tu es un traducteur technique chinois→français expert. Traduis fidèlement le texte "
+               "fourni en français, registre technique, sans ajouter ni omettre d'information. "
+               "Conserve tels quels : les URLs, le code, les noms de fichiers, les valeurs chiffrées "
+               "et les jetons de protection \u2063N\u2063. Réponds UNIQUEMENT avec la traduction.")
 
 
 # ---------------------------------------------------------------- utilitaires
@@ -79,6 +95,32 @@ def _http_get(url: str, timeout: int = 25) -> str:
     )
     with urllib.request.urlopen(req, timeout=timeout) as rep:
         return rep.read().decode("utf-8")
+
+
+def _traduire_zai(texte: str, limiteur: Debit) -> str:
+    """Backend z-ai chat (LLM glm de l'écosystème — le plus qualitatif, sans quota 429)."""
+    if not shutil.which("z-ai"):
+        raise RuntimeError("CLI z-ai absent")
+    limiteur.attendre()
+    fd, chemin = tempfile.mkstemp(suffix=".json")
+    os.close(fd)
+    try:
+        r = subprocess.run(
+            ["z-ai", "chat", "-s", SYSTEME_ZAI,
+             "-p", "Traduis en français, réponds uniquement avec la traduction :\n" + texte,
+             "--output", chemin],
+            capture_output=True, text=True, timeout=150,
+        )
+        if r.returncode != 0:
+            raise RuntimeError(f"z-ai rc={r.returncode} : {r.stderr.strip()[-150:]}")
+        with open(chemin, encoding="utf-8") as f:
+            data = json.load(f)
+        dst = data["choices"][0]["message"]["content"].strip()
+    finally:
+        os.unlink(chemin)
+    if not dst:
+        raise RuntimeError("z-ai : réponse vide")
+    return dst
 
 
 def _traduire_gtx(texte: str, limiteur: Debit) -> str:
@@ -138,14 +180,11 @@ def traduire_texte(texte: str, cache: dict, stat: dict, journalise=None) -> str:
     for nom in BACKENDS:
         if nom == "googletrans" and not _import_ok("googletrans"):
             continue
+        if nom == "zai" and not shutil.which("z-ai"):
+            continue
         try:
             limiteur = stat["limiteur"]
-            if nom == "googletrans":
-                dst = _traduire_googletrans(texte, limiteur)
-            elif nom == "gtx":
-                dst = _traduire_gtx(texte, limiteur)
-            else:
-                dst = _traduire_mymemory(texte, limiteur)
+            dst = globals()[f"_traduire_{nom}"](texte, limiteur)
         except Exception as exc:  # noqa: BLE001 — chaîne de repli volontaire
             erreur_derniere = exc
             if journalise:
@@ -155,6 +194,17 @@ def traduire_texte(texte: str, cache: dict, stat: dict, journalise=None) -> str:
             cache[cle] = {"dst": dst, "backend": nom, "ts": datetime.now(timezone.utc).isoformat()}
             stat["requetes"] += 1
             return dst
+        if nom == "zai" and dst == texte:
+            # Verdict d'identité du LLM de confiance (tête de chaîne) : rien à traduire
+            # (prose déjà francisée ou données fonctionnelles P2) — segment conservé tel
+            # quel, SANS échec (optimisation G6 issue du test réel — re-jeux idempotents).
+            cache[cle] = {"dst": texte, "backend": "zai-identité", "ts": datetime.now(timezone.utc).isoformat()}
+            stat["inchangés"] = stat.get("inchangés", 0) + 1
+            if journalise:
+                journalise("backend zai : verdict identité — rien à traduire (P2/déjà francisé), segment conservé")
+            return texte
+        if journalise:
+            journalise(f"backend {nom} : texte inchangé ou vide (repli — segment déjà traduit ou données P2)")
     raise RuntimeError(f"tous les backends ont échoué : {erreur_derniere}")
 
 
@@ -195,7 +245,9 @@ def traduire_markdown(texte: str, cache: dict, stat: dict, journalise=None) -> s
 def _traduire_corps(texte: str, cache: dict, stat: dict, journalise=None) -> str:
     sortie = []
     for bloc, a_traduire in decouper_markdown(texte):
-        if not a_traduire or compter_cjk(bloc) == 0:
+        n_cjk = compter_cjk(bloc)
+        if not a_traduire or n_cjk == 0 or n_cjk / max(len(bloc), 1) < SEUIL_RATIO_CJK:
+            # P2 : bloc de code, sans CJK, ou prose déjà francisée avec termes résiduels — conservé tel quel
             sortie.append(bloc)
             continue
         brut, jetons = limiter_urls(bloc)

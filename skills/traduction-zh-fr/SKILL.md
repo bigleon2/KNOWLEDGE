@@ -1,6 +1,6 @@
 ---
 name: traduction-zh-fr
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -15,13 +15,16 @@ description: >
   l'écosystème (directive propriétaire 2026-11-01). Deux moteurs complémentaires :
   (1) PDFMathTranslate (pdf2zh, 38,1 k étoiles GitHub, EMNLP 2025, AGPL-3.0) —
   application open source de référence pour la traduction de PDF avec préservation
-  de la mise en page, installée en local (pip) ; (2) script Python stdlib
-  traduire-md-zh-fr.py — traduction des fichiers .md (skills écrits en chinois)
-  via une chaîne de backends gratuits (googletrans → endpoint gtx → MyMemory),
-  cache persistant anti-quota, débit contrôlé ≤ 4 req/s, politique P1/P2 du
+  de la mise en page, installée en local (pip) ; successeur pdf2zh-next 2.0/BabelDOC
+  identifié (recherche G5) ; (2) script Python stdlib traduire-md-zh-fr.py —
+  traduction des fichiers .md (skills écrits en chinois) via une chaîne de backends
+  (z-ai LLM glm de l'écosystème → googletrans → endpoint gtx → MyMemory), cache
+  persistant anti-quota, verdict d'identité P2 (re-jeux byte-stables), garde de ratio
+  CJK 8 % (segments déjà francisés conservés), débit contrôlé, politique P1/P2 du
   chantier P2 (traduire la prose, conserver les données fonctionnelles : blocs de
   code, code en ligne, URLs, valeurs API, spécimens). Cas d'usage direct : chantier
-  P2 francisation (Lots 2-3, ~31 000 CJK restants).
+  P2 francisation (Lots 2-3). Test réel G4 : 5 skills volumineux — traductions réelles
+  réussies via zai (design 4 471→689 CJK) + idempotence byte-stable ×2 passes.
 dependencies:
   - skill: script-creator
     version: ">=1.0.0"
@@ -80,9 +83,21 @@ python3 skills/traduction-zh-fr/scripts/traduire-md-zh-fr.py --selftest
 - **P1 traduit** : prose, instructions, descriptions, explications ;
 - **P2 conservé** : blocs de code, code en ligne, URLs, valeurs API, spécimens chinois, vocabulaire de référentiel, frontmatter YAML (structure).
 
-**Architecture du script** : chaîne de backends gratuits (`googletrans` → endpoint gtx Google → MyMemory, avec retries/backoff 2-5-12 s) ; cache persistant JSON (clé sha256 segment — anti-quota, idempotence ×2) ; fusion de segments ≤ 3 000 car/requête ; masquage URLs/inline-code/balises avant traduction (jetons \u2063N\u2063) et restauration après ; seuil CJK 20 (fichier déjà traduit sauté) ; journal append-only compatible `p2-etat.json`.
+**Architecture du script (v1.1.0)** : chaîne de backends (`zai` CLI LLM glm de l'écosystème → `googletrans` → endpoint gtx Google → MyMemory, avec retries/backoff 2-5-12 s) ; **verdict d'identité** du LLM de confiance (segment inchangé = rien à traduire/P2 → conservé sans échec) ; **garde de ratio CJK 8 %** (segment déjà francisé → conservé sans appel) ; cache persistant JSON (clé sha256 segment — anti-quota, idempotence byte-stable ×2) ; fusion de segments ≤ 3 000 car/requête ; masquage URLs/inline-code/balises avant traduction (jetons \u2063N\u2063) et restauration après ; seuil CJK 20 par fichier (fichier déjà traduit sauté) ; journal append-only compatible `p2-etat.json`.
 
-**Constat d'époque (2026-11-01)** : le paquet `googletrans` 4.0.2 est dysfonctionnel (texte source renvoyé inchangé — le script le détecte et bascule) ; les endpoints gratuits répondent 429 depuis le bac à sable (IP partagée) — le script est fonctionnel sur une IP normale (machine du propriétaire) ; `--selftest` (8/8 ×2) prouve la cohérence du traitement hors-ligne.
+**Constat d'époque (2026-11-01, après test réel G4)** : backend `zai` OPÉRATIONNEL (traductions réelles réussies — design chinese-typography 4 471→689 CJK en 4 requêtes ; keywords 412→0 ; fortune 694→291 ; verdicts P2 corrects sur jd/gaokao) ; idempotence byte-stable prouvée (passage 3 : 0 requête, sha256 identiques) ; `googletrans` 4.0.2 dysfonctionnel (détecté par la garde) ; endpoints gtx/mymemory/Bing throttlés 429 depuis le bac à sable (repli fonctionnel) ; `--selftest` (8/8 ×2) ; preuves complètes : download/test-traduction-5-skills-rapport.md.
+
+## Optimisations v1.1.0 (recherche G5 — 2026-11-01)
+
+Sources : download/recherche-alternatives-traduction-zh-fr.md.
+
+| Option | Verdict | Action |
+|---|---|---|
+| LLM écosystème (z-ai chat, glm-4-plus) | **retenu** — qualité > MT pur (LionBridge/LLM study), sans 429 | backend `zai` en tête de chaîne (implémenté) |
+| pdf2zh-next 2.0 (BabelDOC) | successeur officiel de pdf2zh 1.9 — WebUI, + de services | upgrade PDF recommandé (machine propriétaire) |
+| Argos Translate (Apache, hors-ligne, pivot ZH→EN→FR natif) | retenu pour la machine propriétaire (bac à sable : disque insuffisant pour torch) | recommandation hors-ligne |
+| Hunyuan-MT-7B (Tencent, WMT2025 : 1er sur 30/31 langues) | référence qualité ; 7B = GPU requis | veille (machine propriétaire GPU) |
+| NLLB-200 / OPUS-MT (Helsinki) | pivot ZH→EN→FR viable (opus-mt-zh-en, opus-mt-en-fr) | documenté (licence NLLB = CC-BY-NC : usage interne OK) |
 
 ## Relations
 
