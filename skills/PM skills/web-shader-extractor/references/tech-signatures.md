@@ -1,29 +1,29 @@
-# 框架识别特征
+# Signatures d'identification des frameworks
 
 ## Three.js
 
-**未混淆** : `THREE.`, `WebGLRenderer`, `ShaderMaterial`, `BufferGeometry`
+**Non obfusqué** : `THREE.`, `WebGLRenderer`, `ShaderMaterial`, `BufferGeometry`
 
-**混淆后**（通过构造参数推断）：
+**Après obfuscation**（déduit via les paramètres du constructeur）：
 
-| 调用模式 | 原始类 |
+| Motif d'appel | Classe d'origine |
 |---------|--------|
 | `new X({canvas, antialias, alpha})` | `WebGLRenderer` |
-| `new X(fov, aspect, near, far)` — 4 数字 | `PerspectiveCamera` |
-| `new X(-1, 1, 1, -1, 0, 1)` — 6 参数 | `OrthographicCamera` |
+| `new X(fov, aspect, near, far)` — 4 nombres | `PerspectiveCamera` |
+| `new X(-1, 1, 1, -1, 0, 1)` — 6 paramètres | `OrthographicCamera` |
 | `new X(w, h, {wrapS, minFilter})` | `WebGLRenderTarget` |
 | `new X(data, w, h, format, type)` — Float32Array | `DataTexture` |
 | `new X(2, 2)` comme géométrie | `PlaneGeometry` |
 | `new X({uniforms, vertexShader, fragmentShader})` | `ShaderMaterial` |
 | `X.getElapsedTime()` | `Clock` |
 
-**常量**：`ClampToEdgeWrapping`, `NearestFilter`, `RGBAFormat`, `FloatType`, `DoubleSide`
+**Constantes**：`ClampToEdgeWrapping`, `NearestFilter`, `RGBAFormat`, `FloatType`, `DoubleSide`
 
 ## 2D Canvas
 
-`dataEngine: null` 时，用 `getContext('2d')` 有无 + `createShader`/`shaderSource` 有无区分：
-- 有 `getContext('2d')`，无 WebGL 调用 → 纯 2D Canvas
-- 有 WebGL 调用 → Raw WebGL / PixiJS
+`dataEngine: null`  : utiliser `getContext('2d')` présence/absence + `createShader`/`shaderSource` présence/absence pour distinguer :
+- présence de  `getContext('2d')`，sans appel WebGL → pur Canvas 2D
+- avec appels WebGL → Raw WebGL / PixiJS
 
 ## Raw WebGL
 
@@ -40,13 +40,13 @@ gl.bindBuffer / gl.bindFramebuffer / gl.drawArrays
 
 `BABYLON.Engine`, `BABYLON.ShaderMaterial`, `BABYLON.Effect.ShadersStore`
 
-## GPGPU 模式 (Móshì)
+## GPGPU mode (Móshì)
 
 Deux `WebGLRenderTarget` (ping-pong) + `OrthographicCamera(-1,1,1,-1,0,1)` + `PlaneGeometry(2,2)` + `DataTexture` position initiale + boucle `setRenderTarget`
 
 ## Bruit courant
 
-| 函数 (hánshù) | 类型 (lèixíng) |
+| Fonction (hánshù) | Type (lèixíng) |
 |------|------|
 | `snoise` | Simplex noise (Ashima) |
 | `cnoise` | Classic Perlin |

@@ -20,8 +20,8 @@ Input: "Honey production process", 8 steps, linear without branches
 {
   "type": "flowchart",
   "nodes": [
-    { "id": "1", "label": "花粉采集", "desc": "蜜蜂从花朵采集花蜜" },
-    { "id": "2", "label": "酿造", "desc": "蜜蜂在蜂巢中反复吞吐" },
+    { "id": "1", "label": "Collecte de pollen", "desc": "Les abeilles récoltent le nectar des fleurs" },
+    { "id": "2", "label": "Fermentation", "desc": "Les abeilles régurgitent le nectar dans la ruche" },
     ...
   ],
   "edges": [["1","2"], ["2","3"], ...],
@@ -415,37 +415,37 @@ function ensureArrowDef(svg) {
 
 ```html
 <div id="root">
-  <div class="flow-title">流程图标题</div>
+  <div class="flow-title">Titre du diagramme</div>
   
   <div style="position: relative;">
     <svg class="flow-connectors" id="connectorSvg"></svg>
     <div class="flow-grid" id="flowGrid">
       <div class="flow-node start" data-id="start" style="grid-column: 2;">
-        <div class="node-title">开始</div>
+        <div class="node-title">Début</div>
       </div>
       <div class="flow-node" data-id="step1" style="grid-column: 1;">
-        <div class="node-title">步骤一</div>
-        <div class="node-desc">详细说明</div>
+        <div class="node-title">Étape 1</div>
+        <div class="node-desc">Description détaillée</div>
       </div>
       <div class="flow-node decision" data-id="decide" style="grid-column: 2;">
-        <div class="node-title">判断条件？</div>
+        <div class="node-title">Condition ?</div>
       </div>
       <div class="flow-node end" data-id="end" style="grid-column: 2;">
-        <div class="node-title">结束</div>
+        <div class="node-title">Fin</div>
       </div>
     </div>
   </div>
   
   <div class="flow-legend">
-    <div class="legend-item"><div class="legend-dot" style="border-color:#3B82F6;background:#EFF6FF;"></div>步骤</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:#F59E0B;background:#FFF7ED;"></div>判断</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:#3B82F6;background:#EFF6FF;"></div>Étape</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:#F59E0B;background:#FFF7ED;"></div>Décision</div>
   </div>
 </div>
 
 <script>
   const connections = [
     ['start', 'step1', ''], ['step1', 'decide', ''],
-    ['decide', 'end', '通过']
+    ['decide', 'end', 'oui']
   ];
   window.addEventListener('load', () => {
     ensureArrowDef(document.getElementById('connectorSvg'));
@@ -573,14 +573,14 @@ Phase-to-phase connector arrows MUST match the logical flow direction. If the fl
 
 ```html
 <div id="root">
-  <div class="flow-title">项目流程</div>
+  <div class="flow-title">Processus projet</div>
   
   <div class="phase-group phase-1">
-    <div class="phase-title">第一阶段：需求分析</div>
+    <div class="phase-title">Phase 1 : Analyse des besoins</div>
     <div class="phase-steps">
-      <div class="phase-step"><span class="step-num">1</span>需求收集与整理</div>
-      <div class="phase-step"><span class="step-num">2</span>可行性评估</div>
-      <div class="phase-step"><span class="step-num">3</span>需求优先级排序</div>
+      <div class="phase-step"><span class="step-num">1</span>Collecte et structuration des besoins</div>
+      <div class="phase-step"><span class="step-num">2</span>Étude de faisabilité</div>
+      <div class="phase-step"><span class="step-num">3</span>Priorisation des besoins</div>
     </div>
   </div>
   
@@ -588,10 +588,10 @@ Phase-to-phase connector arrows MUST match the logical flow direction. If the fl
   <div style="text-align:center; color:#94A3B8; font-size:24px; margin: 8px 0;">↓</div>
   
   <div class="phase-group phase-2">
-    <div class="phase-title">第二阶段：设计开发</div>
+    <div class="phase-title">Phase 2 : Conception et développement</div>
     <div class="phase-steps">
-      <div class="phase-step"><span class="step-num">4</span>UI/UX 设计</div>
-      <div class="phase-step"><span class="step-num">5</span>前后端开发</div>
+      <div class="phase-step"><span class="step-num">4</span>UI/UX design</div>
+      <div class="phase-step"><span class="step-num">5</span>Développement front/back</div>
     </div>
   </div>
 </div>
@@ -684,7 +684,7 @@ The following templates are for non-flowchart information visualization.
 ```html
 <div class="metric-card">
   <div class="metric-info">
-    <div class="metric-title">月活用户</div>
+    <div class="metric-title">Utilisateurs actifs mensuels</div>
     <div class="metric-value">34,521</div>
     <div class="metric-change" style="color: var(--positive)">↑ +18.2%</div>
   </div>
@@ -718,7 +718,7 @@ When multiple lines converge into one node, use the "merge first, then enter" pa
 
 ```
 [A] ──┐
-[B] ──┤── → [目标]
+[B] ──┤── → [Objectif]
 [C] ──┘
 ```
 

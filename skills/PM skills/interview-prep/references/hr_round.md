@@ -1,103 +1,103 @@
-# HR 面 / 终面题库
+# Banque de questions entretien RH / tour final
 
-HR 面通常在所有专业面之后，关注：稳定性、性格匹配、薪资期望、入职意愿。
+L'entretien RH vient après tous les tours techniques et porte sur : la stabilité, l'adéquation de personnalité, les prétentions salariales, la motivation à rejoindre.
 
-## 高频问题 + 推荐答法
+## Questions fréquentes + réponses recommandées
 
-### 1. 你为什么离职 / 想换工作？
+### 1. Pourquoi quittez-vous / voulez-vous changer de poste ?
 
-❌ 错：吐槽前公司 / 同事 / 老板
-✅ 对：聚焦"成长 / 发展 / 业务方向" 三选一
-- "我目前的业务相对成熟，希望挑战 0-1 的环境"
-- "上一份工作积累了 ___ 经验，下一步想往 ___ 方向深入，贵司这个岗位正好契合"
-- "团队结构调整，业务方向不再是我的兴趣点，所以想找新的发展"
+❌ Faux : critiquer l'ancienne entreprise / les collègues / le chef
+✅ Juste : se concentrer sur un des trois « croissance / évolution / orientation métier »
+- « Mon activité actuelle est relativement mature, je veux un environnement 0-1 plus stimulant »
+- « Mon précédent poste m'a donné l'expérience ___, l'étape suivante est d'approfondir ___, et ce poste chez vous y répond exactement »
+- « L'organisation de l'équipe a évolué et l'orientation métier ne correspond plus à mes centres d'intérêt, je cherche donc un nouveau développement »
 
-### 2. 你为什么选我们公司 / 这个岗位？
+### 2. Pourquoi nous / ce poste ?
 
-❌ 错：贵公司平台大 / 福利好
-✅ 对：show 你做了功课
-- 公司层面：业务 / 战略方向 / 你看好的趋势 + 1~2 个你具体了解的产品 / 案例
-- 岗位层面：JD 里的 ___ 与你的 ___ 经验高度契合
+❌ Faux : grande plateforme / bons avantages
+✅ Juste : montrer que vous avez fait vos devoirs
+- Côté entreprise : métier / orientation stratégique / tendance que vous jugez prometteuse + 1~2 produits / cas que vous connaissez précisément
+- Côté poste : le ___ de l'offre rejoint directement votre expérience de ___
 
-### 3. 你期望的薪资是多少？
+### 3. Quelles sont vos prétentions salariales ?
 
-策略：**永远不要先开口给一个数**
-- 如果可以反问：先问"贵司这个岗位的薪资带是多少？"
-- 如果必须给：给一个 range（不要给点），比如"40~55k × 14"，下限略高于你能接受的最低
-- 如果对方说"无可奉告，必须你先报"：基于市场数据 + 当前涨幅 30~50% 给一个略高的数
+Stratégie : **ne jamais ouvrir le premier avec un chiffre**
+- Si l'on peut retourner la question : demander d'abord « quelle est la fourchette de ce poste chez vous ? »
+- Si l'on doit donner : une fourchette (pas un point), ex. « 40~55 k × 14 », plancher légèrement au-dessus de votre minimum
+- Si l'autre dit « sans commentaire, à vous d'annoncer » : partir des données de marché + progression de 30~50 % et annoncer un peu haut
 
-更详细的薪资谈判脚本见 `salary_negotiation.md`。
+Le script détaillé de négociation est dans `salary_negotiation.md`.
 
-### 4. 你拿了几个 offer？什么进展？
+### 4. Combien d'offres avez-vous ? où en sont-elles ?
 
-策略：**不撒谎，但策略性地说**
-- 有真实 offer：直接说，"目前手上有 X 公司的 ___ offer，基本盘是 ___"
-- 在面其他公司：说"还在面 X 类公司，预计 X 周内有结果"，给对方紧迫感
-- 完全没有：说"目前在重点投这一类岗位，进展中"
+Stratégie : **ne pas mentir, mais s'exprimer avec tactique**
+- Offre réelle : le dire, « j'ai actuellement une offre ___ de X, l'assise est ___ »
+- En cours ailleurs : « je passe encore des entretiens dans des entreprises du type X, des réponses sont attendues sous X semaines » — installer un léger sentiment d'urgence
+- Rien du tout : « je cible actuellement ce type de postes, les candidatures avancent »
 
-### 5. 我们 / 这个岗位有没有什么让你担心的？
+### 5. Y a-t-il quelque chose qui vous inquiète chez nous / sur ce poste ?
 
-策略：**给一个真实但可解决的担忧**
-- "对 ___ 业务的快速迭代节奏，我需要一段时间适应"
-- "团队规模比我之前的大很多，如何融入是我会主动想的事"
+Stratégie : **une inquiétude réelle mais résoluble**
+- « Le rythme d'itération rapide du métier ___ demandera pour moi un temps d'adaptation »
+- « L'équipe est beaucoup plus grande qu'avant pour moi, comment m'y intégrer est une chose à laquelle je réfléchirai activement »
 
-不要答"没有任何顾虑"——显得不真诚。
+Ne pas répondre « aucune réserve » — cela paraît peu sincère.
 
-### 6. 你最快什么时候能入职？
+### 6. À quelle date pourriez-vous commencer au plus tôt ?
 
-❌ 错：随时（显得急）
-✅ 对：基于实际 + 给一点缓冲
-- 在职：依法 30 天交接 + 1 周休息 = 5~6 周
-- 待业：2 周左右
-- 应届：可按毕业时间 / 学校要求
+❌ Faux : immédiatement (paraît pressé)
+✅ Juste : partir du réel + garder une marge
+- En poste : passation légale de 30 jours + 1 semaine de repos = 5~6 semaines
+- Sans emploi : environ 2 semaines
+- Jeune diplômé : selon la date de remise des diplômes / les exigences de l'école
 
-### 7. 你最近读了什么书 / 最近在学什么 / 业余爱好？
+### 7. Quel livre lisez-vous en ce moment / qu'apprenez-vous / vos loisirs ?
 
-策略：**展示自驱力 + 个性**，不要硬凹"成长性"
-- 1 本与岗位有点关系的书 / 课程
-- 1 个真实的爱好（运动 / 艺术 / 写作 / 旅行 / 编程副业）
+Stratégie : **montrer l'auto-motivation + la personnalité**, sans forcer le trait « croissance »
+- 1 livre / cours en lien, même lointain, avec le poste
+- 1 loisir réel (sport / art / écriture / voyage / projet de code perso)
 
-### 8. 你的优点 / 缺点（HR 复问版）
+### 8. Votre qualité / votre défaut (version re-demandée par les RH)
 
-HR 复问通常更深，要求"举例"：
-- 优点：1 个核心优点 + 1 个具体故事 + 这个优点带来的成果
-- 缺点：1 个真实缺点 + 自我察觉的过程 + 正在做的改进
+La relance RH est plus profonde et exige des « exemples » :
+- Qualité : 1 qualité centrale + 1 histoire concrète + le résultat obtenu grâce à elle
+- Défaut : 1 vrai défaut + comment vous l'avez repéré + ce que vous faites pour progresser
 
-⚠️ 缺点不要选"完美主义、太投入工作、太认真"——这些会被识别为"反向夸自己"。
-推荐方向：表达 / 委派 / 公开演讲 / 优先级控制（这些是真缺点但可改进）。
+⚠️ Ne pas choisir « perfectionnisme, trop impliqué, trop sérieux » — perçus comme des compliments inversés.
+Orientations recommandées : expression / délégation / prise de parole en public / gestion des priorités (vrais défauts, mais améliorables).
 
-### 9. 你的 5 年 / 10 年规划
+### 9. Votre projet à 5 / 10 ans
 
-策略：**与公司路径绑定 + 留出灵活性**
-- "未来 3~5 年我希望在 ___ 方向深耕，从 IC 成长为能带小团队的 senior"
-- "5 年后希望能独立负责一条业务线 / 子产品"
-- 不要说"自己创业""转行" / "出国" / "做自媒体"
+Stratégie : **l'arrimer à la trajectoire de l'entreprise + garder de la souplesse**
+- « Dans 3~5 ans, je veux approfondir la direction ___, passer d'IC à un senior capable d'encadrer une petite équipe »
+- « Dans 5 ans, j'aimerais porter de façon autonome une ligne de métier / un sous-produit »
+- Ne pas dire « créer ma boîte », « me reconvertir », « partir à l'étranger », « devenir créateur de contenu »
 
-### 10. 还有什么想问我们的？
+### 10. Avez-vous des questions pour nous ?
 
-**强信号题**——必须问问题，不能说"没了"。
+**Question à fort signal** — il FAUT poser des questions, ne jamais dire « non, rien ».
 
-参考问题（按 HR / 主管 / 终面分层）：
+Questions types (selon RH / manager / tour final) :
 
-**问 HR：**
-- 这个岗位的 onboarding 一般是怎么安排的？
-- 团队的组成、和我对接的同事的背景能介绍下吗？
-- 公司近期的业务重点 / 战略方向是什么？
+**Aux RH :**
+- Comment l'onboarding de ce poste se déroule-t-il habituellement ?
+- Pouvez-vous présenter la composition de l'équipe et le parcours des collègues avec qui je travaillerais ?
+- Quelles sont les priorités métier / l'orientation stratégique récentes de l'entreprise ?
 
-**问主管 / 业务面试官：**
-- 您觉得这个岗位最大的挑战是什么？
-- 团队最近的 OKR 是什么？
-- 您觉得在这个岗位做得好的人，半年 / 一年通常会做出哪些成果？
+**Au manager / à l'intervieweur métier :**
+- Selon vous, quel est le plus grand défi de ce poste ?
+- Quels sont les OKR récents de l'équipe ?
+- Selon vous, que produisent en général les personnes qui réussissent ici en six mois / un an ?
 
-**问终面 / 大老板：**
-- 您看好的下一个三年的业务方向是什么？
-- 这个岗位 / 这条业务线在公司战略里的位置？
-- 您在公司最自豪的一个决策是什么？（拉近距离）
+**Au tour final / au dirigeant :**
+- Quelle orientation métier voyez-vous gagner sur les trois prochaines années ?
+- Quelle est la place de ce poste / de cette ligne de métier dans la stratégie de l'entreprise ?
+- Quelle décision vous rend le plus fier dans cette entreprise ? (créer la proximité)
 
-❌ **不要问的**：薪资细节（HR 会主动给）、加班 / 出差（显得在挑刺）、五险一金（显得不专业）
+❌ **À ne pas demander** : les détails salariaux (les RH les donneront), les heures sup / déplacements (paraît chercher les défauts), la protection sociale (paraît peu professionnel)
 
-## HR 面综合心态
+## État d'esprit global pour l'entretien RH
 
-- HR 看似友好，实际在筛"性格 / 稳定性 / 文化匹配"，每句话都是评估
-- 答题保持"克制 + 真实"，不要为了讨好把答案变得不像自己
-- HR 一般不决定 offer 给不给，但能 **veto** —— 别在最后一公里翻车
+- Les RH paraissent amicales mais filtrent « personnalité / stabilité / adéquation culture », chaque phrase est évaluée
+- Garder des réponses « retenues + authentiques », ne pas se dénaturer pour plaire
+- Les RH ne décident en général pas de l'offre, mais peuvent **opposer leur veto** — ne pas trébucher au dernier kilomètre

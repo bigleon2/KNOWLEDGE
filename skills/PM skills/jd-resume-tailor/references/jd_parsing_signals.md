@@ -1,8 +1,8 @@
-# JD 解析信号词参考
+# Référentiel des signaux de parsing des JD (descriptions de poste chinoises)
 
-## must-have 强信号词
+## Signaux forts (must-have)
 
-只要 JD 句子里出现这些词，后面的技能 / 经验大概率是硬门槛：
+Dès que l'une de ces expressions apparaît dans une phrase du JD, la compétence / l'expérience qui suit est très probablement un seuil dur :
 
 - 必须 / 必备 / 要求 / 应当
 - 至少 X 年 / X+ years / 不少于
@@ -10,13 +10,13 @@
 - "必要条件" / "硬性要求"
 - 工科背景 / 985 / 211 / 硕士及以上 / 博士
 
-英文 JD：
+En JD anglais :
 - Required / Must have / Mandatory / Essential
 - Minimum X years
 - Strong proficiency in / Expert in
 - Demonstrated experience with
 
-## nice-to-have 弱信号词
+## Signaux faibles (nice-to-have)
 
 - 加分 / 优先 / 优先考虑
 - 熟悉 ___ 者优先
@@ -24,34 +24,34 @@
 - "了解 ___ 即可"
 - 加分项
 
-英文：
+En anglais :
 - Preferred / Nice to have / Plus / Bonus / Desirable
 - Familiar with / Exposure to
 - A plus / Would be a plus
 
-## 职责动词（写在 bullet 里能呼应 JD）
+## Verbes de responsabilité (à écrire dans les bullets pour faire écho au JD)
 
-中文：负责、主导、推动、设计、搭建、优化、规划、迭代、孵化、复盘、运营、管理、协调、执行
-英文：Lead / Drive / Build / Design / Architect / Develop / Implement / Optimize / Manage / Coordinate / Execute / Own
+Chinois : 负责、主导、推动、设计、搭建、优化、规划、迭代、孵化、复盘、运营、管理、协调、执行
+Anglais : Lead / Drive / Build / Design / Architect / Develop / Implement / Optimize / Manage / Coordinate / Execute / Own
 
-## 特殊要求
+## Exigences particulières
 
-- **学历**：本科 / 硕士 / 博士及以上；学校 tier
-- **工作年限**：X-Y 年（写明 range，不写满则有弹性）
-- **语言**：英语口语流利 / CET-6 / 雅思 X / 母语
-- **证书**：CFA / CPA / PMP / AWS Solutions Architect 等
-- **出差 / 派驻 / 加班**："接受出差"、"奇偶周末调休"、"项目制 996"
-- **工作地点**：城市 + 是否 remote / hybrid
+- **Diplôme** : 本科 (licence) / 硕士 (master) / 博士 (doctorat) et plus ; palier d'école
+- **Années d'expérience** : X-Y ans (donner la fourchette ; ne pas la remplir laisse de la marge de négociation)
+- **Langues** : anglais courant à l'oral / CET-6 / IELTS X / langue maternelle
+- **Certifications** : CFA / CPA / PMP / AWS Solutions Architect etc.
+- **Déplacements / détachement / heures supplémentaires** : "接受出差" (déplacements acceptés), "奇偶周末调休" (repos alterné week-ends pairs/impairs), "项目制 996" (996 par projet)
+- **Lieu de travail** : ville + remote / hybride ou non
 
-## 反信号（看到这些要警觉）
+## Contre-signaux (être vigilant à la vue de ces mentions)
 
-- "其他领导交办的任务" → 工作边界模糊
-- "良好的抗压能力" → 加班多
-- "拥抱变化 / 快速迭代" → 业务方向不稳定
-- "扁平化沟通 / 没有层级" → 实际可能更乱
-- "5 险一金 + 节日福利" 写在 JD 显眼位置 → 福利可能就这些
+- "其他领导交办的任务" (tâches confiées par les autres dirigeants) → périmètre de travail flou
+- "良好的抗压能力" (bonne résistance à la pression) → beaucoup d'heures supplémentaires
+- "拥抱变化 / 快速迭代" (étreindre le changement / itération rapide) → direction métier instable
+- "扁平化沟通 / 没有层级" (communication plate / sans hiérarchie) → en pratique souvent plus désordonné
+- "5 险一金 + 节日福利" (5 assurances + fonds de logement + avantages de fête) mis en évidence dans le JD → les avantages s'arrêtent probablement là
 
-## 输出格式（Step 1 给用户看的）
+## Format de sortie (présenté à l'utilisateur à l'étape 1)
 
 ```json
 {

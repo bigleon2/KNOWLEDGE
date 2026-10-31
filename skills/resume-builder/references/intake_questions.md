@@ -2,34 +2,34 @@
 
 Divisez en 3 tours de questions, ne donnez pas tout à l'utilisateur en une seule fois.
 
-## 第 1 轮：基本信息（必问）
+## Tour 1 : informations de base (obligatoire)
 
 1. Votre nom et coordonnées (téléphone, e-mail, optionnel GitHub / portfolio)
 2. Diplôme(s) (établissement + spécialité + niveau d'études + année d'obtention ; plusieurs formations à lister dans l'ordre chronologique)
-3. 你的 / 最近一份工作的：公司、岗位、起止时间
+3. Ton dernier emploi : entreprise, intitulé du poste, dates de début et de fin
 
-## 第 2 轮：经历主体（必问）
+## Tour 2 : corps des expériences (obligatoire)
 
-针对每段工作 / 实习 / 项目，按这个套路问：
+Pour chaque poste / stage / projet, poser les questions selon ce schéma :
 
-- 这段经历你**主要负责什么**？
-- 有哪些**具体的事情**是你独立或主导做的？（关键词：你"做了什么"，不是"参与了什么"）
-- **结果如何**？有没有可以量化的数字（用户量、转化率、收入、效率提升、排名等）
-- 这段经历你最得意的**一件事**是什么？
+- Sur cette expérience, de quoi **étais-tu principalement responsable** ?
+- Quelles **actions concrètes** as-tu menées seul(e) ou dont tu as eu le pilotage ? (mot-clé : ce que tu « as fait », pas ce à quoi tu « as participé »)
+- **Quels résultats** ? Y a-t-il des chiffres quantifiables (utilisateurs, conversion, revenus, gains d'efficacité, classements…) ?
+- Quelle est la réussite **dont tu es le/la plus fier(ière)** dans cette expérience ?
 
-如果用户记不清数字，可以这样追问：
-- "大致量级也可以，比如 10 万 / 百万 / 千万"
-- "百分比记不清的话，给一个 range，比如『大约 20-30%』"
-- "如果完全没办法估，我会标成『[需补具体数字]』，你后面填"
+Si l'utilisateur ne se souvient pas des chiffres, relancer ainsi :
+- « Un ordre de grandeur suffit : 10 k / 100 k / 1 M »
+- « Pour un pourcentage flou, donne une fourchette, ex. “environ 20-30 %” »
+- « Si vraiment impossible à estimer, je marque “[chiffre à préciser]”, tu complèteras plus tard »
 
-## 第 3 轮：补充信息（可选）
+## Tour 3 : informations complémentaires (optionnel)
 
 - Compétences / Outils : langages de programmation, frameworks, design / données / outils de bureau
 - Compétences linguistiques : anglais / autres langues + niveau
 - Certifications / Récompenses : mentionner uniquement celles qui ont de la valeur (CFA Niveau 2, ACM Regional Contest, PMP, etc.)
 - Centres d'intérêt / Autres : ne mentionner que s'il y a un réel intérêt (par exemple marathon, œuvre de jeu vidéo indépendant)
 
-## 应届生补充问
+## Questions complémentaires pour les nouveaux diplômés
 
 - Expériences universitaires (Bureau des étudiants, clubs, bénévolat) — mais ne sélectionnez que celles qui illustrent "leadership / organisation / capacité à promouvoir"
 - Projets de cours — choisissez 1 à 2 en lien avec le poste visé
@@ -37,8 +37,8 @@ Divisez en 3 tours de questions, ne donnez pas tout à l'utilisateur en une seul
 
 ## Candidats en reconversion (questions supplémentaires)
 
-- 你为什么想转到这个方向？
-- 你已经为转行做了哪些准备（自学、项目、副业、证书）？
-- 原岗位有哪些**可迁移技能**？（举具体例子）
+- Pourquoi veux-tu te réorienter vers ce domaine ?
+- Quelles préparations as-tu faites pour cette reconversion (auto-formation, projets, side-projects, certificats) ?
+- Quelles **compétences transférables** de ton poste actuel ? (donner des exemples concrets)
 
 Ces informations seront utilisées dans une brève section "Présentation personnelle / Résumé de carrière" pour dissiper le perplexité des RH lorsqu'ils voient un CV de reconversion.

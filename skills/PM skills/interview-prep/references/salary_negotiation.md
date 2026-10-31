@@ -1,99 +1,99 @@
-# 薪资谈判脚本
+# Script de négociation salariale
 
-## 心法
+## Principes
 
-- 永远不要先开口给一个数（让对方先报）
-- 给数字时给 range，下限略高于你的最低接受
-- 谈判全程保持"希望加入" + "理性 base on 市场" 的语气
-- 不要 disclose 你的当前 / 历史薪资（除非法律 / 当地惯例要求）
-- 多个 offer 是最大筹码，但不要明示要"涨多少"，让对方主动提
+- Ne jamais ouvrir le premier avec un chiffre (laisser l'autre annoncer)
+- Quand on donne un chiffre, donner une fourchette dont le plancher dépasse légèrement votre minimum acceptable
+- Garder tout du long un ton « enthousiaste à rejoindre » + « raisonnable, aligné sur le marché »
+- Ne pas divulguer votre salaire actuel / historique (sauf obligation légale / usage local)
+- Des offres multiples sont le meilleur levier, mais sans énoncer « il me faut tant de plus » : laisser l'autre faire la proposition
 
-## 阶段 1：HR 初次问期望薪资
+## Étape 1 : les RH demandent vos prétentions
 
-**HR**："你期望的薪资是多少？"
+**RH** : « Quelles sont vos prétentions salariales ? »
 
-**你（首选）**：
-"贵司这个岗位的薪资带是多少？我希望对齐市场和岗位职级。"
+**Vous (réponse préférée)** :
+« Quelle est la fourchette de ce poste dans votre entreprise ? Je souhaite m'aligner sur le marché et sur le niveau du poste. »
 
-**HR（如果说不告诉你）**：
-"我们想先听你的期望，再做匹配。"
+**RH (si elles refusent de dire)** :
+« Nous préférerions connaître vos attentes d'abord. »
 
-**你**：
-"基于市场行情和我的 ___ 年经验，我希望的范围是 X~Y k × ___ 月，最终可以基于贵司的整体 package 综合谈。"
+**Vous** :
+« Au vu du marché et de mes ___ années d'expérience, la fourchette que j'envisage est de X~Y k € × ___ mois ; pour la suite, tout dépend du package global que nous pourrons discuter. »
 
-X 的算法：（当前年包 ÷ 12 ÷ 月数）× 1.3~1.5，向上取整到 5k。
-Y 的算法：X × 1.2。
+Calcul de X : (rémunération annuelle actuelle ÷ 12 ÷ nombre de mois) × 1,3~1,5, arrondi au 5 k supérieur.
+Calcul de Y : X × 1,2.
 
-例：当前 30 × 16 = 480k 年包。月薪 = 480/14 ≈ 34k。期望 X = 34 × 1.3 = 44k → 给 45~55k × 14。
+Exemple : actuellement 30 × 16 = 480 k par an. Mensuel = 480/14 ≈ 34 k. X visé = 34 × 1,3 = 44 k → demander 45~55 k × 14.
 
-## 阶段 2：HR 给口头 offer
+## Étape 2 : offre verbale des RH
 
-**HR**："我们能给你 50k × 14，年包 700k。"
+**RH** : « Nous pouvons vous proposer 50 k × 14, soit 700 k annuels. »
 
-**你（不要立刻接）**：
-"感谢，让我先了解下整体 package 的细节，包括签字费、股票 / RSU、年终奖结构、五险一金基数、加班 / 出差补贴。"
+**Vous (ne pas accepter immédiatement)** :
+« Merci. Permettez-moi d'abord de voir le détail du package global : prime de signature, actions / RSU, structure de bonus annuel, base de cotisation sociale, indemnités de surcharge/déplacement. »
 
-收到详细信息后：
-- 如果**整体满意**：可以表达"基本符合预期，让我和家人商量 1~2 天"
-- 如果**期望更高**：进入阶段 3 谈判
+Après réception du détail :
+- Si **globalement satisfait** : exprimer « conforme à mes attentes, laissez-moi 1~2 jours pour en parler en famille »
+- Si **vous visez plus haut** : passer à l'étape 3
 
-## 阶段 3：谈高 offer
+## Étape 3 : faire monter l'offre
 
-**你**：
-"非常感谢您的 offer，我对岗位和团队都很认可。基于我目前正在 finalize 的 X 公司类似岗位的 offer / 我的当前 package + 跳槽涨幅期望，我希望能在月薪 / 签字费 / RSU 上有进一步空间，具体是 ___。"
+**Vous** :
+« Merci beaucoup pour cette offre, je suis convaincu par le poste et l'équipe. Au vu de l'offre similaire que je suis en train de finaliser chez X / de mon package actuel et de la progression attendue d'un changement, j'aimerais un peu de marge sur le mensuel / la prime de signature / les RSU, concrètement ___. »
 
-要点：
-- **永远给具体数字**（不要说"再高一点")
-- **给一个 reason**（其他 offer / 当前涨幅 / 市场行情）
-- **只谈 1~2 个核心要素**（不要每项都谈）
-- **不要威胁**（不要说"否则我去 X 公司"）
+Points clés :
+- **Toujours donner un chiffre précis** (jamais « un peu plus »)
+- **Donner une raison** (autre offre / progression actuelle / marché)
+- **Ne négocier que 1~2 leviers centraux** (pas chaque poste)
+- **Ne pas menacer** (ne jamais dire « sinon je vais chez X »)
 
-## 阶段 4：HR 拒绝再加
+## Étape 4 : les RH refusent d'aller plus haut
 
-**HR**："这个数字已经是我们的 maximum，无法再加。"
+**RH** : « Ce chiffre est déjà notre maximum, impossible de monter. »
 
-**你**：
-- 如果 base 已经能接受：尝试争取签字费 / 多一档股票 / 多 5 天年假 / 入职时间调整
-- 如果整体不能接受：感谢 + 说"我需要时间考虑"，不要当场拒绝
+**Vous** :
+- Si le socle est déjà acceptable : tenter la prime de signature / un cran d'actions supplémentaire / 5 jours de congés en plus / un ajustement de la date d'entrée
+- Si l'ensemble reste inacceptable : remercier + « j'ai besoin de temps pour réfléchir », jamais de refus sur le moment
 
-## 阶段 5：手握多个 offer
+## Étape 5 : avec plusieurs offres en main
 
-最理想：3 个 offer 在手，且各家都知道你在考虑其他
+Idéal : 3 offres en main, chacune sachant que vous pesez d'autres options
 
-**与 A 公司**："X 公司给了 50k × 14 + 100k 签字 + 200k RSU/年，我个人更倾向贵司 / 这个岗位，但希望整体 package 至少 match。"
+**Avec l'entreprise A** : « L'entreprise X m'a proposé 50 k × 14 + 100 k de signature + 200 k de RSU/an ; je suis personnellement plus attiré par votre entreprise / ce poste, mais j'aimerais au moins un package global équivalent. »
 
-**与 B 公司**：同上但换数字
+**Avec l'entreprise B** : idem avec d'autres chiffres
 
-⚠️ 不要伪造 offer（HR 圈子小，可能被发现）
+⚠️ Ne jamais inventer d'offre (le milieu RH est petit, le mensonge se découvre)
 
-## 应届生薪资谈判
+## Négociation pour jeunes diplômés
 
-应届生议价空间小，但仍有：
-- 不同 offer 互比
-- 签字费可以争（很多公司有 flex）
-- 入职时间可以争（毕业延后）
-- 工作地点 / base 转换 可以争
+La marge de négociation est réduite, mais il reste :
+- la comparaison entre offres
+- la prime de signature (souvent de la flexibilité chez beaucoup d'entreprises)
+- la date d'entrée (décalée après la remise des diplômes)
+- le lieu de travail / le socle de rémunération
 
-应届生**不要**：因为期望太高拒掉所有 offer。第一份工作的"平台 + 业务 + leader"比薪资重要。
+Un jeune diplômé ne doit **surtout pas** : refuser toutes les offres parce que les prétentions sont trop hautes. Pour un premier poste, la « plateforme + le métier + le manager » comptent plus que le salaire.
 
-## 常见雷区
+## Pièges fréquents
 
-- "我愿意降薪过来" → 永远不要主动说，HR 会觉得你"贱卖" + "需求被低估"
-- "我对薪资不敏感" → HR 听了真的会少给
-- "你们随便给个数" → 把决定权交给 HR，等于自杀
-- "如果不到 X 我就拒" → 太 hardcore，谈崩
-- 把家里 / 房贷 / 个人困难当谈判筹码 → 不专业
+- « J'accepte une baisse de salaire pour venir » → à ne jamais dire spontanément ; les RH liront « bradé » + « besoin sous-estimé »
+- « Le salaire n'est pas ma priorité » → les RH en profiteront réellement pour donner moins
+- « Proposez ce que vous voulez » → abandonner la décision aux RH, suicide négociateur
+- « En dessous de X je refuse » → trop rigide, casse la négociation
+- Brandir les soucis familiaux / le crédit / les difficultés personnelles comme levier → pas professionnel
 
-## 收到 offer 之后的 checklist
+## Check-list après réception de l'offre
 
-- [ ] 确认 base 月薪 + 月数
-- [ ] 确认签字费 / 一次性奖金
-- [ ] 确认股票 / RSU / 期权（数量、归属期、估值方式）
-- [ ] 确认年终奖结构（保底 / 固定 / 浮动）
-- [ ] 确认五险一金基数（很多公司低基数缴费，影响实际收入）
-- [ ] 确认补充医疗 / 商业保险
-- [ ] 确认年假 / 调休 / 带薪病假
-- [ ] 确认加班 / 出差补贴
-- [ ] 确认背景调查范围
-- [ ] 确认 offer letter 书面文件
-- [ ] 入职时间（30 天交接 + 1 周休息）
+- [ ] Confirmer le mensuel de base + le nombre de mois
+- [ ] Confirmer la prime de signature / bonus unique
+- [ ] Confirmer les actions / RSU / bons (volume, calendrier de vested, méthode de valorisation)
+- [ ] Confirmer la structure du bonus annuel (plancher / fixe / variable)
+- [ ] Confirmer la base de cotisation sociale (beaucoup d'entreprises cotisent sur une base minorée, impact direct sur le revenu réel)
+- [ ] Confirmer la complémentaire santé / assurance
+- [ ] Confirmer les congés / récupération / congés maladie payés
+- [ ] Confirmer les indemnités de surcharge / déplacement
+- [ ] Confirmer le périmètre de la vérification d'antécédents
+- [ ] Confirmer le document écrit de la lettre d'offre
+- [ ] Date d'entrée (30 jours de passation + 1 semaine de repos)

@@ -1,25 +1,25 @@
-# 配置参数提取
+# Extraction des paramètres de configuration
 
-配置值必须从源站提取，不猜测。（猜错实例：颜色差 60x、图案完全不同）
+Les valeurs de configuration doivent être extraites du site source, jamais devinées. (Exemple d'erreur de devinette : couleur fausse de 60x, motif totalement différent)
 
-## 来源（按优先级）
+## Sources (par priorité)
 
-### 1. 公开 REST API
+### 1. API REST publique
 
 ```bash
-# 在 JS bundle 中搜索 API 端点
+# Chercher les points d'API dans le bundle JS
 grep -oE 'api/(presets|shaders|collections)[^"]*' /tmp/*.js
-# 直接调用
+# Appel direct
 curl -s -L --compressed 'https://example.com/api/collections/slug/uuid'
 ```
 
-API 返回可能是编码的 → 见 `encoded-definitions.md`
+API la réponse peut être encodée → voir `encoded-definitions.md`
 
 ### 2. Nuxt.js Payload
 
 ```bash
 grep -oE '_payload\.json[^"]*' /tmp/page.html          # payload URL
-grep -oE 'public:\{[^}]*\}' /tmp/page.html             # runtime config（可能含密钥）
+grep -oE 'public:\{[^}]*\}' /tmp/page.html             # runtime config（peut contenir des clés）
 ```
 
 ### 3. Next.js
@@ -31,20 +31,20 @@ grep -oE '"(scene|glass|postProcessing)":\{' /tmp/page.html
 grep -o '<script id="__NEXT_DATA__"[^>]*>[^<]*' /tmp/page.html | sed 's/.*>//'
 ```
 
-### 4. 内联 JSON / window 全局变量
+### 4. JSON inline / variables globales window
 
 ```bash
 grep -oE 'window\.__CONFIG__\s*=\s*\{[^;]+' /tmp/page.html
 ```
 
-### 5. JS Bundle 默认值（最后手段）
+### 5. JS Bundle par défaut（dernier recours）
 
 ```bash
 grep -oE '(config|options|settings)\s*=\s*\{' /tmp/entry-chunk.js
 ```
 
-## 验证
+## Vérification
 
-- 颜色范围：0-1 还是 0-255？
-- resolution：像素值还是比例系数？
-- 布尔值：`false` 是否跳过整个渲染 pass？
+- Plage de couleurs : 0-1 ou 0-255 ?
+- resolution：valeur en pixels ou facteur d'échelle ?
+- Booléens :`false` `false` saute-t-il toute la passe de rendu ?

@@ -1,103 +1,103 @@
-# 金融 / 咨询 / 商科 面试专题
+# Spécial entretien finance / conseil / écoles de commerce
 
-## 投行 / IBD
+## Banque d'investissement / IBD
 
-### Technical 题
-1. 三大报表勾稽关系
-2. WACC / DCF 公式 + 关键假设
-3. LBO 模型核心要素 + 退出回报怎么算
-4. M&A 交易中 accretion / dilution 分析怎么做
-5. 用 5 种以上方法估值一家公司
-6. EV vs Equity Value 区别 + 怎么转换
-7. 同行业可比公司怎么选 + 用什么倍数
-8. PE / PB / EV/EBITDA 各自适用场景
-9. 折旧、摊销、利息、营运资本变动 对现金流的影响
-10. 一家公司 IPO 流程是怎样的（A / 港 / 美股）
+### Questions techniques
+1. Les liaisons entre les trois états financiers
+2. Formules WACC / DCF + hypothèses clés
+3. Éléments centraux d'un modèle LBO + calcul du retour à la sortie
+4. Comment mener une analyse accretion / dilution dans une transaction M&A
+5. Valoriser une entreprise par au moins 5 méthodes
+6. Différence EV vs Equity Value + conversion
+7. Comment sélectionner les comparables sectoriels + quels multiples utiliser
+8. Cas d'usage respectifs de PE / PB / EV/EBITDA
+9. Impact des amortissements, dépréciations, intérêts et variations de BFR sur les flux de trésorerie
+10. Le déroulé d'une IPO (A / Hong Kong / US)
 
-### Fit 题（中外资差异）
-- 你为什么想做投行
-- 你愿意接受 100 小时 / 周的工作强度吗
-- 你最近 follow 的一个 deal 是哪个，谈谈你的看法
-- 给你一个新的 sector，你怎么从 0 开始研究
-- 一个分析模型出错了，但 deck 已经发出去了，你怎么处理
+### Questions de motivation (différences maisons locales / internationales)
+- Pourquoi la banque d'investissement
+- Êtes-vous prêt à assumer des semaines de 100 heures
+- Quelle est la dernière opération que vous suivez, votre lecture
+- On vous confie un nouveau secteur, comment démarrez-vous de zéro
+- Un modèle comporte une erreur mais le deck est déjà parti, comment gérez-vous
 
-### 行业 deal 题（必准备 1~2 个）
-准备 1~2 个最近的 sector deal，能讲清楚：
-- 交易结构（买方 / 卖方 / 估值 / 支付方式）
-- 战略意义
-- 估值倍数 / 溢价
-- 市场反应
-- 你的看法
+### Questions sur des opérations du secteur (préparer 1~2 cas)
+Préparer 1~2 opérations récentes du secteur, savoir exposer :
+- la structure de la transaction (acquéreur / vendeur / valorisation / modalités de paiement)
+- la logique stratégique
+- les multiples de valorisation / la prime payée
+- la réaction du marché
+- votre avis
 
-## 咨询（Consulting）
+## Conseil (Consulting)
 
-### Case Interview（已在 case.md）
-重点训练：
-- Market sizing（每家必问）
+### Case Interview (traité dans case.md)
+Entraînement prioritaire :
+- Market sizing (systématique, partout)
 - Profitability
 - Market entry
 - Growth strategy
 
-### Fit 题
-- 你为什么想做咨询
-- 你为什么选 MBB（或我们这家）
-- 讲一个你 lead / 推动事情的经验
-- 讲一个你和团队意见不合的经验
-- 你的 long-term career goal
+### Questions de motivation
+- Pourquoi le conseil
+- Pourquoi MBB (ou notre cabinet)
+- Une expérience où vous avez mené / fait aboutir
+- Une expérience de désaccord avec votre équipe
+- Votre objectif de carrière à long terme
 
-### Personal Experience Interview（PEI）—— McKinsey 必考
-PEI 三大类：
-1. **Personal Impact**（你说服 / 影响别人）
-2. **Entrepreneurial Drive**（你主动推动事情）
-3. **Inclusive Leadership**（你带领多元团队）
+### Personal Experience Interview (PEI) — incontournable chez McKinsey
+Les 3 familles du PEI :
+1. **Personal Impact** (vous avez convaincu / influencé)
+2. **Entrepreneurial Drive** (vous avez pris l'initiative)
+3. **Inclusive Leadership** (vous avez conduit une équipe diverse)
 
-每类准备 1~2 个故事，按 STAR 讲，每个故事 5~6 分钟（McKinsey 喜欢深挖）。
+Préparer 1~2 histoires par famille, en STAR, 5~6 minutes chacune (McKinsey adore creuser).
 
-## 量化（Quant）
+## Quantitatif (Quant)
 
-### 概率 / 数学题（高频）
-1. 一根均匀的木棍随机折两次，能拼成三角形的概率
-2. 蒙提霍尔问题（三门）
-3. 醉汉问题（n 步后回到原点的概率）
-4. 给你一个不公平硬币，怎么模拟公平硬币
-5. 期望 / 方差 / 协方差 计算题
-6. 布朗运动 / Ito 公式 / Black-Scholes 推导（高级）
-7. Optimal stopping（秘书问题）
+### Questions de probabilités / mathématiques (fréquentes)
+1. Un bâton uniforme est cassé deux fois au hasard : probabilité de former un triangle
+2. Le problème de Monty Hall (trois portes)
+3. La marche de l'ivrogne (probabilité de retour à l'origine après n pas)
+4. Avec une pièce biaisée, comment simuler une pièce équitable
+5. Calculs d'espérance / variance / covariance
+6. Mouvement brownien / formule d'Itô / dérivation de Black-Scholes (avancé)
+7. Optimal stopping (problème du secrétaire)
 
-### 编程题
-1. LeetCode 中等 / 困难（数组 / 字符串 / DP）
-2. 写一个回测框架（伪代码即可）
-3. C++ / Python 一些常考语言细节
+### Questions de programmation
+1. LeetCode niveau moyen / difficile (tableaux / chaînes / DP)
+2. Écrire un framework de backtest (pseudo-code suffisant)
+3. Détails de langage souvent testés en C++ / Python
 
-### 策略题
-1. 你了解的策略类型有哪些
-2. 你做过的一个完整策略（信号 → 组合 → 回测 → 上线）
-3. 怎么处理过拟合 / out-of-sample 失效
-4. 怎么估算策略容量
-5. Sharpe / Sortino / Calmar / Max DD 各自含义和用法
+### Questions de stratégie
+1. Quels types de stratégies connaissez-vous
+2. Une stratégie complète que vous avez menée (signal → portefeuille → backtest → production)
+3. Comment gérez-vous le surapprentissage / la défaillance out-of-sample
+4. Comment estimer la capacité d'une stratégie
+5. Signification et usage de Sharpe / Sortino / Calmar / Max DD
 
-### Brain Teaser（脑筋急转弯）
-- 100 个囚犯帽子问题
-- 海盗分金币
-- 8 个球称重找不同的（必备）
-- 烧绳子计时
+### Brain teasers (énigmes)
+- Le problème des chapeaux des 100 prisonniers
+- Les pirates qui partagent les pièces d'or
+- Les 8 boules et la balance pour trouver la différente (indispensable)
+- Les cordes à brûler pour mesurer le temps
 
-## 公募 / 私募 研究员
+## Analyste buy-side (fonds)
 
-### 行业研究题
-1. 你 cover 哪个行业？目前的核心矛盾是什么？
-2. 你最看好 / 最不看好的 1 只股票，逻辑是什么
-3. ___ 公司最近股价涨了 / 跌了 X%，怎么解释
-4. 给你一个新行业，你怎么从 0 开始研究
-5. 你怎么判断管理层质量
-6. 行业景气度 vs 公司基本面，哪个更重要
+### Questions de recherche sectorielle
+1. Quel secteur couvrez-vous ? quelle est la contradiction centrale aujourd'hui ?
+2. Votre action la plus / la moins recommandée, et pourquoi
+3. Le titre ___ a monté / baissé de X % récemment, votre lecture
+4. Un secteur nouveau vous est confié, comment bâtir la recherche de zéro
+5. Comment jugez-vous la qualité d'un management
+6. Cycle sectoriel vs fondamentaux de l'entreprise, lequel prime
 
-### 估值题
-1. ___ 公司你给多少估值，用什么方法
-2. PE 30x 算贵吗？怎么判断
-3. 价值 vs 成长 vs 周期 各自怎么估
-4. DCF 在 ___ 行业能不能用？为什么
+### Questions de valorisation
+1. Quelle valorisation accordez-vous à ___, avec quelle méthode
+2. Un PE de 30x, est-ce cher ? comment en juger
+3. Comment valoriser valeur / croissance / cyclique respectivement
+4. Le DCF est-il applicable au secteur ___ ? pourquoi
 
-### 投资逻辑表达
-- 30 秒电梯演讲：3 句话讲清一只股票的投资逻辑
-- 5 分钟深度：背景 + 催化剂 + 风险 + 估值 + 时间
+### Expression de la thèse d'investissement
+- Le pitch en 30 secondes : la thèse d'un titre en 3 phrases
+- Les 5 minutes en profondeur : contexte + catalyseurs + risques + valorisation + horizon

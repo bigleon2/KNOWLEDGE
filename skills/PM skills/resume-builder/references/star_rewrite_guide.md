@@ -1,83 +1,83 @@
-# STAR 改写指南
+# Guide de réécriture STAR
 
-## 核心心法
+## Principe fondamental
 
-STAR = Situation（情境）+ Task（任务）+ Action（动作）+ Result（结果）
+STAR = Situation (contexte) + Task (mission) + Action (action) + Result (résultat)
 
-但**写在简历里的 bullet，不是把 STAR 四段都堆进去**，而是浓缩成一句话，里面隐含 STAR 信号：
+Mais **une puce de CV ne consiste pas à empiler les quatre blocs STAR** : elle condense le tout en une seule phrase qui contient implicitement les signaux STAR :
 
 ```
-[动作动词] + [对象 / 范围] + [方法 / 工具] + [量化结果]
+[verbe d'action] + [objet / périmètre] + [méthode / outils] + [résultat quantifié]
 ```
 
-举例：
+Exemples :
 
-❌ 弱：参与了 XX 系统的开发
-✅ 强：主导设计并落地 XX 订单系统的库存模块，引入 Redis 分布式锁解决超卖，支撑日均 80 万订单，P99 延迟从 320ms 降至 95ms
+❌ Faible : a participé au développement du système XX
+✅ Fort : a piloté la conception et la mise en production du module de stockage du système de commandes XX, introduit des verrous distribués Redis pour éliminer les surventes, encaissé 800 000 commandes quotidiennes, réduit la latence P99 de 320 ms à 95 ms
 
-❌ 弱：负责活动运营
-✅ 强：策划"618 老客回流"活动，覆盖 30 万沉默用户，通过分层 push + 优惠券组合，回流率 11.4%（基线 4.2%），ROI 3.8
+❌ Faible : en charge des opérations d'événements promotionnels
+✅ Fort : conçu la campagne « retour des clients fidèles 618 », couvrant 300 000 utilisateurs dormants, via push segmenté + combinaison de bons d'achat, taux de retour 11,4 % (référence 4,2 %), ROI 3,8
 
-## 改写流程
+## Processus de réécriture
 
-1. **找到原 bullet 的 STAR 短板**
-   - 没有动作动词？补
-   - 没有量化结果？追问用户
-   - 动作太空泛（"参与/协助/配合/支持"）？换成实做动词
-   - 没有方法 / 工具？补
+1. **Repérer le maillon faible STAR de la puce d'origine**
+   - Pas de verbe d'action ? En ajouter un
+   - Pas de résultat quantifié ? Interroger l'utilisateur
+   - Action trop vague (« participé / assisté / appuyé / soutenu ») ? Remplacer par un verbe d'action concret
+   - Pas de méthode / outil ? En ajouter
 
-2. **应用动词库**（见下文）
+2. **Appliquer la bibliothèque de verbes** (voir ci-dessous)
 
-3. **加量化**（数字 / 百分比 / 排名 / 时间 / 规模 任选）
+3. **Quantifier** (chiffres / pourcentages / classements / délais / échelle, au choix)
 
-4. **控制长度**：单条 bullet ≤ 2 行
+4. **Maîtriser la longueur** : une puce ≤ 2 lignes
 
-## 强动作动词库（按职能分）
+## Bibliothèque de verbes d'action forts (par fonction)
 
-### 通用
-主导、负责、推动、发起、设计、搭建、优化、复盘、孵化、闭环
+### Général
+piloter, être responsable de, faire aboutir, initier, concevoir, construire, optimiser, faire le retour d'expérience, incubé, boucler
 
-### 产品 / 运营
-规划、迭代、调研、定义（功能）、灰度、A/B 测试、数据归因、上线、回滚
+### Produit / opérations
+planifier, itérer, étudier, définir (fonctionnalité), déploiement progressif, tests A/B, attribution data, mettre en ligne, roll back
 
-### 技术
-重构、架构设计、调优、解耦、抽象、模块化、自动化、监控、容灾、降级
+### Technique
+refactorer, concevoir l'architecture, régler finement, découpler, abstraire, modulariser, automatiser, superviser, plan de secours, dégradation gracieuse
 
-### 数据
-建模、清洗、归因、可视化、回归、聚类、特征工程、训练、上线
+### Data
+modéliser, nettoyer, attribuer, visualiser, régresser, partitionner, ingénierie des caractéristiques, entraîner, mettre en production
 
-### 销售 / BD
-开拓、签约、续约、回款、谈判、漏斗管理、客户分层
+### Ventes / business development
+ouvrir des comptes, signer, renouveler, encaisser, négocier, gérer l'entonnoir, segmenter la clientèle
 
-### 管理
-组建（团队）、培养、绩效管理、目标拆解、跨部门协调
+### Management
+constituer (l'équipe), former, gérer la performance, décliner les objectifs, coordonner transversalement
 
-## 弱词替换表
+## Table de remplacement des termes faibles
 
-| 弱词 | 推荐替换 |
+| Terme faible | Remplacement recommandé |
 |------|---------|
-| 参与了 | 主导 / 负责模块 ___（写明边界） |
-| 协助 | 与 ___ 协作完成 ___（写明合作方和成果） |
-| 配合 | 同上 |
-| 跟进 | 推动 / 督办 / drive |
-| 帮助 | 通过 ___ 帮 ___ 实现 ___ |
-| 学习了 | 掌握并应用 ___ 完成 ___ |
-| 接触过 | 删掉，要么改成具体项目 |
-| 熟悉 / 了解 | 删掉抽象词，写具体项目 |
+| a participé à | a piloté / responsable du module ___ (préciser le périmètre) |
+| a assisté | en collaboration avec ___, a réalisé ___ (préciser le partenaire et le résultat) |
+| a appuyé | idem |
+| a suivi | a fait aboutir / a piloté / drive |
+| a aidé | via ___, a permis à ___ d'atteindre ___ |
+| a appris | maîtrise et applique ___ pour réaliser ___ |
+| a été exposé à | supprimer, ou transformer en projet concret |
+| connaît / a connaissance de | supprimer le terme abstrait, citer le projet concret |
 
-## 量化暗示库
+## Bibliothèque d'indices de quantification
 
-如果用户实在给不出数字，可以用以下"软量化"先占位，标注 `[待补]`：
+Si l'utilisateur ne peut vraiment produire de chiffre, utiliser ces « quantifications souples » en guise d'appoint, marquées `[à compléter]` :
 
-- 用户 / 客户规模：万级 / 百万级 / 千万级
-- 团队规模：3 人 / 10 人 / 跨部门
-- 项目周期：2 周 / 1 个季度 / 半年
-- 业务影响：核心 / 关键 / 试点
-- 同行对比：行业首个 / 公司第一个 / Tier 1 客户
+- Échelle utilisateurs / clients : dizaine de milliers / million / dizaine de millions
+- Taille d'équipe : 3 personnes / 10 personnes / transverse
+- Durée du projet : 2 semaines / 1 trimestre / 6 mois
+- Impact métier : cœur de métier / critique / pilote
+- Comparaison sectorielle : première du secteur / première de l'entreprise / client Tier 1
 
-## 自检：每条 bullet 问自己
+## Auto-contrôle : pour chaque puce, se demander
 
-- 用动词开头了吗？
-- 有 1 个以上的数字 / 量级吗？
-- 删掉这条，简历会损失什么？如果答案是"不会"，就删
-- 这条让 HR 联想到什么具体能力？
+- Commence-t-elle par un verbe ?
+- Contient-elle au moins 1 chiffre / un ordre de grandeur ?
+- Si on la supprime, que perd le CV ? Si la réponse est « rien », la supprimer
+- Quelle compétence concrète cette puce fait-elle venir à l'esprit du RH ?

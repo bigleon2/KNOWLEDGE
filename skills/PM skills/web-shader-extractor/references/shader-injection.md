@@ -1,94 +1,94 @@
-# onBeforeCompile 注入 GLSL 的陷阱
+# Pièges de l'injection GLSL via onBeforeCompile
 
-## 场景
+## Scénario
 
-使用 `MeshPhysicalMaterial` 的 `transmission` 功能但需要增强效果时（如 drei 的 MeshTransmissionMaterial），
-通过 `material.onBeforeCompile` 注入自定义 GLSL 代码。
+Quand on utilise la fonction `transmission` de `MeshPhysicalMaterial` mais qu'un effet renforcé est nécessaire (comme le MeshTransmissionMaterial de drei),
+on injecte du code GLSL personnalisé via `material.onBeforeCompile`.
 
-## 常见陷阱
+## Pièges courants
 
-### 1. 函数签名版本差异
+### 1. Différences de signature selon la version
 
-Three.js 不同版本的内置函数签名不同：
+Les fonctions internes de Three.js changent de signature selon la version :
 
 ```glsl
-// r166 及之前
+// r166 et avant
 vec4 getIBLVolumeRefraction(n, v, roughness, diffuseColor, specularColor, specularF90,
   pos, modelMatrix, viewMatrix, projectionMatrix, ior, thickness,
   attenuationColor, attenuationDistance)
 
-// r167+ 新增 dispersion 参数
+// r167+ ajoute le paramètre dispersion
 vec4 getIBLVolumeRefraction(n, v, roughness, diffuseColor, specularColor, specularF90,
   pos, modelMatrix, viewMatrix, projectionMatrix, dispersion, ior, thickness,
   attenuationColor, attenuationDistance)
 ```
 
-**必须检查目标版本的实际签名**：
+**Vérifier obligatoirement la signature réelle de la version cible** :
 ```bash
 curl -s "https://cdn.jsdelivr.net/npm/three@0.167.0/src/renderers/shaders/ShaderChunk/transmission_pars_fragment.glsl.js" \
   | tr '\n' ' ' | grep -oE 'vec4 getIBLVolumeRefraction\([^)]+\)'
 ```
 
-### 2. GLSL 不允许嵌套函数定义
+### 2. Le GLSL n'autorise pas les définitions de fonctions imbriquées
 
 ```glsl
-// 错误！GLSL 不支持函数内定义函数
+// Erreur ! Le GLSL ne permet pas de définir une fonction dans une fonction
 void main() {
-  float myRand(vec2 co) { return fract(sin(...)); }  // 编译失败
+  float myRand(vec2 co) { return fract(sin(...)); }  // échec de compilation
 }
 
-// 正确：函数必须在全局作用域
+// Correct : les fonctions doivent être en portée globale
 float myRand(vec2 co) { return fract(sin(...)); }
 void main() {
   float r = myRand(uv);
 }
 ```
 
-### 3. 条件编译宏保护
+### 3. Garde des macros de compilation conditionnelle
 
-某些变量只在特定宏下可用：
-- `vWorldPosition` → 需要 `USE_TRANSMISSION` 启用
-- `vTransmissionMapUv` → 需要 `USE_TRANSMISSIONMAP` 启用
-- `roughnessFactor` → 在 `lights_physical_fragment` 之后可用
+Certaines variables ne sont disponibles que sous des macros spécifiques :
+- `vWorldPosition` → nécessite `USE_TRANSMISSION` activé
+- `vTransmissionMapUv` → nécessite `USE_TRANSMISSIONMAP` activé
+- `roughnessFactor` → disponible après `lights_physical_fragment`
 
 ```glsl
-// 在替换 #include <transmission_fragment> 时
-// 原始代码自带 #ifdef USE_TRANSMISSION，替换代码也必须包含
+// En remplaçant #include <transmission_fragment>
+// le code d'origine est enveloppé dans #ifdef USE_TRANSMISSION, le code de remplacement doit aussi l'inclure
 #ifdef USE_TRANSMISSION
-  // ... 你的代码
+  // ... votre code
 #endif
 ```
 
-### 4. 变量名冲突
+### 4. Conflits de noms de variables
 
-注入的全局函数/变量可能与 Three.js 内部冲突：
-- 避免使用 `hash`, `random`, `noise` 等通用名
-- 自定义函数加前缀：`snoise` → OK，`random` → 可能冲突
-- uniform 名称加前缀 `u`：`uDistortion`, `uNoiseTime`
+Les fonctions/variables globales injectées peuvent entrer en conflit avec les internes de Three.js :
+- éviter les noms génériques comme `hash`, `random`, `noise`
+- préfixer les fonctions personnalisées : `snoise` → OK, `random` → conflit probable
+- préfixer les noms d'uniforms par `u` : `uDistortion`, `uNoiseTime`
 
-## 推荐模式
+## Motifs recommandés
 
-### 安全注入：修改 normal 而不替换整个 chunk
+### Injection sûre : modifier normal sans remplacer tout le chunk
 
 ```javascript
 material.onBeforeCompile = (shader) => {
   shader.uniforms.uDistortion = { value: 0 };
   shader.uniforms.uNoiseTime = { value: 0 };
 
-  // 在 fragment shader 最前面加 uniform 声明 + 工具函数
+  // Ajouter au tout début du fragment shader les déclarations d'uniforms + les fonctions utilitaires
   shader.fragmentShader = `
     uniform float uDistortion;
     uniform float uNoiseTime;
     ${noiseGLSL}
   ` + shader.fragmentShader;
 
-  // 在 transmission_fragment 之前插入法线扰动
+  // Insérer la perturbation des normales avant transmission_fragment
   shader.fragmentShader = shader.fragmentShader.replace(
     '#include <transmission_fragment>',
     `
     #ifdef USE_TRANSMISSION
     {
-      // 扰动 normal 影响折射方向
+      // perturber normal pour influencer la direction de réfraction
       if (uDistortion > 0.0) {
         normal = normalize(normal + uDistortion * vec3(
           snoiseFractal(vWorldPosition * 0.08 + vec3(uNoiseTime)),
@@ -104,23 +104,23 @@ material.onBeforeCompile = (shader) => {
 };
 ```
 
-### 完整替换：需要随机多采样 + 色差时
+### Remplacement complet : quand il faut échantillonnage aléatoire multiple + aberration chromatique
 
-当需要 MeshTransmissionMaterial 的颗粒感（随机采样噪声）和色差效果时，
-必须完整替换 `#include <transmission_fragment>`。关键点：
+Quand on recherche le grain du MeshTransmissionMaterial (bruit d'échantillonnage aléatoire) et l'effet d'aberration chromatique,
+il faut remplacer complètement `#include <transmission_fragment>`. Points clés :
 
-1. 保留 `#ifdef USE_TRANSMISSION` / `#endif` 包裹
-2. 保留 transmissionMap 和 thicknessMap 的 `#ifdef` 块
-3. 使用正确版本的 `getIBLVolumeRefraction` 签名
-4. 自己处理色差时，传 `dispersion = 0.0`，用不同 IOR 采样 R/G/B
-5. 低采样数（6）+ 每像素随机偏移 → 产生可见的胶片颗粒感
+1. Conserver l'enveloppe `#ifdef USE_TRANSMISSION` / `#endif`
+2. Conserver les blocs `#ifdef` de transmissionMap et thicknessMap
+3. Utiliser la signature de `getIBLVolumeRefraction` de la bonne version
+4. Pour gérer soi-même l'aberration chromatique, passer `dispersion = 0.0` et échantillonner R/G/B avec des IOR différents
+5. Faible nombre d'échantillons (6) + décalage aléatoire par pixel → produit un grain de film visible
 
-## 视觉效果来源速查
+## Aide-mémoire des sources des effets visuels
 
-| 效果 | 来源 | 实现方式 |
+| Effet | Source | Implémentation |
 |------|------|----------|
-| 玻璃折射 | MeshPhysicalMaterial `transmission` | Three.js 内置 |
-| 色差 (chromatic aberration) | 不同 IOR 采样 R/G/B | 替换 transmission_fragment |
-| 胶片颗粒感 | 低采样数 + 每像素随机方向 | 替换 transmission_fragment |
-| 有机扭曲 | simplex noise 扰动法线/折射方向 | onBeforeCompile 注入 |
-| 颜色偏移 | `dispersion` 属性 (r167+) | MeshPhysicalMaterial 内置 |
+| Réfraction du verre | MeshPhysicalMaterial `transmission` | intégré à Three.js |
+| Aberration chromatique | échantillonnage R/G/B avec IOR différents | remplacement de transmission_fragment |
+| Grain de film | faible échantillonnage + direction aléatoire par pixel | remplacement de transmission_fragment |
+| Distorsion organique | bruit simplex perturbant les normales/directions de réfraction | injection via onBeforeCompile |
+| Décalage chromatique | propriété `dispersion` (r167+) | intégré à MeshPhysicalMaterial |

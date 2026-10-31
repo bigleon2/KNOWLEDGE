@@ -114,7 +114,7 @@ function cleanAxis(theme) {
 
 ```javascript
 const option = {
-  ...baseOption(THEME, 'Q3 收入环比增长 47%', '各季度收入对比（万元）'),
+...baseOption(THEME, 'Revenues du T3 en hausse de 47% par rapport au trimestre précédent', 'Comparaison des revenus par trimestre (en milliers de yuans)'),
   xAxis: { type: 'category', data: ['Q1','Q2','Q3','Q4'], ...cleanAxis(THEME) },
   yAxis: { type: 'value', ...cleanAxis(THEME) },
   series: [{
@@ -143,7 +143,7 @@ const option = {
 
 ```javascript
 const option = {
-  ...baseOption(THEME, '2024 年增长持续加速'),
+...baseOption(THEME, '2024 年增长持续加速'),
   legend: { right: 40, top: 20, textStyle: { color: '#6B7280', fontSize: 10 } },
   xAxis: { type: 'category', data: months, boundaryGap: false, ...cleanAxis(THEME) },
   yAxis: { type: 'value', ...cleanAxis(THEME) },
@@ -318,7 +318,7 @@ const option = {
 
 ```javascript
 const option = {
-  ...baseOption(THEME, '团队能力评估'),
+...baseOption(THEME, '团队能力评估'),
   radar: {
     indicator: dims.map(d => ({ name: d, max: 100 })),
     axisName: { color: '#6B7280', fontSize: 10 },
@@ -416,7 +416,7 @@ const option = {
 
 ```javascript
 const treeData = {
-  name: '中心主题',
+name: 'Thème central',
   children: [
     {
       name: '分支A',

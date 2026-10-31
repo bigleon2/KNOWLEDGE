@@ -1,83 +1,83 @@
-# 技术 / 研发 / 数据 面试专题
+# Spécial entretien technique / R&D / data
 
-通用技术八股 + 系统设计在 `technical.md`，本文件聚焦：
-- 项目深挖话术
-- 算法 / LLM / 数据 岗位特定题
-- 团队 / 软技能题（技术岗也要答）
+Les questions généralistes d'algorithmique et de conception de systèmes sont dans `technical.md` ; ce fichier se concentre sur :
+- les techniques d'approfondissement de projet
+- les questions spécifiques aux postes algorithme / LLM / data
+- les questions d'équipe / soft skills (à préparer aussi pour les postes techniques)
 
-## 项目深挖（每家必问）
+## Approfondissement de projet (systématique, partout)
 
-面试官最喜欢"刨根问底"，一定要准备。
+Les intervieweurs adorent « creuser jusqu'au fond » — s'y préparer obligatoirement.
 
-每个项目至少能回答以下 8 个问题：
+Pour chaque projet, savoir répondre au minimum à ces 8 questions :
 
-1. **背景** —— 这个项目为什么要做？业务问题是什么？
-2. **你的角色** —— 你在团队里是什么角色？做了 ___ 模块？
-3. **技术选型** —— 为什么选 X 而不是 Y？trade-off 是什么？
-4. **挑战** —— 遇到的最难的技术问题是什么？怎么解决的？
-5. **数据** —— 系统的 QPS / 数据量 / 延迟 / 可用性 是什么？
-6. **结果** —— 上线后效果怎么样？比基线提升 ___？
-7. **失败 / 坑** —— 踩过什么坑？怎么 debug？怎么避免？
-8. **改进** —— 现在让你重新做这个项目，会怎么做？
+1. **Contexte** — pourquoi ce projet ? quel problème métier ?
+2. **Votre rôle** — quel était votre rôle dans l'équipe ? quels modules ___ avez-vous réalisés ?
+3. **Choix techniques** — pourquoi X plutôt que Y ? quel était l'arbitrage ?
+4. **Défis** — le problème technique le plus difficile rencontré ? comment résolu ?
+5. **Données** — quels QPS / volume de données / latence / disponibilité ?
+6. **Résultats** — quels effets après mise en production ? amélioration de ___ par rapport à la référence ?
+7. **Échecs / pièges** — quels pièges rencontrés ? comment débuggé ? comment évités ensuite ?
+8. **Améliorations** — si vous refaisiez ce projet aujourd'hui, que changeriez-vous ?
 
-## 算法 / 机器学习 岗位特定
+## Spécifique postes algorithme / machine learning
 
-### 业务理解题
-1. 给你一个 ___ 业务，你怎么定义一个 ML 问题
-2. 你怎么和业务 / 产品 / 数据 协作
-3. 模型上线后效果不及预期，你怎么排查
-4. 模型 vs 规则，什么时候选哪个
-5. 你做的模型，下线 / 替代过吗？为什么
+### Questions de compréhension métier
+1. Avec un métier ___, comment formuleriez-vous un problème de ML
+2. Comment travaillez-vous avec le métier / le produit / la data
+3. Le modèle en production sous-performe, comment menez-vous l'investigation
+4. Modèle vs règles, quand choisir quoi
+5. Avez-vous déjà mis à la retraite / remplacé un de vos modèles ? pourquoi
 
-### 算法岗"假大模型 / 真不深"识别题
-- 你说会 RLHF，那 PPO 的 KL 项是怎么加的？为什么这么加？
-- 你做了 RAG，召回准确率怎么算的？不同分块策略对比过吗？
-- 你说做了 Agent，你的 planning 模块是 ReAct / CoT / 还是自定义？错误恢复怎么做？
+### Questions révélatrices des « faux projets LLM sans profondeur »
+- Vous dites maîtriser le RLHF : comment le terme KL du PPO est-il introduit ? pourquoi ainsi ?
+- Vous avez fait du RAG : comment calculez-vous la précision du rappel ? avez-vous comparé les stratégies de découpage ?
+- Vous dites avoir fait un Agent : votre module de planification est-il en ReAct / CoT / sur mesure ? comment gérez-vous la récupération d'erreur ?
 
-防身：**只写真做过的项目**，编造的 LLM 项目最容易翻车。
+Parade : **ne décrire que des projets réellement menés** — les projets LLM inventés sont les plus faciles à démasquer.
 
-## 数据 / 数仓 / 分析 岗位特定
+## Spécifique postes data / entrepôt de données / analyse
 
-### 业务题（强烈高频）
-1. 你怎么衡量一个 ___ 业务的健康度
-2. DAU 跌了 5%，你怎么 diagnose
-3. 你做的最有价值的一个数据分析项目
-4. 你怎么和业务方 / 产品 / 老板 沟通分析结论
-5. 给你一个数据需求："分析下用户为什么流失"，你怎么做
+### Questions métier (très fréquentes)
+1. Comment mesurez-vous la santé d'un métier ___
+2. La DAU chute de 5 %, comment diagnostiquez-vous
+3. Le projet d'analyse de données le plus valorisant que vous ayez mené
+4. Comment communiquez-vous vos conclusions au métier / produit / direction
+5. On vous donne une demande : « analyser pourquoi les utilisateurs partent », comment procédez-vous
 
-### SQL 现场题（必考）
-- 写一段 SQL：每个用户的连续登录天数
-- 写一段 SQL：每个商品的复购率
-- 写一段 SQL：找出最近 7 天每天的新增用户
-- 写一段 SQL：A/B 测试结果对比 + 显著性
+### SQL sur le vif (incontournable)
+- Écrire une requête SQL : jours de connexion consécutifs par utilisateur
+- Écrire une requête SQL : taux de rachat par article
+- Écrire une requête SQL : nouveaux utilisateurs de chaque jour sur les 7 derniers jours
+- Écrire une requête SQL : comparaison des résultats d'un test A/B + significativité
 
-提示：**面试现场写 SQL 一定要边写边讲思路**，别闷头写。
+Astuce : **en live, toujours écrire le SQL en expliquant sa démarche à voix haute**, jamais en silence.
 
-### 数仓建模题
-- 你怎么设计一个 ___ 业务的数据模型
+### Modélisation d'entrepôt de données
+- Comment concevoir le modèle de données d'un métier ___
 - Modélisation dimensionnelle vs modélisation normalisée : comment choisir
-- Liste de zippers / Dimensions à changement lent (Lajianbiao / Huanshuai biandu zeme chuli) comment traiter
-- Comment garantir la qualité des données (surveillance / inspection / analyse post-mortem)
+- Listes à fermeture éclair / dimensions à évolution lente : comment les traiter
+- Comment garantir la qualité des données (supervision / contrôle / analyse post-mortem)
 
-## 软技能题（技术岗也要答）
+## Soft skills (à préparer aussi côté technique)
 
-技术岗以为只考技术 = 大错。中级以上会问：
+Croire qu'un entretien technique ne teste que la technique = grosse erreur. À partir du niveau intermédiaire :
 
-1. 跟其他团队 / 产品经理 / 设计师 意见不合，你怎么办
-2. 你怎么 review 别人的代码 / 文档
-3. Comment former les nouveaux arrivants (Nin zen dai xin ren)
-4. Un décision technique ne reçoit aucune réponse, comment la faites-vous avancer
-5. 你接手了一个屎山代码，怎么改造
-6. Comment gérez-vous votre croissance technique (Nǐ zěnme guǎnlǐ zìjǐ de jìshù chéngzhǎng)
+1. Désaccord avec une autre équipe / un PM / un designer, que faites-vous
+2. Comment revoyez-vous le code / les documents des autres
+3. Comment formez-vous les nouveaux arrivants
+4. Une décision technique reste sans réponse, comment la faites-vous avancer
+5. Vous héritez d'un code « champ de ruines », comment le retapez-vous
+6. Comment gérez-vous votre progression technique
 
-## 反向提问（技术面 / leader 面）
+## Questions inverses (entretien technique / entretien manager)
 
-技术面 (Jìshùmiàn)
-- Quels sont le stack technique et les plans d'avenir de l'équipe ?
+Entretien technique :
+- Quelle est la stack technique de l'équipe et ses évolutions prévues ?
 - Quels sont les défis techniques récents de l'équipe ?
-- code review / on-call / 周会 (zhōuhuì) 流程是怎样的？
+- Quelles sont les pratiques de code review / astreinte / réunion hebdomadaire ?
 
-Leader 面 (Mian) :
-- Que pensez-vous de l'avenir de la technologie / de la direction commerciale ___ ?
-- Comment est la dette technique de l'équipe (Tuandui) ?
-- 您觉得在这个团队最有挑战的事情是什么？ (Nǐ juéde zài zhège tuánduì zuì yǒu tiǎozhàn de shìqíng shì shénme ?)
+Entretien manager :
+- Que pensez-vous de l'avenir de la technologie / de la direction métier ___ ?
+- Comment se porte la dette technique de l'équipe ?
+- Quel est le défi le plus stimulant au sein de cette équipe, selon vous ?

@@ -1,33 +1,33 @@
-# Shader 代码提取：Agent Prompt 与反混淆
+# Shader Extraction de code shader : Agent Prompt et déobfuscation
 
-## Agent 深度提取 Prompt 模板
+## Agent modèle de prompt d'extraction approfondie
 
-启动 Agent（subagent_type: general-purpose）分析 bundle：
+Lancer l'Agent (subagent_type: general-purpose）pour analyser le bundle :
 
 ```
-分析文件 /tmp/main.js（约 X MB 的 minified JS bundle），提取所有与视觉特效相关的代码。
+Analyser le fichier /tmp/main.js（bundle JS minifié d'environ X Mo), extraire tout le code lié aux effets visuels.
 
-需要提取的内容：
+Contenu à extraire :
 
-1. **GLSL Shader 源码**：搜索包含 "precision", "uniform", "void main",
-   "gl_FragColor", "gl_Position" 的字符串。提取完整的 vertex/fragment shader。
+1. **GLSL Shader source**：chercher les chaînes contenant "precision", "uniform", "void main",
+   "gl_FragColor", "gl_Position" Extraire les vertex/fragment shader complets.
 
-2. **渲染相关 JS 类**：canvas/renderer 创建、粒子/几何体管理、
-   requestAnimationFrame 动画循环、鼠标交互代码。
+2. **Classes JS liées au rendu**：canvas/renderer création, gestion des particules/géométries,
+   requestAnimationFrame boucle d'animation, code d'interaction souris.
 
-3. **符号映射表**：minified 变量名 → 原始含义
-   （THREE.Vector2, THREE.Color, THREE.Scene 等）
+3. **Table de correspondance des symboles**：minified noms de variables → signification d'origine
+   （THREE.Vector2, THREE.Color, THREE.Scene  etc.)
 
-4. **配置和参数**：默认颜色、尺寸、密度等可调参数
+4. **Configuration et paramètres**：couleurs, tailles, densités par défaut et autres paramètres réglables
 
-将所有提取的代码保存到 /tmp/extracted-effects.txt，按功能分段标注。
+Enregistrer tout le code extrait dans /tmp/extracted-effects.txt，annoté par sections fonctionnelles.
 ```
 
-**关键**：Agent 能看到完整文件，主上下文放不下 1MB+ 的 bundle。
+**Point clé**：Agent peut voir le fichier complet ; le contexte principal ne peut pas contenir un bundle de 1MB+ ou plus.
 
-## 识别 Minified 符号
+## Identifier les symboles minifiés
 
-通过构造参数和方法调用推断：
+Déduire via les paramètres du constructeur et les appels de méthodes :
 
 ```javascript
 new ??(40, w/h, 0.1, 1000)       → PerspectiveCamera(fov, aspect, near, far)
@@ -42,20 +42,20 @@ new ??(w, h, {minFilter, ...})   → WebGLRenderTarget
 ??.setAttribute()     → bufferGeometry
 ```
 
-## 框架脱壳（React / Vue 等 → Vanilla JS）
+## Déshabillage du framework (React / Vue etc. → Vanilla JS）
 
-Canvas 效果常被 React/Vue 等框架包装。脱壳思路：
+Canvas Les effets sont souvent enveloppés par des frameworks React/Vue. Stratégie de déshabillage :
 
-1. **找副作用入口**：`useEffect`/`onMounted` 中的 Canvas 初始化代码就是核心逻辑
-2. **收集 cleanup**：所有销毁操作（`removeEventListener`、`cancelAnimationFrame`、`observer.disconnect()`）汇总为 `destroy()` 函数
-3. **丢弃响应式包装**：Canvas 状态（粒子位置、帧计数等）只在 RAF 内读写，直接用 `let` 变量，不需要 `useState`/`ref` 等响应式容器
+1. **Trouver le point d'entrée des effets de bord**：`useEffect`/`onMounted` le code d'initialisation Canvas est la logique centrale
+2. **Collecter le cleanup**：toutes les opérations de destruction (`removeEventListener`、`cancelAnimationFrame`、`observer.disconnect()`）rassemblées en une fonction `destroy()` 
+3. **Abandonner l'enveloppe réactive**：Canvas l'état (positions de particules, compteur de trames, etc.) est lu/écrit uniquement dans le RAF, utiliser directement `let` variables, sans besoin de `useState`/`ref` et autres conteneurs réactifs
 
-原生 API（`IntersectionObserver`、`ResizeObserver`、`matchMedia` 等）不受框架影响，原样保留。
+Les API natives (`IntersectionObserver`、`ResizeObserver`、`matchMedia` etc.) ne sont pas affectées par le framework, à conserver telles quelles.
 
-## 反混淆规则
+## Règles de déobfuscation
 
-1. **类名**：根据构造参数和方法调用推断
-2. **变量名**：根据用途命名（`ringPos`, `particleScale`, `simMaterial`）
-3. **Shader 变量**：uniform/varying 名通常未被 minify（`uTime`, `vPosition`）
-4. **保留原始 GLSL**：shader 代码通常是完整字符串，直接提取
-5. **字符串注入**：`${someVar.noise}` 表示噪声库被注入到 shader 中
+1. **Noms de classes**：déduire des paramètres du constructeur et des appels de méthodes
+2. **Noms de variables**：nommer selon l'usage (`ringPos`, `particleScale`, `simMaterial`）
+3. **Shader Variables**：uniform/varying noms généralement non minifiés (`uTime`, `vPosition`）
+4. **Conserver le GLSL d'origine**：shader le code est généralement une chaîne complète, à extraire directement
+5. **Injection de chaînes**：`${someVar.noise}` indique que la bibliothèque de bruit est injectée dans le shader

@@ -1,55 +1,55 @@
-# 通用简历模板（不绑定行业）
+# Modèle de CV généraliste (non lié à un secteur)
 
-适用场景：
-- 用户暂时没有明确目标方向
-- 跨行业求职（同一份简历投不同方向）
-- 早期 / 应届候选人
-- 行业不在前三类（教育 / 医疗 / 政府 / 实业 / 文娱 etc.）
+Cas d'usage :
+- L'utilisateur n'a pas encore d'orientation cible précise
+- Recherche intersectorielle (un même CV envoyé pour des directions différentes)
+- Candidats débutants / jeunes diplômés
+- Secteur absent des trois premières catégories (éducation / santé / secteur public / industrie / culture et divertissement etc.)
 
-## 结构
+## Structure
 
 ```
-姓名 ｜ 电话 ｜ 邮箱 ｜ 城市 ｜ 目标岗位 / 期望方向
+Nom ｜ Téléphone ｜ E-mail ｜ Ville ｜ Poste visé / Direction souhaitée
 
-【个人简介 / Career Summary】（2~3 行）
-关键定位 + 核心能力 + 一个最有说服力的成就
+【Résumé / Career Summary】(2~3 lignes)
+Positionnement clé + compétences principales + une réalisation la plus convaincante
 
-【工作经历 / 实习经历】（社招倒序；应届实习放教育下方）
-公司 | 岗位 | 起止时间
-- 主要职责（一行）
-- 关键成果 1（量化）
-- 关键成果 2（量化）
-- 横向 / 软技能体现（一句）
+【Expérience professionnelle / stages】(ordre antichronologique pour l'emploi ; stages des jeunes diplômés placés sous la formation)
+Entreprise | Poste | Période
+- Responsabilités principales (une ligne)
+- Résultat clé 1 (quantifié)
+- Résultat clé 2 (quantifié)
+- Compétences transversales / soft skills (une phrase)
 
-【教育背景】
-学校 | 专业 | 学历 | 时间
-- GPA / 排名 / 奖学金（≥ 平均水平才写）
-- 相关课程 / 论文 / 项目（仅写与岗位相关的）
+【Formation】
+École | Spécialité | Diplôme | Période
+- GPA / classement / bourses (à mentionner seulement si ≥ niveau moyen)
+- Cours pertinents / mémoire / projets (uniquement en lien avec le poste visé)
 
-【技能与证书】
-- 工具：Excel / Word / PPT 高阶；Notion / Trello；其他行业工具
-- 语言：英语等级；其他语种
-- 证书：仅写有公信力的
+【Compétences et certifications】
+- Outils : Excel / Word / PowerPoint avancés ; Notion / Trello ; autres outils du secteur
+- Langues : niveau d'anglais ; autres langues
+- Certifications : uniquement celles qui font autorité
 
-【其他亮点】（可选，强力 case 才写）
-- 创业 / 副业经历
-- 公开演讲 / 自媒体（粉丝 / 阅读量到一定规模）
-- 公益 / 志愿者（持续 ≥ 1 年）
-- 体育 / 艺术成就（省级以上 / 商业认可）
+【Autres atouts】(facultatif, uniquement avec un cas très solide)
+- Expérience d'entrepreneuriat / activité secondaire
+- Conférences publiques / médias personnels (audience / volume de lecture significatif)
+- Engagements bénévoles / volontariat (durée ≥ 1 an)
+- Réalisations sportives / artistiques (niveau provincial ou supérieur / reconnaissance commerciale)
 ```
 
-## 风格
+## Style
 
-- 中性、克制，避免过度行业化术语
-- 每段经历强调"可迁移技能"：沟通 / 推动 / 数据 / 学习速度 / 客户 / 领导力
-- 跨行业候选人需要在 Summary 里点明"为什么这个方向适合我"
+- Neutre, retenu, éviter le jargon trop sectoriel
+- Chaque expérience met en avant les « compétences transférables » : communication / force de proposition / données / vitesse d'apprentissage / relation client / leadership
+- Un candidat en reconversion doit expliciter dans le Summary « pourquoi cette direction me convient »
 
-## 长度
+## Longueur
 
-- 应届 / 实习生：1 页
-- 1~5 年：1 页（顶多 1.2 页）
-- 5+ 年：1~2 页
+- Jeunes diplômés / stagiaires : 1 page
+- 1~5 ans d'expérience : 1 page (1,2 page au maximum)
+- 5+ ans : 1~2 pages
 
-通用模板的最大风险是**显得"啥都行但啥都不精"**。如果发现写出来就是这种感觉，要主动建议用户：
-- 选一个最强方向，切到对应的行业模板
-- 或者准备 2 份版本（互联网版 + 通用版），分场景投
+Le risque majeur du modèle généraliste est de **paraître « bon à tout, excellent en rien »**. Si le rendu final donne cette impression, proposer activement à l'utilisateur :
+- de choisir la direction la plus forte et de passer au modèle du secteur correspondant
+- ou de préparer 2 versions (version internet + version généraliste), à envoyer selon le contexte

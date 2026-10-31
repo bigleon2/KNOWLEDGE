@@ -3,33 +3,33 @@
 ## Structure (l'ordre est important)
 
 ```
-姓名 (Xingming)｜电话 (Dianhua)｜邮箱 (Youxiang)｜城市 (Chengshi)｜目标岗位 (Mubiao Gangwei)
-（应届可加：在读学校 + 期望毕业时间）
+Nom | Téléphone | E-mail | Ville | Poste visé
+(Diplômés : ajouter l'école en cours + la date de diplôme attendue)
 
-【个人简介 / Summary】（2~3 行，可选）
-一句话定位：X 年 ___ 经验，专注 ___，擅长 ___，曾在 ___ 主导 ___
+【Résumé / Profil】 (2-3 lignes, optionnel)
+Positionnement en une phrase : X ans d'expérience en ___, spécialisé ___, point fort ___, a piloté ___ chez ___
 
-【工作经历】（社招放最前；应届放教育下面）
-公司 A | 岗位 | 起止时间
+【Expériences professionnelles】 (candidats expérimentés : en premier ; nouveaux diplômés : après la formation)
+Entreprise A | Poste | Période
 - bullet 1 (chengji, lianghua)
-- bullet 2（次重要成绩）
-- bullet 3（横向能力 / 影响力）
+- bullet 2 (réussite suivante)
+- bullet 3 (compétences transversales / influence)
 
-【项目经历】（与岗位强相关的 2~4 个）
-项目名 | 角色 | 时间
-- 背景：___（一句话）
-- 动作：___（你做了什么）
-- 结果：___（量化）
+【Projets】 (2-4 projets fortement liés au poste visé)
+Projet | Rôle | Période
+- Contexte : ___ (une phrase)
+- Action : ___ (ce que tu as fait)
+- Résultat : ___ (quantifié)
 
-【教育背景】
-学校 | 专业 | 学历 | 起止时间
-（GPA 高于 3.5/4.0 才写）
+【Formation】
+École | Spécialité | Diplôme | Période
+(Ne mentionner le GPA que s'il est supérieur à 3,5/4,0)
 
-【技能 / 工具】
-- 数据：SQL（熟练）、Python（pandas/numpy）、Tableau
-- 产品工具：Figma / Axure / 墨刀
-- 协作：Notion / 飞书 / Jira
-- 语言：英语 CET-6 / 雅思 7.0
+【Compétences / Outils】
+- Data : SQL (courant), Python (pandas/numpy), Tableau
+- Outils produit : Figma / Axure / MockingBot
+- Collaboration : Notion / Feishu / Jira
+- Langues : anglais CET-6 / IELTS 7.0
 
 【Autre】(optionnel)
 Certificat / Média indépendant (zimeiti) / Projet open source / Conférence (yanjiang) / Prix
@@ -37,14 +37,14 @@ Certificat / Média indépendant (zimeiti) / Projet open source / Conférence (y
 
 ## Points de style (feng ge yao dian)
 
-- bullet 句式："动词 + 对象 + 方法 + 结果（数字）"
-- 突出 ownership：用"主导/负责/推动"，不要用"参与/协助"
-- 数字密度：每段经历 ≥ 60% 的 bullet 含数字
-- 长度：1 页（≤ 3 年经验）；最多 2 页（5+ 年）
+- Structure du bullet : « verbe + objet + méthode + résultat (chiffre) »
+- Mettre en avant le ownership : « piloté / responsable de / fait avancer », éviter « participé / assisté »
+- Densité de chiffres : par expérience, au moins 60 % des bullets contiennent un chiffre
+- Longueur : 1 page (≤ 3 ans d'expérience) ; 2 pages maximum (5 ans et plus)
 
-## 常见加分项
+## Points différenciants courants
 
-- 0-1 项目经历（哪怕规模小）
-- 跨部门 / 跨业务线协作
-- 业务复盘文章 / 公开演讲
-- 数据驱动 case（写清楚假设→实验→结论）
+- Expérience de projet 0→1 (même à petite échelle)
+- Collaboration inter-départements / inter-lignes de métier
+- Articles de rétrospective métier / prises de parole publiques
+- Cas data-driven (hypothèse → expérimentation → conclusion explicitées)

@@ -29,7 +29,7 @@ name: get-fortune-analysis
 description: Génère un rapport d'horoscope annuel (liunian yunshi) visuellement somptueux, détaillé et rituel, dans le style « astres fluents dorés » (liujin xingxiang).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.14)
+## §0 — Contexte Système (SHARED v1.7.16)
 
 > Écosystème Knowledge : `skills/`=skills/ | `skills/KNOWLEDGE.md`=skills/KNOWLEDGE.md | `true`=true | `NORMAL`=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -128,7 +128,7 @@ Génère les données JSON adaptées au frontend.
             overflow: hidden;
         }
 
-        /* --- 1. 启动页 (Ritual Layer) --- */
+        /* --- 1. Page de lancement (Ritual Layer) --- */
         .ritual-layer {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -143,26 +143,26 @@ Génère les données JSON adaptées au frontend.
             overflow: hidden;
         }
 
-        /* 新增：二进制数据容器 */
+        /* Ajout : conteneur de données binaires */
         .binary-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 0; /* 在最底层 */
+            z-index: 0; /* au niveau le plus bas */
         }
 
-        /* 新增：二进制粒子样式 */
+        /* Ajout : styles des particules binaires */
         .binary-particle {
             position: absolute;
             bottom: -20px;
             font-family: 'Courier New', monospace;
-            color: rgba(252, 246, 186, 0.3); /* 微弱的金白色 */
+            color: rgba(252, 246, 186, 0.3); /* blanc doré pâle */
             font-size: 10px;
             user-select: none;
             animation: floatUp linear forwards;
         }
 
-        /* 启动页内容容器 (确保在粒子之上) */
+        /* Conteneur du contenu de la page de lancement (au-dessus des particules) */
         .ritual-content {
             position: relative;
             z-index: 10;
@@ -178,7 +178,7 @@ Génère les données JSON adaptées au frontend.
             display: flex; align-items: center; justify-content: center;
             position: relative; cursor: pointer;
             margin-bottom: 20px;
-            backdrop-filter: blur(2px); /* 轻微磨砂，突出按钮 */
+            backdrop-filter: blur(2px); /* léger effet dépoli pour mettre le bouton en valeur */
         }
 
         .fingerprint-area::after {
@@ -196,8 +196,8 @@ Génère les données JSON adaptées au frontend.
             color: rgba(255,255,255,0.6); font-size: 14px; letter-spacing: 2px;
         }
 
-        /* --- 2. 结果页 (Result Layer) --- */
-        /* ... (保持不变) ... */
+        /* --- 2. Page de résultats (Result Layer) --- */
+        /* ... (inchangé) ... */
         .result-layer {
             padding: 20px; opacity: 0; transform: translateY(20px);
             transition: all 0.8s ease; display: none;
@@ -214,14 +214,14 @@ Génère les données JSON adaptées au frontend.
         .stars { color: var(--gold-dark); letter-spacing: 2px; }
         .footer-share { text-align: center; font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 30px; padding-bottom: 30px; }
 
-        /* 动画 Keyframes */
+        /* Keyframes d'animation */
         @keyframes breathe {
             0% { opacity: 0.3; transform: scale(1); }
             50% { opacity: 0.8; transform: scale(1.1); }
             100% { opacity: 0.3; transform: scale(1); }
         }
         
-        /* 新增：粒子上浮动画 */
+        /* Ajout : animation de remontée des particules */
         @keyframes floatUp {
             0% { transform: translateY(0) rotate(0deg); opacity: 0; }
             20% { opacity: 0.5; }
@@ -289,7 +289,7 @@ Génère les données JSON adaptées au frontend.
     </div>
 
     <script>
-        // --- 模拟 AI 返回的数据 ---
+        // --- Données simulées renvoyées par l'IA ---
         const aiData = {
             "fortune_report": {
                 "score": 88,
@@ -304,50 +304,50 @@ Génère les données JSON adaptées au frontend.
             }
         };
 
-        // --- 二进制粒子效果 ---
+        // --- Effet de particules binaires ---
         const binaryContainer = document.getElementById('binaryContainer');
         let particleInterval;
 
         function createBinaryParticle() {
             const particle = document.createElement('div');
             particle.classList.add('binary-particle');
-            // 随机生成 01 字符串
+            // Génère une chaîne 01 aléatoire
             const len = Math.floor(Math.random() * 6) + 2;
             let text = "";
             for(let i=0; i<len; i++) text += Math.random() > 0.5 ? "1" : "0";
             particle.innerText = text;
 
-            // 随机位置和属性
+            // Position et attributs aléatoires
             particle.style.left = Math.random() * 100 + '%';
-            const duration = Math.random() * 10 + 8; // 8-18秒飘动时间
+            const duration = Math.random() * 10 + 8; // temps de dérive 8-18 s
             particle.style.animationDuration = duration + 's';
             particle.style.fontSize = (Math.random() * 8 + 8) + 'px';
             particle.style.opacity = Math.random() * 0.3 + 0.1;
 
             binaryContainer.appendChild(particle);
 
-            // 动画结束后移除
+            // Supprimé à la fin de l'animation
             setTimeout(() => {
                 particle.remove();
             }, duration * 1000);
         }
 
-        // 开始生成粒子
+        // Démarre la génération des particules
         function startBinaryRain() {
-            // 初始先生成一批
+            // Génère d'abord un lot initial
             for(let i=0; i<15; i++) createBinaryParticle();
-            // 然后定期生成
+            // Puis génère périodiquement
             particleInterval = setInterval(createBinaryParticle, 600);
         }
 
         function stopBinaryRain() {
             clearInterval(particleInterval);
-            // 可选：渐隐清除现有粒子
+            // Optionnel : fondu de sortie et effacement des particules existantes
             // binaryContainer.style.opacity = 0; 
         }
 
 
-        // --- 交互逻辑 ---
+        // --- Logique d'interaction ---
         const btn = document.getElementById('fingerBtn');
         const ritual = document.getElementById('ritualLayer');
         const result = document.getElementById('resultLayer');
@@ -375,7 +375,7 @@ Génère les données JSON adaptées au frontend.
         }
 
         function revealResult() {
-            stopBinaryRain(); // 停止生成粒子
+            stopBinaryRain(); // Arrête la génération des particules
             ritual.style.opacity = '0';
             setTimeout(() => {
                 ritual.style.display = 'none';
@@ -386,17 +386,17 @@ Génère les données JSON adaptées au frontend.
                     runNumberAnimation();
                 });
             }, 800);
-            // 填充数据(省略详细代码，与上版相同)...
+            // Remplissage des données (code détaillé omis, identique à la version précédente)...
             document.getElementById('mainKeyword').innerText = aiData.fortune_report.keyword;
             document.getElementById('userTag').innerText = aiData.fortune_report.user_tag;
             document.getElementById('overviewText').innerText = aiData.fortune_report.analysis.overview;
         }
 
-        function runNumberAnimation() { /* (省略，与上版相同) */ 
+        function runNumberAnimation() { /* (omis, identique à la version précédente) */
              document.getElementById('scoreVal').innerText = aiData.fortune_report.score;
         }
 
-        // 页面加载后启动特效
+        // Démarre l'effet au chargement de la page
         startBinaryRain();
 
     </script>

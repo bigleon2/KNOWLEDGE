@@ -30,7 +30,7 @@ description: Generate podcast episodes from user-provided content or by searchin
 license: MIT
 ---
 
-## §0 — Contexte Système (SHARED v1.7.14)
+## §0 — Contexte Système (SHARED v1.7.16)
 
 > Écosystème Knowledge : `skills/`=skills/ | `skills/KNOWLEDGE.md`=skills/KNOWLEDGE.md | `true`=true | `NORMAL`=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -146,13 +146,13 @@ npm run generate -- --input=test_data/material.txt --out_dir=out
 
 ```bash
 # Rechercher selon un thème et générer le podcast
-npm run generate -- --topic="最新AI技术突破" --out_dir=out
+npm run generate -- --topic="Dernières avancées en IA" --out_dir=out
 
 # Spécifier le thème de recherche et la durée
-npm run generate -- --topic="量子计算应用场景" --out_dir=out --duration=8
+npm run generate -- --topic="Applications du calcul quantique" --out_dir=out --duration=8
 
 # Rechercher puis générer un podcast à voix seule
-npm run generate -- --topic="气候变化影响" --out_dir=out --mode=single-male
+npm run generate -- --topic="Impact du changement climatique" --out_dir=out --mode=single-male
 ```
 
 ---

@@ -556,6 +556,508 @@
    "statut": "TRADUIT",
    "note_finition": "déjà soldé avant ce cycle (0 CJK — liste prioritaire propriétaire)",
    "session": "web-4f989063 (2026-10-31 — fin de chantier P2, plan D505)"
+  },
+  "skills/PM skills/interview-prep/references/hr_round.md": {
+   "fichier": "skills/PM skills/interview-prep/references/hr_round.md",
+   "zh_avant": 1108,
+   "sha_avant": "941ffaf22fed73846caa89921e67f66798dd7325631667ed47e7f0bdfdf0973e",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "9dd63bd88848033ece2f22ad7c14a39b3b122145148ae7f6cf9cb17b5d7e3d92",
+   "source_sync": "skills/interview-prep/references/hr_round.md"
+  },
+  "skills/PM skills/interview-prep/references/behavioral.md": {
+   "fichier": "skills/PM skills/interview-prep/references/behavioral.md",
+   "zh_avant": 985,
+   "sha_avant": "b74e668e4fc195b171e4f51d6f54aa801b075a7f061a59899449eda124d89e34",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "af76dcd06ddcbea33ec9f486e0c9165924b602975a85ff11cb22922bb15ee4c4",
+   "source_sync": "skills/interview-prep/references/behavioral.md"
+  },
+  "skills/PM skills/interview-prep/references/salary_negotiation.md": {
+   "fichier": "skills/PM skills/interview-prep/references/salary_negotiation.md",
+   "zh_avant": 889,
+   "sha_avant": "471b081ab44793ac5368c1230ac0a27698b21affd01f75c49a914c24b1c28e4d",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "b787e3ec996664f21b9a05d21c480095da692f3022b0355a57fba303f164d6d9",
+   "source_sync": "skills/interview-prep/references/salary_negotiation.md"
+  },
+  "skills/PM skills/interview-prep/references/role_finance.md": {
+   "fichier": "skills/PM skills/interview-prep/references/role_finance.md",
+   "zh_avant": 742,
+   "sha_avant": "91cc11697232e2dee87787020c0b49d396f96add9f6ae6efde12f8c6c0dbf253",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "ac9db8ba49b24cafc35b975572c1a49210848f53adf46d74bb0af73b542f3ec3",
+   "source_sync": "skills/interview-prep/references/role_finance.md"
+  },
+  "skills/PM skills/interview-prep/references/case.md": {
+   "fichier": "skills/PM skills/interview-prep/references/case.md",
+   "zh_avant": 720,
+   "sha_avant": "2f31314fd6ad3763e0ddb0dba908aca0d6c6bcaed63f568f1fe8a1c09c822975",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "4652cb9a4a554702fb72ad2e90f4ffe4d807ad84ae67994d117c955a47b1bbfd",
+   "source_sync": "skills/interview-prep/references/case.md"
+  },
+  "skills/PM skills/interview-prep/references/role_internet.md": {
+   "fichier": "skills/PM skills/interview-prep/references/role_internet.md",
+   "zh_avant": 713,
+   "sha_avant": "29277cdcc650e00b838887c1388c921d4a3ad4b1fc2925403220035fa7cc1cb1",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "66c62e4a8d37d17ba17bcfd8ce3d2e51e32ade361060347132125ae499ea13ea",
+   "source_sync": "skills/interview-prep/references/role_internet.md"
+  },
+  "skills/PM skills/interview-prep/references/role_tech.md": {
+   "fichier": "skills/PM skills/interview-prep/references/role_tech.md",
+   "zh_avant": 693,
+   "sha_avant": "3e0a04d24b0511a981958383bf3fc4a8203fa06fc0d75d860aff8b984fc79ab8",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "c58488cd6fdc4416fc90e83dd8e7e6b48c22dfa774d54de593b183a3f1f0cf6d",
+   "source_sync": "skills/interview-prep/references/role_tech.md"
+  },
+  "skills/PM skills/interview-prep/references/answer_frameworks.md": {
+   "fichier": "skills/PM skills/interview-prep/references/answer_frameworks.md",
+   "zh_avant": 573,
+   "sha_avant": "862477b80636105a3b22ee94569b6f0a9ff6f80b3e42b8cceae311aa5a5dfe7f",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "a4e7d2d45c82c082986c18b6afeaf9657153044800756bc31209092dd48c805c",
+   "source_sync": "skills/interview-prep/references/answer_frameworks.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/unicorn-studio.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/unicorn-studio.md",
+   "zh_avant": 1263,
+   "sha_avant": "40166385fbe7f784c034125bdaa48a5fa4c725ccb71da0d4bdee62b1e3994957",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "2d97431680d9a09faa61a62f29b1bd28c0d23978e6dee6d57675f11aeac0f71f",
+   "source_sync": "skills/web-shader-extractor/references/unicorn-studio.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/porting-strategy.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/porting-strategy.md",
+   "zh_avant": 884,
+   "sha_avant": "55f72897fcf3b385c0dec46ac3145659cb8c85f432c7751d0e8f3270625848da",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "974de1da980de5afeb131dc294901292ce523407c42a29affea98c891024bfe9",
+   "source_sync": "skills/web-shader-extractor/references/porting-strategy.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/shaders-com.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/shaders-com.md",
+   "zh_avant": 878,
+   "sha_avant": "c6647024141eb344e7df48f61ec9b7f117e91b9d208db0ec77dafe9cf90c70c3",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "1008d6fc6396e5e0ec01e19c422cd0d3bb2565c8019b685826efa74cdc18291e",
+   "source_sync": "skills/web-shader-extractor/references/shaders-com.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/shader-injection.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/shader-injection.md",
+   "zh_avant": 422,
+   "sha_avant": "990ddf183d7003e4c5ea6f53670ba2e669f1652f6e2bfd1f1d79cfb112e3c5c4",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "0ff3f3f6e36483047970e348cee062220b12eceb37a22b2e8d0de7a35b7440ad",
+   "source_sync": "skills/web-shader-extractor/references/shader-injection.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/extraction-workflow.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/extraction-workflow.md",
+   "zh_avant": 335,
+   "sha_avant": "30a3299ca4d821cf24652948969bf7f2c79e5cee03f64ead2b28cf4c9bf6197f",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "f0646cfbe0260eb193ed83d5850f7decab4d00d73a4f30e71d72b66840b29e82",
+   "source_sync": "skills/web-shader-extractor/references/extraction-workflow.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/tsl-extraction.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/tsl-extraction.md",
+   "zh_avant": 124,
+   "sha_avant": "1e47c18e9046eb49d47b4fb4e4221038f66d94eeedc1e38e062a83753013082f",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "76e8546459ae53933d854105c772789ba5b2b76aa59287582483667d4165c597",
+   "source_sync": "skills/web-shader-extractor/references/tsl-extraction.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/config-extraction.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/config-extraction.md",
+   "zh_avant": 105,
+   "sha_avant": "c23a7a0ba1abc105c4b5b84b1b76a3bb910d9ee1dfbbb4611374addcd9ea0076",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "fd1e9f905603953ed259b328bd23b30713f970725292fa2ff93c5e5901b2944c",
+   "source_sync": "skills/web-shader-extractor/references/config-extraction.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/encoded-definitions.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/encoded-definitions.md",
+   "zh_avant": 91,
+   "sha_avant": "8063361b5fde2848bcbcef3b95793c684fabaab8312c13e5323e727e8bbdb5e6",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "ec582412ea7282fe32d0f2cd228caebb281658d73a8b8c984591b1c8fa95689e",
+   "source_sync": "skills/web-shader-extractor/references/encoded-definitions.md"
+  },
+  "skills/PM skills/web-shader-extractor/references/tech-signatures.md": {
+   "fichier": "skills/PM skills/web-shader-extractor/references/tech-signatures.md",
+   "zh_avant": 55,
+   "sha_avant": "3e9fd96eddd8db55ce7267a8769a42530e7f95f36342f586a35cd269c728d937",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "8c0293a05fff26f5dbcce9cea1612e321ea4278768171bd75928d254db668cac",
+   "source_sync": "skills/web-shader-extractor/references/tech-signatures.md"
+  },
+  "skills/PM skills/resume-builder/references/star_rewrite_guide.md": {
+   "fichier": "skills/PM skills/resume-builder/references/star_rewrite_guide.md",
+   "zh_avant": 619,
+   "sha_avant": "6cdf04b8b27e5e40137238d702703ed5b21001c308d357b8f5878b988a094aaa",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "b0f1bfd90321ab6d6557fd338bde145f0a483b480d747e0f165c29a25a066c11",
+   "source_sync": "skills/resume-builder/references/star_rewrite_guide.md"
+  },
+  "skills/PM skills/resume-builder/references/templates/tech.md": {
+   "fichier": "skills/PM skills/resume-builder/references/templates/tech.md",
+   "zh_avant": 453,
+   "sha_avant": "d419f06032f6bead40d1d2be4eaa903b3837b2c4451a8e14b1e89e1f783bb677",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "cf1c4caa42f0f21c9582d8b3be0e5314f1d54b92668ec4e6c24a75c704b73a89",
+   "source_sync": "skills/resume-builder/references/templates/tech.md"
+  },
+  "skills/PM skills/resume-builder/references/templates/general.md": {
+   "fichier": "skills/PM skills/resume-builder/references/templates/general.md",
+   "zh_avant": 443,
+   "sha_avant": "41b495788e3eb9715ea3b7df3df57f631eebe636176528103002b5ea22714cd5",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "1ad9729c53245865ef65e2286405fc09dec1516ab0e26edc612bf3601646c45f",
+   "source_sync": "skills/resume-builder/references/templates/general.md"
+  },
+  "skills/PM skills/charts/references/radial-grid.md": {
+   "fichier": "skills/PM skills/charts/references/radial-grid.md",
+   "zh_avant": 183,
+   "sha_avant": "765d76d55b9cd0625df8904fad778baf1d0b01e0411aa8d6a64696a06baa69f1",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "198d1e6f1858487b1a8aafc9ae592e51140fc09a9c71d66145aa0a1b4dbe1cc8",
+   "source_sync": "skills/charts/references/radial-grid.md"
+  },
+  "skills/PM skills/charts/references/mindmap-css.md": {
+   "fichier": "skills/PM skills/charts/references/mindmap-css.md",
+   "zh_avant": 150,
+   "sha_avant": "0bd0a9164f440d5e9c7a5cdf8d7b8d21b10c8f13989275751c24e37254c30a5d",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "dc4db8ed713f6b071c8e4237b39735da60daae850272036c7214ff1737e8e730",
+   "source_sync": "skills/charts/references/mindmap-css.md"
+  },
+  "skills/PM skills/charts/references/playwright-css.md": {
+   "fichier": "skills/PM skills/charts/references/playwright-css.md",
+   "zh_avant": 109,
+   "sha_avant": "19ee700044f560fbe4a412e52880a9915c4e0708d015c780abbc2d7085bf3fea",
+   "zh_apres": 6,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "d1e44134292aee1770972232b115c4b0e628b8650d62080a43342c9ef4b6f6cb",
+   "source_sync": "skills/charts/references/playwright-css.md"
+  },
+  "skills/PM skills/charts/references/echarts.md": {
+   "fichier": "skills/PM skills/charts/references/echarts.md",
+   "zh_avant": 98,
+   "sha_avant": "020777eb3dce567477bd640ec044555cecd6171e76fe70706996de61528a8f60",
+   "zh_apres": 79,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "501deb7fe268377cf9eb0d2e1ed934a3d430d42c49a657e6a4ce5c3bab97797b",
+   "source_sync": "skills/charts/references/echarts.md"
+  },
+  "skills/PM skills/jd-resume-tailor/references/jd_parsing_signals.md": {
+   "fichier": "skills/PM skills/jd-resume-tailor/references/jd_parsing_signals.md",
+   "zh_avant": 392,
+   "sha_avant": "7d9e12e9d830151eaae17cf43b99c5347e96983fab59780ae22bb350c055a284",
+   "zh_apres": 227,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "a7b47a98b240e55c856fa3e83775e1a7f807522e99a0219d5dde26689542fdc9",
+   "source_sync": "skills/jd-resume-tailor/references/jd_parsing_signals.md"
+  },
+  "skills/PM skills/ai-news-collectors/references/sources.md": {
+   "fichier": "skills/PM skills/ai-news-collectors/references/sources.md",
+   "zh_avant": 491,
+   "sha_avant": "2ed62b30bd1513356f36b388123cea89efad4b723bf6e11e0e35f911b077325c",
+   "zh_apres": 28,
+   "passe2": 1,
+   "statut": "SYNCHRONISE_MIROIR",
+   "sha_apres": "a8bc412008c90d19c8de7cd0cb68413e54d268315eb8050c1e7e020ce08ab0a5",
+   "source_sync": "skills/ai-news-collectors/references/sources.md"
+  },
+  "skills/charts/references/mermaid.md": {
+   "fichier": "skills/charts/references/mermaid.md",
+   "zh_avant": 459,
+   "sha_avant": "5155308cdab2b3af394174c0ce20febc7b8af816630563ada57605bdc88a2a0a",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "a8a0dbe3d62f24d8492801795329196fc2aee8bbb4f62aa77c177f1abed12968"
+  },
+  "skills/PM skills/charts/references/mermaid.md": {
+   "fichier": "skills/PM skills/charts/references/mermaid.md",
+   "zh_avant": 459,
+   "sha_avant": "5155308cdab2b3af394174c0ce20febc7b8af816630563ada57605bdc88a2a0a",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "a8a0dbe3d62f24d8492801795329196fc2aee8bbb4f62aa77c177f1abed12968"
+  },
+  "skills/resume-builder/references/intake_questions.md": {
+   "fichier": "skills/resume-builder/references/intake_questions.md",
+   "zh_avant": 263,
+   "sha_avant": "e2009794b25a2f845dc8d8e6592694e9cdefb958497cfe61e2ede77baa078b8b",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "8a79ebf99bd38610c6c600c87579896cd82810d558e65bbaed78679ed99e04d0"
+  },
+  "skills/PM skills/resume-builder/references/intake_questions.md": {
+   "fichier": "skills/PM skills/resume-builder/references/intake_questions.md",
+   "zh_avant": 263,
+   "sha_avant": "e2009794b25a2f845dc8d8e6592694e9cdefb958497cfe61e2ede77baa078b8b",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "8a79ebf99bd38610c6c600c87579896cd82810d558e65bbaed78679ed99e04d0"
+  },
+  "skills/resume-builder/references/templates/internet.md": {
+   "fichier": "skills/resume-builder/references/templates/internet.md",
+   "zh_avant": 258,
+   "sha_avant": "bd98c28188d5525edc832f4539a680d3aba95757a0a48efaa720e9a072edda04",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "ca1b2acc086535c87d4c23842b9ac088e106d2dba2ed188aba4bfcbd29c31dfc"
+  },
+  "skills/PM skills/resume-builder/references/templates/internet.md": {
+   "fichier": "skills/PM skills/resume-builder/references/templates/internet.md",
+   "zh_avant": 258,
+   "sha_avant": "bd98c28188d5525edc832f4539a680d3aba95757a0a48efaa720e9a072edda04",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "ca1b2acc086535c87d4c23842b9ac088e106d2dba2ed188aba4bfcbd29c31dfc"
+  },
+  "skills/PM skills/podcast-generate/PROMPT-MAITRE-podcast-generate.md": {
+   "fichier": "skills/PM skills/podcast-generate/PROMPT-MAITRE-podcast-generate.md",
+   "zh_avant": 30,
+   "sha_avant": "43f72f7c5cc861b7d9788d88ff2aaad33a53d523fa47c6f18a9e447092103b09",
+   "zh_apres": 10,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "df9607d5cff61772602f7486fa4dffa9dad56f3b192260995eae324f26e728ba"
+  },
+  "skills/PM skills/get-fortune-analysis/PROMPT-MAITRE-get-fortune-analysis.md": {
+   "fichier": "skills/PM skills/get-fortune-analysis/PROMPT-MAITRE-get-fortune-analysis.md",
+   "zh_avant": 694,
+   "sha_avant": "87ac5a059dc24a925aa2677f7a2af0a6640360e882f086e742591c3e588c3aa5",
+   "zh_apres": 514,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "9154b3dc64e137c74c7b54959fe660a3a4f2a7ae2c7562e3de767d7c273ea3c4"
+  },
+  "skills/PM skills/pptx/PROMPT-MAITRE-pptx.md": {
+   "fichier": "skills/PM skills/pptx/PROMPT-MAITRE-pptx.md",
+   "zh_avant": 62,
+   "sha_avant": "5ab419ea692469b78a5a3c819204ef432916ce690b4b2fdb221d426fd918fe1e",
+   "zh_apres": 0,
+   "passe2": 1,
+   "statut": "TRADUIT",
+   "sha_apres": "d6e097f05f826ce5ecc33a3adc33b636a460dca9469e7dac590602afb069fcdf",
+   "mode": "RESYNC_CORPS_DEPUIS_CANONIQUE"
+  },
+  "skills/PM skills/job-intent-tracker/references/keywords_tech.md": {
+   "fichier": "skills/PM skills/job-intent-tracker/references/keywords_tech.md",
+   "zh_avant": 412,
+   "sha_avant": "63ad6089b75dc085331447971b67812608e3c5e5fda0a4f5cb40ffc9380459aa",
+   "zh_apres": 412,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "63ad6089b75dc085331447971b67812608e3c5e5fda0a4f5cb40ffc9380459aa",
+   "motif": "miroir du canonique INTENTIONNEL — bibliothèque de mots-clés du marché de l'emploi chinois (données fonctionnelles)"
+  },
+  "skills/PM skills/job-intent-tracker/references/keywords_finance.md": {
+   "fichier": "skills/PM skills/job-intent-tracker/references/keywords_finance.md",
+   "zh_avant": 411,
+   "sha_avant": "0971ee487284cac11bb89554a31954d10b478023cd15e628b1731122bbcfa92d",
+   "zh_apres": 411,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "0971ee487284cac11bb89554a31954d10b478023cd15e628b1731122bbcfa92d",
+   "motif": "miroir du canonique INTENTIONNEL — bibliothèque de mots-clés du marché de l'emploi chinois (données fonctionnelles)"
+  },
+  "skills/PM skills/job-intent-tracker/references/keywords_general.md": {
+   "fichier": "skills/PM skills/job-intent-tracker/references/keywords_general.md",
+   "zh_avant": 264,
+   "sha_avant": "981a4024d6e0fdfd3cb74077da2c502c1ab572d09eabb611a21deb8d8bbb36c3",
+   "zh_apres": 264,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "981a4024d6e0fdfd3cb74077da2c502c1ab572d09eabb611a21deb8d8bbb36c3",
+   "motif": "miroir du canonique INTENTIONNEL — bibliothèque de mots-clés du marché de l'emploi chinois (données fonctionnelles)"
+  },
+  "skills/docx/references/docx-js-advanced.md": {
+   "fichier": "skills/docx/references/docx-js-advanced.md",
+   "zh_avant": 91,
+   "sha_avant": "8f94f8381aa01b4e1994e8b3ad3dd5c4656d8e4c92595fe10f1a27cbe0feca1c",
+   "zh_apres": 91,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "8f94f8381aa01b4e1994e8b3ad3dd5c4656d8e4c92595fe10f1a27cbe0feca1c",
+   "motif": "données du bug documenté (guillemets courbes chinois U+201C/201D dans les littéraux JS) + exemple de bibliographie chinoise — le CJK est le sujet de la règle"
+  },
+  "skills/PM skills/docx/references/docx-js-advanced.md": {
+   "fichier": "skills/PM skills/docx/references/docx-js-advanced.md",
+   "zh_avant": 91,
+   "sha_avant": "8f94f8381aa01b4e1994e8b3ad3dd5c4656d8e4c92595fe10f1a27cbe0feca1c",
+   "zh_apres": 91,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "8f94f8381aa01b4e1994e8b3ad3dd5c4656d8e4c92595fe10f1a27cbe0feca1c",
+   "motif": "miroir — mêmes données du bug documenté que le canonique"
+  },
+  "skills/docx/references/design-system.md": {
+   "fichier": "skills/docx/references/design-system.md",
+   "zh_avant": 63,
+   "sha_avant": "43097da7d0244239d607a6bbf518146f79906c392898817dc0d32bd75e88ef6d",
+   "zh_apres": 63,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "43097da7d0244239d607a6bbf518146f79906c392898817dc0d32bd75e88ef6d",
+   "motif": "données typographiques chinoises : noms de tailles de police (小四/三号/四号), particules de césure, exemples de titres et métadonnées d'université"
+  },
+  "skills/PM skills/docx/references/design-system.md": {
+   "fichier": "skills/PM skills/docx/references/design-system.md",
+   "zh_avant": 63,
+   "sha_avant": "43097da7d0244239d607a6bbf518146f79906c392898817dc0d32bd75e88ef6d",
+   "zh_apres": 63,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "43097da7d0244239d607a6bbf518146f79906c392898817dc0d32bd75e88ef6d",
+   "motif": "miroir — mêmes données typographiques chinoises que le canonique"
+  },
+  "skills/PM skills/gaokao-collect-student-info/PROMPT-MAITRE-gaokao-collect-student-info.md": {
+   "fichier": "skills/PM skills/gaokao-collect-student-info/PROMPT-MAITRE-gaokao-collect-student-info.md",
+   "zh_avant": 140,
+   "sha_avant": "cb78a3465ecbf5a088cc66f8b9d53ccdf8e8c2dfdd05816e629209d333d7830b",
+   "zh_apres": 140,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "cb78a3465ecbf5a088cc66f8b9d53ccdf8e8c2dfdd05816e629209d333d7830b",
+   "motif": "valeurs littérales de l'API gaokao citées dans une prose française (山东/综合/本科批/物理,化学,生物…)"
+  },
+  "skills/PM skills/pdf/PROMPT-MAITRE-pdf.md": {
+   "fichier": "skills/PM skills/pdf/PROMPT-MAITRE-pdf.md",
+   "zh_avant": 136,
+   "sha_avant": "2ffea1cf81f2597992308b649160626c4f4ce687471940e2629d100449181d9a",
+   "zh_apres": 136,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "2ffea1cf81f2597992308b649160626c4f4ce687471940e2629d100449181d9a",
+   "motif": "table de routing bilingue (demandes chinoises reconnues), règles de sécurité des caractères (kana → équivalents CJK), exemples de bugs LaTeX"
+  },
+  "skills/PM skills/resume-builder/PROMPT-MAITRE-resume-builder.md": {
+   "fichier": "skills/PM skills/resume-builder/PROMPT-MAITRE-resume-builder.md",
+   "zh_avant": 120,
+   "sha_avant": "7be120caf37b1f6644d91a25f85b0bacf9b6f6bd848521d83e63769b0602d410",
+   "zh_apres": 120,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "7be120caf37b1f6644d91a25f85b0bacf9b6f6bd848521d83e63769b0602d410",
+   "motif": "citations des phrases déclencheuses chinoises AVEC traduction française (le skill doit reconnaître « 帮我写简历 ») + marqueur fonctionnel [待补充]"
+  },
+  "skills/PM skills/interview-prep/PROMPT-MAITRE-interview-prep.md": {
+   "fichier": "skills/PM skills/interview-prep/PROMPT-MAITRE-interview-prep.md",
+   "zh_avant": 117,
+   "sha_avant": "974702b97b7ea2999cf4894680305cdca5d04b3371816f57426480e24be63077",
+   "zh_apres": 117,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "974702b97b7ea2999cf4894680305cdca5d04b3371816f57426480e24be63077",
+   "motif": "citations des phrases déclencheuses chinoises AVEC traduction française (« 帮我准备面试 », « 明天有面试 »…)"
+  },
+  "skills/PM skills/ai-news-collectors/PROMPT-MAITRE-ai-news-collectors.md": {
+   "fichier": "skills/PM skills/ai-news-collectors/PROMPT-MAITRE-ai-news-collectors.md",
+   "zh_avant": 65,
+   "sha_avant": "8c803d338e8ca9241342139409dd329303dee5a3bc5d9906f5e40b58a2d6b3a3",
+   "zh_apres": 65,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "8c803d338e8ca9241342139409dd329303dee5a3bc5d9906f5e40b58a2d6b3a3",
+   "motif": "requêtes de recherche pour médias chinois (données fonctionnelles) + citations de déclencheurs traduites"
+  },
+  "skills/PM skills/gaokao-fetch-volunteers/PROMPT-MAITRE-gaokao-fetch-volunteers.md": {
+   "fichier": "skills/PM skills/gaokao-fetch-volunteers/PROMPT-MAITRE-gaokao-fetch-volunteers.md",
+   "zh_avant": 45,
+   "sha_avant": "9e1c332afc9467586aa06755e5d5f80bee67eff635faaa040af0bee1c91c85a7",
+   "zh_apres": 45,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "9e1c332afc9467586aa06755e5d5f80bee67eff635faaa040af0bee1c91c85a7",
+   "motif": "valeurs littérales de l'API gaokao (文科/理科/物理/历史/综合/本科批/专科批/西藏…) dans une prose française"
+  },
+  "skills/PM skills/xlsx/PROMPT-MAITRE-xlsx.md": {
+   "fichier": "skills/PM skills/xlsx/PROMPT-MAITRE-xlsx.md",
+   "zh_avant": 39,
+   "sha_avant": "c2526238f38ab823196a4c8c6d14b70086372e5949ff27ee0d1be412f2b56238",
+   "zh_apres": 39,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "c2526238f38ab823196a4c8c6d14b70086372e5949ff27ee0d1be412f2b56238",
+   "motif": "mots-clés de détection bilingues du skill xlsx (利润表, 宏, 按钮… = demandes chinoises réelles à détecter)"
+  },
+  "skills/PM skills/aminer-free-academic/PROMPT-MAITRE-aminer-free-academic.md": {
+   "fichier": "skills/PM skills/aminer-free-academic/PROMPT-MAITRE-aminer-free-academic.md",
+   "zh_avant": 39,
+   "sha_avant": "503f57d4818f635ede8635e0997115611dbd52f333c15316b30dae83a038d0ca",
+   "zh_apres": 39,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "503f57d4818f635ede8635e0997115611dbd52f333c15316b30dae83a038d0ca",
+   "motif": "citations des exemples de demandes utilisateurs chinoises (déclencheurs fonctionnels)"
+  },
+  "skills/PM skills/aminer-daily-paper/PROMPT-MAITRE-aminer-daily-paper.md": {
+   "fichier": "skills/PM skills/aminer-daily-paper/PROMPT-MAITRE-aminer-daily-paper.md",
+   "zh_avant": 32,
+   "sha_avant": "837fe8d49f3d0f5b1383b79f7e6bf2c086e45f9674690864119186fa8907e749",
+   "zh_apres": 32,
+   "passe2": 1,
+   "statut": "INTENTIONNEL",
+   "sha_apres": "837fe8d49f3d0f5b1383b79f7e6bf2c086e45f9674690864119186fa8907e749",
+   "motif": "exemples de valeurs topics réelles d'utilisateurs chinois (具身智能, 环境保护) citées avec consigne de fidélité"
   }
  },
  "finition_p2": {
@@ -581,5 +1083,33 @@
    "skills/job-intent-tracker/references/keywords_general.md",
    "skills/job-intent-tracker/references/keywords_tech.md"
   ]
+ },
+ "reprise_p2_lots": {
+  "session": "web-4f989063",
+  "date": "2026-10-31",
+  "plan": "download/plan-reprise-p2-par-lots-s1bf18a23.md (D601-D608)",
+  "directive": "gen-plan : \"reprise P2 par lots\" (routing D506-1 du rapport d'analyse intégrale)",
+  "politique": "P1 traduire (prose, exemples démonstratifs) / P2 conserver (données fonctionnelles, valeurs API, spécimens, strings UI de produits du marché chinois) — examen par fichier, jamais de traduction aveugle",
+  "lots": {
+   "lot1_miroirs_pm_skills": {
+    "statut": "SOLDÉ",
+    "fichiers": 46,
+    "zh_avant": 17258,
+    "zh_apres": 2992,
+    "details": "26 resynchronisations miroir←canonique (sha prouvé) ; 16 dispositions INTENTIONNEL (3 keywords, 2 paires docx ×2 chemins, 9 PROMPT-MAITRE citations/valeurs API) ; 3 paires traduites canonique+miroir (mermaid, intake_questions, internet) ; PM pptx resynchronisé depuis le canonique traduit (0 CJK) ; PM podcast-generate exemples --topic traduits (défauts 小谱/锤锤 conservés) ; PM get-fortune-analysis commentaires de code traduits (strings UI produit divination chinoise + exemples JSON API conservés = données)"
+   },
+   "lot2_horizontal_craft": {
+    "statut": "À FAIRE",
+    "fichiers": 7,
+    "zh": 24683,
+    "details": "traduction spécialisée : prose FR, spécimens/exemples de rendu chinois conservés"
+   },
+   "lot3_design_templates_metier_divers": {
+    "statut": "À FAIRE",
+    "fichiers": 36,
+    "zh": 6345,
+    "details": "36 restants (5 canoniques des paires soldés au lot 1) ; worklog.md = disposition journal historique"
+   }
+  }
  }
 }
