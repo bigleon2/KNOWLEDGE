@@ -1,0 +1,33 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "name": "TZF-selftest",
+      "description": "L'auto-test hors-ligne du script passe 8/8 et est idempotent ×2",
+      "expectations": [
+        "python3 skills/traduction-zh-fr/scripts/traduire-md-zh-fr.py --selftest rc=0",
+        "re-jeu ×2 rc=0 (idempotence)",
+        "0 appel réseau pendant le selftest (backend simulé)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "TZF-p1-p2-politique",
+      "description": "La politique P1/P2 est appliquée : code, URLs, inline code, frontmatter préservés ; prose traduite",
+      "expectations": [
+        "bloc de code inchangé après traduction",
+        "URL et code en ligne intacts",
+        "frontmatter YAML structurellement intact"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "TZF-pdf2zh-version",
+      "description": "pdf2zh installé et opérationnel (version consignée)",
+      "expectations": [
+        "pdf2zh --version rc=0",
+        "version 1.9.11 installée via pip"
+      ]
+    }
+  ]
+}
