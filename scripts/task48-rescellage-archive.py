@@ -21,10 +21,14 @@ Idempotent : re-exécution = archive équivalente. Garde anti-perte : sauvegarde
 restauration en cas d'échec de l'auto-vérification round-trip.
 """
 import shutil
+import sys
 import zipfile
 from pathlib import Path
 
-BASE = Path("/home/z/my-project")
+# Task 33 (2026-11-02) : argument optionnel de base — par défaut l'hôte (comportement
+# Task 48 inchangé) ; le dépôt KNOWLEDGE-repo est passé explicitement quand corpus
+# et piliers vivent dans le registre canonique (KB = pilier au dépôt).
+BASE = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/home/z/my-project")
 CORPUS = BASE / "skills" / "@mon-ecosysteme"
 ARCHIVE = BASE / "download" / "mon-ecosysteme_archive.zip"
 BAK = ARCHIVE.with_suffix(".zip.bak")

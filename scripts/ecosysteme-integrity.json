@@ -10,9 +10,9 @@
     "README.md": "83920e456f2e609be63cec50e7375790553c64f1573ac52508df635a8c10ab7e",
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f",
     "piliers/scripts/certification-complete.py": "ef118971532b6eac1908a6e64475d34bf8020eb55ee33f667ca816912de4d5a3",
-    "piliers/scripts/check-ecosysteme-integrity.py": "8814ec8262baa48c28a89858af1264c38023360e11241b125e62c879e4027d30",
+    "piliers/scripts/check-ecosysteme-integrity.py": "29012943665da4907b9ce8269861210679d2bc4666f559e75a254b91bbf0f513",
     "piliers/scripts/install-ecosysteme-local.sh": "a4d1339958e31d61602eb9b94db6e35132e89abbdb64baced4f6fa699d228175",
-    "piliers/skills/KNOWLEDGE.md": "4e7fd071e536aea41884b1ae13577650cd4ccc31579c9259059ad5b5729cacbc",
+    "piliers/skills/KNOWLEDGE.md": "cbe47b7359ae83f993de192fa5dd1b865e4824ae7b2a7cebbac957916cd40d7b",
     "piliers/skills/correct-work/SKILL.md": "f5de7cc726f3e1d697c9d079a52416788cdc32bc77d547dd5c8eb6bac9e6c65f",
     "piliers/skills/gen-plan/SKILL.md": "4a4a4871861b9f5d9de47652ffc4c977eb3855c7b61ddd1f489aa71074dbf40c"
   },
@@ -28,7 +28,7 @@
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "e9220c80dca386ce1904514f5bf37ad4ac855519cbe7f168dea9287a2f762aab"
+    "mon-ecosysteme_archive.zip": "b45f5ba98fdec6a30e7126b1af1f1fc55a35a5321ee833166f9b450bdda7d1f3"
   },
   "skills": {
     "agent-creator": {
@@ -40,8 +40,12 @@
       "version": "1.0.1"
     },
     "alias-eco": {
-      "sha256": "a8bc682756d180c2ace31850e34317e3c5f85641ccba0237db49d996a89d9372",
-      "version": "1.2.0"
+      "sha256": "ce603e62fe2ee0db1891051ab421fc634d749d1ba67002192766cde006cdb213",
+      "version": "1.3.0"
+    },
+    "analyse-doc-s4mk2": {
+      "sha256": "015a425468bc02f697ad4e6a7c88b8892707c0812dfab9053b3667257bcb2ec7",
+      "version": "1.0.0"
     },
     "audio-metadata": {
       "sha256": "fbce21f83247ff67a76d5671f0e863cec7dfd471c5a5013203afc9512b4fbab7",
@@ -132,8 +136,16 @@
       "version": "1.2.1"
     },
     "midi-doc-expert": {
-      "sha256": "4cf2f6ea3dd061e0f59c0323d54b0e9d187f2ed2dd33941e8ee8fb8ee258c327",
-      "version": "1.0.0"
+      "sha256": "ba46460a02cd17a0e496efc5bcebb123d758ce199dcc1247f584cb32d23ac5f2",
+      "version": "1.1.0"
+    },
+    "multi-shift-architect": {
+      "sha256": "0e150bc2bb8e6c3f1d7806bc19f1255be1ec10b82cf1c23b178e4f6abb83929b",
+      "version": "1.1.0"
+    },
+    "orchestrateur-tsi": {
+      "sha256": "8e3c150012ce0add4d70636130fb0acb33db6c62847664153b462d88a5c18b01",
+      "version": "1.1.0"
     },
     "pdf-llm": {
       "sha256": "4123d95e4586a42468145e9f0343dd50a12e78fd0ade8c4bb7ddabad730c073b",
@@ -192,12 +204,12 @@
       "version": "1.3.1"
     },
     "tsi-architect": {
-      "sha256": "68a69212a67c2b0449e2b4ae4c9009b5d255d69ce8e9a6478efd6ae85544940e",
-      "version": "1.0.0"
+      "sha256": "3333529f8b545d64e8828f3bb3d8d6e975b790bde88f9cfea7a8cea891ad3ebe",
+      "version": "1.1.0"
     },
     "tsi-validator": {
-      "sha256": "4f1e1f7a4209835311392c384b02c1d445f9437746fb62b50166a61aa01bdd3a",
-      "version": "1.0.0"
+      "sha256": "7af4447f760821dffb3403c57fd247884815e0fca14c4a16b68b4d1819e10f97",
+      "version": "1.1.0"
     },
     "version-management": {
       "sha256": "4ef4538b212d6007a630c229d31806989e9e0f295ecc24db4520e69235dc9c32",
