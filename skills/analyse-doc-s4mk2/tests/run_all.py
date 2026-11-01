@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
-"""run_all.py v1.0.0 — Batterie de tests $FACON2 du skill analyse-doc-s4mk2.
+"""run_all.py v1.1.0 — Batterie de tests $FACON2 du skill analyse-doc-s4mk2.
 
 $FACON2 = « cohérent, optimisé et fonctionnel » (alias-eco v1.3.0, grammaire B).
 La batterie vérifie FONCTIONNELLEMENT chaque capacité du skill sur l'échantillon
 de référence réel (ZIP DJTT Kontrol S4 MK2 v2.1.0) et ROBUSTESSEMENT les rejets
 propres (entrée non-mapping, blob corrompu, cible absente), l'idempotence ×2 et
-le self-test du moteur. Verdict mécanique : PASS ssi tous les tests passent ;
-journal JSON individuel par test (tests/journal/) + synthèse (synthese.json).
-Le skill ne ment jamais : échantillon introuvable = FAIL explicite.
+le self-test du moteur. v1.1.0 (directive propriétaire, règle d'or écosystème) :
+vérifie aussi l'ADAPTATION AUTOMATIQUE aux types — PDF compagnons analysés en
+profondeur (échantillon secondaire DREW : 3 PDF + 2 PNG + 1 TSI), aucun fichier
+non-TSI muet, rejet propre d'un PDF invalide. Verdict mécanique : PASS ssi tous
+les tests passent ; journal JSON individuel par test (tests/journal/) + synthèse
+(synthese.json). Le skill ne ment jamais : échantillon introuvable = FAIL explicite.
 
 Usage :
-  python3 skills/analyse-doc-s4mk2/tests/run_all.py [--zip CHEMIN_ZIP] [--dir CHEMIN_DOSSIER]
+  python3 skills/analyse-doc-s4mk2/tests/run_all.py [--zip CHEMIN_ZIP] [--dir CHEMIN_DOSSIER] [--pdf-dir CHEMIN_DREW]
 Exit code : 0 ssi BATTERIE PASS ; 1 sinon ; 2 usage.
-Stdlib uniquement. Lecture seule (l'échantillon n'est jamais modifié).
+Stdlib uniquement. Lecture seule (les échantillons ne sont jamais modifiés).
 """
 import argparse
 import base64
@@ -34,9 +37,13 @@ JOURNAL = os.path.join(ICI, "journal")
 
 PIPELINE = os.path.join(SCRIPTS, "analyser-zip-mk2.py")
 MOTEUR = os.path.join(SCRIPTS, "analyser_tsi_mk2.py")
+MODPDF = os.path.join(SCRIPTS, "analyser-pdf-mk2.py")
 
 DEFAUT_ZIP = "/home/z/my-project/upload/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.zip"
 DEFAUT_DIR = "/home/z/my-project/scripts/zip-tsi/extracted/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0"
+# Échantillon secondaire DREW (mapping tiers avec PDF compagnons) — v1.1.0
+DEFAUT_PDF_DIR = "/home/z/my-project/scripts/zip-tsi/extracted-drew/Kontrol S4  [DREW's MAPPING] - FX4(JogWheel ) + Mode Freeze + Etc"
+PDFS_DREW = ("Drew's Assignment List.pdf", "Mapping Speech.pdf", "Mapping Speech-fr.pdf")
 
 # Attentes mécaniques de l'échantillon de référence (référentiel G2 + erratum Task 33)
 ATTENDU = {
@@ -85,7 +92,7 @@ class Batterie:
     def synthese(self, echantillon):
         passes = sum(1 for r in self.resultats if r["ok"])
         verdict = "PASS" if passes == len(self.resultats) else "FAIL"
-        synth = {"skill": "analyse-doc-s4mk2", "batterie_version": "1.0.0", "grammaire": "$FACON2",
+        synth = {"skill": "analyse-doc-s4mk2", "batterie_version": "1.1.0", "grammaire": "$FACON2",
                  "echantillon": echantillon, "total": len(self.resultats), "passes": passes,
                  "fails": len(self.resultats) - passes, "verdict": verdict, "tests": self.resultats}
         with open(os.path.join(JOURNAL, "synthese.json"), "w", encoding="utf-8") as fh:
@@ -128,7 +135,7 @@ def fabriquer_tsi_corrompu(zip_path, destination):
     return destination
 
 
-def batterie(zip_path, dir_path):
+def batterie(zip_path, dir_path, pdf_dir=None):
     print(f"BATTERIE $FACON2 — skill analyse-doc-s4mk2")
     print(f"  échantillon ZIP    : {zip_path}")
     b = Batterie()
@@ -201,6 +208,45 @@ def batterie(zip_path, dir_path):
             return ok, f"{len(vus)} illustrés, dimensions conformes : {dims_ok}, rôles identifiés : {roles_ok}"
         b.test("TF-06", "documents illustrés identifiés (3 JPG, dimensions et rôles)", tf06)
 
+        # --- TF-07 : PDF compagnons analysés (échantillon secondaire DREW, v1.1.0) ---
+        def tf07():
+            if not pdf_dir or not os.path.isdir(pdf_dir):
+                return False, f"échantillon DREW introuvable ({pdf_dir}) — le skill ne ment jamais"
+            details = []
+            ok_global = True
+            for pdf in PDFS_DREW:
+                chemin = os.path.join(pdf_dir, pdf)
+                if not os.path.isfile(chemin):
+                    return False, f"PDF introuvable : {chemin}"
+                j = "/tmp/adsm-tf07.json"
+                rc, out, err = lancer([sys.executable, MODPDF, chemin, "--json", j])
+                r = json.load(open(j, encoding="utf-8"))
+                t = r["texte"]
+                ok = rc == 0 and t["statut"] == "TEXTE_EXTRAIT" and t["caracteres"] > 1000 and t["mots"] > 500 and r["mots_cles_mapping"]
+                ok_global = ok_global and ok
+                details.append(f"{pdf}: {t['caracteres']} car/{t['mots']} mots/{len(r['mots_cles_mapping'])} mc"
+                               + ("" if ok else " ÉCART"))
+            return ok_global, " ; ".join(details)
+        b.test("TF-07", "PDF compagnons analysés en profondeur (3 PDF DREW : texte, mots, mots-clés)", tf07)
+
+        # --- TF-08 : adaptation automatique aux types (aucun non-TSI muet, v1.1.0) ---
+        def tf08():
+            if not pdf_dir or not os.path.isdir(pdf_dir):
+                return False, f"échantillon DREW introuvable ({pdf_dir})"
+            j = "/tmp/adsm-tf08.json"
+            rc, out, err = lancer([sys.executable, PIPELINE, pdf_dir, "--json", j])
+            r = json.load(open(j, encoding="utf-8"))
+            n_pdf = len(r["pdf"])
+            pdf_ok = n_pdf == 3 and not [p for p in r["pdf"] if p.get("rejet")]
+            illus_ok = len(r["illustrés"]) == 2 and all(i["dimensions"] for i in r["illustrés"])
+            muets = len(r["autres"])
+            n_tsi = len(r["tsi"])
+            # adaptation = chaque fichier non-TSI classé dans pdf/illustrés/textes/autres
+            couverts = n_pdf + len(r["illustrés"]) + len(r["textes"]) + muets
+            ok = pdf_ok and illus_ok and muets == 0 and couverts == r["comptes_inventaire"]["fichiers"] - n_tsi
+            return ok, f"{n_tsi} TSI, {n_pdf} PDF analysés, {len(r['illustrés'])} illustrés, {muets} muets, couverture {couverts}/{r['comptes_inventaire']['fichiers'] - n_tsi}"
+        b.test("TF-08", "adaptation automatique aux types (DREW : 3 PDF + 2 PNG couverts, 0 muet)", tf08)
+
         # --- TR-01 : rejet propre d'un TSI de préférences par le moteur ---
         def tr01():
             fx = os.path.join(dossier, "Extra", "FX Settings.tsi")
@@ -245,6 +291,26 @@ def batterie(zip_path, dir_path):
             ok = rc == 0 and "SELF-TEST : PASS" in out
             return ok, f"rc={rc}, self-test={'PASS' in out}"
         b.test("TR-05", "self-test moteur : re-jeu ×2 + conformité G2 + baseline", tr05)
+
+        # --- TR-06 : rejet propre d'un PDF invalide (v1.1.0) ---
+        def tr06():
+            tmpd = tempfile.mkdtemp()
+            garbage = os.path.join(tmpd, "pas-un-pdf.pdf")
+            with open(garbage, "wb") as fh:
+                fh.write(b"\x00\x01\x02garbage\xff\xfe ceci n'est pas un PDF")
+            vide = os.path.join(tmpd, "pdf-sans-texte.pdf")
+            with open(vide, "wb") as fh:
+                fh.write(b"%PDF-1.4\n1 0 obj\n<</Type/Catalog/Pages 2 0 R>>\nendobj\n2 0 obj\n<</Type/Pages/Kids[]/Count 0>>\nendobj\ntrailer<</Root 1 0 R>>\n%%EOF\n")
+            try:
+                rc1, out1, err1 = lancer([sys.executable, MODPDF, garbage])
+                rc2, out2, err2 = lancer([sys.executable, MODPDF, vide, "--json", "/tmp/adsm-tr06.json"])
+            finally:
+                shutil.rmtree(tmpd, ignore_errors=True)
+            r2 = json.load(open("/tmp/adsm-tr06.json", encoding="utf-8"))
+            ok = (rc1 == 1 and "REJET PROPRE" in out1 and "Traceback" not in err1
+                  and rc2 == 0 and r2["texte"]["statut"] == "AUCUN_TEXTE_EXTRAIT" and "Traceback" not in err2)
+            return ok, f"garbage rc={rc1} rejet={'REJET PROPRE' in out1}, vide rc={rc2} statut={r2['texte']['statut']}, tracebacks : {'Traceback' in err1 or 'Traceback' in err2}"
+        b.test("TR-06", "robustesse PDF : signature absente → rc=1 ; PDF sans texte → statut honnête", tr06)
     finally:
         if dir_path is None:
             shutil.rmtree(os.path.dirname(dossier) if dossier != dir_path else dossier, ignore_errors=True)
@@ -257,8 +323,10 @@ def main():
     ap = argparse.ArgumentParser(description="Batterie de tests $FACON2 du skill analyse-doc-s4mk2")
     ap.add_argument("--zip", default=DEFAUT_ZIP, help="ZIP de l'échantillon de référence")
     ap.add_argument("--dir", dest="dir_path", default=DEFAUT_DIR, help="dossier déjà extrait (optimisation)")
+    ap.add_argument("--pdf-dir", dest="pdf_dir", default=DEFAUT_PDF_DIR, help="dossier extrait de l'échantillon secondaire DREW")
     a = ap.parse_args()
-    return batterie(a.zip, a.dir_path if a.dir_path and os.path.isdir(a.dir_path) else None)
+    return batterie(a.zip, a.dir_path if a.dir_path and os.path.isdir(a.dir_path) else None,
+                    a.pdf_dir if a.pdf_dir and os.path.isdir(a.pdf_dir) else None)
 
 
 if __name__ == "__main__":

@@ -1,10 +1,10 @@
 {
   "skill": "analyse-doc-s4mk2",
-  "batterie_version": "1.0.0",
+  "batterie_version": "1.1.0",
   "grammaire": "$FACON2",
   "echantillon": "/home/z/my-project/upload/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.zip",
-  "total": 11,
-  "passes": 11,
+  "total": 14,
+  "passes": 14,
   "fails": 0,
   "verdict": "PASS",
   "tests": [
@@ -13,7 +13,7 @@
       "nom": "inventaire exhaustif du ZIP (6 fichiers + 2 dossiers, tailles)",
       "ok": true,
       "detail": "8 membres (2 dossiers), tailles conformes : True",
-      "duree_ms": 4
+      "duree_ms": 6
     },
     {
       "id": "TF-02",
@@ -51,6 +51,25 @@
       "duree_ms": 0
     },
     {
+      "id": "TF-07",
+      "nom": "PDF compagnons analysés en profondeur (3 PDF DREW : texte, mots, mots-clés)",
+      "ok": {
+        "traktor": 11,
+        "mapping": 4,
+        "deck": 3,
+        "s4": 3
+      },
+      "detail": "Drew's Assignment List.pdf: 5507 car/783 mots/17 mc ; Mapping Speech.pdf: 5125 car/924 mots/9 mc ; Mapping Speech-fr.pdf: 6589 car/919 mots/4 mc",
+      "duree_ms": 135
+    },
+    {
+      "id": "TF-08",
+      "nom": "adaptation automatique aux types (DREW : 3 PDF + 2 PNG couverts, 0 muet)",
+      "ok": true,
+      "detail": "1 TSI, 3 PDF analysés, 2 illustrés, 0 muets, couverture 5/5",
+      "duree_ms": 141
+    },
+    {
       "id": "TR-01",
       "nom": "rejet propre : TSI de préférences (rc=1, message, sans traceback)",
       "ok": true,
@@ -69,21 +88,28 @@
       "nom": "idempotence ×2 : pipeline byte-stable (re-jeu identique)",
       "ok": true,
       "detail": "rc 0/0, byte-stable : True",
-      "duree_ms": 284
+      "duree_ms": 295
     },
     {
       "id": "TR-04",
       "nom": "robustesse : cible inexistante → rc=2, message propre",
       "ok": true,
       "detail": "rc=2, message USAGE : True",
-      "duree_ms": 52
+      "duree_ms": 56
     },
     {
       "id": "TR-05",
       "nom": "self-test moteur : re-jeu ×2 + conformité G2 + baseline",
       "ok": true,
       "detail": "rc=0, self-test=True",
-      "duree_ms": 185
+      "duree_ms": 193
+    },
+    {
+      "id": "TR-06",
+      "nom": "robustesse PDF : signature absente → rc=1 ; PDF sans texte → statut honnête",
+      "ok": true,
+      "detail": "garbage rc=1 rejet=True, vide rc=0 statut=AUCUN_TEXTE_EXTRAIT, tracebacks : False",
+      "duree_ms": 59
     }
   ]
 }

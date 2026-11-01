@@ -1,10 +1,24 @@
 #!/usr/bin/env python3
-"""analyser-zip-mk2.py v1.0.0 — Pipeline complet d'analyse d'un ZIP/dossier de mapping S4 MK2
-ET de ses documents illustrés liés.
+"""analyser-zip-mk2.py v1.1.0 — Pipeline complet d'analyse d'un ZIP/dossier de mapping S4 MK2
+ET de TOUS ses fichiers liés (non-TSI compris), adaptatif par type.
 
 Skill : analyse-doc-s4mk2 (famille TSI, orchestré par agent-TSI).
 
-Pipeline (6 étapes) :
+v1.1.0 (directive propriétaire, règle d'or écosystème) : l'analyseur s'ADAPTE
+AUTOMATIQUEMENT au type de chaque fichier — routeur ext→analyseur (table
+ROUTEUR), et pour tout type inconnu une analyse par signature magique (stdlib).
+Aucun fichier non-TSI lié au mapping ne reste « autre » muet : PDF analysés en
+profondeur (texte, pages, polices, mots-clés — module analyser-pdf-mk2.py),
+images (dimensions + rôle), textes (.txt/.md), inconnus (signature + taille).
+
+Recherche écosystème consignée (règle d'or, CLAUDE.md Règle 3) : registre KB
+(KNOWLEDGE-repo/skills/KNOWLEDGE.md), skills plateforme pdf/pdf-llm = chaînes
+ReportLab/Playwright/SDK-qwen non embarquables dans un arbitre stdlib, 153
+scripts sans extracteur PDF, inter-scripts = communication multi-langages.
+Décision : module stdlib propre (analyser-pdf-mk2.py), sémantique alignée sur
+le skill pdf plateforme, consommable inter-scripts par canal one-shot JSON.
+
+Pipeline :
   E1. Inventaire exhaustif (ZIP ou dossier : tous membres, tailles, arborescence
       y compris SOUS-DOSSIERS — l'échantillon DJTT v2.1.0 porte Extra/) ;
   E2. Classification de chaque .tsi : MAPPING (Entry DeviceIO.Config.Controller)
@@ -14,20 +28,23 @@ Pipeline (6 étapes) :
   E3. Analyse du/des mappings via le moteur analyser-tsi-mk2 (comptes +
       conformité référentiel G2 si échantillon de référence reconnu) ;
   E4. Résumé des compagnons de préférences (Entries, clés structurantes) ;
-  E5. Documents illustrés (jpg/png : dimensions stdlib, rôle attendu si nom
-      reconnu : QuickGuide/vue complète, Manual/manuel+vignettes, Freeze Help) ;
+  E5. Fichiers liés NON-TSI, adaptatif : PDF (analyser-pdf-mk2 : texte, pages,
+      polices, mots-clés mapping), illustrés jpg/png (dimensions + rôle),
+      textes txt/md, types inconnus (signature magique stdlib) ;
   E6. Vérification mécanique de la table de correspondance visuels↔contrôles
       (references/correspondance-visuels.md) sur les noms DCBM définis ;
       VERDICT final : PASS ssi (a) au moins 1 mapping analysé, (b) conformité
       G2 s'il s'agit de l'échantillon de référence, (c) les noms de contrôles
-      de la table P1b existent dans les noms définis, (d) aucun .tsi non classé.
+      de la table P1b existent dans les noms définis, (d) aucun .tsi non classé,
+      (e) aucun PDF rejeté (illisible).
 
 Usage :
   analyser-zip-mk2.py <zip-ou-dossier> [--json OUT.json]
 Exit code : 0 ssi VERDICT PASS ; 1 écart/échec ; 2 usage/chemin.
-Stdlib uniquement. Lecture seule.
+Stdlib uniquement. Lecture seule. Sortie déterministe (membres triés).
 """
 import argparse
+import importlib.util
 import io
 import json
 import os
@@ -37,6 +54,15 @@ import zipfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from analyser_tsi_mk2 import RejetPropre, analyser, verifier_g2, ENTRY  # noqa: E402
+
+# module PDF (nom à tirets → import par chemin, stdlib)
+_spec = importlib.util.spec_from_file_location(
+    "analyser-pdf-mk2", os.path.join(os.path.dirname(os.path.abspath(__file__)), "analyser-pdf-mk2.py")
+)
+_pdf = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_pdf)
+analyser_pdf = _pdf.analyser_pdf
+RejetProprePDF = _pdf.RejetPropre
 
 # Membres attendus de l'échantillon de référence DJTT v2.1.0 (2 dossiers, 6 fichiers)
 REFERENCE_DJTT = {
@@ -68,7 +94,35 @@ ROLES_ILLUSTRES = {
     "quickguide": "vue complète du contrôleur (référence de correspondance)",
     "manual": "manuel DJTT : fonctionnement + vignettes d'éléments (vues partielles)",
     "freeze": "aide dédiée du mode Freeze (8 slices, Shift+Loop In)",
+    "description": "description du mapping (illustré compagnon)",
 }
+
+ROLES_PDF = (
+    ("assignment", "liste d'assignations contrôles→fonctions (compagnon du mapping)"),
+    ("speech", "description du fonctionnement du mapping (script narratif)"),
+)
+
+SIGNATURES = (
+    (b"%PDF", "PDF"),
+    (b"PK\x03\x04", "archive ZIP (Office/ODF/jar)"),
+    (b"\x89PNG", "PNG"),
+    (b"\xff\xd8\xff", "JPEG"),
+    (b"GIF8", "GIF"),
+    (b"BM", "BMP"),
+    (b"ID3", "MP3 (tag ID3)"),
+    (b"RIFF", "conteneur RIFF (WAV/AVI)"),
+    (b"OggS", "OGG"),
+    (b"fLaC", "FLAC"),
+    (b"MZ", "exécutable Windows"),
+    (b"\x7fELF", "exécutable ELF"),
+    (b"\x1f\x8b", "gzip"),
+    (b"7z\xbc\xaf\x27\x1c", "7-Zip"),
+    (b"Rar!", "RAR"),
+    (b"ftyp", "conteneur ISO-BMFF (MP4/MOV)"),
+    (b"<?xml", "XML"),
+    (b"{\\rtf", "RTF"),
+    (b"SQLite", "base SQLite"),
+)
 
 
 def dims_jpeg(buf):
@@ -92,8 +146,23 @@ def dims_jpeg(buf):
     return None
 
 
+def dims_png(buf):
+    """Dimensions PNG (IHDR) — stdlib, avec validation de signature."""
+    if buf[:8] != b"\x89PNG\r\n\x1a\n" or buf[12:16] != b"IHDR":
+        return None
+    return {"largeur": int.from_bytes(buf[16:20], "big"), "hauteur": int.from_bytes(buf[20:24], "big")}
+
+
+def signature(buf):
+    """Signature magique d'un flux inconnu — stdlib, jamais muet."""
+    for magie, nom in SIGNATURES:
+        if buf.startswith(magie) or (magie == b"ftyp" and buf[4:8] == b"ftyp"):
+            return nom
+    return "inconnue"
+
+
 def lire_tous_membres(chemin):
-    """Rend {chemin_relatif: bytes} pour un ZIP ou un dossier, dossiers inclus."""
+    """Rend {chemin_relatif: bytes} pour un ZIP ou un dossier, dossiers inclus (triés)."""
     membres = {}
     if os.path.isfile(chemin) and chemin.lower().endswith(".zip"):
         with zipfile.ZipFile(chemin) as z:
@@ -102,7 +171,7 @@ def lire_tous_membres(chemin):
                     membres[info.filename] = None  # dossier
                 else:
                     membres[info.filename] = z.read(info)
-        return membres
+        return dict(sorted(membres.items()))
     if os.path.isdir(chemin):
         for rac, dossiers, fichiers in os.walk(chemin):
             base = os.path.basename(rac) if rac != chemin else os.path.basename(os.path.abspath(chemin))
@@ -112,7 +181,7 @@ def lire_tous_membres(chemin):
                 rel = f"{base}/{f}" if rac != chemin else f
                 with open(os.path.join(rac, f), "rb") as fh:
                     membres[rel] = fh.read()
-        return membres
+        return dict(sorted(membres.items()))
     raise RejetPropre(f"USAGE : ni ZIP ni dossier : {chemin}")
 
 
@@ -143,9 +212,128 @@ def role_illustre(nom_base):
     return "illustré non identifié (rôle à qualifier)"
 
 
+def role_pdf(nom_base):
+    bas = nom_base.lower()
+    role = "document PDF compagnon du mapping"
+    for cle, r in ROLES_PDF:
+        if cle in bas:
+            role = r
+            break
+    if bas.endswith("-fr.pdf") or ".fr." in bas:
+        role += " — traduction française"
+    return role
+
+
+def analyser_tsi_membre(nom, buf, rapports):
+    """E2+E3 : classification puis analyse moteur du mapping."""
+    cls = classifier_tsi(nom, buf)
+    rapports["inventaire"][nom] = f"{len(buf)} o — {cls['classe']}"
+    rapports["tsi"][nom] = cls
+    if cls["classe"] != "MAPPING":
+        return
+    import tempfile
+    tmp_dir = tempfile.mkdtemp(prefix="analyse-doc-s4mk2-")
+    tmp = os.path.join(tmp_dir, os.path.basename(nom))
+    with open(tmp, "wb") as fh:
+        fh.write(buf)
+    try:
+        meta = analyser(tmp)
+    finally:
+        os.unlink(tmp)
+        os.rmdir(tmp_dir)
+    meta["fichier"] = nom  # normalise : pas de chemin temporaire aléatoire (idempotence)
+    ecarts, conforme = verifier_g2(meta)
+    meta["conforme_g2"] = conforme
+    meta["ecarts_g2"] = ecarts
+    rapports["mappings"].append(meta)
+
+
+def analyser_pdf_membre(nom, buf, rapports):
+    """E5 : PDF lié analysé en profondeur (texte, pages, polices, mots-clés)."""
+    base = os.path.basename(nom)
+    try:
+        r = analyser_pdf(buf, base)
+    except RejetProprePDF as e:
+        rapports["inventaire"][nom] = f"{len(buf)} o — PDF ILLISIBLE ({e})"
+        rapports["pdf"].append({"fichier": base, "taille": len(buf), "rejet": str(e)})
+        return
+    r["role"] = role_pdf(base)
+    statut = r["texte"]["statut"]
+    rapports["inventaire"][nom] = f"{len(buf)} o — PDF ({r['pages']} p., texte : {r['texte']['caracteres']} car) — {r['role']}"
+    rapports["pdf"].append(r)
+
+
+def analyser_image_membre(nom, buf, ext, rapports):
+    """E5 : illustré jpg/png (dimensions stdlib + rôle)."""
+    base = os.path.basename(nom)
+    d = dims_png(buf) if ext == ".png" else dims_jpeg(buf)
+    rapports["inventaire"][nom] = f"{len(buf)} o — illustré ({d})"
+    rapports["illustrés"].append({"nom": base, "taille": len(buf), "dimensions": d, "role": role_illustre(base)})
+
+
+def analyser_texte_membre(nom, buf, rapports):
+    """E5 : texte lié (.txt/.md) — décodage utf-8 puis cp1252."""
+    base = os.path.basename(nom)
+    try:
+        texte = buf.decode("utf-8")
+        enc = "utf-8"
+    except UnicodeDecodeError:
+        texte = buf.decode("cp1252", errors="replace")
+        enc = "cp1252"
+    mots = [w for w in texte.split() if w]
+    rapports["inventaire"][nom] = f"{len(buf)} o — texte ({len(texte)} car, {enc})"
+    rapports["textes"].append({
+        "nom": base, "taille": len(buf), "encodage": enc,
+        "caracteres": len(texte), "mots": len(mots), "echantillon": texte[:300],
+    })
+
+
+def analyser_autre_membre(nom, buf, ext, rapports):
+    """E5 : type inconnu → analyse par signature magique (jamais muet)."""
+    base = os.path.basename(nom)
+    sig = signature(buf)
+    rapports["inventaire"][nom] = f"{len(buf)} o — autre ({ext or 'sans extension'}) — signature : {sig}"
+    rapports["autres"].append({
+        "nom": base, "taille": len(buf), "extension": ext or None, "signature": sig,
+        "premiers_octets": buf[:16].hex(),
+        "statut": "analysé sommairement (type hors périmètre TSI/illustré/texte/PDF)",
+    })
+
+
+# Routeur adaptatif ext → analyseur (extension de la table = nouvelle capacité)
+def _route_tsi(nom, buf, rapports):
+    analyser_tsi_membre(nom, buf, rapports)
+
+
+def _route_pdf(nom, buf, rapports):
+    analyser_pdf_membre(nom, buf, rapports)
+
+
+def _route_image(nom, buf, rapports):
+    analyser_image_membre(nom, buf, os.path.splitext(nom)[1].lower(), rapports)
+
+
+def _route_texte(nom, buf, rapports):
+    analyser_texte_membre(nom, buf, rapports)
+
+
+ROUTEUR = {
+    ".tsi": _route_tsi,
+    ".pdf": _route_pdf,
+    ".jpg": _route_image,
+    ".jpeg": _route_image,
+    ".png": _route_image,
+    ".txt": _route_texte,
+    ".md": _route_texte,
+}
+
+
 def analyser_zip(chemin):
     membres = lire_tous_membres(chemin)
-    rapports = {"cible": chemin, "inventaire": {}, "tsi": {}, "mappings": [], "illustrés": [], "table_p1b": {}, "alertes": []}
+    rapports = {
+        "cible": chemin, "inventaire": {}, "tsi": {}, "mappings": [], "illustrés": [],
+        "pdf": [], "textes": [], "autres": [], "table_p1b": {}, "alertes": [],
+    }
     n_dossiers = 0
     for nom, buf in membres.items():
         if buf is None:
@@ -153,40 +341,18 @@ def analyser_zip(chemin):
             rapports["inventaire"][nom] = "dossier"
             continue
         ext = os.path.splitext(nom)[1].lower()
-        base = os.path.basename(nom)
-        if ext == ".tsi":
-            cls = classifier_tsi(nom, buf)
-            rapports["inventaire"][nom] = f"{len(buf)} o — {cls['classe']}"
-            rapports["tsi"][nom] = cls
-            if cls["classe"] == "MAPPING":
-                import tempfile
-                tmp_dir = tempfile.mkdtemp(prefix="analyse-doc-s4mk2-")
-                tmp = os.path.join(tmp_dir, os.path.basename(nom))
-                with open(tmp, "wb") as fh:
-                    fh.write(buf)
-                try:
-                    meta = analyser(tmp)
-                finally:
-                    os.unlink(tmp)
-                    os.rmdir(tmp_dir)
-                meta["fichier"] = nom  # normalise : pas de chemin temporaire aléatoire (idempotence)
-                ecarts, conforme = verifier_g2(meta)
-                meta["conforme_g2"] = conforme
-                meta["ecarts_g2"] = ecarts
-                rapports["mappings"].append(meta)
-        elif ext in (".jpg", ".jpeg", ".png"):
-            d = dims_jpeg(buf) if ext != ".png" else {"largeur": int.from_bytes(buf[16:20], "big"), "hauteur": int.from_bytes(buf[20:24], "big")}
-            rapports["inventaire"][nom] = f"{len(buf)} o — illustré ({d})"
-            rapports["illustrés"].append({"nom": base, "taille": len(buf), "dimensions": d, "role": role_illustre(base)})
+        route = ROUTEUR.get(ext)
+        if route:
+            route(nom, buf, rapports)
         else:
-            rapports["inventaire"][nom] = f"{len(buf)} o — autre ({ext or 'sans extension'})"
+            analyser_autre_membre(nom, buf, ext, rapports)
     rapports["comptes_inventaire"] = {"dossiers": n_dossiers, "fichiers": len(membres) - n_dossiers}
     # E6 : table P1b contre le premier mapping analysé
     if rapports["mappings"]:
         defines = rapports["mappings"][0].get("noms_controles_definis", {})
-        for nom, nb_attendu in TABLE_P1B.items():
-            nb = defines.get(nom)
-            rapports["table_p1b"][nom] = {"attendu_cid": nb_attendu, "observe_cid": nb, "ok": nb == nb_attendu}
+        for nomc, nb_attendu in TABLE_P1B.items():
+            nb = defines.get(nomc)
+            rapports["table_p1b"][nomc] = {"attendu_cid": nb_attendu, "observe_cid": nb, "ok": nb == nb_attendu}
     # cohérence de référence
     rapports["reference_djtt_v210"] = {
         "membres_identiques": set(membres) == (set(REFERENCE_DJTT["fichiers"]) | REFERENCE_DJTT["dossiers"]),
@@ -209,6 +375,9 @@ def verdict(r):
     non_classes = [n for n, c in r["tsi"].items() if c["classe"] == "ILLISIBLE"]
     if non_classes:
         motifs.append(f"TSI illisibles : {non_classes}")
+    pdf_ko = [p["fichier"] for p in r["pdf"] if p.get("rejet")]
+    if pdf_ko:
+        motifs.append(f"PDF illisibles (rejet) : {pdf_ko}")
     if r["reference_djtt_v210"]["membres_identiques"] and not r["illustrés"]:
         motifs.append("échantillon de référence sans documents illustrés")
     r["verdict"] = "PASS" if not motifs else "FAIL"
@@ -217,7 +386,7 @@ def verdict(r):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Pipeline analyse ZIP/dossier mapping S4 MK2 + documents illustrés")
+    ap = argparse.ArgumentParser(description="Pipeline analyse ZIP/dossier mapping S4 MK2 + fichiers liés (adaptatif)")
     ap.add_argument("cible")
     ap.add_argument("--json", help="écrire le rapport JSON complet dans ce fichier")
     try:
@@ -231,9 +400,19 @@ def main():
             print(f"TSI classifié   : {os.path.basename(nom)} → {cls['classe']} ({cls.get('entries', '?')} Entry)")
         for m in r["mappings"]:
             print(f"mapping         : {os.path.basename(m['fichier'])} — device {m['device']} — conforme G2 : {m['conforme_g2']}")
+        for p in r["pdf"]:
+            if p.get("rejet"):
+                print(f"PDF             : {p['fichier']} — REJET : {p['rejet']}")
+            else:
+                t = p["texte"]
+                print(f"PDF             : {p['fichier']} ({p['pages']} p.) — {t['statut']} {t['caracteres']} car / {t['mots']} mots — {p['role']}")
         for ill in r["illustrés"]:
             d = ill["dimensions"] or {}
             print(f"illustré        : {ill['nom']} ({d.get('largeur')}×{d.get('hauteur')}) — {ill['role']}")
+        for t in r["textes"]:
+            print(f"texte           : {t['nom']} — {t['caracteres']} car ({t['encodage']})")
+        for au in r["autres"]:
+            print(f"autre           : {au['nom']} — signature : {au['signature']}")
         if r["table_p1b"]:
             ok = sum(1 for v in r["table_p1b"].values() if v["ok"])
             print(f"table P1b       : {ok}/{len(r['table_p1b'])} noms de contrôles vérifiés")
@@ -246,7 +425,7 @@ def main():
         print(f"VERDICT : {r['verdict']}" + (f" — motifs : {r['verdict_motifs']}" if r["verdict_motifs"] else ""))
         return 0 if r["verdict"] == "PASS" else 1
     except RejetPropre as e:
-        print(f"{e}")
+        print(e)
         return e.rc
 
 
