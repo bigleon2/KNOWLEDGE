@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""livraison-garantie v1.0.0 — ORCHESTRATEUR DE LIVRAISON EN BOUCLE FERMÉE.
+"""livraison-garantie v1.1.0 — ORCHESTRATEUR DE LIVRAISON EN BOUCLE FERMÉE.
 
 Task 8 (directive propriétaire 2026-10-31 « crée $facon ces trois skills » —
 suggestion D018-2, douleur prouvée du 2026-10-25 : 4 tours de livraison manuels,
@@ -37,7 +37,7 @@ import sys
 import time
 
 SKILL = "livraison-garantie"
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 VUE_UPLOAD_REQUIS = (1, 5, 0)
 
 PANEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),

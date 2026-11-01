@@ -123,6 +123,39 @@
       "statut": "appliqué",
       "session": "web-43f5b4bd (2026-10-17)",
       "verdict_correct_work": "PASS (re-certification complète 6/6, orchestrateur, post-F1 — 0 régression)"
+    },
+    {
+      "id": "L009",
+      "pattern": "Exposition d'un secret en clair dans un canal de discussion (jeton d'accès personnel collé au chat) : un canal de discussion n'est jamais un canal de confiance pour un identifiant ; la réaction correcte — refus de stockage/usage, guidance de révocation immédiate, re-provisionnement par les moyens du propriétaire — doit être systématique et ne jamais dépendre du jugement du moment",
+      "occurrences": 2,
+      "sources": [
+        "discussion s/1bf18a23 (lignée web-eb6c8580, 2026-10-30/31) : 2 PAT exposés dans le canal de discussion ; réaction correcte documentée — jamais recopiés, jamais stockés, jamais utilisés ; re-provisionnement one-shot par le propriétaire (« PAT one-shot jamais persisté », worklog dépôt Task 7 D010/D011) ; valeurs jamais reproduites depuis",
+        "download/plan-task3-reprise-discussion-facon.md (E2 n°3, décision D007, 2026-10-31) : constat que la leçon candidate n'avait jamais été consignée (M4 jamais exécuté) — consignation effective en vague G2"
+      ],
+      "proposition": "Règle KO-L009 (candidate) — réaction standard à l'exposition d'identifiants dans un canal de discussion : (1) ne jamais recopier, stocker ni utiliser le secret, même « pour vérifier » ; (2) guidance immédiate de révocation auprès de l'autorité émettrice (ex. GitHub → Settings/Developer settings/Personal access tokens → révoquer) ; (3) re-provisionnement one-shot par le propriétaire HORS canal de discussion ; (4) consigner l'incident sans jamais citer la valeur du secret ; (5) toute publication/push passe par le propriétaire, jamais par l'agent. Application M3-M4 (bloc PATTERN) réservée à un verdict correct-work préalable (SHARED §7, cycle A-H).",
+      "marqueur": "verdict correct-work PASS rendu (M4) — application processus effective ; bloc PATTERN KO-L009 INSTALLÉ §1.5 gen-plan (SKILL + PM ×2 arbres) via cascade KO-L004 complète (montée v3.30.0 — générateur, recalibrage croisé, propagation §0, rescellement v2.3, replay 105/105) sur directive propriétaire explicite 2026-10-31",
+      "phase_observer": "APPLIQUÉE-PROCESSUS + INSTALLÉE — application processus effective confirmée (gestion des identifiants exposés, cible confirmée par le verdict) ; bloc PATTERN SKILL (§1.5 gen-plan) INSTALLÉ — directive propriétaire explicite « installe le bloc PATTERN L009 en SKILL » (session web-4f989063, 2026-10-31), cascade KO-L004 complète exécutée (montée gen-plan v3.30.0 : SKILL+PM, recalibrage croisé, propagation §0, rescellement) ; sources : le journal validé (R4)",
+      "cible_application": "installée : règle KO-L009 « Sécurité : exposition d'un identifiant dans un canal de discussion » — bloc PATTERN:KO-L009-v1.0.0 au §1.5 gen-plan (précédent de forme KO-L005) + §1.8 PM (delta verrouillé count==1) ; application processus de session déjà effective",
+      "statut": "validé (M4 — verdict correct-work rendu)",
+      "session": "web-4f989063 (2026-10-31)",
+      "verdict_correct_work": "PASS — correct-work (projet) GO 10/10 contrôles (session web-4f989063, 2026-10-31, clôture chaîne step, scripts/correct-work-projet-step.json) : le pattern est validé — la réaction standard proposée correspond à la pratique certifiée de session (aucun jeton recopié/stocké/utilisé sur toute la session ; assertions D007 plan-task3 PASS ; règle de sécurité permanente appliquée ; contrôle #10 GO)"
+    },
+    {
+      "id": "L010",
+      "pattern": "Recensement de reste-à-faire incomplet par défaut de chaîne amont : lors d'une reprise de discussion partagée, les recensements locaux ont conclu « NÉANT / résidus documentés » en ne croisant que les plans et le worklog de la lignée locale, sans lire le worklog de la lignée d'origine (dépôt) où un chantier majeur reposait en « état intermédiaire documenté » — un état intermédiaire documenté dans un worklog amont DOIT compter comme reste-à-faire par défaut, et tout recensement « reste-à-faire d'une discussion partagée » DOIT croiser le worklog de la lignée d'origine, pas seulement les artefacts locaux",
+      "occurrences": 3,
+      "sources": [
+        "download/plan-task3-reprise-discussion-facon.md (E2, 2026-10-31) : census « reste-à-faire s/1bf18a23 » sans mention de la francisation P2",
+        "download/plan-step-regle-or-francais-reste-facon.md (E2, 2026-10-31) : « reste-à-faire = résidus documentés » — P2 absente",
+        "download/plan-l009-install-bloc-skill-cloture-s1bf18a23.md (E2 n°8, 2026-10-31) : « NÉANT attendu » — P2 absente malgré « tâche 2 en état intermédiaire documenté » au worklog dépôt (ligne 174) ; corrigé par la directive propriétaire « analyse la discussion partagée intégralement (via clone et ZIP) en mode bloc par bloc » — résidu P2 mesuré : 104 fichiers, ~51 445 CJK (rapport download/analyse-integrale-discussion-s1bf18a23-bloc-par-bloc.md, bloc B5)"
+      ],
+      "proposition": "Règle KO-L010 (candidate) — reprise d'une discussion partagée : (1) tout recensement « reste-à-faire » DOIT croiser mécaniquement le worklog de la lignée d'origine (dépôt/clones), jamais les seuls artefacts locaux ; (2) tout chantier en « état intermédiaire documenté » dans un worklog amont compte comme reste-à-faire par défaut jusqu'à décision explicite du propriétaire (poursuite, lotissement ou clôture) ; (3) la conclusion « NÉANT » d'un census de reprise doit citer le worklog amont parmi ses sources vérifiées. Application M3-M4 (bloc PATTERN) réservée à un verdict correct-work préalable (SHARED §7, cycle A-H).",
+      "marqueur": "absent — candidate M1-M2 (jamais appliquée sans verdict)",
+      "phase_observer": "CANDIDATE — consignée M1-M2 (session web-4f989063, 2026-10-31) sur constat mécanique du plan D507 ; application processus et bloc PATTERN réservés à un verdict correct-work",
+      "cible_application": "non installée — candidate : règle KO-L010 « Reste-à-faire : croiser le worklog amont » au §1.5 gen-plan (même forme que KO-L005/KO-L009) sur décision propriétaire post-verdict",
+      "statut": "candidate (M1-M2)",
+      "session": "web-4f989063 (2026-10-31)",
+      "verdict_correct_work": null
     }
   ],
   "schema": "Task Observer (gen-plan/references/observation-patterns.md §4) — phase N20, session B12-r41",

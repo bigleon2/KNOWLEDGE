@@ -1,6 +1,6 @@
 ---
 name: livraison-garantie
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -37,7 +37,7 @@ read_when:
   - Ne pas déclencher pour un simple accès aux dossiers (portail seul → vue-upload) ni pour l'hygiène seule (versions → vue-upload).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.14)
+## §0 — Contexte Système (SHARED v1.7.17)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -165,6 +165,13 @@ Fichiers d'état (racine du projet, hors dépôt — détenus par vue-upload) :
   fichier au nom proche, AUCUN, rc 6, épinglage préalable vérifié).
 - Intégration KB : entrée registre (Task 8) — voir {{KB_PATH}} ; réciproque :
   « Utilisé par » vue-upload (dépendance déclarée >= 1.5.0).
+- Journal des versions : v1.1.0 (2026-10-31, Option A — session web-4f989063, directive
+  propriétaire « gen-plan : continue en effectuant l'option «A» ») : marqueur
+  veto-exclusif canon Task 30 « portail → vue-upload » ajouté au cas négatif « Ouvre-moi
+  simplement le portail… » du corpus `evals/trigger_evals.json` (résorption de la dérive
+  replay voie M — recommandation `download/recommandation-derives-replay-reancree-2026-10-31.md`
+  §4 option A ; rejeu 105/105, non-resorbe 0) ; aucun changement fonctionnel (orchestrateur,
+  codes retour et dépendances inchangés). v1.0.0 : création (Provenance ci-dessus).
 
 ## §3 — LIMITES CONNUES (honnêteté R3)
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.7)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.17)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 
 p2-segments.py — Phase P2 : traduction ciblée PAR SEGMENTS de lignes (zh→fr)

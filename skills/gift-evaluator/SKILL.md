@@ -4,11 +4,11 @@ description: L'OUTIL PRINCIPAL pour l'analyse des cadeaux du Festival du Printem
 license: Outil Interne
 ---
 
-## §0 — Contexte Système (SHARED v1.7.14)
+## §0 — Contexte Système (SHARED v1.7.17)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
-> Règle Zéro : compétences auto-contenues, versionnées semver, registre KB source de vérité, dépendances YAML, références croisées bidirectionnelles.
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 
 Cette compétence transforme l'assistant en un « Appariteur de Cadeaux du Festival du Printemps ». Elle comble le fossé entre les données visuelles brutes et le contexte social complexe. Elle est conçue pour gérer le cycle de vie complet d'une demande d'utilisateur : identifier l'objet, déterminer sa valeur marchande et sociale, et produire un artefact HTML partageable et gamifié.
 

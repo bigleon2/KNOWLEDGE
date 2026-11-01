@@ -2,7 +2,7 @@
 
 > **Version** : 1.0.0 (généré)
 > **Généré par** : `scripts/gen-ultra-maitre.py` (idempotent — ne pas éditer à la main ; éditer le script puis régénérer)
-> **État dérivé de** : SHARED v1.7.16 (révision 2026-10-31) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
+> **État dérivé de** : SHARED v1.7.17 (révision 2026-11-01) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
 > **Rôle** : point d'entrée UNIQUE d'orchestration à l'usage — route chaque demande vers le bon prompt maître / skill, sans dupliquer leur contenu (R4)
 > **Directive** : propriétaire 2026-10-02 (« prompt ultra maître ») — design retenu : orchestrateur léger dérivé dynamiquement du corpus (KO-L003), PAS de conversion des PMs existants en monolithes (R4 duplication / R2 corpus figé / KO-L004 drift)
 

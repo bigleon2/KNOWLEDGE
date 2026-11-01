@@ -42,11 +42,11 @@ read_when:
 
 # Traduction ZH→FR — agent spécialisé de l'écosystème
 
-## §0 — Contexte Système (SHARED v1.7.16)
+## §0 — Contexte Système (SHARED v1.7.17)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
-> Conventions : kebab-case | semver | #token | {{VARIABLE}} | @mon-ecosysteme/ | @historique/
-> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité.
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 
 ## Provenance (audit-provenance — G1, 2026-11-01)
 

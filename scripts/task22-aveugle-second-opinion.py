@@ -4,7 +4,7 @@
 # D001-D008 reformulée en checks mécaniques) ; les vérifications s'exécutent sur
 # les ARTEFACTS seuls (aucun recours aux journaux d'exécution de la couche).
 # Verdict par critère : PASS / FAIL ; convergence jugée au rapport.
-"""⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.9)"""
+"""⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.17)"""
 import hashlib
 import json
 import re

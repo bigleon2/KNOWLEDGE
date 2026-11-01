@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.13)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.17)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -72,7 +72,7 @@ for nom, pm_file in [("iphone18", "iphone18-photos.md"), ("iphone17", "iphone17-
     manquantes = [s for s in SECTIONS if s not in text]
     check("§PROMPT MAÎTRE + §0→§13 présents (D009)", not manquantes, "manquantes : " + ", ".join(manquantes) if manquantes else "15/15")
     # E — Contexte Système + lignage
-    check("§0 Contexte Système (SHARED v1.7.7)", "## §0 — Contexte Système (SHARED v1.7.7)" in text and "Écosystème Knowledge" in text)
+    check("§0 Contexte Système (SHARED v1.7.7)", "## §0 — Contexte Système (SHARED v1.7.17)" in text and "Écosystème Knowledge" in text)
     check("note de lignage (PM source + R2 byte-identité)", "Lignage — projection skill ← prompt maître source" in text and "byte-identique, jamais édité (R2)" in text and pm_file in text)
     # D009 — périmètre d'époque honnête
     if nom == "iphone18":

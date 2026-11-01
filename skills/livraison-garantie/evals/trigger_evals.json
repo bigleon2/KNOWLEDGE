@@ -13,7 +13,10 @@
  },
  {
   "query": "Ouvre-moi simplement le portail des livrables, je vais regarder moi-même.",
-  "should_trigger": false
+  "should_trigger": false,
+  "exclusifs": [
+   "portail"
+  ]
  },
  {
   "query": "Nettoie les anciennes versions en doublon dans download.",
