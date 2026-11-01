@@ -528,3 +528,12 @@ PLAN-AFFICHE (plan : download/plan-correct-work-projet-v131-2026-11-01.md — co
 - **État** : commit pathspec strict (6 fichiers + archive + worklog) — push origin/main = propriétaire (KO-L009 point 5).
 - **Livrable** : download/rapport-recalibrage-triggers-tzf-v131-2026-11-01.md
 - **Restant** : 5 dérives triggers famille TSI (hôte-seules) + disque 86 % (G-RES CRITIQUE, surveillance).
+
+---
+## Task 30 — Recalibrage triggers famille TSI (hôte) — suite F-2 (directive propriétaire « gen-plan : "GO" », trace 1a197552459ad8f5, session web-4f989063, 2026-11-01)
+- **Périmètre GO** : recalibrage des 5 dérives triggers TSI proposé à la clôture Task 29 — vetos croisés V6.1 (doctrine « termes réservés d'AUTRES skills » du tandem) : tsi-architect ×2 (valide→tsi-validator, documentation→midi-doc-expert), tsi-validator ×2 (conçois→tsi-architect, documente→midi-doc-expert), midi-doc-expert ×1 (valide→tsi-validator). Cause racine : radical fort `tsi` → routage sur toute requête contenant « TSI ». Garde : veto PAR CAS (le positif « mapping TSI validé » de midi-doc-expert non affecté).
+- **Preuves** : replay ×2 hôte **PASS 483/483** (TSI 6/6 ×3, TZF 8/8 non-régression) ; dépôt PASS 827/827 inchangé ; integrity 86/86 ×2 ; SKILL.md des 3 skills NON touchés → zéro bump semver / zéro cascade PM-KB-pin (evals = données de calibration, précédent auto-v1-t27).
+- **Finding S2 (vol)** : version-management disparu de l'hôte une 3e fois entre deux messages — et le garde auto-install-ecosysteme.py a rendu « INSTALLE » À TORT (angle mort : les 7 fichiers critiques du contrôle byte-identité n'incluent pas ce skill) ; réparé manuellement byte-identique (diff -r vide). Recommandation sur GO : étendre le contrôle (b) aux 41 entrées KB versionnées.
+- **Constat structurel (corrige le rapport Task 29)** : tsi-architect/tsi-validator/midi-doc-expert = skills `category: ecosystem` v1.0.0 HÔTE-SEULS (jamais commités, absents KB/corpus integrity ; comptés seulement par la propagation §0 « 5 skills hôte-seuls » bf44e77) → recalibrage VOLATIL par construction ; voie durable = inscription des 3 skills + evals au dépôt (sur GO, cascade KO-L004 complète).
+- **Décisions pendantes (sur GO)** : (a) inscription dépôt des 3 skills TSI ; (b) extension contrôle byte-identité aux 41 entrées KB ; (c) disque 86 % (surveillance).
+- **Livrable** : download/rapport-recalibrage-triggers-tsi-2026-11-01.md — commit pathspec strict, push = propriétaire (KO-L009 point 5).
