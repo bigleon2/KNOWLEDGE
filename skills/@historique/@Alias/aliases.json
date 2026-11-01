@@ -1,6 +1,6 @@
 {
   "format": "aliases-eco v1",
-  "mis_a_jour": "2026-10-23",
+  "mis_a_jour": "2026-11-01",
   "source": "alias-eco v1.0.0",
   "phrases": [
     {
@@ -61,10 +61,19 @@
       "phrase": "mon écosystème personnel",
       "alias": "ECO-LEON",
       "occurrences": 0,
-      "occurrences_cumulees": 3,
+      "occurrences_cumulees": 5,
       "premiere_detection": "2026-10-23",
-      "derniere_detection": "2026-10-23",
-      "source": "attribution manuelle 2026-10-23"
+      "derniere_detection": "2026-11-01",
+      "source": "attribution manuelle 2026-10-23 ; scan session web-4f989063 2026-11-01 (correct-work projet, délégation alias-eco)"
+    },
+    {
+      "phrase": "sur mon profil local",
+      "alias": null,
+      "occurrences": 2,
+      "occurrences_cumulees": 2,
+      "premiere_detection": "2026-11-01",
+      "derniere_detection": "2026-11-01",
+      "source": "scan session web-4f989063 2026-11-01 (correct-work projet, délégation alias-eco)"
     }
   ]
 }

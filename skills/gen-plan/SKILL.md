@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.28.2
+version: 3.31.0
 category: ecosystem
 language: fr
 tags:
@@ -54,7 +54,7 @@ read_when:
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
-## §0 — Contexte Système (SHARED v1.7.14)
+## §0 — Contexte Système (SHARED v1.7.16)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -157,6 +157,14 @@ read_when:
 
 **Règle d'or n°5 — Journal, statuts et chiffres dérivés de l'état vérifiable — anti-aspirant** (leçons Task 30, session web-fdf5963c — discussion PM INSTALL, source de vérité ; v3.26.0) : un plan ou un journal ne pré-écrit JAMAIS ses résultats — tout statut, compteur ou chiffre dérive d'un artefact vérifiable existant sur disque (KO-L003 étendu à l'écriture) ; en reprise post-coupure, tout journal pré-existant est audité contre ses artefacts annoncés (existence réelle sur disque) AVANT de lui faire confiance ; les chiffres documentés viennent d'un recensement mécanique, jamais d'un libellé de mémoire (précédent off-by-one « 14→13 vetos », Task 30) ; avant de qualifier des données d'« aspirantes », vérifier le PÉRIMÈTRE — le dépôt et le miroir hôte sont deux copies distinctes (inodes différents), convention : dépôt = source R4, sync miroir dans cette direction uniquement ; contamination aspirante avérée → réécriture des livrables vivants + corrections apposées R2 (append-only) sur @historique, jamais de masquage.
 
+**Règle d'or n°6 — Langue des échanges avec le propriétaire (français)** (directive propriétaire 2026-10-31, session web-4f989063 — gen-plan(step) « fais en sorte $facon que tu me parles et tu me répondes en français dans le reste de cette discussion et ainsi que dans toutes nos futurs discussions — intègre-le $facon en tant que règle d'or dans mon écosystème ») : le propriétaire est adressé et répondu **en français** dans toute discussion — la discussion courante comme toutes les discussions futures (futurs profils, réinstallations et reprises incluses, la règle étant portée par le corpus installé et par le clone source de réinstallation, règle d'or n°4) ; tout contenu destiné au propriétaire (réponses, plans, blocs récapitulatifs, rapports, worklog, livrables, titres et libellés) est rédigé en français ; les artefacts techniques cités verbatim (chemins, commandes, identifiants, extraits de code, contenu de fichiers tiers) conservent leur forme d'origine ; la règle prime sur la langue du message utilisateur — un message dans une autre langue n'infirme pas la règle (les échanges restent en français), sauf demande explicite contraire du propriétaire.
+
+<!-- PATTERN:KO-L009-v1.0.0 -->
+
+**Règle KO-L009 — Sécurité : exposition d'un identifiant dans un canal de discussion** (leçon L009, validée M4 — verdict correct-work PASS ; installée v3.30.0 sur directive propriétaire explicite, session web-4f989063, 2026-10-31) : un canal de discussion n'est jamais un canal de confiance pour un identifiant (jeton d'accès personnel collé au chat, mot de passe, clé API) — la réaction à l'exposition d'un secret est systématique, jamais dépendante du jugement du moment : (1) ne jamais recopier, stocker ni utiliser le secret, même « pour vérifier » ; (2) guidance immédiate de révocation auprès de l'autorité émettrice (ex. GitHub → Settings/Developer settings/Personal access tokens → révoquer) ; (3) re-provisionnement one-shot par le propriétaire HORS canal de discussion ; (4) consigner l'incident sans jamais citer la valeur du secret ; (5) toute publication/push passe par le propriétaire, jamais par l'agent.
+
+<!-- FIN-PATTERN:KO-L009-v1.0.0 -->
+
 ### §1.6 Disciplines d'ingénierie de prompts (PM v3.12.0 §1.9)
 
 | Discipline | Mécanisme gen-plan |
@@ -177,9 +185,11 @@ read_when:
 | E3 | prompt-engineering (PEK) | Blocs de sortie adaptatifs A-J mappés sur les Types 1-4 |
 | E4 | harness-engineering | Grille #token, budgets, filtrage par profil |
 | E5 | graph-engineering ; context-engineering | Graphe KB (matrice agent × skill) ; scan du registre |
-| E6 | harness-engineering | Profils NORMAL/ECO/VIEUX PC, signaux de pression |
+| E6 | harness-engineering ; resource-monitor | Profils NORMAL/ECO/VIEUX PC, signaux de pression ; verdict G-RES (OK/PRESSION/CRITIQUE) → profil — v3.31.0, alignement sur la déclaration du provider |
 | E7 | loop-engineering ; context-engineering ; harness-engineering | Boucles R3 prédéfinies (règle d'or n°1) ; plan auto-suffisant ; hooks par phase E9-E14 |
 | E8 | harness-engineering ; prompt-engineering (PEK) | Hook correct-work (3 verdicts) ; 12 checks PEK (scoring 22/25) |
+
+**Mobilisation E15 (v3.31.0 — complétion de couverture E1-E15, rapport de vérification des disciplines C1)** : loop-engineering (auto-calibration §2.3 — écart estimé vs réel → recalibrage) ; graph-engineering (enrichissement KB §2.5) ; memory-engineering (écriture État Long du bilan — worklog R5 + calibration) ; refactoring-test (re-scan post-session si une situation de refactoring a été constatée en vol) ; resource-monitor (verdict G-RES de clôture consigné au bilan).
 
 L'optimisation fine des prompts complexes est déléguée au skill `prompt-engineering` (SHARED §3.1).
 
@@ -196,9 +206,10 @@ L'optimisation fine des prompts complexes est déléguée au skill `prompt-engin
 | Étape | Disciplines matérialisées n°54 mobilisées | Mécanisme |
 |--------|------------------------|-----------|
 | E4 | spec-driven-development ; memory-engineering | Cadrage spec-first (answer key E1 = spec de session) ; État Long obligatoire (plan + worklog + KB) |
-| E5 | fleet-engineering ; graph-engineering | Choix pattern/bornes de flotte (Graph Diamond E9-E14) ; matrice agent × skill |
+| E5/E7 | fleet-engineering ; graph-engineering | Choix pattern/bornes de flotte à E5 (Graph Diamond E9-E14) ; re-validation du choix de flotte avec la spec de session à E7 — v3.31.0, alignement §3 (divergence interne résorbée) ; matrice agent × skill |
 | E7 | spec-driven-development | Re-validation de la spec de session avant publication du plan |
 | E9-E14 | memory-engineering ; fleet-engineering | Compaction + ancres de reprise entre phases ; contrôle de flotte par phase (hook correct-work) |
+| E15 | memory-engineering | Écriture État Long du bilan (worklog R5, enrichissement KB, calibration grille #token) |
 
 Source de vérité : SHARED §7 (table de définitions + registre d'assignation — v1.7.0) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB ; orchestration : PM v3.12.0 §1.9. Les relations inter-disciplines (fleet ↔ memory ↔ spec) restent en §3 des skills, non versionnées (SHARED §3.2 règle 5).
 
@@ -213,10 +224,28 @@ Source de vérité : SHARED §7 (table de définitions + registre d'assignation 
 | E4 | refactoring-test ; refactoring-engineering | Détection/évaluation des situations de refactoring (M1 scan, verdict OK/PRESSION/CRITIQUE) ; conception des opérations dans le plan (fiche D1 — invariants, preuves attendues, pré-checks verrouillés = golden master) |
 | E7 | refactoring-test | Re-validation de l'impact avant publication du plan (M3 — graphe d'interactions, blast radius des modifications prévues) |
 | E9-E14 | refactoring-test ; refactoring-engineering | Toute situation où un refactoring pourrait se poser route vers refactoring-test (évaluation) puis refactoring-engineering (D1-D4 — zéro-régression) ; re-scan post-opératoire M4 |
+| E15 | refactoring-test | Re-scan post-session si une situation de refactoring a été constatée (M1) — verdict OK/PRESSION/CRITIQUE consigné au bilan |
 
 Règle d'anti-auto-certification : l'exécutant (refactoring-engineering) ne s'auto-évalue pas — évaluation indépendante par refactoring-test (pré-vol/post-vol) + arbitres mécaniques + correct-work. Source de vérité : SHARED §7 (n°55) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB. Les opérations à risque mobilisent refactor-guard (garde-fous — fusion 468a4c26).
 
 <!-- FIN-PATTERN:GEN-PLAN-REFACTORING-v1.0.0 -->
+
+<!-- PATTERN:GEN-PLAN-DISCIPLINES-MODES-v1.0.0 -->
+
+**Mobilisation par déclencheur — disciplines × modes d'invocation (v3.31.0 — complétion « tous les cas de figure », rapport de vérification des disciplines C4)** : le socle commun (context-engineering, loop-engineering, graph-engineering, harness-engineering + méthode-mère PEK) s'applique à TOUT déclencheur du §A ; les tables E1-E8/n°54/n°55/E15 ci-dessus s'appliquent au chemin nominal. Au-delà du socle :
+
+| Déclencheur | Disciplines mobilisées en sus du socle | Mécanisme |
+|-------------|----------------------------------------|-----------|
+| `gen-plan : <tâche>` (mode NULL — exécution classique / intégration E13) | Toutes, selon les tables E1-E15 ci-dessus | Chemin nominal — aucune restriction |
+| `gen-plan(step)` / `gen-plan(step-ok)` | harness (correct-work(groupe) à chaque groupe, §5.4) ; memory-engineering (statuts dérivés du disque entre groupes, ancres de reprise) | §5.5 |
+| `orchestre` | fleet-engineering (choix du pattern M1-M5 et des bornes AVANT lancement) ; graph-engineering (matrice agent × skill) ; memory-engineering (sections worklog par Task ID — lignée de flotte) | SHARED §7 (n°54) |
+| `gen-plan:generate(<description>)` | spec-driven-development (answer key = spec exécutable) ; harness (grille #token, arbitre E7/E8) ; PEK (blocs A-J) | §1.2bis, §4 |
+| `gen-plan:correct-work(projet\|<cible>)` | harness (arbitres, verdicts) ; refactoring-test (évaluation si écarts de refactoring détectés) puis refactoring-engineering + refactor-guard (opérations) ; memory-engineering (lecture préalable du worklog — B-11) | §3, SHARED §7 (n°55) |
+| Reprise E1-RES (toute interruption) | memory-engineering (état dérivé du disque, ancres de reprise) ; harness (re-validation E8, affichage REJOUABLE) ; resource-monitor (collecte G-RES avant reprise) | §1.2bis |
+
+**Hook continu E9-E14 — resource-monitor (v3.31.0, résorption du drift provider)** : le verdict resource-monitor (OK/PRESSION/CRITIQUE) est re-collecté à chaque checkpoint E11 et entre les vagues du Graph Diamond (philosophie #4) ; PRESSION → ECO, CRITIQUE → bascule sérielle/PAUSE — décision journalisée (règle d'or n°1) ; l'avis reste un AVIS structuré : la bascule reste à gen-plan.
+
+<!-- FIN-PATTERN:GEN-PLAN-DISCIPLINES-MODES-v1.0.0 -->
 
 ---
 
@@ -367,7 +396,7 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 | refactor-guard | Garde-fous de refactoring (fusion discussion 468a4c26 — lignée externe v1.7.0) | Mobilisé par refactoring-engineering pendant les opérations à risque (score H01-H15, sandbox, rollout) ; détection de besoins (hook E13) — version >= v1.7.0 |
 | refactoring-test | Outil n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Détection/évaluation + graphe d'interactions (blast radius) — verdict machine, version >= v1.0.1 |
 | knowledge-observer | Invocation à E15 (§1.2bis) | Observation post-session (modes M1-M2) ; les modes M3-M4 exigent un verdict correct-work — version >= v1.0.0 |
-| resource-monitor | Mobilisation hook E1-RES (§1.2bis) | Collecte G-RES à l'ouverture de session — verdict OK/PRESSION/CRITIQUE → mode d'exécution, version >= v1.0.0 |
+| resource-monitor | Mobilisation hook E1-RES (§1.2bis) + E6 (profilage) + hook continu E9-E14 (checkpoint E11 et entre vagues — v3.31.0) | Collecte G-RES — verdict OK/PRESSION/CRITIQUE → mode d'exécution/profil/bascule, version >= v1.0.0 |
 | answer-key | Arbitrage E7/E8 (§1.2bis) | Décisions E1 vérifiables mécaniquement — arbitre answer-key-checker.py (16 checks) |
 | knowledge.md | Enrichissement à E15 | Mise à jour registre et calibration |
 
@@ -422,6 +451,9 @@ Dès qu'une phase du plan d'actions vient de se terminer, lancer `correct-work(l
 
 ### §5.6 Journal des versions (fusion des lignées — v3.27.0)
 
+- **v3.31.0 (2026-11-01, session web-4f989063 — mode NULL, directive propriétaire « GO » : application des recommandations C1-C4 du rapport de vérification des disciplines `download/rapport-verification-disciplines-genplan-v3.30.0-2026-11-01.md`)** : complétion de couverture « tous les cas de figure » (additions pures R2, description frontmatter inchangée — non-régression triggers) — **C1** : mobilisation E15 ajoutée aux trois tables (§1.6 : paragraphe dédié après la table E1-E8 — loop auto-calibration, graph enrichissement KB, memory État Long du bilan, refactoring-test re-scan post-session, resource-monitor verdict de clôture ; n°54 : ligne E15 memory-engineering ; n°55 : ligne E15 refactoring-test) ; **C2** : resource-monitor mobilisé à E6 (verdict G-RES → profil — table E1-E8) et hook continu E9-E14 encodé (checkpoint E11 + entre vagues du Graph Diamond — résorption du drift bidirectionnel vs la déclaration du provider resource-monitor §1.14/§3) ; §3 recalibrée ; **C3** : fleet-engineering aligné E5/E7 (table n°54 ↔ §3 — divergence interne résorbée, re-validation du choix de flotte avec la spec de session à E7) ; **C4** : nouveau bloc PATTERN:GEN-PLAN-DISCIPLINES-MODES-v1.0.0 (§1.6) — mapping disciplines × déclencheurs (mode NULL, step/step-ok, orchestre, generate, correct-work(projet|cible), reprise E1-RES) avec socle commun appliqué à tout déclencheur. Cascade KO-L004 : PM v3.31.0 généré mécaniquement (`scripts/generer-pm-skill.py` — delta verrouillé) + SHARED/PM-INSTALL recalibrés ; PM v3.30.0 archivé @historique R4 git mv byte-identité ; recalibrage croisé : KB (en-tête + calibration), pin ECO_SKILLS (arbitre integrity), `@historique/historiques-par-skill/gen-plan.md` ; rescellement archive v2.3 ; replay arbitres ×2.
+- **v3.30.0 (2026-10-31, session web-4f989063 — gen-plan (mode NULL), directive propriétaire explicite : installation du bloc PATTERN L009 en SKILL + vérification reste-à-faire s/1bf18a23)** : **bloc PATTERN:KO-L009-v1.0.0 — Règle KO-L009 « Sécurité : exposition d'un identifiant dans un canal de discussion »** ajouté au §1.5 (après règle d'or n°6, avant §1.6 — précédent de forme KO-L005) : leçon L009 validée M4 (verdict correct-work PASS, Task 9) — réaction systématique en 5 points (ne jamais recopier/stocker/utiliser ; guidance révocation autorité émettrice ; re-provisionnement one-shot hors canal ; consignation sans valeur du secret ; publication/push par le propriétaire uniquement) ; installation différée (Tasks 10-11) exécutée sur directive propriétaire explicite ; description frontmatter inchangée (non-régression triggers) ; cascade générateur mécanique KO-L004 : PM v3.30.0 (delta verrouillé : insertion KO-L009 §1.8 + history) + SHARED recalibré + PM-INSTALL recalibré ; PM v3.29.0 archivé @historique R4 ; recalibrage croisé : KB (en-tête + calibration), pin ECO_SKILLS, @historique/historiques-par-skill/gen-plan.md, lignes vives ×9 disciplines (×2 arbres), SHARED §6.1 (4 colonnes lag hérité résorbées — complétion agent) ; propagation §0 (injecteur canonique) ; rescellement archive v2.3 ×2 ; replay re-validé 105/105 ×2.
+- **v3.29.0 (2026-10-31, session web-4f989063 — gen-plan(step), directive propriétaire 3 items : règle d'or langue française + reste-à-faire s/1bf18a23 + correct-work (projet))** : **règle d'or n°6 — Langue des échanges avec le propriétaire (français)** ajoutée au §1.5 (après n°5, avant §1.6) : le propriétaire est adressé et répondu en français dans toute discussion (courante et futures — profils, réinstallations et reprises incluses, portée par le clone source de réinstallation, règle d'or n°4) ; artefacts techniques verbatim exclus ; prime sur la langue du message sauf demande explicite contraire. Description frontmatter inchangée (non-régression triggers) ; cascade générateur mécanique KO-L004 : PM v3.29.0 (delta verrouillé : backfill n°5 PM §1.8 [lag hérité v3.26.0 résorbé — complétion agent] + insertion n°6 §1.8 + history) + SHARED v1.7.15 (§6.1 + révision) + PM-INSTALL v1.8.9 (§2ter + §A.3 + révision) ; PM v3.28.2 archivé @historique R4 ; recalibrage croisé KO-L004 : KB (en-tête + calibration), pin ECO_SKILLS, §5.6 (présent journal), @historique/historiques-par-skill/gen-plan.md ; propagation §0 (SHARED v1.7.15 — 113 skills + 2 scripts) ; rescellement archive v2.3 ×2 (piliers gen-plan SKILL + KNOWLEDGE.md recalibrés) ; replay re-validé 105/105 ×2.
 - **v3.28.2 (2026-10-30, session web-eb6c8580 — Task 7, directive propriétaire : application de la recommandation E15 Task 6)** : contingence **« récupération externe bloquée ×3-4 »** ajoutée au §4 + `references/grille-token.md` (tableau coefficients + historique row 14 — preuve : Task 6 E15, estimé ~17 k → réel 60-70 k, écart > 35 %, cause dominante = récupération externe adversariale des 2 liens chat.z.ai : WAF CDN 405 + SPA non rendue, 10+ tours de contournement règle d'or n°1 avant la voie gagnante z-ai function `page_reader` / agent-browser double-open). Même famille que « profil frais local » (v3.28.1) : coûts de contexte non couverts par les grilles calibrées. Non-régression R2 : plages et coefficients existants inchangés — addition pure. PM v3.28.2 généré mécaniquement (canal canonique) ; PM v3.28.1 archivé @historique R4 ; lag résorbé au passage : ligne v3.28.1 absente de `@historique/historiques-par-skill/gen-plan.md` (ajoutée).
 - **v3.28.1 (2026-10-26, session web-eb6c8580 — directive propriétaire 10 tâches, tâches 3-5 : recalibration #token)** : application du conseil de recalibration E15 aux grilles — (1) coefficient **« profil frais local ×3-4 »** ajouté au §4 + `references/grille-token.md` (preuve : session audit 2026-10-25, estimé 12,2 k → réel 45-60 k, écart > 35 % → recalibration complète §2.3) ; (2) **contingence « appels API en masse ×2-3 »** + guidance de parallélisation (ThreadPoolExecutor 2-4 workers, throttle 1-2 s, backoff 12-48 s + pause anti-rafale 45 s, journal d'état idempotent, tri par taille croissante — leçon P2 : 233 fichiers zh, rate-limit 429 récurrent) ; (3) historique de calibration enrichi (rows 12-13 : audit ×3-4 ; directive 10 tâches P0-P2 avec API en masse). Non-régression R2 : plages et coefficients existants inchangés, §2.3 auto-calibration inchangé — additions pures. PM v3.28.1 généré mécaniquement (canal canonique, delta verrouillé) ; PM v3.28.0 archivé @historique R4.
 - **v3.28.0 (2026-10-25, session web-eb6c8580 — directive propriétaire 10 tâches, tâche 1 : intégrer les déclencheurs)** : intégration du **§A — DÉCLENCHEURS** du PM GEN-PLAN dans le SKILL.md (nouvelle section en tête de corps, immédiatement après le frontmatter — miroir fidèle du §A du PM v3.27.0 : 10 déclencheurs dont modes `gen-plan(step)`/`gen-plan(step-ok)` + clause mode NULL, déclencheur verbatim « intègre dans le plan d'actions » E13/règle d'or n°3, invocations `gen-plan:correct-work(projet)`/`gen-plan:correct-work(<cible>)`, `orchestre`, `gen-plan:generate(<description>)`) + enrichissement du `read_when` frontmatter (mentions : plan d'actions, intègre dans le plan d'actions, gen-plan(step), gen-plan(step-ok), orchestre — découverte skill-side alignée sur le §A). Motivation : l'agent découvrant le skill via le SKILL.md seul (chemin canonique d'invocation) ne voyait pas la sémantique de déclenchement complète (read_when 3 lignes génériques) — la même lacune existe chez refactor-guard (PM §A v1.8.1 sans section DÉCLENCHEURS dans son SKILL.md — constat consigné, correction suivante). Non-régression R2 : §A du PM inchangé (source de vérité), description frontmatter inchangée, aucun mode/règle modifié — addition pure. Recalibrage croisé KO-L004 : SHARED §6.1 / PM-INSTALL §2ter+A.3 (générateur) ; PM v3.28.0 généré mécaniquement (delta : history verrouillé + note §A) ; PM v3.27.0 archivé @historique R4 git mv byte-identité.
