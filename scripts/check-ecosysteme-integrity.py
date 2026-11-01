@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.13)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.16)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -70,7 +70,7 @@ KB = os.path.join(SKILLS, "KNOWLEDGE.md")
 MANIFEST = os.path.join(BASE_DIR, "scripts", "ecosysteme-integrity.json")
 
 ECO_SKILLS = {
-    "gen-plan": "3.28.2",  # KO-L004 (session web-eb6c8580, Task 7 2026-10-30 — directive propriétaire : recommandation E15 Task 6) : v3.28.1→v3.28.2 contingence « récupération externe bloquée ×3-4 » au §4 SKILL + grille-token.md (row 14) ; précédent (2026-10-30 — résorption réserves héritées P3-P7) : v3.26.0→v3.28.1 (v3.27.0 fusion lignée canonique+fork E7-DISP, web-dd290b0d ; v3.28.0 §A déclencheurs ; v3.28.1 recalibration E15 #token) ; précédent (web-f90062ce, 2026-10-24) : leçons vérité source PM INSTALL (dégradation gracieuse philosophie #4 + règle d'or n°5 anti-aspirant) ; précédent SG7.4 Task B2 : re-matérialisation structure hiérarchique ; précédent Task 26 : parallélisation par défaut
+    "gen-plan": "3.30.0",  # KO-L004 (session web-4f989063, 2026-10-31 — installation PATTERN KO-L009 §1.5, cascade générateur PM v3.30.0) ; KO-L004 (session web-4f989063, 2026-10-31 — règle d'or n°6 langue française, cascade générateur PM v3.29.0/SHARED v1.7.15/PM-INSTALL v1.8.9) ; KO-L004 (session web-eb6c8580, Task 7 2026-10-30 — directive propriétaire : recommandation E15 Task 6) : v3.28.1→v3.28.2 contingence « récupération externe bloquée ×3-4 » au §4 SKILL + grille-token.md (row 14) ; précédent (2026-10-30 — résorption réserves héritées P3-P7) : v3.26.0→v3.28.1 (v3.27.0 fusion lignée canonique+fork E7-DISP, web-dd290b0d ; v3.28.0 §A déclencheurs ; v3.28.1 recalibration E15 #token) ; précédent (web-f90062ce, 2026-10-24) : leçons vérité source PM INSTALL (dégradation gracieuse philosophie #4 + règle d'or n°5 anti-aspirant) ; précédent SG7.4 Task B2 : re-matérialisation structure hiérarchique ; précédent Task 26 : parallélisation par défaut
     "knowledge-observer": "1.0.0",
     "correct-work": "2.8.0",
     "clone-chat": "2.0.2",
@@ -106,11 +106,12 @@ ECO_SKILLS = {
     "fullstack-dev": "1.0.0",  # Task 8 (fusion discussion 468a4c26 Task 27 externe) : inscrit au registre — précédent vue-upload
     "refactoring-test": "1.1.1",  # Task 8 (session web-b4d7dd19, 2026-10-12) : OUTIL de la discipline n°55 (non discipline — correction directive propriétaire) ; Task 12 : §5 baseline MESURÉE 7/7
     "vue-upload": "1.5.0",  # KO-L004 (Task 8, session web-eb6c8580, 2026-10-31 — directive « crée $facon ces trois skills », D018-1) : v1.4.0→v1.5.0 hygiène des versions (versions, push archivage automatique download/archive/, section repliée) ; précédent (Task 7 G0, 2026-10-30) : v1.3.0→v1.4.0 épinglage livrable courant + journal des téléchargements ; précédent (web-b93f42fa, 2026-10-09) : KB=registre fait foi — occurrence L004 résorbée, arbitre dynamisé
-    "livraison-garantie": "1.0.0",  # Task 8 (session web-eb6c8580, 2026-10-31 — directive « crée $facon ces trois skills », D018-2) : création via skill-creator — orchestrateur de livraison en boucle fermée (épinglage avant fenêtre, surveillance journal, verdicts CONFIRME/PARTIEL/AUCUN) ; dépendance vue-upload >= 1.5.0 (douleur prouvée du 2026-10-25 : livraison manuelle en 4 tours)
+    "livraison-garantie": "1.1.0",  # Option A (2026-10-31, session web-4f989063 — directive propriétaire « continue en effectuant l'option «A» ») : bump v1.1.0 MINOR — marqueur veto-exclusif canon Task 30 « portail → vue-upload » sur le cas négatif du corpus trigger_evals (recommandation D006 plan-task3 ; rejeu 105/105, non-resorbe 0) ; Task 8 (session web-eb6c8580, 2026-10-31 — directive « crée $facon ces trois skills », D018-2) : création via skill-creator — orchestrateur de livraison en boucle fermée (épinglage avant fenêtre, surveillance journal, verdicts CONFIRME/PARTIEL/AUCUN) ; dépendance vue-upload >= 1.5.0 (douleur prouvée du 2026-10-25 : livraison manuelle en 4 tours)
     "dessin-technique": "1.1.1",
     "iphone18": "1.1.0",  # Task 48 (session web-38713acd) : bump v1.1.0 extension 1944 (chemin argentique N&B années 1930-1950) ; création v1.0.0 Task 45 (R18 ouverture variable, PA-TEST-001 QC 12/12)
     "iphone19": "0.11.0",  # Task 48 (session web-38713acd) : bump v0.11.0 extension 1944 (chemin argentique N&B années 1930-1950) ; v0.10.0 pixel binning R19 (frandroid 27/03/2026) ; création v0.9.0 Task 47 (migration ANTICIPÉE)
     "iphone17": "1.1.0",  # Task 48 (session web-38713acd) : bump v1.1.0 extension 1944 (chemin argentique N&B années 1930-1950) ; création v1.0.0 Task 45 (R1-R17 d'époque, PM v2.0 scellé @historique/photos/)  # Task 12 (2026-10-18) : bump PATCH v1.1.1 — corrections findings Task 11 (ACF par latitude + garde anti-fallacieux + trou-ness) ; Task 10 : bump v1.1.0 — F4 filetage + F5 profondeur, evals T5/T6 (recalibrage KO-L004 ; création Task 8 2026-10-17, réinscription post-wipes)
+    "traduction-zh-fr": "1.2.0",  # KO-L004 (recalibrage croisé, session web-4f989063 2026-11-01, directive installation écosystème) : entrée KB créée v1.0.0 (3965f6b) puis bumpée v1.1.0 (8fa153a) et v1.2.0 (eb4be64) sans recalibrage de l'arbitre — dérive résorbée (41e entrée versionnée) ; v1.2.0 = glossaire FR + TMX 1.4b + axes --src/--dest (E13 n°5)
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.
