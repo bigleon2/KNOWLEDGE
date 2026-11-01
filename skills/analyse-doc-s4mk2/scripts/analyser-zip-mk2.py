@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
-"""analyser-zip-mk2.py v1.1.0 — Pipeline complet d'analyse d'un ZIP/dossier de mapping S4 MK2
-ET de TOUS ses fichiers liés (non-TSI compris), adaptatif par type.
+"""analyser-zip-mk2.py v1.2.0 — Pipeline complet d'analyse d'un ZIP/dossier de mapping S4 MK2
+ET de TOUS ses fichiers liés (non-TSI compris), adaptatif par type, avec cohérence croisée.
 
 Skill : analyse-doc-s4mk2 (famille TSI, orchestré par agent-TSI).
+
+v1.2.0 (directive propriétaire, traces 1a1989725d74c901 + 1a1989862dd46e61) :
+COHÉRENCE CROISÉE (étape E7, module coherence-non-tsi-mk2.py) — les données
+extraites des non-TSI sont confrontées aux TSI (SOURCES DE VÉRITÉ) : mentions
+numérotées (hotcue/fx/deck/slot/slice/mod) vérifiées contre l'univers S4 MK2
+et les noms/conditions du TSI (HORS_UNIVERS / NON_CÂBLÉE = écarts forts,
+SUPPORTÉE / INDETERMINABLE = honnêteté), couverture lexicale des contrôles,
+illustrés via la table P1b. Verdict FAIL si écarts de cohérence forts.
 
 v1.1.0 (directive propriétaire, règle d'or écosystème) : l'analyseur s'ADAPTE
 AUTOMATIQUEMENT au type de chaque fichier — routeur ext→analyseur (table
@@ -33,10 +41,14 @@ Pipeline :
       textes txt/md, types inconnus (signature magique stdlib) ;
   E6. Vérification mécanique de la table de correspondance visuels↔contrôles
       (references/correspondance-visuels.md) sur les noms DCBM définis ;
+  E7. COHÉRENCE CROISÉE TSI (source de vérité) ↔ non-TSI : mentions numérotées
+      des documents vérifiées contre l'univers S4 MK2 et les noms/conditions du
+      mapping, couverture lexicale, illustrés via table P1b (v1.2.0) ;
       VERDICT final : PASS ssi (a) au moins 1 mapping analysé, (b) conformité
       G2 s'il s'agit de l'échantillon de référence, (c) les noms de contrôles
       de la table P1b existent dans les noms définis, (d) aucun .tsi non classé,
-      (e) aucun PDF rejeté (illisible).
+      (e) aucun PDF rejeté (illisible), (f) aucun écart de cohérence fort
+      (HORS_UNIVERS / NON_CÂBLÉE) dans les documents non-TSI.
 
 Usage :
   analyser-zip-mk2.py <zip-ou-dossier> [--json OUT.json]
@@ -63,6 +75,14 @@ _pdf = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_pdf)
 analyser_pdf = _pdf.analyser_pdf
 RejetProprePDF = _pdf.RejetPropre
+
+# module COHÉRENCE croisée TSI↔non-TSI (étape E7, v1.2.0)
+_spec_c = importlib.util.spec_from_file_location(
+    "coherence-non-tsi-mk2", os.path.join(os.path.dirname(os.path.abspath(__file__)), "coherence-non-tsi-mk2.py")
+)
+_coherence = importlib.util.module_from_spec(_spec_c)
+_spec_c.loader.exec_module(_coherence)
+coherence_croisee = _coherence.coherence
 
 # Membres attendus de l'échantillon de référence DJTT v2.1.0 (2 dossiers, 6 fichiers)
 REFERENCE_DJTT = {
@@ -249,15 +269,16 @@ def analyser_tsi_membre(nom, buf, rapports):
 
 
 def analyser_pdf_membre(nom, buf, rapports):
-    """E5 : PDF lié analysé en profondeur (texte, pages, polices, mots-clés)."""
+    """E5 : PDF lié analysé en profondeur (texte COMPLET pour l'étape E7)."""
     base = os.path.basename(nom)
     try:
-        r = analyser_pdf(buf, base)
+        r = analyser_pdf(buf, base, max_cars=100000)
     except RejetProprePDF as e:
         rapports["inventaire"][nom] = f"{len(buf)} o — PDF ILLISIBLE ({e})"
         rapports["pdf"].append({"fichier": base, "taille": len(buf), "rejet": str(e)})
         return
     r["role"] = role_pdf(base)
+    r["texte_complet"] = r["texte"]["echantillon"]
     statut = r["texte"]["statut"]
     rapports["inventaire"][nom] = f"{len(buf)} o — PDF ({r['pages']} p., texte : {r['texte']['caracteres']} car) — {r['role']}"
     rapports["pdf"].append(r)
@@ -285,6 +306,7 @@ def analyser_texte_membre(nom, buf, rapports):
     rapports["textes"].append({
         "nom": base, "taille": len(buf), "encodage": enc,
         "caracteres": len(texte), "mots": len(mots), "echantillon": texte[:300],
+        "texte_complet": texte,
     })
 
 
@@ -353,6 +375,11 @@ def analyser_zip(chemin):
         for nomc, nb_attendu in TABLE_P1B.items():
             nb = defines.get(nomc)
             rapports["table_p1b"][nomc] = {"attendu_cid": nb_attendu, "observe_cid": nb, "ok": nb == nb_attendu}
+        # E7 : cohérence croisée TSI (source de vérité) ↔ non-TSI (v1.2.0)
+        p1b_ok = bool(rapports["table_p1b"]) and all(v["ok"] for v in rapports["table_p1b"].values())
+        rapports["coherence_non_tsi"] = coherence_croisee(
+            rapports["mappings"][0], rapports["pdf"], rapports["textes"],
+            len(rapports["illustrés"]), p1b_ok)
     # cohérence de référence
     rapports["reference_djtt_v210"] = {
         "membres_identiques": set(membres) == (set(REFERENCE_DJTT["fichiers"]) | REFERENCE_DJTT["dossiers"]),
@@ -378,6 +405,9 @@ def verdict(r):
     pdf_ko = [p["fichier"] for p in r["pdf"] if p.get("rejet")]
     if pdf_ko:
         motifs.append(f"PDF illisibles (rejet) : {pdf_ko}")
+    coh = r.get("coherence_non_tsi") or {}
+    if coh.get("ecarts"):
+        motifs.append(f"cohérence croisée TSI↔non-TSI : {len(coh['ecarts'])} écarts forts {coh['ecarts'][:6]}")
     if r["reference_djtt_v210"]["membres_identiques"] and not r["illustrés"]:
         motifs.append("échantillon de référence sans documents illustrés")
     r["verdict"] = "PASS" if not motifs else "FAIL"
@@ -416,6 +446,9 @@ def main():
         if r["table_p1b"]:
             ok = sum(1 for v in r["table_p1b"].values() if v["ok"])
             print(f"table P1b       : {ok}/{len(r['table_p1b'])} noms de contrôles vérifiés")
+        coh = r.get("coherence_non_tsi")
+        if coh:
+            print(f"cohérence       : {coh['verdict']} — {len([d for d in coh['documents'] if 'attestations' in d])} documents attestés, {len(coh['ecarts'])} écarts, source : {coh['source_verite']['fichier']}")
         ref = r["reference_djtt_v210"]
         print(f"réf. DJTT v2.1.0: membres identiques : {ref['membres_identiques']} — tailles identiques : {ref['tailles_identiques']}")
         if a.json:

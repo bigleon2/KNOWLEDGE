@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run_all.py v1.1.0 — Batterie de tests $FACON2 du skill analyse-doc-s4mk2.
+"""run_all.py v1.2.0 — Batterie de tests $FACON2 du skill analyse-doc-s4mk2.
 
 $FACON2 = « cohérent, optimisé et fonctionnel » (alias-eco v1.3.0, grammaire B).
 La batterie vérifie FONCTIONNELLEMENT chaque capacité du skill sur l'échantillon
@@ -8,9 +8,15 @@ propres (entrée non-mapping, blob corrompu, cible absente), l'idempotence ×2 e
 le self-test du moteur. v1.1.0 (directive propriétaire, règle d'or écosystème) :
 vérifie aussi l'ADAPTATION AUTOMATIQUE aux types — PDF compagnons analysés en
 profondeur (échantillon secondaire DREW : 3 PDF + 2 PNG + 1 TSI), aucun fichier
-non-TSI muet, rejet propre d'un PDF invalide. Verdict mécanique : PASS ssi tous
-les tests passent ; journal JSON individuel par test (tests/journal/) + synthèse
-(synthese.json). Le skill ne ment jamais : échantillon introuvable = FAIL explicite.
+non-TSI muet, rejet propre d'un PDF invalide. v1.2.0 (directive propriétaire,
+traces 1a1989725d74c901 + 1a1989862dd46e61) : vérifie la COHÉRENCE CROISÉE
+TSI (source de vérité) ↔ non-TSI — TF-09 attestations positives DREW (fx/knob/
+button/deck SUPPORTÉES, mods INDETERMINABLES honnêtes) et TF-10 DÉTECTION
+d'un écart injecté (PDF fantôme « Hotcue 9 FX 5 Deck H Slice 12 » → 4
+HORS_UNIVERS → verdict de section ÉCARTS_DÉTECTÉS + FAIL pipeline).
+Verdict mécanique : PASS ssi tous les tests passent ; journal JSON individuel
+par test (tests/journal/) + synthèse (synthese.json). Le skill ne ment jamais :
+échantillon introuvable = FAIL explicite.
 
 Usage :
   python3 skills/analyse-doc-s4mk2/tests/run_all.py [--zip CHEMIN_ZIP] [--dir CHEMIN_DOSSIER] [--pdf-dir CHEMIN_DREW]
@@ -44,6 +50,8 @@ DEFAUT_DIR = "/home/z/my-project/scripts/zip-tsi/extracted/DJTT Kontrol S4 MK2 C
 # Échantillon secondaire DREW (mapping tiers avec PDF compagnons) — v1.1.0
 DEFAUT_PDF_DIR = "/home/z/my-project/scripts/zip-tsi/extracted-drew/Kontrol S4  [DREW's MAPPING] - FX4(JogWheel ) + Mode Freeze + Etc"
 PDFS_DREW = ("Drew's Assignment List.pdf", "Mapping Speech.pdf", "Mapping Speech-fr.pdf")
+TSI_DREW = "Drew's S4 User Controller Maping.tsi"
+GHOST_TEXTE = "Hotcue 9 FX 5 Deck H Slice 12 Assignment"
 
 # Attentes mécaniques de l'échantillon de référence (référentiel G2 + erratum Task 33)
 ATTENDU = {
@@ -92,7 +100,7 @@ class Batterie:
     def synthese(self, echantillon):
         passes = sum(1 for r in self.resultats if r["ok"])
         verdict = "PASS" if passes == len(self.resultats) else "FAIL"
-        synth = {"skill": "analyse-doc-s4mk2", "batterie_version": "1.1.0", "grammaire": "$FACON2",
+        synth = {"skill": "analyse-doc-s4mk2", "batterie_version": "1.2.0", "grammaire": "$FACON2",
                  "echantillon": echantillon, "total": len(self.resultats), "passes": passes,
                  "fails": len(self.resultats) - passes, "verdict": verdict, "tests": self.resultats}
         with open(os.path.join(JOURNAL, "synthese.json"), "w", encoding="utf-8") as fh:
@@ -132,6 +140,24 @@ def fabriquer_tsi_corrompu(zip_path, destination):
             entry.set("Value", val[moitie:moitie + 40000] + val[-4000:])  # base64 valide mais blob corrompu
     with open(destination, "wb") as fh:
         fh.write(b'<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\n' + ET.tostring(racine))
+    return destination
+
+
+def fabriquer_pdf_fantome(destination, texte=GHOST_TEXTE):
+    """PDF minimal valide (texte littéral cp1252, 5 objets) pour la détection d'écart."""
+    corps = (
+        b"1 0 obj\n<</Type/Catalog/Pages 2 0 R>>\nendobj\n"
+        b"2 0 obj\n<</Type/Pages/Kids[3 0 R]/Count 1>>\nendobj\n"
+        b"3 0 obj\n<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Contents 4 0 R/"
+        b"Resources<</Font<</F1 5 0 R>>>>>>\nendobj\n"
+        b"4 0 obj\n<</Length " + str(len(texte) + 42).encode() + b">>\nstream\n"
+        b"BT /F1 12 Tf 72 720 Td (" + texte.encode("cp1252") + b") Tj ET\n"
+        b"endstream\nendobj\n"
+        b"5 0 obj\n<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>\nendobj\n"
+        b"trailer\n<</Root 1 0 R/Size 6>>\n%%EOF\n"
+    )
+    with open(destination, "wb") as fh:
+        fh.write(b"%PDF-1.4\n" + corps)
     return destination
 
 
@@ -246,6 +272,49 @@ def batterie(zip_path, dir_path, pdf_dir=None):
             ok = pdf_ok and illus_ok and muets == 0 and couverts == r["comptes_inventaire"]["fichiers"] - n_tsi
             return ok, f"{n_tsi} TSI, {n_pdf} PDF analysés, {len(r['illustrés'])} illustrés, {muets} muets, couverture {couverts}/{r['comptes_inventaire']['fichiers'] - n_tsi}"
         b.test("TF-08", "adaptation automatique aux types (DREW : 3 PDF + 2 PNG couverts, 0 muet)", tf08)
+
+        # --- TF-09 : cohérence croisée TSI↔non-TSI positive (v1.2.0) ---
+        def tf09():
+            r = json.load(open("/tmp/adsm-tf08.json", encoding="utf-8"))
+            coh = r.get("coherence_non_tsi")
+            if not coh:
+                return False, "section coherence_non_tsi absente"
+            docs = [d for d in coh["documents"] if "attestations" in d]
+            verds = [a["verdict"] for d in docs for a in d["attestations"]]
+            ok = (coh["verdict"] == "COHÉRENT" and not coh["ecarts"] and len(docs) == 3
+                  and "SUPPORTÉE" in verds and "INDETERMINABLE" in verds
+                  and coh["source_verite"]["noms_controles"] == 171
+                  and coh["illustrés"]["coherence_via_table_p1b"] is False)
+            return ok, (f"verdict {coh['verdict']}, {len(docs)} docs attestés, 0 écart, "
+                        f"{verds.count('SUPPORTÉE')} supportées / {verds.count('INDETERMINABLE')} indéterminables (honnêteté)")
+        b.test("TF-09", "cohérence croisée TSI↔non-TSI (DREW : attestations positives, mods honnêtes, 0 écart)", tf09)
+
+        # --- TF-10 : détection d'un écart injecté (PDF fantôme, v1.2.0) ---
+        def tf10():
+            if not pdf_dir or not os.path.isdir(pdf_dir):
+                return False, f"échantillon DREW introuvable ({pdf_dir})"
+            tsi_src = os.path.join(pdf_dir, TSI_DREW)
+            if not os.path.isfile(tsi_src):
+                return False, f"TSI DREW introuvable : {tsi_src}"
+            tmpd = tempfile.mkdtemp(prefix="adsm-tf10-")
+            try:
+                shutil.copy(tsi_src, os.path.join(tmpd, TSI_DREW))
+                fabriquer_pdf_fantome(os.path.join(tmpd, "Mapping Ghost.pdf"))
+                j = "/tmp/adsm-tf10.json"
+                rc, out, err = lancer([sys.executable, PIPELINE, tmpd, "--json", j])
+                r = json.load(open(j, encoding="utf-8"))
+                coh = r.get("coherence_non_tsi") or {}
+                familles = sorted((e["famille"], str(e["valeur"])) for e in coh.get("ecarts", []))
+                ok = (rc == 1 and coh.get("verdict") == "ÉCARTS_DÉTECTÉS"
+                      and len(coh.get("ecarts", [])) == 4
+                      and familles == [("deck", "H"), ("fx", "5"), ("hotcue", "9"), ("slice", "12")]
+                      and any("cohérence croisée" in m for m in r.get("verdict_motifs", []))
+                      and "Traceback" not in err)
+                return ok, (f"rc={rc}, verdict {coh.get('verdict')}, écarts {familles}, "
+                            f"motif pipeline={'cohérence croisée' in str(r.get('verdict_motifs', []))}, traceback={'Traceback' in err}")
+            finally:
+                shutil.rmtree(tmpd, ignore_errors=True)
+        b.test("TF-10", "détection d'écart injecté : PDF fantôme (Hotcue 9/FX 5/Deck H/Slice 12) → 4 HORS_UNIVERS → FAIL", tf10)
 
         # --- TR-01 : rejet propre d'un TSI de préférences par le moteur ---
         def tr01():

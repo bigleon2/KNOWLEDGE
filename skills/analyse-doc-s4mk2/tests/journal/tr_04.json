@@ -3,5 +3,5 @@
   "nom": "robustesse : cible inexistante → rc=2, message propre",
   "ok": true,
   "detail": "rc=2, message USAGE : True",
-  "duree_ms": 56
+  "duree_ms": 60
 }

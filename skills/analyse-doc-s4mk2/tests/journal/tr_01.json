@@ -3,5 +3,5 @@
   "nom": "rejet propre : TSI de préférences (rc=1, message, sans traceback)",
   "ok": true,
   "detail": "rc=1, message=True, traceback=False",
-  "duree_ms": 44
+  "duree_ms": 42
 }

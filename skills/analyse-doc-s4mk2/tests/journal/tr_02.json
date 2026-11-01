@@ -3,5 +3,5 @@
   "nom": "robustesse : blob DIOM corrompu → rejet contrôlé, sans crash",
   "ok": true,
   "detail": "rc=1, rejet contrôlé : True, traceback : False",
-  "duree_ms": 64
+  "duree_ms": 60
 }
