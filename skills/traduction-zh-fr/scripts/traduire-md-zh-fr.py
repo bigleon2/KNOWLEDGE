@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""traduire-md-zh-fr.py — Traduction des skills .md chinois vers le français via backends gratuits (z-ai LLM → googletrans → gtx → MyMemory).
+"""traduire-md-zh-fr.py — Traduction des skills .md chinois vers le français via backends (z-ai LLM → Argos hors-ligne → googletrans → gtx → MyMemory).
 
 Conventions script-creator : Python stdlib uniquement (N3), idempotent ×2 (GF-3),
 --dry/--exec/--selftest, journal JSON append-only.
@@ -7,12 +7,14 @@ Politique P1/P2 (chantier P2 francisation) : traduire la PROSE, conserver les
 données fonctionnelles — blocs de code, code en ligne, URLs, valeurs chiffrées.
 
 Chaîne de backends (v1.1.0 — optimisation G5/G6, recherche 2026-11-01 ; v1.2.0 — candidats du
-rapport G5 livrés, E13 n°5 trace 1a1936e781a223a9) :
+rapport G5 livrés, E13 n°5 trace 1a1936e781a223a9 ; v1.3.0 — 2 candidats restants du rapport
+G5 livrés, E13 n°6 trace 1a1968934958f495) :
   1. zai        — CLI `z-ai chat` (LLM glm de l'écosystème, qualité maximale, sans quota 429)
-  2. googletrans — conformément à la directive propriétaire (paquet dysfonctionnel détecté par la garde)
-  3. gtx        — endpoint Google Translate public (sans clé)
-  4. mymemory   — MyMemory API publique (sans clé)
-  + hors-ligne : Argos Translate recommandé sur la machine du propriétaire (pivot ZH→EN→FR intégré — voir rapport G5)
+  2. argos      — Argos Translate hors-ligne (v1.3.0 — pivot ZH→EN→FR intégré, zéro réseau,
+                  détection dynamique : paquet absent = sauté proprement)
+  3. googletrans — conformément à la directive propriétaire (paquet dysfonctionnel détecté par la garde)
+  4. gtx        — endpoint Google Translate public (sans clé)
+  5. mymemory   — MyMemory API publique (sans clé)
 
 Usage :
     traduire-md-zh-fr.py --dry   --fichier <md> [md ...] [--racine DIR] [--seuil N]
@@ -24,6 +26,10 @@ v1.2.0 (candidats du rapport G5 — livrés) : --glossaire (terminologie fixée 
 par jetons + restauration FR), --tmx (export TMX 1.4b de la mémoire de traduction),
 --src/--dest (axes explicites ZH→FR [défaut], ZH→EN, EN→FR — garde par morceau
 « mots vides » pour les sources latines : idempotence des re-jeux).
+v1.3.0 (2 candidats restants du rapport G5 — livrés) : backend `argos` hors-ligne en
+2e position (repli 100 % local, zéro quota — recommandation G5 « Argos Translate
+hors-ligne ») ; moteur PDF du skill passé à pdf2zh-next 2.9.0/BabelDOC (adaptateur
+z-ai — voir traduire-pdf-zh-fr.py).
 """
 from __future__ import annotations
 
@@ -53,9 +59,9 @@ SEUIL_ECHO_CIBLE = 0.20  # v1.2.0 : écho du LLM sur segment MAJORITAIREMENT cib
 DEBIT_S = 0.25       # intervalle minimal entre requêtes (≤ 4 req/s, garde 5 req/s Google)
 BACKOFF = [2, 5, 12]  # secondes, 3 tentatives par segment
 
-BACKENDS = ("zai", "googletrans", "gtx", "mymemory")
+BACKENDS = ("zai", "argos", "googletrans", "gtx", "mymemory")
 
-VERSION = "1.2.0"
+VERSION = "1.3.0"
 LANGUES = {"zh": "zh-CN", "en": "en", "fr": "fr"}  # codes courts → codes complets
 NOMS_LANGUES = {"zh-CN": "chinois", "en": "anglais", "fr": "français"}
 MOTS_VIDES_EN = frozenset(
@@ -225,6 +231,21 @@ def _traduire_zai(texte: str, limiteur: Debit, stat: dict) -> str:
     return dst
 
 
+def _traduire_argos(texte: str, limiteur: Debit, stat: dict) -> str:
+    """Backend Argos Translate hors-ligne (v1.3.0 — candidat « Argos hors-ligne » du
+    rapport G5 ; pivot ZH→EN→FR intégré, zéro réseau, zéro quota). Détection dynamique :
+    paquet/model absent → ImportError/Exception attrapée par la chaîne (saut propre)."""
+    import argostranslate.translate  # import paresseux (gros — torch/ctranslate2)
+
+    src = "zh" if stat["src"].startswith("zh") else stat["src"]
+    dst = "fr" if stat["dest"].startswith("fr") else stat["dest"]
+    limiteur.attendre()
+    rep = argostranslate.translate.translate(texte, src, dst)
+    if not rep or rep == texte:
+        raise RuntimeError("argos : réponse vide ou inchangée")
+    return rep
+
+
 def _traduire_gtx(texte: str, limiteur: Debit, stat: dict) -> str:
     """Backend endpoint gtx (Google Translate public, sans clé)."""
     params = urllib.parse.urlencode(
@@ -285,6 +306,8 @@ def traduire_texte(texte: str, cache: dict, stat: dict, journalise=None) -> str:
         if nom == "googletrans" and not _import_ok("googletrans"):
             continue
         if nom == "zai" and not shutil.which("z-ai"):
+            continue
+        if nom == "argos" and not _import_ok("argostranslate"):
             continue
         try:
             limiteur = stat["limiteur"]
@@ -490,7 +513,7 @@ def exporter_tmx(cache: dict, chemin: str, src: str, dest: str) -> int:
 
 # ---------------------------------------------------------------- selftest
 def selftest() -> int:
-    """Auto-test hors-ligne : logique prouvée sans réseau (backends simulés) — 20 contrôles."""
+    """Auto-test hors-ligne : logique prouvée sans réseau (backends simulés) — 24 contrôles."""
     echecs: list[str] = []
 
     def _verifier(nom: str, condition: bool) -> None:
@@ -641,13 +664,51 @@ def selftest() -> int:
     rep_m3 = traduire_markdown(rep_m1, cache_m, stat_m3, None)
     _verifier("bloc-glossaire-sensible", rep_m3 != rep_m1 and stat_m3["requetes"] >= 1)
 
+    # v1.3.0 — backend argos hors-ligne : ordre de chaîne, saut propre si absent,
+    # repli sur le suivant, enregistrement du backend dans le cache
+    globals()["BACKENDS"] = ("zai", "argos", "googletrans", "gtx", "mymemory")  # valeur de production restaurée
+    _verifier("chaine-ordre",
+              BACKENDS == ("zai", "argos", "googletrans", "gtx", "mymemory"))
+    _import_ok_reel = _import_ok
+    globals()["_import_ok"] = lambda nom: False if nom == "argostranslate" else _import_ok_reel(nom)
+    globals()["BACKENDS"] = ("argos", "gtx")
+    globals()["_traduire_gtx"] = lambda texte, limiteur, stat: f"TRADUIT[{texte}]"
+
+    def _argos_interdit(texte, limiteur, stat):
+        raise RuntimeError("argos ne doit pas être appelé (détection dynamique)")
+
+    globals()["_traduire_argos"] = _argos_interdit
+    stat_sa = {"cache": 0, "requetes": 0, "limiteur": Debit(0.01), "src": "zh-CN", "dest": "fr"}
+    rep_sa = traduire_markdown("这是离线测试句子。", {}, stat_sa, None)
+    _verifier("argos-saute-si-absent", "TRADUIT[" in rep_sa and stat_sa["requetes"] >= 1)
+
+    def _argos_ko(texte, limiteur, stat):
+        raise RuntimeError("argos KO simulé — repli sur le suivant")
+
+    globals()["_import_ok"] = lambda nom: True  # forcé présent — déterminisme inter-machines
+    globals()["_traduire_argos"] = _argos_ko
+    stat_fb = {"cache": 0, "requetes": 0, "limiteur": Debit(0.01), "src": "zh-CN", "dest": "fr"}
+    rep_fb = traduire_markdown("这是回退测试句子。", {}, stat_fb, None)
+    _verifier("argos-repli-suivant", "TRADUIT[" in rep_fb and stat_fb["requetes"] >= 1)
+
+    globals()["BACKENDS"] = ("argos",)
+    globals()["_traduire_argos"] = lambda texte, limiteur, stat: f"ARGOS[{texte}]"
+    stat_ar = {"cache": 0, "requetes": 0, "limiteur": Debit(0.01), "src": "zh-CN", "dest": "fr"}
+    cache_ar: dict = {}
+    rep_ar = traduire_markdown("这是纯Argos测试。", cache_ar, stat_ar, None)
+    _verifier("argos-backend-enregistre",
+              "ARGOS[" in rep_ar
+              and any(isinstance(v, dict) and v.get("backend") == "argos"
+                      for v in cache_ar.values()))
+
     if echecs:
         print("SELFTEST FAIL :", echecs)
         return 1
-    print("SELFTEST PASS (20/20) — détection, frontmatter, code, URLs, inline, cache, idempotence ×2, "
+    print("SELFTEST PASS (24/24) — détection, frontmatter, code, URLs, inline, cache, idempotence ×2, "
           "seuil, glossaire avant/après, TMX valide, TMX déterministe, clés d'axes, prompt d'axes, "
           "garde EN→FR, identité refusée en glossaire / P2 conservée sans glossaire, écho données P2, "
-          "repli paragraphes, bloc stabilisé (point fixe) + sensibilité glossaire")
+          "repli paragraphes, bloc stabilisé (point fixe) + sensibilité glossaire, "
+          "ordre de chaîne argos 2e, argos sauté si absent, repli argos→suivant, backend argos enregistré")
     return 0
 
 

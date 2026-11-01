@@ -1,0 +1,38 @@
+[
+ {
+  "query": "Traduis ce fichier markdown écrit en chinois vers le français avec traduction-zh-fr.",
+  "should_trigger": true
+ },
+ {
+  "query": "Francise ce skill chinois en respectant la politique P1/P2 (prose traduite, données conservées).",
+  "should_trigger": true
+ },
+ {
+  "query": "Traduis ce PDF chinois en français en préservant la mise en page et les formules.",
+  "should_trigger": true
+ },
+ {
+  "query": "Applique le glossaire terminologique et exporte la mémoire de traduction en TMX pour le chinois→français.",
+  "should_trigger": true
+ },
+ {
+  "query": "Traduis la documentation chinoise du référentiel en anglais avec le même outil.",
+  "should_trigger": true,
+  "note": "axe --src zh --dest en supporté (v1.2.0)"
+ },
+ {
+  "query": "Traduis ce contrat allemand en français.",
+  "should_trigger": false,
+  "exclusifs": [
+   "allemand"
+  ]
+ },
+ {
+  "query": "Résume ce vidéo YouTube en chinois sans traduction.",
+  "should_trigger": false
+ },
+ {
+  "query": "Génère une affiche avec une typographie chinoise élégante.",
+  "should_trigger": false
+ }
+]
