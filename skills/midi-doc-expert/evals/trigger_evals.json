@@ -4,7 +4,7 @@
     "should_trigger": true
   },
   {
-    "query": "Génère la notice du Freeze Mode du S4 MK3 en Markdown et JSON.",
+    "query": "Génère la notice du Freeze Mode du S4 MK2 en Markdown et JSON.",
     "should_trigger": true
   },
   {

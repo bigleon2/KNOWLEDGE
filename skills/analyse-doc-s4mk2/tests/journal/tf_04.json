@@ -1,0 +1,7 @@
+{
+  "id": "TF-04",
+  "nom": "baseline stricte (4960 lisibles / 666 illisibles / 49 sollicités)",
+  "ok": true,
+  "detail": "lisibles 4960, illisibles 666, sollicités 49",
+  "duree_ms": 0
+}

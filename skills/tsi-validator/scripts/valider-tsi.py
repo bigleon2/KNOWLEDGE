@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """valider-tsi.py — Arbitre mécanique de validation des fichiers TSI.
 
-Skill : tsi-validator v1.0.0 (Projet TSI/Traktor — S4 MK3 / Traktor Pro 3.11)
+Skill : tsi-validator v1.1.0 (Projet TSI/Traktor — S4 MK2 / Traktor Pro 3.11)
 Schéma de référence : download/spec-projet-tsi-traktor.md §5 (règles R1-R8,
 catégories d'erreur E1-E8). PROVENANCE : reverse-engineering public IvanZ 2014
-+ articles NI Controller Manager + mappings TSI tiers S4 MK3 documentés (R-1 :
++ articles NI Controller Manager + mappings TSI tiers documentés, cible actuelle S4 MK2 (R-1 :
 extension déclarative en cas d'écart avec un TSI réel — interface stable).
 
 Usage :

@@ -1,17 +1,17 @@
 ---
 name: midi-doc-expert
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
   - midi
   - documentation
   - traktor
-  - s4-mk3
+  - s4-mk2
   - redacteur-technique
 description: >-
   Skill de génération de documentation technique MIDI pour mappings TSI
-  Traktor / contrôleur S4 MK3 — matérialise le persona du cahier des charges
+  Traktor / contrôleur S4 MK2 — matérialise le persona du cahier des charges
   (Rédacteur Technique Expert en Mappings MIDI et Contrôleurs Audio :
   rédacteur technique + spécialiste MIDI + designer pédagogique). Génère la
   structure document type complète — Introduction, Vue d'ensemble,

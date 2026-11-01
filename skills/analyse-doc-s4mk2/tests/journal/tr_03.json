@@ -1,0 +1,7 @@
+{
+  "id": "TR-03",
+  "nom": "idempotence ×2 : pipeline byte-stable (re-jeu identique)",
+  "ok": true,
+  "detail": "rc 0/0, byte-stable : True",
+  "duree_ms": 291
+}

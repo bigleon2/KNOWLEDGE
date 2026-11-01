@@ -1,0 +1,89 @@
+{
+  "skill": "analyse-doc-s4mk2",
+  "batterie_version": "1.0.0",
+  "grammaire": "$FACON2",
+  "echantillon": "/home/z/my-project/upload/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.zip",
+  "total": 11,
+  "passes": 11,
+  "fails": 0,
+  "verdict": "PASS",
+  "tests": [
+    {
+      "id": "TF-01",
+      "nom": "inventaire exhaustif du ZIP (6 fichiers + 2 dossiers, tailles)",
+      "ok": true,
+      "detail": "8 membres (2 dossiers), tailles conformes : True",
+      "duree_ms": 10
+    },
+    {
+      "id": "TF-02",
+      "nom": "classification des 3 TSI (mapping / FX 96 / Layouts 39)",
+      "ok": true,
+      "detail": "classes {'MAPPING': 1, 'PRÉFÉRENCES-FX': 1, 'PRÉFÉRENCES-LAYOUTS': 1}, Entry {'DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.tsi': 101, 'FX Settings.tsi': 96, 'Layouts.tsi': 39}",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-03",
+      "nom": "comptes du mapping conformes au référentiel G2 (10/10)",
+      "ok": true,
+      "detail": "comptes égaux : G2 True",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-04",
+      "nom": "baseline stricte (4960 lisibles / 666 illisibles / 49 sollicités)",
+      "ok": true,
+      "detail": "lisibles 4960, illisibles 666, sollicités 49",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-05",
+      "nom": "table de correspondance visuels↔contrôles P1b (22 noms, nb cid exacts)",
+      "ok": true,
+      "detail": "22/22 vérifiés",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-06",
+      "nom": "documents illustrés identifiés (3 JPG, dimensions et rôles)",
+      "ok": true,
+      "detail": "3 illustrés, dimensions conformes : True, rôles identifiés : True",
+      "duree_ms": 0
+    },
+    {
+      "id": "TR-01",
+      "nom": "rejet propre : TSI de préférences (rc=1, message, sans traceback)",
+      "ok": true,
+      "detail": "rc=1, message=True, traceback=False",
+      "duree_ms": 42
+    },
+    {
+      "id": "TR-02",
+      "nom": "robustesse : blob DIOM corrompu → rejet contrôlé, sans crash",
+      "ok": true,
+      "detail": "rc=1, rejet contrôlé : True, traceback : False",
+      "duree_ms": 62
+    },
+    {
+      "id": "TR-03",
+      "nom": "idempotence ×2 : pipeline byte-stable (re-jeu identique)",
+      "ok": true,
+      "detail": "rc 0/0, byte-stable : True",
+      "duree_ms": 291
+    },
+    {
+      "id": "TR-04",
+      "nom": "robustesse : cible inexistante → rc=2, message propre",
+      "ok": true,
+      "detail": "rc=2, message USAGE : True",
+      "duree_ms": 55
+    },
+    {
+      "id": "TR-05",
+      "nom": "self-test moteur : re-jeu ×2 + conformité G2 + baseline",
+      "ok": true,
+      "detail": "rc=0, self-test=True",
+      "duree_ms": 192
+    }
+  ]
+}

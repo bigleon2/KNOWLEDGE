@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Échantillon TSI de référence — VALIDE (golden sample)
-  Projet TSI/Traktor — S4 MK3 / Traktor Pro 3.11 — Freeze Mode de référence
+  Projet TSI/Traktor — S4 MK2 / Traktor Pro 3.11 — Freeze Mode de référence (pattern Shift+Loop In corroboré par le réel DJTT v2.1.0)
   Schéma : spec-projet-tsi-traktor.md §5 (R1-R8). Référentiel de référence
   à calibrer (R-1/R-2) : les notes/CC sont les valeurs du référentiel projet,
   remplaçables par celles d'un TSI réel sans changement de pipeline.
 -->
 <NISYSTEM VERSION="1">
-  <DEVICE NAME="Traktor Kontrol S4 MK3" TYPE="MIDI" IN_PORT="Traktor Kontrol S4 MK3 In" OUT_PORT="Traktor Kontrol S4 MK3 Out" DECK_TARGET="Focus">
+  <DEVICE NAME="Traktor Kontrol S4 MK2" TYPE="MIDI" IN_PORT="Traktor Kontrol S4 MK2 In" OUT_PORT="Traktor Kontrol S4 MK2 Out" DECK_TARGET="Focus">
     <MAPPINGS COUNT="15">
       <MAPPING NAME="Play/Pause — Deck A" TYPE="IN" GROUP="Deck A" CONTROL="Play/Pause">
         <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="36" MODE="Direct"/>

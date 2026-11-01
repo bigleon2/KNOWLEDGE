@@ -1,6 +1,6 @@
 ---
 name: tsi-architect
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -11,7 +11,7 @@ tags:
   - midi
 description: >-
   Skill méthode d'architecture des fichiers de mapping TSI (XML Traktor Pro 3.11,
-  contrôleur Traktor Kontrol S4 MK3) — détient la SOURCE DE VÉRITÉ de la méthode
+  contrôleur Traktor Kontrol S4 MK2) — détient la SOURCE DE VÉRITÉ de la méthode
   (structure des fichiers, devices, mappings, assignments, modifiers, LED,
   patterns d'architecture Freeze/slices) et délègue l'EXÉCUTION SPÉCIALISÉE à
   l'agent homonyme skills/tsi-architect/tsi-architect.agent (tandem 2 couches,
@@ -27,7 +27,7 @@ dependencies:
     used_at: "conception de mappings complexes (plans d'architecture, deltas idempotents)"
 read_when:
   - Déclencher quand la demande concerne : architecture d'un mapping TSI, structure de fichier .tsi Traktor (devices, mappings, assignments, modifiers, LED), allocation de notes/CC, extension d'un mapping existant, tandem skill/agent tsi-architect.
-  - Déclencher si la demande mentionne : TSI, architecture de mapping, Traktor mapping, S4 MK3 mapping, étendre un mapping, allouer des notes MIDI.
+  - Déclencher si la demande mentionne : TSI, architecture de mapping, Traktor mapping, S4 MK2 mapping, étendre un mapping, allouer des notes MIDI.
   - Ne pas déclencher pour la validation mécanique d'un TSI (tsi-validator), la méthode des couches SHIFT (multi-shift-architect), ni la génération de documentation (midi-doc-expert).
 ---
 
@@ -53,7 +53,7 @@ Ce skill détient la **méthode** d'architecture des mappings TSI ; l'**exécuti
 
 ## §3 — Patterns d'architecture de référence
 
-- **Freeze Mode S4 MK3** (golden) : activation `Modifier 1` sur SHIFT+LOOP IN (MODE Toggle), 8 `Slice n` conditionnées M1=1, `Slice Size` à l'encodeur (MODE Increment), LED Freeze en OUT conditionnée M1=1 — voir `skills/tsi-validator/samples/echantillon-valide.tsi`.
+- **Freeze Mode S4 MK2** (golden) : activation `Modifier 1` sur SHIFT+LOOP IN (MODE Toggle) — pattern corroboré par le mapping réel DJTT S4 MK2 v2.1.0 (Freeze Mode Help : « Freeze Mode On/Off: Shift + Loop In button ») —, 8 `Slice n` conditionnées M1=1, `Slice Size` à l'encodeur (MODE Increment), LED Freeze en OUT conditionnée M1=1 — voir `skills/tsi-validator/samples/echantillon-valide.tsi` et `download/analyse-approfondie-zip-djtt-s4mk2-v2.1.0.md`.
 - **Hotcues étendus** : 8 pads en couche BASE, 8 Hotcue Delete en couche SHIFT (même notes, condition M2=1, source `Modifier 2` sur SHIFT+pad dédié).
 - **Anti-collision inter-decks** : plages disjointes par section de deck (référentiel de l'agent hardware), LED en miroir des entrées (TYPE=OUT).
 
@@ -63,8 +63,8 @@ Ce skill détient la **méthode** d'architecture des mappings TSI ; l'**exécuti
 |------|--------|
 | `tsi-architect.agent` | Tandem 2 couches — ce skill = méthode, l'agent = exécution (I-1) |
 | `tsi-validator` | Garde obligatoire — verdict PASS avant toute livraison (I-2) |
-| `traktor-function-expert` (agent) | Référentiel des commandes Traktor Pro 3.11 (I-6) |
-| `s4-hardware-expert` (agent) | Inventaire hardware et specs MIDI (allocation anti-collision) |
+| `traktor-function-expert` (agent) | Référentiel des commandes Traktor Pro 3.11 (I-6) — RÉSERVÉ 2026-11-02 (à générer, jamais routé tant qu'absent) |
+| `s4-hardware-expert` (agent) | Inventaire hardware et specs MIDI du S4 MK2 (allocation anti-collision) — À GÉNÉRER (non matérialisé, jamais routé tant qu'absent) |
 | `multi-shift-architect` | Méthode des couches SHIFT (matrices, aucune couche morte) |
 | `midi-doc-expert` | Documentation aval des architectures livrées |
 

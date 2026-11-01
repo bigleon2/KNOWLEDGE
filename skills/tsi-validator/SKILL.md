@@ -1,6 +1,6 @@
 ---
 name: tsi-validator
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -11,7 +11,7 @@ tags:
   - midi
 description: >-
   Skill-arbitre de validation mécanique des fichiers de mapping TSI (XML
-  Traktor Pro 3.11) — vérifie structure (E1), comptage (E2), attributs (E3),
+  Traktor Pro 3.11, contrôleur Kontrol S4 MK2) — vérifie structure (E1), comptage (E2), attributs (E3),
   plages MIDI (E4), doublons d'allocation (E5), LED (E6), couches mortes
   multi-shift (E7) et modifiers binaires (E8) ; rend un verdict PASS/FAIL
   mécanique avec rapport JSON et exit code. Bras exécutable :
@@ -67,7 +67,7 @@ Sortie : `VERDICT : PASS|FAIL` en dernière ligne ; exit code 0 ssi PASS. Rappor
 
 ## §4 — Échantillons de référence (golden samples)
 
-- `samples/echantillon-valide.tsi` — Freeze Mode S4 MK3 (15 mappings, règle R1-R8 conformes) : DOIT rendre PASS.
+- `samples/echantillon-valide.tsi` — Freeze Mode S4 MK2 (15 mappings, règles R1-R8 conformes ; pattern Shift+Loop In corroboré par le réel DJTT S4 MK2 v2.1.0) : DOIT rendre PASS.
 - `samples/echantillon-invalide.tsi` — porte au moins une violation de chaque catégorie E1-E8 : DOIT rendre FAIL avec les 8 catégories déclenchées (vérifié par --self-test).
 
 ## §5 — Relations

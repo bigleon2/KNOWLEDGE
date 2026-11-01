@@ -1,0 +1,7 @@
+{
+  "id": "TF-02",
+  "nom": "classification des 3 TSI (mapping / FX 96 / Layouts 39)",
+  "ok": true,
+  "detail": "classes {'MAPPING': 1, 'PRÉFÉRENCES-FX': 1, 'PRÉFÉRENCES-LAYOUTS': 1}, Entry {'DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.tsi': 101, 'FX Settings.tsi': 96, 'Layouts.tsi': 39}",
+  "duree_ms": 0
+}

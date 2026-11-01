@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Conçois la répartition des fonctions entre couches SHIFT pour mon S4 MK2.",
+    "should_trigger": true
+  },
+  {
+    "query": "Audit la matrice de couverture contrôles × couches de ce mapping multi-shift.",
+    "should_trigger": true
+  },
+  {
+    "query": "Comment activer et désactiver proprement le Freeze sans couche morte ?",
+    "should_trigger": true
+  },
+  {
+    "query": "Détecte les conflits entre la couche SHIFT gauche et la couche FREEZE.",
+    "should_trigger": true
+  },
+  {
+    "query": "Valide mécaniquement ce fichier TSI et rends un verdict PASS/FAIL.",
+    "should_trigger": false
+  },
+  {
+    "query": "Génère la notice PDF de ce mapping.",
+    "should_trigger": false
+  }
+]

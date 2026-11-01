@@ -6,7 +6,7 @@
   "evals": [
     {
       "id": 1,
-      "query": "Utilise le skill tsi-architect pour concevoir l'architecture d'un mapping Freeze étendu sur le S4 MK3.",
+      "query": "Utilise le skill tsi-architect pour concevoir l'architecture d'un mapping Freeze étendu sur le S4 MK2.",
       "expected_behavior": "déclenchement du skill tsi-architect (méthode, délégation à l'agent)"
     },
     {
@@ -21,7 +21,7 @@
     },
     {
       "id": 4,
-      "query": "Alloue les numéros MIDI des 16 pads du S4 MK3 sur deux couches.",
+      "query": "Alloue les numéros MIDI des 16 pads du S4 MK2 sur deux couches.",
       "expected_behavior": "déclenchement du skill tsi-architect (allocation anti-collision)"
     }
   ]

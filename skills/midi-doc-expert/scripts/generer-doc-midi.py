@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """generer-doc-midi.py — Générateur de documentation technique MIDI (skill midi-doc-expert v1.0.0).
 
-Projet TSI/Traktor — S4 MK3 / Traktor Pro 3.11. Persona : Rédacteur Technique
+Projet TSI/Traktor — S4 MK2 / Traktor Pro 3.11. Persona : Rédacteur Technique
 Expert en Mappings MIDI et Contrôleurs Audio (cahier des charges S2).
 Entrée : un fichier .tsi (préalablement validé par tsi-validator). Sorties :
 document .md (structure type 9 sections, tableaux de référence MIDI, états LED)
@@ -86,7 +86,7 @@ def generer(meta, mappings, titre):
     ]
     if modifiers:
         md += [f"La couche logique **{modifiers[0]}** s'active par un appui **Toggle** sur le contrôle physique "
-               f"dédié (pattern S4 MK3 : maintien SHIFT + pression du contrôle d'activation, ex. LOOP IN). "
+               f"dédié (pattern S4 MK2 : maintien SHIFT + pression du contrôle d'activation, ex. LOOP IN). "
                f"Tant que le modifier vaut 1, les affectations conditionnées restent actives. "
                f"Un nouvel appui toggle le ramène à 0 et désactive la couche.", ""]
     else:
@@ -125,7 +125,7 @@ def generer(meta, mappings, titre):
            "Calibration : les numéros MIDI proviennent du référentiel de référence du projet (statut « à calibrer », "
            "R-1/R-2 — spec §8) ; ils sont remplaçables par les valeurs d'un TSI réel sans changement de pipeline. ",
            "Sources : articles Native Instruments (Controller Manager, Generic MIDI), reverse-engineering public "
-           "du format TSI (IvanZ 2014), mappings TSI tiers S4 MK3 documentés, documentation PyMuPDF/pymupdf4llm "
+           "du format TSI (IvanZ 2014), mappings TSI tiers documentés (cible S4 MK2, analyse DJTT v2.1.0), documentation PyMuPDF/pymupdf4llm "
            "(chaîne PDF aval). Format PDF : généré en aval via le skill plateforme pdf.", ""]
     doc_json = {
         "document": {"titre": titre, "device": meta["device"], "structure": SECTIONS,
@@ -153,7 +153,7 @@ def ecrire(outdir, base, md, dj):
 def self_test():
     sample = os.path.join(ICI, "..", "..", "tsi-validator", "samples", "echantillon-valide.tsi")
     meta, maps = extraire_mappings(sample)
-    md, dj = generer(meta, maps, "Freeze Mode — S4 MK3 (échantillon de référence)")
+    md, dj = generer(meta, maps, "Freeze Mode — S4 MK2 (échantillon de référence)")
     ok = all(f"## {i}." in md for i in range(1, 10)) and "Tableau de Référence MIDI" in md
     ok = ok and dj["couverture"]["taux"] == 1.0 and all(m["nom"] in md for m in maps)
     print(f"self-test generer-doc-midi : 9 sections={'OK' if all(f'## {i}.' in md for i in range(1,10)) else 'KO'}, "
@@ -167,7 +167,7 @@ def main():
     ap.add_argument("tsi", nargs="?", help="fichier .tsi source (validé par tsi-validator)")
     ap.add_argument("--outdir", default=".", help="répertoire de sortie")
     ap.add_argument("--base", default=None, help="base du nom de fichier de sortie")
-    ap.add_argument("--titre", default="Mapping MIDI — S4 MK3", help="titre du document")
+    ap.add_argument("--titre", default="Mapping MIDI — S4 MK2", help="titre du document")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     if a.self_test:

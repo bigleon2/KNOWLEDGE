@@ -1,6 +1,6 @@
 # Référentiel des structures TSI (skill tsi-architect)
 
-> Source de vérité structuelle — schéma de référence spec-projet-tsi-traktor.md §5 (provenance : reverse-engineering public IvanZ 2014 + articles NI Controller Manager + mappings TSI tiers S4 MK3 documentés ; R-1 : extension déclarative si écart avec un TSI réel).
+> Source de vérité structuelle — schéma de référence spec-projet-tsi-traktor.md §5 (provenance : reverse-engineering public IvanZ 2014 + articles NI Controller Manager + mappings TSI tiers documentés, cible actuelle S4 MK2 corroborée par le réel DJTT v2.1.0 ; R-1 : extension déclarative si écart avec un TSI réel).
 
 ## 1. Squelette canonique
 

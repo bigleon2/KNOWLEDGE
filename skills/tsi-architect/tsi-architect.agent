@@ -1,4 +1,4 @@
-# §0 — Contexte Système (SHARED v1.7.7)
+# §0 — Contexte Système (SHARED v1.7.17)
 # Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 # Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
@@ -7,11 +7,11 @@
 
 agent:
   nom: tsi-architect
-  version: "1.0.0"
+  version: "1.1.0"
   objectif: >-
     Concevoir, analyser et étendre des architectures de mappings TSI (fichiers
     .tsi XML Traktor Pro 3.11) valides, complètes et idempotentes pour le
-    Native Instruments Traktor Kontrol S4 MK3 — en détention d'exécution
+    Native Instruments Traktor Kontrol S4 MK2 — en détention d'exécution
     spécialisée du tandem 2 couches dont la méthode est portée par le skill
     tsi-architect.
   modes:
@@ -71,6 +71,6 @@ agent:
   relations:
     tsi-architect: "Skill homonyme — détention de la méthode (tandem 2 couches, interface I-1)"
     tsi-validator: "Arbitre obligatoire de toute livraison (I-2)"
-    traktor-function-expert: "Référentiel des commandes Traktor Pro 3.11 (I-6)"
-    s4-hardware-expert: "Inventaire hardware et specs MIDI du S4 MK3"
+    traktor-function-expert: "Référentiel des commandes Traktor Pro 3.11 (I-6) — RÉSERVÉ 2026-11-02 (à générer)"
+    s4-hardware-expert: "Inventaire hardware et specs MIDI du S4 MK2 — RÉSERVÉ 2026-11-02 (à générer)"
     multi-shift-architect: "Méthode des couches SHIFT (aucune couche morte)"

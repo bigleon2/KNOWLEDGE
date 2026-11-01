@@ -1,0 +1,7 @@
+{
+  "id": "TF-01",
+  "nom": "inventaire exhaustif du ZIP (6 fichiers + 2 dossiers, tailles)",
+  "ok": true,
+  "detail": "8 membres (2 dossiers), tailles conformes : True",
+  "duree_ms": 10
+}

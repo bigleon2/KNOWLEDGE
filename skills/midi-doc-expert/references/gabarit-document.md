@@ -14,7 +14,7 @@
 ## Schéma d'annexes types
 
 - Statuts de calibration du référentiel MIDI (R-1 : interface stable — valeurs remplaçables sans changement de pipeline).
-- Sources (2 minimum par donnée factuelle, ENF-04) : articles NI Controller Manager / Generic MIDI, reverse-engineering TSI (IvanZ 2014), mappings TSI tiers S4 MK3 documentés, documentation PyMuPDF/pymupdf4llm.
+- Sources (2 minimum par donnée factuelle, ENF-04) : articles NI Controller Manager / Generic MIDI, reverse-engineering TSI (IvanZ 2014), mappings TSI tiers documentés (cible S4 MK2 — analyse réelle DJTT v2.1.0), documentation PyMuPDF/pymupdf4llm.
 - Chaîne PDF : conversion aval par le skill plateforme `pdf` (PDF principal + PDF allégé), depuis le Markdown généré.
 
 ## Interdits

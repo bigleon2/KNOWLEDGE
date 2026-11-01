@@ -1,0 +1,40 @@
+[
+  {
+    "query": "Analyse mon ZIP DJTT Kontrol S4 MK2 avec tous ses documents illustrés.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fais la relation entre ma photo du bloc FX et la vue complète du QuickGuide.",
+    "should_trigger": true
+  },
+  {
+    "query": "Analyse les sous-dossiers du pack de mapping et classe les TSI qu'il contient.",
+    "should_trigger": true
+  },
+  {
+    "query": "Quels sont les comptes de mon mapping réel (format DIOM) par rapport au référentiel G2 ?",
+    "should_trigger": true
+  },
+  {
+    "query": "Vérifie mécaniquement la correspondance entre les captures d'éléments du S4 MK2 et les contrôles du mapping.",
+    "should_trigger": true
+  },
+  {
+    "query": "Valide mon fichier .tsi avant publication.",
+    "should_trigger": false,
+    "exclusifs": ["valide"],
+    "note": "veto croisé v1.0.0 (Task 33, trace 1a197aaf0eb6557d) : demande mono-membre de validation structurelle → tsi-validator (E1-E8)"
+  },
+  {
+    "query": "Conçois l'architecture d'un nouveau mapping TSI complet.",
+    "should_trigger": false,
+    "exclusifs": ["conçois"],
+    "note": "veto croisé v1.0.0 (Task 33) : conception → tsi-architect (analyse-doc-s4mk2 couvre les mappings EXISTANTS)"
+  },
+  {
+    "query": "Documente ce mapping avec un tableau de référence MIDI.",
+    "should_trigger": false,
+    "exclusifs": ["documente"],
+    "note": "veto croisé v1.0.0 (Task 33) : documentation → midi-doc-expert"
+  }
+]

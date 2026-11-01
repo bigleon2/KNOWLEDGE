@@ -12,6 +12,7 @@
 | Version | Date | Améliorations implantées | Avantage par rapport à la version précédente |
 |---------|------|--------------------------|----------------------------------------------|
 | v1.0.0 | 2026-11-01 | Version initiale (inscrite au dépôt Task 31) : SKILL.md + evals (evals.json + trigger_evals.json 6 cas — vetos croisés tandem Task 30) + bloc §0 SHARED v1.7.17 ; périmètres croisés encodés : validation = tsi-validator, documentation = midi-doc-expert, conception = tsi-architect | — (point de départ) |
+| v1.1.0 | 2026-11-02 | Task 33 (GO initial P2 MK3→MK2, trace 1a197aaf0eb6557d) : conversion périmètre MK3→MK2, §0 re-normalisé v1.7.17, copie host→repo byte-identique | périmètre aligné sur le contrôleur réel du propriétaire (corroborations DJTT v2.1.0) |
 
-Révisions documentaires de la famille (sans changement de version du skill) : Task 30 (2026-11-01, directive GO trace 1a197552459ad8f5) — recalibrage triggers (vetos croisés V6.1 sur les cas négatifs en dérive, replay hôte PASS 483/483) ; Task 31 (2026-11-01, directive GO trace 1a1975c9a4c7fa31) — inscription au dépôt + entrée KB + pin ECO_SKILLS.
+Révisions documentaires de la famille (sans changement de version du skill) : Task 30 (2026-11-01, directive GO trace 1a197552459ad8f5) — recalibrage triggers (vetos croisés V6.1 sur les cas négatifs en dérive, replay hôte PASS 483/483) ; Task 31 (2026-11-01, directive GO trace 1a1975c9a4c7fa31) — inscription au dépôt + entrée KB + pin ECO_SKILLS. ; Task 33 (2026-11-02, GO initial P2/P5, trace 1a197aaf0eb6557d) — conversion périmètre MK2 + Task 33 cascade KB (byte-identité, entrée KB recalibrée).
 Fichiers archivés de la famille : néant (0 fichier).
