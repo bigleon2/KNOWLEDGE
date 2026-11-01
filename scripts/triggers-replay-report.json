@@ -6,9 +6,10 @@
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
   "v6_1": "veto exclusifs avant scoring + cache voie L lecture seule sur désaccord (Task 30)",
   "sources_verdicts": {
-    "voie-m": 790,
+    "voie-m": 795,
     "voie-l-cache": 13,
-    "veto-exclusif": 16
+    "veto-exclusif": 17,
+    "non-resorbe": 2
   },
   "verdict_voie_m_seule": "FAIL (informatif)",
   "derive_voie_m_seule": [
@@ -19,13 +20,16 @@
     "iphone19",
     "jd-resume-tailor",
     "refactor-guard",
+    "traduction-zh-fr",
     "vue-upload"
   ],
-  "n_skills": 105,
+  "n_skills": 106,
   "skills_ok": 105,
-  "skills_derive": 0,
-  "verdict": "PASS",
-  "derives": [],
+  "skills_derive": 1,
+  "verdict": "FAIL",
+  "derives": [
+    "traduction-zh-fr"
+  ],
   "skills": {
     "ASR": {
       "version": "?",
@@ -4090,7 +4094,7 @@
       ]
     },
     "gen-plan": {
-      "version": "3.30.0",
+      "version": "3.31.0",
       "n_cases": 13,
       "n_keywords": 54,
       "score_officiel": "13/13",
@@ -9267,6 +9271,113 @@
         },
         {
           "query": "analyse ce CSV et donne-moi des statistiques",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "voie-m"
+        }
+      ]
+    },
+    "traduction-zh-fr": {
+      "version": "1.3.0",
+      "n_cases": 8,
+      "n_keywords": 81,
+      "score_officiel": "6/8",
+      "ok": false,
+      "derive_m": true,
+      "cases": [
+        {
+          "query": "Traduis ce fichier markdown écrit en chinois vers le français avec traduction-zh-fr.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "chinoi",
+            "fichier",
+            "francai",
+            "markdown",
+            "traduct",
+            "vers"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Francise ce skill chinois en respectant la politique P1/P2 (prose traduite, données conservées).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.444,
+          "hits": [
+            "chinoi",
+            "francis",
+            "polit",
+            "skill"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Traduis ce PDF chinois en français en préservant la mise en page et les formules.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "chinoi",
+            "francai",
+            "pdf"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Applique le glossaire terminologique et exporte la mémoire de traduction en TMX pour le chinois→français.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "chinoi",
+            "export",
+            "francai",
+            "glossair",
+            "traduct"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Traduis la documentation chinoise du référentiel en anglais avec le même outil.",
+          "expected": true,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": false,
+          "source": "non-resorbe"
+        },
+        {
+          "query": "Traduis ce contrat allemand en français.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "veto-exclusif"
+        },
+        {
+          "query": "Résume ce vidéo YouTube en chinois sans traduction.",
+          "expected": false,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "chinoi",
+            "traduct"
+          ],
+          "ok": false,
+          "source": "non-resorbe"
+        },
+        {
+          "query": "Génère une affiche avec une typographie chinoise élégante.",
           "expected": false,
           "trigger_m": false,
           "score": 0.0,

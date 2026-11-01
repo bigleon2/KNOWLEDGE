@@ -504,3 +504,16 @@ PLAN-AFFICHE (plan : download/plan-agent-traduction-zh-fr-integration.md — cl�
 - **Hérité résorbé au passage (règle d'or n°5)** : cascade v3.29.0/v3.30.0 jamais committée (PMs, SHARED/PM-INSTALL/ULTRA, KB, aliases.json, propagation §0 651 fichiers) → 2 commits (53ae560 v3.31.0, bf44e77 propagation §0 v1.7.17) ; main local rattaché à la lignée réelle (3bbd616→ce4e3ef→48f2298, HEAD détachée corrigée) ; version-management installé sur l'hôte (lacune détectée par l'arbitre hôte, v1.2.0) ; modes de fichiers archive normalisés 644 (byte-identité intacte).
 - **Preuves** : generer-pm --check 4/4 COHERENT ×3 ; integrity 86/86 PASS ×2 dépôt + ×2 hôte ; archive v2.3 rescellée round-trip ×2 (corpus 9 + piliers 6 byte-identiques) ; byte-identité hôte↔dépôt vérifiée (SKILL, KB, SHARED, PM-INSTALL).
 - **En attente** : push origin/main (2 commits) = propriétaire (KO-L009 point 5).
+
+---
+PLAN-AFFICHE (plan : download/plan-correct-work-projet-v131-2026-11-01.md — correct-work (projet) Tasks 26-27, G1-G6, answer key D001-D007, verdict E8 PASS auto-arbitré, horodaté 2026-11-01T13:22:00+00:00)
+---
+
+---
+## Task 28 — correct-work (projet) : vérification complète Tasks 26-27 (2026-11-01 ~13:35 UTC, session web-4f989063, trace 1a197445c7f5fc6d)
+- **Plan** : download/plan-correct-work-projet-v131-2026-11-01.md (answer key D001-D007, E8 PASS, check_plan_protocol P1-P5 PASS ×2) — PLAN-AFFICHE posé à l'entrée précédente.
+- **Groupes** : G1 PASS (G-RES = CRITIQUE disque 1,40 Go — F4 récurrent, exécution sobre) · G2 PASS (generer-pm 4/4 COHERENT ; C1-C4 ×7 greps ; description frontmatter md5 identique v3.30.0=v3.31.0 — non-régression prouvée) · G3 PASS (integrity 86/86 ×2 dépôt + ×2 hôte ; verify-cross 100 % ; triggers replay 105/106 — F-2) · G4 PASS (byte-identité ×6 fichiers + PM-ULTRA + archive ×2 côtés) · G5 PASS (4 commits, arbre propre hors download + rapport arbitre ; @historique vs origin = 3 PMs ajoutés + 23 modes-seuls — R4 intact) · G6 PASS.
+- **F-1 (S2, corrigé)** : `version-management` DISPARU de l'hôte entre deux messages (dernier manifeste PASS le contenait) — la réserve ① « skills/ hôte volatil » se matérialise à nouveau ; corrigé par réinstallation depuis le dépôt (byte-identique 4ef4538b…, 86/86 ×2 hôte) ; recommendation : systématiser le hook d'ouverture Règle 4 (auto-install-ecosysteme.py) à chaque session.
+- **F-2 (S3, héritée)** : dérive triggers `traduction-zh-fr` v1.3.0 — 6/8 (faux négatif « documentation en anglais avec le même outil », faux positif « résume … sans traduction ») ; héritée de la livraison v1.3.0 du matin, non causée par v3.31.0 ; correction proposée : recalibrer trigger_evals (keywords anglais/documentation/référentiel + veto négatif « sans traduction ») puis replay — sur GO.
+- **F-3 (S4, récurrent)** : disque 1,40 Go libre (G-RES CRITIQUE) — surveillance maintenue.
+- **VERDICT FINAL : PASS AVEC RÉSERVES** — F-1 corrigé sur épreuve, F-2 réserve documentée avec correction proposée, F-3 surveillance.
