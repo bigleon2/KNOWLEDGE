@@ -13,7 +13,7 @@
       "nom": "inventaire exhaustif du ZIP (6 fichiers + 2 dossiers, tailles)",
       "ok": true,
       "detail": "8 membres (2 dossiers), tailles conformes : True",
-      "duree_ms": 10
+      "duree_ms": 4
     },
     {
       "id": "TF-02",
@@ -55,35 +55,35 @@
       "nom": "rejet propre : TSI de préférences (rc=1, message, sans traceback)",
       "ok": true,
       "detail": "rc=1, message=True, traceback=False",
-      "duree_ms": 42
+      "duree_ms": 44
     },
     {
       "id": "TR-02",
       "nom": "robustesse : blob DIOM corrompu → rejet contrôlé, sans crash",
       "ok": true,
       "detail": "rc=1, rejet contrôlé : True, traceback : False",
-      "duree_ms": 62
+      "duree_ms": 64
     },
     {
       "id": "TR-03",
       "nom": "idempotence ×2 : pipeline byte-stable (re-jeu identique)",
       "ok": true,
       "detail": "rc 0/0, byte-stable : True",
-      "duree_ms": 291
+      "duree_ms": 284
     },
     {
       "id": "TR-04",
       "nom": "robustesse : cible inexistante → rc=2, message propre",
       "ok": true,
       "detail": "rc=2, message USAGE : True",
-      "duree_ms": 55
+      "duree_ms": 52
     },
     {
       "id": "TR-05",
       "nom": "self-test moteur : re-jeu ×2 + conformité G2 + baseline",
       "ok": true,
       "detail": "rc=0, self-test=True",
-      "duree_ms": 192
+      "duree_ms": 185
     }
   ]
 }
