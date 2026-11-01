@@ -100,7 +100,7 @@ ECO_SKILLS = {
     "spec-driven-development": "1.1.1",
     "refactoring-engineering": "1.1.1",  # n°55 — Task 9 (2026-10-12) : Description Optimization A2 (dérive voie M résorbée, re-mesure 7/7) ; Task 8 : seule discipline de refactoring, outil refactoring-test ; Task 12 : recalibrage doc (§5 baseline MESURÉE 7/7, plancher ref-test >=1.0.1)
     "refactor-guard": "1.8.1",
-    "alias-eco": "1.2.0",  # KO-L004 Task 25bis/25ter (2026-10-23) : Description Optimization v1.1.0 + grammaire B --trigger v1.2.0 ; créé Task 18 (registre d'alias $<ALIAS> — délégation correct-work mode PROJET),  # Task 8 (fusion discussion 468a4c26) : garde-fous de refactoring — lignée externe v1.7.0, base hôte v1.2.0 portée
+    "alias-eco": "1.3.0",  # KO-L004 Task 25bis/25ter (2026-10-23) : Description Optimization v1.1.0 + grammaire B --trigger v1.2.0 ; créé Task 18 (registre d'alias $<ALIAS> — délégation correct-work mode PROJET),  # Task 8 (fusion discussion 468a4c26) : garde-fous de refactoring — lignée externe v1.7.0, base hôte v1.2.0 portée,  # Task 32 (2026-11-01) : MINOR v1.3.0 — alias $FACON2 + exemples d'usage par commande (SKILL.md §2.4)
     "cahier-des-charges": "2.0.2",  # KO-L004 (session web-eb6c8580, 2026-10-30 — résorption réserve S3, tâche 5) : v2.0.1→v2.0.2 (élargissement description en M4 — rejeu voie M 12/12, cas [9] voie-m) ; précédent (même session, P3-P7) : v1.0.0→v2.0.1 (v2.0.0 web-dd290b0d 2026-10-25 : extension cycle System Engineering complet ; v2.0.1 : reconnaissance discipline Engineering Design — tags discipline/engineering, description au canon, synchronisation différée R3 résorbée) ; précédent (SG7.4 Task B2, web-f90062ce, 2026-10-24) : entrée KB restaurée — forme publiée e9a68a1 sans entrée KB (trou de synchronisation analyse B2 résorbé) ; créé v1.0.0 directive propriétaire 2026-10-23
     "agent-prompt-engineering": "1.0.1",  # KO-L004 (SG7.4 Task B2, session web-f90062ce, 2026-10-24) : entrée KB créée — forme au dépôt depuis e9a68a1 sans entrée KB (trou de synchronisation analyse B2 résorbé) ; matérialisé 2026-09-06
     "fullstack-dev": "1.0.0",  # Task 8 (fusion discussion 468a4c26 Task 27 externe) : inscrit au registre — précédent vue-upload
@@ -115,6 +115,7 @@ ECO_SKILLS = {
     "tsi-architect": "1.0.0",  # Task 31 (inscription au dépôt, directive GO (a) trace 1a1975c9a4c7fa31, session web-4f989063 2026-11-01) : skill hôte-seul inscrit — lignage honnête Task 27, 44e entrée versionnée
     "tsi-validator": "1.0.0",  # Task 31 (même directive) : arbitre mécanique tandem TSI, 45e entrée
     "midi-doc-expert": "1.0.0",  # Task 31 (même directive) : génération documentation MIDI, 46e entrée
+    "orchestrateur-tsi": "1.0.0",  # Task 32 (directive propriétaire trace 1a1977ef5718a28d, session web-4f989063 2026-11-01) : orchestrateur domaine TSI/Traktor (méta maître, tandem skill+agent), 47e entrée
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.

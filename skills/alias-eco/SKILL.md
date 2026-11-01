@@ -1,6 +1,6 @@
 ---
 name: alias-eco
-version: 1.2.0
+version: 1.3.0
 category: ecosystem
 language: fr
 tags:
@@ -98,7 +98,7 @@ Chemin du registre dérivé de l'emplacement du script (`skills/@historique/@Ali
 {
   "format": "aliases-eco v1",
   "mis_a_jour": "2026-10-23",
-  "source": "alias-eco v1.2.0",
+  "source": "alias-eco v1.3.0",
   "phrases": [
     {
       "phrase": "mon écosystème personnel",
@@ -113,17 +113,33 @@ Chemin du registre dérivé de l'emplacement du script (`skills/@historique/@Ali
 }
 ```
 
+### §2.4 Exemples d'usage concrets (une par commande, v1.3.0)
+
+Chaque exemple ci-dessous est une invocation réelle (sorties observées, registre vivant) — les phrases portées par `$ECO-LEON`, `$FACON` et `$FACON2` sont celles du registre actuel.
+
+| Commande | Invocation réelle | Effet observé |
+|----------|-------------------|---------------|
+| `--selftest` | `python3 skills/alias-eco/scripts/alias-manager.py --selftest` | `SELFTEST : 21/21 PASS` (rc=0) — fixtures en tmp isolé, registre réel intact |
+| `--resolve` | `alias-manager.py --resolve 'optimise $ECO-LEON $FACON2'` | Sortie : `optimise mon écosystème personnel (cohérent, optimisé et fonctionnel)` (rc=0) |
+| `--list` | `alias-manager.py --list` | `Registre des alias (9 phrases, 3 alias) — …/@Alias/aliases.json` puis `$FACON2 (cohérent, optimisé et fonctionnel)`, `$FACON de façon cohérente, optimisée et fonctionnelle`, `$ECO-LEON mon écosystème personnel`… (tri alphabétique) |
+| `--add` | `alias-manager.py --add FACON2 "(cohérent, optimisé et fonctionnel)"` | `Alias enregistré : $FACON2 = (cohérent, optimisé et fonctionnel)` (rc=0) ; re-jeu : `Alias mis à jour : $FACON2 = …` (idempotent) |
+| `--trigger` | `alias-manager.py --trigger 'alias-eco «(cohérent, optimisé et fonctionnel)» --add $FACON2'` | `Alias enregistré : $FACON2 = (cohérent, optimisé et fonctionnel)` (rc=0) — attribution grammaire B en une expression |
+| `--scan` | `alias-manager.py --scan download/transcription-session.md` | `Registre mis à jour : N phrases récurrentes détectées (total 9)` — fusion triée/dédupliquée, alias préservés |
+| `--chat` | `alias-manager.py --chat download/transcription-session.md` | scan + `Liste TXT (tri alphabétique) : download/alias-eco-chat-2026-11-01.txt (9 phrases)` |
+
+**Piège shell (documenté v1.3.0)** : dans un shell POSIX, `$ECO-LEON` non quoté est expansé comme variable (vide) AVANT d'atteindre le script — toujours quoter l'argument en **guillemets simples** : `--resolve 'de $ECO-LEON'` et non `--resolve "de $ECO-LEON"`. **Garde de format** : la saisie bas-de-casse est rejetée volontairement (`--add facon2` → rc=2, `ABANDON : format d'alias invalide 'facon2'`) — le format canonique est majuscule (§1.1) ; `$facon2` saisi par le propriétaire est lu et enregistré comme `$FACON2`.
+
 ## §3 — Relations
 
 | Avec | Nature | Détails |
 |------|--------|---------|
 | correct-work | Utilisé par | Mode PROJET — analyse des discussions : délégation de la tenue du registre (correct-work v2.8.0 §10.1, dependencies >= v1.0.0) |
 | @historique/ | Héberge | `@Alias/` — sous-dossier d'infrastructure du registre (convention `@` SHARED §1.2 ; règles de conservation @historique/README) |
-| registre KB | Enregistré | Entrée `alias-eco v1.2.0` (category ecosystem) — cross-reference bidirectionnelle avec correct-work |
+| registre KB | Enregistré | Entrée `alias-eco v1.3.0` (category ecosystem) — cross-reference bidirectionnelle avec correct-work |
 
 ## §4 — Mode d'emploi rapide
 
-1. **Lire** un message contenant `$ECO-LEON` → expanser via `python3 skills/alias-eco/scripts/alias-manager.py --resolve "<texte>"` (ou lecture directe du registre).
+1. **Lire** un message contenant `$ECO-LEON` → expanser via `python3 skills/alias-eco/scripts/alias-manager.py --resolve '<texte>'` (ou lecture directe du registre) — arguments quotés en guillemets simples (piège shell §2.4).
 2. **Tenir le registre** pendant une session → `--scan <transcrit>` ou `--chat <transcrit>` (mode « alias-eco (chat) »).
 3. **Attribuer un alias** → `--add ECO-LEON "mon écosystème personnel"` (ou grammaire B : `--trigger 'alias-eco "mon écosystème personnel" --add ECO-LEON'`).
 4. **Afficher** → `--list` (ou déclencheur « liste mes alias »).

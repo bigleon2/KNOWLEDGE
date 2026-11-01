@@ -4,6 +4,15 @@
   "source": "alias-eco v1.0.0",
   "phrases": [
     {
+      "phrase": "(cohérent, optimisé et fonctionnel)",
+      "alias": "FACON2",
+      "occurrences": 0,
+      "occurrences_cumulees": 0,
+      "premiere_detection": "2026-11-01",
+      "derniere_detection": "2026-11-01",
+      "source": "grammaire B (GO propriétaire trace 1a1977ef5718a28d, session web-4f989063 2026-11-01) : alias-eco \"(cohérent, optimisé et fonctionnel)\" --add $facon2 → forme canonique $FACON2"
+    },
+    {
       "phrase": "de façon cohérente",
       "alias": null,
       "occurrences": 8,

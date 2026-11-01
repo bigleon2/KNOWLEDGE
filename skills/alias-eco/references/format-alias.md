@@ -1,4 +1,4 @@
-# Format `$<ALIAS>` et registre `aliases.json` — Conventions (alias-eco v1.2.0)
+# Format `$<ALIAS>` et registre `aliases.json` — Conventions (alias-eco v1.3.0)
 
 > Référence normative du système d'alias de l'écosystème Knowledge (directive propriétaire 2026-10-23).
 > Source de vérité opérationnelle : `skills/@historique/@Alias/aliases.json` (une seule source, R4).

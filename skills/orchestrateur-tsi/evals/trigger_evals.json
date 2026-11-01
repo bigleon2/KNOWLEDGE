@@ -1,0 +1,40 @@
+[
+  {
+    "query": "Orchestre un projet TSI complet : conçois le mapping, valide-le puis documente-le pour mon S4 MK3.",
+    "should_trigger": true
+  },
+  {
+    "query": "Coordonne mes skills Traktor et agents pour étendre mon mapping de slices de bout en bout.",
+    "should_trigger": true
+  },
+  {
+    "query": "Mission complète sur mon Kontrol S4 : nouvelle architecture, validation mécanique et notice d'utilisation du mapping.",
+    "should_trigger": true
+  },
+  {
+    "query": "Quel skill TSI dois-je utiliser pour auditer puis documenter mon fichier .tsi ?",
+    "should_trigger": true
+  },
+  {
+    "query": "Orchestre la conception, la validation et la documentation de mon mapping Traktor Pro.",
+    "should_trigger": true
+  },
+  {
+    "query": "Valide mon fichier .tsi avant publication.",
+    "should_trigger": false,
+    "exclusifs": ["valide"],
+    "note": "veto croisé v1.0.0 (Task 32, trace 1a1977ef5718a28d) : demande mono-membre → tsi-validator (routage direct, garde non-substitution §1.4.5)"
+  },
+  {
+    "query": "Conçois l'architecture d'un nouveau mapping TSI complet.",
+    "should_trigger": false,
+    "exclusifs": ["conçois"],
+    "note": "veto croisé v1.0.0 (Task 32) : demande mono-membre → tsi-architect (routage direct)"
+  },
+  {
+    "query": "Documente ce mapping avec un tableau de référence MIDI.",
+    "should_trigger": false,
+    "exclusifs": ["documente"],
+    "note": "veto croisé v1.0.0 (Task 32) : demande mono-membre → midi-doc-expert (routage direct)"
+  }
+]
