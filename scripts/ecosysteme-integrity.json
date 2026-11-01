@@ -10,9 +10,9 @@
     "README.md": "83920e456f2e609be63cec50e7375790553c64f1573ac52508df635a8c10ab7e",
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f",
     "piliers/scripts/certification-complete.py": "ef118971532b6eac1908a6e64475d34bf8020eb55ee33f667ca816912de4d5a3",
-    "piliers/scripts/check-ecosysteme-integrity.py": "29012943665da4907b9ce8269861210679d2bc4666f559e75a254b91bbf0f513",
+    "piliers/scripts/check-ecosysteme-integrity.py": "b817ddbb88106eec52e4d4e8fa23688af924d780942864a50a73f8b37bb279c4",
     "piliers/scripts/install-ecosysteme-local.sh": "a4d1339958e31d61602eb9b94db6e35132e89abbdb64baced4f6fa699d228175",
-    "piliers/skills/KNOWLEDGE.md": "cbe47b7359ae83f993de192fa5dd1b865e4824ae7b2a7cebbac957916cd40d7b",
+    "piliers/skills/KNOWLEDGE.md": "4a094e76208ce06c3069ca1b06d772ab7b1c15843fed58915acc7d20835ea373",
     "piliers/skills/correct-work/SKILL.md": "f5de7cc726f3e1d697c9d079a52416788cdc32bc77d547dd5c8eb6bac9e6c65f",
     "piliers/skills/gen-plan/SKILL.md": "4a4a4871861b9f5d9de47652ffc4c977eb3855c7b61ddd1f489aa71074dbf40c"
   },
@@ -28,7 +28,7 @@
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "b45f5ba98fdec6a30e7126b1af1f1fc55a35a5321ee833166f9b450bdda7d1f3"
+    "mon-ecosysteme_archive.zip": "e263fb2e3a1e4e877d979eb1f9a823dcb4a5deeff923a9a6220a591378f39429"
   },
   "skills": {
     "agent-creator": {
@@ -44,8 +44,8 @@
       "version": "1.3.0"
     },
     "analyse-doc-s4mk2": {
-      "sha256": "015a425468bc02f697ad4e6a7c88b8892707c0812dfab9053b3667257bcb2ec7",
-      "version": "1.0.0"
+      "sha256": "d4847ef13c09b5815598c50ab8a4ee443480af4b57f7a4fdca0f9d928b468095",
+      "version": "1.2.0"
     },
     "audio-metadata": {
       "sha256": "fbce21f83247ff67a76d5671f0e863cec7dfd471c5a5013203afc9512b4fbab7",
@@ -208,8 +208,8 @@
       "version": "1.1.0"
     },
     "tsi-validator": {
-      "sha256": "7af4447f760821dffb3403c57fd247884815e0fca14c4a16b68b4d1819e10f97",
-      "version": "1.1.0"
+      "sha256": "1969087dc3356be7682fabcb9c8263eadd429e3225d96d5087d09ae1fada7c37",
+      "version": "1.2.0"
     },
     "version-management": {
       "sha256": "4ef4538b212d6007a630c229d31806989e9e0f295ecc24db4520e69235dc9c32",

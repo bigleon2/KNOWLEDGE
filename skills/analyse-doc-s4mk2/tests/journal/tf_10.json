@@ -3,5 +3,5 @@
   "nom": "détection d'écart injecté : PDF fantôme (Hotcue 9/FX 5/Deck H/Slice 12) → 4 HORS_UNIVERS → FAIL",
   "ok": true,
   "detail": "rc=1, verdict ÉCARTS_DÉTECTÉS, écarts [('deck', 'H'), ('fx', '5'), ('hotcue', '9'), ('slice', '12')], motif pipeline=True, traceback=False",
-  "duree_ms": 114
+  "duree_ms": 116
 }
