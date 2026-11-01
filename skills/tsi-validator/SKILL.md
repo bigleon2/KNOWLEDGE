@@ -1,6 +1,6 @@
 ---
 name: tsi-validator
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 tags:
@@ -40,14 +40,14 @@ read_when:
 
 ## §1 — Mission
 
-Valider MÉCANIQUEMENT tout fichier TSI contre le schéma de référence (spec §5, règles R1-R8) et rendre un verdict exploitable machine-à-machine : `PASS` (exit 0) ou `FAIL` (exit 1) avec la liste complète des erreurs par catégorie. Le validateur ne modifie jamais les fichiers validés (arbitre, pas exécutant — anti-auto-certification). Il matérialise la règle E7-multishift de la méthode `multi-shift-architect` (aucune couche morte) et constitue la garde obligatoire du tandem `tsi-architect` (interface I-2 : jamais de mapping livré sans verdict PASS).
+Valider MÉCANIQUEMENT tout fichier TSI et rendre un verdict exploitable machine-à-machine : `PASS` (exit 0) ou `FAIL` (exit 1) avec la liste complète des erreurs par catégorie. Le validateur est BI-RACINE (v1.2.0 — pendante Task 33 n°1 résorbée) : racine `NISYSTEM` (format déclaratif des échantillons écosystème — règles E1-E8 complètes sur le XML) ou racine `NIXML` (format réel Traktor Pro 3.11, constats Task 33 sur DJTT v2.1.0 et DREW) — pour la voie réelle, validation structurelle du blob DIOM embarqué (Entry `DeviceIO.Config.Controller@Value` base64 : magique DIOM, hiérarchie DEVS→DEVI→DDAT→DDDC→DDCB→CMAS→CMAI/CMAD + DCBM, cohérence des comptes en E2, device en E3) ; la sémantique E4-E8 du contenu binaire reste du ressort du moteur `analyse-doc-s4mk2` (délégation R4, jamais dupliquer). Le validateur ne modifie jamais les fichiers validés (arbitre, pas exécutant — anti-auto-certification). Il matérialise la règle E7-multishift de la méthode `multi-shift-architect` (aucune couche morte) et constitue la garde obligatoire du tandem `tsi-architect` (interface I-2 : jamais de mapping livré sans verdict PASS).
 
 ## §2 — Catégories d'erreur (E1-E8)
 
 | Cat. | Règle | Exemple de détection |
 |------|-------|----------------------|
-| E1-structure | racine NISYSTEM + VERSION ; 1 DEVICE avec NAME, TYPE, IN_PORT, OUT_PORT, DECK_TARGET | DEVICE sans DECK_TARGET |
-| E2-comptage | MAPPINGS COUNT = nombre de MAPPING enfants | COUNT=12 pour 8 mappings |
+| E1-structure | BI-RACINE : racine `NISYSTEM` (déclaratif) + VERSION + 1 DEVICE (NAME, TYPE, IN_PORT, OUT_PORT, DECK_TARGET) — ou racine `NIXML` (réel) + Entry contrôleur + blob base64 DIOM décodable + hiérarchie de trames ; TSI de préférences (Entry contrôleur absente) rejeté proprement | DEVICE sans DECK_TARGET ; Entry contrôleur absente |
+| E2-comptage | Déclaratif : MAPPINGS COUNT = MAPPING enfants. Réel : comptes déclarés == lus (DDCI/DDCO, CMAI/CMAD embarqués, DCBM) | COUNT=12 pour 8 mappings ; CMAS : 2 CMAI déclarés, 1 lu |
 | E3-attributs | NAME unique non vide ; TYPE IN/OUT ; GROUP énuméré ; CONTROL non vide | GROUP="Deck Z" |
 | E4-plages | CHANNEL 0-15 ; MESSAGE NOTE/CC/PB/PC ; NUMBER 0-127 ; MODE énuméré | NUMBER=200 |
 | E5-doublon | unicité (CHANNEL, MESSAGE, NUMBER, conditions) en TYPE=IN | même note deux fois |
@@ -63,12 +63,13 @@ python3 skills/tsi-validator/scripts/valider-tsi.py <fichier.tsi> --json  # rapp
 python3 skills/tsi-validator/scripts/valider-tsi.py --self-test           # golden samples
 ```
 
-Sortie : `VERDICT : PASS|FAIL` en dernière ligne ; exit code 0 ssi PASS. Rapport JSON : liste `erreurs` (categorie, detail) + `stats` (mappings, in, out, couches_logiques). Extension déclarative (R-1) : toute divergence constatée avec un TSI réel s'ajoute comme nouvelle règle — l'interface (verdict/exit code/JSON) reste stable.
+Sortie : `VERDICT : PASS|FAIL` en dernière ligne ; exit code 0 ssi PASS ; en mode `--json`, le rapport JSON est sur stdout et le verdict sur stderr (JSON parseable en pipe). Rapport JSON : liste `erreurs` (categorie, detail) + `stats` (mappings, in, out, couches_logiques ; voie réelle : format, device, cmai, dcbm). Extension déclarative (R-1) : toute divergence constatée avec un TSI réel s'ajoute comme nouvelle règle — l'interface (verdict/exit code/JSON) reste stable.
 
 ## §4 — Échantillons de référence (golden samples)
 
 - `samples/echantillon-valide.tsi` — Freeze Mode S4 MK2 (15 mappings, règles R1-R8 conformes ; pattern Shift+Loop In corroboré par le réel DJTT S4 MK2 v2.1.0) : DOIT rendre PASS.
 - `samples/echantillon-invalide.tsi` — porte au moins une violation de chaque catégorie E1-E8 : DOIT rendre FAIL avec les 8 catégories déclenchées (vérifié par --self-test).
+- Voie réelle NIXML : fixtures DIOM minimales générées à la volée par le self-test (tempfile — valide → PASS avec device/CMAI ; incohérence de comptage CMAS → FAIL E2), aucune dépendance à des fichiers externes.
 
 ## §5 — Relations
 
