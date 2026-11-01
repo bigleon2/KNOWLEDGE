@@ -87,7 +87,7 @@ def generer(inv: dict, ts: str) -> str:
     return f"""# Règles projet — écosystème Knowledge
 
 > Généré mécaniquement par `sync-instructions-ecosysteme.py` — NE PAS ÉDITER À LA MAIN (régénéré idempotent byte-stable ; source de vérité : le disque, R-F3).
-> Réinstallation écosystème : `python3 skills/gen-plan/scripts/ensure-installed.py --check` (rc≠0 = préemption `--reinstall`) PUIS `python3 scripts/sync-instructions-ecosysteme.py`.
+> Réinstallation écosystème : `python3 scripts/auto-install-ecosysteme.py` (self-healing — contrôle via copie dépôt → pipeline canonique si non-INSTALLE ; rc≠0 = arrêt explicite) PUIS `python3 scripts/sync-instructions-ecosysteme.py`.
 
 ## Règle 1 — Référentiel PM SHARED (fait foi — s'applique à toute session)
 
@@ -114,7 +114,7 @@ Toute génération, mise à jour, extension ou reprise d'un plan d'actions se fa
 
 ## Règle 4 — Ouverture de session (chaîne mécanique, dans l'ordre)
 
-1. `python3 skills/gen-plan/scripts/ensure-installed.py --check` (rc≠0 → `--preempt` : suspendre toute tâche, réinstaller) ;
+1. `python3 scripts/auto-install-ecosysteme.py` (self-healing : contrôle via copie dépôt, réinstallation pipeline canonique si non-INSTALLE ; rc≠0 = arrêt explicite règle d'or n°1 — options `--with-toolchain`/`--with-argos` pour la toolchain pip, rapport seul par défaut ; si `scripts/` hôte est absent : `python3 KNOWLEDGE-repo/scripts/auto-install-ecosysteme.py`) ;
 2. `python3 scripts/sync-instructions-ecosysteme.py` (maintient CE fichier — PM SHARED actif) ;
 3. `python3 scripts/garde-plan-genplan.py` (plans hors protocole ?) ;
 4. lecture `worklog.md` (dernière Task) + plan en vol le plus récent de `download/` — reprise par le disque (R-F3), hook E1-RES.
