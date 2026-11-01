@@ -112,6 +112,9 @@ ECO_SKILLS = {
     "iphone19": "0.11.0",  # Task 48 (session web-38713acd) : bump v0.11.0 extension 1944 (chemin argentique N&B années 1930-1950) ; v0.10.0 pixel binning R19 (frandroid 27/03/2026) ; création v0.9.0 Task 47 (migration ANTICIPÉE)
     "iphone17": "1.1.0",  # Task 48 (session web-38713acd) : bump v1.1.0 extension 1944 (chemin argentique N&B années 1930-1950) ; création v1.0.0 Task 45 (R1-R17 d'époque, PM v2.0 scellé @historique/photos/)  # Task 12 (2026-10-18) : bump PATCH v1.1.1 — corrections findings Task 11 (ACF par latitude + garde anti-fallacieux + trou-ness) ; Task 10 : bump v1.1.0 — F4 filetage + F5 profondeur, evals T5/T6 (recalibrage KO-L004 ; création Task 8 2026-10-17, réinscription post-wipes)
     "traduction-zh-fr": "1.3.1",  # KO-L004 (recalibrage croisé, session web-4f989063 2026-11-01, directive installation écosystème) : entrée KB créée v1.0.0 (3965f6b) puis bumpée v1.1.0 (8fa153a) et v1.2.0 (eb4be64) sans recalibrage de l'arbitre — dérive résorbée (41e entrée versionnée) ; v1.2.0 = glossaire FR + TMX 1.4b + axes --src/--dest (E13 n°5) ; v1.3.1 = recalibrage triggers F-2 (correct-work Task 28, GO 2026-11-01)
+    "tsi-architect": "1.0.0",  # Task 31 (inscription au dépôt, directive GO (a) trace 1a1975c9a4c7fa31, session web-4f989063 2026-11-01) : skill hôte-seul inscrit — lignage honnête Task 27, 44e entrée versionnée
+    "tsi-validator": "1.0.0",  # Task 31 (même directive) : arbitre mécanique tandem TSI, 45e entrée
+    "midi-doc-expert": "1.0.0",  # Task 31 (même directive) : génération documentation MIDI, 46e entrée
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.

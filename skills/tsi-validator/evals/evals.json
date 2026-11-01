@@ -1,0 +1,28 @@
+{
+  "skill_name": "tsi-validator",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals du projet TSI/Traktor (P3, session web-84bc2313) — Validation mécanique des TSI (verdict PASS/FAIL, catégories E1-E8). Contrôles négatifs : skills voisins du périmètre.",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Valide ce fichier .tsi avec tsi-validator avant qu'on ne le publie.",
+      "expected_behavior": "déclenchement du skill tsi-validator (arbitre, verdict PASS/FAIL)"
+    },
+    {
+      "id": 2,
+      "query": "Contrôle les conflits MIDI et les couches mortes de ce mapping Traktor.",
+      "expected_behavior": "déclenchement du skill tsi-validator (E5-doublon, E7-multishift)"
+    },
+    {
+      "id": 3,
+      "query": "Diagnostique pourquoi Traktor ignore certaines affectations de mon TSI.",
+      "expected_behavior": "déclenchement du skill tsi-validator (E2-comptage, E4-plages)"
+    },
+    {
+      "id": 4,
+      "query": "Donne-moi un verdict machine exploitable sur la conformité de ce mapping.",
+      "expected_behavior": "déclenchement du skill tsi-validator (rapport JSON, exit code)"
+    }
+  ]
+}

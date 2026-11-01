@@ -1,0 +1,28 @@
+{
+  "skill_name": "midi-doc-expert",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals du projet TSI/Traktor (P3, session web-84bc2313) — Génération de documentation technique MIDI (persona rédacteur technique expert). Contrôles négatifs : skills voisins du périmètre.",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Documente ce mapping TSI validé : tableaux de référence MIDI et états LED.",
+      "expected_behavior": "déclenchement du skill midi-doc-expert (structure 9 sections)"
+    },
+    {
+      "id": 2,
+      "query": "Génère la notice du Freeze Mode du S4 MK3 en Markdown et JSON.",
+      "expected_behavior": "déclenchement du skill midi-doc-expert (générateur MD+JSON)"
+    },
+    {
+      "id": 3,
+      "query": "Rédige la documentation pédagogique de ce mapping multi-shift (activation, slices, réglages).",
+      "expected_behavior": "déclenchement du skill midi-doc-expert (sections Activation/Slices)"
+    },
+    {
+      "id": 4,
+      "query": "Exporte l'état des LED de ce contrôleur pour la notice technique.",
+      "expected_behavior": "déclenchement du skill midi-doc-expert (section États des LED)"
+    }
+  ]
+}

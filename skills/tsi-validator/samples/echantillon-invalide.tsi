@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Échantillon TSI de référence — INVALIDE (golden sample négatif)
+  Porte volontairement au moins une violation de chaque catégorie E1-E8
+  du validateur (spec §5, règles R1-R8). Sert d'entrée négative aux
+  self-tests et à la batterie (EF-08, EF-09).
+-->
+<NISYSTEM>
+  <DEVICE NAME="Contrôleur de test" TYPE="MIDI" IN_PORT="Test In" OUT_PORT="Test Out">
+    <MAPPINGS COUNT="12">
+      <MAPPING NAME="Play/Pause — Deck A" TYPE="IN" GROUP="Deck A" CONTROL="Play/Pause">
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="36" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Play/Pause — Deck A" TYPE="IN" GROUP="Deck Z" CONTROL="Play/Pause">
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="36" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Bouton hors plage" TYPE="IN" GROUP="Deck A" CONTROL="Hotcue 1">
+        <MIDI CHANNEL="0" MESSAGE="SYSEX" NUMBER="200" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Fader — Deck A" TYPE="IN" GROUP="Deck A" CONTROL="Volume">
+        <MIDI CHANNEL="17" MESSAGE="CC" NUMBER="7" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Bouton avec LED interne" TYPE="IN" GROUP="Deck A" CONTROL="Hotcue 2">
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="40" MODE="Direct"/>
+        <LED NUMBER="40" ON="127" OFF="0" MODE="Output"/>
+      </MAPPING>
+      <MAPPING NAME="Couche morte — pad remix" TYPE="IN" GROUP="Deck A" CONTROL="Remix Slot 1">
+        <MODIFIER M2="1" M3="5"/>
+        <MIDI CHANNEL="1" MESSAGE="NOTE" NUMBER="60" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Couche morte — pad remix 2" TYPE="IN" GROUP="Deck A" CONTROL="Remix Slot 2">
+        <MODIFIER M2="1"/>
+        <MIDI CHANNEL="1" MESSAGE="NOTE" NUMBER="61" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Play LED — Deck A" TYPE="OUT" GROUP="Deck A" CONTROL="Play LED">
+        <LED NUMBER="36" ON="127" OFF="0" MODE="Sortie"/>
+      </MAPPING>
+    </MAPPINGS>
+  </DEVICE>
+</NISYSTEM>

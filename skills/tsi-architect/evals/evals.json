@@ -1,0 +1,28 @@
+{
+  "skill_name": "tsi-architect",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals du projet TSI/Traktor (P3, session web-84bc2313) — Concevoir/analyser/étendre l'architecture d'un mapping TSI (tandem skill/agent). Contrôles négatifs : skills voisins du périmètre.",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Utilise le skill tsi-architect pour concevoir l'architecture d'un mapping Freeze étendu sur le S4 MK3.",
+      "expected_behavior": "déclenchement du skill tsi-architect (méthode, délégation à l'agent)"
+    },
+    {
+      "id": 2,
+      "query": "Analyse la structure de ce fichier .tsi : devices, mappings, assignments, modifiers.",
+      "expected_behavior": "déclenchement du skill tsi-architect (M1 analyse structurelle)"
+    },
+    {
+      "id": 3,
+      "query": "Étends ce mapping Traktor en ajoutant 8 hotcues sans collision MIDI.",
+      "expected_behavior": "déclenchement du skill tsi-architect (M3 extension par delta)"
+    },
+    {
+      "id": 4,
+      "query": "Alloue les numéros MIDI des 16 pads du S4 MK3 sur deux couches.",
+      "expected_behavior": "déclenchement du skill tsi-architect (allocation anti-collision)"
+    }
+  ]
+}

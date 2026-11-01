@@ -6,9 +6,9 @@
   "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
   "v6_1": "veto exclusifs avant scoring + cache voie L lecture seule sur désaccord (Task 30)",
   "sources_verdicts": {
-    "voie-m": 796,
+    "voie-m": 809,
     "voie-l-cache": 13,
-    "veto-exclusif": 18
+    "veto-exclusif": 23
   },
   "verdict_voie_m_seule": "FAIL (informatif)",
   "derive_voie_m_seule": [
@@ -21,8 +21,8 @@
     "refactor-guard",
     "vue-upload"
   ],
-  "n_skills": 106,
-  "skills_ok": 106,
+  "n_skills": 109,
+  "skills_ok": 109,
   "skills_derive": 0,
   "verdict": "PASS",
   "derives": [],
@@ -6489,6 +6489,97 @@
         }
       ]
     },
+    "midi-doc-expert": {
+      "version": "1.0.0",
+      "n_cases": 6,
+      "n_keywords": 59,
+      "score_officiel": "6/6",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Documente ce mapping TSI validé : tableaux de référence MIDI et états LED.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "document",
+            "etat",
+            "mapping",
+            "midi",
+            "refer",
+            "valid"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Génère la notice du Freeze Mode du S4 MK3 en Markdown et JSON.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.833,
+          "hits": [
+            "gener",
+            "json",
+            "markdown",
+            "mode",
+            "notic"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Rédige la documentation pédagogique de ce mapping multi-shift (activation, slices, réglages).",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.667,
+          "hits": [
+            "activ",
+            "document",
+            "mapping",
+            "pedagog",
+            "reglag",
+            "slic"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Exporte l'état des LED de ce contrôleur pour la notice technique.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "control",
+            "etat",
+            "notic",
+            "techn"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Valide la conformité de ce TSI au schéma de référence.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "veto-exclusif"
+        },
+        {
+          "query": "Conçois les couches SHIFT d'un nouveau mapping.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.167,
+          "hits": [
+            "mapping"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        }
+      ]
+    },
     "mindfulness-meditation": {
       "version": "1.0.0",
       "n_cases": 8,
@@ -9381,6 +9472,178 @@
           "hits": [],
           "ok": true,
           "source": "voie-m"
+        }
+      ]
+    },
+    "tsi-architect": {
+      "version": "1.0.0",
+      "n_cases": 6,
+      "n_keywords": 51,
+      "score_officiel": "6/6",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Utilise le skill tsi-architect pour concevoir l'architecture d'un mapping Freeze étendu sur le S4 MK3.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.636,
+          "hits": [
+            "architect",
+            "architectur",
+            "concevoir",
+            "freez",
+            "mapping",
+            "skill",
+            "tsi"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Analyse la structure de ce fichier .tsi : devices, mappings, assignments, modifiers.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.875,
+          "hits": [
+            "assignm",
+            "devic",
+            "fichier",
+            "mapping",
+            "modifier",
+            "structur",
+            "tsi"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Étends ce mapping Traktor en ajoutant 8 hotcues sans collision MIDI.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.5,
+          "hits": [
+            "collis",
+            "mapping",
+            "midi",
+            "traktor"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Alloue les numéros MIDI des 16 pads du S4 MK3 sur deux couches.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.333,
+          "hits": [
+            "couch",
+            "midi",
+            "numero"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Valide ce fichier TSI et liste-moi toutes les erreurs.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "veto-exclusif"
+        },
+        {
+          "query": "Génère la documentation du Freeze Mode avec tableaux MIDI et états LED.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "veto-exclusif"
+        }
+      ]
+    },
+    "tsi-validator": {
+      "version": "1.0.0",
+      "n_cases": 6,
+      "n_keywords": 58,
+      "score_officiel": "6/6",
+      "ok": true,
+      "derive_m": false,
+      "cases": [
+        {
+          "query": "Valide ce fichier .tsi avec tsi-validator avant qu'on ne le publie.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.714,
+          "hits": [
+            "avant",
+            "fichier",
+            "tsi",
+            "valid",
+            "validator"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Contrôle les conflits MIDI et les couches mortes de ce mapping Traktor.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.625,
+          "hits": [
+            "couch",
+            "mapping",
+            "midi",
+            "mort",
+            "traktor"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Diagnostique pourquoi Traktor ignore certaines affectations de mon TSI.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.25,
+          "hits": [
+            "traktor",
+            "tsi"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Donne-moi un verdict machine exploitable sur la conformité de ce mapping.",
+          "expected": true,
+          "trigger_m": true,
+          "score": 0.375,
+          "hits": [
+            "machin",
+            "mapping",
+            "verdict"
+          ],
+          "ok": true,
+          "source": "voie-m"
+        },
+        {
+          "query": "Conçois l'architecture d'un nouveau mapping TSI complet.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "veto-exclusif"
+        },
+        {
+          "query": "Documente ce mapping avec un tableau de référence MIDI.",
+          "expected": false,
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "veto-exclusif"
         }
       ]
     },

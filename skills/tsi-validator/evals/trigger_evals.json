@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Valide ce fichier .tsi avec tsi-validator avant qu'on ne le publie.",
+    "should_trigger": true
+  },
+  {
+    "query": "Contrôle les conflits MIDI et les couches mortes de ce mapping Traktor.",
+    "should_trigger": true
+  },
+  {
+    "query": "Diagnostique pourquoi Traktor ignore certaines affectations de mon TSI.",
+    "should_trigger": true
+  },
+  {
+    "query": "Donne-moi un verdict machine exploitable sur la conformité de ce mapping.",
+    "should_trigger": true
+  },
+  {
+    "query": "Conçois l'architecture d'un nouveau mapping TSI complet.",
+    "should_trigger": false,
+    "exclusifs": ["conçois"],
+    "note": "veto croisé v1.0.0-cal (GO Task 30, trace 1a197552459ad8f5) : conception/architecture = périmètre tsi-architect (tandem) — veto V6.1 avant scoring"
+  },
+  {
+    "query": "Documente ce mapping avec un tableau de référence MIDI.",
+    "should_trigger": false,
+    "exclusifs": ["documente"],
+    "note": "veto croisé v1.0.0-cal : tableau de référence MIDI/notice = périmètre midi-doc-expert"
+  }
+]

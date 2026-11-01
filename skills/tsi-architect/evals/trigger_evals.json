@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill tsi-architect pour concevoir l'architecture d'un mapping Freeze étendu sur le S4 MK3.",
+    "should_trigger": true
+  },
+  {
+    "query": "Analyse la structure de ce fichier .tsi : devices, mappings, assignments, modifiers.",
+    "should_trigger": true
+  },
+  {
+    "query": "Étends ce mapping Traktor en ajoutant 8 hotcues sans collision MIDI.",
+    "should_trigger": true
+  },
+  {
+    "query": "Alloue les numéros MIDI des 16 pads du S4 MK3 sur deux couches.",
+    "should_trigger": true
+  },
+  {
+    "query": "Valide ce fichier TSI et liste-moi toutes les erreurs.",
+    "should_trigger": false,
+    "exclusifs": ["valide"],
+    "note": "veto croisé v1.0.0-cal (GO Task 30, trace 1a197552459ad8f5) : validation = périmètre tsi-validator (tandem) — veto V6.1 avant scoring"
+  },
+  {
+    "query": "Génère la documentation du Freeze Mode avec tableaux MIDI et états LED.",
+    "should_trigger": false,
+    "exclusifs": ["documentation"],
+    "note": "veto croisé v1.0.0-cal : génération de documentation/notice = périmètre midi-doc-expert"
+  }
+]

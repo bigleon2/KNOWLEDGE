@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Échantillon TSI de référence — VALIDE (golden sample)
+  Projet TSI/Traktor — S4 MK3 / Traktor Pro 3.11 — Freeze Mode de référence
+  Schéma : spec-projet-tsi-traktor.md §5 (R1-R8). Référentiel de référence
+  à calibrer (R-1/R-2) : les notes/CC sont les valeurs du référentiel projet,
+  remplaçables par celles d'un TSI réel sans changement de pipeline.
+-->
+<NISYSTEM VERSION="1">
+  <DEVICE NAME="Traktor Kontrol S4 MK3" TYPE="MIDI" IN_PORT="Traktor Kontrol S4 MK3 In" OUT_PORT="Traktor Kontrol S4 MK3 Out" DECK_TARGET="Focus">
+    <MAPPINGS COUNT="15">
+      <MAPPING NAME="Play/Pause — Deck A" TYPE="IN" GROUP="Deck A" CONTROL="Play/Pause">
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="36" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Sync — Deck A" TYPE="IN" GROUP="Deck A" CONTROL="Sync">
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="37" MODE="Toggle"/>
+      </MAPPING>
+      <MAPPING NAME="Cue — Deck A" TYPE="IN" GROUP="Deck A" CONTROL="Cue/Set">
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="38" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Freeze — Activation (SHIFT gauche + LOOP IN)" TYPE="IN" GROUP="Deck A" CONTROL="Modifier 1">
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="19" MODE="Toggle"/>
+      </MAPPING>
+      <MAPPING NAME="Slice 1 — pad 1" TYPE="IN" GROUP="Deck A" CONTROL="Slice 1">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="48" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Slice 2 — pad 2" TYPE="IN" GROUP="Deck A" CONTROL="Slice 2">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="49" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Slice 3 — pad 3" TYPE="IN" GROUP="Deck A" CONTROL="Slice 3">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="50" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Slice 4 — pad 4" TYPE="IN" GROUP="Deck A" CONTROL="Slice 4">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="51" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Slice 5 — pad 5" TYPE="IN" GROUP="Deck A" CONTROL="Slice 5">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="52" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Slice 6 — pad 6" TYPE="IN" GROUP="Deck A" CONTROL="Slice 6">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="53" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Slice 7 — pad 7" TYPE="IN" GROUP="Deck A" CONTROL="Slice 7">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="54" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Slice 8 — pad 8" TYPE="IN" GROUP="Deck A" CONTROL="Slice 8">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="NOTE" NUMBER="55" MODE="Direct"/>
+      </MAPPING>
+      <MAPPING NAME="Taille du slicer — encodeur loop" TYPE="IN" GROUP="Deck A" CONTROL="Slice Size">
+        <MODIFIER M1="1"/>
+        <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="14" MODE="Increment"/>
+      </MAPPING>
+      <MAPPING NAME="Play LED — Deck A" TYPE="OUT" GROUP="Deck A" CONTROL="Play LED">
+        <LED NUMBER="36" ON="127" OFF="0" MODE="Output"/>
+      </MAPPING>
+      <MAPPING NAME="Freeze LED — Deck A" TYPE="OUT" GROUP="Deck A" CONTROL="Freeze LED">
+        <MODIFIER M1="1"/>
+        <LED NUMBER="19" ON="127" OFF="0" MODE="Output"/>
+      </MAPPING>
+    </MAPPINGS>
+  </DEVICE>
+</NISYSTEM>

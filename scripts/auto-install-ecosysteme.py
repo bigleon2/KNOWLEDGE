@@ -20,6 +20,12 @@ ensure-installed (toujours disponible, indépendante de l'état installé) et
 détecté au test T2 — le contrôle (b) le couvre), exécute le pipeline canonique
 si un défaut est détecté, puis re-contrôle.
 
+**Extension v2 (Task 31, directive GO (b) trace 1a1975c9a4c7fa31, 2026-11-01)** :
+le contrôle (b) couvre désormais TOUTES les entrées KB versionnées (SKILL.md
+derivé DYNAMIQUEMENT du dépôt KB — l'angle mort « version-management INSTALLE
+à tort » matérialisé ×3 le 2026-11-01 est résorbé par construction) en plus de
+l'ensemble pivot CRITIQUES (7 fichiers).
+
 Idempotent ×2 : re-jeu sur état sain = no-op (verdict INSTALLE, 0 action).
 Verdict JSON déterministe + rc : 0 = INSTALLE/REINSTALLE, 1 = ECHEC (arrêt
 explicite — règle d'or n°1 : pause motivée, cause journalisée).
@@ -56,6 +62,20 @@ TOOLCHAIN_PINS = ["pdf2zh-next==2.9.0", "bitstring==4.3.0"]
 ARGOS_MODELES = ["translate-zh_en", "translate-en_fr"]
 
 
+def critiques_kb(racine_depot: Path = REPO) -> list:
+    r"""SKILL.md de TOUTES les entrées KB versionnées — dérivé DYNAMIQUEMENT du
+    dépôt KB (regex identique à l'arbitre integrity ^## ([\w-]+) v([\d.]+)),
+    jamais figé (KO-L003). Toute nouvelle entrée KB est couverte sans édition
+    de ce script. Absence de KB = [] (dégradation honnête — le pivot CRITIQUES
+    reste contrôlé)."""
+    import re
+    kb = racine_depot / "skills" / "KNOWLEDGE.md"
+    if not kb.exists():
+        return []
+    entrees = re.findall(r"^## ([\w-]+) v[\d.]+", kb.read_text(encoding="utf-8"), re.M)
+    return [f"skills/{n}/SKILL.md" for n in sorted(set(entrees)) if not n.startswith("@")] + ["skills/KNOWLEDGE.md"]
+
+
 def module_present(nom: str) -> bool:
     try:
         return importlib.util.find_spec(nom) is not None
@@ -74,10 +94,16 @@ def etat_toolchain() -> dict:
 def defauts_critiques(racine_hote: Path = BASE, racine_depot: Path = REPO) -> list:
     """Fichiers critiques absents ou divergents (hôte vs dépôt, SHA-256).
 
-    Paramètres racine injectables pour le selftest (aucun effet de bord).
+    Périmètre = CRITIQUES (pivot 7 fichiers) + SKILL.md de toutes les entrées KB
+    versionnées (extension v2 Task 31). Paramètres racine injectables pour le
+    selftest (aucun effet de bord).
     """
     defauts = []
-    for rel in CRITIQUES:
+    vus = set()
+    for rel in CRITIQUES + critiques_kb(racine_depot):
+        if rel in vus:
+            continue
+        vus.add(rel)
         hote = racine_hote / rel
         depot = racine_depot / rel
         if not depot.exists():
@@ -152,9 +178,14 @@ def selftest() -> int:
     """Tests internes — sans effet sur l'installation réelle."""
     checks = []
 
-    # T1 : tous les fichiers critiques existent dans le dépôt
-    depot_absents = [r for r in CRITIQUES if not (REPO / r).exists()]
-    checks.append(("dépôt : 7/7 fichiers critiques présents", not depot_absents))
+    # T1 : tous les fichiers critiques (pivot + KB) existent dans le dépôt
+    critiques_tous = list(dict.fromkeys(CRITIQUES + critiques_kb()))  # dédup préservant l'ordre
+    depot_absents = [r for r in critiques_tous if not (REPO / r).exists()]
+    checks.append((f"dépôt : {len(critiques_tous)}/{len(critiques_tous)} fichiers critiques présents", not depot_absents))
+
+    # T1bis (extension v2 Task 31) : la liste KB est dérivée dynamiquement et non vide
+    n_kb = len(critiques_kb())
+    checks.append((f"contrôle (b) : {n_kb} SKILL.md dérivés de la KB (dynamique, >= 44)", n_kb >= 44))
 
     # T2 : état sain → 0 défaut (contrôle byte-identité sur l'hôte réel)
     checks.append(("état sain : 0 défaut critique hôte", defauts_critiques() == []))
@@ -164,7 +195,7 @@ def selftest() -> int:
     with tempfile.TemporaryDirectory() as tmp:
         faux_hote = Path(tmp)
         defauts = defauts_critiques(racine_hote=faux_hote)
-        checks.append(("défaut synthétique détecté (7/7 fichiers manquants)", len(defauts) == 7))
+        checks.append((f"défaut synthétique détecté ({len(critiques_tous)}/{len(critiques_tous)} fichiers manquants)", len(defauts) == len(critiques_tous)))
 
     # T4 : verdicts déterministes (logique de décision sur états synthétiques)
     checks.append(("verdicts JSON sérialisables", json.dumps(
