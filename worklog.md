@@ -517,3 +517,14 @@ PLAN-AFFICHE (plan : download/plan-correct-work-projet-v131-2026-11-01.md — co
 - **F-2 (S3, héritée)** : dérive triggers `traduction-zh-fr` v1.3.0 — 6/8 (faux négatif « documentation en anglais avec le même outil », faux positif « résume … sans traduction ») ; héritée de la livraison v1.3.0 du matin, non causée par v3.31.0 ; correction proposée : recalibrer trigger_evals (keywords anglais/documentation/référentiel + veto négatif « sans traduction ») puis replay — sur GO.
 - **F-3 (S4, récurrent)** : disque 1,40 Go libre (G-RES CRITIQUE) — surveillance maintenue.
 - **VERDICT FINAL : PASS AVEC RÉSERVES** — F-1 corrigé sur épreuve, F-2 réserve documentée avec correction proposée, F-3 surveillance.
+
+---
+## Task 29 — Recalibrage triggers traduction-zh-fr v1.3.1 (correct-work Task 28 F-2 — directive propriétaire « gen-plan : "GO" », trace 1a19749ed0a1575d, session web-4f989063, 2026-11-01)
+- **Périmètre GO** : F-2 uniquement (dérive triggers TZF 6/8 constatée Task 28) — corrections D001-D009, budget ~5 k.
+- **D001 veto négatif** : case 7 « Résume ce vidéo YouTube en chinois sans traduction » → `exclusifs: ["sans traduction"]` (mécanisme V6.1 Task 30 — veto AVANT scoring) ; **D002 keywords** : tags SKILL += `anglais`, `documentation`, `referentiel` — faux négatif « documentation … en anglais » résorbé (cause racine : stem `chinoise`→`chinois` ≠ radical tags `chinoi`, 0-1 hit) ; **description frontmatter INCHANGÉE** (non-régression triggers) ; **D003 version** 1.3.0 → 1.3.1 (PATCH sémantique — zéro changement fonctionnel des scripts) + section « Recalibrage v1.3.1 » au SKILL.
+- **D004 KB** : en-tête v1.3.1 + phrase de calibration ; **D005 pin** ECO_SKILLS `check-ecosysteme-integrity.py` hôte+dépôt (byte-identiques 967c8887).
+- **Preuves replay** : TZF **8/8** ×2 hôte + ×2 dépôt ; dépôt canonique **PASS 827/827** ×2 (verify-cross 100 %, 0 erreur) ; hôte 478/483 — 5 dérives restantes = famille TSI/midi-doc-expert, héritées HORS périmètre GO (copies hôte-seules : trigger_evals TSI absents du dépôt — variantes plateforme ; résorbables sur GO ultérieur).
+- **Cascade arbitres** : integrity **86/86 ×2** (dépôt + hôte) après (a) re-scellement archive v2.3 (corpus 9 + piliers 6 byte-identiques, round-trip vérifié — finding : le script task48 écrit l'archive hôte BASE=/home/z/my-project, sync byte-identique hôte→dépôt c43659b41ce9 requis, précédent Task 25) ; (b) **F-1 matérialisé à nouveau** : version-management disparu de l'hôte entre messages (réserve ① volatilité skills/ hôte) — réinstallé depuis le dépôt byte-identique ; recommandation hook Règle 4 (auto-install-ecosysteme.py) reconduite.
+- **État** : commit pathspec strict (6 fichiers + archive + worklog) — push origin/main = propriétaire (KO-L009 point 5).
+- **Livrable** : download/rapport-recalibrage-triggers-tzf-v131-2026-11-01.md
+- **Restant** : 5 dérives triggers famille TSI (hôte-seules) + disque 86 % (G-RES CRITIQUE, surveillance).

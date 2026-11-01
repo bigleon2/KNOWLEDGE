@@ -29,7 +29,11 @@
  },
  {
   "query": "Résume ce vidéo YouTube en chinois sans traduction.",
-  "should_trigger": false
+  "should_trigger": false,
+  "exclusifs": [
+   "sans traduction"
+  ],
+  "note": "veto négatif v1.3.1 (correct-work Task 28 F-2) : résumé SANS traduction = hors périmètre — veto V6.1 avant scoring"
  },
  {
   "query": "Génère une affiche avec une typographie chinoise élégante.",

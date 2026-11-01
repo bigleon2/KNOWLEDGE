@@ -1,6 +1,6 @@
 ---
 name: traduction-zh-fr
-version: 1.3.0
+version: 1.3.1
 category: ecosystem
 language: fr
 tags:
@@ -10,6 +10,9 @@ tags:
   - localisation
   - pdf
   - markdown
+  - anglais
+  - documentation
+  - referentiel
 description: >
   Agent spécialisé dans la traduction du chinois vers le français, intégré à
   l'écosystème (directive propriétaire 2026-11-01). Deux moteurs complémentaires :
@@ -132,6 +135,15 @@ Sources : download/recherche-alternatives-traduction-zh-fr.md.
 | **Argos Translate hors-ligne** (5e backend) | backend `argos` en 2e position de chaîne (zai → argos → googletrans → gtx → mymemory) ; pip argostranslate 1.11.0 + torch 2.15.0+cpu + modèles `translate-zh_en`/`translate-en_fr` ; détection dynamique (paquet absent = sauté proprement, jamais d'échec silencieux) | selftest 24/24 ×2 (4 contrôles argos : ordre de chaîne, saut si absent, repli, enregistrement) + **sonde réelle** ZH→FR (« La disposition est l'art de la communication visuelle… ») et EN→FR via le chemin de code du script |
 
 **Tests réels G13** (download/test-traduction-v1.3-5skills-rapport.md) : 5 skills volumineux — chinese-typography 4 471→693 CJK (4 requêtes), keywords_tech 412→0 (1 requête), fortune/jd/gaokao INCHANGÉS (verdicts P2 corrects — données fonctionnelles, garde de ratio, 0 appel) ; **idempotence ×2** (P2+P3 : 0 requête réseau, sha256 byte-identiques — point fixe) ; originaux intacts.
+
+## Recalibrage v1.3.1 (triggers — correct-work Task 28 F-2, directive propriétaire « GO », trace 1a19749ed0a1575d)
+
+| Défaut constaté (replay Task 28 : 6/8) | Correction | Preuve mécanique |
+|---|---|---|
+| Faux négatif — « Traduis la documentation chinoise du référentiel en anglais avec le même outil » (axe --src zh --dest en supporté v1.2.0, non routé : stems `chinoise`→`chinois` ≠ radical tags `chinoi`, 0-1 hit) | tags += `anglais`, `documentation`, `referentiel` (keywords_for — ≥ 2 hits) | replay arbitre V6.1 : case 5 → trigger voie-m ✓ |
+| Faux positif — « Résume ce vidéo YouTube en chinois sans traduction » (2 hits : chinois + traduction) | veto négatif `exclusifs: ["sans traduction"]` sur le cas (mécanisme V6.1 Task 30 — veto AVANT scoring) | replay arbitre V6.1 : case 7 → source veto-exclusif ✓ |
+
+Non-régression : description frontmatter inchangée (md5) ; cas négatifs 6/8 re-vérifiés au replay ×2 ; zéro changement fonctionnel des scripts (PATCH sémantique).
 
 ## Relations
 
