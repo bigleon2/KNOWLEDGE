@@ -106,6 +106,7 @@
       "files": [],
       "expectations": [
         "Les sous-tâches prouvées indépendantes (G-A, G-B) sont lancées en parallèle en un seul message multi-outils",
+        "Les commandes/outils indépendants sont invoqués en parallèle par défaut dans le même message multi-outils (extension v3.32.0 — tâches ET commandes)",
         "G-C (dépendante des sorties) reste séquentiel après la synthèse",
         "La vague parallèle est tracée au worklog (Task IDs) et l'ensemble fusionné re-vérifié (arbitre + correct-work)",
         "Une vague contre un service externe dégrade gracieusement : 429 → bascule sérielle + retry/backoff + cache déterministe, code retour seul jamais suffisant, jugement sémantique = question de routage avec référentiel complet (v3.26.0)"

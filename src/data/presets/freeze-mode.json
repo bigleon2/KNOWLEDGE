@@ -1,0 +1,226 @@
+{
+ "meta": {
+  "nom": "Freeze Mode — S4 MK2 (référence)",
+  "description": "Mapping de référence du mode Freeze (Shift+Loop In), pattern corroboré par le mapping réel DJTT v2.1.0 — dérivé de l'échantillon doré tsi-validator.",
+  "version": "1.0.0",
+  "appareil": "Traktor Kontrol S4 MK2",
+  "traktor": "3.11"
+ },
+ "device": {
+  "name": "Traktor Kontrol S4 MK2",
+  "type": "MIDI",
+  "in_port": "Traktor Kontrol S4 MK2 In",
+  "out_port": "Traktor Kontrol S4 MK2 Out",
+  "deck_target": "Focus"
+ },
+ "mappings": [
+  {
+   "nom": "Play/Pause — Deck A",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Play/Pause",
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 36,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Sync — Deck A",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Sync",
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 37,
+    "mode": "Toggle"
+   }
+  },
+  {
+   "nom": "Cue — Deck A",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Cue/Set",
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 38,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Freeze — Activation (SHIFT gauche + LOOP IN)",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Modifier 1",
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 19,
+    "mode": "Toggle"
+   }
+  },
+  {
+   "nom": "Slice 1 — pad 1",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice 1",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 48,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Slice 2 — pad 2",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice 2",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 49,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Slice 3 — pad 3",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice 3",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 50,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Slice 4 — pad 4",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice 4",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 51,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Slice 5 — pad 5",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice 5",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 52,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Slice 6 — pad 6",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice 6",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 53,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Slice 7 — pad 7",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice 7",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 54,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Slice 8 — pad 8",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice 8",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "NOTE",
+    "numero": 55,
+    "mode": "Direct"
+   }
+  },
+  {
+   "nom": "Taille du slicer — encodeur loop",
+   "type": "IN",
+   "groupe": "Deck A",
+   "controle": "Slice Size",
+   "modifier": {
+    "M1": 1
+   },
+   "midi": {
+    "canal": 0,
+    "message": "CC",
+    "numero": 14,
+    "mode": "Increment"
+   }
+  },
+  {
+   "nom": "Play LED — Deck A",
+   "type": "OUT",
+   "groupe": "Deck A",
+   "controle": "Play LED",
+   "led": {
+    "numero": 36,
+    "on": 127,
+    "off": 0
+   }
+  },
+  {
+   "nom": "Freeze LED — Deck A",
+   "type": "OUT",
+   "groupe": "Deck A",
+   "controle": "Freeze LED",
+   "modifier": {
+    "M1": 1
+   },
+   "led": {
+    "numero": 19,
+    "on": 127,
+    "off": 0
+   }
+  }
+ ]
+}

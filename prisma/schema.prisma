@@ -7,25 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model KnowledgeEntry {
-  id          String   @id @default(cuid())
-  title       String
-  content     String
-  category    String   // profile, agent, skill, protocol, trigger, rule, other
-  tags        String   // comma-separated tags
-  priority    String   @default("normal") // critical, important, normal, secondary
-  source      String   @default("manual") // manual, imported, auto
-  pinned      Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+// LEON TSI EDITEUR v11 (Extension React du studio v11 — Task 40)
+// Un projet = un mapping TSI complet (JSON : device + mappings scellé).
+model Project {
+  id        String    @id @default(cuid())
+  name      String
+  data      String    // JSON { device, mappings } — source de vérité du mapping
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  audits    AuditLog[]
 }
 
-model MemoryConfig {
-  id          String   @id @default(cuid())
-  key         String   @unique
-  value       String
-  category    String   @default("config")
-  description String   @default("")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+// Journal d'audit auto-évolutif du studio v11 (architecture-mapping-studio-v11.md) :
+// chaque action (preset, DSL, génération, correctif) y laisse une entrée horodatée
+// qui alimente l'itération suivante — jamais effacé, uniquement croissant.
+model AuditLog {
+  id        String   @id @default(cuid())
+  projectId String
+  action    String
+  detail    String   @default("")
+  mappings  Int      @default(0)
+  conflits  Int      @default(0)
+  createdAt DateTime @default(now())
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, createdAt])
 }

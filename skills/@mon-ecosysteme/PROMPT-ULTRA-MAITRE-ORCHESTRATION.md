@@ -36,18 +36,18 @@
 
 | Famille | PM le plus récent (source d'assemblage) | Versions historiques figées (R2) |
 |---------|------------------------------------------|----------------------------------|
-| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.30.0.md (la plus récente) | — |
+| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.32.0.md (la plus récente) | — |
 | CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md (la plus récente) | — |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md (la plus récente) | — |
 | REFACTOR-GUARD | PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.7.16 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.8.10 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.7.18 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.8.12 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
 | Skill | Version |
 |-------|---------|
-| `gen-plan` | 3.30.0 |
+| `gen-plan` | 3.32.0 |
 | `correct-work` | 2.8.0 |
 | `clone-chat` | 2.0.2 |
 | `skills-inventory` | 1.1.0 |

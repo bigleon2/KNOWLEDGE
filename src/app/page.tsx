@@ -1,1608 +1,421 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+/**
+ * page.tsx — Orchestrateur LEON TSI EDITEUR v11 (Extension React du studio v11).
+ *
+ * Parité CMDR + discussion itérations 1-3 : projets, tableau des mappings,
+ * mass-edit (dupliquer/copier/coller/interaction/cible/canal ±1), dialogue
+ * d'ajout pré-remplissable, Ctrl+L, vérification byte-exacte, export .tsi,
+ * panneau MIDI, presets studio v11 (source de vérité partagée toolchain),
+ * éditeur DSL, journal d'audit auto-évolutif.
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { toast } from "sonner"
 import {
-  Brain, Search, Plus, Pin, PinOff, Trash2, Edit3, X,
-  Database, Users, Zap, Shield, Target, BookOpen, Settings,
-  Sparkles, RefreshCw, Tag,
-  Minus, Hash, Clock, Star, Cpu,
-  AlertTriangle, Circle, Save, Wrench, Key, Copy, Pencil,
-  Layers, FileCode, GitBranch, ArrowRight, ArrowLeftRight,
-  FolderOpen, Code2, Eye, Package, Languages
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Separator } from '@/components/ui/separator'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+  ArrowRight, Check, Upload, ClipboardCopy, ClipboardPaste, Download, FilePlus,
+  Layers, Music4, Plus, Repeat, ScrollText as AuditIcon, SlidersHorizontal, Trash2, Volume2,
+} from "lucide-react"
+import { ControllerView } from "@/components/leon/controller-view"
+import { AddMappingDialog, type Prefill } from "@/components/leon/add-mapping-dialog"
+import { MidiPanel } from "@/components/leon/midi-panel"
+import { midi } from "@/lib/midi/midi-access"
+import { midiLabel } from "@/lib/tsi/format"
+import { parseTsi } from "@/lib/tsi/binary"
+import { basculerCible, cyclerInteraction, coller, copier, decalerCanal, detecterConflits, dupliquer } from "@/lib/tsi/edit"
+import { compilerDsl, mappingsDepuisDsl, type Preset } from "@/lib/studio/studio"
+import type { AuditEntry, Mapping, ProjectData } from "@/lib/tsi/types"
 
-// Types
-interface KnowledgeEntry {
+interface Projet {
   id: string
-  title: string
-  content: string
-  category: string
-  tags: string
-  priority: string
-  source: string
-  pinned: boolean
-  createdAt: string
-  updatedAt: string
-}
-
-interface Stats {
-  total: number
-  pinned: number
-  categories: Record<string, number>
-  priorities: Record<string, number>
-}
-
-// Category config
-const CATEGORIES = [
-  { key: 'all', label: 'Tout', icon: Database, color: 'text-slate-500' },
-  { key: 'profile', label: 'Profil', icon: Users, color: 'text-violet-500' },
-  { key: 'agent', label: 'Agents', icon: Cpu, color: 'text-emerald-500' },
-  { key: 'skill', label: 'Skills', icon: Zap, color: 'text-amber-500' },
-  { key: 'protocol', label: 'Protocoles', icon: Shield, color: 'text-rose-500' },
-  { key: 'trigger', label: 'Déclencheurs', icon: Target, color: 'text-cyan-500' },
-  { key: 'rule', label: 'Règles', icon: BookOpen, color: 'text-orange-500' },
-  { key: 'other', label: 'Autres', icon: Settings, color: 'text-gray-500' },
-]
-
-const PRIORITY_CONFIG: Record<string, { label: string; icon: typeof AlertTriangle; color: string; bg: string }> = {
-  critical: { label: 'Critique', icon: AlertTriangle, color: 'text-red-600', bg: 'bg-red-50 border-red-200' },
-  important: { label: 'Important', icon: Star, color: 'text-amber-600', bg: 'bg-amber-50 border-amber-200' },
-  normal: { label: 'Normal', icon: Circle, color: 'text-blue-600', bg: 'bg-blue-50 border-blue-200' },
-  secondary: { label: 'Secondaire', icon: Minus, color: 'text-gray-500', bg: 'bg-gray-50 border-gray-200' },
-}
-
-// Config types
-interface ConfigEntry {
-  id: string
-  key: string
-  value: string
-  category: string
-  description: string
-  createdAt: string
-  updatedAt: string
-}
-
-const CONFIG_CATEGORIES = [
-  { key: 'all', label: 'Tout', color: 'text-slate-500' },
-  { key: 'profile', label: 'Profil', color: 'text-violet-500' },
-  { key: 'ecosystem', label: 'Écosystème', color: 'text-emerald-500' },
-  { key: 'gen-plan', label: 'Gen-Plan', color: 'text-rose-500' },
-  { key: 'decision', label: 'Décision', color: 'text-amber-500' },
-  { key: 'rules', label: 'Règles', color: 'text-orange-500' },
-  { key: 'app', label: 'App', color: 'text-cyan-500' },
-  { key: 'config', label: 'Config', color: 'text-gray-500' },
-]
-
-interface Skill {
   name: string
-  slug: string
-  version: string
-  category: 'ecosystem' | 'metier'
-  language: string
-  description: string
-  tags: string[]
-  dependencies: string[]
-  hasReferences: boolean
-  hasScripts: boolean
-  hasEvals: boolean
-  fileCount: number
-  totalSize: number
-  contentPreview: string
+  data: string
+  updatedAt: string
 }
 
-interface SkillStats {
-  total: number
-  ecosystem: number
-  metier: number
-  languages: Record<string, number>
-  totalFiles: number
-  totalSize: number
-  withReferences: number
-  withScripts: number
-  withEvals: number
-  withDeps: number
-  withTags: number
-  dependencyGraph: Record<string, string[]>
+interface PresetApi { fichier: string; nom: string; description: string; version: string; nbMappings: number }
+
+const DATA_VIERGE: ProjectData = {
+  device: {
+    name: "Traktor Kontrol S4 MK2", type: "MIDI",
+    in_port: "Traktor Kontrol S4 MK2 In", out_port: "Traktor Kontrol S4 MK2 Out", deck_target: "Focus",
+  },
+  mappings: [],
 }
 
-interface SkillRelation {
-  source: string
-  target: string
-  type: 'depends_on' | 'used_by' | 'related'
-}
+export default function Home() {
+  const [projets, setProjets] = useState<Projet[]>([])
+  const [actif, setActif] = useState<Projet | null>(null)
+  const [data, setData] = useState<ProjectData>(DATA_VIERGE)
+  const [selection, setSelection] = useState<Set<number>>(new Set())
+  const [pressePapiers, setPressePapiers] = useState<Mapping[]>([])
+  const [dialogOuvert, setDialogOuvert] = useState(false)
+  const [prefill, setPrefill] = useState<Prefill | null>(null)
+  const [presets, setPresets] = useState<PresetApi[]>([])
+  const [audit, setAudit] = useState<AuditEntry[]>([])
+  const [dsl, setDsl] = useState("# contrôle -> fonction [couche]\nplay -> Play/Pause\nsync -> Sync [M1=1]\nloop_in -> Loop Set [M2=1]")
+  const [enEdition, setEnEdition] = useState<number | null>(null)
+  const editionRef = useRef<HTMLInputElement>(null)
 
-export default function KnowledgePage() {
-  const [entries, setEntries] = useState<KnowledgeEntry[]>([])
-  const [stats, setStats] = useState<Stats | null>(null)
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [loading, setLoading] = useState(true)
-  const [seeded, setSeeded] = useState(false)
-  const [dialogOpen, setDialogOpen] = useState(false)
-  const [editingEntry, setEditingEntry] = useState<KnowledgeEntry | null>(null)
-  const [viewingEntry, setViewingEntry] = useState<KnowledgeEntry | null>(null)
-  const [activeTab, setActiveTab] = useState('grid')
-  const [mainTab, setMainTab] = useState<'knowledge' | 'skills' | 'config'>('skills')
-
-  // Skills state
-  const [skills, setSkills] = useState<Skill[]>([])
-  const [skillStats, setSkillStats] = useState<SkillStats | null>(null)
-  const [skillSearch, setSkillSearch] = useState('')
-  const [skillCategoryFilter, setSkillCategoryFilter] = useState<'all' | 'ecosystem' | 'metier'>('all')
-  const [skillLangFilter, setSkillLangFilter] = useState('all')
-  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null)
-  const [skillDetail, setSkillDetail] = useState<Skill | null>(null)
-  const [relations, setRelations] = useState<SkillRelation[]>([])
-  const [skillsLoading, setSkillsLoading] = useState(true)
-
-  // Config state
-  const [configs, setConfigs] = useState<ConfigEntry[]>([])
-  const [configCategory, setConfigCategory] = useState('all')
-  const [editingConfig, setEditingConfig] = useState<ConfigEntry | null>(null)
-  const [configDialogOpen, setConfigDialogOpen] = useState(false)
-  const [configFormKey, setConfigFormKey] = useState('')
-  const [configFormValue, setConfigFormValue] = useState('')
-  const [configFormCategory, setConfigFormCategory] = useState('config')
-  const [configFormDescription, setConfigFormDescription] = useState('')
-
-  // Form state
-  const [formTitle, setFormTitle] = useState('')
-  const [formContent, setFormContent] = useState('')
-  const [formCategory, setFormCategory] = useState('other')
-  const [formTags, setFormTags] = useState('')
-  const [formPriority, setFormPriority] = useState('normal')
-
-  const loadData = async (category: string, search: string, doSeed = false) => {
-    try {
-      if (doSeed) {
-        const seedRes = await fetch('/api/knowledge/seed', { method: 'POST' })
-        const seedData = await seedRes.json()
-        if (seedData.count > 0) {
-          setSeeded(true)
-        }
-      }
-
-      const params = new URLSearchParams()
-      if (category !== 'all') params.set('category', category)
-      if (search) params.set('search', search)
-
-      const [entriesRes, statsRes] = await Promise.all([
-        fetch(`/api/knowledge?${params.toString()}`),
-        fetch('/api/knowledge/stats'),
-      ])
-
-      const entriesData = await entriesRes.json()
-      const statsData = await statsRes.json()
-
-      setEntries(entriesData)
-      setStats(statsData)
-      if (!doSeed) setSeeded(true)
-    } catch (err) {
-      console.error('Error loading data:', err)
-    }
-  }
-
-  // Initial load
+  // --- chargements ---
+  const chargerProjets = useCallback(async () => {
+    const r = await fetch("/api/projects")
+    const j = await r.json()
+    setProjets(j.projets ?? [])
+    return (j.projets ?? []) as Projet[]
+  }, [])
+  const chargerAudit = useCallback(async (id: string) => {
+    const r = await fetch(`/api/projects/${id}/audit`)
+    const j = await r.json()
+    setAudit(j.audits ?? [])
+  }, [])
   useEffect(() => {
-    const init = async () => {
-      setLoading(true)
-      const res = await fetch('/api/knowledge')
-      const data = await res.json()
-      if (data.length === 0) {
-        await loadData('all', '', true)
-      } else {
-        await loadData('all', '', false)
-      }
-      setLoading(false)
-    }
-    init()
+    chargerProjets().then((ps) => { if (ps[0]) ouvrir(ps[0]) })
+    fetch("/api/presets").then((r) => r.json()).then((j) => setPresets(j.presets ?? []))
   }, [])
 
-  // Refresh when category or search changes
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category)
-    loadData(category, searchQuery)
+  const ouvrir = (p: Projet) => {
+    setActif(p)
+    try { setData(JSON.parse(p.data)) } catch { setData(DATA_VIERGE) }
+    setSelection(new Set())
+    chargerAudit(p.id)
   }
 
-  const handleSearchChange = (value: string) => {
-    setSearchQuery(value)
-    loadData(selectedCategory, value)
-  }
-
-  const refreshData = () => {
-    loadData(selectedCategory, searchQuery)
-    if (mainTab === 'config') loadConfigs()
-  }
-
-  // Config data loading
-  const loadConfigs = async () => {
-    try {
-      const params = new URLSearchParams()
-      if (configCategory !== 'all') params.set('category', configCategory)
-      const res = await fetch(`/api/config?${params.toString()}`)
-      const data = await res.json()
-      setConfigs(Array.isArray(data) ? data : [])
-    } catch (err) {
-      console.error('Error loading configs:', err)
-    }
-  }
-
-  const seedConfigs = async () => {
-    try {
-      const res = await fetch('/api/config/seed', { method: 'POST' })
-      const data = await res.json()
-      if (data.count > 0) loadConfigs()
-    } catch (err) {
-      console.error('Error seeding configs:', err)
-    }
-  }
-
-  // Skills data loading
-  const loadSkills = async () => {
-    try {
-      setSkillsLoading(true)
-      const params = new URLSearchParams()
-      if (skillCategoryFilter !== 'all') params.set('category', skillCategoryFilter)
-      if (skillLangFilter !== 'all') params.set('lang', skillLangFilter)
-      if (skillSearch) params.set('search', skillSearch)
-
-      const [skillsRes, statsRes, relRes] = await Promise.all([
-        fetch(`/api/skills?${params.toString()}`),
-        fetch('/api/skills?stats=true'),
-        fetch('/api/skills/relations'),
-      ])
-      const skillsData = await skillsRes.json()
-      const statsData = await statsRes.json()
-      const relData = await relRes.json()
-
-      setSkills(skillsData.skills || [])
-      setSkillStats(statsData)
-      setRelations(relData.edges || [])
-    } catch (err) {
-      console.error('Error loading skills:', err)
-    } finally {
-      setSkillsLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    if (mainTab === 'skills') loadSkills()
-  }, [mainTab, skillCategoryFilter, skillLangFilter, skillSearch])
-
-  useEffect(() => {
-    if (mainTab === 'config') loadConfigs()
-  }, [mainTab, configCategory])
-
-  const handleConfigSave = async () => {
-    if (!configFormKey || !configFormValue) return
-    try {
-      if (editingConfig) {
-        await fetch('/api/config', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ key: editingConfig.key, value: configFormValue, category: configFormCategory, description: configFormDescription }),
-        })
-      } else {
-        await fetch('/api/config', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ key: configFormKey, value: configFormValue, category: configFormCategory, description: configFormDescription }),
-        })
-      }
-      setConfigDialogOpen(false)
-      resetConfigForm()
-      loadConfigs()
-    } catch (err) {
-      console.error('Error saving config:', err)
-    }
-  }
-
-  const handleConfigDelete = async (key: string) => {
-    try {
-      await fetch(`/api/config?key=${encodeURIComponent(key)}`, { method: 'DELETE' })
-      loadConfigs()
-    } catch (err) {
-      console.error('Error deleting config:', err)
-    }
-  }
-
-  const openConfigEditDialog = (config: ConfigEntry) => {
-    setEditingConfig(config)
-    setConfigFormKey(config.key)
-    setConfigFormValue(config.value)
-    setConfigFormCategory(config.category)
-    setConfigFormDescription(config.description)
-    setConfigDialogOpen(true)
-  }
-
-  const openConfigNewDialog = () => {
-    setEditingConfig(null)
-    resetConfigForm()
-    setConfigDialogOpen(true)
-  }
-
-  const resetConfigForm = () => {
-    setConfigFormKey('')
-    setConfigFormValue('')
-    setConfigFormCategory('config')
-    setConfigFormDescription('')
-    setEditingConfig(null)
-  }
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-  }
-
-  const handleSave = async () => {
-    if (!formTitle || !formContent) return
-
-    try {
-      if (editingEntry) {
-        await fetch('/api/knowledge', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            id: editingEntry.id,
-            title: formTitle,
-            content: formContent,
-            category: formCategory,
-            tags: formTags,
-            priority: formPriority,
-          }),
-        })
-      } else {
-        await fetch('/api/knowledge', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            title: formTitle,
-            content: formContent,
-            category: formCategory,
-            tags: formTags,
-            priority: formPriority,
-            source: 'manual',
-          }),
-        })
-      }
-
-      setDialogOpen(false)
-      resetForm()
-      refreshData()
-    } catch (err) {
-      console.error('Error saving entry:', err)
-    }
-  }
-
-  const handleDelete = async (id: string) => {
-    try {
-      await fetch(`/api/knowledge?id=${id}`, { method: 'DELETE' })
-      refreshData()
-      if (viewingEntry?.id === id) setViewingEntry(null)
-    } catch (err) {
-      console.error('Error deleting entry:', err)
-    }
-  }
-
-  const handleTogglePin = async (entry: KnowledgeEntry) => {
-    try {
-      await fetch('/api/knowledge', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: entry.id, pinned: !entry.pinned }),
-      })
-      refreshData()
-    } catch (err) {
-      console.error('Error toggling pin:', err)
-    }
-  }
-
-  const openEditDialog = (entry: KnowledgeEntry) => {
-    setEditingEntry(entry)
-    setFormTitle(entry.title)
-    setFormContent(entry.content)
-    setFormCategory(entry.category)
-    setFormTags(entry.tags)
-    setFormPriority(entry.priority)
-    setDialogOpen(true)
-  }
-
-  const openNewDialog = () => {
-    setEditingEntry(null)
-    resetForm()
-    setDialogOpen(true)
-  }
-
-  const resetForm = () => {
-    setFormTitle('')
-    setFormContent('')
-    setFormCategory('other')
-    setFormTags('')
-    setFormPriority('normal')
-    setEditingEntry(null)
-  }
-
-  const getCategoryInfo = (key: string) => CATEGORIES.find(c => c.key === key) || CATEGORIES[CATEGORIES.length - 1]
-  const getPriorityInfo = (key: string) => PRIORITY_CONFIG[key] || PRIORITY_CONFIG.normal
-
-  const pinnedEntries = entries.filter(e => e.pinned)
-  const unpinnedEntries = entries.filter(e => !e.pinned)
-
-  const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('fr-FR', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
+  const persiste = useCallback(async (nouveau: ProjectData, action: string, detail: string) => {
+    if (!actif) return
+    await fetch(`/api/projects/${actif.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: JSON.stringify(nouveau) }),
     })
+    await fetch(`/api/projects/${actif.id}/audit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action, detail }),
+    })
+    setData(nouveau)
+    chargerAudit(actif.id)
+    chargerProjets()
+  }, [actif, chargerAudit, chargerProjets])
+
+  // --- mappings ---
+  const ajouterMapping = (m: Mapping, noteProvisoire?: boolean) => {
+    const nouveau = { ...data, mappings: [...data.mappings, m] }
+    const conflits = detecterConflits(nouveau.mappings)
+    persiste(nouveau, "ajout", `${m.nom} (${m.type}${m.midi ? ` ${midiLabel(m.midi)}` : ""})`)
+    if (noteProvisoire) toast(`Mapping ajouté : ${m.nom}`, { description: `note provisoire ${m.midi ? midiLabel(m.midi) : ""} — capturez la vraie note (Learn ou Ctrl+L)` })
+    else toast(`Mapping ajouté : ${m.nom}`, conflits.length ? { description: `${conflits.length} conflit(s) signalé(s) par l'audit` } : undefined)
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-          className="w-12 h-12 rounded-full border-4 border-primary border-t-transparent"
-        />
-      </div>
-    )
+  const majMappings = (ms: Mapping[], action: string, detail: string) => {
+    persiste({ ...data, mappings: ms }, action, detail)
   }
+
+  const opsSelection = () => {
+    const idx = [...selection]
+    const applique = (f: (m: Mapping) => Mapping, action: string) => {
+      const ms = data.mappings.map((m, i) => (selection.has(i) ? f(m) : m))
+      majMappings(ms, action, `${idx.length} mapping(s)`)
+      toast(`${action} — ${idx.length} mapping(s)`)
+    }
+    return {
+      dupliquer: () => {
+        const nouveaux: Mapping[] = []
+        const ms = [...data.mappings]
+        for (const i of idx) nouveaux.push(dupliquer(data.mappings[i], ms))
+        majMappings([...ms, ...nouveaux], "duplication", `${idx.length} mapping(s)`)
+      },
+      copier: () => { setPressePapiers(copier(idx.map((i) => data.mappings[i]))); toast(`Copié : ${idx.length}`) },
+      coller: () => {
+        const ajout = coller(pressePapiers, data.mappings)
+        majMappings([...data.mappings, ...ajout], "collage", `${ajout.length} mapping(s)`)
+      },
+      interaction: () => applique(cyclerInteraction, "interaction"),
+      cible: () => applique(basculerCible, "cible"),
+      canalPlus: () => applique((m) => decalerCanal(m, 1), "canal +1"),
+      canalMoins: () => applique((m) => decalerCanal(m, -1), "canal -1"),
+      supprimer: () => {
+        const ms = data.mappings.filter((_, i) => !selection.has(i))
+        majMappings(ms, "suppression", `${idx.length} mapping(s)`)
+        setSelection(new Set())
+      },
+    }
+  }
+
+  // --- contrôleur : chips → dialogue pré-rempli ---
+  const onQuickCommand = (p: Prefill) => {
+    setPrefill(p)
+    setDialogOuvert(true)
+  }
+
+  // --- Ctrl+L (parité CMDR) : Learn sur le mapping en édition ---
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "l" && enEdition !== null) {
+        e.preventDefault()
+        midi.attendreProchainMessage((msg) => {
+          const note = `Ch${String(msg.channel).padStart(2, "0")}.${msg.kind === "CC" ? "CC" : "NOTE"}.${String(msg.data1 ?? 0).padStart(3, "0")}`
+          setData((d) => {
+            const ms = d.mappings.map((m, i) =>
+              i === enEdition ? { ...m, midi: { ...(m.midi ?? { canal: 0, message: "NOTE" as const, numero: 0, mode: "Direct" as const }), ...(() => { const [canal, , numero] = [Number(String(msg.channel).padStart(2, "0")), 0, msg.data1 ?? 0]; return { canal, numero } })() } } : m,
+            )
+            return { ...d, mappings: ms }
+          })
+          toast(`Ctrl+L : note capturée ${note}`)
+        })
+        toast("Ctrl+L : jouez le contrôle…")
+      }
+    }
+    window.addEventListener("keydown", h)
+    return () => window.removeEventListener("keydown", h)
+  }, [enEdition])
+
+  // --- studio v11 ---
+  const appliquerPreset = async (p: PresetApi) => {
+    const presetJson = (await import(`@/data/presets/${p.fichier.replace(/\.json$/, "")}.json`))
+      .default as unknown as Preset
+    const mappings = presetJson.mappings.map((m) => ({ ...m }))
+    const nouveau = { ...data, mappings: [...data.mappings, ...mappings] }
+    await persiste(nouveau, `preset ${p.nom}`, `${mappings.length} mapping(s) appliqués (source de vérité partagée toolchain)`)
+    toast(`Preset appliqué : ${p.nom} (+${mappings.length})`)
+  }
+
+  const compilerEtAppliquer = () => {
+    const { lignes, erreurs } = compilerDsl(dsl)
+    if (erreurs.length) { toast.error(`DSL : ${erreurs[0]}`); return }
+    const mappings = mappingsDepuisDsl(lignes, data)
+    const nouveau = { ...data, mappings: [...data.mappings, ...mappings] }
+    persiste(nouveau, "DSL", `${lignes.length} ligne(s) compilée(s)`)
+    toast(`DSL : ${lignes.length} mapping(s) générés`)
+  }
+
+  const importerTsi = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0]
+    if (!f || !actif) return
+    const texte = await f.text()
+    try {
+      const dataImport = parseTsi(texte)
+      await persiste(dataImport, "import", `${f.name} — ${dataImport.mappings.length} mapping(s)`)
+      toast.success(`Importé : ${f.name} (${dataImport.mappings.length} mappings)`)
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Import impossible", {
+        description: "Les .tsi réels Traktor (blob DIOM) s'inspectent via le pont écosystème tsi-toolkit (R4).",
+      })
+    }
+    e.target.value = ""
+  }
+
+  const verifier = async () => {
+    if (!actif) return
+    const r = await fetch(`/api/projects/${actif.id}/verify`, { method: "POST" })
+    const j = await r.json()
+    if (j.verdict === "BYTE-EXACT") toast.success(`Vérification : ${j.verdict} (${j.mappings} mappings, ${j.taille} octets)`)
+    else toast.error(`Vérification : ${j.verdict} — ${j.detail}`)
+  }
+
+  const nouveauProjet = async () => {
+    const nom = prompt("Nom du projet :", `Mapping S4 MK2 ${new Date().toISOString().slice(0, 10)}`)
+    if (!nom) return
+    const r = await fetch("/api/projects", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: nom }) })
+    const j = await r.json()
+    await chargerProjets()
+    ouvrir(j.projet)
+    toast(`Projet créé : ${nom}`)
+  }
+
+  const conflits = useMemo(() => detecterConflits(data.mappings), [data])
 
   return (
-    <TooltipProvider>
-      <div className="min-h-screen bg-background flex flex-col">
-        {/* Header */}
-        <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg">
-                {mainTab === 'knowledge' ? <Brain className="w-6 h-6 text-white" /> : mainTab === 'skills' ? <Layers className="w-6 h-6 text-white" /> : <Wrench className="w-6 h-6 text-white" />}
-              </div>
-              <div>
-                <h1 className="text-xl font-bold tracking-tight">KNOWLEDGE</h1>
-                <p className="text-xs text-muted-foreground">{mainTab === 'knowledge' ? 'Mémoire persistante — Connaissances' : mainTab === 'skills' ? 'Écosystème Skills — Live' : 'Mémoire persistante — Configs'}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 sm:gap-3">
-              {/* Main tab toggle */}
-              <div className="flex items-center bg-muted rounded-lg p-0.5">
-                <button
-                  onClick={() => setMainTab('knowledge')}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${mainTab === 'knowledge' ? 'bg-background shadow text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                >
-                  <span className="flex items-center gap-1.5"><Brain className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Connaissances</span></span>
-                </button>
-                <button
-                  onClick={() => setMainTab('skills')}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${mainTab === 'skills' ? 'bg-background shadow text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                >
-                  <span className="flex items-center gap-1.5"><Layers className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Skills</span></span>
-                </button>
-                <button
-                  onClick={() => setMainTab('config')}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${mainTab === 'config' ? 'bg-background shadow text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                >
-                  <span className="flex items-center gap-1.5"><Wrench className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Config</span></span>
-                </button>
-              </div>
-
-              {mainTab === 'knowledge' ? (
-                <>
-              {/* Search */}
-              <div className="relative hidden sm:block">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  placeholder="Rechercher..."
-                  value={searchQuery}
-                  onChange={(e) => handleSearchChange(e.target.value)}
-                  className="pl-9 w-48 md:w-64 h-9"
-                />
-              </div>
-
-              {/* Mobile search */}
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="ghost" size="icon" className="sm:hidden">
-                    <Search className="w-4 h-4" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle>Rechercher</DialogTitle>
-                  </DialogHeader>
-                  <Input
-                    placeholder="Rechercher dans la base..."
-                    value={searchQuery}
-                    onChange={(e) => handleSearchChange(e.target.value)}
-                    className="w-full"
-                    autoFocus
-                  />
-                </DialogContent>
-              </Dialog>
-                </>
-              ) : null}
-
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" onClick={refreshData}>
-                    <RefreshCw className="w-4 h-4" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Actualiser</TooltipContent>
-              </Tooltip>
-
-              {mainTab === 'knowledge' ? (
-                <Button onClick={openNewDialog} size="sm" className="gap-2">
-                  <Plus className="w-4 h-4" />
-                  <span className="hidden sm:inline">Ajouter</span>
-                </Button>
-              ) : (
-                <Button onClick={openConfigNewDialog} size="sm" className="gap-2">
-                  <Plus className="w-4 h-4" />
-                  <span className="hidden sm:inline">Config</span>
-                </Button>
-              )}
-            </div>
+    <div className="flex min-h-screen flex-col bg-background">
+      <header className="border-b px-4 py-3">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3">
+          <Music4 className="size-5 text-primary" />
+          <div>
+            <h1 className="text-lg font-semibold leading-tight">LEON TSI EDITEUR <span className="text-muted-foreground">v11</span></h1>
+            <p className="text-xs text-muted-foreground">Éditeur de mapping MIDI (TSI) — Traktor Kontrol S4 MK2 · Extension React du studio v11</p>
           </div>
-        </header>
+          <div className="ml-auto flex items-center gap-2">
+            <Select value={actif?.id ?? ""} onValueChange={(id) => { const p = projets.find((x) => x.id === id); if (p) ouvrir(p) }}>
+              <SelectTrigger className="h-8 w-52 text-xs"><SelectValue placeholder="Projet…" /></SelectTrigger>
+              <SelectContent>{projets.map((p) => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
+            </Select>
+            <Button size="sm" variant="outline" onClick={nouveauProjet}><FilePlus className="mr-1 size-3.5" />Projet</Button>
+          </div>
+        </div>
+      </header>
 
-        <div className="flex-1 flex">
-          {/* Sidebar */}
-          <aside className="hidden lg:flex w-56 border-r border-border bg-card/50 flex-col">
-            <div className="p-4">
-              <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Categories</h2>
-              <nav className="space-y-1">
-                {CATEGORIES.map((cat) => {
-                  const Icon = cat.icon
-                  const count = cat.key === 'all'
-                    ? (stats?.total || 0)
-                    : (stats?.categories[cat.key] || 0)
-                  return (
-                    <button
-                      key={cat.key}
-                      onClick={() => handleCategoryChange(cat.key)}
-                      className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors ${
-                        selectedCategory === cat.key
-                          ? 'bg-primary text-primary-foreground font-medium'
-                          : 'hover:bg-accent text-foreground'
-                      }`}
-                    >
-                      <Icon className={`w-4 h-4 ${selectedCategory === cat.key ? 'text-primary-foreground' : cat.color}`} />
-                      <span className="flex-1 text-left">{cat.label}</span>
-                      <Badge variant="secondary" className="text-xs h-5 min-w-[20px] justify-center">
-                        {count}
-                      </Badge>
-                    </button>
-                  )
-                })}
-              </nav>
-            </div>
-
-            <Separator className="mx-4" />
-
-            {/* Stats */}
-            {stats && (
-              <div className="p-4 space-y-3">
-                <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Statistiques</h2>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Total</span>
-                    <span className="font-semibold">{stats.total}</span>
+      <main className="mx-auto w-full max-w-7xl flex-1 space-y-4 px-4 py-4">
+        <div className="grid gap-4 lg:grid-cols-3">
+          <div className="lg:col-span-2 space-y-4">
+            <ControllerView onQuickCommand={onQuickCommand} />
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="flex flex-wrap items-center gap-2 text-base">
+                  <SlidersHorizontal className="size-4" /> Mappings
+                  <Badge variant="outline">{data.mappings.length}</Badge>
+                  {conflits.length > 0 && <Badge variant="destructive">{conflits.length} conflit(s)</Badge>}
+                  <div className="ml-auto flex flex-wrap gap-1.5">
+                    <Button size="sm" onClick={() => { setPrefill(null); setDialogOuvert(true) }}><Plus className="mr-1 size-3.5" />Mapping</Button>
+                    {(() => { const ops = opsSelection(); return (
+                      <>
+                        <Button size="sm" variant="outline" disabled={!selection.size} onClick={ops.dupliquer}><Repeat className="mr-1 size-3.5" />Dupliquer</Button>
+                        <Button size="sm" variant="outline" disabled={!selection.size} onClick={ops.copier}><ClipboardCopy className="size-3.5" /></Button>
+                        <Button size="sm" variant="outline" disabled={!pressePapiers.length} onClick={ops.coller}><ClipboardPaste className="size-3.5" /></Button>
+                        <Button size="sm" variant="outline" disabled={!selection.size} onClick={ops.interaction}>Interaction</Button>
+                        <Button size="sm" variant="outline" disabled={!selection.size} onClick={ops.cible}>Cible</Button>
+                        <Button size="sm" variant="outline" disabled={!selection.size} onClick={ops.canalPlus}>Canal +1</Button>
+                        <Button size="sm" variant="outline" disabled={!selection.size} onClick={ops.canalMoins}>−1</Button>
+                        <Button size="sm" variant="outline" disabled={!selection.size} onClick={ops.supprimer}><Trash2 className="size-3.5" /></Button>
+                      </>
+                    ) })()}
+                    <Button size="sm" variant="outline" onClick={verifier}><Check className="mr-1 size-3.5" />Vérifier</Button>
+                    <Button size="sm" variant="outline" disabled={!actif} asChild>
+                      <a href={actif ? `/api/projects/${actif.id}/export` : "#"}><Download className="mr-1 size-3.5" />Exporter .tsi</a>
+                    </Button>
+                    <label className="inline-flex h-8 cursor-pointer items-center rounded-md border px-2.5 text-xs hover:bg-muted">
+                      <Upload className="mr-1 size-3.5" />Importer .tsi
+                      <input type="file" accept=".tsi,.xml" className="hidden" onChange={importerTsi} />
+                    </label>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Épinglés</span>
-                    <span className="font-semibold">{stats.pinned}</span>
-                  </div>
-                  {Object.entries(stats.priorities).map(([key, count]) => {
-                    const info = PRIORITY_CONFIG[key]
-                    if (!info) return null
-                    return (
-                      <div key={key} className="flex items-center justify-between text-sm">
-                        <span className={`flex items-center gap-1.5 ${info.color}`}>
-                          <info.icon className="w-3 h-3" />
-                          {info.label}
-                        </span>
-                        <span className="font-semibold">{count as number}</span>
-                      </div>
-                    )
-                  })}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="max-h-80 overflow-y-auto rounded-md border">
+                  <table className="w-full text-xs">
+                    <thead className="sticky top-0 bg-muted/60 text-left text-muted-foreground">
+                      <tr>
+                        <th className="w-8 px-2 py-1.5" />
+                        <th className="px-2 py-1.5">Sens</th>
+                        <th className="px-2 py-1.5">Commande</th>
+                        <th className="px-2 py-1.5">Groupe</th>
+                        <th className="px-2 py-1.5">Note / LED</th>
+                        <th className="px-2 py-1.5">Mode</th>
+                        <th className="px-2 py-1.5">Couche</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.mappings.length === 0 && (
+                        <tr><td colSpan={7} className="px-2 py-6 text-center text-muted-foreground">
+                          Aucun mapping — cliquez un chip de la vue contrôleur, « + Mapping », ou appliquez un preset du studio v11.
+                        </td></tr>
+                      )}
+                      {data.mappings.map((m, i) => {
+                        const couche = m.modifier ? Object.entries(m.modifier).map(([k, v]) => `${k}=${v}`).join(",") : "BASE"
+                        return (
+                          <tr key={i} className={`border-t ${selection.has(i) ? "bg-primary/5" : ""}`}>
+                            <td className="px-2 py-1.5">
+                              <Checkbox checked={selection.has(i)}
+                                onCheckedChange={(c) => setSelection((s) => { const n = new Set(s); if (c) n.add(i); else n.delete(i); return n })} />
+                            </td>
+                            <td className="px-2 py-1.5"><Badge variant={m.type === "IN" ? "default" : "secondary"}>{m.type}</Badge></td>
+                            <td className="px-2 py-1.5" title={m.nom}>{m.controle}</td>
+                            <td className="px-2 py-1.5 text-muted-foreground">{m.groupe}</td>
+                            <td className="px-2 py-1.5 font-mono">
+                              <Input ref={i === enEdition ? editionRef : undefined}
+                                className="h-6 w-28 font-mono text-xs"
+                                defaultValue={m.midi ? midiLabel(m.midi) : m.led ? `LED ${m.led.numero}` : "—"}
+                                onFocus={() => setEnEdition(i)}
+                                onBlur={() => setEnEdition(null)}
+                                onChange={(e) => {
+                                  const val = e.target.value
+                                  if (/^Ch\d+\.(NOTE|CC)\.\d+$/.test(val)) {
+                                    try {
+                                      const [ch, msg, num] = val.split(".")
+                                      setData((d) => ({ ...d, mappings: d.mappings.map((mm, j) =>
+                                        j === i && mm.midi ? { ...mm, midi: { ...mm.midi, canal: Number(ch.slice(2)), message: msg as "NOTE" | "CC", numero: Number(num) } } : mm) }))
+                                    } catch { /* saisie partielle */ }
+                                  }
+                                }}
+                              />
+                            </td>
+                            <td className="px-2 py-1.5 text-muted-foreground">{m.midi?.mode ?? m.led ? m.midi?.mode ?? "LED on/off" : "—"}</td>
+                            <td className="px-2 py-1.5 text-muted-foreground">{couche}</td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
                 </div>
-              </div>
-            )}
-
-            <div className="mt-auto p-4">
-              <div className="rounded-lg bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 p-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Sparkles className="w-4 h-4 text-emerald-500" />
-                  <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">Écosystème live</span>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  {skillStats?.total || 75} skills · {skillStats?.ecosystem || 0} éco · {skillStats?.metier || 0} métier
+                <p className="mt-2 text-[11px] text-muted-foreground">
+                  Sélectionnez une ligne puis Ctrl+L pour capturer la note au contrôleur (parité CMDR). Sauvegarde explicite via l&apos;édition de ligne (persistée par frappe).
                 </p>
-              </div>
-            </div>
-          </aside>
+              </CardContent>
+            </Card>
+          </div>
 
-          {/* Main Content */}
-          <main className="flex-1 overflow-hidden">
-          {mainTab === 'skills' ? (
-            /* ═══ SKILLS PANEL ═══ */
-            <>
-            {/* Skills search + filters bar */}
-            <div className="border-b border-border bg-card/50 px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-              <div className="relative flex-1 w-full sm:w-auto">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  placeholder="Rechercher un skill..."
-                  value={skillSearch}
-                  onChange={(e) => setSkillSearch(e.target.value)}
-                  className="pl-9 h-9"
-                />
-              </div>
-              <div className="flex items-center gap-2">
-                {(['all', 'ecosystem', 'metier'] as const).map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setSkillCategoryFilter(cat)}
-                    className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-colors ${
-                      skillCategoryFilter === cat
-                        ? 'bg-primary text-primary-foreground font-medium'
-                        : 'bg-accent text-foreground'
-                    }`}
-                  >
-                    {cat === 'all' ? 'Tous' : cat === 'ecosystem' ? 'Écosystème' : 'Métier'}
-                  </button>
-                ))}
-                <select
-                  value={skillLangFilter}
-                  onChange={(e) => setSkillLangFilter(e.target.value)}
-                  className="h-8 text-xs border rounded-md px-2 bg-background"
-                >
-                  <option value="all">Toutes langues</option>
-                  <option value="en">EN</option>
-                  <option value="fr">FR</option>
-                  <option value="zh">ZH</option>
-                </select>
-              </div>
-            </div>
-
-            <ScrollArea className="h-[calc(100vh-9rem)] lg:h-[calc(100vh-6.5rem)]">
-              <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-6">
-                {/* Stats Cards */}
-                {skillStats && (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-                      <Card className="border-l-4 border-l-emerald-500">
-                        <CardContent className="p-3">
-                          <div className="flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-emerald-500" /><span className="text-[10px] text-muted-foreground">Total</span></div>
-                          <p className="text-xl font-bold mt-1">{skillStats.total}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.03 }}>
-                      <Card className="border-l-4 border-l-violet-500">
-                        <CardContent className="p-3">
-                          <div className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-violet-500" /><span className="text-[10px] text-muted-foreground">Écosystème</span></div>
-                          <p className="text-xl font-bold mt-1">{skillStats.ecosystem}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.06 }}>
-                      <Card className="border-l-4 border-l-amber-500">
-                        <CardContent className="p-3">
-                          <div className="flex items-center gap-1.5"><Package className="w-3.5 h-3.5 text-amber-500" /><span className="text-[10px] text-muted-foreground">Métier</span></div>
-                          <p className="text-xl font-bold mt-1">{skillStats.metier}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.09 }}>
-                      <Card className="border-l-4 border-l-cyan-500">
-                        <CardContent className="p-3">
-                          <div className="flex items-center gap-1.5"><FileCode className="w-3.5 h-3.5 text-cyan-500" /><span className="text-[10px] text-muted-foreground">Fichiers</span></div>
-                          <p className="text-xl font-bold mt-1">{skillStats.totalFiles}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}>
-                      <Card className="border-l-4 border-l-rose-500">
-                        <CardContent className="p-3">
-                          <div className="flex items-center gap-1.5"><GitBranch className="w-3.5 h-3.5 text-rose-500" /><span className="text-[10px] text-muted-foreground">Dépendances</span></div>
-                          <p className="text-xl font-bold mt-1">{skillStats.withDeps}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-                      <Card className="border-l-4 border-l-orange-500">
-                        <CardContent className="p-3">
-                          <div className="flex items-center gap-1.5"><Languages className="w-3.5 h-3.5 text-orange-500" /><span className="text-[10px] text-muted-foreground">Langues</span></div>
-                          <p className="text-xl font-bold mt-1">{Object.keys(skillStats.languages).length}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  </div>
-                )}
-
-                {/* Results count */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-lg font-semibold">{skillCategoryFilter === 'all' ? 'Tous les skills' : skillCategoryFilter === 'ecosystem' ? 'Skills écosystème' : 'Skills métier'}</h2>
-                    <p className="text-sm text-muted-foreground">{skills.length} skill{skills.length !== 1 ? 's' : ''} trouvé{skills.length !== 1 ? 's' : ''}</p>
-                  </div>
-                </div>
-
-                {/* Relations mini-graph */}
-                {relations.length > 0 && skillCategoryFilter === 'all' && !skillSearch && (
-                  <Card className="p-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <ArrowLeftRight className="w-4 h-4 text-rose-500" />
-                      <h3 className="text-sm font-semibold">Relations ({relations.length})</h3>
+          <div className="space-y-4">
+            <MidiPanel />
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base"><Layers className="size-4" /> Studio v11 — Presets &amp; DSL</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="space-y-1.5">
+                  {presets.map((p) => (
+                    <div key={p.fichier} className="flex items-center gap-2 rounded-md border p-2">
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-xs font-medium">{p.nom}</p>
+                        <p className="truncate text-[11px] text-muted-foreground">{p.description}</p>
+                      </div>
+                      <Badge variant="outline" className="text-[10px]">{p.nbMappings}</Badge>
+                      <Button size="sm" onClick={() => appliquerPreset(p)}>Appliquer</Button>
                     </div>
-                    <div className="flex flex-wrap gap-2">
-                      {relations.map((rel, i) => (
-                        <Badge key={i} variant="outline" className="text-xs gap-1">
-                          <span className="font-mono">{rel.source}</span>
-                          <ArrowRight className="w-3 h-3 text-muted-foreground" />
-                          <span className="font-mono">{rel.target}</span>
-                          <span className="text-muted-foreground">({rel.type})</span>
-                        </Badge>
-                      ))}
-                    </div>
-                  </Card>
-                )}
-
-                {/* Skills Grid */}
-                {skillsLoading ? (
-                  <div className="flex items-center justify-center py-16">
-                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} className="w-10 h-10 rounded-full border-4 border-primary border-t-transparent" />
-                  </div>
-                ) : skills.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <AnimatePresence>
-                      {skills.map((skill, i) => (
-                        <motion.div
-                          key={skill.slug}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ delay: Math.min(i * 0.02, 0.5) }}
-                        >
-                          <Card
-                            className="cursor-pointer transition-all hover:shadow-md group"
-                            onClick={async () => {
-                              try {
-                                const res = await fetch(`/api/skills?slug=${skill.slug}`)
-                                if (res.ok) setSkillDetail(await res.json())
-                              } catch {}
-                            }}
-                          >
-                            <CardHeader className="pb-2 px-4 pt-4">
-                              <div className="flex items-start justify-between gap-2">
-                                <div className="flex items-center gap-2 min-w-0">
-                                  <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                                    skill.category === 'ecosystem'
-                                      ? 'bg-violet-100 dark:bg-violet-900/30'
-                                      : 'bg-amber-100 dark:bg-amber-900/30'
-                                  }`}>
-                                    {skill.category === 'ecosystem'
-                                      ? <Zap className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
-                                      : <Package className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />}
-                                  </div>
-                                  <CardTitle className="text-sm font-semibold truncate">{skill.name}</CardTitle>
-                                </div>
-                                <div className="flex items-center gap-1.5 flex-shrink-0">
-                                  <Badge variant="outline" className="text-[10px] font-mono">{skill.version}</Badge>
-                                  <Badge variant="secondary" className="text-[10px] uppercase">{skill.language}</Badge>
-                                </div>
-                              </div>
-                            </CardHeader>
-                            <CardContent className="px-4 pb-4 space-y-3">
-                              <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{skill.description}</p>
-                              <div className="flex flex-wrap gap-1.5">
-                                {skill.tags.slice(0, 3).map((tag, ti) => (
-                                  <Badge key={ti} variant="secondary" className="text-[10px]">#{tag}</Badge>
-                                ))}
-                                {skill.tags.length > 3 && (
-                                  <Badge variant="secondary" className="text-[10px]">+{skill.tags.length - 3}</Badge>
-                                )}
-                              </div>
-                              <div className="flex items-center justify-between text-[10px] text-muted-foreground pt-1 border-t border-border">
-                                <div className="flex items-center gap-2">
-                                  {skill.hasScripts && <span className="flex items-center gap-0.5"><Code2 className="w-3 h-3" />Scripts</span>}
-                                  {skill.hasReferences && <span className="flex items-center gap-0.5"><FolderOpen className="w-3 h-3" />Refs</span>}
-                                  {skill.hasEvals && <span className="flex items-center gap-0.5"><Eye className="w-3 h-3" />Evals</span>}
-                                </div>
-                                <span>{skill.fileCount} fichiers</span>
-                              </div>
-                            </CardContent>
-                          </Card>
-                        </motion.div>
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <div className="text-center py-16">
-                    <Layers className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-muted-foreground">Aucun skill trouvé</h3>
-                    <p className="text-sm text-muted-foreground mt-1">Essayez une autre recherche ou filtre</p>
-                  </div>
-                )}
-              </div>
-            </ScrollArea>
-            </>
-          ) : mainTab === 'knowledge' ? (
-            <>
-            {/* Mobile category tabs */}
-            <div className="lg:hidden border-b border-border bg-card/50 overflow-x-auto">
-              <div className="flex items-center gap-1 px-4 py-2">
-                {CATEGORIES.map((cat) => {
-                  const Icon = cat.icon
-                  return (
-                    <button
-                      key={cat.key}
-                      onClick={() => handleCategoryChange(cat.key)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-colors ${
-                        selectedCategory === cat.key
-                          ? 'bg-primary text-primary-foreground font-medium'
-                          : 'bg-accent text-foreground'
-                      }`}
-                    >
-                      <Icon className="w-3 h-3" />
-                      {cat.label}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-
-            <ScrollArea className="h-[calc(100vh-8rem)] lg:h-[calc(100vh-5rem)]">
-              <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-6">
-                {/* Stats Cards (mobile friendly) */}
-                {stats && (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0 }}>
-                      <Card className="border-l-4 border-l-violet-500">
-                        <CardContent className="p-3 sm:p-4">
-                          <div className="flex items-center gap-2">
-                            <Users className="w-4 h-4 text-violet-500" />
-                            <span className="text-xs text-muted-foreground">Profil</span>
-                          </div>
-                          <p className="text-2xl font-bold mt-1">{stats.categories.profile || 0}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
-                      <Card className="border-l-4 border-l-emerald-500">
-                        <CardContent className="p-3 sm:p-4">
-                          <div className="flex items-center gap-2">
-                            <Cpu className="w-4 h-4 text-emerald-500" />
-                            <span className="text-xs text-muted-foreground">Agents</span>
-                          </div>
-                          <p className="text-2xl font-bold mt-1">{stats.categories.agent || 0}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                      <Card className="border-l-4 border-l-rose-500">
-                        <CardContent className="p-3 sm:p-4">
-                          <div className="flex items-center gap-2">
-                            <Shield className="w-4 h-4 text-rose-500" />
-                            <span className="text-xs text-muted-foreground">Protocoles</span>
-                          </div>
-                          <p className="text-2xl font-bold mt-1">{stats.categories.protocol || 0}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-                      <Card className="border-l-4 border-l-orange-500">
-                        <CardContent className="p-3 sm:p-4">
-                          <div className="flex items-center gap-2">
-                            <BookOpen className="w-4 h-4 text-orange-500" />
-                            <span className="text-xs text-muted-foreground">Regles</span>
-                          </div>
-                          <p className="text-2xl font-bold mt-1">{stats.categories.rule || 0}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  </div>
-                )}
-
-                {/* View Toggle */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-lg font-semibold">
-                      {selectedCategory === 'all' ? 'Toutes les entrees' : getCategoryInfo(selectedCategory).label}
-                    </h2>
-                    <p className="text-sm text-muted-foreground">
-                      {entries.length} entree{entries.length !== 1 ? 's' : ''} trouvee{entries.length !== 1 ? 's' : ''}
-                    </p>
-                  </div>
-                  <Tabs value={activeTab} onValueChange={setActiveTab}>
-                    <TabsList className="h-8">
-                      <TabsTrigger value="grid" className="text-xs px-2.5">Grille</TabsTrigger>
-                      <TabsTrigger value="list" className="text-xs px-2.5">Liste</TabsTrigger>
-                    </TabsList>
-                  </Tabs>
-                </div>
-
-                {/* Pinned Section */}
-                {pinnedEntries.length > 0 && (
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-sm font-medium text-amber-600 dark:text-amber-400">
-                      <Pin className="w-4 h-4" />
-                      Epinglees
-                    </div>
-                    <div className={activeTab === 'grid'
-                      ? 'grid grid-cols-1 md:grid-cols-2 gap-4'
-                      : 'space-y-3'
-                    }>
-                      <AnimatePresence>
-                        {pinnedEntries.map((entry, i) => (
-                          <motion.div
-                            key={entry.id}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ delay: i * 0.03 }}
-                          >
-                            <KnowledgeCard
-                              entry={entry}
-                              view={activeTab}
-                              onEdit={openEditDialog}
-                              onDelete={handleDelete}
-                              onTogglePin={handleTogglePin}
-                              onView={setViewingEntry}
-                              getCategoryInfo={getCategoryInfo}
-                              getPriorityInfo={getPriorityInfo}
-                              formatDate={formatDate}
-                            />
-                          </motion.div>
-                        ))}
-                      </AnimatePresence>
-                    </div>
-                  </div>
-                )}
-
-                {/* Unpinned Entries */}
-                {unpinnedEntries.length > 0 && (
-                  <div className="space-y-3">
-                    {pinnedEntries.length > 0 && (
-                      <Separator />
-                    )}
-                    <div className={activeTab === 'grid'
-                      ? 'grid grid-cols-1 md:grid-cols-2 gap-4'
-                      : 'space-y-3'
-                    }>
-                      <AnimatePresence>
-                        {unpinnedEntries.map((entry, i) => (
-                          <motion.div
-                            key={entry.id}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ delay: i * 0.02 }}
-                          >
-                            <KnowledgeCard
-                              entry={entry}
-                              view={activeTab}
-                              onEdit={openEditDialog}
-                              onDelete={handleDelete}
-                              onTogglePin={handleTogglePin}
-                              onView={setViewingEntry}
-                              getCategoryInfo={getCategoryInfo}
-                              getPriorityInfo={getPriorityInfo}
-                              formatDate={formatDate}
-                            />
-                          </motion.div>
-                        ))}
-                      </AnimatePresence>
-                    </div>
-                  </div>
-                )}
-
-                {entries.length === 0 && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-center py-16"
-                  >
-                    <Brain className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-muted-foreground">Aucune entree trouvee</h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {searchQuery ? 'Essayez une autre recherche' : 'Ajoutez votre premiere entree'}
-                    </p>
-                  </motion.div>
-                )}
-              </div>
-            </ScrollArea>
-            </>
-          ) : (
-            /* ═══ CONFIG PANEL ═══ */
-            <ScrollArea className="h-[calc(100vh-5rem)]">
-              <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-6">
-                {/* Config category filter */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-2">
-                  {CONFIG_CATEGORIES.map((cat) => (
-                    <button
-                      key={cat.key}
-                      onClick={() => setConfigCategory(cat.key)}
-                      className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-colors ${configCategory === cat.key ? 'bg-primary text-primary-foreground font-medium' : 'bg-accent text-foreground'}`}
-                    >
-                      {cat.label}
-                    </button>
                   ))}
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-lg font-semibold">Configurations</h2>
-                    <p className="text-sm text-muted-foreground">{configs.length} config{configs.length !== 1 ? 's' : ''}</p>
-                  </div>
-                  {configs.length === 0 && (
-                    <Button onClick={seedConfigs} size="sm" variant="outline" className="gap-2">
-                      <Database className="w-4 h-4" />
-                      Initialiser les configs
-                    </Button>
-                  )}
+                <div className="space-y-1.5">
+                  <p className="text-xs font-medium">Éditeur DSL (source de vérité partagée toolchain)</p>
+                  <textarea
+                    className="h-24 w-full rounded-md border bg-muted/40 p-2 font-mono text-[11px]"
+                    value={dsl} onChange={(e) => setDsl(e.target.value)}
+                    spellCheck={false}
+                  />
+                  <Button size="sm" className="w-full" onClick={compilerEtAppliquer}>
+                    <ArrowRight className="mr-1 size-3.5" />Compiler &amp; générer
+                  </Button>
                 </div>
-
-                {/* Config table */}
-                {configs.length > 0 ? (
-                  <div className="rounded-lg border border-border overflow-hidden">
-                    <div className="bg-muted/50 px-4 py-2.5 grid grid-cols-[1fr_2fr_1fr] gap-4 text-xs font-semibold text-muted-foreground">
-                      <span>Clé</span>
-                      <span>Valeur</span>
-                      <span className="text-right">Actions</span>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <AuditIcon className="size-4" /> Audit auto-évolutif
+                  <Badge variant="outline" className="text-[10px]">{audit.length}</Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="max-h-52 space-y-1 overflow-y-auto text-[11px] text-muted-foreground">
+                  {audit.length === 0 && <p>Aucune entrée — chaque action (preset, DSL, mass-edit) alimente le journal.</p>}
+                  {audit.map((a) => (
+                    <div key={a.id} className="rounded border px-2 py-1">
+                      <span className="font-medium text-foreground">{a.action}</span> — {a.detail}
+                      <span className="ml-1 opacity-70">({a.mappings} m. / {a.conflits} c. — {new Date(a.createdAt).toLocaleTimeString("fr-FR")})</span>
                     </div>
-                    <div className="divide-y divide-border">
-                      {configs.map((config, i) => (
-                        <motion.div
-                          key={config.id}
-                          initial={{ opacity: 0, y: 5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: i * 0.02 }}
-                          className="px-4 py-3 grid grid-cols-[1fr_2fr_1fr] gap-4 items-center hover:bg-muted/30 transition-colors"
-                        >
-                          <div>
-                            <div className="flex items-center gap-1.5">
-                              <Key className="w-3 h-3 text-muted-foreground" />
-                              <span className="font-mono text-sm font-medium">{config.key}</span>
-                            </div>
-                            {config.description && (
-                              <p className="text-xs text-muted-foreground mt-0.5">{config.description}</p>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <code className="text-xs bg-muted px-2 py-1 rounded flex-1 truncate">{config.value}</code>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-7 w-7 flex-shrink-0" onClick={() => copyToClipboard(config.value)}>
-                                  <Copy className="w-3.5 h-3.5" />
-                                </Button>
-                              </TooltipTrigger>
-                              <TooltipContent>Copier</TooltipContent>
-                            </Tooltip>
-                          </div>
-                          <div className="flex items-center justify-end gap-1">
-                            <Badge variant="outline" className="text-[10px]">{config.category}</Badge>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => openConfigEditDialog(config)}>
-                                  <Pencil className="w-3.5 h-3.5" />
-                                </Button>
-                              </TooltipTrigger>
-                              <TooltipContent>Modifier</TooltipContent>
-                            </Tooltip>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => handleConfigDelete(config.key)}>
-                                  <Trash2 className="w-3.5 h-3.5" />
-                                </Button>
-                              </TooltipTrigger>
-                              <TooltipContent>Supprimer</TooltipContent>
-                            </Tooltip>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="text-center py-12">
-                    <Wrench className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-muted-foreground">Aucune configuration</h3>
-                    <p className="text-sm text-muted-foreground mt-1">Cliquez sur "Initialiser les configs" pour charger les valeurs par défaut</p>
-                  </div>
-                )}
-              </div>
-            </ScrollArea>
-          )}
-          </main>
-        </div>
-
-        {/* Add/Edit Dialog */}
-        <Dialog open={dialogOpen} onOpenChange={(open) => {
-          setDialogOpen(open)
-          if (!open) resetForm()
-        }}>
-          <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                {editingEntry ? (
-                  <><Edit3 className="w-5 h-5" /> Modifier l&apos;entree</>
-                ) : (
-                  <><Plus className="w-5 h-5" /> Nouvelle entree</>
-                )}
-              </DialogTitle>
-            </DialogHeader>
-
-            <div className="space-y-4 py-2">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Titre</label>
-                <Input
-                  placeholder="Titre de l'entree..."
-                  value={formTitle}
-                  onChange={(e) => setFormTitle(e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Contenu</label>
-                <Textarea
-                  placeholder="Contenu de la connaissance..."
-                  value={formContent}
-                  onChange={(e) => setFormContent(e.target.value)}
-                  rows={6}
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Categorie</label>
-                  <Select value={formCategory} onValueChange={setFormCategory}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="profile">Profil</SelectItem>
-                      <SelectItem value="agent">Agent</SelectItem>
-                      <SelectItem value="skill">Skill</SelectItem>
-                      <SelectItem value="protocol">Protocole</SelectItem>
-                      <SelectItem value="trigger">Declencheur</SelectItem>
-                      <SelectItem value="rule">Regle</SelectItem>
-                      <SelectItem value="other">Autre</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  ))}
                 </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Priorite</label>
-                  <Select value={formPriority} onValueChange={setFormPriority}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="critical">Critique</SelectItem>
-                      <SelectItem value="important">Important</SelectItem>
-                      <SelectItem value="normal">Normal</SelectItem>
-                      <SelectItem value="secondary">Secondaire</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Tags (separes par virgules)</label>
-                <Input
-                  placeholder="tag1, tag2, tag3..."
-                  value={formTags}
-                  onChange={(e) => setFormTags(e.target.value)}
-                />
-              </div>
-
-              <div className="flex justify-end gap-2 pt-2">
-                <Button variant="outline" onClick={() => { setDialogOpen(false); resetForm() }}>
-                  Annuler
-                </Button>
-                <Button onClick={handleSave} disabled={!formTitle || !formContent} className="gap-2">
-                  <Save className="w-4 h-4" />
-                  {editingEntry ? 'Mettre a jour' : 'Creer'}
-                </Button>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
-
-        {/* View Entry Dialog */}
-        <Dialog open={!!viewingEntry} onOpenChange={(open) => { if (!open) setViewingEntry(null) }}>
-          <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
-            {viewingEntry && (
-              <>
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2">
-                    {(() => {
-                      const catInfo = getCategoryInfo(viewingEntry.category)
-                      const CatIcon = catInfo.icon
-                      return <CatIcon className={`w-5 h-5 ${catInfo.color}`} />
-                    })()}
-                    {viewingEntry.title}
-                  </DialogTitle>
-                </DialogHeader>
-
-                <div className="space-y-4 py-2">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className={getPriorityInfo(viewingEntry.priority).color}>
-                      {getPriorityInfo(viewingEntry.priority).label}
-                    </Badge>
-                    <Badge variant="outline">
-                      {getCategoryInfo(viewingEntry.category).label}
-                    </Badge>
-                    {viewingEntry.source === 'imported' && (
-                      <Badge variant="secondary" className="gap-1">
-                        <Database className="w-3 h-3" />
-                        Importe
-                      </Badge>
-                    )}
-                    {viewingEntry.pinned && (
-                      <Badge className="bg-amber-100 text-amber-700 gap-1">
-                        <Pin className="w-3 h-3" />
-                        Epinglee
-                      </Badge>
-                    )}
-                  </div>
-
-                  <div className="bg-muted/50 rounded-lg p-4">
-                    <pre className="whitespace-pre-wrap text-sm leading-relaxed font-sans">
-                      {viewingEntry.content}
-                    </pre>
-                  </div>
-
-                  {viewingEntry.tags && (
-                    <div className="flex flex-wrap gap-1.5">
-                      {viewingEntry.tags.split(',').map((tag, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs gap-1">
-                          <Hash className="w-2.5 h-2.5" />
-                          {tag.trim()}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      Cree: {formatDate(viewingEntry.createdAt)}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <RefreshCw className="w-3 h-3" />
-                      Modifie: {formatDate(viewingEntry.updatedAt)}
-                    </span>
-                  </div>
-
-                  <Separator />
-
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleTogglePin(viewingEntry)}
-                      className="gap-1.5"
-                    >
-                      {viewingEntry.pinned ? <PinOff className="w-4 h-4" /> : <Pin className="w-4 h-4" />}
-                      {viewingEntry.pinned ? 'Desepingler' : 'Epingler'}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => { openEditDialog(viewingEntry); setViewingEntry(null) }}
-                      className="gap-1.5"
-                    >
-                      <Edit3 className="w-4 h-4" />
-                      Modifier
-                    </Button>
-                  </div>
-                </div>
-              </>
-            )}
-          </DialogContent>
-        </Dialog>
-
-        {/* Config Add/Edit Dialog */}
-        <Dialog open={configDialogOpen} onOpenChange={(open) => {
-          setConfigDialogOpen(open)
-          if (!open) resetConfigForm()
-        }}>
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                {editingConfig ? (
-                  <><Pencil className="w-5 h-5" /> Modifier la config</>
-                ) : (
-                  <><Plus className="w-5 h-5" /> Nouvelle config</>
-                )}
-              </DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4 py-2">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Clé</label>
-                <Input
-                  placeholder="ex: user.name"
-                  value={configFormKey}
-                  onChange={(e) => setConfigFormKey(e.target.value)}
-                  disabled={!!editingConfig}
-                  className="font-mono"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Valeur</label>
-                <Textarea
-                  placeholder="Valeur de la configuration..."
-                  value={configFormValue}
-                  onChange={(e) => setConfigFormValue(e.target.value)}
-                  rows={3}
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Catégorie</label>
-                <Select value={configFormCategory} onValueChange={setConfigFormCategory}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="profile">Profil</SelectItem>
-                    <SelectItem value="ecosystem">Écosystème</SelectItem>
-                    <SelectItem value="gen-plan">Gen-Plan</SelectItem>
-                    <SelectItem value="decision">Décision</SelectItem>
-                    <SelectItem value="rules">Règles</SelectItem>
-                    <SelectItem value="app">App</SelectItem>
-                    <SelectItem value="config">Config</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Description</label>
-                <Input
-                  placeholder="Description de cette config..."
-                  value={configFormDescription}
-                  onChange={(e) => setConfigFormDescription(e.target.value)}
-                />
-              </div>
-              <div className="flex justify-end gap-2 pt-2">
-                <Button variant="outline" onClick={() => { setConfigDialogOpen(false); resetConfigForm() }}>
-                  Annuler
-                </Button>
-                <Button onClick={handleConfigSave} disabled={!configFormKey || !configFormValue} className="gap-2">
-                  <Save className="w-4 h-4" />
-                  {editingConfig ? 'Mettre à jour' : 'Créer'}
-                </Button>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
-
-        {/* Skill Detail Dialog */}
-        <Dialog open={!!skillDetail} onOpenChange={(open) => { if (!open) setSkillDetail(null) }}>
-          <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
-            {skillDetail && (
-              <>
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                      skillDetail.category === 'ecosystem' ? 'bg-violet-100 dark:bg-violet-900/30' : 'bg-amber-100 dark:bg-amber-900/30'
-                    }`}>
-                      {skillDetail.category === 'ecosystem' ? <Zap className="w-4 h-4 text-violet-600" /> : <Package className="w-4 h-4 text-amber-600" />}
-                    </div>
-                    {skillDetail.name}
-                  </DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4 py-2">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="font-mono">v{skillDetail.version}</Badge>
-                    <Badge variant={skillDetail.category === 'ecosystem' ? 'default' : 'secondary'}>
-                      {skillDetail.category === 'ecosystem' ? 'Écosystème' : 'Métier'}
-                    </Badge>
-                    <Badge variant="outline">{skillDetail.language.toUpperCase()}</Badge>
-                  </div>
-                  <div className="bg-muted/50 rounded-lg p-4">
-                    <p className="text-sm leading-relaxed">{skillDetail.fullDescription || skillDetail.contentPreview}</p>
-                  </div>
-                  {skillDetail.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5">
-                      {skillDetail.tags.map((tag, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs gap-1">
-                          <Hash className="w-2.5 h-2.5" />{tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-                  {skillDetail.dependencies.length > 0 && (
-                    <div>
-                      <h4 className="text-xs font-semibold text-muted-foreground mb-2">Dépendances</h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {skillDetail.dependencies.map((dep, i) => (
-                          <Badge key={i} variant="outline" className="text-xs font-mono">{dep}</Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {('files' in skillDetail) && (
-                    <div>
-                      <h4 className="text-xs font-semibold text-muted-foreground mb-2">Fichiers ({(skillDetail as { files: unknown[] }).files.length})</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {['Scripts', 'References', 'Evaluations', 'Assets'].map((label) => {
-                          const typeMap: Record<string, string> = { Scripts: 'script', References: 'reference', Evaluations: 'eval', Assets: 'asset' }
-                          const count = (skillDetail as { files: { type: string }[] }).files.filter((f) => f.type === typeMap[label]).length
-                          if (!count) return null
-                          return <Badge key={label} variant="secondary" className="text-xs">{label} ({count})</Badge>
-                        })}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </>
-            )}
-          </DialogContent>
-        </Dialog>
-
-        {/* Footer */}
-        <footer className="border-t border-border bg-card/80 py-3 px-4 text-center text-xs text-muted-foreground">
-          KNOWLEDGE v2.0.0 — Memoire persistante pour Francois — {skillStats?.total || 75} skills · {skillStats?.ecosystem || 0} ecosystem · {skillStats?.metier || 0} metier
-        </footer>
-      </div>
-    </TooltipProvider>
-  )
-}
-
-// Knowledge Card Component
-function KnowledgeCard({
-  entry,
-  view,
-  onEdit,
-  onDelete,
-  onTogglePin,
-  onView,
-  getCategoryInfo,
-  getPriorityInfo,
-  formatDate,
-}: {
-  entry: KnowledgeEntry
-  view: string
-  onEdit: (entry: KnowledgeEntry) => void
-  onDelete: (id: string) => void
-  onTogglePin: (entry: KnowledgeEntry) => void
-  onView: (entry: KnowledgeEntry | null) => void
-  getCategoryInfo: (key: string) => typeof CATEGORIES[number]
-  getPriorityInfo: (key: string) => typeof PRIORITY_CONFIG[string]
-  formatDate: (date: string) => string
-}) {
-  const catInfo = getCategoryInfo(entry.category)
-  const CatIcon = catInfo.icon
-  const priorityInfo = getPriorityInfo(entry.priority)
-  const PriorityIcon = priorityInfo.icon
-
-  if (view === 'list') {
-    return (
-      <Card
-        className={`border-l-4 cursor-pointer transition-all hover:shadow-md ${priorityInfo.bg}`}
-        onClick={() => onView(entry)}
-      >
-        <CardContent className="p-3 sm:p-4 flex items-center gap-3">
-          <CatIcon className={`w-5 h-5 flex-shrink-0 ${catInfo.color}`} />
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="font-medium text-sm truncate">{entry.title}</span>
-              {entry.pinned && <Pin className="w-3 h-3 text-amber-500 flex-shrink-0" />}
-            </div>
-            <p className="text-xs text-muted-foreground truncate mt-0.5">{entry.content.substring(0, 80)}...</p>
-          </div>
-          <Badge variant="outline" className={`text-xs flex-shrink-0 ${priorityInfo.color}`}>
-            {priorityInfo.label}
-          </Badge>
-          <div className="flex items-center gap-1 flex-shrink-0" onClick={(e) => e.stopPropagation()}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => onTogglePin(entry)}>
-                  {entry.pinned ? <PinOff className="w-3.5 h-3.5" /> : <Pin className="w-3.5 h-3.5" />}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{entry.pinned ? 'Desepingler' : 'Epingler'}</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => onEdit(entry)}>
-                  <Edit3 className="w-3.5 h-3.5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Modifier</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => onDelete(entry.id)}>
-                  <Trash2 className="w-3.5 h-3.5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Supprimer</TooltipContent>
-            </Tooltip>
-          </div>
-        </CardContent>
-      </Card>
-    )
-  }
-
-  return (
-    <Card
-      className={`cursor-pointer transition-all hover:shadow-md border-t-2 ${priorityInfo.bg}`}
-      onClick={() => onView(entry)}
-    >
-      <CardHeader className="pb-2 px-4 pt-4">
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex items-center gap-2 min-w-0">
-            <CatIcon className={`w-4 h-4 flex-shrink-0 ${catInfo.color}`} />
-            <CardTitle className="text-sm font-semibold truncate">{entry.title}</CardTitle>
-          </div>
-          <div className="flex items-center gap-1 flex-shrink-0" onClick={(e) => e.stopPropagation()}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => onTogglePin(entry)}>
-                  {entry.pinned ? <PinOff className="w-3 h-3" /> : <Pin className="w-3 h-3" />}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{entry.pinned ? 'Desepingler' : 'Epingler'}</TooltipContent>
-            </Tooltip>
+              </CardContent>
+            </Card>
           </div>
         </div>
-      </CardHeader>
-      <CardContent className="px-4 pb-4 space-y-3">
-        <p className="text-xs text-muted-foreground line-clamp-3 leading-relaxed">
-          {entry.content}
-        </p>
+      </main>
 
-        <div className="flex flex-wrap gap-1.5">
-          <Badge variant="outline" className={`text-[10px] ${priorityInfo.color}`}>
-            <PriorityIcon className="w-2.5 h-2.5 mr-0.5" />
-            {priorityInfo.label}
-          </Badge>
-          <Badge variant="outline" className="text-[10px]">
-            {catInfo.label}
-          </Badge>
-          {entry.tags && entry.tags.split(',').slice(0, 2).map((tag, i) => (
-            <Badge key={i} variant="secondary" className="text-[10px]">
-              #{tag.trim()}
-            </Badge>
-          ))}
-          {entry.tags && entry.tags.split(',').length > 2 && (
-            <Badge variant="secondary" className="text-[10px]">
-              +{entry.tags.split(',').length - 2}
-            </Badge>
-          )}
-        </div>
+      <footer className="border-t px-4 py-3 text-center text-[11px] text-muted-foreground">
+        LEON TSI EDITEUR v11 — catalogue scellé {`455`} commandes · {`125`} entrées / {`220`} sorties usines · format canonique validé par l&apos;arbitre tsi-validator (R4 toolchain)
+      </footer>
 
-        <div className="flex items-center justify-between">
-          <span className="text-[10px] text-muted-foreground">
-            {formatDate(entry.updatedAt)}
-          </span>
-          <div className="flex items-center gap-0.5" onClick={(e) => e.stopPropagation()}>
-            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => onEdit(entry)}>
-              <Edit3 className="w-3 h-3" />
-            </Button>
-            <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => onDelete(entry.id)}>
-              <Trash2 className="w-3 h-3" />
-            </Button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+      <AddMappingDialog
+        key={`dlg-${JSON.stringify(prefill)}-${dialogOuvert}`}
+        open={dialogOuvert}
+        prefill={prefill}
+        onClose={() => { setDialogOuvert(false); setPrefill(null) }}
+        onSubmit={ajouterMapping}
+        mappingsExistants={data.mappings}
+      />
+    </div>
   )
 }

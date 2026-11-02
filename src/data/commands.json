@@ -1,0 +1,2842 @@
+{
+ "meta": {
+  "titre": "Catalogue scellé LEON TSI EDITEUR v11",
+  "sources": [
+   "tsi-toolkit/data/commandes-traktor.json (extraction mécanique DJTT v2.1.0 réel — source de vérité primaire)",
+   "discussion b6170b8b §3 (familles CMDR documentées — rapport-analyse-discussion-b6170b8b.md)"
+  ],
+  "convention": "source 1 prioritaire sur doublons nominaux ; ids stables par ordre lexicographique"
+ },
+ "comptes": {
+  "commandes": 455,
+  "categories": 16
+ },
+ "categories": {
+  "Autres": [
+   1,
+   2,
+   3,
+   5,
+   6,
+   7,
+   8,
+   9,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   30,
+   149,
+   150,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   200,
+   201,
+   202,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   249,
+   250,
+   251,
+   252,
+   263,
+   264,
+   287,
+   288,
+   289,
+   290,
+   291,
+   312,
+   364,
+   379,
+   380,
+   381,
+   382,
+   383,
+   384,
+   385,
+   386,
+   387,
+   388,
+   389,
+   390,
+   391,
+   392,
+   393
+  ],
+  "Navigateur/Bibliothèque": [
+   4,
+   10,
+   266,
+   267,
+   268,
+   269,
+   372,
+   378
+  ],
+  "Mixer": [
+   11,
+   12,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   89,
+   90,
+   91,
+   92,
+   304,
+   305,
+   306,
+   307,
+   308,
+   309,
+   310,
+   311
+  ],
+  "Deck > Hotcues": [
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110,
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   117,
+   118,
+   119,
+   120,
+   121,
+   122,
+   123,
+   124,
+   363,
+   366,
+   369,
+   370,
+   374
+  ],
+  "Deck > Tempo/Tonalité": [
+   28,
+   29,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197,
+   198,
+   199,
+   237,
+   238,
+   239,
+   240,
+   241,
+   242,
+   295,
+   296,
+   297,
+   298,
+   299,
+   300,
+   301,
+   302,
+   303,
+   367
+  ],
+  "FX": [
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132,
+   133,
+   134,
+   135,
+   136,
+   137,
+   138,
+   139,
+   140,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   147,
+   148,
+   157,
+   158,
+   159,
+   160,
+   161,
+   162,
+   163,
+   164,
+   165,
+   166,
+   167,
+   168,
+   169,
+   170,
+   171,
+   172,
+   173,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   270,
+   277,
+   292,
+   293,
+   294,
+   313,
+   314,
+   315,
+   316,
+   317,
+   318,
+   319,
+   320,
+   321,
+   322,
+   323,
+   324,
+   325,
+   326,
+   327,
+   328,
+   329,
+   330,
+   331,
+   332,
+   333,
+   334,
+   335,
+   336,
+   337,
+   338,
+   339,
+   340,
+   341,
+   342,
+   343,
+   344,
+   345,
+   346,
+   347,
+   348,
+   349,
+   350,
+   351,
+   352,
+   353,
+   354,
+   355,
+   356,
+   357,
+   358,
+   359,
+   360,
+   361,
+   365,
+   373,
+   375,
+   376,
+   377
+  ],
+  "Deck > Boucles": [
+   49,
+   203,
+   204,
+   205,
+   206,
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   218,
+   219,
+   220,
+   221,
+   222,
+   223,
+   224,
+   225,
+   226,
+   227,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   236,
+   362,
+   371
+  ],
+  "Deck > Transport": [
+   253,
+   254,
+   255,
+   256,
+   257,
+   258,
+   259,
+   260,
+   261,
+   262
+  ],
+  "Remix Deck": [
+   265,
+   271,
+   272,
+   273,
+   274,
+   275,
+   276,
+   278,
+   279,
+   280,
+   281,
+   282,
+   283,
+   284,
+   285,
+   286
+  ],
+  "Deck > Freeze/Slices": [
+   368
+  ],
+  "Global": [
+   394,
+   395,
+   396,
+   397,
+   398,
+   399,
+   400,
+   401,
+   402,
+   403,
+   404,
+   405,
+   406,
+   407,
+   408,
+   409,
+   410,
+   411,
+   412,
+   413,
+   414,
+   415,
+   416,
+   417,
+   418
+  ],
+  "Remix": [
+   419,
+   420,
+   421,
+   422,
+   423,
+   424,
+   425,
+   426,
+   427,
+   428,
+   429,
+   430,
+   431,
+   432,
+   433,
+   434,
+   435,
+   436,
+   437,
+   438
+  ],
+  "Enregistrement": [
+   439,
+   440,
+   441,
+   442
+  ],
+  "Flux": [
+   443,
+   444
+  ],
+  "Deck": [
+   445,
+   446,
+   447
+  ],
+  "Boucles": [
+   448,
+   449,
+   450,
+   451,
+   452,
+   453,
+   454,
+   455
+  ]
+ },
+ "commandes": {
+  "1": {
+   "nom": "Beat Tap - Shift + Shift",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "2": {
+   "nom": "Browse Button Mod",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "3": {
+   "nom": "Browse Favorites",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "4": {
+   "nom": "Browse List Up/Down",
+   "categorie": "Navigateur/Bibliothèque",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "5": {
+   "nom": "Browse Mode",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "6": {
+   "nom": "Browse Preview",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "7": {
+   "nom": "Browse Search",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "8": {
+   "nom": "Browse Search Clear",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "9": {
+   "nom": "Browse Tree",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "10": {
+   "nom": "Browser Mode Leds",
+   "categorie": "Navigateur/Bibliothèque",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "11": {
+   "nom": "Crossfader",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "12": {
+   "nom": "Crossfader Assign LED",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "13": {
+   "nom": "Cue A",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "14": {
+   "nom": "Cue B",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "15": {
+   "nom": "Cue C",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "16": {
+   "nom": "Cue D",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "17": {
+   "nom": "Cue LED A",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "18": {
+   "nom": "Cue LED B",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "19": {
+   "nom": "Cue LED C",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "20": {
+   "nom": "Cue LED D",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "21": {
+   "nom": "Deck A LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "22": {
+   "nom": "Deck A/C Mod v=0",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "23": {
+   "nom": "Deck A/C Mod v=2",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "24": {
+   "nom": "Deck B LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "25": {
+   "nom": "Deck B/D Mod 2",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "26": {
+   "nom": "Deck C LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "27": {
+   "nom": "Deck D LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "28": {
+   "nom": "Deck Flavor Selector (Hold Master button and press gain knob)",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "29": {
+   "nom": "Deck Key",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "30": {
+   "nom": "Deck Select LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "31": {
+   "nom": "EQ A High",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "32": {
+   "nom": "EQ A Low",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "33": {
+   "nom": "EQ A Mid",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "34": {
+   "nom": "EQ B High",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "35": {
+   "nom": "EQ B Low",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "36": {
+   "nom": "EQ B Mid",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "37": {
+   "nom": "EQ C High",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "38": {
+   "nom": "EQ C Low",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "39": {
+   "nom": "EQ C Mid",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "40": {
+   "nom": "EQ D High",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "41": {
+   "nom": "EQ D Low",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "42": {
+   "nom": "EQ D Mid",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "43": {
+   "nom": "Echo Butt1",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "44": {
+   "nom": "Echo Dry/Wet",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "45": {
+   "nom": "Echo EffOn",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "46": {
+   "nom": "Echo FX On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "47": {
+   "nom": "Echo FX4",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "48": {
+   "nom": "Echo Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "49": {
+   "nom": "Echo Mod 2 (Shift + Loop Set Knob)",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "50": {
+   "nom": "Echo and Sample Revision Unit 4",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "51": {
+   "nom": "FX Eff Reset LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "52": {
+   "nom": "FX Mode",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "53": {
+   "nom": "FX1 Dry/Wet",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "54": {
+   "nom": "FX1 Eff Butt1 LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "55": {
+   "nom": "FX1 Eff Butt2 LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "56": {
+   "nom": "FX1 Eff On A",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "57": {
+   "nom": "FX1 Eff On LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "58": {
+   "nom": "FX1 Eff Select",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "59": {
+   "nom": "FX1 Eff1 Amnt",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "60": {
+   "nom": "FX1 Eff1 On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "61": {
+   "nom": "FX1 Eff1 On LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "62": {
+   "nom": "FX1 Eff1 Select",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "63": {
+   "nom": "FX1 Eff2 Amnt",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "64": {
+   "nom": "FX1 Eff2 On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "65": {
+   "nom": "FX1 Eff2 On LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "66": {
+   "nom": "FX1 Eff2 Select",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "67": {
+   "nom": "FX1 Eff3 Amnt",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "68": {
+   "nom": "FX1 Eff3 On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "69": {
+   "nom": "FX1 Eff3 On LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "70": {
+   "nom": "FX1 Eff3 Select",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "71": {
+   "nom": "FX2 Dry/Wet",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "72": {
+   "nom": "FX2 Eff Butt1 LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "73": {
+   "nom": "FX2 Eff Butt2",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "74": {
+   "nom": "FX2 Eff Butt2 LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "75": {
+   "nom": "FX2 Eff On B",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "76": {
+   "nom": "FX2 Eff On LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "77": {
+   "nom": "FX2 Eff Select",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "78": {
+   "nom": "FX2 Eff1 Amnt",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "79": {
+   "nom": "FX2 Eff1 On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "80": {
+   "nom": "FX2 Eff1 On LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "81": {
+   "nom": "FX2 Eff1 Select",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "82": {
+   "nom": "FX2 Eff2 Amnt",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "83": {
+   "nom": "FX2 Eff2 On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "84": {
+   "nom": "FX2 Eff2 On LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "85": {
+   "nom": "FX2 Eff2 Select",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "86": {
+   "nom": "FX2 Eff3 Amnt",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "87": {
+   "nom": "FX2 Eff3 On LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "88": {
+   "nom": "FX2 Eff3 Select",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "89": {
+   "nom": "Gain A",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "90": {
+   "nom": "Gain B",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "91": {
+   "nom": "Gain C",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "92": {
+   "nom": "Gain D",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "93": {
+   "nom": "Hotcue A1",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "94": {
+   "nom": "Hotcue A1 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "95": {
+   "nom": "Hotcue A2",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "96": {
+   "nom": "Hotcue A2 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "97": {
+   "nom": "Hotcue A3",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "98": {
+   "nom": "Hotcue A3 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "99": {
+   "nom": "Hotcue A4",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "100": {
+   "nom": "Hotcue A4 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "101": {
+   "nom": "Hotcue B1",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "102": {
+   "nom": "Hotcue B1 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "103": {
+   "nom": "Hotcue B2",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "104": {
+   "nom": "Hotcue B2 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "105": {
+   "nom": "Hotcue B3",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "106": {
+   "nom": "Hotcue B3 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "107": {
+   "nom": "Hotcue B4",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "108": {
+   "nom": "Hotcue B4 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "109": {
+   "nom": "Hotcue C1",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "110": {
+   "nom": "Hotcue C1 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "111": {
+   "nom": "Hotcue C2",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "112": {
+   "nom": "Hotcue C2 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "113": {
+   "nom": "Hotcue C3",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "114": {
+   "nom": "Hotcue C3 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "115": {
+   "nom": "Hotcue C4",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "116": {
+   "nom": "Hotcue C4 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "117": {
+   "nom": "Hotcue D1",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "118": {
+   "nom": "Hotcue D1 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "119": {
+   "nom": "Hotcue D2",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "120": {
+   "nom": "Hotcue D2 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "121": {
+   "nom": "Hotcue D3",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "122": {
+   "nom": "Hotcue D3 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "123": {
+   "nom": "Hotcue D4",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "124": {
+   "nom": "Hotcue D4 Del",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "125": {
+   "nom": "Instant JogFX A1",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "126": {
+   "nom": "Instant JogFX A1 Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "127": {
+   "nom": "Instant JogFX A1 Mod LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "128": {
+   "nom": "Instant JogFX A2",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "129": {
+   "nom": "Instant JogFX A2 Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "130": {
+   "nom": "Instant JogFX A2 Mod LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "131": {
+   "nom": "Instant JogFX A3",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "132": {
+   "nom": "Instant JogFX A3 Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "133": {
+   "nom": "Instant JogFX A3 Mod LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "134": {
+   "nom": "Instant JogFX A4",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "135": {
+   "nom": "Instant JogFX A4 Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "136": {
+   "nom": "Instant JogFX A4 Mod LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "137": {
+   "nom": "Instant JogFX B1",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "138": {
+   "nom": "Instant JogFX B1 Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "139": {
+   "nom": "Instant JogFX B1 Mod LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "140": {
+   "nom": "Instant JogFX B2",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "141": {
+   "nom": "Instant JogFX B2 Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "142": {
+   "nom": "Instant JogFX B2 Mod LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "143": {
+   "nom": "Instant JogFX B3",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "144": {
+   "nom": "Instant JogFX B3 Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "145": {
+   "nom": "Instant JogFX B3 Mod LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "146": {
+   "nom": "Instant JogFX B4",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "147": {
+   "nom": "Instant JogFX B4 Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "148": {
+   "nom": "Instant JogFX B4 Mod LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "149": {
+   "nom": "Jog A",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "150": {
+   "nom": "Jog B",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "151": {
+   "nom": "Jog C",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "152": {
+   "nom": "Jog D",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "153": {
+   "nom": "Jog Seek A",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "154": {
+   "nom": "Jog Seek B",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "155": {
+   "nom": "Jog Seek C",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "156": {
+   "nom": "Jog Seek D",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "157": {
+   "nom": "JogFX GroupFX",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "158": {
+   "nom": "JogFX L Dry/Wet",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "159": {
+   "nom": "JogFX L FX On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "160": {
+   "nom": "JogFX L FX1 On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "161": {
+   "nom": "JogFX L LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "162": {
+   "nom": "JogFX L Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "163": {
+   "nom": "JogFX L Mod InstaJog",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "164": {
+   "nom": "JogFX L1 FX",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "165": {
+   "nom": "JogFX L1 FX Rel",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "166": {
+   "nom": "JogFX L2 FX",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "167": {
+   "nom": "JogFX L2 FX Rel",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "168": {
+   "nom": "JogFX L2 FX Set",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "169": {
+   "nom": "JogFX L3 FX",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "170": {
+   "nom": "JogFX L3 FX Rel",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "171": {
+   "nom": "JogFX L3 FX Set",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "172": {
+   "nom": "JogFX LED L1",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "173": {
+   "nom": "JogFX LED L2",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "174": {
+   "nom": "JogFX LED L3",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "175": {
+   "nom": "JogFX LED R1",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "176": {
+   "nom": "JogFX LED R2",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "177": {
+   "nom": "JogFX LED R3",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "178": {
+   "nom": "JogFX R Dry/Wet",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "179": {
+   "nom": "JogFX R FX On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "180": {
+   "nom": "JogFX R FX2 On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "181": {
+   "nom": "JogFX R LED",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "182": {
+   "nom": "JogFX R Mod",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "183": {
+   "nom": "JogFX R Mod InstaJog",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "184": {
+   "nom": "JogFX R1 FX",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "185": {
+   "nom": "JogFX R1 FX Rel",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "186": {
+   "nom": "JogFX R2 FX",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "187": {
+   "nom": "JogFX R2 FX Rel",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "188": {
+   "nom": "JogFX R2 FX Set",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "189": {
+   "nom": "JogFX R3 FX",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "190": {
+   "nom": "JogFX R3 FX Rel",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "191": {
+   "nom": "JogFX R3 FX Set",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "192": {
+   "nom": "Key Lock A",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "193": {
+   "nom": "Key Lock B",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "194": {
+   "nom": "Key Lock C",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "195": {
+   "nom": "Key Lock D",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "196": {
+   "nom": "Key Lock LED A",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "197": {
+   "nom": "Key Lock LED B",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "198": {
+   "nom": "Key Lock LED C",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "199": {
+   "nom": "Key Lock LED D",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "200": {
+   "nom": "Layout Selector",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "201": {
+   "nom": "Led Fix",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "202": {
+   "nom": "Load Selected",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "203": {
+   "nom": "Loop Active A",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "204": {
+   "nom": "Loop Active B",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "205": {
+   "nom": "Loop Active C",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "206": {
+   "nom": "Loop Active D",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "207": {
+   "nom": "Loop Active LED",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "208": {
+   "nom": "Loop In A",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "209": {
+   "nom": "Loop In B",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "210": {
+   "nom": "Loop In C",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "211": {
+   "nom": "Loop In D",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "212": {
+   "nom": "Loop Move A",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "213": {
+   "nom": "Loop Move A*",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "214": {
+   "nom": "Loop Move B",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "215": {
+   "nom": "Loop Move C",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "216": {
+   "nom": "Loop Move D",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "217": {
+   "nom": "Loop Out A",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "218": {
+   "nom": "Loop Out B",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "219": {
+   "nom": "Loop Out C",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "220": {
+   "nom": "Loop Out D",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "221": {
+   "nom": "Loop Rec Del",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "222": {
+   "nom": "Loop Rec Dry/Wet",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "223": {
+   "nom": "Loop Rec LED Del",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "224": {
+   "nom": "Loop Rec LED Play/Pause",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "225": {
+   "nom": "Loop Rec LED Record",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "226": {
+   "nom": "Loop Rec LED Undo/Redo",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "227": {
+   "nom": "Loop Rec Play/Pause",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "228": {
+   "nom": "Loop Rec Record",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "229": {
+   "nom": "Loop Rec Size",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "230": {
+   "nom": "Loop Rec Undo/Redo",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "231": {
+   "nom": "Loop Set A",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "232": {
+   "nom": "Loop Set B",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "233": {
+   "nom": "Loop Set C",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "234": {
+   "nom": "Loop Set D",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "235": {
+   "nom": "Loop Size C",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "236": {
+   "nom": "Loop Size D",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "237": {
+   "nom": "Master Set A",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "238": {
+   "nom": "Master Set B",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "239": {
+   "nom": "Master Set C",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "240": {
+   "nom": "Master Set D",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "241": {
+   "nom": "Master Tempo",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "242": {
+   "nom": "Master Tempo LED",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "243": {
+   "nom": "Monitor A",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "244": {
+   "nom": "Monitor A LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "245": {
+   "nom": "Monitor B",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "246": {
+   "nom": "Monitor B LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "247": {
+   "nom": "Monitor C",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "248": {
+   "nom": "Monitor C LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "249": {
+   "nom": "Monitor D",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "250": {
+   "nom": "Monitor D LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "251": {
+   "nom": "Monitor Mix",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "252": {
+   "nom": "Pitch Fader @0% Led",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "253": {
+   "nom": "Play A",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "254": {
+   "nom": "Play A LED",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "255": {
+   "nom": "Play B",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "256": {
+   "nom": "Play C",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "257": {
+   "nom": "Play C LED",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "258": {
+   "nom": "Play D",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "259": {
+   "nom": "Play LED B",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "260": {
+   "nom": "Play LED D",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "261": {
+   "nom": "Preview Play LED",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "262": {
+   "nom": "Preview Player Revised",
+   "categorie": "Deck > Transport",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "263": {
+   "nom": "Quantize",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "264": {
+   "nom": "Quantize LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "265": {
+   "nom": "Remix Deck Add-On",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "266": {
+   "nom": "Restart Track A",
+   "categorie": "Navigateur/Bibliothèque",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "267": {
+   "nom": "Restart Track B",
+   "categorie": "Navigateur/Bibliothèque",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "268": {
+   "nom": "Restart Track C",
+   "categorie": "Navigateur/Bibliothèque",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "269": {
+   "nom": "Restart Track D",
+   "categorie": "Navigateur/Bibliothèque",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "270": {
+   "nom": "Samples C Filter",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "271": {
+   "nom": "Samples C Load from List",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "272": {
+   "nom": "Samples C Play1",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "273": {
+   "nom": "Samples C Play2",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "274": {
+   "nom": "Samples C Play3",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "275": {
+   "nom": "Samples C Play4",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "276": {
+   "nom": "Samples C Volume",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "277": {
+   "nom": "Samples D Filter",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "278": {
+   "nom": "Samples D Load from List",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "279": {
+   "nom": "Samples D Play1",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "280": {
+   "nom": "Samples D Play2",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "281": {
+   "nom": "Samples D Play3",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "282": {
+   "nom": "Samples D Play4",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "283": {
+   "nom": "Samples D Volume",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "284": {
+   "nom": "Samples Group Play",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "285": {
+   "nom": "Samples Group Trigger",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "286": {
+   "nom": "Samples Retrigger",
+   "categorie": "Remix Deck",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "287": {
+   "nom": "Shift A",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "288": {
+   "nom": "Shift B",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "289": {
+   "nom": "Shifted Options Leds",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "290": {
+   "nom": "Snap",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "291": {
+   "nom": "Snap LED",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "292": {
+   "nom": "Super FX Mode Active Leds",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "293": {
+   "nom": "Super FX Mode Toggle Settings",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "294": {
+   "nom": "Super FX On",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "295": {
+   "nom": "Sync A",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "296": {
+   "nom": "Sync B",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "297": {
+   "nom": "Sync C",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "298": {
+   "nom": "Sync D",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "299": {
+   "nom": "Sync LED A",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "300": {
+   "nom": "Sync LED B",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "301": {
+   "nom": "Sync LED C",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "302": {
+   "nom": "Sync LED D",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "303": {
+   "nom": "Tempo Reset",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "304": {
+   "nom": "Volume A",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "305": {
+   "nom": "Volume B",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "306": {
+   "nom": "Volume C",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "307": {
+   "nom": "Volume D",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "308": {
+   "nom": "Volume LED A",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "309": {
+   "nom": "Volume LED B",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "310": {
+   "nom": "Volume LED C",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "311": {
+   "nom": "Volume LED D",
+   "categorie": "Mixer",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "312": {
+   "nom": "X-Fader Assignments",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "313": {
+   "nom": "_(FX PRESET Deck A) 1 : Button 1 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "314": {
+   "nom": "_(FX PRESET Deck A) 1 : Button 1 FX 1 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "315": {
+   "nom": "_(FX PRESET Deck A) 1 : Button 1 FX 2 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "316": {
+   "nom": "_(FX PRESET Deck A) 1 : Button 1 FX 3 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "317": {
+   "nom": "_(FX PRESET Deck A) 2 : Button 2 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "318": {
+   "nom": "_(FX PRESET Deck A) 2 : Button 2 FX 1 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "319": {
+   "nom": "_(FX PRESET Deck A) 2 : Button 2 FX 2 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "320": {
+   "nom": "_(FX PRESET Deck A) 2 : Button 2 FX 3 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "321": {
+   "nom": "_(FX PRESET Deck A) 3 : Button 3 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "322": {
+   "nom": "_(FX PRESET Deck A) 3 : Button 3 FX 1 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "323": {
+   "nom": "_(FX PRESET Deck A) 3 : Button 3 FX 1 (Single) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "324": {
+   "nom": "_(FX PRESET Deck A) 3 : Button 3 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "325": {
+   "nom": "_(FX PRESET Deck A) 3 : Button 3 FX 3 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "326": {
+   "nom": "_(FX PRESET Deck B) 1 : Button 1 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "327": {
+   "nom": "_(FX PRESET Deck B) 1 : Button 1 FX 1 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "328": {
+   "nom": "_(FX PRESET Deck B) 1 : Button 1 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "329": {
+   "nom": "_(FX PRESET Deck B) 1 : Button 1 FX 3 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "330": {
+   "nom": "_(FX PRESET Deck B) 2 : Button 2 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "331": {
+   "nom": "_(FX PRESET Deck B) 2 : Button 2 FX 1 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "332": {
+   "nom": "_(FX PRESET Deck B) 2 : Button 2 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "333": {
+   "nom": "_(FX PRESET Deck B) 2 : Button 2 FX 3 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "334": {
+   "nom": "_(FX PRESET Deck B) 3 : Button 3 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "335": {
+   "nom": "_(FX PRESET Deck B) 3 : Button 3 FX 1 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "336": {
+   "nom": "_(FX PRESET Deck B) 3 : Button 3 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "337": {
+   "nom": "_(FX PRESET Deck B) 3 : Button 3 FX 3 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "338": {
+   "nom": "_(FX PRESET Deck C) 1 : Button 1 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "339": {
+   "nom": "_(FX PRESET Deck C) 1 : Button 1 FX 1 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "340": {
+   "nom": "_(FX PRESET Deck C) 1 : Button 1 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "341": {
+   "nom": "_(FX PRESET Deck C) 1 : Button 1 FX 3 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "342": {
+   "nom": "_(FX PRESET Deck C) 2 : Button 2 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "343": {
+   "nom": "_(FX PRESET Deck C) 2 : Button 2 FX 1 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "344": {
+   "nom": "_(FX PRESET Deck C) 2 : Button 2 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "345": {
+   "nom": "_(FX PRESET Deck C) 2 : Button 2 FX 3 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "346": {
+   "nom": "_(FX PRESET Deck C) 3 : Button 3 FX 1 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "347": {
+   "nom": "_(FX PRESET Deck C) 3 : Button 3 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "348": {
+   "nom": "_(FX PRESET Deck C) 3 : Button 3 FX 3 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "349": {
+   "nom": "_(FX PRESET Deck D) 1 : Button 1 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "350": {
+   "nom": "_(FX PRESET Deck D) 1 : Button 1 FX 1 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "351": {
+   "nom": "_(FX PRESET Deck D) 1 : Button 1 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "352": {
+   "nom": "_(FX PRESET Deck D) 1 : Button 1 FX 3 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "353": {
+   "nom": "_(FX PRESET Deck D) 2 : Button 2 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "354": {
+   "nom": "_(FX PRESET Deck D) 2 : Button 2 FX 1 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "355": {
+   "nom": "_(FX PRESET Deck D) 2 : Button 2 FX 2 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "356": {
+   "nom": "_(FX PRESET Deck D) 2 : Button 2 FX 3 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "357": {
+   "nom": "_(FX PRESET Deck D) 3 : Button 3 ( Single)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "358": {
+   "nom": "_(FX PRESET Deck D) 3 : Button 3 FX 1 (Group) ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "359": {
+   "nom": "_(FX PRESET Deck D) 3 : Button 3 FX 2 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "360": {
+   "nom": "_(FX PRESET Deck D) 3 : Button 3 FX 3 (Group)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "361": {
+   "nom": "_(MoD) Unload FX After Loading Track",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "362": {
+   "nom": "_(Mod) Adjust tempo 0.01 bpm (Shift +Loop Knobs)",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "363": {
+   "nom": "_(Mod) Browse Mode Load Selected with PFL Cues",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "364": {
+   "nom": "_(Mod) Dimmed Channel Assignments On Mixer",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "365": {
+   "nom": "_(Mod) Filter On - Shift + Gain Button",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "366": {
+   "nom": "_(Mod) Flux Mode - Hold other deck's Shift + Any Hotcue",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "367": {
+   "nom": "_(Mod) Flux Mode - Tempo Offset Down Buttons",
+   "categorie": "Deck > Tempo/Tonalité",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "368": {
+   "nom": "_(Mod) Freeze Mode",
+   "categorie": "Deck > Freeze/Slices",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "369": {
+   "nom": "_(Mod) Headphone Cue Switch after loading track",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "370": {
+   "nom": "_(Mod) Hotcue 5-8 on Sample buttons",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "371": {
+   "nom": "_(Mod) Panic Button - [Hold Browse Push] + [Press Undo Loop Rec]",
+   "categorie": "Deck > Boucles",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "372": {
+   "nom": "_(Mod) Quick Load Next Track (=Shift+Load Track)",
+   "categorie": "Navigateur/Bibliothèque",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "373": {
+   "nom": "_(Mod) Remix Deck Volumes on FX Units (Hold Mode Button)",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "374": {
+   "nom": "_(Mod) Remix Decks on Sample buttons Deck A+B (To enable: Disable all Hotcue Mods first, Then change M6=7 into M6=0 and all M7=7 to M7=0)",
+   "categorie": "Deck > Hotcues",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "375": {
+   "nom": "_(Mod) Super FX Mode Macro FX",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "376": {
+   "nom": "_(Mod) Super FX Mode Macro FX ",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "377": {
+   "nom": "_(Mod) Tempo Reset button = JOGFX Off",
+   "categorie": "FX",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "378": {
+   "nom": "_(Mod) Unload Preview Player After Closing Full Browser",
+   "categorie": "Navigateur/Bibliothèque",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "379": {
+   "nom": "_Timecode Support",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "380": {
+   "nom": "㷌쳍",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "381": {
+   "nom": "㹌쳍",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "382": {
+   "nom": "㺙馚",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "383": {
+   "nom": "㺨",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "384": {
+   "nom": "㺳㌳",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "385": {
+   "nom": "㻌쳍",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "386": {
+   "nom": "㻦晦",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "387": {
+   "nom": "㼏尩",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "388": {
+   "nom": "㼙馚",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "389": {
+   "nom": "㼣휊",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "390": {
+   "nom": "㼦晦",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "391": {
+   "nom": "㼳㌳",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "392": {
+   "nom": "㽌쳍",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "393": {
+   "nom": "䂠",
+   "categorie": "Autres",
+   "provenance": "toolkit-djtt-reel"
+  },
+  "394": {
+   "nom": "Global MIDI Control Button 1",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 850
+  },
+  "395": {
+   "nom": "Global MIDI Control Button 2",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 851
+  },
+  "396": {
+   "nom": "Global MIDI Control Button 3",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 852
+  },
+  "397": {
+   "nom": "Global MIDI Control Button 4",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 853
+  },
+  "398": {
+   "nom": "Global MIDI Control Button 5",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 854
+  },
+  "399": {
+   "nom": "Global MIDI Control Button 6",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 855
+  },
+  "400": {
+   "nom": "Global MIDI Control Button 7",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 856
+  },
+  "401": {
+   "nom": "Global MIDI Control Button 8",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 857
+  },
+  "402": {
+   "nom": "Global MIDI Control Knob 1",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 858
+  },
+  "403": {
+   "nom": "Global MIDI Control Knob 2",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 859
+  },
+  "404": {
+   "nom": "Global MIDI Control Knob 3",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 860
+  },
+  "405": {
+   "nom": "Global MIDI Control Knob 4",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 861
+  },
+  "406": {
+   "nom": "Global MIDI Control Knob 5",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 862
+  },
+  "407": {
+   "nom": "Global MIDI Control Knob 6",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 863
+  },
+  "408": {
+   "nom": "Global MIDI Control Knob 7",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 864
+  },
+  "409": {
+   "nom": "Global MIDI Control Knob 8",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 865
+  },
+  "410": {
+   "nom": "Global MIDI Control Fader 1",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 866
+  },
+  "411": {
+   "nom": "Global MIDI Control Fader 2",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 867
+  },
+  "412": {
+   "nom": "Global MIDI Control Fader 3",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 868
+  },
+  "413": {
+   "nom": "Global MIDI Control Fader 4",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 869
+  },
+  "414": {
+   "nom": "Global MIDI Control Fader 5",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 870
+  },
+  "415": {
+   "nom": "Global MIDI Control Fader 6",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 871
+  },
+  "416": {
+   "nom": "Global MIDI Control Fader 7",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 872
+  },
+  "417": {
+   "nom": "Global MIDI Control Fader 8",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 873
+  },
+  "418": {
+   "nom": "Ableton Link Reset Downbeat",
+   "categorie": "Global",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 2811
+  },
+  "419": {
+   "nom": "Sequencer On",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 734
+  },
+  "420": {
+   "nom": "Sequencer Swing",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 735
+  },
+  "421": {
+   "nom": "Sequencer Pattern Length",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 736
+  },
+  "422": {
+   "nom": "Sequencer Selected Sample",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 737
+  },
+  "423": {
+   "nom": "Sequencer Enable Step 1",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 738
+  },
+  "424": {
+   "nom": "Sequencer Enable Step 2",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 739
+  },
+  "425": {
+   "nom": "Sequencer Enable Step 3",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 740
+  },
+  "426": {
+   "nom": "Sequencer Enable Step 4",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 741
+  },
+  "427": {
+   "nom": "Sequencer Enable Step 5",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 742
+  },
+  "428": {
+   "nom": "Sequencer Enable Step 6",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 743
+  },
+  "429": {
+   "nom": "Sequencer Enable Step 7",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 744
+  },
+  "430": {
+   "nom": "Sequencer Enable Step 8",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 745
+  },
+  "431": {
+   "nom": "Sequencer Enable Step 9",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 746
+  },
+  "432": {
+   "nom": "Sequencer Enable Step 10",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 747
+  },
+  "433": {
+   "nom": "Sequencer Enable Step 11",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 748
+  },
+  "434": {
+   "nom": "Sequencer Enable Step 12",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 749
+  },
+  "435": {
+   "nom": "Sequencer Enable Step 13",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 750
+  },
+  "436": {
+   "nom": "Sequencer Enable Step 14",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 751
+  },
+  "437": {
+   "nom": "Sequencer Enable Step 15",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 752
+  },
+  "438": {
+   "nom": "Sequencer Enable Step 16",
+   "categorie": "Remix",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 753
+  },
+  "439": {
+   "nom": "Audio Recorder Record/Stop",
+   "categorie": "Enregistrement",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 2056
+  },
+  "440": {
+   "nom": "Audio Recorder Record",
+   "categorie": "Enregistrement",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 2055
+  },
+  "441": {
+   "nom": "Broadcasting On",
+   "categorie": "Enregistrement",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 29
+  },
+  "442": {
+   "nom": "Audio Recorder Record and Advance",
+   "categorie": "Enregistrement",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 3084
+  },
+  "443": {
+   "nom": "Flux Mode On",
+   "categorie": "Flux",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 2350
+  },
+  "444": {
+   "nom": "Flux Reverse",
+   "categorie": "Flux",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 874
+  },
+  "445": {
+   "nom": "Advanced Panel",
+   "categorie": "Deck",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 2299
+  },
+  "446": {
+   "nom": "Advanced Panel Open/Close",
+   "categorie": "Deck",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 2298
+  },
+  "447": {
+   "nom": "Deck Flavor Selector",
+   "categorie": "Deck",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 2302
+  },
+  "448": {
+   "nom": "Loop Recorder Record",
+   "categorie": "Boucles",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 280
+  },
+  "449": {
+   "nom": "Loop Recorder Play/Pause",
+   "categorie": "Boucles",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 281
+  },
+  "450": {
+   "nom": "Loop Recorder Size",
+   "categorie": "Boucles",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 282
+  },
+  "451": {
+   "nom": "Loop Recorder Delete",
+   "categorie": "Boucles",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 283
+  },
+  "452": {
+   "nom": "Loop Recorder Dry/Wet",
+   "categorie": "Boucles",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 284
+  },
+  "453": {
+   "nom": "Loop Recorder Undo/Redo",
+   "categorie": "Boucles",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 285
+  },
+  "454": {
+   "nom": "Loop Recorder Capture Source",
+   "categorie": "Boucles",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 286
+  },
+  "455": {
+   "nom": "Loop Recorder Advance",
+   "categorie": "Boucles",
+   "provenance": "discussion-cmdr",
+   "cmdrId": 287
+  }
+ }
+}

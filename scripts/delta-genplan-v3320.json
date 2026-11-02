@@ -1,0 +1,20 @@
+{
+ "history": "Parallélisation par défaut étendue aux COMMANDES (directive propriétaire 2026-11-02, session web-6058b3ba — préalable gen-plan : « exécute les tâches et les commandes en parallèle par défaut » + garde de vérification du fonctionnement fondamental du Graph Diamond) : philosophie #4 (§1.7) réécrite — les tâches ET les commandes (invocations d'outils en un seul message multi-outils, vagues de flotte) prouvées indépendantes s'exécutent en PARALLÈLE PAR DÉFAUT ; RESORPTION de la divergence stale héritée (« Serial exécution by DEFAULT — parallélisme INTERDIT », antérieure à l'inversion v3.24.0, qui contredisait le SKILL.md et bloquait l'ouverture automatique du Graph Diamond) ; ligne hook Graph Diamond §1.2bis réalignée sur le SKILL.md ; vérification préalable mécanique : Graph Diamond NON-AFFECTÉ (4 phases, 5 anti-patterns, marqueurs PATTERN uniques, hook E9-E14, eval id 9 — references/graph-diamond-pattern.md laissé byte-identique sha256) ; la preuve d'indépendance reste le prérequis non négociable (anti-pattern n°3), les exceptions série tracées inchangées (dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC) ; normalisation §6 (triple ligne vide condensée — plage arbitre 1200-1500 L rétablie)",
+ "subs": [
+  {
+   "old": "4. **Serial exécution by DEFAULT** — Toutes les tâches s'exécutent UNE À LA UNE. Le parallélisme est INTERDIT sauf demande explicite de l'utilisateur ET preuve que les sous-tâches sont indépendantes.",
+   "new": "4. **Parallélisation par défaut des tâches ET des commandes sur preuve d'indépendance** (inversion v3.24.0 ; extension aux commandes v3.32.0 — directive propriétaire 2026-11-02) — Les tâches ET les commandes (invocations d'outils lancées en un seul message multi-outils, vagues de flotte) PROUVÉES indépendantes (aucune écriture partagée, aucune dépendance d'ordre) s'exécutent en PARALLÈLE PAR DÉFAUT : le Graph Diamond s'ouvre automatiquement dès que la preuve d'indépendance existe (E9-E14). L'exécution série est l'exception justifiée et tracée : dépendance d'ordre, écriture partagée, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC.",
+   "count": 1
+  },
+  {
+   "old": "| **Graph Diamond** | **E9-E14** | Parallélisation exceptionnelle des actions indépendantes (défaut : série, philosophie #4) — tracée au worklog | `references/graph-diamond-pattern.md` |",
+   "new": "| **Graph Diamond** | **E9-E14** | Parallélisation PAR DÉFAUT des tâches et commandes prouvées indépendantes (le série est l'exception justifiée — philosophie #4 v3.24.0, extension commandes v3.32.0) — tracée au worklog | `references/graph-diamond-pattern.md` |",
+   "count": 1
+  },
+  {
+   "old": "## §6 — VÉRIFICATION POST-INSTALLATION\n\n\n\n| # | Check |",
+   "new": "## §6 — VÉRIFICATION POST-INSTALLATION\n\n| # | Check |",
+   "count": 1
+  }
+ ]
+}

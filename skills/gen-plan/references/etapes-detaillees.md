@@ -196,7 +196,7 @@ Les fichiers ≤ 500 lignes sont lus en une seule fois.
 
 ## E9 — Lancement de l'exécution
 
-**Objectif** : Démarrer l'exécution selon le plan validé, en vagues parallèles (Graph Diamond ouvert automatiquement sur preuve d'indépendance — v3.24.0) ; l'ordre série ne s'applique qu'aux étapes dépendantes ou sous pression ressource (verdict resource-monitor SERIE/PAUSE).
+**Objectif** : Démarrer l'exécution selon le plan validé, en vagues parallèles de tâches ET de commandes (Graph Diamond ouvert automatiquement sur preuve d'indépendance — v3.24.0 ; extension aux commandes v3.32.0) ; l'ordre série ne s'applique qu'aux étapes dépendantes ou sous pression ressource (verdict resource-monitor SERIE/PAUSE).
 
 **Inputs** : Plan validé (E8), Contexte session
 

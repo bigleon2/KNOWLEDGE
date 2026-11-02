@@ -3,5 +3,5 @@
   "nom": "robustesse PDF : signature absente → rc=1 ; PDF sans texte → statut honnête",
   "ok": true,
   "detail": "garbage rc=1 rejet=True, vide rc=0 statut=AUCUN_TEXTE_EXTRAIT, tracebacks : False",
-  "duree_ms": 60
+  "duree_ms": 63
 }
