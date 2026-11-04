@@ -1,0 +1,35 @@
+{
+ "history": "Mode PROJET « bloc par bloc » (directive propriétaire 2026-11-04, session web-6058b3ba, Task 48 — « correct-work (projet) en mode \"bloc par bloc\" $FACON2. intègre $FACON ce mode \"bloc par bloc\" dans mon skill \"correct-work\" avec \"correct-work (projet) --bloc\" en tant que déclencheur et intègre $FACON cette modification. ») : §A += déclencheur `correct-work (projet) --bloc` ; §1.7 — sémantique du mode (décomposition en BLOCS explicites, Étapes 2-5 appliquées à chaque bloc, verdict PAR BLOC, agrégation = pire des verdicts alignée §1.4, table « Blocs vérifiés » au rapport §2.4, compatibilité couplage gen-plan §1.5 + délégation alias-eco §10.1 Phase 2 inchangées) ; §10.1bis — checklist dédiée ; §10.4 += ligne de sélection ; §4 YAML description += option « bloc par bloc » ; arbitre verify-correct-work.py recalibré (version attendue 2.9.0, plage 200-500 — croissance directive, garde anti-dérive conservée) ; evals/trigger_evals.json += cas --bloc (8 cas). Montée MINOR (option fonctionnelle nouvelle — addition pure, mode PROJET standard inchangé). Recalibrage croisé KO-L004 : SHARED §6.1, PM-INSTALL §2ter/§A.3.",
+ "subs": [
+  {
+   "old": "- `correct-work(aveugle)` — re-vérification aveugle (Second Opinion) sans accès au premier verdict",
+   "new": "- `correct-work(aveugle)` — re-vérification aveugle (Second Opinion) sans accès au premier verdict\n- `correct-work (projet) --bloc` — mode « bloc par bloc » du mode PROJET (v2.9.0) : vérification bloc par bloc, verdict par bloc",
+   "count": 1
+  },
+  {
+   "old": "8 checks KB spécifiques\n\n---\n\n## §2 — SPÉCIFICATION TECHNIQUE",
+   "new": "8 checks KB spécifiques\n\n### §1.7 Mode PROJET « bloc par bloc » (`--bloc`, v2.9.0)\n\nLe mode **bloc par bloc** est une option du mode PROJET, déclenchée par `correct-work (projet) --bloc` : la vérification complète du projet est menée **bloc par bloc** — le projet est décomposé en BLOCS explicites (groupes et sous-groupes du plan d'actions, ou livrables nommés) et les Étapes 2 à 5 sont appliquées à chaque bloc successivement.\n\n- **Décomposition en blocs** : chaque bloc est une unité vérifiable (groupe du plan, sous-groupe, livrable, section d'un rapport) ; la liste des blocs est explicite dans le rapport.\n- **Verdict PAR BLOC** : chaque bloc reçoit un verdict individuel (PASS / PASS AVEC RÉSERVES / FAIL — critères §10.5) ; les corrections sont appliquées et re-vérifiées bloc par bloc (maximum 2 rounds par bloc — SHARED §4.4).\n- **Agrégation finale** : le verdict global est le **pire des verdicts de blocs** (aligné sur l'agrégation multi-cibles §1.4) ; il est consigné avec la table des verdicts de blocs.\n- **Rapport** : le format §2.4 est étendu d'une table « Blocs vérifiés » (bloc, étapes couvertes, findings, verdict) placée avant le résumé.\n- **Compatibilité** : coexiste avec le mode PROJET standard (`correct-work(projet)` inchangé) ; le couplage gen-plan obligatoire (§1.5) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.\n\n---\n\n## §2 — SPÉCIFICATION TECHNIQUE",
+   "count": 1
+  },
+  {
+   "old": "  délégation alias-eco (mode PROJET — tenue du registre des phrases récurrentes, v2.8.0),\n  matrice de décision agent/skill (statique + dynamique KB),",
+   "new": "  délégation alias-eco (mode PROJET — tenue du registre des phrases récurrentes, v2.8.0),\n  option « bloc par bloc » du mode PROJET (déclencheur `correct-work (projet) --bloc` — vérification bloc par bloc, verdict par bloc, v2.9.0),\n  matrice de décision agent/skill (statique + dynamique KB),",
+   "count": 1
+  },
+  {
+   "old": "| Déclencheur explicite `correct-work(aveugle)` | AVEUGLE |",
+   "new": "| Déclencheur explicite `correct-work(aveugle)` | AVEUGLE |\n| Déclencheur explicite `correct-work (projet) --bloc` | PROJET (option « bloc par bloc ») |",
+   "count": 1
+  },
+  {
+   "old": "- [ ] Worklog mis à jour\n```\n\n### §10.2 Mode CIBLE",
+   "new": "- [ ] Worklog mis à jour\n```\n\n### §10.1bis Mode PROJET bloc par bloc (`--bloc`, v2.9.0)\n\n```markdown\n### Décomposition en blocs\n- [ ] Blocs identifiés et listés explicitement (groupes/sous-groupes du plan ou livrables)\n- [ ] Étapes 2-5 appliquées à chaque bloc successivement\n\n### Verdicts\n- [ ] Verdict assigné par bloc (critères §10.5)\n- [ ] Corrections re-vérifiées bloc par bloc (max 2 rounds par bloc — SHARED §4.4)\n- [ ] Table « Blocs vérifiés » présente dans le rapport\n- [ ] Verdict global = pire des verdicts de blocs (§1.4), consigné avec la table\n```\n\n### §10.2 Mode CIBLE",
+   "count": 1
+  },
+  {
+   "old": "5. **Cohérence entre fichiers** : pas de contradiction entre le contenu de deux livrables.\n6. **Corriger** toute incohérence identifiée.",
+   "new": "5. **Cohérence entre fichiers** : pas de contradiction entre le contenu de deux livrables.\n6. **Corriger** toute incohérence identifiée.\n\n## §11 — CONVENTIONS\n\n- Nommage kebab-case, sections préfixées « § », budgets préfixés « #token » (SHARED §1.2)\n- Worklog format SHARED §1.4 — une entrée par tâche, verdicts et preuves JSON\n- Planchers directionnels plutôt qu'égalité stricte (leçon E21) pour tout critère couplant\n  une valeur à un artefact vivant",
+   "count": 1
+  }
+ ]
+}

@@ -6,6 +6,9 @@ Calibrage v2.7.0 (2026-10-02 : couplage gen-plan obligatoire Étape 1 — KO-L00
 regex étapes insensible à la casse (Étape/étape), valeur de version vérifiée.
 Recalibrage v2.8.0 (2026-10-23, Task 18 — session web-fdf5963c, KO-L004) : intégration alias-eco
 dépendance optionnelle mode PROJET (>= 1.0.0), version attendue 2.8.0.
+Recalibrage v2.9.0 (2026-11-04, Task 48 — session web-6058b3ba, KO-L004) : option « bloc par bloc »
+du mode PROJET (déclencheur `correct-work (projet) --bloc`), version attendue 2.9.0,
+plage étendue 200-500 (croissance directive — garde anti-dérive conservée).
 Calibrage v2.6.0 (B13-r5 : aligné frontmatter installé — L003).
 Usage:
     python verify-correct-work.py
@@ -18,13 +21,13 @@ import sys
 
 SKILLS_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SKILL_PATH = os.path.join(SKILLS_ROOT, "correct-work", "SKILL.md")
-PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.5.1.md")
+PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.9.0.md")
 SHARED_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-SHARED.md")
 KB_PATH = os.path.join(SKILLS_ROOT, "KNOWLEDGE.md")
 
-EXPECTED_VERSION = "2.8.0"
+EXPECTED_VERSION = "2.9.0"
 EXPECTED_LINES_MIN = 200
-EXPECTED_LINES_MAX = 450
+EXPECTED_LINES_MAX = 500
 EXPECTED_MODES = {"PROJET", "CIBLE", "DIRECT"}
 EXPECTED_STEPS = {"1", "2", "3", "4", "5"}
 REQUIRED_DEPS = {"gen-plan": ">=3.7.0", "clone-chat": ">=2.0.0"}

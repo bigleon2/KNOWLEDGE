@@ -1,6 +1,6 @@
 ---
 name: analyse-doc-s4mk2
-version: 1.2.0
+version: 1.3.0
 category: ecosystem
 language: fr
 tags:
@@ -46,7 +46,7 @@ read_when:
   - Ne pas déclencher pour concevoir une architecture (tsi-architect), valider la structure d'un TSI synthétique E1-E8 (tsi-validator), les couches SHIFT d'une architecture (multi-shift-architect), ni la documentation d'un mapping (midi-doc-expert).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.18)
+## §0 — Contexte Système (SHARED v1.7.21)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -100,6 +100,13 @@ Exit codes : `0` PASS / `1` écart ou FAIL / `2` usage ou cible absente. Les rap
 - **Échantillon secondaire (v1.1.0)** : `Kontrol S4 [DREW's MAPPING] - FX4(JogWheel) + Mode Freeze + Etc` (ZIP du propriétaire) : 1 TSI mapping tiers (device `Traktor.Kontrol S4.User`, 2360 DCBM) + **3 PDF compagnons** (`Drew's Assignment List.pdf` = liste d'assignations, titre « Button Map », OpenOffice Calc 2018 ; `Mapping Speech.pdf` = description narratif du fonctionnement ; `Mapping Speech-fr.pdf` = traduction française, PDFium 2026) + 2 PNG (description 1135×658, vue Traktor 3 1031×670). Hors référence G2 : le verdict FAIL y est mécaniquement correct (comptes comparés à la référence DJTT) ; la batterie y teste l'ADAPTATION (couverture 5/5 non-TSI, 0 muet), pas la conformité G2.
 - Batterie `$FACON2` (`tests/run_all.py`) : **16 tests** — TF-01 inventaire, TF-02 classification, TF-03 comptes G2, TF-04 baseline stricte (4960/666/49), TF-05 table P1b (22 noms, cid exacts), TF-06 illustrés (dimensions+rôles), TF-07 PDF compagnons (3 PDF DREW : texte, mots, mots-clés), TF-08 adaptation automatique aux types (couverture 5/5, 0 muet), TF-09 cohérence croisée positive (DREW : 12 SUPPORTÉES / 5 INDETERMINABLES, 0 écart), TF-10 détection d'écart injecté (PDF fantôme → 4 HORS_UNIVERS → FAIL), TR-01 rejet préférences (rc=1 sans traceback), TR-02 blob corrompu (rejet contrôlé), TR-03 idempotence ×2 byte-stable, TR-04 cible absente (rc=2), TR-05 self-test moteur, TR-06 PDF : signature absente → rc=1 / sans texte → statut honnête. Journal JSON individuel par test (`tests/journal/`) + `synthese.json`. Échantillon introuvable = **FAIL explicite** (le skill ne ment jamais).
 - Résultat de référence : **BATTERIE PASS (16/16)** ; module PDF idempotent ×2 byte-stable ; self-test cohérence 20/20.
+
+## §4bis — Format réel Traktor 3.x : blob DeviceIO (v1.3.0, Task 44 — reconstitué Task 46)
+
+- **Découverte** : les mappings Traktor 3.x ne sont PAS dans une section XML `<ControllerManager>` : ils vivent dans le **blob base64 `DeviceIO.Config.Controller`** (sections DEVS/DEVI/DDIF/DDIV/DDPT/DCMA/DCDT/CMAD/DCBM, chaînes UTF-16). Mesures sur 2 TSI réels : settings personnel du propriétaire (blob décodé 2 940 882 o — DCDT 3105, CMAD 11 596, DCBM 11 586, DEVI 9 : `Kontol S4 mk2 SEMITONE (default)`, `$Kontrol S4 _ Mon Mapping (Aout 2024)`, `DJTT Kontrol S4 MK2 Custom Mapping v2.1.0 (stewe update)`, `S4 MK2 MOTS Aout 2026` + Traktor.Kontrol S4MK2 Default/User) vs DJTT v2.1.0 (1 352 130 o — DCDT 345, CMAD 5 626, DCBM 5 627, DEVI 1).
+- **Outils du chaînon** (`tsi-toolkit/scripts/`) : `task44-decoder-deviceio.py` (décodage stdlib, idempotent ×2), `task44-enricher-catalogues.py` (+`catalogue_interaktiv` : 524 commandes Interaktiv **CC BY 4.0**), `task44-valider-mapping-catalogue.py` (valide les commandes d'un .tsi contre le catalogue enrichi 393 DJTT + 524 Interaktiv, suggère les noms officiels — ex « Slice 1 » → « Slice Trigger 1 » id 810 — gère TSI 3.x blob ET format toolkit). Résultats réels : DJTT 429/440 · DREW 172/172 · freeze-e2e PASS_AVEC_RESERVES.
+- **Versions embarquées** : 2.9.0 (R1257) / 3.0.3 / 3.2.1 9 / 3.11.1 17.
+- **Lignage honnête (Task 46, 2026-11-04)** : la v1.3.0 d'origine (hôte-seule, session web-6058b3ba) a été perdue au recyclage sandbox ; la présente section est reconstituée depuis le rapport Task 44 §4 (contenu identique, formulation resserrée).
 
 ## §5 — Relations (famille TSI)
 

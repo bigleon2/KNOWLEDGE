@@ -1,6 +1,6 @@
 ---
 name: correct-work
-version: 2.8.0
+version: 2.9.0
 category: ecosystem
 language: fr
 tags:
@@ -15,6 +15,7 @@ description: >
   support multi-cibles, couplage genplan OBLIGATOIRE (dernière version installée) à l'Étape 1,
   intégration KB (Registre, kb_path, --kb-skill),
   délégation alias-eco (mode PROJET — tenue du registre des phrases récurrentes, v2.8.0),
+  option « bloc par bloc » du mode PROJET (déclencheur `correct-work (projet) --bloc` — vérification bloc par bloc, verdict par bloc, v2.9.0),
   matrice de décision agent/skill (statique + dynamique KB),
   métriques de performance.
   Contrôler la cohérence avant de livrer ce que tu viens de produire.
@@ -33,11 +34,11 @@ dependencies:
     used_at: "Mode PROJET — tenue du registre des phrases récurrentes (§10.1 Phase 2)"
 read_when:
   - Déclencher quand la demande concerne : skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences)
-  - Déclencher si la demande mentionne : skill, vérification, correction
+  - Déclencher si la demande mentionne : skill, vérification, correction, bloc par bloc, --bloc
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.18)
+## §0 — Contexte Système (SHARED v1.7.21)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -62,6 +63,7 @@ Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
 - `correct-work(<cible>)` — vérification ciblée sur un livrable
 - `correct-work()` — vérification rapide sans analyse approfondie
 - `correct-work(aveugle)` — re-vérification aveugle (Second Opinion) sans accès au premier verdict
+- `correct-work (projet) --bloc` — mode « bloc par bloc » du mode PROJET (v2.9.0) : vérification bloc par bloc, verdict par bloc
 
 Options avancées (gen-plan >= v3.6.0) :
 - `correct-work(projet, kb_path=/chemin/KB)` — vérification avec scan des skills KB
@@ -112,6 +114,16 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 - **Matrice statique** : voir SHARED §4.1
 - **Matrice dynamique** : construite à l'exécution en scannant `KNOWLEDGE.md` (SHARED §2.3)
 - **verify-cross.py --mode correct-work** : 8 checks KB spécifiques
+
+### §1.7 Mode PROJET « bloc par bloc » (`--bloc`, v2.9.0)
+
+Le mode **bloc par bloc** est une option du mode PROJET, déclenchée par `correct-work (projet) --bloc` : la vérification complète du projet est menée **bloc par bloc** — le projet est décomposé en BLOCS explicites (groupes et sous-groupes du plan d'actions, ou livrables nommés) et les Étapes 2 à 5 sont appliquées à chaque bloc successivement.
+
+- **Décomposition en blocs** : chaque bloc est une unité vérifiable (groupe du plan, sous-groupe, livrable, section d'un rapport) ; la liste des blocs est explicite dans le rapport.
+- **Verdict PAR BLOC** : chaque bloc reçoit un verdict individuel (PASS / PASS AVEC RÉSERVES / FAIL — critères §10.5) ; les corrections sont appliquées et re-vérifiées bloc par bloc (maximum 2 rounds par bloc — SHARED §4.4).
+- **Agrégation finale** : le verdict global est le **pire des verdicts de blocs** (aligné sur l'agrégation multi-cibles §1.4) ; il est consigné avec la table des verdicts de blocs.
+- **Rapport** : le format §2.4 est étendu d'une table « Blocs vérifiés » (bloc, étapes couvertes, findings, verdict) placée avant le résumé.
+- **Compatibilité** : coexiste avec le mode PROJET standard (`correct-work(projet)` inchangé) ; le couplage gen-plan obligatoire (§1.5) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.
 
 ---
 
@@ -314,6 +326,20 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 - [ ] Worklog mis à jour
 ```
 
+### §10.1bis Mode PROJET bloc par bloc (`--bloc`, v2.9.0)
+
+```markdown
+### Décomposition en blocs
+- [ ] Blocs identifiés et listés explicitement (groupes/sous-groupes du plan ou livrables)
+- [ ] Étapes 2-5 appliquées à chaque bloc successivement
+
+### Verdicts
+- [ ] Verdict assigné par bloc (critères §10.5)
+- [ ] Corrections re-vérifiées bloc par bloc (max 2 rounds par bloc — SHARED §4.4)
+- [ ] Table « Blocs vérifiés » présente dans le rapport
+- [ ] Verdict global = pire des verdicts de blocs (§1.4), consigné avec la table
+```
+
 ### §10.2 Mode CIBLE
 
 ```markdown
@@ -369,6 +395,7 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 | Le skill a déjà été vérifié (round 2+) | CIBLE |
 | Un FAIL ou une divergence persiste à l'Étape 5 | AVEUGLE |
 | Déclencheur explicite `correct-work(aveugle)` | AVEUGLE |
+| Déclencheur explicite `correct-work (projet) --bloc` | PROJET (option « bloc par bloc ») |
 
 ### §10.5 Verdicts
 

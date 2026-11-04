@@ -1,0 +1,868 @@
+{
+  "document": {
+    "titre": "MIDI Controls bridge — délégation par deck (Traktor 3.11.1 / Kontrol S4 MK2)",
+    "device": "Traktor Kontrol S4 MK2",
+    "structure": [
+      "Introduction",
+      "Vue d'ensemble du mapping",
+      "Activation / Désactivation",
+      "Contrôle des Slices",
+      "Réglages avancés",
+      "Tableau de Référence MIDI",
+      "Modes de sortie",
+      "États des LED",
+      "Annexes"
+    ],
+    "deterministe": true,
+    "generateur": "midi-doc-expert v1.2.0"
+  },
+  "mappings": [
+    {
+      "nom": "Bridge entrée — MIDI Button 1 (CC80)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Button 1",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "80",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Button 2 (CC81)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Button 2",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "81",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Button 3 (CC82)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Button 3",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "82",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Button 4 (CC83)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Button 4",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "83",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Button 5 (CC84)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Button 5",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "84",
+        "MODE": "Toggle"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Button 6 (CC85)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Button 6",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "85",
+        "MODE": "Toggle"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Button 7 (CC86)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Button 7",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "86",
+        "MODE": "Toggle"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Button 8 (CC87)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Button 8",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "87",
+        "MODE": "Toggle"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Knob 1 (CC88)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Knob 1",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "88",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Knob 2 (CC89)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Knob 2",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "89",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Knob 3 (CC90)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Knob 3",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "90",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Knob 4 (CC91)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Knob 4",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "91",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Knob 5 (CC92)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Knob 5",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "92",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Knob 6 (CC93)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Knob 6",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "93",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Knob 7 (CC94)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Knob 7",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "94",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Knob 8 (CC95)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Knob 8",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "95",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Fader 1 (CC96)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Fader 1",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "96",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Fader 2 (CC97)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Fader 2",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "97",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Fader 3 (CC98)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Fader 3",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "98",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Fader 4 (CC99)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Fader 4",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "99",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Fader 5 (CC100)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Fader 5",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "100",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Fader 6 (CC101)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Fader 6",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "101",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Fader 7 (CC102)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Fader 7",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "102",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Bridge entrée — MIDI Fader 8 (CC103)",
+      "type": "IN",
+      "groupe": "Global",
+      "control": "MIDI Fader 8",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "0",
+        "MESSAGE": "CC",
+        "NUMBER": "103",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Mixer FX Adjust — Deck A (A.Filter) ← MIDI Button 1",
+      "type": "IN",
+      "groupe": "Deck A",
+      "control": "Mixer FX Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "80",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Mixer FX Adjust — Deck B (B.Filter) ← MIDI Button 2",
+      "type": "IN",
+      "groupe": "Deck B",
+      "control": "Mixer FX Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "81",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Mixer FX Adjust — Deck C (C.Filter) ← MIDI Button 3",
+      "type": "IN",
+      "groupe": "Deck C",
+      "control": "Mixer FX Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "82",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Mixer FX Adjust — Deck D (D.Filter) ← MIDI Button 4",
+      "type": "IN",
+      "groupe": "Deck D",
+      "control": "Mixer FX Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "83",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Mixer FX On — Deck A (A.MixerFX On) ← MIDI Button 5",
+      "type": "IN",
+      "groupe": "Deck A",
+      "control": "Mixer FX On",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "84",
+        "MODE": "Toggle"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Mixer FX On — Deck B (B.MixerFX On) ← MIDI Button 6",
+      "type": "IN",
+      "groupe": "Deck B",
+      "control": "Mixer FX On",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "85",
+        "MODE": "Toggle"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Mixer FX On — Deck C (C.MixerFX On) ← MIDI Button 7",
+      "type": "IN",
+      "groupe": "Deck C",
+      "control": "Mixer FX On",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "86",
+        "MODE": "Toggle"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Mixer FX On — Deck D (D.MixerFX On) ← MIDI Button 8",
+      "type": "IN",
+      "groupe": "Deck D",
+      "control": "Mixer FX On",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "87",
+        "MODE": "Toggle"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Low Adjust — Deck A (A.Low) ← MIDI Knob 1",
+      "type": "IN",
+      "groupe": "Deck A",
+      "control": "Low Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "88",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation High Adjust — Deck A (A.High) ← MIDI Knob 2",
+      "type": "IN",
+      "groupe": "Deck A",
+      "control": "High Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "89",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Low Adjust — Deck C (C.Low) ← MIDI Knob 3",
+      "type": "IN",
+      "groupe": "Deck C",
+      "control": "Low Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "90",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation High Adjust — Deck C (C.High) ← MIDI Knob 4",
+      "type": "IN",
+      "groupe": "Deck C",
+      "control": "High Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "91",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Low Adjust — Deck B (B.Low) ← MIDI Knob 5",
+      "type": "IN",
+      "groupe": "Deck B",
+      "control": "Low Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "92",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation High Adjust — Deck B (B.High) ← MIDI Knob 6",
+      "type": "IN",
+      "groupe": "Deck B",
+      "control": "High Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "93",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Low Adjust — Deck D (D.Low) ← MIDI Knob 7",
+      "type": "IN",
+      "groupe": "Deck D",
+      "control": "Low Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "94",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation High Adjust — Deck D (D.High) ← MIDI Knob 8",
+      "type": "IN",
+      "groupe": "Deck D",
+      "control": "High Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "95",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Tempo Adjust — Deck A (A.Tempo) ← MIDI Fader 1",
+      "type": "IN",
+      "groupe": "Deck A",
+      "control": "Tempo Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "96",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Volume Adjust — Deck A (A.Volume) ← MIDI Fader 2",
+      "type": "IN",
+      "groupe": "Deck A",
+      "control": "Volume Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "97",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Tempo Adjust — Deck C (C.Tempo) ← MIDI Fader 3",
+      "type": "IN",
+      "groupe": "Deck C",
+      "control": "Tempo Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "98",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Volume Adjust — Deck C (C.Volume) ← MIDI Fader 4",
+      "type": "IN",
+      "groupe": "Deck C",
+      "control": "Volume Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "99",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Tempo Adjust — Deck B (B.Tempo) ← MIDI Fader 5",
+      "type": "IN",
+      "groupe": "Deck B",
+      "control": "Tempo Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "100",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Volume Adjust — Deck B (B.Volume) ← MIDI Fader 6",
+      "type": "IN",
+      "groupe": "Deck B",
+      "control": "Volume Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "101",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Tempo Adjust — Deck D (D.Tempo) ← MIDI Fader 7",
+      "type": "IN",
+      "groupe": "Deck D",
+      "control": "Tempo Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "102",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "Délégation Volume Adjust — Deck D (D.Volume) ← MIDI Fader 8",
+      "type": "IN",
+      "groupe": "Deck D",
+      "control": "Volume Adjust",
+      "conditions": {},
+      "midi": {
+        "CHANNEL": "1",
+        "MESSAGE": "CC",
+        "NUMBER": "103",
+        "MODE": "Direct"
+      },
+      "led": null
+    },
+    {
+      "nom": "LED retour — MIDI Button 1",
+      "type": "OUT",
+      "groupe": "Global",
+      "control": "MIDI Button 1",
+      "conditions": {},
+      "midi": null,
+      "led": {
+        "NUMBER": "80",
+        "ON": "127",
+        "OFF": "0",
+        "MODE": "Output"
+      }
+    },
+    {
+      "nom": "LED retour — MIDI Button 2",
+      "type": "OUT",
+      "groupe": "Global",
+      "control": "MIDI Button 2",
+      "conditions": {},
+      "midi": null,
+      "led": {
+        "NUMBER": "81",
+        "ON": "127",
+        "OFF": "0",
+        "MODE": "Output"
+      }
+    },
+    {
+      "nom": "LED retour — MIDI Button 3",
+      "type": "OUT",
+      "groupe": "Global",
+      "control": "MIDI Button 3",
+      "conditions": {},
+      "midi": null,
+      "led": {
+        "NUMBER": "82",
+        "ON": "127",
+        "OFF": "0",
+        "MODE": "Output"
+      }
+    },
+    {
+      "nom": "LED retour — MIDI Button 4",
+      "type": "OUT",
+      "groupe": "Global",
+      "control": "MIDI Button 4",
+      "conditions": {},
+      "midi": null,
+      "led": {
+        "NUMBER": "83",
+        "ON": "127",
+        "OFF": "0",
+        "MODE": "Output"
+      }
+    },
+    {
+      "nom": "LED retour — MIDI Button 5",
+      "type": "OUT",
+      "groupe": "Global",
+      "control": "MIDI Button 5",
+      "conditions": {},
+      "midi": null,
+      "led": {
+        "NUMBER": "84",
+        "ON": "127",
+        "OFF": "0",
+        "MODE": "Output"
+      }
+    },
+    {
+      "nom": "LED retour — MIDI Button 6",
+      "type": "OUT",
+      "groupe": "Global",
+      "control": "MIDI Button 6",
+      "conditions": {},
+      "midi": null,
+      "led": {
+        "NUMBER": "85",
+        "ON": "127",
+        "OFF": "0",
+        "MODE": "Output"
+      }
+    },
+    {
+      "nom": "LED retour — MIDI Button 7",
+      "type": "OUT",
+      "groupe": "Global",
+      "control": "MIDI Button 7",
+      "conditions": {},
+      "midi": null,
+      "led": {
+        "NUMBER": "86",
+        "ON": "127",
+        "OFF": "0",
+        "MODE": "Output"
+      }
+    },
+    {
+      "nom": "LED retour — MIDI Button 8",
+      "type": "OUT",
+      "groupe": "Global",
+      "control": "MIDI Button 8",
+      "conditions": {},
+      "midi": null,
+      "led": {
+        "NUMBER": "87",
+        "ON": "127",
+        "OFF": "0",
+        "MODE": "Output"
+      }
+    }
+  ],
+  "led": [
+    {
+      "nom": "LED retour — MIDI Button 1",
+      "note": "80",
+      "on": "127",
+      "off": "0",
+      "couche": "BASE"
+    },
+    {
+      "nom": "LED retour — MIDI Button 2",
+      "note": "81",
+      "on": "127",
+      "off": "0",
+      "couche": "BASE"
+    },
+    {
+      "nom": "LED retour — MIDI Button 3",
+      "note": "82",
+      "on": "127",
+      "off": "0",
+      "couche": "BASE"
+    },
+    {
+      "nom": "LED retour — MIDI Button 4",
+      "note": "83",
+      "on": "127",
+      "off": "0",
+      "couche": "BASE"
+    },
+    {
+      "nom": "LED retour — MIDI Button 5",
+      "note": "84",
+      "on": "127",
+      "off": "0",
+      "couche": "BASE"
+    },
+    {
+      "nom": "LED retour — MIDI Button 6",
+      "note": "85",
+      "on": "127",
+      "off": "0",
+      "couche": "BASE"
+    },
+    {
+      "nom": "LED retour — MIDI Button 7",
+      "note": "86",
+      "on": "127",
+      "off": "0",
+      "couche": "BASE"
+    },
+    {
+      "nom": "LED retour — MIDI Button 8",
+      "note": "87",
+      "on": "127",
+      "off": "0",
+      "couche": "BASE"
+    }
+  ],
+  "couverture": {
+    "mappings_tsi": 56,
+    "lignes_tableau": 56,
+    "taux": 1.0
+  }
+}

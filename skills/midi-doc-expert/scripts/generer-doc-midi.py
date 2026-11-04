@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""generer-doc-midi.py — Générateur de documentation technique MIDI (skill midi-doc-expert v1.0.0).
+"""generer-doc-midi.py — Générateur de documentation technique MIDI (skill midi-doc-expert v1.2.0).
 
 Projet TSI/Traktor — S4 MK2 / Traktor Pro 3.11. Persona : Rédacteur Technique
 Expert en Mappings MIDI et Contrôleurs Audio (cahier des charges S2).
@@ -7,6 +7,12 @@ Entrée : un fichier .tsi (préalablement validé par tsi-validator). Sorties :
 document .md (structure type 9 sections, tableaux de référence MIDI, états LED)
 + document .json machine-readable. DÉTERMINISTE (ENF-05 : aucun horodatage,
 tri stable) — le rejeu est un no-op binaire. Python stdlib uniquement (N3).
+
+v1.2.0 (Task 45) : §5 rédigé par mode (Increment/Decrement = encodeur,
+Toggle = bouton/commutation, Direct = valeur absolue — « attaque la commande
+générique » pour les MIDI Controls) ; §2 signale et explique un bridge
+MIDI Controls (2 étages, IDs 850-873, convention 1-4/5-8) quand il en
+détecte ; attribution Interaktiv CC BY 4.0 portée dans le §2.
 
 Usage : generer-doc-midi.py <fichier.tsi> --outdir <dir> [--titre "…"] [--json-seul]
         generer-doc-midi.py --self-test
@@ -82,7 +88,25 @@ def generer(meta, mappings, titre):
         f"**{meta['n_mappings']} affectations** : {sum(1 for m in mappings if m['type'] == 'IN')} entrées "
         f"(commandes) et {len(leds)} sorties (retours d'état LED). "
         f"{'Les couches logiques (multi-shift) sont : ' + ', '.join(modifiers) + ' (activation toggle).' if modifiers else 'Aucune couche logique (mapping mono-couche).'}", "",
-        "## 3. Activation / Désactivation", "",
+    ]
+    bridges = [m for m in mappings if m["type"] == "IN"
+               and (m["control"] or "").startswith("MIDI ")]
+    if bridges:
+        n_btn = sum(1 for m in bridges if "Button" in (m["control"] or ""))
+        n_knob = sum(1 for m in bridges if "Knob" in (m["control"] or ""))
+        n_fad = sum(1 for m in bridges if "Fader" in (m["control"] or ""))
+        md += [
+            "**Bridge MIDI Controls détecté** : ce mapping exploite les commandes génériques "
+            "Global > MIDI Controls (MIDI Button/Knob/Fader, IDs 850-873 — Interaktiv Audio, "
+            "https://interaktivaudio.com/traktor-commands, CC BY 4.0) comme relais : "
+            f"{n_btn} boutons, {n_knob} knobs, {n_fad} faders. Le pont fonctionne en deux "
+            "étages : l'étage 1 (canal 0) reçoit le MIDI du contrôleur externe vers les "
+            "commandes génériques ; l'étage 2 (canal 1 — bus virtuel des MIDI Controls) "
+            "délègue ces mêmes événements aux commandes de deck réelles, en réplique du "
+            "pattern « In | Deck X | Direct | X.Filter » de l'Assignment Table, selon la "
+            "convention 1-4 = deck gauche / 5-8 = deck droit (looprituals.de).", "",
+        ]
+    md += ["## 3. Activation / Désactivation", "",
     ]
     if modifiers:
         md += [f"La couche logique **{modifiers[0]}** s'active par un appui **Toggle** sur le contrôle physique "
@@ -103,10 +127,27 @@ def generer(meta, mappings, titre):
     md += ["## 5. Réglages avancés", ""]
     if encodeurs:
         for e in encodeurs:
-            md += [f"L'encodeur « {e['nom']} » (CC {(e['midi'] or {}).get('NUMBER')}, canal "
-                   f"{(e['midi'] or {}).get('CHANNEL')}, mode {(e['midi'] or {}).get('MODE')}) ajuste "
-                   f"**{e['control']}**. Le mode Increment/decrement traduit la rotation en pas successifs. "
-                   f"{'Conditionné à la couche FREEZE.' if e['conditions'] else 'Actif en couche BASE.'}", ""]
+            mode = (e["midi"] or {}).get("MODE")
+            ctrl = e["control"] or ""
+            entete = (f"« {e['nom']} » (CC {(e['midi'] or {}).get('NUMBER')}, canal "
+                      f"{(e['midi'] or {}).get('CHANNEL')}, mode {mode})")
+            suite = ('Conditionné à la couche FREEZE.' if e["conditions"]
+                     else "Actif en couche BASE.")
+            if mode in ("Increment", "Decrement"):
+                md += [f"L'encodeur {entete} ajuste **{ctrl}**. "
+                       f"Le mode Increment/decrement traduit la rotation en pas "
+                       f"successifs. {suite}", ""]
+            elif mode == "Toggle":
+                md += [f"Le bouton {entete} commute **{ctrl}**. "
+                       f"Le mode Toggle bascule l'état (on/off) à chaque appui. "
+                       f"{suite}", ""]
+            elif ctrl.startswith("MIDI "):
+                md += [f"Le contrôle {entete} attaque la commande générique "
+                       f"**{ctrl}** (relais bridge). Le mode Direct transmet la "
+                       f"valeur absolue du contrôle (0-127). {suite}", ""]
+            else:
+                md += [f"Le contrôle {entete} ajuste **{ctrl}** en valeur "
+                       f"absolue (mode Direct, 0-127). {suite}", ""]
     else:
         md += ["Aucun encodeur continu (CC) dans ce mapping.", ""]
     md += ["## 6. Tableau de Référence MIDI", "",
@@ -129,7 +170,7 @@ def generer(meta, mappings, titre):
            "(chaîne PDF aval). Format PDF : généré en aval via le skill plateforme pdf.", ""]
     doc_json = {
         "document": {"titre": titre, "device": meta["device"], "structure": SECTIONS,
-                     "deterministe": True, "generateur": "midi-doc-expert v1.0.0"},
+                     "deterministe": True, "generateur": "midi-doc-expert v1.2.0"},
         "mappings": mappings,
         "led": [{"nom": l["nom"], "note": l["led"].get("NUMBER"),
                  "on": l["led"].get("ON"), "off": l["led"].get("OFF"),

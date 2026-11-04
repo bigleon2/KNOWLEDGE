@@ -1,6 +1,6 @@
 ---
 name: midi-doc-expert
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 tags:
@@ -32,7 +32,7 @@ read_when:
   - Ne pas déclencher pour valider un TSI (tsi-validator), concevoir une architecture (tsi-architect) ou arbitrer des couches (multi-shift-architect).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.18)
+## §0 — Contexte Système (SHARED v1.7.21)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -87,3 +87,9 @@ Seuil de performance (ENF-02, audité par la batterie) : génération MD+JSON < 
 
 - `references/gabarit-document.md` — gabarit de rédaction (persona, règles de style, annexes types).
 - `evals/evals.json` + `evals/trigger_evals.json` — cas de déclenchement (documentation MIDI) et contrôles négatifs.
+
+## §7 — Historique
+
+- **v1.2.0 (2026-11-04, Task 45)** : §5 rédigé par mode (Increment/Decrement = encodeur ; Toggle = bouton/commutation ; Direct = valeur absolue, verbe « attaque la commande générique » pour les MIDI Controls) ; §2 détecte et explique un bridge MIDI Controls (2 étages, IDs 850-873, convention looprituals 1-4 gauche / 5-8 droite) ; attribution Interaktiv Audio CC BY 4.0 portée dans le §2 ; JSON `generateur: midi-doc-expert v1.2.0`.
+- **v1.1.0 (Task 33)** : conversion du périmètre MK3 → MK2 (S4 MK2 = contrôleur cible, MK3 = exemple d'Autre modèle) ; §0 re-normalisé SHARED v1.7.18.
+- **v1.0.0** : création (cahier des charges S2, structure 9 sections, génération MD+JSON déterministe).

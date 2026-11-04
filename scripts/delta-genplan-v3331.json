@@ -1,0 +1,15 @@
+{
+ "history": "Précision sémantique de la règle d'or n°7 (directive propriétaire 2026-11-04, session web-6058b3ba — « prend en compte que lorsque je précise que lorsque je disais \"ce que tu as oublié\" alors je voulais dire \"les éléments oubliés à cause d'une coupure et que tu as partiellement réussi à reconstituer\". ») : §1.8 — point 2 précisé (l'« oubli » visé = les éléments perdus à cause d'une coupure et que l'agent n'a que partiellement réussi à reconstituer) + point 5 ajouté (une reconstitution PARTIELLE n'est jamais une mémoire complète — complétée par la relecture des clones et sauvegardes ; l'état vérifiable du disque, règle d'or n°5, prévaut sur toute reconstruction mémorielle) ; PATCH — addition pure ; description frontmatter inchangée (non-régression triggers) ; recalibrage croisé KO-L004 : SHARED §6.1, PM-INSTALL §2ter/§A.3",
+ "subs": [
+  {
+   "old": "2. **Relecture des clones** — si un élément a été oublié (notamment à cause d'une coupure de contexte : compression, recyclage sandbox, interruption plateforme), l'agent RELIT les clones et sauvegardes de la discussion (clones clone-chat, rapports finals, worklog R5, journaux) pour prendre en compte les parties oubliées, AVANT de générer ou re-générer le plan.",
+   "new": "2. **Relecture des clones** — si un élément a été oublié (l'« oubli » visé désigne les éléments perdus à cause d'une coupure de contexte — compression, recyclage sandbox, interruption plateforme — et que l'agent n'a que PARTIELLEMENT réussi à reconstituer ; précision sémantique, directive propriétaire 2026-11-04 : « ce que tu as oublié » = « les éléments oubliés à cause d'une coupure et que tu as partiellement réussi à reconstituer »), l'agent RELIT les clones et sauvegardes de la discussion (clones clone-chat, rapports finals, worklog R5, journaux) pour prendre en compte les parties oubliées, AVANT de générer ou re-générer le plan.",
+   "count": 1
+  },
+  {
+   "old": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+   "new": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).\n5. **Reconstitution partielle ≠ mémoire complète** — une reconstitution PARTIELLE (résumé de session, mémoire résiduelle) n'est JAMAIS une mémoire complète : les parties partiellement reconstituées sont complétées en relisant les clones et sauvegardes, et l'état vérifiable du disque (règle d'or n°5) prévaut sur toute reconstruction mémorielle (précision sémantique, directive propriétaire 2026-11-04 : « ce que tu as oublié » = « les éléments oubliés à cause d'une coupure et que tu as partiellement réussi à reconstituer »).",
+   "count": 1
+  }
+ ]
+}

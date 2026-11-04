@@ -38,7 +38,7 @@ KNOWLEDGE/
 │   ├── README.md                        ← Ce guide
 │   ├── PROMPT-MAITRE-SHARED.md          ← Socle commun (source de vérité)
 │   ├── PROMPT-MAITRE-GEN-PLAN-v3.26.0.md
-│   ├── PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md
+│   ├── PROMPT-MAITRE-CORRECT-WORK-v2.9.0.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md
 │   ├── PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md  ← 4e famille (décision D009)
 │   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.8.0 — pipeline 11 étapes, mécanisme dual)

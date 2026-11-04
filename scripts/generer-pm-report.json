@@ -1,15 +1,15 @@
 {
   "mode": "check",
-  "date": "2026-11-01",
+  "date": "2026-11-04",
   "familles": {
     "gen-plan": {
-      "skill": "3.31.0",
-      "pm": "PROMPT-MAITRE-GEN-PLAN-v3.31.0.md",
+      "skill": "3.33.1",
+      "pm": "PROMPT-MAITRE-GEN-PLAN-v3.33.1.md",
       "etat": "COHERENT"
     },
     "correct-work": {
-      "skill": "2.8.0",
-      "pm": "PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md",
+      "skill": "2.9.0",
+      "pm": "PROMPT-MAITRE-CORRECT-WORK-v2.9.0.md",
       "etat": "COHERENT"
     },
     "clone-chat": {

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NISYSTEM VERSION="1">
+  <DEVICE NAME="Traktor Kontrol S4 MK2" TYPE="MIDI" IN_PORT="Traktor Kontrol S4 MK2 In" OUT_PORT="Traktor Kontrol S4 MK2 Out" DECK_TARGET="Focus">
+    <MAPPINGS COUNT="56">
+    <MAPPING NAME="Bridge entrée — MIDI Button 1 (CC80)" TYPE="IN" GROUP="Global" CONTROL="MIDI Button 1">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="80" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Button 2 (CC81)" TYPE="IN" GROUP="Global" CONTROL="MIDI Button 2">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="81" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Button 3 (CC82)" TYPE="IN" GROUP="Global" CONTROL="MIDI Button 3">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="82" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Button 4 (CC83)" TYPE="IN" GROUP="Global" CONTROL="MIDI Button 4">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="83" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Button 5 (CC84)" TYPE="IN" GROUP="Global" CONTROL="MIDI Button 5">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="84" MODE="Toggle"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Button 6 (CC85)" TYPE="IN" GROUP="Global" CONTROL="MIDI Button 6">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="85" MODE="Toggle"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Button 7 (CC86)" TYPE="IN" GROUP="Global" CONTROL="MIDI Button 7">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="86" MODE="Toggle"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Button 8 (CC87)" TYPE="IN" GROUP="Global" CONTROL="MIDI Button 8">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="87" MODE="Toggle"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Knob 1 (CC88)" TYPE="IN" GROUP="Global" CONTROL="MIDI Knob 1">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="88" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Knob 2 (CC89)" TYPE="IN" GROUP="Global" CONTROL="MIDI Knob 2">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="89" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Knob 3 (CC90)" TYPE="IN" GROUP="Global" CONTROL="MIDI Knob 3">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="90" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Knob 4 (CC91)" TYPE="IN" GROUP="Global" CONTROL="MIDI Knob 4">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="91" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Knob 5 (CC92)" TYPE="IN" GROUP="Global" CONTROL="MIDI Knob 5">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="92" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Knob 6 (CC93)" TYPE="IN" GROUP="Global" CONTROL="MIDI Knob 6">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="93" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Knob 7 (CC94)" TYPE="IN" GROUP="Global" CONTROL="MIDI Knob 7">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="94" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Knob 8 (CC95)" TYPE="IN" GROUP="Global" CONTROL="MIDI Knob 8">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="95" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Fader 1 (CC96)" TYPE="IN" GROUP="Global" CONTROL="MIDI Fader 1">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="96" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Fader 2 (CC97)" TYPE="IN" GROUP="Global" CONTROL="MIDI Fader 2">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="97" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Fader 3 (CC98)" TYPE="IN" GROUP="Global" CONTROL="MIDI Fader 3">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="98" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Fader 4 (CC99)" TYPE="IN" GROUP="Global" CONTROL="MIDI Fader 4">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="99" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Fader 5 (CC100)" TYPE="IN" GROUP="Global" CONTROL="MIDI Fader 5">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="100" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Fader 6 (CC101)" TYPE="IN" GROUP="Global" CONTROL="MIDI Fader 6">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="101" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Fader 7 (CC102)" TYPE="IN" GROUP="Global" CONTROL="MIDI Fader 7">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="102" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Bridge entrée — MIDI Fader 8 (CC103)" TYPE="IN" GROUP="Global" CONTROL="MIDI Fader 8">
+      <MIDI CHANNEL="0" MESSAGE="CC" NUMBER="103" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Mixer FX Adjust — Deck A (A.Filter) ← MIDI Button 1" TYPE="IN" GROUP="Deck A" CONTROL="Mixer FX Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="80" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Mixer FX Adjust — Deck B (B.Filter) ← MIDI Button 2" TYPE="IN" GROUP="Deck B" CONTROL="Mixer FX Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="81" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Mixer FX Adjust — Deck C (C.Filter) ← MIDI Button 3" TYPE="IN" GROUP="Deck C" CONTROL="Mixer FX Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="82" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Mixer FX Adjust — Deck D (D.Filter) ← MIDI Button 4" TYPE="IN" GROUP="Deck D" CONTROL="Mixer FX Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="83" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Mixer FX On — Deck A (A.MixerFX On) ← MIDI Button 5" TYPE="IN" GROUP="Deck A" CONTROL="Mixer FX On">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="84" MODE="Toggle"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Mixer FX On — Deck B (B.MixerFX On) ← MIDI Button 6" TYPE="IN" GROUP="Deck B" CONTROL="Mixer FX On">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="85" MODE="Toggle"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Mixer FX On — Deck C (C.MixerFX On) ← MIDI Button 7" TYPE="IN" GROUP="Deck C" CONTROL="Mixer FX On">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="86" MODE="Toggle"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Mixer FX On — Deck D (D.MixerFX On) ← MIDI Button 8" TYPE="IN" GROUP="Deck D" CONTROL="Mixer FX On">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="87" MODE="Toggle"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Low Adjust — Deck A (A.Low) ← MIDI Knob 1" TYPE="IN" GROUP="Deck A" CONTROL="Low Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="88" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation High Adjust — Deck A (A.High) ← MIDI Knob 2" TYPE="IN" GROUP="Deck A" CONTROL="High Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="89" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Low Adjust — Deck C (C.Low) ← MIDI Knob 3" TYPE="IN" GROUP="Deck C" CONTROL="Low Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="90" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation High Adjust — Deck C (C.High) ← MIDI Knob 4" TYPE="IN" GROUP="Deck C" CONTROL="High Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="91" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Low Adjust — Deck B (B.Low) ← MIDI Knob 5" TYPE="IN" GROUP="Deck B" CONTROL="Low Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="92" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation High Adjust — Deck B (B.High) ← MIDI Knob 6" TYPE="IN" GROUP="Deck B" CONTROL="High Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="93" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Low Adjust — Deck D (D.Low) ← MIDI Knob 7" TYPE="IN" GROUP="Deck D" CONTROL="Low Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="94" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation High Adjust — Deck D (D.High) ← MIDI Knob 8" TYPE="IN" GROUP="Deck D" CONTROL="High Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="95" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Tempo Adjust — Deck A (A.Tempo) ← MIDI Fader 1" TYPE="IN" GROUP="Deck A" CONTROL="Tempo Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="96" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Volume Adjust — Deck A (A.Volume) ← MIDI Fader 2" TYPE="IN" GROUP="Deck A" CONTROL="Volume Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="97" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Tempo Adjust — Deck C (C.Tempo) ← MIDI Fader 3" TYPE="IN" GROUP="Deck C" CONTROL="Tempo Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="98" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Volume Adjust — Deck C (C.Volume) ← MIDI Fader 4" TYPE="IN" GROUP="Deck C" CONTROL="Volume Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="99" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Tempo Adjust — Deck B (B.Tempo) ← MIDI Fader 5" TYPE="IN" GROUP="Deck B" CONTROL="Tempo Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="100" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Volume Adjust — Deck B (B.Volume) ← MIDI Fader 6" TYPE="IN" GROUP="Deck B" CONTROL="Volume Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="101" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Tempo Adjust — Deck D (D.Tempo) ← MIDI Fader 7" TYPE="IN" GROUP="Deck D" CONTROL="Tempo Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="102" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="Délégation Volume Adjust — Deck D (D.Volume) ← MIDI Fader 8" TYPE="IN" GROUP="Deck D" CONTROL="Volume Adjust">
+      <MIDI CHANNEL="1" MESSAGE="CC" NUMBER="103" MODE="Direct"/>
+    </MAPPING>
+    <MAPPING NAME="LED retour — MIDI Button 1" TYPE="OUT" GROUP="Global" CONTROL="MIDI Button 1">
+      <LED NUMBER="80" ON="127" OFF="0" MODE="Output"/>
+    </MAPPING>
+    <MAPPING NAME="LED retour — MIDI Button 2" TYPE="OUT" GROUP="Global" CONTROL="MIDI Button 2">
+      <LED NUMBER="81" ON="127" OFF="0" MODE="Output"/>
+    </MAPPING>
+    <MAPPING NAME="LED retour — MIDI Button 3" TYPE="OUT" GROUP="Global" CONTROL="MIDI Button 3">
+      <LED NUMBER="82" ON="127" OFF="0" MODE="Output"/>
+    </MAPPING>
+    <MAPPING NAME="LED retour — MIDI Button 4" TYPE="OUT" GROUP="Global" CONTROL="MIDI Button 4">
+      <LED NUMBER="83" ON="127" OFF="0" MODE="Output"/>
+    </MAPPING>
+    <MAPPING NAME="LED retour — MIDI Button 5" TYPE="OUT" GROUP="Global" CONTROL="MIDI Button 5">
+      <LED NUMBER="84" ON="127" OFF="0" MODE="Output"/>
+    </MAPPING>
+    <MAPPING NAME="LED retour — MIDI Button 6" TYPE="OUT" GROUP="Global" CONTROL="MIDI Button 6">
+      <LED NUMBER="85" ON="127" OFF="0" MODE="Output"/>
+    </MAPPING>
+    <MAPPING NAME="LED retour — MIDI Button 7" TYPE="OUT" GROUP="Global" CONTROL="MIDI Button 7">
+      <LED NUMBER="86" ON="127" OFF="0" MODE="Output"/>
+    </MAPPING>
+    <MAPPING NAME="LED retour — MIDI Button 8" TYPE="OUT" GROUP="Global" CONTROL="MIDI Button 8">
+      <LED NUMBER="87" ON="127" OFF="0" MODE="Output"/>
+    </MAPPING>
+    </MAPPINGS>
+  </DEVICE>
+</NISYSTEM>

@@ -1,6 +1,6 @@
 ---
 name: tsi-architect
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 tags:
@@ -31,7 +31,7 @@ read_when:
   - Ne pas déclencher pour la validation mécanique d'un TSI (tsi-validator), la méthode des couches SHIFT (multi-shift-architect), ni la génération de documentation (midi-doc-expert).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.18)
+## §0 — Contexte Système (SHARED v1.7.21)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -56,6 +56,13 @@ Ce skill détient la **méthode** d'architecture des mappings TSI ; l'**exécuti
 - **Freeze Mode S4 MK2** (golden) : activation `Modifier 1` sur SHIFT+LOOP IN (MODE Toggle) — pattern corroboré par le mapping réel DJTT S4 MK2 v2.1.0 (Freeze Mode Help : « Freeze Mode On/Off: Shift + Loop In button ») —, 8 `Slice n` conditionnées M1=1, `Slice Size` à l'encodeur (MODE Increment), LED Freeze en OUT conditionnée M1=1 — voir `skills/tsi-validator/samples/echantillon-valide.tsi` et `download/analyse-approfondie-zip-djtt-s4mk2-v2.1.0.md`.
 - **Hotcues étendus** : 8 pads en couche BASE, 8 Hotcue Delete en couche SHIFT (même notes, condition M2=1, source `Modifier 2` sur SHIFT+pad dédié).
 - **Anti-collision inter-decks** : plages disjointes par section de deck (référentiel de l'agent hardware), LED en miroir des entrées (TYPE=OUT).
+
+## §3bis — Catalogue de commandes & MIDI Controls — pattern « délégation par deck » (v1.2.0, Task 44 — reconstitué Task 46)
+
+- **Catalogue enrichi** : `tsi-toolkit/data/commandes-traktor.json` porte `catalogue_interaktiv` (524 commandes TP 4.5.1, source Interaktiv Audio « Every Traktor MIDI command », **CC BY 4.0** — attribution obligatoire portée dans les catalogues et livrables) incluant les **24 commandes génériques `Global > MIDI Controls`** : Buttons 1-8 (IDs 850-857, switch), Knobs 1-8 (858-865), Faders 1-8 (866-873, continuous). Traktor 3.11.1 = sous-ensemble strict de TP 4 (28 Pro-4-only).
+- **Pattern « délégation par deck » (dérivé de l'Assignment Table du propriétaire — Task 44)** : pont à 2 étages — étage 1 : le contrôleur externe attaque les commandes génériques MIDI Controls (GROUP=Global, ch0, CC 80-103 ; convention looprituals 1-4 = deck gauche / 5-8 = deck droit) ; étage 2 : chaque MIDI Control délègue en Direct aux commandes réelles par deck (Master Adjust→C.Filter, Key Adjust→D.Filter, Mixer FX Adjust→A-D.Filter, Temp Adjust…) — implémenté dans `tsi-toolkit/examples/preset-midi-controls-bridge.json` (56 mappings : 24 bridge + 24 délégations 6/deck + 8 LED) → `download/task46-midi-controls-bridge.tsi` (tsi-validator PASS, déterminisme ×2).
+- **Référence de rôle (précepte Task 46, 2026-11-04)** : le mapping DJTT v2.1.0 est un **EXEMPLE de possibilité de mapping expert utilisant les 4 DECKS** — jamais la source de vérité ; la source de vérité = les fichiers personnels du propriétaire (settings 3.11.1.17 décodé — decks A/B/C/D quasi-symétriques 422/437/416/426 conditions ; Assignment Table des captures ; DREW).
+- **Lignage honnête (Task 46)** : la v1.2.0 d'origine (hôte-seule, perdue au recyclage sandbox) est reconstituée depuis le rapport Task 44 §5 ; contenu identique.
 
 ## §4 — Relations
 

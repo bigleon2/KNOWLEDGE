@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.18)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.21)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
-"""
-
-"""sync-instructions-ecosysteme.py — Active le PM SHARED + les disciplines + la découverte de l'écosystème dans le contexte agent.
+sync-instructions-ecosysteme.py — Active le PM SHARED + les disciplines + la découverte de l'écosystème dans le contexte agent.
 
 Directive propriétaire 2026-11-01 (traces 1a1932155da4969d + 1a1932757ab10e51) :
 - toute génération/extension de plan d'actions = skill gen-plan uniquement (garde absolue) ;

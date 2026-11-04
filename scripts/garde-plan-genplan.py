@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.18)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.21)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
-"""
-
-"""garde-plan-genplan.py — Garde mécanique « plans d'actions générés par gen-plan ».
+garde-plan-genplan.py — Garde mécanique « plans d'actions générés par gen-plan ».
 
 Directive propriétaire 2026-11-01 (trace 1a1932155da4969d) : 100 % des plans d'actions
 doivent être produits par le skill gen-plan, dans toutes les situations. Cette garde

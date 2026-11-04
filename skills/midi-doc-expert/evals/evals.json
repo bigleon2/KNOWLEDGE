@@ -11,7 +11,7 @@
     },
     {
       "id": 2,
-      "query": "Génère la notice du Freeze Mode du S4 MK2 en Markdown et JSON.",
+      "query": "Génère la notice du Freeze Mode du S4 MK3 en Markdown et JSON.",
       "expected_behavior": "déclenchement du skill midi-doc-expert (générateur MD+JSON)"
     },
     {

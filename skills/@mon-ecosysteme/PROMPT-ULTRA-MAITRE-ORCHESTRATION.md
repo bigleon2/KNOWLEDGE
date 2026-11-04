@@ -36,8 +36,8 @@
 
 | Famille | PM le plus récent (source d'assemblage) | Versions historiques figées (R2) |
 |---------|------------------------------------------|----------------------------------|
-| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.32.0.md (la plus récente) | — |
-| CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.8.0.md (la plus récente) | — |
+| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.33.1.md (la plus récente) | — |
+| CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.9.0.md (la plus récente) | — |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md (la plus récente) | — |
 | REFACTOR-GUARD | PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md (la plus récente) | — |
 
@@ -47,7 +47,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.18 (lire en premier). Installateur : `PRO
 
 | Skill | Version |
 |-------|---------|
-| `gen-plan` | 3.32.0 |
+| `gen-plan` | 3.33.1 |
 | `correct-work` | 2.8.0 |
 | `clone-chat` | 2.0.2 |
 | `skills-inventory` | 1.1.0 |
@@ -88,7 +88,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.18 (lire en premier). Installateur : `PRO
 | `cahier-des-charges` | 2.0.2 |
 | `agent-prompt-engineering` | 1.0.1 |
 
-Registre KB : 40 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé). correct-work v2.8.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
+Registre KB : 40 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé). correct-work v2.9.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 
 ## §4 — Points d'entrée et ordre de lecture
 

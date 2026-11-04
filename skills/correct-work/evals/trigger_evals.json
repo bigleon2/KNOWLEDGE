@@ -8,6 +8,10 @@
     "should_trigger": true
   },
   {
+    "query": "correct-work (projet) --bloc : vérifie le projet bloc par bloc avec un verdict par bloc.",
+    "should_trigger": true
+  },
+  {
     "query": "Vérifie les livrables : erreurs, omissions, incohérences, interactions — puis corrige et rends un verdict.",
     "should_trigger": true
   },
