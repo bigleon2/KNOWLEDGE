@@ -2,743 +2,691 @@
  "ASR": {
   "skill": "ASR",
   "version": "non déclarée",
-  "sha_source": "261960a9f152270909653fbec20680a847c7de35398b4f08b52731a7ad7d45a6",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "a406ad3a2b88e9e03bfd40b60849323a3cd0bf5dd660992bf98f379454d9eed1",
+  "statut": "SKIP-a-jour"
  },
  "LLM": {
   "skill": "LLM",
   "version": "non déclarée",
-  "sha_source": "6f81a648fe6ff6d7dc3ba3c78116bf4ea6f21dde5787f4512277946bdf0ec301",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "6f61842cc9270474ca9bef1c73d766eadaf675b60008ae1ba9e241713c8f3bd1",
+  "statut": "SKIP-a-jour"
  },
  "TTS": {
   "skill": "TTS",
   "version": "non déclarée",
-  "sha_source": "54a9caaa1e45f05bb398d9ff0a4940dce34e8c24db048bcdf8c211851a5a4b5c",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "18b0c8d563bef913f33b1ef9d22cfdcf6db6029e5477a49979c0130887d17de0",
+  "statut": "SKIP-a-jour"
  },
  "VLM": {
   "skill": "VLM",
   "version": "non déclarée",
-  "sha_source": "cf710c261a42ea28944cab78e5bb782d321ff4d9812e5d946a924aa08926bba9",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "dc101e2ce7931073549a2295b1f2119f47fc4080afc774b38dfad80a1e42b710",
+  "statut": "SKIP-a-jour"
  },
  "agent-browser": {
   "skill": "agent-browser",
   "version": "non déclarée",
-  "sha_source": "b105129d64437f56377f169d02201146283af2e50948c7fd020ed41d99b7a883",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "17858e02fe6b4d33b3942af2b488846492817b69ab9b944188edb11c29552c03",
+  "statut": "SKIP-a-jour"
  },
  "agent-creator": {
   "skill": "agent-creator",
   "version": "2.3.0",
-  "sha_source": "e13c6ae08299f92e11b51f46113bbbf3dbba754dcda3f7c2fb4c10164cafbcf0",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "a9857845ab8ee1e40be321a4aa0179606ac86a886f136a0ed825aece95d0f83e",
+  "statut": "SKIP-a-jour"
  },
  "agent-prompt-engineering": {
   "skill": "agent-prompt-engineering",
   "version": "1.0.1",
-  "sha_source": "d6ec8d0102f5e9bc6fc6127e7a2b7aa91acb18abbcf1c630c7e643f981e188cb",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "68faac7d5ea96f3452f342dccee9ba3a79113215ceb80abf2b88e14a67e98cdc",
+  "statut": "SKIP-a-jour"
  },
  "ai-news-collectors": {
   "skill": "ai-news-collectors",
   "version": "non déclarée",
-  "sha_source": "9b4b36b5cd0c9e837a06316d6ea150651ccf8a804d4a2ec566f05458909cfc1d",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "73ae5de96fe44c1e9710edc8a75017920bb73d68a76851fa5c97dbe5d215c6a6",
+  "statut": "SKIP-a-jour"
  },
  "alias-eco": {
   "skill": "alias-eco",
-  "version": "1.2.0",
-  "sha_source": "8788088762a6119f1b03eacb6de4238842030d2bb335cc9ef22d2e09dd83f844",
-  "statut": "GENERE",
-  "references": 1
+  "version": "1.3.0",
+  "sha_source": "33098477c6603767fec290b03675e609c31ed11e2c3c24cf8706e7eb8149397d",
+  "statut": "SKIP-a-jour"
  },
  "aminer-academic-search": {
   "skill": "aminer-academic-search",
   "version": "1.2.1",
-  "sha_source": "ce3e164ccac1ecf3ab89c108e13e05031dcf7fcfe8aa581ed9ca5d359454eaed",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "96fa15c0b63841d50afa0312f7bd384b54c726e3a1d27f00250caede5801cbe7",
+  "statut": "SKIP-a-jour"
  },
  "aminer-daily-paper": {
   "skill": "aminer-daily-paper",
   "version": "1.1.2",
-  "sha_source": "53a748669fb870f2da22dd047ac1c5700def21d0cf1e57e001673eab6798a502",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "06ae8ab7b74cce2d93f8d6c8d1b2de93174bea09cf7bcfba080e265dccd4a489",
+  "statut": "SKIP-a-jour"
  },
  "aminer-deep-search": {
   "skill": "aminer-deep-search",
   "version": "2.0.0",
-  "sha_source": "2121a355cd07a49b4133c5eba8d9f50c78f643a8988e15466c43e725e1e16769",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "978357eacb2046d92b4734b8cef1e82579e5cc0767745a014939a9a067cfc683",
+  "statut": "SKIP-a-jour"
  },
  "aminer-free-academic": {
   "skill": "aminer-free-academic",
   "version": "1.1.1",
-  "sha_source": "57aac3f9f61703b215bbed5c2af4fd81b096b5a92e0f4eeef7c04b919017bc6b",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "016846d0e1e1a74397ebb4bd12ac0eb8e913c0482e929104828433742d2a6d17",
+  "statut": "SKIP-a-jour"
  },
  "anti-pua": {
   "skill": "anti-pua",
   "version": "non déclarée",
-  "sha_source": "5942f0e7017545696b8dfed0da112e6df38c58c2912419ad92a9c858df5d7a94",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "865d28eba3fb46af36e4b4739458d285a78bde81729242de20af80c202f58a84",
+  "statut": "SKIP-a-jour"
  },
  "audio-metadata": {
   "skill": "audio-metadata",
   "version": "1.1.0",
-  "sha_source": "683517e4c3796caf6a03e537ab5ce366367263f815d7cba835350b4130fa4966",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "3e47981dca5c51e0145ba60d30038373eedf9d9ffde85542c4bf6e232e461ef9",
+  "statut": "SKIP-a-jour"
  },
  "audit-provenance": {
   "skill": "audit-provenance",
   "version": "1.1.0",
-  "sha_source": "70e7fb9d1c1c6e4861a58ef13687f76e6673a222a380581e661f8a3c55bd3aaf",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "d8271fee33606e18f386505efe03551d86a80809c60c26828e357e78683d11ee",
+  "statut": "SKIP-a-jour"
  },
  "auto-target-tracker": {
   "skill": "auto-target-tracker",
   "version": "non déclarée",
-  "sha_source": "dd44f49778489e0b73a0c6493451f50a3aaf2930e4e6c100eca18f11097775f0",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "da99d901f60c4dac38e7eccaedd99360406ef073748d9ce9737de112b09f90df",
+  "statut": "SKIP-a-jour"
  },
  "autonomous-agent": {
   "skill": "autonomous-agent",
   "version": "1.2.1",
-  "sha_source": "677b6e5af527b70539e2bb6052b7bbd2457550c92076b47ccb442daa49ce700b",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "86df5d138e222aa99fb4ddfd084f41931e2e87dda9f3c4e0d51c5f5323a908ac",
+  "statut": "SKIP-a-jour"
  },
  "blog-writer": {
   "skill": "blog-writer",
   "version": "non déclarée",
-  "sha_source": "4b4a2853f5587f7f587d79ebb9934108ac2bcea6a82f2d510f1aef2dd8eb735e",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "45dc23699641b7ea5951d55c04bd33eb95d36c0d1e8be573c18e89086c1e74a8",
+  "statut": "SKIP-a-jour"
  },
  "cahier-des-charges": {
   "skill": "cahier-des-charges",
-  "version": "2.0.1",
-  "sha_source": "bc7d9b93e3fbb28c56db10eb1ccb5fbcb3387be13d39e63b8be0b813955b1bc4",
-  "statut": "GENERE",
-  "references": 4
+  "version": "2.0.2",
+  "sha_source": "177e91516ddf26c0143178ea95d3182a123b3a180787b5eb313310d277391aae",
+  "statut": "SKIP-a-jour"
  },
  "charts": {
   "skill": "charts",
   "version": "1.0",
-  "sha_source": "cc27057ee6aafe4fda0584eaff6edfa71ec5308d3520433eb0b99ee56c77cbc0",
-  "statut": "GENERE",
-  "references": 9
+  "sha_source": "c5bb6370f38fb7952837a8446b8506772951aadd3037f173c4689ab9fd158ccd",
+  "statut": "SKIP-a-jour"
  },
  "cheat-sheet": {
   "skill": "cheat-sheet",
   "version": "non déclarée",
-  "sha_source": "295f53aa54617c0e66f9c355a7ca81fe05a38287f99a317052e53129008829fb",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "2bb8507c7fbbd1aafede77fd1b1bfaee7666f06914afa7dc90014753f322e9b8",
+  "statut": "SKIP-a-jour"
  },
  "clone-chat": {
   "skill": "clone-chat",
   "version": "2.0.2",
-  "sha_source": "34780482b02ddc9cb317e86a4cadbf5bb229ba140d1f487c4e31e05eefd41209",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "77cb488601d5c68045e4122110d4dd9d0985349d6fd7c6623a71e32d4a6f9bf2",
+  "statut": "SKIP-a-jour"
  },
  "coding-agent": {
   "skill": "coding-agent",
   "version": "1.0.4",
-  "sha_source": "f75b4dc962eea464018a4ced5b754bbbb42f0452338eb4fc9f35e954a0c2ebff",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "eabd1b3839d31e5576751323ac2ed273c2533833f278acc4e89d75df2f997d65",
+  "statut": "SKIP-a-jour"
  },
  "content-strategy": {
   "skill": "content-strategy",
   "version": "non déclarée",
-  "sha_source": "e4fecc1bb93dcad581bdc9a248d9b77931a28facbe723aec7424bccf384aff25",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "80540bb2a89a9af1ce9ed035729dda9ac937fb48b5f01476bbf862bbe02a6d38",
+  "statut": "SKIP-a-jour"
  },
  "contentanalysis": {
   "skill": "contentanalysis",
   "version": "non déclarée",
-  "sha_source": "ca4830e8e349b920ad84f8f56bdddb4c1d337355464f79a40f378b17137149ba",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "a6449fc6b3fe368c465f070944d60439593d3f9a05ebf4f5c16921a2239b2b0f",
+  "statut": "SKIP-a-jour"
  },
  "context-engineering": {
   "skill": "context-engineering",
   "version": "1.2.1",
-  "sha_source": "674e7f11c28f809d33a3bca25cf1a2d3e078dd0cb68dc5a2f6890ca112fd9585",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "36020fce455ef9766b82a148e7fd09b502aed09027647f76cf9a2d9ca14971b8",
+  "statut": "SKIP-a-jour"
  },
  "correct-py": {
   "skill": "correct-py",
   "version": "1.1.0",
-  "sha_source": "0ebf4f4dbfa2586a138b0e0b4d0255ce59ad0d08e55b738e7b9e8f9634bb24f9",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "046c95d58db88907603b6933767e89467b5c9d9123fd8e832c55bbad4f3d383a",
+  "statut": "SKIP-a-jour"
  },
  "correct-work": {
   "skill": "correct-work",
-  "version": "2.8.0",
-  "sha_source": "dccf85e42dcf763fbe398298a1aab13afa728533369269e504199eb3da11703a",
-  "statut": "GENERE",
-  "references": 1
+  "version": "2.9.0",
+  "sha_source": "a39a76cb14f0185db1ac0add0178c8eca107aec8748a2e70cf6b1d16c606609b",
+  "statut": "SKIP-a-jour"
  },
  "cpp-analysis": {
   "skill": "cpp-analysis",
   "version": "1.1.0",
-  "sha_source": "dc7f7b4041d13416ce3c54d1fef32e535803a86e7b4223d95c1bbd2cd450affb",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "2ed9c60db48a0d05c6b9d491adf9a1440b8ac0604965a92932ccfca985b33f5a",
+  "statut": "SKIP-a-jour"
  },
  "design": {
   "skill": "design",
   "version": "non déclarée",
-  "sha_source": "9a7c8ff9bd190179ffdb9b3a3ba5532cda8cf7e7927397106aa7189048188572",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "7eceb6152382340fe3b9041d8444eee8ab5a168362b36fdb225c4ea92a32b01a",
+  "statut": "SKIP-a-jour"
  },
  "dessin-technique": {
   "skill": "dessin-technique",
   "version": "1.1.1",
-  "sha_source": "1184ccaad3c18a60e018e41897365263ff5d14003875eb9ee71a3233ea9a2996",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "da7b192986b4706a3cce8883be212803fd8a987a4d1de1f3cbd8048c3f5c6466",
+  "statut": "SKIP-a-jour"
  },
  "docx": {
   "skill": "docx",
   "version": "1.0",
-  "sha_source": "eb08ff0e93075b2a67a45472fc18c57e29f9bab95b5088dd4caca42e9d014a9f",
-  "statut": "GENERE",
-  "references": 10
+  "sha_source": "73d7dc73f03e18716e687677958431a94192afe1df43f1d756829de36a203008",
+  "statut": "SKIP-a-jour"
  },
  "dream-interpreter": {
   "skill": "dream-interpreter",
   "version": "non déclarée",
-  "sha_source": "9df5e46d48673046f43eb5874a57d51cfed1845af8dafa07093fc07ebd737145",
-  "statut": "GENERE",
-  "references": 5
+  "sha_source": "c53b6427d53ab26328f6690a8ae35782b34c94e5d14b08f371b2aea45f0502cf",
+  "statut": "SKIP-a-jour"
  },
  "experiment-suite": {
   "skill": "experiment-suite",
   "version": "non déclarée",
-  "sha_source": "2186b423aa2db72d189b6ad0b3dee6d20e1d8567c0d032ef0bc013558dbfb27c",
-  "statut": "GENERE",
-  "references": 10
+  "sha_source": "a68af053f542161206c8c4fe26afc1974a70b2f1ff8910b113a59d3d78a0f3d6",
+  "statut": "SKIP-a-jour"
  },
  "finance": {
   "skill": "finance",
   "version": "non déclarée",
-  "sha_source": "3294ad057f55070e06fe828dd1b94f55c0732ad5dc6f22ec55b3bc0644c6d6c3",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "b0e4faaee64a4ee73cf621ced6a951f5b46b301ac5ba17f8445443ed88671918",
+  "statut": "SKIP-a-jour"
  },
  "fleet-engineering": {
   "skill": "fleet-engineering",
   "version": "1.1.1",
-  "sha_source": "57558057e25a0900c68f3bf81f99f24eaf3f6c53e92e337525facb5776ed2532",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "47b867276e4688f3d706d57b93b5adf95e17908df8f9caca9574d5ed126ce496",
+  "statut": "SKIP-a-jour"
  },
  "fullstack-dev": {
   "skill": "fullstack-dev",
   "version": "1.0.0",
-  "sha_source": "d5b7839441287f8cb536572bc9c34753b98c11ff4b6293c1f28b6c900967e3d4",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "1950d258d0d1823872ae13dd224b57bbbdca43d9a0c07072449319297920d049",
+  "statut": "SKIP-a-jour"
  },
  "gaokao-collect-student-info": {
   "skill": "gaokao-collect-student-info",
   "version": "non déclarée",
-  "sha_source": "fb94da7b80457e68cafd739ff0cb0b3250b11ea89972380b30370aecf9011539",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "743772f992de32a403dd74bbac788a005a6a16b193ad9108eaeea338b36cdada",
+  "statut": "SKIP-a-jour"
  },
  "gaokao-fetch-volunteers": {
   "skill": "gaokao-fetch-volunteers",
   "version": "non déclarée",
-  "sha_source": "71e369f0263caf4ab9958c44c4c7566cfc48570e50572d4a6fc4308a5f37fc8f",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "9f8fd4781a9a8739c02e722ac437f0c6b7c4bc59cdb6a41e970137b28aefa4a2",
+  "statut": "SKIP-a-jour"
  },
  "gaokao-generate-report": {
   "skill": "gaokao-generate-report",
   "version": "non déclarée",
-  "sha_source": "9438c6eb1212a3829a2a58f487ccfc3ce821b5cf9612e3f8ef9a1c9be14130e0",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "d11cd20171e5736e1900b58a927df6c13d401bafd8804f151a61cc253f47d3da",
+  "statut": "SKIP-a-jour"
  },
  "gaokao-recommend-majors": {
   "skill": "gaokao-recommend-majors",
   "version": "non déclarée",
-  "sha_source": "503a2d5014c80ab7577aa8f07394be5a5eceb5ed27f8fec47b9c816902ee3c83",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "99c1d85b03e201d8d4b2fbc165c7768196b41938ea782a9bd3e2b54a28a13d4d",
+  "statut": "SKIP-a-jour"
  },
  "gaokao-recommend-schools": {
   "skill": "gaokao-recommend-schools",
   "version": "non déclarée",
-  "sha_source": "060d868fe24ab0bfac13dc829fa6b6ceb60183eb9e93a49cccc0816ba0811fb9",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "dae27dda7fd8ba53bfc4c0efbec74b0b6d2f4384c4836e85a0c68d8509d3ebb4",
+  "statut": "SKIP-a-jour"
  },
  "gen-plan": {
   "skill": "gen-plan",
-  "version": "3.28.0",
-  "sha_source": "97233cbde0cdabc131cd578f676a937cfd21aa504d383a14e4a913f7eeb74460",
-  "statut": "GENERE",
-  "references": 11
+  "version": "3.34.0",
+  "sha_source": "1e88977053d9655b39eb838325ddfaed9147bd6be952a02665adfdab94405b16",
+  "statut": "SKIP-a-jour"
  },
  "get-fortune-analysis": {
   "skill": "get-fortune-analysis",
   "version": "non déclarée",
-  "sha_source": "f3cfdf9d243cd7dc2c57c2da27766908da0d2fb85dd7602c0af9a3ad49e01cb7",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "a7e41f753459bfa8c93feb995ba748461e16957c5029d643714c488273e8a1d2",
+  "statut": "SKIP-a-jour"
  },
  "gift-evaluator": {
   "skill": "gift-evaluator",
   "version": "non déclarée",
-  "sha_source": "65e298e08a73b10b0e80c804b0cadae4c4d3c5ff0e3d2f9f38b68f46d0b3e3f2",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "d22fd6d9424874493c84596426530de0cf5452f2538bd21b6acfa81bf902a5e2",
+  "statut": "SKIP-a-jour"
  },
  "graph-engineering": {
   "skill": "graph-engineering",
   "version": "1.1.1",
-  "sha_source": "505830c96f25c2f4497b7056c31dbd8552501b26926e9e2c51970f2db685c177",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "aba2039f2995c9ed240137ae5f572ac66df1713ab3e69e838f34c521ea801664",
+  "statut": "SKIP-a-jour"
  },
  "harness-engineering": {
   "skill": "harness-engineering",
   "version": "1.2.1",
-  "sha_source": "14b8aa055e0359ece9564600ea55ced46fb1cbcf760b279097202db2d3886471",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "76ae9c24d14ef6d81ac255ee829b5df5b1259b059c86890b2bc1fa15265ab131",
+  "statut": "SKIP-a-jour"
  },
  "image-edit": {
   "skill": "image-edit",
   "version": "non déclarée",
-  "sha_source": "bd434b9334c7714caa141b3bf21656e9b52d1d0990569c0724042c8d40bb661c",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "e0278b123026ee289ad6fdbc357477fd9503a48d40e58aca4ceffa4efca99dd0",
+  "statut": "SKIP-a-jour"
  },
  "image-generation": {
   "skill": "image-generation",
   "version": "non déclarée",
-  "sha_source": "0f8d80528eaa7b2bd1faa36fcfec8b26a2a16c38d5f541c2c05c15902857e3b3",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "2984136372aa4b72d4890ff3c466f3c8ba5008c5a3797a7fd20b311b43c296ab",
+  "statut": "SKIP-a-jour"
  },
  "image-search": {
   "skill": "image-search",
   "version": "1.0.0",
-  "sha_source": "b3f61d5a8ce94d0b5fc13dafd675564b6eb4c269056e781c093f09f88c92e407",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "d0de77a746def0333ba35670bf98a9fafe69ed1cd1cffc6862d4c8ce27e3668f",
+  "statut": "SKIP-a-jour"
  },
  "image-understand": {
   "skill": "image-understand",
   "version": "non déclarée",
-  "sha_source": "bccf4533e8a6cbeeb6ee9fc66ca170b671420b829460928c32331e5e0bb88558",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "e2792e3ad987d684e465c4df431091fcd9fa94bbfd44b16b1253607b1b727dc1",
+  "statut": "SKIP-a-jour"
  },
  "inter-scripts": {
   "skill": "inter-scripts",
   "version": "1.0.0",
-  "sha_source": "5564d18a4184ee3048fe1f5d702ee21299d7b9eb6df841b4f234853d7c4180bf",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "8e2fa1e000e33af521a376645fad6836008b8dcc0dcdd102fcefd4e643cebcc2",
+  "statut": "SKIP-a-jour"
  },
  "interview-designer": {
   "skill": "interview-designer",
   "version": "non déclarée",
-  "sha_source": "a93070a4db276ce5e87f6283eb1e38d423099ea068245e483564a3c8638bf3f9",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "004ce576534ddb9eeb8352b4ac9b018f48ad15f5c25e6c6eb03a0724bdd2cf39",
+  "statut": "SKIP-a-jour"
  },
  "interview-prep": {
   "skill": "interview-prep",
   "version": "non déclarée",
-  "sha_source": "acac301816ad491f494b7e919c4ad559149b8aadcb39a934366c66ac2e1e421c",
-  "statut": "GENERE",
-  "references": 9
+  "sha_source": "9a3167982378aaea36aa6fd29791ab82fdca1d21e4a444ca2a9f784267859f99",
+  "statut": "SKIP-a-jour"
  },
  "iphone17": {
   "skill": "iphone17",
   "version": "1.1.0",
-  "sha_source": "27e95f784e6b8fc433a1d2173caf52ca2637efbe9cb78f354d04aadb709ad6cf",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "2bc2d57293074d5d937f0dadbe8a1baffd86c803a4e43a6008c110149c213e1b",
+  "statut": "SKIP-a-jour"
  },
  "iphone18": {
   "skill": "iphone18",
   "version": "1.1.0",
-  "sha_source": "453cffe30bbcf808c7b72d804471dcdb1b72c8a9a07073ad5a8f7f52e38a0be4",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "02d5575f45abf065ba0a68e1a6743160edcde2492743c857924d458177559373",
+  "statut": "SKIP-a-jour"
  },
  "iphone19": {
   "skill": "iphone19",
   "version": "0.11.0",
-  "sha_source": "3abea5060b4040225b59b2c8cb1b1c7b504c008d18e2f71d77625251c5b71668",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "9ce4a1312ed8a16a694aa7c25f2eb68d86c7b893fbd940ad1f23303ae221578b",
+  "statut": "SKIP-a-jour"
  },
  "jd-resume-tailor": {
   "skill": "jd-resume-tailor",
   "version": "non déclarée",
-  "sha_source": "6216aa3696c01df23c1d68da007a4d705726732540c274ba8af667222aae5834",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "e17fbb3eb361f7c6ef8e711aa14f14f8100d4ebc4e42421337005b1f057e13a9",
+  "statut": "SKIP-a-jour"
  },
  "job-intent-tracker": {
   "skill": "job-intent-tracker",
   "version": "non déclarée",
-  "sha_source": "bdde1aae9ceb54d1ad18900d61c46830f0f7551953f4bb76a0ac031717564333",
-  "statut": "GENERE",
-  "references": 5
+  "sha_source": "83a05b526320cf1e0661fbd6fb2354ce224304aac42efe35fe249071fa1426ee",
+  "statut": "SKIP-a-jour"
  },
  "knowledge-observer": {
   "skill": "knowledge-observer",
   "version": "1.0.0",
-  "sha_source": "91f8da15933d71bf2549ed6bb477848ce7d90f42ded606f4b9849e0f2c3c17a1",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "a9c5f52a971d802566d2634fd417b9866661cba242ef8e1f7b85fdc3071227f7",
+  "statut": "SKIP-a-jour"
  },
  "literature-survey": {
   "skill": "literature-survey",
   "version": "non déclarée",
-  "sha_source": "766c942761007d905c8f36991e2549921362c12d548ea4490be87120a1c40fa2",
-  "statut": "GENERE",
-  "references": 6
+  "sha_source": "617a4a93cfe8b705051553940a7ad7abdce81039c70167cb20c4710f865e4908",
+  "statut": "SKIP-a-jour"
  },
  "loop-engineering": {
   "skill": "loop-engineering",
   "version": "1.2.1",
-  "sha_source": "b7b539d0117b0a3c735f0cf54fc0f39e92499021e67a15cd33cfb2f78d797ffe",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "a69c871549506c0415f2138279a1abadab857ca77b2789c2186f5285f75b0ed2",
+  "statut": "SKIP-a-jour"
  },
  "market-research-reports": {
   "skill": "market-research-reports",
   "version": "non déclarée",
-  "sha_source": "aa8f6258f821e584d35dce181408106abdb8f1de7b221b0d3c0b1c8aa74ede76",
-  "statut": "GENERE",
-  "references": 3
+  "sha_source": "761bbefbf9d171161c584719709c9bc207cc7abe368aba2a0149a71d1b2b29ae",
+  "statut": "SKIP-a-jour"
  },
  "marketing-mode": {
   "skill": "marketing-mode",
   "version": "1.0.0",
-  "sha_source": "b6f73f8dfca620493b8949bdee7cadb9debcbe004e9c5b46d8ce8744199af543",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "03177bfc2c82ab231401de4387c2d6ab800d4c2ea14bfd1e41eddd2a47375f55",
+  "statut": "SKIP-a-jour"
  },
  "memory-engineering": {
   "skill": "memory-engineering",
   "version": "1.2.1",
-  "sha_source": "daa083faba27a3d72f56b37b2cf73052465da16047a862c062ed88124b77e4fb",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "12fa09291eadc0cac245cfc70807f5c663bf2d65ea1f68b8802dd66fadf9222b",
+  "statut": "SKIP-a-jour"
  },
  "mindfulness-meditation": {
   "skill": "mindfulness-meditation",
   "version": "1.0.0",
-  "sha_source": "487e91af930913fb67ab3ba73d87a1e103ceb44280741b6775f692928f3f508e",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "7df72624a67e9d026d01ca93c15b0fe1f5f09627e20f9409552078a7618fe8a8",
+  "statut": "SKIP-a-jour"
  },
  "multi-search-engine": {
   "skill": "multi-search-engine",
   "version": "non déclarée",
-  "sha_source": "21cc95f694949ca63ad05769f68668d912d3d7edc999655eb287bbb69e2a8fce",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "eb3bb175e8095acebee7221b6ac3b0a1ca95471c2652adf4b617a244af2e5758",
+  "statut": "SKIP-a-jour"
  },
  "pdf": {
   "skill": "pdf",
   "version": "1.0",
-  "sha_source": "77f9b49b29891e00880c75a3c47e2bff72224ab66fb0cd91cc83ee52f2fa786a",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "8b706fa7bc7dd35b55522f720599fdedf3f762b466f427eb8c3a1b338a29eafc",
+  "statut": "SKIP-a-jour"
  },
  "pdf-llm": {
   "skill": "pdf-llm",
   "version": "1.0.0",
-  "sha_source": "d0a57eee755df9696f5290e417f8ae39ae3b38c682a38d44113429178bf5b6a6",
-  "statut": "GENERE",
-  "references": 5
+  "sha_source": "5082f90f50bb76947ab917939903418576e799460a025f53e5c92b2e055f332d",
+  "statut": "SKIP-a-jour"
  },
  "podcast-generate": {
   "skill": "podcast-generate",
   "version": "non déclarée",
-  "sha_source": "d6faac43783483a95cd968f7cc48843eed1d0c697106949a4fd0010bbbcc7d71",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "fa6c578d086eb790dc0eeecfd56213c69c0ad0f39262bd99896f4bc39579f5be",
+  "statut": "SKIP-a-jour"
  },
  "pptx": {
   "skill": "pptx",
   "version": "1.0",
-  "sha_source": "9709166831e1b3b0293ac858a3da52188a493c4d1050d3e7e3f2ac0eb9972559",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "bc0568d972a6ca72d541e03f03b26d3b190c76a895f44e827a2115ca2373fbbb",
+  "statut": "SKIP-a-jour"
  },
  "prompt-engineering": {
   "skill": "prompt-engineering",
   "version": "2.3.1",
-  "sha_source": "ff515dc6678a152a78f656dad6b249446d0067085eca7de5cece5b2ed2f8634d",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "7360fe07f90bda5be8c90dee9f5493a28d8602a82f6246c234771e00ca3abf51",
+  "statut": "SKIP-a-jour"
  },
  "qingyan-research": {
   "skill": "qingyan-research",
   "version": "non déclarée",
-  "sha_source": "616f40c114c534fa356e142176c36e19c956d510ccbbbe15863466ee2a81ea36",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "9ef29f16bb9452ba35d7b7c6da6128fa9f81b98540eea37d946e79570f70e463",
+  "statut": "SKIP-a-jour"
  },
  "quiz-html": {
   "skill": "quiz-html",
   "version": "non déclarée",
-  "sha_source": "81975d1b11182713be526b236427dbd1c74904c3a0fb93d2cf521efc78076812",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "22ea9b50a02ff51cc1ef756a1c2f52c2b024b08feeae9c1cba75eee54a3a43fc",
+  "statut": "SKIP-a-jour"
  },
  "quiz-mastery": {
   "skill": "quiz-mastery",
   "version": "non déclarée",
-  "sha_source": "08ff7058cec53dfbadad01f4bd48ec1d60ebec43ede9b387c4412a7f32bc6be0",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "dbe90874cf52aed23f28ef5b5f95b0b46c6118509e58e4a8db9368a468d63d80",
+  "statut": "SKIP-a-jour"
  },
  "refactor-guard": {
   "skill": "refactor-guard",
   "version": "1.8.1",
-  "sha_source": "c7e3430fae9515fe0f3a232b49f1147a181ae5b724ab606b220d436b5a10ec46",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "46c82e3c942a08a65e1cd63e5dd8c9570d9cef876ce482174163e356439337a9",
+  "statut": "SKIP-a-jour"
  },
  "refactoring-engineering": {
   "skill": "refactoring-engineering",
   "version": "1.1.1",
-  "sha_source": "32448f8f7d7bf4ada6a4e87fd17cf78235d9c3737860880105f94dd64a7d325a",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "8ba8ac46980f59a95bf7a10bd7db2628051859057ec0941c57e7fe991001768e",
+  "statut": "SKIP-a-jour"
  },
  "refactoring-test": {
   "skill": "refactoring-test",
   "version": "1.1.1",
-  "sha_source": "3c1ef564686097e2e2571700e6923818466c98870dc727b88c0cfa0eadc547a0",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "cf2071c8943f7609d4b9825733c83a7355c002471f94ee77c8c2fad07af74f8c",
+  "statut": "SKIP-a-jour"
  },
  "research-explorer": {
   "skill": "research-explorer",
   "version": "non déclarée",
-  "sha_source": "1d03ecd77849abcd3f01d3ca37e2547eae83ea51fb7c37bd86f462438cf4af46",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "597fd0c54dab066f82b5a05b48503108779df1e2023f63cca9526257b979b895",
+  "statut": "SKIP-a-jour"
  },
  "resource-monitor": {
   "skill": "resource-monitor",
   "version": "1.1.1",
-  "sha_source": "867f018dec4b6138dc1a900cee12e7dbd6152dacd2eade2ff994440eb0ba9285",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "af1883fe5db22d82a39ab56ad14195fb51ff8f9f0035858967cc4ae6c8e0789b",
+  "statut": "SKIP-a-jour"
  },
  "resume-builder": {
   "skill": "resume-builder",
   "version": "non déclarée",
-  "sha_source": "e95eb65b6d250a0b6f02711e4e938b1dc2783055b3b9900c21839ff24d4dcf52",
-  "statut": "GENERE",
-  "references": 11
+  "sha_source": "9938990d41c14e6a2446b5fea889c587de91c582b4b465d6ccd858e8d495a940",
+  "statut": "SKIP-a-jour"
  },
  "resume-youtube": {
   "skill": "resume-youtube",
   "version": "1.1.0",
-  "sha_source": "806f5b4fb57ecd18220fb28b5a17d6fb7239fdc7ca867cfa0f73d0b31ce1d12f",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "6ac158caa2c7b4e109903914522b895d28434e650c81a3ab093df759489bd1f1",
+  "statut": "SKIP-a-jour"
  },
  "script-creator": {
   "skill": "script-creator",
   "version": "1.1.0",
-  "sha_source": "cdbfd1f1be7dab06a24f60b6764fee6b14a8b36d411b39db5c8e6e837359585d",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "17bfe1ab2f1a1bd495565d1a751e14fe39984de8655ea555add0be5cc3b1498a",
+  "statut": "SKIP-a-jour"
  },
  "script-mon-ecosysteme-infrastructure": {
   "skill": "script-mon-ecosysteme-infrastructure",
   "version": "1.1.0",
-  "sha_source": "4dbb0f077e24da50b22e19e0e2f3ee6b197465cf180e73bf48dba39bbdb78910",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "471fbd35f45648d4a96b9ccc150267094723cc5e1ee300d881e9f64e488f7aed",
+  "statut": "SKIP-a-jour"
  },
  "script-reviewer": {
   "skill": "script-reviewer",
   "version": "1.0.0",
-  "sha_source": "8b0d13f138b62ddbb69c13ce43426c4b70ab94b8387072e9de95877611b90576",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "004224a8e64979be4d240e0e1599c1d08f70b9ba892e5161009e0d7d3f0cdd1c",
+  "statut": "SKIP-a-jour"
  },
  "seo-content-writer": {
   "skill": "seo-content-writer",
   "version": "2.0.0",
-  "sha_source": "23dcb846aa4a45c2804e644e8fa6cc67991d5f467e60bb6dd6b10c48e0577eed",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "d6ec2b9617f36616c55124cc33cb66916a921fc6b8062c014b036f666934f093",
+  "statut": "SKIP-a-jour"
  },
  "skill-creator": {
   "skill": "skill-creator",
   "version": "1.1.0",
-  "sha_source": "a30b3831fb0e740e061510aef10a359c537f939044cb53763e5bfd9534578ff2",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "d57777bd7d036c0f88097f394b784bc14526a13efa49ed0fe90e93304b31db70",
+  "statut": "SKIP-a-jour"
  },
  "skill-finder-cn": {
   "skill": "skill-finder-cn",
   "version": "1.0.0",
-  "sha_source": "e8b5b24e5dae6381db5c3ab6523b23a3919e899c917edaee7731bc00da78e13c",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "10ad6338c9b6fa615cd6702be61aa78369e69aefc43aacc3a5454f0a778dfd14",
+  "statut": "SKIP-a-jour"
  },
  "skills-inventory": {
   "skill": "skills-inventory",
   "version": "1.1.0",
-  "sha_source": "688a32c2bfc7662bcd31c333f6ec8cf5e0a349f47f2cff2e80401138a5a3ec62",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "4225e985c2d0bbde0b5c676b93655a189dc6ba8e12beea100ab51611877b45bf",
+  "statut": "SKIP-a-jour"
  },
  "spec-driven-development": {
   "skill": "spec-driven-development",
   "version": "1.1.1",
-  "sha_source": "bef84bfc9441ba3f064cf249cfae53e0f8196268eff3d2bd9cd78f4b3633bb4d",
-  "statut": "GENERE",
-  "references": 1
+  "sha_source": "1b25fc50bd1d9df8b90e207745f02419f1ccb499cb2488299dc3b3fbb80875c3",
+  "statut": "SKIP-a-jour"
  },
  "stock-analysis-skill": {
   "skill": "stock-analysis-skill",
   "version": "non déclarée",
-  "sha_source": "f34e727e45286f30b65a4bcbda2db5a7b93fb9baa9fc35ee379ae7ea758a2388",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "56a5a565740c0586f4648f6b2685a61a2a121bb0110d3958e5df23f086f83016",
+  "statut": "SKIP-a-jour"
  },
  "storyboard-manager": {
   "skill": "storyboard-manager",
   "version": "non déclarée",
-  "sha_source": "89fcb00e026c12fef9453ae3ee4fd244db6b929b2720d70052824fcd026957f2",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "27aecd0ebf8c14e96fa540ee70818bf4a7daf6637e4cafb3e9022e38c18892de",
+  "statut": "SKIP-a-jour"
  },
  "study-buddy": {
   "skill": "study-buddy",
   "version": "non déclarée",
-  "sha_source": "f59e13fba9fde7830ae0ce7e0dd4c71d338df5df0343f6d89b606a1c8112415a",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "0cc6c4e1cf3a595af316e55a2f86cc28eebbcabbd54e828e657b7d7e30945721",
+  "statut": "SKIP-a-jour"
  },
  "task-review": {
   "skill": "task-review",
   "version": "non déclarée",
-  "sha_source": "54f81e9d2608b8b6d497983fa0f37e656e0b87e3655d0ae5a5933938f19c40ff",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "b1730c7e60e52d14b57e80ddef6a52258c7141db6a6e9670c6679eb206e3f4cd",
+  "statut": "SKIP-a-jour"
  },
  "ui-ux-pro-max": {
   "skill": "ui-ux-pro-max",
   "version": "non déclarée",
-  "sha_source": "0a21da1ee3ca591c2bd735585ef15d4f754d11c97f84eab1a99846b3bc0af551",
-  "statut": "GENERE",
-  "references": 2
+  "sha_source": "e82077b4524e41a1fbc1d33b4f10982fabb84cf74aa1ccaeb72e9dc381454249",
+  "statut": "SKIP-a-jour"
  },
  "version-management": {
   "skill": "version-management",
   "version": "1.2.0",
-  "sha_source": "351699ffe514865e2841ad14a2924e32e4d2a6065a2fcf8e7a55499c835e0e11",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "741dd0cb6a34c83860597da1ed3ca84a442d34534b9870ad305f2f8898a028ca",
+  "statut": "SKIP-a-jour"
  },
  "video-generation": {
   "skill": "video-generation",
   "version": "non déclarée",
-  "sha_source": "b96c597cb68b24dad07961fbf2ef2a25a89a745576733f359091fd5fec710c26",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "b1db80b4642f627a2f103897e0ff85577e2b9c421e58e2d79bd2896e8ed86b33",
+  "statut": "SKIP-a-jour"
  },
  "video-understand": {
   "skill": "video-understand",
   "version": "non déclarée",
-  "sha_source": "613f45bef3a6043a4d3bd4b95497dfb2facd5cf3d5715b8e89beeabd0c292721",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "4c1faec368ed15a8c10818f28c285c4f152df51a6b5d19ac5a1f4f6748b05999",
+  "statut": "SKIP-a-jour"
  },
  "visual-design-foundations": {
   "skill": "visual-design-foundations",
   "version": "non déclarée",
-  "sha_source": "d43c465b25afe04618a83bf63aadebddf179e2e82dc4f3842320028cb8b3aa51",
-  "statut": "GENERE",
-  "references": 3
+  "sha_source": "d98e48ccea9aa6bb632b41024bc8a640ade50d0950d16d092b91c2bb9a800b99",
+  "statut": "SKIP-a-jour"
  },
  "vue-upload": {
   "skill": "vue-upload",
-  "version": "1.3.0",
-  "sha_source": "de0783ae4c2557b64d09e23bd12917c21ca4a67159d30b1ee5f6236b50a4f0cc",
-  "statut": "GENERE",
-  "references": 0
+  "version": "1.5.0",
+  "sha_source": "63ca193559de994353ef1df87e8a01fe8cf778cfee16a23b2572b00c0a3d60e4",
+  "statut": "SKIP-a-jour"
  },
  "web-reader": {
   "skill": "web-reader",
   "version": "1.0.0",
-  "sha_source": "799dda635041470843fb61b2a670c6e0b579cfa41fbbc43caccc2d89b9ffe0a2",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "1ece2171e7851520765ca8572caff00f0f3fd12c27a2c806b49c63590d26447f",
+  "statut": "SKIP-a-jour"
  },
  "web-search": {
   "skill": "web-search",
   "version": "1.0.0",
-  "sha_source": "09efd61bbcd0be92ac7c3674c510474f839fce4693a2de4b28bf3f2e11c158dc",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "0cf50c9271a8132d3507fffbe761b1409c113ffa7eeab90e8cd76505ce9fc9ff",
+  "statut": "SKIP-a-jour"
  },
  "web-shader-extractor": {
   "skill": "web-shader-extractor",
   "version": "non déclarée",
-  "sha_source": "36691f8443c6990a31fdd4c34c23ef56aa53d2bf0ffabe2cdc60a61926070580",
-  "statut": "GENERE",
-  "references": 9
+  "sha_source": "76f9f2f0645f286b8480f4bfc20dcdfd4bf7345f84bb66b5f848ef980adbe18f",
+  "statut": "SKIP-a-jour"
  },
  "writing-plans": {
   "skill": "writing-plans",
   "version": "non déclarée",
-  "sha_source": "9875d215ed53d982fc65b66a3033c3c79ef23b4eb06b53231053fbc76e5d9ec1",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "3fba724a8ed6b0c66e93e69b4bd562c3e0f5f5f34bd888a37bdcb59c24e14007",
+  "statut": "SKIP-a-jour"
  },
  "xlsx": {
   "skill": "xlsx",
   "version": "1.0",
-  "sha_source": "ddd1be5d928eb8b35ab53874968fe4e78d5f2bf77f5093e175b0c4b070e1e9bc",
-  "statut": "GENERE",
-  "references": 0
+  "sha_source": "5ef0a561cc2ae7beee35372b9bcd53dce2366879cbed82a67734aeb161d33182",
+  "statut": "SKIP-a-jour"
+ },
+ "analyse-doc-s4mk2": {
+  "skill": "analyse-doc-s4mk2",
+  "version": "1.3.0",
+  "sha_source": "ab757659c8b508b2038c1a230dd7b18f592fa0ddc98612f37e846239f0322bc7",
+  "statut": "SKIP-a-jour"
+ },
+ "gif-animator-pro": {
+  "skill": "gif-animator-pro",
+  "version": "2.1.0",
+  "sha_source": "8cafa5bea2b131c050d8a6f4dcc5d71793556fd17cc57827fbac2e9bbfc21811",
+  "statut": "SKIP-a-jour"
+ },
+ "livraison-garantie": {
+  "skill": "livraison-garantie",
+  "version": "1.1.0",
+  "sha_source": "860a9b192c54642ef0050b918991189af71131838c72dcee754571697ac9224c",
+  "statut": "SKIP-a-jour"
+ },
+ "midi-doc-expert": {
+  "skill": "midi-doc-expert",
+  "version": "1.2.0",
+  "sha_source": "f54d0159e889009b46518470942ea17f5f3c377633f943c5560934203154dc8b",
+  "statut": "SKIP-a-jour"
+ },
+ "multi-shift-architect": {
+  "skill": "multi-shift-architect",
+  "version": "1.1.0",
+  "sha_source": "3e147a7f498752f08bd46c39ef32a7070f2e2f6a65ffad41169ae9d5e9df7166",
+  "statut": "SKIP-a-jour"
+ },
+ "orchestrateur-tsi": {
+  "skill": "orchestrateur-tsi",
+  "version": "1.1.0",
+  "sha_source": "d5d3ead7d4f15747d9e5fae35398e2ab8b14c1b73ab8b2ce13c9839259765bb3",
+  "statut": "SKIP-a-jour"
+ },
+ "traduction-zh-fr": {
+  "skill": "traduction-zh-fr",
+  "version": "1.3.1",
+  "sha_source": "829b54fa2cdde07596974fada7befb1f88fe84e7d9599702e597e3a3c969e374",
+  "statut": "SKIP-a-jour"
+ },
+ "tsi-architect": {
+  "skill": "tsi-architect",
+  "version": "1.2.0",
+  "sha_source": "c816db1eb4fa638e42fd347551c98de531403d66e38e351d2233dfec76e53d68",
+  "statut": "SKIP-a-jour"
+ },
+ "tsi-validator": {
+  "skill": "tsi-validator",
+  "version": "1.2.0",
+  "sha_source": "4adf4fb81f919e6d55955bbd50d84752512603caebef41bcaae2fcc54b319a83",
+  "statut": "SKIP-a-jour"
  }
 }

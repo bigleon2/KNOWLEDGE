@@ -203,4 +203,32 @@ for py in "$LOCAL/scripts/"*.py; do
 done
 echo "scripts exécutables : $ok OK, $ko KO"
 
+# --- Garde règle d'or n°8 (Task 49, PM-INSTALL v1.9.0 §3.5) : aucun PM installé ---
+echo "--- Garde règle d'or n°8 : aucun prompt maître installé ---"
+PM_DERIVES=$(find "$SK" -mindepth 2 -maxdepth 3 -name "PROMPT-MAITRE-*" \
+  -not -path "*/@mon-ecosysteme/*" -not -path "*/@PM-SKILLS/*" \
+  -not -path "*/@historique/*" -not -path "*/@photos/*" 2>/dev/null)
+if [ -n "$PM_DERIVES" ]; then
+  echo "  ⚠ DÉRIVE — prompt(s) maître(s) installé(s) comme forme installée :"
+  echo "$PM_DERIVES"
+  echo "  règle d'or n°8 : FAIL — correction puis re-certification requises (PM-INSTALL §3.5)"
+  exit 1
+fi
+# (b) toute forme installée skills/<skill>/ (hors dossiers @) porte un SKILL.md (règle zéro)
+SANS_SKILLMD=""
+for d in "$SK"/*/; do
+  d="${d%/}"; nom="$(basename "$d")"
+  case "$nom" in @*) continue ;; esac
+  [ -f "$d/SKILL.md" ] || SANS_SKILLMD="$SANS_SKILLMD $nom"
+done
+if [ -n "$SANS_SKILLMD" ]; then
+  echo "  ⚠ DÉRIVE — forme(s) installée(s) sans SKILL.md (installation depuis les prompts maîtres ?) :$SANS_SKILLMD"
+  echo "  règle d'or n°8 : FAIL — correction puis re-certification requises (PM-INSTALL §3.5)"
+  exit 1
+fi
+# (c) garantie structurelle : sources = formes certifiées du clone uniquement — @PM-SKILLS/ jamais source
+#     d'installation ni déployé par ce pipeline (sa présence sur un miroir plein-arbre du dépôt = contenu
+#     du dépôt, jamais une installation PM INSTALL — PM-INSTALL §3.5)
+echo "  règle d'or n°8 : PASS — 0 prompt maître installé comme forme installée · toute forme installée porte son SKILL.md"
+
 echo "=== INSTALLATION TERMINÉE — $TS ==="

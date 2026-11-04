@@ -6,7 +6,7 @@ Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (R4)
 
 p2-prompt-maitre.py — Phase P2 (directive 10 tâches, tâche 2) : génération des
 dossiers « Prompt Maitre » par skill — prompts AUTONOMES à usage HORS écosystème,
-sauvegardés UNIQUEMENT dans « skills/PM skills/ » (directive propriétaire).
+sauvegardés UNIQUEMENT dans « skills/@PM-SKILLS/ » (ex-« PM skills/ » — renommé Task 49, directive propriétaire 2026-11-04, session web-c30e6506).
 
 Garanties :
   D010 — chaque dossier porte le marqueur d'exclusion anti-lecture orchestration ;
@@ -31,7 +31,7 @@ from pathlib import Path
 
 BASE = Path("/home/z/my-project")
 WORKTREE = BASE / ".staging" / "KNOWLEDGE-publish"
-PM_ROOT = WORKTREE / "skills" / "PM skills"
+PM_ROOT = WORKTREE / "skills" / "@PM-SKILLS"
 ETAT = BASE / "scripts" / "p2-pm-etat.json"
 AUJOURD = date.today().isoformat()
 
@@ -177,7 +177,7 @@ def main():
         i = args.index("--seulement")
         seulement = set(args[i + 1:])
         del args[i : i + 2]
-    pm_root = racine / "skills" / "PM skills"
+    pm_root = racine / "skills" / "@PM-SKILLS"
 
     # Mode custom racine (tests) : recalibrer les chemins
     global PM_ROOT
@@ -207,7 +207,7 @@ def main():
         v = journal.get(d.name, {}).get("version", "?")
         entrees.append(f"| `{d.name}` | v{v} | `{d.name}/PROMPT-MAITRE-{d.name}.md` |")
     readme = [
-        "# « PM skills » — Prompts Maîtres autonomes (usage hors écosystème)",
+        "# « @PM-SKILLS » — Prompts Maîtres autonomes (usage hors écosystème)",
         "",
         MARQUEUR,
         "",

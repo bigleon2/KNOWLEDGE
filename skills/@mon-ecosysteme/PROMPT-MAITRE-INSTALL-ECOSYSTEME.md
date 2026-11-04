@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.8.15
+Version : 1.9.0
 Date : 2026-10-12
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -69,6 +69,8 @@ L'ordre dérive du graphe d'interactions cartographié (README §8, SHARED §3.1
 | 10 | **Publication** | Archive zip (round-trip byte-identique) + worklog — canal de fichiers download/ supprimé (décision v2.2 : aucun fichier du corpus ne doit exister en double dans `download/`, garde `scripts/task14-scan-doublons.py`) | Vérif round-trip byte-identique + scan doublons 0 | N/N round-trip OK ; 0 doublon download/ |
 | 11 | **Clôture** | clone-chat (archivage session) + mise à jour KNOWLEDGE.md si nouveau skill | 8 checks S1-S8 clone-chat | Clone scellé, idempotent |
 
+Note (règle d'or n°8, v1.9.0 — Task 49, directive propriétaire session web-c30e6506) : le pipeline installe EXCLUSIVEMENT les formes installées certifiées `skills/<skill>/` (SKILL.md + ressources associées) — JAMAIS les prompts maîtres (corpus `@mon-ecosysteme/` ni miroirs autonomes `skills/@PM-SKILLS/`, ex-« PM skills/ », renommé Task 49 — usage hors écosystème, garde D010). `@PM-SKILLS/` n'est ni lu, ni déployé sur le profil local, ni indexé au registre KB ; la garantie est MÉCANIQUE (contrôle §3.5 + garde post-installation dans l'installateur — exit 1 à toute dérive).
+
 Note (mécanisme dual, v1.8.0 — directive propriétaire « PM INSTALL assemble au lieu d'installer ») : les étapes 3-6 s'exécutent par **installation DIRECTE des formes certifiées du dépôt** (voie par défaut, §3.2-a) ; la colonne « Source → Destination » de la table décrit la **voie bootstrap** (§3.2-b, assemblage depuis les PMs — environnement nu, corpus/archive seul). Réponse à la question propriétaire : l'assemblage a historiquement garanti l'unique source de vérité (R4), l'authenticité (archive scellée) et la portabilité (le corpus suffit à tout reconstruire) ; depuis KO-L004 v1.1.0 la direction de génération est SKILL.md → PM (le PM est dérivé mécaniquement) et le dépôt porte les formes certifiées par les arbitres — l'installation directe est donc devenue la voie la plus judicieuse quand le dépôt est disponible, l'assemblage demeurant la voie bootstrap équivalente.
 
 Note (correct-work CIBLE, 2026-09-06, S3 ; révisée session A9, 2026-09-06) : les skills sans prompt maître propre — `skills-inventory`, `skill-creator`, `agent-creator`, `fullstack-dev` — n'ont pas de forme installée locale : ils existent comme entrées du registre KB (étape 7) et sont mobilisés à l'exécution, pas à l'installation. Extension v1.7.0 : les 8 disciplines d'exécution (SHARED §7 — context/loop/graph/harness + n°54 fleet/memory/spec-driven + n°55 refactoring-engineering) ainsi que l'outil `refactoring-test` possèdent des formes installées matérielles (`<skill>/` — SKILL.md + evals + trigger_evals/references, déclenchement automatique) ; leur installation relève du périmètre COMPLET (§2bis) via le registre KB (étape 7), et `refactor-guard` est installé à l'étape 6 depuis son PM. `prompt-engineering` est désormais MATÉRIALISÉ (forme installée `prompt-engineering/` : SKILL.md + evals/evals.json + evals/trigger_evals.json + references/grille-evaluation-prompt.md ; recommandation clone 2026-09-06 §5.2 exécutée).
@@ -95,7 +97,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
-| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.33.1.md` | gen-plan v3.33.1 | 3 |
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.34.0.md` | gen-plan v3.34.0 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.9.0.md` | correct-work v2.9.0 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md` | clone-chat v2.0.2 | 5 |
 | refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md` | refactor-guard v1.8.1 | 6 |
@@ -152,6 +154,9 @@ L'ordre (a)→(b)→(c) est contraint : verify-cross valide la structure (rapide
 ### §3.4 Incidents (règle d'or n°1, PM gen-plan §1.8)
 Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adaptation, jamais un arrêt : contournement conforme aux conventions, journalisation au worklog (cause, solution, coût #token), reprise à l'étape en échec. Le wipe inter-sessions est un cas documenté : ré-exécuter ce pipeline depuis l'étape 2 (le corpus `@mon-ecosysteme/` est la source de vérité restaurable).
 
+### §3.5 Étape 9-bis — Garde règle d'or n°8 : aucun prompt maître installé comme forme installée (v1.9.0, Task 49)
+Le contrôle vérifie MÉCANIQUEMENT que l'installation n'a déployé aucune forme installée depuis les prompts maîtres : (a) 0 fichier `PROMPT-MAITRE-*` sous `skills/<skill>/` hors corpus autorisés (`@mon-ecosysteme/`, `@PM-SKILLS/`, `@historique/`, `@photos/`) ; (b) toute forme installée sous `skills/` (hors dossiers `@`) porte un `SKILL.md` — un dossier de forme installée sans `SKILL.md` signale une installation depuis les prompts maîtres (règle zéro) ; (c) garantie structurelle : les sources de déploiement du pipeline sont EXCLUSIVEMENT les formes certifiées du clone (`$REPO/skills/<skill>/`, corpus `@mon-ecosysteme/`, registre KB, outillage `scripts/`) — `@PM-SKILLS/` n'est jamais source d'installation ni déployé par le pipeline (sa présence sur un profil miroir plein-arbre du dépôt est du contenu du dépôt, jamais une installation PM INSTALL) ; la garde est portée par l'installateur (`install-ecosysteme-local.sh`) en fin d'exécution — exit 1 à toute dérive. Toute dérive = correction puis re-certification complète (§3.3) AVANT toute autre action — la source de vérité reste la forme installée `skills/<skill>/SKILL.md` (règle zéro, registre KB `skills/KNOWLEDGE.md`).
+
 ## §4 — Interactions mobilisées par le pipeline (cartographie T2)
 
 | Interaction | Mobilisée aux étapes | Nature |
@@ -190,6 +195,8 @@ Tout blocage (fichier absent, wipe inter-sessions, outil perdu) = signal d'adapt
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.9.0 | 2026-11-04 | Task 49 (session web-c30e6506, directive propriétaire — gen-plan(step)) : **codification de la règle d'or n°8 « PM INSTALL installe toujours les formes installées, jamais les prompts maîtres »** (règle portée par gen-plan v3.34.0 §1.5) : note §2 (installation exclusive des formes certifiées `skills/<skill>/`), contrôle §3.5 « aucun PM installé comme forme installée » (0 `PROMPT-MAITRE-*` hors corpus autorisés, 0 déploiement `@PM-SKILLS/`, garde dans l'installateur — exit 1 à toute dérive), §A.1 hors-périmètre explicite ; **renommage `skills/PM skills/` → `skills/@PM-SKILLS/`** (git mv, 107 dossiers) + adaptation `scripts/p2-prompt-maitre.py` (générateur des miroirs — chemin, docstring, titre README index) + rafraîchissement des miroirs périmés (générateur idempotent — incohérence d'époque v3.28.1 vs v3.33.1 résorbée, directive propriétaire) ; instantané §A.3 rafraîchi (v1.9.0, 2026-11-04) ; CASCADE PRÉALABLE : v1.8.16 (auto-recalibrage gen-plan v3.33.1→v3.34.0, KO-L004 v1.1.0 `scripts/generer-pm-skill.py`) |
+| v1.8.16 | 2026-11-04 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.33.1→v3.34.0 ; recalibrage croisé : SHARED v1.7.22 (§6.1), §2ter, §A.3 |
 | v1.8.15 | 2026-11-04 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : correct-work v2.8.0→v2.9.0 ; recalibrage croisé : SHARED v1.7.21 (§6.1), §2ter, §A.3 |
 | v1.8.14 | 2026-11-04 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.33.0→v3.33.1 ; recalibrage croisé : SHARED v1.7.20 (§6.1), §2ter, §A.3 |
 | v1.8.13 | 2026-11-04 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.32.0→v3.33.0 ; recalibrage croisé : SHARED v1.7.19 (§6.1), §2ter, §A.3 |
@@ -230,6 +237,8 @@ Révision documentaire 2026-10-11 (Task 16, session web-b93f42fa — sans change
 ## §A — Périmètre d'installation (absorbé d'INSTALL-ECOSYSTEME.md v1.0.0)
 
 ### §A.1 Périmètre général
+
+Hors périmètre d'installation (règle d'or n°8, v1.9.0 — Task 49) : `skills/@PM-SKILLS/` (ex-« PM skills/ », renommé Task 49) — miroirs autonomes de prompts à usage hors écosystème (garde D010 : non lus par l'orchestration, non indexés au registre KB), jamais installés sur le profil local par ce pipeline.
 26 fichiers répartis sur 4 zones (sommaire d'époque v1.0.0 conservé tel que documenté ; le détail zone-par-zone n'a jamais été développé dans le fichier source). Zones attestées par les référents : corpus prompts maîtres (`@mon-ecosysteme/`), formes installées (`skills/<skill>/`), registre KB (`skills/KNOWLEDGE.md`), outillage (`scripts/`).
 
 ### §A.2 Les 8 phases P0-P7
@@ -238,7 +247,7 @@ Note P4 (recalibrée v1.7.0) : les SKILL.md + références des 4 familles (gen-p
 ### §A.3 Registre KB cible (14 entrées d'époque + 6 extensions v1.7.0)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.8.7, 2026-10-26) : gen-plan v3.33.1 · correct-work v2.9.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
+Instantané courant (v1.9.0, 2026-11-04) : gen-plan v3.34.0 · correct-work v2.9.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|
