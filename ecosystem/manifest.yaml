@@ -1,20 +1,20 @@
 version: 1
 proprietaire: bigleon2
 note: "Fichier réécrit mécaniquement par scripts/ecosystem/bootstrap.py — SHA relevés par commande (git rev-parse / git ls-remote), jamais écrits de mémoire. L'horodatage n'est réécrit QUE si le contenu stable diffère (idempotence — faille du §8 résorbée)."
-genere_le: 2026-11-04T20:09:17Z
+genere_le: 2026-11-06T17:03:13Z
 outils:
   ghorg:
     source: gabrie30/ghorg
     fork: bigleon2/ghorg
-    fork_existant: ABSENT (ls-remote anonyme — création différée au propriétaire)
+    fork_existant: présent
     clone_local: ~/GitHub/_outils/ghorg
     commit_epingle: e05d9b5ff25513a39c384b60331dcc6b09902dea
-    commit_source_distant: e05d9b5ff25513a39c384b60331dcc6b09902dea
+    commit_source_distant: 8ccd6396f3753256f6756a140a3dc2e0cfc125e3
 applications:
   cmdr:
     source: cmdr-editor/cmdr
     fork: bigleon2/cmdr
-    fork_existant: ABSENT (ls-remote anonyme — création différée au propriétaire)
+    fork_existant: présent
     clone_local: ~/GitHub/bigleon2/cmdr
     origin_actuel: cmdr-editor/cmdr (repli documenté — re-pointer vers le fork quand il existera)
     branche_par_defaut: master
