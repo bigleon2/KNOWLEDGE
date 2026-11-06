@@ -1,0 +1,40 @@
+[
+  {
+    "query": "Intègre ghorg dans mon écosystème et clone cmdr editor avec la famille TSI.",
+    "should_trigger": true
+  },
+  {
+    "query": "Rejoue la superposition TSI vers le clone CMDR après mise à jour de KNOWLEDGE.",
+    "should_trigger": true
+  },
+  {
+    "query": "Diagnostique l'état du clone cmdr : fork, clone local, modifications, branche overlay.",
+    "should_trigger": true
+  },
+  {
+    "query": "Re-scelle le manifeste ecosystem avec les SHA réels du jour.",
+    "should_trigger": true
+  },
+  {
+    "query": "ghorg reclone cmdr-editor-fork.",
+    "should_trigger": true
+  },
+  {
+    "query": "Valide ce fichier .tsi avant publication.",
+    "should_trigger": false,
+    "exclusifs": ["valide"],
+    "note": "veto croisé : validation mécanique = périmètre tsi-validator (arbitre PASS/FAIL)"
+  },
+  {
+    "query": "Conçois un nouveau mapping TSI pour le S4 MK2.",
+    "should_trigger": false,
+    "exclusifs": ["conçois"],
+    "note": "veto croisé : conception = périmètre tsi-architect (tandem)"
+  },
+  {
+    "query": "Analyse ce ZIP de mapping DJTT avec ses documents illustrés.",
+    "should_trigger": false,
+    "exclusifs": ["analyse"],
+    "note": "veto croisé : analyse de mappings réels = périmètre analyse-doc-s4mk2"
+  }
+]
