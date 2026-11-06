@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.22)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -26,6 +26,14 @@ BAK = ARCHIVE.with_suffix(".zip.bak")
 # pour tout autre extra). Traçabilité : chaque retrait = suppression propriétaire
 # publiée, référencée ici avec son commit et sa décision de calibration.
 RETRAITS_SANCTIONNES = {
+    # cascade gen-plan v3.35.0 (Task 52, session web-c30e6506 — gen-plan,
+    # directive propriétaire : vérification automatique de l'installation de
+    # l'écosystème à l'invocation de gen-plan après coupure) — re-scellement
+    # Task 52 : PM GEN-PLAN v3.34.0 DÉPLACÉ git mv vers
+    # skills/@historique/prompts-maitres/gen-plan/ — byte-identité vérifiée
+    # ci-dessous (garde anti-perte ; SHA ac9de1747cd9…).
+    "PROMPT-MAITRE-GEN-PLAN-v3.34.0.md",
+
     # cascade gen-plan v3.34.0 (Task 49, session web-c30e6506 — gen-plan(step),
     # directive propriétaire règle d'or n°8 « PM INSTALL installe toujours les
     # skills, jamais les prompts maîtres ») — re-scellement Task 49 : PM GEN-PLAN
