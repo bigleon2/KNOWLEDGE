@@ -1,6 +1,6 @@
 ---
 name: orchestrateur-tsi
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -107,8 +107,22 @@ orchestrateur-tsi/
 | P2 | Routage : matrice §1.3 ; mono-membre → redirection directe ; multi-membres → plan d'ordre (architecture → validation → documentation) | plan de mission |
 | P3 | Composition des micro-spécs (méta maître) : une spécification auto-contenue par membre, ordonnée, avec interfaces d'entrée/sortie | micro-spécs |
 | P4 | Exécution déléguée : chaque membre produit son artefact (delta de mapping, rapport JSON, documentation) | artefacts membres |
-| P5 | Arbitrage et agrégation : verdict tsi-validator PASS obligatoire avant documentation ; agrégation unique re-vérifiée | verdict + bilan de mission |
+| P5 | Arbitrage et agrégation : verdict tsi-validator PASS obligatoire avant documentation ; agrégation unique re-vérifiée (sémantique et règle d'agrégation : §2.2bis) | verdict + bilan de mission |
 | P6 | Clôture : bilan au propriétaire + checkpoints GO (livraison/commit/push) ; État Long mis à jour | bilan + État Long |
+
+### §2.2bis Sémantique des verdicts et agrégation (phase P5)
+
+**Types de verdicts membres** (détenteurs : chaque membre définit sa propre sémantique — l'orchestrateur ne la redéfinit jamais, il l'agrège) :
+
+| Membre | Verdicts possibles | Lecture par l'orchestrateur |
+|--------|--------------------|------------------------------|
+| tsi-validator | PASS (exit 0) / FAIL (exit 1) / PRÉFÉRENCES (exit 2) | FAIL = mapping non livrable (garde §1.4-1) ; PRÉFÉRENCES = qualification NON bloquante (fichier de préférences, hors périmètre mapping — citée telle quelle au bilan, JAMAIS convertie en PASS ni comptée comme FAIL) |
+| analyse-doc-s4mk2 | PASS + batterie $FACON2 n/n | la batterie est citée avec son score réel, dérivé du rapport JSON du membre (jamais arrondi ni estimé) |
+| correct-work (interopérabilité écosystème) | PASS / PASS AVEC RÉSERVES / FAIL | les réserves sont reprises in extenso au bilan de mission |
+
+**Règle d'agrégation (pire des membres)** : le verdict de mission est le PIRE des verdicts membres — toute FAIL membre → mission FAIL (arrêt, correction, puis re-validation du membre concerné avant de poursuivre) ; à défaut, toute PASS AVEC RÉSERVES → mission PASS AVEC RÉSERVES (réserves tracées au bilan) ; à défaut, mission PASS. Les qualifications (PRÉFÉRENCES) et les scores de batterie accompagnent le bilan sans abaisser ni élever le verdict de mission.
+
+**Traçabilité (règle d'or n°5 anti-aspirant)** : chaque verdict membre est cité au bilan avec script + version + exit code + horodatage, dérivé de l'artefact disque (rapport JSON, journal) — jamais de verdict de mémoire ; le bilan de mission ne pré-écrit JAMAIS les verdicts, il les dérive mécaniquement après exécution.
 
 ### §2.3 L'agent `agent-TSI.agent`
 
