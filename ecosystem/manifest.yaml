@@ -1,7 +1,7 @@
 version: 1
 proprietaire: bigleon2
 note: "Fichier réécrit mécaniquement par scripts/ecosystem/bootstrap.py — SHA relevés par commande (git rev-parse / git ls-remote), jamais écrits de mémoire. L'horodatage n'est réécrit QUE si le contenu stable diffère (idempotence — faille du §8 résorbée)."
-genere_le: 2026-11-06T18:11:50Z
+genere_le: 2026-11-06T19:07:32Z
 outils:
   ghorg:
     source: gabrie30/ghorg
@@ -19,7 +19,7 @@ applications:
     origin_actuel: cmdr-editor/cmdr (repli documenté — re-pointer vers le fork quand il existera)
     branche_par_defaut: master
     branche_superposition: ecosystem/tsi-traktor-s4mk2
-    commit_epingle: 58ef11ea3262b9d6e64efdb0ac370bf86b29e36d
+    commit_epingle: 19a306c561123c0bbae0c9595d937110bb19ac45
     commit_source_distant: 5b7950272a55f73034d2df15de2917248e2e9616
     licence: LICENSE (voir dépôt — aucune conclusion juridique)
 disposition_locale:
