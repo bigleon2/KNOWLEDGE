@@ -1,0 +1,8 @@
+# Modèle d'entrée reclone.yaml pour GHORG (PM ghorg-to-ecosysteme.md v1.1 §6.D5).
+# À fusionner dans ~/.config/ghorg/reclone.yaml (XDG_CONFIG_HOME respecté) — bloc balisé, SANS toucher aux autres entrées.
+# UTF-8 sans BOM obligatoire. Un chemin contenant un espace : NE PAS écrire l'entrée (avertir).
+# Le jeton passe par token_cmd (jamais de valeur en clair — KO-L009 : un canal de discussion n'est jamais un canal de confiance pour un identifiant).
+cmdr-editor-fork:
+  cmd: ghorg clone bigleon2 --scm=github --clone-type=user --path=$HOME/GitHub --output-dir=bigleon2 --target-repos-path=$HOME/GitHub/_outils/cmdr-cibles.txt --no-clean --concurrency=1
+  description: Clone du fork bigleon2/cmdr (CMDR EDITOR) via ghorg — idempotent, sans git clean (règle 5-6 Karnaugh F/L/S/B : reclone réservé aux clones propres sur la branche par défaut)
+  token_cmd: gh auth token

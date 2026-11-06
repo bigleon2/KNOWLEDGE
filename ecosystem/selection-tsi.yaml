@@ -1,0 +1,30 @@
+# Sélection de la famille TSI complète à propager vers le clone CMDR (PM ghorg-to-ecosysteme.md v1.1 §6.D3).
+# Couverture : les 7 skills de la famille + les 2 agents — TRAKTOR / KONTROL S4 MK2 ET MK3, aucune restriction de génération.
+# Chaque chemin a été vérifié par `git ls-files` (Phase B, audit 2026-11-04) — un élément introuvable serait listé ABSENT dans le rapport, jamais ici.
+- source: skills/tsi-architect
+  type: skill
+  raison: architecture des fichiers de mapping TSI (XML Traktor Pro 3.11) — source de vérité de la méthode, tandem avec son agent
+- source: skills/tsi-architect/tsi-architect.agent
+  type: agent
+  raison: agent d'exécution spécialisé du tandem tsi-architect (pattern écosystème 2 couches)
+- source: skills/tsi-validator
+  type: skill
+  raison: arbitre mécanique PASS/FAIL des mappings TSI — garde obligatoire avant toute livraison
+- source: skills/multi-shift-architect
+  type: skill
+  raison: méthode des couches SHIFT (BASE/SHIFT-G/SHIFT-D/FREEZE) et matrices de couverture
+- source: skills/midi-doc-expert
+  type: skill
+  raison: génération documentaire des mappings (tableaux référence MIDI, états LED) via scripts/generer-doc-midi.py
+- source: skills/orchestrateur-tsi
+  type: skill
+  raison: orchestrateur du domaine TSI — routage et micro-spécifications des membres de la famille
+- source: skills/orchestrateur-tsi/agent-TSI.agent
+  type: agent
+  raison: agent d'orchestration multi-agents du domaine TSI (découverte d'audit Task 51 — non listé dans le PM v1.1)
+- source: skills/analyse-doc-s4mk2
+  type: skill
+  raison: analyse des mappings TSI réels et de leurs documents illustrés compagnons (pipeline 7 étapes)
+- source: skills/inter-scripts
+  type: skill
+  raison: orchestration inter-scripts (registre des nœuds, canaux, tri topologique) — pont C++/Python de la famille
