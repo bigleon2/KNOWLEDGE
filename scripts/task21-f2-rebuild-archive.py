@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 """
 
 # -*- coding: utf-8 -*-
@@ -26,6 +27,14 @@ BAK = ARCHIVE.with_suffix(".zip.bak")
 # pour tout autre extra). Traçabilité : chaque retrait = suppression propriétaire
 # publiée, référencée ici avec son commit et sa décision de calibration.
 RETRAITS_SANCTIONNES = {
+    # cascade gen-plan v3.35.1 (directive langue française, session
+    # web-c30e6506 2026-11-06 — renforcement règle d'or n°6 : français
+    # dès le PREMIER mot de toute session/reprise/continuation, §0
+    # SHARED v1.7.24 propagation écosystème) — re-scellement : PM GEN-PLAN
+    # v3.35.0 DÉPLACÉ git mv vers skills/@historique/prompts-maitres/gen-plan/
+    # — byte-identité vérifiée ci-dessous (garde anti-perte ; SHA ff0e091e5f95…).
+    "PROMPT-MAITRE-GEN-PLAN-v3.35.0.md",
+
     # cascade gen-plan v3.35.0 (Task 52, session web-c30e6506 — gen-plan,
     # directive propriétaire : vérification automatique de l'installation de
     # l'écosystème à l'invocation de gen-plan après coupure) — re-scellement

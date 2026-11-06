@@ -4,10 +4,11 @@
 # .gitignore (P2) — le rejeu dupliquait le bloc « Caches locaux écosystème » ; test
 # sandbox task-h1-test-install-ecosystem.py (rejeu ×2, jamais exécuté sur cible réelle)
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 
 Script d'installation complète de l'écosystème Knowledge
 Phases P0-P8 : Clone, purge, injection, décentralisation, vérification

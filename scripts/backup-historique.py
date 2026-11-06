@@ -5,10 +5,11 @@
 # script-creator (R9, idempotence ×2, GF-3), ancre 68ff91d.
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 
 backup-historique.py — Sauvegarde de l'historique d'évolution AVANT suppression (C0).
 

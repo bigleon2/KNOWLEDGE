@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 
 task18-completion-pms.py — Complétion agent des deltas sémantiques des 4 PMs générés
 (KO-L004 v1.1.0, §2quater PM-INSTALL : « le delta sémantique n'est PAS inventé : il est

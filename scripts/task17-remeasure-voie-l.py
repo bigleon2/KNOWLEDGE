@@ -2,10 +2,11 @@
 # PROVENANCE: Task 17 re-execution (session web-b93f42fa) — rewrite post-incident S3 étendu
 # (restauration snapshot 2026-10-10 20:48 ; runner original perdu, logique reconstituée du worklog)
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 
 Task 17 — Re-mesure voie L des dérives replay (31 cas / 15 skills).
 Pour chaque cas dérivant du replay voie M (stemmer SHARED §7 v2) : 3 votes z-ai (CLI).

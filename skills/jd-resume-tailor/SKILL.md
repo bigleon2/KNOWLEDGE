@@ -3,11 +3,12 @@ name: jd-resume-tailor
 description: À partir d'une offre (JD) et d'un CV existant, réaliser « décomposition de l'offre + réécriture ciblée du CV ». Décomposer l'offre pour en extraire compétences dures, soft skills et points bonus ; analyser les écarts avec le CV ; produire une version du CV réécrite pour ce poste, mettant en avant l'expérience pertinente, comblant les trous de mots-clés, et préservant le parcours réel du candidat sans rien inventer. Quand l'utilisateur dit « adapte mon CV pour ce poste / cette entreprise », « compare avec cette offre », « je veux postuler à ce poste, comment modifier », « optimise ce CV pour l'entreprise X », « fais-moi une version ciblée », ou fournit à la fois le texte de l'offre + le fichier du CV, ce skill doit se déclencher. **Ne pas utiliser ce skill pour « écrire un CV de zéro »** — c'est l'affaire de resume-builder.
 ---
 
-## §0 — Contexte Système (SHARED v1.7.23)
+## §0 — Contexte Système (SHARED v1.7.24)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+> Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 
 
 

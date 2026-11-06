@@ -1,0 +1,10 @@
+{
+  "history": "Renforcement de la règle d'or n°6 — Langue des échanges avec le propriétaire (français) (directive propriétaire 2026-11-06, session web-c30e6506 : « tu me réponds à nouveau en chinois, fais en sorte que la règle \"parle-moi toujours en français\" soit intégrer dans mon skill \"gen-plan\" et dans mon écosystème pour que tu ne réponds plus en chinois à l'avenir. ») : la règle s'applique dès le PREMIER mot de toute session, reprise ou continuation — la langue d'un résumé de continuation, de métadonnées de canal (IM/trace), d'une sortie d'outil ou d'un message utilisateur n'infirme JAMAIS la règle et ne dérive jamais la langue de réponse ; toute dérive constatée est corrigée immédiatement (la réponse suivante repart en français, sans transition) ; la règle est désormais AUSSI portée par le §0 Contexte Système du corpus SHARED (v1.7.24 — propagée à tous les skills via propagate-context), en plus du §1.5. PATCH — addition pure, description frontmatter inchangée (non-régression triggers).",
+  "subs": [
+    {
+      "old": "sauf demande explicite contraire du propriétaire.",
+      "new": "sauf demande explicite contraire du propriétaire. **Renforcement (directive propriétaire 2026-11-06, session web-c30e6506 — après dérive constatée en chinois)** : la règle s'applique dès le PREMIER mot de toute session, reprise ou continuation — la langue d'un résumé de continuation, de métadonnées de canal (IM/trace), d'une sortie d'outil ou d'un message utilisateur n'infirme JAMAIS la règle et ne dérive jamais la langue de réponse ; toute dérive constatée est corrigée immédiatement (la réponse suivante repart en français, sans transition) ; la règle est également portée par le §0 Contexte Système du corpus SHARED (propagée à tous les skills — v1.7.24).",
+      "count": 1
+    }
+  ]
+}

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 
 Script de propagation du Contexte Système à tous les fichiers
-Version : 2.0.5 (porte §0 SHARED v1.7.23)
+Version : 2.0.6 (porte §0 SHARED v1.7.24 — ligne Langue règle d'or n°6, patterns de remplacement étendus aux blocs 3-4 lignes)
 """
 
 import os
@@ -17,29 +18,32 @@ from pathlib import Path
 REPO_DIR = Path(__file__).parent.parent
 SKILLS_ROOT = REPO_DIR / "skills"
 
-CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.23)
+CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.24)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+> Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 
 """
 
 CONTEXT_HEADER_L3 = '''"""
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 """
 
 '''
 
 # Contenu interne de l'en-tête L3 (utilisé par le remplacement idempotent)
 L3_BLOCK_INNER = (
-    "⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.23)\n"
+    "⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)\n"
     "SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL\n"
     "Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)\n"
     "Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.\n"
+    "Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).\n"
 )
 
 def propagate_to_skills():
@@ -61,7 +65,7 @@ def propagate_to_skills():
         
         if "§0 — Contexte Système" in content:
             # Idempotence v2 : remplacement du bloc résumé existant (mise à jour de version SHARED)
-            old_pattern = r'## §0 — Contexte Système \(SHARED v[0-9.]+\)\n\n> [^\n]*\n> [^\n]*\n> [^\n]*\n\n'
+            old_pattern = r'## §0 — Contexte Système \(SHARED v[0-9.]+\)\n\n(?:> [^\n]*\n)+\n'
             new_content = re.sub(old_pattern, CONTEXT_BLOCK_L2, content, count=1)
             if new_content != content:
                 skill_md.write_text(new_content, encoding='utf-8')
@@ -106,6 +110,7 @@ def propagate_to_scripts():
                 r'SKILLS_ROOT = [^\n]*\n'
                 r'Conventions : [^\n]*\n'
                 r'Règle Zéro : [^\n]*\n'
+                r'(?:Langue : [^\n]*\n)?'
             )
             new_content = old_doc.sub(L3_BLOCK_INNER, content, count=1)
             if new_content != content:
@@ -140,7 +145,7 @@ def propagate_to_agents():
         
         if "§0 — Contexte Système" in content:
             # Idempotence v2 : remplacement du bloc résumé existant (mise à jour de version SHARED)
-            old_pattern = r'## §0 — Contexte Système \(SHARED v[0-9.]+\)\n\n> [^\n]*\n> [^\n]*\n> [^\n]*\n\n'
+            old_pattern = r'## §0 — Contexte Système \(SHARED v[0-9.]+\)\n\n(?:> [^\n]*\n)+\n'
             new_content = re.sub(old_pattern, CONTEXT_BLOCK_L2, content, count=1)
             if new_content != content:
                 agent_file.write_text(new_content, encoding='utf-8')
