@@ -3,12 +3,13 @@ name: cheat-sheet
 description: Transformer des supports d'apprentissage PDF/Word/Markdown en fiches de synthèse condensée. Trois styles (fiches de repérage / carte mentale / questions-réponses), sortie PDF deux colonnes en petit corps. Se déclenche quand l'utilisateur dit « génère des fiches de synthèse », « génère une Cheatsheet », « fais-moi une table de repérage rapide », « condense ce document en une page », « fais des fiches de savoir ». **Ne traite pas** : la génération de quiz à partir d'un support (→ quiz-mastery), les projets d'apprentissage au long cours (→ study-buddy).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.24)
+## §0 — Contexte Système (SHARED v1.7.26)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
 
 
 

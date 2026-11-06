@@ -18,12 +18,13 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.24)
+## §0 — Contexte Système (SHARED v1.7.26)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
 
 
 
@@ -149,7 +150,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 | Détenteur | Mode de détention | Usage |
 |-----------|-------------------|-------|
-| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.35.1 §1.9 (PM corpus antérieur toléré — garde R2) | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
+| `gen-plan` | **Application principale** (méthode-mère) — orchestration : PM gen-plan v3.35.2 §1.9 (PM corpus antérieur toléré — garde R2) | Applique les 5 disciplines à E1-E15 ; délègue l'optimisation fine à `prompt-engineering` |
 | `correct-work` | **Fonction héritée** | Lecture et validation d'artefacts de prompts (specs, SKILL.md, rapports de vérification) |
 | `clone-chat` | **Fonction héritée** | Assemblage de documents-clones, produits d'ingénierie de prompts |
 | `prompt-engineering` | Compétence spécialisée (matérialisé v1.0.1) | Optimisation fine des prompts complexes (délégation gen-plan) |

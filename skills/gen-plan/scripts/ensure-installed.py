@@ -4,7 +4,11 @@
 Task 23 (D006) + Task 29 (D001-D004) — Garde É1-INSTALL : auto-réinstallation de l'écosystème.
 Hook gen-plan v3.20.0 §1.16 — exécuter AVANT E1, EN PREMIER (préemption).
 
-  --check      rc=0 écosystème installé / rc=1 absent ou dérivé (lecture seule)
+  --check      rc=0 écosystème installé / rc=1 absent ou dérivé
+               EXTENSION Task 56 (L54-1/L55-3) : la dérive « SKILL.md d'entrées KB
+               manquants » (angle mort historique — version-management, 9 occurrences
+               documentées) est AUTO-RÉPARÉE depuis le miroir local KNOWLEDGE-repo
+               (rc=0, verdict INSTALLE-REPARÉ, trace worklog) ; sans miroir : rc=1
   --reinstall  si ABSENT : clone (jeton éphémère env GITHUB_TOKEN, jamais persisté)
                puis vérification pipeline (Phase A) ; si déjà installé : no-op (idempotence)
                si présent mais DÉRIVÉ : diagnostic + rc=2 (aucune action destructive)
@@ -31,6 +35,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 ORIGIN = "https://github.com/bigleon2/KNOWLEDGE.git"
 MP = Path(os.environ.get("ECO_PROFILE_ROOT", str(ROOT)))
+# Task 56 — miroir local du dépôt (règle d'or n°4 : source de vérité locale pour
+# la réparation ; jamais d'action distante, jamais de jeton).
+MIROIR = ROOT / "KNOWLEDGE-repo"
 
 FICHIERS_CLES = [
     "skills/KNOWLEDGE.md",
@@ -51,7 +58,7 @@ def sh(cmd, cwd=None, env=None):
 
 def etat() -> dict:
     e = {"root_present": ROOT.exists(), "git_repo": False, "head": None,
-         "fichiers_manquants": [], "kb_entrees": 0}
+         "fichiers_manquants": [], "kb_entrees": 0, "skills_kb_manquants": []}
     if e["root_present"]:
         r = sh("git rev-parse --short HEAD", cwd=ROOT)
         e["git_repo"] = r.returncode == 0
@@ -68,15 +75,41 @@ def etat() -> dict:
             # entrée KB (le filtre lache " v" in l la sur-comptait → 29 au lieu de 28).
             e["kb_entrees"] = len([l for l in kb.read_text(encoding="utf-8", errors="replace").splitlines()
                                    if re.match(r"^## [a-z0-9-]+ v\d+\.\d+\.\d+$", l.rstrip())])
+        # Task 56 (L54-1/L55-3) : garde étendue — SKILL.md de TOUTES les entrées KB
+        # versionnées (dérivation DYNAMIQUE du registre, regex identique à l'arbitre
+        # integrity — KO-L003, jamais figé ; reprise du concept Task 31 critiques_kb).
+        if kb.exists():
+            entrees = re.findall(r"^## ([\w-]+) v[\d.]+", kb.read_text(encoding="utf-8", errors="replace"), re.M)
+            e["skills_kb_manquants"] = [n for n in sorted(set(entrees))
+                                         if not n.startswith("@")
+                                         and not (ROOT / "skills" / n / "SKILL.md").exists()]
     return e
+
+
+def reparer_depuis_miroir(manquants: list) -> list:
+    """Task 56 — réparation ciblée : copie des répertoires skills/<n>/ manquants
+    depuis le miroir local KNOWLEDGE-repo (règle d'or n°4). Retourne la liste des
+    répertoires effectivement reparés. Aucune action distante, aucun jeton."""
+    import shutil
+    reparés = []
+    for n in manquants:
+        src, dst = MIROIR / "skills" / n, ROOT / "skills" / n
+        if (src / "SKILL.md").exists():
+            if dst.exists():
+                shutil.rmtree(dst)
+            shutil.copytree(src, dst)
+            reparés.append(n)
+    return reparés
 
 
 def installe(e: dict) -> bool:
     # Mode profil reconnu (KO-L003/L008) : git_repo est informatif — un profil
     # installé n'est pas un clone git. État installé = racine présente + fichiers
-    # clés présents + registre KB suffisant.
+    # clés présents + registre KB suffisant + AUCUN SKILL.md d'entrée KB manquant
+    # (Task 56 — l'angle mort « INSTALLE à tort » version-management est résorbé
+    # par construction, cf. worklog ligne 536 et leçon L54-1).
     return (e["root_present"] and not e["fichiers_manquants"]
-            and e["kb_entrees"] >= 14)
+            and e["kb_entrees"] >= 14 and not e["skills_kb_manquants"])
 
 
 def maj_plan_apres_reinstall(head_avant, e2) -> str:
@@ -144,6 +177,22 @@ def main():
     e = etat()
     if mode == "--check":
         ok = installe(e)
+        if not ok and e["root_present"] and not e["fichiers_manquants"] and e["skills_kb_manquants"]:
+            # Task 56 : dérive limitée aux skills KB manquants → AUTO-RÉPARATION
+            # depuis le miroir local (défense structurelle contre la volatilité
+            # sandbox — L55-3 : la disparition ne peut plus passer inaperçue).
+            reparés = reparer_depuis_miroir(e["skills_kb_manquants"])
+            if reparés and not etat()["skills_kb_manquants"]:
+                try:
+                    with open(MP / "worklog.md", "a", encoding="utf-8") as f:
+                        f.write("\n> É1-INSTALL Task 56 : auto-réparation garde étendue — "
+                                + ", ".join(reparés)
+                                + " restauré(s) depuis le miroir local KNOWLEDGE-repo.\n")
+                except Exception:
+                    pass
+                print(json.dumps({"verdict": "INSTALLE-REPARÉ", "skills_reparés": reparés, **e},
+                                 ensure_ascii=False))
+                sys.exit(0)
         print(json.dumps({"verdict": "INSTALLE" if ok else "ABSENT-DERIVE", **e},
                          ensure_ascii=False))
         sys.exit(0 if ok else 1)

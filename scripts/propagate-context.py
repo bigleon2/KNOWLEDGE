@@ -8,7 +8,7 @@ Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 
 Script de propagation du Contexte Système à tous les fichiers
-Version : 2.0.6 (porte §0 SHARED v1.7.24 — ligne Langue règle d'or n°6, patterns de remplacement étendus aux blocs 3-4 lignes)
+Version : 2.0.7 (porte §0 SHARED v1.7.26 — Task 56 G5 directive propriétaire : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED — résumé 9 règles d'or, canonique gen-plan §1.5] ; précédent 2.0.6 : ligne Langue règle d'or n°6, patterns étendus blocs 3-4 lignes)
 """
 
 import os
@@ -18,21 +18,23 @@ from pathlib import Path
 REPO_DIR = Path(__file__).parent.parent
 SKILLS_ROOT = REPO_DIR / "skills"
 
-CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.24)
+CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.26)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
 
 """
 
 CONTEXT_HEADER_L3 = '''"""
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.26)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
+Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).
 """
 
 '''

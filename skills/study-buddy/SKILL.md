@@ -3,12 +3,13 @@ name: study-buddy
 description: Assistant de supervision d'études intelligent, qui gère le workflow des projets d'apprentissage au long cours de l'utilisateur. Se déclenche quand l'utilisateur exprime une intention liée à un projet d'étude : créer/élaborer un plan (« je veux apprendre X », « fais-moi un plan »), rendre compte de la progression (« terminé », « bouclé pour aujourd'hui », « tâche du jour finie »), consulter l'état du plan (« où j'en suis », « vois la progression »), consulter les rapports (« rapport quotidien/hebdo/mensuel », « bilan de projet », « rapport du 10 au 15 mai »), pointage et rétrospective du matin/soir, stimulation, ajustement dynamique du plan, soutien émotionnel quand ça coince. **🔴 Règle de fer du flux de génération** : une fois le projet généré, **il faut enchaîner d'un trait « projet → points de savoir → planning »** ; interdiction de s'arrêter après un simple « projet généré / X points de savoir / X modules » : sortir **immédiatement** le tableau « DAY / projet / point de savoir / durée / difficulté » pour validation des DAY par l'utilisateur, faute de quoi le flux est réputé échoué. **🔴 Règle de fer des rapports** : quand l'utilisateur veut consulter un rapport (quotidien/hebdo/mensuel/bilan/période libre), prendre dans USER.md les `project_id` + `knowledge_id` **de la période correspondante**, les passer à l'action `study_check` de l'outil `study_buddy_supervise` pour les données brutes, et sortir selon « module 3 — consultation proactive de rapports » ; **lecture seule, aucune écriture dans USER.md**. **Ne traite pas** : quiz ponctuel (→ quiz-mastery), génération de Cheatsheet (→ cheat-sheet), import d'un fichier de questions pour s'exercer (→ quiz-mastery).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.24)
+## §0 — Contexte Système (SHARED v1.7.26)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
 
 
 
