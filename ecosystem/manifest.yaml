@@ -1,0 +1,32 @@
+version: 1
+proprietaire: bigleon2
+note: "Fichier réécrit mécaniquement par scripts/ecosystem/bootstrap.py — SHA relevés par commande (git rev-parse / git ls-remote), jamais écrits de mémoire. L'horodatage n'est réécrit QUE si le contenu stable diffère (idempotence — faille du §8 résorbée)."
+genere_le: 2026-11-04T20:09:17Z
+outils:
+  ghorg:
+    source: gabrie30/ghorg
+    fork: bigleon2/ghorg
+    fork_existant: ABSENT (ls-remote anonyme — création différée au propriétaire)
+    clone_local: ~/GitHub/_outils/ghorg
+    commit_epingle: e05d9b5ff25513a39c384b60331dcc6b09902dea
+    commit_source_distant: e05d9b5ff25513a39c384b60331dcc6b09902dea
+applications:
+  cmdr:
+    source: cmdr-editor/cmdr
+    fork: bigleon2/cmdr
+    fork_existant: ABSENT (ls-remote anonyme — création différée au propriétaire)
+    clone_local: ~/GitHub/bigleon2/cmdr
+    origin_actuel: cmdr-editor/cmdr (repli documenté — re-pointer vers le fork quand il existera)
+    branche_par_defaut: master
+    branche_superposition: ecosystem/tsi-traktor-s4mk2
+    commit_epingle: 5b7950272a55f73034d2df15de2917248e2e9616
+    commit_source_distant: 5b7950272a55f73034d2df15de2917248e2e9616
+    licence: LICENSE (voir dépôt — aucune conclusion juridique)
+disposition_locale:
+  racine: ~/GitHub
+  dossier_outils: _outils
+recloner:
+  nom_entree: cmdr-editor-fork
+superposition:
+  dossier_cible_dans_cmdr: ecosystem
+  fichier_selection: ecosystem/selection-tsi.yaml
