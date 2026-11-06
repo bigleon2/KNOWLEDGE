@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """valider-tsi.py — Arbitre mécanique de validation des fichiers TSI (BI-RACINE).
 
-Skill : tsi-validator v1.2.0 (Projet TSI/Traktor — S4 MK2/MK3 / Traktor Pro 3.11)
+Skill : tsi-validator v1.3.0 (Projet TSI/Traktor — S4 MK2/MK3 / Traktor Pro 3.11)
 Schéma de référence : download/spec-projet-tsi-traktor.md §5 (règles R1-R8,
 catégories d'erreur E1-E8). PROVENANCE : reverse-engineering public IvanZ 2014
 + articles NI Controller Manager + mappings TSI tiers S4 MK3 documentés (R-1 :
@@ -20,10 +20,25 @@ BI-RACINE. Deux formats acceptés en E1 :
     du ressort du moteur analyse-doc-s4mk2 (R4 jamais dupliquer — délégation
     documentée, pas de substitution).
 
+v1.3.0 (2026-11-06, directive propriétaire — Task 55, suggestions F1/F2 du
+rapport Task 51 §6.7, décision propriétaire Task 54 item 6) :
+  - F1 verdict PRÉFÉRENCES : un NIXML structurellement sain dont l'Entry
+    DeviceIO.Config.Controller est absente est un fichier de préférences (pas
+    un mapping) → verdict PRÉFÉRENCES (exit code 2, JSON "PREFERENCES"),
+    aucune erreur E1-E8 levée — au lieu d'un FAIL E1 injustifié (fichier réel
+    de référence : cmdr tests/keyboard/keyboard__timecode_mode…tsi) ;
+  - F2 multi-devices E3 : un DEVS embarquant N devices est supporté — chaque
+    trame DEVI est validée individuellement (nom E3, comptes E2 qualifiés
+    « device i : »), stats.devices = liste des noms, cmai/dcbm en cumul (clé
+    device conservée en mono-device pour compatibilité v1.2.0) — au lieu de
+    l'erreur systématique « DEVS déclare N devices (attendu 1) » (fichier
+    réel de référence : cmdr tests/traktor-ready/PIONEER_DDJ-T1_V103.tsi).
+
 Usage :
   valider-tsi.py <fichier.tsi> [<fichier2.tsi> ...] [--json]
   valider-tsi.py --self-test
-Exit code : 0 ssi tous les fichiers verdict PASS ; 1 sinon ; 2 usage invalide.
+Exit code : 0 ssi tous les fichiers verdict PASS ; 1 si au moins un FAIL ;
+2 si aucun FAIL mais au moins un PRÉFÉRENCES ; 3 usage invalide (v1.2 : 2).
 Python stdlib uniquement (N3). Ne modifie jamais les fichiers validés.
 """
 import argparse
@@ -41,6 +56,8 @@ RACINES = {"NISYSTEM": "déclaratif", "NIXML": "réel"}
 ENTRY_CTRL = "DeviceIO.Config.Controller"
 MESSAGES = {"NOTE", "CC", "PB", "PC"}
 MODES = {"Direct", "Toggle", "Inverse", "Increment", "Decrement", "Reset"}
+NOTE_PREFERENCES = "fichier de préférences — hors périmètre validation mapping"
+AFFICHAGE = {"PASS": "PASS", "FAIL": "FAIL", "PREFERENCES": "PRÉFÉRENCES"}
 
 
 def _int(v):
@@ -73,13 +90,82 @@ def _utf16_at(buf, off):
     return buf[off + 4:off + 4 + 2 * n].decode("utf-16-be", errors="replace")
 
 
+def _valider_devi(blob, d1, f1, err, qual=""):
+    """Valide un device DEVI : nom (E3), DDAT→DDDC/DDCB et comptes (E2).
+
+    v1.3.0 (F2 Task 55) : itération multi-devices — chaque trame DEVI de DEVS
+    est validée individuellement, les erreurs E2/E3 sont qualifiées par device
+    (préfixe qual, « device i : »). Retourne (nom, cmai, dcbm) ; nom None si
+    le device est structurellement illisible (l'erreur E1 est déjà levée).
+    """
+    cmai_lus, dcbm_lus = 0, 0
+    nom_dev = ""
+    try:
+        n_nom = _u32(blob, d1)
+        nom_dev = _utf16_at(blob, d1)
+        if not nom_dev.strip():
+            err("E3-attributs", f"{qual}DEVI sans nom lisible")
+        ddat = next(t for t in _trames(blob, d1 + 4 + 2 * n_nom, f1) if t[0] == "DDAT")
+        dmap = {f: (d, f2) for f, d, f2 in _trames(blob, ddat[1], ddat[2])}
+        for req in ("DDDC", "DDCB"):
+            if req not in dmap:
+                err("E2-comptage", f"{qual}bloc {req} absent de DDAT")
+        if "DDDC" not in dmap or "DDCB" not in dmap:
+            return (nom_dev or None), 0, 0
+        dmap2 = {f: (d, f2) for f, d, f2 in _trames(blob, dmap["DDDC"][0], dmap["DDDC"][1])}
+        for fcc in ("DDCI", "DDCO"):
+            if fcc not in dmap2:
+                err("E2-comptage", f"{qual}{fcc} absent de DDDC")
+                continue
+            d, f2 = dmap2[fcc]
+            nb = _u32(blob, d)
+            lus = sum(1 for t in _trames(blob, d + 4, f2) if t[0] == "DCDT")
+            if lus != nb:
+                err("E2-comptage", f"{qual}{fcc} : déclaré {nb}, lues {lus}")
+        dmap3 = {f: (d, f2) for f, d, f2 in _trames(blob, dmap["DDCB"][0], dmap["DDCB"][1])}
+        cmad_lus = 0
+        if "CMAS" in dmap3:
+            d, f2 = dmap3["CMAS"]
+            nb_cmai = _u32(blob, d)
+            for fcc2, d2, f22 in _trames(blob, d + 4, f2):
+                if fcc2 != "CMAI":
+                    continue
+                cmai_lus += 1
+                fcc_c = blob[d2 + 12:d2 + 16].decode("latin-1")
+                taille_c = _u32(blob, d2 + 16)
+                if fcc_c == "CMAD" and d2 + 20 + taille_c <= f22:
+                    cmad_lus += 1
+            if cmai_lus != nb_cmai:
+                err("E2-comptage", f"{qual}CMAS : {nb_cmai} CMAI déclarés, {cmai_lus} lus")
+        else:
+            err("E2-comptage", f"{qual}CMAS absent de DDCB")
+        if "DCBM" in dmap3:
+            d, f2 = dmap3["DCBM"]
+            nb_dcbm = _u32(blob, d)
+            dcbm_lus = sum(1 for t in _trames(blob, d + 4, f2) if t[0] == "DCBM")
+            if dcbm_lus != nb_dcbm:
+                err("E2-comptage", f"{qual}DCBM : déclaré {nb_dcbm}, lus {dcbm_lus}")
+        else:
+            err("E2-comptage", f"{qual}DCBM absent de DDCB")
+        if cmai_lus and cmad_lus and cmai_lus != cmad_lus:
+            err("E2-comptage", f"{qual}CMAD embarqués {cmad_lus} ≠ CMAI lus {cmai_lus}")
+    except (StopIteration, ValueError, struct.error) as e:
+        err("E1-structure", f"{qual}trame DIOM illisible : {e}")
+        return None, 0, 0
+    return (nom_dev or None), cmai_lus, dcbm_lus
+
+
 def valider_nixml(path, err):
     """Voie réelle NIXML : validation structurelle du blob DIOM embarqué.
 
     Vérifie E1 (Entry contrôleur, base64, magique DIOM, hiérarchie de trames),
-    E2 (comptes déclarés == lus : DDCI/DDCO, CMAI/CMAD, DCBM) et E3 (device).
-    Retourne un dict stats (format, device, comptes). Les règles E4-E8 du
-    contenu binaire relèvent du moteur analyse-doc-s4mk2 (délégation R4).
+    E2 (comptes déclarés == lus : DDCI/DDCO, CMAI/CMAD, DCBM — par device) et
+    E3 (devices DEVI, TOUS itérés — multi-devices supporté depuis v1.3.0).
+    Retourne un dict stats (format, devices, cmai, dcbm ; device en
+    mono-device). Un NIXML sain sans Entry contrôleur est un fichier de
+    préférences : stats["preferences"]=True → verdict PRÉFÉRENCES (F1), aucune
+    erreur E1-E8. Les règles E4-E8 du contenu binaire relèvent du moteur
+    analyse-doc-s4mk2 (délégation R4).
     """
     stats = {"format": "réel NIXML"}
     try:
@@ -93,7 +179,12 @@ def valider_nixml(path, err):
         return stats
     ctrl = next((e for e in racine.iter("Entry") if e.get("Name") == ENTRY_CTRL), None)
     if ctrl is None:
-        err("E1-structure", f"Entry {ENTRY_CTRL!r} absente — TSI de préférences (pas un mapping)")
+        # F1 (v1.3.0, ex-suggestion Task 51) : XML bien formé + racine NIXML +
+        # Entry contrôleur absente = fichier de préférences Traktor — ce n'est
+        # pas un mapping, aucune règle E1-E8 ne s'applique → verdict tiers
+        # PRÉFÉRENCES (exit 2) au lieu d'un FAIL E1 injustifié.
+        stats["preferences"] = True
+        stats["note"] = NOTE_PREFERENCES
         return stats
     try:
         blob = base64.b64decode((ctrl.get("Value") or ctrl.text or "").strip())
@@ -107,57 +198,25 @@ def valider_nixml(path, err):
         diom = next(_trames(blob, 0, len(blob)))
         devs = next(t for t in _trames(blob, diom[1], diom[2]) if t[0] == "DEVS")
         nb_dev = _u32(blob, devs[1])
-        if nb_dev != 1:
-            err("E3-attributs", f"DEVS déclare {nb_dev} devices (attendu 1)")
-        devi = next(_trames(blob, devs[1] + 4, devs[2]))
-        n_nom = _u32(blob, devi[1])
-        nom_dev = _utf16_at(blob, devi[1])
-        if not nom_dev.strip():
-            err("E3-attributs", "device DEVI sans nom lisible")
-        ddat = next(t for t in _trames(blob, devi[1] + 4 + 2 * n_nom, devi[2]) if t[0] == "DDAT")
-        dmap = {f: (d, f2) for f, d, f2 in _trames(blob, ddat[1], ddat[2])}
-        for req in ("DDDC", "DDCB"):
-            if req not in dmap:
-                err("E2-comptage", f"bloc {req} absent de DDAT")
-                return stats
-        dmap2 = {f: (d, f2) for f, d, f2 in _trames(blob, dmap["DDDC"][0], dmap["DDDC"][1])}
-        for fcc, lab in (("DDCI", "in"), ("DDCO", "out")):
-            if fcc not in dmap2:
-                err("E2-comptage", f"{fcc} absent de DDDC")
+        # F2 (v1.3.0) : itération de TOUTES les trames DEVI de DEVS — plus
+        # d'attente « 1 device » systématique ; chaque device est validé
+        # individuellement (erreurs qualifiées « device i : »).
+        trames_devs = list(_trames(blob, devs[1] + 4, devs[2]))
+        if len(trames_devs) != nb_dev:
+            err("E3-attributs", f"DEVS déclare {nb_dev} devices, {len(trames_devs)} trames lues")
+        noms, tot_cmai, tot_dcbm = [], 0, 0
+        for i, (fcc, d1, f1) in enumerate(trames_devs):
+            if fcc != "DEVI":
+                err("E3-attributs", f"trame {fcc} inattendue dans DEVS (DEVI attendu)")
                 continue
-            d, f2 = dmap2[fcc]
-            nb = _u32(blob, d)
-            lus = sum(1 for t in _trames(blob, d + 4, f2) if t[0] == "DCDT")
-            if lus != nb:
-                err("E2-comptage", f"{fcc} : déclaré {nb}, lues {lus}")
-        dmap3 = {f: (d, f2) for f, d, f2 in _trames(blob, dmap["DDCB"][0], dmap["DDCB"][1])}
-        cmad_lus, cmai_lus, dcbm_lus = 0, 0, 0
-        if "CMAS" in dmap3:
-            d, f2 = dmap3["CMAS"]
-            nb_cmai = _u32(blob, d)
-            for fcc2, d2, f22 in _trames(blob, d + 4, f2):
-                if fcc2 != "CMAI":
-                    continue
-                cmai_lus += 1
-                fcc_c = blob[d2 + 12:d2 + 16].decode("latin-1")
-                taille_c = _u32(blob, d2 + 16)
-                if fcc_c == "CMAD" and d2 + 20 + taille_c <= f22:
-                    cmad_lus += 1
-            if cmai_lus != nb_cmai:
-                err("E2-comptage", f"CMAS : {nb_cmai} CMAI déclarés, {cmai_lus} lus")
-        else:
-            err("E2-comptage", "CMAS absent de DDCB")
-        if "DCBM" in dmap3:
-            d, f2 = dmap3["DCBM"]
-            nb_dcbm = _u32(blob, d)
-            dcbm_lus = sum(1 for t in _trames(blob, d + 4, f2) if t[0] == "DCBM")
-            if dcbm_lus != nb_dcbm:
-                err("E2-comptage", f"DCBM : déclaré {nb_dcbm}, lus {dcbm_lus}")
-        else:
-            err("E2-comptage", "DCBM absent de DDCB")
-        if cmai_lus and cmad_lus and cmai_lus != cmad_lus:
-            err("E2-comptage", f"CMAD embarqués {cmad_lus} ≠ CMAI lus {cmai_lus}")
-        stats.update({"device": nom_dev, "cmai": cmai_lus, "dcbm": dcbm_lus})
+            nom, cmai, dcbm = _valider_devi(blob, d1, f1, err, f"device {i + 1} : ")
+            if nom is not None:
+                noms.append(nom)
+            tot_cmai += cmai
+            tot_dcbm += dcbm
+        stats.update({"devices": noms, "cmai": tot_cmai, "dcbm": tot_dcbm})
+        if len(noms) == 1:
+            stats["device"] = noms[0]
     except (StopIteration, ValueError, struct.error) as e:
         err("E1-structure", f"trame DIOM illisible : {e}")
     return stats
@@ -175,7 +234,10 @@ def valider_fichier(path):
     racine = arbre.getroot()
     if racine.tag == "NIXML":
         rapport["stats"].update(valider_nixml(path, err))
-        rapport["verdict"] = "PASS" if not rapport["erreurs"] else "FAIL"
+        if rapport["stats"].get("preferences"):
+            rapport["verdict"] = "PREFERENCES"
+        else:
+            rapport["verdict"] = "PASS" if not rapport["erreurs"] else "FAIL"
         return rapport
     if racine.tag != "NISYSTEM":
         err("E1-structure", f"racine attendue {' ou '.join(sorted(RACINES))}, trouvée {racine.tag!r}")
@@ -271,8 +333,12 @@ def valider_fichier(path):
     return rapport
 
 
-def _fixture_nixml(path, nb_cmai_decl, nb_cmai_reel=1):
-    """Écrit une fixture NIXML (blob DIOM minimal) pour le self-test bi-racine."""
+def _fixture_nixml(path, nb_cmai_decl, nb_cmai_reel=1, nb_devices=1):
+    """Écrit une fixture NIXML (blob DIOM minimal) pour le self-test bi-racine.
+
+    v1.3.0 : nb_devices > 1 → DEVS multi-devices (F2, noms suffixés) ;
+    nb_cmai_decl ≠ nb_cmai_reel → incohérence de comptage CMAS (E2).
+    """
     u = lambda n: n.to_bytes(4, "big")
     t = lambda s: u(len(s)) + s.encode("utf-16-be")
     fr = lambda fcc, p: fcc.encode("latin-1") + u(len(p)) + p
@@ -285,8 +351,11 @@ def _fixture_nixml(path, nb_cmai_decl, nb_cmai_reel=1):
     ddat = fr("DDAT", fr("DDIV", t("2.11.0")) + fr("DDIC", t("")) +
               fr("DDDC", fr("DDCI", u(0)) + fr("DDCO", u(0))) +
               fr("DDCB", fr("CMAS", cmas) + dcbm))
-    devi = fr("DEVI", t("Traktor.Kontrol S4.Test") + ddat)
-    blob = fr("DIOM", fr("DEVS", u(1) + devi))
+    devis = b""
+    for i in range(nb_devices):
+        nom = "Traktor.Kontrol S4.Test" if nb_devices == 1 else f"Traktor.Kontrol S4.Test{i + 1}"
+        devis += fr("DEVI", t(nom) + ddat)
+    blob = fr("DIOM", fr("DEVS", u(nb_devices) + devis))
     import base64 as _b64
     with open(path, "w", encoding="utf-8") as fh:
         fh.write('<NIXML VERSION="3.11.0">\n'
@@ -295,59 +364,107 @@ def _fixture_nixml(path, nb_cmai_decl, nb_cmai_reel=1):
 
 
 def self_test():
-    """Golden samples NISYSTEM (non-régression) + fixtures NIXML (voie réelle)."""
+    """Golden samples NISYSTEM (non-régression) + voie réelle NIXML v1.3.0 :
+    valide PASS / invalide FAIL (E2) / préférences PRÉFÉRENCES (F1) /
+    multi-devices PASS avec 2 devices (F2)."""
     v = valider_fichier(os.path.join(ICI, "..", "samples", "echantillon-valide.tsi"))
     i = valider_fichier(os.path.join(ICI, "..", "samples", "echantillon-invalide.tsi"))
     cats = {e["categorie"].split("-")[0] for e in i["erreurs"]}
     ok_decl = v["verdict"] == "PASS" and i["verdict"] == "FAIL" and \
         cats >= {"E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8"}
+    # F1 : échantillon de préférences RÉEL du clone cmdr si présent (jamais
+    # copié sur disque dans le skill — lu en place), sinon fixture synthétique
+    # équivalente (NIXML sain sans Entry contrôleur).
+    chemin_cmdr = os.path.expanduser(
+        "~/GitHub/bigleon2/cmdr/tests/keyboard/"
+        "keyboard__timecode_mode__1st_abs__2nd_rel___3rd___4th_hap.tsi")
     with tempfile.TemporaryDirectory() as tmp:
         p_ok = os.path.join(tmp, "nixml-valide.tsi")
         p_ko = os.path.join(tmp, "nixml-invalide.tsi")
+        p_pref = os.path.join(tmp, "nixml-preferences.tsi")
+        p_multi = os.path.join(tmp, "nixml-multi-devices.tsi")
         _fixture_nixml(p_ok, 1)
         _fixture_nixml(p_ko, 2, nb_cmai_reel=1)  # 2 déclarés, 1 réel → E2
+        if not os.path.isfile(chemin_cmdr):
+            with open(p_pref, "w", encoding="utf-8") as fh:
+                fh.write('<NIXML VERSION="3.11.0">\n'
+                         '  <Entry Name="DeviceIO.Config.KeyboardMappings" Value="QUJDREVG"/>\n'
+                         '</NIXML>')
+        src_pref = chemin_cmdr if os.path.isfile(chemin_cmdr) else p_pref
+        _fixture_nixml(p_multi, 1, nb_devices=2)
         vr = valider_fichier(p_ok)
         ir = valider_fichier(p_ko)
+        pr = valider_fichier(src_pref)
+        mr = valider_fichier(p_multi)
     ok_reel = vr["verdict"] == "PASS" and ir["verdict"] == "FAIL" and \
         any(e["categorie"].startswith("E2") for e in ir["erreurs"]) and \
         vr["stats"].get("format") == "réel NIXML"
-    print(f"self-test tsi-validator v1.2.0 :")
+    ok_pref = pr["verdict"] == "PREFERENCES" and not pr["erreurs"] and \
+        pr["stats"].get("preferences") is True
+    ok_multi = mr["verdict"] == "PASS" and \
+        mr["stats"].get("devices") == ["Traktor.Kontrol S4.Test1",
+                                       "Traktor.Kontrol S4.Test2"]
+    print(f"self-test tsi-validator v1.3.0 :")
     print(f"  déclaratif NISYSTEM : valide → {v['verdict']} ; invalide → {i['verdict']} ; "
           f"catégories : {sorted(cats)}")
     print(f"  réel NIXML : valide → {vr['verdict']} ({vr['stats'].get('device')}, "
           f"CMAI={vr['stats'].get('cmai')}) ; invalide → {ir['verdict']} "
           f"({[e['detail'] for e in ir['erreurs']]})")
-    ok = ok_decl and ok_reel
+    print(f"  préférences NIXML (F1) : {os.path.basename(src_pref)} "
+          f"({'fichier cmdr réel' if src_pref == chemin_cmdr else 'fixture synthétique'}) → "
+          f"{AFFICHAGE[pr['verdict']]} ({len(pr['erreurs'])} erreur, "
+          f"note : {pr['stats'].get('note')})")
+    print(f"  multi-devices NIXML (F2) : {mr['verdict']} "
+          f"({len(mr['stats'].get('devices', []))} devices : {mr['stats'].get('devices')})")
+    ok = ok_decl and ok_reel and ok_pref and ok_multi
     print(f"SELF-TEST : {'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1
+
+
+def _verdict_global(rapports):
+    """Verdict global multi-fichiers → (libellé, exit code).
+
+    FAIL (1) l'emporte sur tout ; PRÉFÉRENCES (2) si aucun FAIL mais au moins
+    un fichier hors périmètre mapping ; PASS (0) ssi tous PASS.
+    """
+    verdicts = {r["verdict"] for r in rapports}
+    if "FAIL" in verdicts:
+        return "FAIL", 1
+    if "PREFERENCES" in verdicts:
+        return "PRÉFÉRENCES", 2
+    return "PASS", 0
 
 
 def main():
     ap = argparse.ArgumentParser(description="Arbitre mécanique de validation TSI (E1-E8)")
     ap.add_argument("fichiers", nargs="*", help="fichiers .tsi à valider")
     ap.add_argument("--json", action="store_true", help="rapport JSON sur stdout")
-    ap.add_argument("--self-test", action="store_true", help="golden samples (valide PASS, invalide FAIL)")
+    ap.add_argument("--self-test", action="store_true",
+                    help="golden samples (valide PASS, invalide FAIL, préférences, multi-devices)")
     a = ap.parse_args()
     if a.self_test:
         sys.exit(self_test())
     if not a.fichiers:
         ap.print_usage()
-        sys.exit(2)
+        sys.exit(3)
     rapports = [valider_fichier(f) for f in a.fichiers]
+    verdict, code = _verdict_global(rapports)
     if a.json:
         print(json.dumps(rapports, ensure_ascii=False, indent=2), file=sys.stdout)
-        verdict = all(r["verdict"] == "PASS" for r in rapports)
-        print(f"VERDICT : {'PASS' if verdict else 'FAIL'}", file=sys.stderr)
-        sys.exit(0 if verdict else 1)
+        print(f"VERDICT : {verdict}", file=sys.stderr)
+        sys.exit(code)
     for r in rapports:
         fmt = r["stats"].get("format", "")
-        print(f"{r['fichier']} → {r['verdict']} [{fmt}] ({len(r['erreurs'])} erreur(s), "
-              f"{r['stats'].get('mappings', 0)} mappings)")
+        if r["verdict"] == "PREFERENCES":
+            print(f"{r['fichier']} → {AFFICHAGE[r['verdict']]} [{fmt}] "
+                  f"({r['stats'].get('note', NOTE_PREFERENCES)})")
+        else:
+            print(f"{r['fichier']} → {AFFICHAGE[r['verdict']]} [{fmt}] ({len(r['erreurs'])} erreur(s), "
+                  f"{r['stats'].get('mappings', 0)} mappings)")
         for e in r["erreurs"]:
             print(f"  [{e['categorie']}] {e['detail']}")
-    verdict = all(r["verdict"] == "PASS" for r in rapports)
-    print(f"VERDICT : {'PASS' if verdict else 'FAIL'}")
-    sys.exit(0 if verdict else 1)
+    print(f"VERDICT : {verdict}")
+    sys.exit(code)
 
 
 if __name__ == "__main__":

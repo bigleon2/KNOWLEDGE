@@ -10,9 +10,9 @@
     "README.md": "478d2e7ac8cae0a16adfa002b966e82f5a002fd5c6de20ae3fff17e2912dca9c",
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f",
     "piliers/scripts/certification-complete.py": "0a4087f241d91039dca3da4b5dcbfdedbc88e814097b158717e5bbf4f04101b5",
-    "piliers/scripts/check-ecosysteme-integrity.py": "efd392bc8ba4787b39752d3f6b34461c9c3ba87053f6c4961753615aabf12db1",
+    "piliers/scripts/check-ecosysteme-integrity.py": "1c86a818dc4d63f8f51b4992d2c9f9337581cebeea00aec0ce6f648c4b761fdf",
     "piliers/scripts/install-ecosysteme-local.sh": "47322f0a5a2c596eea8447267d582b98aa791d647d50eecde991da11496d21db",
-    "piliers/skills/KNOWLEDGE.md": "117032abf7ca50b03e094378de2419536bac8a108e8435dded3d0034d9fc8229",
+    "piliers/skills/KNOWLEDGE.md": "460936f72824ac7b15d4ff98b1c9d0d3c26f717961301c673280d073a2138f4e",
     "piliers/skills/correct-work/SKILL.md": "3d82a28813e6db791a629f108b97143b5f8db6199f05609dd3a4066c0e4cec7f",
     "piliers/skills/gen-plan/SKILL.md": "cee2f2ef9de89c0e5cf02dd9dd4669b37283420103f4efd162bb55287d3f7c44"
   },
@@ -28,7 +28,7 @@
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "a4cdef2dbc4c1b50609dda20dbba23a296ad9a3951a7cf0efc9ea2e78f804faf"
+    "mon-ecosysteme_archive.zip": "8fe3886150c6383e65cc9b7e5769e875e9664fa0e2a50c31de817823a9d89c1b"
   },
   "skills": {
     "agent-creator": {
@@ -111,6 +111,10 @@
       "sha256": "68e685aab050728f19e4910eaabfe832deece02da5cc9084a57379952fd9c06f",
       "version": "1.2.1"
     },
+    "inter-scripts": {
+      "sha256": "79f385101d04edf09e2c4d12c943d269b0bc60edaf53c925647325d6f5a1f5bf",
+      "version": "1.0.0"
+    },
     "iphone17": {
       "sha256": "7569777ce6dfc0be6f44aed8bda076779b1b2369cc46642edc40e7d1f241db05",
       "version": "1.1.0"
@@ -175,6 +179,10 @@
       "sha256": "1e3ed434df51b91e14f064e26c5ba5973e29612c9590d42ddc67083d2919d69f",
       "version": "1.1.1"
     },
+    "resume-youtube": {
+      "sha256": "0b50e4d7353deb6362195a2ceffe12f45ca6a004e1b4f5fdfd9fe2eb6f49a04a",
+      "version": "1.1.0"
+    },
     "script-creator": {
       "sha256": "80c2a217c2d0af8b1c7601e85dde4d4e88bb594f185cef3ac9ee40ad04a54b57",
       "version": "1.1.0"
@@ -212,8 +220,8 @@
       "version": "1.2.0"
     },
     "tsi-validator": {
-      "sha256": "5c91f862f4733b057f6e1522d7106c7c25c9936b596a1348a4708a3c3dcf42a8",
-      "version": "1.2.0"
+      "sha256": "c011fc69c6a140e5cf4715515f19a8c592aa32593b09b992251860f75899bfdd",
+      "version": "1.3.0"
     },
     "version-management": {
       "sha256": "40e7da4b2a579edf7850eec187fc511fca3760afdda498b6a67805ded80c19aa",
@@ -222,6 +230,14 @@
     "vue-upload": {
       "sha256": "b27a406259195da3c89954cdac82e94a4f76103dc903a7827ffcd2aad4a3fd8b",
       "version": "1.5.0"
+    },
+    "web-reader": {
+      "sha256": "af04ed4b76c8cb43a5a7c7aeaf95b496eaa8db163c469f09be7235a951cd2bc6",
+      "version": "1.0.0"
+    },
+    "web-search": {
+      "sha256": "65e5fa30c352067d3a400d6f919ab61c14bde77f0e639a55d45f6bfbb7713500",
+      "version": "1.0.0"
     }
   }
 }
