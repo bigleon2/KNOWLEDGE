@@ -8,4 +8,4 @@ l'écosystème KNOWLEDGE (tsi-architect / tsi-validator / multi-shift-architect)
 
 Python stdlib uniquement (convention N3). Sorties déterministes (R6).
 """
-__version__ = "1.0.0"
+__version__ = "1.0.1"  # Task 67 G4 (F-67-3) : fixture DJTT multi-candidats + skip honnete + fermeture propre fichiers

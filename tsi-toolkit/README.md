@@ -1,6 +1,6 @@
 # tsi-toolkit — Toolchain TSI Traktor Pro 3.11 / Kontrol S4 MK2
 
-> **Version** : 1.0.0 · **Task 39 / G3** (session web-6058b3ba, 2026-11-02) ·
+> **Version** : 1.0.1 · (Task 67 G4, 2026-11-07 — correctif F-67-3 : résolution fixture DJTT multi-candidats [work/djtt recyclé → tmp/zip-djtt-task65 → upload/ZIP], skip honnête, ResourceWarnings fermés ; sémantique inchangée) **Task 39 / G3** (session web-6058b3ba, 2026-11-02) ·
 > Convergence $facon des éléments créés dans les discussions QWEN avec la
 > famille TSI de l'écosystème KNOWLEDGE · CDC `download/cahier-des-charges-elements-tsi.md`.
 

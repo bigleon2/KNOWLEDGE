@@ -138,24 +138,24 @@
       "version": "1.2.1"
     },
     "midi-doc-expert": {
-      "sha256": "a17532adbf65a76ea907255b897062b308ec6cd6a158e8588288c4ba6ca07176",
-      "version": "1.2.0"
+      "sha256": "f8cd17f7d790f71c773dbc0cb6152229d1545e99c1ad3fd74427f7018dd93ba6",
+      "version": "1.2.1"
     },
     "multi-shift-architect": {
       "sha256": "0fa4a6b5b3fa68f37497f3b06ddbd1a0f638aab653b881f0f676fc6837324d2a",
       "version": "1.1.0"
     },
     "orchestrateur-tsi": {
-      "sha256": "c4728bae7d2c682f8559e63cd6d2b3e1fc4ae65c6a6db6f0a12c281fb6d9b015",
-      "version": "1.1.1"
+      "sha256": "08de14e630b0dc8ca2f7127f2e5138151d9db9e9ef7daa6af57b6db44ce297f1",
+      "version": "1.1.2"
     },
     "pdf-llm": {
       "sha256": "bb6418270ff8d217d1ad3c0215f8528bce002841d1da453436363177205aab9b",
       "version": "1.0.0"
     },
     "pm-skill": {
-      "sha256": "09c74786d1bdfa60577b66403af7ae7367f067f2ce469ed0fca4adb2a7787b04",
-      "version": "1.0.1"
+      "sha256": "ddb397540702a4cec19f1683b69c3baaf675110682f34f9ae7a0211f63c71b78",
+      "version": "1.0.2"
     },
     "prompt-engineering": {
       "sha256": "05ca6a519726037ee86be607ce63cd8e32c56af3060ea9b912fe0917f74f2506",
@@ -214,12 +214,12 @@
       "version": "1.3.1"
     },
     "tsi-architect": {
-      "sha256": "6316b81a80669bf652d34e43f5fd03b455f8963484ce25b7372f060fd5fb5b51",
-      "version": "1.2.0"
+      "sha256": "d85a0d3edc51acfc23793e825037e3b13311596e32c02c0419c859ffc1415a3e",
+      "version": "1.2.1"
     },
     "tsi-validator": {
-      "sha256": "f1e6aa7007266f64b8a0021c2d8b88f3b14e390957905b6c1306b3ebf8876b60",
-      "version": "1.3.0"
+      "sha256": "459a84264ddd02fddb2b5266e952453d4a95074354cf7d40b0734b7f65424c24",
+      "version": "1.3.1"
     },
     "version-management": {
       "sha256": "9527b1bc49cf72ab488d3073b37818073a5652b47b9ce60853b8aa9a584fe908",

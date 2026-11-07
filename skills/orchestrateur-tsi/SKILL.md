@@ -1,6 +1,6 @@
 ---
 name: orchestrateur-tsi
-version: 1.1.1
+version: 1.1.2
 category: ecosystem
 language: fr
 tags:
@@ -27,6 +27,21 @@ dependencies:
   - skill: gen-plan
     version: ">=3.15.0"
     used_at: "plans de mission multi-étapes (conception → validation → documentation)"
+  - skill: tsi-architect
+    version: ">=1.2.0"
+    used_at: "membre orchestré — conception/extension des mappings (micro-spéc en entrée, delta en sortie, pré-validation en garde)"
+  - skill: tsi-validator
+    version: ">=1.3.0"
+    used_at: "membre orchestré (arbitre) — verdict PASS/FAIL mécanique, garde obligatoire de la phase P5"
+  - skill: multi-shift-architect
+    version: ">=1.1.0"
+    used_at: "membre orchestré — méthode des couches SHIFT (matrices de couverture, aucune couche morte)"
+  - skill: midi-doc-expert
+    version: ">=1.2.0"
+    used_at: "membre orchestré — documentation aval (précondition verdict PASS daté)"
+  - skill: analyse-doc-s4mk2
+    version: ">=1.3.2"
+    used_at: "membre orchestré — analyse des mappings réels (format DIOM) et documents illustrés, verdict PASS + batterie $FACON2"
 read_when:
   - Déclencher quand la demande concerne : orchestration de la famille TSI, mission de bout en bout sur un mapping (concevoir + valider + documenter), routage entre skills Traktor/S4 MK2, coordination de plusieurs skills/agents du domaine TSI.
   - Déclencher si la demande mentionne : orchestre, coordonne, de bout en bout avec TSI/Traktor/S4, pipeline mapping complet.

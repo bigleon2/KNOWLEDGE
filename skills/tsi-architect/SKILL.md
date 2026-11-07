@@ -1,6 +1,6 @@
 ---
 name: tsi-architect
-version: 1.2.0
+version: 1.2.1
 category: ecosystem
 language: fr
 tags:
@@ -25,6 +25,15 @@ dependencies:
   - skill: gen-plan
     version: ">=3.15.0"
     used_at: "conception de mappings complexes (plans d'architecture, deltas idempotents)"
+  - skill: tsi-validator
+    version: ">=1.3.0"
+    used_at: "garde obligatoire — verdict PASS avant toute livraison (I-2, tandem)"
+  - skill: multi-shift-architect
+    version: ">=1.1.0"
+    used_at: "méthode des couches SHIFT (matrices de couverture, aucune couche morte — la matrice précède l'allocation MIDI, étape 1)"
+  - skill: midi-doc-expert
+    version: ">=1.2.0"
+    used_at: "documentation aval des architectures livrées"
 read_when:
   - Déclencher quand la demande concerne : architecture d'un mapping TSI, structure de fichier .tsi Traktor (devices, mappings, assignments, modifiers, LED), allocation de notes/CC, extension d'un mapping existant, tandem skill/agent tsi-architect.
   - Déclencher si la demande mentionne : TSI, architecture de mapping, Traktor mapping, S4 MK2 mapping, étendre un mapping, allouer des notes MIDI.

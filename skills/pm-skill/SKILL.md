@@ -1,6 +1,6 @@
 ---
 name: pm-skill
-version: 1.0.1
+version: 1.0.2
 category: ecosystem
 language: fr
 tags:
@@ -45,6 +45,9 @@ dependencies:
   - skill: correct-work
     version: ">=2.4.0"
     used_at: "certification post-intégration (arbitres integrity/verify-cross rejoués après création — finding F2 du correct-work --bloc Task 61, bidirectionnalité SHARED §3.2, v1.0.1)"
+  - skill: vue-upload
+    version: ">=1.5.0"
+    used_at: "livraison du PM éphémère (push/featured ★, share vérifié SHA-256) — canal de diffusion des livrables"
 read_when:
   - Déclencher quand la demande concerne : exporter ou utiliser un skill de l'écosystème dans une IA externe (ChatGPT, Claude, Gemini…), générer le prompt maître d'un skill sous forme de fichier MD autonome, obtenir une version auto-portante collable d'un skill.
   - Déclencher si la demande mentionne : PM-skill, PM-skill(<skill>), prompt maître éphémère, « génère le prompt maître de X », « exporte X pour une IA », « je veux utiliser mon skill X dans ChatGPT/Claude/Gemini ».

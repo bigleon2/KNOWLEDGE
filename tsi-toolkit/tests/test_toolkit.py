@@ -3,6 +3,12 @@
 
 Exécution : python3 -m unittest decouvrir -v  (depuis tsi-toolkit/)
 ou : python3 tests/test_toolkit.py
+
+v1.0.1 (Task 67 G4 — résorption F-67-2/F-67-3) : résolution de fixture DJTT
+multi-candidats (work/djtt historique [recyclé au 5ᵉ recyclage sandbox] →
+tmp/zip-djtt-task65 [extraction stable Task 65] → extraction depuis upload/ZIP) +
+skip honnête si introuvable (précédent test_reel_proprietaire) + fermeture
+propre des fichiers (ResourceWarnings L87/L93).
 """
 from __future__ import annotations
 
@@ -23,7 +29,50 @@ from tsi_toolkit import convertisseurs, couverture, generateur, karnaugh, nixml,
 ECOSYSTEME = os.path.dirname(RACINE)
 ECHANTILLON_VALIDE = os.path.join(
     ECOSYSTEME, "skills", "tsi-validator", "samples", "echantillon-valide.tsi")
-DJTT = "/home/z/my-project/work/djtt/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.tsi"
+def _trouver_djtt():
+    """Résolution multi-candidats de la fixture DJTT v2.1.0 (v1.0.1 — F-67-3).
+
+    Candidats, dans l'ordre : (1) emplacement historique work/djtt (volatil —
+    recyclages sandbox) ; (2) extraction stable tmp/zip-djtt-task65 (Task 65) ;
+    (3) extraction à la volée depuis upload/DJTT…zip vers un cache /tmp fixe
+    (idempotent). Retourne None si introuvable — l'appelant skip honnêtement.
+    """
+    # Racine hôte : le toolkit vit dans KNOWLEDGE-repo/tsi-toolkit (miroir git)
+    # tandis que work/, tmp/ et upload/ vivent côté hôte — base dérivée en
+    # conséquence (v1.0.1 : le premier calcul depuis ECOSYSTEME seul pointait
+    # KNOWLEDGE-repo/work — inexistant).
+    base_hote = (os.path.dirname(ECOSYSTEME)
+                 if os.path.basename(ECOSYSTEME) == "KNOWLEDGE-repo"
+                 else ECOSYSTEME)
+    nom_interne = ("DJTT Kontrol S4 MK2 Custom Mapping v2.1.0/"
+                  "DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.tsi")
+    candidats = [
+        os.path.join(base_hote, "work", "djtt", nom_interne),
+        os.path.join(base_hote, "tmp", "zip-djtt-task65", nom_interne),
+    ]
+    for chemin in candidats:
+        if os.path.isfile(chemin):
+            return chemin
+    zip_source = os.path.join(
+        base_hote, "upload", "DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.zip")
+    if os.path.isfile(zip_source):
+        cache = os.path.join(tempfile.gettempdir(), "tsi-toolkit-djtt-fixture")
+        cible = os.path.join(cache, os.path.basename(nom_interne))
+        if not os.path.isfile(cible):
+            import zipfile
+            os.makedirs(cache, exist_ok=True)
+            with zipfile.ZipFile(zip_source) as zf:
+                for membre in zf.namelist():
+                    if membre.endswith(".tsi") and not membre.endswith("/"):
+                        with zf.open(membre) as src, open(cible, "wb") as dst:
+                            shutil.copyfileobj(src, dst)
+                        break
+        if os.path.isfile(cible):
+            return cible
+    return None
+
+
+DJTT = _trouver_djtt()
 DRIVE_KB = "/home/z/my-project/work/drive-kb"
 CSV_EXEMPLE = os.path.join(RACINE, "examples", "pseudo-tsi-23.csv")
 PRESET_EXEMPLE = os.path.join(RACINE, "examples", "preset-freeze-mode.json")
@@ -48,6 +97,9 @@ class TestEF01Inspect(BaseTemp):
         self.assertEqual(r["nb_mappings"], 15)
 
     def test_reel_djtt(self):
+        if DJTT is None:
+            self.skipTest("fixture DJTT introuvable — candidats : work/djtt "
+                          "[recyclé sandbox], tmp/zip-djtt-task65, upload/DJTT…zip")
         r = nixml.inspecter(DJTT)
         self.assertIn(r["format"]["famille"], ("REEL_DDIOM", "REEL", "REGLAGES"))
         pont = r.get("analyseur_ecosysteme")
@@ -84,13 +136,15 @@ class TestEF02Generate(BaseTemp):
         self.assertEqual(len(modele["mappings"]), 15)
 
     def test_generation_refuse_les_conflits(self):
-        preset = json.load(open(PRESET_EXEMPLE, encoding="utf-8"))
+        with open(PRESET_EXEMPLE, encoding="utf-8") as f:
+            preset = json.load(f)
         preset["mappings"].append({
             "nom": "Conflit volontaire", "type": "IN", "groupe": "Deck A",
             "controle": "Sync", "midi": {"canal": 0, "message": "NOTE",
                                          "numero": 36, "mode": "Direct"}})
         chemin = self.chemin("conflit.json")
-        json.dump(preset, open(chemin, "w", encoding="utf-8"))
+        with open(chemin, "w", encoding="utf-8") as f:
+            json.dump(preset, f)
         with self.assertRaises(ValueError):
             generateur.generer(chemin, self.chemin("x.tsi"))
 

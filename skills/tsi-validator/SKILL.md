@@ -1,6 +1,6 @@
 ---
 name: tsi-validator
-version: 1.3.0
+version: 1.3.1
 category: ecosystem
 language: fr
 tags:
@@ -27,6 +27,15 @@ dependencies:
   - skill: gen-plan
     version: ">=3.15.0"
     used_at: "arbitre des hooks de phase du projet TSI (garde E9-E14)"
+  - skill: tsi-architect
+    version: ">=1.2.0"
+    used_at: "tandem — garde obligatoire avant toute livraison de mapping conçu"
+  - skill: midi-doc-expert
+    version: ">=1.2.0"
+    used_at: "documentation aval — mapping à verdict PASS (précondition documentation VALIDÉ)"
+  - skill: multi-shift-architect
+    version: ">=1.1.0"
+    used_at: "règle E7 (aucune couche morte) matérialise l'invariant de transitions complètes (I-3)"
 read_when:
   - Déclencher quand la demande concerne : valider ou diagnostiquer un fichier TSI, vérifier la conformité d'un mapping Traktor au schéma de référence, contrôler des allocations MIDI (doublons, plages), détecter une couche morte.
   - Déclencher si la demande mentionne : valider TSI, vérifier un mapping, tsi-validator, erreurs TSI, conflits MIDI, couche morte.

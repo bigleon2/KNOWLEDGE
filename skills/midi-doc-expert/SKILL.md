@@ -1,6 +1,6 @@
 ---
 name: midi-doc-expert
-version: 1.2.0
+version: 1.2.1
 category: ecosystem
 language: fr
 tags:
@@ -26,6 +26,12 @@ dependencies:
   - skill: gen-plan
     version: ">=3.15.0"
     used_at: "génération documentaire des projets TSI (phases de rédaction)"
+  - skill: tsi-architect
+    version: ">=1.2.0"
+    used_at: "aval — documentation d'un mapping conçu (pipeline concevoir → valider → documenter)"
+  - skill: tsi-validator
+    version: ">=1.3.0"
+    used_at: "précondition — documentation d'un mapping VALIDÉ (verdict PASS daté)"
 read_when:
   - Déclencher quand la demande concerne : documenter un mapping TSI validé, générer un document technique MIDI (tableaux de référence MIDI, états LED), produire la notice d'un mode contrôleur (ex. Freeze Mode), exporter un mapping en Markdown/JSON/PDF.
   - Déclencher si la demande mentionne : documentation MIDI, tableau de référence MIDI, états LED, notice mapping, documenter le Freeze Mode, midi-doc-expert.
