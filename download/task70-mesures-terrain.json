@@ -1,0 +1,141 @@
+{
+ "inventaire": {
+  "skills": {
+   "dossiers": 125,
+   "collections_at": [
+    "@Bibliotheque-skills-Multi-IA",
+    "@GHORG-ecosysteme",
+    "@PM-SKILLS",
+    "@historique",
+    "@mon-ecosysteme",
+    "@photos"
+   ],
+   "skill_md": {
+    "n": 231,
+    "octets": 2449976,
+    "kio_moyen": 10.4
+   },
+   "profondeur_max": 6
+  },
+  "total": {
+   "fichiers": 2164,
+   "octets": 74764886,
+   "mio": 71.3
+  },
+  "par_extension": {
+   ".html": {
+    "n": 67,
+    "octets": 43874386
+   },
+   ".md": {
+    "n": 1108,
+    "octets": 15877942
+   },
+   ".jpg": {
+    "n": 36,
+    "octets": 4556478
+   },
+   ".py": {
+    "n": 327,
+    "octets": 3801185
+   },
+   ".webp": {
+    "n": 9,
+    "octets": 1821550
+   },
+   ".json": {
+    "n": 404,
+    "octets": 1417673
+   },
+   ".png": {
+    "n": 5,
+    "octets": 1078798
+   },
+   ".csv": {
+    "n": 48,
+    "octets": 864886
+   },
+   ".js": {
+    "n": 11,
+    "octets": 393917
+   },
+   "(sans-ext)": {
+    "n": 13,
+    "octets": 302914
+   },
+   ".css": {
+    "n": 18,
+    "octets": 204708
+   },
+   ".cpp": {
+    "n": 1,
+    "octets": 99808
+   },
+   ".ts": {
+    "n": 19,
+    "octets": 98977
+   },
+   ".tex": {
+    "n": 6,
+    "octets": 74228
+   },
+   ".txt": {
+    "n": 43,
+    "octets": 69557
+   },
+   ".sh": {
+    "n": 12,
+    "octets": 68741
+   },
+   ".mjs": {
+    "n": 11,
+    "octets": 43462
+   },
+   ".agent": {
+    "n": 7,
+    "octets": 40400
+   },
+   ".yaml": {
+    "n": 8,
+    "octets": 30755
+   },
+   ".sty": {
+    "n": 1,
+    "octets": 15617
+   },
+   ".ps1": {
+    "n": 1,
+    "octets": 11298
+   },
+   ".xml": {
+    "n": 5,
+    "octets": 10815
+   },
+   ".tsi": {
+    "n": 2,
+    "octets": 5581
+   },
+   ".tmpl": {
+    "n": 1,
+    "octets": 888
+   },
+   ".jsonl": {
+    "n": 1,
+    "octets": 322
+   }
+  },
+  "scripts_py": {
+   "n": 327,
+   "octets": 3801185
+  }
+ },
+ "temps": {
+  "fichiers_lus": 2164,
+  "arbre_froid_s": 0.033,
+  "arbre_chaud_s": 0.024,
+  "zip_ecriture_s": 2.86,
+  "zip_lecture_s": 0.327,
+  "zip_octets": 47736177,
+  "zip_mio": 45.52
+ }
+}

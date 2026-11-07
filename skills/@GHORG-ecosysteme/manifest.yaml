@@ -29,4 +29,4 @@ recloner:
   nom_entree: cmdr-editor-fork
 superposition:
   dossier_cible_dans_cmdr: ecosystem
-  fichier_selection: ecosystem/selection-tsi.yaml
+  fichier_selection: skills/@GHORG-ecosysteme/selection-tsi.yaml

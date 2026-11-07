@@ -22,7 +22,9 @@ from _commun import (  # noqa: E402
     maj_etat, porcelain_vide, sha256_fichier,
 )
 
-SELECTION = KNOWLEDGE / "ecosystem" / "selection-tsi.yaml"
+# Task 70 G3 : la sélection vit désormais sous skills/@GHORG-ecosysteme/ du dépôt
+# (git mv R4) ; DEST = cmdr/ecosystem/ (dans le clone CMDR) reste INCHANGÉ.
+SELECTION = KNOWLEDGE / "skills" / "@GHORG-ecosysteme" / "selection-tsi.yaml"
 DEST = CMDR / "ecosystem"
 SOURCE_MD = DEST / "SOURCE.md"
 MENTION = "fichiers générés, ne pas modifier ici"
@@ -141,7 +143,7 @@ def main():
         "# SOURCE — superposition écosystème (générée, ne pas modifier ici)",
         "",
         f"- Mention : {MENTION}",
-        "- Sélection : ecosystem/selection-tsi.yaml (famille TSI complète — MK2 ET MK3)",
+        "- Sélection : skills/@GHORG-ecosysteme/selection-tsi.yaml (famille TSI complète — MK2 ET MK3)",
         "",
         "## Fichiers (chemin relatif  SHA-256)",
         "",

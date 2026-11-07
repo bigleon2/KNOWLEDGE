@@ -1,6 +1,6 @@
 ---
 name: ghorg-cmdr
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -20,9 +20,12 @@ description: >
   (3) superposition famille TSI complète — copie unilatérale KNOWLEDGE → cmdr/ecosystem/ comparée par
   SHA-256, SOURCE.md régénéré, suppression seulement si listée au SOURCE.md précédent, 0 fichier touché
   hors ecosystem/. Scripts : scripts/ecosystem/{bootstrap,ghorg-install,cmdr-clone,cmdr-overlay-sync}.py
-  (stdlib, idempotents — le 2e passage ne produit aucun changement git). Déclencher pour intégrer ou
+  (stdlib, idempotents — le 2e passage ne produit aucun changement git). État GHORG du dépôt : collection
+  skills/@GHORG-ecosysteme/ (manifest.yaml + selection-tsi.yaml + ghorg/ — déplacement R4 Task 70 G3 depuis
+  ecosystem/, directive propriétaire ; la branche overlay CMDR ecosystem/tsi-traktor-s4mk2 et le dossier
+  cmdr/ecosystem/ du clone restent inchangés). Déclencher pour intégrer ou
   mettre à jour ghorg/cmdr dans l'écosystème, rejouer la superposition TSI, diagnostiquer un état de
-  clone (F/L/S/B), ou re-sceller le manifeste ecosystem/manifest.yaml.
+  clone (F/L/S/B), ou re-sceller le manifeste skills/@GHORG-ecosysteme/manifest.yaml.
 dependencies:
   - skill: gen-plan
     version: ">=3.34.0"
@@ -60,7 +63,7 @@ sans casser la synchronisation avec le dépôt d'origine.
 | D4 | `ghorg-install.py` | GHORG local : clone fork (repli : source), remote upstream, build conditionnel (marqueur `.ghorg-commit` = SHA), PATH |
 | D5 | `cmdr-clone.py` | Clone CMDR : **Karnaugh F/L/S/B** — 4 variables relevées AVANT action, règles 1-6, GHORG seulement règles 1/2/5 |
 | D6 | `cmdr-overlay-sync.py` | Superposition TSI : copie unilatérale SHA-256, SOURCE.md, suppression seulement si listée avant |
-| — | `bootstrap.py` | Enchaîne D4→D5→D6 et **re-scelle** `ecosystem/manifest.yaml` avec les SHA réels du jour |
+| — | `bootstrap.py` | Enchaîne D4→D5→D6 et **re-scelle** `skills/@GHORG-ecosysteme/manifest.yaml` avec les SHA réels du jour |
 
 ## 3. Table de Karnaugh F/L/S/B (clone CMDR)
 

@@ -10,7 +10,7 @@ Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exé
 Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
 
 Script de propagation du Contexte Système à tous les fichiers
-Version : 2.0.10 (porte §0 SHARED v1.7.31 — montée gen-plan v3.37.1, session web-c30e6506 2026-11-07 : bump mécanique des 3 blocs L2/L3/L3_INNER, résorption du lag v1.7.27 hérité [cause racine : le bump SHARED v1.7.28 Task 58 G2 a propagé les 70 étiquettes manuellement SANS monter l'injecteur — toute propagation ultérieure rétrogradait les étiquettes, constat + correctif v3.37.0] ; précédent 2.0.8 : Task 60 G2 directive propriétaire : ligne « Référence canonique skill/agent » [désambiguïsation — toute référence propriétaire à « mon skill X »/« mon agent X » pointe la forme installée à la racine skills/X/, jamais le PM du corpus @mon-ecosysteme/, ex-nommé @PM-SKILLS/] ; résorption du lag L3_BLOCK_INNER resté en forme v1.7.24 au bump v2.0.7 — les trois blocs L2/L3/L3_INNER désormais alignés ; précédent 2.0.7 : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED])
+Version : 2.1.0 (F-70-2 Task 70 G1 : extension périmètre scripts embarqués skills/*/scripts/*.py — mise à jour idempotente des seuls porteurs d'en-tête §0, jamais d'injection ; précédent 2.0.10 (porte §0 SHARED v1.7.31 — montée gen-plan v3.37.1, session web-c30e6506 2026-11-07 : bump mécanique des 3 blocs L2/L3/L3_INNER, résorption du lag v1.7.27 hérité [cause racine : le bump SHARED v1.7.28 Task 58 G2 a propagé les 70 étiquettes manuellement SANS monter l'injecteur — toute propagation ultérieure rétrogradait les étiquettes, constat + correctif v3.37.0] ; précédent 2.0.8 : Task 60 G2 directive propriétaire : ligne « Référence canonique skill/agent » [désambiguïsation — toute référence propriétaire à « mon skill X »/« mon agent X » pointe la forme installée à la racine skills/X/, jamais le PM du corpus @mon-ecosysteme/, ex-nommé @PM-SKILLS/] ; résorption du lag L3_BLOCK_INNER resté en forme v1.7.24 au bump v2.0.7 — les trois blocs L2/L3/L3_INNER désormais alignés ; précédent 2.0.7 : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED])
 """
 
 import os
@@ -109,7 +109,15 @@ def propagate_to_scripts():
         return 0
     
     count = 0
-    for script in sorted(scripts_dir.glob("*.py")):
+    # F-70-2 (Task 70 G1 — tests installation $FACON2, leçon F-63-1 : le périmètre
+    # doit être PROUVÉ, pas présumé) : le périmètre couvre désormais AUSSI les scripts
+    # embarqués des skills (skills/*/scripts/*.py) — en MISE À JOUR idempotente des
+    # seuls scripts portant déjà un en-tête §0 (jamais d'injection dans un script
+    # qui n'en porte pas : les 3 STALE v1.7.17 alias-manager/orchestrer/is_client
+    # étaient invisibles à la propagation précédente)
+    embarques = sorted((REPO_DIR / "skills").glob("*/scripts/*.py"))
+    embarques_set = set(embarques)
+    for script in sorted(scripts_dir.glob("*.py")) + embarques:
         content = script.read_text(encoding='utf-8')
         
         if "CONTEXTE SYSTÈME" in content:
@@ -130,6 +138,9 @@ def propagate_to_scripts():
                 script.write_text(new_content, encoding='utf-8')
                 count += 1
             continue
+        
+        if script in embarques_set:
+            continue  # F-70-2 : jamais d'injection dans les scripts embarqués des skills
         
         if content.startswith("#!"):
             lines = content.split('\n', 1)

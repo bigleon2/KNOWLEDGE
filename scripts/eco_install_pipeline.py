@@ -170,6 +170,12 @@ def main():
         sync(f"skills/{s}")
     # @historique (archive documentaire R4)
     sync("skills/@historique")
+    # Task 70 G2/G3 — collections @ (hors registre KB versionné par construction,
+    # regex `^## ([\w-]+) v` : sync EXPLICITE — périmètre PM INSTALL étendu aux
+    # collections intégrées @Bibliotheque-skills-Multi-IA (G2) et @GHORG-ecosysteme
+    # (G3) ; sync() ignore gracieusement une collection absente du dépôt)
+    sync("skills/@Bibliotheque-skills-Multi-IA")
+    sync("skills/@GHORG-ecosysteme")
 
     # Étape 8 — Outillage (union : scripts de session conservés)
     sync("scripts")

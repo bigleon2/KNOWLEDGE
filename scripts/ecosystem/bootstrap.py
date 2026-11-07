@@ -6,7 +6,7 @@
   1. ghorg-install.py (D4 : GHORG local compilé, marqueur .ghorg-commit).
   2. cmdr-clone.py (D5 : Karnaugh F/L/S/B — clone/mise à jour de CMDR).
   3. cmdr-overlay-sync.py (D6 : superposition famille TSI, SHA-256, SOURCE.md).
-  4. Manifeste ecosystem/manifest.yaml RÉÉCRIT avec les valeurs réelles du jour
+  4. Manifeste skills/@GHORG-ecosysteme/manifest.yaml RÉÉCRIT avec les valeurs réelles du jour
      (git rev-parse / git ls-remote — jamais de mémoire) ; réécriture seulement
      si le contenu diffère (idempotence : la 2e exécution ne produit aucun changement git).
 
@@ -25,7 +25,10 @@ from _commun import (  # noqa: E402
     depot_existant, git, horodatage, maj_etat, run,
 )
 
-MANIFESTE = KNOWLEDGE / "ecosystem" / "manifest.yaml"
+# Task 70 G3 : le dossier GHORG du dépôt vit désormais sous skills/@GHORG-ecosysteme/
+# (git mv R4 — directive propriétaire) ; la branche overlay CMDR et le dossier
+# cmdr/ecosystem/ (cible de superposition) restent INCHANGÉS.
+MANIFESTE = KNOWLEDGE / "skills" / "@GHORG-ecosysteme" / "manifest.yaml"
 URL_GHORG_SOURCE = f"https://github.com/{GHORG_SOURCE}.git"
 URL_CMDR_SOURCE = f"https://github.com/{CMDR_SOURCE}.git"
 
@@ -102,7 +105,7 @@ def construire_manifeste():
         "  nom_entree: cmdr-editor-fork\n"
         "superposition:\n"
         "  dossier_cible_dans_cmdr: ecosystem\n"
-        "  fichier_selection: ecosystem/selection-tsi.yaml\n"
+        "  fichier_selection: skills/@GHORG-ecosysteme/selection-tsi.yaml\n"
     )
 
 
