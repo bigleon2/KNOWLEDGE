@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.30)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.31)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -10,7 +10,7 @@ Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exé
 Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
 
 Script de propagation du Contexte Système à tous les fichiers
-Version : 2.0.9 (porte §0 SHARED v1.7.30 — montée gen-plan v3.37.0, session web-c30e6506 2026-11-07 : bump mécanique des 3 blocs L2/L3/L3_INNER, résorption du lag v1.7.27 hérité [cause racine : le bump SHARED v1.7.28 Task 58 G2 a propagé les 70 étiquettes manuellement SANS monter l'injecteur — toute propagation ultérieure rétrogradait les étiquettes, constat + correctif v3.37.0] ; précédent 2.0.8 : Task 60 G2 directive propriétaire : ligne « Référence canonique skill/agent » [désambiguïsation — toute référence propriétaire à « mon skill X »/« mon agent X » pointe la forme installée à la racine skills/X/, jamais le PM du corpus @mon-ecosysteme/, ex-nommé @PM-SKILLS/] ; résorption du lag L3_BLOCK_INNER resté en forme v1.7.24 au bump v2.0.7 — les trois blocs L2/L3/L3_INNER désormais alignés ; précédent 2.0.7 : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED])
+Version : 2.0.10 (porte §0 SHARED v1.7.31 — montée gen-plan v3.37.1, session web-c30e6506 2026-11-07 : bump mécanique des 3 blocs L2/L3/L3_INNER, résorption du lag v1.7.27 hérité [cause racine : le bump SHARED v1.7.28 Task 58 G2 a propagé les 70 étiquettes manuellement SANS monter l'injecteur — toute propagation ultérieure rétrogradait les étiquettes, constat + correctif v3.37.0] ; précédent 2.0.8 : Task 60 G2 directive propriétaire : ligne « Référence canonique skill/agent » [désambiguïsation — toute référence propriétaire à « mon skill X »/« mon agent X » pointe la forme installée à la racine skills/X/, jamais le PM du corpus @mon-ecosysteme/, ex-nommé @PM-SKILLS/] ; résorption du lag L3_BLOCK_INNER resté en forme v1.7.24 au bump v2.0.7 — les trois blocs L2/L3/L3_INNER désormais alignés ; précédent 2.0.7 : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED])
 """
 
 import os
@@ -20,7 +20,7 @@ from pathlib import Path
 REPO_DIR = Path(__file__).parent.parent
 SKILLS_ROOT = REPO_DIR / "skills"
 
-CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.30)
+CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.31)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -32,7 +32,7 @@ CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.30)
 """
 
 CONTEXT_HEADER_L3 = '''"""
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.30)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.31)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -46,7 +46,7 @@ Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon 
 # Contenu interne de l'en-tête L3 (utilisé par le remplacement idempotent)
 # v2.0.9 : aligné sur la forme v1.7.30 (résorption du lag v1.7.27 hérité — le bump SHARED v1.7.28 Task 58 G2 avait propagé les 70 étiquettes manuellement sans monter l'injecteur)
 L3_BLOCK_INNER = (
-    "⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.30)\n"
+    "⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.31)\n"
     "SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL\n"
     "Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)\n"
     "Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.\n"

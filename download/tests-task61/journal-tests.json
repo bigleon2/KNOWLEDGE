@@ -1,0 +1,257 @@
+{
+  "journal": "tests-task61 consolidé — vagues chronologiques V1→V5 (12ᵉ directive)",
+  "date": "2026-11-07T09:00:00Z",
+  "plan": "download/plan-task61-suite-consolidee.md",
+  "vagues": [
+    {
+      "vague": "V1",
+      "tache": "Task 56 — gen-plan v3.35.2→v3.37.0 + garde É1-INSTALL + propagation §0",
+      "date": "2026-11-07T08:35:00Z",
+      "tests": [
+        {
+          "id": "T.V1.1",
+          "nom": "replay arbitres famille ×2 (consigné avec durées)",
+          "verdict": "PASS",
+          "details": {
+            "integrity": "110/110 PASS ×2 (0,05 s)",
+            "coherence": "54 PASS / 27 WARN / 0 FAIL ×2 (0,12 s — PASS AVEC RÉSERVES, WARN = dette héritée documentée)",
+            "verify_correct_work": "ALL PASS ×2 (0,03 s)",
+            "verify_cross": "100,0 % ×2 (0,03 s)"
+          }
+        },
+        {
+          "id": "T.V1.2",
+          "nom": "simulation disparition version-management → auto-réparation → no-op",
+          "verdict": "PASS",
+          "details": {
+            "run1": "INSTALLE-REPARÉ rc=0, skills_reparés=[version-management] (restauré v1.2.0 depuis miroir, 0 jeton)",
+            "run2": "INSTALLE no-op (skills_kb_manquants=[])",
+            "complement": "preuve réelle 21ᵉ disparition (suite 16) + simulation — garde Task 56 prouvée en réel ET en simulation"
+          }
+        },
+        {
+          "id": "T.V1.3",
+          "nom": "self-tests : check_plan_protocol + answer-key-checker + trigger_evals",
+          "verdict": "PASS AVEC ÉCART",
+          "details": {
+            "check_plan_protocol_selftest": "OK 7/7",
+            "answer_key_checker": "16/16 ALL PASS",
+            "trigger_evals": "JSON valide, 13 cas",
+            "ecart": "aucun cas trigger_evals pour le déclencheur « met à jour » (v3.37.0) → ticket G3 F-V1-1 (ajout cas + montée PATCH + cascade)"
+          }
+        },
+        {
+          "id": "T.V1.4",
+          "nom": "idempotence propagate-context v2.0.9 ×2 + perf",
+          "verdict": "PASS",
+          "details": {
+            "run1": "0 skills + 0 scripts + 0 agents (no-op) — 0,04 s",
+            "run2": "0 skills + 0 scripts + 0 agents (no-op) — 0,04 s",
+            "note": "idempotence parfaite après propagation v1.7.30 (70+151+2) de la suite 16"
+          }
+        }
+      ]
+    },
+    {
+      "vague": "V2",
+      "tache": "Task 57 — kit TSI (orchestrateur-tsi v1.1.1 + analyse-doc-s4mk2 v1.1.0 + tsi-validator v1.2.0 + agent-TSI)",
+      "date": "2026-11-07T08:38:00Z",
+      "tests": [
+        {
+          "id": "T.V2.1a",
+          "nom": "tsi-validator self-test ×2 (bi-racine, échantillons golden intégrés)",
+          "verdict": "PASS",
+          "details": {
+            "run1": "rc=0 — 0,049 s",
+            "run2": "rc=0 — 0,052 s"
+          }
+        },
+        {
+          "id": "T.V2.1b",
+          "nom": "analyse-doc-s4mk2 : batterie calibrée DJTT v2.1.0",
+          "verdict": "BLOQUÉ (échantillon perdu)",
+          "details": {
+            "cause": "échantillon de référence upload/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.zip ABSENT du disque (upload/ recyclé — volatilité)",
+            "bug_detecte": "TF-00 : TypeError 'tuple' object is not callable (run_all.py L169 — tuple passé au lieu d'une callable à b.test(), branche « ZIP introuvable » jamais exercée à l'époque Task 33) → ticket G3 F-V2-1",
+            "ligne_179": "affichage incohérent avec ast.parse OK → ticket G3 F-V2-3 (examen)"
+          }
+        },
+        {
+          "id": "T.V2.1c",
+          "nom": "analyse-doc-s4mk2 : pipeline RÉEL ×2 sur mes-mappings-tsi-actuels.zip (données propriétaire)",
+          "verdict": "PASS (mécanique)",
+          "details": {
+            "run1_run2": "byte-stable ×2 (sha256[:16] 80ea18a38f6b2a69) — 0,14/0,17 s",
+            "classification": "5 TSI → MAPPING (device Traktor.Kontrol S4MK2.Default, DDIV 2.9.0 R1257) + 1 PRÉFÉRENCES-GÉNÉRIQUES — conforme au référentiel G2 de classification",
+            "verdict_pipeline": "FAIL sémantiquement CORRECT — mappings personnels ≠ référentiel DJTT v2.1.0 (attendus 5626 CMAI/163 noms DCBM calibrés DJTT) — le pipeline fait son travail : verdict mécanique déterministe + motifs détaillés"
+          }
+        },
+        {
+          "id": "T.V2.1d",
+          "nom": "orchestrateur-tsi + agent-TSI : contrôle structurel",
+          "verdict": "PASS",
+          "details": {
+            "fichiers": "skills/orchestrateur-tsi/SKILL.md + orchestrateur-tsi.agent + agent-TSI.agent + skills/tsi-architect/tsi-architect.agent présents",
+            "note": "harnais 36/36 Task 33 non re-localisé au premier passage — contrôle structurel documenté (relations §1.3 matrice)"
+          }
+        },
+        {
+          "id": "T.V2.2",
+          "nom": "perf vagues TSI",
+          "verdict": "PASS",
+          "details": {
+            "validator": "0,049-0,052 s",
+            "pipeline_mes-mappings": "0,14-0,17 s",
+            "comparaison": "2 ordres de grandeur sous seuils CDC (précédents Task 33 : analyseur 0,174 s DJTT)"
+          }
+        }
+      ]
+    },
+    {
+      "vague": "V3",
+      "tache": "Task 60 — pm-skill v1.0.0 + correct-work v2.11.0 + ULTRA",
+      "date": "2026-11-07T08:41:00Z",
+      "tests": [
+        {
+          "id": "T.V3.1a",
+          "nom": "pm-skill self-test ST1-ST11 ×2",
+          "verdict": "PASS",
+          "details": {
+            "run1": "11 PASS · 0 FAIL — 0,04 s",
+            "run2": "11 PASS · 0 FAIL — 0,04 s"
+          }
+        },
+        {
+          "id": "T.V3.1b",
+          "nom": "PM éphémère témoin gen-plan v3.37.0 (auto-portance)",
+          "verdict": "PASS",
+          "details": {
+            "genere": "tmp/tests-v1/PM-ephemere-gen-plan-v3.37.0.md (110 283 octets)",
+            "auto_portance": "§0 embarqué (45 mentions §0/SHARED) — zéro lecture externe (SHARED §6.2)",
+            "sha256_source": "7e06913e3aafd0b2cf436a742d97cf9ee54d97b5b9c70140ecb36184d9c74fbb",
+            "projection": "description v3.37.0 fidèle — déclencheurs « intègre » + « met à jour » + glossaire $FACON/$FACON2 projetés ✓"
+          }
+        },
+        {
+          "id": "T.V3.2",
+          "nom": "correct-work : verify-correct-work ×2 + matrice best-of §12",
+          "verdict": "PASS",
+          "details": {
+            "arbitre": "ALL PASS ×2 (0,03 s)",
+            "matrice_§12": "présente (SKILL.md L485 — best-of v1.0.0→v2.11.0, chaque avantage présent ou supplanté documenté, jamais de ressuscitation R2)"
+          }
+        },
+        {
+          "id": "T.V3.3",
+          "nom": "ULTRA fraîcheur + perf",
+          "verdict": "ÉCART (ULTRA stale)",
+          "details": {
+            "ultra": "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md cite gen-plan v3.35.2 (L50) + dérivé SHARED v1.7.28 — courants v3.37.0/v1.7.30 → ticket G3 F-V3-1 (régénération scripts/gen-ultra-maitre.py + recalibrage)",
+            "perf_pm_ephemere": "génération unitaire 0,04 s (self-test) — batch 68 : couvert self-test ST (11 PASS 0,04 s)"
+          }
+        }
+      ]
+    },
+    {
+      "vague": "V4",
+      "tache": "Task 58 — dessin-technique v1.3.0 + nœud C++ trigo-euler",
+      "date": "2026-11-07T08:50:00Z",
+      "tests": [
+        {
+          "id": "T.V4.1",
+          "nom": "preuves nœud trigo-euler 8/8 (pré-exécuté 07:08 — D004)",
+          "verdict": "PASS",
+          "details": {
+            "preuves": "selftest 15/15 ×2 byte-identiques (sha binaire c6b22a8e…), 15 op one-shot, daemon health, concurrence 4×25 = 100/100 @ 0,102 ms, saturation 9ᵉ refusée, daemon.stop propre, mini-plan ×2 sha16 identiques, VOSS joint 5c vivant (Guldin 29 026,60048 mm³, iso 545 items)",
+            "source": "download/tests-task61/journal-preuves.json"
+          }
+        },
+        {
+          "id": "T.V4.2",
+          "nom": "chaîne Python generer_dessin (partie locale déterministe) ×2 — cas joint 5c",
+          "verdict": "PASS",
+          "details": {
+            "construire_prompt": "byte-stable ×2 — 8ab0f7d9eed6ecb9 (955 car., DNA + scène VOSS 44,9 × 35,2 + couples 40/120 N·m)",
+            "postpro": "byte-stable ×2 — 5bb34182885b0551 (quantification palette DNA 5 tons + fond #f8f8f8)",
+            "annoter": "byte-stable ×2 — 7f5df294b0399e73 (cotes/couples/lignes, #4b4b51)",
+            "note": "le rendu z-ai final passe par l'API générative (non déterministe par nature) — hors périmètre byte-stable, documenté"
+          }
+        },
+        {
+          "id": "T.V4.3",
+          "nom": "perf V4",
+          "verdict": "PASS",
+          "details": {
+            "nœud": "concurrence 0,102 ms moyenne (vs 0,27 ms origine — Task 58)",
+            "chaine_python": "import + traitement < 0,5 s",
+            "compilation": "couverte V4.1 (selftest embarqué)"
+          }
+        }
+      ]
+    },
+    {
+      "vague": "V5",
+      "tache": "Task 61 — travail du jour (installation, --bloc, montées v3.36.0/v3.37.0, injecteur, KB/sceaux)",
+      "date": "2026-11-07T08:55:00Z",
+      "tests": [
+        {
+          "id": "T.V5.1",
+          "nom": "idempotence installation ×3 (pré-exécuté 07:03-07:10 — D003)",
+          "verdict": "PASS",
+          "details": {
+            "runs": "3 × INSTALLE no-op (actions [], 0 défaut, 53 entrées KB, 0,08 s)",
+            "source": "download/tests-task61/install-idempotence.json"
+          }
+        },
+        {
+          "id": "T.V5.2",
+          "nom": "correct-work (projet) --bloc 7 blocs (pré-exécuté 07:07 — D002)",
+          "verdict": "PASS AVEC RÉSERVES",
+          "details": {
+            "verdict_global": "PASS AVEC RÉSERVES (0 S1/S2)",
+            "findings_du_jour": "F1/F2 S4 asymétries pm-skill KB → G3 (D011)",
+            "dette_heritee": "25 asymétries S3/S4 en diminution",
+            "source": "download/rapport-correct-work-bloc-task61.md"
+          }
+        },
+        {
+          "id": "T.V5.3",
+          "nom": "vérifications complémentaires montées du jour",
+          "verdict": "PASS",
+          "details": {
+            "generateur_pm_check": "4 familles COHERENT ×2 (rc=0)",
+            "sceaux_sha": "42/42 OK 0 en défaut (README §5 vs fichiers réels)",
+            "couverture_pm_v3370": "WARN §1.13 = faux positif hérité documenté (note de numérotation Task 21)",
+            "arbitres": "integrity 110/110 ×2 · coherence 54/27/0 ×2 · vcw ALL PASS ×2 · cross 100 % ×2"
+          }
+        },
+        {
+          "id": "T.V5.4",
+          "nom": "montées v3.36.0/v3.37.0 + cascade + injecteur (consignées worklog suites 16-17)",
+          "verdict": "PASS",
+          "details": {
+            "v3360": "E7-DISP ouverture d'étape + transversalité §5.5 (cascade interrompue → consolidée par v3.37.0 — constat d'honnêteté)",
+            "v3370": "déclencheur « met à jour » + glossaire $FACON/$FACON2 inline — preuve vivante : plan consolidé généré PAR le déclencheur (check_plan_protocol PASS P1-P5)",
+            "injecteur": "propagate-context v2.0.9 (cause racine rétrogradation résorbée) — propagation 70 skills + 151 scripts + 2 agents, idempotence ×2 no-op",
+            "commit": "a38ae1e (cascade) + commit plan consolidé"
+          }
+        }
+      ]
+    }
+  ],
+  "synthese": {
+    "total_tests": 20,
+    "pass": 18,
+    "bloque": 1,
+    "fail": 0,
+    "tickets_g3": [
+      "F-V1-1 trigger_evals « met à jour » absent (montée PATCH + cascade)",
+      "F-V2-1 bug TF-00 run_all.py tuple-not-callable",
+      "F-V2-2 échantillon DJTT v2.1.0 perdu (batterie calibrée SKIP)",
+      "F-V2-3 ligne 179 run_all.py à examiner",
+      "F-V3-1 ULTRA stale (régénération)",
+      "F1/F2 asymétries pm-skill KB (rapport --bloc)",
+      "131 changements de mode à normaliser"
+    ]
+  }
+}

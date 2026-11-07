@@ -1,0 +1,16 @@
+T01 trig.eval                PASS — sin(0.5) = 0,479425538604
+T02 trig.resoudre            PASS — 3-4-5 → hyp 5, angle 36,869898°
+T03 canonique.cercle         PASS — 3 points → centre (2, 2), rayon 2,828427
+T04 canonique.ellipse        PASS — a = 3, b = 1,5, rot = 30°
+T05 analyse.derivee          PASS — d/dx cos en 0.5 = -0,479425539
+T06 analyse.primitive        PASS — ∫(1+2x+3x²)dx = x + x² + x³ + C
+T07 analyse.integrale        PASS — ∫sin sur [0, π] = 2
+T08 fourier.serie            PASS — série de sin : bn[1] = 1
+T09 fourier.eval             PASS — sin(π/2) reconstruit = 1
+T10 euler.formule            PASS — e^(iπ/2) = 0 + 1·i
+T11 euler.rotation           PASS — ZXZ (90,0,0) : (1,0,0) → (0,1,0), q = [√2/2, 0, 0, √2/2]
+T12 euler.projection         PASS — iso (1,0,0) → (-0,707107, -0,408248), ratio cap concordant
+T13 euler.caracteristique    PASS — Rz(90°) → angle 90°, axe z, quaternion [√2/2, 0, 0, √2/2]
+T14 piece.profil_2d          PASS — cylindre Ø20×50 : demi 500 mm², V = 15707,9633 mm³ (Guldin)
+T15 piece.modele_iso         PASS — cylindre : 73 items, tri profondeur OK, cap dessus visible, ratio cap concordant
+{"script":"trigo-euler","version":"1.0.0","verdict":"15/15 PASS","tests":[{"id":"T01","capacite":"trig.eval","pass":true,"detail":"sin(0.5) = 0,479425538604"},{"id":"T02","capacite":"trig.resoudre","pass":true,"detail":"3-4-5 → hyp 5, angle 36,869898°"},{"id":"T03","capacite":"canonique.cercle","pass":true,"detail":"3 points → centre (2, 2), rayon 2,828427"},{"id":"T04","capacite":"canonique.ellipse","pass":true,"detail":"a = 3, b = 1,5, rot = 30°"},{"id":"T05","capacite":"analyse.derivee","pass":true,"detail":"d/dx cos en 0.5 = -0,479425539"},{"id":"T06","capacite":"analyse.primitive","pass":true,"detail":"∫(1+2x+3x²)dx = x + x² + x³ + C"},{"id":"T07","capacite":"analyse.integrale","pass":true,"detail":"∫sin sur [0, π] = 2"},{"id":"T08","capacite":"fourier.serie","pass":true,"detail":"série de sin : bn[1] = 1"},{"id":"T09","capacite":"fourier.eval","pass":true,"detail":"sin(π/2) reconstruit = 1"},{"id":"T10","capacite":"euler.formule","pass":true,"detail":"e^(iπ/2) = 0 + 1·i"},{"id":"T11","capacite":"euler.rotation","pass":true,"detail":"ZXZ (90,0,0) : (1,0,0) → (0,1,0), q = [√2/2, 0, 0, √2/2]"},{"id":"T12","capacite":"euler.projection","pass":true,"detail":"iso (1,0,0) → (-0,707107, -0,408248), ratio cap concordant"},{"id":"T13","capacite":"euler.caracteristique","pass":true,"detail":"Rz(90°) → angle 90°, axe z, quaternion [√2/2, 0, 0, √2/2]"},{"id":"T14","capacite":"piece.profil_2d","pass":true,"detail":"cylindre Ø20×50 : demi 500 mm², V = 15707,9633 mm³ (Guldin)"},{"id":"T15","capacite":"piece.modele_iso","pass":true,"detail":"cylindre : 73 items, tri profondeur OK, cap dessus visible, ratio cap concordant"}]}

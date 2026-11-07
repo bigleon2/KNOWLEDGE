@@ -1,6 +1,6 @@
 ---
 name: pm-skill
-version: 1.0.0
+version: 1.0.1
 category: ecosystem
 language: fr
 tags:
@@ -42,13 +42,16 @@ dependencies:
   - skill: gen-plan
     version: ">=3.20.0"
     used_at: "garde É1-INSTALL préalable (l'écosystème doit être installé — les SKILL.md sources sont la matière première de la projection)"
+  - skill: correct-work
+    version: ">=2.4.0"
+    used_at: "certification post-intégration (arbitres integrity/verify-cross rejoués après création — finding F2 du correct-work --bloc Task 61, bidirectionnalité SHARED §3.2, v1.0.1)"
 read_when:
   - Déclencher quand la demande concerne : exporter ou utiliser un skill de l'écosystème dans une IA externe (ChatGPT, Claude, Gemini…), générer le prompt maître d'un skill sous forme de fichier MD autonome, obtenir une version auto-portante collable d'un skill.
   - Déclencher si la demande mentionne : PM-skill, PM-skill(<skill>), prompt maître éphémère, « génère le prompt maître de X », « exporte X pour une IA », « je veux utiliser mon skill X dans ChatGPT/Claude/Gemini ».
   - Ne pas déclencher pour : la montée de version d'un skill famille et la génération de son PM corpus (cascade KO-L004 via gen-plan), l'exécution d'un skill dans l'écosystème (voie native = le skill installé, règle canonique SHARED §0/§1.2), l'installation de l'écosystème (PM-INSTALL).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.30)
+## §0 — Contexte Système (SHARED v1.7.31)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

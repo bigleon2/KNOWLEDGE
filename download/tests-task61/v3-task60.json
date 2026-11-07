@@ -1,0 +1,45 @@
+{
+  "vague": "V3",
+  "tache": "Task 60 — pm-skill v1.0.0 + correct-work v2.11.0 + ULTRA",
+  "date": "2026-11-07T08:41:00Z",
+  "tests": [
+    {
+      "id": "T.V3.1a",
+      "nom": "pm-skill self-test ST1-ST11 ×2",
+      "verdict": "PASS",
+      "details": {
+        "run1": "11 PASS · 0 FAIL — 0,04 s",
+        "run2": "11 PASS · 0 FAIL — 0,04 s"
+      }
+    },
+    {
+      "id": "T.V3.1b",
+      "nom": "PM éphémère témoin gen-plan v3.37.0 (auto-portance)",
+      "verdict": "PASS",
+      "details": {
+        "genere": "tmp/tests-v1/PM-ephemere-gen-plan-v3.37.0.md (110 283 octets)",
+        "auto_portance": "§0 embarqué (45 mentions §0/SHARED) — zéro lecture externe (SHARED §6.2)",
+        "sha256_source": "7e06913e3aafd0b2cf436a742d97cf9ee54d97b5b9c70140ecb36184d9c74fbb",
+        "projection": "description v3.37.0 fidèle — déclencheurs « intègre » + « met à jour » + glossaire $FACON/$FACON2 projetés ✓"
+      }
+    },
+    {
+      "id": "T.V3.2",
+      "nom": "correct-work : verify-correct-work ×2 + matrice best-of §12",
+      "verdict": "PASS",
+      "details": {
+        "arbitre": "ALL PASS ×2 (0,03 s)",
+        "matrice_§12": "présente (SKILL.md L485 — best-of v1.0.0→v2.11.0, chaque avantage présent ou supplanté documenté, jamais de ressuscitation R2)"
+      }
+    },
+    {
+      "id": "T.V3.3",
+      "nom": "ULTRA fraîcheur + perf",
+      "verdict": "ÉCART (ULTRA stale)",
+      "details": {
+        "ultra": "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md cite gen-plan v3.35.2 (L50) + dérivé SHARED v1.7.28 — courants v3.37.0/v1.7.30 → ticket G3 F-V3-1 (régénération scripts/gen-ultra-maitre.py + recalibrage)",
+        "perf_pm_ephemere": "génération unitaire 0,04 s (self-test) — batch 68 : couvert self-test ST (11 PASS 0,04 s)"
+      }
+    }
+  ]
+}

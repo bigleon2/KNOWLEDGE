@@ -166,7 +166,7 @@ def batterie(zip_path, dir_path, pdf_dir=None):
     print(f"  échantillon ZIP    : {zip_path}")
     b = Batterie()
     if not os.path.isfile(zip_path):
-        b.test("TF-00", "échantillon de référence disponible", (False, f"ZIP introuvable : {zip_path}"))
+        b.test("TF-00", "échantillon de référence disponible", lambda: (False, f"ZIP introuvable : {zip_path}"))
         synth = b.synthese(zip_path)
         print(f"BATTERIE : {synth['verdict']} ({synth['passes']}/{synth['total']})")
         return 1

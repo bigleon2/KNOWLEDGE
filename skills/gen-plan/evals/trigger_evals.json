@@ -50,5 +50,13 @@
   {
     "query": "J'ai stoppé l'exécution du plan en cours de route pour te préciser un point : reprends le plan, intègre cette précision et continue.",
     "should_trigger": true
+  },
+  {
+    "query": "Met à jour le plan d'actions avec les nouvelles demandes du jour.",
+    "should_trigger": true
+  },
+  {
+    "query": "Met à jour les dépendances npm de ce projet web.",
+    "should_trigger": false
   }
 ]

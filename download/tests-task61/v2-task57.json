@@ -1,0 +1,55 @@
+{
+  "vague": "V2",
+  "tache": "Task 57 — kit TSI (orchestrateur-tsi v1.1.1 + analyse-doc-s4mk2 v1.1.0 + tsi-validator v1.2.0 + agent-TSI)",
+  "date": "2026-11-07T08:38:00Z",
+  "tests": [
+    {
+      "id": "T.V2.1a",
+      "nom": "tsi-validator self-test ×2 (bi-racine, échantillons golden intégrés)",
+      "verdict": "PASS",
+      "details": {
+        "run1": "rc=0 — 0,049 s",
+        "run2": "rc=0 — 0,052 s"
+      }
+    },
+    {
+      "id": "T.V2.1b",
+      "nom": "analyse-doc-s4mk2 : batterie calibrée DJTT v2.1.0",
+      "verdict": "BLOQUÉ (échantillon perdu)",
+      "details": {
+        "cause": "échantillon de référence upload/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.zip ABSENT du disque (upload/ recyclé — volatilité)",
+        "bug_detecte": "TF-00 : TypeError 'tuple' object is not callable (run_all.py L169 — tuple passé au lieu d'une callable à b.test(), branche « ZIP introuvable » jamais exercée à l'époque Task 33) → ticket G3 F-V2-1",
+        "ligne_179": "affichage incohérent avec ast.parse OK → ticket G3 F-V2-3 (examen)"
+      }
+    },
+    {
+      "id": "T.V2.1c",
+      "nom": "analyse-doc-s4mk2 : pipeline RÉEL ×2 sur mes-mappings-tsi-actuels.zip (données propriétaire)",
+      "verdict": "PASS (mécanique)",
+      "details": {
+        "run1_run2": "byte-stable ×2 (sha256[:16] 80ea18a38f6b2a69) — 0,14/0,17 s",
+        "classification": "5 TSI → MAPPING (device Traktor.Kontrol S4MK2.Default, DDIV 2.9.0 R1257) + 1 PRÉFÉRENCES-GÉNÉRIQUES — conforme au référentiel G2 de classification",
+        "verdict_pipeline": "FAIL sémantiquement CORRECT — mappings personnels ≠ référentiel DJTT v2.1.0 (attendus 5626 CMAI/163 noms DCBM calibrés DJTT) — le pipeline fait son travail : verdict mécanique déterministe + motifs détaillés"
+      }
+    },
+    {
+      "id": "T.V2.1d",
+      "nom": "orchestrateur-tsi + agent-TSI : contrôle structurel",
+      "verdict": "PASS",
+      "details": {
+        "fichiers": "skills/orchestrateur-tsi/SKILL.md + orchestrateur-tsi.agent + agent-TSI.agent + skills/tsi-architect/tsi-architect.agent présents",
+        "note": "harnais 36/36 Task 33 non re-localisé au premier passage — contrôle structurel documenté (relations §1.3 matrice)"
+      }
+    },
+    {
+      "id": "T.V2.2",
+      "nom": "perf vagues TSI",
+      "verdict": "PASS",
+      "details": {
+        "validator": "0,049-0,052 s",
+        "pipeline_mes-mappings": "0,14-0,17 s",
+        "comparaison": "2 ordres de grandeur sous seuils CDC (précédents Task 33 : analyseur 0,174 s DJTT)"
+      }
+    }
+  ]
+}

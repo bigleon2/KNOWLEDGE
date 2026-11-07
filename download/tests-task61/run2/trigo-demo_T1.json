@@ -1,0 +1,8 @@
+{
+ "op": "trig.eval",
+ "ok": true,
+ "fonction": "sin",
+ "x": 0.5,
+ "unites": "rad",
+ "valeur": 0.4794255386
+}

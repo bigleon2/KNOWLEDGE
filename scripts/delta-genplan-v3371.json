@@ -1,0 +1,4 @@
+{
+ "history": "PATCH trigger_evals (ticket F-V1-1 des vagues de tests V1 — Task 61 G3) : 13 → 15 cas (+1 positif « Met à jour le plan d'actions avec les nouvelles demandes du jour. » → déclencheur verbatim de consolidation v3.37.0 ; +1 négatif « Met à jour les dépendances npm de ce projet web. » → hors périmètre plan d'actions) — non-régression triggers du second déclencheur verbatim (précédent v3.17.2) ; aucun changement de contrat ni de description ; cascade KO-L004 : PM v3.37.1, pin ECO_SKILLS 3.37.1, KB, historiques-par-skill (48 versions / 40 PMs), ULTRA régénéré ×2, replay arbitres ×2.",
+ "subs": []
+}

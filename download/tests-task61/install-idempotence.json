@@ -1,0 +1,45 @@
+{
+  "test": "G1-SG1.2 — idempotence système d installation (T1.2.1/T1.2.2)",
+  "date": "2026-11-07T07:10:00Z",
+  "runs": [
+    {
+      "run": 1,
+      "role": "re-jeu n°1 (T1.2.1)",
+      "rc": 0,
+      "verdict": "INSTALLE",
+      "actions": [],
+      "controle_final": "INSTALLE",
+      "defauts_apres": 0,
+      "kb_entrees": 53
+    },
+    {
+      "run": 2,
+      "role": "idempotence ×2 (T1.2.2)",
+      "rc": 0,
+      "verdict": "INSTALLE",
+      "actions": [],
+      "duree_s": 0.08
+    },
+    {
+      "run": 3,
+      "role": "idempotence ×2 (T1.2.2)",
+      "rc": 0,
+      "verdict": "INSTALLE",
+      "actions": [],
+      "duree_s": 0.08
+    }
+  ],
+  "reference_premier_passage": {
+    "date": "2026-11-07T07:00Z environ",
+    "verdict": "REINSTALLE",
+    "defauts_initials": 59,
+    "defauts_apres": 0,
+    "pipeline_rc": 0
+  },
+  "verdicts": {
+    "no_op_etat_sain": "PASS",
+    "idempotence_x2": "PASS",
+    "perf_controle_etat_sain_s": 0.08
+  },
+  "conclusion": "P5 système d installation : contrôle état sain 0,08 s (garde légère), no-op parfait ×3, réparation ce jour 59->0."
+}

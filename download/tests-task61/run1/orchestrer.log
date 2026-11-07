@@ -1,0 +1,8 @@
+{
+ "verdict": "PASS",
+ "taches": 2,
+ "canaux_utilises": [
+  "daemon-socket"
+ ],
+ "journal": "/home/z/my-project/download/tests-task61/run1/journal.json"
+}

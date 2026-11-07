@@ -1,0 +1,62 @@
+{
+ "date_debut": "2026-11-07T07:08:54",
+ "plans": [
+  "trigo-demo"
+ ],
+ "graphe": {
+  "noeuds": [
+   "trigo-demo/T1",
+   "trigo-demo/T2"
+  ],
+  "niveaux": [
+   [
+    "trigo-demo/T1"
+   ],
+   [
+    "trigo-demo/T2"
+   ]
+  ],
+  "aretes": [
+   {
+    "de": "trigo-demo/T1",
+    "vers": "trigo-demo/T2"
+   }
+  ],
+  "canaux": {
+   "trigo-demo/T1": {
+    "canal": "daemon-socket",
+    "rationale": "2 tâches restantes visent 'trigo-euler' (projets : ['trigo-demo']) -> binaire rémanent partagé"
+   },
+   "trigo-demo/T2": {
+    "canal": "daemon-socket",
+    "rationale": "2 tâches restantes visent 'trigo-euler' (projets : ['trigo-demo']) -> binaire rémanent partagé"
+   }
+  }
+ },
+ "taches": [
+  {
+   "id": "trigo-demo/T1",
+   "script": "trigo-euler",
+   "op": "trig.eval",
+   "canal": "daemon-socket",
+   "projet": "trigo-demo",
+   "statut": "OK",
+   "out": "/home/z/my-project/download/tests-task61/run2/trigo-demo_T1.json",
+   "sha16": "92dea0dddb1f811d",
+   "duree_ms": 0.66
+  },
+  {
+   "id": "trigo-demo/T2",
+   "script": "trigo-euler",
+   "op": "trig.resoudre",
+   "canal": "daemon-socket",
+   "projet": "trigo-demo",
+   "statut": "OK",
+   "out": "/home/z/my-project/download/tests-task61/run2/trigo-demo_T2.json",
+   "sha16": "91f0c5a2e8ccaaeb",
+   "duree_ms": 0.39
+  }
+ ],
+ "verdict": "PASS",
+ "date_fin": "2026-11-07T07:08:54"
+}
