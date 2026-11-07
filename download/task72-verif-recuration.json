@@ -1,0 +1,31 @@
+{
+  "verdict": "PASS",
+  "resultats": {
+    "D001_version": {
+      "statut": "PASS",
+      "detail": "version frontmatter = 3.39.0"
+    },
+    "D002_poids": {
+      "statut": "PASS",
+      "detail": "30668 octets (29.9 Kio ≈ 7667 #token) — réduction 71.2% (avant 106465 octets / 104.0 Kio)"
+    },
+    "D003_moves": {
+      "statut": "PASS",
+      "detail": "9/9 byte-identiques baseline ↔ references/"
+    },
+    "D004_non_duplication": {
+      "statut": "PASS",
+      "detail": "aucune fenêtre 1024 o d'un bloc déplacé dupliquée inline"
+    },
+    "D005_contrats": {
+      "statut": "PASS",
+      "detail": "§A + §0 SHARED + read_when + evals ×2 + comptages §A == baseline"
+    }
+  },
+  "poids": {
+    "octets": 30668,
+    "kio": 29.9,
+    "token_estimes": 7667,
+    "reduction_pct": 71.2
+  }
+}

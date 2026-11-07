@@ -1,0 +1,91 @@
+{
+  "horodatage": "2026-11-08T10:45:00Z",
+  "skill_md": {
+    "version": "3.38.0",
+    "octets": 106465,
+    "lignes": 489,
+    "sha256": "3e71ea45fc5a093110cf492a0a82a1f3f3af3af82059230e7a4401870206d4e6",
+    "kio": 104.0,
+    "token_estimes": 26616
+  },
+  "blocs": {
+    "journal_versions": {
+      "sha256_brut": "40c78cc14025e89587bdea18afd63779ce412dd74e78e77ed30fed239b5cd39b",
+      "sha256_rstrip": "40c78cc14025e89587bdea18afd63779ce412dd74e78e77ed30fed239b5cd39b",
+      "octets": 32325,
+      "octets_rstrip": 32325
+    },
+    "regles_or": {
+      "sha256_brut": "531cd46d021e34d82b8e1fc13476ee1ced9c1714dc1bcbf5af2f77cde7868212",
+      "sha256_rstrip": "a5bdfae05e61a4bea252de9efcb3f9129370372fcd8aee33d70d1a1d19d1e8ea",
+      "octets": 19495,
+      "octets_rstrip": 19494
+    },
+    "lecons_ko": {
+      "sha256_brut": "81f773112ed1a7007196cb1f52fe06c2cc4b6bcf44b3b936383cf6e6cb76d454",
+      "sha256_rstrip": "36a79484de2750eeeda4c891cf610e77a9555b810e89098fb305b967c7236310",
+      "octets": 5007,
+      "octets_rstrip": 5006
+    },
+    "disciplines": {
+      "sha256_brut": "bbc8280573179ab25b43c7b3cfe2ab06b7276f393cabf5bf8e39f4a9486e7361",
+      "sha256_rstrip": "080ea86ed8b0b47697884c28a7db88228404cc32a44c39f1a2fa0574bc0cec58",
+      "octets": 11253,
+      "octets_rstrip": 11252
+    },
+    "hooks_patterns": {
+      "sha256_brut": "a955953fd097a472fb8c900a90f128d5a1acf5b5b8b2abef5904c05087fb8d9e",
+      "sha256_rstrip": "a955953fd097a472fb8c900a90f128d5a1acf5b5b8b2abef5904c05087fb8d9e",
+      "octets": 5722,
+      "octets_rstrip": 5722
+    },
+    "routage_install": {
+      "sha256_brut": "1f402af399dd465413193ce67dda9d31ac0a2d57600ab0af9dd0a4f6928c5b14",
+      "sha256_rstrip": "2d07d50cbb70901c77e4f02344bdf9bb1a2c90bfa42dea1572d63a78155ca50a",
+      "octets": 3499,
+      "octets_rstrip": 3498
+    },
+    "mode_step": {
+      "sha256_brut": "7f5e2af67f826061fd02c5c6290f447cbdc9141759725e88544c1cd957f43003",
+      "sha256_rstrip": "9434cb35d818488653e57c0a024133e88b4c3ed374a6dc490629c8624a789a88",
+      "octets": 4277,
+      "octets_rstrip": 4276
+    },
+    "contingences": {
+      "sha256_brut": "04dbc8a16d98f41c67570fb480e57b964fa28a3e34cd2d13e1692058eb143e66",
+      "sha256_rstrip": "04dbc8a16d98f41c67570fb480e57b964fa28a3e34cd2d13e1692058eb143e66",
+      "octets": 1531,
+      "octets_rstrip": 1531
+    },
+    "philo4": {
+      "sha256_brut": "f537179d43b930807e59e1d6b436de459442e077de65e6cd36e662f1815d93e9",
+      "sha256_rstrip": "f537179d43b930807e59e1d6b436de459442e077de65e6cd36e662f1815d93e9",
+      "octets": 1561,
+      "octets_rstrip": 1561
+    }
+  },
+  "contrats": {
+    "bloc_A_sha256": "c6582197bb3a9a0169f399a0814908968a4da18676ee1e57f99ce5b1adc20396",
+    "bloc_A_octets": 3480,
+    "bloc_0_sha256": "bb8fe775fe416f775f98b03ef8a3b07d80d45929ee6dac60d3f6e3b09d873298",
+    "bloc_0_octets": 1652,
+    "read_when_sha256": "2c22661cc8ce973962dfd4684c22e6d0cf58862a3856b7bc6e0865b53ae9b9ec",
+    "evals_json_sha256": "74b52b3d42511044448a77db28ae6855738a0cc1c48bf3281bdef8955a98e327",
+    "trigger_evals_json_sha256": "de229e8be6aa8fbea2672be870fc49dfc1f50547ae179bdc4c25ffa55191193b",
+    "comptages_dans_A": {
+      "gen-plan:": 4,
+      "gen-plan(step)": 1,
+      "gen-plan(step-ok)": 1,
+      "gen-plan:correct-work(projet)": 1,
+      "gen-plan:correct-work(<cible>)": 1,
+      "gen-plan:generate": 1,
+      "intègre dans le plan d'actions": 2,
+      "met à jour (le plan d'actions)": 1,
+      "orchestre": 1,
+      "$FACON": 6,
+      "$FACON2": 3
+    },
+    "bloc_0_sha256_sans_label": "444b8092e70f8aee1ce87e4478a96481d6452f328b6a484624f6b198054e8fe4",
+    "note_bloc_0": "étiq. SHARED normalisée (harnais v2 — Task 72 SG1.4 : le bump SHARED v1.7.34 par propagate-context est une évolution légitime écosystème, hors contrat gen-plan ; preuve : §0 courant == baseline modulo étiquette)"
+  }
+}

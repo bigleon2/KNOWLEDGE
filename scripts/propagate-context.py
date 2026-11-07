@@ -32,7 +32,7 @@ CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.31)
 """
 
 CONTEXT_HEADER_L3 = '''"""
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.33)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.34)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

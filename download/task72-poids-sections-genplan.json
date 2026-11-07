@@ -1,0 +1,288 @@
+{
+  "fichier": "/home/z/my-project/skills/gen-plan/SKILL.md",
+  "taille_octets": 106465,
+  "taille_kio": 104.0,
+  "tokens_estimes": 26616,
+  "nb_lignes": 489,
+  "total_sections_octets": 106434,
+  "sections_par_poids": [
+    {
+      "section": "§5.6 Journal des versions (fusion des lignées — v3.27.0)",
+      "niveau": 3,
+      "ligne_debut": 468,
+      "octets": 32391,
+      "ligne_fin": 489,
+      "kio": 31.6,
+      "tokens_estimes": 8097
+    },
+    {
+      "section": "§1.5 Règles d'or (PM v3.7.0 §1.8)",
+      "niveau": 3,
+      "ligne_debut": 149,
+      "octets": 19495,
+      "ligne_fin": 183,
+      "kio": 19.0,
+      "tokens_estimes": 4873
+    },
+    {
+      "section": "§1.6 Disciplines d'ingénierie de prompts (PM v3.12.0 §1.9)",
+      "niveau": 3,
+      "ligne_debut": 184,
+      "octets": 11253,
+      "ligne_fin": 267,
+      "kio": 11.0,
+      "tokens_estimes": 2813
+    },
+    {
+      "section": "§1.2bis Hooks patterns avancés (v3.13.0, phase N20)",
+      "niveau": 3,
+      "ligne_debut": 104,
+      "octets": 8909,
+      "ligne_fin": 131,
+      "kio": 8.7,
+      "tokens_estimes": 2227
+    },
+    {
+      "section": "§5.5 Mode step — structure hiérarchique et état d'avancement (v3.25.0)",
+      "niveau": 3,
+      "ligne_debut": 456,
+      "octets": 4277,
+      "ligne_fin": 467,
+      "kio": 4.2,
+      "tokens_estimes": 1069
+    },
+    {
+      "section": "§1.16 Routage de découverte des skills + garde d'installation (v3.20.0, Task 23 + Task 29)",
+      "niveau": 3,
+      "ligne_debut": 319,
+      "octets": 3499,
+      "ligne_fin": 329,
+      "kio": 3.4,
+      "tokens_estimes": 874
+    },
+    {
+      "section": "§A — DÉCLENCHEURS (v3.28.0 — intégration du §A du PM GEN-PLAN, tâche 1 directive 10 tâches)",
+      "niveau": 2,
+      "ligne_debut": 46,
+      "octets": 3480,
+      "ligne_fin": 61,
+      "kio": 3.4,
+      "tokens_estimes": 870
+    },
+    {
+      "section": "§3 — Relations",
+      "niveau": 2,
+      "ligne_debut": 395,
+      "octets": 3201,
+      "ligne_fin": 420,
+      "kio": 3.1,
+      "tokens_estimes": 800
+    },
+    {
+      "section": "§1.15 Leçons knowledge-observer — recalibrage croisé (re-curation B13, modes M3-M4)",
+      "niveau": 3,
+      "ligne_debut": 301,
+      "octets": 3031,
+      "ligne_fin": 318,
+      "kio": 3.0,
+      "tokens_estimes": 757
+    },
+    {
+      "section": "§1.4 Philosophie clés",
+      "niveau": 3,
+      "ligne_debut": 138,
+      "octets": 2420,
+      "ligne_fin": 148,
+      "kio": 2.4,
+      "tokens_estimes": 605
+    },
+    {
+      "section": "§2.2 Structure",
+      "niveau": 3,
+      "ligne_debut": 338,
+      "octets": 2006,
+      "ligne_fin": 362,
+      "kio": 2.0,
+      "tokens_estimes": 501
+    },
+    {
+      "section": "§1.14 Leçons knowledge-observer — économie API et arbitres (re-curation B13, modes M3-M4)",
+      "niveau": 3,
+      "ligne_debut": 285,
+      "octets": 1975,
+      "ligne_fin": 300,
+      "kio": 1.9,
+      "tokens_estimes": 493
+    },
+    {
+      "section": "(frontmatter)",
+      "ligne_debut": 1,
+      "ligne_fin": 45,
+      "octets": 1926,
+      "kio": 1.9,
+      "tokens_estimes": 481
+    },
+    {
+      "section": "§4 — Grille #token",
+      "niveau": 2,
+      "ligne_debut": 421,
+      "octets": 1889,
+      "ligne_fin": 434,
+      "kio": 1.8,
+      "tokens_estimes": 472
+    },
+    {
+      "section": "§0 — Contexte Système (SHARED v1.7.33)",
+      "niveau": 2,
+      "ligne_debut": 62,
+      "octets": 1652,
+      "ligne_fin": 70,
+      "kio": 1.6,
+      "tokens_estimes": 413
+    },
+    {
+      "section": "§2.4 Profils ressource",
+      "niveau": 3,
+      "ligne_debut": 373,
+      "octets": 801,
+      "ligne_fin": 388,
+      "kio": 0.8,
+      "tokens_estimes": 200
+    },
+    {
+      "section": "§1.2 Les 15 étapes (E1-E15)",
+      "niveau": 3,
+      "ligne_debut": 82,
+      "octets": 725,
+      "ligne_fin": 103,
+      "kio": 0.7,
+      "tokens_estimes": 181
+    },
+    {
+      "section": "§1.7 Pipeline d'optimisation écosystème Z0-Z6 (PM v3.11.0 §1.10)",
+      "niveau": 3,
+      "ligne_debut": 268,
+      "octets": 599,
+      "ligne_fin": 279,
+      "kio": 0.6,
+      "tokens_estimes": 149
+    },
+    {
+      "section": "§5.4 Hook correct-work par phase (E9-E14)",
+      "niveau": 3,
+      "ligne_debut": 452,
+      "octets": 416,
+      "ligne_fin": 455,
+      "kio": 0.4,
+      "tokens_estimes": 104
+    },
+    {
+      "section": "§1.3 Normes",
+      "niveau": 3,
+      "ligne_debut": 132,
+      "octets": 386,
+      "ligne_fin": 137,
+      "kio": 0.4,
+      "tokens_estimes": 96
+    },
+    {
+      "section": "§1.1 Les 4 modes",
+      "niveau": 3,
+      "ligne_debut": 73,
+      "octets": 361,
+      "ligne_fin": 81,
+      "kio": 0.4,
+      "tokens_estimes": 90
+    },
+    {
+      "section": "§2.5 Intégration KB",
+      "niveau": 3,
+      "ligne_debut": 389,
+      "octets": 336,
+      "ligne_fin": 394,
+      "kio": 0.3,
+      "tokens_estimes": 84
+    },
+    {
+      "section": "§2.3 Auto-calibration E15",
+      "niveau": 3,
+      "ligne_debut": 363,
+      "octets": 322,
+      "ligne_fin": 372,
+      "kio": 0.3,
+      "tokens_estimes": 80
+    },
+    {
+      "section": "§1.8 Règles d'idempotence R1-R6 (PM v3.11.0 §1.11)",
+      "niveau": 3,
+      "ligne_debut": 280,
+      "octets": 244,
+      "ligne_fin": 284,
+      "kio": 0.2,
+      "tokens_estimes": 61
+    },
+    {
+      "section": "§5.1 Nommage",
+      "niveau": 3,
+      "ligne_debut": 437,
+      "octets": 215,
+      "ligne_fin": 443,
+      "kio": 0.2,
+      "tokens_estimes": 53
+    },
+    {
+      "section": "§2.1 Stack",
+      "niveau": 3,
+      "ligne_debut": 332,
+      "octets": 205,
+      "ligne_fin": 337,
+      "kio": 0.2,
+      "tokens_estimes": 51
+    },
+    {
+      "section": "§5.3 Tagging #token (N1)",
+      "niveau": 3,
+      "ligne_debut": 448,
+      "octets": 167,
+      "ligne_fin": 451,
+      "kio": 0.2,
+      "tokens_estimes": 41
+    },
+    {
+      "section": "§5.2 Python uniquement (N3)",
+      "niveau": 3,
+      "ligne_debut": 444,
+      "octets": 154,
+      "ligne_fin": 447,
+      "kio": 0.2,
+      "tokens_estimes": 38
+    },
+    {
+      "section": "§1 — Spécification fonctionnelle",
+      "niveau": 2,
+      "ligne_debut": 71,
+      "octets": 40,
+      "ligne_fin": 72,
+      "kio": 0.0,
+      "tokens_estimes": 10
+    },
+    {
+      "section": "§2 — Spécification technique",
+      "niveau": 2,
+      "ligne_debut": 330,
+      "octets": 36,
+      "ligne_fin": 331,
+      "kio": 0.0,
+      "tokens_estimes": 9
+    },
+    {
+      "section": "§5 — Conventions",
+      "niveau": 2,
+      "ligne_debut": 435,
+      "octets": 23,
+      "ligne_fin": 436,
+      "kio": 0.0,
+      "tokens_estimes": 5
+    }
+  ]
+}

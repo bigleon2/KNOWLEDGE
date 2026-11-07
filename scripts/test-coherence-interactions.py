@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.33)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.34)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -490,11 +490,11 @@ else:
 pm_name = pm_file.name if pm_file else "(PM absent du corpus)"
 pm_gv = (re.search(r"v([0-9]+(?:\.[0-9]+)*)", pm_name).group(1) if pm_file else gv)
 pm_text = pm_file.read_text(encoding="utf-8") if pm_file else ""
-pm_ok = bool(pm_file) and pm_gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1560  # recalibrage L004 2e éd. (session web-6058b3ba, 2026-11-04, Task 47) : croissance directive propriétaire — règle d'or n°7 [v3.33.0, 1511 L] + précision sémantique [v3.33.1, 1513 L] ; 1er recalibrage L004 (web-b93f42fa, 2026-10-09) : PM v3.21.0 = 1425 L (bloc KO-L004 v1.1.0, croissance directive)
+pm_ok = bool(pm_file) and pm_gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1900  # recalibrage L004 3e éd. (session web-ecef7f80, 2026-11-08, Task 72 G1 — KO-L003 divergence légitime : re-curation progressive disclosure R1 v3.39.0 = 1770 L, intégraux references/ reportés in extenso en §9.7-§9.10 — la réalité a changé, l'invariant suit) ; 2e éd. (web-6058b3ba, 2026-11-04, Task 47) : [v3.33.1, 1513 L] ; 1re éd. (web-b93f42fa, 2026-10-09) : PM v3.21.0 = 1425 L
 carriers = [
     (f"SKILL.md gen-plan : frontmatter {gv}", read_frontmatter_version(gp) == gv),
     ("SKILL.md gen-plan : zéro mention stale 3.10.0", gp_text.count("3.10.0") == 0),
-    (f"PM {pm_name} (corpus) : en-tête version + plage 1200-1500 lignes", pm_ok),
+    (f"PM {pm_name} (corpus) : en-tête version + plage 1200-1900 lignes", pm_ok),
     ("PM : 6e référence PEK (§2.2) + section §9.6",
      "prompt-engineering-kit.md" in pm_text and "9.6" in pm_text),
     ("download/ sans copie du PM courant (décision v2.2 — canal de fichiers supprimé)",

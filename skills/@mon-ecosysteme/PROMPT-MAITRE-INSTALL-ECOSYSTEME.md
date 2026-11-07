@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.9.9
+Version : 1.9.10
 Date : 2026-10-12
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -97,7 +97,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
-| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.38.0.md` | gen-plan v3.38.0 | 3 |
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.39.0.md` | gen-plan v3.39.0 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md` | correct-work v2.11.0 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md` | clone-chat v2.0.2 | 5 |
 | refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md` | refactor-guard v1.8.1 | 6 |
@@ -195,6 +195,7 @@ Le contrôle vérifie MÉCANIQUEMENT que l'installation n'a déployé aucune for
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.9.10 | 2026-11-07 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.38.0→v3.39.0 ; recalibrage croisé : SHARED v1.7.34 (§6.1), §2ter, §A.3 |
 | v1.9.9 | 2026-11-07 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.37.2→v3.38.0 ; recalibrage croisé : SHARED v1.7.33 (§6.1), §2ter, §A.3 |
 | v1.9.8 | 2026-11-07 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.37.1→v3.37.2 ; recalibrage croisé : SHARED v1.7.32 (§6.1), §2ter, §A.3 |
 | v1.9.7 | 2026-11-07 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.37.0→v3.37.1 ; recalibrage croisé : SHARED v1.7.31 (§6.1), §2ter, §A.3 |
@@ -256,7 +257,7 @@ Note P4 (recalibrée v1.7.0) : les SKILL.md + références des 4 familles (gen-p
 ### §A.3 Registre KB cible (14 entrées d'époque + 6 extensions v1.7.0)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.9.4, 2026-11-07) : gen-plan v3.38.0 · correct-work v2.11.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
+Instantané courant (v1.9.4, 2026-11-07) : gen-plan v3.39.0 · correct-work v2.11.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|
