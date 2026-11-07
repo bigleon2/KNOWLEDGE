@@ -1,0 +1,10 @@
+{
+ "history": "PATCH durcissement règle d'or n°6 (directive propriétaire 2026-11-08, session web-ecef7f80 — 2ᵉ constat de dérive : textes de raisonnement affichés en anglais/chinois alors que la réponse finale était conforme) : portée MÉCANIQUE étendue à TOUT texte produit par l'agent (raisonnements et analyses affichés, titres et intertitres, libellés de statuts et compteurs, légendes de tableaux, blocs récapitulatifs PLAN-AFFICHE, résumés de continuation, reformulations de sorties d'outils — seuls les artefacts techniques verbatim restent dans leur langue d'origine) ; correction immédiate sans transition ; constat propriétaire → correction + worklog + durcissement de la règle ; cascade KO-L004 : PM v3.37.2, SHARED v1.7.32 / PM-INSTALL v1.9.8 recalibrés mécaniquement, pin ECO_SKILLS 3.37.2, KB, ULTRA régénéré, replay arbitres ×2.",
+ "subs": [
+  {
+   "old": "(propagée à tous les skills — v1.7.24).",
+   "new": "(propagée à tous les skills — v1.7.24). **Durcissement (directive propriétaire 2026-11-08, session web-ecef7f80 — 2ᵉ constat de dérive : textes de raisonnement affichés en anglais/chinois alors que la réponse finale était conforme)** : la portée de la règle est MÉCANIQUE et couvre TOUT texte produit par l'agent pendant une session, pas seulement la réponse finale : textes de raisonnement et d'analyse affichés au chat, titres et intertitres, libellés de statuts et compteurs, légendes de tableaux, blocs récapitulatifs PLAN-AFFICHE, résumés de continuation, reformulations de sorties d'outils — TOUS en français ; seuls restent dans leur langue d'origine les artefacts techniques cités verbatim (chemins, commandes, identifiants, extraits de code, contenu de fichiers tiers, identifiants de session/trace). Un raisonnement interne rédigé dans une autre langue est une DÉRIVE au même titre qu'une réponse : la correction est immédiate, sans transition ni justification différée. Le constat propriétaire d'une dérive déclenche systématiquement : correction immédiate + journalisation worklog + durcissement de la règle si une faille d'application est identifiée (le présent durcissement suit ce cycle).",
+   "count": 1
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.37.2
+version: 3.38.0
 category: ecosystem
 language: fr
 tags:
@@ -59,7 +59,7 @@ read_when:
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
-## §0 — Contexte Système (SHARED v1.7.32)
+## §0 — Contexte Système (SHARED v1.7.33)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -112,6 +112,8 @@ read_when:
 | **E7-DISP — Affichage obligatoire du plan** | **E7/E8/E13 + ouverture d'étape (v3.36.0)** | Toute écriture/mise à jour du fichier plan (création E7, ajustement E13, re-génération règle d'or n°2/KO-L005, reprise) n'est TERMINÉE qu'après la chaîne complète : plan écrit + answer key + verdict E8 consigné (horodatages couplés) + worklog R5 avec marqueur `PLAN-AFFICHE` + bloc récapitulatif visible au chat — verdict mécanique bloquant ; affichage REJOUABLE à toute reprise (v3.27.0) ; **à l'ouverture de chaque nouvelle étape d'exécution (v3.36.0) : bloc PLAN-AFFICHE d'évolution du déroulement (tous les groupes + statuts + compteurs + position courante — tous modes)** | `scripts/check_plan_protocol.py` |
 | **Graph Diamond** | **E9-E14** | Parallélisation PAR DÉFAUT des tâches ET commandes prouvées indépendantes (le série est l'exception justifiée — philosophie #4 v3.24.0, extension aux commandes v3.32.0) — tracée au worklog | `references/graph-diamond-pattern.md` |
 | **Observer** | **E15** | Invoque knowledge-observer en modes M1-M2 (observation + analyse post-session) ; les modes M3-M4 exigent un verdict correct-work | `references/observation-patterns.md` |
+| **E5-POIDS — arbitre de poids de chargement** | **E5** (v3.38.0) | À la sélection des skills (E5), l'arbitre `scripts/poids-chargement.py` (recommandation R1 de l'étude de faisabilité Task 70 — le goulot réel de l'écosystème est le budget #token) mesure le poids de chargement (Kio + #token estimés = caractères/4) ; un skill CRITIQUE (≥ 60 Kio) ou LOURD (≥ 30 Kio) déclenche la voie lecture ciblée : §0 Contexte Système + sommaire d'abord, sections dédiées ensuite, `references/` chargées à la demande — JAMAIS de lecture intégrale par défaut pour un skill LOURD/CRITIQUE | `scripts/poids-chargement.py` |
+| **R2-CACHE — cache de verdicts** | **E9-E14** (v3.38.0) | Les graders coûteux (arbitres, harnais, batteries) ré-exécutés à entrées inchangées passent par `scripts/cache-verdicts.py` (recommandation R2 de l'étude Task 70) : verdict figé une fois (rc + stdout + durée), re-jeu sans ré-appel (démo mesurée : gain 440×), invalidation automatique par état des fichiers cibles (taille/mtime), `--force` pour re-vérification réelle — un verdict figé n'est JAMAIS une preuve en soi, la re-exécution reste disponible à la demande | `scripts/cache-verdicts.py` |
 
 <!-- FIN-PATTERN:GEN-PLAN-HOOKS-PATTERNS-v1.0.0 -->
 

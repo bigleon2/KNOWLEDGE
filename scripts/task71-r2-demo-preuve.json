@@ -1,0 +1,10 @@
+{
+ "demo": "R2 — cache de verdicts sur grader réel check-ecosysteme-integrity.py",
+ "date": "2026-11-07T19:19:42Z",
+ "cibles": ["skills/KNOWLEDGE.md", "skills/gen-plan/SKILL.md", "skills/@mon-ecosysteme/PROMPT-MAITRE-SHARED.md", "skills/version-management/SKILL.md"],
+ "froid": {"mode": "EXÉCUTION RÉELLE", "duree_ms": 45.5, "verdict": "110/110 PASS, 0 FAIL"},
+ "chaud": {"mode": "REJEU SANS RÉ-APPEL", "duree_ms": 0.1, "gain": "440x", "verdict": "110/110 PASS, 0 FAIL (figé, identique)"},
+ "invalidation": {"action": "touch skills/version-management/SKILL.md", "resultat": "EXÉCUTION RÉELLE (clé nouvelle, 47.0 ms) — cache invalidé automatiquement par mtime"},
+ "critere_D007": "warm >= 10x plus rapide : 440x > 10x — PASS",
+ "limite_honnete": "les 4 cibles de la démo sont représentatives ; le câblage complet par grader (liste exhaustive de ses entrées) reste un paramétrage par arbitre"
+}

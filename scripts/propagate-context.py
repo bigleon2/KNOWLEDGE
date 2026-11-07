@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.31)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.33 — dérivée dynamiquement)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -10,7 +10,7 @@ Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exé
 Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
 
 Script de propagation du Contexte Système à tous les fichiers
-Version : 2.1.0 (F-70-2 Task 70 G1 : extension périmètre scripts embarqués skills/*/scripts/*.py — mise à jour idempotente des seuls porteurs d'en-tête §0, jamais d'injection ; précédent 2.0.10 (porte §0 SHARED v1.7.31 — montée gen-plan v3.37.1, session web-c30e6506 2026-11-07 : bump mécanique des 3 blocs L2/L3/L3_INNER, résorption du lag v1.7.27 hérité [cause racine : le bump SHARED v1.7.28 Task 58 G2 a propagé les 70 étiquettes manuellement SANS monter l'injecteur — toute propagation ultérieure rétrogradait les étiquettes, constat + correctif v3.37.0] ; précédent 2.0.8 : Task 60 G2 directive propriétaire : ligne « Référence canonique skill/agent » [désambiguïsation — toute référence propriétaire à « mon skill X »/« mon agent X » pointe la forme installée à la racine skills/X/, jamais le PM du corpus @mon-ecosysteme/, ex-nommé @PM-SKILLS/] ; résorption du lag L3_BLOCK_INNER resté en forme v1.7.24 au bump v2.0.7 — les trois blocs L2/L3/L3_INNER désormais alignés ; précédent 2.0.7 : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED])
+Version : 2.1.1 (Task 71 G3 — résorption STRUCTURELLE de la classe F-70-2, 3ᵉ occurrence : la version SHARED des gabarits est désormais DÉRIVÉE DYNAMIQUEMENT du corpus vivant (KO-L003, même mécanique que generer-pm-skill.py) — un bump SHARED sans montée de l'injecteur ne peut plus jamais rétrograder les étiquettes §0 ; précédent 2.1.0 (F-70-2 Task 70 G1 : extension périmètre scripts embarqués skills/*/scripts/*.py — mise à jour idempotente des seuls porteurs d'en-tête §0, jamais d'injection ; précédent 2.0.10 (porte §0 SHARED v1.7.31 — montée gen-plan v3.37.1, session web-c30e6506 2026-11-07 : bump mécanique des 3 blocs L2/L3/L3_INNER, résorption du lag v1.7.27 hérité [cause racine : le bump SHARED v1.7.28 Task 58 G2 a propagé les 70 étiquettes manuellement SANS monter l'injecteur — toute propagation ultérieure rétrogradait les étiquettes, constat + correctif v3.37.0] ; précédent 2.0.8 : Task 60 G2 directive propriétaire : ligne « Référence canonique skill/agent » [désambiguïsation — toute référence propriétaire à « mon skill X »/« mon agent X » pointe la forme installée à la racine skills/X/, jamais le PM du corpus @mon-ecosysteme/, ex-nommé @PM-SKILLS/] ; résorption du lag L3_BLOCK_INNER resté en forme v1.7.24 au bump v2.0.7 — les trois blocs L2/L3/L3_INNER désormais alignés ; précédent 2.0.7 : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED])
 """
 
 import os
@@ -32,7 +32,7 @@ CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.31)
 """
 
 CONTEXT_HEADER_L3 = '''"""
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.31)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.33)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -54,6 +54,20 @@ L3_BLOCK_INNER = (
     "Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).\n"
     "Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).\n"
 )
+
+# v2.1.1 (Task 71 G3) : la version SHARED des gabarits est dérivée DYNAMIQUEMENT du
+# corpus vivant (KO-L003) — jamais figée dans l'injecteur. Résorption structurelle
+# de la classe F-70-2 (3ᵉ occurrence : le bump SHARED v1.7.32/§1.7.33 sans montée
+# de l'injecteur rétrogradait les étiquettes §0 à chaque propagation).
+def _version_shared():
+    m = re.search(r">\s*\*\*Version\*\*\s*:\s*([0-9.]+)",
+                  (REPO_DIR / "skills" / "@mon-ecosysteme" / "PROMPT-MAITRE-SHARED.md").read_text(encoding="utf-8"))
+    return m.group(1) if m else "1.7.31"
+
+_VSH = _version_shared()
+CONTEXT_BLOCK_L2 = CONTEXT_BLOCK_L2.replace("(SHARED v1.7.31)", "(SHARED v%s)" % _VSH)
+CONTEXT_HEADER_L3 = CONTEXT_HEADER_L3.replace("(SHARED v1.7.31)", "(SHARED v%s)" % _VSH)
+L3_BLOCK_INNER = L3_BLOCK_INNER.replace("(SHARED v1.7.31)", "(SHARED v%s)" % _VSH)
 
 def propagate_to_skills():
     """Injecte le Niveau 2 dans tous les SKILL.md"""
