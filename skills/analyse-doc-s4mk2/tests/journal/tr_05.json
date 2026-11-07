@@ -3,5 +3,5 @@
   "nom": "self-test moteur : re-jeu ×2 + conformité G2 + baseline",
   "ok": true,
   "detail": "rc=0, self-test=True",
-  "duree_ms": 188
+  "duree_ms": 185
 }

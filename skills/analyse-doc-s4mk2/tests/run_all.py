@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run_all.py v1.2.0 — Batterie de tests $FACON2 du skill analyse-doc-s4mk2.
+"""run_all.py v1.2.1 — Batterie de tests $FACON2 du skill analyse-doc-s4mk2.
 
 $FACON2 = « cohérent, optimisé et fonctionnel » (alias-eco v1.3.0, grammaire B).
 La batterie vérifie FONCTIONNELLEMENT chaque capacité du skill sur l'échantillon
@@ -13,7 +13,10 @@ traces 1a1989725d74c901 + 1a1989862dd46e61) : vérifie la COHÉRENCE CROISÉE
 TSI (source de vérité) ↔ non-TSI — TF-09 attestations positives DREW (fx/knob/
 button/deck SUPPORTÉES, mods INDETERMINABLES honnêtes) et TF-10 DÉTECTION
 d'un écart injecté (PDF fantôme « Hotcue 9 FX 5 Deck H Slice 12 » → 4
-HORS_UNIVERS → verdict de section ÉCARTS_DÉTECTÉS + FAIL pipeline).
+HORS_UNIVERS → verdict de section ÉCARTS_DÉTECTÉS + FAIL pipeline). v1.2.1
+(F-65-1, Task 66) : TF-08 enrichi — les archives ZIP internes (double emballage)
+sont COUVERTES (catégorie « archives » du pipeline v1.2.1) ; critère « 0 muet »
+maintenu.
 Verdict mécanique : PASS ssi tous les tests passent ; journal JSON individuel
 par test (tests/journal/) + synthèse (synthese.json). Le skill ne ment jamais :
 échantillon introuvable = FAIL explicite.
@@ -100,7 +103,7 @@ class Batterie:
     def synthese(self, echantillon):
         passes = sum(1 for r in self.resultats if r["ok"])
         verdict = "PASS" if passes == len(self.resultats) else "FAIL"
-        synth = {"skill": "analyse-doc-s4mk2", "batterie_version": "1.2.0", "grammaire": "$FACON2",
+        synth = {"skill": "analyse-doc-s4mk2", "batterie_version": "1.2.1", "grammaire": "$FACON2",
                  "echantillon": echantillon, "total": len(self.resultats), "passes": passes,
                  "fails": len(self.resultats) - passes, "verdict": verdict, "tests": self.resultats}
         with open(os.path.join(JOURNAL, "synthese.json"), "w", encoding="utf-8") as fh:
@@ -266,12 +269,13 @@ def batterie(zip_path, dir_path, pdf_dir=None):
             pdf_ok = n_pdf == 3 and not [p for p in r["pdf"] if p.get("rejet")]
             illus_ok = len(r["illustrés"]) == 2 and all(i["dimensions"] for i in r["illustrés"])
             muets = len(r["autres"])
+            n_arch = len(r.get("archives", []))
             n_tsi = len(r["tsi"])
-            # adaptation = chaque fichier non-TSI classé dans pdf/illustrés/textes/autres
-            couverts = n_pdf + len(r["illustrés"]) + len(r["textes"]) + muets
+            # adaptation = chaque fichier non-TSI classé dans pdf/illustrés/textes/archives/autres
+            couverts = n_pdf + len(r["illustrés"]) + len(r["textes"]) + muets + n_arch
             ok = pdf_ok and illus_ok and muets == 0 and couverts == r["comptes_inventaire"]["fichiers"] - n_tsi
-            return ok, f"{n_tsi} TSI, {n_pdf} PDF analysés, {len(r['illustrés'])} illustrés, {muets} muets, couverture {couverts}/{r['comptes_inventaire']['fichiers'] - n_tsi}"
-        b.test("TF-08", "adaptation automatique aux types (DREW : 3 PDF + 2 PNG couverts, 0 muet)", tf08)
+            return ok, f"{n_tsi} TSI, {n_pdf} PDF analysés, {len(r['illustrés'])} illustrés, {n_arch} archives internes, {muets} muets, couverture {couverts}/{r['comptes_inventaire']['fichiers'] - n_tsi}"
+        b.test("TF-08", "adaptation automatique aux types (DREW : 3 PDF + 2 PNG + 1 archive interne couverts, 0 muet)", tf08)
 
         # --- TF-09 : cohérence croisée TSI↔non-TSI positive (v1.2.0) ---
         def tf09():

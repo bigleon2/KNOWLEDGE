@@ -2,6 +2,6 @@
   "id": "TF-09",
   "nom": "cohérence croisée TSI↔non-TSI (DREW : attestations positives, mods honnêtes, 0 écart)",
   "ok": true,
-  "detail": "verdict COHÉRENT, 3 docs attestés, 0 écart, 14 supportées / 5 indéterminables (honnêteté)",
+  "detail": "verdict COHÉRENT, 3 docs attestés, 0 écart, 12 supportées / 5 indéterminables (honnêteté)",
   "duree_ms": 0
 }

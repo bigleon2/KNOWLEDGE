@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""analyser-zip-mk2.py v1.2.0 — Pipeline complet d'analyse d'un ZIP/dossier de mapping S4 MK2
+"""analyser-zip-mk2.py v1.2.1 — Pipeline complet d'analyse d'un ZIP/dossier de mapping S4 MK2
 ET de TOUS ses fichiers liés (non-TSI compris), adaptatif par type, avec cohérence croisée.
 
 Skill : analyse-doc-s4mk2 (famille TSI, orchestré par agent-TSI).
@@ -18,6 +18,11 @@ ROUTEUR), et pour tout type inconnu une analyse par signature magique (stdlib).
 Aucun fichier non-TSI lié au mapping ne reste « autre » muet : PDF analysés en
 profondeur (texte, pages, polices, mots-clés — module analyser-pdf-mk2.py),
 images (dimensions + rôle), textes (.txt/.md), inconnus (signature + taille).
+v1.2.1 (finding F-65-1, Task 66 — directive propriétaire « continue $FACON ») : les
+ARCHIVES ZIP INTERNES (double emballage) sont ANALYSÉES — inventaire complet stdlib
+zipfile (membres, dossiers, fichiers, octets décompressés) + DÉTECTION de double
+emballage (membres de l'archive interne == membres de l'archive mère, hors elle-même)
+→ catégorie « archives », jamais « autre » muet ; statut honnête si illisible.
 
 Recherche écosystème consignée (règle d'or, CLAUDE.md Règle 3) : registre KB
 (KNOWLEDGE-repo/skills/KNOWLEDGE.md), skills plateforme pdf/pdf-llm = chaînes
@@ -322,6 +327,33 @@ def analyser_autre_membre(nom, buf, ext, rapports):
     })
 
 
+def analyser_archive_membre(nom, buf, rapports):
+    """E5-bis (v1.2.1, F-65-1) : archive ZIP interne → inventaire complet + détection
+    de double emballage — JAMAIS muet, statut honnête si illisible."""
+    entree = {
+        "nom": os.path.basename(nom), "chemin_racine": nom, "taille": len(buf),
+        "membres": None, "dossiers": None, "fichiers": None,
+        "octets_decompresse": None, "double_emballage": None, "membres_noms": None,
+        "statut": "archive ZIP interne — inventaire en attente",
+    }
+    try:
+        with zipfile.ZipFile(io.BytesIO(buf)) as z:
+            infos = z.infolist()
+            noms = [i.filename for i in infos]
+            fichs = [i.filename for i in infos if not i.filename.endswith("/")]
+            entree.update({
+                "membres": len(infos), "dossiers": len(noms) - len(fichs),
+                "fichiers": len(fichs), "octets_decompresse": sum(i.file_size for i in infos),
+                "membres_noms": noms,
+                "statut": "archive ZIP interne — inventaire complet (stdlib zipfile)",
+            })
+    except Exception as e:  # noqa: BLE001 — statut honnête, jamais muet
+        entree["statut"] = f"archive illisible : {type(e).__name__}: {e}"
+    rapports["archives"].append(entree)
+    n_m = entree["membres"] if entree["membres"] is not None else "?"
+    rapports["inventaire"][nom] = f"{len(buf)} o — archive ZIP interne ({n_m} membres) — statut : {entree['statut']}"
+
+
 # Routeur adaptatif ext → analyseur (extension de la table = nouvelle capacité)
 def _route_tsi(nom, buf, rapports):
     analyser_tsi_membre(nom, buf, rapports)
@@ -339,6 +371,10 @@ def _route_texte(nom, buf, rapports):
     analyser_texte_membre(nom, buf, rapports)
 
 
+def _route_archive(nom, buf, rapports):
+    analyser_archive_membre(nom, buf, rapports)
+
+
 ROUTEUR = {
     ".tsi": _route_tsi,
     ".pdf": _route_pdf,
@@ -347,6 +383,7 @@ ROUTEUR = {
     ".png": _route_image,
     ".txt": _route_texte,
     ".md": _route_texte,
+    ".zip": _route_archive,
 }
 
 
@@ -354,7 +391,7 @@ def analyser_zip(chemin):
     membres = lire_tous_membres(chemin)
     rapports = {
         "cible": chemin, "inventaire": {}, "tsi": {}, "mappings": [], "illustrés": [],
-        "pdf": [], "textes": [], "autres": [], "table_p1b": {}, "alertes": [],
+        "pdf": [], "textes": [], "archives": [], "autres": [], "table_p1b": {}, "alertes": [],
     }
     n_dossiers = 0
     for nom, buf in membres.items():
@@ -368,6 +405,17 @@ def analyser_zip(chemin):
             route(nom, buf, rapports)
         else:
             analyser_autre_membre(nom, buf, ext, rapports)
+    # F-65-1 (v1.2.1) : détection de double emballage — fichiers de l'archive interne
+    # == fichiers de l'archive mère (hors l'archive elle-même ; les entrées de
+    # dossier sont exclues des deux côtés)
+    if rapports["archives"]:
+        noms_racine = {n for n, b in membres.items() if b is not None}
+        for arc in rapports["archives"]:
+            if arc.get("membres_noms") is not None:
+                fichs_internes = [n for n in arc["membres_noms"] if not n.endswith("/")]
+                arc["double_emballage"] = sorted(fichs_internes) == sorted(noms_racine - {arc["chemin_racine"]})
+                if arc["double_emballage"]:
+                    arc["statut"] = "archive ZIP interne — DOUBLE EMBALLAGE confirmé (membres identiques à l'archive mère, hors elle-même) — non muet"
     rapports["comptes_inventaire"] = {"dossiers": n_dossiers, "fichiers": len(membres) - n_dossiers}
     # E6 : table P1b contre le premier mapping analysé
     if rapports["mappings"]:
@@ -443,6 +491,10 @@ def main():
             print(f"texte           : {t['nom']} — {t['caracteres']} car ({t['encodage']})")
         for au in r["autres"]:
             print(f"autre           : {au['nom']} — signature : {au['signature']}")
+        for arc in r.get("archives", []):
+            det = " — DOUBLE EMBALLAGE (doublon de l'archive mère)" if arc.get("double_emballage") else ""
+            n_m = f"{arc['membres']} membres" if arc.get("membres") is not None else "inventaire indisponible"
+            print(f"archive         : {arc['nom']} — {n_m}{det}")
         if r["table_p1b"]:
             ok = sum(1 for v in r["table_p1b"].values() if v["ok"])
             print(f"table P1b       : {ok}/{len(r['table_p1b'])} noms de contrôles vérifiés")

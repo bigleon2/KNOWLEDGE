@@ -1,6 +1,6 @@
 ---
 name: analyse-doc-s4mk2
-version: 1.3.1
+version: 1.3.2
 category: ecosystem
 language: fr
 tags:
@@ -29,7 +29,8 @@ description: >-
   ADAPTATIF aux types pour les non-TSI (v1.1.0 : PDF analysés en profondeur
   — texte via CMap ToUnicode bfchar/bfrange direct+tableau et codespacerange,
   pages, polices, mots-clés mapping ; illustrés JPG/PNG ; textes txt/md ;
-  inconnus par signature magique — aucun muet), documents illustrés (vue
+  inconnus par signature magique — aucun muet ; archives ZIP internes
+  analysées avec détection de double emballage [v1.2.1]), documents illustrés (vue
   complète QuickGuide, vues partielles) et vérification mécanique de la table
   de correspondance visuels↔contrôles (P1b, 22 noms) ; COHÉRENCE CROISÉE
   (v1.2.0 : les données extraites des non-TSI sont vérifiées contre les TSI

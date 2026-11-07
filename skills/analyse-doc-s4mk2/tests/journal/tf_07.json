@@ -2,15 +2,11 @@
   "id": "TF-07",
   "nom": "PDF compagnons analysés en profondeur (3 PDF DREW : texte, mots, mots-clés)",
   "ok": {
-    "mapping": 13,
     "traktor": 11,
-    "deck": 7,
-    "shift": 7,
-    "button": 6,
-    "s4": 3,
-    "knob": 2,
-    "fx": 1
+    "mapping": 4,
+    "deck": 3,
+    "s4": 3
   },
-  "detail": "Drew's Assignment List.pdf: 5507 car/783 mots/17 mc ; Mapping Speech.pdf: 5125 car/924 mots/9 mc ; Mapping Speech-fr.pdf: 5934 car/955 mots/8 mc",
+  "detail": "Drew's Assignment List.pdf: 5507 car/783 mots/17 mc ; Mapping Speech.pdf: 5125 car/924 mots/9 mc ; Mapping Speech-fr.pdf: 6589 car/919 mots/4 mc",
   "duree_ms": 131
 }

@@ -1,19 +1,129 @@
 {
   "skill": "analyse-doc-s4mk2",
-  "batterie_version": "1.2.0",
+  "batterie_version": "1.2.1",
   "grammaire": "$FACON2",
   "echantillon": "/home/z/my-project/upload/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.zip",
-  "total": 1,
-  "passes": 0,
-  "fails": 1,
-  "verdict": "FAIL",
+  "total": 16,
+  "passes": 16,
+  "fails": 0,
+  "verdict": "PASS",
   "tests": [
     {
-      "id": "TF-00",
-      "nom": "échantillon de référence disponible",
-      "ok": false,
-      "detail": "ZIP introuvable : /home/z/my-project/upload/DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.zip",
+      "id": "TF-01",
+      "nom": "inventaire exhaustif du ZIP (6 fichiers + 2 dossiers, tailles)",
+      "ok": true,
+      "detail": "8 membres (2 dossiers), tailles conformes : True",
+      "duree_ms": 5
+    },
+    {
+      "id": "TF-02",
+      "nom": "classification des 3 TSI (mapping / FX 96 / Layouts 39)",
+      "ok": true,
+      "detail": "classes {'MAPPING': 1, 'PRÉFÉRENCES-FX': 1, 'PRÉFÉRENCES-LAYOUTS': 1}, Entry {'DJTT Kontrol S4 MK2 Custom Mapping v2.1.0.tsi': 101, 'FX Settings.tsi': 96, 'Layouts.tsi': 39}",
       "duree_ms": 0
+    },
+    {
+      "id": "TF-03",
+      "nom": "comptes du mapping conformes au référentiel G2 (10/10)",
+      "ok": true,
+      "detail": "comptes égaux : G2 True",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-04",
+      "nom": "baseline stricte (4960 lisibles / 666 illisibles / 49 sollicités)",
+      "ok": true,
+      "detail": "lisibles 4960, illisibles 666, sollicités 49",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-05",
+      "nom": "table de correspondance visuels↔contrôles P1b (22 noms, nb cid exacts)",
+      "ok": true,
+      "detail": "22/22 vérifiés",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-06",
+      "nom": "documents illustrés identifiés (3 JPG, dimensions et rôles)",
+      "ok": true,
+      "detail": "3 illustrés, dimensions conformes : True, rôles identifiés : True",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-07",
+      "nom": "PDF compagnons analysés en profondeur (3 PDF DREW : texte, mots, mots-clés)",
+      "ok": {
+        "traktor": 11,
+        "mapping": 4,
+        "deck": 3,
+        "s4": 3
+      },
+      "detail": "Drew's Assignment List.pdf: 5507 car/783 mots/17 mc ; Mapping Speech.pdf: 5125 car/924 mots/9 mc ; Mapping Speech-fr.pdf: 6589 car/919 mots/4 mc",
+      "duree_ms": 131
+    },
+    {
+      "id": "TF-08",
+      "nom": "adaptation automatique aux types (DREW : 3 PDF + 2 PNG + 1 archive interne couverts, 0 muet)",
+      "ok": true,
+      "detail": "1 TSI, 3 PDF analysés, 2 illustrés, 1 archives internes, 0 muets, couverture 6/6",
+      "duree_ms": 169
+    },
+    {
+      "id": "TF-09",
+      "nom": "cohérence croisée TSI↔non-TSI (DREW : attestations positives, mods honnêtes, 0 écart)",
+      "ok": true,
+      "detail": "verdict COHÉRENT, 3 docs attestés, 0 écart, 12 supportées / 5 indéterminables (honnêteté)",
+      "duree_ms": 0
+    },
+    {
+      "id": "TF-10",
+      "nom": "détection d'écart injecté : PDF fantôme (Hotcue 9/FX 5/Deck H/Slice 12) → 4 HORS_UNIVERS → FAIL",
+      "ok": true,
+      "detail": "rc=1, verdict ÉCARTS_DÉTECTÉS, écarts [('deck', 'H'), ('fx', '5'), ('hotcue', '9'), ('slice', '12')], motif pipeline=True, traceback=False",
+      "duree_ms": 116
+    },
+    {
+      "id": "TR-01",
+      "nom": "rejet propre : TSI de préférences (rc=1, message, sans traceback)",
+      "ok": true,
+      "detail": "rc=1, message=True, traceback=False",
+      "duree_ms": 42
+    },
+    {
+      "id": "TR-02",
+      "nom": "robustesse : blob DIOM corrompu → rejet contrôlé, sans crash",
+      "ok": true,
+      "detail": "rc=1, rejet contrôlé : True, traceback : False",
+      "duree_ms": 62
+    },
+    {
+      "id": "TR-03",
+      "nom": "idempotence ×2 : pipeline byte-stable (re-jeu identique)",
+      "ok": true,
+      "detail": "rc 0/0, byte-stable : True",
+      "duree_ms": 309
+    },
+    {
+      "id": "TR-04",
+      "nom": "robustesse : cible inexistante → rc=2, message propre",
+      "ok": true,
+      "detail": "rc=2, message USAGE : True",
+      "duree_ms": 63
+    },
+    {
+      "id": "TR-05",
+      "nom": "self-test moteur : re-jeu ×2 + conformité G2 + baseline",
+      "ok": true,
+      "detail": "rc=0, self-test=True",
+      "duree_ms": 185
+    },
+    {
+      "id": "TR-06",
+      "nom": "robustesse PDF : signature absente → rc=1 ; PDF sans texte → statut honnête",
+      "ok": true,
+      "detail": "garbage rc=1 rejet=True, vide rc=0 statut=AUCUN_TEXTE_EXTRAIT, tracebacks : False",
+      "duree_ms": 58
     }
   ]
 }
