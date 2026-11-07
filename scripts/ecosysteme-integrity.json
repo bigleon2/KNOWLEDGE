@@ -8,13 +8,7 @@
     "PROMPT-MAITRE-SHARED.md": "37820bf36f225c14dae457985d6483af82ed685798bd621069cb5cbb79bab6cb",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "226d3143d634a63d3fe138cb8dd7ae84e868813e30805fb85c4490ae41fa1781",
     "README.md": "64174462da2ab89750ff9f34cc11c51b6fba3012e3bb7844a3897ecb49188355",
-    "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f",
-    "piliers/scripts/certification-complete.py": "7c44f3581f9faacf55edef12de5ab262aeeea0621d10ecaa518a2cc2bf9ac924",
-    "piliers/scripts/check-ecosysteme-integrity.py": "1dfd20755e5a71ae4bc8ee2ffc3f9678e61f11c325990c17594f709fe75f8151",
-    "piliers/scripts/install-ecosysteme-local.sh": "47322f0a5a2c596eea8447267d582b98aa791d647d50eecde991da11496d21db",
-    "piliers/skills/KNOWLEDGE.md": "e26b37b37d27445885123567b0b18ada423298e5c11892774e5d04a450ccc50e",
-    "piliers/skills/correct-work/SKILL.md": "09a3e4dc53e8313a6644ac5ed0eefc1fbcf84a094fdf797d685b49ed4f06a6c2",
-    "piliers/skills/gen-plan/SKILL.md": "a2bd5355fd906267e9e70849ac5dfee9a2e49790f0a549f3388b979ceef6fdd6"
+    "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md": "3be1ce9f95f83bdf9caca20115403a21548834ae14f9912090f22cfb29235d77",
@@ -28,7 +22,7 @@
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "29b735ba16bc06ef0e7479f8bd718c12653775b552b3d7e3ba8dbedcf5b7a195"
+    "mon-ecosysteme_archive.zip": "68c14ec4a48ccadb1b42862496fd5f84b42e0eaf5f6dca1bcf09fab868f3850b"
   },
   "skills": {
     "agent-creator": {
@@ -44,8 +38,8 @@
       "version": "1.3.0"
     },
     "analyse-doc-s4mk2": {
-      "sha256": "ed4d3411da19ffe5e33c48fb1a6726ecccddf47398f24cc9492509d7dcdd0768",
-      "version": "1.3.1"
+      "sha256": "327651e6c68d5d83d4653acd4d3294ce0683dedbbb8cedc2b27a1a13db7da8c9",
+      "version": "1.3.2"
     },
     "audio-metadata": {
       "sha256": "d46e28d2ab5fff61e12fa77d8c2349cea86221b17e378d2b89c2afd1ff5344f7",
