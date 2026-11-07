@@ -1,6 +1,6 @@
 ---
 name: version-management
-version: 1.2.0
+version: 1.3.0
 category: metier
 language: fr
 tags:
@@ -600,6 +600,31 @@ Un exemplaire par projet, il consigne l'état global du projet. Exclu via `.giti
 - **À la prévisualisation utilisateur :** le back-end résout les chemins absolus sur la machine cloud et les remplace par des liens OSS ; l'Agent **ne doit pas** écrire d'URL OSS dans le code source
 - **Périmètre de suivi Git :** fichiers de code + ressources `assets/` + produits `export/` entrent tous dans Git ; `meta.json` et `style-samples*.html` sont exclus par `.gitignore`
 - **Limitations connues :** prévisualisation JS/CSS des projets multi-fichiers et aperçu des versions historiques incohérent avec la dernière version — voir §0.1, non corrigé dans cette phase
+
+---
+
+## 8. Résorption structurelle — neutralisation résiliente (Task 69)
+
+> **Diagnostic consolidé (Task 69, directive n°8 item 1 — 32 incidents documentés)** : la
+> disparition de ce skill survient ENTRE LES TOURS, par un processus EXTERNE au projet (ni
+> cron ni process local) ; le dépôt git hôte reçoit des commits automatiques à messages UUID
+> (snapshots plateforme) aux frontières de tours ; corrélation temporelle exacte entre
+> interruptions utilisateur et disparitions (clarification propriétaire : « je te t'arrête
+> souvent pour affiner mes requêtes »). **La prévention est impossible → la résorption est
+> une NEUTRALISATION RÉSILIENTE à 4 composantes** :
+>
+> | Composante | Mécanisme | État |
+> |---|---|---|
+> | (a) Watchdog battements de cœur | `scripts/vm-watchdog.py` — détecte SON PROPRE temps d'arrêt (écart heartbeat > seuil 180 s = fenêtre de disparition potentielle) ; modes `--once` / `--daemon` / `--selftest` (harnais 8 tests en répertoire temporaire) / `--init` ; réparation déterministe via la garde | **v1.3.0 — nouveau** |
+> | (b) Journal forensique horodaté | `tmp/vm-watchdog/journal-forensique.jsonl` — événements INIT / INCIDENT_DOCUMENTE (backfill qualifié des 32 incidents) / DEMARRAGE / ECART / DISPARITION_DETECTEE / REPARATION / RETABLIE / VERIF_OK / ARRET ; heads hôte + miroir consignés à chaque événement (corrélation mécanique avec les interruptions) | **v1.3.0 — nouveau** |
+> | (c) Garde à l'invocation | `skills/gen-plan/scripts/ensure-installed.py` (hook É1-INSTALL, Task 56) — INSTALLE-REPARÉ rc=0 depuis le miroir local ; AUCUN doublon (R4 jamais dupliquer) | préexistante, intégrée |
+> | (d) Persistance disque | miroir `KNOWLEDGE-repo` (règle d'or n°5 — le disque fait foi) | préexistante, intégrée |
+>
+> **Usage** : `python3 skills/version-management/scripts/vm-watchdog.py --once` (un cycle) ·
+> `--daemon` (heartbeat permanent, défaut 30 s) · `--init` (initialise le journal — no-op
+> idempotent si présent) · `--selftest` (8 tests mécaniques sans effet sur l'écosystème).
+> Toute réparation déclenchée par le watchdog doit être suivie d'une re-certification
+> arbitre (`check-ecosysteme-integrity.py` — 110/110 attendu).
 
 ---
 

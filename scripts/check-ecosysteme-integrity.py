@@ -94,7 +94,7 @@ ECO_SKILLS = {
     "cpp-analysis": "1.1.0",
     "pdf-llm": "1.0.0",
     "resource-monitor": "1.1.1",
-    "version-management": "1.2.0",
+    "version-management": "1.3.0",
     "skill-finder-cn": "1.0.0",  # Task 23 : fallback §1.16 inscrit au registre
     # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
     "autonomous-agent": "1.2.1",
