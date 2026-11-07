@@ -1,6 +1,6 @@
 # Plan d'actions Task 61 (suite consolidée) — Tests $FACON2 vagues chronologiques V1-V5 → corrections et optimisations $FACON → empaquetage push + clôture KO-L009
 
-**Horodatage plan : 2026-11-07T08:21:50Z** · **Généré via le déclencheur verbatim « met à jour (le plan d'actions) »** — gen-plan **v3.37.0** (règle d'or n°3 — voie CONSOLIDATION : ce plan remplace `plan-task61-correct-work-bloc-tests-facon2-optimisations.md` [révision 1 du worklog non matérialisée — écart constaté, résorbé ici] comme référence d'exécution ; l'ancien plan est conservé dans `download/`, R2) · **Mode d'exécution : gen-plan(step)** (13ᵉ directive point 4 — enchaînement autonome, correct-work(groupe) après chaque groupe, max 2 rounds/groupe, PLAN-AFFICHE à l'ouverture de chaque groupe — E7-DISP v3.36.0).
+**Horodatage plan : 2026-11-07T08:39:00Z** (révision finale — 13/13 done) · **Généré via le déclencheur verbatim « met à jour (le plan d'actions) »** — gen-plan **v3.37.0** (règle d'or n°3 — voie CONSOLIDATION : ce plan remplace `plan-task61-correct-work-bloc-tests-facon2-optimisations.md` [révision 1 du worklog non matérialisée — écart constaté, résorbé ici] comme référence d'exécution ; l'ancien plan est conservé dans `download/`, R2) · **Mode d'exécution : gen-plan(step)** (13ᵉ directive point 4 — enchaînement autonome, correct-work(groupe) après chaque groupe, max 2 rounds/groupe, PLAN-AFFICHE à l'ouverture de chaque groupe — E7-DISP v3.36.0).
 
 ## §0 État d'ouverture consolidé (E1-RES — dérivé du disque, règle d'or n°5 — groupes terminés reportés avec preuves)
 
@@ -80,49 +80,49 @@ decisions:
     verification: "python3 skills/gen-plan/scripts/check_plan_protocol.py --selftest ; simulation : mv skills/version-management tmp/vm-sim && python3 skills/gen-plan/scripts/ensure-installed.py --check (INSTALLE-REPARÉ) && re-jeu (INSTALLE) ; journal download/tests-task61/v1-task56.json présent, 0 FAIL"
     source: "Directives 11e item 3 + 12e (vagues chronologiques — Task 56 en premier)"
     priority: S1
-    status: pending
+    status: done
   - id: "D008"
     libelle: "VAGUE V2 — Task 57 : tests $FACON2 du kit TSI (orchestrateur-tsi v1.1.1 + analyse-doc-s4mk2 v1.1.0 + tsi-validator v1.2.0 bi-racine + multi-shift-architect v1.1.0 + agent-TSI) : self-tests mécaniques ×2 (validator selftest, analyse-doc DJTT v2.1.0/DREW réels, interface orchestrateur, agent-TSI 36/36 si arbre présent) + perf (durées) — éléments du push P9"
     criterion: "Chaque self-test ×2 byte-stable/no-op, verdicts PASS ; durées mesurées"
     verification: "journal download/tests-task61/v2-task57.json présent, 0 FAIL ; self-tests re-exécutables (scripts présents skills/*/scripts/)"
     source: "Directive 12e (périmètre push + vagues chronologiques — Task 57)"
     priority: S1
-    status: pending
+    status: done
   - id: "D009"
     libelle: "VAGUE V3 — Task 60 : tests $FACON2 pm-skill v1.0.0 + correct-work v2.11.0 + ULTRA : (a) pm-skill self-test ST1-ST11 ×2 + PM éphémère témoin sur gen-plan v3.37.0 (auto-portance §0 + SHA-256 + zéro lecture externe) + perf (unitaire ×10 + batch) ; (b) correct-work : verify-correct-work ×2 (fait ce jour, à consigner) + contrôle matrice best-of §12 + perf arbitre ; (c) fraîcheur ULTRA vs gen-plan v3.37.0 (si stale -> G3 correctif + cascade)"
     criterion: "ST1-ST11 ×2 PASS ; PM éphémère auto-portant vérifié ; matrice §12 contrôlée ; ULTRA à jour ou correctif planifié"
     verification: "python3 scripts/generer-pm-ephemere.py --self-test (si disponible) ; journal download/tests-task61/v3-task60.json présent, 0 FAIL ; grep -c '3.37.0' skills/@mon-ecosysteme/ULTRA* (fraîcheur — sinon ticket G3)"
     source: "Directive 12e (vagues chronologiques — Task 60)"
     priority: S1
-    status: pending
+    status: done
   - id: "D010"
     libelle: "VAGUES V4-V5 + JOURNAL CONSOLIDÉ : (a) V4 Task 58 restes — chaîne Python generer_dessin.py sur échantillon joint 5c ×2 (byte-stable) + perf rendu (comparaison preuves task58 ; V4.1 déjà PASS 8/8 — D004) ; (b) V5 Task 61 du jour — consignation au journal (installation ×3, --bloc PASS AVEC RÉSERVES, v3.36.0/v3.37.0, cascade certifiée, injecteur v2.0.9, commit a38ae1e) + vérifications complémentaires (generer-pm-skill --check = COHERENT ×2, sceaux SHA README vs fichiers, couverture PM v3.37.0) ; (c) journal consolidé ORDONNÉ CHRONOLOGIQUEMENT V1→V5 download/tests-task61/journal-tests.json + rapport download/rapport-tests-task61.md (verdicts, idempotence, perfs, comparaisons, goulots -> D011)"
     criterion: "Chaîne Python ×2 byte-stable ; journal consolidé machine-readable ordonné V1-V5 ; rapport lisible avec toutes les mesures ; 0 FAIL (ou échecs documentés -> D011)"
     verification: "test -f download/tests-task61/journal-tests.json && test -f download/rapport-tests-task61.md ; python3 -c \"import json; d=json.load(open('download/tests-task61/journal-tests.json')); assert 'vagues' in d and len(d['vagues'])==5\" ; grep -E '[0-9]+\\\\.[0-9]+ ?(s|ms)' download/rapport-tests-task61.md (mesures présentes)"
     source: "Directives 11e item 3 + 12e (vagues chronologiques + journal consolidé)"
     priority: S1
-    status: pending
+    status: done
   - id: "D011"
     libelle: "Corrections $FACON des failles + optimisations $FACON (directive 11e item 3) : (a) F1 — KB gen-plan « Utilisé par » += pm-skill (bidirectionnalité SHARED §3.2) ; (b) F2 — pm-skill « Dépend de » += correct-work SI usage réel confirmé (sinon consignation motivée) ; (c) tout échec/écart D007-D010 corrigé (max 2 rounds) ; (d) goulots > 20 % traités (avant/après chiffré, comportement observable préservé) ; (e) normalisation des changements de mode hérités (131 — artefact pipeline, 0 insertion/0 deletion) ; (f) ULTRA si stale (D009c) ; toute montée de version -> cascade KO-L004 complète + re-certification ×2 ; si ZÉRO correction nécessaire : consignation motivée (issue valide)"
     criterion: "Chaque finding -> correction + re-test PASS (ou zero-faille documentée avec preuves) ; arbitres PASS inchangés après correction ; versions cohérentes (frontmatter = KB = PM)"
     verification: "grep -c 'pm-skill' skills/KNOWLEDGE.md (entrée gen-plan « Utilisé par » — >= 2 attendu après F1) ; git -C KNOWLEDGE-repo diff --stat HEAD~1 HEAD (modes normalisés documentés) ; arbitres replayés ×2 PASS"
     source: "Directive 11e item 3 : « corriger $FACON leurs failles + optimiser $FACON leur fonctionnement interne et au sein de l'écosystème » + findings D002"
     priority: S1
-    status: pending
+    status: done
   - id: "D012"
     libelle: "Empaquetage push (directive 12e) : git fsck (intégrité dépôt) + linéarité des 12 commits locaux (390133a -> a38ae1e) + présence disque de tous les fichiers commités + changements de mode normalisés (après D011e) + statut final documenté + COMMANDE PUSH PRÉPARÉE (à exécuter par le propriétaire — KO-L009 point 5, jamais par l'agent)"
     criterion: "fsck propre ; 12 commits linéaires documentés ; 0 fichier commité absent du disque ; commande push exacte fournie au propriétaire, JAMAIS exécutée"
     verification: "git -C KNOWLEDGE-repo fsck --no-dangling (propre) ; git -C KNOWLEDGE-repo rev-list origin/main..HEAD --count (12) ; git -C KNOWLEDGE-repo log --oneline origin/main..HEAD (liste documentée) ; section « push préparé » du rapport final"
     source: "Directive 12e (périmètre push) + KO-L009 point 5"
     priority: S1
-    status: pending
+    status: done
   - id: "D013"
     libelle: "Clôture (mode step v3.22.0 — 13e directive point 4) : rapport final download/rapport-final-task61.md (chaîne complète : installation -> --bloc -> vagues V1-V5 -> corrections/optimisations -> empaquetage -> guidance ; RAPPELS OBLIGATOIRES en tête) ; worklog R5 chaîne G1->G4 ; plan 100 % done + verdict E8 final (horodatages couplés) ; guidance KO-L009 (révocation PAT + re-provisionnement hors canal + push propriétaire + option askass one-shot) ; clone-chat scellé download/clone-discussion-2026-11-07-task61.md (8 checks) ; FINALE correct-work (projet) --bloc sur l'ensemble"
     criterion: "Rapport final présent ; plan 13/13 done ; check_plan_protocol PASS ; clone-chat scellé ; guidance complète"
     verification: "python3 skills/gen-plan/scripts/check_plan_protocol.py --plan download/plan-task61-suite-consolidee.md --worklog worklog.md (PASS P1-P5) ; test -f download/rapport-final-task61.md && test -f download/clone-discussion-2026-11-07-task61.md ; grep -c 'KO-L009' download/rapport-final-task61.md >= 1"
     source: "Mode step gen-plan v3.22.0 + E7-DISP v3.27.0/v3.36.0 + directive 11e item 4 (clé GitHub — voie KO-L009)"
     priority: S1
-    status: pending
+    status: done
 ```
 
 ## §2 Groupes d'exécution (mode step — structure §5.5 : Groupe → Sous-groupe → Tâche)
@@ -190,14 +190,14 @@ decisions:
 
 | Groupe | Statut | Sous-groupes | Tâches | #token estimé |
 |--------|--------|--------------|--------|----------------|
-| G1 Vagues V1-V3 (Task 56/57/60) | À FAIRE | 0/3 | 0/9 | ~20 k |
-| G2 V4+V5+journal consolidé | À FAIRE | 0/3 | 0/6 | ~14 k |
-| G3 Corrections + optimisations | À FAIRE | dynamique | dynamique | ~12 k |
-| G4 Empaquetage + clôture + KO-L009 | À FAIRE | 0/4 | 0/7 | ~12 k |
+| G1 Vagues V1-V3 (Task 56/57/60) | TERMINÉ | 3/3 | 9/9 | ~20 k |
+| G2 V4+V5+journal consolidé | TERMINÉ | 3/3 | 6/6 | ~14 k |
+| G3 Corrections + optimisations | TERMINÉ | 3/3 | F1/F2 + 5 tickets + 121 modes | ~12 k |
+| G4 Empaquetage + clôture + KO-L009 | TERMINÉ | 4/4 | 7/7 | ~12 k |
 | **TOTAL** | — | — | 22+ fixes + dynamiques | **~58 k (+15 k marge)** |
 
 ---
 
-**Verdict E8 : PASS (validation exécutée — answer-key-checker + check_plan_protocol P1-P5 PASS — Horodatage vérifié : 2026-11-07T08:21:50Z — couplé à « Horodatage plan » ci-dessus)**
+**Verdict E8 : PASS (ré-validation FINALE exécutée — 13/13 décisions done, arbitre check_plan_protocol P1-P5 PASS — Horodatage vérifié : 2026-11-07T08:39:00Z — TOUTE écriture a rafraîchi « Horodatage plan » et re-validé E8)**
 
 *Plan consolidé généré via le déclencheur verbatim « met à jour (le plan d'actions) » — gen-plan v3.37.0 (règle d'or n°3, voie consolidation — 13ᵉ directive point 3) ; l'ancien plan `plan-task61-correct-work-bloc-tests-facon2-optimisations.md` est conservé (R2 — jamais de réécriture destructrice) ; exécution : gen-plan(step) avec PLAN-AFFICHE à l'ouverture de chaque groupe (E7-DISP v3.36.0).*
