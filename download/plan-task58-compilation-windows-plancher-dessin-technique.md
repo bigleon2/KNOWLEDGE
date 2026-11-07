@@ -97,28 +97,32 @@ decisions:
     verification: "Preuves dans tmp/mission-task58/trigo-node/ (journal + sorties) ; binaire présent ; re-jeu démontré"
     source: "Différé 2 : « corrige le différé Plancher dessin-technique ≥1.3.0 en faisant évoluer le skill » — registre inter-scripts v1.0.0 déclare le nœud (contrat)"
     priority: S1
-    status: pending
+    status: done
+    note_execution: "Exécuté 2026-11-07 : trigo-euler.cpp (≈1500 L, C++17 std, 0 dépendance, mini-JSON ordonné) + binaire compilé -Wall 0 warning ; selftest T01-T15 15/15 ×2 byte-identique (2 rounds de correction : B/2 matrice forme quadratique + second membre +1/angle propre) ; preuves tmp/mission-task58/trigo-node/ — harnais PASS 8/8 ×2 re-jeu identique (P1 selftest, P2 15 op is_client, P3 daemon+echo, P4 concurrence 100/100 à 0,1-0,7 ms, P5 saturation 8+1 « daemon sature », P6 daemon.stop propre, P7 orchestrateur ×2 sha16, P8 cas vivant joint 5c 44,9×35,2) ; piège pipe documenté (daemon enfant hérite stdout pipe → blocage communicate — redirection fichier)"
   - id: "D586"
     libelle: "Cascade KO-L004 complète (5 touches, L57-1) — plancher satisfait mécaniquement"
     criterion: "(1) SKILL.md v1.3.0 : description += F6 nœud trigo-euler, §1.8 nouveau (F6), T7/T8 au tableau §1.5, §2 emplacements + stack C++ ; (2) evals.json v1.3.0 + T7 (self-test nœud) + T8 (concurrence daemon) ; (3) KB : entrée ## dessin-technique v1.3.0 (description F6 + ligne calibration Task 58) + mention skill-creator « Utilisé par » recalée v1.3.0 ; (4) pin arbitre ECO_SKILLS dessin-technique 1.1.1 → 1.3.0 (commentaire Task 58) ; (5) ligne historiques-par-skill v1.3.0 + archive v2.3 rescellée (piliers) ; puis sync miroir (commit) + re-certification integrity ×2 arbres + coherence + verify-correct-work ; plancher frontmatter inter-scripts >=1.3.0 satisfait (1.3.0 installé == déclaré)"
     verification: "integrity 108/108 ×2 arbres (le bump sans cascade échouerait : L57-1 integrity = détecteur unique) ; coherence sans FAIL ; verify-correct-work 16/16 ; git log miroir +1 commit Task 58"
     source: "Différé 2 (suite) : la montée de version d'un skill déclenche la cascade 5 touches (leçon L57-1)"
     priority: S1
-    status: pending
+    status: done
+    note_execution: "Exécuté 2026-11-07 : (1) SKILL.md v1.3.0 [description F6, §1.8, T7/T8, §2 stack C++, dépendance inter-scripts, read_when/tags] ; (2) evals.json v1.3.0 8 tests [T7/T7 selftest + T8 cycle daemon vérifié en direct] ; (3) KB v1.3.0 [Six fonctions + F6 + inter-scripts + calibration Task 58 + skill-creator « Utilisé par » recalé] ; (4) pin ECO_SKILLS 1.1.1→1.3.0 commenté ; (5) historiques-par-skill ligne v1.3.0 + 4 versions + sceaux v1.1.1 (git a988f51) ; ULTRA régénéré ×2 idempotent (dessin-technique 1.3.0) ; archive v2.3 rescellée ×2 (round-trip 15/15) ; RÉSORPTIONS DE DETTES HÉRITÉES : sync §0 gen-plan/certification-complete (propagation 00:57 non syncée), 70 étiquettes §0 → SHARED v1.7.28 (dette Task 60 G4), version-management restauré (19ᵉ disparition — incident volatilité n°7) ; certification : integrity HÔTE 110/110 ×2 + MIROIR 110/110 ×2, coherence 53/29/0 FAIL, verify-correct-work 16/16 ; miroir 3 commits (00f9ca6, e7d6bcb, 768bb3a) ; plancher inter-scripts >=1.3.0 SATISFAIT"
   - id: "D587"
     libelle: "correct-work (projet) --bloc : 3 blocs (B1 compilation-windows / B2 plancher dessin-technique / B3 clôture)"
     criterion: "Mode bloc par bloc en fin de chaîne ; verdict global = pire des blocs ; findings corrigés en vol (max 2 rounds)"
     verification: "Rapport correct-work --bloc Task 58 dans download/ ; 3× PASS → global PASS"
     source: "Protocole mode step (v3.22.0) reconduit (Tasks 55/56/57)"
     priority: S1
-    status: pending
+    status: done
+    note_execution: "Exécuté 2026-11-07 : download/rapport-correct-work-bloc-task58.md — B1 PASS 4/4 (requalifié documenté) · B2 PASS 8/8 (0 S1-S2, 2 rounds T04 dans la limite, findings informatifs consignés) · B3 PASS 5/5 — VERDICT GLOBAL PASS (17/17 checks, pire des blocs = PASS)"
   - id: "D588"
     libelle: "Rapport final + RAPPELS OBLIGATOIRES propriétaire + clone-chat scellé + worklog (R5)"
     criterion: "download/rapport-final-task58.md (couverture 5/5 demandes, état final dérivé du disque) ; rappels en tête : rotation PAT K1/K2/K3 + GHORG_GITHUB_TOKEN (13ᵉ+ expositions — K3 fournie ce tour) · GO push miroir (59a5805 + 1e7e541 + 2adbd7a + 3ace5b5 + commit Task 58) · ghorg/Go non reconstruits · F1 import Traktor · F3 décision P1b · option fusion workflow → master ; clone-chat scellé download/clone-discussion-2026-11-06-task58.md"
     verification: "Fichiers présents + worklog complété + leçons knowledge-observer (E15 : cause racine volatilité snapshots UUID)"
     source: "Clôture canonique (Pendances Task 57 §3 reconduites + leçons E15)"
     priority: S1
-    status: pending
+    status: done
+    note_execution: "Exécuté 2026-11-07 : download/rapport-final-task58.md (couverture 5/5, RAPPELS OBLIGATOIRES en tête : rotation PAT/jetons, GO push miroir, ghorg/Go, F1, F3, fusion workflow) ; clone-chat scellé download/clone-discussion-2026-11-07-task58.md (8/8 checks — date réelle 2026-11-07, livrables horodatés) ; worklog suites 12-14 + PLAN-AFFICHE ; leçon E15 reconduite (cause racine volatilité snapshots UUID — 19ᵉ disparition version-management absorbée par la garde Task 56)"
 ```
 
 ---
@@ -164,6 +168,6 @@ Fusion du workflow compilation Windows vers master (décision propriétaire — 
 
 ## Hooks de validation (E8)
 
-Horodatage plan : 2026-11-06T22:15:00Z
+Horodatage plan : 2026-11-07T03:45:00Z (révision G2/G3 — clôture chaîne)
 
-Verdict E8 : PASS (P1 plan présent · P2 answer key 8 décisions/8 vérifications · P3 worklog R5 · P4 PLAN-AFFICHE · P5 frais — Horodatage vérifié : 2026-11-06T22:15:00Z)
+Verdict E8 : PASS (P1 plan présent · P2 answer key 8 décisions/8 vérifications — 8/8 done · P3 worklog R5 suites 9-14 · P4 PLAN-AFFICHE · P5 frais — Horodatage vérifié)
