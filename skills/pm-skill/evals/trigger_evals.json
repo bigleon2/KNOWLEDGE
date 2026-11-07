@@ -1,0 +1,36 @@
+[
+  {
+    "query": "PM-skill(correct-work)",
+    "should_trigger": true
+  },
+  {
+    "query": "Génère le prompt maître de tsi-validator pour que je puisse l'utiliser dans ChatGPT.",
+    "should_trigger": true
+  },
+  {
+    "query": "Exporte mon skill vue-upload pour une IA externe.",
+    "should_trigger": true
+  },
+  {
+    "query": "Je veux utiliser mon skill gen-plan dans Gemini, donne-moi un prompt auto-portant.",
+    "should_trigger": true
+  },
+  {
+    "query": "Monte correct-work en v2.11.0 et génère son prompt maître corpus avec la cascade.",
+    "should_trigger": false,
+    "exclusifs": ["monte", "corpus"],
+    "note": "veto croisé : montée de version + PM corpus = cascade KO-L004 via gen-plan (scripts/generer-pm-skill.py) — pm-skill n'y touche jamais (couche additive, corpus intact)"
+  },
+  {
+    "query": "Exécute le skill tsi-validator sur ce fichier TSI.",
+    "should_trigger": false,
+    "exclusifs": ["exécute"],
+    "note": "veto croisé : exécution dans l'écosystème = voie native (le skill installé, règle canonique SHARED §0/§1.2) — pm-skill exporte, n'exécute pas (R4)"
+  },
+  {
+    "query": "Réinstalle mon écosystème depuis le dépôt.",
+    "should_trigger": false,
+    "exclusifs": ["réinstalle"],
+    "note": "veto croisé : installation écosystème = PM-INSTALL / eco_install_pipeline.py — hors périmètre pm-skill"
+  }
+]

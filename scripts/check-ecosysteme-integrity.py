@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.27)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
+Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).
+Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
 """
 
 """Intégrité de l'écosystème Knowledge installé dans ce projet.
@@ -127,6 +129,12 @@ ECO_SKILLS = {
     "resume-youtube": "1.1.0",  # création 2026-10-04 (Task 26 via gen-plan v3.19.0, commit 48f71c4) ; v1.1.0 anti-hallucination G1-G5 (exigence propriétaire)
     "web-reader": "1.0.0",  # skill plateforme z-ai-web-dev-sdk (license MIT) — dépôt depuis 78f8b2c (2026-08-09)
     "web-search": "1.0.0",  # skill plateforme z-ai-web-dev-sdk (license MIT) — dépôt depuis 78f8b2c (2026-08-09)
+    # Task 60 G3-SG2 (2026-11-07, session web-c30e6506 — porte propriétaire D604
+    # VALIDÉE : « je valide ta proposition, tu peux l'exécuter $FACON pour me
+    # générer $FACON un écosystème $FACON2 ») : création — portabilité universelle
+    # (PM éphémères auto-portants depuis les SKILL.md vivants, usage IA externe ;
+    # couche ADDITIVE, corpus intact — KO-L004 continue pour les 4 familles).
+    "pm-skill": "1.0.0",
 }
 # Convention KB_ONLY_VERSION levée (corrige-ecosysteme G-bis) : skill-creator
 # porte désormais sa version dans le frontmatter (v1.0.0) comme les autres.

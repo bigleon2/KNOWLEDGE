@@ -1,0 +1,28 @@
+{
+  "skill_name": "pm-skill",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals de création (Task 60 G3-SG2, porte propriétaire D604 VALIDÉE — session web-c30e6506) : portabilité universelle des skills vers IA externe. Contrôles négatifs : montée de version corpus (KO-L004), exécution native, installation.",
+  "evals": [
+    {
+      "id": 1,
+      "query": "PM-skill(correct-work)",
+      "expected_behavior": "déclenchement du skill pm-skill (déclencheur verbatim) — génération du PM éphémère correct-work dans download/ (auto-portant §0, SHA-256 source tracé) + livraison vue-upload push/featured"
+    },
+    {
+      "id": 2,
+      "query": "Génère le prompt maître de tsi-validator pour que je puisse l'utiliser dans ChatGPT.",
+      "expected_behavior": "déclenchement du skill pm-skill (voie non-famille — refusée par le corpus KO-L004, 68/68 ici)"
+    },
+    {
+      "id": 3,
+      "query": "Exporte mon skill vue-upload pour une IA externe.",
+      "expected_behavior": "déclenchement du skill pm-skill (alias « exporte X pour une IA »)"
+    },
+    {
+      "id": 4,
+      "query": "Je veux utiliser mon skill gen-plan dans Gemini, donne-moi un prompt auto-portant.",
+      "expected_behavior": "déclenchement du skill pm-skill — PM éphémère auto-portant (§0 embarqué, là où le PM corpus gen-plan est non auto-portant — test D603b A3)"
+    }
+  ]
+}
