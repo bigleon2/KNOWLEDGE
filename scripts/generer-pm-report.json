@@ -1,18 +1,16 @@
 {
   "mode": "generate",
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "dry_run": false,
   "familles": [
     {
-      "famille": "gen-plan",
-      "old": "3.35.0",
-      "new": "3.35.1",
+      "famille": "correct-work",
+      "old": "2.9.0",
+      "new": "2.11.0",
       "yaml_subs": 1,
-      "coverage_missing": [
-        "1.13"
-      ],
-      "skill_sections": 42,
-      "pm_sections": 58
+      "coverage_missing": [],
+      "skill_sections": 40,
+      "pm_sections": 66
     }
   ]
 }

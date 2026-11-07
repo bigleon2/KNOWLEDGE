@@ -1,0 +1,80 @@
+{
+ "history": "v2.11.0 | 2026-11-07 | Double apport (Task 60 G4, D605 — session web-c30e6506, directive propriétaire « optimise $FACON 'v2.10.0' en une version $FACON2 y intégrant le meilleur de toutes ses versions précédentes ») : (i) contrat §1.5bis « Plan d'actions des correctifs via gen-plan en mode STEP » RÉ-INTÉGRÉ — v2.10.0 matérialisée Task 59 (D591) puis PERDUE au recyclage snapshot 2026-11-06 (jamais journalisée, jamais syncée au miroir — inventaire D601 §b), contrat reconstitué depuis plan-task59-couplage-step-correct-work.md, lignage honnête : 5 points (obligation, mode STEP, plancher gen-plan >= v3.22.0, ARRÊT EXPLICITE, compatibilité tous modes) + alignements §1.1/§1.5/§1.7/§2.2/§3/§4/§6/§10.1 ; (ii) matrice de couverture best-of §12 (v1.0.0 → v2.11.0 — chaque avantage durable présent ou supplanté documenté, jamais de ressuscitation d'un retrait délibéré R2) ; optimisations : plancher frontmatter/tables v3.7.0 → v3.22.0, exemples §2.4/§2.6 recalés v2.11.0, estimations obsolètes « ~330 lignes » retirées (§2.3/§5.2) ; arbitre verify-correct-work.py recalibré (2.11.0, checks 11/15 → >=3.22.0) — éditions atomiques SKILL.md+arbitre ; origine G3 : pm-skill v1.0.0 intégré (D604 VALIDÉE — couche additive portabilité, corpus intact)",
+ "subs": [
+  {
+   "old": "correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 4 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session. Supporte le multi-cibles, le couplage gen-plan OBLIGATOIRE (dernière version installée) à l'Étape 1, le hook Second Opinion (2nd opinion agent-driven, Étape 5), et les métriques de performance.",
+   "new": "correct-work est un skill de **vérification et correction** du travail réalisé par l'assistant IA. Il fournit un cadre structuré en 5 étapes et 4 modes pour inspecter, diagnostiquer et corriger tout artefact produit au cours d'une session. Supporte le multi-cibles, le couplage gen-plan OBLIGATOIRE (dernière version installée) à l'Étape 1, le plan d'actions des correctifs via gen-plan en mode STEP (contrat §1.5bis — v2.10.0 ré-intégré, v2.11.0), le hook Second Opinion (2nd opinion agent-driven, Étape 5), la matrice de couverture des versions v1.0.0 → v2.11.0 (best-of, §12), et les métriques de performance.",
+   "count": 1
+  },
+  {
+   "old": "Aucune version épinglée n'est admise ; le plancher `>= v3.7.0` demeure le plancher d'intégration minimal (SHARED §3.2 règle 5).",
+   "new": "Aucune version épinglée n'est admise ; le plancher d'intégration est élevé à `>= v3.22.0` depuis le contrat §1.5bis (version d'introduction du mode step — SHARED §3.2 règle 5 ; plancher historique v3.7.0 supplanté, règle §3.2 point 5).",
+   "count": 1
+  },
+  {
+   "old": "### §1.6 Intégration KB",
+   "new": "### §1.5bis Plan d'actions des correctifs via gen-plan en mode STEP (v2.10.0 ré-intégré — v2.11.0)\n\nTout lot de correctifs issu des Étapes 2-5 est **planifié via gen-plan en mode STEP avant application** (contrat OBLIGATOIRE — directive propriétaire 2026-11-06, Task 59 D591 : matérialisée puis perdue au recyclage snapshot 2026-11-06, contrat reconstitué et ré-intégré ici, lignage honnête) :\n\n1. **Obligation** : jamais de correctifs ad hoc — tout lot (≥ 2 correctifs liés, ou tout correctif structurel) est planifié d'abord ;\n2. **Mode STEP** : le plan des correctifs décompose le lot en groupes ; `correct-work(groupe)` est exécuté après chaque groupe (max 2 rounds — SHARED §4.4) et `correct-work(projet)` en fin de chaîne ;\n3. **Plancher** : gen-plan `>= v3.22.0` (version d'introduction du mode step — SHARED §3.2 règle 5) ; la résolution dynamique §1.5 (dernière version installée) s'applique ;\n4. **ARRÊT EXPLICITE** si gen-plan est indisponible, corrompu ou de version < v3.22.0 (règle d'or n°1 — jamais de correctifs non planifiés par repli) ;\n5. **Compatibilité tous modes** : s'applique au mode PROJET (standard et `--bloc`) ; les modes CIBLE/DIRECT/AVEUGLE enchaînent par le même contrat lorsque leurs correctifs forment un lot.\n\n### §1.6 Intégration KB",
+   "count": 1
+  },
+  {
+   "old": "- **Compatibilité** : coexiste avec le mode PROJET standard (`correct-work(projet)` inchangé) ; le couplage gen-plan obligatoire (§1.5) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.",
+   "new": "- **Compatibilité** : coexiste avec le mode PROJET standard (`correct-work(projet)` inchangé) ; le couplage gen-plan obligatoire (§1.5), le plan des correctifs mode STEP (§1.5bis) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.",
+   "count": 1
+  },
+  {
+   "old": "| gen-plan | >= v3.7.0 (dernière installée OBLIGATOIRE) | Étape 1 (plan d'actions) | Non (obligatoire) |",
+   "new": "| gen-plan | >= v3.22.0 (dernière installée OBLIGATOIRE) | Étape 1 (plan d'actions) + plan des correctifs mode STEP (§1.5bis) | Non (obligatoire) |",
+   "count": 1
+  },
+  {
+   "old": "├── SKILL.md              # Skill opérationnel (~330 lignes)",
+   "new": "├── SKILL.md              # Skill opérationnel",
+   "count": 1
+  },
+  {
+   "old": "- **Version correct-work** : 2.7.0",
+   "new": "- **Version correct-work** : 2.11.0",
+   "count": 1
+  },
+  {
+   "old": "Agent: correct-work v2.7.0",
+   "new": "Agent: correct-work v2.11.0",
+   "count": 1
+  },
+  {
+   "old": "| gen-plan | Invocation à E1 (OBLIGATOIRE) | Plan de vérification — dernière version installée, plancher >= v3.7.0 |",
+   "new": "| gen-plan | Invocation à E1 (OBLIGATOIRE) + correctifs (§1.5bis) | Plan de vérification + plan des correctifs mode STEP — dernière version installée, plancher >= v3.22.0 |",
+   "count": 1
+  },
+  {
+   "old": "  - skill: gen-plan\n    version: \">=3.7.0\"\n    used_at: \"Étape 1 (obligatoire — dernière version installée, mode PROJET)\"",
+   "new": "  - skill: gen-plan\n    version: \">=3.22.0\"\n    used_at: \"Étape 1 (obligatoire — dernière version installée) + plan des correctifs mode STEP (§1.5bis, obligatoire)\"",
+   "count": 1
+  },
+  {
+   "old": "Le fichier `SKILL.md` (~330 lignes, version compacte avec checklists intégrées) doit contenir :",
+   "new": "Le fichier `SKILL.md` (version compacte avec checklists intégrées) doit contenir :",
+   "count": 1
+  },
+  {
+   "old": "| 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.7.0 | Present |",
+   "new": "| 11 | Cross-ref gen-plan | Mention Étape 1, >= v3.22.0 | Present |",
+   "count": 1
+  },
+  {
+   "old": "| 15 | Dépendances frontmatter | gen-plan >=3.7.0, clone-chat >=2.0.0, fullstack-dev >=1.0.0 | Correct |",
+   "new": "| 15 | Dépendances frontmatter | gen-plan >=3.22.0, clone-chat >=2.0.0, fullstack-dev >=1.0.0 | Correct |",
+   "count": 1
+  },
+  {
+   "old": "- [ ] gen-plan indisponible ou corrompu → ARRÊT EXPLICITE (§1.5 — jamais de plan autonome)",
+   "new": "- [ ] gen-plan indisponible ou corrompu → ARRÊT EXPLICITE (§1.5 — jamais de plan autonome)\n- [ ] Plan des correctifs Étapes 2-5 via gen-plan mode STEP (§1.5bis — OBLIGATOIRE ; ARRÊT EXPLICITE si < v3.22.0)",
+   "count": 1
+  },
+  {
+   "old": "## §11 — CONVENTIONS\n\n- Nommage kebab-case, sections préfixées « § », budgets préfixés « #token » (SHARED §1.2)\n- Worklog format SHARED §1.4 — une entrée par tâche, verdicts et preuves JSON\n- Planchers directionnels plutôt qu'égalité stricte (leçon E21) pour tout critère couplant\n  une valeur à un artefact vivant",
+   "new": "## §11 — CONVENTIONS\n\n- Nommage kebab-case, sections préfixées « § », budgets préfixés « #token » (SHARED §1.2)\n- Worklog format SHARED §1.4 — une entrée par tâche, verdicts et preuves JSON\n- Planchers directionnels plutôt qu'égalité stricte (leçon E21) pour tout critère couplant\n  une valeur à un artefact vivant\n\n## §12 — MATRICE DE COUVERTURE DES VERSIONS (best-of v1.0.0 → v2.11.0)\n\nChaque avantage durable est PRÉSENT en v2.11.0 ou supplanté documenté (jamais de ressuscitation d'un retrait délibéré — R2). Sources : `@historique/historiques-par-skill/correct-work.md` + inventaire Task 60 D601.\n\n| Version | Apport durable | Statut v2.11.0 |\n|---|---|---|\n| v1.0.0 | Vérification basique (5 étapes) | ✓ §1.3 |\n| v2.0.0/v2.1.0 | Mode CIBLE + rapport exploitable ; intégration gen-plan Étape 1 | ✓ §1.2/§2.4/§1.5 |\n| v2.2.0 | Registre KB, kb_path, --kb-skill, matrice dynamique | ✓ §1.6 |\n| v2.3.0 | Extraction socle SHARED (R4) | ✓ — décentralisé (renvois §3.2, corrige-ecosysteme v2.0) |\n| v2.4.0 | Multi-cibles, métriques, checklists op., scripts/+evals/, hook E8 | ✓ §1.4/§2.8/§10b/§2.3 |\n| v2.5.0/v2.5.1 | Unification schéma evals skill-creator ; Description Optimization | ✓ §2.3 + description/evals/ |\n| v2.6.0 | Mode AVEUGLE (Second Opinion), max 2 rounds | ✓ §1.2/§1.3/§10.4 |\n| v2.7.0 | Couplage gen-plan OBLIGATOIRE + ARRÊT EXPLICITE | ✓ §1.5 (plancher supplanté → 3.22.0, §1.5bis) |\n| v2.8.0 | Délégation alias-eco (registre phrases récurrentes) | ✓ §10.1 Phase 2 |\n| v2.9.0 | Mode PROJET « bloc par bloc » `--bloc` | ✓ §1.7/§10.1bis |\n| v2.10.0 | Contrat §1.5bis correctifs mode STEP | ✓ RÉ-INTÉGRÉ (perdue au recyclage 2026-11-06 — contrat reconstitué plan-task59 D591) |",
+   "count": 1
+  }
+ ]
+}

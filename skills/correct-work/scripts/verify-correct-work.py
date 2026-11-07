@@ -9,6 +9,10 @@ dépendance optionnelle mode PROJET (>= 1.0.0), version attendue 2.8.0.
 Recalibrage v2.9.0 (2026-11-04, Task 48 — session web-6058b3ba, KO-L004) : option « bloc par bloc »
 du mode PROJET (déclencheur `correct-work (projet) --bloc`), version attendue 2.9.0,
 plage étendue 200-500 (croissance directive — garde anti-dérive conservée).
+Recalibrage v2.11.0 (2026-11-07, Task 60 G4 — session web-c30e6506, KO-L004, D605) :
+contrat §1.5bis correctifs via gen-plan mode STEP ré-intégré (v2.10.0 perdue au recyclage
+— contrat reconstitué plan-task59 D591) + matrice best-of §12 ; plancher gen-plan élevé
+>=3.22.0 (checks 11/15 recalibrés), version attendue 2.11.0, PM v2.11.0.
 Calibrage v2.6.0 (B13-r5 : aligné frontmatter installé — L003).
 Usage:
     python verify-correct-work.py
@@ -21,16 +25,16 @@ import sys
 
 SKILLS_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SKILL_PATH = os.path.join(SKILLS_ROOT, "correct-work", "SKILL.md")
-PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.9.0.md")
+PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md")
 SHARED_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-SHARED.md")
 KB_PATH = os.path.join(SKILLS_ROOT, "KNOWLEDGE.md")
 
-EXPECTED_VERSION = "2.9.0"
+EXPECTED_VERSION = "2.11.0"
 EXPECTED_LINES_MIN = 200
 EXPECTED_LINES_MAX = 500
 EXPECTED_MODES = {"PROJET", "CIBLE", "DIRECT"}
 EXPECTED_STEPS = {"1", "2", "3", "4", "5"}
-REQUIRED_DEPS = {"gen-plan": ">=3.7.0", "clone-chat": ">=2.0.0"}
+REQUIRED_DEPS = {"gen-plan": ">=3.22.0", "clone-chat": ">=2.0.0"}
 REQUIRED_FRONTMATTER = ["name", "version", "category", "language", "tags", "dependencies"]
 # Sections du PM (utilisées pour référence, pas de check dedie)
 
@@ -222,10 +226,10 @@ def run_checks():
     else:
         results.append(("Check 10", "Format rapport", "SKIP"))
 
-    # Check 11 : Cross-ref gen-plan >= v3.7.0 (contrat v2.5.1)
+    # Check 11 : Cross-ref gen-plan >= v3.22.0 (contrat §1.5bis — v2.11.0)
     if content:
-        has_gp = "gen-plan" in content and (">= v3.7.0" in content or ">=v3.7.0" in content or ">= 3.7.0" in content)
-        results.append(("Check 11", "Cross-ref gen-plan >= v3.7.0", "PASS" if has_gp else "FAIL"))
+        has_gp = "gen-plan" in content and (">= v3.22.0" in content or ">=v3.22.0" in content or ">= 3.22.0" in content)
+        results.append(("Check 11", "Cross-ref gen-plan >= v3.22.0", "PASS" if has_gp else "FAIL"))
         if has_gp:
             passed += 1
     else:

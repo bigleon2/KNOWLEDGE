@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.27)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
+Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).
+Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
 """
 """gen-ultra-maitre.py — Générateur idempotent du PROMPT-ULTRA-MAITRE-ORCHESTRATION.md
 
@@ -43,7 +45,7 @@ def eco_skills():
 
 ROUTING = [
     ("Planifier une tâche / un projet", "gen-plan (dernière version)", "PM gen-plan le plus récent", "E1-E15, 4 modes"),
-    ("Vérifier / corriger un travail", "correct-work v2.7.0 (gen-plan OBLIGATOIRE à l'Étape 1)", "PM correct-work le plus récent", "5 étapes, 4 modes"),
+    ("Vérifier / corriger un travail", "correct-work (gen-plan OBLIGATOIRE à l'Étape 1 + plan des correctifs mode STEP §1.5bis)", "PM correct-work le plus récent", "5 étapes, 4 modes"),
     ("Refactorer un élément (besoin détecté / dette technique)", "refactoring-engineering (n°55) + refactor-guard (garde-fous)", "PM refactor-guard le plus récent", "H01-H15, zéro-régression, échelle rollout"),
     ("Évaluer l'impact d'une modification (blast radius)", "refactoring-test (outil n°55)", "—", "graphe d'interactions M3, verdict machine"),
     ("Archiver une session / clone", "clone-chat", "PM clone-chat le plus récent", "7+1 étapes, 8 checks"),

@@ -1,6 +1,6 @@
 ---
 name: correct-work
-version: 2.9.0
+version: 2.11.0
 category: ecosystem
 language: fr
 tags:
@@ -12,17 +12,19 @@ tags:
 description: >
   Skill de vérification et correction du travail réalisé (erreurs, omissions, incohérences).
   5 étapes, 4 modes (PROJET/CIBLE/DIRECT/AVEUGLE),
-  support multi-cibles, couplage genplan OBLIGATOIRE (dernière version installée) à l'Étape 1,
+  support multi-cibles, couplage gen-plan OBLIGATOIRE (dernière version installée) à l'Étape 1,
+  plan d'actions des CORRECTIFS via gen-plan en mode STEP (contrat §1.5bis — v2.10.0 ré-intégré, v2.11.0),
   intégration KB (Registre, kb_path, --kb-skill),
   délégation alias-eco (mode PROJET — tenue du registre des phrases récurrentes, v2.8.0),
   option « bloc par bloc » du mode PROJET (déclencheur `correct-work (projet) --bloc` — vérification bloc par bloc, verdict par bloc, v2.9.0),
   matrice de décision agent/skill (statique + dynamique KB),
+  matrice de couverture des versions v1.0.0 → v2.11.0 (best-of — chaque avantage durable présent ou supplanté documenté, §12, v2.11.0),
   métriques de performance.
   Contrôler la cohérence avant de livrer ce que tu viens de produire.
 dependencies:
   - skill: gen-plan
-    version: ">=3.7.0"
-    used_at: "Étape 1 (obligatoire — dernière version installée, mode PROJET)"
+    version: ">=3.22.0"
+    used_at: "Étape 1 (obligatoire — dernière version installée) + plan des correctifs mode STEP (§1.5bis, obligatoire)"
   - skill: clone-chat
     version: ">=2.0.0"
     used_at: "Mode CIBLE, §3.5 Context Drift"
@@ -38,15 +40,14 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.26)
+## §0 — Contexte Système (SHARED v1.7.27)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 > Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
-
-
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
 
 ## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
 
@@ -105,7 +106,17 @@ correct-work peut vérifier plusieurs artefacts dans une même session. Chaque c
 
 ### §1.5 Couplage gen-plan (obligatoire — v2.7.0)
 
-Le mode PROJET utilise gen-plan à l'Étape 1 pour créer le plan de vérification — ce recours est **OBLIGATOIRE** (changement de contrat v2.7.0, directive propriétaire 2026-10-02 : fin du mode autonome). La version mobilisée est **TOUJOURS LA DERNIÈRE VERSION INSTALLÉE**, résolue dynamiquement dans cet ordre : (1) frontmatter de `skills/gen-plan/SKILL.md` (source de vérité installée) ; (2) entrée du registre KB. Aucune version épinglée n'est admise ; le plancher `>= v3.7.0` demeure le plancher d'intégration minimal (SHARED §3.2 règle 5). Si gen-plan est indisponible ou corrompu : **ARRÊT EXPLICITE** (règle d'or n°1 — pause motivée, cause et solution journalisées au worklog), jamais un plan de substitution autonome. Les modes CIBLE et DIRECT n'utilisent pas gen-plan.
+Le mode PROJET utilise gen-plan à l'Étape 1 pour créer le plan de vérification — ce recours est **OBLIGATOIRE** (changement de contrat v2.7.0, directive propriétaire 2026-10-02 : fin du mode autonome). La version mobilisée est **TOUJOURS LA DERNIÈRE VERSION INSTALLÉE**, résolue dynamiquement dans cet ordre : (1) frontmatter de `skills/gen-plan/SKILL.md` (source de vérité installée) ; (2) entrée du registre KB. Aucune version épinglée n'est admise ; le plancher d'intégration est élevé à `>= v3.22.0` depuis le contrat §1.5bis (version d'introduction du mode step — SHARED §3.2 règle 5 ; plancher historique v3.7.0 supplanté, règle §3.2 point 5). Si gen-plan est indisponible ou corrompu : **ARRÊT EXPLICITE** (règle d'or n°1 — pause motivée, cause et solution journalisées au worklog), jamais un plan de substitution autonome. Les modes CIBLE et DIRECT n'utilisent pas gen-plan.
+
+### §1.5bis Plan d'actions des correctifs via gen-plan en mode STEP (v2.10.0 ré-intégré — v2.11.0)
+
+Tout lot de correctifs issu des Étapes 2-5 est **planifié via gen-plan en mode STEP avant application** (contrat OBLIGATOIRE — directive propriétaire 2026-11-06, Task 59 D591 : matérialisée puis perdue au recyclage snapshot 2026-11-06, contrat reconstitué et ré-intégré ici, lignage honnête) :
+
+1. **Obligation** : jamais de correctifs ad hoc — tout lot (≥ 2 correctifs liés, ou tout correctif structurel) est planifié d'abord ;
+2. **Mode STEP** : le plan des correctifs décompose le lot en groupes ; `correct-work(groupe)` est exécuté après chaque groupe (max 2 rounds — SHARED §4.4) et `correct-work(projet)` en fin de chaîne ;
+3. **Plancher** : gen-plan `>= v3.22.0` (version d'introduction du mode step — SHARED §3.2 règle 5) ; la résolution dynamique §1.5 (dernière version installée) s'applique ;
+4. **ARRÊT EXPLICITE** si gen-plan est indisponible, corrompu ou de version < v3.22.0 (règle d'or n°1 — jamais de correctifs non planifiés par repli) ;
+5. **Compatibilité tous modes** : s'applique au mode PROJET (standard et `--bloc`) ; les modes CIBLE/DIRECT/AVEUGLE enchaînent par le même contrat lorsque leurs correctifs forment un lot.
 
 ### §1.6 Intégration KB
 
@@ -125,7 +136,7 @@ Le mode **bloc par bloc** est une option du mode PROJET, déclenchée par `corre
 - **Verdict PAR BLOC** : chaque bloc reçoit un verdict individuel (PASS / PASS AVEC RÉSERVES / FAIL — critères §10.5) ; les corrections sont appliquées et re-vérifiées bloc par bloc (maximum 2 rounds par bloc — SHARED §4.4).
 - **Agrégation finale** : le verdict global est le **pire des verdicts de blocs** (aligné sur l'agrégation multi-cibles §1.4) ; il est consigné avec la table des verdicts de blocs.
 - **Rapport** : le format §2.4 est étendu d'une table « Blocs vérifiés » (bloc, étapes couvertes, findings, verdict) placée avant le résumé.
-- **Compatibilité** : coexiste avec le mode PROJET standard (`correct-work(projet)` inchangé) ; le couplage gen-plan obligatoire (§1.5) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.
+- **Compatibilité** : coexiste avec le mode PROJET standard (`correct-work(projet)` inchangé) ; le couplage gen-plan obligatoire (§1.5), le plan des correctifs mode STEP (§1.5bis) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.
 
 ---
 
@@ -142,7 +153,7 @@ Le mode **bloc par bloc** est une option du mode PROJET, déclenchée par `corre
 
 | Dépendance | Version minimale | Utilisation | Optionnelle |
 |------------|-----------------|-------------|-------------|
-| gen-plan | >= v3.7.0 (dernière installée OBLIGATOIRE) | Étape 1 (plan d'actions) | Non (obligatoire) |
+| gen-plan | >= v3.22.0 (dernière installée OBLIGATOIRE) | Étape 1 (plan d'actions) + plan des correctifs mode STEP (§1.5bis) | Non (obligatoire) |
 | clone-chat | >= v2.0.0 | Mode CIBLE (§3.5 Context Drift) | Oui |
 | fullstack-dev | >= v1.0.0 | Vérification de projets web | Oui |
 | alias-eco | >= v1.0.0 | Mode PROJET — registre des phrases récurrentes (§10.1 Phase 2, v2.8.0) | Oui (mode PROJET seulement) |
@@ -151,7 +162,7 @@ Le mode **bloc par bloc** est une option du mode PROJET, déclenchée par `corre
 
 ```
 {{SKILLS_ROOT}}correct-work/
-├── SKILL.md              # Skill opérationnel (~330 lignes)
+├── SKILL.md              # Skill opérationnel
 ├── references/
 │   └── verification-protocol.md  # Second Opinion — inputs filtrés, 4 étapes (v2.6.0)
 ├── scripts/
@@ -169,7 +180,7 @@ Le mode **bloc par bloc** est une option du mode PROJET, déclenchée par `corre
 ## Métadonnées
 - **Date** : YYYY-MM-DD
 - **Mode** : PROJET | CIBLE | DIRECT
-- **Version correct-work** : 2.7.0
+- **Version correct-work** : 2.11.0
 - **Cible** : [nom du skill/fichier] (ou multi-cibles)
 
 ## Étape 1 — Plan d'actions
@@ -210,7 +221,7 @@ Voir SHARED §1.4 pour le format. Spécifiquement pour correct-work :
 ```markdown
 ---
 Task ID: [task-id]
-Agent: correct-work v2.7.0
+Agent: correct-work v2.11.0
 Task: Vérification [mode] de [cible]
 
 Work Log:
@@ -257,7 +268,7 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 
 | Avec | Nature | Détails |
 |------|--------|--------|
-| gen-plan | Invocation à E1 (OBLIGATOIRE) | Plan de vérification — dernière version installée, plancher >= v3.7.0 |
+| gen-plan | Invocation à E1 (OBLIGATOIRE) + correctifs (§1.5bis) | Plan de vérification + plan des correctifs mode STEP — dernière version installée, plancher >= v3.22.0 |
 | clone-chat | Vérification Mode CIBLE | §3.5 Context Drift, version >= v2.0.0 |
 | fullstack-dev | Vérification | Projets web : structure et dépendances, version >= v1.0.0 |
 | alias-eco | Délégation (v2.8.0) | Mode PROJET — tenue du registre des phrases récurrentes de la discussion analysée (§10.1 Phase 2, registre @historique/@Alias/), version >= v1.0.0 |
@@ -295,6 +306,7 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 ### Phase 1 — Plan (via gen-plan — OBLIGATOIRE, §1.5)
 - [ ] Plan de vérification créé via gen-plan (dernière version installée — OBLIGATOIRE, §1.5)
 - [ ] gen-plan indisponible ou corrompu → ARRÊT EXPLICITE (§1.5 — jamais de plan autonome)
+- [ ] Plan des correctifs Étapes 2-5 via gen-plan mode STEP (§1.5bis — OBLIGATOIRE ; ARRÊT EXPLICITE si < v3.22.0)
 - [ ] Sections à vérifier identifiées
 - [ ] Ordre de vérification défini
 - [ ] Estimation #token faite (grille #token gen-plan §4)
@@ -469,3 +481,19 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 - Worklog format SHARED §1.4 — une entrée par tâche, verdicts et preuves JSON
 - Planchers directionnels plutôt qu'égalité stricte (leçon E21) pour tout critère couplant
   une valeur à un artefact vivant
+
+## §12 — MATRICE DE COUVERTURE DES VERSIONS (best-of v1.0.0 → v2.11.0 — chaque avantage durable PRÉSENT ou supplanté documenté, jamais de ressuscitation d'un retrait délibéré R2 ; sources : `@historique/historiques-par-skill/correct-work.md` + inventaire Task 60 D601)
+
+| Version | Apport durable | Statut v2.11.0 |
+|---|---|---|
+| v1.0.0 | Vérification basique (5 étapes) | ✓ §1.3 |
+| v2.0.0/v2.1.0 | Mode CIBLE + rapport exploitable ; intégration gen-plan Étape 1 | ✓ §1.2/§2.4/§1.5 |
+| v2.2.0 | Registre KB, kb_path, --kb-skill, matrice dynamique | ✓ §1.6 |
+| v2.3.0 | Extraction socle SHARED (R4) | ✓ — décentralisé (renvois §3.2, corrige-ecosysteme v2.0) |
+| v2.4.0 | Multi-cibles, métriques, checklists op., scripts/+evals/, hook E8 | ✓ §1.4/§2.8/§10b/§2.3 |
+| v2.5.0/v2.5.1 | Unification schéma evals skill-creator ; Description Optimization | ✓ §2.3 + description/evals/ |
+| v2.6.0 | Mode AVEUGLE (Second Opinion), max 2 rounds | ✓ §1.2/§1.3/§10.4 |
+| v2.7.0 | Couplage gen-plan OBLIGATOIRE + ARRÊT EXPLICITE | ✓ §1.5 (plancher supplanté → 3.22.0, §1.5bis) |
+| v2.8.0 | Délégation alias-eco (registre phrases récurrentes) | ✓ §10.1 Phase 2 |
+| v2.9.0 | Mode PROJET « bloc par bloc » `--bloc` | ✓ §1.7/§10.1bis |
+| v2.10.0 | Contrat §1.5bis correctifs mode STEP | ✓ RÉ-INTÉGRÉ (perdue au recyclage 2026-11-06 — contrat reconstitué plan-task59 D591) |
