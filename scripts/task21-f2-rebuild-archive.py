@@ -139,6 +139,15 @@ RETRAITS_SANCTIONNES = {
     # vérifiée ci-dessous (garde anti-perte renforcée ; SHA-256 cc6cdcdf… scellé
     # à l'index §5 du README @historique).
     "PROMPT-MAITRE-GEN-PLAN-v3.25.0.md",
+    # cascade gen-plan v3.37.1 (Task 61 G3, commit d15c0a9, session web-c30e6506
+    # — F-V1-1 : trigger_evals 13→15 cas) — re-scellement différé : PM v3.37.0
+    # archivé en COPIE vers skills/@historique/prompts-maitres/gen-plan/ sans
+    # retrait du corpus côté dépôt (divergence hôte/dépôt restée latente — rsync
+    # miroir sans --delete, révélée par la réinstallation du 22ᵉ recyclage —
+    # finding F-62-1, Task 62) : purge des corpus hôte+dépôt Task 62 + présent
+    # retrait sanctionné — byte-identité vérifiée ci-dessous (garde anti-perte ;
+    # SHA d002ba40…).
+    "PROMPT-MAITRE-GEN-PLAN-v3.37.0.md",
 }
 
 # Task 16 — garde anti-perte renforcée pour les retraits DÉPLACÉS : chaque PM
