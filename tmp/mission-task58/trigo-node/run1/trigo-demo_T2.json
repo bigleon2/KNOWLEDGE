@@ -1,0 +1,10 @@
+{
+ "op": "trig.resoudre",
+ "ok": true,
+ "hypotenuse": 5,
+ "oppose": 3,
+ "adjacente": 4,
+ "angle_deg": 36.86989765,
+ "angle_complementaire_deg": 53.13010235,
+ "methode": "pythagore + arctangente (opposé & adjacent)"
+}

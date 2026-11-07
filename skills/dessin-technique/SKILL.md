@@ -1,6 +1,6 @@
 ---
 name: dessin-technique
-version: 1.1.1
+version: 1.3.0
 category: metier
 language: fr
 tags:
@@ -11,6 +11,7 @@ tags:
   - "#image-generation"
   - "#filetage"
   - "#profondeur"
+  - "#trigo-euler"
 description: >
   Reproduit n'importe quelle pièce ou scène dans le style « dessin technique »
   (isométrie CAO flat-shaded, cotation normalisée) à partir d'un DNA de style
@@ -24,7 +25,15 @@ description: >
   table ISO. Fonction mesure de profondeur (v1.1.1) : profondeur d'un trou borgne
   circulaire à fond visible (ellipticité de l'ouverture + décalage du fond,
   projection orthographique ; validation trou-ness — un relief d'objet plat est
-  rejeté).
+  rejeté). Fonction voie géométrique déterministe (v1.3.0, F6) : nœud C++
+  trigo-euler — 15 capacités mathématiques (trigonométrie, équations canoniques,
+  dérivée/primitive/intégrale, séries de Fourier, théorème d'Euler [formule,
+  rotation, projection isométrique, caractéristique], profil axial 2D de pièce
+  de révolution avec aires/inerties/Guldin et cotes formatées françaises, modèle
+  isométrique flat-shaded) — la géométrie est CALCULÉE (jamais devinée par le
+  modèle d'image : proportions, cotes réelles et perspective exactes), appelable
+  simultanément par plusieurs tâches (daemon socket NDJSON multi-clients,
+  max_clients 8) depuis les scripts d'autres langages (registre inter-scripts).
 dependencies:
   - skill: skill-creator
     version: ">=1.0.0"
@@ -32,20 +41,25 @@ dependencies:
   - skill: image-generation
     version: ">=1.0.0"
     used_at: "génération du rendu de base (z-ai CLI/SDK)"
+  - skill: inter-scripts
+    version: ">=1.0.0"
+    used_at: "registre du nœud trigo-euler + client is_client + orchestrateur (v1.3.0)"
 read_when:
   - Déclencher quand la demande concerne : reproduire une image/pièce dans le style « dessin technique », générer un dessin technique coté, mesurer une pièce sur photo avec pièce de monnaie, mettre à l'échelle un dessin multi-pièces
   - Déclencher si la demande mentionne : dessin technique, style CAO, capture de forme, mise à l'échelle, cotes sur photo
   - Déclencher si la demande mentionne (v1.1.1) : filetage, pas de vis, visserie, tige filetée, désignation ISO, profondeur de trou, trou borgne
+  - Déclencher si la demande mentionne (v1.3.0) : trigo-euler, calculs trigonométriques, équations canoniques, primitives, dérivées, intégrales, séries de Fourier, théorème d'Euler, angles d'Euler, projection isométrique, perspective, profil axial, pièce de révolution, aires, inerties, volume de Guldin, proportions exactes
   - Ne pas déclencher hors de ce périmètre (photos réalistes → image-generation/image-edit)
 ---
 
-## §0 — Contexte Système (SHARED v1.7.26)
+## §0 — Contexte Système (SHARED v1.7.27)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 > Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
 
 ## §1 — Spécification fonctionnelle
 
@@ -119,6 +133,8 @@ Cotes connues d'un dessin multi-pièces → facteurs d'échelle harmonisés.
 | T4 | idempotence | selftests ×2 → mêmes verdicts |
 | T5 | mesure de filetage (v1.1.1, `--selftest`) | pas et Ø majeur ≤ 5 %, désignation ISO correcte — 4 cas : stries droites, hélice verticale déphasée, tige lisse → ABANDON, pas hors table ISO à signature forte → rapporté sans abandon |
 | T6 | mesure de profondeur (v1.1.1, `--selftest`) | profondeur ≤ 8 %, Ø ≤ 5 %, inclinaison ±3° ; validation trou-ness active |
+| T7 | nœud trigo-euler (v1.3.0, `--selftest`) | 15/15 capacités vérifiées à valeurs contrôlées (T01-T15, une par capacité) ; sortie byte-identique au re-jeu |
+| T8 | daemon trigo-euler (v1.3.0, concurrence) | 4 clients × 25 requêtes = 100/100 ok via le daemon ; saturation 8+1 → « daemon sature » non-bloquant ; daemon.stop propre (socket supprimée) ; orchestrateur ×2 idempotent (sha16 identiques) |
 
 ### §1.6 F4 — mesure de filetage (v1.1.1)
 
@@ -191,15 +207,84 @@ d'interpolation — compensation 1 bord) → extension du fond le long de l'axe
   profondeur 0 (trou traversant ou fond au ras, noté) ; trou-ness (1)/(2)/(3)
   non satisfaite → ABANDON.
 
+## §1.8 F6 — voie géométrique déterministe (nœud C++ trigo-euler, v1.3.0)
+
+**Douleur d'origine** (discussion « COOLING VOSS #2 », 2026-10-22) : le rendu
+génératif z-ai est **stochastique** — proportions, cotes réelles, mise à
+l'échelle et perspective non respectées (joint 5c : O-ring déplacé, hexagone
+décentré, filets disproportionnés). Réponse : la géométrie est **calculée**
+(trigonométrie, équations canoniques, théorème d'Euler), jamais devinée par
+le modèle d'image.
+
+- **Nœud** : `scripts/trigo-euler.cpp` (C++17, std uniquement, 0 dépendance)
+  compilé en `scripts/trigo-euler` — commande EXACTE du registre :
+  `g++ -O2 -std=c++17 -pthread -Wall trigo-euler.cpp -o trigo-euler`.
+  Contrat : `skills/inter-scripts/scripts/registre.json` v1.0.0 (source de
+  vérité) — interface JSON-NDJSON `{"op": …, "args": …}` ; modes one-shot
+  (`--request F --out F`), stdin (NDJSON), daemon (socket UNIX
+  `/tmp/trigo-euler.sock` + ready/pid files + max_clients 8 — au-delà :
+  réponse non-bloquante « daemon sature ») ; déterminisme intégral (sorties
+  %.10g, ordre d'insertion stable — idempotence R3).
+- **Capacités** (inventaire mathématique intégral des 3 discussions d'origine —
+  plan Task 58 §0-bis E13-5/6/7, mappage 15/15 sans calcul orphelin) :
+  `trig.eval` (19 fonctions, degrés/radians), `trig.resoudre` (triangle
+  rectangle SOH-CAH-TOA + Pythagore), `canonique.cercle` (circumcentre /
+  moindres carrés Kåsa), `canonique.ellipse` (fit algébrique contrainte F=−1
+  + valeurs propres 2×2 — centre, demi-axes, rotation, excentricité),
+  `analyse.derivee` (différences centrées / Lagrange 3 points),
+  `analyse.primitive` (polynôme formel / primitive définie),
+  `analyse.integrale` (Gauss-Legendre 5 points composé — tolérance 1e-6 /
+  Simpson sur points discrets), `fourier.serie` (coefficients par intégration
+  Gauss composée) + `fourier.eval`, `euler.formule` (e^(iθ)), `euler.rotation`
+  (matrices ZXZ/ZYZ/XYZ/ZYX + quaternion [w,x,y,z]), `euler.projection`
+  (isométrie CAO azimut 45° / élévation 35,264° — ratio du petit axe d'un cap
+  par **valeurs singulières** de la sous-application, vérification mécanique
+  ≈ sin élévation : le ratio bbox d'une ellipse inclinée est FAUX),
+  `euler.caracteristique` (angle/axe/quaternion depuis matrice, cas 0 et π),
+  `piece.profil_2d` (profil axial de pièce de révolution : aires/inerties
+  exactes de la section, volume Guldin-Pappus, contour fermé à **arêtes
+  locales**, cotes **formatées françaises** Ø/mm — hexagone entre-pointes,
+  gorges O-ring, chanfreins coniques, bores rapportés), `piece.modele_iso`
+  (boîte / cylindre / révolution à facettes — palette DNA mesurée, painter
+  **unifié faces+traits trié par profondeur**, faces émises seulement si
+  normale vers la caméra [généralisation caps n′z > 0], arcs de cap en
+  **moitié externe** par échantillonnage des secteurs visibles).
+- **Auto-diagnostic** : `--selftest` = T7 (T01-T15, une par capacité, valeurs
+  contrôlées — ex. Guldin exact sur cylindre, ratio cap ≈ sin 35,264°,
+  ellipse 3/1,5/30° retrouvée à 1e-6).
+- **Appels inter-langages** : `is_client.py` (canal auto — one-shot isolé,
+  daemon paresseux si ≥ 2 tâches) ou orchestrateur multi-projets
+  `orchestrer.py` (graph + fleet engineering) — skill inter-scripts v1.0.0.
+- **Cas nominal** (session d'origine « VOSS COOLING », mission VOSS-C) : pièces
+  de révolution filetées — raccords hydrauliques (joint 5c : cotes F1
+  officielles 44,9 × 35,2 mm, filet G Ø 28,5 × 22,7, O-ring 22,7→23,9,
+  hexagone entre-pointes 35,2 × 23,9→33,8, filet D M26×1,5 DKO VOSS, bores
+  Ø 15,4/12,0/6,0 ; couples d'assemblage 40/120 N·m — cotation type « couple »).
+- **Lignage honnête (R4)** : la v1.3.0 d'origine (2026-10-23, mission
+  TRIGO-INTER-SCRIPTS, perdue au recyclage sandbox) est RECONSTRUITE (Task 58)
+  avec ses enseignements de conception (valeurs singulières, Gauss 5 pts 1e-6,
+  painter trié, caps n′z>0, arcs moitié externe, arêtes locales, polygone
+  fermé O-ring, formatage français). La voie --geo Python d'origine
+  (`geometry_from_cotes.py` + extension `generer_dessin.py --geo` + check T9)
+  est PERDUE — suggestion de reconstruction ① de la session d'origine, hors
+  contrat du registre (nœud C++).
+- **Limites assumées** : `piece.*` couvre le profil extérieur (bores rapportés
+  en cotes, pas soustraits des aires) ; `canonique.ellipse` = fit algébrique
+  (biais connu sous bruit fort — points de contour propres requis) ; le rendu
+  final (SVG/PNG) reste à la charge du script appelant — le nœud fournit les
+  listes de rendu triées et les cotes formatées ; `--version` décrit le nœud.
+
 ## §2 — Spécification technique
 
-- Stack : Python 3 (stdlib + PIL + numpy — autocorrélation, PCA, érosion binaire), z-ai CLI (génération), JSON.
+- Stack : Python 3 (stdlib + PIL + numpy — autocorrélation, PCA, érosion binaire), z-ai CLI (génération), JSON ; **C++17** (nœud trigo-euler — std uniquement, 0 dépendance, compilation g++ verrouillée par le registre inter-scripts, std::thread + socket UNIX POSIX).
 - Emplacements : `{{SKILLS_ROOT}}dessin-technique/` — SKILL.md, style-dna.json,
   scripts/{capture_forme.py, mise_a_echelle.py, generer_dessin.py,
-  mesurer_filet.py, mesurer_profondeur.py},
-  references/{pieces-centimes.md, filets-normaux.md}, evals/evals.json,
-  evals/trigger_evals.json.
-- N3 (SHARED) : scripts Python uniquement.
+  mesurer_filet.py, mesurer_profondeur.py, **trigo-euler.cpp + binaire
+  trigo-euler**}, references/{pieces-centimes.md, filets-normaux.md},
+  evals/evals.json, evals/trigger_evals.json.
+- N3 (SHARED) : scripts Python par défaut — **exception déclarée** : le nœud
+  C++ trigo-euler est le nœud inter-langages du registre inter-scripts v1.0.0
+  (son existence, sa compilation et son interface y sont verrouillées).
 - Limites assumées : F1/F2 — la détection de la pièce de monnaie suppose une pièce
   circulaire visible et séparée de la pièce à mesurer ; F4 — vue de profil
   requise, seuls le pas et le Ø majeur sont mesurables (le profil du filet :
@@ -213,7 +298,7 @@ d'interpolation — compensation 1 bord) → extension du fond le long de l'axe
   encastré en contact du bord lointain — un relief d'objet plat est rejeté, trou
   elliptique ou fond occulté hors périmètre ; les autres cotes internes
   complexes ne sont pas mesurables sur photo simple — la spécification
-  le documente (sortie `erreurs_estimees`).
+  le documente (sortie `erreurs_estimees`) ; F6 — limites §1.8.
 
 ## §3 — Relations
 
@@ -221,7 +306,8 @@ d'interpolation — compensation 1 bord) → extension du fond le long de l'axe
 |------|--------|---------|
 | image-generation | utilise | rendu de base via z-ai (CLI `z-ai image`) |
 | skill-creator | conventions | structure SKILL.md/evals, >= 1.0.0 |
-| correct-work | vérifié par | Mode CIBLE sur le skill ; tests T1-T6 |
+| correct-work | vérifié par | Mode CIBLE sur le skill ; tests T1-T8 |
+| inter-scripts | utilise | nœud trigo-euler déclaré au registre v1.0.0 (contrat verrouillé) ; appels via is_client.py / orchestrer.py |
 
 ## §4 — Conventions
 

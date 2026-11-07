@@ -1,0 +1,8 @@
+{
+ "verdict": "PASS",
+ "taches": 2,
+ "canaux_utilises": [
+  "daemon-socket"
+ ],
+ "journal": "/home/z/my-project/tmp/mission-task58/trigo-node/run2/journal.json"
+}

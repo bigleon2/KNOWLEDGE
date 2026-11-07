@@ -1,6 +1,6 @@
 {
   "skill": "dessin-technique",
-  "version": "1.1.1",
+  "version": "1.3.0",
   "evals": [
     {
       "id": "T1-capture-forme",
@@ -42,6 +42,20 @@
       "description": "Profondeur d'un trou borgne synthétique (Ø25 mm, profondeur 15 mm, φ 40°, 4 px/mm, pièce 2e) — profondeur ≤ 8 %, Ø ≤ 5 %, φ ±3° ; validation trou-ness v1.1.1 active (fond dominant encastré en contact far)",
       "commande": "python3 skills/dessin-technique/scripts/mesurer_profondeur.py --selftest",
       "attendu": "verdict PASS, erreurs {profondeur ≤ 8 %, diametre ≤ 5 %, inclinaison ≤ 7,5 %}",
+      "priorite": "S1"
+    },
+    {
+      "id": "T7-trigo-euler-selftest",
+      "description": "Nœud C++ trigo-euler (v1.3.0) — auto-diagnostic 15/15 capacités à valeurs contrôlées : T01 sin, T02 triangle 3-4-5, T03 circumcentre, T04 ellipse 3/1,5/30° (fit algébrique + valeurs propres, 1e-6), T05 dérivée centrée, T06 primitive formelle, T07 intégrale Gauss-Legendre 5 pts (1e-9), T08/T09 Fourier sin (bn[1]=1), T10 e^(iπ/2), T11 rotation ZXZ+quaternion, T12 projection iso + ratio cap valeurs singulières ≈ sin 35,264°, T13 caractéristique Rz(90°), T14 profil Ø20×50 (aires exactes + Guldin 5000π), T15 modèle iso (painter trié, cap visible, concordance)",
+      "commande": "skills/dessin-technique/scripts/trigo-euler --selftest",
+      "attendu": "verdict 15/15 PASS, exit 0 ; re-jeu ×2 byte-identique (déterminisme)",
+      "priorite": "S1"
+    },
+    {
+      "id": "T8-trigo-euler-daemon",
+      "description": "Nœud C++ trigo-euler (v1.3.0) — concurrence et cycle de vie du daemon : démarrage paresseux via is_client (ready-file + health-check echo), 4 clients × 25 requêtes = 100/100 ok (ThreadPool, latence sub-milliseconde), saturation max_clients 8 + 1 → réponse non-bloquante « daemon sature », daemon.stop propre (socket /tmp/trigo-euler.sock supprimée), orchestrateur inter-scripts mini-plan (2 tâches, dép) ×2 idempotent (sha16 identiques) ; batterie complète journalisée tmp/mission-task58/trigo-node/journal-preuves.json (PASS 8/8 ×2, re-jeu identique)",
+      "commande": "python3 skills/inter-scripts/scripts/is_client.py --script trigo-euler --op trig.eval --args '{\"fonction\":\"sin\",\"x\":0.5}' && python3 skills/inter-scripts/scripts/is_client.py --script trigo-euler --daemon arreter",
+      "attendu": "réponse ok:true (canal daemon-socket, valeur sin(0.5)) puis arrêt propre ok:true, socket absente",
       "priorite": "S1"
     }
   ]

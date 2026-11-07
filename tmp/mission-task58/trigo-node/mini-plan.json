@@ -1,0 +1,1 @@
+{"projet": "trigo-demo", "taches": [{"id": "T1", "script": "trigo-euler", "op": "trig.eval", "args": {"fonction": "sin", "x": 0.5}, "out": "T1.json", "deps": []}, {"id": "T2", "script": "trigo-euler", "op": "trig.resoudre", "args": {"oppose": 3, "adjacente": 4}, "out": "T2.json", "deps": ["T1"]}]}

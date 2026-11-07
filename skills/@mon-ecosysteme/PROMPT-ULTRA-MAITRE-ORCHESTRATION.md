@@ -80,7 +80,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.28 (lire en premier). Installateur : `PRO
 | `livraison-garantie` | 1.1.0 |
 | `refactor-guard` | 1.8.1 |
 | `fullstack-dev` | 1.0.0 |
-| `dessin-technique` | 1.1.1 |
+| `dessin-technique` | 1.3.0 |
 | `iphone19` | 0.11.0 |
 | `iphone18` | 1.1.0 |
 | `iphone17` | 1.1.0 |

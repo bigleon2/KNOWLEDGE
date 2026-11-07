@@ -1,0 +1,179 @@
+{
+ "preuves": [
+  {
+   "id": "P1",
+   "description": "selftest interne 15/15 ×2 byte-identique",
+   "ok": true,
+   "details": {
+    "rc1": 0,
+    "rc2": 0,
+    "identiques": true,
+    "sha256_binaire": "c6b22a8e30b68ac5ff2eb93ae58180c326f125000edae6a5176e7ebb7d400137"
+   }
+  },
+  {
+   "id": "P2",
+   "description": "15 opérations via is_client.py (one-shot)",
+   "ok": true,
+   "details": {
+    "ok_count": 15,
+    "operations": {
+     "trig.eval": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "trig.resoudre": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "canonique.cercle": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "canonique.ellipse": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "analyse.derivee": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "analyse.primitive": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "analyse.integrale": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "fourier.serie": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "fourier.eval": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "euler.formule": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "euler.rotation": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "euler.projection": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "euler.caracteristique": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "piece.profil_2d": {
+      "ok": true,
+      "canal": "daemon-socket"
+     },
+     "piece.modele_iso": {
+      "ok": true,
+      "canal": "daemon-socket"
+     }
+    }
+   }
+  },
+  {
+   "id": "P3",
+   "description": "daemon démarré + health-check echo + fichiers socket/ready/pid",
+   "ok": true,
+   "details": {
+    "demarrage": {
+     "ok": true,
+     "deja_actif": true
+    },
+    "health_check_echo": true,
+    "ready_file": true,
+    "pid_file": true,
+    "socket": true
+   }
+  },
+  {
+   "id": "P4",
+   "description": "concurrence 4 clients × 25 requêtes = 100/100 (ThreadPool)",
+   "ok": true,
+   "details": {
+    "par_client": [
+     25,
+     25,
+     25,
+     25
+    ],
+    "total_ok": 100,
+    "duree_ms": 69.7,
+    "latence_moyenne_ms": 0.697
+   }
+  },
+  {
+   "id": "P5",
+   "description": "saturation max_clients 8 : 9e client → « daemon sature » non-bloquant",
+   "ok": true,
+   "details": {
+    "ok": false,
+    "erreur": "daemon sature",
+    "clients": 8,
+    "max_clients": 8
+   }
+  },
+  {
+   "id": "P6",
+   "description": "daemon.stop propre → socket supprimée",
+   "ok": true,
+   "details": {
+    "arret": {
+     "ok": true
+    },
+    "socket_absente": true
+   }
+  },
+  {
+   "id": "P7",
+   "description": "orchestrer mini-plan (2 tâches, dép) ×2 idempotent (sha16 identiques)",
+   "ok": true,
+   "details": {
+    "verdicts": [
+     "PASS",
+     "PASS"
+    ],
+    "sha16": [
+     {
+      "T1": "92dea0dddb1f811d",
+      "T2": "91f0c5a2e8ccaaeb"
+     },
+     {
+      "T1": "92dea0dddb1f811d",
+      "T2": "91f0c5a2e8ccaaeb"
+     }
+    ],
+    "canaux": "T1 daemon-socket (2 tâches nœud concurrent), T2 fichier-typé (dép)"
+   }
+  },
+  {
+   "id": "P8",
+   "description": "cas vivant VOSS : profil axial joint 5c (44,9 × 35,2, hexagone, gorges, bores) + modèle iso révolution",
+   "ok": true,
+   "details": {
+    "profil": {
+     "longueur": 44.9,
+     "diametre_max": 35.2,
+     "volume_guldin": 29026.60048,
+     "nb_cotes": 10
+    },
+    "iso": {
+     "nb_rendu": 545,
+     "concordance_perspective": true
+    }
+   }
+  }
+ ],
+ "verdict": "PASS 8/8",
+ "date": "2026-11-07T03:21:17"
+}

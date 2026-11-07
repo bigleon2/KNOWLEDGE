@@ -1,0 +1,98 @@
+{
+ "op": "piece.profil_2d",
+ "ok": true,
+ "segments_lus": 5,
+ "bores": [
+  15.4,
+  12,
+  6
+ ],
+ "mesures": {
+  "longueur_totale_mm": 44.9,
+  "diametre_max_mm": 35.2
+ },
+ "aires": {
+  "aire_mm2": 636.8431332,
+  "x_centroide": 22.12860775,
+  "y_centroide": 7.254104985
+ },
+ "section_axiale": {
+  "aire_mm2": 1273.686266,
+  "ix_autour_axe_mm4": 90004.89444,
+  "iy_centroide_mm4": 206257.242,
+  "ix_demi_centroide_mm4": 11490.46295
+ },
+ "solide": {
+  "volume_guldin_mm3": 29026.60048,
+  "methode": "théorème de Guldin-Pappus : V = 2π·ȳ·A_demi"
+ },
+ "contour_demi_section": [
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   14.25
+  ],
+  [
+   22.7,
+   14.25
+  ],
+  [
+   22.7,
+   13
+  ],
+  [
+   23.9,
+   13
+  ],
+  [
+   23.9,
+   16.42102355
+  ],
+  [
+   33.8,
+   16.42102355
+  ],
+  [
+   34.5,
+   13
+  ],
+  [
+   41.9,
+   13
+  ],
+  [
+   41.9,
+   13
+  ],
+  [
+   44.9,
+   13
+  ],
+  [
+   44.9,
+   0
+  ]
+ ],
+ "cotes": [
+  "filet G : Ø 28,5 × 22,7 mm",
+  "gorge O-ring (Ø estimé) : Ø 26 × 1,2 mm",
+  "hexagone : hex 35,2 entre-pointes × 9,9 mm",
+  "filet D (M26×1,5 DKO VOSS) : Ø 26 × 7,4 mm",
+  "bout filet D (cote officielle 44,9) : Ø 26 × 3 mm",
+  "bore Ø 15,4 mm",
+  "bore Ø 12 mm",
+  "bore Ø 6 mm",
+  "longueur totale 44,9 mm",
+  "Ø max 35,2 mm"
+ ],
+ "avertissements": [
+  "segment manquant entre x = 33,8 et x = 34,5 — traité comme décroissance vers l'axe",
+  "segment hexagone : profil équivalent au rayon moyen (sommets + apothème)/2"
+ ],
+ "note": "aires/inerties sur le profil EXTÉRIEUR ; bores rapportés en cotes (cotation) ; contour = demi-section fermée prête au rendu",
+ "canal": "daemon-socket",
+ "daemon_demarre": true
+}

@@ -6,13 +6,13 @@
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "aa17726af86618a0d502ceb293d6b93873f7d9596e02075ce917e3da8bc89177",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "2441f93c27a2334aeed384a7f397c784e55a1f164299b399a57590002132a72f",
     "PROMPT-MAITRE-SHARED.md": "47074426e85a0a81231cebf9be61dd3ee9559f4d2913b01be95359af88e3920b",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "92a19dd27d889a840d7023663a1aa7e2bcae4738f0e741647e18038648a73962",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "a6778622b7fa5412420f1a224dae894d0d4067ad327e7762360375727136fcdc",
     "README.md": "64174462da2ab89750ff9f34cc11c51b6fba3012e3bb7844a3897ecb49188355",
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f",
     "piliers/scripts/certification-complete.py": "8d79a73ff21834b6ffaf3ea314f33f83b18a5f746398f2e688a931955c559fbd",
-    "piliers/scripts/check-ecosysteme-integrity.py": "25c889ad0d38ee177ce3f94c8dcb140b3732082944204d140a29b6dd4f524075",
+    "piliers/scripts/check-ecosysteme-integrity.py": "86e340148652733e9fd22d21452113d28f344928cb335aac125acb7df160db24",
     "piliers/scripts/install-ecosysteme-local.sh": "47322f0a5a2c596eea8447267d582b98aa791d647d50eecde991da11496d21db",
-    "piliers/skills/KNOWLEDGE.md": "e0bb98ced727302a1104e5d27a9282f9ce710689c5e79784cbaa5536035656e4",
+    "piliers/skills/KNOWLEDGE.md": "7ee1a0365480bda375e8a9aec4f04ef169464b6c6d81b9b3faa7f035fbb038db",
     "piliers/skills/correct-work/SKILL.md": "8a399d55c18253c481d51c4539c5c8594f71ad1f4f1e3dc9db31e292c8b5c435",
     "piliers/skills/gen-plan/SKILL.md": "129db08b7888c504bab2c973cf5a11d259b4b5b0ee2e14867f1509179b2cf375"
   },
@@ -23,12 +23,12 @@
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "aa17726af86618a0d502ceb293d6b93873f7d9596e02075ce917e3da8bc89177",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "2441f93c27a2334aeed384a7f397c784e55a1f164299b399a57590002132a72f",
     "PROMPT-MAITRE-SHARED.md": "47074426e85a0a81231cebf9be61dd3ee9559f4d2913b01be95359af88e3920b",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "92a19dd27d889a840d7023663a1aa7e2bcae4738f0e741647e18038648a73962",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "a6778622b7fa5412420f1a224dae894d0d4067ad327e7762360375727136fcdc",
     "README.md": "64174462da2ab89750ff9f34cc11c51b6fba3012e3bb7844a3897ecb49188355",
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "1adb080f60c37a5a809d42d3f4e66d830adfff80443bf2a8c377dcb262e00138"
+    "mon-ecosysteme_archive.zip": "81218b79c4570a95ff69a146bcaa459aa2b59bdfb2cd57c8474edcf1a288ace8"
   },
   "skills": {
     "agent-creator": {
@@ -84,8 +84,8 @@
       "version": "1.1.0"
     },
     "dessin-technique": {
-      "sha256": "a72efc769be1915027702851f7c289bd76044b11607d660b947018b6d2744176",
-      "version": "1.1.1"
+      "sha256": "97ffc2f637ed5d79cee0d3b73a6bdaf4f3dffe22dbf60be6aba194be124ee4e8",
+      "version": "1.3.0"
     },
     "fleet-engineering": {
       "sha256": "067bf534cc87d67b20d8ba1b944d59f0c046f8ff608b79dc8363ef95a978d2ba",
