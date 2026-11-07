@@ -7,13 +7,14 @@ description: "Presentation creation, editing, and analysis for .pptx files: (1) 
 license: Proprietary. LICENSE.txt has complete terms
 ---
 
-## §0 — Contexte Système (SHARED v1.7.26)
+## §0 — Contexte Système (SHARED v1.7.28)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 > Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
 
 
 
@@ -107,33 +108,32 @@ collect the user's explicit choices on the dimensions below.
 even when the user's request hints at one. Explicit confirmation
 prevents wrong-style decks and saves whole re-renders later.
 
-Dimensions obligatoires — poser entre 4 et 6 questions (jamais plus de 6) parmi les 10 items ci-dessous.
-Les items marqués **★** sont strictement obligatoires (palette, typographie, détail par page) ;
-les autres se posent sauf si la demande initiale de l'utilisateur les exclut
-explicitement (ex. « deck interne, sans notes » → sauter la question des notes).
+Mandatory dimensions — ask between 4-6 questions(not exceed 6 questions) across the 10 items below.
+Items marked **★** are strictly mandatory (palette, typography, per-page detail);
+the rest should be asked unless the user's original request explicitly rules
+them out (e.g. "internal deck, no notes" → skip notes question).
 
-1. **Thème et objectif** — le thème principal du deck et les aspects
-     qu'il doit mettre en valeur. Poser cette question EN PREMIER — tous les choix
-     en aval (longueur, layouts, données) en dépendent, ne pas la laisser implicite.
-2. **Audience et ton** — à qui s'adresse le deck, dans quel registre.
-3. **Longueur du deck** — fourchette serrée, ex. 1–8 / 8–12 / 12+ diapositives ; toujours offrir le choix « deck court ».
-4. **Style et ton** — la voix d'ensemble du deck comme UN seul preset :
-     business / minimal / rapport formel. C'est le registre de haut niveau ;
-     les questions palette et typographie ci-dessous l'affinent en couleurs
-     et polices concrètes.
-5. **Référence visuelle** — une ancre de style reconnaissable (un ou deux decks /
-     sites de référence que l'utilisateur veut retrouver).
-6. **★ Palette** — UNE seule question qui rassemble **les trois** choix
-   `background` / `primary` / `accent` (palette unifiée).
-   Ne PAS les scinder en trois questions séparées. Les options proposées
-   doivent être générées à l'exécution — ne jamais coder en dur
-   des couleurs ni des codes hexadécimaux dans le skill.
-7. **Notes du présentateur** — aucune / repères en puces / script intégral.
-8. **Matériaux existants / sources des données** — l'utilisateur a-t-il déjà
-   fourni des matériaux ou des données ; faut-il mentionner la source des données
-   sur la dernière diapositive (oui / non).
-9. **Données à inclure obligatoirement**
-10. **Recherche d'images nécessaire**
+  1. **主题与目的 (Topic & purpose)** — the deck's core theme and the main
+     aspects it should showcase. Ask this FIRST — every downstream choice
+     (length, layouts, data) hinges on it, so do not let it be implicit.
+  2. **目标受众 (Audience & tone)** — who is this for, what register.
+  3. **篇幅 (Deck length)** — tight range. like 1–8 / 8–12 / 12以上 slides，you must give user short slides choice.
+  4. **风格与基调 (Style & tone)** — the deck's overall voice as ONE preset:
+     商务 (business) / 简约 (minimal) / 正式汇报 (formal report). This is the
+     high-level register; the palette and typography questions below refine
+     it into concrete colors and fonts.
+  5. **Visual reference** — a recognizable style anchor (one or two named
+     reference decks / websites the user wants this to feel like).
+  6. **★ Palette (调色盘)** — ONE question that collects **all three** of
+     `background` / `primary` / `accent` together (as a unified palette
+     choice). Do NOT split into three separate questions. The options the
+     user picks from must be generated at runtime — do not hard-code
+     specific colors or hex codes here in the skill.
+  7. **Speaker notes (备注讲稿)** — none / short bullet hints / verbatim full script.
+  8. **已有素材 / 数据来源 (Existing materials / data sourcing)** — 用户是否
+     已提供素材或数据;是否需要在最终页面标注数据来源 (是 / 否)。
+  9. **Must include data**
+  10. **Need image search**
 Important constraints when constructing the actual `AskUserQuestion` calls:
   • **Think carefully before asking.** Before each `AskUserQuestion` call,
     spend real reasoning on the user's domain, audience, and visual

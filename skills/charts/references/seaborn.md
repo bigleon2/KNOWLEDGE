@@ -1,10 +1,10 @@
 # Seaborn Template Library
 
-> **⚠️ Avant d'écrire du code, lisez [`_rules.md`](references/_rules.md) — trois règles non négociables sur le recouvrement, la hiérarchie et la couleur.**
+> **⚠️ Before writing any code, read [`_rules.md`](references/_rules.md) — three non-negotiable rules on overlap, hierarchy, and color.**
 
 
-Seaborn est construit au-dessus de matplotlib, se spécialisant dans la **visualisation statistique** — distributions, régressions, comparaisons catégorielles, etc.
-Ses styles par défaut sont déjà beaucoup plus esthétiques que ceux de matplotlib, mais nécessitent toujours un réglage pour atteindre les standards professionnels.
+Seaborn is built on top of matplotlib, specializing in **statistical visualization** — distributions, regression, categorical comparisons, etc.
+Its default styles are already much better looking than matplotlib, but still need tuning to reach professional standards.
 
 ## Environment Setup
 
@@ -15,16 +15,16 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 
-# ═══ Configuration de Police Chinoise ═══
-# Chemin de la police : ajustez pour votre système. Emplacements courants :
+# ═══ Chinese Font Setup ═══
+# Font path: adjust for your system. Common locations:
 #   macOS: '/System/Library/Fonts/Supplemental/SimHei.ttf'
 #   Linux: '/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc'
-#   Personnalisé: './fonts/SimHei.ttf'
+#   Custom: './fonts/SimHei.ttf'
 import os
 SIMHEI_PATH = os.environ.get('SIMHEI_FONT', '/System/Library/Fonts/Supplemental/SimHei.ttf')
 matplotlib.font_manager.fontManager.addfont(SIMHEI_PATH)
 
-# Thème Seaborn + remplacements personnalisés
+# Seaborn theme + custom overrides
 sns.set_theme(style='whitegrid', font='SimHei', rc={
     'axes.unicode_minus': False,
     'figure.facecolor': '#FFFFFF',
@@ -47,7 +47,7 @@ sns.set_theme(style='whitegrid', font='SimHei', rc={
     'savefig.bbox': 'tight',
 })
 
-# Couleurs (cohérent avec matplotlib.md)
+# Colors (consistent with matplotlib.md)
 COOL = ['#3B82F6', '#06B6D4', '#8B5CF6', '#F59E0B', '#EF4444', '#10B981']
 CB_SAFE = ['#0077BB', '#33BBEE', '#009988', '#EE7733', '#CC3311', '#EE3377']
 ```
@@ -55,19 +55,19 @@ CB_SAFE = ['#0077BB', '#33BBEE', '#009988', '#EE7733', '#CC3311', '#EE3377']
 ## Seaborn Palette Setup
 
 ```python
-# Méthode 1: utiliser directement la liste hex
+# Method 1: use hex list directly
 sns.set_palette(COOL)
 
-# Méthode 2: enregistrer une palette personnalisée
+# Method 2: register custom palette
 from matplotlib.colors import ListedColormap
 bc_palette = ListedColormap(COOL, name='charts')
 ```
 
 ---
 
-## Template 1: Distribution Plot (Histogramme + KDE)
+## Template 1: Distribution Plot (Histogram + KDE)
 
-**Scénario**: Visualiser la forme de la distribution des données, détecter l'asymétrie et les valeurs aberrantes.
+**Scenario**: View data distribution shape, detect skewness and outliers.
 
 ```python
 def dist_plot(data, title, xlabel, color='#3B82F6', save_path='dist.png'):
@@ -76,13 +76,13 @@ def dist_plot(data, title, xlabel, color='#3B82F6', save_path='dist.png'):
     sns.histplot(data, kde=True, color=color, edgecolor='white',
                  linewidth=0.5, alpha=0.7, ax=ax)
     
-    # Mettre en gras la ligne KDE
+    # Bold the KDE line
     for line in ax.get_lines():
         line.set_linewidth(2.5)
     
     ax.set_title(title, loc='left')
     ax.set_xlabel(xlabel)
-    ax.set_ylabel('Fréquence')
+    ax.set_ylabel('Frequency')
     
     plt.tight_layout()
     plt.savefig(save_path, dpi=200, facecolor='white', bbox_inches='tight')
@@ -91,9 +91,9 @@ def dist_plot(data, title, xlabel, color='#3B82F6', save_path='dist.png'):
 
 ---
 
-## Template 2: Box Plot (Comparaison Catégorielle)
+## Template 2: Box Plot (Categorical Comparison)
 
-**Scénario**: Comparer les caractéristiques de distribution entre groupes (médiane, quartiles, valeurs aberrantes).
+**Scenario**: Compare distribution characteristics across groups (median, quartiles, outliers).
 
 ```python
 def box_compare(df, x_col, y_col, title, palette=None, save_path='box.png'):
@@ -115,22 +115,22 @@ def box_compare(df, x_col, y_col, title, palette=None, save_path='box.png'):
     plt.close()
 ```
 
-### Box Plot + Évitement d'Étiquettes (Pour Scénarios Complexes)
+### Box Plot + Label Avoidance (For Complex Scenarios)
 
-Lorsque vous devez annoter des valeurs aberrantes, des points de données spécifiques ou des noms de groupes sur un box plot, **l'évitement d'étiquettes est requis**:
+When you need to annotate outliers, specific data points, or group names on a box plot, **label avoidance is required**:
 
 ```python
 def box_annotated(df, x_col, y_col, title, annotations=None,
                   palette=None, save_path='box_annotated.png'):
     """
-    annotations: [{'x': 0, 'y': 45, 'text': 'chanxian yi chang'}, ...]
+    annotations: [{'x': 0, 'y': 45, 'text': '产线A 异常'}, ...]
     """
     from adjustText import adjust_text
     
     if palette is None:
         palette = COOL
     
-    fig, ax = plt.subplots(figsize=(12, 7))  # Légèrement plus grand, laissez de la place pour les annotations
+    fig, ax = plt.subplots(figsize=(12, 7))  # Slightly larger canvas, leave room for annotations
     
     sns.boxplot(data=df, x=x_col, y=y_col, palette=palette,
                 width=0.5, linewidth=1.2, fliersize=4,
@@ -138,7 +138,7 @@ def box_annotated(df, x_col, y_col, title, annotations=None,
                 medianprops=dict(color='white', linewidth=2),
                 ax=ax)
     
-    # Texte d'annotation — utiliser adjustText pour l'évitement automatique
+    # Annotation text — use adjustText for auto-avoidance
     if annotations:
         texts = []
         for ann in annotations:
@@ -161,9 +161,9 @@ def box_annotated(df, x_col, y_col, title, annotations=None,
     plt.close()
 ```
 
-### Box Plot + Barre de Couleur (ex: Analyse MTTR)
+### Box Plot + Colorbar (e.g., MTTR Analysis)
 
-Lorsqu'un box plot doit fonctionner avec une barre de couleur (ex: coloré par dimension), vous devez laisser suffisamment d'espace pour la barre de couleur:
+When a box plot needs to work with a colorbar (e.g., colored by dimension), you must leave enough space for the colorbar:
 
 ```python
 def box_with_colorbar(df, x_col, y_col, color_col, title,
@@ -181,7 +181,7 @@ def box_with_colorbar(df, x_col, y_col, color_col, title,
     sns.boxplot(data=df, x=x_col, y=y_col, ax=ax,
                 width=0.5, linewidth=1.2)
     
-    # Barre de couleur dans son propre sous-plot, n'obstruera pas le box plot
+    # Colorbar in its own subplot, won't obscure box plot
     norm = Normalize(vmin=df[color_col].min(), vmax=df[color_col].max())
     sm = ScalarMappable(norm=norm, cmap='Blues')
     fig.colorbar(sm, cax=cbar_ax, label=color_col)
@@ -195,7 +195,7 @@ def box_with_colorbar(df, x_col, y_col, color_col, title,
 
 ## Template 3: Violin Plot
 
-**Scénario**: Version améliorée du box plot, montrant simultanément la densité de distribution.
+**Scenario**: Enhanced version of box plot, showing distribution density simultaneously.
 
 ```python
 def violin_plot(df, x_col, y_col, title, palette=None, save_path='violin.png'):
@@ -218,7 +218,7 @@ def violin_plot(df, x_col, y_col, title, palette=None, save_path='violin.png'):
 
 ## Template 4: Regression Scatter Plot
 
-**Scénario**: Relation entre deux variables + régression linéaire + intervalle de confiance.
+**Scenario**: Two-variable relationship + linear regression + confidence interval.
 
 ```python
 def reg_plot(df, x_col, y_col, title, color='#3B82F6', save_path='reg.png'):
@@ -240,7 +240,7 @@ def reg_plot(df, x_col, y_col, title, color='#3B82F6', save_path='reg.png'):
 
 ## Template 5: Correlation Heatmap
 
-**Scénario**: Matrice des coefficients de corrélation entre plusieurs variables.
+**Scenario**: Correlation coefficient matrix among multiple variables.
 
 ```python
 def corr_heatmap(df, title, cmap='RdBu_r', save_path='corr.png'):
@@ -248,7 +248,7 @@ def corr_heatmap(df, title, cmap='RdBu_r', save_path='corr.png'):
     
     fig, ax = plt.subplots(figsize=(10, 8))
     
-    # Montrer seulement le triangle inférieur
+    # Show only lower triangle
     mask = np.triu(np.ones_like(corr, dtype=bool))
     
     sns.heatmap(corr, mask=mask, cmap=cmap, center=0,
@@ -269,7 +269,7 @@ def corr_heatmap(df, title, cmap='RdBu_r', save_path='corr.png'):
 
 ## Template 6: Pair Plot
 
-**Scénario**: Aperçu des relations par paires entre plusieurs variables (distribution sur la diagonale, diagrammes de dispersion ailleurs).
+**Scenario**: Overview of pairwise relationships among multiple variables (distribution on diagonal, scatter plots elsewhere).
 
 ```python
 def pair_plot(df, hue_col=None, palette=None, save_path='pair.png'):
@@ -290,7 +290,7 @@ def pair_plot(df, hue_col=None, palette=None, save_path='pair.png'):
 
 ## Template 7: Facet Grid (FacetGrid)
 
-**Scénario**: Diviser en plusieurs sous-graphiques par variable catégorielle pour comparaison.
+**Scenario**: Split into multiple subplots by categorical variable for comparison.
 
 ```python
 def facet_hist(df, col_var, value_col, title, color='#3B82F6', save_path='facet.png'):

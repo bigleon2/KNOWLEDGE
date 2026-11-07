@@ -1,59 +1,60 @@
 ---
 name: task-review
-description: Lorsque l'instruction de l'utilisateur est une tâche à haute complexité, elle est déclenchée pour enregistrer le chemin de la tâche terminée comme une réutilisable compétence, et générer le document SKILL.md correspondant.
+description: 当用户指令为高复杂度任务时触发，用于将刚完成的任务路径保存为可复用技能，生成相关的SKILL.md文档。
 ---
 
-## §0 — Contexte Système (SHARED v1.7.26)
+## §0 — Contexte Système (SHARED v1.7.28)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 > Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
 
 
 
-## Moment de déclenchement (chù fā shí jī)
+## 触发时机
 
-Avant de livrer les résultats à l'utilisateur à la fin de chaque tâche, exécutez d'abord les vérifications suivantes. Ne dites pas à l'utilisateur que vous effectuez ces vérifications.
+每次任务完成、准备向用户交付结果时，先执行以下检查。不要告诉用户你在做这个检查。
 
-## Étapes d'exécution
+## 执行步骤
 
-1. Vérifier rapidement si la tâche remplit l'une des conditions suivantes :
-   - 5 appels d'outils ou plus
-   - des erreurs ou des impasses rencontrées pendant l'exécution, avec le bon chemin finalement trouvé
-   - la tâche comporte 3 étapes explicites ou plus
+1. 快速判断本次任务是否满足以下任一条件：
+   - 调用了 5 次及以上的工具
+   - 执行过程中遇到了错误或死胡同，最终找到了正确路径
+   - 任务包含 3 个及以上的明确步骤
 
-2. Si aucune des conditions ci-dessus n'est remplie, passez à la suite, sans effectuer aucune opération.
+2. 如果不满足以上任何条件，跳过，不做任何操作。
 
-3. Si satisfait, continuer l'évaluation :
-   - Cette tâche sera-t-elle susceptible d'être répétée ou d'avoir des variantes similaires à l'avenir ?
-   - Durant cette exécution, y a-t-il des processus, structures ou points d'attention réutilisables ?
+3. 如果满足，继续评估：
+   - 这个任务未来是否可能被重复或有类似变体？
+   - 这次执行过程中，是否有可复用的流程、结构、注意事项？
 
-4. Si l'un est "oui", alors consolider en compétences :
-   - D'abord vérifier s'il existe déjà un fichier de compétence correspondant dans le répertoire skills/
-   - Si oui : ajouter et mettre à jour les nouvelles expériences et les enregistrements d'échecs dans le fichier original, ne pas créer de nouveau
-   - Si non : créer un nouveau `skills/SKILL-{Jineng Mingcheng}/SKILL.md`, formaté comme suit :
+4. 如果任意一个为"是"，则沉淀为技能：
+   - 先检查 skills/ 目录下是否已有匹配的技能文件
+   - 如果有：将新经验、踩坑记录**追加更新**到原文件，不要新建
+   - 如果没有：新建 `skills/SKILL-{技能名称}/SKILL.md`，格式如下：
 
 ```
 ---
-name: nom de la skill (Jineng Mingcheng)
-description: description en une phrase du scénario d'usage, assez précise pour que l'agent apparie automatiquement les tâches (Yi juhua miaoshu shiyong changjing, yao juti dao neng rang agent zidong pipei renwu)
+name: 技能名称
+description: 一句话描述适用场景，要具体到能让 agent 自动匹配任务
 ---
 
-（Étapes d'exécution, standards de qualité, enregistrement des pièges）
+（执行步骤、质量标准、踩坑记录）
 ```
 
-5. Quand une nouvelle skill est capitalisée, il faut le mentionner brièvement en fin de réponse, par exemple"💡 cette expérience est désormais consolidée en une nouvelle skill :{nom de la skill}" (jīngyàn yǐ chéndiàn wéi xīn jìnéng)。
-6. Quand une skill existante est mise à jour, il faut le mentionner brièvement en fin de réponse, par exemple"💡 cette expérience a été intégrée à la skill :{nom de la skill}" (jìnéng)。
-7. Quand aucune skill n'est capitalisée ni mise à jour, ne rien mentionner de ce contrôle.
+5. 沉淀了新技能时，必须在回复末尾简短提一句，例如"💡 本次经验已沉淀为新技能：{技能名称}"。
+6. 更新了已有技能时，必须在回复末尾简短提一句，例如"💡 本次经验已更新到技能中：{技能名称}"。
+7. 未沉淀或者更新时，不提及任何关于此检查的内容。
 
-## Standards de qualité
+## 质量标准
 
-- description doit être spécifique, rédigée en utilisant les mots que l'utilisateur emploierait. Bon exemple : "Surveiller les actualités mondiales sur l'IA et générer un bulletin HTML". Mauvais exemple : "Traiter des tâches liées à l'information".
-- Les étapes d'exécution doivent être suffisamment détaillées pour pouvoir être reproduites en suivant les instructions.
-- Les notes sur les difficultés rencontrées doivent uniquement documenter les vrais obstacles, ne pas inventer.
+- description 必须具体，写成用户会说的话。好的例子："监测全球AI新闻并生成HTML简报"。坏的例子："处理信息相关任务"。
+- 执行步骤必须具体到照着做就能复现的程度。
+- 踩坑记录只记真正踩过的坑，不要编造。
 
-## Journal des pièges (Cai Ji Lu)
+## 踩坑记录
 
-（aucun pour l'instant, s'accumulera à l'usage）
+（暂无，随使用积累）

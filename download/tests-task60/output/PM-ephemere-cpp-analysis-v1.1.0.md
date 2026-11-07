@@ -1,0 +1,234 @@
+# PROMPT MAÎTRE ÉPHÉMÈRE — cpp-analysis v1.1.0
+
+> **Skill source** : `skills/cpp-analysis/SKILL.md` (forme installée — référence canonique)
+> **Version source** : 1.1.0 · **Généré le** : 2026-11-07
+> **SHA-256 source** : `0d5c115078f555b79c19d49faf4f59c7cc7b79f7ffe64f606065a7b2107dd4ee`
+> **Nature** : projection éphémère auto-portante — le Contexte Système est embarqué,
+> **aucune lecture externe n'est requise** (SHARED §6.2). Régénérable à volonté :
+> `PM-skill(cpp-analysis)` reproduit ce fichier à l'identique (déterminisme même jour).
+
+## MODE D'EMPLOI — IA EXTERNE
+
+1. Copier l'intégralité du présent fichier.
+2. Le coller comme **prompt système** (ou premier message) dans l'IA de votre choix.
+3. Invoquer le skill par ses déclencheurs (section dédiée ci-dessous).
+   Le contenu ci-dessous est la spécification exécutable du skill, auto-contenue.
+
+## MISSION — description du skill (frontmatter source, verbatim)
+
+Analyse de code C/C++ — Détection de bugs, optimisation de performance, analyse de complexité, génération de documentation. Supporte C, C++, C++11/14/17/20. Use when the user needs to analyze C/C++ code, find bugs, optimize performance, or generate documentation. Architecture de projets et analyse des dépendances ; évalue la qualité et la sûreté des bases de code avant migration.
+
+---
+
+
+## §0 — Contexte Système (SHARED v1.7.27)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+> Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
+
+
+
+# cpp-analysis
+
+## Description
+
+Skill d'analyse de code C/C++ pour détection de bugs, optimisation et documentation.
+
+## Capacités
+
+### 1. Détection de Bugs
+- Fuites de mémoire (memory leaks)
+- Buffer overflows
+- Null pointer dereferences
+- Race conditions (multithreading)
+- Undefined behavior
+- Violations de règles (MISRA, CERT)
+
+### 2. Optimisation de Performance
+- Analyse de complexité algorithmique (O(n))
+- Détection de code inefficace
+- Suggestions d'optimisation
+- Profiling et benchmarking
+- Optimisation mémoire
+
+### 3. Analyse de Qualité
+- Métriques de code (lignes, complexité, couverture)
+- Détection de code dupliqué
+- Analyse de dépendances
+- Respect des standards (ISO C/C++)
+
+### 4. Génération de Documentation
+- Documentation automatique (Doxygen)
+- Génération de diagrammes
+- Documentation d'API
+- Commentaires inline
+
+### 5. Refactoring
+- Suggestions de refactoring
+- Modernisation de code (C++11 → C++20)
+- Amélioration de lisibilité
+- Réduction de complexité
+
+## Outils d'Analyse
+
+### Static Analysis
+- **cppcheck** : Détection de bugs et de problèmes de sécurité
+- **clang-tidy** : Linting et suggestions de refactoring
+- **flawfinder** : Détection de vulnérabilités de sécurité
+- **rats** : Rough audit tool for security
+
+### Dynamic Analysis
+- **valgrind** : Détection de fuites mémoire
+- **gprof** : Profiling de performance
+- **gcov** : Couverture de code
+
+### Documentation
+- **doxygen** : Génération de documentation
+- **graphviz** : Diagrammes de dépendances
+
+## Scripts d'Analyse Typiques
+
+### Script 1 : Analyse Complète avec cppcheck
+```bash
+#!/bin/bash
+# Analyse complète d'un projet C/C++
+
+PROJECT_DIR="/home/z/my-project/cpp-project"
+REPORT_DIR="/home/z/my-project/reports/cpp"
+
+mkdir -p $REPORT_DIR
+
+echo "🔍 Analyse avec cppcheck..."
+cppcheck --enable=all --inconclusive --xml $PROJECT_DIR 2> $REPORT_DIR/cppcheck.xml
+
+echo "📊 Génération rapport HTML..."
+cppcheck --enable=all --html-report=$REPORT_DIR/cppcheck-report $PROJECT_DIR
+
+echo "✅ Analyse terminée"
+echo "Rapport : $REPORT_DIR/cppcheck-report/index.html"
+```
+
+### Script 2 : Détection de Fuites Mémoire avec Valgrind
+```bash
+#!/bin/bash
+# Détection de fuites mémoire
+
+EXECUTABLE="./my-program"
+REPORT="valgrind-report.txt"
+
+echo "🔍 Analyse avec valgrind..."
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+  --log-file=$REPORT $EXECUTABLE
+
+echo "✅ Analyse terminée"
+echo "Rapport : $REPORT"
+```
+
+### Script 3 : Analyse de Complexité
+```python
+#!/usr/bin/env python3
+"""Analyse de complexité de code C/C++"""
+import re
+from pathlib import Path
+
+def analyze_complexity(file_path):
+    """Analyse la complexité cyclomatique d'un fichier C/C++"""
+    with open(file_path, 'r') as f:
+        content = f.read()
+    
+    # Compter les structures de contrôle
+    complexity = 1  # Complexité de base
+    
+    # Boucles
+    complexity += len(re.findall(r'\b(for|while|do)\b', content))
+    
+    # Conditions
+    complexity += len(re.findall(r'\b(if|else if|switch|case)\b', content))
+    
+    # Opérateurs logiques
+    complexity += len(re.findall(r'&&|\|\|', content))
+    
+    return complexity
+
+def analyze_project(directory):
+    """Analyse tous les fichiers C/C++ d'un projet"""
+    results = []
+    
+    for ext in ['*.c', '*.cpp', '*.cc', '*.cxx', '*.h', '*.hpp']:
+        for file_path in Path(directory).rglob(ext):
+            complexity = analyze_complexity(file_path)
+            results.append({
+                'file': str(file_path),
+                'complexity': complexity,
+                'lines': len(file_path.read_text().splitlines())
+            })
+    
+    return results
+
+if __name__ == '__main__':
+    results = analyze_project('/home/z/my-project/cpp-project')
+    
+    print(f"Analysé {len(results)} fichiers")
+    for r in sorted(results, key=lambda x: x['complexity'], reverse=True)[:10]:
+        print(f"  {r['file']}: complexité {r['complexity']}, {r['lines']} lignes")
+```
+
+### Script 4 : Génération de Documentation Doxygen
+```bash
+#!/bin/bash
+# Génération de documentation avec Doxygen
+
+PROJECT_DIR="/home/z/my-project/cpp-project"
+DOXYFILE="Doxyfile"
+
+# Créer le fichier de configuration Doxygen
+cat > $DOXYFILE << 'EOF'
+PROJECT_NAME           = "Mon Projet C++"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = src
+RECURSIVE              = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EOF
+
+echo "📚 Génération de documentation..."
+doxygen $DOXYFILE
+
+echo "✅ Documentation générée"
+echo "Ouvrir : docs/html/index.html"
+```
+
+## Intégration avec Autres Skills
+
+- **coding-agent** : Workflow de développement C/C++
+- **python-executor** : Exécution de scripts d'analyse
+- **pdf-expert** : Génération de rapports d'analyse
+
+## Cas d'Usage
+
+1. "Analyse ce code C++ et trouve les bugs"
+2. "Optimise les performances de ce programme"
+3. "Génère la documentation de mon projet C++"
+4. "Détecte les fuites mémoire"
+5. "Analyse la complexité de mon code"
+
+## Déclenches
+
+- "analyse code C++"
+- "détecte bugs C/C++"
+- "optimise performance C++"
+- "génération documentation C++"
+- "analyse complexité"
+
+---
+
+**Skill créé le 2026-06-21 pour François — DJ TRAKTOR, développeur C/C++**
+
+---

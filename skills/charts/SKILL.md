@@ -4,36 +4,28 @@ metadata:
   author: Z.AI
   version: "1.0"
 description: >
-  Compétence de création de diagrammes et graphiques professionnels. Couvre tous les types de représentation de données visuelles et de diagrammes structurels :
-  - **Graphiques de données**: graphiques en barres, graphiques linéaires, graphiques circulaires, diagrammes de dispersion, heatmaps,
-    graphiques radar, graphiques en chandeliers, boxplots, histogrammes, graphiques en aires, graphiques en cascades,
-    graphiques de régression, graphiques de distribution, et visualisations statistiques.
-  - **Diagrammes structurels**: organigrammes, cartes mentales, diagrammes arborescents, organigrammes d'entreprise,
-    diagrammes d'architecture, graphiques réseau/relationnels, diagrammes entité-relation, diagrammes de classes,
-    diagrammes de Gantt, diagrammes de couloirs (swimlane), et diagrammes de séquence.
-  - **Tableaux de bord**: tableaux de bord de données, panneaux de KPI, compositions multi-graphiques,
-    et visualisations interactives.
-  - **Qualité de design**: systèmes de couleurs professionnels, règles d'anti-recouvrement, optimisation de la mise en page,
-    routage de cadre basé sur le scénario (matplotlib, seaborn, ECharts, D3.js, Mermaid, Playwright+CSS),
-    et sortie prête pour publication.
-  S'applique lorsque l'utilisateur souhaite créer, générer, dessiner, tracer, visualiser ou améliorer
-  n'importe quel graphique, graphique, diagramme ou tableau de bord. S'applique également lorsque l'utilisateur demande
-  quelque chose de plus poli, plus propre ou prêt pour publication.
-  PAS POUR: mise en page de document PDF (utiliser la compétence pdf), diapositives (utiliser la compétence slides),
-  feuilles de calcul avec graphiques intégrés (utiliser la compétence xlsx), génération d'images IA (utiliser image_gen),
-  affiches / infographies / cartes créatives (utiliser la compétence pdf Creative pipeline).
-  INTERDIT: Utiliser matplotlib/seaborn pour dessiner des cartes mentales, diagrammes arborescents, organigrammes,
-  organigrammes de flux, ou n'importe quel diagramme structurel. Ces derniers DOIVENT utiliser Playwright+CSS.
-license: Propriétaire. LICENSE.txt contient les termes complets
+  Professional chart and diagram creation. Data charts (bar, line, pie, scatter, heatmap,
+  radar, candlestick, boxplot, histogram, area, waterfall, regression/distribution plots);
+  structural diagrams (flowchart, mind map, tree, org chart, architecture, network graph,
+  ER, class, Gantt, swimlane, sequence); dashboards and KPI panels. Scene-based framework
+  routing (matplotlib, seaborn, ECharts, D3.js, Mermaid, Playwright+CSS), professional
+  color systems, anti-overlap rules, publication-ready output. Use when the user wants to
+  create, draw, plot, visualize or polish any chart, graph, diagram or dashboard. NOT for:
+  PDF layout (pdf skill), slide decks (slides skill), spreadsheets with embedded charts
+  (xlsx skill), AI image generation (image_gen), posters/infographics (pdf Creative
+  pipeline). FORBIDDEN: matplotlib/seaborn for mind maps, trees, org charts, flowcharts or
+  any structural diagram - these MUST use Playwright+CSS.
+license: Proprietary. LICENSE.txt has complete terms
 ---
 
-## §0 — Contexte Système (SHARED v1.7.26)
+## §0 — Contexte Système (SHARED v1.7.28)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 > Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
 
 
 
@@ -42,188 +34,190 @@ license: Propriétaire. LICENSE.txt contient les termes complets
 ## Quick Setup
 
 ```bash
-bash "$SKILL_DIR/setup.sh"    # Vérification interactive de l'environnement + installation
+bash "$SKILL_DIR/setup.sh"    # Interactive environment check + install
 ```
 
-Rendez chaque graphique et diagramme conçu professionnellement, pas généré par IA.
+Make every chart and diagram look professionally designed, not AI-generated.
 
 ## Architecture
 
-| Module | File | Quand le charger |
+| Module | File | When to Load |
 |--------|------|-------------|
-| **Routing + Règles de base** | Ce fichier | Toujours lire en premier |
-| **Modèles de Framework** | `references/` par framework | Après avoir choisi le framework, lire le fichier correspondant |
+| **Routing + Core Rules** | This file | Always read first |
+| **Framework Templates** | `references/` by framework | After choosing framework, read the corresponding file |
 
-**Ordre de chargement: Lire ce fichier → choisir framework → lire fichier modèle → commencer le codage.**
+**Loading order: Read this file → choose framework → read template file → start coding.**
 
-Chaque fichier modèle contient ses propres règles spécifiques au framework (espacement, connecteurs, détails de couleur). Ce fichier ne contient que les décisions de routage et les règles universelles qui s'appliquent à TOUS les graphiques.
+Each template file contains its own framework-specific rules (spacing, connectors, color details). This file contains only routing decisions and universal rules that apply to ALL charts.
 
 ---
 
-# Partie 1: Routage
+# Part 1: Routing
 
-## ⚠️ Règle de Contrainte de Format (PRIORITÉ MAXIMALE)
+## ⚠️ Format Constraint Rule (HIGHEST PRIORITY)
 
-**Lorsque l'utilisateur spécifie un format/outil, vous DEVEZ vous conformer. Ne jamais substituer.**
+**When the user specifies an output format/tool, you MUST comply. Never substitute.**
 
-| L'utilisateur dit | Vous DEVEZ faire | Interdit |
+| User Says | You Must Do | Forbidden |
 |-----------|------------|-----------|
-| "use mermaid code" / "sortir au format Mermaid" / "convertir en Mermaid" / "diagramme Mermaid" | ① Sortir un bloc de code Mermaid (```mermaid ... ```) ② Fournir également un aperçu d'image rendu | ❌ Ne peut donner que l'image sans code ; ❌ Ne peut prendre une capture d'écran du code brut comme image |
-| "use markdown code" | Sortir une hiérarchie formatée en markdown | ❌ Ne peut passer à HTML/CSS |
-| "via mermaid or markdown code" | Choisir l'un des deux, sortir le code texte | ❌ Ne peut passer à tout format non spécifié |
-| "flowchart" / "mind map" (aucun format spécifié) | Libre de choisir la meilleure approche | - |
-| "use echarts/d3" | DOIT utiliser le framework spécifié | ❌ Ne peut changer |
+| "use mermaid code" / "用Mermaid格式输出" / "转化为mermaid" / "mermaid流程" | ① Output Mermaid code block (```mermaid ... ```) ② Also provide a rendered image preview | ❌ Cannot only give image without code; ❌ Cannot screenshot raw code text as image |
+| "use markdown code" | Output markdown-formatted hierarchy | ❌ Cannot switch to HTML/CSS |
+| "via mermaid or markdown code" | Choose one of the two, output code text | ❌ Cannot switch to any non-specified format |
+| "flowchart" / "mind map" (no format specified) | Free to choose the best approach | - |
+| "use echarts/d3" | Must use the specified framework | ❌ Cannot switch |
 
-### 🚫 INTERDIT: Capture d'écran de code Mermaid
-**NEVER prendre de capture d'écran du code source Mermaid brut et le livrer comme "image de diagramme".** C'est le pire résultat possible — l'utilisateur obtient ni code utilisable ni diagramme visuel. Lorsque l'utilisateur demande le format Mermaid:
-1. **DOIT** sortir le code Mermaid dans un bloc de code clôturé (````mermaid`)
-2. **DEVRAIT** également rendre le code en image de diagramme visuel (via mermaid-cli ou Playwright + mermaid.js)
-3. Si le rend échoue, livrer le bloc de code et dire à l'utilisateur de le coller sur mermaid.live
+### 🚫 FORBIDDEN: Mermaid Code Screenshot
+**NEVER take a screenshot of raw Mermaid source code and deliver it as the "diagram image".** This is the worst possible outcome — the user gets neither usable code nor a visual diagram. When the user requests Mermaid format:
+1. **MUST** output the Mermaid code in a fenced code block (````mermaid`)
+2. **SHOULD** also render the code into a visual diagram image (via mermaid-cli or Playwright + mermaid.js)
+3. If rendering fails, deliver the code block and tell the user to paste it into mermaid.live
 
-### Conflit Format Spécifié vs Auto-Amélioration
-Lorsque l'utilisateur spécifie Mermaid mais que le contenu déclenche des conditions d'auto-amélioration (>8 nœuds, lourd en CJK, etc.):
-1. **Le choix de l'utilisateur prime** — toujours utiliser Mermaid, livrer bloc de code + image rendue
-2. **Guider proactivement** — après livraison, suggérer à l'utilisateur d'essayer sans spécifier Mermaid pour une qualité de mise en page meilleure
-3. **Jamais changer silencieusement** vers Playwright+CSS lorsque l'utilisateur a explicitement demandé Mermaid
+### Format Specified vs Auto-Upgrade Conflict
+When the user specifies Mermaid but content triggers auto-upgrade conditions (>8 nodes, CJK-heavy, etc.):
+1. **User choice wins** — still use Mermaid, deliver code block + rendered image
+2. **Proactively guide** — after delivery, suggest the user try without specifying Mermaid for better layout quality
+3. **Never silently switch** to Playwright+CSS when user explicitly asked for Mermaid
 
-Lorsqu'un outil spécifié rencontre des difficultés de rendu (ex: échec du CDN mermaid):
-- ✅ Sortir code mermaid brut, dire à l'utilisateur de le voir sur mermaid.live
-- ❌ Changer secrètement vers un autre framework
-- ❌ Prendre capture d'écran du code texte comme "image"
+When a specified tool hits rendering difficulties (e.g., mermaid CDN fails):
+- ✅ Output raw mermaid code text, tell user to view at mermaid.live
+- ❌ Secretly switch to another framework
+- ❌ Screenshot the code text as an "image"
 
 ---
 
-## Arbre de Décision de Routage
+## Routing Decision Tree
 
-### 1. Diagrammes Structurels
+### 1. Structural Diagrams
 
-#### 🔴 Organigramme par Défaut: Vertical Phasé (PRIORITÉ MAXIMALE)
+#### 🔴 Flowchart Default: Phased Vertical (HIGHEST PRIORITY)
 
-**Lorsque l'utilisateur demande de « générer/créer un organigramme XXX » sans spécifier de format, la disposition par DÉFAUT est Verticale Phasée (Mise en page C dans `references/playwright-css.md`).**
+**When the user asks to "generate/create a XXX flowchart/流程图" without specifying format, the DEFAULT layout is Phased Vertical (Layout C in `references/playwright-css.md`).**
 
-C'est parce que presque tous les processus du monde réel (fabrication, procédures légales, gestion de projet, opérations commerciales, recettes de cuisine, etc.) ont des phases/stages naturels. La mise en page C produit le résultat le plus professionnel, lisible.
+This is because nearly all real-world processes (manufacturing, legal proceedings, project management, business operations, cooking recipes, etc.) have natural phases/stages. Layout C produces the most professional, readable result.
 
-**Priorité de routage d'organigramme:**
-1. **L'utilisateur a spécifié Mermaid/markdown** → suivre le choix de l'utilisateur (Règle de Contrainte de Format)
-2. **≤6 nœuds ET pas de phases ET texte court** → Mermaid (organigramme simple)
-3. **Tout le reste** → **Playwright + CSS, Mise en page C (Verticale Phasée)** → `references/playwright-css.md`
+**Flowchart routing priority:**
+1. **User specified Mermaid/markdown** → follow user choice (Format Constraint Rule)
+2. **≤6 nodes AND no phases AND short text** → Mermaid (simple flowchart)
+3. **Everything else** → **Playwright + CSS, Layout C (Phased Vertical)** → `references/playwright-css.md`
 
-**Détection de phase — considérer comme "a des phases" si AU MOINS un est vrai:**
-- Le contenu a des sections numérotées (1. 2. 3., numérotation chinoise, ou Phase 1/Stage 1)
-- Le processus peut être groupé par temps/étape/rôle (ex: "préparation → exécution → révision")
-- Total des étapes ≥ 5 (presque toujours groupable en 2+ phases)
-- Le processus implique plusieurs rôles/départements
-- Le processus a un début/fin clairs avec des étapes intermédiaires
+**Phase detection — treat as "has phases" when ANY is true:**
+- Content has numbered sections (一、二、三 or 1. 2. 3. or Phase 1/Stage 1)
+- Process can be grouped by time/stage/role (e.g., "preparation → execution → review")
+- Total steps ≥ 5 (almost always groupable into 2+ phases)
+- Process involves multiple roles/departments
+- Process has clear start/end with intermediate stages
 
-**⚠️ En cas de doute, par défaut à la Mise en page C.** Une mise en page phasée avec seulement 1 phase a toujours l'air professionnel. Une mise en page Grille avec des phases ressemble à un désordre.
+**⚠️ When in doubt, default to Layout C.** A phased layout with only 1 phase still looks professional. A Grid layout with phases looks like a mess.
 
-#### Autres Diagrammes Structurels
-- Organigramme simple (≤6 nœuds, vraiment plat, pas de phases): **Mermaid**
-- Organigramme complexe (>6 nœuds / lourd en CJK / branches / phases): **Playwright + CSS Mise en page C** → `references/playwright-css.md`
-- Carte mentale / arbre / organigramme d'entreprise: **Playwright + CSS** → `references/mindmap-css.md`
-- Diagramme relationnel / réseau: **ECharts graph**
-- Analyse centrale-radiale (SWOT / BSC / Cinq Forces de Porter / PEST): **Playwright + CSS** → `references/radial-grid.md`
+#### Other Structural Diagrams
+- Simple flowchart (≤6 nodes, truly flat, no phases): **Mermaid**
+- Complex flowchart (>6 nodes / CJK-heavy / branches / phases): **Playwright + CSS Layout C** → `references/playwright-css.md`
+- Mind map / tree / org chart: **Playwright + CSS** → `references/mindmap-css.md`
+- Relationship / network diagram: **ECharts graph**
+- Center-radial analysis (SWOT / BSC / Porter's Five Forces / PEST): **Playwright + CSS** → `references/radial-grid.md`
 
-### 2. Graphiques de Données (matplotlib / seaborn)
-- Barre/ligne/nuage de points/heatmap/radar/circulaire standard: **matplotlib**
-- Régression/distribution/boxplot: **Seaborn**
+### 2. Data Charts (matplotlib / seaborn)
+- Standard bar/line/scatter/heatmap/radar/pie: **matplotlib**
+- Regression/distribution/boxplot: **Seaborn**
 
-### 3. Graphiques Interactifs / Tableaux de Bord
-- Tableau de bord de données / chandelier / temps réel: **ECharts**
-- Interactif entièrement personnalisé: **D3.js**
+### 3. Interactive Charts / Dashboards
+- Data dashboard / candlestick / real-time: **ECharts**
+- Fully custom interactive: **D3.js**
 
-### Stratégie par Défaut
-**Un scénario, un outil — ne pas hésiter:**
+### Default Strategy
+**One scene, one tool — don't hesitate:**
 
-| Scénario | Outil | Modèle |
+| Scene | Tool | Template |
 |-------|------|----------|
-| Graphique de données (barre/ligne/nuage de points/circulaire/radar) | matplotlib | `references/matplotlib.md` |
-| Statistique (régression/box/dist) | Seaborn | `references/seaborn.md` |
-| Carte mentale / arbre / organigramme d'entreprise | Playwright + CSS | `references/mindmap-css.md` |
-| Centré-radial (SWOT/BSC/PEST/Cinq Forces) | Playwright + CSS | `references/radial-grid.md` |
-| **N'importe quel organigramme (par défaut)** | **Playwright + CSS Mise en page C** | **`references/playwright-css.md`** |
-| Organigramme simple (≤6 nœuds, vraiment plat) | Mermaid | `references/mermaid.md` |
-| Relationnel / force-directed | ECharts graph | `references/echarts.md` |
-| Tableau de bord de données | ECharts | `references/echarts.md` |
-| Figures de articles académiques | matplotlib | `references/matplotlib.md` |
+| Data chart (bar/line/scatter/pie/radar) | matplotlib | `references/matplotlib.md` |
+| Statistical (regression/box/dist) | Seaborn | `references/seaborn.md` |
+| Mind map / tree / org chart | Playwright + CSS | `references/mindmap-css.md` |
+| Center-radial (SWOT/BSC/PEST/Five Forces) | Playwright + CSS | `references/radial-grid.md` |
+| **Any flowchart (default)** | **Playwright + CSS Layout C** | **`references/playwright-css.md`** |
+| Simple flowchart (≤6 nodes, truly flat) | Mermaid | `references/mermaid.md` |
+| Relationship / force-directed | ECharts graph | `references/echarts.md` |
+| Data dashboard | ECharts | `references/echarts.md` |
+| Academic paper figures | matplotlib | `references/matplotlib.md` |
 
----## Règles d'Auto-Upgrade Mermaid
+---
 
-La disposition dagre/elk de Mermaid estime incorrectement les largeurs CJK. **Passage automatique à Playwright+CSS QUAND AU MOINS une condition est remplie :**
+## Mermaid Auto-Upgrade Rules
 
-| Déclencheur | Action |
+Mermaid's dagre/elk layout estimates CJK widths incorrectly. **Auto-switch to Playwright+CSS when ANY condition is met:**
+
+| Trigger | Action |
 |---------|--------|
-| Total des nœuds > **6** | → Diagramme de flux CSS (Layout C) |
-| Tout texte de nœud > **12 caractères chinois** | → Diagramme de flux CSS |
-| Plus de **3 branches parallèles** | → Diagramme de flux CSS |
-| Sous-graphes imbriqués > **2 niveaux** | → Diagramme de flux CSS |
-| Croisements de connecteurs > **2** | → Diagramme de flux CSS |
-| **Annotations latérales / boîtes de note en pointillés** | → Diagramme de flux CSS |
-| **Flèches de retour / cycles** | → Diagramme de flux CSS |
-| **Le processus a des phases/étapes identifiables** | → Diagramme de flux CSS (Layout C) |
+| Total nodes > **6** | → CSS flowchart (Layout C) |
+| Any node text > **12 Chinese characters** | → CSS flowchart |
+| More than **3 parallel branches** | → CSS flowchart |
+| Nested subgraphs > **2 levels** | → CSS flowchart |
+| Connector crossings > **2** | → CSS flowchart |
+| **Side annotations / dashed note boxes** | → CSS flowchart |
+| **Loop-back / cycle arrows** | → CSS flowchart |
+| **Process has identifiable phases/stages** | → CSS flowchart (Layout C) |
 
-**Si maintien avec Mermaid** : `padding: 32`, `nodeSpacing: 80`, `rankSpacing: 80`. Texte de nœud ≤ 10 caractères CJK/ligne, avec `<br>`, tout texte entre guillemets `A["text"]`.
+**If staying with Mermaid**: `padding: 32`, `nodeSpacing: 80`, `rankSpacing: 80`. Node text ≤ 10 CJK chars/line, wrap with `<br>`, quote all text `A["text"]`.
 
 ---
 
-## Rendu de Grandes Données
+## Large Dataset Rendering
 
-| Taille des données | Approche |
+| Data Size | Approach |
 |-----------|----------|
-| < 1,000 points | matplotlib / n'importe lequel |
-| 1,000 - 10,000 | matplotlib (pas de marqueurs) ou ECharts |
-| 10,000 - 100,000 | ECharts (mode Canvas) |
-| > 100,000 | ECharts (`large: true`) ou WebGL |
+| < 1,000 points | matplotlib / any |
+| 1,000 - 10,000 | matplotlib (no markers) or ECharts |
+| 10,000 - 100,000 | ECharts (Canvas mode) |
+| > 100,000 | ECharts (`large: true`) or WebGL |
 
 ---
 
-# Partie 2 : Règles Universelles
+# Part 2: Universal Rules
 
-Ces règles s'appliquent à TOUS les diagrammes quel que soit le framework. Les règles spécifiques au framework se trouvent dans chaque fichier de modèle.
+These rules apply to ALL charts regardless of framework. Framework-specific rules live in each template file.
 
-## 7 Règles Fondamentales
+## 7 Core Rules
 
-1. **Zéro chevauchement.** Aucun élément ne peut masquer le texte d'un autre. Chevauchement = perte d'information = échec de la tâche. Post-génération : vérifier que chaque élément a une séparation claire.
+1. **Zero overlap.** No element may cover another's text. Overlap = information loss = task failure. Post-generation: verify every element has clear separation.
 
-2. **Hiérarchie avant uniformité.** Nœuds primaires plus grands/gras que les secondaires. Nœuds d'annotation plus petits/estompés. Espacement entre les groupes > au sein des groupes. Si chaque boîte a l'air identique, la disposition a échoué.
+2. **Hierarchy over uniformity.** Primary nodes larger/bolder than secondary. Annotation nodes smaller/muted. Spacing between groups > within groups. If every box looks identical, the layout has failed.
 
-3. **Palette de faible saturation.** 70% arrière-plan/neutre, 20% secondaire, 10% accent (un seul point fort). Pas de remplissages grands et saturés. Couleurs saturées uniquement sur les bordures (2px), texte et éléments petits.
+3. **Low-saturation palette.** 70% background/neutral, 20% secondary, 10% accent (one highlight only). No high-saturation large fills. Saturated colors only on borders (2px), text, and small elements.
 
-4. **L'insight d'abord.** Les titres expriment des conclusions, pas des noms de champ. Supprimer les éléments non essentiels : bordures haut/droite, lignes de grille, marques de graduation, bordures de boîte de légende. Si le supprimer ne réduit pas la compréhension, il ne devrait pas exister.
+4. **Insight first.** Titles express conclusions, not field names. Remove non-essential elements: top/right borders, grid lines, tick marks, legend box borders. If removing it doesn't reduce understanding, it shouldn't exist.
 
-5. **Clarté des étiquettes avant méthode d'étiquetage.** L'objectif est zéro chevauchement — choisir la méthode qui y parvient pour chaque type de diagramme. Étiquetage direct, légendes et lignes de liaison sont toutes valides ; ce qui compte est qu'il n'y ait aucun chevauchement.
+5. **Label clarity over label method.** The goal is zero overlap — choose the method that achieves it for each chart type. Direct labels, legends, and leader lines are all valid; what matters is that nothing overlaps.
 
-### 🚫 INTERDIT : Tout Texte Chevauchant un Autre Élément
-**Aucune étiquette, légende, annotation ou titre ne peut chevaucher un autre élément visuel.** C'est le défaut matplotlib le plus courant. Les étiquetages directs ET les légendes peuvent provoquer un chevauchement — aucun n'est intrinsèquement sûr.
+### 🚫 FORBIDDEN: Any Text Overlapping Any Other Element
+**No label, legend, annotation, or title may overlap any other visual element.** This is the single most common matplotlib defect. Both direct labels AND legends can cause overlap — neither is inherently safe.
 
-**Arbre de décision anti-chevauchement :**
-1. **Vérifier si les étiquetages directs passent** — si toutes les étiquettes ont assez d'espace (sommets de barres, extrémités de lignes, grandes parts de camembert), étiqueter directement. Pas de légende nécessaire.
-2. **Si certaines étiquettes entreraient en collision** (petites parts de camembert, points de dispersion denses, barres groupées) → utiliser une légende en dehors de la zone de diagramme au lieu de forcer les étiquettes dans des espaces étroits.
-3. **Approche mixte** — étiqueter directement les éléments principaux, grouper les petits éléments dans « Autres » ou utiliser des lignes de liaison + légende pour les petits.
+**Anti-overlap decision tree:**
+1. **Check if direct labels fit** — if all labels have enough space (bar tops, line endpoints, large pie slices), label directly. No legend needed.
+2. **If some labels would collide** (small pie slices, dense scatter points, clustered bars) → use legend outside plot area instead of forcing labels into tight spaces.
+3. **Mixed approach** — label the major items directly, group small items into "其他" or use leader lines + legend for the small ones.
 
-**Spécifique aux diagrammes circulaires (le pire coupable) :**
-- Parts < 5% : DOIT utiliser des lignes de liaison (`wedgeprops + texts` repositionnement manuel, ou `matplotlib.patches.ConnectionPatch`) pour sortir les étiquettes. Ne pas se fier uniquement à `autopct` — il place le texte à l'intérieur/près de la part.
-- Plusieurs petites parts adjacentes : utiliser une légende `bbox_to_anchor` en dehors, PAS d'étiquetage direct
-- `labeldistance=1.25` minimum pour garder les étiquettes à l'extérieur du camembert
-- Quand >2 parts sont < 5%, envisager de grouper toutes les < 3% en « Autres (X éléments) »
-- Utiliser la bibliothèque `adjustText` pour résoudre automatiquement les collisions d'étiquettes quand disponible
+**Pie chart specific (the worst offender):**
+- Slices < 5%: MUST use leader lines (`wedgeprops + texts` manual repositioning, or `matplotlib.patches.ConnectionPatch`) to pull labels outside. Do NOT rely on `autopct` alone — it places text inside/near the slice.
+- Multiple small adjacent slices: use `bbox_to_anchor` legend outside, NOT direct labels
+- `labeldistance=1.25` minimum to keep labels outside the pie
+- When >2 slices are < 5%, consider grouping all < 3% into "其他（X项）"
+- Use `adjustText` library to auto-resolve label collisions when available
 
-**Placement de la légende (quand une légende est nécessaire) :**
-- Placer la légende **en dehors** de la zone de diagramme en utilisant `bbox_to_anchor`
-- Positions de départ suggérées :
-  - Barre/ligne/dispersion : côté droit en dehors (`bbox_to_anchor=(1.02, 1), loc='upper left'`)
-  - Camembert : côté droit en dehors (`bbox_to_anchor=(1.1, 0.5), loc='center left'`)
-  - Radar : en dessous du diagramme (`bbox_to_anchor=(0.5, -0.15), loc='upper center'`)
-  - Carte thermique : pas de légende nécessaire (la barre de couleur suffit)
+**Legend placement (when legend is needed):**
+- Place legend **outside** the plot area using `bbox_to_anchor`
+- Suggested starting positions:
+  - Bar/line/scatter: right side outside (`bbox_to_anchor=(1.02, 1), loc='upper left'`)
+  - Pie: right side outside (`bbox_to_anchor=(1.1, 0.5), loc='center left'`)
+  - Radar: below chart (`bbox_to_anchor=(0.5, -0.15), loc='upper center'`)
+  - Heatmap: no legend needed (colorbar suffices)
 
-**🔧 Obligatoire : ajustement automatique de la légende pour éviter le chevauchement.** Copier ce snippet après avoir placé n'importe quelle légende :
+**🔧 Mandatory: auto-adjust legend to prevent overlap.** Copy this snippet after placing any legend:
 ```python
-# ── Ajustement automatique de la position de la légende pour éviter le chevauchement ──
-fig.canvas.draw()  # doit être rendu d'abord pour obtenir les bboxes
+# ── Auto-adjust legend position to prevent overlap ──
+fig.canvas.draw()  # must render first to get bboxes
 legend = ax.get_legend()
 if legend:
     renderer = fig.canvas.get_renderer()
-    # Essayer de déplacer jusqu'à 5 fois pour résoudre le chevauchement
+    # Try shifting up to 5 times to resolve overlap
     for _ in range(5):
         leg_bb = legend.get_window_extent(renderer).transformed(ax.transAxes.inverted())
         has_overlap = False
@@ -236,157 +230,161 @@ if legend:
                 break
         if not has_overlap:
             break
-        # Déplacer la légende plus loin à l'extérieur (la direction dépend de loc actuel)
+        # Move legend further outside (direction depends on current loc)
         bbox = legend.get_bbox_to_anchor().transformed(ax.transAxes.inverted())
         x0, y0 = bbox.x0, bbox.y0
-# Heuristique : si la légende est en dessous du centre, déplacer vers le bas ; si à droite du centre, déplacer vers la droite
+        # Heuristic: if legend is below center, move down; if right of center, move right
         if y0 < 0.5:
             legend.set_bbox_to_anchor((x0, y0 - 0.08), transform=ax.transAxes)
         else:
             legend.set_bbox_to_anchor((x0 + 0.08, y0), transform=ax.transAxes)
         fig.canvas.draw()
 ```
-- **Après placement de la légende** : toujours appeler `plt.tight_layout()` ou `fig.subplots_adjust()` pour s'assurer que la légende n'est pas rognée
+- **After placing legend**: always call `plt.tight_layout()` or `fig.subplots_adjust()` to ensure legend is not clipped
 
-🚫 INTERDIT :
-- `loc='best'` — le "meilleur" de matplotlib chevauche souvent les données
-- `loc='upper right'` / `loc='lower right'` sur les diagrammes en barres/lignes — risque élevé de collision
-- Étiquetage direct des parts de camembert < 5% sans lignes de liaison
-- Placement de texte sans vérification de zéro chevauchement
+🚫 FORBIDDEN:
+- `loc='best'` — matplotlib's "best" frequently overlaps data
+- `loc='upper right'` / `loc='lower right'` on line/bar charts — high collision risk
+- Direct labels on pie slices < 5% without leader lines
+- Any text placement without verifying zero overlap
 
-6. **Discipline de police.** Max 2 polices. Chinois : SimHei/PingFang SC. Toujours définir explicitement les polices dans le code. La taille de police suit la hiérarchie (titre 18-24px → corps 13-15px → annotation 11-13px). Jamais en dessous de 10px minimum. Quand le texte déborde : condenser le texte → agrandir la toile → dernier recours : réduire la police (mais jamais en dessous du minimum).
+6. **Font discipline.** Max 2 fonts. Chinese: SimHei/PingFang SC. Always explicitly set fonts in code. Font size follows hierarchy (title 18-24px → body 13-15px → annotation 11-13px). Never go below 10px floor. When text overflows: condense text → enlarge canvas → last resort: shrink font (but never below floor).
 
-7. **L'espace blanc est un design.** Zone de diagramme 60-70% de la toile, marges 15-20%. Au moins 16pt entre le titre et le diagramme. Encombré ≠ riche en information.
+7. **Whitespace is design.** Chart area 60-70% of canvas, margins 15-20%. At least 16pt between title and chart. Crowded ≠ information-rich.
 
----## Système de couleurs
+---
 
-### Palettes recommandées
+## Color System
 
-| Palette | Texte | Arrière-plan | Remplissage de bloc | Accent |
+### Recommended Palettes
+
+| Palette | Text | Background | Block Fill | Accent |
 |---------|------|------------|------------|--------|
 | Business Cool | `#243447` | `#F8FAFC` | `#E9EEF3` | `#4C6EF5` |
 | Tech Cyan-Gray | `#1F2937` | `#F5F7FA` | `#E6ECF2` | `#3AAFA9` |
 | Morandi Warm | `#4B4A45` | `#FAF8F4` | `#EAE4DB` | `#C6866A` |
 | Invisible Precision | `#37352F` | `#FFFFFF` | `#F7F7F7` | `#2383E2` |
 
-### 🚫 Couleurs d'arrière-plan interdites
+### 🚫 Forbidden Background Colors
 
-| Couleur | Valeurs hex interdites |
+| Color | Forbidden Hex Values |
 |-------|---------------------|
-| Bleu pur | `#3B82F6`, `#2563EB`, `#1D4ED8` |
-| Vert pur | `#10B981`, `#059669`, `#22C55E` |
-| Rouge pur | `#EF4444`, `#DC2626`, `#F87171` |
-| Violet pur | `#8B5CF6`, `#7C3AED`, `#A855F7` |
-| Ambre pur | `#F59E0B`, `#D97706`, `#FB923C` |
+| Pure blue | `#3B82F6`, `#2563EB`, `#1D4ED8` |
+| Pure green | `#10B981`, `#059669`, `#22C55E` |
+| Pure red | `#EF4444`, `#DC2626`, `#F87171` |
+| Pure purple | `#8B5CF6`, `#7C3AED`, `#A855F7` |
+| Pure amber | `#F59E0B`, `#D97706`, `#FB923C` |
 
-### ✅ Couleurs d'arrière-plan autorisées
+### ✅ Allowed Background Colors
 
-| Couleur | Valeurs hex |
+| Color | Hex Values |
 |-------|------------|
-| Bleu glace | `#EFF6FF`, `#DBEAFE` |
-| Vert menthe | `#F0FDF4`, `#D1FAE5` |
-| Ambre clair | `#FFF7ED`, `#FEF3C7` |
-| Lavande | `#F5F3FF`, `#EDE9FE` |
-| Gris clair | `#F8FAFC`, `#F1F5F9` |
+| Ice blue | `#EFF6FF`, `#DBEAFE` |
+| Mint green | `#F0FDF4`, `#D1FAE5` |
+| Light amber | `#FFF7ED`, `#FEF3C7` |
+| Lavender | `#F5F3FF`, `#EDE9FE` |
+| Light gray | `#F8FAFC`, `#F1F5F9` |
 
-### Couleur fonctionnelle (états uniquement, pas pour la décoration)
-- Actif/Sélectionné : accent de marque ou ligne d'accent de `2px`
-- Erreur : `#EF4444`
-- Succès : `#10B981`
-- Étiquettes : arrière-plan clair + texte sombre, jamais de pilules haute saturation
+### Functional Color (states only, not decoration)
+- Active/Selected: brand accent or `2px` accent line
+- Error: `#EF4444`
+- Success: `#10B981`
+- Tags: light bg + dark text, never high-sat pills
 
-### Accessible aux daltoniens
-Ne vous fiez pas uniquement à la couleur — associez à des formes, styles de lignes ou étiquettes directes.
-Palette Paul Tol : `['#0077BB', '#33BBEE', '#009988', '#EE7733', '#CC3311', '#EE3377']`
+### Colorblind-Safe
+Don't rely on color alone — pair with shape, line style, or direct labels.
+Paul Tol palette: `['#0077BB', '#33BBEE', '#009988', '#EE7733', '#CC3311', '#EE3377']`
 
-### Thème sombre
-- Arrière-plan : `#0F172A` (pas noir pur)
-- Texte : `#F1F5F9` (pas blanc pur)
-- Grille : `#1E293B`, alpha faible
-- Exportation : `savefig(facecolor='#0F172A')`
-
----
-
-## Règles d'exportation
-
-- Graphiques statiques : minimum 200 DPI, recommandé 300 DPI
-- Camembert/radar : **carré `figsize=(8, 8)`** — non carré = elliptique
-- Maximum 6 couleurs par graphique (diviser si plus)
-- Axe Y des graphiques en barres commence à 0 (les graphiques en lignes peuvent tronquer)
-- Jamais utiliser 3D (déforme les proportions)
-
-### Capture d'écran Playwright
-`device_scale_factor=2` par défaut. Cartes mentales grandes (3000px+) : 1.5. Intégration PDF : 1-1.5. Impression : 3.
-Après rendu, lire `bounding_box()` et redimensionner la vue pour s'adapter. Vue minimum : 800px colonne unique, 1200px multi-colonnes.
-
-### 🚫 INTERDIT : `max-width` sur conteneurs Mermaid/SVG
-Le moteur dagre de Mermaid produit des SVG de largeur imprévisible (surtout avec sous-graphes, texte CJK ou branches parallèles). **NE JAMAIS définir `max-width` sur l'élément conteneur Mermaid.** Utilisez `width: fit-content; min-width: 800px;` à la place.
-
-**Racine du problème** : les SVG Mermaid dépassent silencieusement leur conteneur CSS. `bounding_box()` (Playwright) retourne la taille du modèle de boîte CSS, PAS la taille réellement rendue du SVG. Ainsi, le redimensionnement automatique de la vue basé uniquement sur `bounding_box()` produira toujours des captures d'écran tronquées.
-
-**Correction** : Toujours lire le **`getBoundingClientRect()` propre de l'élément SVG** via `page.evaluate()`, puis utiliser `max(css_size, svg_size) + padding` pour les dimensions de la vue. Voir `references/mermaid.md` pour le script de capture corrigé.
-
-### Conservation du ratio d'aspect (intégration)
-**DOIT lire les dimensions réelles de l'image et calculer la hauteur proportionnellement. JAMAIS coder en dur à la fois largeur et hauteur.**
+### Dark Theme
+- Background: `#0F172A` (not pure black)
+- Text: `#F1F5F9` (not pure white)
+- Grid: `#1E293B`, low alpha
+- Export: `savefig(facecolor='#0F172A')`
 
 ---
 
-## Règles spécifiques à matplotlib
+## Export Rules
 
-Celles-ci s'appliquent lors du routage vers matplotlib/seaborn :
+- Static charts: minimum 200 DPI, recommended 300 DPI
+- Pie/radar: **square `figsize=(8, 8)`** — non-square = elliptical
+- No more than 6 colors per chart (split if more)
+- Bar chart Y-axis starts at 0 (line charts may truncate)
+- Never use 3D (distorts proportions)
 
-### Mise en page & Chevauchement
-- Préférer `constrained_layout=True` à `tight_layout()`
-- Utiliser la bibliothèque `adjustText` pour le repositionnement automatique des étiquettes — **c'est l'outil anti-chevauchement le plus fiable pour matplotlib.** Installation : `pip install adjustText`. Utilisation : `from adjustText import adjust_text; adjust_text(texts)`
-- Maximum 4 sous-graphiques par canevas. Plus → diviser les images ou `figsize=(20, 16)` minimum
-- Multi-sous-graphique : `GridSpec` avec `wspace/hspace` ≥ 0.3
-- Barre de couleur : `shrink=0.8` + `pad=0.08`
-- Étiquettes de données : limite supérieure de l'axe Y avec 15-20% de marge (`ylim(0, max_val * 1.18)`)
-- Longues étiquettes X → graphique en barres horizontal ou afficher chaque N-ième étiquette
+### Playwright Screenshot
+Default `device_scale_factor=2`. Large mind maps (3000px+): 1.5. PDF embed: 1-1.5. Print: 3.
+After render, read `bounding_box()` and resize viewport to fit. Min viewport: 800px single-col, 1200px multi-col.
 
-### Graphiques Radar/Toile d'araignée
-- **Chaque `fill()` DOIT avoir `alpha=0.25`** (max 0.3). Omettre alpha = opaque = masque la série sous-jacente.
-- Légende : placer à l'extérieur du graphique avec `bbox_anchor`, commencer par `(0.5, -0.15), loc='upper center'`. Si les étiquettes de dimension sont longues ou les dimensions > 8, augmenter le décalage (ex : `-0.25` ou `-0.3`). Aussi INTERDIT : `loc='lower right'` (entre en collision avec les étiquettes de dimension radar).
-- Remplissage d'étiquette de dimension : `set_rlim(0, max_value * 1.2)`
-- Étiquettes avec >4 caractères CJK : faire pivoter pour suivre l'angle ou abréger
-- `figsize=(8, 8)` obligatoire (carré)
+### 🚫 FORBIDDEN: `max-width` on Mermaid/SVG Containers
+Mermaid's dagre engine produces SVGs with unpredictable width (especially with subgraphs, CJK text, or parallel branches). **NEVER set `max-width` on the Mermaid container element.** Use `width: fit-content; min-width: 800px;` instead.
 
-### Une couleur, le reste en gris
-5 lignes → colorer uniquement la clé, autres `#D1D5DB`. 8 barres → accentuer uniquement la mise en évidence, reste `#E5E7EB`.
+**Root cause**: Mermaid SVGs overflow their CSS container silently. `bounding_box()` (Playwright) returns the CSS box model size, NOT the SVG's actual rendered size. So auto-resize viewport based on `bounding_box()` alone will still produce clipped screenshots.
 
----
+**Fix**: Always read the **SVG element's own `getBoundingClientRect()`** via `page.evaluate()`, then use `max(css_size, svg_size) + padding` for viewport dimensions. See `references/mermaid.md` for the corrected screenshot script.
 
-## Règles de connecteur (diagrammes structurels)
-
-- Attacher aux bords des nœuds, pas par les centres
-- Préférer les polylignes orthogonales ou les courbes propres
-- Les chemins principaux évitent le croisement
-- Jamais traverser les zones de texte
-- Les points de départ/fin au même niveau doivent s'aligner (pas décalés)
-- Les connecteurs de même niveau suivent la même direction
-- Angles de courbure cohérents (tous droits ou tous courbes, pas de mélange)
-- Positions d'étiquette uniformes (tous au-dessus de la ligne ou tous centrés)
+### Aspect Ratio Preservation (embedding)
+**MUST read actual image dimensions and calculate height proportionally. NEVER hardcode both width and height.**
 
 ---
 
-## Liste de vérification pré-livraison
+## matplotlib-Specific Rules
 
-Avant livraison, vérifier :
+These apply when routing to matplotlib/seaborn:
 
-- [ ] Zéro chevauchement (nœuds, connecteurs, étiquettes, légendes — **vérifier particulièrement légende vs données, et étiquettes adjacentes de camembert/barre**)
-- [ ] Aucun connecteur ne traverse de boîtes de texte
-- [ ] Hiérarchie claire (primaire/secondaire/annotation visuellement distincts)
-- [ ] Palette de faible saturation (pas de couleurs d'arrière-plan interdites)
-- [ ] Texte lisible à la taille finale (autonome : ≥12px corps, ≥10px annotation ; PDF : ≥10pt/8pt/7pt)
-- [ ] Légende entièrement visible, non tronquée, ne chevauchant aucun élément de graphique
-- [ ] Canevas assez large/haut (vérifier la boîte englobante avant capture)
-- [ ] **Si carte mentale** : chaque niveau distinct (≥3 changements de propriété), connecteurs visibles (≥ `#94A3B8`), équilibrée gauche-droite
-- [ ] **Si organigramme** : titres de phase distincts des étapes, flèches uniquement entre phases, **utiliser Layout C par défaut**
-- [ ] **Si organigramme** : couleurs de phase dans même famille de teinte (progression bleu-gris), **PAS arc-en-ciel** (bleu→vert→ambre→violet)
-- [ ] **Si organigramme semble dispersé** : STOP — vous utilisez la mauvaise mise en page, passez à Layout C
-- [ ] **Si Mermaid semblait rigide** : déjà passé à Playwright+CSS
+### Layout & Overlap
+- Prefer `constrained_layout=True` over `tight_layout()`
+- Use `adjustText` library for automatic label repositioning — **this is the most reliable anti-overlap tool for matplotlib.** Install: `pip install adjustText`. Usage: `from adjustText import adjust_text; adjust_text(texts)`
+- Max 4 subplots per canvas. More → split images or `figsize=(20, 16)` minimum
+- Multi-subplot: `GridSpec` with `wspace/hspace` ≥ 0.3
+- Colorbar: `shrink=0.8` + `pad=0.08`
+- Data labels: Y-axis upper limit with 15-20% headroom (`ylim(0, max_val * 1.18)`)
+- Long X labels → horizontal bar chart or show every N-th label
 
----## Anti-Pattern Quick Reference
+### Radar / Spider Charts
+- **Every `fill()` MUST have `alpha=0.25`** (max 0.3). Omitting alpha = opaque = hides underlying series.
+- Legend: place outside chart with `bbox_to_anchor`, start with `(0.5, -0.15), loc='upper center'`. If dimension labels are long or dimensions > 8, increase offset (e.g., `-0.25` or `-0.3`). Also FORBIDDEN: `loc='lower right'` (collides with radar dimension labels).
+- Dimension label padding: `set_rlim(0, max_value * 1.2)`
+- Labels with >4 CJK chars: rotate to follow angle or abbreviate
+- `figsize=(8, 8)` mandatory (square)
+
+### One Color, Gray the Rest
+5 lines → color only the key one, others `#D1D5DB`. 8 bars → accent only the highlight, rest `#E5E7EB`.
+
+---
+
+## Connector Rules (structural diagrams)
+
+- Attach to node edges, not through centers
+- Prefer orthogonal polylines or clean curves
+- Main paths avoid crossing
+- Never pass through text areas
+- Start/end points at same level must align (no staggering)
+- Same-level connectors follow same direction
+- Bend angles consistent (all right-angles or all curves, no mixing)
+- Label positions uniform (all above line or all centered)
+
+---
+
+## Pre-Output Checklist
+
+Before delivery, verify:
+
+- [ ] Zero overlap (nodes, connectors, labels, legends — **especially check legend vs data, and adjacent pie/bar labels**)
+- [ ] No connectors pass through text boxes
+- [ ] Clear hierarchy (primary/secondary/annotation visually distinct)
+- [ ] Low-saturation palette (no forbidden background colors)
+- [ ] Text readable at final size (standalone: ≥12px body, ≥10px annotation; PDF embed: ≥10pt/8pt/7pt)
+- [ ] Legend fully visible, not clipped, not overlapping any chart element
+- [ ] Canvas wide/tall enough (check bounding box before screenshot)
+- [ ] **If mind map**: each level distinct (≥3 property changes), connectors visible (≥ `#94A3B8`), left-right balanced
+- [ ] **If flowchart**: phase titles distinct from steps, arrows only between phases, **using Layout C by default**
+- [ ] **If flowchart**: phase colors are same-hue family (blue-gray progression), **NOT rainbow** (blue→green→amber→purple)
+- [ ] **If flowchart looks scattered**: STOP — you're using the wrong layout, switch to Layout C
+- [ ] **If Mermaid looked rigid**: already switched to Playwright+CSS
+
+---
+
+## Anti-Pattern Quick Reference
 
 | ❌ Don't | ✅ Do This Instead |
 |----------|-------------------|

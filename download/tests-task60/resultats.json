@@ -1,0 +1,268 @@
+[
+  {
+    "phase": "A",
+    "test": "A1",
+    "label": "Couverture PM corpus : 4 familles / 68 skills racine",
+    "verdict": "FACT",
+    "detail": "5.9 % des skills ont une voie PM",
+    "metrics": {
+      "familles": 4,
+      "skills_racine": 68,
+      "couverture_pct": 5.9
+    }
+  },
+  {
+    "phase": "A",
+    "test": "A2",
+    "label": "Cohérence versions SKILL.md↔PM corpus (generer-pm-skill.py --check)",
+    "verdict": "PASS",
+    "detail": "4/4 familles COHERENT, rc=0, 24 ms",
+    "metrics": {
+      "coherents": 4,
+      "rc": 0,
+      "ms": 24
+    }
+  },
+  {
+    "phase": "A",
+    "test": "A3",
+    "label": "Auto-portance PM corpus gen-plan (PROMPT-MAITRE-GEN-PLAN-v3.35.2.md)",
+    "verdict": "FAIL",
+    "detail": "contexte embarqué ×2 · dépendance externe ×1",
+    "metrics": {
+      "contexte": 2,
+      "dependance_externe": 1
+    }
+  },
+  {
+    "phase": "A",
+    "test": "A3",
+    "label": "Auto-portance PM corpus correct-work (PROMPT-MAITRE-CORRECT-WORK-v2.9.0.md)",
+    "verdict": "PASS",
+    "detail": "contexte embarqué ×3 · dépendance externe ×0",
+    "metrics": {
+      "contexte": 3,
+      "dependance_externe": 0
+    }
+  },
+  {
+    "phase": "A",
+    "test": "A3",
+    "label": "Auto-portance PM corpus clone-chat (PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md)",
+    "verdict": "PASS",
+    "detail": "contexte embarqué ×2 · dépendance externe ×0",
+    "metrics": {
+      "contexte": 2,
+      "dependance_externe": 0
+    }
+  },
+  {
+    "phase": "A",
+    "test": "A3",
+    "label": "Auto-portance PM corpus refactor-guard (PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md)",
+    "verdict": "PASS",
+    "detail": "contexte embarqué ×2 · dépendance externe ×0",
+    "metrics": {
+      "contexte": 2,
+      "dependance_externe": 0
+    }
+  },
+  {
+    "phase": "A",
+    "test": "A4",
+    "label": "Voie PM pour skill non-famille (tsi-validator) via KO-L004",
+    "verdict": "EXPECTED-REFUS",
+    "detail": "refus mécanique rc=3 : ABANDON : famille inconnue : tsi-validator (attendu : gen-pl",
+    "metrics": {
+      "rc": 3,
+      "refuse": true
+    }
+  },
+  {
+    "phase": "A",
+    "test": "A5",
+    "label": "Empreinte stockage permanente (état d'écosystème)",
+    "verdict": "FACT",
+    "detail": "corpus 9 fichiers 379 Ko + archive PMs 48 fichiers 3527 Ko + 16 deltas",
+    "metrics": {
+      "corpus_fichiers": 9,
+      "corpus_ko": 379,
+      "archive_pm_fichiers": 48,
+      "archive_pm_ko": 3527,
+      "deltas": 16
+    }
+  },
+  {
+    "phase": "B",
+    "test": "G0",
+    "label": "PORTE D604 : prototype NON intégré à l'écosystème",
+    "verdict": "PASS",
+    "detail": "aucun skills/pm-skill/ ni scripts/generer-pm-ephemere.py",
+    "metrics": {}
+  },
+  {
+    "phase": "B",
+    "test": "B1",
+    "label": "Génération PM éphémère — famille (correct-work)",
+    "verdict": "PASS",
+    "detail": "PM-ephemere-correct-work-v2.9.0.md (26484 o)",
+    "metrics": {}
+  },
+  {
+    "phase": "B",
+    "test": "B2",
+    "label": "Génération PM éphémère — non-famille (tsi-validator)",
+    "verdict": "PASS",
+    "detail": "PM-ephemere-tsi-validator-v1.3.0.md (9722 o)",
+    "metrics": {}
+  },
+  {
+    "phase": "B",
+    "test": "B2",
+    "label": "Génération PM éphémère — non-famille (vue-upload)",
+    "verdict": "PASS",
+    "detail": "PM-ephemere-vue-upload-v1.5.0.md (19476 o)",
+    "metrics": {}
+  },
+  {
+    "phase": "B",
+    "test": "B3",
+    "label": "Génération batch — 68 skills racine",
+    "verdict": "PASS",
+    "detail": "68/68 générés",
+    "metrics": {
+      "generes": 68,
+      "total": 68
+    }
+  },
+  {
+    "phase": "B",
+    "test": "B4",
+    "label": "Auto-portance des sorties (contexte embarqué, zéro « lire en premier »)",
+    "verdict": "PASS",
+    "detail": "68/68 auto-portantes",
+    "metrics": {
+      "auto_portantes": 68,
+      "total": 68
+    }
+  },
+  {
+    "phase": "B",
+    "test": "B5",
+    "label": "Déterminisme — régénération ×2 byte-identique (5 échantillons)",
+    "verdict": "PASS",
+    "detail": "stable",
+    "metrics": {}
+  },
+  {
+    "phase": "B",
+    "test": "B6",
+    "label": "Fidélité — version + mission (description verbatim) présentes",
+    "verdict": "PASS",
+    "detail": "3/3 fidèles",
+    "metrics": {}
+  },
+  {
+    "phase": "B",
+    "test": "B7",
+    "label": "Traçabilité — SHA-256 source embarqué et exact",
+    "verdict": "PASS",
+    "detail": "3/3 tracés",
+    "metrics": {}
+  },
+  {
+    "phase": "C",
+    "test": "C1",
+    "label": "Temps génération unitaire (correct-work ×10)",
+    "verdict": "FACT",
+    "detail": "min 0.4 ms · moy 0.4 ms · max 0.5 ms",
+    "metrics": {
+      "min_ms": 0.4,
+      "moy_ms": 0.4,
+      "max_ms": 0.5
+    }
+  },
+  {
+    "phase": "C",
+    "test": "C2",
+    "label": "Temps batch 68 skills",
+    "verdict": "FACT",
+    "detail": "0.02 s au total · 0.3 ms/skill",
+    "metrics": {
+      "total_s": 0.02,
+      "ms_par_skill": 0.3
+    }
+  },
+  {
+    "phase": "C",
+    "test": "C3",
+    "label": "Empreinte sorties éphémères (68 fichiers) vs état permanent corpus",
+    "verdict": "FACT",
+    "detail": "sorties 1214 Ko (régénérables, supprimables) vs corpus 379 Ko (état permanent)",
+    "metrics": {
+      "sorties_ko": 1214,
+      "corpus_ko": 379
+    }
+  },
+  {
+    "phase": "C",
+    "test": "C4",
+    "label": "Coût structurel par montée : corpus 17 touches vs éphémère 0",
+    "verdict": "FACT",
+    "detail": "corpus : 17 touches/montée MINOR (worklog Task 48 — c.1 inventaire D601) ; éphémère : 0 touche d'état (régénération lecture seule)",
+    "metrics": {
+      "corpus_touches": 17,
+      "ephemere_touches": 0
+    }
+  },
+  {
+    "phase": "C",
+    "test": "C5",
+    "label": "Résilience volatilité — suppression puis régénération (5 skills)",
+    "verdict": "PASS",
+    "detail": "régénérés en 1 ms ; corpus perdu = réinstallation pipeline + re-certification (preuve vive Task 60 §0 — minutes, worklog)",
+    "metrics": {
+      "regen_ms": 1
+    }
+  },
+  {
+    "phase": "C",
+    "test": "C6",
+    "label": "Lag — bump version simulé (bac à sable) → PM éphémère instantané",
+    "verdict": "PASS",
+    "detail": "PM éphémère v2.11.0-test en 1 ms (source vivant lue) ; corpus : bump = cascade 17 touches, lags ×4+ documentés (c.4)",
+    "metrics": {
+      "ms": 1,
+      "version_detectee": true
+    }
+  },
+  {
+    "phase": "C",
+    "test": "C7",
+    "label": "Comparatif structurel PM corpus vs PM éphémère (correct-work)",
+    "verdict": "FACT",
+    "detail": "§7 Historique versions complet corpus=True éphémère=False ; §5 Instructions installation écosystème corpus=True éphémère=False ; Mode d'emploi IA externe corpus=False éphémère=True ; SHA-256 source corpus=False éphémère=True ; CONTEXTE SYSTÈME embarqué corpus=True éphémère=True",
+    "metrics": {
+      "§7 Historique versions complet": [
+        true,
+        false
+      ],
+      "§5 Instructions installation écosystème": [
+        true,
+        false
+      ],
+      "Mode d'emploi IA externe": [
+        false,
+        true
+      ],
+      "SHA-256 source": [
+        false,
+        true
+      ],
+      "CONTEXTE SYSTÈME embarqué": [
+        true,
+        true
+      ]
+    }
+  }
+]

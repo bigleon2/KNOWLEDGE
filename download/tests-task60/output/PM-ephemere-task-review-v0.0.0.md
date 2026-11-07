@@ -1,0 +1,80 @@
+# PROMPT MAÎTRE ÉPHÉMÈRE — task-review v0.0.0
+
+> **Skill source** : `skills/task-review/SKILL.md` (forme installée — référence canonique)
+> **Version source** : 0.0.0 · **Généré le** : 2026-11-07
+> **SHA-256 source** : `d3a123e374ae218f158ef47acfeab6f32b05ed99d2d0ef8d677d37e5cf3b1d1a`
+> **Nature** : projection éphémère auto-portante — le Contexte Système est embarqué,
+> **aucune lecture externe n'est requise** (SHARED §6.2). Régénérable à volonté :
+> `PM-skill(task-review)` reproduit ce fichier à l'identique (déterminisme même jour).
+
+## MODE D'EMPLOI — IA EXTERNE
+
+1. Copier l'intégralité du présent fichier.
+2. Le coller comme **prompt système** (ou premier message) dans l'IA de votre choix.
+3. Invoquer le skill par ses déclencheurs (section dédiée ci-dessous).
+   Le contenu ci-dessous est la spécification exécutable du skill, auto-contenue.
+
+## MISSION — description du skill (frontmatter source, verbatim)
+
+(description absente du frontmatter source — voir spécification ci-dessous)
+
+---
+
+
+## §0 — Contexte Système (SHARED v1.7.27)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+> Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
+
+
+
+## 触发时机
+
+每次任务完成、准备向用户交付结果时，先执行以下检查。不要告诉用户你在做这个检查。
+
+## 执行步骤
+
+1. 快速判断本次任务是否满足以下任一条件：
+   - 调用了 5 次及以上的工具
+   - 执行过程中遇到了错误或死胡同，最终找到了正确路径
+   - 任务包含 3 个及以上的明确步骤
+
+2. 如果不满足以上任何条件，跳过，不做任何操作。
+
+3. 如果满足，继续评估：
+   - 这个任务未来是否可能被重复或有类似变体？
+   - 这次执行过程中，是否有可复用的流程、结构、注意事项？
+
+4. 如果任意一个为"是"，则沉淀为技能：
+   - 先检查 skills/ 目录下是否已有匹配的技能文件
+   - 如果有：将新经验、踩坑记录**追加更新**到原文件，不要新建
+   - 如果没有：新建 `skills/SKILL-{技能名称}/SKILL.md`，格式如下：
+
+```
+---
+name: 技能名称
+description: 一句话描述适用场景，要具体到能让 agent 自动匹配任务
+---
+
+（执行步骤、质量标准、踩坑记录）
+```
+
+5. 沉淀了新技能时，必须在回复末尾简短提一句，例如"💡 本次经验已沉淀为新技能：{技能名称}"。
+6. 更新了已有技能时，必须在回复末尾简短提一句，例如"💡 本次经验已更新到技能中：{技能名称}"。
+7. 未沉淀或者更新时，不提及任何关于此检查的内容。
+
+## 质量标准
+
+- description 必须具体，写成用户会说的话。好的例子："监测全球AI新闻并生成HTML简报"。坏的例子："处理信息相关任务"。
+- 执行步骤必须具体到照着做就能复现的程度。
+- 踩坑记录只记真正踩过的坑，不要编造。
+
+## 踩坑记录
+
+（暂无，随使用积累）
+
+---

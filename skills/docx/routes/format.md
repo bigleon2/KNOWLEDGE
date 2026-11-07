@@ -1,18 +1,18 @@
-# Route: Format / Mise en page
+# Route: Format / Layout
 
 ## Workflow
 
 ```
-1. Lire le document actuel (pandoc pour le contenu, unpack pour la structure)
-2. Identifier les exigences de formatage de l'utilisateur
-3. Utiliser le tableau de conversion d'unités (voir SKILL.md)
-4. Appliquer le formatage via la manipulation OOXML ou python-docx
-5. Packager et vérifier
+1. Read current document (pandoc for content, unpack for structure)
+2. Identify format requirements from user
+3. Use unit conversion table (see SKILL.md)
+4. Apply formatting via OOXML manipulation or python-docx
+5. Pack and verify
 ```
 
-## Formatage rapide via python-docx
+## Quick Formatting via python-docx
 
-Pour les tâches de formatage simples, python-docx est souvent plus rapide que le brut XML :
+For simple formatting tasks, python-docx is often faster than raw XML:
 
 ```python
 from docx import Document as PythonDocument
@@ -21,7 +21,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 doc = PythonDocument("input.docx")
 
-# Modifier le formatage de tous les paragraphes du corps
+# Change all body paragraph formatting
 for para in doc.paragraphs:
     if para.style.name.startswith("Heading"):
         continue
@@ -29,92 +29,92 @@ for para in doc.paragraphs:
     para.paragraph_format.line_spacing = 1.5
     para.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     for run in para.runs:
-run.font.name = "Songti (Songti)"
-run.font.size = Pt(12)  # Xiao Si (Xiao Si)
+        run.font.name = "宋体"
+        run.font.size = Pt(12)  # Xiao Si 小四
 
 doc.save("output.docx")
 ```
 
-## Modèles de demande de formatage courants
+## Common Format Request Patterns
 
-### Formatage de thèse universitaire
+### University Thesis Formatting
 
-Exigences typiques pour une thèse universitaire chinoise :
+Typical Chinese university thesis requirements:
 
 ```python
 from docx.shared import Cm, Pt, Twips
 
-# Marges
+# Margins
 for section in doc.sections:
     section.top_margin = Cm(2.5)
     section.bottom_margin = Cm(2.5)
     section.left_margin = Cm(3.0)
     section.right_margin = Cm(2.5)
 
-# Polices
-# Corps : SimSun (Songti) Xiao Si (Xiao Si) (12pt)
-# H1 : SimHei (Heiti) San Hao (San Hao) (16pt) centré
-# H2 : SimHei (Heiti) Si Hao (Si Hao) (14pt)
-# H3 : SimHei (Heiti) Xiao Si (Xiao Si) (12pt)
-# Anglais : Times New Roman, mêmes tailles
+# Fonts
+# Body: SimSun 宋体 Xiao Si 小四 (12pt)
+# H1: SimHei 黑体 San Hao 三号 (16pt) centered
+# H2: SimHei 黑体 Si Hao 四号 (14pt)
+# H3: SimHei 黑体 Xiao Si 小四 (12pt)
+# English: Times New Roman, same sizes
 ```
 
-### Numéros de page commençant à partir d'une page spécifique
+### Page Numbers Starting from Specific Page
 
-Utiliser une approche multi-sections :
+Use multi-section approach:
 ```python
-# Section 1 : Pages liminaires (chiffres romains)
-# Section 2 : Contenu principal (chiffres arabes, commençant à 1)
-# Cela nécessite une manipulation OOXML — voir routes/edit.md pour le workflow unpack/pack
+# Section 1: Front matter (Roman numerals)
+# Section 2: Main content (Arabic, starting from 1)
+# This requires OOXML manipulation — see routes/edit.md for unpack/pack workflow
 ```
 
-En brut XML (`word/document.xml`) :
+In raw XML (`word/document.xml`):
 ```xml
 <w:sectPr>
   <w:pgNumType w:fmt="upperRoman" w:start="1"/>
 </w:sectPr>
-<!-- Nouvelle section -->
+<!-- New section -->
 <w:sectPr>
   <w:pgNumType w:fmt="decimal" w:start="1"/>
 </w:sectPr>
 ```
 
-### En-têtes différents par section
+### Different Headers Per Section
 
-Chaque section dans un .docx peut avoir son propre en-tête/pied de page. Voir `references/docx-js-advanced.md` pour l'approche multi-sections.
+Each section in a .docx can have its own header/footer. See `references/docx-js-advanced.md` for the multi-section approach.
 
-Pour les documents existants, modifier `word/document.xml` pour diviser `<w:sectPr>` et créer des fichiers `headerN.xml` séparés.
+For existing documents, modify `word/document.xml` to split `<w:sectPr>` and create separate `headerN.xml` files.
 
-### Conversion de taille de police
+### Font Size Conversion
 
-Lorsque l'utilisateur demande un nom de taille de police chinoise :
+When user requests a Chinese font size name:
 
-| Demande | Action |
+| Request | Action |
 |---------|--------|
-| "Changer en taille Wu Hao (5ème)" | `font.size = Pt(10.5)` ou `size: 21` dans docx-js |
-| "Titre en SimHei San Hao" | `font.size = Pt(16)`, `font.name = "SimHei"` |
-| "Corps en Xiao Si SimSun" | `font.size = Pt(12)`, `font.name = "SimSun"` |
+| "Change to Wu Hao (5th) size" | `font.size = Pt(10.5)` or `size: 21` in docx-js |
+| "Title in San Hao SimHei" | `font.size = Pt(16)`, `font.name = "SimHei"` |
+| "Body in Xiao Si SimSun" | `font.size = Pt(12)`, `font.name = "SimSun"` |
 
-### Ajustement de l'interligne
+### Line Spacing Adjustment
 
 ```python
 from docx.shared import Twips
 
-# Espacement 1.0x
+# 1.0x spacing
 para.paragraph_format.line_spacing_rule = WD_LINE_SPACING.MULTIPLE
 para.paragraph_format.line_spacing = 1.0
 
-# Espacement 1.3x (notre défaut)
+# 1.3x spacing (our default)
 para.paragraph_format.line_spacing = 1.5
 
-# Espacement fixe (ex: 28pt)
+# Fixed spacing (e.g., 28pt)
 para.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY
 para.paragraph_format.line_spacing = Pt(28)
 ```
 
-## Vérification
+## Verification
 
-Après les modifications de formatage :
-1. Ouvrir dans LibreOffice ou convertir en PDF pour vérification visuelle
-2. Extraire le texte avec pandoc pour s'assurer que le contenu est inchangé
-3. Comparer les tailles de fichier (les modifications de formatage ne devraient pas changer drastiquement la taille)
+After formatting changes:
+1. Open in LibreOffice or convert to PDF for visual check
+2. Extract text with pandoc to ensure content unchanged
+3. Compare file sizes (formatting-only changes shouldn't dramatically change size)

@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # PROVENANCE: session B13-r6 (N27) — audit-provenance v1.0.0, directive trace 1a0df36f356c3add ; artefact orphelin documente idempotemment
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.27)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
+Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).
+Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
 
 Script de propagation du Contexte Système à tous les fichiers
-Version : 2.0.7 (porte §0 SHARED v1.7.26 — Task 56 G5 directive propriétaire : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED — résumé 9 règles d'or, canonique gen-plan §1.5] ; précédent 2.0.6 : ligne Langue règle d'or n°6, patterns étendus blocs 3-4 lignes)
+Version : 2.0.8 (porte §0 SHARED v1.7.27 — Task 60 G2 directive propriétaire : ligne « Référence canonique skill/agent » [désambiguïsation — toute référence propriétaire à « mon skill X »/« mon agent X » pointe la forme installée à la racine skills/X/, jamais le PM du corpus @mon-ecosysteme/, ex-nommé @PM-SKILLS/] ; résorption du lag L3_BLOCK_INNER resté en forme v1.7.24 au bump v2.0.7 — les trois blocs L2/L3/L3_INNER désormais alignés ; précédent 2.0.7 : ligne protocole « Règles d'or & lecture SHARED à l'exécution » [§9 SHARED])
 """
 
 import os
@@ -18,34 +20,39 @@ from pathlib import Path
 REPO_DIR = Path(__file__).parent.parent
 SKILLS_ROOT = REPO_DIR / "skills"
 
-CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.26)
+CONTEXT_BLOCK_L2 = """## §0 — Contexte Système (SHARED v1.7.27)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
 > Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 > Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
 
 """
 
 CONTEXT_HEADER_L3 = '''"""
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.26)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.27)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
 Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
 Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).
+Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
 """
 
 '''
 
 # Contenu interne de l'en-tête L3 (utilisé par le remplacement idempotent)
+# v2.0.8 : aligné sur la forme v1.7.27 (résorption du lag v1.7.24 hérité du bump v2.0.7)
 L3_BLOCK_INNER = (
-    "⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.24)\n"
+    "⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.27)\n"
     "SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL\n"
     "Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)\n"
     "Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.\n"
     "Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).\n"
+    "Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).\n"
+    "Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).\n"
 )
 
 def propagate_to_skills():
@@ -107,12 +114,16 @@ def propagate_to_scripts():
         
         if "CONTEXTE SYSTÈME" in content:
             # Idempotence v2 : remplacement de l'en-tête docstring résumé existant (mise à jour de version SHARED)
+            # v2.0.8 : le motif consomme TOUTES les lignes normatives connues (Langue, Règles d'or §9,
+            # Référence canonique §0/§1.2) — sinon les en-têtes v1.7.26+ laissent des lignes pendantes dupliquées
             old_doc = re.compile(
                 r'⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge \(SHARED v[0-9.]+\)\n'
                 r'SKILLS_ROOT = [^\n]*\n'
                 r'Conventions : [^\n]*\n'
                 r'Règle Zéro : [^\n]*\n'
                 r'(?:Langue : [^\n]*\n)?'
+                r"(?:Règles d'or & lecture SHARED[^\n]*\n)?"
+                r'(?:Référence canonique skill/agent[^\n]*\n)?'
             )
             new_content = old_doc.sub(L3_BLOCK_INNER, content, count=1)
             if new_content != content:
