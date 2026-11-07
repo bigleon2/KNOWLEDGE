@@ -4,13 +4,15 @@
   "dry_run": false,
   "familles": [
     {
-      "famille": "correct-work",
-      "old": "2.9.0",
-      "new": "2.11.0",
+      "famille": "gen-plan",
+      "old": "3.36.0",
+      "new": "3.37.0",
       "yaml_subs": 1,
-      "coverage_missing": [],
-      "skill_sections": 40,
-      "pm_sections": 66
+      "coverage_missing": [
+        "1.13"
+      ],
+      "skill_sections": 43,
+      "pm_sections": 58
     }
   ]
 }
