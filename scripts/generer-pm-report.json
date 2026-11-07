@@ -5,8 +5,8 @@
   "familles": [
     {
       "famille": "gen-plan",
-      "old": "3.37.0",
-      "new": "3.37.1",
+      "old": "3.37.1",
+      "new": "3.37.2",
       "yaml_subs": 1,
       "coverage_missing": [
         "1.13"

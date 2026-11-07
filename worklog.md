@@ -1391,3 +1391,22 @@ PLAN-AFFICHE (Task 70 — download/plan-task70-integration-bibliotheque-ghorg-et
 PLAN-AFFICHE (Task 70 — download/plan-task70-integration-bibliotheque-ghorg-etude-faisabilite.md — **G1 ✅ [tests installation $FACON2 : PM INSTALL 2/2 + ensure-installed 5/5 + fraîcheur 6/6 + F-70-2 résorbé, PASS round 0]** · **G2 ✅ [Task 1 : @Bibliotheque-skills-Multi-IA intégrée, PASS round 0]** · **G3 ✅ [Task 2 : @GHORG-ecosysteme intégrée + ghorg-cmdr v1.1.0, PASS round 0]** · **G4 ✅ [Task 3 : étude faisabilité livrée — OOP/noyau rejetés tels quels, goulot réel = #token, feuille de route R1-R6, PASS round 0]** · **G5 ✅ [correct-work (projet) --bloc PASS + E8 final + rapport final + E15]** — **12/12 décisions verified · E8 final PASS (18:31:00Z) · commit cea7d12 · TASK 70 CLOSE**)
 
 **TASK 70 CLOSE.**
+---
+
+Task ID: 27
+Agent: Z.ai (session web-ecef7f80) — gen-plan v3.37.2 (mode step, Task 71)
+Task: gen-plan(step) — 6 items propriétaire : durcissement langue + push + R1/R2 + tests chronologiques + correct-work(projet) --bloc + clone-chat — trace 1a1b75a967a53d69
+
+Work Log:
+- E1-RES : piliers présents ; volatilité version-management — 4 disparitions dans la session (35e-38e incidents), réparées ×4 par la garde externe scripts/ensure-installed.py (verdict INSTALLE-REPARÉ, head miroir 886604d), arbitre re-certifié 110/110 à chaque reprise ; watchdog hébergé dans le skill disparu avec lui (chemin « disparition totale → garde externe » T2b).
+- Dérive langue CONSTATÉE par le propriétaire (textes de raisonnement en anglais/chinois) — constat FONDÉ : correction immédiate sans transition à partir du texte d'analyse G1 ; durcissement règle d'or n°6 exécuté (G1).
+- KO-L009 DÉCLENCHÉ : PAT GitHub collé au chat par le propriétaire — valeur NI recopiée NI stockée NI utilisée ; guidance révocation remise (GitHub → Settings → Developer settings → Personal access tokens → révoquer) ; push NON exécuté par l'agent (KO-L009 points 1-2-5) ; pendance : 2 commits Task 70 (cea7d12, 886604d) + commits Task 71 à pousser par le propriétaire après révocation du jeton exposé.
+- Plan push intermédiaire download/plan-genplan-push-main-20261108.md (gen-plan mode NULL — E7-DISP chaîne complète P1-P5 PASS, pré-vol : main +2 commits, arbre propre, push --dry-run rc=128 could not read Username).
+- PLAN-AFFICHE (Task 71 — download/plan-task71-step-langue-push-r1r2-tests-cw-clone.md — G1 🔴 OUVERT [durcissement règle d'or n°6] · G2 ⏳ [KO-L009 + pendance push] · G3 ⏳ [R1 poids de chargement + R2 cache verdicts + gen-plan v3.38.0] · G4 ⏳ [tests chronologiques] · G5 ⏳ [correct-work --bloc] · G6 ⏳ [clone-chat] — answer key 13 décisions, E8 PASS 2026-11-07T18:58:31Z, check_plan_protocol P1-P5 PASS).
+- G1 TERMINÉ : durcissement règle d'or n°6 — gen-plan v3.37.1→v3.37.2 (portée MÉCANIQUE : tout texte produit par l'agent — raisonnements affichés, titres, libellés, légendes, blocs PLAN-AFFICHE, résumés de continuation, reformulations de sorties d'outils — en français ; artefacts techniques verbatim exceptés ; raisonnement interne en langue étrangère = DÉRIVE au même titre qu'une réponse ; constat propriétaire → correction + worklog + durcissement) ; cascade KO-L004 : PM v3.37.2 généré mécaniquement (delta verrouillé scripts/delta-genplan-v3372.json — WARN couverture §1.13 = faux positif hérité Task 21), SHARED v1.7.32 / PM-INSTALL v1.9.8 recalibrés (générateur), PM v3.37.1 archivé R4 (git mv dépôt + miroir hôte), pin ECO_SKILLS 3.37.2 (hôte+dépôt), KB gen-plan v3.37.2 (hôte+dépôt), historiques-par-skill v3.37.2 + résorption dérive héritée (ligne v3.37.0 non marquée supplantée lors de la cascade v3.37.1 — règle d'or n°5), ULTRA régénéré ×2 idempotent (SHA b7b9777fd7ac), propagate-context 17 skills + 1 script (v1.7.32), archive re-scellée v2.3 (corpus 9/9 + piliers 6/6 byte-identiques, round-trip OK), integrity 110/110 PASS manifeste ré-écrit.
+- Findings G1 : F-71-1 (S3) — coherence STALE : 5 skills discipline (context/fleet/graph/harness/loop-engineering) citent gen-plan v3.37.1 ≠ v3.37.2 → recalibrage croisé exécuté ; F-71-2 (S3) — worklog hôte non conforme §1.4 (entrées "> " plates héritées du recyclage sandbox) → réaligné sur le worklog dépôt (miroir).
+
+Stage Summary:
+- G1 terminé : règle d'or n°6 durcie + cascade complète + arbitres re-certifiés ; dérive langue corrigée dès le constat (sans transition).
+- Pendance push : 2 commits Task 70 + commits Task 71 — propriétaire (KO-L009 point 5, jeton exposé à révoquer).
+

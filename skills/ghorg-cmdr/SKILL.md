@@ -36,7 +36,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole — la famille TSI de conception/validation reste routée par orchestrateur-tsi).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.31)
+## §0 — Contexte Système (SHARED v1.7.32)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
