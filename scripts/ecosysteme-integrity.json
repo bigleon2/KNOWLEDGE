@@ -6,13 +6,13 @@
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "9e19d904775383f9fbc9845558e852947e9a2eae67bd4e797b6a3ce6746f7ce6",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "2441f93c27a2334aeed384a7f397c784e55a1f164299b399a57590002132a72f",
     "PROMPT-MAITRE-SHARED.md": "ebb862ae88d742ab1d2af706ae0719ac82955e137810893df59ae993337befac",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "02bf6601070ca0a0b15694909ee402e3602ef0afe80b5a14d8e1307879be1942",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "f40ea21eb9a813cfd51f93b5d8c34129dfafd037a118076d693bb254d52f9920",
     "README.md": "9d18cb70cb714cebfa76dbd6284d1e0285fc2f84e2b665ece4f7076c0b6a103d",
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f",
     "piliers/scripts/certification-complete.py": "af5b31945e343ce3027f964bb989e2b419120a7682d01fd9b942ca8e1c342b6b",
-    "piliers/scripts/check-ecosysteme-integrity.py": "36028d2fae670e6c5d7b3eef97eb7cd58f2c5fc7fda825d3c6c6b3fb653f8c38",
+    "piliers/scripts/check-ecosysteme-integrity.py": "a1ee2fe338704fe73d455c873d9756f9d82bb57fd75b90c5a96d3beecda982c5",
     "piliers/scripts/install-ecosysteme-local.sh": "47322f0a5a2c596eea8447267d582b98aa791d647d50eecde991da11496d21db",
-    "piliers/skills/KNOWLEDGE.md": "619c08e7d5108c0320867c40d331c63581362c7a23c14ad310e67137c0d14be7",
+    "piliers/skills/KNOWLEDGE.md": "92371966b6a43121362d9e350a91d28873ef752a9453148d1f63ef903b3e7ad1",
     "piliers/skills/correct-work/SKILL.md": "5122f26e9a9816a21acd6b265582acea0f987accb04478870588a81088796eeb",
     "piliers/skills/gen-plan/SKILL.md": "82454aa3be92467bf82d6b0c2bf8b0dcffc34adea0159786d009c26ae55eb1b2"
   },
@@ -23,12 +23,12 @@
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "9e19d904775383f9fbc9845558e852947e9a2eae67bd4e797b6a3ce6746f7ce6",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "2441f93c27a2334aeed384a7f397c784e55a1f164299b399a57590002132a72f",
     "PROMPT-MAITRE-SHARED.md": "ebb862ae88d742ab1d2af706ae0719ac82955e137810893df59ae993337befac",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "02bf6601070ca0a0b15694909ee402e3602ef0afe80b5a14d8e1307879be1942",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "f40ea21eb9a813cfd51f93b5d8c34129dfafd037a118076d693bb254d52f9920",
     "README.md": "9d18cb70cb714cebfa76dbd6284d1e0285fc2f84e2b665ece4f7076c0b6a103d",
     "SYNC-CONTEXT.md": "fe33bb971170e28efe4d9879cc27ff3c88b5b160fefe54200506fa604f329c7f"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "dbe212856edaca476448bd9662eb0b551745eeb293c0ac6d0da9a12436a231ad"
+    "mon-ecosysteme_archive.zip": "31533516d737312240b1d3541eef9f617e9e2bd9a859af4b8dc0fe4ec9a5f050"
   },
   "skills": {
     "agent-creator": {
@@ -167,6 +167,10 @@
       "sha256": "58029c80f7daf015f84db6c450ade7cdacc885d83ed77f1fac71fe05aa548050",
       "version": "2.3.1"
     },
+    "re-curation": {
+      "sha256": "500b06b688ef05f09b45ff4c127768943df8f458170040a226d5f1a6b540bceb",
+      "version": "1.0.0"
+    },
     "refactor-guard": {
       "sha256": "f3642ff7342c389b6f06fc35c889ae37d50fe558852195dbe30638c22941fea5",
       "version": "1.8.1"
@@ -228,7 +232,7 @@
       "version": "1.3.1"
     },
     "version-management": {
-      "sha256": "f3005cab6d97bdbc43dafc62d2d0505883c7ad4ec816c61077f77b63f9510a17",
+      "sha256": "0712e1d1920690af4d1b534afaa42c0751b775b1aa3703de7a817553a6c539a3",
       "version": "1.3.0"
     },
     "vue-upload": {

@@ -1,0 +1,209 @@
+{
+ "skill": "version-management",
+ "genere_par": "skills/re-curation/scripts/protocole-test.py v1.0.0",
+ "nature": {
+  "repertoire": "/home/z/my-project/skills/version-management",
+  "version": "1.3.0",
+  "octets": 47243,
+  "lignes": 632,
+  "a_section_A": false,
+  "a_section_0": true,
+  "a_read_when": true,
+  "evals": {
+   "evals.json": 4434,
+   "trigger_evals.json": 770
+  },
+  "references": [],
+  "scripts": [
+   "vm-watchdog.py"
+  ],
+  "gouvernance": {
+   "kb": "1.3.0",
+   "eco_skills": true
+  }
+ },
+ "protocole": {
+  "tests_pre": [
+   "contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
+   "sections mesurées (poids par section)",
+   "poids global (octets / Kio / #token estimés = caractères ÷ 4)"
+  ],
+  "tests_post": [
+   "contrats == baseline (COHÉRENT)",
+   "pointeurs references/ valides + non-duplication 1024 o (FONCTIONNEL)",
+   "poids réduit ou sous seuil LOURD (OPTIMISÉ)"
+  ]
+ },
+ "baseline": {
+  "octets": 47243,
+  "contrats": {
+   "section_0_normalisee": "3a3b22f741d97f77a9a5a0625c307914894b237f81d413c404dd4660d27f3c68",
+   "read_when": "acb23d8368bfddcdc7a333d8b0c698b0e52260f99790f9276ce517f67b0744e9",
+   "evals/evals.json": "5c5104cc72ebcf240c058e617d15546caea6e2a5406dcd7043b724e595e7c4de",
+   "evals/trigger_evals.json": "08c1179835300d66df3929322cb71a912838ea1eed53282639f11d076ee27157",
+   "description_frontmatter": "0e6bb04d853092716c39be92ab7b72c4580eb8e9e9c3fb28f47eb7d11d4bf1d6"
+  },
+  "sections": [
+   {
+    "section": "(frontmatter)",
+    "octets": 1497
+   },
+   {
+    "section": "§0 — Contexte Système (SHARED v1.7.34)",
+    "octets": 2764
+   },
+   {
+    "section": "⚠️ Règle absolue des chemins (priorité maximale, à exécuter avant d'éc",
+    "octets": 382
+   },
+   {
+    "section": "Chemin de référence",
+    "octets": 546
+   },
+   {
+    "section": "Ordre fixe avant écriture des fichiers (non permutable)",
+    "octets": 580
+   },
+   {
+    "section": "Liste des violations (chacun des cas ci-dessous est une erreur de proc",
+    "octets": 433
+   },
+   {
+    "section": "Auto-contrôle avant écriture (dernier verrou)",
+    "octets": 364
+   },
+   {
+    "section": "0. Articulation avec le Design Skill (lecture obligatoire)",
+    "octets": 899
+   },
+   {
+    "section": "Ordre de déclenchement (en coordination avec le Design Skill)",
+    "octets": 909
+   },
+   {
+    "section": "Design Skill en charge / ce Skill en charge",
+    "octets": 499
+   },
+   {
+    "section": "Suggestions de résumé de commit",
+    "octets": 315
+   },
+   {
+    "section": "Point d'entrée de lecture",
+    "octets": 294
+   },
+   {
+    "section": "0.1 État de la prévisualisation (limitations connues, maintien en l'ét",
+    "octets": 1292
+   },
+   {
+    "section": "1. Création du projet",
+    "octets": 27
+   },
+   {
+    "section": "1.1 Règles de décision",
+    "octets": 685
+   },
+   {
+    "section": "1.2 Contrôle obligatoire des chemins (règle critique)",
+    "octets": 2204
+   },
+   {
+    "section": "1.3 Règles de structure des fichiers",
+    "octets": 5822
+   },
+   {
+    "section": "1.4 Flux de création",
+    "octets": 1250
+   },
+   {
+    "section": "1.5 Structure du répertoire projet",
+    "octets": 915
+   },
+   {
+    "section": "2. Gestion multi-projets",
+    "octets": 29
+   },
+   {
+    "section": "2.1 Identification du projet courant",
+    "octets": 528
+   },
+   {
+    "section": "2.2 Changement de projet",
+    "octets": 159
+   },
+   {
+    "section": "2.3 Tâches hors projet",
+    "octets": 149
+   },
+   {
+    "section": "3. Gestion des versions",
+    "octets": 28
+   },
+   {
+    "section": "3.1 Points d'entrée d'édition et détermination de la version",
+    "octets": 3532
+   },
+   {
+    "section": "3.2 Moments de création de version",
+    "octets": 1202
+   },
+   {
+    "section": "3.3 Commandes Git de création de version",
+    "octets": 515
+   },
+   {
+    "section": "3.4 Sortie dans le flux de conversation (send_file)",
+    "octets": 5597
+   },
+   {
+    "section": "3.5 Cartes du flux de conversation et « Éditer à partir de cette versi",
+    "octets": 1322
+   },
+   {
+    "section": "4. Restauration de version",
+    "octets": 31
+   },
+   {
+    "section": "4.1 Périmètre de restauration",
+    "octets": 325
+   },
+   {
+    "section": "4.2 Points d'entrée de restauration",
+    "octets": 922
+   },
+   {
+    "section": "4.3 Restauration standard (restauration seule, sans édition)",
+    "octets": 1536
+   },
+   {
+    "section": "4.4 Flux fusionné restauration + édition (une seule version produite)",
+    "octets": 1479
+   },
+   {
+    "section": "5. Structure de meta.json",
+    "octets": 1630
+   },
+   {
+    "section": "6. Aide-mémoire des opérations",
+    "octets": 3035
+   },
+   {
+    "section": "7. Annexe : prévisualisation et chemins (référence Agent)",
+    "octets": 897
+   },
+   {
+    "section": "8. Résorption structurelle — neutralisation résiliente (Task 69)",
+    "octets": 2264
+   },
+   {
+    "section": "Baseline A2 — statut de mesure",
+    "octets": 387
+   }
+  ],
+  "kio": 46.1,
+  "token_estimes": 11810
+ },
+ "verdict_pre": "GO",
+ "verdict_pre_detail": "baseline golden master capturée — 5 contrats, 39 sections, 46.1 Kio"
+}

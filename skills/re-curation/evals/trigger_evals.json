@@ -1,0 +1,14 @@
+[
+  {"query": "Re-cure mon skill version-management, il est trop lourd à charger.", "should_trigger": true},
+  {"query": "Fais la re-curation progressive disclosure de gen-plan.", "should_trigger": true},
+  {"query": "Génère un protocole de test avant de re-curer iphone19.", "should_trigger": true},
+  {"query": "Vérifie le maintien de l'optimisation après la re-curation.", "should_trigger": true},
+  {"query": "Compare les méthodes de re-curation et prends la plus optimisée et performante.", "should_trigger": true},
+  {"query": "Mon skill est LOURD, allège-le en progressive disclosure.", "should_trigger": true},
+  {"query": "re-cure l'élément n°1 de la liste priorisée.", "should_trigger": true},
+  {"query": "Crée un nouveau skill de cuisson de pâtes.", "should_trigger": false},
+  {"query": "Rédige-moi un rapport d'analyse de marché.", "should_trigger": false},
+  {"query": "Optimise les dépendances npm de ce projet web.", "should_trigger": false},
+  {"query": "Génère un plan d'actions pour ma tâche.", "should_trigger": false},
+  {"query": "Traduis ce document du chinois vers le français.", "should_trigger": false}
+]

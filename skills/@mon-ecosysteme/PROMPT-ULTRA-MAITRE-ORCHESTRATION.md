@@ -52,6 +52,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.34 (lire en premier). Installateur : `PRO
 | `clone-chat` | 2.0.2 |
 | `skills-inventory` | 1.1.0 |
 | `skill-creator` | 1.1.0 |
+| `re-curation` | 1.0.0 |
 | `agent-creator` | 2.3.0 |
 | `prompt-engineering` | 2.3.1 |
 | `context-engineering` | 1.2.1 |
@@ -74,7 +75,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.34 (lire en premier). Installateur : `PRO
 | `cpp-analysis` | 1.1.0 |
 | `pdf-llm` | 1.0.0 |
 | `resource-monitor` | 1.1.1 |
-| `version-management` | — |
+| `version-management` | 1.3.0 |
 | `skill-finder-cn` | 1.0.0 |
 | `vue-upload` | 1.5.0 |
 | `livraison-garantie` | 1.1.0 |
@@ -101,7 +102,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.34 (lire en premier). Installateur : `PRO
 | `web-search` | 1.0.0 |
 | `pm-skill` | 1.0.2 |
 
-Registre KB : 53 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé). correct-work v2.11.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
+Registre KB : 54 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé). correct-work v2.11.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 
 ## §4 — Points d'entrée et ordre de lecture
 
