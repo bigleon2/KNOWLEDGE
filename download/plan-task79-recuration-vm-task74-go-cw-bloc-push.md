@@ -1,6 +1,6 @@
 # Plan Task 79 — Exécution Task 78 (règle de sondage borné) → re-curation version-management → Task 74 GO (clone-chat 74 + correct-work --bloc + finalisation) → clone-chat session → PUSH final (PAT délégué)
 
-**Horodatage plan : 2026-11-08T16:52:00Z (INITIAL — 14 décisions : 3 verified ouverture / 11 pending exécution)** · Mode : gen-plan (step, chaîne autonome — enchaînement des groupes sans portes) · Session : web-ecef7f80 · Trace directive : 1a1bc0ad4607c95d (doublon 1a1bc0b5e38f52a9 dédupliqué — une seule exécution) · Prérequis vérifié : Task 78 plan PRÊT (E8 initial PASS 2026-11-08T16:32:00Z) · Task 77 CLOSE (53d2392 poussé) · Task 74 EN VOL au GO propriétaire (plan INTACT — le GO est donné par la présente directive)
+**Horodatage plan : 2026-11-08T18:55:00Z (FINAL — 14 décisions : 14/14 verified, horodatage verdict couplé)** · Mode : gen-plan (step, chaîne autonome — enchaînement des groupes sans portes) · Session : web-ecef7f80 · Trace directive : 1a1bc0ad4607c95d (doublon 1a1bc0b5e38f52a9 dédupliqué — une seule exécution) · Prérequis vérifié : Task 78 plan PRÊT (E8 initial PASS 2026-11-08T16:32:00Z) · Task 77 CLOSE (53d2392 poussé) · Task 74 EN VOL au GO propriétaire (plan INTACT — le GO est donné par la présente directive)
 
 ## Contexte et périmètre
 
@@ -52,7 +52,7 @@ decisions:
     verification: "rg -c 'Sondage borné' skills/gen-plan/SKILL.md (≥1) && wc -c skills/gen-plan/SKILL.md (<30720) && arbitres rc=0 && git log (commit Task 78)"
     source: "Directive item 2 ; plan-task78 D004-D010 ; précédent v3.40.0"
     priority: "S1"
-    status: "pending"
+    status: "verified"
   - id: "D005"
     criterion: "G2 — re-curation version-management P0-P7 : PRE GO (baseline golden master : contrats sha256 + 38 sections mesurées) → cartographie re-mesurée → méthode arbitrée (--compare, R4-compliante) → moves R4 byte-identité vers references/ (en-têtes de provenance : section, version, date, SHA-256 du bloc) → résumés opérationnels inline → POST ×2 MAINTIEN DE L'OPTIMISATION (cohérent/fonctionnel/optimisé — poids cible ~18-22 Kio) → idempotence ×2 no-op des scripts de la passe"
     verification: "protocole-test.py --pre version-management (GO) puis --post ×2 (MAINTIEN) && check-recuration.py version-management (C1-C4 PASS) && poids mesuré"
@@ -70,49 +70,49 @@ decisions:
     verification: "ls download/clone-chat-session-web-ecef7f80-20261108-task74.md && 8 checks documentés + plan 74 statuts cohérents"
     source: "Directive items 2-4 ; plan Task 74 G1 (D005-D008 de son answer key)"
     priority: "S2"
-    status: "pending"
+    status: "verified"
   - id: "D008"
     criterion: "G3.b — Task 74 G2 correct-work (projet) --bloc : blocs B1 installation+certification · B2 corpus+KB+outillage · B3 livrables session 74 + bloc d'extension B4 (sessions Task 75-79 : re-curations, Task 77 cascade, Task 78 sondage, présente chaîne) — Étapes 2-5 par bloc (max 2 rounds), agrégation pire-des-verdicts → PASS"
     verification: "verdict agrégé consigné au worklog + plan 74 (0 S1/S2 restant bloquant)"
     source: "Directive item 3 ; plan Task 74 G2 ; précédent Task 76 (2× CW --bloc PASS)"
     priority: "S1"
-    status: "pending"
+    status: "verified"
   - id: "D009"
     criterion: "G3.c — Task 74 G3 GO : E8 final (answer key 12/12 verified, horodatages couplés) + rapport final download/rapport-final-task74.md + sync dépôt SANS --delete (C5) + commit Task 74 INCLUANT les mode-purs (propriété du G3 GO — 129+ fichiers) + marqueur TASK 74 CLOSE"
     verification: "check_plan_protocol --plan plan74 --worklog PASS && git log (commit Task 74) && mode-purs commités (git status propre)"
     source: "Directive item 2 (GO) ; plan Task 74 G3 (D010-D012)"
     priority: "S1"
-    status: "pending"
+    status: "verified"
   - id: "D010"
     criterion: "G4 — clone-chat session courante (Task 79) : archive §0-§5 + drifts + jeton tronqué (0 occurrence complète) + leçons L-79"
     verification: "ls download/clone-chat-session-web-ecef7f80-20261109-task79.md && 0 occurrence jeton complet"
     source: "Directive item 4 ; clone-chat v2.0.2"
     priority: "S2"
-    status: "pending"
+    status: "verified"
   - id: "D011"
     criterion: "G4 — E8 final Task 79 : answer key 14/14 verified · horodatages couplés (KO-L003) · check_plan_protocol P1-P5 PASS post-finalisation · commit dédié Task 79 SANS résidu (mode-purs déjà commités au Task 74 G3)"
     verification: "check_plan_protocol.py --plan plan79 --worklog PASS && git log (commit Task 79)"
     source: "gen-plan E7-DISP point 3 ; précédents Task 76-78"
     priority: "S1"
-    status: "pending"
+    status: "verified"
   - id: "D012"
     criterion: "G5 — PUSH final (délégation PAT item 2) : cadre zéro-persistance vérifié AVANT (remote sans jeton, 0 credential.helper, 0 ~/.git-credentials, jeton complet 0 occurrence disque) · pré-vol (fsck rc=0, commits en attente dénombrés, ls-remote authentifié, fast-forward pur prouvé) · push one-shot (jeton en mémoire de commande UNIQUEMENT) · post-push (distant == HEAD, avance 0, zéro-persistance re-vérifiée) · E15 RÉVOCATION/ROTATION consignée (4ᵉ exposition)"
     verification: "git ls-remote origin refs/heads/main (== HEAD local) && zéro-persistance re-vérifiée (grep segments = 0 hors littéraux doc)"
     source: "Directive item 2 ; précédents Task 63/77 (protocole cadre sécurisé) ; KO-L009/D013"
     priority: "S1"
-    status: "pending"
+    status: "verified"
   - id: "D013"
     criterion: "Chaîne conforme : 4 items directive exécutés dans l'ordre (1 re-curation ✓ → 2 reste du plan GO ✓ → 3 CW --bloc ✓ → 4 clone-chat ✓) · correct-work(groupe) après chaque groupe (max 2 rounds) · fenêtre native maintenue G1→G5 · horodatages couplés à chaque E8 · aucun mode-pur résiduel non-commité en fin de chaîne"
     verification: "worklog suites 66+ tracées par groupe && fenêtre native && git status (propre hors fichiers travail courant)"
     source: "Mode step (enchaînement autonome) ; §5.5 ; E7-DISP point 6"
     priority: "S2"
-    status: "pending"
+    status: "verified"
   - id: "D014"
     criterion: "Bilan : version-management ~46,1 → ~18-22 Kio (≈ −55 %, ≈ 9 000 #token économisés par chargement) · gen-plan v3.41.0 (sondage borné opérationnalisé — le symptôme SG2.2 ne se reproduit plus : greps bornés par protocole) · Task 74 CLOSE (pendance éteinte) · PUSH public — écosystème $FACON2"
     verification: "mesures poids-chargement.py ×2 (avant/après) && rg -c 'Sondage borné' skills/gen-plan/SKILL.md && TASK 74 CLOSE au worklog && distant == HEAD"
     source: "Directive (objet des 4 items) ; règle d'or n°5"
     priority: "S2"
-    status: "pending"
+    status: "verified"
 ```
 
 ## Estimation et profil (E3-E6)
@@ -135,18 +135,18 @@ Exécution intégrale du plan download/plan-task78-regle-sondage-borne.md (E8 in
 - **SG2.2 P3-P5 re-curation + maintien** (D005) : moves R4 byte-identité (7 blocs ~23,1 Kio → references/ avec en-têtes de provenance) · résumés opérationnels inline (contrats §A/read_when/evals/description intacts) · `--post` ×2 MAINTIEN (poids cible ~18-22 Kio) · idempotence ×2 no-op (pré-test demandé).
 - **SG2.3 P6-P7 arbitres + cascade légère + sync miroir** (D006) : arbitres + check-recuration C1-C4 + pin/KB/historiques/ULTRA + sync hôte↔dépôt MÊME PASSE (version-management présent à l'hôte en fin de passe — anti-disparition ≥ 37ᵉ récidive).
 
-## G3 — Task 74 GO : clone-chat 74 + correct-work --bloc + finalisation `[À FAIRE]` (0/3)
+## G3 — Task 74 GO : clone-chat 74 + correct-work --bloc + finalisation `[TERMINÉ]` (3/3)
 
 - **SG3.1 Task 74 G1 — clone-chat session 74** (D007) : archive auto-suffisante §0-§5 (installation écosystème + suites 50-52) + 8 checks + statuts plan 74.
 - **SG3.2 Task 74 G2 — correct-work (projet) --bloc** (D008) : B1 installation+certification · B2 corpus+KB+outillage · B3 livrables 74 · B4 extension sessions 75-79 — max 2 rounds/bloc, agrégation pire-des-verdicts.
 - **SG3.3 Task 74 G3 — GO finalisation** (D009) : E8 final 12/12 + rapport final + sync SANS --delete + commit Task 74 (mode-purs inclus) + **TASK 74 CLOSE**.
 
-## G4 — clone-chat session courante + clôture Task 79 `[À FAIRE]` (0/2)
+## G4 — clone-chat session courante + clôture Task 79 `[TERMINÉ]` (2/2)
 
 - **SG4.1 clone-chat v2.0.2 session Task 79** (D010) : §0-§5 + drifts + jeton tronqué + leçons.
 - **SG4.2 E8 final + commit** (D011) : answer key 14/14 · horodatages couplés · commit dédié Task 79.
 
-## G5 — PUSH final (délégation PAT — protocole Task 63/77) `[À FAIRE]` (0/2)
+## G5 — PUSH final (délégation PAT — protocole Task 63/77) `[TERMINÉ]` (2/2)
 
 - **SG5.1 Cadre zéro-persistance + pré-vol + push one-shot + post-push** (D012) : fsck · commits dénombrés · fast-forward pur prouvé · push (jeton en mémoire de commande UNIQUEMENT) · distant == HEAD · zéro-persistance re-vérifiée.
 - **SG5.2 E15 + clôture** (D013, D014) : révocation/rotation du PAT consignée (4ᵉ exposition) · TASK 79 CLOSE · bilan chiffré.
@@ -155,4 +155,4 @@ Exécution intégrale du plan download/plan-task78-regle-sondage-borne.md (E8 in
 
 (Task 79 — download/plan-task79-recuration-vm-task74-go-cw-bloc-push.md — INITIAL — **G1 Task 78 sondage borné ✅ 3/3 · G2 re-curation version-management ✅ 3/3 · G3 Task 74 GO `[À FAIRE]` 0/3 · G4 clone-chat + clôture `[À FAIRE]` 0/2 · G5 PUSH final `[À FAIRE]` 0/2** — answer key 14 décisions (D001-D003 verified ouverture · D004-D014 pending exécution) — E8 initial PASS 2026-11-08T16:52:00Z — #token ≈ 30 000 (bornes 22 000-45 000) — exécution step : G1→G5 chaîne autonome (série justifiée ENTRE groupes : écritures chaînées + ordre directive), vagues PAR internes (T1.1.1-a∥b, arbitres, preuves) — fenêtre native TodoWrite : affichée au début d'exécution, mise à jour à chaque fin de groupe (E7-DISP point 6))
 
-Verdict E8 : PASS INITIAL (answer-key-checker 16/16 ALL PASS ×2 sha16 stable + check_plan_protocol P1-P5 PASS — 14 décisions : D001-D003 verified ouverture · D004-D014 pending exécution — Horodatage vérifié : 2026-11-08T16:52:00Z)
+Verdict E8 : PASS FINAL (14/14 décisions verified — D004 Task 78 CLOSE commit f41f9a1 [gen-plan v3.41.0 30 697 o, POST ×2 MAINTIEN, arbitres 5/5, écart D006 consigné] · D005-D006 re-curation VM 46,1→25,2 Kio commit 6ee6557 [PRE GO + POST ×2 + C1-C4, miroir même passe, écart cible consigné, quirk harnais documenté] · D007 clone 74 8/8 · D008 CW --bloc B1-B4 PASS [0 S1/0 S2, 1 S3 corrigé, 7 S4/écarts] · D009 Task 74 CLOSE commit ed663d2 mode-purs inclus arbre propre · D010 clone 79 scellé jeton tronqué · D011 E8 final 14/14 horodatages couplés + commit dédié · D012 PUSH final protocole délégation PAT zéro-persistance · D013 chaîne 4 items dans l'ordre + fenêtre native G1→G5 + zéro mode-pur résiduel · D014 bilan : VM −45,4 pct ≈ 4 800 #token économisés par chargement, gen-plan v3.41.0 opérationnalisé, T74 CLOSE, PUSH public) — Horodatage vérifié : 2026-11-08T18:55:00Z
