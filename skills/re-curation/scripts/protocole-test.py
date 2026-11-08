@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""protocole-test.py — Script PRINCIPAL du skill re-curation (v1.0.0).
+"""protocole-test.py — Script PRINCIPAL du skill re-curation (v1.1.0).
 
 Implémentation de la directive propriétaire (Task 72, directive complémentaire
 1a1b7b297b7b4975) : « le skill "re-curation" devra être implémenté d'un script dont
@@ -33,8 +33,19 @@ Mécanique (méthode P0/P2/P5/P7 du SKILL.md — tests AVANT re-curation) :
 
 Gardes : Python stdlib (N3) · étiquette SHARED du §0 normalisée à la comparaison
 (leçon harnais v2 Task 72 — un bump SHARED écosystème n'est pas une dérive de
-contrat) · phases de comparaison en lecture seule · le script n'invente jamais de
-contenu (KO-L003) : il mesure, compare et rend un verdict mécanique.
+contrat) · dates de directives du socle normalisées (leçon harnais v3 — directive
+propriétaire 2026-11-09, pendance consignée au commit Task 79 0b1712b : une date
+de directive propriétaire enrichie au bloc socle n'est pas une dérive de contrat)
+· contrat §0 borné au BLOC SOCLE (premier titre markdown suivant — la borne naïve
+« ## §1 » capturait le corps entier quand le skill n'a pas de section §1 : 23,4
+Kio sur version-management, 16,7 Kio sur ASR — et une re-curation légitime du
+corps était vue comme DÉRIVE fausse) · phases de comparaison en lecture seule ·
+le script n'invente jamais de contenu (KO-L003) : il mesure, compare et rend un
+verdict mécanique.
+
+Convention de mesure §0 v3 (v1.1.0) : les baselines capturées par les versions
+antérieures à v1.1.0 (périmètre de contrat §0 différent) ne sont plus comparables
+— re-capturer la baseline (--pre) avant tout POST postérieur au correctif.
 """
 from __future__ import annotations
 
@@ -68,8 +79,22 @@ def sha(t: str) -> str:
 
 
 def normalise_shared(texte: str) -> str:
-    """Étiquette SHARED normalisée (harnais v2 — bump écosystème ≠ dérive de contrat)."""
-    return re.sub(r"SHARED v[\d.]+", "SHARED ‹label›", texte)
+    """Étiquettes vives du socle normalisées (harnais v2 : étiquette SHARED ;
+    harnais v3 : dates de directives du socle — bump écosystème ≠ dérive de contrat)."""
+    texte = re.sub(r"SHARED v[\d.]+", "SHARED ‹label›", texte)
+    return re.sub(r"\d{4}-\d{2}-\d{2}", "‹date›", texte)
+
+
+def bloc_socle(lignes: list[str]) -> str | None:
+    """Bloc Contexte Système du socle, borné au premier titre markdown suivant
+    (harnais v3 — la borne naïve « ## §1 » étendait le contrat §0 au corps entier
+    quand le skill n'a pas de section §1 ; le bloc socle réel fait ~1,6 Kio)."""
+    i0 = next((i for i, l in enumerate(lignes) if l.startswith("## §0")), None)
+    if i0 is None:
+        return None
+    i1 = next((i for i in range(i0 + 1, len(lignes)) if lignes[i].startswith("#")),
+              len(lignes))
+    return "\n".join(lignes[i0:i1])
 
 
 def nature_du_skill(racine: Path, nom: str) -> dict:
@@ -153,7 +178,7 @@ def capturer(nom: str) -> dict:
                                     bloc_entre(lignes, "## §A", "## §B") or
                                     bloc_entre(lignes, "## §A", "## 1") or "")
     if n["a_section_0"]:
-        b0 = bloc_entre(lignes, "## §0", "## §1")
+        b0 = bloc_socle(lignes)
         if b0:
             contrats["section_0_normalisee"] = sha(normalise_shared(b0))
     if n["a_read_when"]:
@@ -163,7 +188,7 @@ def capturer(nom: str) -> dict:
     contrats["description_frontmatter"] = sha(n["_fragments"]["description"])  # TRACÉE (étendable par conception)
     sections = mesurer_sections(lignes, fm)
     return {
-        "skill": nom, "genere_par": "skills/re-curation/scripts/protocole-test.py v1.0.0",
+        "skill": nom, "genere_par": "skills/re-curation/scripts/protocole-test.py v1.1.0",
         "nature": {k: v for k, v in n.items() if k != "_fragments"},
         "protocole": {
             "tests_pre": ["contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
@@ -324,7 +349,10 @@ def cmd_compare(nom: str, methodes: str) -> int:
 
 
 def selftest() -> int:
-    """Bac à sable : PRE→GO, POST identité, contrat altéré→DÉRIVE, compare, pointeur manquant."""
+    """Bac à sable : PRE→GO, POST identité, bump socle→PASS (harnais v3),
+    déplacement R4 du corps→MAINTIEN (harnais v3), contrat altéré→DÉRIVE,
+    compare, pointeur manquant. Témoin SANS section « ## §1 » (cas réel
+    version-management — l'ancienne borne naïve capturait le corps entier)."""
     tmp = Path(tempfile.mkdtemp(prefix="recuration-selftest-"))
     global RACINE
     racine_sauve = RACINE
@@ -345,9 +373,9 @@ read_when:
 
 ## §0 — Contexte Système (SHARED v1.7.34)
 
-Bloc zéro.
+Bloc zéro du socle. Directive propriétaire 2026-10-31.
 
-## §1 — Corps
+# Corps du témoin (pas de section « ## §1 » — cas réel version-management)
 
 ### §1.1 Grosse section déplaçable
 
@@ -370,6 +398,35 @@ Fin.
         r.append(("POST identité → contrats PASS + cohérent + fonctionnel",
                   rc2 == 0 and j2["post"]["coherent"] and j2["post"]["fonctionnel"]
                   and j2["post"]["verdict_post"] == "MAINTIEN DE L'OPTIMISATION"))
+
+        # harnais v3 — leçon 1 : bump socle (étiquette SHARED + date de directive du
+        # socle changées, contenu textuel inchangé) → ni l'un ni l'autre n'est une
+        # dérive de contrat (harnais v2 couvrait l'étiquette, v3 couvre la date).
+        t = sk.read_text(encoding="utf-8").replace(
+            "## §0 — Contexte Système (SHARED v1.7.34)",
+            "## §0 — Contexte Système (SHARED v1.7.35)").replace(
+            "Directive propriétaire 2026-10-31.",
+            "Directive propriétaire 2026-11-09.")
+        sk.write_text(t, encoding="utf-8")
+        rcB = cmd_post("temoin")
+        jB = json.loads((tmp / "download" / "protocole-test-temoin.json").read_text(encoding="utf-8"))
+        r.append(("bump socle (étiquette + date) → section_0 PASS + MAINTIEN",
+                  rcB == 0 and jB["post"]["comparaison_contrats"]["section_0_normalisee"] == "PASS"
+                  and jB["post"]["verdict_post"] == "MAINTIEN DE L'OPTIMISATION"))
+
+        # harnais v3 — leçon 2 : re-curation légitime du CORPS (déplacement R4 +
+        # pointeur 1-ligne) avec bloc socle intact → MAINTIEN (l'ancienne borne
+        # naïve « ## §1 » donnait un DÉRIVE fausse sur ce cas).
+        gros = "Ligne de contenu mesurable. " * 120
+        t = sk.read_text(encoding="utf-8").replace(
+            gros, "> **Intégral archivé R4** : `references/section-deplacee.md` (déplacé).\n")
+        (tmp / "skills" / "temoin" / "references" / "section-deplacee.md").write_text(gros, encoding="utf-8")
+        sk.write_text(t, encoding="utf-8")
+        rcA = cmd_post("temoin")
+        jA = json.loads((tmp / "download" / "protocole-test-temoin.json").read_text(encoding="utf-8"))
+        r.append(("déplacement R4 du corps (socle intact) → MAINTIEN (faux-FAIL v1.0.0 résorbé)",
+                  rcA == 0 and jA["post"]["verdict_post"] == "MAINTIEN DE L'OPTIMISATION"
+                  and jA["post"]["coherent"]))
 
         t = sk.read_text(encoding="utf-8").replace("- `temoin` — test", "- `temoin` — ALTÉRÉ")
         sk.write_text(t, encoding="utf-8")
@@ -404,7 +461,7 @@ Fin.
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="protocole-test.py — skill re-curation v1.0.0")
+    p = argparse.ArgumentParser(description="protocole-test.py — skill re-curation v1.1.0")
     g = p.add_mutually_exclusive_group(required=True)
     g.add_argument("--pre", metavar="SKILL")
     g.add_argument("--post", metavar="SKILL")

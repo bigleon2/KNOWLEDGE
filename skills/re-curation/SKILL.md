@@ -1,6 +1,6 @@
 ---
 name: re-curation
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -100,5 +100,7 @@ skills/re-curation/
 ```
 
 ## §5 — Journal des versions
+
+- **v1.1.0 (2026-11-09, session web-ecef7f80 — pendance consignée au commit Task 79 0b1712b, directive gen-plan(step) « correctif du comparateur §0 de protocole-test (harnais) »)** : harnais v3 — deux défauts du comparateur §0 de `scripts/protocole-test.py` résorbés : (1) **borne du bloc socle** — le contrat `section_0_normalisee` capturait de « ## §0 » jusqu'à « ## §1 », et quand le skill n'a pas de section §1 (cas réel version-management : 23,4 Kio capturés sur 25,8 ; ASR : 16,7 Kio ; preuve : 104 des 119 porteurs corrigés, contrat §0 cumulé 1 180,3 → 193,4 Kio — `download/protocole-test-correctif-comparateur-v110-preuves.json`), le contrat couvrait le CORPS entier → une re-curation légitime du corps (déplacement R4) donnait un DÉRIVE fausse ; nouvelle borne `bloc_socle()` = premier titre markdown suivant (~1,6 Kio) ; (2) **dates de directives du socle normalisées** — extension de la leçon harnais v2 (étiquette SHARED) : une date de directive propriétaire enrichie au bloc socle (ex. « directive 2026-10-31, renforcée 2026-11-06 ») n'est pas une dérive de contrat ; selftest étendu 5→7 tests (bump socle étiquette+date → PASS ; déplacement R4 du corps, socle intact → MAINTIEN), 7/7 ×2 idempotent ; MINOR, description frontmatter inchangée (non-régression triggers) ; baselines capturées avant v1.1.0 à re-capturer (convention de mesure §0 v3).
 
 - **v1.0.0 (2026-11-08, session web-ecef7f80 — Task 72 G4, directive à 7 items item 4 + directive complémentaire 1a1b7b297b7b4975)** : création — skill IMPLÉMENTÉ du script principal `scripts/protocole-test.py` (GÉNÈRE le protocole de test adapté à l'élément ciblé, l'exécute en phase PRE avant toute re-curation [baseline golden master, GO/NO-GO], le ré-exécute en POST [maintien de l'optimisation : cohérent/optimisé/fonctionnel], arbitre les méthodes candidates en `--compare`) + méthode P0-P7 (P0 = tests avant re-curation, P7 = vérification POST) + arbitre check-recuration.py (C1 pointeurs, C2 non-duplication 1024 o, C3 marqueurs, C4 seuils) + mesure-sections.py généralisé (selftests embarqués ×3) ; liste des cibles priorisées (G3) ; cascade légère (KB + pin ECO_SKILLS + historiques + ULTRA + arbitres + sync).

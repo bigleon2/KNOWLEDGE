@@ -52,7 +52,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.36 (lire en premier). Installateur : `PRO
 | `clone-chat` | 2.0.2 |
 | `skills-inventory` | 1.1.0 |
 | `skill-creator` | 1.1.0 |
-| `re-curation` | 1.0.0 |
+| `re-curation` | 1.1.0 |
 | `agent-creator` | 2.3.0 |
 | `prompt-engineering` | 2.3.1 |
 | `context-engineering` | 1.2.1 |

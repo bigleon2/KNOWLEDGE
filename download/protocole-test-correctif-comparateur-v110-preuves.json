@@ -1,0 +1,47 @@
+{
+ "objet": "preuve correctif comparateur §0 protocole-test.py v1.1.0 (harnais v3)",
+ "session": "web-ecef7f80",
+ "date": "2026-11-09",
+ "pendance_source": "commit Task 79 0b1712b",
+ "porteurs_mesures": 119,
+ "porteurs_corriges": 104,
+ "poids_contrat_ancien_octets": 1208608,
+ "poids_contrat_nouveau_octets": 198007,
+ "chiffres": {
+  "ancien_Kio": 1180.3,
+  "nouveau_Kio": 193.4
+ },
+ "selftest": "7/7 PASS ×2 (idempotent)",
+ "py_compile": "PASS",
+ "top5_redressements": [
+  {
+   "skill": "pdf",
+   "ancien_octets": 58914,
+   "nouveau_octets": 1654
+  },
+  {
+   "skill": "design",
+   "ancien_octets": 53125,
+   "nouveau_octets": 1654
+  },
+  {
+   "skill": "skill-creator",
+   "ancien_octets": 40344,
+   "nouveau_octets": 1652
+  },
+  {
+   "skill": "pptx",
+   "ancien_octets": 39974,
+   "nouveau_octets": 1654
+  },
+  {
+   "skill": "study-buddy",
+   "ancien_octets": 34247,
+   "nouveau_octets": 1654
+  }
+ ],
+ "tests_discriminants": [
+  "bump socle (étiquette+date) → PASS (v1.0.0 : FAIL sur date)",
+  "déplacement R4 du corps, socle intact → MAINTIEN (v1.0.0 : DÉRIVE fausse)"
+ ]
+}
