@@ -1,0 +1,273 @@
+{
+ "horodatage": "2026-11-08T00:05:19Z",
+ "verdict": "PASS",
+ "checks": {
+  "baseline": {
+   "checks": {
+    "skill_md_sha256": {
+     "attendu": "3e71ea45fc5a093110cf492a0a82a1f3f3af3af82059230e7a4401870206d4e6",
+     "mesure": "3e71ea45fc5a093110cf492a0a82a1f3f3af3af82059230e7a4401870206d4e6"
+    },
+    "skill_md_octets": {
+     "attendu": 106465,
+     "mesure": 106465
+    },
+    "bloc_journal_versions": {
+     "attendu": "40c78cc14025e89587bdea18afd63779ce412dd74e78e77ed30fed239b5cd39b",
+     "mesure": "40c78cc14025e89587bdea18afd63779ce412dd74e78e77ed30fed239b5cd39b",
+     "octets_attendus": 32325,
+     "octets_mesures": 32325
+    },
+    "bloc_regles_or": {
+     "attendu": "531cd46d021e34d82b8e1fc13476ee1ced9c1714dc1bcbf5af2f77cde7868212",
+     "mesure": "531cd46d021e34d82b8e1fc13476ee1ced9c1714dc1bcbf5af2f77cde7868212",
+     "octets_attendus": 19495,
+     "octets_mesures": 19495
+    },
+    "bloc_lecons_ko": {
+     "attendu": "81f773112ed1a7007196cb1f52fe06c2cc4b6bcf44b3b936383cf6e6cb76d454",
+     "mesure": "81f773112ed1a7007196cb1f52fe06c2cc4b6bcf44b3b936383cf6e6cb76d454",
+     "octets_attendus": 5007,
+     "octets_mesures": 5007
+    },
+    "bloc_disciplines": {
+     "attendu": "bbc8280573179ab25b43c7b3cfe2ab06b7276f393cabf5bf8e39f4a9486e7361",
+     "mesure": "bbc8280573179ab25b43c7b3cfe2ab06b7276f393cabf5bf8e39f4a9486e7361",
+     "octets_attendus": 11253,
+     "octets_mesures": 11253
+    },
+    "bloc_hooks_patterns": {
+     "attendu": "a955953fd097a472fb8c900a90f128d5a1acf5b5b8b2abef5904c05087fb8d9e",
+     "mesure": "a955953fd097a472fb8c900a90f128d5a1acf5b5b8b2abef5904c05087fb8d9e",
+     "octets_attendus": 5722,
+     "octets_mesures": 5722
+    },
+    "bloc_routage_install": {
+     "attendu": "1f402af399dd465413193ce67dda9d31ac0a2d57600ab0af9dd0a4f6928c5b14",
+     "mesure": "1f402af399dd465413193ce67dda9d31ac0a2d57600ab0af9dd0a4f6928c5b14",
+     "octets_attendus": 3499,
+     "octets_mesures": 3499
+    },
+    "bloc_mode_step": {
+     "attendu": "7f5e2af67f826061fd02c5c6290f447cbdc9141759725e88544c1cd957f43003",
+     "mesure": "7f5e2af67f826061fd02c5c6290f447cbdc9141759725e88544c1cd957f43003",
+     "octets_attendus": 4277,
+     "octets_mesures": 4277
+    },
+    "bloc_contingences": {
+     "attendu": "04dbc8a16d98f41c67570fb480e57b964fa28a3e34cd2d13e1692058eb143e66",
+     "mesure": "04dbc8a16d98f41c67570fb480e57b964fa28a3e34cd2d13e1692058eb143e66",
+     "octets_attendus": 1531,
+     "octets_mesures": 1531
+    },
+    "bloc_philo4": {
+     "attendu": "f537179d43b930807e59e1d6b436de459442e077de65e6cd36e662f1815d93e9",
+     "mesure": "f537179d43b930807e59e1d6b436de459442e077de65e6cd36e662f1815d93e9",
+     "octets_attendus": 1561,
+     "octets_mesures": 1561
+    },
+    "evals_json_sha256": {
+     "attendu": "74b52b3d42511044448a77db28ae6855738a0cc1c48bf3281bdef8955a98e327",
+     "mesure": "74b52b3d42511044448a77db28ae6855738a0cc1c48bf3281bdef8955a98e327"
+    },
+    "trigger_evals_json_sha256": {
+     "attendu": "de229e8be6aa8fbea2672be870fc49dfc1f50547ae179bdc4c25ffa55191193b",
+     "mesure": "de229e8be6aa8fbea2672be870fc49dfc1f50547ae179bdc4c25ffa55191193b"
+    }
+   },
+   "verdict": "PASS",
+   "echecs": []
+  },
+  "fidelite": {
+   "garde_e1_install": {
+    "rc": 0,
+    "verdict": "INSTALLE"
+   },
+   "entrees_kb": 54,
+   "ecarts_kb": {},
+   "corpus_hote_inclu_depot": {
+    "@mon-ecosysteme": {
+     "seuls_hote": [],
+     "divergents": []
+    },
+    "@historique": {
+     "seuls_hote": [],
+     "divergents": []
+    },
+    "@Bibliotheque-skills-Multi-IA": {
+     "seuls_hote": [],
+     "divergents": []
+    },
+    "@GHORG-ecosysteme": {
+     "seuls_hote": [],
+     "divergents": []
+    },
+    "KNOWLEDGE.md": {
+     "seuls_hote": [],
+     "divergents": []
+    }
+   },
+   "hors_perimetre_informationnel": {
+    "plateforme_hote": [
+     "ASR",
+     "LLM",
+     "TTS",
+     "VLM",
+     "agent-browser",
+     "charts",
+     "docx",
+     "gif-animator",
+     "gif-animator-pro",
+     "image-edit",
+     "image-generation",
+     "image-search",
+     "pdf",
+     "pptx",
+     "task-review",
+     "video-understand",
+     "xlsx"
+    ],
+    "corpus_externes_depot": [
+     "@PM-SKILLS",
+     "@photos",
+     "ASR",
+     "LLM",
+     "TTS",
+     "VLM",
+     "agent-browser",
+     "ai-news-collectors",
+     "aminer-academic-search",
+     "aminer-daily-paper",
+     "aminer-deep-search",
+     "aminer-free-academic",
+     "anti-pua",
+     "auto-target-tracker",
+     "blog-writer",
+     "charts",
+     "cheat-sheet",
+     "coding-agent",
+     "content-strategy",
+     "contentanalysis",
+     "design",
+     "docx",
+     "dream-interpreter",
+     "experiment-suite",
+     "finance",
+     "gaokao-collect-student-info",
+     "gaokao-fetch-volunteers",
+     "gaokao-generate-report",
+     "gaokao-recommend-majors",
+     "gaokao-recommend-schools",
+     "get-fortune-analysis",
+     "gif-animator",
+     "gif-animator-pro",
+     "gift-evaluator",
+     "image-edit",
+     "image-generation",
+     "image-search",
+     "image-understand",
+     "interview-designer",
+     "interview-prep",
+     "jd-resume-tailor",
+     "job-intent-tracker",
+     "literature-survey",
+     "market-research-reports",
+     "marketing-mode",
+     "mindfulness-meditation",
+     "multi-search-engine",
+     "pdf",
+     "podcast-generate",
+     "pptx",
+     "qingyan-research",
+     "quiz-html",
+     "quiz-mastery",
+     "research-explorer",
+     "resume-builder",
+     "seo-content-writer",
+     "stock-analysis-skill",
+     "storyboard-manager",
+     "study-buddy",
+     "task-review",
+     "ui-ux-pro-max",
+     "video-generation",
+     "video-understand",
+     "visual-design-foundations",
+     "web-shader-extractor",
+     "writing-plans",
+     "xlsx"
+    ]
+   },
+   "verdict": "PASS"
+  },
+  "diffs": {
+   "commits_attendus": [
+    "5646e96",
+    "d3ee6e6",
+    "4439592",
+    "a790d04",
+    "a14f750"
+   ],
+   "commits_mesures": [
+    "5646e96",
+    "d3ee6e6",
+    "4439592",
+    "a790d04",
+    "a14f750"
+   ],
+   "commits_documentes": true,
+   "non_commites_total": 131,
+   "contenu_modifie": [],
+   "mode_seuls_total": 131,
+   "mode_seuls_hors_classes": [
+    "skills/analyse-doc-s4mk2/tests/journal/tf_00.json",
+    "skills/gen-plan/references/disciplines-mobilisation.md",
+    "skills/gen-plan/references/journal-versions.md",
+    "skills/gen-plan/references/protocoles-detailles.md",
+    "skills/gen-plan/references/regles-or.md",
+    "skills/re-curation/SKILL.md",
+    "skills/re-curation/evals/evals.json",
+    "skills/re-curation/evals/trigger_evals.json",
+    "skills/re-curation/scripts/check-recuration.py",
+    "skills/re-curation/scripts/mesure-sections.py",
+    "skills/re-curation/scripts/protocole-test.py",
+    "tmp/mission-task58/discussions/discussion-1.json",
+    "tmp/mission-task58/discussions/discussion-1.txt",
+    "tmp/mission-task58/discussions/discussion-2.json",
+    "tmp/mission-task58/discussions/discussion-2.txt",
+    "tmp/mission-task58/discussions/discussion-3.json",
+    "tmp/mission-task58/discussions/discussion-3.txt",
+    "tmp/mission-task58/trigo-node/joint-5c-modele-iso.json",
+    "tmp/mission-task58/trigo-node/joint-5c-profil.json",
+    "tmp/mission-task58/trigo-node/journal-preuves-run1.json",
+    "tmp/mission-task58/trigo-node/journal-preuves.json",
+    "tmp/mission-task58/trigo-node/mini-plan.json",
+    "tmp/mission-task58/trigo-node/preuves.py",
+    "tmp/mission-task58/trigo-node/run1/journal.json",
+    "tmp/mission-task58/trigo-node/run1/orchestrer.log",
+    "tmp/mission-task58/trigo-node/run1/trigo-demo_T1.json",
+    "tmp/mission-task58/trigo-node/run1/trigo-demo_T2.json",
+    "tmp/mission-task58/trigo-node/run2/journal.json",
+    "tmp/mission-task58/trigo-node/run2/orchestrer.log",
+    "tmp/mission-task58/trigo-node/run2/trigo-demo_T1.json",
+    "tmp/mission-task58/trigo-node/run2/trigo-demo_T2.json",
+    "tmp/mission-task58/trigo-node/selftest-1.txt",
+    "tmp/mission-task58/trigo-node/selftest-2.txt"
+   ],
+   "orphelins_contenu": [],
+   "verdict": "PASS"
+  },
+  "evals": {
+   "evals.json": {
+    "baseline": "74b52b3d42511044448a77db28ae6855738a0cc1c48bf3281bdef8955a98e327",
+    "courant": "74b52b3d42511044448a77db28ae6855738a0cc1c48bf3281bdef8955a98e327",
+    "identiques": true
+   },
+   "trigger_evals.json": {
+    "baseline": "de229e8be6aa8fbea2672be870fc49dfc1f50547ae179bdc4c25ffa55191193b",
+    "courant": "de229e8be6aa8fbea2672be870fc49dfc1f50547ae179bdc4c25ffa55191193b",
+    "identiques": true
+   },
+   "verdict": "PASS"
+  }
+ }
+}
