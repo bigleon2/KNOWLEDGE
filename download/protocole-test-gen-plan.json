@@ -1,6 +1,6 @@
 {
  "skill": "gen-plan",
- "genere_par": "skills/re-curation/scripts/protocole-test.py v1.0.0",
+ "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.0",
  "nature": {
   "repertoire": "/home/z/my-project/skills/gen-plan",
   "version": "3.41.0",
@@ -43,19 +43,24 @@
   "tests_pre": [
    "contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
    "sections mesurées (poids par section)",
-   "poids global (octets / Kio / #token estimés = caractères ÷ 4)"
+   "poids global (octets / Kio / #token estimés = caractères ÷ 4)",
+   "F1 fonctionnels — 1 selftests exécutés + 1 compilés · evals 2 · structure frontmatter",
+   "F2 performance — poids #token + durée mesurée des selftests (tolérance ×1.5 + 0.5 s)",
+   "F3 interactions — sortantes/entrantes semver · KB · ECO_SKILLS · corpus PM · agents → empreinte sha256"
   ],
   "tests_post": [
    "contrats == baseline (COHÉRENT)",
-   "pointeurs references/ valides + non-duplication 1024 o (FONCTIONNEL)",
-   "poids réduit ou sous seuil LOURD (OPTIMISÉ)"
+   "pointeurs references/ valides + non-duplication 1024 o + selftests (FONCTIONNEL)",
+   "poids réduit ou sous seuil LOURD (OPTIMISÉ)",
+   "F3 interactions SAINES (empreinte comparée)",
+   "F2 performance stable (tolérance ×1.5 + 0.5 s)"
   ]
  },
  "baseline": {
   "octets": 30696,
   "contrats": {
    "section_A": "c6582197bb3a9a0169f399a0814908968a4da18676ee1e57f99ce5b1adc20396",
-   "section_0_normalisee": "444b8092e70f8aee1ce87e4478a96481d6452f328b6a484624f6b198054e8fe4",
+   "section_0_normalisee": "a269e38a69d184821e205b34b15748be04e3caca02cc49f777e2e7450f517417",
    "read_when": "c2217693159a1439d96d138e01d985d7c71c66435c7d7fd5a3f52e95b3860f67",
    "evals/evals.json": "74b52b3d42511044448a77db28ae6855738a0cc1c48bf3281bdef8955a98e327",
    "evals/trigger_evals.json": "de229e8be6aa8fbea2672be870fc49dfc1f50547ae179bdc4c25ffa55191193b",
@@ -188,27 +193,224 @@
    }
   ],
   "kio": 30.0,
-  "token_estimes": 7674
+  "token_estimes": 7674,
+  "tests": {
+   "fonctionnels": {
+    "scripts": {
+     "check_plan_protocol.py": {
+      "test": "selftest exécuté",
+      "rc": 0,
+      "duree_s": 0.035,
+      "verdict": "PASS"
+     },
+     "ensure-installed.py": {
+      "test": "compilation (sans selftest)",
+      "verdict": "PASS"
+     }
+    },
+    "evals": {
+     "evals.json": {
+      "verdict": "PASS"
+     },
+     "trigger_evals.json": {
+      "verdict": "PASS"
+     }
+    },
+    "structure": {
+     "champs": {
+      "name": true,
+      "version": true,
+      "description": true
+     },
+     "verdict": "PASS"
+    },
+    "duree_totale_s": 0.035,
+    "verdict": "PASS"
+   },
+   "performance": {
+    "poids": {
+     "octets": 30696,
+     "kio": 30.0,
+     "token_estimes": 7674
+    },
+    "duree_tests_fonctionnels_s": 0.035,
+    "tolerance_stabilite": "×1.5 + 0.5 s",
+    "verdict": "MESURÉ"
+   },
+   "interactions": {
+    "sortantes": [
+     {
+      "skill": "correct-work",
+      "contrat": ">=2.4.0",
+      "version": "2.11.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "clone-chat",
+      "contrat": ">=2.0.0",
+      "version": "2.0.2",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "skills-inventory",
+      "contrat": ">=1.0.0",
+      "version": "1.1.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "knowledge-observer",
+      "contrat": ">=1.0.0",
+      "version": "1.0.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "resource-monitor",
+      "contrat": ">=1.0.0",
+      "version": "1.1.1",
+      "verdict": "PASS"
+     }
+    ],
+    "entrantes": [
+     {
+      "skill": "correct-work",
+      "contrat": ">=3.22.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "clone-chat",
+      "contrat": ">=3.6.1",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "re-curation",
+      "contrat": ">=3.39.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "agent-creator",
+      "contrat": ">=3.6.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "prompt-engineering",
+      "contrat": ">=3.7.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "knowledge-observer",
+      "contrat": ">=3.13.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "autonomous-agent",
+      "contrat": ">=3.6.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "fleet-engineering",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "memory-engineering",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "spec-driven-development",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "refactoring-engineering",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "refactoring-test",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "vue-upload",
+      "contrat": ">=3.20.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "livraison-garantie",
+      "contrat": ">=3.20.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "refactor-guard",
+      "contrat": ">=3.21.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "agent-prompt-engineering",
+      "contrat": ">=3.7.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "tsi-architect",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "tsi-validator",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "midi-doc-expert",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "multi-shift-architect",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "orchestrateur-tsi",
+      "contrat": ">=3.15.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "ghorg-cmdr",
+      "contrat": ">=3.34.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "pm-skill",
+      "contrat": ">=3.20.0",
+      "verdict": "PASS"
+     }
+    ],
+    "kb": {
+     "entree": "3.41.0",
+     "verdict": "PASS"
+    },
+    "eco_skills": {
+     "pin": "3.41.0",
+     "verdict": "PASS"
+    },
+    "pm_corpus": {
+     "famille": true,
+     "pm": "PROMPT-MAITRE-GEN-PLAN-v3.41.0.md",
+     "verdict": "PASS"
+    },
+    "agents": [
+     "skills/agent-creator/references/agent-creator.agent",
+     "skills/autonomous-agent/references/autonomous-agent.agent",
+     "skills/orchestrateur-tsi/agent-TSI.agent",
+     "skills/orchestrateur-tsi/orchestrateur-tsi.agent"
+    ],
+    "empreinte": "86853540f908e20c85a0842e07dc0ca069a778f8b0bacab2f8ebf0b738416134",
+    "verdict": "SAINES"
+   }
+  }
  },
- "post": {
-  "comparaison_contrats": {
-   "section_A": "PASS",
-   "section_0_normalisee": "PASS",
-   "read_when": "PASS",
-   "evals/evals.json": "PASS",
-   "evals/trigger_evals.json": "PASS",
-   "description_frontmatter": "PASS"
-  },
-  "coherent": true,
-  "pointeurs_valides": true,
-  "pointeurs_manquants": [],
-  "non_duplication": true,
-  "duplications": [],
-  "fonctionnel": true,
-  "poids_avant": 30696,
-  "poids_apres": 30696,
-  "reduction_pct": 0.0,
-  "optimise": true,
-  "verdict_post": "MAINTIEN DE L'OPTIMISATION"
- }
+ "verdict_pre": "GO",
+ "verdict_pre_detail": "baseline golden master capturée — 6 contrats, 31 sections, 30.0 Kio · 3 familles : fonctionnels PASS · interactions SAINES · performance mesurée"
 }

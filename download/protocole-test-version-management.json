@@ -1,6 +1,6 @@
 {
  "skill": "version-management",
- "genere_par": "skills/re-curation/scripts/protocole-test.py v1.0.0",
+ "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.0",
  "nature": {
   "repertoire": "/home/z/my-project/skills/version-management",
   "version": "1.3.0",
@@ -34,18 +34,23 @@
   "tests_pre": [
    "contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
    "sections mesurées (poids par section)",
-   "poids global (octets / Kio / #token estimés = caractères ÷ 4)"
+   "poids global (octets / Kio / #token estimés = caractères ÷ 4)",
+   "F1 fonctionnels — 1 selftests exécutés + 0 compilés · evals 2 · structure frontmatter",
+   "F2 performance — poids #token + durée mesurée des selftests (tolérance ×1.5 + 0.5 s)",
+   "F3 interactions — sortantes/entrantes semver · KB · ECO_SKILLS · corpus PM · agents → empreinte sha256"
   ],
   "tests_post": [
    "contrats == baseline (COHÉRENT)",
-   "pointeurs references/ valides + non-duplication 1024 o (FONCTIONNEL)",
-   "poids réduit ou sous seuil LOURD (OPTIMISÉ)"
+   "pointeurs references/ valides + non-duplication 1024 o + selftests (FONCTIONNEL)",
+   "poids réduit ou sous seuil LOURD (OPTIMISÉ)",
+   "F3 interactions SAINES (empreinte comparée)",
+   "F2 performance stable (tolérance ×1.5 + 0.5 s)"
   ]
  },
  "baseline": {
   "octets": 25782,
   "contrats": {
-   "section_0_normalisee": "565727f98eed339b9221acb576552cd8e3b24c172a7d0b057563037b9541956d",
+   "section_0_normalisee": "a269e38a69d184821e205b34b15748be04e3caca02cc49f777e2e7450f517417",
    "read_when": "acb23d8368bfddcdc7a333d8b0c698b0e52260f99790f9276ce517f67b0744e9",
    "evals/evals.json": "5c5104cc72ebcf240c058e617d15546caea6e2a5406dcd7043b724e595e7c4de",
    "evals/trigger_evals.json": "08c1179835300d66df3929322cb71a912838ea1eed53282639f11d076ee27157",
@@ -210,26 +215,68 @@
    }
   ],
   "kio": 25.2,
-  "token_estimes": 6445
+  "token_estimes": 6445,
+  "tests": {
+   "fonctionnels": {
+    "scripts": {
+     "vm-watchdog.py": {
+      "test": "selftest exécuté",
+      "rc": 0,
+      "duree_s": 0.095,
+      "verdict": "PASS"
+     }
+    },
+    "evals": {
+     "evals.json": {
+      "verdict": "PASS"
+     },
+     "trigger_evals.json": {
+      "verdict": "PASS"
+     }
+    },
+    "structure": {
+     "champs": {
+      "name": true,
+      "version": true,
+      "description": true
+     },
+     "verdict": "PASS"
+    },
+    "duree_totale_s": 0.095,
+    "verdict": "PASS"
+   },
+   "performance": {
+    "poids": {
+     "octets": 25782,
+     "kio": 25.2,
+     "token_estimes": 6445
+    },
+    "duree_tests_fonctionnels_s": 0.095,
+    "tolerance_stabilite": "×1.5 + 0.5 s",
+    "verdict": "MESURÉ"
+   },
+   "interactions": {
+    "sortantes": [],
+    "entrantes": [],
+    "kb": {
+     "entree": "1.3.0",
+     "verdict": "PASS"
+    },
+    "eco_skills": {
+     "pin": "1.3.0",
+     "verdict": "PASS"
+    },
+    "pm_corpus": {
+     "famille": false,
+     "verdict": "PASS",
+     "detail": "hors famille PM — nature"
+    },
+    "agents": [],
+    "empreinte": "dc1a519e6d662a49f90628f3b59f51d039d34ce532f0509b49be579dc51a5258",
+    "verdict": "SAINES"
+   }
+  }
  },
- "post": {
-  "comparaison_contrats": {
-   "section_0_normalisee": "PASS",
-   "read_when": "PASS",
-   "evals/evals.json": "PASS",
-   "evals/trigger_evals.json": "PASS",
-   "description_frontmatter": "PASS"
-  },
-  "coherent": true,
-  "pointeurs_valides": true,
-  "pointeurs_manquants": [],
-  "non_duplication": true,
-  "duplications": [],
-  "fonctionnel": true,
-  "poids_avant": 25782,
-  "poids_apres": 25782,
-  "reduction_pct": 0.0,
-  "optimise": true,
-  "verdict_post": "MAINTIEN DE L'OPTIMISATION"
- }
+ "verdict_pre": "GO",
+ "verdict_pre_detail": "baseline golden master capturée — 5 contrats, 39 sections, 25.2 Kio · 3 familles : fonctionnels PASS · interactions SAINES · performance mesurée"
 }

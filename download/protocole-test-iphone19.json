@@ -1,0 +1,287 @@
+{
+ "skill": "iphone19",
+ "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.0",
+ "nature": {
+  "repertoire": "/home/z/my-project/skills/iphone19",
+  "version": "0.11.0",
+  "octets": 51172,
+  "lignes": 466,
+  "a_section_A": false,
+  "a_section_0": true,
+  "a_read_when": true,
+  "evals": {
+   "evals.json": 3914,
+   "trigger_evals.json": 895
+  },
+  "references": [],
+  "scripts": [],
+  "gouvernance": {
+   "kb": "0.11.0",
+   "eco_skills": true
+  }
+ },
+ "protocole": {
+  "tests_pre": [
+   "contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
+   "sections mesurées (poids par section)",
+   "poids global (octets / Kio / #token estimés = caractères ÷ 4)",
+   "F1 fonctionnels — 0 selftests exécutés + 0 compilés · evals 2 · structure frontmatter",
+   "F2 performance — poids #token + durée mesurée des selftests (tolérance ×1.5 + 0.5 s)",
+   "F3 interactions — sortantes/entrantes semver · KB · ECO_SKILLS · corpus PM · agents → empreinte sha256"
+  ],
+  "tests_post": [
+   "contrats == baseline (COHÉRENT)",
+   "pointeurs references/ valides + non-duplication 1024 o + selftests (FONCTIONNEL)",
+   "poids réduit ou sous seuil LOURD (OPTIMISÉ)",
+   "F3 interactions SAINES (empreinte comparée)",
+   "F2 performance stable (tolérance ×1.5 + 0.5 s)"
+  ]
+ },
+ "baseline": {
+  "octets": 51172,
+  "contrats": {
+   "section_0_normalisee": "a269e38a69d184821e205b34b15748be04e3caca02cc49f777e2e7450f517417",
+   "read_when": "58efbacf4e9d432d3adb2b399b1ad6b121c3b90ac2cee357404c405d8e05fa36",
+   "evals/evals.json": "87d255eecea4331248d91d99ae58779053ab5721633aab0a8fc73ac1d35f7fc8",
+   "evals/trigger_evals.json": "fceb6ace7376d33fcd20c8e071b7028556a6345dcf765f40e5dcd685bc7a6797",
+   "description_frontmatter": "e30c08f621322c9eaaa222e15deb32716a5b060e6d3f16426898ad7de9f91a80"
+  },
+  "sections": [
+   {
+    "section": "(frontmatter)",
+    "octets": 3254
+   },
+   {
+    "section": "§0 — Contexte Système (SHARED v1.7.36)",
+    "octets": 1653
+   },
+   {
+    "section": "Lignage — projection skill ← prompt maître source",
+    "octets": 1421
+   },
+   {
+    "section": "PROMPT MAÎTRE — Pipeline d'amélioration photo « iPhone 19 Pro Max, qua",
+    "octets": 2621
+   },
+   {
+    "section": "Changelog `iphone19-photos.md` v0.10.0 → v0.11.0 (extension 1944)",
+    "octets": 1045
+   },
+   {
+    "section": "Changelog `iphone19-photos.md` v0.9.0 → v0.10.0 (émulation pixel binni",
+    "octets": 2051
+   },
+   {
+    "section": "Changelog `iphone18-photos.md` v1.0 → `iphone19-photos.md` v0.9.0",
+    "octets": 2953
+   },
+   {
+    "section": "§0 — RÔLE & MISSION",
+    "octets": 4521
+   },
+   {
+    "section": "§1 — ÉTAPE 1 : ANALYSE COMPLÈTE (grille ANALYSE-v2)",
+    "octets": 149
+   },
+   {
+    "section": "A. Axe technique",
+    "octets": 670
+   },
+   {
+    "section": "B. Axe sémantique",
+    "octets": 619
+   },
+   {
+    "section": "C. Axe contextuel",
+    "octets": 1210
+   },
+   {
+    "section": "§2 — ÉTAPE 2 : MOTEUR DE DÉCISION (l'analyse → traitements)",
+    "octets": 5145
+   },
+   {
+    "section": "§3 — ÉTAPE 3 : PLAN D'ACTIONS (gabarit PLAN-ACTIONS YAML)",
+    "octets": 1626
+   },
+   {
+    "section": "§4 — ÉTAPE 4 : PIPELINE D'EXÉCUTION (ordre strict)",
+    "octets": 1987
+   },
+   {
+    "section": "§5 — ÉTAPE 5 : CONTRÔLE QUALITÉ & ITÉRATION",
+    "octets": 1949
+   },
+   {
+    "section": "§6 — VARIATIONS DE RENDU (PRESETS)",
+    "octets": 42
+   },
+   {
+    "section": "6.1 `iphone19_max` (défaut — ancrage matériel ANTICIPÉ iPhone 19 Pro M",
+    "octets": 2584
+   },
+   {
+    "section": "6.2 Température",
+    "octets": 185
+   },
+   {
+    "section": "6.3 Luminosité",
+    "octets": 184
+   },
+   {
+    "section": "6.4 Formats (recadrage intelligent, visages protégés)",
+    "octets": 220
+   },
+   {
+    "section": "6.5 Presets d'époque — double sens",
+    "octets": 1565
+   },
+   {
+    "section": "6.6 `restauration_scan`",
+    "octets": 1021
+   },
+   {
+    "section": "6.7 `poster_A4_focus`",
+    "octets": 372
+   },
+   {
+    "section": "6.8 `log2_cinema` (Apple Log 2 — mode SIMULATION)",
+    "octets": 631
+   },
+   {
+    "section": "6.9 `frontal_center_stage` (caméra frontale 18 MP Center Stage)",
+    "octets": 720
+   },
+   {
+    "section": "6.10 `iphone20` — **[SPÉCULATIF] — SECTION INACTIVE**",
+    "octets": 1960
+   },
+   {
+    "section": "§7 — INTÉGRATION OPÉRATIONNELLE (outils IA)",
+    "octets": 1756
+   },
+   {
+    "section": "§8 — RAPPORT FINAL (gabarit obligatoire, en français)",
+    "octets": 66
+   },
+   {
+    "section": "📋 Analyse (scores ANALYSE-v2 + inventaire B6 + cadrage, focale et ouve",
+    "octets": 93
+   },
+   {
+    "section": "🧠 Diagnostic & règles déclenchées (R1–R19)",
+    "octets": 54
+   },
+   {
+    "section": "🗺️ Plan d'actions exécuté (YAML, dont focale_cible et ouverture_cible)",
+    "octets": 94
+   },
+   {
+    "section": "✅ Résultat QC (OK/KO + itérations) — fidélité (1–4), cadrage (8), rati",
+    "octets": 162
+   },
+   {
+    "section": "🖼️ Description du résultat (+ script P8b si besoin)",
+    "octets": 61
+   },
+   {
+    "section": "⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17,",
+    "octets": 182
+   },
+   {
+    "section": "❓ Souhaitez-vous des modifications ? (question OBLIGATOIRE — §9)",
+    "octets": 83
+   },
+   {
+    "section": "§9 — MODE INTERACTION POST-GÉNÉRATION",
+    "octets": 729
+   },
+   {
+    "section": "§10 — MODE SÉRIE (multi-sorties)",
+    "octets": 355
+   },
+   {
+    "section": "§11 — AUTO-AUDIT DU DOCUMENT (après chaque modification)",
+    "octets": 2799
+   },
+   {
+    "section": "§12 — LIVRABLES DU PROJET",
+    "octets": 1474
+   },
+   {
+    "section": "§13 — INTERFACE DE COMMANDES",
+    "octets": 907
+   }
+  ],
+  "kio": 50.0,
+  "token_estimes": 12793,
+  "tests": {
+   "fonctionnels": {
+    "scripts": {},
+    "evals": {
+     "evals.json": {
+      "verdict": "PASS"
+     },
+     "trigger_evals.json": {
+      "verdict": "PASS"
+     }
+    },
+    "structure": {
+     "champs": {
+      "name": true,
+      "version": true,
+      "description": true
+     },
+     "verdict": "PASS"
+    },
+    "duree_totale_s": 0,
+    "verdict": "PASS"
+   },
+   "performance": {
+    "poids": {
+     "octets": 51172,
+     "kio": 50.0,
+     "token_estimes": 12793
+    },
+    "duree_tests_fonctionnels_s": 0,
+    "tolerance_stabilite": "×1.5 + 0.5 s",
+    "verdict": "MESURÉ"
+   },
+   "interactions": {
+    "sortantes": [
+     {
+      "skill": "skill-creator",
+      "contrat": ">=1.0.0",
+      "version": "1.1.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "image-edit",
+      "contrat": ">=1.0.0",
+      "version": null,
+      "verdict": "NON-VERSIONNÉ",
+      "detail": "cible sans version déclarée (nature plateforme) — contrat semver non vérifiable"
+     }
+    ],
+    "entrantes": [],
+    "kb": {
+     "entree": "0.11.0",
+     "verdict": "PASS"
+    },
+    "eco_skills": {
+     "pin": "0.11.0",
+     "verdict": "PASS"
+    },
+    "pm_corpus": {
+     "famille": false,
+     "verdict": "PASS",
+     "detail": "hors famille PM — nature"
+    },
+    "agents": [],
+    "empreinte": "2a76554b46a2fb3afe056259b43e4587b86e99432cfa934c8299feb015c72f13",
+    "verdict": "SAINES"
+   }
+  }
+ },
+ "verdict_pre": "GO",
+ "verdict_pre_detail": "baseline golden master capturée — 5 contrats, 41 sections, 50.0 Kio · 3 familles : fonctionnels PASS · interactions SAINES · performance mesurée"
+}

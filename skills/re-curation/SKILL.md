@@ -1,6 +1,6 @@
 ---
 name: re-curation
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 tags:
@@ -18,6 +18,14 @@ description: >
   arbitre les méthodes candidates (--compare — la plus optimisée et performante) ;
   méthode P0-P7 (P0 = tests AVANT re-curation, P7 = vérification POST du maintien de
   l'optimisation), arbitre check-recuration.py (C1-C4), mesure-sections.py généralisé.
+  Suite de tests v1.2.0 (directive 2026-11-09) : tests FONCTIONNELS de l'élément ciblé
+  (selftests de ses scripts exécutés pour de vrai, evals, structure), tests de
+  PERFORMANCE mesurés (poids #token + durées d'exécution, stabilité PRE/POST
+  tolérance ×1.5 + 0.5 s), validation de TOUTES les INTERACTIONS (dépendances
+  sortantes/entrantes semver, registre KB, pin ECO_SKILLS, corpus PM si famille,
+  agents — empreinte sha256) — familles intégrées aux verdicts PRE (GO exige
+  fonctionnels PASS + interactions SAINES) et POST (MAINTIEN : cohérent,
+  fonctionnel, optimisé, interactions saines, perf stable — idempotence garantie).
 dependencies:
   - skill: gen-plan
     version: ">=3.39.0"
@@ -32,6 +40,8 @@ read_when:
   - « protocole de test » avant re-curation — baseline golden master, GO/NO-GO
   - "maintien de l'optimisation" — vérifier qu'une re-curation préserve le fonctionnement
   - comparer les méthodes de re-curation — la plus optimisée et performante
+  - « tests fonctionnels et de performance » avant re-curation + « validation de toutes
+    les interactions » de l'élément ciblé avec ses composants liés — suite v1.2.0 (directive 2026-11-09)
 ---
 
 ## §A — DÉCLENCHEURS
@@ -40,6 +50,7 @@ read_when:
 - « protocole de test » avant re-curation — génération du protocole adapté + phase PRE (GO/NO-GO)
 - « maintien de l'optimisation » — phase POST : l'écosystème demeure cohérent, optimisé, fonctionnel
 - `--compare` méthodes de re-curation — arbitrage de la plus optimisée et performante
+- « tests fonctionnels et de performance » / « validation de toutes les interactions » AVANT et APRÈS la re-curation — suite v1.2.0 intégrée aux phases PRE/POST (directive 2026-11-09)
 - $FACON = de façon cohérente, optimisée et fonctionnelle · $FACON2 = (cohérent, optimisé et fonctionnel) — glossaire inline auto-contenu (registre canonique @historique/@Alias/aliases.json)
 
 ## §0 — Contexte Système (SHARED v1.7.36)
@@ -59,18 +70,20 @@ read_when:
 
 **Le skill est IMPLÉMENTÉ de son script principal** `scripts/protocole-test.py` : c'est lui qui génère le protocole de test adapté, l'exécute (PRE puis POST) et arbitre les méthodes. Les deux autres scripts sont des outils : `mesure-sections.py` (poids par section, généralisé de Task 72) et `check-recuration.py` (arbitre C1-C4). Le présent SKILL.md porte la MÉTHODE ; les scripts portent l'EXÉCUTION.
 
-**Cible prioritaire 2026-11-08** (liste priorisée Task 72 G3 — download/liste-recuration-priorisee-task72.md) : version-management (n°1) → iphone19 → iphone18 → [skill-creator noyau, protocole renforcé] → web-reader → cahier-des-charges → iphone17 ; pdf/pptx = plateforme (décision propriétaire).
+**Suite de tests v1.2.0** (directive propriétaire 2026-11-09, trace 1a1bcb98c022bfe9) : avant ET après toute re-curation, l'élément ciblé passe les tests des TROIS familles — **F1 fonctionnels** (l'élément S'EXÉCUTE : selftests réels de ses scripts, evals, structure), **F2 performance** (poids #token + durées mesurées, stabilité PRE/POST), **F3 interactions** (TOUTES les arêtes : dépendances sortantes/entrantes semver, registre KB, pin ECO_SKILLS, corpus PM, agents — empreinte sha256) — pour garantir la livraison d'un écosystème cohérent, optimisé, fonctionnel, **parfaitement idempotent par rapport à sa version précédente**.
+
+**Cibles prioritaires** (liste priorisée Task 72 G3 — download/liste-recuration-priorisee-task72.md) : version-management (n°1 — RE-CURÉ Task 79 G2 : 46,1→25,2 Kio, −45,4 %) → **iphone19 (prochaine cible — baseline v1.2.0 capturée Task 80)** → iphone18 → [skill-creator noyau, protocole renforcé] → web-reader → cahier-des-charges → iphone17 ; pdf/pptx = plateforme (décision propriétaire).
 
 ## §2 — Méthode P0-P7 (ordre strict — les tests AVANT la re-curation)
 
 | Phase | Nom | Mécanique | Outil |
 |---|---|---|---|
-| **P0** | **Protocole de test adapté GÉNÉRÉ puis EXÉCUTÉ (PRE)** | Nature de l'élément détectée (contrats §A/read_when/evals/description, sections, poids, gouvernance KB/ECO_SKILLS) → baseline golden master (sha256 des contrats + sections mesurées) → **verdict GO / NO-GO** — NO-GO = la re-curation NE DÉMARRE PAS | `protocole-test.py --pre <skill>` |
+| **P0** | **Protocole de test adapté GÉNÉRÉ puis EXÉCUTÉ (PRE)** | Nature de l'élément détectée (contrats §A/read_when/evals/description, sections, poids, gouvernance KB/ECO_SKILLS) → baseline golden master (sha256 des contrats + sections mesurées + **3 familles v1.2.0** : F1 fonctionnels [selftests EXÉCUTÉS] · F2 performance [durées MESURÉES] · F3 interactions [empreinte]) → **verdict GO / NO-GO** — NO-GO = la re-curation NE DÉMARRE PAS (élément déjà cassé : F1 FAIL ou F3 CASSÉES — causes détaillées par famille) | `protocole-test.py --pre <skill>` |
 | P1 | Cartographie sèche | Sections mesurées + blocs déplaçables identifiés (≥ 1,5 Kio, hors contrats) + gain projeté — SANS ÉCRITURE | `mesure-sections.py <skill>` |
 | P2 | Sélection de méthode | Arbitrage des méthodes candidates : gains projetés calculés des sections mesurées + conformité R4 → **la plus optimisée et performante** (les non-R4-compliantes sont disqualifiées) | `protocole-test.py --compare <skill>` |
 | P3 | Moves R4 byte-identiques | Extraction mécanique par marqueurs (jamais réécriture du contenu déplacé) vers `references/` avec en-tête de provenance (section d'origine, version, date, SHA-256 du bloc) — script d'extraction dédié à la passe, verrouillé count==1 | script d'extraction de la passe |
 | P4 | Résumés opérationnels inline | Textes NOUVEAUX compacts + pointeurs `references/` (aucune duplication) ; contrats verbatim intacts (D005-class) ; compensation de taille pour tenir les seuils | éditions chirurgicales |
-| **P5** | **Vérification POST du maintien de l'optimisation** | Protocole ré-exécuté : contrats == baseline (**cohérent**) + pointeurs/non-duplication (**fonctionnel**) + poids réduit ou sous seuil LOURD (**optimisé**) → verdict **MAINTIEN DE L'OPTIMISATION** / DÉRIVE (blocant) | `protocole-test.py --post <skill>` |
+| **P5** | **Vérification POST du maintien de l'optimisation** | Protocole ré-exécuté sur **5 dimensions v1.2.0** : contrats == baseline (**cohérent**) + pointeurs/non-duplication/selftests (**fonctionnel**) + poids réduit ou sous seuil LOURD (**optimisé**) + interactions (**saines** — empreinte comparée) + performance (**stable** — POST ≤ PRE × 1,5 + 0,5 s) → verdict **MAINTIEN DE L'OPTIMISATION** / DÉRIVE (bloquant) | `protocole-test.py --post <skill>` |
 | P6 | Idempotence + arbitres | Re-jeu ×2 no-op des scripts de la passe + arbitres écosystème (integrity/coherence/vcw/cross) + correct-work par phase | arbitres écosystème |
 | P7 | Vérification finale + traçabilité | `check-recuration.py <skill>` (C1-C4) + worklog R5 (verdicts PRE/POST/--compare tracés) + cascade selon gouvernance (KB/ECO_SKILLS → pin + KB + historiques + ULTRA ; famille PM → KO-L004 complète) | `check-recuration.py` |
 
@@ -84,6 +97,14 @@ read_when:
 ## §3 — Protocole de test adapté (ce que --pre génère)
 
 Le protocole **s'adapte à la nature de l'élément** (détectée, jamais supposée) : présence/absence de §A, §0, read_when, evals/, scripts/, references/, entrée KB, registre ECO_SKILLS, famille PM. Tests générés selon ce qui existe — le fichier `download/protocole-test-<skill>.json` porte : nature détectée, protocole (tests PRE/POST), baseline (octets, contrats sha256, sections mesurées, #token estimés = caractères ÷ 4), verdict PRE. En POST, le même fichier est enrichi de la comparaison et du verdict de maintien.
+
+**Les trois familles v1.2.0** (directive 2026-11-09 — intégrées à PRE et POST) :
+
+- **F1 fonctionnels** — l'élément S'EXÉCUTE : chaque script du skill portant un `--selftest` est exécuté pour de vrai (subprocess, timeout 60 s, rc + durée capturés) ; les scripts sans selftest sont compilés en mémoire (zéro écriture disque) ; evals validés (JSON non vide) ; structure frontmatter (name/version/description — convention SHARED §1.3). Nature-adapté : un élément sans scripts est testé sur evals + structure.
+- **F2 performance** — métriques MESURÉES (règle d'or n°5) : poids de chargement (octets / Kio / #token — le goulot réel est le budget #token, étude Task 70) + durée d'exécution des selftests ; stabilité PRE/POST par `perf_stable` (POST ≤ PRE × 1,5 + 0,5 s — bruit de mesure absorbé ; sans selftest = non applicable, non-bloquant).
+- **F3 interactions** — TOUTES les arêtes de l'élément avec ses composants liés : dépendances YAML sortantes (existence + contrat semver — cible plateforme sans version : NON-VERSIONNÉ, tracé non-bloquant), dépendances ENTRANTES (scan des frontmatters du registre KB — chaque dépendant, contrat satisfait), alignement entrée KB ↔ version frontmatter, pin ECO_SKILLS (arbitre check-ecosysteme-integrity.py — KO-L004), corpus PM si famille (sinon nature non-famille documentée), agents `.agent` mentionnant l'élément — empreinte sha256 de l'ensemble normalisé (capturée en baseline, comparée en POST).
+
+En POST, le verdict MAINTIEN DE L'OPTIMISATION exige les 5 dimensions : COHÉRENT · FONCTIONNEL · OPTIMISÉ · INTERACTIONS SAINES · PERF STABLE — « parfaitement idempotent par rapport à sa version précédente ». Les baselines antérieures à v1.2.0 (sans clé `baseline.tests`) sont refusées en POST (rc=2, re-capture demandée).
 
 ## §4 — Structure des fichiers
 
@@ -100,6 +121,8 @@ skills/re-curation/
 ```
 
 ## §5 — Journal des versions
+
+- **v1.2.0 (2026-11-09, session web-ecef7f80 — Task 80, directive 1a1bcb98c022bfe9 « intégrer cette suite de tests [fonctionnels et de performance, incluant la validation de toutes les interactions] au sein de mon skill re-curation »)** : suite de tests intégrée au script principal `scripts/protocole-test.py` (485→900 lignes / 24 472→50 818 o mesurés) — 3 familles exécutées en PRE et POST : **F1 FONCTIONNELS** (selftest de chaque script détecté puis EXÉCUTÉ [subprocess, timeout 60 s, rc + durée] ; compile() mémoire pour les sans-selftest ; evals JSON ; structure frontmatter) · **F2 PERFORMANCE** (poids octets/Kio/#token + durée MESURÉE des selftests + `perf_stable` tolérance ×1,5 + 0,5 s) · **F3 INTERACTIONS** (sortantes/entrantes semver [scan registre KB], alignement KB, pin ECO_SKILLS, corpus PM si famille, agents .agent, empreinte sha256) ; verdict PRE GO/NO-GO étendu (GO exige F1 PASS + F3 SAINES — jamais de re-curation d'un élément déjà cassé, causes détaillées par famille) ; verdict POST 5 dimensions (COHÉRENT · FONCTIONNEL [pointeurs + non-duplication + selftests] · OPTIMISÉ · INTERACTIONS SAINES · PERF STABLE) ; garde baselines pré-v1.2.0 (rc=2, re-capture demandée — convention familles) ; `--verifier` étendu aux 3 familles en direct ; selftest 7→13 cas (fixture enrichie : script témoin avec selftest RÉEL, cible sortante, dépendant entrant, cible PLATEFORME sans version, registre KB sandbox, trigger_evals au format liste ; deux faux positifs résorbés sur preuves réelles [evals au format liste vs objet — trigger_evals.json est un tableau de cas ; cible plateforme sans version → NON-VERSIONNÉ tracé non-bloquant — cas réel image-edit/iphone19] + correctif fixture description [convention frontmatter complet]), **13/13 ×2 idempotent** ; MINOR, description ADDITIVE (phrases de déclenchement existantes verbatim — non-régression triggers) ; cascade légère (KB + pin ECO_SKILLS + historique par-skill + ULTRA + arbitres + sync).
 
 - **v1.1.0 (2026-11-09, session web-ecef7f80 — pendance consignée au commit Task 79 0b1712b, directive gen-plan(step) « correctif du comparateur §0 de protocole-test (harnais) »)** : harnais v3 — deux défauts du comparateur §0 de `scripts/protocole-test.py` résorbés : (1) **borne du bloc socle** — le contrat `section_0_normalisee` capturait de « ## §0 » jusqu'à « ## §1 », et quand le skill n'a pas de section §1 (cas réel version-management : 23,4 Kio capturés sur 25,8 ; ASR : 16,7 Kio ; preuve : 104 des 119 porteurs corrigés, contrat §0 cumulé 1 180,3 → 193,4 Kio — `download/protocole-test-correctif-comparateur-v110-preuves.json`), le contrat couvrait le CORPS entier → une re-curation légitime du corps (déplacement R4) donnait un DÉRIVE fausse ; nouvelle borne `bloc_socle()` = premier titre markdown suivant (~1,6 Kio) ; (2) **dates de directives du socle normalisées** — extension de la leçon harnais v2 (étiquette SHARED) : une date de directive propriétaire enrichie au bloc socle (ex. « directive 2026-10-31, renforcée 2026-11-06 ») n'est pas une dérive de contrat ; selftest étendu 5→7 tests (bump socle étiquette+date → PASS ; déplacement R4 du corps, socle intact → MAINTIEN), 7/7 ×2 idempotent ; MINOR, description frontmatter inchangée (non-régression triggers) ; baselines capturées avant v1.1.0 à re-capturer (convention de mesure §0 v3).
 

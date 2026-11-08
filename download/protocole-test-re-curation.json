@@ -1,0 +1,210 @@
+{
+ "skill": "re-curation",
+ "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.0",
+ "nature": {
+  "repertoire": "/home/z/my-project/skills/re-curation",
+  "version": "1.2.0",
+  "octets": 18172,
+  "lignes": 129,
+  "a_section_A": true,
+  "a_section_0": true,
+  "a_read_when": true,
+  "evals": {
+   "evals.json": 3265,
+   "trigger_evals.json": 1153
+  },
+  "references": [],
+  "scripts": [
+   "check-recuration.py",
+   "mesure-sections.py",
+   "protocole-test.py"
+  ],
+  "gouvernance": {
+   "kb": "1.2.0",
+   "eco_skills": true
+  }
+ },
+ "protocole": {
+  "tests_pre": [
+   "contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
+   "sections mesurées (poids par section)",
+   "poids global (octets / Kio / #token estimés = caractères ÷ 4)",
+   "F1 fonctionnels — 3 selftests exécutés + 0 compilés · evals 2 · structure frontmatter",
+   "F2 performance — poids #token + durée mesurée des selftests (tolérance ×1.5 + 0.5 s)",
+   "F3 interactions — sortantes/entrantes semver · KB · ECO_SKILLS · corpus PM · agents → empreinte sha256"
+  ],
+  "tests_post": [
+   "contrats == baseline (COHÉRENT)",
+   "pointeurs references/ valides + non-duplication 1024 o + selftests (FONCTIONNEL)",
+   "poids réduit ou sous seuil LOURD (OPTIMISÉ)",
+   "F3 interactions SAINES (empreinte comparée)",
+   "F2 performance stable (tolérance ×1.5 + 0.5 s)"
+  ]
+ },
+ "baseline": {
+  "octets": 18172,
+  "contrats": {
+   "section_A": "cf10f2f92999207a8d2e4a64e7999b2c9269856f0eb03278041ba6ab469f9777",
+   "section_0_normalisee": "78a13f2cd324c206a70abbf36c8e06b3735d039f5784f49746fa137a0ec9492a",
+   "read_when": "a6b8930a4de707e75cb83e228db63f8b0e40169f8dfe24ddd40f4542c1e876cb",
+   "evals/evals.json": "09ab95053d02d533cd7ac93322eae0f1b4fcf57e52b9225981d520a298c3cf76",
+   "evals/trigger_evals.json": "e7963ee3f67c72dd487b385e6b6d6c5b32c7345ebc0ccedded81fa1016bbff85",
+   "description_frontmatter": "c7755b526756c61ac8dbf5a6941bd0bbb71a6e1c66514e5b9b556739331d9a88"
+  },
+  "sections": [
+   {
+    "section": "(frontmatter)",
+    "octets": 2525
+   },
+   {
+    "section": "§A — DÉCLENCHEURS",
+    "octets": 859
+   },
+   {
+    "section": "§0 — Contexte Système (SHARED v1.7.36)",
+    "octets": 1914
+   },
+   {
+    "section": "§1 — Mission et nature",
+    "octets": 1896
+   },
+   {
+    "section": "§2 — Méthode P0-P7 (ordre strict — les tests AVANT la re-curation)",
+    "octets": 3607
+   },
+   {
+    "section": "§3 — Protocole de test adapté (ce que --pre génère)",
+    "octets": 2456
+   },
+   {
+    "section": "§4 — Structure des fichiers",
+    "octets": 573
+   },
+   {
+    "section": "§5 — Journal des versions",
+    "octets": 4343
+   }
+  ],
+  "kio": 17.7,
+  "token_estimes": 4543,
+  "tests": {
+   "fonctionnels": {
+    "scripts": {
+     "check-recuration.py": {
+      "test": "selftest exécuté",
+      "rc": 0,
+      "duree_s": 0.036,
+      "verdict": "PASS"
+     },
+     "mesure-sections.py": {
+      "test": "selftest exécuté",
+      "rc": 0,
+      "duree_s": 0.033,
+      "verdict": "PASS"
+     },
+     "protocole-test.py": {
+      "test": "selftest exécuté",
+      "rc": 0,
+      "duree_s": 0.149,
+      "verdict": "PASS"
+     }
+    },
+    "evals": {
+     "evals.json": {
+      "verdict": "PASS"
+     },
+     "trigger_evals.json": {
+      "verdict": "PASS"
+     }
+    },
+    "structure": {
+     "champs": {
+      "name": true,
+      "version": true,
+      "description": true
+     },
+     "verdict": "PASS"
+    },
+    "duree_totale_s": 0.218,
+    "verdict": "PASS"
+   },
+   "performance": {
+    "poids": {
+     "octets": 18172,
+     "kio": 17.7,
+     "token_estimes": 4543
+    },
+    "duree_tests_fonctionnels_s": 0.218,
+    "tolerance_stabilite": "×1.5 + 0.5 s",
+    "verdict": "MESURÉ"
+   },
+   "interactions": {
+    "sortantes": [
+     {
+      "skill": "gen-plan",
+      "contrat": ">=3.39.0",
+      "version": "3.41.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "correct-work",
+      "contrat": ">=2.4.0",
+      "version": "2.11.0",
+      "verdict": "PASS"
+     }
+    ],
+    "entrantes": [],
+    "kb": {
+     "entree": "1.2.0",
+     "verdict": "PASS"
+    },
+    "eco_skills": {
+     "pin": "1.2.0",
+     "verdict": "PASS"
+    },
+    "pm_corpus": {
+     "famille": false,
+     "verdict": "PASS",
+     "detail": "hors famille PM — nature"
+    },
+    "agents": [],
+    "empreinte": "9540e4e510ee61979c80cc4c57b61733e5b8a18d7f08c05fd97b46e7c1b45710",
+    "verdict": "SAINES"
+   }
+  }
+ },
+ "post": {
+  "comparaison_contrats": {
+   "section_A": "PASS",
+   "section_0_normalisee": "PASS",
+   "read_when": "PASS",
+   "evals/evals.json": "PASS",
+   "evals/trigger_evals.json": "PASS",
+   "description_frontmatter": "PASS"
+  },
+  "coherent": true,
+  "pointeurs_valides": true,
+  "pointeurs_manquants": [],
+  "non_duplication": true,
+  "duplications": [],
+  "tests_fonctionnels": "PASS",
+  "fonctionnel": true,
+  "interactions_saines": true,
+  "empreinte_interactions": {
+   "avant": "9540e4e510ee61979c80cc4c57b61733e5b8a18d7f08c05fd97b46e7c1b45710",
+   "apres": "9540e4e510ee61979c80cc4c57b61733e5b8a18d7f08c05fd97b46e7c1b45710",
+   "identique": true
+  },
+  "performance": {
+   "duree_avant_s": 0.222,
+   "duree_apres_s": 0.218,
+   "tolerance": "×1.5 + 0.5 s",
+   "stable": true
+  },
+  "poids_avant": 18172,
+  "poids_apres": 18172,
+  "reduction_pct": 0.0,
+  "optimise": true,
+  "verdict_post": "MAINTIEN DE L'OPTIMISATION"
+ }
+}
