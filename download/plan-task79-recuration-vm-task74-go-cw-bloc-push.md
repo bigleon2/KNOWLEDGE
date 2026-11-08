@@ -58,13 +58,13 @@ decisions:
     verification: "protocole-test.py --pre version-management (GO) puis --post ×2 (MAINTIEN) && check-recuration.py version-management (C1-C4 PASS) && poids mesuré"
     source: "Directive item 1 (pré-tests idempotence + cohérence) ; skill re-curation v1.0.0 §2 P0-P7"
     priority: "S1"
-    status: "pending"
+    status: "verified"
   - id: "D006"
     criterion: "G2 — cascade légère + sync hôte↔dépôt MÊME PASSE (contrainte miroir) : pin ECO_SKILLS + entrée KB (Dernière calibration re-curation) + historiques-par-skill/version-management.md + ULTRA ×2 + arbitres (cross/vcw/integrity/doublons/coherence) + sync pipeline rc=0 54/54 avec version-management PRÉSENT à l'hôte en fin de passe (anti-disparition)"
     verification: "eco_install_pipeline.py rc=0 (divergences==[]) && ls skills/version-management/SKILL.md (présent) && arbitres rc=0"
     source: "File Task 72 (contrainte miroir) ; re-curation §2 règle 4 (gouvernance KB/ECO_SKILLS)"
     priority: "S1"
-    status: "pending"
+    status: "verified"
   - id: "D007"
     criterion: "G3.a — Task 74 G1 clone-chat : archive auto-suffisante de la session Task 74 (installation écosystème) — §0-§5 + drifts + 8 checks S1-S8 — download/clone-chat-session-web-ecef7f80-20261108-task74.md scellé + statuts plan 74 mis à jour"
     verification: "ls download/clone-chat-session-web-ecef7f80-20261108-task74.md && 8 checks documentés + plan 74 statuts cohérents"
@@ -129,7 +129,7 @@ Exécution intégrale du plan download/plan-task78-regle-sondage-borne.md (E8 in
 - **SG1.2 Cascade KO-L004 + sync** (SHARED INCHANGÉ) : PM v3.41.0 + PM v3.40.0 archivé R4 + KB + pin ×2 + historiques + README ×2 + ULTRA ×2 + pipeline rc=0.
 - **SG1.3 Preuves + arbitres + E8 final Task 78 + commit** : POST ×2 MAINTIEN · 5 arbitres un bloc PAR · sweep citations v3.40.0→v3.41.0 · answer key 10/10 · commit dédié.
 
-## G2 — Re-curation version-management (protocole P0-P7) `[À FAIRE]` (0/3)
+## G2 — Re-curation version-management (protocole P0-P7) `[TERMINÉ]` (3/3)
 
 - **SG2.1 P0-P2 tests AVANT + méthode** (D005) : `protocole-test.py --pre version-management` → GO/NO-GO (cohérence : contrats sha256 + baseline) · cartographie re-mesurée (mesure-sections) · `--compare` méthode la plus optimisée (R4-compliante seule éligible).
 - **SG2.2 P3-P5 re-curation + maintien** (D005) : moves R4 byte-identité (7 blocs ~23,1 Kio → references/ avec en-têtes de provenance) · résumés opérationnels inline (contrats §A/read_when/evals/description intacts) · `--post` ×2 MAINTIEN (poids cible ~18-22 Kio) · idempotence ×2 no-op (pré-test demandé).
@@ -153,6 +153,6 @@ Exécution intégrale du plan download/plan-task78-regle-sondage-borne.md (E8 in
 
 ## PLAN-AFFICHE
 
-(Task 79 — download/plan-task79-recuration-vm-task74-go-cw-bloc-push.md — INITIAL — **G1 Task 78 sondage borné `[À FAIRE]` 0/3 · G2 re-curation version-management `[À FAIRE]` 0/3 · G3 Task 74 GO `[À FAIRE]` 0/3 · G4 clone-chat + clôture `[À FAIRE]` 0/2 · G5 PUSH final `[À FAIRE]` 0/2** — answer key 14 décisions (D001-D003 verified ouverture · D004-D014 pending exécution) — E8 initial PASS 2026-11-08T16:52:00Z — #token ≈ 30 000 (bornes 22 000-45 000) — exécution step : G1→G5 chaîne autonome (série justifiée ENTRE groupes : écritures chaînées + ordre directive), vagues PAR internes (T1.1.1-a∥b, arbitres, preuves) — fenêtre native TodoWrite : affichée au début d'exécution, mise à jour à chaque fin de groupe (E7-DISP point 6))
+(Task 79 — download/plan-task79-recuration-vm-task74-go-cw-bloc-push.md — INITIAL — **G1 Task 78 sondage borné ✅ 3/3 · G2 re-curation version-management ✅ 3/3 · G3 Task 74 GO `[À FAIRE]` 0/3 · G4 clone-chat + clôture `[À FAIRE]` 0/2 · G5 PUSH final `[À FAIRE]` 0/2** — answer key 14 décisions (D001-D003 verified ouverture · D004-D014 pending exécution) — E8 initial PASS 2026-11-08T16:52:00Z — #token ≈ 30 000 (bornes 22 000-45 000) — exécution step : G1→G5 chaîne autonome (série justifiée ENTRE groupes : écritures chaînées + ordre directive), vagues PAR internes (T1.1.1-a∥b, arbitres, preuves) — fenêtre native TodoWrite : affichée au début d'exécution, mise à jour à chaque fin de groupe (E7-DISP point 6))
 
 Verdict E8 : PASS INITIAL (answer-key-checker 16/16 ALL PASS ×2 sha16 stable + check_plan_protocol P1-P5 PASS — 14 décisions : D001-D003 verified ouverture · D004-D014 pending exécution — Horodatage vérifié : 2026-11-08T16:52:00Z)

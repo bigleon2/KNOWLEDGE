@@ -4,8 +4,8 @@
  "nature": {
   "repertoire": "/home/z/my-project/skills/version-management",
   "version": "1.3.0",
-  "octets": 47243,
-  "lignes": 632,
+  "octets": 25782,
+  "lignes": 344,
   "a_section_A": false,
   "a_section_0": true,
   "a_read_when": true,
@@ -13,7 +13,15 @@
    "evals.json": 4434,
    "trigger_evals.json": 770
   },
-  "references": [],
+  "references": [
+   "aide-memoire-operations.md",
+   "controle-chemins.md",
+   "points-entree-edition.md",
+   "regles-structure-fichiers.md",
+   "resorption-structurelle.md",
+   "sortie-flux-send-file.md",
+   "structure-meta-json.md"
+  ],
   "scripts": [
    "vm-watchdog.py"
   ],
@@ -35,9 +43,9 @@
   ]
  },
  "baseline": {
-  "octets": 47243,
+  "octets": 25782,
   "contrats": {
-   "section_0_normalisee": "3a3b22f741d97f77a9a5a0625c307914894b237f81d413c404dd4660d27f3c68",
+   "section_0_normalisee": "565727f98eed339b9221acb576552cd8e3b24c172a7d0b057563037b9541956d",
    "read_when": "acb23d8368bfddcdc7a333d8b0c698b0e52260f99790f9276ce517f67b0744e9",
    "evals/evals.json": "5c5104cc72ebcf240c058e617d15546caea6e2a5406dcd7043b724e595e7c4de",
    "evals/trigger_evals.json": "08c1179835300d66df3929322cb71a912838ea1eed53282639f11d076ee27157",
@@ -49,7 +57,7 @@
     "octets": 1497
    },
    {
-    "section": "§0 — Contexte Système (SHARED v1.7.34)",
+    "section": "§0 — Contexte Système (SHARED v1.7.36)",
     "octets": 2764
    },
    {
@@ -106,11 +114,11 @@
    },
    {
     "section": "1.2 Contrôle obligatoire des chemins (règle critique)",
-    "octets": 2204
+    "octets": 389
    },
    {
     "section": "1.3 Règles de structure des fichiers",
-    "octets": 5822
+    "octets": 363
    },
    {
     "section": "1.4 Flux de création",
@@ -142,7 +150,7 @@
    },
    {
     "section": "3.1 Points d'entrée d'édition et détermination de la version",
-    "octets": 3532
+    "octets": 381
    },
    {
     "section": "3.2 Moments de création de version",
@@ -154,7 +162,7 @@
    },
    {
     "section": "3.4 Sortie dans le flux de conversation (send_file)",
-    "octets": 5597
+    "octets": 391
    },
    {
     "section": "3.5 Cartes du flux de conversation et « Éditer à partir de cette versi",
@@ -182,11 +190,11 @@
    },
    {
     "section": "5. Structure de meta.json",
-    "octets": 1630
+    "octets": 340
    },
    {
     "section": "6. Aide-mémoire des opérations",
-    "octets": 3035
+    "octets": 354
    },
    {
     "section": "7. Annexe : prévisualisation et chemins (référence Agent)",
@@ -194,16 +202,34 @@
    },
    {
     "section": "8. Résorption structurelle — neutralisation résiliente (Task 69)",
-    "octets": 2264
+    "octets": 405
    },
    {
     "section": "Baseline A2 — statut de mesure",
     "octets": 387
    }
   ],
-  "kio": 46.1,
-  "token_estimes": 11810
+  "kio": 25.2,
+  "token_estimes": 6445
  },
- "verdict_pre": "GO",
- "verdict_pre_detail": "baseline golden master capturée — 5 contrats, 39 sections, 46.1 Kio"
+ "post": {
+  "comparaison_contrats": {
+   "section_0_normalisee": "PASS",
+   "read_when": "PASS",
+   "evals/evals.json": "PASS",
+   "evals/trigger_evals.json": "PASS",
+   "description_frontmatter": "PASS"
+  },
+  "coherent": true,
+  "pointeurs_valides": true,
+  "pointeurs_manquants": [],
+  "non_duplication": true,
+  "duplications": [],
+  "fonctionnel": true,
+  "poids_avant": 25782,
+  "poids_apres": 25782,
+  "reduction_pct": 0.0,
+  "optimise": true,
+  "verdict_post": "MAINTIEN DE L'OPTIMISATION"
+ }
 }

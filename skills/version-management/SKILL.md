@@ -130,86 +130,11 @@ Si la production est une image, un doc, un ppt, du JSON, une design spec, du tex
 
 ### 1.2 Contrôle obligatoire des chemins (règle critique)
 
-**Tous les fichiers web_project doivent être enregistrés sous `mes-projets/{nom-projet}/`. Interdit de les enregistrer à la racine du workspace, sur le Desktop, dans un répertoire temporaire, ou de se contenter de coller le code.**
-
-La pratique privilégiée est la **prévention** plutôt que le rattrapage : conformément à la « ⚠️ Règle absolue des chemins » en tête de fichier, créer le répertoire projet et écrire directement dedans avant le premier fichier. Les contrôles ci-dessous constituent le **dernier verrou** avant commit / `send_file` :
-
-1. **Avant écriture** : créer les répertoires conformément à la règle absolue en tête et écrire directement au bon endroit
-2. **Avant commit / send_file** : exécuter le script de verrou ci-dessous ; fichiers égarés détectés → **obligation de `mv` vers le répertoire projet d'abord**, puis revalidation avant de continuer
-3. **Règle de génération du nom de projet** : générer automatiquement un nom de projet sémantique en français ou en anglais d'après l'intention de l'utilisateur et le thème du contenu (ex. `site-voyage-pekin`, `backoffice-clients-entreprise`)
-
-```bash
-# Verrou des chemins avant commit (à exécuter à la racine du workspace)
-cd {racine-workspace}
-
-# (a) le répertoire projet doit contenir au moins un fichier d'entrée (pas seulement index.html ; prototype.html etc. valent aussi)
-ls "mes-projets/{nom-projet}/"*.html "mes-projets/{nom-projet}/"*.jsx \
-   "mes-projets/{nom-projet}/"*.tsx "mes-projets/{nom-projet}/"*.vue 2>/dev/null | grep -q . \
-  || { echo "ERROR: aucun fichier d'entrée dans mes-projets/{nom-projet}/, commit / send_file interdits"; }
-
-# (b) aucun fichier d'entrée ne doit traîner à la racine du workspace ni ailleurs
-find . -maxdepth 2 -not -path "./mes-projets/*" \
-  \( -name '*.html' -o -name '*.jsx' -o -name '*.tsx' -o -name '*.vue' \) \
-  | while read -r f; do
-      echo "STRAY: $f → exécuter mv \"$f\" \"mes-projets/{nom-projet}/\" puis revalider"
-    done
-```
-
-Tout ERROR / STRAY → **interdiction** de commit et de `send_file` ; corriger d'abord les chemins puis relancer le verrou.
+> **Intégral archivé R4** : `references/controle-chemins.md` (2,2 Kio — SHA-256 088a88871dcdb0fc…) — tous les fichiers sous `mes-projets/{nom-projet}/` — prévention d'abord, contrôle avant commit, répertoire projet auto-contenu obligatoire. Chargé à la demande (lecture ciblée E5-POIDS — jamais par défaut).
 
 ### 1.3 Règles de structure des fichiers
 
-**Principe central : le répertoire projet est auto-contenu ; tous les fichiers (code + ressources + produits d'export) sont suivis par Git.**
-
-- **Mono-fichier vs multi-fichiers :** ni mono-fichier imposé (JS/CSS inlinés), ni multi-fichiers systématique. À juger selon la complexité du projet :
-  - landing page simple, H5, page vitrine unique → mono-fichier `index.html` possible
-  - styles/scripts à réutiliser, composants nombreux → multi-fichiers possible (ex. `index.html` + `style.css` + `main.js`)
-- **Point de chute des uploads utilisateur :** `upload/` ; unique répertoire de ressources dans le projet : `mes-projets/{nom-projet}/assets/`
-- Références en **chemin relatif** dans le code : `assets/{nom-fichier}` ; interdit de référencer des chemins `upload/` (à la prévisualisation, le back-end remplace les chemins relatifs par des liens OSS ; l'Agent n'a aucune adresse OSS à écrire à la main)
-- Ressources nommées en anglais sémantique (ex. `hero-banner.png`), éviter le chinois et les espaces
-- `assets/` **est suivi par Git** — le snapshot de chaque version embarque toutes les ressources du moment ; lors de la restauration d'une version historique, code et ressources reviennent ensemble, ce qui garantit la prévisualisation complète de toute version passée
-
-#### Traitement des ressources (upload → assets, obligatoire)
-
-**Interdit** d'écrire `assets/xxx` dans le HTML sans fichier correspondant sur disque (cause fréquente d'images cassées : chemin écrit sans copie depuis `upload/`).
-
-1. Trouver le fichier source dans `upload/` (chemins des pièces jointes des messages, `find upload`, `ls -lt upload` pour les uploads les plus récents)
-2. `mkdir -p mes-projets/{nom-projet}/assets`
-3. `cp upload/{source} mes-projets/{nom-projet}/assets/{nom}` — `{nom}` **strictement identique** au `assets/{nom}` référencé dans le HTML (si le HTML est déjà écrit, copier/renommer selon le nom référencé)
-4. Écrire/modifier ensuite les références HTML ; copier image par image
-5. **Vérification avant commit** (présence de MISSING : commit / send_file interdits) :
-
-```bash
-cd mes-projets/{nom-projet}
-grep -ohE 'assets/[a-zA-Z0-9_.-]+' index.html 2>/dev/null | sort -u | while read -r ref; do
-  [ -f "$ref" ] || echo "MISSING: $ref"
-done
-```
-
-6. Sans MISSING, créer la version selon §3 puis `send_file`
-
-#### Origine des ressources (trois cas, mêmes règles de dépôt)
-
-| Origine | Ordre typique | Action de l'Agent | Nouvelle version ? |
-|------|----------|------------|------------|
-| **Upload utilisateur** | HTML d'abord puis images / images d'abord puis HTML | `cp` de `upload/` vers `assets/`, référence cohérente avec le nom de fichier ; images envoyées après : nommer d'après les références HTML existantes | cp seul, code inchangé → ❌ ; références HTML modifiées → ✅ |
-| **Recherche d'images par l'Agent** | l'utilisateur veut des illustrations, l'Agent les cherche en ligne | télécharger vers `assets/{nom}` (interdit d'écrire seulement une URL externe) ; puis écrire/modifier les références HTML | ✅ |
-| **Génération d'images par l'Agent** | l'utilisateur veut des illustrations, l'Agent les génère | écrire dans `assets/{nom}` (interdit d'écrire `assets/xxx` sans dépôt sur disque) ; puis écrire le HTML | ✅ |
-
-**Commun aux trois cas :** tout HTML contenant des références `assets/` impose la vérification ci-dessus avant commit ; fichier absent → déposer le fichier ou modifier la référence, commit avec MISSING interdit.
-**HTML d'abord, sans image :** textes/styles de substitution admis, mais **ne pas** écrire un `assets/xxx` inexistant ; une fois l'image fournie par l'utilisateur ou complétée par l'Agent, écrire la référence réelle et faire le cp.
-
-#### Conservation des images utilisateur entre les versions (important)
-
-Pour les images déjà uploadées et référencées dans `assets/`, lorsque les éditions ultérieures par **langage naturel / commentaires / éditeur de paramètres** produisent une nouvelle version :
-
-- L'utilisateur n'a **pas** demandé de retirer le module ni de changer l'image → **conserver obligatoirement** les fichiers `assets/` d'origine et les références `assets/...` du HTML ; ne pas supprimer, ne pas changer les chemins, ne pas demander de re-upload
-- Modifications limitées au style, aux textes, à la mise en page etc. → ne toucher que les fichiers de code, sans toucher à `assets/` (sauf demande explicite de remplacement des ressources)
-- `git add .` inclut automatiquement les fichiers `assets/` inchangés dans le snapshot de la nouvelle version (Git réutilise automatiquement les fichiers non modifiés, sans stockage dupliqué) ; aucun traitement manuel nécessaire
-
-#### Règles de conservation des maquettes (style samples)
-
-S'il existe une phase de maquettes avant la construction officielle (le modèle produit d'abord un HTML contenant plusieurs directions de design numérotées à faire choisir à l'utilisateur), le HTML de maquettes doit être déplacé sous `mes-projets/{nom-projet}/` et nommé `style-samples.html` ; si l'utilisateur n'est pas satisfait et demande de nouvelles directions, les tours suivants s'incrémentent en `style-samples-2.html`, `style-samples-3.html`, interdiction d'écraser une maquette existante. Interdit de nommer une maquette `index.html` ou tout autre nom de fichier d'entrée. Les maquettes sont émises via `send_file` pour la prévisualisation et le choix de l'utilisateur. `style-samples*.html` est déjà exclu par wildcard dans `.gitignore` : pas d'historique Git, pas de comptage dans la numérotation des versions du projet. Interdit de supprimer les fichiers/dossiers sources des maquettes avant leur dépôt dans le répertoire projet.
+> **Intégral archivé R4** : `references/regles-structure-fichiers.md` (5,7 Kio — SHA-256 f31e059e63371a80…) — répertoire projet auto-contenu — mono-fichier vs multi-fichiers selon le type de projet (landing, H5, vitrine, application). Chargé à la demande (lecture ciblée E5-POIDS — jamais par défaut).
 
 ### 1.4 Flux de création
 
@@ -278,40 +203,7 @@ Les tâches qui ne produisent pas de fichier d'entrée ne déclenchent aucune op
 
 ### 3.1 Points d'entrée d'édition et détermination de la version
 
-| Point d'entrée d'édition | Projet | Version |
-|---------|------|------|
-| Édition par commentaire (instruction écrite sur l'élément sélectionné dans la zone d'aperçu) | l'instruction MD contient le nom du projet | l'instruction MD contient le numéro de version (celui de l'aperçu) |
-| Éditeur de paramètres (bouton d'édition de la zone d'aperçu) | l'instruction MD contient le nom du projet | l'instruction MD contient le numéro de version (celui de l'aperçu) |
-| Langage naturel (saisie dans la boîte de dialogue) | voir les règles ci-dessous | voir les règles ci-dessous |
-| Carte du flux de conversation « Éditer à partir de cette version » | projet correspondant à la carte | version correspondant à la carte (passe par le flux de fusion §4) |
-
-**Défaut en langage naturel : éditer la dernière version du projet le plus récent.**
-
-Détermination du projet : selon les priorités du §2 (nom désigné par l'utilisateur > contexte front-end > dernière opération > question posée).
-
-Détermination de la version :
-
-| Scénario | Traitement |
-|------|----------|
-| L'utilisateur désigne explicitement une version (ex. « à partir de V2, modifier le titre », ou boîte de saisie préremplie « Éditer à partir de la version V2 de « {nom-projet} » ») | suivre la version désignée → flux de fusion §4 |
-| L'utilisateur désigne un projet sans désigner de version | dernière version de ce projet |
-| Autres cas | par défaut : dernière version du projet le plus récent |
-
-Pas de question supplémentaire. Toutes les versions sont restaurables ; une édition par mégarde d'une version non prévue se corrige par une restauration.
-
-#### Règles de traitement des éditions par commentaire et par l'éditeur de paramètres
-
-Après une édition par commentaire ou par l'éditeur de paramètres dans la zone d'aperçu (y compris l'aperçu d'une version historique), le front-end génère une instruction MD envoyée à l'Agent. L'instruction MD contient le **nom du projet** et le **numéro de version** ; l'Agent applique les règles suivantes :
-
-1. Extraire le nom du projet de l'instruction MD → localiser `mes-projets/{nom-projet}/`
-2. Extraire le numéro de version de l'instruction MD → obtenir `V{n}`
-3. Lire le `latest_version` du `meta.json` du projet et déterminer la relation entre versions :
-   - **Version désignée = dernière version** → éditer directement dans le workspace courant → créer une nouvelle version selon §3.3
-   - **Version désignée ≠ dernière version (version historique)** → **obligation** d'exécuter le flux de fusion §4.4 (restaurer d'abord la version désignée avec `git checkout v{n} -- .`, puis appliquer l'édition, enfin un seul commit en nouvelle version). **Interdit de sauter l'étape de restauration** ; aussi minime que l'Agent estime l'écart entre la version courante et la version cible, il doit restaurer strictement avant de modifier.
-4. Rechercher les correspondances par ancres dans tous les fichiers HTML du répertoire projet, localiser l'élément cible et appliquer la modification
-5. Une fois terminé : créer la version avec les commandes git du §3.3 / §4.4 + mettre à jour `meta.json` + `send_file`
-
-> **Le template MD est maintenu par le front-end.** Ce Skill ne définit pas le format MD précis ; il suffit qu'il contienne le nom du projet, le numéro de version, les ancres et les modifications pour être parsable par l'Agent.
+> **Intégral archivé R4** : `references/points-entree-edition.md` (3,4 Kio — SHA-256 4e6435236ca92f2f…) — table des points d'entrée d'édition (commentaire, carte, restauration) et détermination de la version de base du projet. Chargé à la demande (lecture ciblée E5-POIDS — jamais par défaut).
 
 ### 3.2 Moments de création de version
 
@@ -345,103 +237,7 @@ git tag $NEXT_TAG
 
 ### 3.4 Sortie dans le flux de conversation (send_file)
 
-Chaque nouvelle version générée impose un appel à `send_file`.
-
-#### 3.4.1 Règle par défaut : projet à fichier d'entrée unique
-
-| Paramètre | Valeur |
-|------|-----|
-| `ext` | toujours `web_project` |
-| `title` | nom du projet, ex. `site-voyage-pekin` ; **ne pas** y inclure le numéro de version (le front-end le concatène via le champ `version`) ; en aucun cas le nom d'un fichier précis (index, main etc.) |
-| `file_path` | chemin complet du fichier d'entrée principal du projet, ex. `/mes-projets/site-voyage-pekin/index.html` |
-| `project_name` | identique au `project_name` de `meta.json` |
-| `version` | numéro de la version en cours, ex. `V3` |
-
-Exemple d'appel :
-```json
-{"title": "site-voyage-pekin", "ext": "web_project", "file_path": "/mes-projets/site-voyage-pekin/index.html", "project_name": "site-voyage-pekin", "version": "V3"}
-```
-
-#### 3.4.2 Projets multi-fichiers d'entrée (règle ajoutée)
-
-Quand le projet contient **plusieurs fichiers d'entrée HTML indépendants** (ex. `index.html` + `light.html`, ou plusieurs pages) :
-
-1. **Tous les fichiers d'entrée doivent être commités dans le même commit** (`git add .` les inclut naturellement tous)
-2. **Stratégie send_file :**
-   - S'il n'y a qu'**une entrée principale** (les autres étant auxiliaires), n'émettre par défaut que l'entrée principale
-   - Si le Skill appelant exige explicitement l'émission de plusieurs fichiers (ex. double fichier prototype), suivre la demande de l'appelant
-   - Aucun oubli toléré : tous les fichiers HTML doivent être suivis par git
-3. **Interdit** d'appeler `ext=directory` sur le répertoire projet pour émettre un dossier
-
-Exemple (`index.html` entrée principale, `light.html` variante ajoutée) :
-```bash
-# le même commit contient les deux fichiers
-git add index.html light.html assets/
-git commit -m "V4: ajout de la variante de thème light"
-git tag v4
-```
-
-send_file n'émet que l'entrée principale :
-```json
-{"title": "site-voyage-pekin", "ext": "web_project", "file_path": "/mes-projets/site-voyage-pekin/index.html", "project_name": "site-voyage-pekin", "version": "V4"}
-```
-
-#### 3.4.3 Livraison prototype en double fichier (règle stable)
-
-Quand le Skill appelant est `prototype.md` et que la version contient les deux fichiers de livraison (prototype interactif + document de flux) :
-
-1. **Périmètre de la version (obligatoire)**
-   La version doit inclure et commiter les deux fichiers HTML (en général `prototype.html` et `flow.html`) ; commiter un seul des deux est interdit.
-2. **Sortie dans le flux de conversation (obligatoire)**
-   Appeler `send_file` **deux fois** pour le même numéro de version, en émettant chacun des deux fichiers :
-   - Premier appel : `prototype.html`
-   - Second appel : `flow.html`
-3. **Nommage suggéré des cartes**
-   Indiquer le rôle du fichier dans `title` pour que l'utilisateur les distingue (title sans numéro de version) :
-   - `{nom-projet}-prototype`
-   - `{nom-projet}-flow`
-4. **Interdictions**
-   - Interdit d'empaqueter `prototype.html + flow.html` en un dossier pour une émission unique
-   - Interdit de n'émettre qu'un seul des deux fichiers en prétendant avoir réalisé la double livraison prototype
-
-Exemple (même version V4, deux appels successifs) :
-```json
-{"title":"backoffice-clients-entreprise-prototype","ext":"web_project","file_path":"/mes-projets/backoffice-clients-entreprise/prototype.html","project_name":"backoffice-clients-entreprise","version":"V4"}
-{"title":"backoffice-clients-entreprise-flow","ext":"web_project","file_path":"/mes-projets/backoffice-clients-entreprise/flow.html","project_name":"backoffice-clients-entreprise","version":"V4"}
-```
-
-#### 3.4.4 Projets à export d'images fixes (cartes Xiaohongshu etc., règle ajoutée)
-
-Pour les scénarios de cible de sortie `fixed-image` (cartes Xiaohongshu, images de couverture, images longues etc.), le flux typique est :
-
-1. **Générer d'abord le HTML** (produit de la phase de conception) → l'enregistrer comme d'habitude sous `mes-projets/{nom-projet}/`
-2. **Exécuter ensuite l'export** des images → enregistrer les produits d'export sous `mes-projets/{nom-projet}/export/`
-3. **Gestion de versions :** le HTML et `export/` sont tous deux suivis par Git, dans le même commit
-4. **Stratégie send_file (obligatoire) :**
-   - **Premier appel :** émettre le fichier HTML (`ext: web_project`)
-   - **Second appel :** émettre le produit d'export
-     - Export d'une seule image : `ext: extension précise` (ex. `png`, `jpg`), `file_path: /mes-projets/{nom-projet}/export/xxx.png`
-     - Export d'un dossier (plusieurs images) : `ext: directory`, `file_path: /mes-projets/{nom-projet}/export/`
-
-**Règles clés :**
-- Le HTML et les produits d'export **doivent se trouver dans le même répertoire projet**
-- Les deux **doivent figurer dans la même version (commit)**
-- Interdit de laisser des produits d'export dispersés hors du répertoire projet
-
-Exemple (projet d'image longue Xiaohongshu, V2) :
-```bash
-# structure du répertoire projet
-cd mes-projets/guide-voyage-xiaohongshu
-git add .
-git commit -m "V2: optimisation des couleurs de couverture et de la mise en page"
-git tag v2
-```
-
-Appels send_file (deux appels successifs) :
-```json
-{"title":"guide-voyage-xiaohongshu","ext":"web_project","file_path":"/mes-projets/guide-voyage-xiaohongshu/index.html","project_name":"guide-voyage-xiaohongshu","version":"V2"}
-{"title":"guide-voyage-xiaohongshu-export","ext":"directory","file_path":"/mes-projets/guide-voyage-xiaohongshu/export/"}
-```
+> **Intégral archivé R4** : `references/sortie-flux-send-file.md` (5,5 Kio — SHA-256 74cf8f157d02a6fc…) — règle send_file : chaque version générée impose un appel — paramètres par défaut et variantes mono/multi-fichiers (§3.4.1 et suivantes). Chargé à la demande (lecture ciblée E5-POIDS — jamais par défaut).
 
 ### 3.5 Cartes du flux de conversation et « Éditer à partir de cette version »
 
@@ -525,74 +321,11 @@ git tag $NEXT_TAG
 
 ## 5. Structure de meta.json
 
-Un exemplaire par projet, il consigne l'état global du projet. Exclu via `.gitignore`, il n'entre pas dans l'historique des versions.
-
-```json
-{
-  "project_name": "site-voyage-pekin",
-  "latest_version": "v3",
-  "is_published": false,
-  "published_version": null,
-  "domain": null,
-  "versions": [
-    {
-      "id": "v1",
-      "timestamp": "2026-05-01T14:30:00+08:00",
-      "based_on": null,
-      "summary": "accueil + liste des sites touristiques"
-    },
-    {
-      "id": "v2",
-      "timestamp": "2026-05-05T10:30:00+08:00",
-      "based_on": null,
-      "summary": "changement de style vers l'International"
-    },
-    {
-      "id": "v3",
-      "timestamp": "2026-05-06T14:30:00+08:00",
-      "based_on": "v1",
-      "summary": "à partir de V1 : refonte de la mise en page"
-    }
-  ]
-}
-```
-
-| Champ | Type | Description |
-|------|------|------|
-| project_name | string | nom du projet, généré automatiquement par l'Agent, modifiable par l'utilisateur |
-| latest_version | string | numéro de la dernière version courante (ex. "v5") |
-| is_published / published_version / domain | phase 1 : par défaut false / null |
-| versions[].id | string | numéro de version (ex. "v1") |
-| versions[].timestamp | string | horodatage de création (ISO 8601 avec fuseau horaire) |
-| versions[].based_on | string \| null | renseigné uniquement en cas de restauration ou d'édition à partir d'une version historique, pointe vers la version de base ; null pour une édition ordinaire |
-| versions[].summary | string | résumé du changement en une phrase, généré automatiquement par l'Agent |
-
----
+> **Intégral archivé R4** : `references/structure-meta-json.md` (1,6 Kio — SHA-256 d06c2214e34a6b46…) — exemplaire unique par projet, exclu du dépôt git (.gitignore) — schéma complet des champs de l'état global du projet. Chargé à la demande (lecture ciblée E5-POIDS — jamais par défaut).
 
 ## 6. Aide-mémoire des opérations
 
-| Action utilisateur | Opération exécutée |
-|--------|--------|
-| « Faire un site XX » | **créer d'abord** `mes-projets/{nom-projet}/` → générer les fichiers dans le répertoire → création §1 (git init + V1) → `send_file` |
-| « Faire un prototype produit » | **créer d'abord** le répertoire projet → générer `prototype.html` + `flow.html` dans le répertoire → commit dans la même version (les deux fichiers suivis par Git) → deux `send_file` successifs selon §3.4.3 |
-| « Agrandir un peu le titre » (sans contexte particulier) | éditer la dernière version du projet le plus récent → commandes de création de version §3.3 → `send_file` |
-| « Ajouter un thème light au projet existant » | générer `light.html` → même commit que les fichiers existants → `send_file` émettant l'entrée principale |
-| « À partir de V2, modifier le titre » / préremplissage « Éditer à partir de la version V2 de « {nom-projet} » » | flux de fusion §4 → `send_file` |
-| Commentaire / édition de paramètres | extraire nom de projet + numéro de version de l'instruction MD → selon les règles de traitement du §3.1, passer par §3.3 ou §4.4 → `send_file` |
-| Upload d'images par l'utilisateur (`upload/`) | `cp` → `assets/` → alignement sur le HTML → vérification §1 → si le code change : §3.3 |
-| HTML d'abord, images ensuite | `cp` selon les noms référencés dans le HTML ; pas de commit si le code est inchangé, nouvelle version si les références changent |
-| L'Agent cherche/génère des images pour remplir le site | télécharger ou écrire dans `assets/` → écrire les références → vérification §1 → §3.3 |
-| Upload seulement, sans changement de code | écriture dans `assets/` seulement, pas de commit |
-| Modification de style sans demande de changement d'image ni suppression de module | modifier le code, **conserver les références et fichiers assets** → §3.3 → `send_file` |
-| « Restaurer vers V2 » | restauration standard §4 (code + assets reviennent ensemble) → `send_file` |
-| Clic sur la carte « Éditer à partir de cette version » | l'utilisateur envoie le texte prérempli → fusion §4 → `send_file` |
-| En langage naturel : « publier » / « dépublier » | orienter l'utilisateur vers le bouton de publication du front-end (non implémenté en phase 1) |
-| « Rédige-moi une proposition » | ne déclenche pas la gestion de versions |
-| Référence ambiguë | scanner `mes-projets/` → poser la question |
-| Cartes Xiaohongshu / image de couverture | générer le HTML → enregistrer dans le projet → export vers `export/` → même commit → `send_file` du HTML + `send_file` de l'export |
-| Phase de maquettes (« propose d'abord plusieurs directions ») | générer `style-samples.html` → enregistrer sous `mes-projets/{nom-projet}/` → émission via `send_file` → attendre le choix de direction de l'utilisateur → pas de commit, pas de comptage de version |
-
----
+> **Intégral archivé R4** : `references/aide-memoire-operations.md` (3,0 Kio — SHA-256 4883fbee1cdac522…) — table « Action utilisateur → Opération exécutée » pour tous les cas (création, édition, restauration, multi-projets). Chargé à la demande (lecture ciblée E5-POIDS — jamais par défaut).
 
 ## 7. Annexe : prévisualisation et chemins (référence Agent)
 
@@ -605,28 +338,7 @@ Un exemplaire par projet, il consigne l'état global du projet. Exclu via `.giti
 
 ## 8. Résorption structurelle — neutralisation résiliente (Task 69)
 
-> **Diagnostic consolidé (Task 69, directive n°8 item 1 — 32 incidents documentés)** : la
-> disparition de ce skill survient ENTRE LES TOURS, par un processus EXTERNE au projet (ni
-> cron ni process local) ; le dépôt git hôte reçoit des commits automatiques à messages UUID
-> (snapshots plateforme) aux frontières de tours ; corrélation temporelle exacte entre
-> interruptions utilisateur et disparitions (clarification propriétaire : « je te t'arrête
-> souvent pour affiner mes requêtes »). **La prévention est impossible → la résorption est
-> une NEUTRALISATION RÉSILIENTE à 4 composantes** :
->
-> | Composante | Mécanisme | État |
-> |---|---|---|
-> | (a) Watchdog battements de cœur | `scripts/vm-watchdog.py` — détecte SON PROPRE temps d'arrêt (écart heartbeat > seuil 180 s = fenêtre de disparition potentielle) ; modes `--once` / `--daemon` / `--selftest` (harnais 8 tests en répertoire temporaire) / `--init` ; réparation déterministe via la garde | **v1.3.0 — nouveau** |
-> | (b) Journal forensique horodaté | `tmp/vm-watchdog/journal-forensique.jsonl` — événements INIT / INCIDENT_DOCUMENTE (backfill qualifié des 32 incidents) / DEMARRAGE / ECART / DISPARITION_DETECTEE / REPARATION / RETABLIE / VERIF_OK / ARRET ; heads hôte + miroir consignés à chaque événement (corrélation mécanique avec les interruptions) | **v1.3.0 — nouveau** |
-> | (c) Garde à l'invocation | `skills/gen-plan/scripts/ensure-installed.py` (hook É1-INSTALL, Task 56) — INSTALLE-REPARÉ rc=0 depuis le miroir local ; AUCUN doublon (R4 jamais dupliquer) | préexistante, intégrée |
-> | (d) Persistance disque | miroir `KNOWLEDGE-repo` (règle d'or n°5 — le disque fait foi) | préexistante, intégrée |
->
-> **Usage** : `python3 skills/version-management/scripts/vm-watchdog.py --once` (un cycle) ·
-> `--daemon` (heartbeat permanent, défaut 30 s) · `--init` (initialise le journal — no-op
-> idempotent si présent) · `--selftest` (8 tests mécaniques sans effet sur l'écosystème).
-> Toute réparation déclenchée par le watchdog doit être suivie d'une re-certification
-> arbitre (`check-ecosysteme-integrity.py` — 110/110 attendu).
-
----
+> **Intégral archivé R4** : `references/resorption-structurelle.md` (2,2 Kio — SHA-256 f95dc63abd7c5fb0…) — diagnostic consolidé Task 69 (32 incidents : disparition entre les tours par processus externe) et mécanisme de neutralisation résiliente. Chargé à la demande (lecture ciblée E5-POIDS — jamais par défaut).
 
 ## Baseline A2 — statut de mesure
 > **Baseline A2 (Task 21 P3/F3, 2026-10-03)** : MESURÉE 2 voies (voie mécanique SHARED §7 v2 + voie L 3 runs réels) — score baseline 3/8 (nulls : 2) ; détail par cas : `scripts/baseline-a2-all-report.json` ; cas structurels consignés au registre KB (décision Task 21) ; re-mesure idempotente `--skip-done` armée pour les nulls 429 restants.
