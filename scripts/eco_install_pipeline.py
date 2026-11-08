@@ -12,9 +12,17 @@ Pipeline d'installation PM-INSTALL v1.8.0 (§2 — MÉCANISME DUAL : voie (a) in
 DIRECTE des formes certifiées du dépôt ; ce script en est l'EXÉCUTANT CANONIQUE)
 réinstallation hôte post-wipe (§3.4 : wipe inter-sessions = cas documenté,
 ré-exécution depuis l'étape 2).
-Source : clone local du dépôt bigleon2/KNOWLEDGE @ b75a620 (règle d'or n°4 —
-descendant-tolérant : merge-base --is-ancestor, jamais un état antérieur au pin,
-évolution forward tolérée).
+Source : clone local du dépôt bigleon2/KNOWLEDGE @ a14f750 (dernier commit certifié
+d'installation — Task 74 run 2 rc=0 ; règle d'or n°4 — descendant-tolérant :
+merge-base --is-ancestor, jamais un état antérieur au pin, évolution forward
+tolérée).
+Task 76 (2026-11-08, session web-ecef7f80 — directive « tests des systèmes
+d'installation ») : F1 — CONTRAT CLI (l'absence de gestion de --help a exécuté
+une installation complète sur un simple appel d'aide en conditions réelles :
+usage explicite, argv[1] explicite invalide = ABANDON sans repli silencieux,
+mode --dry-run lecture seule) ; F2 — PIN b75a620 → a14f750 (3 commits certifiés
+plus récents : aa3b99d directive, a14f750 installation certifiée, 3171c4b
+Task 75 CLOSE).
 Task 18 (2026-10-23, session web-fdf5963c — directive propriétaire « optimise le
 système d'installation en regénérant ») : chemin REPO PARAMÉTRABLE (ordre : argv
 $1 > variable d'environnement ECO_REPO > /home/z/my-project/KNOWLEDGE-repo >
@@ -48,27 +56,63 @@ import shutil
 import subprocess
 import sys
 
+USAGE = """usage: eco_install_pipeline.py [--help] [--dry-run] [chemin_dépôt]
+  (aucun argument)   dépôt source = env ECO_REPO > /home/z/my-project/KNOWLEDGE-repo > tmp/KNOWLEDGE-repo
+  chemin_dépôt       dépôt source EXPLICITE (doit exister et contenir skills/KNOWLEDGE.md — aucun repli silencieux)
+  --dry-run          rapport complet SANS AUCUNE mutation (lecture seule — F1 Task 76)
+  --help | -h        cette aide — n'exécute RIEN (F1 Task 76)
+"""
 
-def _resolve_repo():
-    """Chemin du dépôt source (portabilité L008) : argv $1 > env ECO_REPO >
-    candidats par défaut. Le premier répertoire contenant skills/KNOWLEDGE.md gagne."""
-    candidats = []
-    if len(sys.argv) > 1:
-        candidats.append(sys.argv[1])
-    if os.environ.get("ECO_REPO"):
-        candidats.append(os.environ["ECO_REPO"])
-    candidats += ["/home/z/my-project/KNOWLEDGE-repo",
-                  "/home/z/my-project/tmp/KNOWLEDGE-repo"]
+
+def _args():
+    """F1 (Task 76) — contrat CLI : --help n'exécute rien ; option inconnue = rc 64 ;
+    un chemin explicite invalide = ABANDON (jamais de repli silencieux)."""
+    a = sys.argv[1:]
+    if any(x in ("--help", "-h") for x in a):
+        print(USAGE)
+        sys.exit(0)
+    dry = "--dry-run" in a
+    inconnues = [x for x in a if x.startswith("-") and x != "--dry-run"]
+    if inconnues:
+        print("Option inconnue : %s" % inconnues[0])
+        print(USAGE)
+        sys.exit(64)
+    chemins = [x for x in a if not x.startswith("-")]
+    if len(chemins) > 1:
+        print("Un seul chemin de dépôt attendu")
+        print(USAGE)
+        sys.exit(64)
+    return (chemins[0] if chemins else None), dry
+
+
+def _resolve_repo(explicite):
+    """Chemin du dépôt source (portabilité L008) : argv $1 (EXPLICITE — aucun repli
+    silencieux si invalide, F1 Task 76) > env ECO_REPO > candidats par défaut.
+    Le premier répertoire contenant skills/KNOWLEDGE.md gagne."""
+    if explicite is not None:
+        candidats = [explicite]
+    elif os.environ.get("ECO_REPO"):
+        candidats = [os.environ["ECO_REPO"]]
+    else:
+        candidats = ["/home/z/my-project/KNOWLEDGE-repo",
+                     "/home/z/my-project/tmp/KNOWLEDGE-repo"]
     for c in candidats:
         if os.path.isfile(os.path.join(c, "skills", "KNOWLEDGE.md")):
             return c
+    if explicite is not None:
+        sys.exit("ABANDON : chemin de dépôt explicite invalide : %r (aucun repli "
+                 "silencieux sur argument explicite — faille F1 corrigée Task 76). "
+                 "Essayez : %s <chemin> ou ECO_REPO=<chemin>"
+                 % (explicite, sys.argv[0]))
     sys.exit("ABANDON : aucun dépôt source trouvé (essayez : %s <chemin> ou ECO_REPO=<chemin>)"
              % sys.argv[0])
 
 
-REPO = _resolve_repo()
+_ARGS = _args()
+REPO = _resolve_repo(_ARGS[0])
+DRY = _ARGS[1]
 HOST = "/home/z/my-project"
-PIN = "b75a62066791a8cce8c1ec5d1dbe7d976bae4244"
+PIN = "a14f750caa70c7358fa5d5c6ed1e709afdc385f8"
 # Task 20 (finding F1) : « scripts/verify-correct-work.py » RETIRÉ de la purge —
 # ce fichier est un shim de compatibilité CERTIFIÉ (décision S2-α Task 12,
 # re-validée propriétaire 2026-10-10 : délégation pure à l'arbitre canonique du
@@ -132,7 +176,7 @@ def main():
         sys.exit(2)
     report["garde_R2"] = "0 rétrogradation — host ≤ repo partout"
 
-    # F2 (Task 22) : exclusions de projection — artefacts de bytecode non canoniques
+    # F2 (Task 18) : exclusions de projection — artefacts de bytecode non canoniques
     EXCLUS_SYNC = ("__pycache__",)
 
     def sync(rel, delete=False):
@@ -142,9 +186,15 @@ def main():
             report["etapes"][rel] = "absent du dépôt (ignoré)"
             return
         if os.path.isfile(src):
-            os.makedirs(os.path.dirname(dst), exist_ok=True)
-            shutil.copy2(src, dst)
-            report["etapes"][rel] = "fichier sync"
+            if not DRY:
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                shutil.copy2(src, dst)
+            report["etapes"][rel] = "fichier sync" + (" (dry-run)" if DRY else "")
+            return
+        if DRY:
+            n = sum(len(files) for dirpath, _, files in os.walk(src)
+                    if not any(part in EXCLUS_SYNC for part in dirpath.split(os.sep)))
+            report["etapes"][rel] = f"{n} fichiers (dry-run — 0 mutation)"
             return
         if delete and os.path.isdir(dst):
             shutil.rmtree(dst)
@@ -184,26 +234,37 @@ def main():
     for rel in NON_CANONIQUES:
         p = os.path.join(HOST, rel)
         if os.path.exists(p):
-            os.remove(p)
-            report["purges"].append(rel)
+            if DRY:
+                report["purges"].append(rel + " (dry-run)")
+            else:
+                os.remove(p)
+                report["purges"].append(rel)
     # F2 (Task 22) : purge du bytecode hôte résiduel (hérité des runs antérieurs —
     # l'union sync ne supprime pas ; __pycache__/ n'est plus projeté depuis F2)
     _pyc = os.path.join(HOST, "scripts", "__pycache__")
     if os.path.isdir(_pyc):
-        shutil.rmtree(_pyc)
-        report["purges"].append("scripts/__pycache__")
+        if DRY:
+            report["purges"].append("scripts/__pycache__ (dry-run)")
+        else:
+            shutil.rmtree(_pyc)
+            report["purges"].append("scripts/__pycache__")
 
-    # Étape 2 — Rescellement archive d'intégrité (round-trip v2.2)
-    # F1 (Task 22) : anti-faux-succès — le rc est propagé (exit 2 si échec) ;
-    # un rescellement qui échoue ne doit JAMAIS produire une installation « verte ».
-    r = subprocess.run([sys.executable,
-                        os.path.join(HOST, "scripts", "task21-f2-rebuild-archive.py")],
-                       capture_output=True, text=True)
-    report["etapes"]["2_archive"] = (r.stdout.strip() or r.stderr.strip())[-400:]
-    if r.returncode != 0:
-        report["etapes"]["2_archive"] = f"ÉCHEC rc={r.returncode} — {report['etapes']['2_archive']}"
-        print(json.dumps(report, ensure_ascii=False, indent=2))
-        sys.exit(2)
+    if DRY:
+        # F1 (Task 76) : --dry-run = lecture seule — le rescellement (mutation) est
+        # sauté ; la vérification post-install F3 (lecture seule) est conservée.
+        report["etapes"]["2_archive"] = "non exécuté (dry-run — lecture seule)"
+    else:
+        # Étape 2 — Rescellement archive d'intégrité (round-trip v2.2)
+        # F1 (Task 22) : anti-faux-succès — le rc est propagé (exit 2 si échec) ;
+        # un rescellement qui échoue ne doit JAMAIS produire une installation « verte ».
+        r = subprocess.run([sys.executable,
+                            os.path.join(HOST, "scripts", "task21-f2-rebuild-archive.py")],
+                           capture_output=True, text=True)
+        report["etapes"]["2_archive"] = (r.stdout.strip() or r.stderr.strip())[-400:]
+        if r.returncode != 0:
+            report["etapes"]["2_archive"] = f"ÉCHEC rc={r.returncode} — {report['etapes']['2_archive']}"
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+            sys.exit(2)
 
     # F3 (Task 22) — Vérification post-install embarquée (fail-fast, lecture seule) :
     # SHA-256 des SKILL.md des entrées KB, hôte vs dépôt — toute divergence est un
@@ -225,6 +286,7 @@ def main():
         print(json.dumps(report, ensure_ascii=False, indent=2))
         sys.exit(2)
 
+    report["dry_run"] = DRY
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 

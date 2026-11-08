@@ -1,0 +1,117 @@
+{
+  "format": "protocole-tests-installation-task76 v1.0.0",
+  "horodatage": "2026-11-08T06:47:53Z",
+  "echelle": "PASS < RÉSERVES < FAIL",
+  "agregation": "pire-des-verdicts par cible",
+  "phases": "PRE (capture sans correction) / POST (après corrections F1-F5)",
+  "non_regression": "stricte test à test (aucun verdict dégradé PRE->POST)",
+  "tolerances": [
+    "WARN B1 coherence hérité (artefact historique propriétaire) — toléré",
+    "C1-F11 archive (F4) : RÉSERVES = divergence à adjudication mécanique en G4 (hypothèse piliers frais — jamais affirmée sans preuve)",
+    "C2 : auto-réparation éventuelle pendant la campagne = comportement NOMINAL de la cible (garde), consignée comme preuve vivante — pas une écriture corrective du harnais"
+  ],
+  "cibles": {
+    "C1": {
+      "nom": "PM-INSTALL v1.9.10 (corpus + exécutants canoniques)",
+      "tests": [
+        {
+          "id": "C1-F01",
+          "objet": "structure (version + sections)"
+        },
+        {
+          "id": "C1-F02",
+          "objet": "sync corpus hôte↔dépôt"
+        },
+        {
+          "id": "C1-F03",
+          "objet": "§2ter instantané 4 familles vs corpus"
+        },
+        {
+          "id": "C1-F04",
+          "objet": "§2ter étiquette de date (F5)"
+        },
+        {
+          "id": "C1-F05",
+          "objet": "critères §3 : ≥14 entrées KB + §A.3"
+        },
+        {
+          "id": "C1-F06",
+          "objet": "registre certifié integrity (R4)"
+        },
+        {
+          "id": "C1-F07",
+          "objet": "exécutants canoniques compilables"
+        },
+        {
+          "id": "C1-F08",
+          "objet": "contrat CLI pipeline (F1)"
+        },
+        {
+          "id": "C1-F09",
+          "objet": "PIN à jour (F2)"
+        },
+        {
+          "id": "C1-F10",
+          "objet": "fichiers-refs alignés (F3)"
+        },
+        {
+          "id": "C1-F11",
+          "objet": "archive hôte↔dépôt (F4)"
+        },
+        {
+          "id": "C1-P01",
+          "objet": "poids #token référence"
+        }
+      ]
+    },
+    "C2": {
+      "nom": "ENSURE-INSTALL (garde É1-INSTALL + shim racine)",
+      "tests": [
+        {
+          "id": "C2-F01",
+          "objet": "py_compile garde + shim"
+        },
+        {
+          "id": "C2-F02",
+          "objet": "--check INSTALLE rc=0"
+        },
+        {
+          "id": "C2-F03",
+          "objet": "idempotence ×2"
+        },
+        {
+          "id": "C2-F04",
+          "objet": "--preempt PRIORITE-NONE"
+        },
+        {
+          "id": "C2-F05",
+          "objet": "--reinstall no-op"
+        },
+        {
+          "id": "C2-F06",
+          "objet": "mode inconnu rc=64"
+        },
+        {
+          "id": "C2-F07",
+          "objet": "FICHIERS_CLES 9/9"
+        },
+        {
+          "id": "C2-F08",
+          "objet": "KB dynamique == décompte indépendant"
+        },
+        {
+          "id": "C2-F09",
+          "objet": "auto-réparation bac à sable + contrôle négatif"
+        },
+        {
+          "id": "C2-F10",
+          "objet": "délégation shim racine"
+        },
+        {
+          "id": "C2-P01",
+          "objet": "performance --check"
+        }
+      ]
+    }
+  }
+}

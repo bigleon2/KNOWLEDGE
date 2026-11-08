@@ -259,6 +259,15 @@ def recalibrage(results, dry):
         if mi and ("%s v%s" % (f, old)) in mi.group(1):
             ligne_new = mi.group(0).replace("%s v%s" % (f, old), "%s v%s" % (f, new))
             pm_install = sub_locked(pm_install, mi.group(0), ligne_new, 1, "instantané §A.3")
+    # Task 76 (faille F5) : rafraîchissement de l'étiquette de date §2ter — le
+    # générateur mettait à jour la table mais jamais son en-tête daté, laissant
+    # une étiquette périmée (constaté v1.9.8→v1.9.10 : table à jour, étiquette
+    # restée « au 2026-10-12 »). Substitution verrouillée (abandon si absente).
+    pm_install, _n_date = re.subn(
+        r"(### PMs sources des étapes 3-6 \(dernières versions au )\d{4}-\d{2}-\d{2}(\))",
+        r"\g<1>%s\g<2>" % today, pm_install, count=1)
+    if _n_date != 1:
+        abandon("PM-INSTALL §2ter : étiquette de date « dernières versions au » introuvable (attendue 1 fois)")
     shared = sub_locked(shared, "> **Version** : %s" % sh_old, "> **Version** : %s" % sh_new, 1, "version SHARED")
     shared = sub_locked(shared, "> **Révision** : ",
                         "> **Révision** : %s (montée %s, KO-L004 v1.1.0) — **v%s** : §6.1 — référence(s) PM portée(s) "

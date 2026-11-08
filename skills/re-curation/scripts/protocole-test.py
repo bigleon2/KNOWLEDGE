@@ -88,6 +88,12 @@ def nature_du_skill(racine: Path, nom: str) -> dict:
                 fm_fin = i + 1
                 break
     texte = "\n".join(lignes)
+    # Convention de mesure (note croisée Task 76 D010 — différés Task 75 §6.4) :
+    # « texte » reconstitué par join(splitlines()) vaut la taille disque MOINS 1 o
+    # (saut de ligne final non reconstitué — ex. gen-plan : 30 667 o ici vs 30 668 o
+    # disque [task72-baseline-verifier.py / st_size]) ; chaque mesureur est
+    # self-consistant — comparer chaque outil à sa propre convention, jamais l'un
+    # à l'autre sans cette clé de lecture.
     a_section_a = any(l.startswith("## §A") for l in lignes)
     a_zero = any(l.startswith("## §0") for l in lignes)
     m_read = re.search(r"^read_when:.*?(?=^\S)", texte, re.S | re.M)

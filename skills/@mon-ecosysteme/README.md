@@ -41,7 +41,7 @@ KNOWLEDGE/
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md
 │   ├── PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md  ← 4e famille (décision D009)
-│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.9.2 — pipeline 11 étapes, mécanisme dual + règle d'or n°8)
+│   ├── PROMPT-MAITRE-INSTALL-ECOSYSTEME.md  ← Installation (source unique v1.9.11 — pipeline 11 étapes, mécanisme dual + règle d'or n°8)
 │   ├── PROMPT-ULTRA-MAITRE-ORCHESTRATION.md ← Orchestration à l'usage (généré idempotent v1.0.0)
 │   └── SYNC-CONTEXT.md                  ← Procédure de synchronisation
 │

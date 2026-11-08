@@ -1,0 +1,94 @@
+{
+  "format": "campagne-task76 v1.0.0",
+  "phase": "post",
+  "cible": "C1",
+  "horodatage": "2026-11-08T07:03:08Z",
+  "duree_totale_ms": 104.6,
+  "verdict": "PASS",
+  "tests": [
+    {
+      "id": "C1-F01",
+      "nom": "structure PM-INSTALL (version + sections §A/§2/§2bis/§2ter/§2quater/§3/§3.2/§A.3)",
+      "verdict": "PASS",
+      "duree_ms": 0.4,
+      "details": "version en-tête 1.9.11 == première entrée table §7 v1.9.11 (cohérentes) ; sections manquantes : aucune (§A/§2/§2bis/§2ter/§2quater/§3/§3.2/§A.3)"
+    },
+    {
+      "id": "C1-F02",
+      "nom": "sync corpus hôte ↔ dépôt (SHA-256 byte-identité)",
+      "verdict": "PASS",
+      "duree_ms": 1.4,
+      "details": "corpus hôte == dépôt (SHA 6e48d2ea6b08… / 6e48d2ea6b08…, 51578 o)"
+    },
+    {
+      "id": "C1-F03",
+      "nom": "§2ter instantané : 4 familles vs corpus réel",
+      "verdict": "PASS",
+      "duree_ms": 0.5,
+      "details": "instantané §2ter : 4/4 familles (gen-plan/correct-work/clone-chat/refactor-guard) ; PM sources du corpus présents : oui"
+    },
+    {
+      "id": "C1-F04",
+      "nom": "§2ter étiquette de date rafraîchie (F5)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "étiquette de date §2ter : « au 2026-11-07 » — dernier recalibrage v1.9.10 : 2026-11-07 (à jour)"
+    },
+    {
+      "id": "C1-F05",
+      "nom": "critères §3 : ≥ 14 entrées KB + §A.3 → registre",
+      "verdict": "PASS",
+      "duree_ms": 1.2,
+      "details": "critère §3 « ≥ 14 entrées KB » : 54 entrées au format strict ✓ ; §A.3 → registre skills/KNOWLEDGE.md référencé"
+    },
+    {
+      "id": "C1-F06",
+      "nom": "critères §3 : registre certifié par l'arbitre integrity (R4)",
+      "verdict": "PASS",
+      "duree_ms": 41.8,
+      "details": "arbitre integrity (délégué R4) : « ['=== RESUME : 112/112 PASS, 0 FAIL ==='] »"
+    },
+    {
+      "id": "C1-F07",
+      "nom": "exécutants canoniques présents et compilables",
+      "verdict": "PASS",
+      "duree_ms": 58.6,
+      "details": "exécutants canoniques : eco_install_pipeline.py (14804 o) · install-ecosysteme-local.sh (13074 o) · task21-f2-rebuild-archive.py (15828 o) — tous présents et compilables"
+    },
+    {
+      "id": "C1-F08",
+      "nom": "contrat CLI du pipeline — --help sans exécution (F1)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "contrat CLI du pipeline : gestion de --help/usage PRÉSENTE"
+    },
+    {
+      "id": "C1-F09",
+      "nom": "PIN pipeline à jour vs dernier commit certifié (F2)",
+      "verdict": "PASS",
+      "duree_ms": 0.2,
+      "details": "PIN constant : a14f750 — dernier commit certifié d'installation : a14f750 (Task 74 run 2 rc=0) → à jour"
+    },
+    {
+      "id": "C1-F10",
+      "nom": "fichiers-refs alignés aux formes canoniques (F3)",
+      "verdict": "PASS",
+      "duree_ms": 0.2,
+      "details": "fichiers-refs ecosysteme-travail/ : PM-INSTALL.md == canonique · ensure-installed.py == shim racine (formes de référence alignées)"
+    },
+    {
+      "id": "C1-F11",
+      "nom": "archive intégrité hôte ↔ dépôt (F4 — adjudication)",
+      "verdict": "PASS",
+      "duree_ms": 0.3,
+      "details": "archive intégrité : hôte 1015308d64a2… == dépôt 1015308d64a2… "
+    },
+    {
+      "id": "C1-P01",
+      "nom": "poids PM-INSTALL (mesure de référence #token)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "PM-INSTALL : 51578 o = 50.4 Kio · ≈ 12322 #token (chargé à l'installation uniquement — pas un chargement par défaut ; mesure de référence)"
+    }
+  ]
+}

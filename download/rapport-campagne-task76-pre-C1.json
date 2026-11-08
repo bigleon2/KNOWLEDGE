@@ -1,0 +1,94 @@
+{
+  "format": "campagne-task76 v1.0.0",
+  "phase": "pre",
+  "cible": "C1",
+  "horodatage": "2026-11-08T06:48:05Z",
+  "duree_totale_ms": 109.9,
+  "verdict": "FAIL",
+  "tests": [
+    {
+      "id": "C1-F01",
+      "nom": "structure PM-INSTALL (version + sections §A/§2/§2bis/§2ter/§2quater/§3/§3.2/§A.3)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "version 1.9.10 ; sections manquantes : aucune (§A/§2/§2bis/§2ter/§2quater/§3/§3.2/§A.3)"
+    },
+    {
+      "id": "C1-F02",
+      "nom": "sync corpus hôte ↔ dépôt (SHA-256 byte-identité)",
+      "verdict": "PASS",
+      "duree_ms": 1.4,
+      "details": "corpus hôte == dépôt (SHA 9e19d9047753… / 9e19d9047753…, 51208 o)"
+    },
+    {
+      "id": "C1-F03",
+      "nom": "§2ter instantané : 4 familles vs corpus réel",
+      "verdict": "PASS",
+      "duree_ms": 0.5,
+      "details": "instantané §2ter : 4/4 familles (gen-plan/correct-work/clone-chat/refactor-guard) ; PM sources du corpus présents : oui"
+    },
+    {
+      "id": "C1-F04",
+      "nom": "§2ter étiquette de date rafraîchie (F5)",
+      "verdict": "FAIL",
+      "duree_ms": 0.0,
+      "details": "étiquette de date §2ter : « au 2026-10-12 » — dernier recalibrage v1.9.10 : 2026-11-07 (PÉRIMÉE — faille F5 : versions à jour mais date non rafraîchie par le générateur)"
+    },
+    {
+      "id": "C1-F05",
+      "nom": "critères §3 : ≥ 14 entrées KB + §A.3 → registre",
+      "verdict": "PASS",
+      "duree_ms": 1.3,
+      "details": "critère §3 « ≥ 14 entrées KB » : 54 entrées au format strict ✓ ; §A.3 → registre skills/KNOWLEDGE.md référencé"
+    },
+    {
+      "id": "C1-F06",
+      "nom": "critères §3 : registre certifié par l'arbitre integrity (R4)",
+      "verdict": "PASS",
+      "duree_ms": 44.1,
+      "details": "arbitre integrity (délégué R4) : « ['=== RESUME : 112/112 PASS, 0 FAIL ==='] »"
+    },
+    {
+      "id": "C1-F07",
+      "nom": "exécutants canoniques présents et compilables",
+      "verdict": "PASS",
+      "duree_ms": 61.7,
+      "details": "exécutants canoniques : eco_install_pipeline.py (11740 o) · install-ecosysteme-local.sh (13074 o) · task21-f2-rebuild-archive.py (15828 o) — tous présents et compilables"
+    },
+    {
+      "id": "C1-F08",
+      "nom": "contrat CLI du pipeline — --help sans exécution (F1)",
+      "verdict": "FAIL",
+      "duree_ms": 0.1,
+      "details": "contrat CLI du pipeline : gestion de --help/usage ABSENTE (faille F1 — constat E2 réel : un appel --help a exécuté une installation complète le 2026-11-08, 0 contenu modifié [idempotence sauvée])"
+    },
+    {
+      "id": "C1-F09",
+      "nom": "PIN pipeline à jour vs dernier commit certifié (F2)",
+      "verdict": "FAIL",
+      "duree_ms": 0.2,
+      "details": "PIN constant : b75a620 — dernier commit certifié d'installation : a14f750 (Task 74 run 2 rc=0) → OBSOLÈTE (faille F2 : garde anti-rétrogradation valide mais 3 commits certifiés plus récents : aa3b99d/a14f750/3171c4b)"
+    },
+    {
+      "id": "C1-F10",
+      "nom": "fichiers-refs alignés aux formes canoniques (F3)",
+      "verdict": "FAIL",
+      "duree_ms": 0.2,
+      "details": "fichiers-refs ecosysteme-travail/ : PM-INSTALL.md ≠ canonique · ensure-installed.py ≠ shim racine (faille F3 : copies d'époque aa3b99d [installation Task 74] divergentes des formes canoniques courantes)"
+    },
+    {
+      "id": "C1-F11",
+      "nom": "archive intégrité hôte ↔ dépôt (F4 — adjudication)",
+      "verdict": "RÉSERVES",
+      "duree_ms": 0.4,
+      "details": "archive intégrité : hôte aa127f043c2a… ≠ dépôt a5d911dd56b9… — faille F4 à ADJUDIQUER (hypothèse règle d'or n°5 : piliers frais côté hôte [worklog suites postérieures au commit Task 75] ; stabilité byte du rescellement à tester en G4)"
+    },
+    {
+      "id": "C1-P01",
+      "nom": "poids PM-INSTALL (mesure de référence #token)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "PM-INSTALL : 51208 o = 50.0 Kio · ≈ 12235 #token (chargé à l'installation uniquement — pas un chargement par défaut ; mesure de référence)"
+    }
+  ]
+}

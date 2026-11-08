@@ -152,6 +152,11 @@ def capturer() -> int:
         "horodatage": "2026-11-08T10:45:00Z",
         "skill_md": {
             "version": version, "octets": len(texte.encode("utf-8")),
+            # Convention de mesure (note croisée Task 76 D010 — différés Task 75
+            # §6.4) : ici octets disque COMPLETS (read_text intégral) — le
+            # protocole-test.py du skill re-curation mesure 1 o de moins
+            # (join(splitlines()), saut final non reconstitué) : ex. gen-plan
+            # 30 668 o ici vs 30 667 o là-bas ; chaque mesureur self-consistant.
             "lignes": len(lignes), "sha256": sha(texte),
             "kio": round(len(texte.encode("utf-8")) / 1024, 1),
             "token_estimes": len(texte.encode("utf-8")) // 4,

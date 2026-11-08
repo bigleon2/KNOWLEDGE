@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.9.10
+Version : 1.9.11
 Date : 2026-10-12
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -93,7 +93,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 **Objet (directive utilisateur « faire appel à la dernière version des prompts maîtres »)** : ce tableau matérialise l'instantané explicite des PMs sources mobilisés aux étapes 3-6 pour installer `gen-plan`, `correct-work`, `clone-chat` et `refactor-guard` (4e famille — décision D009), ainsi que les fichiers du corpus et de l'outillage indispensables à l'installation et au bon fonctionnement de l'écosystème. Il complète sans les remplacer les mécanismes dynamiques : la dérivation « PM le plus récent » (KO-L003, §3.2) demeure la mécanique de référence et la garde anti-rétrogradation R2 s'applique ; cet instantané est rafraîchi à chaque révision du présent fichier.
 
-### PMs sources des étapes 3-6 (dernières versions au 2026-10-12)
+### PMs sources des étapes 3-6 (dernières versions au 2026-11-07)
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
@@ -195,6 +195,7 @@ Le contrôle vérifie MÉCANIQUEMENT que l'installation n'a déployé aucune for
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.9.11 | 2026-11-08 | Task 76 (faille F5) — étiquette de date §2ter rafraîchie (« au 2026-11-07 », date du dernier recalibrage v1.9.10 — l'étiquette était restée « au 2026-10-12 » alors que la table des versions était à jour) ; cause racine résorbée : `scripts/generer-pm-skill.py` rafraîchit désormais l'étiquette à chaque recalibrage §2ter |
 | v1.9.10 | 2026-11-07 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.38.0→v3.39.0 ; recalibrage croisé : SHARED v1.7.34 (§6.1), §2ter, §A.3 |
 | v1.9.9 | 2026-11-07 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.37.2→v3.38.0 ; recalibrage croisé : SHARED v1.7.33 (§6.1), §2ter, §A.3 |
 | v1.9.8 | 2026-11-07 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.37.1→v3.37.2 ; recalibrage croisé : SHARED v1.7.32 (§6.1), §2ter, §A.3 |

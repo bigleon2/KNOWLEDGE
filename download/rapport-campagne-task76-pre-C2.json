@@ -1,0 +1,87 @@
+{
+  "format": "campagne-task76 v1.0.0",
+  "phase": "pre",
+  "cible": "C2",
+  "horodatage": "2026-11-08T06:48:05Z",
+  "duree_totale_ms": 521.0,
+  "verdict": "PASS",
+  "tests": [
+    {
+      "id": "C2-F01",
+      "nom": "py_compile garde + shim (syntaxe)",
+      "verdict": "PASS",
+      "duree_ms": 59.4,
+      "details": "py_compile : garde skill (12365 o, 230 L) + shim racine (1507 o) compilables"
+    },
+    {
+      "id": "C2-F02",
+      "nom": "--check réel : INSTALLE rc=0 (état installé)",
+      "verdict": "PASS",
+      "duree_ms": 39.8,
+      "details": "--check réel : verdict INSTALLE rc=0 · kb_entrees=54 · manquants=[] · skills_kb_manquants=[] · head miroir=3171c4b"
+    },
+    {
+      "id": "C2-F03",
+      "nom": "idempotence ×2 : sorties byte-identiques",
+      "verdict": "PASS",
+      "duree_ms": 78.9,
+      "details": "idempotence ×2 : sorties byte-identiques (aucun horodatage dans la sortie → cmp direct)"
+    },
+    {
+      "id": "C2-F04",
+      "nom": "--preempt : PRIORITE-NONE rc=0",
+      "verdict": "PASS",
+      "duree_ms": 38.8,
+      "details": "--preempt : verdict PRIORITE-NONE rc=0 (installé → PRIORITE-NONE attendu)"
+    },
+    {
+      "id": "C2-F05",
+      "nom": "--reinstall no-op (idempotence D006)",
+      "verdict": "PASS",
+      "duree_ms": 38.2,
+      "details": "--reinstall sur écosystème installé : no-op (idempotence D006) : Déjà installé (HEAD 3171c4b) — no-op (idempotence D006). rc=0"
+    },
+    {
+      "id": "C2-F06",
+      "nom": "mode inconnu : rc=64 + usage",
+      "verdict": "PASS",
+      "duree_ms": 40.3,
+      "details": "mode inconnu : rc=64 (64 attendu) · docstring usage affichée oui"
+    },
+    {
+      "id": "C2-F07",
+      "nom": "FICHIERS_CLES 9/9 présents",
+      "verdict": "PASS",
+      "duree_ms": 0.4,
+      "details": "FICHIERS_CLES dérivés du source : 9/9 présents · manquants : aucun"
+    },
+    {
+      "id": "C2-F08",
+      "nom": "détection KB dynamique : garde == décompte indépendant",
+      "verdict": "PASS",
+      "duree_ms": 40.3,
+      "details": "détection KB dynamique : kb_entrees garde=54 == décompte strict indépendant=54 · skills_kb_manquants=[] (croisement mesure, verdict = sortie de la cible)"
+    },
+    {
+      "id": "C2-F09",
+      "nom": "auto-réparation en bac à sable (scénario + contrôle négatif)",
+      "verdict": "PASS",
+      "duree_ms": 82.2,
+      "details": "bac à sable tmp/task76-sandbox (14 skills factifs + KB factif + miroir factif, isolé de l'écosystème réel) : (1) fake-skill-07 supprimé → INSTALLE-REPARÉ rc=0, restauré depuis miroir factif, trace worklog sandbox écrite ; (2) contrôle négatif fake-skill-08 sans copie miroir → ABSENT-DERIVE rc=1 (aucune fausse réparation)"
+    },
+    {
+      "id": "C2-F10",
+      "nom": "shim racine : délégation fonctionnelle",
+      "verdict": "PASS",
+      "duree_ms": 63.2,
+      "details": "shim racine scripts/ensure-installed.py (délégation Task 29 D001) : --check → verdict INSTALLE rc=0 (délégation fonctionnelle)"
+    },
+    {
+      "id": "C2-P01",
+      "nom": "performance garde (mesure --check isolée)",
+      "verdict": "PASS",
+      "duree_ms": 39.5,
+      "details": "garde --check sur écosystème réel (54 entrées KB + git rev-parse ×2 + FICHIERS_CLES ×9 + scan disque) — durée mesurée au test C2-F02/F08 ; présent exécuté à titre de mesure isolée"
+    }
+  ]
+}

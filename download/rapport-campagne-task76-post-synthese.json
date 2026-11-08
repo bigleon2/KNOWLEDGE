@@ -1,0 +1,20 @@
+{
+  "format": "synthese-task76 v1.0.1",
+  "horodatage": "2026-11-08T07:03:08Z",
+  "verdict_global_pre": "FAIL",
+  "verdict_global_post": "PASS",
+  "non_regression": true,
+  "degradations": [],
+  "failles_resorbees": [
+    "C1-F04",
+    "C1-F08",
+    "C1-F09",
+    "C1-F10"
+  ],
+  "cibles": {
+    "post-C1": "PASS",
+    "post-C2": "PASS",
+    "pre-C1": "FAIL",
+    "pre-C2": "PASS"
+  }
+}
