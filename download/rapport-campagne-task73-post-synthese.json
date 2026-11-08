@@ -1,0 +1,64 @@
+{
+  "format": "synthese-campagne-task73 v1.0.1",
+  "phase": "post",
+  "horodatage": "2026-11-07T23:57:09Z",
+  "cibles": {
+    "C1": {
+      "pre": "PASS",
+      "post": "PASS"
+    },
+    "C2": {
+      "pre": "FAIL",
+      "post": "PASS AVEC RÉSERVES"
+    },
+    "C3": {
+      "pre": "PASS",
+      "post": "PASS"
+    }
+  },
+  "comparaisons": [
+    {
+      "cible": "C1",
+      "verdict_pre": "PASS",
+      "verdict_post": "PASS",
+      "degradations": [],
+      "ameliorations": [],
+      "failles_resorbees": [],
+      "non_regression": true
+    },
+    {
+      "cible": "C2",
+      "verdict_pre": "FAIL",
+      "verdict_post": "PASS AVEC RÉSERVES",
+      "degradations": [],
+      "ameliorations": [
+        "C2-F01 : FAIL -> PASS",
+        "C2-F02 : FAIL -> PASS AVEC RÉSERVES",
+        "C2-F05 : FAIL -> PASS"
+      ],
+      "failles_resorbees": [
+        "C2-F01",
+        "C2-F02",
+        "C2-F05"
+      ],
+      "non_regression": true
+    },
+    {
+      "cible": "C3",
+      "verdict_pre": "PASS",
+      "verdict_post": "PASS",
+      "degradations": [],
+      "ameliorations": [],
+      "failles_resorbees": [],
+      "non_regression": true
+    }
+  ],
+  "non_regression": true,
+  "failles_resorbees": [
+    "C2-F01",
+    "C2-F02",
+    "C2-F05"
+  ],
+  "verdict_global_pre": "FAIL",
+  "verdict_global_post": "PASS AVEC RÉSERVES"
+}

@@ -1,0 +1,59 @@
+{
+  "format": "campagne-task73 v1.0.0",
+  "phase": "pre",
+  "cible": "C3",
+  "horodatage": "2026-11-07T23:53:48Z",
+  "duree_totale_ms": 4.7,
+  "verdict": "PASS",
+  "tests": [
+    {
+      "id": "C3-F01",
+      "nom": "identité byte gen-plan hôte <-> miroir (diff -rq)",
+      "verdict": "PASS",
+      "duree_ms": 1.2,
+      "details": "arborescences identiques (SKILL.md + references + scripts + evals)"
+    },
+    {
+      "id": "C3-F02",
+      "nom": "miroir : frontmatter v3.39.0 + taille identique à l'hôte",
+      "verdict": "PASS",
+      "duree_ms": 0.3,
+      "details": "dépôt 30668 o vs hôte 30668 o"
+    },
+    {
+      "id": "C3-F03",
+      "nom": "PM v3.39.0 identique hôte/dépôt (SHA-256)",
+      "verdict": "PASS",
+      "duree_ms": 1.7,
+      "details": "SHA 918bc6925dab6b16… · 211054 o"
+    },
+    {
+      "id": "C3-F04",
+      "nom": "KB : calibration « montée v3.39.0 » hôte + dépôt",
+      "verdict": "PASS",
+      "duree_ms": 1.0,
+      "details": "occurrences : hôte 1 · dépôt 1"
+    },
+    {
+      "id": "C3-F05",
+      "nom": "historiques-par-skill gen-plan : entrée v3.39.0 hôte + dépôt",
+      "verdict": "PASS",
+      "duree_ms": 0.2,
+      "details": "occurrences : hôte 5 · dépôt 5"
+    },
+    {
+      "id": "C3-F06",
+      "nom": "ULTRA orchestration identique hôte/dépôt (SHA-256)",
+      "verdict": "PASS",
+      "duree_ms": 0.1,
+      "details": "SHA f40ea21eb9a813cf…"
+    },
+    {
+      "id": "C3-P01",
+      "nom": "durées agrégées C3 (performance temporelle)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "total 4.5 ms sur 6 tests"
+    }
+  ]
+}

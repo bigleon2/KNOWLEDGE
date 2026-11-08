@@ -1,0 +1,73 @@
+{
+  "format": "campagne-task73 v1.0.0",
+  "phase": "pre",
+  "cible": "C2",
+  "horodatage": "2026-11-07T23:53:10Z",
+  "duree_totale_ms": 342.1,
+  "verdict": "FAIL",
+  "tests": [
+    {
+      "id": "C2-F01",
+      "nom": "arbitre integrity (corpus + archive + garde doublons + versions)",
+      "verdict": "FAIL",
+      "duree_ms": 46.3,
+      "details": "[FAIL] x1 ; rc=1 ; [FAIL] version-management — SKILL.md manquant"
+    },
+    {
+      "id": "C2-F02",
+      "nom": "arbitre coherence (KB versions + bidirectionnalité)",
+      "verdict": "FAIL",
+      "duree_ms": 118.8,
+      "details": "[FAIL] x1 · [WARN] x3 ; [FAIL] Versions KB <-> SKILL.md — version-management: répertoire absent || WARN : [WARN] evals absents — version-management/evals/ | [WARN] evals absents — version-management/evals/ | [WARN] Worklog : historique B1 (v3.11.0 + PEK) — artefact historique propriétaire — worklog de session courant ne porte pas l'historique B1 (non cloné)"
+    },
+    {
+      "id": "C2-F03",
+      "nom": "vcw : mécanisme cache-verdicts fonctionnel (2 commandes)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "scripts/poids-chargement.py --json -> rc=0 (35.4 ms) ; scripts/verify-cross.py -> rc=0 (68.4 ms)"
+    },
+    {
+      "id": "C2-F04",
+      "nom": "arbitre cross (conformité croisée)",
+      "verdict": "PASS",
+      "duree_ms": 33.9,
+      "details": "score 100.0 % · errors 0 · rc=0"
+    },
+    {
+      "id": "C2-F05",
+      "nom": "effectifs : hôte ⊆ miroir + entrées KB présentes",
+      "verdict": "FAIL",
+      "duree_ms": 1.1,
+      "details": "hôte 70 · miroir 119 · en trop [] · KB manquants ['version-management']"
+    },
+    {
+      "id": "C2-F06",
+      "nom": "sweep citations « v3.38.0 » dans les SKILL.md",
+      "verdict": "PASS AVEC RÉSERVES",
+      "duree_ms": 4.0,
+      "details": "skills concernés : ['gen-plan']"
+    },
+    {
+      "id": "C2-F07",
+      "nom": "ancrage corpus : ULTRA présent et identique hôte/dépôt",
+      "verdict": "PASS",
+      "duree_ms": 1.3,
+      "details": "SHA f40ea21eb9a813cf… (hôte) vs f40ea21eb9a813cf… (dépôt)"
+    },
+    {
+      "id": "C2-P01",
+      "nom": "poids global écosystème (0 CRITIQUE attendu)",
+      "verdict": "PASS",
+      "duree_ms": 32.4,
+      "details": "70 skills · OK 29 · intermédiaires 33 · LOURD 8 · CRITIQUE 0"
+    },
+    {
+      "id": "C2-P02",
+      "nom": "durées agrégées C2 (performance temporelle)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "total 237.8 ms sur 8 tests"
+    }
+  ]
+}

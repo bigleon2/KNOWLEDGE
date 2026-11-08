@@ -1,0 +1,87 @@
+{
+  "format": "campagne-task73 v1.0.0",
+  "phase": "post",
+  "cible": "C1",
+  "horodatage": "2026-11-07T23:56:30Z",
+  "duree_totale_ms": 131.5,
+  "verdict": "PASS",
+  "tests": [
+    {
+      "id": "C1-F01",
+      "nom": "frontmatter (name/version/language)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "version attendue 3.39.0 ; en-tête : --- | name: gen-plan | version: 3.39.0 | category: ecosystem | language: fr | tags: | - planning | - task-management | - token-estimation | - auto-calibration | - ecosystem | description: > | Skill de planification de tâches pour assistant IA. | 4 modes (Planification, Exécution, Surveillance, Adapt"
+    },
+    {
+      "id": "C1-F02",
+      "nom": "taille SKILL.md <= 30 Kio (contrat D002 Task 72)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "30668 octets = 29.95 Kio (max 30720)"
+    },
+    {
+      "id": "C1-F03",
+      "nom": "references/ : 15 fichiers attendus",
+      "verdict": "PASS",
+      "duree_ms": 0.1,
+      "details": "réels 15 ; manquants [] ; inattendus []"
+    },
+    {
+      "id": "C1-F04",
+      "nom": "pointeurs : chaque fichier references/ cité dans SKILL.md",
+      "verdict": "PASS",
+      "duree_ms": 0.1,
+      "details": "15/15 cités"
+    },
+    {
+      "id": "C1-F05",
+      "nom": "contrats verbatim intacts (baseline D005 + D015 Task 72)",
+      "verdict": "PASS",
+      "duree_ms": 0.1,
+      "details": "read_when (lecture ciblée) : 1 occurrence(s) ; glossaire $FACON/$FACON2 inline §A : 11 occurrence(s) ; §0 Contexte Système SHARED : 23 occurrence(s) ; bloc PATTERN E5-POIDS (contrat R2) : 2 occurrence(s) ; E7-DISP point 6 fenêtre native (D015) : 5 occurrence(s) ; mécanisme natif Z.ai liste de tâches : 3 occurrence(s)"
+    },
+    {
+      "id": "C1-F06",
+      "nom": "evals non-régression (9 cas + 15 triggers)",
+      "verdict": "PASS",
+      "duree_ms": 0.1,
+      "details": "evals.json 9/9 · trigger_evals.json 15/15"
+    },
+    {
+      "id": "C1-F07",
+      "nom": "selftest check_plan_protocol.py (P1-P5 + scénarios)",
+      "verdict": "PASS",
+      "duree_ms": 34.7,
+      "details": "  RESUME : OK (7/7)"
+    },
+    {
+      "id": "C1-F08",
+      "nom": "vérification re-curation (protocole-test.py --verifier : C1-C4)",
+      "verdict": "PASS",
+      "duree_ms": 40.4,
+      "details": "VERDICT : PASS"
+    },
+    {
+      "id": "C1-F09",
+      "nom": "PM --check : 4 familles COHERENT (couverture PM v3.39.0)",
+      "verdict": "PASS",
+      "duree_ms": 22.8,
+      "details": "[COHERENT] x4 ; rc=0"
+    },
+    {
+      "id": "C1-P01",
+      "nom": "poids gen-plan (arbitre officiel)",
+      "verdict": "PASS",
+      "duree_ms": 32.7,
+      "details": "29.9 Kio · 7667 #token · refs 156.0 Kio/15 fichiers · verdict arbitre INTERMÉDIAIRE"
+    },
+    {
+      "id": "C1-P02",
+      "nom": "durées agrégées C1 (performance temporelle)",
+      "verdict": "PASS",
+      "duree_ms": 0.0,
+      "details": "total 131.0 ms sur 10 tests"
+    }
+  ]
+}

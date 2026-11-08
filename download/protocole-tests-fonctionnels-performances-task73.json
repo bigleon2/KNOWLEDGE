@@ -1,0 +1,83 @@
+{
+  "format": "protocole-tests-task73 v1.0.0",
+  "horodatage": "2026-11-07T23:47:26Z",
+  "mission": "tests $FACON2 fonctionnels et performances sur C1 gen-plan hôte, C2 écosystème hôte, C3 gen-plan miroir — corriger $FACON les failles, optimiser le fonctionnement et les interactions",
+  "aliases": {
+    "FACON": "de façon cohérente, optimisée et fonctionnelle",
+    "FACON2": "(cohérent, optimisé et fonctionnel)"
+  },
+  "cibles": {
+    "C1": {
+      "chemin": "skills/gen-plan/",
+      "fonctionnels": [
+        "C1-F01 frontmatter",
+        "C1-F02 taille <= 30 Kio",
+        "C1-F03 15 references",
+        "C1-F04 pointeurs",
+        "C1-F05 contrats verbatim",
+        "C1-F06 evals 9+15",
+        "C1-F07 selftest plan",
+        "C1-F08 re-curation C1-C4",
+        "C1-F09 PM --check 4 familles"
+      ],
+      "performances": [
+        "C1-P01 poids arbitre officiel",
+        "C1-P02 durées agrégées"
+      ]
+    },
+    "C2": {
+      "chemin": "skills/",
+      "fonctionnels": [
+        "C2-F01 integrity",
+        "C2-F02 coherence",
+        "C2-F03 vcw mécanisme",
+        "C2-F04 cross",
+        "C2-F05 effectifs hôte ⊆ miroir + KB",
+        "C2-F06 sweep v3.38.0",
+        "C2-F07 ULTRA"
+      ],
+      "performances": [
+        "C2-P01 poids global 0 CRITIQUE",
+        "C2-P02 durées agrégées"
+      ]
+    },
+    "C3": {
+      "chemin": "KNOWLEDGE-repo/skills/gen-plan/",
+      "fonctionnels": [
+        "C3-F01 diff -rq vide",
+        "C3-F02 frontmatter+taille",
+        "C3-F03 PM SHA",
+        "C3-F04 KB montée v3.39.0",
+        "C3-F05 historiques v3.39.0",
+        "C3-F06 ULTRA SHA"
+      ],
+      "performances": [
+        "C3-P01 durées agrégées"
+      ]
+    }
+  },
+  "criteres_verdict": {
+    "echelle": "PASS < PASS AVEC RÉSERVES < FAIL",
+    "agregation": "pire des verdicts par cible, puis pire des cibles",
+    "tolerances": {
+      "C2-F02 WARN B1": "WARN légitime hérité (artefact historique) toléré — verdict PASS AVEC RÉSERVES",
+      "C2-F06": "citation v3.38.0 = WARN à adjudication manuelle (contexte historique possible)"
+    }
+  },
+  "phases": {
+    "pre": "capture de l'état réel SANS aucune correction (ensure-installed non appelé)",
+    "post": "re-exécution intégrale après corrections (G5)",
+    "non_regression": "aucun verdict dégradé test à test entre PRE et POST"
+  },
+  "reutilisation_R4": [
+    "check-ecosysteme-integrity.py",
+    "test-coherence-interactions.py",
+    "cache-verdicts.py",
+    "verify-cross.py",
+    "poids-chargement.py",
+    "re-curation/protocole-test.py",
+    "re-curation/check-recuration.py",
+    "gen-plan/check_plan_protocol.py",
+    "generer-pm-skill.py --check"
+  ]
+}
