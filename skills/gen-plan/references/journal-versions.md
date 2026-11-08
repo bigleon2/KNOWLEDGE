@@ -2,6 +2,8 @@
 
 > **Mécanique de migration (v3.39.0)** : le SKILL.md §5.6 ne conserve que l'entrée COURANTE ; à chaque montée de version suivante, l'entrée courante migre ici (R4 byte-identité) et la nouvelle prend sa place inline.
 
+- **v3.39.0 (2026-11-08, web-ecef7f80 — Task 72 G1, directives « Chantier R1 : re-curation progressive disclosure de gen-plan » + complémentaires 1a1b7b297b4975 [skill re-curation par script] et 1a1b7fe1c7238e8d [fenêtre native AFFICHE-PLAN])** : 9 blocs déplacés R4 byte-identité vers `references/` + append contingences (grille-token.md) — résumés NOUVEAUX inline, zéro duplication ; contrats baseline golden master + vérif POST (T1.1.0) ; lecture ciblée = état par défaut (E5-POIDS) ; **E7-DISP point 6 « fenêtre native »** (Z.ai : liste de tâches `TodoWrite`/`TodoRead` — début d'exécution + chaque fin d'étape) : intégral `references/protocoles-detailles.md`. MINOR. Cascade KO-L004 : SG1.4 (worklog Task 72).
+
 
 <!-- BLOC-DEPLACÉ:journal_versions:v3.38.0:40c78cc14025e895 -->
 

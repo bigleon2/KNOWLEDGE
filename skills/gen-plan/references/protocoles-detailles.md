@@ -79,3 +79,21 @@
 2. **à chaque FIN d'étape (groupe `G<k>`)** : la fenêtre native est MISE À JOUR — l'étape terminée marquée, position et compteurs actualisés (complément du bloc PLAN-AFFICHE d'ouverture d'étape v3.36.0 affiché au chat) ; la mise à jour accompagne le verdict correct-work(groupe).
 
 **Frontières (non-régression des canaux existants)** : la fenêtre native NE REMPLACE ni le bloc récapitulatif au chat (point 5), ni le marqueur `PLAN-AFFICHE` au worklog (point 4), ni la garde mécanique `check_plan_protocol.py` (P1-P5) — la preuve d'affichage journalisable reste le marqueur worklog ; chaque affichage/mise à jour de la fenêtre native est consigné dans la même entrée worklog (mention « fenêtre native »). Affichage REJOUABLE : à toute reprise (E1-RES) sur un plan en vol, la fenêtre native est ré-affichée avant toute autre action (même mécanique que le bloc chat — jamais présumé).
+
+---
+
+### Extension v3.40.0 — protocole d'émission parallèle (#4 — directive trace 1a1ba66f3aff26e9)
+
+**Directive propriétaire (2026-11-08, session web-ecef7f80)** : « vérifie que mon écosystème te permet de lancer 4 commandes en parallèle car j'ai l'impression que tu ne le fais jamais lorsque je t'envoie mes demandes en utilisant mon écosystème… si effectivement mon écosystème ne te le permet pas alors fais en sorte qu'il te permette de le faire à partir de maintenant. » — Diagnostic Task 77 G2 : la doctrine #4 était PRÉSENTE (v3.24.0/v3.32.0) mais NON opérationnalisée (aucun protocole d'émission, plans récents 100 % série, aucune vague tracée) ; la présente extension opère le pont entre la doctrine et l'ÉMISSION effective des appels.
+
+**PROTOCOLE D'ÉMISSION PARALLÈLE — deux niveaux distincts et complémentaires :**
+
+1. **FAN-OUT MULTI-APPELS (niveau émission)** : dès que ≥ 2 appels d'outils (Bash, Read, Grep, Glob, LS…) sont PROUVÉS indépendants (cibles distinctes, aucune écriture partagée, aucune dépendance d'ordre), les émettre ENSEMBLE dans un MÊME bloc d'appels (un seul message multi-outils — Graph Diamond phase 2) plutôt qu'un par un : réduit les allers-retours, active la spéculation, couvre tous les types d'outils. **Réalité harnais (mesurée, preuve Task 77 T2.1.1-a)** : le shell persistant de l'environnement SÉRIALISE les commandes Bash d'un même bloc (4×sleep 2 : départs échelonnés ~2,5 s) — le fan-out reste bénéfique (latence d'émission, outils non-shell) mais ne crée PAS de concurrence Bash↔Bash.
+2. **CONCURRENCE INTRA-COMMANDE (niveau exécution)** : lorsque ≥ 2 COMMANDES shell indépendantes et que le temps mural compte, les lancer en jobs arrière-plan AU SEIN D'UNE SEULE invocation : `cmd1 & cmd2 & … & wait` (ou `xargs -P N`). Concurrence VRAIE mesurée : 4×sleep 2 → 2,00 s (vs 8,00 s en série — gain ×4, preuve Task 77 T2.1.2). Discipline : sorties redirigées vers des fichiers DISTINCTS puis agrégées (jamais d'entrelacement non maîtrisé) ; codes retour vérifiés par job (`wait` ne propage que le dernier — capturer chaque `$!`/rc si un échec doit être détecté).
+
+**Bornes et garde-fous :**
+- **≤ 4 jobs/appels par vague par défaut** — piloté par G-RES (PARALLELE=4 · PARALLELE_REDUIT=2 · SERIE=1), re-verdict entre les vagues (hook continu E9-E14).
+- **Preuve d'indépendance LÉGÈRE** : une ligne au moment de l'émission (cibles distinctes / aucune écriture partagée / aucune dépendance d'ordre). Cérémonie proportionnée : vague en lecture seule = preuve en une ligne ; vague avec écritures = la preuve nomme les fichiers et l'absence de recouvrement.
+- **Série OBLIGATOIRE (exceptions tracées — inchangées)** : écriture partagée (même fichier, même registre, worklog), dépendance d'ordre (B lit la sortie de A), chaîne golden-master → modification → re-test, opérations git sur le même dépôt, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC.
+- **Tracé worklog ALLÉGÉ pour les vagues de commandes** : une ligne par vague (`VAGUE-PAR T<n>-a∥T<n>-b∥… [preuve : …]`). Le tracé complet Task IDs `N-a`/`N-b` + re-verdict inter-vagues demeure pour les vagues de TÂCHES et d'agents (Graph Diamond §3) ; une vague de commandes en lecture seule n'exige AUCUN re-verdict intermédiaire (aucune mutation entre les lectures).
+- **Anti-régression** : émettre un appel par un pour des actions indépendantes = sériographie (anti-pattern Graph Diamond §4) — le défaut est le BLOC, l'exception est la file.

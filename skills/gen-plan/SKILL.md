@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.39.0
+version: 3.40.0
 category: ecosystem
 language: fr
 tags:
@@ -60,7 +60,7 @@ read_when:
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
-## §0 — Contexte Système (SHARED v1.7.34)
+## §0 — Contexte Système (SHARED v1.7.35)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -111,10 +111,10 @@ read_when:
 | **Answer key obligatoire** | **E1** | Chaque décision E1 devient une entrée `D0NN` de l'answer key (criterion, verification exécutable, source, priority S1-S4, status pending) | `references/answer-key-template.md` |
 | **Arbitre answer-key-checker** | **E7/E8** | Le plan référence l'answer key ; à E8, l'arbitre mécanique `scripts/answer-key-checker.py` (16 checks) valide structure, fonctionnalité, idempotence et intégration — verdict PASS requis pour S1/S2 | `scripts/answer-key-checker.py` |
 | **E7-DISP — Affichage obligatoire du plan** | **E7/E8/E13 + ouverture d'étape (v3.36.0) + fenêtre native début/fin d'étape (v3.39.0)** | Toute écriture du fichier plan (création E7, E13, re-génération KO-L005, reprise) n'est TERMINÉE qu'après la chaîne : plan écrit + answer key + verdict E8 (horodatages couplés) + worklog R5 marqueur `PLAN-AFFICHE` + bloc récapitulatif au chat — verdict mécanique bloquant ; affichage REJOUABLE (v3.27.0) ; à l'ouverture de chaque étape (v3.36.0) : bloc d'évolution du déroulement (groupes + statuts + compteurs + position — tous modes) | `scripts/check_plan_protocol.py` |
-| **Graph Diamond** | **E9-E14** | Parallélisation PAR DÉFAUT des tâches ET commandes prouvées indépendantes (le série est l'exception justifiée — philosophie #4 v3.24.0, extension aux commandes v3.32.0) — tracée au worklog | `references/graph-diamond-pattern.md` |
+| **Graph Diamond** | **E9-E14** | Parallélisation PAR DÉFAUT des tâches ET commandes indépendantes (série = exception justifiée — #4 v3.24.0/v3.32.0/v3.40.0 émission : fan-out bloc + `&`+`wait`) — tracé worklog | `references/graph-diamond-pattern.md` |
 | **Observer** | **E15** | Invoque knowledge-observer en modes M1-M2 (observation + analyse post-session) ; les modes M3-M4 exigent un verdict correct-work | `references/observation-patterns.md` |
-| **E5-POIDS — arbitre de poids de chargement** | **E5** (v3.38.0) | À la sélection des skills (E5), l'arbitre `scripts/poids-chargement.py` (recommandation R1 de l'étude de faisabilité Task 70 — le goulot réel de l'écosystème est le budget #token) mesure le poids de chargement (Kio + #token estimés = caractères/4) ; un skill CRITIQUE (≥ 60 Kio) ou LOURD (≥ 30 Kio) déclenche la voie lecture ciblée : §0 Contexte Système + sommaire d'abord, sections dédiées ensuite, `references/` chargées à la demande — JAMAIS de lecture intégrale par défaut pour un skill LOURD/CRITIQUE | `scripts/poids-chargement.py` |
-| **R2-CACHE — cache de verdicts** | **E9-E14** (v3.38.0) | Les graders coûteux (arbitres, harnais, batteries) ré-exécutés à entrées inchangées passent par `scripts/cache-verdicts.py` (recommandation R2 de l'étude Task 70) : verdict figé une fois (rc + stdout + durée), re-jeu sans ré-appel (démo mesurée : gain 440×), invalidation automatique par état des fichiers cibles (taille/mtime), `--force` pour re-vérification réelle — un verdict figé n'est JAMAIS une preuve en soi, la re-exécution reste disponible à la demande | `scripts/cache-verdicts.py` |
+| **E5-POIDS — arbitre de poids de chargement** | **E5** (v3.38.0) | À la sélection des skills (E5), l'arbitre `scripts/poids-chargement.py` (recommandation R1 étude Task 70 — le goulot réel est le budget #token) mesure le poids de chargement (Kio + #token estimés = caractères/4) ; un skill CRITIQUE (≥ 60 Kio) ou LOURD (≥ 30 Kio) déclenche la voie lecture ciblée : §0 Contexte Système + sommaire d'abord, sections dédiées ensuite, `references/` chargées à la demande — JAMAIS de lecture intégrale par défaut | `scripts/poids-chargement.py` |
+| **R2-CACHE — cache de verdicts** | **E9-E14** (v3.38.0) | Les graders coûteux (arbitres, harnais, batteries) ré-exécutés à entrées inchangées passent par `scripts/cache-verdicts.py` (recommandation R2 de l'étude Task 70) : verdict figé une fois (rc + stdout + durée), re-jeu sans ré-appel (gain 440×), invalidation auto par état des cibles (taille/mtime), `--force` pour re-vérification réelle — un verdict figé n'est JAMAIS une preuve en soi, la re-exécution reste disponible à la demande | `scripts/cache-verdicts.py` |
 
 <!-- FIN-PATTERN:GEN-PLAN-HOOKS-PATTERNS-v1.0.0 -->
 
@@ -122,7 +122,7 @@ read_when:
 
 **Hook E1-RES — ouverture de session (4 vérifications AVANT analyse)** : (1) lecture seule préalable B-11 (worklog/plan/arbitres) ; (2) collecte G-RES (`monitor.py` : OK/PRESSION/CRITIQUE, journalisé) ; (3) fraîcheur du plan (modifiée et valide → re-généré avant reprise) ; (4) garde post-coupure (règle d'or n°9 : piliers + integrity → rétablissement auto). **Reprise (v3.27.0)** : message pendant un plan en vol → worklog + fraîcheur + E13 + E8 + R5 + affichage ; état « en vol » dérivé du DISQUE (RC3).
 
-**Hook E7-DISP — affichage obligatoire (6 points, garde bloquante)** : (1) plan écrit `download/` ; (2) answer key >= 1 décision ; (3) E8 aux horodatages COUPLÉS (toute écriture = re-validation) ; (4) worklog R5 + marqueur `PLAN-AFFICHE` ; (5) bloc récapitulatif AU chat. Garde `check_plan_protocol.py` (P1-P5) ; affichage REJOUABLE ; ouverture d'étape (v3.36.0, tous modes) : PLAN-AFFICHE d'évolution au début de chaque groupe G<k> (statuts du disque ; step-ok : après confirmation). **(6) Fenêtre native (v3.39.0 — directive 1a1b7fe1c7238e8d)** : fenêtre des étapes du plan via le mécanisme NATIF de l'agent dédié à ce rôle (Z.ai : liste de tâches `TodoWrite`/`TodoRead`) — affichée au DÉBUT de l'exécution du plan d'actions, MISE À JOUR à chaque FIN d'étape ; intégral : `references/protocoles-detailles.md` (point 6).
+**Hook E7-DISP — affichage obligatoire (6 points, garde bloquante)** : (1) plan écrit `download/` ; (2) answer key >= 1 décision ; (3) E8 aux horodatages COUPLÉS (toute écriture = re-validation) ; (4) worklog R5 + marqueur `PLAN-AFFICHE` ; (5) bloc récapitulatif AU chat. Garde `check_plan_protocol.py` (P1-P5) ; affichage REJOUABLE ; ouverture d'étape (v3.36.0, tous modes) : PLAN-AFFICHE d'évolution au début de chaque groupe G<k> (statuts du disque). **(6) Fenêtre native (v3.39.0 — directive 1a1b7fe1c7238e8d)** : fenêtre des étapes du plan via le mécanisme NATIF de l'agent dédié à ce rôle (Z.ai : liste de tâches `TodoWrite`/`TodoRead`) — affichée au DÉBUT de l'exécution du plan d'actions, MISE À JOUR à chaque FIN d'étape ; intégral : `references/protocoles-detailles.md` (point 6).
 
 ### §1.3 Normes
 
@@ -135,10 +135,10 @@ read_when:
 1. **Read before planning** — Toujours lire le projet avant de planifier.
 2. **Performance-driven sélection** — Le choix skill/agent est dicté par le gain de performance.
 3. **Skills can launch specialized agents** — Modèle à deux couches : Skill → Agent Spécialisé.
-4. **Parallélisation par défaut des tâches ET des commandes sur preuve d'indépendance** (v3.24.0/v3.32.0) — vagues indépendantes prouvées en PARALLÈLE : Graph Diamond automatique (E9-E14), série = exception tracée ; dégradation gracieuse 429 — intégral : `references/protocoles-detailles.md` (#4).
+4. **Parallélisation par défaut des tâches ET des commandes sur preuve d'indépendance** (v3.24.0/v3.32.0 + **émission v3.40.0**) — vagues indépendantes en PARALLÈLE : Graph Diamond (E9-E14), série = exception tracée ; émission : fan-out multi-appels + concurrence `&`+`wait` ; dégradation 429 — intégral : `references/protocoles-detailles.md` (#4).
 5. **Visible progress** — L'utilisateur sait toujours où on en est.
 6. **CoT + Chaining avec auto-correction** — Raisonnement structuré avant chaque action.
-7. **Lecture bloc par bloc** — Fichiers > 500 lignes : lire par blocs successifs (limit/offset), produire une synthèse intermédiaire entre chaque bloc. Ne jamais lire un fichier > 500 lignes d'un seul coup. Voir `references/profils-ressource.md` (VIEUX PC règle 4 : troncature 500 lignes).
+7. **Lecture bloc par bloc** — Fichiers > 500 lignes : lire par blocs successifs (limit/offset) avec synthèse intermédiaire — jamais d'un seul coup (détail : `references/profils-ressource.md`).
 8. **Downgrade irréversible** — Le profil ressource ne remonte jamais automatiquement.
 
 ### §1.5 Règles d'or (résumé opérationnel — intégral : `references/regles-or.md` ; miroir SHARED §9)
@@ -199,7 +199,7 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 > Saut §1.8 → §1.14 intentionnel (Task 21 A7).
 ### §1.16 Routage de découverte des skills + garde d'installation (résumé — intégral : `references/protocoles-detailles.md`)
 
-- **É1-INSTALL — garde avec PRÉEMPTION** : à l'ouverture de session, AVANT E1 : `ensure-installed.py --check` (chemin canonique). rc=0 → no-op ; rc≠0 → suspension de toute tâche + `--reinstall` (pipeline PM-INSTALL, clone éphémère) AVANT toute autre étape ; directive post-réinstallation intégrée au plan ; idempotente. **v3.35.2** : contrôle du SKILL.md de toutes les entrées KB ; manquants → AUTO-RÉPARÉS depuis le miroir (INSTALLE-REPARÉ, rc=0, trace worklog).
+- **É1-INSTALL — garde avec PRÉEMPTION** : à l'ouverture de session, AVANT E1 : `ensure-installed.py --check` (chemin canonique). rc=0 → no-op ; rc≠0 → suspension + `--reinstall` (pipeline PM-INSTALL) AVANT toute autre étape ; directive post-réinstall intégrée au plan ; idempotente. **v3.35.2** : contrôle du SKILL.md de toutes les entrées KB ; manquants → AUTO-RÉPARÉS depuis le miroir (INSTALLE-REPARÉ, rc=0, trace worklog).
 - **Routage (E5)** : skills-inventory en PRIORITÉ (`generate_skills_md.py --json`/`--search`/`--category`, comparaison mémorisée au KB) ; skill-finder-cn en FALLBACK si échec — contrôle `audit-provenance` AVANT adoption ; bascule unidirectionnelle.
 ## §2 — Spécification technique
 
@@ -213,7 +213,7 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 ```
 skills/gen-plan/
-├── SKILL.md                          # < 30 Kio — progressive disclosure (v3.39.0)
+├── SKILL.md                          # < 30 Kio — progressive disclosure
 ├── scripts/
 │   ├── ensure-installed.py           # É1-INSTALL — préemption (v3.35.2)
 │   └── check_plan_protocol.py        # Arbitre E7-DISP — P1-P5 (v3.27.0)
@@ -304,7 +304,7 @@ Résumé des plages clés (voir `references/grille-token.md` pour la grille comp
 - **Exécution simple (1 skill)** : 2000-5000 #token
 - **Exécution complexe (4+ skills)** : 10000-20000 #token
 - **Coefficients** : 0.8x (faible) → 1.5x (critique), ECO 0.7x, VIEUX PC 0.5x
-- **Coefficients de contingence (détail et preuves : `references/grille-token.md`)** : **profil frais local ×3-4** (première exécution sur profil restauré — coût de DÉCOUVERTE hors grilles calibrées, v3.28.1) ; **appels API en masse ×2-3** (429/backoff — ThreadPool 2-4 workers, throttle 1-2 s, reprise par lots, petits d'abord) ; **récupération externe bloquée ×3-4** (WAF/SPA/rate-limit — escalade WebFetch → curl → agent-browser → z-ai `page_reader`, budget propre AVANT l'étape requérante, v3.28.2).
+- **Contingences (preuves : `references/grille-token.md`)** : **profil frais local ×3-4** (première exécution sur profil restauré — coût de DÉCOUVERTE hors grilles calibrées, v3.28.1) ; **appels API en masse ×2-3** (429/backoff — ThreadPool 2-4 workers, throttle 1-2 s, reprise par lots, petits d'abord) ; **récupération externe bloquée ×3-4** (WAF/SPA/rate-limit — escalade WebFetch → curl → agent-browser → z-ai `page_reader`, budget propre AVANT l'étape requérante, v3.28.2).
 
 ---
 
@@ -334,4 +334,4 @@ Dès qu'une phase du plan d'actions se termine, lancer `correct-work(livrables d
 **Couche d'organisation transverse (v3.25.0, tous modes depuis v3.36.0 — seule différence : les portes de confirmation)** : **groupe `G<k>`** (unité de vérification — correct-work(groupe)) → **sous-groupes `SG<k>.<j>`** (lot cohérent 2-5 tâches) → **tâches `T<k>.<j>.<i>`** (unité élémentaire, tag #token). **Statuts dérivés de l'état vérifiable** (KO-L003) : `[À FAIRE]` · `[EN COURS]` · `[TERMINÉ]` · `[BLOQUÉ]` · `[REPORTÉ]` ; compteurs n/m. **Cadence** : début d'exécution → fenêtre native complète (E7-DISP point 6 — Z.ai : `TodoWrite`) ; ouverture de groupe → PLAN-AFFICHE d'évolution puis tableau du groupe (step-ok : après confirmation) ; fin de tâche → ligne + compteurs ; fin de sous-groupe → rappel ; fin de groupe → fenêtre native mise à jour ; clôture → tableau final + verdict correct-work(groupe). **Orthogonal à l'exécution** : couche de LECTURE ; Graph Diamond automatique dès preuve d'indépendance (sous-groupes inclus, série = exception tracée) ; groupes plats normalisés à l'ouverture (R6/R2).
 ### §5.6 Journal des versions (entrée courante — archive intégrale et mécanique de migration : `references/journal-versions.md`)
 
-- **v3.39.0 (2026-11-08, web-ecef7f80 — Task 72 G1, directives « Chantier R1 : re-curation progressive disclosure de gen-plan » + complémentaires 1a1b7b297b4975 [skill re-curation par script] et 1a1b7fe1c7238e8d [fenêtre native AFFICHE-PLAN])** : 9 blocs déplacés R4 byte-identité vers `references/` + append contingences (grille-token.md) — résumés NOUVEAUX inline, zéro duplication ; contrats baseline golden master + vérif POST (T1.1.0) ; lecture ciblée = état par défaut (E5-POIDS) ; **E7-DISP point 6 « fenêtre native »** (Z.ai : liste de tâches `TodoWrite`/`TodoRead` — début d'exécution + chaque fin d'étape) : intégral `references/protocoles-detailles.md`. MINOR. Cascade KO-L004 : SG1.4 (worklog Task 72).
+- **v3.40.0 (2026-11-08, web-ecef7f80 — Task 77 G2, directive trace 1a1ba66f3aff26e9 : « vérifie que mon écosystème te permet de lancer 4 commandes en parallèle »)** : PROTOCOLE D'ÉMISSION PARALLÈLE — opérationnalise la philosophie #4 (doctrine présente v3.24.0/v3.32.0 mais jamais appliquée : plans Tasks 70-76 100 % « série justifiée », zéro vague tracée) : fan-out multi-appels (un même bloc, tous outils) + concurrence intra-commande (`&`+`wait`/`xargs -P` ; mesure : 4×sleep 2 → 2,00 s vs 8,00 s — le shell persistant sérialise les Bash d'un même bloc) ; bornes ≤ 4/vague (G-RES), preuve d'indépendance légère, exceptions série inchangées, tracé worklog allégé (une ligne/vague). Inline : §1.2bis + §1.4 #4 (compensation byte — description inchangée, non-régression triggers) ; intégral : protocoles-detailles.md (extension v3.40.0) + graph-diamond-pattern.md §5. MINOR. Cascade KO-L004 : PM v3.40.0 + SHARED v1.7.35 + PM-INSTALL v1.9.12 (Task 77 G2).

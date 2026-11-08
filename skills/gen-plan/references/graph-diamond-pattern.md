@@ -61,3 +61,13 @@ découverte, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC).
 > reste perdu au wipe inter-sessions. Révision v3.24.0 (2026-10-24) : inversion du
 > défaut (parallèle par défaut sur preuve, série = exception tracée) — directive
 > propriétaire, session web-fdf5963c, Task 26.
+
+## §5 — Émission des vagues (v3.40.0)
+
+> Extension Task 77 G2 (directive propriétaire trace 1a1ba66f3aff26e9) — intégral du protocole : `protocoles-detailles.md` (Extension v3.40.0). Le bloc PATTERN ci-dessus demeure byte-identique (R4).
+
+Deux niveaux d'émission, distincts et complémentaires :
+- **fan-out multi-appels** (phase 2 ci-dessus) : les appels indépendants sont émis ENSEMBLE dans un même bloc multi-outils — réalité harnais mesurée : le shell persistant sérialise les commandes Bash d'un même bloc (le fan-out réduit la latence d'émission et conserve la concurrence pour les outils non-shell) ;
+- **concurrence intra-commande** : pour une concurrence Bash VRAIE, lancer les commandes indépendantes en jobs arrière-plan au sein d'UNE invocation (`cmd1 & cmd2 & wait`, `xargs -P`) — mesuré : 4×sleep 2 → 2,00 s vs 8,00 s (gain ×4) ; sorties dans des fichiers distincts, agrégées ensuite.
+
+Bornes ≤ 4 par vague (G-RES), preuve d'indépendance légère (une ligne), tracé worklog une ligne par vague — exceptions série inchangées (§3).

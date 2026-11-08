@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.34)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.35)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -148,6 +148,16 @@ RETRAITS_SANCTIONNES = {
     # retrait sanctionné — byte-identité vérifiée ci-dessous (garde anti-perte ;
     # SHA d002ba40…).
     "PROMPT-MAITRE-GEN-PLAN-v3.37.0.md",
+
+    # cascade gen-plan v3.40.0 (Task 77 G2, session web-ecef7f80, directive trace
+    # 1a1ba66f3aff26e9 « vérifie que mon écosystème te permet de lancer 4 commandes
+    # en parallèle … fais en sorte qu'il te permette de le faire à partir de
+    # maintenant » : PROTOCOLE D'ÉMISSION PARALLÈLE — fan-out multi-appels +
+    # concurrence intra-commande `&`+`wait`) — re-scellement post-cascade : PM
+    # v3.39.0 supplanté DÉPLACÉ git mv vers skills/@historique/prompts-maitres/
+    # gen-plan/ — byte-identité vérifiée ci-dessous (garde anti-perte ;
+    # SHA 918bc6925dab… scellé à l'index §5 du README @historique).
+    "PROMPT-MAITRE-GEN-PLAN-v3.39.0.md",
 }
 
 # Task 16 — garde anti-perte renforcée pour les retraits DÉPLACÉS : chaque PM
