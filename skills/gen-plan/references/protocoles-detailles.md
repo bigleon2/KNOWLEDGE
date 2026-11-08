@@ -97,3 +97,18 @@
 - **Série OBLIGATOIRE (exceptions tracées — inchangées)** : écriture partagée (même fichier, même registre, worklog), dépendance d'ordre (B lit la sortie de A), chaîne golden-master → modification → re-test, opérations git sur le même dépôt, verdict resource-monitor SERIE/PAUSE, profil ECO/VIEUX PC.
 - **Tracé worklog ALLÉGÉ pour les vagues de commandes** : une ligne par vague (`VAGUE-PAR T<n>-a∥T<n>-b∥… [preuve : …]`). Le tracé complet Task IDs `N-a`/`N-b` + re-verdict inter-vagues demeure pour les vagues de TÂCHES et d'agents (Graph Diamond §3) ; une vague de commandes en lecture seule n'exige AUCUN re-verdict intermédiaire (aucune mutation entre les lectures).
 - **Anti-régression** : émettre un appel par un pour des actions indépendantes = sériographie (anti-pattern Graph Diamond §4) — le défaut est le BLOC, l'exception est la file.
+
+---
+
+### Extension v3.41.0 — sondage borné (inspection transverse — origine Task 77 SG2.2 / Task 78, directive trace 1a1bbf9f403a2865)
+
+**Origine mesurée** : durant SG2.2 du Task 77 (cascade SHARED v1.7.35), un grep transverse a déclenché l'avertissement « Sortie trop volumineuse (en-tête SHARED très long) » — le réflexe borné (reprise en greps ciblés, lignes tronquées) avait été appliqué au vol mais n'était codifié nulle part. Mesures (2026-11-08, session web-ecef7f80) : grep « Contexte Système » sur skills/*/SKILL.md → **BRUT : 126 lignes / 12 207 octets émis** (ligne la plus longue 1 458 o) vs **BORNÉ (-l) : 119 lignes / 3 763 octets** — gain ×3,2 ; le §0 SHARED est dupliqué dans 119 SKILL.md (moyenne 2,0 Kio, max 15,1 Kio), et chaque match de grep imprime la ligne ENTIÈRE. La discipline « lecture ciblée » existante (hook E5-POIDS v3.38.0) ne couvrait que les LECTURES de skills LOURD/CRITIQUE — la présente extension la généralise aux COMMANDES D'INSPECTION TRANSVERSES (greps, lectures d'arbre) pendant l'exécution des plans (E9-E14).
+
+**RÈGLES (toute inspection transverse sur l'arbre skills/ — et par extension tout arbre de fichiers technique) :**
+
+1. **Jamais de pattern générique sans mode fichiers** : un pattern large (« SHARED », « Contexte Système », « v3. »…) sur l'arbre complet est d'abord lancé en mode `-l` / `--files-with-matches` (liste de fichiers uniquement) ; le grep de contenu ne porte ensuite QUE sur les fichiers retenus.
+2. **Greps multi-fichiers bornés** : toute commande de grep de contenu multi-fichiers porte une troncature de ligne (`--max-columns` ≈ 200) ET une limite de résultats (head_limit) — jamais de sortie intégrale non bornée.
+3. **§0 et contrats jamais affichés en entier** : les blocs §0 (en-têtes SHARED), les lignes de changelog et les contrats (evals, read_when) se lisent par plages de lignes ciblées (offset/limit), jamais par cat/grep intégral — ce sont les lignes les plus longues du dépôt (jusqu'à 1 458 o mesurés).
+4. **Exceptions (lectures intégrales légitimes)** : captures golden-master et lecture de contrats en PRE/POST d'une re-curation ou d'un amendement — UN fichier à la fois, jamais en transverse.
+
+**Anti-régression** : le sondage borné ne réduit JAMAIS la preuve mécanique (les vérifications comptent les MATCHES, pas les octets affichés — `-l` + `rg -c` suffisent aux comptages) ; il ne retarde pas non plus une lecture exigée par un verdict (l'exception 4 prime). Sa non-application reproduit le symptôme SG2.2 : plafond de sortie atteint, diagnostic perdu puis repris manuellement.

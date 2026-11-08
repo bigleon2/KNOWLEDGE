@@ -3,9 +3,9 @@
  "genere_par": "skills/re-curation/scripts/protocole-test.py v1.0.0",
  "nature": {
   "repertoire": "/home/z/my-project/skills/gen-plan",
-  "version": "3.40.0",
-  "octets": 30665,
-  "lignes": 337,
+  "version": "3.41.0",
+  "octets": 30696,
+  "lignes": 338,
   "a_section_A": true,
   "a_section_0": true,
   "a_read_when": true,
@@ -35,7 +35,7 @@
    "ensure-installed.py"
   ],
   "gouvernance": {
-   "kb": "3.40.0",
+   "kb": "3.41.0",
    "eco_skills": true
   }
  },
@@ -52,14 +52,14 @@
   ]
  },
  "baseline": {
-  "octets": 30665,
+  "octets": 30696,
   "contrats": {
    "section_A": "c6582197bb3a9a0169f399a0814908968a4da18676ee1e57f99ce5b1adc20396",
    "section_0_normalisee": "444b8092e70f8aee1ce87e4478a96481d6452f328b6a484624f6b198054e8fe4",
    "read_when": "c2217693159a1439d96d138e01d985d7c71c66435c7d7fd5a3f52e95b3860f67",
    "evals/evals.json": "74b52b3d42511044448a77db28ae6855738a0cc1c48bf3281bdef8955a98e327",
    "evals/trigger_evals.json": "de229e8be6aa8fbea2672be870fc49dfc1f50547ae179bdc4c25ffa55191193b",
-   "description_frontmatter": "cad6fa3103a91d81cbf718c9bdefc7a84f467313dbb6ce5b14ae977a86b6b66a"
+   "description_frontmatter": "cd2fa551c9af64e99dae6cc2379ea0a5e7b73dbc92338db31ec95053f194a0bf"
   },
   "sections": [
    {
@@ -71,7 +71,7 @@
     "octets": 3481
    },
    {
-    "section": "§0 — Contexte Système (SHARED v1.7.35)",
+    "section": "§0 — Contexte Système (SHARED v1.7.36)",
     "octets": 1653
    },
    {
@@ -88,7 +88,7 @@
    },
    {
     "section": "§1.2bis Hooks patterns avancés (v3.13.0, phase N20)",
-    "octets": 4406
+    "octets": 4635
    },
    {
     "section": "§1.3 Normes",
@@ -96,7 +96,7 @@
    },
    {
     "section": "§1.4 Philosophie clés",
-    "octets": 1130
+    "octets": 1197
    },
    {
     "section": "§1.5 Règles d'or (résumé opérationnel — intégral : `references/regles-",
@@ -184,11 +184,11 @@
    },
    {
     "section": "§5.6 Journal des versions (entrée courante — archive intégrale et méca",
-    "octets": 1140
+    "octets": 875
    }
   ],
-  "kio": 29.9,
-  "token_estimes": 7666
+  "kio": 30.0,
+  "token_estimes": 7674
  },
  "post": {
   "comparaison_contrats": {
@@ -205,8 +205,8 @@
   "non_duplication": true,
   "duplications": [],
   "fonctionnel": true,
-  "poids_avant": 30665,
-  "poids_apres": 30665,
+  "poids_avant": 30696,
+  "poids_apres": 30696,
   "reduction_pct": 0.0,
   "optimise": true,
   "verdict_post": "MAINTIEN DE L'OPTIMISATION"

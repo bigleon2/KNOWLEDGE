@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.35)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.36)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -29,6 +29,13 @@ BAK = ARCHIVE.with_suffix(".zip.bak")
 # pour tout autre extra). Traçabilité : chaque retrait = suppression propriétaire
 # publiée, référencée ici avec son commit et sa décision de calibration.
 RETRAITS_SANCTIONNES = {
+    # cascade gen-plan v3.41.0 (Task 78/79 G1, session web-ecef7f80 2026-11-08 —
+    # règle de sondage borné, directive trace 1a1bbf9f403a2865) — re-scellement
+    # Task 78 : PM GEN-PLAN v3.40.0 DÉPLACÉ git mv vers
+    # skills/@historique/prompts-maitres/gen-plan/ — byte-identité vérifiée
+    # ci-dessous (garde anti-perte ; SHA 8fa129f99892…).
+    "PROMPT-MAITRE-GEN-PLAN-v3.40.0.md",
+
     # cascade gen-plan v3.35.1 (directive langue française, session
     # web-c30e6506 2026-11-06 — renforcement règle d'or n°6 : français
     # dès le PREMIER mot de toute session/reprise/continuation, §0

@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.40.0
+version: 3.41.0
 category: ecosystem
 language: fr
 tags:
@@ -60,7 +60,7 @@ read_when:
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
-## §0 — Contexte Système (SHARED v1.7.35)
+## §0 — Contexte Système (SHARED v1.7.36)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -112,8 +112,9 @@ read_when:
 | **Arbitre answer-key-checker** | **E7/E8** | Le plan référence l'answer key ; à E8, l'arbitre mécanique `scripts/answer-key-checker.py` (16 checks) valide structure, fonctionnalité, idempotence et intégration — verdict PASS requis pour S1/S2 | `scripts/answer-key-checker.py` |
 | **E7-DISP — Affichage obligatoire du plan** | **E7/E8/E13 + ouverture d'étape (v3.36.0) + fenêtre native début/fin d'étape (v3.39.0)** | Toute écriture du fichier plan (création E7, E13, re-génération KO-L005, reprise) n'est TERMINÉE qu'après la chaîne : plan écrit + answer key + verdict E8 (horodatages couplés) + worklog R5 marqueur `PLAN-AFFICHE` + bloc récapitulatif au chat — verdict mécanique bloquant ; affichage REJOUABLE (v3.27.0) ; à l'ouverture de chaque étape (v3.36.0) : bloc d'évolution du déroulement (groupes + statuts + compteurs + position — tous modes) | `scripts/check_plan_protocol.py` |
 | **Graph Diamond** | **E9-E14** | Parallélisation PAR DÉFAUT des tâches ET commandes indépendantes (série = exception justifiée — #4 v3.24.0/v3.32.0/v3.40.0 émission : fan-out bloc + `&`+`wait`) — tracé worklog | `references/graph-diamond-pattern.md` |
+| **Sondage borné** | **E9-E14** | Inspection transverse sur l'arbre skills/ TOUJOURS bornée : mode fichiers (-l) d'abord, greps multi-fichiers tronqués + limite de résultats ; §0/contrats jamais affichés en entier | `references/protocoles-detailles.md` |
 | **Observer** | **E15** | Invoque knowledge-observer en modes M1-M2 (observation + analyse post-session) ; les modes M3-M4 exigent un verdict correct-work | `references/observation-patterns.md` |
-| **E5-POIDS — arbitre de poids de chargement** | **E5** (v3.38.0) | À la sélection des skills (E5), l'arbitre `scripts/poids-chargement.py` (recommandation R1 étude Task 70 — le goulot réel est le budget #token) mesure le poids de chargement (Kio + #token estimés = caractères/4) ; un skill CRITIQUE (≥ 60 Kio) ou LOURD (≥ 30 Kio) déclenche la voie lecture ciblée : §0 Contexte Système + sommaire d'abord, sections dédiées ensuite, `references/` chargées à la demande — JAMAIS de lecture intégrale par défaut | `scripts/poids-chargement.py` |
+| **E5-POIDS — arbitre de poids de chargement** | **E5** (v3.38.0) | À la sélection des skills (E5), l'arbitre `scripts/poids-chargement.py` (recommandation R1 étude Task 70 — le goulot réel est le budget #token) mesure le poids de chargement (Kio + #token estimés = caractères/4) ; un skill CRITIQUE (≥ 60 Kio) ou LOURD (≥ 30 Kio) déclenche la lecture ciblée : §0 + sommaire d'abord, sections dédiées ensuite, `references/` à la demande — JAMAIS de lecture intégrale par défaut | `scripts/poids-chargement.py` |
 | **R2-CACHE — cache de verdicts** | **E9-E14** (v3.38.0) | Les graders coûteux (arbitres, harnais, batteries) ré-exécutés à entrées inchangées passent par `scripts/cache-verdicts.py` (recommandation R2 de l'étude Task 70) : verdict figé une fois (rc + stdout + durée), re-jeu sans ré-appel (gain 440×), invalidation auto par état des cibles (taille/mtime), `--force` pour re-vérification réelle — un verdict figé n'est JAMAIS une preuve en soi, la re-exécution reste disponible à la demande | `scripts/cache-verdicts.py` |
 
 <!-- FIN-PATTERN:GEN-PLAN-HOOKS-PATTERNS-v1.0.0 -->
@@ -135,7 +136,7 @@ read_when:
 1. **Read before planning** — Toujours lire le projet avant de planifier.
 2. **Performance-driven sélection** — Le choix skill/agent est dicté par le gain de performance.
 3. **Skills can launch specialized agents** — Modèle à deux couches : Skill → Agent Spécialisé.
-4. **Parallélisation par défaut des tâches ET des commandes sur preuve d'indépendance** (v3.24.0/v3.32.0 + **émission v3.40.0**) — vagues indépendantes en PARALLÈLE : Graph Diamond (E9-E14), série = exception tracée ; émission : fan-out multi-appels + concurrence `&`+`wait` ; dégradation 429 — intégral : `references/protocoles-detailles.md` (#4).
+4. **Parallélisation par défaut des tâches ET des commandes sur preuve d'indépendance** (v3.24.0/v3.32.0 + émission v3.40.0 + **sondage borné v3.41.0**) — vagues indépendantes en PARALLÈLE : Graph Diamond (E9-E14), série = exception tracée ; émission : fan-out multi-appels + concurrence `&`+`wait` ; sondage : inspection bornée (§1.2bis) ; dégradation 429 — intégral : `references/protocoles-detailles.md` (#4).
 5. **Visible progress** — L'utilisateur sait toujours où on en est.
 6. **CoT + Chaining avec auto-correction** — Raisonnement structuré avant chaque action.
 7. **Lecture bloc par bloc** — Fichiers > 500 lignes : lire par blocs successifs (limit/offset) avec synthèse intermédiaire — jamais d'un seul coup (détail : `references/profils-ressource.md`).
@@ -334,4 +335,4 @@ Dès qu'une phase du plan d'actions se termine, lancer `correct-work(livrables d
 **Couche d'organisation transverse (v3.25.0, tous modes depuis v3.36.0 — seule différence : les portes de confirmation)** : **groupe `G<k>`** (unité de vérification — correct-work(groupe)) → **sous-groupes `SG<k>.<j>`** (lot cohérent 2-5 tâches) → **tâches `T<k>.<j>.<i>`** (unité élémentaire, tag #token). **Statuts dérivés de l'état vérifiable** (KO-L003) : `[À FAIRE]` · `[EN COURS]` · `[TERMINÉ]` · `[BLOQUÉ]` · `[REPORTÉ]` ; compteurs n/m. **Cadence** : début d'exécution → fenêtre native complète (E7-DISP point 6 — Z.ai : `TodoWrite`) ; ouverture de groupe → PLAN-AFFICHE d'évolution puis tableau du groupe (step-ok : après confirmation) ; fin de tâche → ligne + compteurs ; fin de sous-groupe → rappel ; fin de groupe → fenêtre native mise à jour ; clôture → tableau final + verdict correct-work(groupe). **Orthogonal à l'exécution** : couche de LECTURE ; Graph Diamond automatique dès preuve d'indépendance (sous-groupes inclus, série = exception tracée) ; groupes plats normalisés à l'ouverture (R6/R2).
 ### §5.6 Journal des versions (entrée courante — archive intégrale et mécanique de migration : `references/journal-versions.md`)
 
-- **v3.40.0 (2026-11-08, web-ecef7f80 — Task 77 G2, directive trace 1a1ba66f3aff26e9 : « vérifie que mon écosystème te permet de lancer 4 commandes en parallèle »)** : PROTOCOLE D'ÉMISSION PARALLÈLE — opérationnalise la philosophie #4 (doctrine présente v3.24.0/v3.32.0 mais jamais appliquée : plans Tasks 70-76 100 % « série justifiée », zéro vague tracée) : fan-out multi-appels (un même bloc, tous outils) + concurrence intra-commande (`&`+`wait`/`xargs -P` ; mesure : 4×sleep 2 → 2,00 s vs 8,00 s — le shell persistant sérialise les Bash d'un même bloc) ; bornes ≤ 4/vague (G-RES), preuve d'indépendance légère, exceptions série inchangées, tracé worklog allégé (une ligne/vague). Inline : §1.2bis + §1.4 #4 (compensation byte — description inchangée, non-régression triggers) ; intégral : protocoles-detailles.md (extension v3.40.0) + graph-diamond-pattern.md §5. MINOR. Cascade KO-L004 : PM v3.40.0 + SHARED v1.7.35 + PM-INSTALL v1.9.12 (Task 77 G2).
+- **v3.41.0 (2026-11-08, web-ecef7f80 — Task 78/79 G1, directive 1a1bbf9f403a2865 « règle de sondage borné »)** : SONDAGE BORNÉ — extension de la lecture ciblée (E5-POIDS) aux inspections transverses : jamais de pattern générique sur l'arbre sans -l, greps multi-fichiers tronqués + limite de résultats, §0/contrats jamais en entier (exceptions : golden-master et contrats PRE/POST). Motivation et mesures (SG2.2 Task 77 « Sortie trop volumineuse » — BRUT 12 207 o vs BORNÉ 3 763 o, gain ×3,2) : intégral protocoles-detailles.md. Inline : §1.2bis rangée + §1.4 #4. MINOR, description/§A inchangés (non-régression triggers). Cascade KO-L004 : PM v3.41.0, SHARED INCHANGÉ (règle gen-plan-scopée) (Task 79 G1).
