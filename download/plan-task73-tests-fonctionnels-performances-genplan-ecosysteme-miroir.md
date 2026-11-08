@@ -1,6 +1,6 @@
 # Plan Task 73 — Tests fonctionnels et performances : gen-plan hôte + écosystème hôte + gen-plan miroir → correction des failles + optimisation
 
-**Horodatage plan : 2026-11-09T00:45:00Z (initial)** · Mode : gen-plan(step) · Session : web-ecef7f80 · Trace directive : 1a1b853d77f65451 · Prérequis vérifié : Task 72 CLOSE (plan rév. 3 final, 15/15 verified, E8 2026-11-08T23:59:00Z)
+**Horodatage plan : 2026-11-09T01:58:00Z (final — 13/13 décisions verified)** · Mode : gen-plan(step) · Session : web-ecef7f80 · Trace directive : 1a1b853d77f65451 · Prérequis vérifié : Task 72 CLOSE (plan rév. 3 final, 15/15 verified, E8 2026-11-08T23:59:00Z)
 
 ## Contexte et périmètre
 
@@ -90,7 +90,7 @@ decisions:
     verification: "fichier download/clone-chat-session-web-ecef7f80-20261108-task73.md conforme au template"
     source: "Protocole clone-chat v2.0.2 ; précédent Task 72 G7"
     priority: "S2"
-    status: "pending"
+    status: "verified"
   - id: "D012"
     criterion: "Fenêtre native AFFICHE-PLAN (E7-DISP point 6, héritage D015 Task 72) : liste de tâches native (outil TodoWrite) affichée au DÉBUT de l'exécution du plan et MISE À JOUR à chaque FIN de groupe G1->G8 — preuve vivante : la présente exécution"
     verification: "fenêtre native visible dans la session (statuts G1->G8 tenus) + mentions worklog à chaque fin de groupe"
@@ -157,4 +157,4 @@ decisions:
 
 ## Verdict E8
 
-**Verdict E8 : PASS (EN VOL — plan initial approuvé pour exécution : 13 décisions pending, groupes G1→G8 enchaînés, prérequis Task 72 CLOSE vérifié, état initial E2 mesuré [gen-plan hôte==miroir v3.39.0, faille PRE identifiée : version-management absent hôte 7ᵉ récidive], fenêtre native AFFICHE-PLAN affichée au début de l'exécution et mise à jour à chaque fin de groupe). — Horodatage vérifié : 2026-11-09T00:45:00Z**
+**Verdict E8 : PASS (FINAL — plan exécuté intégralement : G1 ✅ outillage [protocole $FACON2 + campagne R4 selftest 8/8, E8 initial P1-P5] ; G2 ✅ PRE C1 PASS 11/11 [130 ms, contrats intacts] ; G3 ✅ PRE C2 FAIL mono-racine version-management [3 tests concordants, écart arithmétique résolu] ; G4 ✅ PRE C3 PASS 7/7 [identité byte hôte↔dépôt] ; G5 ✅ corrections [vm INSTALLE-REPARÉ rc=0, cause racine environnementale, aucun script coupable] ; G6 ✅ POST [FAIL→PASS AVEC RÉSERVES, non-régression True, 3 failles résorbées] ; G7 ✅ [correct-work --bloc PASS 0 S1 · 0 S2 · 3 S3-class résorbés, answer key 12/13, rapport final, commit a790d04] ; G8 ✅ clone-chat [archive auto-suffisante, D011] ; answer key 13/13 verified [re-jeu mécanique 13/13 PASS] ; fenêtre native D012 maintenue G1→G8 ; pendance PUSH propriétaire D013 [KO-L009]. — Horodatage vérifié : 2026-11-09T01:58:00Z)**
