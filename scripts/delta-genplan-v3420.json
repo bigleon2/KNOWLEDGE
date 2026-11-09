@@ -1,0 +1,30 @@
+{
+ "history": "INSCRIPTION SOCLE n°56 (directive 1a1bed51ccaf78f1 « continue » — pendance P1 Task 83) — agent-engineering (ABE/AE/MASE, créée Task 83) inscrite : SHARED §7 (définition + registre d'assignation, v1.7.37) + gen-plan §1.6 + §3 (v3.42.0). MINOR, description/§A inchangés ; cascade KO-L004 : PM v3.42.0, SHARED v1.7.37, PM-INSTALL v1.9.14 (Task 84 G3)",
+ "subs": [
+  {
+   "old": "| **Refactoring test** | Outil n°55 (anti-auto-certification) : évaluation + blast radius, verdict OK/PRESSION/CRITIQUE |",
+   "new": "| **Refactoring test** | Outil n°55 (anti-auto-certification) : évaluation + blast radius, verdict OK/PRESSION/CRITIQUE |\n| **Agent engineering** | Discipline n°56 : cadrage/routage/outillage/veille des tâches d'agents (ABE/AE/MASE) — (SHARED §7, registre §8 du skill) |",
+   "count": 1
+  },
+  {
+   "old": "| refactoring-test | Outil n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Détection/évaluation + graphe d'interactions (blast radius) — verdict machine, version >= v1.0.1 |",
+   "new": "| refactoring-test | Outil n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Détection/évaluation + graphe d'interactions (blast radius) — verdict machine, version >= v1.0.1 |\n| agent-engineering | Mobilisation n°56 (SHARED §7, registre décentralisé §8 du skill) | Cadrage/routage des tâches d'agents (ABE/AE/MASE) — version >= v1.0.0 |",
+   "count": 1
+  },
+  {
+   "old": "| **Refactoring test** | Outil de la discipline n°55 (non discipline — Task 8) : détection/évaluation des situations de refactoring + graphe d'interactions (blast radius) ; verdict machine OK/PRESSION/CRITIQUE |",
+   "new": "| **Refactoring test** | Outil de la discipline n°55 (non discipline — Task 8) : détection/évaluation des situations de refactoring + graphe d'interactions (blast radius) ; verdict machine OK/PRESSION/CRITIQUE |\n| **Agent engineering** | Discipline n°56 (créée Task 83, inscrite au socle Task 84 — SHARED §7 v1.7.37) : orchestration $FACON des tâches des 3 domaines ABE/AE/MASE (cadrer/router/outiller/veiller) — englobante, routage vers les détenteurs (fleet n°54, memory/harness/spec-dd, autonomous-agent, agent-creator, gen-plan), zéro duplication ; matérialisation : skill `agent-engineering` (déclenchement automatique) ; orchestration gen-plan §1.6/§3 (v3.42.0) |",
+   "count": 1
+  },
+  {
+   "old": "Règle d'anti-auto-certification : l'exécutant (refactoring-engineering) ne s'auto-évalue pas — évaluation indépendante par refactoring-test (pré-vol/post-vol) + arbitres mécaniques + correct-work. Source de vérité : SHARED §7 (n°55) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB. Les opérations à risque mobilisent refactor-guard (garde-fous — fusion 468a4c26).",
+   "new": "Règle d'anti-auto-certification : l'exécutant (refactoring-engineering) ne s'auto-évalue pas — évaluation indépendante par refactoring-test (pré-vol/post-vol) + arbitres mécaniques + correct-work. Source de vérité : SHARED §7 (n°55) ; détention orchestrée : registre décentralisé §8 de chaque skill + registre KB. Les opérations à risque mobilisent refactor-guard (garde-fous — fusion 468a4c26).\n\n**Discipline d'agent engineering n°56 (créée Task 83 — inscription socle Task 84, pendance P1 éteinte)** : la discipline `agent-engineering` est la matérialisation englobante des trois domaines Agent-Based Engineering (agents comme blocs de construction — ABSE/Tropos), Agent Engineering (transformation itérative de LLMs en systèmes fiables — fiabilité premier frein, State of Agent Engineering, LangChain 2026) et Multi-Agent Systems Engineering (patterns documentés, coordination, gardes anti-flotte — Cognition 2025, traçabilité par agent — Anthropic 08/2026). Elle CADRE, ROUTE, OUTILLE et VEILLE — sans détenir la méthode d'aucun détenteur (fleet-engineering n°54 : patterns de flotte ; memory/harness/spec-driven : leurs registres ; autonomous-agent : format .agent ; agent-creator : fabrique F1-F5 ; gen-plan : planification). Source de vérité : SHARED §7 (n°56, v1.7.37) ; détention orchestrée : registre décentralisé §8 du skill + registre KB ; orchestration : gen-plan §1.6/§3 (v3.42.0).",
+   "count": 1
+  },
+  {
+   "old": "> **Mécanique de migration (v3.39.0)** : le SKILL.md §5.6 ne conserve que l'entrée COURANTE ; à chaque montée de version suivante, l'entrée courante migre ici (R4 byte-identité) et la nouvelle prend sa place inline.",
+   "new": "> **Mécanique de migration (v3.39.0)** : le SKILL.md §5.6 ne conserve que l'entrée COURANTE ; à chaque montée de version suivante, l'entrée courante migre ici (R4 byte-identité) et la nouvelle prend sa place inline.\n\n- **v3.41.0 (2026-11-08, web-ecef7f80 — Task 78/79 G1, directive 1a1bbf9f403a2865 « règle de sondage borné »)** : SONDAGE BORNÉ — extension de la lecture ciblée (E5-POIDS) aux inspections transverses : jamais de pattern générique sur l'arbre sans -l, greps multi-fichiers tronqués + limite de résultats, §0/contrats jamais en entier (exceptions : golden-master et contrats PRE/POST). Motivation et mesures (SG2.2 Task 77 « Sortie trop volumineuse » — BRUT 12 207 o vs BORNÉ 3 763 o, gain ×3,2) : intégral protocoles-detailles.md. Inline : §1.2bis rangée + §1.4 #4. MINOR, description/§A inchangés (non-régression triggers). Cascade KO-L004 : PM v3.41.0, SHARED INCHANGÉ (règle gen-plan-scopée) (Task 79 G1).",
+   "count": 1
+  }
+ ]
+}

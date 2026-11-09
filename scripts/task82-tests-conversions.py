@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+"""
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.37)
+SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
+Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).
+Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
+"""
+
 """task82-tests-conversions.py — Campagne de tests Task 82 G3 (conversions).
 
 Brefs tests fonctionnels + performance + idempotence ×2 sur les éléments
@@ -111,9 +121,18 @@ def main():
 
     (r4c, d1) = run(["python3", "scripts/check-ecosysteme-integrity.py", "--check"])
     (r4d, d2) = run(["python3", "scripts/check-ecosysteme-integrity.py", "--check"])
-    ok4b = "112/112 PASS" in r4c.stdout + r4c.stderr and "112/112 PASS" in r4d.stdout + r4d.stderr
-    check("T4b", "integrity --check stable ×2 (112/112)", ok4b,
-          f"runs 1-2 identiques PASS 112/112", d1 + d2)
+    # KO-L003 (Task 84) : invariant DYNAMISÉ — le total est dérivé de la sortie de
+    # l'arbitre lui-même (périmètre KB courant — 112 à l'époque Task 82, 114 depuis
+    # la discipline n°56 Task 83, évolutif par conception) ; l'exigence demeure :
+    # runs 1-2 identiques, tous deux PASS au même total.
+    import re as _re
+    m_c = _re.search(r"(\d+)/\1 PASS", r4c.stdout + r4c.stderr)
+    m_d = _re.search(r"(\d+)/\1 PASS", r4d.stdout + r4d.stderr)
+    ok4b = bool(m_c and m_d and m_c.group(1) == m_d.group(1))
+    tot = m_c.group(1) if m_c else "?"
+    check("T4b", f"integrity --check stable ×2 (total dynamique {tot}/{tot})", ok4b,
+          f"runs 1-2 identiques PASS {tot}/{tot} — périmètre KB courant (invariant dynamisé KO-L003)",
+          d1 + d2)
 
     s0 = sha(os.path.join(RACINE, "download", "mon-ecosysteme_archive.zip"))
     (r4e, d3) = run(["python3", "scripts/task72-resceller-archive.py"])
@@ -128,14 +147,39 @@ def main():
     check("T5", "performance mesurée", True,
           f"verifier {results[2]['duree_s']:.2f} s · integrity ×2 {d1 + d2:.2f} s · rescellage {d3:.2f} s")
 
-    # T6 — non-convertis byte-identiques (git status == attendu exact)
-    r6 = subprocess.run(["git", "-C", REPO, "status", "--short"],
-                        capture_output=True, text=True)
-    statut = set(l for l in r6.stdout.splitlines() if l.strip())
-    ok6 = statut == ATTENDU_GIT
-    check("T6", "non-convertis byte-identiques (statut dépôt == 11 fichiers attendus)",
-          ok6, f"{len(statut)} fichiers modifiés, attendu {len(ATTENDU_GIT)}" +
-          ("" if ok6 else f" — INATTENDUS: {sorted(statut - ATTENDU_GIT)} / MANQUANTS: {sorted(ATTENDU_GIT - statut)}"))
+    # T6 — non-convertis byte-identiques (KO-L003 Task 84 : invariants état-indépendants
+    # — l'ancienne comparaison « git status == 11 fichiers EXACTS » était liée à
+    # l'instantané pré-commit Task 82 et échouait sur tout état postérieur légitime)
+    # T6a — le NOYAU de conversion (5 artefacts) est byte-identique à son état au
+    #       CLOSE Task 82 (95fef2b) : git diff 95fef2b..HEAD sur le noyau = ∅.
+    #       (les 6 autres chemins du périmètre — KB, ULTRA, générateur, arbitre
+    #       integrity + manifeste — évoluent légitimement avec les cascades)
+    # T6b — le périmètre historique complet (11 chemins) ⊆ commit CLOSE 95fef2b
+    #       (la conversion a bien atterri dans son commit de clôture, preuve éternelle).
+    CONV_CLOSE = "95fef2b"
+    CONV_BASE = "5859566"
+    NOYAU_CONV = [
+        "skills/knowledge-observer/knowledge-observer.agent",
+        "skills/knowledge-observer/SKILL.md",
+        "skills/@historique/historiques-par-skill/knowledge-observer.md",
+        "skills/re-curation/SKILL.md",
+        "skills/re-curation/scripts/protocole-test.py",
+    ]
+    chemins_conv = sorted({l[3:] for l in ATTENDU_GIT})
+    r6a = subprocess.run(["git", "-C", REPO, "diff", "--name-only", CONV_CLOSE, "HEAD",
+                          "--"] + NOYAU_CONV, capture_output=True, text=True)
+    stables = [l for l in r6a.stdout.splitlines() if l.strip()]
+    ok6a = not stables
+    check("T6a", "noyau conversion byte-identique au CLOSE 95fef2b (5 artefacts)",
+          ok6a, "git diff 95fef2b..HEAD ∅ sur le noyau" if ok6a else f"MODIFIÉS DEPUIS: {stables}")
+    r6b = subprocess.run(["git", "-C", REPO, "diff", "--name-only", CONV_BASE, CONV_CLOSE],
+                         capture_output=True, text=True)
+    dans_commit = set(l for l in r6b.stdout.splitlines() if l.strip())
+    manq_b = [c for c in chemins_conv if c not in dans_commit]
+    ok6b = not manq_b
+    check("T6b", "périmètre conversion (11 chemins) ⊆ commit CLOSE 95fef2b", ok6b,
+          f"{len(chemins_conv) - len(manq_b)}/{len(chemins_conv)} chemins présents dans {CONV_BASE}..{CONV_CLOSE}"
+          if ok6b else f"MANQUANTS: {manq_b}")
 
     bilan = {"total": len(results), "pass": sum(1 for r in results if r["verdict"] == "PASS"),
              "fail": sum(1 for r in results if r["verdict"] == "FAIL"),

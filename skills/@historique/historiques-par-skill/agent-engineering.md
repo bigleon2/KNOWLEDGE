@@ -9,3 +9,5 @@
 - **Cascade KO-L004 locale** : entrée KB `## agent-engineering v1.0.0` + 4 arêtes bidirectionnelles (gen-plan, fleet-engineering, autonomous-agent, agent-creator — « Utilisé par » enrichis, ajouts purs) + pin manifeste ECO_SKILLS integrity + ULTRA 13ᵉ voie (table §1 + ligne §3) + présent fichier CRÉÉ + projection hôte pipeline 55/55.
 - **Baseline A2** : EN ATTENTE DE MESURE (voie mécanique + confirm 3 runs LLM à armer au QUOTA_OK — KO-L001 ; aucune baseline pré-écrite, R3).
 - **Pendance structurée** : inscription socle SHARED §7 (table définitions + registre assignation, bump v1.7.37) + gen-plan §1.6/§3 (bump MINOR + cascade) — précédents v1.7.0 (n°54) et Task 7/8 (n°55), tâche dédiée.
+
+- **Socle inscrit** (Task 84 G3, 2026-11-09 — directive 1a1bed51ccaf78f1 « continue », pendance P1 éteinte) : SHARED §7 (ligne définition + ligne registre d'assignation, v1.7.37) + gen-plan §1.6/§3 (v3.42.0, mobilisation déclarée à l'entrée KB) ; PM v3.42.0 généré (delta verrouillé scripts/delta-genplan-v3420.json), PM v3.41.0 archivé R4 (sceau f0a44d495519c3df…).

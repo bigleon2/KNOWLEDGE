@@ -53,7 +53,7 @@ read_when:
 - « tests fonctionnels et de performance » / « validation de toutes les interactions » AVANT et APRÈS la re-curation — suite v1.2.0 intégrée aux phases PRE/POST (directive 2026-11-09)
 - $FACON = de façon cohérente, optimisée et fonctionnelle · $FACON2 = (cohérent, optimisé et fonctionnel) — glossaire inline auto-contenu (registre canonique @historique/@Alias/aliases.json)
 
-## §0 — Contexte Système (SHARED v1.7.36)
+## §0 — Contexte Système (SHARED v1.7.37)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

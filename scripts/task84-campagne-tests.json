@@ -1,0 +1,579 @@
+{
+  "task": "Task 84 — campagne tests $FACON2 chronologique",
+  "directive": "1a1bed51ccaf78f1",
+  "horodatage": "2026-11-09T05:59:02Z",
+  "verdict_global": "PASS",
+  "items_pass": 52,
+  "items_total": 52,
+  "duree_totale_s": 3.5,
+  "items": [
+    {
+      "id": "C1",
+      "label": "scripts/ecosystem/*.py ×6 — compile + Karnaugh 20/20",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/ecosystem/test-karnaugh-f-l-s-b.py",
+      "rc": 0,
+      "duree_s": 0.039,
+      "verdict": "PASS",
+      "notes": [
+        "karnaugh_20=OK"
+      ],
+      "sortie": "TG4 — Karnaugh F/L/S/B : 20/20 états conformes\n"
+    },
+    {
+      "id": "C2",
+      "label": "@GHORG-ecosysteme + ghorg-cmdr v1.1.0 — YAML + KB",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [
+        "manifest",
+        "selection",
+        "kb+version"
+      ],
+      "sortie": ""
+    },
+    {
+      "id": "C3",
+      "label": "@Bibliotheque-skills-Multi-IA — 10 fichiers, 0 vide",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C4a",
+      "label": "poids-chargement.py (R1) — selftest ×2",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/poids-chargement.py --selftest",
+      "rc": 0,
+      "duree_s": 0.032,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "  [PASS] T1 : 4 skills mesurés (dossiers @ et sans SKILL.md exclus)\n  [PASS] T2 : verdict OK < 12 Kio\n  [PASS] T3 : verdict INTERMÉDIAIRE 12-30 Kio\n  [PASS] T4 : verdict LOURD 30-60 Kio\n  [PASS] T5 : verdict CRITIQUE >= 60 Kio\n  [PASS] T6 : #token estimés = caractères / 4\n  [PASS] T7 : references/ récursif (2 fichiers, 8000 octets ≈ 7,8 Kio)\n  [PASS] T8 : total = SKILL.md + references\n  [PASS] T9 : tri décroissant du poids SKILL.md\n  [PASS] T10 : idempotence (2 exécutions → mesures identiques)\nSELFTEST : 10/10 PASS\n"
+    },
+    {
+      "id": "C4a",
+      "label": "poids-chargement.py (R1) — selftest re-jeu",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/poids-chargement.py --selftest",
+      "rc": 0,
+      "duree_s": 0.038,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "  [PASS] T1 : 4 skills mesurés (dossiers @ et sans SKILL.md exclus)\n  [PASS] T2 : verdict OK < 12 Kio\n  [PASS] T3 : verdict INTERMÉDIAIRE 12-30 Kio\n  [PASS] T4 : verdict LOURD 30-60 Kio\n  [PASS] T5 : verdict CRITIQUE >= 60 Kio\n  [PASS] T6 : #token estimés = caractères / 4\n  [PASS] T7 : references/ récursif (2 fichiers, 8000 octets ≈ 7,8 Kio)\n  [PASS] T8 : total = SKILL.md + references\n  [PASS] T9 : tri décroissant du poids SKILL.md\n  [PASS] T10 : idempotence (2 exécutions → mesures identiques)\nSELFTEST : 10/10 PASS\n"
+    },
+    {
+      "id": "C4b",
+      "label": "cache-verdicts.py (R2) — selftest ×2",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/cache-verdicts.py --selftest",
+      "rc": 0,
+      "duree_s": 0.304,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "  [PASS] T1 : exécution réelle au 1er appel (appel #1)\n  [PASS] T2 : rc propagé\n  [PASS] T3 : re-jeu sans ré-appel (toujours appel #1)\n  [PASS] T4 : marqueur REJEU émis\n  [PASS] T5 : verdict figé identique (stdout == stdout)\n  [PASS] T6 : invalidation sur mtime/taille cible (appel #2)\n  [PASS] T7 : --force ré-exécute (appel #3)\n  [PASS] T8 : gain mesuré rejeu ≥ exécution/1000 (rejeu quasi instantané)\n  [PASS] T9 : clés distinctes par commande\n  [PASS] T10 : clés distinctes par état de cible\n  [PASS] T11 : entrées de cache JSON persistées\n  [PASS] T12 : stats rend le compte des entrées\nSELFTEST"
+    },
+    {
+      "id": "C4b",
+      "label": "cache-verdicts.py (R2) — selftest re-jeu",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/cache-verdicts.py --selftest",
+      "rc": 0,
+      "duree_s": 0.308,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "  [PASS] T1 : exécution réelle au 1er appel (appel #1)\n  [PASS] T2 : rc propagé\n  [PASS] T3 : re-jeu sans ré-appel (toujours appel #1)\n  [PASS] T4 : marqueur REJEU émis\n  [PASS] T5 : verdict figé identique (stdout == stdout)\n  [PASS] T6 : invalidation sur mtime/taille cible (appel #2)\n  [PASS] T7 : --force ré-exécute (appel #3)\n  [PASS] T8 : gain mesuré rejeu ≥ exécution/1000 (rejeu quasi instantané)\n  [PASS] T9 : clés distinctes par commande\n  [PASS] T10 : clés distinctes par état de cible\n  [PASS] T11 : entrées de cache JSON persistées\n  [PASS] T12 : stats rend le compte des entrées\nSELFTEST"
+    },
+    {
+      "id": "C5",
+      "label": "propagate-context v2.1.1 — passe 1 (absorption canonique : injections en attente acceptées)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/propagate-context.py",
+      "rc": 0,
+      "duree_s": 0.072,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "🚀 PROPAGATION DU CONTEXTE SYSTÈME — Architecture v2.0\n\n============================================================\n🔄 Propagation du Contexte Système (Niveau 2) aux skills...\n   ✅ 0 skills mis à jour\n\n🔄 Propagation du Contexte Système (Niveau 3) aux scripts...\n   ✅ 0 scripts mis à jour\n\n🔄 Propagation du Contexte Système (Niveau 2) aux agents...\n   ✅ 0 agents mis à jour\n\n============================================================\n🎉 TERMINÉ : 0 skills + 0 scripts + 0 agents\n"
+    },
+    {
+      "id": "C5b",
+      "label": "propagate-context — passe 2 NO-OP (0 skills + 0 scripts) + échantillon byte-stable",
+      "rc": 0,
+      "duree_s": 0.0,
+      "verdict": "PASS",
+      "notes": [
+        "byte_stable",
+        "no_op_p2"
+      ],
+      "sortie": "🚀 PROPAGATION DU CONTEXTE SYSTÈME — Architecture v2.0\n\n============================================================\n🔄 Propagation du Contexte Système (Niveau 2) aux skills...\n   ✅ 0 skills mis à jour\n\n🔄 Propagation du Contexte Système (Niveau 3) aux scripts...\n   ✅ 0 scripts mis à jour\n\n🔄 Propagation du Contexte Système (Niveau 2) aux agents...\n   ✅ 0 agents mis à jour\n\n==========================="
+    },
+    {
+      "id": "C5c",
+      "label": "lot §0 propagation — parité hôte==dépôt 12/12",
+      "rc": 0,
+      "duree_s": 0.02,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C6a",
+      "label": "gen-plan — check_plan_protocol P1-P5 (plan Task 84)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/gen-plan/scripts/check_plan_protocol.py --plan /home/z/my-project/download/plan-task84-campagne-tests-chronologiques-socle-n56-push.md --worklog /home/z/my-project/worklog.md",
+      "rc": 0,
+      "duree_s": 0.045,
+      "verdict": "PASS",
+      "notes": [
+        "P1-P5=OK"
+      ],
+      "sortie": "=== Arbitre E7-DISP — protocole de finalisation de plan ===\n  [PASS] P1_plan_present — plan présent (15615 caractères)\n  [PASS] P2_answer_key — answer key présente (12 décisions, 12 vérifications)\n  [PASS] P5_verdict_E8 — verdict E8 consigné et frais (horodatage 2026-11-09T06:12:00Z : PASS (answer key 12 décisions criterion/verification · )\n  [PASS] P3_worklog_R5 — plan journalisé au worklog (nom cité : plan-task84-campagne-tests-chronologiques-socle-n56-push.md)\n  [PASS] P4_affichage — marqueur PLAN-AFFICHE présent dans l'entrée worklog du plan\n  VERDICT : PASS\n"
+    },
+    {
+      "id": "C6b",
+      "label": "gen-plan — answer-key-checker 16 checks",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/answer-key-checker.py /home/z/my-project/download/plan-task84-campagne-tests-chronologiques-socle-n56-push.md",
+      "rc": 0,
+      "duree_s": 0.025,
+      "verdict": "PASS",
+      "notes": [
+        "16/16=OK"
+      ],
+      "sortie": "=== Arbitre answer-key-checker (16 checks, N20) ===\n  [PASS] Check 1 : 5 fichiers de référence existent — gen-plan/references/answer-key-template.md:OK; gen-plan/references/graph-diamond-pattern.md:OK; gen-plan/references/observation-patterns.md:OK; prompt-engineering/references/ideation-protocol.md:OK; correct-work/references/verification-protocol.md:OK\n  [PASS] Check 2 : knowledge-observer SKILL.md valide — frontmatter complet\n  [PASS] Check 3 : SHARED contient §8 — SHARED v1.6.0 attendu\n  [PASS] Check 4 : KNOWLEDGE.md contient knowledge-observer — entrée KB\n  [PASS] Check 5 : Answer key exé"
+    },
+    {
+      "id": "C6c",
+      "label": "gen-plan — evals JSON (9 + 15 cas, attendu 9+15)",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C6d",
+      "label": "gen-plan — references/ 15 fichiers (manquants: [])",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C6e",
+      "label": "gen-plan v3.41.0 — --verifier (harnais v1.2.2)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/re-curation/scripts/protocole-test.py --verifier gen-plan",
+      "rc": 0,
+      "duree_s": 0.1,
+      "verdict": "PASS",
+      "notes": [
+        "VERDICT PASS=OK"
+      ],
+      "sortie": "VÉRIFICATION re-curation — skills/gen-plan v3.41.0 (30696 o / 30.0 Kio / verdict poids INTERMÉDIAIRE)\n  pointeurs references/ (15 fichiers) : PASS\n  non-duplication 1024 o : PASS\n  F1 fonctionnels : PASS (2 scripts · 2 evals · 0.033 s)\n  F3 interactions : SAINES (5 sortantes · 24 entrantes · KB=3.41.0)\nVERDICT : PASS\n"
+    },
+    {
+      "id": "C6f",
+      "label": "gen-plan — poids chargement 30.0 Kio · 7674 #token · INTERMÉDIAIRE",
+      "rc": 0,
+      "duree_s": 40.07,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "30.0 Kio · 7674 #token · INTERMÉDIAIRE"
+    },
+    {
+      "id": "C7",
+      "label": "re-curation v1.2.2 — --verifier",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/re-curation/scripts/protocole-test.py --verifier re-curation",
+      "rc": 0,
+      "duree_s": 0.331,
+      "verdict": "PASS",
+      "notes": [
+        "VERDICT PASS=OK"
+      ],
+      "sortie": "VÉRIFICATION re-curation — skills/re-curation v1.2.2 (20575 o / 20.1 Kio / verdict poids INTERMÉDIAIRE)\n  pointeurs references/ (0 fichiers) : PASS\n  non-duplication 1024 o : PASS\n  F1 fonctionnels : PASS (3 scripts · 2 evals · 0.271 s)\n  F3 interactions : SAINES (2 sortantes · 0 entrantes · KB=1.2.2)\nVERDICT : PASS\n"
+    },
+    {
+      "id": "C8a",
+      "label": "protocole-test.py harnais v1.2.2 — selftest 15/15 (passe 1)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/re-curation/scripts/protocole-test.py --selftest",
+      "rc": 0,
+      "duree_s": 0.209,
+      "verdict": "PASS",
+      "notes": [
+        "15/15=OK"
+      ],
+      "sortie": "PROTOCOLE GÉNÉRÉ + PRE EXÉCUTÉ → /tmp/recuration-selftest-6ic229st/download/protocole-test-temoin.json\n  nature : version 1.0.0 · §A=True · read_when=True · evals=1 · gouvernance KB=1.0.0 / ECO_SKILLS=False\n  baseline : 3.9 Kio ≈ 995 #token · 5 sections · 5 contrats sha256\n  F1 fonctionnels : 1 selftests exécutés + 0 compilés · evals 1 · structure → PASS\n  F2 performance : 3.9 Kio ≈ 995 #token · durée selftests 0.012 s (tolérance ×1.5 + 0.5 s)\n  F3 interactions : 2 sortantes · 1 entrantes · KB=1.0.0 · ECO_SKILLS=None · PM=non (nature) · 0 agents → SAINES (d104ff75a4c5…)\nVERDICT PRE : GO — base"
+    },
+    {
+      "id": "C8b",
+      "label": "protocole-test.py harnais v1.2.2 — selftest 15/15 (passe 2 idempotence)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/re-curation/scripts/protocole-test.py --selftest",
+      "rc": 0,
+      "duree_s": 0.21,
+      "verdict": "PASS",
+      "notes": [
+        "15/15=OK"
+      ],
+      "sortie": "PROTOCOLE GÉNÉRÉ + PRE EXÉCUTÉ → /tmp/recuration-selftest-gjvm3f2d/download/protocole-test-temoin.json\n  nature : version 1.0.0 · §A=True · read_when=True · evals=1 · gouvernance KB=1.0.0 / ECO_SKILLS=False\n  baseline : 3.9 Kio ≈ 995 #token · 5 sections · 5 contrats sha256\n  F1 fonctionnels : 1 selftests exécutés + 0 compilés · evals 1 · structure → PASS\n  F2 performance : 3.9 Kio ≈ 995 #token · durée selftests 0.012 s (tolérance ×1.5 + 0.5 s)\n  F3 interactions : 2 sortantes · 1 entrantes · KB=1.0.0 · ECO_SKILLS=None · PM=non (nature) · 0 agents → SAINES (d104ff75a4c5…)\nVERDICT PRE : GO — base"
+    },
+    {
+      "id": "C10a",
+      "label": "eco_install_pipeline.py — --help 0-exécution (contrat CLI F1)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/scripts/eco_install_pipeline.py --help",
+      "rc": 0,
+      "duree_s": 0.028,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "usage: eco_install_pipeline.py [--help] [--dry-run] [chemin_dépôt]\n  (aucun argument)   dépôt source = env ECO_REPO > /home/z/my-project/KNOWLEDGE-repo > tmp/KNOWLEDGE-repo\n  chemin_dépôt       dépôt source EXPLICITE (doit exister et contenir skills/KNOWLEDGE.md — aucun repli silencieux)\n  --dry-run          rapport complet SANS AUCUNE mutation (lecture seule — F1 Task 76)\n  --help | -h        cette aide — n'exécute RIEN (F1 Task 76)\n\n"
+    },
+    {
+      "id": "C10c",
+      "label": "eco_install_pipeline.py — RÉINSTALLATION PLEINE (cadence — ≥55 SHA, 0 divergence, R2)",
+      "cmd": "eco_install_pipeline.py",
+      "rc": 0,
+      "duree_s": 0.15,
+      "verdict": "PASS",
+      "notes": [
+        "sha256_verifies=55",
+        "divergences=[]",
+        "R2=True"
+      ],
+      "sortie": "{\n  \"pin\": \"a14f750\",\n  \"etapes\": {\n    \"preflight\": \"commit f7e65a5 OK (pin a14f750 ancêtre — descendant-tolérant)\",\n    \"skills/@mon-ecosysteme\": \"9 fichiers\",\n    \"skills/KNOWLEDGE.md\": \"fichier sync\",\n    \"skills/gen-plan\": \"20 fichiers\",\n    \"skills/correct-work\": \"7 fichiers\",\n    \"skills/clone-chat\": \"4 fichiers\",\n    \"skills/skills-inventory\": \"4 fichiers\",\n    \"skills/skill-creator\": \"20 fichiers\",\n    \"skills/re-curation\": \"6 fichiers\",\n    \"skills/agent-creator\": \"5 fichiers\",\n    \"skills/prompt-engineering\": \"5 fichiers\",\n    \"skills/context-engineering\": \"5 fichiers\",\n    \"skills/"
+    },
+    {
+      "id": "C10b",
+      "label": "eco_install_pipeline.py --dry-run — 0 mutation, rc 0 (état synchronisé)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/scripts/eco_install_pipeline.py --dry-run",
+      "rc": 0,
+      "duree_s": 0.046,
+      "verdict": "PASS",
+      "notes": [
+        "dry_run_noop=OK",
+        "0_mutation=OK"
+      ],
+      "sortie": "{\n  \"pin\": \"a14f750\",\n  \"etapes\": {\n    \"preflight\": \"commit f7e65a5 OK (pin a14f750 ancêtre — descendant-tolérant)\",\n    \"skills/@mon-ecosysteme\": \"9 fichiers (dry-run — 0 mutation)\",\n    \"skills/KNOWLEDGE.md\": \"fichier sync (dry-run)\",\n    \"skills/gen-plan\": \"20 fichiers (dry-run — 0 mutation)\",\n    \"skills/correct-work\": \"7 fichiers (dry-run — 0 mutation)\",\n    \"skills/clone-chat\": \"4 fichiers (dry-run — 0 mutation)\",\n    \"skills/skills-inventory\": \"4 fichiers (dry-run — 0 mutation)\",\n    \"skills/skill-creator\": \"20 fichiers (dry-run — 0 mutation)\",\n    \"skills/re-curation\": \"6 fichiers (dr"
+    },
+    {
+      "id": "C10d",
+      "label": "cp zip hôte→dépôt + integrity manifeste écrit (114/114, round-trip corpus 9/9)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/check-ecosysteme-integrity.py",
+      "rc": 0,
+      "duree_s": 0.043,
+      "verdict": "PASS",
+      "notes": [
+        "114/114=OK",
+        "round-trip corpus 9/9=OK"
+      ],
+      "sortie": "=== 1. Corpus canonique @mon-ecosysteme (SHA-256) ===\n  [PASS] 9 fichiers présents (Architecture v2.0 — N27, recalibré Task 16 b36f177: dédup PMs → @historique) — 9 fichiers\n\n=== 2. Archive round-trip (véhicule d'intégrité v2.3 — corpus + piliers) ===\n  [PASS] Archive byte-identique au corpus + piliers (v2.3) — corpus 9/9 · piliers 0/6 (0 divergents) · 0 homologues\n\n=== 3. Garde anti-doublons download/ (décision v2.2) ===\n  [PASS] download/ sans doublon du corpus (9 fichiers corpus absents)\n\n=== 4. Skills écosystème installés ===\n  [PASS] gen-plan v3.41.0 — attendu v3.41.0\n  [PASS] re-curation"
+    },
+    {
+      "id": "C10e",
+      "label": "ensure-installed.py --check — INSTALLE 0 manquant",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/scripts/ensure-installed.py --check",
+      "rc": 0,
+      "duree_s": 0.064,
+      "verdict": "PASS",
+      "notes": [
+        "0_manquant=OK"
+      ],
+      "sortie": "{\"verdict\": \"INSTALLE\", \"root_present\": true, \"git_repo\": true, \"head\": \"f7e65a5\", \"fichiers_manquants\": [], \"kb_entrees\": 55, \"skills_kb_manquants\": [], \"host_head\": \"9de623f\"}\n"
+    },
+    {
+      "id": "C11",
+      "label": "PM-INSTALL v1.9.13 — corpus générateur --check 4 familles COHERENT",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/generer-pm-skill.py --check",
+      "rc": 0,
+      "duree_s": 0.03,
+      "verdict": "PASS",
+      "notes": [
+        "4_COHERENT=OK"
+      ],
+      "sortie": "[COHERENT] gen-plan      SKILL.md v3.41.0  PM PROMPT-MAITRE-GEN-PLAN-v3.41.0.md\n[COHERENT] correct-work  SKILL.md v2.11.0  PM PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md\n[COHERENT] clone-chat    SKILL.md v2.0.2   PM PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md\n[COHERENT] refactor-guard SKILL.md v1.8.1   PM PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md\nRapport : /home/z/my-project/KNOWLEDGE-repo/scripts/generer-pm-report.json\n"
+    },
+    {
+      "id": "C13",
+      "label": "SHARED v1.7.36 + corpus PM — 9 fichiers (503573 o) + parité zip hôte==dépôt",
+      "rc": 0,
+      "duree_s": 0.05,
+      "verdict": "PASS",
+      "notes": [
+        "corpus_9",
+        "parité_zip"
+      ],
+      "sortie": ""
+    },
+    {
+      "id": "C13b",
+      "label": "SHARED v1.7.36 — version + §8 R-F1..R-F4 + §9 règles d'or présents",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C12",
+      "label": "protocoles-detailles.md — Extensions v3.40.0 (émission //) + v3.41.0 (sondage borné)",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C14",
+      "label": "version-management v1.3.0 — --verifier (post-réparation É1-INSTALL)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/re-curation/scripts/protocole-test.py --verifier version-management",
+      "rc": 0,
+      "duree_s": 0.162,
+      "verdict": "PASS",
+      "notes": [
+        "VERDICT PASS=OK"
+      ],
+      "sortie": "VÉRIFICATION re-curation — skills/version-management v1.3.0 (25782 o / 25.2 Kio / verdict poids INTERMÉDIAIRE)\n  pointeurs references/ (7 fichiers) : PASS\n  non-duplication 1024 o : PASS\n  F1 fonctionnels : PASS (1 scripts · 2 evals · 0.1 s)\n  F3 interactions : SAINES (0 sortantes · 0 entrantes · KB=1.3.0)\nVERDICT : PASS\n"
+    },
+    {
+      "id": "C15",
+      "label": "baselines protocole-test v1.2.0+ — 5/5 (manquants: [])",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C16a",
+      "label": "iphone19 v0.12.0 — --verifier",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/re-curation/scripts/protocole-test.py --verifier iphone19",
+      "rc": 0,
+      "duree_s": 0.061,
+      "verdict": "PASS",
+      "notes": [
+        "VERDICT PASS=OK"
+      ],
+      "sortie": "VÉRIFICATION re-curation — skills/iphone19 v0.12.0 (40430 o / 39.5 Kio / verdict poids LOURD)\n  pointeurs references/ (6 fichiers) : PASS\n  non-duplication 1024 o : PASS\n  F1 fonctionnels : PASS (0 scripts · 2 evals · 0 s)\n  F3 interactions : SAINES (2 sortantes · 0 entrantes · KB=0.12.0)\nVERDICT : PASS\n"
+    },
+    {
+      "id": "C16b",
+      "label": "iphone19 — R4-INTÈGRE 6/6 (task81-verif-r4)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/task81-verif-r4-iphone19.py",
+      "rc": 0,
+      "duree_s": 0.03,
+      "verdict": "PASS",
+      "notes": [
+        "6/6=OK"
+      ],
+      "sortie": "[INTÈGRE] origines-versions.md — 3245 o · provenance==references==pm_source : True (SHA b90df07b2c8182b3…) · pointeur inline : True\n[INTÈGRE] changelogs-versions.md — 7393 o · provenance==references==pm_source : True (SHA 16e8cb5603400d43…) · pointeur inline : True\n[INTÈGRE] preset-iphone19-max-calibrage.md — 2584 o · provenance==references==pm_source : True (SHA 8f7394c59dda848e…) · pointeur inline : True\n[INTÈGRE] squelette-iphone20-speculatif.md — 1960 o · provenance==references==pm_source : True (SHA 6543d1531518c084…) · pointeur inline : True\n[INTÈGRE] notes-retroactives.md — 2939 o · pro"
+    },
+    {
+      "id": "C16c",
+      "label": "iphone19 — règle absolue 15 inline",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C17a",
+      "label": "knowledge-observer v1.1.0 — --verifier",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/re-curation/scripts/protocole-test.py --verifier knowledge-observer",
+      "rc": 0,
+      "duree_s": 0.057,
+      "verdict": "PASS",
+      "notes": [
+        "VERDICT PASS=OK"
+      ],
+      "sortie": "VÉRIFICATION re-curation — skills/knowledge-observer v1.1.0 (7400 o / 7.2 Kio / verdict poids OK)\n  pointeurs references/ (0 fichiers) : PASS\n  non-duplication 1024 o : PASS\n  F1 fonctionnels : PASS (0 scripts · 2 evals · 0 s)\n  F3 interactions : SAINES (3 sortantes · 2 entrantes · KB=1.1.0)\nVERDICT : PASS\n"
+    },
+    {
+      "id": "C17b",
+      "label": "knowledge-observer — re-jeu tests conversions 9/9 (T4b/T6 dynamisés KO-L003)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/task82-tests-conversions.py",
+      "rc": 0,
+      "duree_s": 0.422,
+      "verdict": "PASS",
+      "notes": [
+        "9/9=OK"
+      ],
+      "sortie": "=== Campagne tests Task 82 G3 — conversions ===\n  [PASS] T1 structure .agent (21 clés + pipeline A-H) — 21/21 clés du format, 8 étapes A-H\n  [PASS] T2 SKILL.md v1.1.0 ajouts purs (description VERBATIM R2 + §1.6 + evals 2) — description identique v1.0.0=True, version 1.1.0, §1.6 tandem, evals=2\n  [PASS] T3 protocole-test --verifier knowledge-observer (VERDICT PASS — harnais v1.2.2) — PASS ·   non-duplication 1024 o : PASS ·   F1 fonctionnels : PASS (0 scripts · 2 evals · 0 s) ·   F3 interactions : SAINES (3 sortantes · 2 entrantes · KB=1.1.0) · VERDICT : PASS ·\n  [PASS] T4a gen-ultra --check id"
+    },
+    {
+      "id": "C17c",
+      "label": "knowledge-observer.agent — structure canonique (manquants: [])",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C18a",
+      "label": "iphone18 v1.1.0 curé — --verifier",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/re-curation/scripts/protocole-test.py --verifier iphone18",
+      "rc": 0,
+      "duree_s": 0.063,
+      "verdict": "PASS",
+      "notes": [
+        "VERDICT PASS=OK"
+      ],
+      "sortie": "VÉRIFICATION re-curation — skills/iphone18 v1.1.0 (36709 o / 35.8 Kio / verdict poids LOURD)\n  pointeurs references/ (3 fichiers) : PASS\n  non-duplication 1024 o : PASS\n  F1 fonctionnels : PASS (0 scripts · 2 evals · 0 s)\n  F3 interactions : SAINES (2 sortantes · 0 entrantes · KB=1.1.0)\nVERDICT : PASS\n"
+    },
+    {
+      "id": "C18b",
+      "label": "iphone18 — R4-INTÈGRE 3/3 (task82-verif-r4)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/task82-verif-r4-iphone18.py",
+      "rc": 0,
+      "duree_s": 0.031,
+      "verdict": "PASS",
+      "notes": [
+        "3/3=OK"
+      ],
+      "sortie": "[INTÈGRE] changelogs-versions.md — 5022 o · provenance==references==pm_source : True (SHA ec0cd7fefe513dd2…) · pointeur inline : True\n[INTÈGRE] preset-iphone18-max-calibrage.md — 1789 o · provenance==references==pm_source : True (SHA f54467566925113c…) · pointeur inline : True\n[INTÈGRE] notes-retroactives.md — 1689 o · provenance==references==pm_source : True (SHA 825b209077285a81…) · pointeur inline : True\nSOMME déplacée : 8500 o — 3/3 blocs intègres\nVERDICT : R4-INTÈGRE\n"
+    },
+    {
+      "id": "C19a",
+      "label": "agent-engineering — evals JSON 7+7 (7+7)",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C19b",
+      "label": "agent-engineering — frontmatter v1.0.0 + 3 domaines + planchers semver : gen-plan 3.41.0>=3.15.0=OK; fleet-engineering 1.1.1>=1.0.1=OK; autonomous-agent 1.2.1>=1.2.0=OK; agent-creator 2.3.0>=2.2.0=OK",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C19c",
+      "label": "agent-engineering — KB entrée n°56 + arêtes (5 mentions ≥ 5)",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C19d",
+      "label": "agent-engineering — ULTRA 13ᵉ voie (routage n°56)",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C19e",
+      "label": "agent-engineering — poids 16.0 Kio · 4086 #token · INTERMÉDIAIRE (seuil LOURD 30 Kio)",
+      "rc": 0,
+      "duree_s": 0.01,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "16.0 Kio · 4086 #token · INTERMÉDIAIRE"
+    },
+    {
+      "id": "C20a",
+      "label": "gen-ultra-maitre.py — régénération (attendu no-op, SHA stable)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/gen-ultra-maitre.py",
+      "rc": 0,
+      "duree_s": 0.028,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": "Idempotence : PROMPT-ULTRA-MAITRE-ORCHESTRATION.md déjà à jour (SHA 4276550e7756…) — no-op.\n"
+    },
+    {
+      "id": "C20b",
+      "label": "ULTRA idempotence ×2 — SHA 4276550e7756b0d5→4276550e7756b0d5→4276550e7756b0d5 stable",
+      "rc": 0,
+      "duree_s": 0.02,
+      "verdict": "PASS",
+      "notes": [],
+      "sortie": ""
+    },
+    {
+      "id": "C21a",
+      "label": "verify-cross — 100,0 % (0 warnings)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/verify-cross.py",
+      "rc": 0,
+      "duree_s": 0.035,
+      "verdict": "PASS",
+      "notes": [
+        "100=OK"
+      ],
+      "sortie": "🔍 DÉMARRAGE — Vérification croisée de l'écosystème\n============================================================\n\n📊 55 skills détectés\n------------------------------------------------------------\n\n🔧 Audit : agent-creator\n\n🔧 Audit : agent-engineering\n\n🔧 Audit : agent-prompt-engineering\n\n🔧 Audit : alias-eco\n\n🔧 Audit : analyse-doc-s4mk2\n\n🔧 Audit : audio-metadata\n\n🔧 Audit : audit-provenance\n\n🔧 Audit : autonomous-agent\n\n🔧 Audit : cahier-des-charges\n\n🔧 Audit : clone-chat\n\n🔧 Audit : context-engineering\n\n🔧 Audit : correct-py\n\n🔧 Audit : correct-work\n\n🔧 Audit : cpp-analysis\n\n🔧 Audit : dessin-technique\n\n🔧"
+    },
+    {
+      "id": "C21b",
+      "label": "verify-correct-work — 16/16",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/verify-correct-work.py",
+      "rc": 0,
+      "duree_s": 0.032,
+      "verdict": "PASS",
+      "notes": [
+        "16/16=OK"
+      ],
+      "sortie": "=== vérification CORRECT-WORK ===\nVersion cible : 2.11.0\nSKILL.md     : /home/z/my-project/KNOWLEDGE-repo/skills/correct-work/SKILL.md\nPM           : /home/z/my-project/KNOWLEDGE-repo/skills/@mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md\n\n  [PASS] SKILL.md existe\n  [PASS] Taille SKILL.md 499 lignes (plage 200-500)\n  [PASS] YAML frontmatter 6/6 champs, version 2.11.0\n  [PASS] 3 modes documentes (trouves: DIRECT, PROJET, CIBLE)\n  [PASS] 5 étapes documentees\n  [PASS] intégration KB (4 mentions)\n  [PASS] Matrice statique\n  [PASS] Matrice dynamique KB\n  [PASS] critères sévérité S1-S4\n  [PASS"
+    },
+    {
+      "id": "C21c",
+      "label": "integrity — 114/114 ×2 (re-jeu)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/check-ecosysteme-integrity.py",
+      "rc": 0,
+      "duree_s": 0.045,
+      "verdict": "PASS",
+      "notes": [
+        "114/114=OK"
+      ],
+      "sortie": "=== 1. Corpus canonique @mon-ecosysteme (SHA-256) ===\n  [PASS] 9 fichiers présents (Architecture v2.0 — N27, recalibré Task 16 b36f177: dédup PMs → @historique) — 9 fichiers\n\n=== 2. Archive round-trip (véhicule d'intégrité v2.3 — corpus + piliers) ===\n  [PASS] Archive byte-identique au corpus + piliers (v2.3) — corpus 9/9 · piliers 0/6 (0 divergents) · 0 homologues\n\n=== 3. Garde anti-doublons download/ (décision v2.2) ===\n  [PASS] download/ sans doublon du corpus (9 fichiers corpus absents)\n\n=== 4. Skills écosystème installés ===\n  [PASS] gen-plan v3.41.0 — attendu v3.41.0\n  [PASS] re-curation"
+    },
+    {
+      "id": "C21c",
+      "label": "integrity — re-jeu 2 (idempotence)",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/check-ecosysteme-integrity.py",
+      "rc": 0,
+      "duree_s": 0.045,
+      "verdict": "PASS",
+      "notes": [
+        "114/114=OK"
+      ],
+      "sortie": "=== 1. Corpus canonique @mon-ecosysteme (SHA-256) ===\n  [PASS] 9 fichiers présents (Architecture v2.0 — N27, recalibré Task 16 b36f177: dédup PMs → @historique) — 9 fichiers\n\n=== 2. Archive round-trip (véhicule d'intégrité v2.3 — corpus + piliers) ===\n  [PASS] Archive byte-identique au corpus + piliers (v2.3) — corpus 9/9 · piliers 0/6 (0 divergents) · 0 homologues\n\n=== 3. Garde anti-doublons download/ (décision v2.2) ===\n  [PASS] download/ sans doublon du corpus (9 fichiers corpus absents)\n\n=== 4. Skills écosystème installés ===\n  [PASS] gen-plan v3.41.0 — attendu v3.41.0\n  [PASS] re-curation"
+    },
+    {
+      "id": "C21d",
+      "label": "interactions — STRICT 55/55",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/test-coherence-interactions.py",
+      "rc": 0,
+      "duree_s": 0.146,
+      "verdict": "PASS",
+      "notes": [
+        "VERDICT_STRICT=OK",
+        "55/0/0=OK"
+      ],
+      "sortie": "\n=== 1. Corpus <-> Archive round-trip (véhicule v2.0) ===\n  [PASS] Corpus = 9 fichiers (9 attendus — Architecture v2.0, SYNC-CONTEXT inclus, calibré CORPUS_ATTENDU N14-c)\n  [PASS] Round-trip archive ↔ corpus — 9/9 identiques + 6 piliers v2.3 + -6 homologues v2.1 (remplace le miroir supprimé — KB §Décisions)\n\n=== 2. Registre KB : versions déclarées <-> réelles ===\n  [PASS] Registre parsé : 55 entrées versionnées (55 attendues — dérivé ECO_SKILLS du checker, dynamisé KO-L004)\n  [PASS] Versions KB <-> SKILL.md — 55/55 alignées (convention KB_ONLY_VERSION levée — skill-creator versionné)\n\n=== 3. G"
+    },
+    {
+      "id": "C21e",
+      "label": "doublons download/ — 0",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/scripts/task14-scan-doublons.py /home/z/my-project/download",
+      "rc": 0,
+      "duree_s": 0.026,
+      "verdict": "PASS",
+      "notes": [
+        "0 doublon=OK"
+      ],
+      "sortie": "=== Scan doublons : ../download ↔ skills/ ===\n\n-- DOUBLONS (même nom + byte-identique) : 0\n\n-- UNIQUES (pas de doublon skills/) : 76\n  analyse-conversions-task82.md\n  analyse-recuration-task82.md\n  clone-chat-session-web-ecef7f80-20261108-task72.md\n  clone-chat-session-web-ecef7f80-20261108-task73.md\n  clone-chat-session-web-ecef7f80-20261108-task74.md\n  clone-chat-session-web-ecef7f80-20261108-task77.md\n  clone-chat-session-web-ecef7f80-20261108.md\n  clone-chat-session-web-ecef7f80-20261109-task79.md\n  clone-chat-session-web-ecef7f80-20261109-task80.md\n  clone-chat-session-web-ecef7f80-202611"
+    },
+    {
+      "id": "C21f",
+      "label": "G-RES final — monitor OK",
+      "cmd": "/home/z/.venv/bin/python3 /home/z/my-project/KNOWLEDGE-repo/skills/resource-monitor/scripts/monitor.py",
+      "rc": 0,
+      "duree_s": 0.027,
+      "verdict": "PASS",
+      "notes": [
+        "OK=OK"
+      ],
+      "sortie": "{\n  \"verdict\": \"OK\",\n  \"mode_recommande\": \"PARALLELE\",\n  \"causes\": [],\n  \"indicateurs\": {\n    \"disque_libre\": {\n      \"valeur\": 8852328448,\n      \"unite\": \"octets\",\n      \"niveau\": 0\n    },\n    \"memoire_disponible\": {\n      \"valeur\": 3629797376,\n      \"unite\": \"octets\",\n      \"niveau\": 0\n    },\n    \"charge_systeme\": {\n      \"valeur\": 0.0,\n      \"unite\": \"\",\n      \"niveau\": 0\n    }\n  },\n  \"ts_epoch\": 1794203942.467\n}\n"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.41.0
+version: 3.42.0
 category: ecosystem
 language: fr
 tags:
@@ -60,7 +60,7 @@ read_when:
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
-## §0 — Contexte Système (SHARED v1.7.36)
+## §0 — Contexte Système (SHARED v1.7.37)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -168,6 +168,7 @@ read_when:
 | **Harness engineering** | Profils + signaux ; hook E8 + contrôle par phase ; worklog |
 | **Refactoring engineering** | Discipline n°55 : opérations préservant le comportement observable ; garde-fous refactor-guard |
 | **Refactoring test** | Outil n°55 (anti-auto-certification) : évaluation + blast radius, verdict OK/PRESSION/CRITIQUE |
+| **Agent engineering** | Discipline n°56 : cadrage/routage/outillage/veille des tâches d'agents (ABE/AE/MASE) — (SHARED §7, registre §8 du skill) |
 
 - **Mobilisation** : tables E1-E8, n°54-55, E15, par déclencheur × modes — intégrales : `references/disciplines-mobilisation.md` ; socle commun (context/loop/graph/harness + PEK) à tout déclencheur du §A. **Hook continu E9-E14** : G-RES à chaque checkpoint E11 et entre vagues ; PRESSION → ECO, CRITIQUE → série/PAUSE. gen-plan = détenteur principal de la méthode prompt-engineering (SHARED §7 ; PEK v4.1).
 ### §1.7 Pipeline d'optimisation écosystème Z0-Z6 (PM v3.11.0 §1.10)
@@ -290,6 +291,7 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 | refactoring-engineering | Mobilisation n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Conception/exécution des opérations de refactoring (E4/E7 + situations E9-E14) — version >= v1.0.1 |
 | refactor-guard | Garde-fous de refactoring (fusion discussion 468a4c26 — lignée externe v1.7.0) | Mobilisé par refactoring-engineering pendant les opérations à risque (score H01-H15, sandbox, rollout) ; détection de besoins (hook E13) — version >= v1.7.0 |
 | refactoring-test | Outil n°55 (SHARED §7, bloc PATTERN:GEN-PLAN-REFACTORING-v1.0.0) | Détection/évaluation + graphe d'interactions (blast radius) — verdict machine, version >= v1.0.1 |
+| agent-engineering | Mobilisation n°56 (SHARED §7, registre décentralisé §8 du skill) | Cadrage/routage des tâches d'agents (ABE/AE/MASE) — version >= v1.0.0 |
 | knowledge-observer | Invocation à E15 (§1.2bis) | Observation post-session (modes M1-M2) ; les modes M3-M4 exigent un verdict correct-work — version >= v1.0.0 |
 | resource-monitor | Mobilisation hook E1-RES (§1.2bis) + E6 (profilage) + hook continu E9-E14 (checkpoint E11 et entre vagues — v3.31.0) | Collecte G-RES — verdict OK/PRESSION/CRITIQUE → mode d'exécution/profil/bascule, version >= v1.0.0 |
 | answer-key | Arbitrage E7/E8 (§1.2bis) | Décisions E1 vérifiables mécaniquement — arbitre answer-key-checker.py (16 checks) |
@@ -335,4 +337,4 @@ Dès qu'une phase du plan d'actions se termine, lancer `correct-work(livrables d
 **Couche d'organisation transverse (v3.25.0, tous modes depuis v3.36.0 — seule différence : les portes de confirmation)** : **groupe `G<k>`** (unité de vérification — correct-work(groupe)) → **sous-groupes `SG<k>.<j>`** (lot cohérent 2-5 tâches) → **tâches `T<k>.<j>.<i>`** (unité élémentaire, tag #token). **Statuts dérivés de l'état vérifiable** (KO-L003) : `[À FAIRE]` · `[EN COURS]` · `[TERMINÉ]` · `[BLOQUÉ]` · `[REPORTÉ]` ; compteurs n/m. **Cadence** : début d'exécution → fenêtre native complète (E7-DISP point 6 — Z.ai : `TodoWrite`) ; ouverture de groupe → PLAN-AFFICHE d'évolution puis tableau du groupe (step-ok : après confirmation) ; fin de tâche → ligne + compteurs ; fin de sous-groupe → rappel ; fin de groupe → fenêtre native mise à jour ; clôture → tableau final + verdict correct-work(groupe). **Orthogonal à l'exécution** : couche de LECTURE ; Graph Diamond automatique dès preuve d'indépendance (sous-groupes inclus, série = exception tracée) ; groupes plats normalisés à l'ouverture (R6/R2).
 ### §5.6 Journal des versions (entrée courante — archive intégrale et mécanique de migration : `references/journal-versions.md`)
 
-- **v3.41.0 (2026-11-08, web-ecef7f80 — Task 78/79 G1, directive 1a1bbf9f403a2865 « règle de sondage borné »)** : SONDAGE BORNÉ — extension de la lecture ciblée (E5-POIDS) aux inspections transverses : jamais de pattern générique sur l'arbre sans -l, greps multi-fichiers tronqués + limite de résultats, §0/contrats jamais en entier (exceptions : golden-master et contrats PRE/POST). Motivation et mesures (SG2.2 Task 77 « Sortie trop volumineuse » — BRUT 12 207 o vs BORNÉ 3 763 o, gain ×3,2) : intégral protocoles-detailles.md. Inline : §1.2bis rangée + §1.4 #4. MINOR, description/§A inchangés (non-régression triggers). Cascade KO-L004 : PM v3.41.0, SHARED INCHANGÉ (règle gen-plan-scopée) (Task 79 G1).
+- **v3.42.0 (2026-11-09, web-ecef7f80 — Task 84 G3, directive 1a1bed51ccaf78f1 « continue »)** : INSCRIPTION SOCLE n°56 — agent-engineering (ABE/AE/MASE, créée Task 83, pendance P1) inscrite : SHARED §7 (définition + registre, v1.7.37) + §1.6 + §3. MINOR, description/§A inchangés. Cascade KO-L004 : PM v3.42.0, SHARED v1.7.37, PM-INSTALL v1.9.14.
