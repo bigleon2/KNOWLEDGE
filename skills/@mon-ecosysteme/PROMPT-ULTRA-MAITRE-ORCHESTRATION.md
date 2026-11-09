@@ -28,7 +28,10 @@
 | Installer / réinstaller l'écosystème | PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — SOURCE UNIQUE | ce fichier (§A + pipeline 11 étapes) | corpus -> registre -> arbitres |
 | Synchroniser contexte / canaux | SYNC-CONTEXT.md + scripts de sync | — | 2 voies byte-identiques |
 | Auditer la provenance | audit-provenance | — | L006, avant clone/install |
-| Observer les leçons | knowledge-observer | — | journal lessons-learned, M1-M2 à E15 |
+| Observer les leçons | knowledge-observer (agent autonome tandem — .agent v1.1.0 + SKILL.md méthode) | — | journal lessons-learned, M1-M2 à E15 |
+| Re-curé un skill (divulgation progressive) | re-curation (protocole P0-P7 + harnais protocole-test.py v1.2.1) | — | moves R4 byte-identité, POST ×2 MAINTIEN, C1-C4 |
+| Créer / modifier un skill | skill-creator (conventions) + correct-work (garde) | — | frontmatter, evals, description triggers |
+| Inventorier / chercher un skill | skills-inventory | — | scan skills/, catalogue générable |
 
 ## §2 — Registre dynamique des prompts maîtres (dérivé du corpus réel)
 
@@ -52,7 +55,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.36 (lire en premier). Installateur : `PRO
 | `clone-chat` | 2.0.2 |
 | `skills-inventory` | 1.1.0 |
 | `skill-creator` | 1.1.0 |
-| `re-curation` | 1.2.1 |
+| `re-curation` | 1.2.2 |
 | `agent-creator` | 2.3.0 |
 | `prompt-engineering` | 2.3.1 |
 | `context-engineering` | 1.2.1 |
@@ -60,7 +63,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.36 (lire en premier). Installateur : `PRO
 | `graph-engineering` | 1.1.1 |
 | `harness-engineering` | 1.2.1 |
 | `script-mon-ecosysteme-infrastructure` | 1.1.0 |
-| `knowledge-observer` | 1.0.0 |
+| `knowledge-observer` | 1.1.0 |
 | `script-creator` | 1.1.0 |
 | `script-reviewer` | 1.0.0 |
 | `audit-provenance` | 1.1.0 |

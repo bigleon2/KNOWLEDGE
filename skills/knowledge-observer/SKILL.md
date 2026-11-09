@@ -1,6 +1,6 @@
 ---
 name: knowledge-observer
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -80,6 +80,20 @@ Source de vérité du pattern : `{{SKILLS_ROOT}}gen-plan/references/observation-
 
 - Automatique : invoqué par gen-plan à **E15** (bilan et auto-calibration) en modes M1-M2.
 - Manuel : « observe la session », « lessons learned », « analyse les patterns d'erreur ».
+
+### §1.6 Tandem — exécution dans l'agent autonome (v1.1.0)
+
+Le présent skill détient la **MÉTHODE** (§1.1-§1.5 : mission, cycle A-H, modes M1-M4,
+garde-fous, déclencheurs) ; l'**EXÉCUTION AUTONOME** est portée par l'agent homonyme
+`knowledge-observer.agent` (format `.agent` — mémoire 2 niveaux : État Court [session,
+max 20 entrées] / État Long [`data/lessons-learned.json`, persistance file] ; pipeline A-H
+avec modules et vérification ; sécurité no_hallucination / no_rule_modification /
+no_sensitive_data). **Conversion Task 82 G2** (liste cibles-to-agent P1 —
+`download/analyse-conversions-task82.md` §3) : le skill implémentait déjà l'architecture
+complète d'un agent autonome (cycle A-H = pipeline 8 étapes du format, modes M1-M4 =
+modes du format, journal persistant = État Long) — la conversion formalise le porteur.
+Pattern tandem 2 couches de l'écosystème (précédent tsi-architect), R4 : jamais dupliquer.
+Invocation inchangée (R2) : automatique via gen-plan E15 (M1-M2) ou manuelle.
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 

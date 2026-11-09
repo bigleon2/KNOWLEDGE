@@ -53,48 +53,12 @@ read_when:
 
 ## Lignage — projection skill ← prompt maître source
 
-> Skill métier projeté depuis le prompt maître `skills/@photos/iphone18-photos.md` **v1.1** (COURANT — génération iPhone 18 CONFIRMÉE ; v1.1 : extension 1944 — chemin argentique N&B années 1930-1950, grain préservé, aucune colorisation inventée ; v1.0 archivée @historique/photos/) — fichier du dépôt, **byte-identique, jamais édité (R2)**. Le corps ci-dessous (« ## PROMPT MAÎTRE » → §13) est repris **VERBATIM** de cette source ; dans ce skill, « le document » y désigne le présent SKILL.md, et la discipline §11 (auto-audit) s'exécute à l'occasion d'un bump de version du skill (semver + recalibrage du registre KB). Tests empiriques de référence : PA-TEST-001 (Task 42, QC 12/12 PASS, validation propriétaire §9 sans réserve) + PA-TEST-002 (2 photos, QC 12/12 ×2, R18 validée). P8b (recadrage) : le PM source référence `crop_utils.py` (livrable historique du projet CLUB, non embarqué — un recadrage PIL équivalent est produit à la demande).
+> Skill métier projeté depuis le prompt maître `skills/@photos/iphone18-photos.md` **v1.1** (COURANT — génération iPhone 18 CONFIRMÉE ; v1.1 : extension 1944 — chemin argentique N&B années 1930-1950, grain préservé, aucune colorisation inventée ; v1.0 archivée @historique/photos/) — fichier du dépôt, **byte-identique, jamais édité (R2)**. Depuis la re-curation v1.1 (Task 82 G6, 2026-11-09 — protocole P0-P7 v1.2.2, méthode moves-r4-pur arbitrée --compare), le corps ci-dessous (« ## PROMPT MAÎTRE » → §13) est la **projection curée** (progressive disclosure) de cette source : les blocs historiques et de référence (origines + changelogs versionnés, calibrage §6.1, auto-audit + notes rétroactives §11) vivent en `references/` en copies R4 byte-identité pointées inline ; le cœur opérationnel (§0 rôle, §1-§5, §6.2-§6.10, §7-§10, §12-§13) demeure intégralement inline ; le PM source demeure l'intégral de référence ; dans ce skill, « le document » y désigne le présent SKILL.md, et la discipline §11 (auto-audit) s'exécute à l'occasion d'un bump de version du skill (semver + recalibrage du registre KB). Tests empiriques de référence : PA-TEST-001 (Task 42, QC 12/12 PASS, validation propriétaire §9 sans réserve) + PA-TEST-002 (2 photos, QC 12/12 ×2, R18 validée). P8b (recadrage) : le PM source référence `crop_utils.py` (livrable historique du projet CLUB, non embarqué — un recadrage PIL équivalent est produit à la demande).
 
 ## PROMPT MAÎTRE — Pipeline d'amélioration photo « iPhone 18 Pro Max, qualité max » + rendus d'époques + posters
 **Version 1.1 — Langue : français — Mode : data-driven (Analyse → Décision → Plan → Exécution → QC → Question utilisateur)**
 
-> **Origine v1.0 (reset de version — prompt maître `iphone-photos-migration.md` §6-1) :** document généré par migration depuis `iphone17-photos.md` v2.0 le 2026-10-09, à l'activation de la règle §6.10 de cette dernière (génération iPhone 18 confirmée par Apple le 9/9/2026).
-
-> **Origine v1.1 (extension 1944 — directive propriétaire 2026-10-21) :** renforcement du chemin « restauration de photos anciennes » pour les **photographies argentiques N&B des années 1930-1950** (directive : « fais en sorte que mes skills puissent effectuer un traitement fonctionnel et optimisé sur les photos prises en 1944 ») — **ajout pur** : note d'analyse §1 (grain argentique ≠ bruit numérique, monochrome natif), ère **40s** dans la table §6.5, extension §6.6 (grain préservé par défaut, tonalité restaurée, dégâts d'époque, aucune colorisation inventée — G3). Aucune règle R1–R18, aucun garde-fou G1–G7, aucun critère QC 1–12 modifié.
-
-### Changelog `iphone18-photos.md` v1.0 → v1.1 (extension 1944)
-| Zone | Modification | Fondement |
-|---|---|---|
-| En-tête | Version **1.1** + origine v1.1 (bloc ci-dessus) | Directive propriétaire 2026-10-21 (photos de 1944) |
-| §0 | Rendus d'époque étendus « années 40 → 2010 » + restauration « photographies argentiques N&B années 1930-1950 — grain préservé, aucune colorisation inventée » | Ajout pur |
-| §1 | Note années 1940 après l'axe contextuel (grain argentique authentique vs bruit, dégâts physiques, tonalité délavée, monochrome natif) | Ajout pur |
-| §6.5 | Ère **40s** ajoutée en tête de la table (simulation + restauration argentiques N&B) | Ajout pur |
-| §6.6 | Extension « années 1930-1950 » du chemin `restauration_scan` | Ajout pur |
-| §8 | Avis grain/tonalité (sources argentiques N&B) dans les limites honnêtes | Propagation |
-| §11 | Note rétroactive v1.1 | §11 |
-| §12 | Présent PM v1.1 ; v1.0 archivée `@historique/photos/` | Hygiène R4 |
-
-### Changelog `iphone17-photos.md` v2.0 → `iphone18-photos.md` v1.0
-| Zone | Modification | Fondement |
-|---|---|---|
-| En-tête | Nouveau document `iphone18-photos.md` — titre + cible « iPhone 18 Pro Max » + version **1.0** (reset) | Prompt maître migration §6-1 ; keynote Apple — `confirmé` |
-| §0 | Cible re-ancrée « iPhone 18 Pro Max » + contexte matériel (A20 Pro, Dual Neural Engine 32 cœurs, ouverture variable ƒ/1.48–ƒ/4.0, capteur/ISP nouveaux) + capacité texture-grain (Styles 3) + simulation d'ouverture | Apple Newsroom + Specs — `confirmé` |
-| §1 (C3) | Défaut rendu cible → `iphone18_max` + champ « ouverture demandée » | Propagation preset + R18 |
-| §2 | Nouvelle règle **R18** (ouverture variable simulée ƒ/1.48–ƒ/4.0) ; **R13** : renommage du preset référencé `iphone17_max` → `iphone18_max` (contrainte 5.2 — renommage global, logique inchangée) ; **R17** : correction de coquille typographique de la source (« pitié » → « piqué » source insuffisant — logique inchangée) | `confirmé` + propagation |
-| §3 | Champ YAML `ouverture_cible` + `regles_declenchees` jusqu'à R18 + défaut `rendu_cible: iphone18_max` | Propagation R18 |
-| §4 (P5/P6) | Note texture/grain — Photographic Styles 3 | Apple Newsroom + Specs — `confirmé` |
-| §5 | Nouveau critère QC **12** (ouverture simulée) | Propagation R18 |
-| §6.1 | Preset par défaut renommé **`iphone18_max`** — re-ancrage capteur/ISP + calibrage labo DXOMARK (172 pts, nuit 150) + limites honnêtes + périmètre images statiques | `confirmé` |
-| §6.5 | Renommage preset de restauration `iphone17_max` → `iphone18_max` (propagation 5.2, logique inchangée) | Propagation |
-| §6.9 | Référence génération → « caméra frontale iPhone 18 Pro Max » (caractéristiques inchangées : 18 MP, ƒ/1.9, Center Stage) | Apple Specs — `confirmé` |
-| §6.10 | Squelette `iphone18` **archivé** (règle d'activation remplie le 9/9/2026) + nouveau squelette `iphone19` — **INACTIF, 100 % [SPÉCULATIF]** | `rumeur` — structure conditionnelle (règle 14) |
-| §7 | Ligne d'expression opérationnelle de R18 dans l'instruction consolidée (ajout pur) | Propagation R18 |
-| §8 | Rapport : mention `ouverture_cible` + avis R18 | Propagation |
-| §11 | Note rétroactive v1.0 | — |
-| §12 | Livrables actualisés : v1.0 présente, `iphone17-photos.md` v2.0 archivée | Hygiène |
-| §13 | `preset:iphone18` / `preset:iphone18_max` acceptés (nouveau défaut) ; `preset:iphone19` → refus (règle 14) | Propagation |
-
-**Invariants garantis : aucune règle R1–R17 modifiée ni affaiblie (ajout pur R18 ; renommages de preset propagés conformément à la contrainte 5.2 du prompt maître migration et correction de coquille typographique R17 documentée — logique inchangée) ; garde-fous G1–G7 et inventaire B6 strictement intacts ; critères QC 1–11 inchangés (ajout pur 12) ; règles absolues 1–13 inchangées, règle 14 maintenue et généralisée au squelette `iphone19`.**
+> **Origines et changelogs versionnés archivés R4** : `references/changelogs-versions.md` (4,9 Kio — SHA-256 ec0cd7fefe513dd2…) — origine v1.0 (reset : migration depuis `iphone17-photos.md` v2.0 le 2026-10-09, génération 18 confirmée par Apple le 9/9/2026 — règle §6.10 activée) · origine v1.1 (extension 1944 — argentiques N&B années 1930-1950, grain préservé, aucune colorisation inventée — ajouts purs) · changelogs v1.0→v1.1 (ère 40s §6.5, extension §6.6) et v2.0→v1.0 (R18 ouverture variable ƒ/1.48-ƒ/4.0, QC 12, renommage `iphone18_max` — contrainte 5.2, correction typographique R17) · invariants garantis par version (aucune règle R1-R17 modifiée ni affaiblie, G1-G7 et B6 intacts, QC 1-11 inchangés — ajout pur R18/QC 12, règles absolues 1-13 inchangées, règle 14 généralisée au squelette `iphone19`). Chargé à la demande (lecture ciblée — jamais par défaut).
 
 ---
 
@@ -284,10 +248,8 @@ Checklist (OK / KO) :
 ## §6 — VARIATIONS DE RENDU (PRESETS)
 
 ### 6.1 `iphone18_max` (défaut — ancrage matériel iPhone 18 Pro Max)
-**Baseline de référence (v1.0) :** système photo **triple 48 MP Fusion** (principal 24 mm **à ouverture variable ƒ/1.48–ƒ/4.0** — 6 lames découpées au laser, 4 réglages auto/manuel ; ultra-grand-angle 13 mm ; téléobjectif 4x/8x jusqu'à 200 mm), **nouveau capteur principal** (sensor-shift OIS 2e génération, 100 % Focus Pixels, super-résolution 24/48 MP), **nouveau pipeline d'imagerie computationnel**, **Photographic Styles 3** (contrôles texture et grain), Photonic Engine, puce **A20 Pro** — Dual 16-core Neural Engine (32 cœurs), rendu naturel Apple. *(Contrôles pro de capture — ouverture/obturation/WB manuels dans l'app Camera : fonctionnalités de capture ; côté rendu, l'ouverture est couverte par R18.)*
-**Rendu simulé (calibré labo — DXOMARK 172 pts, nuit 150 — record) :** netteté max sur les zones utiles (visages prioritaires), **piqué accru** (nouveau pipeline computationnel), dynamique étendue sans HDR visible, colorimétrie naturelle et teintes chair fidèles, **mode nuit encore plus propre** (ouverture auto ƒ/1.48, bruit maîtrisé, sources lumineuses sans halo), **texture/bruit équilibré** (texture naturelle sans lissage excessif — jamais plastique, G4), **groupes nets de l'avant à l'arrière** (fermeture ƒ/4.0 — R18), textures réalistes (peau, tissu, matière).
-**Limites honnêtes (calibrage labo) :** télé longue portée derrière certains flagships concurrents ; bokeh pouvant manquer en très basse lumière — le pipeline ne sur-promet pas.
-*(Périmètre : images statiques — les capacités vidéo de la génération (Cinematic post-capture, Time-lapse 4K Dolby Vision HDR, Audio Mix, ProRes 4K 120 fps) ne sont pas simulées.)*
+**Résumé opérationnel (re-curation v1.1)** : preset par défaut — baseline **triple 48 MP Fusion** (principal 24 mm à ouverture variable **ƒ/1.48-ƒ/4.0** — R18 ; UGA 13 mm ; télé 4x/8x jusqu'à 200 mm), nouveau capteur principal (sensor-shift OIS 2e génération, 100 % Focus Pixels), **Photographic Styles 3** (texture et grain), Photonic Engine, puce **A20 Pro** — Dual Neural Engine 32 cœurs ; rendu **calibré labo** (DXOMARK 172 pts, nuit 150 — record) : netteté max sur zones utiles (visages prioritaires), piqué accru, dynamique étendue sans HDR visible, teintes chair fidèles, mode nuit propre (ouverture auto ƒ/1.48), texture naturelle jamais plastique (G4), groupes nets de l'avant à l'arrière (ƒ/4.0 — R18) ; limites honnêtes (télé longue portée derrière certains concurrents, bokeh très basse lumière) ; périmètre : images statiques. **Calibrage labo réel, génération CONFIRMÉE** (aucune extrapolation — à la différence du squelette §6.10).
+> **Intégral archivé R4** : `references/preset-iphone18-max-calibrage.md` (1,7 Kio — SHA-256 f54467566925113c…) — baseline de référence v1.0 + rendu simulé + limites honnêtes + périmètre. Chargé à la demande (lecture ciblée — jamais par défaut).
 
 ### 6.2 Température
 - `froid` : WB −400 K équivalent, ombres légèrement teal, blancs cliniques.
@@ -396,18 +358,8 @@ img = export_print(crop_ratio(img, 210/297, cx=0.5), 210, 297)   # poster A4 300
 
 ## §11 — AUTO-AUDIT DU DOCUMENT (après chaque modification)
 
-a) Références croisées §/R/G cohérentes dans tout le document ;
-b) numérotation continue (sections, règles, garde-fous, critères QC) ;
-c) aucun champ YAML fautif (noms de champs vérifiés) ;
-d) toute nouvelle règle répercutée dans §3 (YAML) + §5 (QC) + §8 (rapport) ;
-e) version incrémentée ;
-f) notes rétroactives si des QC passés seraient réévalués différemment.
-
-**Note rétroactive v2.0 (conservée — historique) :** les intégrations (R17, §6.8, §6.9, re-ancrage §6.1, §6.10) sont des **ajouts purs** — aucune règle R1–R16, aucun critère QC 1–10, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié. Critère QC 11 et règle 14 = nouveaux, sans effet rétroactif.
-
-**Note rétroactive v1.0 :** les intégrations (R18, re-ancrage §6.1, note P5/P6, référence §6.9, squelette §6.10 `iphone19`) sont des **ajouts purs**, des **renommages de preset** (R13, §6.5 — contrainte 5.2 du prompt maître migration) ou une **correction de coquille typographique** (R17 : « pitié » → « piqué ») — aucune règle R1–R17, aucun critère QC 1–11, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié. Critère QC 12 = nouveau, sans effet rétroactif ; règle 14 maintenue et généralisée au squelette `iphone19`.
-
-**Note rétroactive v1.1 :** l'extension 1944 (note §1, ère 40s §6.5, extension §6.6, §0, §8) est un **ajout pur** — aucune règle R1–R18, aucun critère QC 1–12, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié.
+**Disciplines a-f (résumé opérationnel)** : références croisées §/R/G cohérentes · numérotation continue (sections, règles, garde-fous, QC) · champs YAML vérifiés · toute nouvelle règle répercutée en §3 (YAML) + §5 (QC) + §8 (rapport) · version incrémentée · notes rétroactives si des QC passés seraient réévalués différemment.
+> **Disciplines intégrales + notes rétroactives archivées R4** : `references/notes-retroactives.md` (1,6 Kio — SHA-256 825b209077285a81…) — note v2.0 (intégrations génération 17 : ajouts purs, QC 11 + règle 14 nouveaux) · note v1.0 (R18, re-ancrage §6.1, renommages contrainte 5.2, correction typographique R17, squelette `iphone19` — QC 12 nouveau) · note v1.1 (extension 1944 : ajout pur) — aucune règle R1-R18, aucun garde-fou G1-G7, aucun critère QC 1-12 modifié ni affaibli, aucun QC antérieur requalifié. Chargé à la demande (lecture ciblée — jamais par défaut).
 
 ---
 

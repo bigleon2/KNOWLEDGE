@@ -1,0 +1,310 @@
+{
+ "skill": "iphone18",
+ "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.2",
+ "nature": {
+  "repertoire": "/home/z/my-project/skills/iphone18",
+  "version": "1.1.0",
+  "octets": 36709,
+  "lignes": 386,
+  "a_section_A": false,
+  "a_section_0": true,
+  "a_read_when": true,
+  "evals": {
+   "evals.json": 2481,
+   "trigger_evals.json": 958
+  },
+  "references": [
+   "changelogs-versions.md",
+   "notes-retroactives.md",
+   "preset-iphone18-max-calibrage.md"
+  ],
+  "scripts": [],
+  "gouvernance": {
+   "kb": "1.1.0",
+   "eco_skills": true
+  }
+ },
+ "protocole": {
+  "tests_pre": [
+   "contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
+   "sections mesurées (poids par section)",
+   "poids global (octets / Kio / #token estimés = caractères ÷ 4)",
+   "F1 fonctionnels — 0 selftests exécutés + 0 compilés · evals 2 · structure frontmatter",
+   "F2 performance — poids #token + durée mesurée des selftests (tolérance ×1.5 + 0.5 s)",
+   "F3 interactions — sortantes/entrantes semver · KB · ECO_SKILLS · corpus PM · agents → empreinte sha256"
+  ],
+  "tests_post": [
+   "contrats == baseline (COHÉRENT)",
+   "pointeurs references/ valides + non-duplication 1024 o + selftests (FONCTIONNEL)",
+   "poids réduit ou sous seuil LOURD (OPTIMISÉ)",
+   "F3 interactions SAINES (empreinte comparée)",
+   "F2 performance stable (tolérance ×1.5 + 0.5 s)"
+  ]
+ },
+ "baseline": {
+  "octets": 36709,
+  "contrats": {
+   "section_0_normalisee": "a269e38a69d184821e205b34b15748be04e3caca02cc49f777e2e7450f517417",
+   "read_when": "6306bf042612f010954b245a99dc5b9bdb2c7de28a971f3d14e459a5f3c89f9b",
+   "evals/evals.json": "05e3ed797a1665ddf42d655251eea76252b04b78c6c3e9b9ff6071a67a266f3a",
+   "evals/trigger_evals.json": "b22dc5144534ade3bb3303e2d3712b8bbeada301f0fb342d2f075a5fd0e2a62d",
+   "description_frontmatter": "3079956121ddc0955014c67dfd4bf315699cb7ef59148c809072fa8b0db22e01"
+  },
+  "sections": [
+   {
+    "section": "(frontmatter)",
+    "octets": 2691
+   },
+   {
+    "section": "§0 — Contexte Système (SHARED v1.7.36)",
+    "octets": 1653
+   },
+   {
+    "section": "Lignage — projection skill ← prompt maître source",
+    "octets": 1571
+   },
+   {
+    "section": "PROMPT MAÎTRE — Pipeline d'amélioration photo « iPhone 18 Pro Max, qua",
+    "octets": 1194
+   },
+   {
+    "section": "§0 — RÔLE & MISSION",
+    "octets": 3836
+   },
+   {
+    "section": "§1 — ÉTAPE 1 : ANALYSE COMPLÈTE (grille ANALYSE-v2)",
+    "octets": 149
+   },
+   {
+    "section": "A. Axe technique",
+    "octets": 670
+   },
+   {
+    "section": "B. Axe sémantique",
+    "octets": 619
+   },
+   {
+    "section": "C. Axe contextuel",
+    "octets": 1207
+   },
+   {
+    "section": "§2 — ÉTAPE 2 : MOTEUR DE DÉCISION (l'analyse → traitements)",
+    "octets": 4209
+   },
+   {
+    "section": "§3 — ÉTAPE 3 : PLAN D'ACTIONS (gabarit PLAN-ACTIONS YAML)",
+    "octets": 1626
+   },
+   {
+    "section": "§4 — ÉTAPE 4 : PIPELINE D'EXÉCUTION (ordre strict)",
+    "octets": 1987
+   },
+   {
+    "section": "§5 — ÉTAPE 5 : CONTRÔLE QUALITÉ & ITÉRATION",
+    "octets": 1703
+   },
+   {
+    "section": "§6 — VARIATIONS DE RENDU (PRESETS)",
+    "octets": 42
+   },
+   {
+    "section": "6.1 `iphone18_max` (défaut — ancrage matériel iPhone 18 Pro Max)",
+    "octets": 1338
+   },
+   {
+    "section": "6.2 Température",
+    "octets": 185
+   },
+   {
+    "section": "6.3 Luminosité",
+    "octets": 184
+   },
+   {
+    "section": "6.4 Formats (recadrage intelligent, visages protégés)",
+    "octets": 220
+   },
+   {
+    "section": "6.5 Presets d'époque — double sens",
+    "octets": 1565
+   },
+   {
+    "section": "6.6 `restauration_scan`",
+    "octets": 1018
+   },
+   {
+    "section": "6.7 `poster_A4_focus`",
+    "octets": 372
+   },
+   {
+    "section": "6.8 `log2_cinema` (Apple Log 2 — mode SIMULATION)",
+    "octets": 631
+   },
+   {
+    "section": "6.9 `frontal_center_stage` (caméra frontale 18 MP Center Stage)",
+    "octets": 616
+   },
+   {
+    "section": "6.10 `iphone19` — **[SPÉCULATIF] — SECTION INACTIVE**",
+    "octets": 1375
+   },
+   {
+    "section": "§7 — INTÉGRATION OPÉRATIONNELLE (outils IA)",
+    "octets": 1441
+   },
+   {
+    "section": "§8 — RAPPORT FINAL (gabarit obligatoire, en français)",
+    "octets": 66
+   },
+   {
+    "section": "📋 Analyse (scores ANALYSE-v2 + inventaire B6 + cadrage, focale et ouve",
+    "octets": 93
+   },
+   {
+    "section": "🧠 Diagnostic & règles déclenchées (R1–R18)",
+    "octets": 54
+   },
+   {
+    "section": "🗺️ Plan d'actions exécuté (YAML, dont focale_cible et ouverture_cible)",
+    "octets": 94
+   },
+   {
+    "section": "✅ Résultat QC (OK/KO + itérations) — fidélité (1–4), cadrage (8), rati",
+    "octets": 148
+   },
+   {
+    "section": "🖼️ Description du résultat (+ script P8b si besoin)",
+    "octets": 61
+   },
+   {
+    "section": "⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17,",
+    "octets": 182
+   },
+   {
+    "section": "❓ Souhaitez-vous des modifications ? (question OBLIGATOIRE — §9)",
+    "octets": 83
+   },
+   {
+    "section": "§9 — MODE INTERACTION POST-GÉNÉRATION",
+    "octets": 729
+   },
+   {
+    "section": "§10 — MODE SÉRIE (multi-sorties)",
+    "octets": 355
+   },
+   {
+    "section": "§11 — AUTO-AUDIT DU DOCUMENT (après chaque modification)",
+    "octets": 1030
+   },
+   {
+    "section": "§12 — LIVRABLES DU PROJET",
+    "octets": 940
+   },
+   {
+    "section": "§13 — INTERFACE DE COMMANDES",
+    "octets": 773
+   }
+  ],
+  "kio": 35.8,
+  "token_estimes": 9177,
+  "tests": {
+   "fonctionnels": {
+    "scripts": {},
+    "evals": {
+     "evals.json": {
+      "verdict": "PASS"
+     },
+     "trigger_evals.json": {
+      "verdict": "PASS"
+     }
+    },
+    "structure": {
+     "champs": {
+      "name": true,
+      "version": true,
+      "description": true
+     },
+     "verdict": "PASS"
+    },
+    "duree_totale_s": 0,
+    "verdict": "PASS"
+   },
+   "performance": {
+    "poids": {
+     "octets": 36709,
+     "kio": 35.8,
+     "token_estimes": 9177
+    },
+    "duree_tests_fonctionnels_s": 0,
+    "tolerance_stabilite": "×1.5 + 0.5 s",
+    "verdict": "MESURÉ"
+   },
+   "interactions": {
+    "sortantes": [
+     {
+      "skill": "skill-creator",
+      "contrat": ">=1.0.0",
+      "version": "1.1.0",
+      "verdict": "PASS"
+     },
+     {
+      "skill": "image-edit",
+      "contrat": ">=1.0.0",
+      "version": null,
+      "verdict": "NON-VERSIONNÉ",
+      "detail": "cible sans version déclarée (nature plateforme) — contrat semver non vérifiable"
+     }
+    ],
+    "entrantes": [],
+    "kb": {
+     "entree": "1.1.0",
+     "verdict": "PASS"
+    },
+    "eco_skills": {
+     "pin": "1.1.0",
+     "verdict": "PASS"
+    },
+    "pm_corpus": {
+     "famille": false,
+     "verdict": "PASS",
+     "detail": "hors famille PM — nature"
+    },
+    "agents": [],
+    "empreinte": "26479287a71bba9ed4f0c3d8800aa26bfc7225ec6e0f3b0bcbe9b1e615cd027c",
+    "verdict": "SAINES"
+   }
+  }
+ },
+ "post": {
+  "comparaison_contrats": {
+   "section_0_normalisee": "PASS",
+   "read_when": "PASS",
+   "evals/evals.json": "PASS",
+   "evals/trigger_evals.json": "PASS",
+   "description_frontmatter": "PASS"
+  },
+  "coherent": true,
+  "pointeurs_valides": true,
+  "pointeurs_manquants": [],
+  "non_duplication": true,
+  "duplications": [],
+  "tests_fonctionnels": "PASS",
+  "fonctionnel": true,
+  "interactions_saines": true,
+  "empreinte_interactions": {
+   "avant": "26479287a71bba9ed4f0c3d8800aa26bfc7225ec6e0f3b0bcbe9b1e615cd027c",
+   "apres": "26479287a71bba9ed4f0c3d8800aa26bfc7225ec6e0f3b0bcbe9b1e615cd027c",
+   "identique": true
+  },
+  "performance": {
+   "duree_avant_s": 0,
+   "duree_apres_s": 0,
+   "tolerance": "×1.5 + 0.5 s",
+   "stable": true
+  },
+  "poids_avant": 36709,
+  "poids_apres": 36709,
+  "reduction_pct": 0.0,
+  "optimise": true,
+  "verdict_post": "MAINTIEN DE L'OPTIMISATION"
+ }
+}

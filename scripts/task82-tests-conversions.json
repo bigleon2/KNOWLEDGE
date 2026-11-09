@@ -1,0 +1,67 @@
+{
+ "task": "Task 82 G3 — tests conversions",
+ "bilan": {
+  "total": 8,
+  "pass": 8,
+  "fail": 0,
+  "horodatage": "2026-11-09T04:40:00Z"
+ },
+ "tests": [
+  {
+   "id": "T1",
+   "test": "structure .agent (21 clés + pipeline A-H)",
+   "verdict": "PASS",
+   "detail": "21/21 clés du format, 8 étapes A-H",
+   "duree_s": null
+  },
+  {
+   "id": "T2",
+   "test": "SKILL.md v1.1.0 ajouts purs (description VERBATIM R2 + §1.6 + evals 2)",
+   "verdict": "PASS",
+   "detail": "description identique v1.0.0=True, version 1.1.0, §1.6 tandem, evals=2",
+   "duree_s": null
+  },
+  {
+   "id": "T3",
+   "test": "protocole-test --verifier knowledge-observer (VERDICT PASS — harnais v1.2.2)",
+   "verdict": "PASS",
+   "detail": "PASS ·   non-duplication 1024 o : PASS ·   F1 fonctionnels : PASS (0 scripts · 2 evals · 0 s) ·   F3 interactions : SAINES (3 sortantes · 2 entrantes · KB=1.1.0) · VERDICT : PASS ·",
+   "duree_s": 0.07270979881286621
+  },
+  {
+   "id": "T4a",
+   "test": "gen-ultra --check idempotent ×2 (no-op)",
+   "verdict": "PASS",
+   "detail": "2 re-jeux no-op",
+   "duree_s": null
+  },
+  {
+   "id": "T4b",
+   "test": "integrity --check stable ×2 (112/112)",
+   "verdict": "PASS",
+   "detail": "runs 1-2 identiques PASS 112/112",
+   "duree_s": 0.08243894577026367
+  },
+  {
+   "id": "T4c",
+   "test": "re-scellage idempotent ×2 (sha stable)",
+   "verdict": "PASS",
+   "detail": "sha f256bd4ae87deef0 → f256bd4ae87deef0 → f256bd4ae87deef0 identiques ×3",
+   "duree_s": 0.07606887817382812
+  },
+  {
+   "id": "T5",
+   "test": "performance mesurée",
+   "verdict": "PASS",
+   "detail": "verifier 0.07 s · integrity ×2 0.08 s · rescellage 0.08 s",
+   "duree_s": null
+  },
+  {
+   "id": "T6",
+   "test": "non-convertis byte-identiques (statut dépôt == 11 fichiers attendus)",
+   "verdict": "PASS",
+   "detail": "11 fichiers modifiés, attendu 11",
+   "duree_s": null
+  }
+ ]
+}

@@ -52,7 +52,10 @@ ROUTING = [
     ("Installer / réinstaller l'écosystème", "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md — SOURCE UNIQUE", "ce fichier (§A + pipeline 11 étapes)", "corpus -> registre -> arbitres"),
     ("Synchroniser contexte / canaux", "SYNC-CONTEXT.md + scripts de sync", "—", "2 voies byte-identiques"),
     ("Auditer la provenance", "audit-provenance", "—", "L006, avant clone/install"),
-    ("Observer les leçons", "knowledge-observer", "—", "journal lessons-learned, M1-M2 à E15"),
+    ("Observer les leçons", "knowledge-observer (agent autonome tandem — .agent v1.1.0 + SKILL.md méthode)", "—", "journal lessons-learned, M1-M2 à E15"),
+    ("Re-curé un skill (divulgation progressive)", "re-curation (protocole P0-P7 + harnais protocole-test.py v1.2.1)", "—", "moves R4 byte-identité, POST ×2 MAINTIEN, C1-C4"),
+    ("Créer / modifier un skill", "skill-creator (conventions) + correct-work (garde)", "—", "frontmatter, evals, description triggers"),
+    ("Inventorier / chercher un skill", "skills-inventory", "—", "scan skills/, catalogue générable"),
 ]
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""protocole-test.py — Script PRINCIPAL du skill re-curation (v1.2.1).
+"""protocole-test.py — Script PRINCIPAL du skill re-curation (v1.2.2).
 
 Implémentation de la directive propriétaire (Task 72, directive complémentaire
 1a1b7b297b7b4975) : « le skill "re-curation" devra être implémenté d'un script dont
@@ -439,7 +439,7 @@ def capturer(nom: str) -> dict:
     nb_self = sum(1 for v in fonc["scripts"].values() if v["test"] == "selftest exécuté")
     nb_comp = sum(1 for v in fonc["scripts"].values() if v["test"] == "compilation (sans selftest)")
     return {
-        "skill": nom, "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.1",
+        "skill": nom, "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.2",
         "nature": {k: v for k, v in n.items() if k != "_fragments"},
         "protocole": {
             "tests_pre": ["contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
@@ -520,7 +520,12 @@ def pointeurs_valides(nom: str) -> tuple[bool, list[str]]:
     d = RACINE / "skills" / nom
     texte = (d / "SKILL.md").read_text(encoding="utf-8")
     manquants = []
-    for m in set(re.findall(r"references/([A-Za-z0-9_.-]+)", texte)):
+    # v1.2.2 (Task 82 G3, preuves réelles knowledge-observer) : une citation
+    # `<autre-skill>/references/<fichier>` est une référence INTER-SKILL
+    # (non-duplication SHARED §6.3 — la source de vérité vit dans un autre
+    # skill), PAS un pointeur local : le lookbehind exclut tout `references/`
+    # précédé d'un caractère de chemin (`/`, lettre, chiffre, `_`, `-`).
+    for m in set(re.findall(r"(?<![\w/-])references/([A-Za-z0-9_.-]+)", texte)):
         if not (d / "references" / m).is_file():
             manquants.append(m)
     return (not manquants, manquants)
@@ -888,6 +893,20 @@ Fin.
                   rcP1 == 1 and jP1["post"]["verdict_post"] == "DÉRIVE"
                   and rcP2 == 0 and jP2b["post"]["verdict_post"] == "MAINTIEN DE L'OPTIMISATION"))
 
+        # v1.2.2 (Task 82 G3, KO-L003 — preuves réelles knowledge-observer) :
+        # référence INTER-SKILL tolérée. Une citation
+        # `<autre-skill>/references/<fichier>` (ex. réel : knowledge-observer
+        # cite gen-plan/references/observation-patterns.md — SHARED §6.3,
+        # la définition vit dans gen-plan) n'est pas un pointeur local
+        # manquant. Avant correctif : --verifier knowledge-observer FAIL
+        # « manquants : observation-patterns.md ».
+        sk.write_text(sk.read_text(encoding="utf-8")
+                      + "\nVoir `gen-plan/references/observation-patterns.md` (inter-skill).\n",
+                      encoding="utf-8")
+        rcX = cmd_verifier("temoin")
+        r.append(("v1.2.2 référence inter-skill (gen-plan/references/…) tolérée → verifier rc=0 (et pointeur LOCAL manquant demeure rc=1, cas ci-dessus)",
+                  rcX == 0))
+
         print("\n=== SELFTEST protocole-test.py ===")
         ok = True
         for label, passe in r:
@@ -901,7 +920,7 @@ Fin.
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="protocole-test.py — skill re-curation v1.2.1")
+    p = argparse.ArgumentParser(description="protocole-test.py — skill re-curation v1.2.2")
     g = p.add_mutually_exclusive_group(required=True)
     g.add_argument("--pre", metavar="SKILL")
     g.add_argument("--post", metavar="SKILL")

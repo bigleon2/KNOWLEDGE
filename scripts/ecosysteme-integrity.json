@@ -6,9 +6,9 @@
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "118e97fd61b4a61273a65702ee11c5a03630810c11880b18d363e7c238a142c4",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "2441f93c27a2334aeed384a7f397c784e55a1f164299b399a57590002132a72f",
     "PROMPT-MAITRE-SHARED.md": "73cfb56ceedd11f6e9791d57c76acc9490656af287da7457cd994b624b36af0d",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "333685c648ec3565dfe0cb1e4af9c5c6335f2711afab0035f9dd5ec9c8bec999",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "261723f51c7219ee31f6949885d9e57d22aa6fa113a5f6321ce4816eac4cb07b",
     "README.md": "f37373d113fbf88eb6115c9f0af1f5301629c1351ddc4500edc602b9cfd69061",
-    "SYNC-CONTEXT.md": "a910864963989ea190a09c9900c10f0e384ad46b907b4f87ab8922881da9f0bc"
+    "SYNC-CONTEXT.md": "20429ddc2a1ae6589e0c5d6327a2b211d316483b1818e8086a31c9afa27834a3"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md": "3be1ce9f95f83bdf9caca20115403a21548834ae14f9912090f22cfb29235d77",
@@ -17,12 +17,12 @@
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "118e97fd61b4a61273a65702ee11c5a03630810c11880b18d363e7c238a142c4",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "2441f93c27a2334aeed384a7f397c784e55a1f164299b399a57590002132a72f",
     "PROMPT-MAITRE-SHARED.md": "73cfb56ceedd11f6e9791d57c76acc9490656af287da7457cd994b624b36af0d",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "333685c648ec3565dfe0cb1e4af9c5c6335f2711afab0035f9dd5ec9c8bec999",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "261723f51c7219ee31f6949885d9e57d22aa6fa113a5f6321ce4816eac4cb07b",
     "README.md": "f37373d113fbf88eb6115c9f0af1f5301629c1351ddc4500edc602b9cfd69061",
-    "SYNC-CONTEXT.md": "a910864963989ea190a09c9900c10f0e384ad46b907b4f87ab8922881da9f0bc"
+    "SYNC-CONTEXT.md": "20429ddc2a1ae6589e0c5d6327a2b211d316483b1818e8086a31c9afa27834a3"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "2bffa946dc84ce125576ad27f28114dcf1a050b5efa4f6ac3184b90598746eaa"
+    "mon-ecosysteme_archive.zip": "a40ed6893e9bad510d401e19375494ce4fb4f3af56edfe753e70d6d7f3855e04"
   },
   "skills": {
     "agent-creator": {
@@ -114,7 +114,7 @@
       "version": "1.1.0"
     },
     "iphone18": {
-      "sha256": "54bd4ed00ca79685a9a7427f79afcd074dffa312f6651f7e3a782ba69db33981",
+      "sha256": "831fec64e074671b44fbb577d7ceab8103a97339b5781d42260aba8c65a7bc8a",
       "version": "1.1.0"
     },
     "iphone19": {
@@ -122,8 +122,8 @@
       "version": "0.12.0"
     },
     "knowledge-observer": {
-      "sha256": "283701be46232bd305849040be2c10a3f1458f86a5ae5b7d066dcb71449a5128",
-      "version": "1.0.0"
+      "sha256": "0f380493c3a98850d736581ddc60c2b23313bfb290170330d47b4dab1cb53823",
+      "version": "1.1.0"
     },
     "livraison-garantie": {
       "sha256": "10bc2eeefc8b16077f70bc9538b9fbb5ddabb55484181e9ab7230365530d09ff",
@@ -162,8 +162,8 @@
       "version": "2.3.1"
     },
     "re-curation": {
-      "sha256": "412bedfd3cac8f7eb9abfb89ced122bbc2d2603ea447060307978a59b8340a47",
-      "version": "1.2.1"
+      "sha256": "b0b1e85e43ba0059524e3c658733ae57ca70faafdf0350818f9a14e0eeecf41a",
+      "version": "1.2.2"
     },
     "refactor-guard": {
       "sha256": "02339bfa280fa817d4feeb9b9d58b396cd7d717ea249a51625761df438aa318e",
