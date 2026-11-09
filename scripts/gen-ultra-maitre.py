@@ -56,6 +56,7 @@ ROUTING = [
     ("Re-curé un skill (divulgation progressive)", "re-curation (protocole P0-P7 + harnais protocole-test.py v1.2.1)", "—", "moves R4 byte-identité, POST ×2 MAINTIEN, C1-C4"),
     ("Créer / modifier un skill", "skill-creator (conventions) + correct-work (garde)", "—", "frontmatter, evals, description triggers"),
     ("Inventorier / chercher un skill", "skills-inventory", "—", "scan skills/, catalogue générable"),
+    ("Ingénierie d'agents / systèmes multi-agents (concevoir, évaluer, fiabiliser, orchestrer les tâches d'agents)", "agent-engineering (n°56 — cadre englobant ABE/AE/MASE : cadrer, router vers détenteurs, outiller, veiller)", "—", "routage §1.3 du skill, gate anti-flotte, critère vérifiable par tâche"),
 ]
 
 

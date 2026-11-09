@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Utilise le skill agent-engineering pour orchestrer les tâches d'ingénierie d'agents de ce projet.",
+    "should_trigger": true
+  },
+  {
+    "query": "Cadre la conception d'un agent autonome : domaines ABE, Agent Engineering,Multi-Agent Systems Engineering et routage vers les détenteurs.",
+    "should_trigger": true
+  },
+  {
+    "query": "Conçois un système multi-agents : société d'agents, rôles, interactions, environnement (agent-based engineering).",
+    "should_trigger": true
+  },
+  {
+    "query": "Fiabilise cet agent LLM pour la production : évaluation, observabilité, contrôle des coûts, durcissement.",
+    "should_trigger": true
+  },
+  {
+    "query": "Évalue la sûreté de notre orchestration multi-agents : handoffs, coordination, journalisation qui-décide-quoi.",
+    "should_trigger": true
+  },
+  {
+    "query": "Lance une flotte d'agents en parallèle avec un supervisor et agrège les résultats.",
+    "should_trigger": false
+  },
+  {
+    "query": "Crée-moi un skill avec frontmatter, evals et conventions de l'écosystème.",
+    "should_trigger": false
+  }
+]

@@ -32,6 +32,7 @@
 | Re-curé un skill (divulgation progressive) | re-curation (protocole P0-P7 + harnais protocole-test.py v1.2.1) | — | moves R4 byte-identité, POST ×2 MAINTIEN, C1-C4 |
 | Créer / modifier un skill | skill-creator (conventions) + correct-work (garde) | — | frontmatter, evals, description triggers |
 | Inventorier / chercher un skill | skills-inventory | — | scan skills/, catalogue générable |
+| Ingénierie d'agents / systèmes multi-agents (concevoir, évaluer, fiabiliser, orchestrer les tâches d'agents) | agent-engineering (n°56 — cadre englobant ABE/AE/MASE : cadrer, router vers détenteurs, outiller, veiller) | — | routage §1.3 du skill, gate anti-flotte, critère vérifiable par tâche |
 
 ## §2 — Registre dynamique des prompts maîtres (dérivé du corpus réel)
 
@@ -74,6 +75,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.36 (lire en premier). Installateur : `PRO
 | `spec-driven-development` | 1.1.1 |
 | `refactoring-engineering` | 1.1.1 |
 | `refactoring-test` | 1.1.1 |
+| `agent-engineering` | 1.0.0 |
 | `audio-metadata` | 1.1.0 |
 | `cpp-analysis` | 1.1.0 |
 | `pdf-llm` | 1.0.0 |
@@ -105,7 +107,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.36 (lire en premier). Installateur : `PRO
 | `web-search` | 1.0.0 |
 | `pm-skill` | 1.0.2 |
 
-Registre KB : 54 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé). correct-work v2.11.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
+Registre KB : 55 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dérivée dynamiquement du registre KB (KO-L003 — la version fait foi au frontmatter installé). correct-work v2.11.0 exige gen-plan (dernière version installée) à son Étape 1 — couplage obligatoire.
 
 ## §4 — Points d'entrée et ordre de lecture
 

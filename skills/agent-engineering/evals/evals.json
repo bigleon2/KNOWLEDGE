@@ -1,0 +1,43 @@
+{
+  "skill_name": "agent-engineering",
+  "version": "1.0.0",
+  "schema": "skill-creator v1.0.0 (references/schemas.md)",
+  "note": "Évals de matérialisation n°56 (Task 83, session web-ecef7f80 — directive 1a1beaee032b5aa5) ; discipline englobante ABE/AE/MASE ; contrôles négatifs = disciplines voisines (fleet-engineering coordination opérationnelle, skill-creator/agent-creator fabrique) ; baseline A2 en attente de mesure (KO-L001 — aucune baseline pré-écrite, R3).",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Utilise le skill agent-engineering pour orchestrer les tâches d'ingénierie d'agents de ce projet.",
+      "expected_behavior": "déclenchement du skill agent-engineering (cadre n°56)"
+    },
+    {
+      "id": 2,
+      "query": "Cadre la conception d'un agent autonome : domaines ABE, Agent Engineering, Multi-Agent Systems Engineering et routage vers les détenteurs.",
+      "expected_behavior": "déclenchement du skill agent-engineering (cadrage 3 domaines + routage)"
+    },
+    {
+      "id": 3,
+      "query": "Conçois un système multi-agents : société d'agents, rôles, interactions, environnement (agent-based engineering).",
+      "expected_behavior": "déclenchement du skill agent-engineering (domaine ABE — modélisation)"
+    },
+    {
+      "id": 4,
+      "query": "Fiabilise cet agent LLM pour la production : évaluation, observabilité, contrôle des coûts, durcissement.",
+      "expected_behavior": "déclenchement du skill agent-engineering (domaine AE — prototype→production)"
+    },
+    {
+      "id": 5,
+      "query": "Évalue la sûreté de notre orchestration multi-agents : handoffs, coordination, journalisation qui-décide-quoi.",
+      "expected_behavior": "déclenchement du skill agent-engineering (domaine MASE — sûreté inter-agents)"
+    },
+    {
+      "id": 6,
+      "query": "Lance une flotte d'agents en parallèle avec un supervisor et agrège les résultats.",
+      "expected_behavior": "NON-déclenchement (contrôle négatif — fleet-engineering détient la coordination opérationnelle)"
+    },
+    {
+      "id": 7,
+      "query": "Crée-moi un skill avec frontmatter, evals et conventions de l'écosystème.",
+      "expected_behavior": "NON-déclenchement (contrôle négatif — skill-creator/agent-creator détiennent la fabrique)"
+    }
+  ]
+}
