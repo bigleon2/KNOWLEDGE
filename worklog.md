@@ -2138,3 +2138,12 @@ PLAN-AFFICHE (Task 85 — **G1 ✅ 4/4 [réinstallation 55/55 · tracking stale 
 - **Pendances** : file re-curation — **cahier-des-charges PROCHAINE** → iphone17 · baseline A2 n°56 [R3 QUOTA_OK] · rotation PAT [propriétaire].
 
 PLAN-AFFICHE (Task 85 — **G1 ✅ 4/4 · G2 ✅ 5/5 [skill-creator −10,1 %] · G3 ✅ 5/5 [web-reader −36,5 % C1-C4 PASS · cascade · PUSH en vol] · G4 [À FAIRE] : cahier-des-charges (prochaine) · iphone17 · G5 clôture + PUSH**)
+
+## 2026-11-09 (suite 107, session web-ecef7f80) — Task 85 G4 TERMINÉ : re-curation cahier-des-charges EXÉCUTÉE — 31 583 → 26 244 o (−16,9 %), 1 zone R4 byte-identité (§6 Traçabilité), C1-C4 PASS TOTAL (correct-work(G4) PASS)
+
+- **P0 analyse (D015 ✓)** : SKILL.md cahier-des-charges v2.0.2 — 233 lignes / 31 583 o (30,8 Kio LOURD) ; cœur opérationnel intronisable (§1 modes M1-M7/règles/cycle, §2 spécification, §5 évaluations) ; candidat unique : **« §6 — Traçabilité » (5 996 o) = bloc HISTORIQUE pur** (4 montées verbatim v1.0.0 → v2.0.2 — la version vivante est lue au frontmatter, l'historique ne sert qu'au lignage).
+- **P1-P4 harnais (D016 ✓)** : `scripts/task85-recuration-cahier-des-charges.py` CRÉÉ (squelette consolidé Task 85 — du 1ᵉʳ coup, zéro itération) — zone §6 déplacée R4 byte-identité vers `references/traceabilite-versions.md` (6 545 o, SHA 34aff22e…) + résumé opérationnel inline + pointeur + **1 ligne ajoutée au §7 Références** — **31 583 → 26 244 o (30,8 → 25,6 Kio, −16,9 %, −1 340 #token/chargement, LOURD → INTERMÉDIAIRE, rang 16)** ; idempotence **NO-OP ×2** ; version **2.0.2 INCHANGÉE**.
+- **P5 arbitre (D017 ✓)** : post-miroir — **C1-C4 PASS TOTAL** (25,6 Kio INTERMÉDIAIRE — 2ᵉ cible consécutive sous le seuil LOURD) ; parité hôte==dépôt **2cb37098f8affdfd** ; pipeline **55/55 SHA · divergences [] · R2 0 rétrogradation**.
+- **P6 cascade (D018 ✓)** : KB (file : **iphone17 PROCHAINE** + calibration cahier-des-charges, 2 chirurgies count==1) · **historiques-par-skill/cahier-des-charges.md CRÉÉ** · ULTRA **no-op SHA 2ed4ec47** · arbitres : **integrity 114/114 · interactions PASS STRICT · doublons 0**.
+- **Commit + PUSH en vol (D019 ✓)** : → PUSH délégation PAT → **E15 : 11ᵉ EXPOSITION consignée — RÉVOCATION/ROTATION RECOMMANDÉE**.
+- **Pendance** : file re-curation — **iphone17 DERNIÈRE cible** · baseline A2 n°56 [R3 QUOTA_OK] · rotation PAT [propriétaire].
