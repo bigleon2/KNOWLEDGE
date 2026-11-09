@@ -11,3 +11,10 @@
 - **Pendance structurée** : inscription socle SHARED §7 (table définitions + registre assignation, bump v1.7.37) + gen-plan §1.6/§3 (bump MINOR + cascade) — précédents v1.7.0 (n°54) et Task 7/8 (n°55), tâche dédiée.
 
 - **Socle inscrit** (Task 84 G3, 2026-11-09 — directive 1a1bed51ccaf78f1 « continue », pendance P1 éteinte) : SHARED §7 (ligne définition + ligne registre d'assignation, v1.7.37) + gen-plan §1.6/§3 (v3.42.0, mobilisation déclarée à l'entrée KB) ; PM v3.42.0 généré (delta verrouillé scripts/delta-genplan-v3420.json), PM v3.41.0 archivé R4 (sceau f0a44d495519c3df…).
+
+## v1.1.0 (2026-11-09, Task 86, session web-ecef7f80, directive 1a1bed51ccaf78f1 cadence 2 h tick 17:50)
+
+- **Baseline A2 MESURÉE puis Description Optimization A10/A14** (extinction pendance R3) : mesure initiale 5/7 (voie mécanique + confirm 3 runs LLM au QUOTA_OK — 21/21 votes réels, nulls 0 ; harnais `scripts/task21-baseline-a2-all.py --skills=agent-engineering`) ; dérive : cas 6 [contrôle négatif fleet-engineering] faux positif 2 voies + cas 7 [contrôle négatif skill-creator/agent-creator] faux positif voie L.
+- **Optimisation A10/A14** : clause « Contrôles négatifs assumés » en description frontmatter (route vers fleet-engineering / fabrique skill-creator-agent-creator) — M-safe prouvée par simulation préalable du stemmer arbitre V6 (hits cas 7 inchangés, positifs 1-5 inconstructibles) ; édition chirurgicale count==1 all-or-nothing, idempotence NO-OP ×2, +325 o (16 346 → 16 671 o) ; SKILL.md SHA 1e043b4f… → 5c65a8a7….
+- **Re-mesure post-optimisation : 6/7** (21/21 votes réels, nulls 0) : cas 6/7 voie L corrigés NON×3 ; cas 7 conforme 2 voies ; **écart structurel consigné cas 6 voie M** (radical « agent » ∈ strong — limite arbitre V6, posture Tasks 81/82/85).
+- **Cascade KO-L004** : KB v1.1.0 (en-tête + Description miroir + Dernière calibration) + evals.json note + présent fichier ; ULTRA regen ×2 (table versions, KO-L003 dérivation dynamique) ; SHARED §7 no-op (KO-L003 sans version figée) ; gen-plan §1.6 no-op (plancher >= v1.0.0 conforme).

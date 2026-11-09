@@ -1,6 +1,6 @@
 ---
 name: agent-engineering
-version: 1.0.0
+version: 1.1.0
 category: ecosystem
 language: fr
 tags:
@@ -20,7 +20,7 @@ description: >-
   memory-engineering pour la mémoire, harness-engineering pour les gardes-fous, spec-driven-development pour
   les contrats, autonomous-agent pour le format .agent, agent-creator/skill-creator pour la fabrique,
   gen-plan pour la planification), OUTILLE chaque tâche d'un critère vérifiable exécutable et VEILLE sur les
-  fondements 2026. Spécialise la discipline agent engineering (registre décentralisé : §8 local + registre
+  fondements 2026. Contrôles négatifs assumés (A10/A14) : ne se déclenche PAS pour la coordination d'une flotte (fleet-engineering détient les patterns de coordination opérationnels) ni pour la création d'un skill (fabrique skill-creator/agent-creator) — n°56 route ces requêtes vers ces détenteurs. Spécialise la discipline agent engineering la discipline agent engineering (registre décentralisé : §8 local + registre
   KB). Opérationnalisation 2026 : State of Agent Engineering (LangChain, 2026 — prototype→production),
   Agent-Based Software Engineering (ABSE/Tropos — agents-as-building-blocks), Multi-Agent Systems
   (Anthropic 06/2025, Cognition 2025, Anthropic 08/2026). Fondements documentés :

@@ -75,7 +75,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.37 (lire en premier). Installateur : `PRO
 | `spec-driven-development` | 1.1.1 |
 | `refactoring-engineering` | 1.1.1 |
 | `refactoring-test` | 1.1.1 |
-| `agent-engineering` | 1.0.0 |
+| `agent-engineering` | 1.1.0 |
 | `audio-metadata` | 1.1.0 |
 | `cpp-analysis` | 1.1.0 |
 | `pdf-llm` | 1.0.0 |
