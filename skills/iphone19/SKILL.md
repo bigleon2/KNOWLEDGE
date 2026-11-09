@@ -1,6 +1,6 @@
 ---
 name: iphone19
-version: 0.11.0
+version: 0.12.0
 category: metier
 language: fr
 tags:
@@ -28,6 +28,9 @@ description: >
   mode poster/print A4 300 DPI, mode série multi-sorties, rapport final en français +
   question utilisateur obligatoire. Garde-fous photo G1-G7 : fidélité stricte des visages
   (expressions, orientation des têtes), zéro élément ajouté, original non-destructif.
+  Règle absolue 15 : ne jamais inventer et rester fidèle à l'image d'origine (visage,
+  vêtement, arrière-plan, etc.) tant que le propriétaire n'a pas explicitement demandé
+  des modifications (critère QC 14).
   Pensez à utiliser ce skill dès que l'utilisateur demande explicitement le rendu
   « iPhone 19 » ou la génération suivante, le preset iphone19_max, l'émulation pixel
   binning (R19), ou la restauration d'une photographie ancienne (argentique N&B,
@@ -60,63 +63,14 @@ read_when:
 
 ## Lignage — projection skill ← prompt maître source
 
-> Skill métier projeté depuis le prompt maître `skills/@photos/iphone19-photos.md` **v0.11.0 [ANTICIPÉE]** (génération iPhone 19 ANTICIPÉE 2027 — calibration extrapolée de rumeurs crédibles 2026, non confirmée ; v0.10.0 : émulation pixel binning R19 — capteur 200 MP Sony Lytia 901, fusion 16-en-1 → 12,5 MP, [RUMEUR] Digital Chat Station via Frandroid 27/03/2026, directive propriétaire 2026-10-21 ; v0.11.0 : extension 1944 — chemin argentique N&B années 1930-1950, grain préservé, aucune colorisation inventée ; v0.9.0 et v0.10.0 archivées @historique/photos/ ; PM génération 18 confirmée : `iphone18-photos.md` v1.1, PM parallèle) — fichier du dépôt, **byte-identique, jamais édité (R2)**. Le corps ci-dessous (« ## PROMPT MAÎTRE » → §13) est repris **VERBATIM** de cette source ; dans ce skill, « le document » y désigne le présent SKILL.md, et la discipline §11 (auto-audit) s'exécute à l'occasion d'un bump de version du skill (semver + recalibrage du registre KB). Tests empiriques de référence : PA-TEST-005 (Task 47, 2 photos, zéro retouche) + PA-TEST-006 (Task 48, rendu 19 v0.10.0 « les potos », QC 13/13, zéro itération). P8b (recadrage) : le PM source référence `crop_utils.py` (livrable historique du projet CLUB, non embarqué — un recadrage PIL équivalent est produit à la demande).
+> Skill métier projeté depuis le prompt maître `skills/@photos/iphone19-photos.md` **v0.12.0 [ANTICIPÉE]** (génération iPhone 19 ANTICIPÉE 2027 — calibration extrapolée de rumeurs crédibles 2026, non confirmée ; v0.12.0 : règle absolue 15 — fidélité totale à l'image d'origine (visage, vêtement, arrière-plan, etc.), ne jamais inventer, sauf demande explicite de modifications — directive propriétaire 2026-11-09 ; v0.10.0 : émulation pixel binning R19 — capteur 200 MP Sony Lytia 901, fusion 16-en-1 → 12,5 MP, [RUMEUR] Digital Chat Station via Frandroid 27/03/2026, directive propriétaire 2026-10-21 ; v0.11.0 : extension 1944 — chemin argentique N&B années 1930-1950, grain préservé, aucune colorisation inventée ; v0.9.0, v0.10.0 et v0.11.0 archivées @historique/photos/ ; PM génération 18 confirmée : `iphone18-photos.md` v1.1, PM parallèle) — fichier du dépôt, **byte-identique, jamais édité (R2)**. Depuis la re-curation v0.12.0 (Task 81 G2, 2026-11-09 — protocole P0-P7, méthode moves-r4-pur arbitrée --compare), le corps ci-dessous (« ## PROMPT MAÎTRE » → §13) est la **projection curée** (progressive disclosure) de cette source : les blocs historiques et de référence (origines, changelogs, calibrage §6.1, squelette §6.10 [SPÉCULATIF], notes rétroactives §11, livrables §12) vivent en `references/` en copies R4 byte-identité pointées inline ; le cœur opérationnel (§0 règles absolues 1-15, §1-§5, §6.2-§6.9, §7-§10, §13) demeure intégralement inline ; le PM source demeure l'intégral de référence ; dans ce skill, « le document » y désigne le présent SKILL.md, et la discipline §11 (auto-audit) s'exécute à l'occasion d'un bump de version du skill (semver + recalibrage du registre KB). Tests empiriques de référence : PA-TEST-005 (Task 47, 2 photos, zéro retouche) + PA-TEST-006 (Task 48, rendu 19 v0.10.0 « les potos », QC 13/13, zéro itération). P8b (recadrage) : le PM source référence `crop_utils.py` (livrable historique du projet CLUB, non embarqué — un recadrage PIL équivalent est produit à la demande).
 
 ## PROMPT MAÎTRE — Pipeline d'amélioration photo « iPhone 19 Pro Max, qualité max » (génération ANTICIPÉE 2027) + rendus d'époques + posters
-**Version 0.11.0 [ANTICIPÉE] — Langue : français — Mode : data-driven (Analyse → Décision → Plan → Exécution → QC → Question utilisateur)**
+**Version 0.12.0 [ANTICIPÉE] — Langue : français — Mode : data-driven (Analyse → Décision → Plan → Exécution → QC → Question utilisateur)**
 
-> **Origine v0.9.0 (migration ANTICIPÉE — prompt maître `iphone-photos-migration.md`, déviation §6-1 documentée) :** document généré par migration depuis `iphone18-photos.md` v1.0 le 2026-10-20, sur **directive propriétaire explicite** (« fais cette migration de façon autonome ») — le squelette §6.10 de la source est consommé **avant la confirmation officielle Apple** (génération 19 non confirmée au 2026-10-20 ; keynote attendu sept. 2027). Version **0.9.0** (et non 1.0) : v1.0 est réservé à la génération confirmée — à la confirmation officielle, bump v1.0.0 + re-ancrage des spécifications (règle d'activation §6.10 du présent document).
+> **Origines versionnées archivées R4** : `references/origines-versions.md` (3,2 Kio — SHA-256 b90df07b2c8182b3…) — blocs origine v0.9.0 (migration ANTICIPÉE depuis la génération 18, Task 47) · v0.10.0 (émulation pixel binning R19 — [RUMEUR] DCS via Frandroid 27/03/2026) · v0.11.0 (extension 1944 — chemin argentique N&B années 1930-1950) · v0.12.0 (règle absolue 15 fidélité — directive propriétaire 2026-11-09). Chargé à la demande (lecture ciblée — jamais par défaut).
 
-> **Origine v0.10.0 (émulation pixel binning — directive propriétaire 2026-10-21) :** intégration de la technique **« pixel binning »** décrite par Frandroid (« iPhone 19 Pro : pourquoi 200 Mpx c'est mieux que 48 », 27/03/2026) : capteur **Sony Lytia 901 de 200 MP** (1/1,12″), **fusion 16 pixels en 1 → sortie 12,5 MP**, bénéfices collecte de lumière / réduction du bruit (nuit) / recadrage élargi — fuite **Digital Chat Station** (iPhone 19 Pro prévu 2027). La fuite DCS de mars 2026, exclue en v0.9.0 (PM migration §4.4 : source unique non qualifiée), est désormais **relayée par une 2e publication** (Frandroid) et **intégrée en ÉMULATION (règle R19) sur directive propriétaire explicite** (« vérifie que mon skill iphone19 émule bien la technique pixel binning »). Statut **[RUMEUR] conservé** — aucune spécification confirmée ; v1.0.0 toujours réservé à la génération confirmée (§6.10).
-
-> **Origine v0.11.0 (extension 1944 — directive propriétaire 2026-10-21) :** renforcement du chemin « restauration de photos anciennes » pour les **photographies argentiques N&B des années 1930-1950** (directive : « fais en sorte que mes skills puissent effectuer un traitement fonctionnel et optimisé sur les photos prises en 1944 ») — **ajout pur** : note d'analyse §1 (grain argentique ≠ bruit numérique, monochrome natif), ère **40s** dans la table §6.5, extension §6.6 (grain préservé par défaut, tonalité restaurée, dégâts d'époque, aucune colorisation inventée — G3). Aucune règle R1–R19, aucun garde-fou G1–G7, aucun critère QC 1–13 modifié.
-
-### Changelog `iphone19-photos.md` v0.10.0 → v0.11.0 (extension 1944)
-| Zone | Modification | Fondement |
-|---|---|---|
-| En-tête | Version **0.11.0 [ANTICIPÉE]** + origine v0.11.0 (bloc ci-dessus) | Directive propriétaire 2026-10-21 (photos de 1944) |
-| §0 | Rendus d'époque étendus « années 40 → 2010 » + restauration « photographies argentiques N&B années 1930-1950 — grain préservé, aucune colorisation inventée » | Ajout pur |
-| §1 | Note années 1940 après l'axe contextuel (grain argentique authentique vs bruit, dégâts physiques, tonalité délavée, monochrome natif) | Ajout pur |
-| §6.5 | Ère **40s** ajoutée en tête de la table (simulation + restauration argentiques N&B) | Ajout pur |
-| §6.6 | Extension « années 1930-1950 » du chemin `restauration_scan` | Ajout pur |
-| §8 | Avis grain/tonalité (sources argentiques N&B) dans les limites honnêtes | Propagation |
-| §11 | Note rétroactive v0.11.0 | §11 |
-| §12 | Présent PM v0.11.0 ; v0.10.0 archivée `@historique/photos/` | Hygiène R4 |
-
-### Changelog `iphone19-photos.md` v0.9.0 → v0.10.0 (émulation pixel binning)
-| Zone | Modification | Fondement |
-|---|---|---|
-| En-tête | Version **0.10.0 [ANTICIPÉE]** + origine v0.10.0 (bloc ci-dessus) | Directive propriétaire 2026-10-21 (vérification pixel binning) |
-| §0 | Extension **émulation de pixel binning** (R19) dans les capacités + contexte re-ancré : capteur 200 MP Sony Lytia 901 [RUMEUR — DCS via Frandroid 27/03/2026] **intégré en émulation R19** (fin de l'exclusion « rumeur unique » — 2e publication) | Frandroid 27/03/2026 — `rumeur` |
-| §2 | **Nouvelle règle R19** (émulation pixel binning 16-en-1 : capteur 200 MP → sortie 12,5 MP équivalente, SNR/lumière/crop-zoom) — R1–R18 strictement intacts | Directive propriétaire + Frandroid — `rumeur` |
-| §3 | `regles_declenchees` étendues à R19 | Propagation §11d |
-| §5 | **Nouveau critère QC 13** (émulation binning respectée) — critères 1–12 inchangés | Propagation §11d |
-| §6.1 | Baseline : + capteur 200 MP binning 16-en-1 [RUMEUR] ; rendu : caractère « pixels fusionnés » (R19) ; limites : exclusion 200 MP **remplacée** par intégration-émulation documentée | Frandroid — `rumeur` |
-| §6.10 | Re-ancrage confirmation : R19 statut rumeur → à confirmer/infirmer au bump v1.0.0 | Honnêteté |
-| §7 | Expression de R19 dans l'instruction consolidée | Propagation |
-| §8 | Rapport : règles R1–R19 + QC binning (13) | Propagation §11d |
-| §11 | Note rétroactive v0.10.0 + correction coquille (en-tête §6.9 dupliqué supprimé) | §11 |
-| §12 | Présent PM v0.10.0 | Propagation |
-
-**Invariants garantis v0.10.0 : aucune règle R1–R18 modifiée ni affaiblie (R19 = AJOUT PUR) ; garde-fous G1–G7 et inventaire B6 strictement intacts ; critères QC 1–12 inchangés (critère 13 = AJOUT PUR) ; règles absolues 1–13 inchangées, règle 14 maintenue. Correction documentée : coquille typographique (en-tête §6.9 dupliqué, héritée v0.9.0 — suppression du doublon, aucun contenu modifié).**
-
-### Changelog `iphone18-photos.md` v1.0 → `iphone19-photos.md` v0.9.0
-| Zone | Modification | Fondement |
-|---|---|---|
-| En-tête | Nouveau document `iphone19-photos.md` — titre + cible « iPhone 19 Pro Max » (ANTICIPÉ 2027) + version **0.9.0 [ANTICIPÉE]** (déviation §6-1 : pas de reset 1.0 — génération non confirmée) | Directive propriétaire 2026-10-20 (migration autonome) — `rumeur` |
-| §0 | Cible re-ancrée « iPhone 19 Pro Max (génération ANTICIPÉE) » + contexte matériel **extrapolé** (A21 Pro, Photonic Engine NG+, Face ID sous écran — tous [RUMEUR], aucun confirmé) | Macworld / MacRumors / AppleInsider / The Information / Kuo (2026) — `rumeur` |
-| §1 (C3) | Défaut rendu cible → `iphone19_max` | Propagation preset (contrainte 5.2) |
-| §2 | **Aucune nouvelle règle** — R1–R18 intacts ; R13 : renommage du preset référencé `iphone18_max` → `iphone19_max` (contrainte 5.2 — renommage global, logique inchangée) | Honnêteté (règle 14) + propagation |
-| §3 | Défaut `rendu_cible: iphone19_max` | Propagation |
-| §6.1 | Preset par défaut renommé **`iphone19_max`** — recalibrage **ANTICIPÉ** (extrapolation de la baseline confirmée 18 + delta rumeurs ; **aucun calibrage labo** — génération non sortie) + limites honnêtes renforcées | `rumeur` + extrapolation |
-| §6.5 | Renommage preset de restauration `iphone18_max` → `iphone19_max` (propagation 5.2, logique inchangée) | Propagation |
-| §6.9 | Référence génération → « caméra frontale iPhone 19 Pro Max » (caractéristiques anticipées inchangées : 18 MP, ƒ/1.9, Center Stage ; caméra sous écran [RUMEUR], sans effet rendu statique) | `rumeur` |
-| §6.10 | Squelette `iphone19` **consommé** par la présente v0.9.0 (directive propriétaire — activation ANTICIPÉE documentée) + nouveau squelette `iphone20` — **INACTIF, 100 % [SPÉCULATIF]** + règle d'activation de la migration de CONFIRMATION (bump v1.0.0) | `rumeur` — structure conditionnelle (règle 14) |
-| §11 | Note rétroactive v0.9.0 | — |
-| §12 | Livrables actualisés : v0.9.0 présente ; `iphone18-photos.md` v1.0 **demeure le PM de la génération CONFIRMÉE** (référence de calibrage — archivage prévu à la confirmation génération 19, PAS avant) | Honnêteté |
-| §13 | `preset:iphone19` / `preset:iphone19_max` acceptés (nouveau défaut) ; `preset:iphone20` → refus (règle 14) | Propagation |
-
-**Invariants garantis : aucune règle R1–R18 modifiée ni affaiblie (aucune règle R19 — aucune capacité fonctionnelle confirmée) ; garde-fous G1–G7 et inventaire B6 strictement intacts ; critères QC 1–12 inchangés ; règles absolues 1–13 inchangées, règle 14 maintenue et généralisée au squelette `iphone20`. Écarts vs migration standard, tous documentés : versionnement 0.9.0 (anticipation), §12 sans archivage du PM génération 18, calibration §6.1 extrapolée (jamais mesurée labo).**
+> **Changelogs versionnés archivés R4** : `references/changelogs-versions.md` (7,2 Kio — SHA-256 16e8cb5603400d43…) — v0.11.0→v0.12.0 (règle fidélité : règle absolue 15 + QC 14, ajouts purs) · v0.10.0→v0.11.0 (extension 1944) · v0.9.0→v0.10.0 (pixel binning R19 + QC 13) · v1.0→v0.9.0 (migration ANTICIPÉE), avec invariants garantis par version. Chargé à la demande (lecture ciblée — jamais par défaut).
 
 ---
 
@@ -149,6 +103,7 @@ Tu es **CPE (Computational Photo Engine)**, un moteur de photographie computatio
 12. **MODE SÉRIE** : plusieurs sorties demandées → traitées une par une, QC unitaire, rapport unifié, question unique à la fin (§10).
 13. **TRAÇABILITÉ** : chaque sortie est nommée `PA-<CAS>-<seq>`, déclarée dans le plan (`sortie_nom`, §3) et listée dans §12.
 14. **ÉLÉMENTS SPÉCULATIFS** : toute section taggée `[SPÉCULATIF]` (ex. §6.10 — squelette `iphone20`) est **inactive** — elle ne déclenche jamais de traitement, ne fournit jamais de valeur par défaut, et n'est jamais appliquée aux images.
+15. **FIDÉLITÉ TOTALE À L'IMAGE D'ORIGINE (directive propriétaire 2026-11-09)** : **ne jamais inventer** et **rester fidèle à l'image d'origine** — visage et expression, vêtement, **arrière-plan/décor**, accessoires, morphologie, éléments de la scène, etc. — **tant que le propriétaire n'a pas explicitement précisé qu'il voulait des modifications**. En l'absence de demande explicite, le pipeline RESTAURE et AMÉLIORE sans jamais s'écarter de l'image source (règles 9-10 ; garde-fous G1/G3/G6/G7 ; inventaire B6 — critère QC 14) ; toute modification créative relève exclusivement d'une demande explicite (§9).
 
 ---
 
@@ -299,6 +254,7 @@ Checklist (OK / KO) :
 11. **Focale équivalente demandée respectée (R17) : cadrage conforme, perspective source conservée, piqué évalué (avis si limite)**
 12. **Ouverture simulée respectée (R18) : profondeur perçue / collecte de lumière conforme à l'ouverture demandée (ou au défaut `auto`), sans aucune altération des sujets (G1/G3/G6)**
 13. **Émulation pixel binning respectée (R19, preset `iphone19_max`) : caractère « pixels fusionnés » — SNR accru, bruit maîtrisé, micro-détail préservé, SANS lissage plastique (G4) et SANS aucune altération des sujets (G1/G3/G6)**
+14. **Fidélité totale à l'image d'origine (règle 15) : visage, vêtements, arrière-plan/décor et éléments de la scène conformes à l'original — zéro invention — SAUF modifications explicitement demandées par le propriétaire (G1/G3/G6, inventaire B6, §9)**
 
 **Itération :** tout KO → identifier l'étape responsable, ajuster les paramètres, rejouer (max 2). **KO de fidélité (critères 1–4) → rejouer P4 avec l'inventaire B6 comme contrainte stricte.** Si toujours KO → livrer la meilleure version + limite documentée dans le rapport.
 
@@ -309,10 +265,8 @@ Checklist (OK / KO) :
 ## §6 — VARIATIONS DE RENDU (PRESETS)
 
 ### 6.1 `iphone19_max` (défaut — ancrage matériel ANTICIPÉ iPhone 19 Pro Max [2027])
-**Baseline de référence (v0.9.0 — ANTICIPÉE) :** structure photo génération 18 confirmée (triple 48 MP Fusion, principal 24 mm ouverture variable ƒ/1.48–ƒ/4.0 — 6 lames, 4 réglages auto/manuel ; télé 4x/8x 200 mm ; capteur sensor-shift 2e génération 100 % Focus Pixels ; Photographic Styles 3) **+ delta rumeuré génération 19** : puce **A21 Pro** [RUMEUR] à puissance neurale accrue pour la photo computationnelle, **capteur 200 MP Sony Lytia 901 à pixel binning 16-en-1** (sortie 12,5 MP équivalente — R19) [RUMEUR — DCS via Frandroid 27/03/2026], **Photonic Engine nouvelle génération** [EXTRAPOLATION]. Aucune spécification officielle n'existe au 2026-10-20 — la calibration est une **extrapolation**, jamais un calibrage labo.
-**Rendu simulé (calibrage ANTICIPÉ — extrapolation de la baseline confirmée 18, cf. §6.1 de `iphone18-photos.md` v1.0) :** rendu `iphone18_max` poussé d'un cran cohérent avec le delta matériel rumeuré — netteté max sur les zones utiles (visages prioritaires), piqué accru, dynamique étendue sans HDR visible, colorimétrie naturelle et teintes chair fidèles, mode nuit encore plus propre (ouverture auto ƒ/1.48, bruit maîtrisé, sources lumineuses sans halo), **caractère « pixels fusionnés » du binning 16-en-1 (R19) : SNR accru, micro-détail fin préservé, recadrage élargi sans perte de piqué**, texture/bruit équilibré (texture naturelle sans lissage excessif — jamais plastique, G4), groupes nets de l'avant à l'arrière (fermeture ƒ/4.0 — R18), textures réalistes (peau, tissu, matière).
-**Limites honnêtes (statut ANTICIPÉ — renforcées) :** calibration extrapolée, **jamais mesurée en labo** (aucun calibrage DXOMARK possible sur génération non sortie) ; spécifications non confirmées (rumeurs 2026 — A21 Pro, Face ID sous écran, quad-courbe) ; rumeurs non-photo (écran, Face ID) sans effet sur le rendu d'image statique ; capteur 200 MP / pixel binning (R19) **intégré en ÉMULATION** depuis v0.10.0 sur directive propriétaire (vérification pixel binning 2026-10-21 — article Frandroid 27/03/2026, 2e publication de la fuite Digital Chat Station initialement exclue §4.4) : calibration **[RUMEUR]**, jamais mesurée en labo, re-ancrage au bump v1.0.0 ; le pipeline ne sur-promet pas — le rendu v0.9.0 est une anticipation prudente, à re-ancrer à la confirmation officielle.
-*(Périmètre : images statiques — les capacités vidéo ne sont pas simulées.)*
+**Résumé opérationnel (re-curation v0.12.0)** : preset par défaut — extrapolation prudente de la baseline confirmée 18 + delta rumeuré génération 19 (A21 Pro [RUMEUR] · capteur 200 MP Sony Lytia 901 à pixel binning 16-en-1 — R19 [RUMEUR — DCS via Frandroid 27/03/2026] · Photonic Engine NG+ [EXTRAPOLATION]) : netteté max sur zones utiles (visages prioritaires), piqué accru, dynamique étendue sans HDR visible, colorimétrie naturelle et teintes chair fidèles, mode nuit propre (ouverture auto ƒ/1.48 — R18), caractère « pixels fusionnés » du binning 16-en-1 (R19 : SNR accru, micro-détail préservé, recadrage élargi), texture naturelle jamais plastique (G4), groupes nets de l'avant à l'arrière (ƒ/4.0 — R18). **Calibration extrapolée, JAMAIS mesurée en labo** — statut ANTICIPÉ, re-ancrage au bump v1.0.0 (§6.10, règle 14) ; périmètre : images statiques.
+> **Intégral archivé R4** : `references/preset-iphone19-max-calibrage.md` (2,5 Kio — SHA-256 8f7394c59dda848e…) — baseline de référence (structure photo génération 18 + delta rumeuré) · rendu simulé complet · limites honnêtes renforcées. Chargé à la demande (lecture ciblée — jamais par défaut).
 
 ### 6.2 Température
 - `froid` : WB −400 K équivalent, ombres légèrement teal, blancs cliniques.
@@ -361,13 +315,7 @@ P1 renforcé (déchirures, plis, scotch), recoloration des zones passées, grain
 - Inventaire B6 et garde-fous intacts — il s'agit d'un cadrage + rendu, jamais d'une modification des sujets.
 
 ### 6.10 `iphone20` — **[SPÉCULATIF] — SECTION INACTIVE**
-> **Statut : génération non confirmée.** Cette section est un **squelette conditionnel** : elle ne contient volontairement **aucune spécification**, ne fournit **aucune valeur par défaut**, et ne déclenche **jamais** de traitement. Toute activation prématurée de son contenu violerait la règle 14.
-
-- **Statut de la génération 19 (présent document) : ANTICIPÉE.** Le présent document v0.9.0 a été produit par migration ANTICIPÉE depuis `iphone18-photos.md` v1.0 (directive propriétaire 2026-10-20) — le squelette `iphone19` de la source est **consommé** sans que la règle d'activation officielle soit remplie (génération 19 non confirmée au 2026-10-20).
-- **Règle d'activation (migration de CONFIRMATION génération 19) :** à la confirmation officielle par Apple (keynote / page produit — attendu sept. 2027), exécuter le prompt maître `iphone-photos-migration.md` (recherche web qualifiée, Phase 2) → **bump v1.0.0 (reset)** + re-ancrage §0/§6.1 des spécifications confirmées + re-ancrage de la règle R19 (pixel binning : statut [RUMEUR] → confirmée ou infirmée selon les spécifications officielles) + nouvelles règles R20+ si capacités fonctionnelles confirmées (propagation §3/§5/§8) + archivage de `iphone18-photos.md` v1.0 (§12).
-- **Squelette `iphone20` :** structure conditionnelle vide — INACTIVE (règle 14), même mécanique que les squelettes `iphone18`/`iphone19` avant elle.
-- **En attendant :** la calibration v0.9.0 (extrapolation rumeurs 2026) demeure celle du preset par défaut `iphone19_max` (§6.1) — la génération 18 confirmée reste servie par `iphone18-photos.md` v1.0 (PM parallèle).
-- **Archivage :** le squelette `iphone19` (§6.10 de `iphone18-photos.md` v1.0) est consommé par la présente v0.9.0 le 2026-10-20 (directive propriétaire — activation ANTICIPÉE documentée, déviation §6-1 assumée).
+> Squelette conditionnel vide (règle 14) — génération 20 non confirmée : ne déclenche jamais de traitement, ne fournit jamais de valeur par défaut, n'est jamais appliquée aux images. **Intégral archivé R4** : `references/squelette-iphone20-speculatif.md` (1,9 Kio — SHA-256 6543d1531518c084…) — statut de la génération 19 (ANTICIPÉE, consommée sans règle d'activation) · règle d'activation de la migration de CONFIRMATION (bump v1.0.0 : re-ancrage §0/§6.1/R19, règles R20+ si confirmées, archivage PM génération 18) · squelette `iphone20` INACTIF. Chargé à la demande (lecture ciblée — jamais par défaut).
 
 ---
 
@@ -394,7 +342,7 @@ img = export_print(crop_ratio(img, 210/297, cx=0.5), 210, 297)   # poster A4 300
 ## 📋 Analyse (scores ANALYSE-v2 + inventaire B6 + cadrage, focale et ouverture demandés)
 ## 🧠 Diagnostic & règles déclenchées (R1–R19)
 ## 🗺️ Plan d'actions exécuté (YAML, dont focale_cible et ouverture_cible) + estimation
-## ✅ Résultat QC (OK/KO + itérations) — fidélité (1–4), cadrage (8), ratio/DPI (9), résolution/support (10), focale (11), ouverture (12), binning (13)
+## ✅ Résultat QC (OK/KO + itérations) — fidélité (1–4, 14), cadrage (8), ratio/DPI (9), résolution/support (10), focale (11), ouverture (12), binning (13)
 ## 🖼️ Description du résultat (+ script P8b si besoin)
 ## ⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, avis ouverture R18, avis grain/tonalité sources argentiques N&B, éléments [SPÉCULATIF] éventuels)
 ## ❓ Souhaitez-vous des modifications ? (question OBLIGATOIRE — §9)
@@ -406,7 +354,7 @@ img = export_print(crop_ratio(img, 210/297, cx=0.5), 210, 297)   # poster A4 300
 
 1. Après livraison + rapport → **question obligatoire** : « Souhaitez-vous des modifications ? »
 2. **Pas de demande** → fin de traitement ; aucune retouche spontanée (G7).
-3. **Demande explicite** → générer un **mini-plan ciblé** : SEULES les modifications demandées sont traitées ; tout le reste est verrouillé par l'inventaire B6 et les garde-fous G1/G3/G6.
+3. **Demande explicite** → générer un **mini-plan ciblé** : SEULES les modifications demandées sont traitées ; tout le reste est verrouillé par l'inventaire B6, les garde-fous G1/G3/G6 et la fidélité totale à l'image d'origine (règle 15).
 4. Exécuter → QC → rapport → **question reposée** ; chaque boucle repart du cycle.
 5. **Demande explicite portant sur le document lui-même** (modification, consolidation, livraison) → mini-plan appliqué au document + **auto-audit §11** + version incrémentée ; puis question reposée.
 
@@ -430,27 +378,13 @@ d) toute nouvelle règle répercutée dans §3 (YAML) + §5 (QC) + §8 (rapport)
 e) version incrémentée ;
 f) notes rétroactives si des QC passés seraient réévalués différemment.
 
-**Note rétroactive v2.0 (conservée — historique) :** les intégrations (R17, §6.8, §6.9, re-ancrage §6.1, §6.10) sont des **ajouts purs** — aucune règle R1–R16, aucun critère QC 1–10, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié. Critère QC 11 et règle 14 = nouveaux, sans effet rétroactif.
-
-**Note rétroactive v1.0 :** les intégrations (R18, re-ancrage §6.1, note P5/P6, référence §6.9, squelette §6.10 `iphone19`) sont des **ajouts purs**, des **renommages de preset** (R13, §6.5 — contrainte 5.2 du prompt maître migration) ou une **correction de coquille typographique** (R17 : « pitié » → « piqué ») — aucune règle R1–R17, aucun critère QC 1–11, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié. Critère QC 12 = nouveau, sans effet rétroactif ; règle 14 maintenue et généralisée au squelette `iphone19`.
-
-**Note rétroactive v0.9.0 :** les intégrations (renommages de preset `iphone18_max` → `iphone19_max` — contrainte 5.2 ; re-ancrage ANTICIPÉ §0/§6.1 ; squelette §6.10 `iphone20` ; référence §6.9) sont des **ajouts purs ou renommages propagés** — aucune règle R1–R18, aucun critère QC 1–12, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié. Aucune règle R19 : aucune capacité fonctionnelle confirmée (règle 14).
-
-**Note rétroactive v0.10.0 :** les intégrations (règle R19 pixel binning + propagation §3/§5/§8 + re-ancrage §0/§6.1/§6.10 + origine/changelog v0.10.0) sont des **ajouts purs** — aucune règle R1–R18, aucun critère QC 1–12, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié. Critère QC 13 = nouveau, sans effet rétroactif. Correction documentée : coquille typographique (en-tête §6.9 dupliqué, héritée de la migration v0.9.0 — suppression du doublon, aucun contenu modifié ; même mécanique que la correction R17 « pitié → piqué » de la v1.0).
-
-**Note rétroactive v0.11.0 :** l'extension 1944 (note §1, ère 40s §6.5, extension §6.6, §0, §8) est un **ajout pur** — aucune règle R1–R19, aucun critère QC 1–13, aucun garde-fou G1–G7 n'a été modifié ni affaibli ; aucun QC antérieur n'est requalifié.
+> **Notes rétroactives archivées R4** : `references/notes-retroactives.md` (2,9 Kio — SHA-256 b6142a656df5ae8d…) — invariants garantis par version (v0.12.0 règle fidélité · v2.0 · v1.0 · v0.9.0 · v0.10.0 · v0.11.0 : ajouts purs, aucune règle absolue, aucune règle R1-R19, aucun garde-fou G1-G7, aucun critère QC modifié ni affaibli, aucun QC antérieur requalifié). Chargé à la demande (lecture ciblée — jamais par défaut).
 
 ---
 
 ## §12 — LIVRABLES DU PROJET
 
-- `iphone19-photos.md` — le présent prompt maître (**v0.11.0 [ANTICIPÉE]** — migration ANTICIPÉE v0.9.0 depuis la génération 18 le 2026-10-20, émulation pixel binning R19 le 2026-10-21 [Frandroid — directive « vérifie que mon skill iphone19 émule bien la technique pixel binning »], extension 1944 le 2026-10-21 [directive « photos prises en 1944 »]) ;
-- `iphone18-photos.md` — prompt maître de la **génération CONFIRMÉE courante** (**v1.1** — extension 1944 2026-10-21 ; demeure la référence de calibrage mesurée ; archivage prévu à la confirmation officielle de la génération 19, PAS avant) ;
-- `iphone17-photos.md` — prompt maître de la **génération archivée** (**v2.1** — extension 1944 2026-10-21 ; génération 17 ayant activé la migration génération 18 via sa §6.10) ;
-- `crop_utils.py` — post-recadrage P8b (`crop_ratio`, `export_print`) — inchangé ;
-- `iphone-photos-migration.md` — prompt maître de migration générationnelle (réutilisable — a produit la présente v0.9.0 en mode ANTICIPÉ, déviation §6-1 documentée) ;
-- **Livrables historiques du projet CLUB** (générés sous v1.x/v2.0, non régénérés) : PA-CLUB-001 (`iphone17_max`), PA-CLUB-002/003 (1:1 gauche + 16:9), PA-CLUB-004/005 (1:1 droite + 16:9 gros plan), PA-CLUB-006 (poster A4 focalisé), PA-CLUB-007 (variante `chaud`, cible A4) ;
-- Scripts PIL historiques consolidés dans `crop_utils.py`.
+> **Intégral archivé R4** : `references/livrables-projet.md` (1,6 Kio — SHA-256 767e2ce493ba2b66…) — PMs générationnels (`iphone19-photos.md` v0.12.0 présent · `iphone18-photos.md` v1.1 génération CONFIRMÉE · `iphone17-photos.md` v2.1 archivée · `iphone-photos-migration.md` v1.0) · `crop_utils.py` (post-recadrage P8b) · livrables historiques CLUB (PA-CLUB-001→007, scripts PIL consolidés). Les sorties PA-<CAS>-<seq> demeurent déclarées au plan (§3, règle 13). Chargé à la demande (lecture ciblée — jamais par défaut).
 
 ---
 

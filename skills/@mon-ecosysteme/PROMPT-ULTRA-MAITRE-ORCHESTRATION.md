@@ -52,7 +52,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.36 (lire en premier). Installateur : `PRO
 | `clone-chat` | 2.0.2 |
 | `skills-inventory` | 1.1.0 |
 | `skill-creator` | 1.1.0 |
-| `re-curation` | 1.2.0 |
+| `re-curation` | 1.2.1 |
 | `agent-creator` | 2.3.0 |
 | `prompt-engineering` | 2.3.1 |
 | `context-engineering` | 1.2.1 |
@@ -82,7 +82,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.36 (lire en premier). Installateur : `PRO
 | `refactor-guard` | 1.8.1 |
 | `fullstack-dev` | 1.0.0 |
 | `dessin-technique` | 1.3.0 |
-| `iphone19` | 0.11.0 |
+| `iphone19` | 0.12.0 |
 | `iphone18` | 1.1.0 |
 | `iphone17` | 1.1.0 |
 | `alias-eco` | 1.3.0 |

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""protocole-test.py — Script PRINCIPAL du skill re-curation (v1.2.0).
+"""protocole-test.py — Script PRINCIPAL du skill re-curation (v1.2.1).
 
 Implémentation de la directive propriétaire (Task 72, directive complémentaire
 1a1b7b297b7b4975) : « le skill "re-curation" devra être implémenté d'un script dont
@@ -439,7 +439,7 @@ def capturer(nom: str) -> dict:
     nb_self = sum(1 for v in fonc["scripts"].values() if v["test"] == "selftest exécuté")
     nb_comp = sum(1 for v in fonc["scripts"].values() if v["test"] == "compilation (sans selftest)")
     return {
-        "skill": nom, "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.0",
+        "skill": nom, "genere_par": "skills/re-curation/scripts/protocole-test.py v1.2.1",
         "nature": {k: v for k, v in n.items() if k != "_fragments"},
         "protocole": {
             "tests_pre": ["contrats verbatim (§A / §0 normalisé / read_when / evals) → sha256 baseline",
@@ -577,7 +577,14 @@ def cmd_post(nom: str) -> int:
     fonctionnel = pv and nd and fonc_post["verdict"] == "PASS"
     avant, apres = base["baseline"]["octets"], actuel["baseline"]["octets"]
     reduction = 100 * (1 - apres / avant) if avant else 0
-    optimise = apres < avant or apres < SEUIL_LOURD
+    # v1.2.1 (KO-L003, Task 81 G2) — idempotence des verdicts POST : quand la baseline
+    # a été ancrée par un POST précédent (re-jeu de stabilité), MAINTIEN = NON-RÉGRESSION
+    # (apres <= avant) ; au PREMIER POST (baseline PRE fraîche), la réduction stricte
+    # (apres < avant) ou le seuil LOURD restent exigés. Avant ce correctif, tout re-jeu
+    # sur un état stable LOURD était structurellement DÉRIVE (faille sur preuves réelles
+    # iphone19 Task 81 : run 1 MAINTIEN [−27,3 %], run 2 DÉRIVE [0 %] — non idempotent).
+    recap_ancree = "post" in base
+    optimise = (apres <= avant if recap_ancree else apres < avant) or apres < SEUIL_LOURD
     verdict = ("MAINTIEN DE L'OPTIMISATION" if (coherent and fonctionnel and optimise
                                                 and interactions_saines and stable)
                else "DÉRIVE")
@@ -863,6 +870,24 @@ Fin.
         rc5 = cmd_verifier("temoin")
         r.append(("pointeur manquant → verifier rc=1", rc5 == 1))
 
+        # v1.2.1 (KO-L003, Task 81 G2) — idempotence des verdicts POST sur état LOURD
+        # stable : la baseline ancrée par un POST précédent → contrôle de NON-RÉGRESSION
+        # (<=) et non de réduction stricte. Avant correctif : tout re-jeu POST sur un
+        # élément LOURD (≥ 30 Kio) à poids stable était structurellement DÉRIVE (faille
+        # sur preuves réelles iphone19 Task 81 : run 1 MAINTIEN −27,3 %, run 2 DÉRIVE 0 %).
+        sk.write_text(sk.read_text(encoding="utf-8").replace(
+            "\nVoir `references/absent.md`.\n", ""), encoding="utf-8")
+        sk.write_text(sk.read_text(encoding="utf-8") + "\n" +
+                      ("# bourre LOURD " + "x" * 60 + "\n") * 520, encoding="utf-8")
+        cmd_pre("temoin")
+        rcP1 = cmd_post("temoin")
+        jP1 = json.loads((tmp / "download" / "protocole-test-temoin.json").read_text(encoding="utf-8"))
+        rcP2 = cmd_post("temoin")
+        jP2b = json.loads((tmp / "download" / "protocole-test-temoin.json").read_text(encoding="utf-8"))
+        r.append(("v1.2.1 POST LOURD stable : 1er POST identité LOURD → DÉRIVE (réduction stricte exigée) · re-jeu sur baseline ancrée → MAINTIEN (non-régression)",
+                  rcP1 == 1 and jP1["post"]["verdict_post"] == "DÉRIVE"
+                  and rcP2 == 0 and jP2b["post"]["verdict_post"] == "MAINTIEN DE L'OPTIMISATION"))
+
         print("\n=== SELFTEST protocole-test.py ===")
         ok = True
         for label, passe in r:
@@ -876,7 +901,7 @@ Fin.
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="protocole-test.py — skill re-curation v1.2.0")
+    p = argparse.ArgumentParser(description="protocole-test.py — skill re-curation v1.2.1")
     g = p.add_mutually_exclusive_group(required=True)
     g.add_argument("--pre", metavar="SKILL")
     g.add_argument("--post", metavar="SKILL")
