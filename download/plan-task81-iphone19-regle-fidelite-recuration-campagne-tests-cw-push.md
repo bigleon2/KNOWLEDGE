@@ -78,7 +78,7 @@ decisions:
     verification: "cadre vérifié (grep remote/credentials) && fsck rc=0 && push rc=0 && git ls-remote (== HEAD local) && re-vérification zéro-persistance && E15 au worklog + clone-chat"
     source: "Directive item 7 (PUSH avec la clé) ; dérogation KO-L009 point 5 ; précédents Task 63/77/79 G5"
     priority: "S1"
-    status: "pending"
+    status: "verified (cadre zéro-persistance AVANT [remote sans jeton · 0 credential.helper · credentials ABSENT · jeton 0 occurrence disque] · fsck rc=0 · garde pré-vol opérationnelle : distant réel 54090b4 [propriétaire] vs tracking stale ef51c55 → fetch → fast-forward pur re-prouvé · push one-shot rc=0 54090b4..3d123ca [jeton UNIQUEMENT en mémoire de commande] · post-push distant == HEAD 3d123ca · avance 0 · zéro-persistance re-vérifiée · E15 5ᵉ exposition consignée worklog+clone)"
 ```
 
 ## Estimation et profil (E3-E6)
