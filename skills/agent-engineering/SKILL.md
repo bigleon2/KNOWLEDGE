@@ -1,6 +1,6 @@
 ---
 name: agent-engineering
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -20,7 +20,7 @@ description: >-
   memory-engineering pour la mémoire, harness-engineering pour les gardes-fous, spec-driven-development pour
   les contrats, autonomous-agent pour le format .agent, agent-creator/skill-creator pour la fabrique,
   gen-plan pour la planification), OUTILLE chaque tâche d'un critère vérifiable exécutable et VEILLE sur les
-  fondements 2026. Contrôles négatifs assumés (A10/A14) : ne se déclenche PAS pour la coordination d'une flotte (fleet-engineering détient les patterns de coordination opérationnels) ni pour la création d'un skill (fabrique skill-creator/agent-creator) — n°56 route ces requêtes vers ces détenteurs. Spécialise la discipline agent engineering la discipline agent engineering (registre décentralisé : §8 local + registre
+  fondements 2026. Contrôles négatifs assumés (A10/A14) : ne se déclenche PAS pour la coordination d'une flotte (fleet-engineering détient les patterns de coordination opérationnels) ni pour la création d'un skill (fabrique skill-creator/agent-creator) — n°56 route ces requêtes vers ces détenteurs. Spécialise la discipline agent engineering (registre décentralisé : §8 local + registre
   KB). Opérationnalisation 2026 : State of Agent Engineering (LangChain, 2026 — prototype→production),
   Agent-Based Software Engineering (ABSE/Tropos — agents-as-building-blocks), Multi-Agent Systems
   (Anthropic 06/2025, Cognition 2025, Anthropic 08/2026). Fondements documentés :
@@ -109,7 +109,7 @@ La discipline ne détient PAS d'état propre (rôle de cadre) : l'État Long est
 Sources vérifiées (veille Task 83 sonde unique + N31/N34) : **State of Agent Engineering** (LangChain 2026 — fiabilité premier frein, 1300+ praticiens) · **Building Effective Agents** (Anthropic 12/2024 — simple d'abord) · **ABSE/Tropos** (agents-as-building-blocks) · **multi-agent research system** (Anthropic 06/2025 — handoffs, ratio 15×) · **Don't Build Multi-Agents** (Cognition 2025 — gate anti-flotte) · **Patterns and problems in emerging multiagent systems** (Anthropic 08/2026 — collusion, sabotage, traçabilité par agent). Détail, frontière anti-duplication et lecture professionnelle : `references/fondements-academiques.md`.
 
 ## §2 — SPÉCIFICATION TECHNIQUE
-Artefacts : matrice de cadrage (tâche × domaine × détenteur × critère vérifiable × bornes) ; fiche de routage auto-contenue par tâche (contexte, lecture worklog, livrable attendu, arbitre de sortie) ; trace de veille (references/). Pas de script propre en v1.0.0 (discipline de cadrage — les arbitres appartiennent aux détenteurs) ; l'évaluation A2 des déclencheurs suit le protocole SHARED §7 v2 (voie mécanique + confirm 3 runs LLM au QUOTA_OK — KO-L001). Idempotence : re-cadrage d'une même tâche = même route et mêmes critères (décisions dérivées de l'état du disque — KO-L003).
+Artefacts : matrice de cadrage (tâche × domaine × détenteur × critère vérifiable × bornes) ; fiche de routage auto-contenue par tâche (contexte, lecture worklog, livrable attendu, arbitre de sortie) ; trace de veille (references/). Pas de script propre (discipline de cadrage — les arbitres appartiennent aux détenteurs) ; l'évaluation A2 des déclencheurs suit le protocole SHARED §7 v2 (voie mécanique + confirm 3 runs LLM au QUOTA_OK — KO-L001). Idempotence : re-cadrage d'une même tâche = même route et mêmes critères (décisions dérivées de l'état du disque — KO-L003).
 
 ## §3 — RELATIONS (extrait de SHARED §3.1)
 - `gen-plan` §1.6/§1.9 — détenteur principal de l'orchestration : mobilise n°56 à E5/E7 quand la demande touche les agents.
@@ -122,10 +122,12 @@ Artefacts : matrice de cadrage (tâche × domaine × détenteur × critère vér
 Kebab-case pour dossiers/fichiers ; semver strict ; tags `#token` ; `{{VARIABLE}}` pour les variables de contexte ; journalisation au worklog (`Task ID` + preuves) pour toute exécution réelle ; aucune fabrication de résultats (R3) ; langue française exclusive (règle d'or n°6).
 
 ## §5 — ÉVALUATIONS ET DÉCLENCHEURS
-`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — disciplines voisines fleet/agent-creator) ; déclenchement attendu sur les demandes d'ingénierie d'agents des 3 domaines ; seuil de routage 0.5 (voie mécanique SHARED §7 v2). Baseline A2 : EN ATTENTE DE MESURE (v1.0.0 — protocole voie mécanique + confirm 3 runs LLM à armer à la prochaine fenêtre QUOTA_OK, KO-L001 — consigné honnêtement, aucune baseline pré-écrite R3).
+`evals/trigger_evals.json` : 7 requêtes (5 positives, 2 contrôles négatifs — disciplines voisines fleet/agent-creator) ; déclenchement attendu sur les demandes d'ingénierie d'agents des 3 domaines ; seuil de routage 0.5 (voie mécanique SHARED §7 v2). Baseline A2 : MESURÉE (Task 86 — voie mécanique + confirm 3 runs LLM au QUOTA_OK, 21/21 votes réels, nulls 0 : score initial 5/7 → Description Optimization A10/A14 → re-mesure post-opt v1.1.0 : 6/7 ; écart structurel consigné cas 6 voie M — radical « agent » ∈ strong arbitre V6, extinction = proposition future hors cadence, posture Tasks 81/82/85).
 
 ## §6 — TRAÇABILITÉ
 - v1.0.0 (Task 83, 2026-11-09, session web-ecef7f80, directive 1a1beaee032b5aa5) : matérialisation de la discipline n°56 (agent engineering) — forme SKILL DISCIPLINE (motifs : directive verbatim « défini en tant que discipline » + pattern disciplines n°54/n°55 ; agent .agent = exécutant spécialisé ; agent autonome = cycle A-H + État Long — knowledge-observer seul cas justifié à ce jour) ; cascade KO-L004 locale (KB + ECO_SKILLS + ULTRA 13ᵉ voie + historiques-par-skill + projection hôte) ; inscription socle SHARED §7 + gen-plan §1.6 = pendance structurée (précédents v1.7.0 n°54 / Task 7-8 n°55 — tâche dédiée).
+- v1.1.0 (Task 86, 2026-11-09, session web-ecef7f80, directive 1a1bed51ccaf78f1 cadence 2 h tick 17:50) : Description Optimization A10/A14 — clause Contrôles négatifs assumés en description frontmatter (M-safe prouvée par simulation préalable stemmer arbitre V6) ; baseline A2 mesurée 5/7 (21/21 votes réels, QUOTA_OK) puis re-mesure post-opt 6/7 — écart structurel consigné cas 6 voie M (radical « agent » ∈ strong) ; cascade KO-L004 (KB + evals note + lignage + ULTRA + pin ECO_SKILLS).
+- v1.1.1 (Task 90, 2026-11-09, session web-ecef7f80, directive 1a1c1dde3f6d0021) : corrections de consistance post-test $FACON (écosystème en entrée) — §5 staleness résorbé (baseline MESURÉE 6/7 documentée), §6 traçabilité v1.1.0 complétée, doublon description supprimé (M-safe : ensembles de radicaux stemmer V6 identiques avant/après), evals.json version alignée 1.1.1, §2 recalé versionné. PATCH — sémantique et routage inchangés.
 
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées 2026 (AE/ABE/MASE), frontière anti-duplication, signaux de veille, interactions inter-disciplines.

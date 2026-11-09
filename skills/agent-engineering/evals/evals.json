@@ -1,6 +1,6 @@
 {
   "skill_name": "agent-engineering",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Évals de matérialisation n°56 (Task 83, session web-ecef7f80 — directive 1a1beaee032b5aa5) ; discipline englobante ABE/AE/MASE ; contrôles négatifs = disciplines voisines (fleet-engineering coordination opérationnelle, skill-creator/agent-creator fabrique) ; baseline A2 MESURÉE (Task 86 — voie mécanique + confirm 3 runs LLM au QUOTA_OK, 21/21 votes réels, R3) puis Description Optimization A10/A14 (re-mesure post-opt 6/7 ; écart structurel consigné cas 6 voie M : radical « agent » ∈ strong arbitre V6).",
   "evals": [
