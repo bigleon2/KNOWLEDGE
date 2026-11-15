@@ -1,0 +1,82 @@
+{
+  "mode": "baseline",
+  "horodatage": "2026-11-15T11:16:07+0000",
+  "etat": {
+    "shared_v": "1.7.38",
+    "pm_install_v": "1.9.15",
+    "harnais_v": "1.2.2",
+    "ctx_pm_install_v": "1.7.17"
+  },
+  "tailles": {
+    "pm_install": {
+      "octets": 52486,
+      "lignes": 296,
+      "tokens_estimes": 12536,
+      "sha12": "5f19684d5e5b"
+    },
+    "shared": {
+      "octets": 55384,
+      "lignes": 250,
+      "tokens_estimes": 13198,
+      "sha12": "e22e00b9f734"
+    },
+    "ultra": {
+      "octets": 8759,
+      "lignes": 136,
+      "tokens_estimes": 2113,
+      "sha12": "858ba0f25786"
+    }
+  },
+  "mesures": {
+    "gen-ultra --check": {
+      "rc": 1,
+      "ms": 25.6,
+      "derniere_ligne": "DÉRIVE : le fichier généré diffère de l'état courant du corpus — régénération requise."
+    },
+    "generer-pm --check": {
+      "rc": 0,
+      "ms": 22.3,
+      "derniere_ligne": "Rapport : /home/z/my-project/KNOWLEDGE-repo/scripts/generer-pm-report.json"
+    },
+    "verify-cross (axes 1-6)": {
+      "rc": 0,
+      "ms": 31.7,
+      "derniere_ligne": "🎯 Score de conformité : 100.0%"
+    },
+    "verify-cross (mode correct-work)": {
+      "rc": 0,
+      "ms": 32.2,
+      "derniere_ligne": "🎯 Score de conformité : 100.0%"
+    },
+    "verify-correct-work": {
+      "rc": 0,
+      "ms": 21.2,
+      "derniere_ligne": "  VERDICT : ALL PASS"
+    },
+    "check-ecosysteme-integrity": {
+      "rc": 0,
+      "ms": 40.8,
+      "derniere_ligne": "Manifeste écrit : /home/z/my-project/KNOWLEDGE-repo/scripts/ecosysteme-integrity.json"
+    },
+    "test-coherence-interactions": {
+      "rc": 0,
+      "ms": 138.6,
+      "derniere_ligne": "Rapport JSON : scripts/interactions-report.json"
+    },
+    "check-tool-routing": {
+      "rc": 0,
+      "ms": 894.7,
+      "derniere_ligne": "VERDICT : PASS"
+    },
+    "propagate-context": {
+      "rc": 0,
+      "ms": 55.7,
+      "derniere_ligne": "🎉 TERMINÉ : 0 skills + 0 scripts + 0 agents"
+    },
+    "cache-verdicts --selftest": {
+      "rc": 0,
+      "ms": 280.3,
+      "derniere_ligne": "SELFTEST : 12/12 PASS"
+    }
+  }
+}

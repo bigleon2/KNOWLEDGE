@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.38)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.39)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -18,6 +18,11 @@ tout le contenu est DÉRIVÉ dynamiquement de l'état réel (KO-L003) :
   - versions réelles des skills écosystème (frontmatter SKILL.md = source de vérité)
   - version de l'installateur unique PM-INSTALL et du socle SHARED
 Le régénérer après chaque évolution du corpus EST le recalibrage (KO-L004).
+
+Task 95 (S4-1 — finding R2 Task 91 G2 résorbé) : la version du harnais
+protocole-test.py est DÉRIVÉE DYNAMIQUEMENT du fichier réel
+(harness_version()) — plus aucun littéral de version figé dans ROUTING
+(le générateur ne peut plus jamais propager un littéral périmé).
 
 Idempotence : même état du corpus -> bytes identiques (rejeu ×2 sans effet).
 Usage :
@@ -53,7 +58,7 @@ ROUTING = [
     ("Synchroniser contexte / canaux", "SYNC-CONTEXT.md + scripts de sync", "—", "2 voies byte-identiques"),
     ("Auditer la provenance", "audit-provenance", "—", "L006, avant clone/install"),
     ("Observer les leçons", "knowledge-observer (agent autonome tandem — .agent v1.1.0 + SKILL.md méthode)", "—", "journal lessons-learned, M1-M2 à E15"),
-    ("Re-curé un skill (divulgation progressive)", "re-curation (protocole P0-P7 + harnais protocole-test.py v1.2.1)", "—", "moves R4 byte-identité, POST ×2 MAINTIEN, C1-C4"),
+    ("Re-curé un skill (divulgation progressive)", "re-curation (protocole P0-P7 + harnais protocole-test.py v{HV})", "—", "moves R4 byte-identité, POST ×2 MAINTIEN, C1-C4"),
     ("Créer / modifier un skill", "skill-creator (conventions) + correct-work (garde)", "—", "frontmatter, evals, description triggers"),
     ("Inventorier / chercher un skill", "skills-inventory", "—", "scan skills/, catalogue générable"),
     ("Ingénierie d'agents / systèmes multi-agents (concevoir, évaluer, fiabiliser, orchestrer les tâches d'agents)", "agent-engineering (n°56 — cadre englobant ABE/AE/MASE : cadrer, router vers détenteurs, outiller, veiller)", "—", "routage §1.3 du skill, gate anti-flotte, critère vérifiable par tâche"),
@@ -75,6 +80,24 @@ def frontmatter_version(skill):
     with open(p, encoding="utf-8") as f:
         m = re.search(r"^version:\s*[\"']?([\d.]+)", f.read(), re.MULTILINE)
     return m.group(1) if m else None
+
+
+HARNESS_RECURATION = os.path.join(SKILLS, "re-curation", "scripts", "protocole-test.py")
+
+
+def harness_version():
+    """Version réelle du harnais re-curation (Task 95 — S4-1, finding R2 Task 91 G2
+    résorbé : dérivation dynamique KO-L003, même mécanique que frontmatter_version ;
+    repli honnête « ? » avec WARN si le fichier est absent — jamais de littéral figé)."""
+    try:
+        with open(HARNESS_RECURATION, encoding="utf-8") as f:
+            m = re.search(r"\(v(\d+\.\d+\.\d+)\)", f.read(800))
+        if m:
+            return m.group(1)
+    except OSError:
+        pass
+    print("[WARN] harnais re-curation introuvable ou sans version — étiquette « v? » (écart consigné KO-L003)")
+    return "?"
 
 
 def corpus_state():
@@ -112,7 +135,8 @@ def build():
         f"| {fam} | {lst[-1][0]} (la plus récente) | {', '.join(v for _, v in lst[:-1]) or '—'} |"
         for fam, lst in families.items() if lst)
     rows_skills = "\n".join(f"| `{s}` | {v} |" for s, v in versions)
-    rows_routing = "\n".join(f"| {a} | {b} | {c} | {d} |" for a, b, c, d in ROUTING)
+    hv = harness_version()  # Task 95 — S4-1 : version du harnais dérivée dynamiquement
+    rows_routing = "\n".join(f"| {a} | {b.replace('v{HV}', 'v' + hv)} | {c} | {d} |" for a, b, c, d in ROUTING)
 
     md = f"""# PROMPT ULTRA MAÎTRE — Orchestration de l'écosystème personnel
 

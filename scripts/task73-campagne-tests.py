@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.38)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.39)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -32,8 +33,6 @@ Sorties (download/) :
   rapport-campagne-task73-<phase>-<cible>.json
   rapport-campagne-task73-<phase>-synthese.json
 """
-
-from __future__ import annotations
 
 import argparse
 import json

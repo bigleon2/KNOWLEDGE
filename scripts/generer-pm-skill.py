@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.38)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.39)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -30,7 +30,9 @@ Mécanique (méthode B1 généralisée — substitutions verrouillées) :
     exactement n fois, ABANDON SANS ÉCRITURE (l'état courant est préservé) ;
   - garde anti-rétrogradation R2 : v_cible < v_PM => ABANDON ;
   - recalibrage croisé inclus : SHARED (référence PM + révision + version),
-    PM-INSTALL (ligne §2ter + instantané §A.3 + révision + version) ;
+    PM-INSTALL (ligne §2ter + instantané §A.3 + révision + version, bloc
+    CONTEXTE SYSTÈME §0 DÉRIVÉ du SHARED vivant + étiquette §A.3 [Task 95 —
+    S4-2, finding R3 Task 91 G2] ; ligne PM-INSTALL §6.1 de SHARED) ;
   - rapport de couverture SKILL.md <-> PM : le script ne masque jamais un
     écart (KO-L003) — les sections du SKILL.md absentes du PM sont listées ;
   - le delta sémantique de la montée (nouvelles sections) n'est PAS inventé :
@@ -47,6 +49,7 @@ Format --delta (JSON) :
 Usage :
     python3 scripts/generer-pm-skill.py --check
     python3 scripts/generer-pm-skill.py --generate <famille|all> [--delta FILE] [--dry-run]
+    python3 scripts/generer-pm-skill.py --refresh-ctx [--dry-run]  # Task 95 — S4-2 : bloc §0 seul
 
 Codes retour : 0 = ok / no-op ; 1 = écart détecté (--check) ; 2 = ABANDON
 verrouillé (aucune écriture) ; 3 = usage invalide.
@@ -138,6 +141,80 @@ def sub_locked(text, motif, remplace, n, label):
     return text.replace(motif, remplace)
 
 
+# --- Task 95 (S4-2 — finding R3 Task 91 G2, propositions S4 validées propriétaire
+# trace 1a1ded2a59319bb9) : bloc CONTEXTE SYSTÈME de PM-INSTALL DÉRIVÉ du SHARED
+# vivant. L'ancien recalibrage §2ter/§A.3 ne touchait jamais le bloc §0 (v1.9.15
+# embarquait encore l'extrait v1.7.17 — 21 versions de retard) : la classe de
+# drift est éteinte à la source (le générateur ne re-fige plus jamais le §0).
+# Sont couverts au passage (même classe, découverts enquête Task 95) :
+# l'étiquette §A.3 « Instantané courant (vX, date) » et la colonne « Version
+# skill » de la ligne PM-INSTALL au §6.1 de SHARED. ---
+CTX_ENTETE = "## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v"
+CTX_INSTRUCTION = "> **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe."
+
+
+def version_shared():
+    m = re.search(r"> \*\*Version\*\* : (\d+\.\d+\.\d+)", read(SHARED))
+    if not m:
+        abandon("version SHARED introuvable dans %s" % SHARED)
+    return m.group(1)
+
+
+def span_ctx_shared(shared_text):
+    """Span §0-§1.2 du SHARED vivant (bornes verrouillées : §0 / §1.3)."""
+    debut, fin = shared_text.find("## §0 — Règle zéro"), shared_text.find("### §1.3")
+    if debut == -1 or fin == -1 or fin <= debut:
+        abandon("SHARED : bornes de l'extrait CONTEXTE SYSTÈME (§0 / §1.3) introuvables — état inattendu")
+    return shared_text[debut:fin].rstrip() + "\n"
+
+
+def bloc_ctx(shared_text, sh_version):
+    """Bloc CONTEXTE SYSTÈME complet de PM-INSTALL, dérivé mécaniquement du SHARED vivant (KO-L003)."""
+    return ("%s%s)\n%s\n\n%s\n---\n"
+            % (CTX_ENTETE, sh_version, CTX_INSTRUCTION, span_ctx_shared(shared_text)))
+
+
+def refresh_pm_install_ctx(pm_text, shared_text, sh_version):
+    """Remplace le bloc CONTEXTE SYSTÈME de PM-INSTALL par l'extrait frais du SHARED vivant.
+    Bornes robustes : de l'en-tête §0 jusqu'à l'ancre « ## §0 — Objet et règle zéro »
+    (section propre du PM-INSTALL) — insensible au séparateur interne du span."""
+    if pm_text.count(CTX_ENTETE) != 1:
+        abandon("PM-INSTALL : en-tête CONTEXTE SYSTÈME trouvé %d fois (attendu 1)" % pm_text.count(CTX_ENTETE))
+    ancre = "\n## §0 — Objet et règle zéro"
+    if pm_text.count(ancre) != 1:
+        abandon("PM-INSTALL : ancre « ## §0 — Objet et règle zéro » introuvable ou multiple")
+    debut = pm_text.index(CTX_ENTETE)
+    fin = pm_text.index(ancre, debut)
+    region = pm_text[debut:fin]
+    if not region.rstrip().endswith("---"):
+        abandon("PM-INSTALL : terminaison « --- » du bloc CONTEXTE SYSTÈME introuvable")
+    return pm_text[:debut] + bloc_ctx(shared_text, sh_version) + "\n---\n" + pm_text[fin:]
+
+
+def maj_ligne_install_shared(shared_text, pi_version):
+    """SHARED §6.1 : colonne « Version skill » de la ligne PM-INSTALL portée à la
+    version réelle (drift v1.8.0 résorbé — même classe que R3, découverte enquête Task 95)."""
+    pat = re.compile(r"^(\| `PROMPT-MAITRE-INSTALL-ECOSYSTEME\.md` \|.*\|) v(\d+\.\d+\.\d+) \|$",
+                     re.MULTILINE)
+    trouves = list(pat.finditer(shared_text))
+    if len(trouves) != 1:
+        abandon("SHARED §6.1 : ligne PM-INSTALL trouvée %d fois (attendu 1)" % len(trouves))
+    if trouves[0].group(2) == pi_version:
+        return shared_text  # déjà frais — idempotence
+    return pat.sub(lambda m: "%s v%s |" % (m.group(1), pi_version), shared_text, count=1)
+
+
+def maj_etiquette_instantane(pm_text, pi_version, aujourdhui):
+    """Étiquette §A.3 « Instantané courant (vX, date) » rafraîchie (drift v1.9.4/2026-11-07
+    résorbé — précédent Task 76 : étiquette de date §2ter jamais rafraîchie)."""
+    pm_text, n = re.subn(r"^Instantané courant \([^)]*\) :",
+                         "Instantané courant (v%s, %s) :" % (pi_version, aujourdhui),
+                         pm_text, count=1, flags=re.MULTILINE)
+    if n != 1:
+        abandon("PM-INSTALL §A.3 : ligne « Instantané courant » introuvable (attendue 1)")
+    return pm_text
+
+
 def sections_of(text):
     return sorted(set(re.findall(r"§(\d+(?:\.\d+)*)", text)))
 
@@ -216,6 +293,17 @@ def generate_famille(famille, delta, dry):
         abandon("ligne d'historique v%s introuvable dans le PM de base" % old)
     idx = t.index(anchor)
     t = t[:idx] + "\n| v%s | %s | %s |" % (new, date.today().isoformat(), history_txt) + t[idx:]
+    # Task 95 (S4-2, extension de classe) : en-tête du bloc §0 Contexte Système
+    # du PM de famille rafraîchi à la version SHARED vivante à chaque montée (le
+    # recalibrage de ce même tour bump SHARED — d'où bump_patch ci-dessous ; le
+    # contenu L2 du bloc demeure la spécification historique du PM — KO-L003).
+    t, _n_ctx = re.subn(r"^## §0 — Contexte Système \(SHARED v[\d.]+\)$",
+                        "## §0 — Contexte Système (SHARED v%s)" % bump_patch(version_shared()),
+                        t, count=1, flags=re.MULTILINE)
+    if _n_ctx == 0:
+        print("[WARN] %s : aucun en-tête §0 Contexte Système à rafraîchir (écart consigné — KO-L003)" % famille)
+    elif _n_ctx > 1:
+        abandon("%s : en-têtes §0 Contexte Système multiples (%d) — état inattendu" % (famille, _n_ctx))
     for s in (delta or {}).get("subs", []):
         t = sub_locked(t, s["old"], s["new"], int(s.get("count", 1)),
                        "delta %s" % famille)
@@ -268,6 +356,12 @@ def recalibrage(results, dry):
         r"\g<1>%s\g<2>" % today, pm_install, count=1)
     if _n_date != 1:
         abandon("PM-INSTALL §2ter : étiquette de date « dernières versions au » introuvable (attendue 1 fois)")
+    # Task 95 (S4-2 — finding R3 Task 91 G2) : bloc CONTEXTE SYSTÈME de PM-INSTALL
+    # dérivé du SHARED vivant à CHAQUE montée (extinction de la classe « §0 figé »),
+    # étiquette §A.3 et ligne PM-INSTALL §6.1 (SHARED) rafraîchies au passage.
+    pm_install = refresh_pm_install_ctx(pm_install, shared, sh_new)
+    pm_install = maj_etiquette_instantane(pm_install, pi_new, today)
+    shared = maj_ligne_install_shared(shared, pi_new)
     shared = sub_locked(shared, "> **Version** : %s" % sh_old, "> **Version** : %s" % sh_new, 1, "version SHARED")
     shared = sub_locked(shared, "> **Révision** : ",
                         "> **Révision** : %s (montée %s, KO-L004 v1.1.0) — **v%s** : §6.1 — référence(s) PM portée(s) "
@@ -290,6 +384,50 @@ def recalibrage(results, dry):
         f.write(pm_install)
     print("Recalibrage écrit : SHARED v%s, PM-INSTALL v%s" % (sh_new, pi_new))
     return sh_new, pi_new
+
+
+def refresh_ctx(dry):
+    """Task 95 (S4-2 — finding R3 Task 91 G2) : rafraîchit SOLO le bloc CONTEXTE
+    SYSTÈME de PM-INSTALL depuis le SHARED vivant (+ étiquette §A.3 + ligne §6.1
+    de SHARED), SANS montée de famille — PM-INSTALL +1 PATCH, SHARED +1 PATCH
+    (référence §6.1). Idempotent : NO-OP (aucune écriture, aucun bump) si frais."""
+    today = date.today().isoformat()
+    shared = read(SHARED)
+    pm_install = read(PM_INSTALL)
+    sh_old = re.search(r"> \*\*Version\*\* : (\d+\.\d+\.\d+)", shared).group(1)
+    pi_old = re.search(r"^Version : (\d+\.\d+\.\d+)", pm_install, re.MULTILINE).group(1)
+    if bloc_ctx(shared, sh_old) in pm_install and maj_ligne_install_shared(shared, pi_old) == shared:
+        print("[NO-OP] bloc CONTEXTE SYSTÈME déjà frais (extrait SHARED v%s embarqué ; ligne §6.1 à v%s) — rien à faire."
+              % (sh_old, pi_old))
+        return
+    sh_new, pi_new = bump_patch(sh_old), bump_patch(pi_old)
+    # (1) SHARED : ligne PM-INSTALL §6.1 + version + révision
+    shared = maj_ligne_install_shared(shared, pi_new)
+    shared = sub_locked(shared, "> **Version** : %s" % sh_old, "> **Version** : %s" % sh_new, 1, "version SHARED")
+    shared = sub_locked(shared, "> **Révision** : ",
+                        "> **Révision** : %s (Task 95 — refresh-ctx S4-2, finding R3 Task 91 G2 résorbé, propositions S4 validées trace 1a1ded2a59319bb9) — **v%s** : §6.1 — ligne PM-INSTALL portée à v%s ; bloc CONTEXTE SYSTÈME de PM-INSTALL désormais DÉRIVÉ du SHARED vivant (`--refresh-ctx` + recalibrage étendu aux montées). "
+                        % (today, sh_new, pi_new), 1, "révision SHARED")
+    # (2) PM-INSTALL : bloc §0 <- extrait frais + étiquette §A.3 + version + historique
+    pm_install = refresh_pm_install_ctx(pm_install, shared, sh_new)
+    pm_install = maj_etiquette_instantane(pm_install, pi_new, today)
+    pm_install = sub_locked(pm_install, "Version : %s" % pi_old, "Version : %s" % pi_new, 1, "version PM-INSTALL")
+    anchor = "\n| v%s | " % pi_old
+    if pm_install.count(anchor) < 1:
+        abandon("PM-INSTALL : ligne d'historique v%s introuvable" % pi_old)
+    idx = pm_install.index(anchor)
+    row = ("\n| v%s | %s | Task 95 — S4-2 (finding R3 Task 91 G2, propositions S4 validées trace 1a1ded2a59319bb9) : extension du générateur au bloc CONTEXTE SYSTÈME — l'extrait §0-§1.2 est désormais DÉRIVÉ du SHARED vivant (mode --refresh-ctx + recalibrage étendu ; extinction de la classe de drift « §0 figé v1.7.17 ») ; étiquette §A.3 rafraîchie (v1.9.4 stale) ; ligne PM-INSTALL §6.1 SHARED portée v1.8.0→v%s |"
+           % (pi_new, today, pi_new))
+    pm_install = pm_install[:idx] + row + pm_install[idx:]
+    if dry:
+        print("[DRY-RUN] aucune écriture — SHARED v%s→v%s, PM-INSTALL v%s→v%s (bloc CONTEXTE SYSTÈME ← extrait SHARED v%s)"
+              % (sh_old, sh_new, pi_old, pi_new, sh_new))
+        return
+    with open(SHARED, "w", encoding="utf-8") as f:
+        f.write(shared)
+    with open(PM_INSTALL, "w", encoding="utf-8") as f:
+        f.write(pm_install)
+    print("Refresh-ctx écrit : SHARED v%s, PM-INSTALL v%s (bloc CONTEXTE SYSTÈME ← extrait SHARED v%s)"
+          % (sh_new, pi_new, sh_new))
 
 
 def run_generate(target, delta_path, dry):
@@ -335,6 +473,8 @@ def main():
         dry = "--dry-run" in args
         delta_path = args[args.index("--delta") + 1] if "--delta" in args else None
         run_generate(target, delta_path, dry)
+    elif "--refresh-ctx" in args:
+        refresh_ctx("--dry-run" in args)
     else:
         print(__doc__)
         sys.exit(3)

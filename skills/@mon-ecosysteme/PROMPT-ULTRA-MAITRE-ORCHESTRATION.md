@@ -2,7 +2,7 @@
 
 > **Version** : 1.0.0 (généré)
 > **Généré par** : `scripts/gen-ultra-maitre.py` (idempotent — ne pas éditer à la main ; éditer le script puis régénérer)
-> **État dérivé de** : SHARED v1.7.38 (révision 2026-11-15) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
+> **État dérivé de** : SHARED v1.7.39 (révision 2026-11-15) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
 > **Rôle** : point d'entrée UNIQUE d'orchestration à l'usage — route chaque demande vers le bon prompt maître / skill, sans dupliquer leur contenu (R4)
 > **Directive** : propriétaire 2026-10-02 (« prompt ultra maître ») — design retenu : orchestrateur léger dérivé dynamiquement du corpus (KO-L003), PAS de conversion des PMs existants en monolithes (R4 duplication / R2 corpus figé / KO-L004 drift)
 
@@ -29,7 +29,7 @@
 | Synchroniser contexte / canaux | SYNC-CONTEXT.md + scripts de sync | — | 2 voies byte-identiques |
 | Auditer la provenance | audit-provenance | — | L006, avant clone/install |
 | Observer les leçons | knowledge-observer (agent autonome tandem — .agent v1.1.0 + SKILL.md méthode) | — | journal lessons-learned, M1-M2 à E15 |
-| Re-curé un skill (divulgation progressive) | re-curation (protocole P0-P7 + harnais protocole-test.py v1.2.1) | — | moves R4 byte-identité, POST ×2 MAINTIEN, C1-C4 |
+| Re-curé un skill (divulgation progressive) | re-curation (protocole P0-P7 + harnais protocole-test.py v1.2.2) | — | moves R4 byte-identité, POST ×2 MAINTIEN, C1-C4 |
 | Créer / modifier un skill | skill-creator (conventions) + correct-work (garde) | — | frontmatter, evals, description triggers |
 | Inventorier / chercher un skill | skills-inventory | — | scan skills/, catalogue générable |
 | Ingénierie d'agents / systèmes multi-agents (concevoir, évaluer, fiabiliser, orchestrer les tâches d'agents) | agent-engineering (n°56 — cadre englobant ABE/AE/MASE : cadrer, router vers détenteurs, outiller, veiller) | — | routage §1.3 du skill, gate anti-flotte, critère vérifiable par tâche |
@@ -45,7 +45,7 @@
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md (la plus récente) | — |
 | REFACTOR-GUARD | PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.7.38 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.9.15 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.7.39 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.9.16 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
@@ -80,7 +80,7 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.38 (lire en premier). Installateur : `PRO
 | `cpp-analysis` | 1.1.0 |
 | `pdf-llm` | 1.0.0 |
 | `resource-monitor` | 1.1.1 |
-| `version-management` | — |
+| `version-management` | 1.3.0 |
 | `skill-finder-cn` | 1.0.0 |
 | `vue-upload` | 1.5.0 |
 | `livraison-garantie` | 1.1.0 |
@@ -111,8 +111,8 @@ Registre KB : 55 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dé
 
 ## §4 — Points d'entrée et ordre de lecture
 
-1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.38) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.9.15) — périmètre §A + pipeline 11 étapes + critères §3.
+1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.39) — toujours en premier.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.9.16) — périmètre §A + pipeline 11 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
 5. **Publication** : archive `download/mon-ecosysteme_archive.zip` (round-trip v2.2) — unique voie de diffusion du corpus (décision v2.2 : canal de fichiers download/ supprimé, garde `scripts/task14-scan-doublons.py`).

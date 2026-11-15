@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.38)
+⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.39)
 SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -28,6 +28,19 @@ parfois des #token quand sa sortie alimente un contexte LLM). Ce wrapper :
      commande (sortie identique, temps de lecture seulement) ;
   4. toute modification d'un fichier cible (taille ou mtime) change la clé →
      cache invalide → ré-exécution réelle automatique.
+
+Domaine d'usage (Task 95 — S4-3, finding R4 Task 91 G2 résorbé, propositions
+S4 validées propriétaire trace 1a1ded2a59319bb9) :
+  - PERTINENT : boucles INTRA-exécution répétitives (campagnes de tests type
+    task71/task73/task84) où la MÊME commande est rejouée en boucle à entrées
+    inchangées.
+  - NON-PERTINENT : arbitrage de certification — « un verdict figé n'est
+    JAMAIS une preuve en soi » : l'exécution réelle reste la
+    norme de certification. Mesures Task 91 G2 : integrity 0,045 s · verify-cross
+    0,03 s · interactions 0,146 s (le gain 440× de la démo Task 71 portait
+    sur un cas isolé) — le « câblage exhaustif des graders fréquents »
+    (F-71-4) est classé NON-PERTINENT : valeur faible + risque sémantique
+    sur la preuve.
 
 Usage :
     python3 scripts/cache-verdicts.py run -- <commande...> [--cibles F1 F2 ...]

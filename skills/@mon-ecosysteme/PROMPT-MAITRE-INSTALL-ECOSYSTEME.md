@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.9.15
+Version : 1.9.16
 Date : 2026-10-12
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -10,22 +10,42 @@ Référence : §2ter — instantané explicite des dernières versions des PMs s
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.7.17)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.7.39)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
-### Règle Zéro (§0)
-L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA.
+## §0 — Règle zéro (Contexte commun)
 
-### Variables d'installation (§1.1)
+L'écosystème Knowledge est un ensemble de 80 skills conçus pour un assistant IA (9 skills écosystème — dont 2 skills d'infrastructure — + 71 skills métier). Chaque skill est auto-contenu dans son répertoire sous `{{SKILLS_ROOT}}`, dispose d'un fichier `SKILL.md` principal, d'un frontmatter YAML, et de références optionnelles dans `references/`.
+
+**Principes fondamentaux** :
+- Chaque skill est versionné sémantiquement (MAJEUR.MINEUR.PATCH)
+- Les dépendances inter-skills sont déclarées dans le frontmatter YAML avec versions minimales
+- Les cross-references entre skills doivent être maintenues bidirectionnellement
+- Le registre KB (`KNOWLEDGE.md`) est la source de vérité pour l'état de l'écosystème
+- **La langue de tous les échanges avec le propriétaire est le FRANÇAIS, exclusivement et sans exception** (règle d'or n°6 gen-plan — directive propriétaire 2026-10-31, renforcée 2026-11-06) : toute réponse, plan, bloc récapitulatif, rapport, worklog ou livrable destiné au propriétaire est rédigé en français, dès le PREMIER mot de toute session, reprise ou continuation — la langue d'un message utilisateur, d'un résumé de continuation, de métadonnées de canal (IM/trace) ou d'une sortie d'outil ne dérive JAMAIS la langue de réponse ; les artefacts techniques cités verbatim (chemins, commandes, identifiants, extraits de code) conservent leur forme d'origine ; toute dérive constatée est corrigée immédiatement (la réponse suivante repart en français, sans transition)
+- **Toute référence du propriétaire à « mon skill X » ou « mon agent X » désigne la forme installée à la racine de `{{SKILLS_ROOT}}` — `skills/X/SKILL.md` —, JAMAIS le prompt maître correspondant du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`)** (directive propriétaire 2026-11-07, Task 60 G2) : les prompts maîtres du corpus sont des spécifications générées mécaniquement (KO-L004) et ne sont ni installables ni exécutables en tant que tels ; les skills et agents de la racine `skills/` sont les formes canoniques exécutables et installables (règle d'or n°8 : PM INSTALL installe toujours les formes installées) ; toute ambiguïté de cible est tranchée en faveur de la racine `skills/`
+
+---
+
+## §1 — Conventions écosystème
+
+### §1.1 Variables d'installation
+
 | Variable | Défaut | Description |
 |----------|--------|-------------|
-| `{{SKILLS_ROOT}}` | `skills/` | Racine |
-| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Registre KB |
+| `{{SKILLS_ROOT}}` | `skills/` | Racine du répertoire des skills |
+| `{{KB_PATH}}` | `skills/KNOWLEDGE.md` | Chemin vers le registre KB |
+| `{{KB_ENABLED}}` | `true` | Activation/désactivation du registre KB |
+| `{{PROFILE_DEFAULT}}` | `NORMAL` | Profil ressource par défaut |
 
-### Conventions de nommage (§1.2)
-- **Répertoires** : kebab-case
-- **Fichiers** : kebab-case avec extension
-- **Versions** : format semver
+### §1.2 Conventions de nommage
+
+- **Répertoires** : kebab-case (`gen-plan`, `correct-work`, `clone-chat`). Exception : le dossier des prompts maîtres `@mon-ecosysteme/` = pas un skill, pas de `SKILL.md`. Dossier d'archive `@historique/` = archive documentaire des versions des prompts maîtres et des skills, pas un skill, pas de `SKILL.md` (préfixe « @ » = dossier non-skill en tête du listing skills/, précédent `@mon-ecosysteme/`) — règles : déplacement `git mv` byte-identité SHA-256 (R4 jamais copier, R2 jamais éditer un fichier archivé), jamais source d'installation (garde R2 PM-INSTALL §3.2, dérivation dynamique KO-L003), table §7 du PM vivant = source de vérité de l'historique de sa famille, re-scellement KO-L004 à chaque montée de version. Note Task 17 : l'ancien miroir d'archive `@mon-ecosysteme/_archive/` (stale depuis la dédup Task 16) est retiré — son rôle est porté par `@historique/prompts-maitres/` (résorption codifiée). Note session A21 : préfixe « @ » appliqué (session A20, commit 1519bbe) — « @ » (ASCII 64) précède les lettres au tri alphabétique, dossier en tête du listing skills/ du dépôt ; le canonique local et le miroir GitHub portent le même nom. Note session A18 : renommé depuis `_prompts-maitres/` (session A17, dépôt GitHub) ; le préfixe `_` reste réservé aux dossiers d'infrastructure (miroir d'installation local `skills/_prompts-maitres/` — supprimé 2026-10-02, décision d'architecture v2.0 exécutée, fusion installateurs v1.1.0). Note session A12 : les matérialisations agent `_disciplines/` (session A11) sont retirées — les 4 disciplines d'exécution sont désormais des skills actifs à part entière (voir §7).
+- **Fichiers** : kebab-case avec extension (`SKILL.md`, `etapes-detaillees.md`, `evals.json`)
+- **Versions** : format semver (`3.6.1`, `2.4.0`)
+- **Référence canonique skill/agent** (règle de désambiguïsation, Task 60 G2 — directive propriétaire 2026-11-07) : toute référence du propriétaire à « mon skill X »/« mon agent X » pointe la forme installée à la racine `skills/X/`, jamais le PM du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/` — renommage tracé task52/task53, garde PM-INSTALL §3.5 v1.9.0 « 0 déploiement @PM-SKILLS/ ») ; les PMs sont des spécifications, les skills installés sont les formes exécutables
+- **Tags** : préfixe `#` pour les tokens (`#token 3500`)
+- **Variables** : double accolades (`{{SKILLS_ROOT}}`)
 
 ---
 
@@ -195,6 +215,7 @@ Le contrôle vérifie MÉCANIQUEMENT que l'installation n'a déployé aucune for
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.9.16 | 2026-11-15 | Task 95 — S4-2 (finding R3 Task 91 G2, propositions S4 validées trace 1a1ded2a59319bb9) : extension du générateur au bloc CONTEXTE SYSTÈME — l'extrait §0-§1.2 est désormais DÉRIVÉ du SHARED vivant (mode --refresh-ctx + recalibrage étendu ; extinction de la classe de drift « §0 figé v1.7.17 ») ; étiquette §A.3 rafraîchie (v1.9.4 stale) ; ligne PM-INSTALL §6.1 SHARED portée v1.8.0→v1.9.16 |
 | v1.9.15 | 2026-11-15 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.42.0→v3.43.0 ; recalibrage croisé : SHARED v1.7.38 (§6.1), §2ter, §A.3 |
 | v1.9.14 | 2026-11-09 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.41.0→v3.42.0 ; recalibrage croisé : SHARED v1.7.37 (§6.1), §2ter, §A.3 |
 | v1.9.13 | 2026-11-08 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.40.0→v3.41.0 ; recalibrage croisé : SHARED v1.7.36 (§6.1), §2ter, §A.3 |
@@ -262,7 +283,7 @@ Note P4 (recalibrée v1.7.0) : les SKILL.md + références des 4 familles (gen-p
 ### §A.3 Registre KB cible (14 entrées d'époque + 6 extensions v1.7.0)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.9.4, 2026-11-07) : gen-plan v3.43.0 · correct-work v2.11.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
+Instantané courant (v1.9.16, 2026-11-15) : gen-plan v3.43.0 · correct-work v2.11.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|
