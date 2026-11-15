@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.42.0
+version: 3.43.0
 category: ecosystem
 language: fr
 tags:
@@ -60,7 +60,7 @@ read_when:
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
 
-## §0 — Contexte Système (SHARED v1.7.37)
+## §0 — Contexte Système (SHARED v1.7.38)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -192,6 +192,10 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 - **KO-L001 — Économie API (429)** : une seule sonde par message utilisateur, travail local 100 % entre les sondes, suites armées à QUOTA_OK (`--skip-done`) ; pas d'attente en-tour.
 - **KO-L003 — Arbitres à invariants dynamisés** : invariants dérivés de l'état courant, jamais figés ; divergence → dynamiser l'arbitre + re-verdict honnête, jamais ajuster la réalité.
+
+### §1.14bis Leçons knowledge-observer — adaptation autonome aux erreurs runtime (résumé — intégral : `references/regles-or.md`)
+
+- **KO-L011 — Assainissement SSE avant JSON.parse** (v3.43.0) : signature `SyntaxError` + `data:` (V8/Node — trame Server-Sent Events soumise à JSON.parse : préfixe de champ, payloads multiples, `[DONE]`, trame partielle) → **jamais de re-jeu à l'identique** (erreur déterministe de format) ; assainir AVANT parse — `scripts/adaptation-json-sse.py` (strip préfixes `data:`/`event:`/`id:`/`retry:`, filtre `[DONE]`/lignes vides, parse par payload, repli extraction bloc `{…}`, rc 0/2) — puis re-jeu ; échec persistant → voie non-streaming/méthode alternée (**max 2 rounds** — SHARED §4.4) ; adaptation journalisée worklog (règle d'or n°1). Instanciation de la règle d'or n°1 pour la classe SSE/JSON — sœur runtime d'`adaptation-syntaxe.py` (fichiers Python source ≠ données runtime).
 
 ### §1.15 Leçons knowledge-observer — recalibrage croisé (résumé — intégral : `references/regles-or.md`)
 
@@ -337,4 +341,4 @@ Dès qu'une phase du plan d'actions se termine, lancer `correct-work(livrables d
 **Couche d'organisation transverse (v3.25.0, tous modes depuis v3.36.0 — seule différence : les portes de confirmation)** : **groupe `G<k>`** (unité de vérification — correct-work(groupe)) → **sous-groupes `SG<k>.<j>`** (lot cohérent 2-5 tâches) → **tâches `T<k>.<j>.<i>`** (unité élémentaire, tag #token). **Statuts dérivés de l'état vérifiable** (KO-L003) : `[À FAIRE]` · `[EN COURS]` · `[TERMINÉ]` · `[BLOQUÉ]` · `[REPORTÉ]` ; compteurs n/m. **Cadence** : début d'exécution → fenêtre native complète (E7-DISP point 6 — Z.ai : `TodoWrite`) ; ouverture de groupe → PLAN-AFFICHE d'évolution puis tableau du groupe (step-ok : après confirmation) ; fin de tâche → ligne + compteurs ; fin de sous-groupe → rappel ; fin de groupe → fenêtre native mise à jour ; clôture → tableau final + verdict correct-work(groupe). **Orthogonal à l'exécution** : couche de LECTURE ; Graph Diamond automatique dès preuve d'indépendance (sous-groupes inclus, série = exception tracée) ; groupes plats normalisés à l'ouverture (R6/R2).
 ### §5.6 Journal des versions (entrée courante — archive intégrale et mécanique de migration : `references/journal-versions.md`)
 
-- **v3.42.0 (2026-11-09, web-ecef7f80 — Task 84 G3, directive 1a1bed51ccaf78f1 « continue »)** : INSCRIPTION SOCLE n°56 — agent-engineering (ABE/AE/MASE, créée Task 83, pendance P1) inscrite : SHARED §7 (définition + registre, v1.7.37) + §1.6 + §3. MINOR, description/§A inchangés. Cascade KO-L004 : PM v3.42.0, SHARED v1.7.37, PM-INSTALL v1.9.14.
+- **v3.43.0 (2026-11-15, web-ecef7f80 — Task 92, directive 1a1de66691f9c2d5 [reformulation 1a1de6474f53677d] « mémorisation écosystème de l'erreur "SyntaxError : Token inattendu 'd', "data: {"da"…" [SSE parsé comme JSON] + solution de contournement/correction automatique + adaptation autonome face aux blocages »)** : **LEÇON L011 → RÈGLE KO-L011 — adaptation autonome aux erreurs runtime SSE/JSON** : nouvelle section **§1.14bis** (résumé) + bloc **PATTERN:KO-L011-v1.0.0** intégral `references/regles-or.md` + mécanisme **`scripts/adaptation-json-sse.py`** (sanitize/detect/self-test 11/11 ×2, idempotence ×2, stdlib, rc 0/2 — sœur runtime d'`adaptation-syntaxe.py` : 7 classes Python ≠ classe JSON/SSE, R1 vérifié) ; cycle knowledge-observer **A-H complet intra-session** (C : journal L011 ; F : correct-work CIBLE PASS 8/8 ; G : matérialisation ; H : KB) ; porte M3-M4 sur directive propriétaire explicite (précédent L009/v3.30.0). MINOR, description/§A inchangés (non-régression triggers). Cascade KO-L004 : PM v3.43.0 (delta verrouillé `scripts/delta-genplan-v3430.json`), PM v3.42.0 archivé @historique R4, pin ECO_SKILLS 3.43.0, KB, `@historique/historiques-par-skill/gen-plan.md`, ULTRA régénéré ; SHARED v1.7.38 / PM-INSTALL v1.9.15 recalibrés MÉCANIQUEMENT par le générateur (références §6.1/§2ter, sans changement sémantique — règle gen-plan-scopée).

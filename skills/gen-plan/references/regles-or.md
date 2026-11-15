@@ -64,6 +64,14 @@
 
 <!-- FIN-PATTERN:KO-L003-v1.0.0 -->
 
+### §1.14bis Leçons knowledge-observer — adaptation autonome aux erreurs runtime (v3.43.0, modes M3-M4)
+
+<!-- PATTERN:KO-L011-v1.0.0 -->
+
+**Règle KO-L011 — Assainissement SSE avant JSON.parse : adaptation autonome aux erreurs de parsing runtime** (leçon L011, appliquée — v3.43.0, Task 92, directive propriétaire 1a1de66691f9c2d5 [reformulation 1a1de6474f53677d], session web-ecef7f80, 2026-11-15) : l'erreur « SyntaxError : Token inattendu 'd', "data: {"da"… est pas valide en JSON » (moteur V8/Node — signature : `SyntaxError` + `data:` dans le message, toute langue) est un `JSON.parse` appliqué à une trame **Server-Sent Events** — préfixe de champ `data:` non-JSON, payloads multiples concaténés, marqueur `[DONE]`, ou trame partielle coupée par le buffering réseau. C'est une erreur **déterministe de format** (jamais transitoire) : le même appel suivi du même parse échoue identiquement. Réaction systématique, jamais dépendante du jugement du moment : (1) **jamais de re-jeu à l'identique** ; (2) **assainir AVANT le parse** — strip des préfixes `data:`/`event:`/`id:`/`retry:`, filtrage des lignes vides et du marqueur `[DONE]`, parse **par payload** (jamais de concaténation brute) — mécanisme rejouable `scripts/adaptation-json-sse.py` (sous-commandes `sanitize`/`detect`, self-test golden samples 11/11 dont la trame exacte « data: {"da », idempotence ×2 [sortie réinjectée = no-op], stdlib, rc 0/2) — puis re-jeu de la commande bloquée ; (3) payload non parsable → **repli** : jointure multi-lignes (spécification SSE) puis extraction regex du premier bloc `{…}` équilibré ; (4) échec persistant → voie **non-streaming** ou backend/méthode alterné (**max 2 rounds** — garde anti-boucle SHARED §4.4) ; (5) trame partielle (rc 2) → attendre la suite du flux ou ré-extraire le dernier payload complet — jamais parser un fragment ; (6) adaptation **journalisée au worklog** (règle d'or n°1 — blocage = adaptation journalisée, jamais d'arrêt implicite). Instanciation de la règle d'or n°1 pour la classe SSE/JSON ; sœur runtime de `scripts/adaptation-syntaxe.py` (qui couvre les fichiers Python source — 7 classes ; la présente couvre les **données JSON/SSE d'exécution**). Portée : tout appel streamé (SDK/CLI z-ai, passerelle IM) dont la sortie est destinée à un `JSON.parse`.
+
+<!-- FIN-PATTERN:KO-L011-v1.0.0 -->
+
 ### §1.15 Leçons knowledge-observer — recalibrage croisé (re-curation B13, modes M3-M4)
 
 <!-- PATTERN:KO-L004-v1.1.0 -->
@@ -78,7 +86,7 @@
 
 <!-- FIN-PATTERN:KO-L007-v1.0.0 -->
 
-> Provenance : règles KO-L001/L003/L004 issues des leçons L001-L004 du journal `knowledge-observer` (sessions B13), reconstituées post-wipe (B13-r4, complété B13-r5) d'après les marqueurs et le lignage documentés — installées dans gen-plan v3.16.0 ; KO-L007 installée dans gen-plan v3.18.0 (leçon L007, verdict correct-work étape F PASS — cycle fusion installateurs 2026-10-02) ; KO-L004 portée v1.1.0 dans gen-plan v3.21.0 (extension génération mécanique du PM à toute montée de version — directive utilisateur 2026-10-09, session web-b93f42fa, matérialisation M4 : `scripts/generer-pm-skill.py`) ; les contenus exacts de v3.14.0/v3.15.0, non documentés, restent perdus au wipe inter-sessions.
+> Provenance : règles KO-L001/L003/L004 issues des leçons L001-L004 du journal `knowledge-observer` (sessions B13), reconstituées post-wipe (B13-r4, complété B13-r5) d'après les marqueurs et le lignage documentés — installées dans gen-plan v3.16.0 ; KO-L007 installée dans gen-plan v3.18.0 (leçon L007, verdict correct-work étape F PASS — cycle fusion installateurs 2026-10-02) ; KO-L011 installée dans gen-plan v3.43.0 (leçon L011, verdict correct-work étape F PASS 8/8 — Task 92, directive 1a1de66691f9c2d5, cycle A-H complet intra-session, 2026-11-15) ; KO-L004 portée v1.1.0 dans gen-plan v3.21.0 (extension génération mécanique du PM à toute montée de version — directive utilisateur 2026-10-09, session web-b93f42fa, matérialisation M4 : `scripts/generer-pm-skill.py`) ; les contenus exacts de v3.14.0/v3.15.0, non documentés, restent perdus au wipe inter-sessions.
 
 ---
 

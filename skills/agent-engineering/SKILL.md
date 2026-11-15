@@ -44,7 +44,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28) — les demandes de coordination opérationnelle d'une flotte relèvent de fleet-engineering ; la fabrique concrète d'un skill/agent de agent-creator/skill-creator ; le format .agent de autonomous-agent ; la planification de tâches de gen-plan.
 ---
 
-## §0 — Contexte Système (SHARED v1.7.37)
+## §0 — Contexte Système (SHARED v1.7.38)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

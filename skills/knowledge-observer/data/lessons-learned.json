@@ -156,6 +156,21 @@
       "statut": "candidate (M1-M2)",
       "session": "web-4f989063 (2026-10-31)",
       "verdict_correct_work": null
+    },
+    {
+      "id": "L011",
+      "pattern": "Erreur d'analyse JSON d'exécution sur flux SSE : « SyntaxError : Token inattendu 'd', « data : {\"da »... est pas valide en JSON » (moteur V8/Node — JSON.parse appliqué à une trame Server-Sent Events « data: {… » : préfixe de champ non-JSON, payloads multiples concaténés, marqueur [DONE], ou trame partielle coupée par le buffering réseau) — erreur affichée récurrentemment au propriétaire par l'agent/la plateforme lors d'appels streamés (SDK/CLI z-ai en streaming, passerelle IM) ; classe DISTINCTE des 7 classes Python de scripts/adaptation-syntaxe.py (future_import…fullwidth — R1 vérifié Task 92 : aucune classe JSON/SSE, 0 occurrence artefact dans download/ [13 clones] et worklog pour cette signature — l'erreur vit dans le canal chat agent↔propriétaire)",
+      "occurrences": 2,
+      "sources": [
+        "directive propriétaire trace 1a1de6474f53677d (session web-ecef7f80, chat 891cbdaf) — rapport verbatim de l'erreur + témoignage de récurrence « c'est un message d'erreur que tu m'envoies souvent »",
+        "directive propriétaire trace 1a1de66691f9c2d5 — même rapport réitéré (préfixe gen-plan, instruction de mémorisation écosystème + adaptation autonome) ; enquête mécanique Task 92 : rg 0 occurrence artefact (erreur plateforme côté canal chat, non comptable dans l'écosystème — comptage honnête règle d'or n°5) ; porte M3-M4 ouverte sur directive propriétaire explicite (précédent L009, 2 occurrences, matérialisée v3.30.0)"
+      ],
+      "proposition": "Règle KO-L011 — Adaptation autonome aux erreurs de parsing SSE/JSON : dès la signature détectée (SyntaxError + « data: » dans le message, toute langue), ne JAMAIS re-jouer à l'identique (erreur déterministe de format) ; assainir l'entrée AVANT JSON.parse (strip préfixes data:/event:/id:/retry:, filtre lignes vides et [DONE], parse par payload) via scripts/adaptation-json-sse.py (mécanisme rejouable sur le pattern adaptation-syntaxe.py : self-test golden samples dont la trame exacte « data: {\"da », idempotence ×2, stdlib, rc 0/2) ; échec persistant → extraction regex du bloc {…} bien formé puis voie non-streaming/méthode alternée (max 2 rounds — garde anti-boucle SHARED §4.4) ; journalisation worklog de l'adaptation (règle d'or n°1). Instanciation de la règle d'or n°1 (adaptation autonome) pour la classe SSE/JSON — extension du périmètre adaptation-syntaxe.py (fichiers Python source) aux données runtime",
+      "marqueur": "PATTERN:KO-L011-v1.0.0",
+      "cible_application": "skills/gen-plan/SKILL.md §1.14bis (résumé — montée v3.43.0) + skills/gen-plan/references/regles-or.md (bloc PATTERN:KO-L011-v1.0.0 intégral) + scripts/adaptation-json-sse.py (mécanisme) + présent journal (mémoire persistante)",
+      "statut": "validé",
+      "session": "web-ecef7f80 (Task 92)",
+      "verdict_correct_work": null
     }
   ],
   "schema": "Task Observer (gen-plan/references/observation-patterns.md §4) — phase N20, session B12-r41",

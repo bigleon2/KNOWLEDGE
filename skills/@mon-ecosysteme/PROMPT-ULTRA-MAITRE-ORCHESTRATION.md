@@ -2,7 +2,7 @@
 
 > **Version** : 1.0.0 (généré)
 > **Généré par** : `scripts/gen-ultra-maitre.py` (idempotent — ne pas éditer à la main ; éditer le script puis régénérer)
-> **État dérivé de** : SHARED v1.7.37 (révision 2026-11-09) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
+> **État dérivé de** : SHARED v1.7.38 (révision 2026-11-15) — date non figée (KO-L003 : la régénération = recalibrage KO-L004)
 > **Rôle** : point d'entrée UNIQUE d'orchestration à l'usage — route chaque demande vers le bon prompt maître / skill, sans dupliquer leur contenu (R4)
 > **Directive** : propriétaire 2026-10-02 (« prompt ultra maître ») — design retenu : orchestrateur léger dérivé dynamiquement du corpus (KO-L003), PAS de conversion des PMs existants en monolithes (R4 duplication / R2 corpus figé / KO-L004 drift)
 
@@ -40,18 +40,18 @@
 
 | Famille | PM le plus récent (source d'assemblage) | Versions historiques figées (R2) |
 |---------|------------------------------------------|----------------------------------|
-| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.42.0.md (la plus récente) | — |
+| GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.43.0.md (la plus récente) | — |
 | CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md (la plus récente) | — |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md (la plus récente) | — |
 | REFACTOR-GUARD | PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md (la plus récente) | — |
 
-Socle : `PROMPT-MAITRE-SHARED.md` v1.7.37 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.9.14 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
+Socle : `PROMPT-MAITRE-SHARED.md` v1.7.38 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.9.15 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 
 ## §3 — Skills écosystème installés (versions réelles, frontmatter = source de vérité)
 
 | Skill | Version |
 |-------|---------|
-| `gen-plan` | 3.42.0 |
+| `gen-plan` | 3.43.0 |
 | `correct-work` | 2.11.0 |
 | `clone-chat` | 2.0.2 |
 | `skills-inventory` | 1.1.0 |
@@ -75,12 +75,12 @@ Socle : `PROMPT-MAITRE-SHARED.md` v1.7.37 (lire en premier). Installateur : `PRO
 | `spec-driven-development` | 1.1.1 |
 | `refactoring-engineering` | 1.1.1 |
 | `refactoring-test` | 1.1.1 |
-| `agent-engineering` | 1.1.0 |
+| `agent-engineering` | 1.1.1 |
 | `audio-metadata` | 1.1.0 |
 | `cpp-analysis` | 1.1.0 |
 | `pdf-llm` | 1.0.0 |
 | `resource-monitor` | 1.1.1 |
-| `version-management` | 1.3.0 |
+| `version-management` | — |
 | `skill-finder-cn` | 1.0.0 |
 | `vue-upload` | 1.5.0 |
 | `livraison-garantie` | 1.1.0 |
@@ -111,8 +111,8 @@ Registre KB : 55 entrées versionnées (`skills/KNOWLEDGE.md`) — liste §3 dé
 
 ## §4 — Points d'entrée et ordre de lecture
 
-1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.37) — toujours en premier.
-2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.9.14) — périmètre §A + pipeline 11 étapes + critères §3.
+1. **Socle** : `PROMPT-MAITRE-SHARED.md` (v1.7.38) — toujours en premier.
+2. **Installation** : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` (v1.9.15) — périmètre §A + pipeline 11 étapes + critères §3.
 3. **Planification** : PM gen-plan le plus récent — §A DÉCLENCHEURS (dont verbatim « intègre dans le plan d'actions » → E13).
 4. **Vérification** : PM correct-work le plus récent + `skills/correct-work/scripts/verify-correct-work.py` (16 checks).
 5. **Publication** : archive `download/mon-ecosysteme_archive.zip` (round-trip v2.2) — unique voie de diffusion du corpus (décision v2.2 : canal de fichiers download/ supprimé, garde `scripts/task14-scan-doublons.py`).
