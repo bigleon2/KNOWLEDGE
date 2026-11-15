@@ -11,8 +11,9 @@ Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon 
 
 # -*- coding: utf-8 -*-
 """
-Arbitre V6.1 — check-triggers-replay.py (Task 21 campagne P0 ; V6.1 Task 30 —
-campagne A/B/C de résorption des dérives triggers, GO propriétaire).
+Arbitre V6.2 — check-triggers-replay.py (Task 21 campagne P0 ; V6.1 Task 30 —
+campagne A/B/C de résorption des dérives triggers, GO propriétaire ; V6.2 Task 97 —
+mission dédiée arbitre V6, décision propriétaire trace 1a1df48b3eb8fb9d).
 
 Rôle institutionnel : re-jouer MÉCANIQUEMENT (voie M, zéro API) les corpus officiels
 de trigger_evals de TOUS les skills équipés, à chaque montée/optimisation (garde
@@ -31,6 +32,24 @@ V6.1 (Task 30, arbitrage download/arbitrage-derives-replay-iphone-task25.md §4)
    OK (source `voie-l-cache`) ; désaccord cache → FAIL (source `voie-l-cache-desaccord`,
    jamais masqué) ; entrée absente → FAIL (dégradation honnête, source `non-resorbe`).
    La non-détermination LLM est neutralisée par le figeage (cache = verdict unique).
+
+V6.2 (Task 97 — mission dédiée arbitre V6, décision propriétaire « lance $FACON la
+mission dédiée à l'arbitre V », écart consigné Task 86/90 suites 108/117/126) :
+4. RÉSERVATION DE CORPUS CROISÉE SUR NON-RÉSOLUS SEULEMENT — le cas 6 voie M
+   d'agent-engineering était un faux positif STRUCTUREL irréductible par description
+   (hits ['agent','flott'] : radical « agent » ∈ strong du nom + radical « flott » venu
+   de la clause d'exclusion de la description). Les corpus trigger_evals des autres
+   skills équipés encodent la doctrine « périmètre » : une requête should_trigger=true
+   d'un AUTRE skill RÉSERVE son périmètre. Sur un cas NON résolu par (veto → voie M →
+   cache voie L), si la requête est IDENTIQUE (normalisée) à une positive d'un autre
+   skill, OU similaire à Jaccard radical ≥ 0,7 avec ≥ 3 radicaux partagés → verdict
+   false (source `v62-reservation-corpus`). Deux gardes d'architecture : (a) appliquée
+   en DERNIER, uniquement sur les non-résolus — ne peut jamais régresser un cas déjà
+   résolu par les couches V6.1 ; (b) une requête qui figure AUSSI comme positive dans
+   le corpus du skill courant (revendication partagée, ex. corpus jumeaux) n'est pas
+   réservée. Seuils calibrés par SIMULATION PRÉALABLE (scripts/task97-simulation-v62.py,
+   rapport task97-simulation-report.json : 101 skills équipés, seuil le plus strict
+   réparant l'écart cible). Voie M brute : réplique inchangée.
 
 Heuristique : réplique EXACTE de SHARED §7 v2 (stemmer français, keywords_for,
 routage « ≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill ») — identique au
@@ -109,6 +128,54 @@ def heuristic_score(query, kws, strong):
     return (len(hits) / max(1, len(toks))), sorted(hits), trig
 
 
+def jaccard(a, b):
+    u = a | b
+    return (len(a & b) / len(u)) if u else 0.0
+
+
+# ── V6.2 (Task 97) : index des positives + réservation de corpus croisée ──
+def build_index_positives(loaded):
+    """Index pré-calculé (performance) : par skill, [(query, norm(query), stems)]
+des seuls cas should_trigger=true. C'est la donnée de réservation V6.2 : le
+corpus des AUTRES skills équipés encode la doctrine « périmètre » (V6.1)."""
+    idx = {}
+    for sk in loaded:
+        rows = []
+        for c in sk["cases"]:
+            if not c.get("should_trigger"):
+                continue
+            q = c["query"]
+            rows.append((q, norm(q),
+                         {stem(w) for w in re.findall(r"[a-zà-ÿ]+", norm(q)) if len(w) > 2}))
+        idx[sk["name"]] = rows
+    return idx
+
+
+def reserve_corpus(query, name, idx_positives, j_seuil=0.7, inter_min=3):
+    """V6.2 — réservation de corpus croisée (Task 97). Retourne None (pas de
+réservation) ou {"avec", "jaccard", "inter", "identique"}. Garde (b) : une requête
+qui figure aussi comme positive du skill courant n'est jamais réservée
+(revendication partagée — corpus jumeaux, ex. aminer-*/gaokao-*)."""
+    nq = norm(query)
+    if any(nq == n for _, n, _ in idx_positives.get(name, [])):
+        return None
+    qs = {stem(w) for w in re.findall(r"[a-zà-ÿ]+", nq) if len(w) > 2}
+    best = None
+    for other, rows in idx_positives.items():
+        if other == name:
+            continue
+        for _, n, ps in rows:
+            if nq == n:
+                return {"avec": other, "jaccard": 1.0, "inter": len(qs & ps),
+                        "identique": True}
+            inter = len(qs & ps)
+            j = jaccard(qs, ps)
+            if j >= j_seuil and inter >= inter_min and (best is None or j > best["jaccard"]):
+                best = {"avec": other, "jaccard": round(j, 3), "inter": inter,
+                        "identique": False}
+    return best
+
+
 def load_cache_voie_l():
     """Cache voie L en LECTURE SEULE (V6.1) : verdicts figés une fois, jamais
     réécrits par l'arbitre. Absent ou illisible → {} (dégradation honnête)."""
@@ -157,9 +224,10 @@ def main():
         if (sdir / "evals" / "trigger_evals.json").exists():
             equipped.append(sdir)
 
-    registry = {}
-    ignores = []
-    cache_l = load_cache_voie_l()
+    # Passe 1 (V6.2, Task 97) — charger TOUS les skills canoniques AVANT le
+    # jugement : la réservation de corpus croisée consulte le périmètre des
+    # autres skills, l'index doit donc exister avant la boucle de verdict.
+    loaded, ignores = [], []
     for sdir in equipped:
         sk = load_skill(sdir)
         if not (isinstance(sk["cases"], list)
@@ -167,8 +235,18 @@ def main():
                         for c in sk["cases"])):
             ignores.append(sdir.name)
             continue
-        kws = keywords_for(sk["name"], sk["desc"], sk["tags"])
-        strong = {stem(p) for p in sk["name"].split("-")}
+        sk["kws"] = keywords_for(sk["name"], sk["desc"], sk["tags"])
+        sk["strong"] = {stem(p) for p in sk["name"].split("-")}
+        loaded.append(sk)
+
+    # Passe 2 — index des positives (donnée de réservation V6.2)
+    idx_positives = build_index_positives(loaded)
+
+    # Passe 3 — jugement (couches : veto V6.1 → voie M → cache voie L → V6.2)
+    registry = {}
+    cache_l = load_cache_voie_l()
+    for sk in loaded:
+        kws, strong = sk["kws"], sk["strong"]
         rows = []
         for c in sk["cases"]:
             q, exp = c["query"], c["should_trigger"]
@@ -194,9 +272,21 @@ def main():
                              "score": round(score, 3), "hits": hits, "ok": ok,
                              "source": "voie-l-cache" if ok else "voie-l-cache-desaccord"})
             else:
-                rows.append({"query": q, "expected": exp, "trigger_m": trig,
-                             "score": round(score, 3), "hits": hits, "ok": False,
-                             "source": "non-resorbe"})
+                # ── V6.2 étape 4 (Task 97) : réservation de corpus croisée —
+                # uniquement ici, sur le non-résolu (garde (a) : jamais avant
+                # veto/voie M/cache — un cas résolu ne peut pas régresser).
+                resv = reserve_corpus(q, sk["name"], idx_positives)
+                if resv:
+                    rows.append({"query": q, "expected": exp, "trigger_m": trig,
+                                 "score": round(score, 3), "hits": hits,
+                                 "ok": exp is False, "source": "v62-reservation-corpus",
+                                 "reserve_avec": resv["avec"],
+                                 "jaccard": resv["jaccard"], "inter": resv["inter"],
+                                 "identique": resv["identique"]})
+                else:
+                    rows.append({"query": q, "expected": exp, "trigger_m": trig,
+                                 "score": round(score, 3), "hits": hits, "ok": False,
+                                 "source": "non-resorbe"})
         n_ok = sum(1 for r in rows if r["ok"])
         registry[sk["name"]] = {"version": sk["version"], "n_cases": len(rows),
                                 "n_keywords": len(kws),
@@ -230,7 +320,7 @@ def main():
     # sinon le rapport change entre deux re-exécutions le lendemain (f(f(x)) != f(x)).
     try:
         import subprocess as _sp
-        _git_date = (_sp.run(["git", "-C", "/home/z/my-project/work_knowledge", "log", "-1",
+        _git_date = (_sp.run(["git", "-C", str(BASE), "log", "-1",
                               "--format=%cd", "--date=short"],
                              capture_output=True, text=True, timeout=10).stdout.strip()
                      or "2026-10-03")
@@ -245,11 +335,12 @@ def main():
                       if any(r["trigger_m"] != r["expected"] for r in v["cases"]))
     report = {
         "date": _git_date,
-        "task": "Task 30 — arbitre V6.1 (campagne A/B/C : vetos exclusifs + cache voie L, voie M inchangée)",
+        "task": "Task 97 — arbitre V6.2 (V6.1 : vetos exclusifs + cache voie L ; V6.2 : réservation de corpus croisée sur non-résolus — voie M inchangée)",
         "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
         "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",
         "invariants": "dynamisés KO-L003 (périmètre = skills/*/evals/trigger_evals.json au moment du rejeu)",
         "v6_1": "veto exclusifs avant scoring + cache voie L lecture seule sur désaccord (Task 30)",
+        "v6_2": "réservation de corpus croisée sur non-résolus : identité normalisée OU jaccard >= 0.7 + >= 3 radicaux partagés avec une positive d'un autre skill équipé (garde : requête aussi positive du corpus courant = non réservée ; Task 97, décision propriétaire trace 1a1df48b3eb8fb9d)",
         "sources_verdicts": sources,
         "verdict_voie_m_seule": "PASS" if not derive_m else "FAIL (informatif)",
         "derive_voie_m_seule": derive_m,
@@ -267,7 +358,7 @@ def main():
 
     if not QUIET:
         print("=" * 70)
-        print(f"ARBITRE V6.1 — rejeu hybride des corpus trigger_evals ({len(registry)} skills)")
+        print(f"ARBITRE V6.2 — rejeu hybride des corpus trigger_evals ({len(registry)} skills)")
         print(f"sources : {sources}")
         print(f"voie M seule (informatif) : {report['verdict_voie_m_seule']}")
         print("=" * 70)

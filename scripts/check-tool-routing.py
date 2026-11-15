@@ -21,7 +21,19 @@ sorte que mon écosystème le fasse automatiquement à partir de maintenant. »
 Mécanisme (harness engineering — harnais resserré sur la dérive constatée, SHARED §7) :
   N1 — preuves mécaniques par artefact modifié (invariants dynamiques KO-L003) :
        skill        -> frontmatter conforme skill-creator §2 (name/version/category/
-                       language/tags/description, semver)
+                       language/tags/description, semver) — UNIQUEMENT pour les skills
+                       INSCRITS au registre KB (calibration Task 97, décision
+                       propriétaire trace 1a1df48b3eb8fb9d « je valide la proposition
+                       future check N1 skill calibré sur le périmètre KB » : la KB
+                       = source de vérité, 55 entrées)
+       skill hors KB -> EXEMPTION TYPÉE (Task 97) — les ~65 skills miroirs plateforme
+                       pré-existants (ASR, LLM, TTS, VLM, docx, pdf, pptx, xlsx,
+                       aminer-*, gaokao-*… hors registre) n'ont pas de frontmatter
+                       skill-creator et n'en requièrent pas : comptés et signalés
+                       dans le rapport (transparence), le routage N2 skill-creator
+                       n'est pas exigé pour eux — bénéfice : certification
+                       reproductible, indépendante du périmètre de diffusion des
+                       cascades de propagation (échec N1 5/6 Task 95 résorbé)
        agent/PM     -> traçabilité de version (en-tête « Version » ou §7 historique)
        script       -> compilable (N3) + docstring d'en-tête (conventions script-creator)
        registre KB  -> entrées « ## nom vX.Y.Z » parsables (format skills-inventory §2.1)
@@ -56,6 +68,22 @@ ROUTING = {
     "registre KB": "skills-inventory",
 }
 
+
+def kb_registry_names():
+    """Task 97 — périmètre N1 « skill » calibré sur le registre KB (décision
+    propriétaire trace 1a1df48b3eb8fb9d) : noms des entrées « ## nom vX.Y.Z » de
+    skills/KNOWLEDGE.md (source de vérité, format skills-inventory §2.1). Un
+    SKILL.md hors registre = miroir plateforme → exemption typée N1."""
+    kb = BASE / "skills" / "KNOWLEDGE.md"
+    if not kb.exists():
+        return set()
+    txt = kb.read_text(encoding="utf-8")
+    return {m.group(1) for m in re.finditer(
+        r"^##\s+(\S+)\s+v[0-9]+\.[0-9]+\.[0-9]+\s*$", txt, re.M)}
+
+
+KB_NAMES = kb_registry_names()
+
 def sh(cmd):
     p = subprocess.run(cmd, cwd=BASE, shell=True, capture_output=True, text=True, timeout=120)
     return p.stdout + p.stderr
@@ -87,7 +115,10 @@ def classify(rel):
         return "agent/PM"
     m = re.match(r"skills/([^/]+)/SKILL\.md$", rel)
     if m:
-        return "skill"
+        # Task 97 — calibration KB : seul un skill INSCRIT au registre (source de
+        # vérité) relève du check N1 profond ; hors registre = miroir plateforme,
+        # exemption typée (check_skill_hors_kb).
+        return "skill" if m.group(1) in KB_NAMES else "skill hors KB"
     if re.match(r"scripts/[^/]+\.py$", rel):
         name = Path(rel).stem
         if name in ("gen-ultra-maitre",) or "infrastructure" in name or name.startswith(("task14-", "task21-")):
@@ -107,6 +138,13 @@ def check_skill(path):
     if not re.search(r"^version:\s*\"?[0-9]+\.[0-9]+\.[0-9]+", fm.group(1), re.M):
         return False, "version non semver"
     return True, "frontmatter skill-creator §2 conforme"
+
+
+def check_skill_hors_kb(path):
+    """Task 97 — exemption typée : miroir plateforme hors registre KB (source de
+    vérité). Pas de frontmatter skill-creator exigé (pré-existence prouvée Task 95
+    G4 — git show) ; compté et signalé dans le rapport (transparence)."""
+    return True, "exemption typée — miroir plateforme hors registre KB (Task 97)"
 
 def check_agent(path):
     txt = Path(path).read_text(encoding="utf-8")
@@ -130,7 +168,8 @@ def check_kb(path):
     n = len(re.findall(r"^##\s+\S+\s+v[0-9]+\.[0-9]+\.[0-9]+\s*$", txt, re.M))
     return (n >= 26, f"{n} entrées versionnées parsables (>=26 attendues)")
 
-CHECKS = {"skill": check_skill, "agent/PM": check_agent, "script": check_script,
+CHECKS = {"skill": check_skill, "skill hors KB": check_skill_hors_kb,
+          "agent/PM": check_agent, "script": check_script,
           "infrastructure": check_script, "registre KB": check_kb}
 
 def main():
