@@ -1,0 +1,866 @@
+{
+  "task": "101-verif-differes",
+  "verdict": "0_DIFFERE_CORRECTABLE",
+  "nb_total_marqueurs": 121,
+  "comptages_par_classe": {
+    "PROPRIETAIRE": 11,
+    "AUTO": 1,
+    "HISTORIQUE": 21,
+    "METHODE": 3,
+    "METHODE_ARBITRE": 4,
+    "ARCHIVE_R4": 61,
+    "DOC_METHODE": 14,
+    "TEMPLATE_CONCU": 1,
+    "PLATEFORME_NON_KB": 5
+  },
+  "items_open": [],
+  "details": [
+    {
+      "zone": "VIVANTE",
+      "fichier": "worklog.md",
+      "ligne": 1,
+      "extrait": "## 2026-11-15 (suite 143, session web-ecef7f80) — Task 98 CLOSE : GO propriétaire trace 1a1df74c670cddc1 « GO avec ma clé [PAT frais fourni dans la discussion courante] » (gen-plan mode step — 2 items) : **ITEM 1 PUSH EX",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "worklog.md",
+      "ligne": 3,
+      "extrait": "## 2026-11-15 (suite 144, session web-ecef7f80) — Task 99 CLOSE : directives propriétaire « COMMIT et PUSH avec ma clé [PAT fourni] » (tour amont, trace de session) puis trace 1a1dfac9a2340b8d « correct-work (projet) --b",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "worklog.md",
+      "ligne": 5,
+      "extrait": "## 2026-11-15 (suite 145, session web-ecef7f80) — Task 100 CLOSE : GO propriétaire trace 1a1dfb31d58350d5 « GO » sur la pendance F1 du point d'état Task 99 (gen-plan mode step — mission dédiée : brancher l'étape 2 du pip",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "plan-task100-mission-f1.md",
+      "ligne": 3,
+      "extrait": "> gen-plan mode step (v3.43.0) · GO propriétaire trace `1a1dfb31d58350d5` sur la pendance F1 du point d'état Task 99 (finding suite 142 : véhicule de rescellement du pipeline eco_install incompatible avec l'arbitre integ",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "rapport-cw-task99-bloc.md",
+      "ligne": 43,
+      "extrait": "**Étape 2 — Erreurs et omissions** : aucun écart — le point d'état est DÉRIVÉ DU DISQUE et des rejeus réels (KO-L003), non de mémoire : résidus triggers ÉTEINTS (rejeu 101/101 ce tour), pendance PUSH éteinte (parité `2b9",
+      "classe": "AUTO"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task99.md",
+      "ligne": 4,
+      "extrait": "> **Directive Task 97 SUIVI** : « dis-moi quelles actions cohérentes restent-ils à faire pour finaliser ce projet » (point d'état pendances — suite 141)",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task99.md",
+      "ligne": 10,
+      "extrait": "> **Particularité** : clone de clôture du tour Task 99 — l'état commit/push a été vérifié SANS jeton (0 exposition sur no-op, recalibrage E15), la dérive de modes a été réparée localement, et le point d'état final des pe",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task99.md",
+      "ligne": 18,
+      "extrait": "1. **Task 97 SUIVI (suite 141)** — directive « dis-moi quelles actions cohérentes restent-ils à faire » : enquête read-before-answering (Task 97 CLOSE vérifiée POUSSÉE, 5 items clos) → POINT D'ÉTAT rendu : rotation PAT [",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task99.md",
+      "ligne": 19,
+      "extrait": "2. **Task 97 SUIVI 2 (suite 142)** — GO propriétaire exécuté + tick 15:00 CET job 531684 VALIDÉ (run_count 1, anomalie désarmement dissipée) + **INCIDENT restauration-sandbox diagnostiqué-réparé en 2 phases** : `.git` lo",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task99.md",
+      "ligne": 31,
+      "extrait": "| `scripts/task-f5-seal-archive-v23.py` | scelleur canonique v2.3 (non modifié) | cible du FINDING F1 — à brancher sur l'étape 2 du pipeline en mission dédiée |",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task99.md",
+      "ligne": 76,
+      "extrait": "5. **PUSH** : avec un PAT frais fourni dans la discussion courante UNIQUEMENT s'il existe un commit réel (KO-L009 — mémoire de commande ; E15 : consigner l'exposition ; 0 exposition sur no-op) ; sinon commit local SANS P",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task99.md",
+      "ligne": 78,
+      "extrait": "7. **Pendances en l'état au 2026-11-15 (après Task 99)** : rotation/révocation PAT [PROPRIÉTAIRE — CRITIQUE : jeton ancien 19 expositions + 6 accès Task 98 + 1 accès Task 99] · finding F1 véhicule rescellement pipeline [",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task98-extinction-residus-triggers.md",
+      "ligne": 3,
+      "extrait": "**Directive propriétaire** trace `1a1df74c670cddc1` « GO avec ma clé \"<PAT fourni dans la discussion courante>\" » — 2 items : (1) PUSH du commit en attente avec la clé ; (2) GO sur la Task 98 d'extinction des 4 résidus t",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task98-extinction-residus-triggers.md",
+      "ligne": 14,
+      "extrait": "- **4 dérives exactes** (rapport triggers) : midi-doc-expert cas 5 « Valide la conformité de ce TSI au schéma de référence. » (attendu False, trig True — hits {refer, valid}) ; re-curation cas 1 « Re-cure mon skill versi",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "rapport-cw-task97-bloc.md",
+      "ligne": 26,
+      "extrait": "**Étape 2 — Erreurs et omissions** : aucun écart. Push `2d37797..b49c072` (commits Task 96 CLOSE `111e356` + Task 96 SUIVI `b49c072`), vérification mécanique `ls-remote refs/heads/main` = SHA local HEAD `b49c07289d0603fa",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "rapport-cw-task97-bloc.md",
+      "ligne": 40,
+      "extrait": "**Étape 4 — Interactions** : arbitre autonome (lecture seule écosystème + écriture rapport JSON exclu de la couche N1 par CERT_ARTIFACTS) ; non mobilisé par certification-complete (indépendance conservée) ; harnais `task",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "rapport-cw-task97-bloc.md",
+      "ligne": 41,
+      "extrait": "**Étape 5 — Cohérence des raisonnements** : rejeu global **99/101** (97 OK inchangés — 0 régression — + correct-work 8/8 bonus) ; **agent-engineering 7/7 — PENDANCE ÉTEINTE** (cas 6 : réservé fleet-engineering, jaccard 0",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "rapport-cw-task97-bloc.md",
+      "ligne": 67,
+      "extrait": "- **Résidus triggers (hors findings, pendances R5 nouvelles)** : midi-doc-expert 5/6 et re-curation 9/12 avec voies d'extinction documentées (champ `exclusifs`, lexique) — décision propriétaire future",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task96-rearmage-cron-triage-pendances.md",
+      "ligne": 1,
+      "extrait": "# Plan — Task 96 : ré-armage cron cadence autonome (3 ticks/jour — limite plateforme) + tri des pendances R5 (écart cas 6 voie M hors cadence · proposition future check N1 périmètre KB)",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task96-rearmage-cron-triage-pendances.md",
+      "ligne": 10,
+      "extrait": "- **Cron 516921** (API plateforme interrogée directement) : ENREGISTRÉ mais **INACTIF** — status -1, invisible à `list` (0 job actif sur la plateforme), 5 exécutions du 2026-11-09 13:50→23:50, désactivé le 2026-11-10 00:",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task96-rearmage-cron-triage-pendances.md",
+      "ligne": 11,
+      "extrait": "- **Écart cas 6 voie M** : écart structurel consigné Task 86 (agent-engineering, Description Optimization A10/A14) — re-mesure 6/7, le cas 6 sur voie M reste en faux positif STRUCTUREL : radical « agent » ∈ strong arbitr",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task96-rearmage-cron-triage-pendances.md",
+      "ligne": 18,
+      "extrait": "- **Message rafraîchi** (l'ancien citait la file re-curation ÉTEINTE depuis Task 85 et un littéral de compte de certification périmé) : réinstall d'abord (voie directe, certification SHA-256 complète, 0 divergence — litt",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task96-rearmage-cron-triage-pendances.md",
+      "ligne": 23,
+      "extrait": "- **Aucune exécution** (pas de mission arbitre V6, pas de modification de skill/agent/arbitre) — le maintien « hors cadence » confirmé par le propriétaire (trace 1a1df19ddd9c60c1) est consigné au plan + worklog avec cont",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task96-rearmage-cron-triage-pendances.md",
+      "ligne": 31,
+      "extrait": "- Plan → download/ hôte + miroir dépôt ; worklog suites 136-137 hôte + dépôt (parité byte) ; $FACON2 avant commit : arbitres ×6 AU VERT (verify-cross ×2 modes · verify-correct-work · integrity · interactions · tool-routi",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task96-rearmage-cron-triage-pendances.md",
+      "ligne": 41,
+      "extrait": "| D003 | Message rafraîchi : file re-curation éteinte retirée, littéral « 54/54+ » retiré, pendances 2026-11-15, garde « PAT frais uniquement », cadence 3×/jour explicite, français permanent (règle d'or n°6) | texte du j",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "plan-task96-rearmage-cron-triage-pendances.md",
+      "ligne": 46,
+      "extrait": "| D008 | Commit local SANS PUSH + E15 0 exposition + résumé français | `git log -1` « Task 96 CLOSE » + origin..HEAD = 1 commit en attente + réponse finale au propriétaire |",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "scripts/install-ecosystem-skills.py",
+      "ligne": 290,
+      "extrait": "**Outputs** : Plan structuré, TODO list, étapes parallélisables",
+      "classe": "METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "scripts/task47-b-precision-v3331-edits.py",
+      "ligne": 117,
+      "extrait": "\"existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).\"",
+      "classe": "METHODE_ARBITRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "scripts/task47-b-precision-v3331-edits.py",
+      "ligne": 121,
+      "extrait": "\"existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).\\n\"",
+      "classe": "METHODE_ARBITRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "scripts/task47-regle-or-7-edits.py",
+      "ligne": 57,
+      "extrait": "\"dérive à corriger (E13).\"",
+      "classe": "METHODE_ARBITRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "scripts/task47-regle-or-7-edits.py",
+      "ligne": 92,
+      "extrait": "\"un élément absent des trois est une dérive à corriger (E13).\"",
+      "classe": "METHODE_ARBITRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/auto-target-tracker/PROMPT-MAITRE-auto-target-tracker.md",
+      "ligne": 320,
+      "extrait": "3. **Confirmation rapide** : inviter l'utilisateur à confirmer sans tarder le résultat et à corriger manuellement en cas d'écart",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/charts/references/mermaid.md",
+      "ligne": 658,
+      "extrait": "EnRevue --> Brouillon : retours à corriger",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/experiment-suite/references/02-code-quality.md",
+      "ligne": 53,
+      "extrait": "Things that count as **placeholders to remove**: `nn.Linear(1, 1)`, `def forward(self, x): return x`, `# TODO: implement` comments, `pass` bodies.",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/experiment-suite/references/02-code-quality.md",
+      "ligne": 219,
+      "extrait": "- **Stub bodies** (`pass`, `return x`, `# TODO`).",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/experiment-suite/references/02-code-quality.md",
+      "ligne": 227,
+      "extrait": "- [ ] `model.py` has a real model class for the task; no `pass` / `TODO`",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/experiment-suite/references/06-quality-gate.md",
+      "ligne": 32,
+      "extrait": "grep -rE \"^\\s*pass\\s*$|# TODO|raise NotImplementedError\" experiment/*.py | head",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/experiment-suite/references/06-quality-gate.md",
+      "ligne": 193,
+      "extrait": "- [ ] G2 all 4 modules import cleanly; no `pass`/`TODO`/`NotImplementedError` in core paths",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/gen-plan/PROMPT-MAITRE-gen-plan.md",
+      "ligne": 189,
+      "extrait": "**Règle d'or n°7 — Mémoire complète de la discussion avant et pendant la planification (relire les clones et sauvegardes)** (directive propriétaire 2026-11-04, session web-6058b3ba — « je précise que tu dois te rappeler précisément de tous les éléments de la discussion que tu dois traiter dans tes taches du plan d'actions et pour cela si tu as oublié quelque chose à cause d'une coupure alors tu do",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/gen-plan/references/etapes-detaillees.md",
+      "ligne": 165,
+      "extrait": "- TODO list ordonnée",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@PM-SKILLS/memory-engineering/PROMPT-MAITRE-memory-engineering.md",
+      "ligne": 113,
+      "extrait": "Répliques de l'État Long : worklog (unique), KB (unique), answer key (unique), plan (unique) — les « copies » (miroir prompts-maîtres, canal download, archive) sont des répliques BYTE-IDENTIQUES vérifiées, pas des variantes. Toute divergence clone↔original est un écart-attendu documenté (B9/D016) ou un drift à corriger.",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.10.0.md",
+      "ligne": 659,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.11.0.md",
+      "ligne": 672,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.12.0.md",
+      "ligne": 674,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.13.0.md",
+      "ligne": 694,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.16.0.md",
+      "ligne": 733,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.17.0.md",
+      "ligne": 747,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.17.1.md",
+      "ligne": 748,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.17.2.md",
+      "ligne": 751,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.18.0.md",
+      "ligne": 773,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.19.0.md",
+      "ligne": 788,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.21.0.md",
+      "ligne": 811,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.22.0.md",
+      "ligne": 831,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.22.1.md",
+      "ligne": 844,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.23.0.md",
+      "ligne": 859,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.23.1.md",
+      "ligne": 861,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.23.2.md",
+      "ligne": 864,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.24.0.md",
+      "ligne": 865,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.25.0.md",
+      "ligne": 869,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.26.0.md",
+      "ligne": 881,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.27.0.md",
+      "ligne": 863,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.28.0.md",
+      "ligne": 864,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.28.1.md",
+      "ligne": 865,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.28.2.md",
+      "ligne": 866,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.29.0.md",
+      "ligne": 880,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.30.0.md",
+      "ligne": 883,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.31.0.md",
+      "ligne": 886,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.32.0.md",
+      "ligne": 885,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.33.0.md",
+      "ligne": 167,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.33.0.md",
+      "ligne": 897,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.33.1.md",
+      "ligne": 167,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.33.1.md",
+      "ligne": 899,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.34.0.md",
+      "ligne": 167,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.34.0.md",
+      "ligne": 902,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.35.0.md",
+      "ligne": 167,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.35.0.md",
+      "ligne": 905,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.35.1.md",
+      "ligne": 167,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.35.1.md",
+      "ligne": 906,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.35.2.md",
+      "ligne": 167,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.35.2.md",
+      "ligne": 907,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.36.0.md",
+      "ligne": 167,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.36.0.md",
+      "ligne": 909,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.37.0.md",
+      "ligne": 171,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.37.0.md",
+      "ligne": 916,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.37.1.md",
+      "ligne": 171,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.37.1.md",
+      "ligne": 917,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.37.2.md",
+      "ligne": 171,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.37.2.md",
+      "ligne": 918,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.38.0.md",
+      "ligne": 171,
+      "extrait": "4. **Couverture vérifiable** — chaque élément recensé ∈ {tâche du plan, livrable certifié existant, pendance consignée} ; un élément absent des trois est une dérive à corriger (E13).",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.38.0.md",
+      "ligne": 921,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.39.0.md",
+      "ligne": 830,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.39.0.md",
+      "ligne": 1531,
+      "extrait": "**Règle d'or n°7 — Mémoire complète de la discussion avant et pendant la planification (relire les clones et sauvegardes)** (directive propriétaire 2026-11-04, session web-6058b3ba — « je précise que tu dois te rappeler précisément de tous les éléments de la discussion que tu dois traiter dans tes taches du plan d'actions et pour cela si tu as oublié quelque chose à cause d'une coupure alors tu do",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.40.0.md",
+      "ligne": 831,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.40.0.md",
+      "ligne": 1534,
+      "extrait": "**Règle d'or n°7 — Mémoire complète de la discussion avant et pendant la planification (relire les clones et sauvegardes)** (directive propriétaire 2026-11-04, session web-6058b3ba — « je précise que tu dois te rappeler précisément de tous les éléments de la discussion que tu dois traiter dans tes taches du plan d'actions et pour cela si tu as oublié quelque chose à cause d'une coupure alors tu do",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.41.0.md",
+      "ligne": 833,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.41.0.md",
+      "ligne": 1538,
+      "extrait": "**Règle d'or n°7 — Mémoire complète de la discussion avant et pendant la planification (relire les clones et sauvegardes)** (directive propriétaire 2026-11-04, session web-6058b3ba — « je précise que tu dois te rappeler précisément de tous les éléments de la discussion que tu dois traiter dans tes taches du plan d'actions et pour cela si tu as oublié quelque chose à cause d'une coupure alors tu do",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.42.0.md",
+      "ligne": 836,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.42.0.md",
+      "ligne": 1543,
+      "extrait": "**Règle d'or n°7 — Mémoire complète de la discussion avant et pendant la planification (relire les clones et sauvegardes)** (directive propriétaire 2026-11-04, session web-6058b3ba — « je précise que tu dois te rappeler précisément de tous les éléments de la discussion que tu dois traiter dans tes taches du plan d'actions et pour cela si tu as oublié quelque chose à cause d'une coupure alors tu do",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.6.1.md",
+      "ligne": 503,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.7.0.md",
+      "ligne": 545,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.8.0.md",
+      "ligne": 633,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.8.1.md",
+      "ligne": 634,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@historique/prompts-maitres/gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.9.0.md",
+      "ligne": 635,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.43.0.md",
+      "ligne": 843,
+      "extrait": "- TODO list ordonnée",
+      "classe": "ARCHIVE_R4"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.43.0.md",
+      "ligne": 1550,
+      "extrait": "**Règle d'or n°7 — Mémoire complète de la discussion avant et pendant la planification (relire les clones et sauvegardes)** (directive propriétaire 2026-11-04, session web-6058b3ba — « je précise que tu dois te rappeler précisément de tous les éléments de la discussion que tu dois traiter dans tes taches du plan d'actions et pour cela si tu as oublié quelque chose à cause d'une coupure alors tu do",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/auto-target-tracker/SKILL.md",
+      "ligne": 297,
+      "extrait": "3. **Confirmation rapide** : inviter l'utilisateur à confirmer sans tarder le résultat et à corriger manuellement en cas d'écart",
+      "classe": "METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/cahier-des-charges/scripts/scaffold_tests.py",
+      "ligne": 175,
+      "extrait": "# TODO(M7) : assertions exécutables du critère d'acceptation du CDC.",
+      "classe": "TEMPLATE_CONCU"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/design/design-templates/ppt/ib-pitch-book/references/checklist.md",
+      "ligne": 10,
+      "extrait": "- [ ] No placeholder `TODO` or `Lorem` in user-visible text.",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/design/horizontal-craft/anti-ai-slop.md",
+      "ligne": 59,
+      "extrait": "- No `lorem ipsum`, \"feature one / two / three\", \"placeholder text\", fake console handlers, TODO comments, or empty demo logic.",
+      "classe": "PLATEFORME_NON_KB"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/design/horizontal-craft/link-and-proof.md",
+      "ligne": 112,
+      "extrait": "TODO",
+      "classe": "PLATEFORME_NON_KB"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/design/horizontal-craft/link-and-proof.md",
+      "ligne": 113,
+      "extrait": "FIXME",
+      "classe": "PLATEFORME_NON_KB"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/design/quality-gate.md",
+      "ligne": 47,
+      "extrait": "de gestionnaire TODO, ou d'« interaction » uniquement pour la console ; chaque CTA a une destination réelle ou un état d'attente visible. [§B]",
+      "classe": "PLATEFORME_NON_KB"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/dream-interpreter/scripts/example.py",
+      "ligne": 15,
+      "extrait": "# TODO: Add actual script logic here",
+      "classe": "PLATEFORME_NON_KB"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/experiment-suite/references/02-code-quality.md",
+      "ligne": 53,
+      "extrait": "Things that count as **placeholders to remove**: `nn.Linear(1, 1)`, `def forward(self, x): return x`, `# TODO: implement` comments, `pass` bodies.",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/experiment-suite/references/02-code-quality.md",
+      "ligne": 219,
+      "extrait": "- **Stub bodies** (`pass`, `return x`, `# TODO`).",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/experiment-suite/references/02-code-quality.md",
+      "ligne": 227,
+      "extrait": "- [ ] `model.py` has a real model class for the task; no `pass` / `TODO`",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/experiment-suite/references/06-quality-gate.md",
+      "ligne": 32,
+      "extrait": "grep -rE \"^\\s*pass\\s*$|# TODO|raise NotImplementedError\" experiment/*.py | head",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/experiment-suite/references/06-quality-gate.md",
+      "ligne": 193,
+      "extrait": "- [ ] G2 all 4 modules import cleanly; no `pass`/`TODO`/`NotImplementedError` in core paths",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/gen-plan/references/etapes-detaillees.md",
+      "ligne": 165,
+      "extrait": "- TODO list ordonnée",
+      "classe": "DOC_METHODE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/gen-plan/references/regles-or.md",
+      "ligne": 33,
+      "extrait": "**Règle d'or n°7 — Mémoire complète de la discussion avant et pendant la planification (relire les clones et sauvegardes)** (directive propriétaire 2026-11-04, session web-6058b3ba — « je précise que tu dois te rappeler précisément de tous les éléments de la discussion que tu dois traiter dans tes taches du plan d'actions et pour cela si tu as oublié quelque chose à cause d'une coupure alors tu do",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "CODE",
+      "fichier": "skills/memory-engineering/SKILL.md",
+      "ligne": 89,
+      "extrait": "Répliques de l'État Long : worklog (unique), KB (unique), answer key (unique), plan (unique) — les « copies » (miroir prompts-maîtres, canal download, archive) sont des répliques BYTE-IDENTIQUES vérifiées, pas des variantes. Toute divergence clone↔original est un écart-attendu documenté (B9/D016) ou un drift à corriger.",
+      "classe": "METHODE"
+    }
+  ]
+}
