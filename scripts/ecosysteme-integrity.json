@@ -6,7 +6,7 @@
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "a088aedf4bef807e8d1709a9cbd5b5cd605b56d0950bd3d66ec2cd29e8b4c6b4",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "2441f93c27a2334aeed384a7f397c784e55a1f164299b399a57590002132a72f",
     "PROMPT-MAITRE-SHARED.md": "2369613999997719625bcc3ac8ff5f3d1548cbc6b4bdc31fa6642d0bf74039a4",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "2ed4ec470abc725751d305edacaec6db6f12d8b9d18c1afe148bac72e4c01f98",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "4f9a81d999f5e2071319c5df7b4ab33c170be16b165b6eace87984a2ef458f79",
     "README.md": "1626f57160679b0292cb823e90361f41e3a0bf1bb972053fb78bbf17cc6b7fef",
     "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
   },
@@ -17,12 +17,12 @@
     "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "a088aedf4bef807e8d1709a9cbd5b5cd605b56d0950bd3d66ec2cd29e8b4c6b4",
     "PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md": "2441f93c27a2334aeed384a7f397c784e55a1f164299b399a57590002132a72f",
     "PROMPT-MAITRE-SHARED.md": "2369613999997719625bcc3ac8ff5f3d1548cbc6b4bdc31fa6642d0bf74039a4",
-    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "2ed4ec470abc725751d305edacaec6db6f12d8b9d18c1afe148bac72e4c01f98",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "4f9a81d999f5e2071319c5df7b4ab33c170be16b165b6eace87984a2ef458f79",
     "README.md": "1626f57160679b0292cb823e90361f41e3a0bf1bb972053fb78bbf17cc6b7fef",
     "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "2619e9f48e9f6bd9f6c294e10fe8e36a334f205f164b6ba0d0da8d59fe697f98"
+    "mon-ecosysteme_archive.zip": "f39b4e8a5f24a4296acd619d7682d5397dadacd80d485261863045ab1b94c56d"
   },
   "skills": {
     "agent-creator": {
@@ -30,8 +30,8 @@
       "version": "2.3.0"
     },
     "agent-engineering": {
-      "sha256": "1e043b4f07d37c9d24b8db990ab2ed1607c10787ea97973c9137cd23f5929564",
-      "version": "1.0.0"
+      "sha256": "9316ec5cc6f2f8e5ce3394b64c194a5caf10f683bd7c58060bac9fbf3606e953",
+      "version": "1.1.1"
     },
     "agent-prompt-engineering": {
       "sha256": "75881e44183b2b909fa9f0027b6914278a91a797ecd2fea7be1d27bb98c603dd",

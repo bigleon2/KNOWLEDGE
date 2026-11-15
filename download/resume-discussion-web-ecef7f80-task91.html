@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Résumé de discussion&nbsp;— Écosystème Knowledge&nbsp;— Session web-ecef7f80</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+:root{
+  --c-bg:#0B0E14;
+  --c-card:#11151E;
+  --c-card2:#151B27;
+  --c-border:#232B3A;
+  --c-text:#E8EBF2;
+  --c-muted:#939CAD;
+  --c-accent:#5B9DFF;
+  --c-accent-dim:#2C4A7C;
+}
+html,body{
+  margin:0;padding:0;width:720px;
+  background:var(--c-bg);
+  color:var(--c-text);
+  font-family:'Inter',sans-serif;
+  font-size:15px;line-height:1.65;
+  line-break:strict;word-break:normal;overflow-wrap:break-word;
+}
+@media screen{
+  html{height:auto;display:flex;justify-content:center;background:#05070B;}
+  body{transform-origin:top center;margin:20px auto;box-shadow:0 0 40px rgba(0,0,0,.6);}
+}
+p{margin:0 0 12px 0;text-align:justify;}
+p,td,li{line-break:strict;overflow-wrap:break-word;}
+
+/* ============ COVER ============ */
+.cover{
+  width:720px;height:1020px;box-sizing:border-box;
+  break-after:page;overflow:hidden;position:relative;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 64px;
+}
+.cover .grid-marks{position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--c-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-border) 1px, transparent 1px);
+  background-size:120px 120px;opacity:.18;}
+.cover .topbar{position:absolute;top:44px;left:64px;right:64px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;
+  color:var(--c-muted);text-transform:uppercase;}
+.cover .topbar .dot{width:7px;height:7px;border-radius:50%;background:var(--c-accent);display:inline-block;margin-right:8px;}
+.cover .tag{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.32em;
+  color:var(--c-accent);text-transform:uppercase;margin-bottom:26px;}
+.cover .title{font-size:58px;font-weight:900;line-height:1.04;letter-spacing:-.02em;margin-bottom:26px;}
+.cover .title .thin{font-weight:300;color:var(--c-muted);}
+.cover .subtitle{font-size:16px;font-weight:400;color:var(--c-muted);line-height:1.7;max-width:520px;text-align:left;}
+.cover .accent-rule{width:72px;height:3px;background:var(--c-accent);margin:44px 0 44px 0;}
+.cover .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;max-width:540px;}
+.cover .meta-item{border-left:2px solid var(--c-border);padding-left:14px;}
+.cover .meta-item .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--c-muted);text-transform:uppercase;margin-bottom:3px;}
+.cover .meta-item .v{font-size:13px;font-weight:600;color:var(--c-text);}
+.cover .bottombar{position:absolute;bottom:44px;left:64px;right:64px;
+  display:flex;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--c-muted);}
+
+/* ============ CONTENT ============ */
+.main-content{padding:64px 64px 44px 64px;}
+.chapter-header{break-after:avoid;break-inside:avoid;margin-top:28px;}
+.chapter-header:first-child{margin-top:0;}
+.section-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--c-accent);text-transform:uppercase;margin-bottom:8px;}
+.section-title{font-size:26px;font-weight:800;letter-spacing:-.01em;line-height:1.2;margin-bottom:16px;
+  padding-bottom:9px;border-bottom:1px solid var(--c-border);position:relative;}
+.section-title::after{content:'';position:absolute;left:0;bottom:-2px;width:56px;height:3px;background:var(--c-accent);}
+.lead{font-size:15.5px;color:var(--c-text);}
+.small-note{font-size:12.5px;color:var(--c-muted);}
+
+/* cards */
+.card{background:var(--c-card);border:1px solid var(--c-border);border-left:3px solid var(--c-accent);
+  border-radius:4px;padding:16px 18px;margin-bottom:14px;break-inside:avoid;}
+.card .card-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--c-accent);text-transform:uppercase;margin-bottom:6px;}
+.card .card-t{font-size:15px;font-weight:700;margin-bottom:6px;}
+.card p{margin:0;font-size:13.5px;color:var(--c-muted);line-height:1.6;}
+.card p strong{color:var(--c-text);font-weight:600;}
+
+/* task timeline */
+.task{display:flex;gap:16px;margin-bottom:14px;break-inside:avoid;}
+.task .t-num{flex:0 0 84px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--c-accent);
+  border-right:1px solid var(--c-border);padding-top:3px;padding-right:12px;line-height:1.5;word-break:normal;}
+.task .t-num .date{display:block;color:var(--c-muted);font-size:10px;}
+.task .t-body{flex:1;}
+.task .t-title{font-size:14.5px;font-weight:700;margin-bottom:4px;}
+.task p{margin:0;font-size:13px;color:var(--c-muted);line-height:1.6;}
+
+/* stats */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0 18px 0;break-inside:avoid;}
+.stat{background:var(--c-card);border:1px solid var(--c-border);border-radius:4px;padding:16px 14px;}
+.stat .n{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:var(--c-accent);line-height:1;margin-bottom:7px;}
+.stat .l{font-size:10.5px;color:var(--c-muted);line-height:1.45;text-transform:uppercase;letter-spacing:.06em;}
+
+/* quote */
+.quote{border-left:3px solid var(--c-accent-dim);background:var(--c-card);
+  padding:14px 18px;margin:14px 0;break-inside:avoid;border-radius:0 4px 4px 0;}
+.quote .q-text{font-size:13px;color:var(--c-text);line-height:1.65;font-style:italic;}
+.quote .q-src{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--c-muted);letter-spacing:.14em;margin-top:8px;text-transform:uppercase;}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:12px;margin:14px 0;break-inside:avoid;}
+thead{display:table-header-group;}
+th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--c-accent);text-align:left;padding:8px 10px;border-bottom:2px solid var(--c-border);font-weight:600;}
+td{padding:8px 10px;border-bottom:1px solid var(--c-border);color:var(--c-muted);vertical-align:top;line-height:1.5;}
+td.strong{color:var(--c-text);font-weight:600;}
+tr{break-inside:avoid;}
+tr:nth-child(odd) td{background:rgba(91,157,255,.025);}
+
+/* verdict block */
+.verdict{background:var(--c-card2);border:1px solid var(--c-accent-dim);border-radius:4px;
+  padding:22px 24px;margin:16px 0;break-inside:avoid;}
+.verdict .v-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.28em;color:var(--c-accent);text-transform:uppercase;margin-bottom:10px;}
+.verdict .v-text{font-size:17px;font-weight:700;line-height:1.5;margin-bottom:8px;}
+.verdict p{font-size:13px;color:var(--c-muted);margin:0;}
+
+/* ending */
+.ending{width:720px;height:1020px;box-sizing:border-box;break-before:page;overflow:hidden;
+  position:relative;display:flex;flex-direction:column;justify-content:center;padding:0 64px;}
+.ending .grid-marks{position:absolute;inset:0;
+  background-image:linear-gradient(var(--c-border) 1px, transparent 1px),linear-gradient(90deg, var(--c-border) 1px, transparent 1px);
+  background-size:120px 120px;opacity:.14;}
+.ending .big-text{font-size:34px;font-weight:900;line-height:1.25;letter-spacing:-.01em;margin-bottom:24px;}
+.ending .accent-rule{width:72px;height:3px;background:var(--c-accent);margin:0 0 44px 0;}
+.ending p{color:var(--c-muted);font-size:14px;text-align:left;}
+.ending .mono{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--c-muted);letter-spacing:.16em;margin-top:40px;line-height:2;}
+</style>
+</head>
+<body>
+
+<!-- ================= COUVERTURE ================= -->
+<div class="cover">
+  <div class="grid-marks"></div>
+  <div class="topbar"><span><span class="dot"></span>ÉCOSYSTÈME KNOWLEDGE</span><span>bigleon2/KNOWLEDGE</span></div>
+  <div class="tag">Rapport de discussion · Résumé intégral</div>
+  <div class="title">Neuf jours<br>d'ingénierie<br><span class="thin">d'un écosystème</span></div>
+  <div class="subtitle">Synthèse détaillée et cohérente de la discussion de la session web-ecef7f80&nbsp;— du Task 70 (7 novembre 2026) au Task 91 (15 novembre 2026) : installations certifiées, re-curations, montées de gen-plan, discipline n°56, premier agent autonome et verdict d'optimisation.</div>
+  <div class="accent-rule"></div>
+  <div class="meta-grid">
+    <div class="meta-item"><div class="k">Session</div><div class="v">web-ecef7f80 · canal zai-web</div></div>
+    <div class="meta-item"><div class="k">Période</div><div class="v">2026-11-07 → 2026-11-15</div></div>
+    <div class="meta-item"><div class="k">Tâches couvertes</div><div class="v">Task 70 → Task 91</div></div>
+    <div class="meta-item"><div class="k">Version socle</div><div class="v">gen-plan v3.42.0 · SHARED v1.7.37</div></div>
+    <div class="meta-item"><div class="k">Sources</div><div class="v">13 clones · 89 suites worklog · git</div></div>
+    <div class="meta-item"><div class="k">Clôture</div><div class="v">Task 91&nbsp;— directive 1a1de20963908bd9</div></div>
+  </div>
+  <div class="bottombar"><span>TEMPLATE TECH MINIMAL</span><span>ÉDITION DU 2026-11-15</span></div>
+</div>
+
+<!-- ================= CORPS ================= -->
+<div class="main-content">
+
+  <!-- CHAPITRE 1 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapitre 01</div>
+    <div class="section-title">Contexte et périmètre</div>
+  </div>
+  <p class="lead">Ce document retrace l'intégralité d'une discussion de travail entre un propriétaire et son assistant, menée au sein de l'écosystème Knowledge&nbsp;— un ensemble d'une quatre-vingtaine de skills conçus pour un assistant IA, versionnés dans le dépôt git bigleon2/KNOWLEDGE. La discussion s'étend sur neuf jours denses, du 7 au 15 novembre 2026, et couvre vingt-deux tâches numérotées (Task 70 à Task 91). Chaque tâche a été pilotée par le skill de planification gen-plan, vérifiée par l'arbitre correct-work et archivée par clone-chat, selon un protocole immuable qui donne à l'ensemble sa cohérence caractéristique.</p>
+  <p>La session appartient à une lignée de discussions clonées : web-b93f42fa, puis web-4f989063, web-c30e6506 et web-6058b3ba l'ont précédée. Chaque fin de tâche produit un clone auto-suffisant&nbsp;— une archive Markdown capable de ressusciter tout le contexte sans la discussion d'origine. Treize clones jalonnent la présente session, complétés par le worklog (journal append-only, 89 entrées pour la période) et l'historique git du dépôt. Ensemble, ils couvrent la discussion sans interruption : c'est cette matière qui a été relue intégralement, de la fin vers le début, pour produire le présent résumé.</p>
+  <div class="card">
+    <div class="card-k">Le rituel d'ouverture</div>
+    <div class="card-t">« Installe mon écosystème, puis génère le plan d'actions »</div>
+    <p>Les directives majeures de cette discussion suivent un patron constant, observé aux Tasks 74, 90 et 91 : installer l'écosystème personnel sur le profil local grâce au fichier PROMPT-MAITRE-INSTALL-ECOSYSTEME pointé au commit <strong>aa3b99d</strong>, puis mobiliser le gen-plan fraîchement installé pour générer le plan d'actions des étapes suivantes. L'écart entre le SHA ancien de l'URL (v1.9.7, époque Task 63) et l'état certifié courant a été élucidé une fois pour toutes à la Task 90 : la dérivation dynamique « PM le plus récent » prime, sous garde anti-rétrogradation&nbsp;— l'installation aboutit donc toujours à l'état certifié du dépôt, aujourd'hui PM-INSTALL v1.9.14.</p>
+  </div>
+  <p>Les acteurs se répartissent les rôles avec précision : gen-plan planifie (4 modes, 15 étapes E1-E15, answer key vérifiable) ; correct-work vérifie et corrige (5 étapes, 4 modes, sévérités S1-S4) ; clone-chat archive (7+1 étapes, 8 checks de scellement) ; les arbitres mécaniques tranchent (verify-cross, check-ecosysteme-integrity, answer-key-checker, check_plan_protocol) ; et la règle d'or n°6 impose le français exclusif pour tout texte produit&nbsp;— règle durcie en cours de discussion après un constat du propriétaire.</p>
+
+  <!-- CHAPITRE 2 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapitre 02</div>
+    <div class="section-title">Fondations et mesure&nbsp;— Tasks 70-71</div>
+  </div>
+  <p>La discussion s'ouvre le 7 novembre sur un « continue » : intégrer deux collections de référence au cœur de l'écosystème, tester les systèmes d'installation et trancher une question d'architecture par la mesure. La Task 70 déplace d'abord bibliotheque-skills-ia vers skills/@Bibliotheque-skills-Multi-IA (dix fichiers, renommage git préservant la byte-identité), puis ecosystem vers skills/@GHORG-ecosysteme (quatre fichiers, avec adaptation des scripts vivants et montée du skill ghorg-cmdr en v1.1.0). Les tests d'installation donnent lieu à une découverte : huit scripts embarqués restaient invisibles à la propagation du Contexte Système&nbsp;— le correctif propagate-context v2.1.0 clôt la faille.</p>
+  <p>Le troisième volet livre l'étude de faisabilité la plus déterminante de la session. À la question « faut-il réécrire l'écosystème en programmation objet, ou le structurer comme un noyau façon Linux ? », les mesures terrain répondent par la négative : 2 164 fichiers et 71,3 Mio se parcourent en 33 millisecondes, le pipeline d'installation complet s'exécute en 0,14 seconde&nbsp;— aucun goulot d'entrée-sortie n'existe. L'étude conclut que le goulot réel est le budget de jetons consommé par le chargement des skills, et dessine une feuille de route R1-R6 dont la priorité n°1, la divulgation progressive (progressive disclosure) des fichiers lourds, structurera tout le reste de la discussion.</p>
+  <div class="stat-grid">
+    <div class="stat"><div class="n">2 164</div><div class="l">fichiers mesurés · 71,3 Mio · arbre lu en 33 ms</div></div>
+    <div class="stat"><div class="n">0,14 s</div><div class="l">pipeline d'installation complet&nbsp;— aucun goulot E/S</div></div>
+    <div class="stat"><div class="n">#token</div><div class="l">le goulot réel identifié&nbsp;— priorité R1 divulgation progressive</div></div>
+  </div>
+  <p>La Task 71 enchaîne le 8 novembre sur un durcissement demandé par le propriétaire : des dérives de langue ayant été constatées, la règle d'or n°6 est étendue mécaniquement à tout texte produit&nbsp;— raisonnements, titres, libellés, résumés de continuation. Le même jour, les recommandations R1 et R2 de l'étude sont intégrées à gen-plan : l'arbitre de poids de chargement E5-POIDS (seuils OK, LOURD, CRITIQUE) et le cache de verdicts R2-CACHE (gain mesuré 440× sur un cas démonstrateur) font monter gen-plan en v3.38.0. Un épisode de sécurité marque la journée : un jeton d'accès GitHub collé au chat n'est ni recopié ni utilisé&nbsp;— la règle KO-L009 impose guidance de révocation et poussée par le propriétaire uniquement.</p>
+
+  <!-- CHAPITRE 3 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapitre 03</div>
+    <div class="section-title">Re-curation et industrialisation&nbsp;— Tasks 72-80</div>
+  </div>
+  <p>Le cœur de la discussion est un vaste chantier d'allègement. La Task 72 applique la divulgation progressive à gen-plan lui-même : neuf blocs documentaires partent en references/ par déplacement R4 (byte-identité scellée par SHA-256), remplacés par des résumés opérationnels et des pointeurs. Le fichier passe de 104,0 à 29,9 Kio&nbsp;— soit une réduction de 71,2 % du coût de chargement, faisant tomber l'unique skill CRITIQUE de l'écosystème au rang intermédiaire. La même tâche crée le skill re-curation, qui industrialise la méthode en protocole P0-P7 outillé : pré-test obligatoire (verdict GO/NO-GO sur baseline capturée), déplacements purs, post-tests de maintien, vérification d'intégrité R4. Une directive complémentaire ajoute la fenêtre native d'affichage des plans&nbsp;— la liste de tâches de l'agent, affichée au début de l'exécution et mise à jour à chaque fin d'étape.</p>
+  <div class="stat-grid">
+    <div class="stat"><div class="n">−71,2 %</div><div class="l">gen-plan · 104,0 → 29,9 Kio · 26 312 → 7 667 #token</div></div>
+    <div class="stat"><div class="n">v1.0.0</div><div class="l">skill re-curation créé&nbsp;— protocole P0-P7 + harnais de tests</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">skill CRITIQUE restant dans l'écosystème après le chantier</div></div>
+  </div>
+  <p>Les Tasks 73 à 76 consolidnent la confiance : campagne de tests sur trois cibles (gen-plan hôte 11/11, écosystème FAIL puis PASS AVEC RÉSERVES après restauration du skill volatil version-management, miroir 7/7) ; installation certifiée post-coupure de la Task 74 ; vérification d'idempotence de la Task 75 (l'écosystème re-curé est prouvé équivalent et idempotent à sa version précédente) ; puis mise à l'épreuve des systèmes d'installation eux-mêmes en Task 76. Cette dernière révèle cinq failles réelles, dont la plus savoureuse fut découverte en conditions réelles : appeler le pipeline avec --help exécutait… une installation complète. Contrat CLI, épingle de commit, véhicule d'archive unifié, fichiers de référence resynchronisés&nbsp;— tout est corrigé et prouvé, portant PM-INSTALL en v1.9.11.</p>
+  <div class="quote">
+    <div class="q-text">« Vérifie que mon écosystème te permet de lancer 4 commandes en parallèle car j'ai l'impression que tu ne le fais jamais lorsque je t'envoie mes demandes en utilisant mon écosystème. »</div>
+    <div class="q-src">Directive propriétaire&nbsp;— Task 77, 8 novembre</div>
+  </div>
+  <p>La Task 77 répond à ce constat par la mesure plutôt que par la plainte : l'émission multi-appels fonctionne, mais le shell persistant sérialise les commandes d'un même bloc ; la concurrence véritable s'obtient intra-commande (quatre processus en deux secondes au lieu de huit). Le diagnostic fait tomber une vérité inconfortable&nbsp;— la doctrine de parallélisation existait depuis sept versions sans jamais avoir été opérationnalisée : aucun protocole d'émission, zéro vague tracée. Le correctif gen-plan v3.40.0 codifie le protocole d'émission parallèle complet, sous bornes de ressources. Les Tasks 78 à 80 poursuivent : règle de sondage borné (v3.41.0&nbsp;— les inspections transverses se font en mode fichiers d'abord, gains mesurés ×3,2), re-curation de version-management (−45,4 %), clôture différée de la Task 74 par bloc d'extension, puis intégration de la suite de tests en trois familles au harnais même de re-curation (v1.2.0)&nbsp;— jamais de re-curation sans verdict préalable GO.</p>
+
+  <!-- CHAPITRE 4 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapitre 04</div>
+    <div class="section-title">Métier, discipline et premier agent autonome&nbsp;— Tasks 81-85</div>
+  </div>
+  <p>Le 9 novembre, la discussion s'élargit aux skills métier. La Task 81 grave dans iphone19 une règle absolue de fidélité à l'image d'origine (règle 15, critère de qualité 14, version v0.12.0), puis le re-cure de 27,3 %&nbsp;— le cœur opérationnel du pipeline photo refusant légitimement l'externalisation, l'écart au seuil est consigné plutôt que contourné. La Task 82 opère la conversion la plus symbolique de la session : knowledge-observer, seul skill implémentant déjà un cycle complet et un journal persistant, devient le premier agent autonome déployé de l'écosystème, en tandem .agent + SKILL.md. Le routeur d'orchestration ULTRA passe de neuf à douze voies le même jour, puis à treize avec la Task 83.</p>
+  <div class="task">
+    <div class="t-num">TASK 83<span class="date">2026-11-09</span></div>
+    <div class="t-body">
+      <div class="t-title">Création de la discipline n°56&nbsp;— agent-engineering</div>
+      <p>Le propriétaire demande la création d'une discipline « Agent Engineering », définie comme le cadre expert des domaines Agent-Based Engineering, Agent Engineering et Multi-Agent Systems Engineering. Elle naît en skill complet (v1.0.0, gabarit des disciplines n°54) : routage vers huit détenteurs, garde anti-flotte, cycle en six étapes, fondements académiques sourcés, évals avec contrôles négatifs. Son inscription au socle SHARED §7 à la Task 84 fait monter gen-plan en v3.42.0&nbsp;— sa version encore en vigueur aujourd'hui.</p>
+    </div>
+  </div>
+  <p>La Task 84 verrouille l'ensemble : campagne de tests chronologique de 52 items couvrant tout ce qui a été créé ou modifié (52/52 après correction de trois failles réelles), resynchronisation totale du Contexte Système (200 scripts porteurs), puis armement d'une cadence de deux heures&nbsp;— une tâche planifiée réinstallant l'écosystème avant toute chose et poursuivant les pendances à chaque tic. Sous cette cadence, la Task 85 éteint la file de re-curation : skill-creator, web-reader, cahier-des-charges puis iphone17 passent à la moulinette, totalisant avec les cibles précédentes plus de quinze mille jetons de chargement économisés.</p>
+  <div class="stat-grid">
+    <div class="stat"><div class="n">52/52</div><div class="l">campagne chronologique Task 84&nbsp;— 3 failles corrigées avant le vert</div></div>
+    <div class="stat"><div class="n">2 h</div><div class="l">cadence armée&nbsp;— job 516921, réinstallation + continuation à chaque tic</div></div>
+    <div class="stat"><div class="n">7/7</div><div class="l">file re-curation éteinte&nbsp;— 15 000 #token/chargement économisés</div></div>
+  </div>
+
+  <!-- CHAPITRE 5 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapitre 05</div>
+    <div class="section-title">Stabilité, baseline et test de la discipline&nbsp;— Tasks 86-90</div>
+  </div>
+  <p>Restait à mesurer la discipline elle-même. La Task 86 dresse la baseline de déclenchement de agent-engineering : la voie mécanique confirme un score de cinq cas sur sept, corrigé à six sur sept après optimisation de la description sous simulation de sécurité&nbsp;— le septième cas, un faux positif structurel du radical « agent » dans l'arbitre, est consigné comme proposition future hors cadence plutôt que masqué. Les Tasks 87 à 89 enchaînent trois tics de cadence consécutifs qui prouvent la stabilité inter-cycles : réinstallation 55/55, hygiène des bits de mode idempotente, arbitres au vert, poussées successives.</p>
+  <p>La Task 90 referme la boucle de la manière la plus démonstrative : la directive demande de tester agent-engineering avec l'écosystème entier comme entrée. L'audit révèle cinq failles de consistance&nbsp;— une baseline documentée comme en attente alors qu'elle était mesurée, une traçabilité de version incomplète, un champ d'évals périmé, un doublon de description dans deux arbres, une formulation figée. Chaque faille est corrigée par harnais chirurgical avec preuve de non-régression du routage (simulation sur radicaux identiques avant toute édition), portant le skill en v1.1.1. La chaîne complète&nbsp;— test, corrections, cascade de recalibrage, correct-work par blocs quatre sur quatre, clone scellé huit sur huit, poussée&nbsp;— clôt la tâche sur un PASS intégral de treize tâches sur treize.</p>
+
+  <!-- CHAPITRE 6 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapitre 06</div>
+    <div class="section-title">La présente exécution&nbsp;— Task 91 et verdict</div>
+  </div>
+  <p>Après cinq jours d'interruption&nbsp;— coupure de contexte obligeant&nbsp;— la discussion reprend le 15 novembre sur la directive en cours d'exécution : installer l'écosystème, puis enchaîner cinq étapes&nbsp;— relire l'intégralité de la discussion à l'aide des clones et des archives, analyser les modifications apportées à gen-plan et à l'écosystème pour déterminer si la dernière version enregistrée peut être optimisée, produire le présent résumé en PDF Premium, exécuter correct-work par blocs, et archiver par clone-chat.</p>
+  <p>L'installation du jour s'est déroulée sans divergence&nbsp;— 55 formes sur 55 vérifiées par empreintes, garde anti-rétrogradation saine, arbitres au vert&nbsp;— à une découverte près, résolue dans la foulée : l'archive d'intégrité locale du dépôt, artefact non suivi par git, était restée au matin du 9 novembre et ne portait pas la montée de version du routeur ULTRA ; son rescelage par l'outil canonique l'a réalignée sur l'empreinte certifiée par la Task 86. La relecture intégrale a ensuite été conduite de la fin vers le début&nbsp;— treize clones, 89 suites de journal, plans, rapports et historique git&nbsp;— sans trou de couverture, chaque tâche de 70 à 91 étant tracée de sa directive à ses verdicts.</p>
+  <div class="verdict">
+    <div class="v-tag">Verdict d'analyse&nbsp;— question directive</div>
+    <div class="v-text">gen-plan peut-il optimiser sa dernière version enregistrée (v3.42.0) ? Non&nbsp;— rien à optimiser maintenant.</div>
+    <p>Les six montées de gen-plan pendant la discussion (v3.37.2 langue, v3.38.0 hooks de poids et de cache, v3.39.0 re-curation, v3.40.0 émission parallèle, v3.41.0 sondage borné, v3.42.0 socle n°56) constituent précisément la version v3.42.0 : toute modification actionnable est intégrée. Les résidus identifiés sont soit des actions propriétaire (rotation du jeton d'accès, ré-armage de la cadence), soit des propositions futures explicitement hors cadence (écart structurel du cas 6), soit des findings cosmétiques sans incidence comportementale&nbsp;— un littéral de version périmé dans le générateur du routeur, un extrait de Contexte Système figé dans le PM d'installation, un câblage de cache à bénéfice marginal. Monter une version sans substance violerait la règle semver de l'écosystème.</p>
+  </div>
+
+  <!-- CHAPITRE 7 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapitre 07</div>
+    <div class="section-title">Bilan chiffré</div>
+  </div>
+  <p>Les chiffres qui suivent sont dérivés de l'état vérifiable du dépôt au 15 novembre 2026&nbsp;— chaque valeur est traçable à un verdict d'arbitre, une entrée de journal ou un commit.</p>
+  <table>
+    <thead><tr><th>Dimension</th><th>Avant (7 nov.)</th><th>Après (15 nov.)</th></tr></thead>
+    <tbody>
+      <tr><td class="strong">gen-plan</td><td>v3.37.1 · 104,0 Kio</td><td>v3.42.0 · 29,9 Kio (−71,2 %) · 6 montées</td></tr>
+      <tr><td class="strong">Socle SHARED</td><td>v1.7.31</td><td>v1.7.37&nbsp;— discipline n°56 inscrite</td></tr>
+      <tr><td class="strong">PM-INSTALL</td><td>v1.9.7</td><td>v1.9.14&nbsp;— 5 failles d'installation corrigées</td></tr>
+      <tr><td class="strong">Skills re-curés</td><td>0</td><td>7 cibles · file éteinte · −6 103 #token/chargement</td></tr>
+      <tr><td class="strong">Nouveaux éléments</td><td>aucun</td><td>skill re-curation v1.2.2 · discipline n°56 v1.1.1 · 1er agent autonome</td></tr>
+      <tr><td class="strong">Routeur ULTRA</td><td>9 voies</td><td>13 voies</td></tr>
+      <tr><td class="strong">Arbitre intégrité</td><td>110 contrôles</td><td>114 contrôles · 0 FAIL</td></tr>
+      <tr><td class="strong">Interactions</td><td>54 arêtes</td><td>55 arêtes · PASS STRICT</td></tr>
+      <tr><td class="strong">Clones scellés</td><td>aucun</td><td>13 sur la session · 8/8 checks chacun</td></tr>
+    </tbody>
+  </table>
+  <div class="stat-grid">
+    <div class="stat"><div class="n">22</div><div class="l">tâches tracées&nbsp;— Task 70 → 91 · directives exécutées dans l'ordre</div></div>
+    <div class="stat"><div class="n">≈50</div><div class="l">commits poussés sur la période · fast-forward purs prouvés</div></div>
+    <div class="stat"><div class="n">17</div><div class="l">expositions du jeton consignées&nbsp;— rotation recommandée à chaque clone</div></div>
+  </div>
+
+  <!-- CHAPITRE 8 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapitre 08</div>
+    <div class="section-title">Pendances et perspectives</div>
+  </div>
+  <p>La discussion s'achève sur un état des restes honnête, conformément à la règle qui interdit tout faux « terminé ». Trois affaires relèvent du propriétaire : la rotation du jeton d'accès GitHub, exposé à dix-sept reprises dans les échanges et dont la révocation est recommandée à chaque clone ; le ré-armage de la cadence de deux heures, dont la tâche planifiée a disparu de la plateforme avec le recyclage du bac à sable&nbsp;— aucun tic n'a eu lieu depuis le 10 novembre ; et la décision éventuelle de lancer la mission dédiée à l'arbitre de déclenchement, seul remède à l'écart structurel du cas 6.</p>
+  <p>Trois propositions futures, classées cosmétiques, restent consignées sans urgence : recalibrer le littéral de version du harnais dans le générateur du routeur ULTRA (v1.2.1 cité, v1.2.2 en vigueur) ; étendre les substitutions du générateur de prompts maîtres à l'extrait de Contexte Système du PM d'installation, figé à une version ancienne ; et, à plus long terme, câbler davantage de graders sur le cache de verdicts&nbsp;— bien que les arbitres mesurés sous la seconde rendent le gain marginal. Aucune de ces affaires ne touche au comportement de l'écosystème ; toutes sont tracées dans la note d'analyse de la Task 91.</p>
+  <p>Quant à la perspective immédiate, elle est écrite : le présent résumé est vérifié par correct-work en mode projet par blocs, puis la session est archivée par clone-chat&nbsp;— le quatorzième de la lignée&nbsp;— et le dépôt reçoit son commit de clôture. La discussion se referme comme elle a vécu : installée, planifiée, vérifiée, archivée.</p>
+
+</div>
+
+<!-- ================= FIN ================= -->
+<div class="ending">
+  <div class="grid-marks"></div>
+  <div class="big-text">Une discussion,<br>un écosystème,<br>une preuve.</div>
+  <div class="accent-rule"></div>
+  <p>Résumé intégral de la session web-ecef7f80&nbsp;— Task 70 (2026-11-07) à Task 91 (2026-11-15). Établi par relecture antichronologique des treize clones et des archives du dépôt bigleon2/KNOWLEDGE, certifié par les arbitres mécaniques de l'écosystème.</p>
+  <div class="mono">
+    GEN-PLAN v3.42.0 · SHARED v1.7.37 · PM-INSTALL v1.9.14<br>
+    CORRECT-WORK v2.11.0 · CLONE-CHAT v2.0.2 · AGENT-ENGINEERING v1.1.1<br>
+    SESSION web-ecef7f80 · CHAT 891cbdaf · ÉDITION 2026-11-15
+  </div>
+</div>
+
+</body>
+</html>
