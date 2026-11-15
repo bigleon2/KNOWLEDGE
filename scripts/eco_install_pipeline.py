@@ -36,6 +36,15 @@ scripts/ EXCLUT __pycache__/ *.pyc (aucune souillure projetée, union inchangée
 par ailleurs) ; F3 fail-fast — VÉRIFICATION POST-INSTALL embarquée : SHA-256 de
 chaque SKILL.md des entrées KB hôte vs dépôt (0 divergence attendue, exit 2 sinon,
 lecture seule = idempotence byte préservée).
+Task 100 (2026-11-15, session web-ecef7f80 — GO propriétaire trace
+1a1dfb31d58350d5, mission F1 suite 142) : l'étape 2 est BRANCHÉE sur le scelleur
+canonique v2.3 task-f5-seal-archive-v23.py (l'ancien véhicule task21-f2 v2.2
+DÉSÉPILAIT silencieusement les piliers d'une archive v2.3 — piliers dans ses
+RETRAITS_SANCTIONNES — et préservait des entrées périmées de l'archive entrante →
+divergence émergente après restauration-sandbox ; preuve mécanique S2 au rapport
+task100-mission-f1-report.json) + étape 2bis — régénération du manifeste
+d'intégrité par l'arbitre canonique (pense-bête du scelleur v2.3), rc propagés
+(anti-faux-succès F1 Task 22 conservé).
 
 Étapes couvertes par ce script :
   1  Corpus   : sync skills/@mon-ecosysteme/ (9 PMs) + garde R2 anti-rétrogradation
@@ -43,7 +52,9 @@ lecture seule = idempotence byte préservée).
   7  Registre : sync skills/KNOWLEDGE.md + @historique/@Alias/ (registre vivant)
   8  Outillage: sync scripts/ (arbitres + bootstrap), purge des reconstitutions
                provisoires non canoniques (config.json)
-  2  Archive  : rescellement download/mon-ecosysteme_archive.zip (task21-f2)
+  2  Archive  : rescellement download/mon-ecosysteme_archive.zip (task-f5-seal-archive-v23
+               — véhicule canonique v2.3 corpus+piliers, mission F1 Task 100) + régénération
+               du manifeste d'intégrité (check-ecosysteme-integrity, mode COMPLET)
 
 Le dépôt et l'hôte partagent le même lignage (projection hôte 109 fichiers) :
 union-merge sans --delete, fichiers dépôt = source de vérité au commit épinglé.
@@ -254,15 +265,32 @@ def main():
         # sauté ; la vérification post-install F3 (lecture seule) est conservée.
         report["etapes"]["2_archive"] = "non exécuté (dry-run — lecture seule)"
     else:
-        # Étape 2 — Rescellement archive d'intégrité (round-trip v2.2)
+        # Étape 2 — Rescellement archive d'intégrité (véhicule CANONIQUE v2.3
+        # corpus + piliers — mission F1 Task 100, finding suite 142 : l'ancien
+        # véhicule task21-f2 (v2.2) désépilait SILENCIEUSEMENT les piliers d'une
+        # archive v2.3 (ils figurent dans ses RETRAITS_SANCTIONNES) et préservait
+        # des entrées périmées → divergence émergente après restauration-sandbox).
         # F1 (Task 22) : anti-faux-succès — le rc est propagé (exit 2 si échec) ;
         # un rescellement qui échoue ne doit JAMAIS produire une installation « verte ».
         r = subprocess.run([sys.executable,
-                            os.path.join(HOST, "scripts", "task21-f2-rebuild-archive.py")],
+                            os.path.join(HOST, "scripts", "task-f5-seal-archive-v23.py")],
                            capture_output=True, text=True)
         report["etapes"]["2_archive"] = (r.stdout.strip() or r.stderr.strip())[-400:]
         if r.returncode != 0:
             report["etapes"]["2_archive"] = f"ÉCHEC rc={r.returncode} — {report['etapes']['2_archive']}"
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+            sys.exit(2)
+        # Étape 2bis (Task 100) — Régénération du manifeste d'intégrité (mode
+        # COMPLET) : le rescellement a changé les octets de l'archive — le
+        # manifeste (SHA archive + entrées piliers) est régénéré ICI par l'arbitre
+        # canonique (pense-bête imprimé par le scelleur v2.3) ; rc propagé
+        # (anti-faux-succès F1 Task 22).
+        r2 = subprocess.run([sys.executable,
+                             os.path.join(HOST, "scripts", "check-ecosysteme-integrity.py")],
+                            capture_output=True, text=True)
+        report["etapes"]["2_manifeste"] = (r2.stdout.strip() or r2.stderr.strip())[-200:]
+        if r2.returncode != 0:
+            report["etapes"]["2_manifeste"] = f"ÉCHEC rc={r2.returncode} — {report['etapes']['2_manifeste']}"
             print(json.dumps(report, ensure_ascii=False, indent=2))
             sys.exit(2)
 

@@ -17,6 +17,11 @@ Processus (à exécuter sur un état certifié 68/68) :
   3. auto-vérification round-trip complète (15 entrées byte-identiques)
   4. rollback depuis .bak en cas d'échec ; .bak supprimée après succès (convention task21)
 Idempotent : re-exécution sur v2.3 = re-scellement équivalent (15 entrées).
+Byte-stable (Task 100, mission F1) : ZipInfo explicite à époque fixe 1980-01-01
+pour TOUTES les entrées (corpus et piliers) — re-scellements successifs et sur
+trees distincts (repo ↔ hôte) produisent des octets IDENTIQUES (R6 idempotence
+byte + parité miroir sans passe manuelle ; précédent Task 20 F3 même politique
+sur le véhicule v2.2 task21-f2).
 Racines dérivées de __file__ (L008 — portabilité des chemins)."""
 
 import hashlib
@@ -64,11 +69,19 @@ if perdus:
     print(f"ECHEC anti-perte : corpus local divergent de l'archive scellée : {perdus}")
     sys.exit(2)
 
+EPOQUE_FIXE = (1980, 1, 1, 0, 0, 0)  # Task 100 (mission F1) : byte-stabilité R6
+
 with zipfile.ZipFile(ARCHIVE, "w", zipfile.ZIP_DEFLATED) as z:
     for f in corpus_fichiers:
-        z.writestr(f"@mon-ecosysteme/{f}", (CORPUS / f).read_bytes())
+        zi = zipfile.ZipInfo(f"@mon-ecosysteme/{f}", date_time=EPOQUE_FIXE)
+        zi.compress_type = zipfile.ZIP_DEFLATED
+        zi.external_attr = 0o600 << 16
+        z.writestr(zi, (CORPUS / f).read_bytes())
     for arc, src in sorted(PILIERS.items()):
-        z.writestr(arc, src.read_bytes())
+        zi = zipfile.ZipInfo(arc, date_time=EPOQUE_FIXE)
+        zi.compress_type = zipfile.ZIP_DEFLATED
+        zi.external_attr = 0o600 << 16
+        z.writestr(zi, src.read_bytes())
 
 with zipfile.ZipFile(ARCHIVE) as z:
     noms = [n for n in z.namelist() if not n.endswith("/")]

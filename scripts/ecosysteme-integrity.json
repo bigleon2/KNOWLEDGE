@@ -8,7 +8,13 @@
     "PROMPT-MAITRE-SHARED.md": "76a9471083c06b046fbd53a1a77151ce0ed2ee57e0c268f2b4d3660a03e775a5",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "38aed68c9eba17827e87a902ebfbb7fc99d2e8a1612571fe29363aa53ecfd29e",
     "README.md": "1626f57160679b0292cb823e90361f41e3a0bf1bb972053fb78bbf17cc6b7fef",
-    "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
+    "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7",
+    "piliers/scripts/certification-complete.py": "d4519b8ca2d8bc8553885780140f62c726246630f6fffe38a14242e4ad6a1bd8",
+    "piliers/scripts/check-ecosysteme-integrity.py": "c49a1d46b86a887df4cf424b6cda9e6005fa243243e7740279a711e1b30df95d",
+    "piliers/scripts/install-ecosysteme-local.sh": "47322f0a5a2c596eea8447267d582b98aa791d647d50eecde991da11496d21db",
+    "piliers/skills/KNOWLEDGE.md": "f0c24ec6f6364ad268b23a28b604e40c725db0b7da48dfd48e65e4ab575bcefc",
+    "piliers/skills/correct-work/SKILL.md": "47fd1c814178c00460e7a21a3d45cda0c05634e26740e8552acc2fa4fef689d0",
+    "piliers/skills/gen-plan/SKILL.md": "48421247f35e7ec4becd1bf70823f30a8e04f710ff038f755432512a14e4e3f2"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md": "3be1ce9f95f83bdf9caca20115403a21548834ae14f9912090f22cfb29235d77",
@@ -22,7 +28,7 @@
     "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "3d903db2f10fff78cbb39f79f53d3a2be02fb401b0c4d1a6a7f03465cd8dae12"
+    "mon-ecosysteme_archive.zip": "26557e45233d4a43e47cb790244b07228db6ec9f428853c21c42b480be9802e8"
   },
   "skills": {
     "agent-creator": {

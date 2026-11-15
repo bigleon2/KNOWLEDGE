@@ -1,0 +1,65 @@
+{
+  "mission": "F1 — brancher l'étape 2 du pipeline eco_install sur le scelleur canonique v2.3 (finding suite 142)",
+  "go_proprietaire": "trace 1a1dfb31d58350d5 « GO » (Task 100)",
+  "S1_baseline": {
+    "repo": {
+      "entrees": 9,
+      "piliers": 0,
+      "sha256": "3d903db2f10fff78cbb39f79f53d3a2be02fb401b0c4d1a6a7f03465cd8dae12"
+    },
+    "host": {
+      "entrees": 9,
+      "piliers": 0,
+      "sha256": "3d903db2f10fff78cbb39f79f53d3a2be02fb401b0c4d1a6a7f03465cd8dae12"
+    },
+    "parite_miroir": true,
+    "capture": "pré-implémentation — véhicule pipeline = task21-f2 (v2.2)"
+  },
+  "S2_simulation_deselement": {
+    "rc_vehicule_v22": 0,
+    "avant": {
+      "entrees": 15,
+      "piliers": 6,
+      "sha256": "39eb149637f6430eeebcc5f1ad40e26bf952a39db10313468214329a90390857"
+    },
+    "apres": {
+      "entrees": 9,
+      "piliers": 0,
+      "sha256": "7da2042e64798147cf48f9ef5d68cb501996fecb77cfdd11d2346caa7056d25b"
+    },
+    "deselement_silencieux": true,
+    "extrait_sortie": "anti-perte : 0 PMs déplacés vérifiés byte-identiques en @historique/\nnouvelle archive : 9 entrées ; divergents : — ; extras hors homologues : —\nArchive régénérée et round-trip vérifié (véhicule v2.2)."
+  },
+  "S4_GO_apres_S2": "GO",
+  "S3_rejeu_reel": {
+    "rc_repo_1": 0,
+    "rc_repo_2": 0,
+    "rc_host": 0,
+    "repo": {
+      "entrees": 15,
+      "piliers": 6,
+      "sha256": "26557e45233d4a43e47cb790244b07228db6ec9f428853c21c42b480be9802e8"
+    },
+    "host": {
+      "entrees": 15,
+      "piliers": 6,
+      "sha256": "26557e45233d4a43e47cb790244b07228db6ec9f428853c21c42b480be9802e8"
+    },
+    "parite_miroir_byte_identique": true,
+    "idempotence_x2_2_reseals_byte_identiques": true,
+    "shas_prefixes": {
+      "repo_avant": "26557e45233d4a43",
+      "repo_rescellement_1": "26557e45233d4a43",
+      "repo_rescellement_2": "26557e45233d4a43",
+      "host_rescellement_1": "26557e45233d4a43"
+    }
+  },
+  "implementation": {
+    "eco_install_pipeline.py": "étape 2 → task-f5-seal-archive-v23.py + étape 2bis régénération manifeste (rc propagés, anti-faux-succès F1 Task 22 conservé)",
+    "task-f5-seal-archive-v23.py": "byte-stable : ZipInfo époque fixe 1980-01-01 pour toutes les entrées (R6 idempotence byte + parité miroir repo↔hôte)",
+    "rejeu_pipeline_reel": "rc=0 ×2 (étape 2 : 15 entrées piliers 6/6 ; 2bis : manifeste 114/114 ; F3 : 0 divergence)",
+    "certification": "ALL PASS 6/6 (verify-cross 165/165 ×2 · verify-correct-work 16/16 · integrity 114/114 piliers 6/6 · interactions 55/55 STRICT · tool-routing 6/6)",
+    "triggers": "101/101 PASS"
+  },
+  "verdict": "PASS — mission F1 RÉSORBÉE"
+}
