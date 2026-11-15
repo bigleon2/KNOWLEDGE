@@ -1,0 +1,102 @@
+{
+  "depot": "/home/z/my-project/KNOWLEDGE-repo",
+  "ignores_schema_non_canonique": [],
+  "methode": "réplique exacte des 4 couches de main() par import des fonctions de check-triggers-replay.py (zéro duplication R4)",
+  "s1_baseline": {
+    "attendu": "99/101 (contrôle cohérence rapport en place)",
+    "coherent": true,
+    "skills_derive": [
+      "midi-doc-expert",
+      "re-curation"
+    ],
+    "verdict": "99/101"
+  },
+  "s2_deltas_isoles": {
+    "Δ1 exclusifs midi-doc-expert cas 5": {
+      "regressions": [],
+      "reparations": [
+        [
+          "midi-doc-expert :: Valide la conformité de ce TSI au schéma de référence.",
+          "veto-exclusif"
+        ]
+      ]
+    },
+    "Δ2 exclusifs re-curation cas 10": {
+      "regressions": [],
+      "reparations": [
+        [
+          "re-curation :: Optimise les dépendances npm de ce projet web.",
+          "veto-exclusif"
+        ]
+      ]
+    },
+    "Δ3 lexique description re-curation": {
+      "regressions": [],
+      "reparations": [
+        [
+          "re-curation :: Re-cure mon skill version-management, il est trop lourd à ch",
+          "voie-m"
+        ],
+        [
+          "re-curation :: re-cure l'élément n°1 de la liste priorisée.",
+          "voie-m"
+        ]
+      ]
+    }
+  },
+  "s3_rejeu_global": {
+    "autres_changements_source": [],
+    "regressions": [],
+    "reparations": [
+      {
+        "cible": true,
+        "query": "Valide la conformité de ce TSI au schéma de référence.",
+        "skill": "midi-doc-expert",
+        "source_apres": "veto-exclusif",
+        "source_avant": "non-resorbe"
+      },
+      {
+        "cible": true,
+        "query": "Re-cure mon skill version-management, il est trop lourd à charger.",
+        "skill": "re-curation",
+        "source_apres": "voie-m",
+        "source_avant": "non-resorbe"
+      },
+      {
+        "cible": true,
+        "query": "re-cure l'élément n°1 de la liste priorisée.",
+        "skill": "re-curation",
+        "source_apres": "voie-m",
+        "source_avant": "non-resorbe"
+      },
+      {
+        "cible": true,
+        "query": "Optimise les dépendances npm de ce projet web.",
+        "skill": "re-curation",
+        "source_apres": "veto-exclusif",
+        "source_avant": "non-resorbe"
+      }
+    ],
+    "skills_derive": [],
+    "verdict": "101/101"
+  },
+  "s4_recommandation": {
+    "conditions": [
+      "101/101 simulé",
+      "exactement 4 réparations = les 4 cibles",
+      "0 régression",
+      "0 autre changement de verdict"
+    ],
+    "deltas_a_implanter": {
+      "description_additive": {
+        "re-curation": " (forme verbale : \"re-cure\")"
+      },
+      "exclusifs": [
+        "midi-doc-expert :: Valide la conformité de ce TSI au schéma de référence. → ['valide la conformité']",
+        "re-curation :: Optimise les dépendances npm de ce projet web. → ['npm']"
+      ]
+    },
+    "verdict": "GO"
+  },
+  "task": "Task 98 — simulation préalable extinction résidus triggers (GO propriétaire 1a1df74c670cddc1)"
+}

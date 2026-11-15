@@ -1,6 +1,6 @@
 ---
 name: re-curation
-version: 1.2.2
+version: 1.2.3
 category: ecosystem
 language: fr
 tags:
@@ -26,6 +26,7 @@ description: >
   agents — empreinte sha256) — familles intégrées aux verdicts PRE (GO exige
   fonctionnels PASS + interactions SAINES) et POST (MAINTIEN : cohérent,
   fonctionnel, optimisé, interactions saines, perf stable — idempotence garantie).
+  (forme verbale : "re-cure")
 dependencies:
   - skill: gen-plan
     version: ">=3.39.0"

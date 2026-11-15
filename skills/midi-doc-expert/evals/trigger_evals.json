@@ -17,7 +17,10 @@
   },
   {
     "query": "Valide la conformité de ce TSI au schéma de référence.",
-    "should_trigger": false
+    "should_trigger": false,
+    "exclusifs": [
+      "valide la conformité"
+    ]
   },
   {
     "query": "Conçois les couches SHIFT d'un nouveau mapping.",

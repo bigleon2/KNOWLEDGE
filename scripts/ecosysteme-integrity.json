@@ -8,13 +8,7 @@
     "PROMPT-MAITRE-SHARED.md": "76a9471083c06b046fbd53a1a77151ce0ed2ee57e0c268f2b4d3660a03e775a5",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "38aed68c9eba17827e87a902ebfbb7fc99d2e8a1612571fe29363aa53ecfd29e",
     "README.md": "1626f57160679b0292cb823e90361f41e3a0bf1bb972053fb78bbf17cc6b7fef",
-    "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7",
-    "piliers/scripts/certification-complete.py": "d4519b8ca2d8bc8553885780140f62c726246630f6fffe38a14242e4ad6a1bd8",
-    "piliers/scripts/check-ecosysteme-integrity.py": "6a1e5a856d62a145e3dfe238ff16f55618353027bc46a4e9ecbf38b7e39e76eb",
-    "piliers/scripts/install-ecosysteme-local.sh": "47322f0a5a2c596eea8447267d582b98aa791d647d50eecde991da11496d21db",
-    "piliers/skills/KNOWLEDGE.md": "6ba08cfe449bad6177b8616edb9f5a70b13aa989b9b7b33b918d82caf2b558b6",
-    "piliers/skills/correct-work/SKILL.md": "47fd1c814178c00460e7a21a3d45cda0c05634e26740e8552acc2fa4fef689d0",
-    "piliers/skills/gen-plan/SKILL.md": "48421247f35e7ec4becd1bf70823f30a8e04f710ff038f755432512a14e4e3f2"
+    "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md": "3be1ce9f95f83bdf9caca20115403a21548834ae14f9912090f22cfb29235d77",
@@ -28,7 +22,7 @@
     "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "54fb76a7f539abda75625295bcafb9033872e50178ebc3c7df01639484b653a3"
+    "mon-ecosysteme_archive.zip": "3d903db2f10fff78cbb39f79f53d3a2be02fb401b0c4d1a6a7f03465cd8dae12"
   },
   "skills": {
     "agent-creator": {
@@ -172,8 +166,8 @@
       "version": "2.3.1"
     },
     "re-curation": {
-      "sha256": "69af267b8ac331535a0bcae41d2c75d2b67a90fe7a3d9f92efcf4efec89fcbe5",
-      "version": "1.2.2"
+      "sha256": "6881279a54b810acb1a1e7c73b853049bf0f9c54fb4140540993b29c72ec6de0",
+      "version": "1.2.3"
     },
     "refactor-guard": {
       "sha256": "13584946891c91a02b4e2003558b24e1215ee2be2dfc57858e4b6c1c49f1c92b",

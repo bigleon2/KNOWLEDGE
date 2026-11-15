@@ -8,7 +8,8 @@
   {"query": "re-cure l'élément n°1 de la liste priorisée.", "should_trigger": true},
   {"query": "Crée un nouveau skill de cuisson de pâtes.", "should_trigger": false},
   {"query": "Rédige-moi un rapport d'analyse de marché.", "should_trigger": false},
-  {"query": "Optimise les dépendances npm de ce projet web.", "should_trigger": false},
+  {"query": "Optimise les dépendances npm de ce projet web.", "should_trigger": false,
+   "exclusifs": ["npm"]},
   {"query": "Génère un plan d'actions pour ma tâche.", "should_trigger": false},
   {"query": "Traduis ce document du chinois vers le français.", "should_trigger": false}
 ]

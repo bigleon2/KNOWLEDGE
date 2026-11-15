@@ -7,11 +7,10 @@
   "v6_1": "veto exclusifs avant scoring + cache voie L lecture seule sur désaccord (Task 30)",
   "v6_2": "réservation de corpus croisée sur non-résolus : identité normalisée OU jaccard >= 0.7 + >= 3 radicaux partagés avec une positive d'un autre skill équipé (garde : requête aussi positive du corpus courant = non réservée ; Task 97, décision propriétaire trace 1a1df48b3eb8fb9d)",
   "sources_verdicts": {
-    "voie-m": 734,
-    "veto-exclusif": 34,
+    "voie-m": 736,
+    "veto-exclusif": 36,
     "v62-reservation-corpus": 2,
-    "voie-l-cache": 10,
-    "non-resorbe": 4
+    "voie-l-cache": 10
   },
   "verdict_voie_m_seule": "FAIL (informatif)",
   "derive_voie_m_seule": [
@@ -22,19 +21,14 @@
     "gen-plan",
     "iphone19",
     "jd-resume-tailor",
-    "midi-doc-expert",
-    "re-curation",
     "refactor-guard",
     "vue-upload"
   ],
   "n_skills": 101,
-  "skills_ok": 99,
-  "skills_derive": 2,
-  "verdict": "FAIL",
-  "derives": [
-    "midi-doc-expert",
-    "re-curation"
-  ],
+  "skills_ok": 101,
+  "skills_derive": 0,
+  "verdict": "PASS",
+  "derives": [],
   "skills": {
     "agent-creator": {
       "version": "2.3.0",
@@ -5965,9 +5959,9 @@
       "version": "1.2.1",
       "n_cases": 6,
       "n_keywords": 59,
-      "score_officiel": "5/6",
-      "ok": false,
-      "derive_m": true,
+      "score_officiel": "6/6",
+      "ok": true,
+      "derive_m": false,
       "cases": [
         {
           "query": "Documente ce mapping TSI validé : tableaux de référence MIDI et états LED.",
@@ -6033,14 +6027,11 @@
         {
           "query": "Valide la conformité de ce TSI au schéma de référence.",
           "expected": false,
-          "trigger_m": true,
-          "score": 0.4,
-          "hits": [
-            "refer",
-            "valid"
-          ],
-          "ok": false,
-          "source": "non-resorbe"
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "veto-exclusif"
         },
         {
           "query": "Conçois les couches SHIFT d'un nouveau mapping.",
@@ -7086,23 +7077,24 @@
       ]
     },
     "re-curation": {
-      "version": "1.2.2",
+      "version": "1.2.3",
       "n_cases": 12,
-      "n_keywords": 77,
-      "score_officiel": "9/12",
-      "ok": false,
-      "derive_m": true,
+      "n_keywords": 80,
+      "score_officiel": "12/12",
+      "ok": true,
+      "derive_m": false,
       "cases": [
         {
           "query": "Re-cure mon skill version-management, il est trop lourd à charger.",
           "expected": true,
-          "trigger_m": false,
-          "score": 0.111,
+          "trigger_m": true,
+          "score": 0.222,
           "hits": [
+            "cure",
             "skill"
           ],
-          "ok": false,
-          "source": "non-resorbe"
+          "ok": true,
+          "source": "voie-m"
         },
         {
           "query": "Fais la re-curation progressive disclosure de gen-plan.",
@@ -7176,13 +7168,14 @@
         {
           "query": "re-cure l'élément n°1 de la liste priorisée.",
           "expected": true,
-          "trigger_m": false,
-          "score": 0.25,
+          "trigger_m": true,
+          "score": 0.5,
           "hits": [
+            "cure",
             "elem"
           ],
-          "ok": false,
-          "source": "non-resorbe"
+          "ok": true,
+          "source": "voie-m"
         },
         {
           "query": "Crée un nouveau skill de cuisson de pâtes.",
@@ -7207,14 +7200,11 @@
         {
           "query": "Optimise les dépendances npm de ce projet web.",
           "expected": false,
-          "trigger_m": true,
-          "score": 0.333,
-          "hits": [
-            "depend",
-            "optimis"
-          ],
-          "ok": false,
-          "source": "non-resorbe"
+          "trigger_m": false,
+          "score": 0.0,
+          "hits": [],
+          "ok": true,
+          "source": "veto-exclusif"
         },
         {
           "query": "Génère un plan d'actions pour ma tâche.",
