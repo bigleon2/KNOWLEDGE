@@ -27,7 +27,7 @@ Idempotent ×2 : re-jeu sur état sain = no-op de réparation (verdict INSTALLE)
 Rapport machine : download/bootstrap-ecosysteme-rapport.json (artefact de
 travail — seule écriture propre du script, hors exécutants canoniques).
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.39)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.40)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
