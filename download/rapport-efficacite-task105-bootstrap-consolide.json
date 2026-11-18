@@ -1,0 +1,44 @@
+{
+  "horodatage": "2026-11-18T18:05:42Z",
+  "voie": "V3-prototype-consolide (preuve de mesure Task 105 — PAS canonique)",
+  "commandes": 1,
+  "tours": 1,
+  "etapes": [
+    {
+      "etape": "preflight-git",
+      "statut": "PROPRE",
+      "detail": "0 porcelain"
+    },
+    {
+      "etape": "dry-run",
+      "statut": "OK",
+      "detail": "0 divergence hôte"
+    },
+    {
+      "etape": "installation",
+      "statut": "OK",
+      "detail": "rc=0 · archive corpus : 9 fichiers .md ; piliers à sceller : 6\narchive entr · post-install 55 SHA, 0 divergence"
+    },
+    {
+      "etape": "certification",
+      "statut": "ALL-PASS-6/6",
+      "detail": "rc=0"
+    },
+    {
+      "etape": "garde-E1-INSTALL",
+      "statut": "INSTALLE",
+      "detail": "rc=0"
+    }
+  ],
+  "garanties_couvertes": [
+    "préflight git dépôt",
+    "dry-run lecture seule",
+    "installation canonique + rescellement v2.3",
+    "certification complète 6 arbitres",
+    "garde É1-INSTALL"
+  ],
+  "verdict_global": "INSTALLE",
+  "duree_s": 0.7823,
+  "octets_sortie": 389,
+  "verdict_compact": "=== BOOTSTRAP CONSOLIDÉ (prototype Task 105 — voie V3) ===\npreflight-git     : PROPRE 0 porcelain\ndry-run           : OK 0 divergence hôte\ninstallation      : OK rc=0 · archive corpus : 9 fichiers .md ; piliers à sceller : 6\narchive entr · po\ncertification     : ALL-PASS-6/6 rc=0\ngarde-E1-INSTALL  : INSTALLE rc=0\nVERDICT GLOBAL     : INSTALLE (durée 0.7823 s, 1 commande, 1 tour)"
+}

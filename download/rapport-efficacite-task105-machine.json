@@ -1,0 +1,124 @@
+{
+  "axe": "A",
+  "horodatage": "2026-11-18T18:01:49Z",
+  "composants": [
+    {
+      "id": "c1",
+      "nom": "pipeline --dry-run (lecture seule)",
+      "runs": 3,
+      "mediane_ms": 45.8,
+      "min_ms": 45.5,
+      "max_ms": 47.6,
+      "rc_runs": [
+        0,
+        0,
+        0
+      ],
+      "octets_sortie_median": 4591,
+      "sortie_run1": "{\n  \"pin\": \"a14f750\",\n  \"etapes\": {\n    \"preflight\": \"commit 24441ed OK (pin a14f750 ancêtre — descendant-tolérant)\",\n    \"skills/@mon-ecosysteme\": \"9 fichiers (dry-run — 0 mutation)\",\n    \"skills/KNOWLEDGE.md\": \"fichier sync (dry-run)\",\n  ",
+      "verdict": "PASS"
+    },
+    {
+      "id": "c2",
+      "nom": "pipeline complet (sync + seal v2.3 + manifeste + post-install)",
+      "runs": 3,
+      "mediane_ms": 226.6,
+      "min_ms": 214.9,
+      "max_ms": 236.6,
+      "rc_runs": [
+        0,
+        0,
+        0
+      ],
+      "octets_sortie_median": 3590,
+      "sortie_run1": "{\n  \"pin\": \"a14f750\",\n  \"etapes\": {\n    \"preflight\": \"commit 24441ed OK (pin a14f750 ancêtre — descendant-tolérant)\",\n    \"skills/@mon-ecosysteme\": \"9 fichiers\",\n    \"skills/KNOWLEDGE.md\": \"fichier sync\",\n    \"skills/gen-plan\": \"20 fichiers",
+      "verdict": "PASS"
+    },
+    {
+      "id": "c3",
+      "nom": "scelleur archive v2.3 (task-f5-seal-archive-v23)",
+      "runs": 3,
+      "mediane_ms": 71.0,
+      "min_ms": 70.7,
+      "max_ms": 71.8,
+      "rc_runs": [
+        0,
+        0,
+        0
+      ],
+      "octets_sortie_median": 353,
+      "sortie_run1": "corpus : 9 fichiers .md ; piliers à sceller : 6\narchive entrante : 15 entrées\nnouvelle archive : 15 entrées (attendu 15) ; divergences : corpus=— piliers=—\nArchive v2.3 scellée (corpus + piliers) — round-trip vérifié.\nPense-bête : exécuter ",
+      "verdict": "PASS"
+    },
+    {
+      "id": "c4",
+      "nom": "manifeste intégrité (check-ecosysteme-integrity, 114 checks)",
+      "runs": 3,
+      "mediane_ms": 44.4,
+      "min_ms": 44.2,
+      "max_ms": 44.6,
+      "rc_runs": [
+        0,
+        0,
+        0
+      ],
+      "octets_sortie_median": 6812,
+      "sortie_run1": "=== 1. Corpus canonique @mon-ecosysteme (SHA-256) ===\n  [PASS] 9 fichiers présents (Architecture v2.0 — N27, recalibré Task 16 b36f177: dédup PMs → @historique) — 9 fichiers\n\n=== 2. Archive round-trip (véhicule d'intégrité v2.3 — corpus + p",
+      "verdict": "PASS"
+    },
+    {
+      "id": "c5",
+      "nom": "chaîne certification complète (6 arbitres)",
+      "runs": 3,
+      "mediane_ms": 377.3,
+      "min_ms": 370.7,
+      "max_ms": 425.2,
+      "rc_runs": [
+        0,
+        0,
+        0
+      ],
+      "octets_sortie_median": 1319,
+      "sortie_run1": "=== CERTIFICATION COMPLÈTE — orchestrateur des 5 arbitres (session B7) ===\n--- verify-cross (axes 1-6) ---\n  [OK] ALL PASS (165/165 — 0 échec, 0 avertissement)\n--- verify-cross (mode correct-work) ---\n  [OK] ALL PASS (165/165 — 0 échec, 0 a",
+      "verdict": "PASS"
+    },
+    {
+      "id": "c6",
+      "nom": "garde É1-INSTALL (ensure-installed --check)",
+      "runs": 3,
+      "mediane_ms": 62.0,
+      "min_ms": 60.3,
+      "max_ms": 62.1,
+      "rc_runs": [
+        0,
+        0,
+        0
+      ],
+      "octets_sortie_median": 179,
+      "sortie_run1": "{\"verdict\": \"INSTALLE\", \"root_present\": true, \"git_repo\": true, \"head\": \"24441ed2\", \"fichiers_manquants\": [], \"kb_entrees\": 55, \"skills_kb_manquants\": [], \"host_head\": \"c9a6627\"}\n",
+      "verdict": "PASS"
+    },
+    {
+      "id": "c7",
+      "nom": "auto-install D727 (self-healing, no-op sur état sain)",
+      "runs": 3,
+      "mediane_ms": 335.0,
+      "min_ms": 333.9,
+      "max_ms": 341.2,
+      "rc_runs": [
+        1,
+        1,
+        1
+      ],
+      "octets_sortie_median": 402,
+      "sortie_run1": "{\"script\": \"auto-install-ecosysteme\", \"actions\": [\"pipeline\"], \"controle_initial\": \"ERREUR\", \"critiques_en_defaut\": [], \"pipeline_rc\": 0, \"critiques_en_defaut_apres\": [], \"controle_final\": \"ERREUR\", \"kb_entrees\": null, \"toolchain\": {\"babeld",
+      "verdict": "FAIL"
+    }
+  ],
+  "baseline_task70_ms": 140.0,
+  "pipeline_mediane_ms": 226.6,
+  "delta_vs_baseline_pct": 61.9,
+  "somme_medianes_ms": 1162.1,
+  "verdict": "FAIL",
+  "lecture": "coût machine total médian 1162 ms pour les 7 composants — pipeline 227 ms (+61.9 % vs baseline Task 70 à 53 entrées, désormais 55 entrées + scelleur v2.3 + manifeste 2bis)"
+}

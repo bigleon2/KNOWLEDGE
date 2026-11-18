@@ -1,0 +1,28 @@
+{
+  "horodatage": "2026-11-18T18:03:02Z",
+  "verdicts": {
+    "axe_A_machine": "FAIL",
+    "axe_B_flux": "PASS",
+    "axe_C_garanties": "PASS"
+  },
+  "chiffres_cles": {
+    "cout_machine_total_ms": 1162.1,
+    "pipeline_ms": 226.6,
+    "delta_vs_task70_pct": 61.9,
+    "V1_tours": 6,
+    "V1_octets": 15958,
+    "V3_tours": 1,
+    "V3_octets": 389,
+    "gain_tours_pct": 83.3,
+    "gain_octets_pct": 97.6
+  },
+  "hypotheses": {
+    "H1_cout_machine_negligeable": true,
+    "H2_levier_reel_tours_agent": true,
+    "H3_garanties_preservees": true
+  },
+  "strategie_recommandee": "voie consolidée en entrée unique du bootstrap session (prototype V3 prouvé : 1 tour, couverture complète, garanties intactes) — promotion canonique SOUS GO propriétaire uniquement (R2/zéro-régression) ; AUCUNE optimisation machine prioritaire (coût total < 5 s, goulot réel = budget #token — étude Task 70 réitérée par la mesure)",
+  "verdict_systeme": "FAIL — défaut F1 (c7 auto-install D727, Axe A) : voie 1-commande existante non fonctionnelle",
+  "verdict_campagne": "PASS",
+  "verdict": "PASS"
+}

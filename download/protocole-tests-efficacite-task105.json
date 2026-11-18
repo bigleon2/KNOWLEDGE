@@ -1,0 +1,41 @@
+{
+  "cible": "Système d'installation de l'écosystème : PM-INSTALL v1.9.16 + exécutants canoniques (pipeline, scelleur v2.3, manifeste, certification, garde É1-INSTALL, auto-install D727) + flux de bout en bout par session",
+  "source_directive": "trace 1a1efb513dfbc805 item A (Task 105, mode step)",
+  "objectif": "optimiser l'efficacité du système d'installation — trois axes complémentaires (machine, flux, garanties), stratégie hiérarchisée en sortie",
+  "axes": [
+    {
+      "id": "A",
+      "nom": "Efficacité machine",
+      "methode": "7 composants chronométrés médiane ×3 (perf_counter, conventions Task 95), comparaison baseline Task 70",
+      "critere_verdict": "PASS si chaque composant rc=0 ×3 ; le verdict global trace le coût machine réel et son écart à la baseline (hypothèse H1 : négligeable)"
+    },
+    {
+      "id": "B",
+      "nom": "Efficacité du flux de bout en bout",
+      "methode": "3 voies d'entrée mesurées apples-to-apples : V1 manuelle canonique (séquence G0, 6 tours) · V2 auto-install D727 (1 commande, couverture partielle) · V3 prototype consolidé (1 commande, couverture complète)",
+      "metriques": [
+        "tours agent",
+        "commandes",
+        "durée s",
+        "octets de sortie",
+        "verdict consolidé",
+        "garanties couvertes"
+      ],
+      "convention_octets": "octets émis par les commandes de la voie (stdout+stderr capturés) ; V3 émet par conception un verdict compact"
+    },
+    {
+      "id": "C",
+      "nom": "Garanties non négociables",
+      "methode": "4 tests : idempotence ×2, dry-run 0 mutation, garde R2, arbitres",
+      "critere_verdict": "PASS si 4/4 (agrégation pire-des-verdicts)"
+    }
+  ],
+  "conventions": [
+    "R4 : orchestration des arbitres existants, zéro duplication de logique de verdict",
+    "AUCUNE écriture corrective : le harnais mesure, la stratégie est documentée (GO requis pour appliquer)",
+    "idempotence R6 : re-jeu ×2 byte-stable après normalisation (horodatage/durées exclus)",
+    "les composants d'installation ne sont PAS modifiés (R2/zéro-régression, refactor-guard)",
+    "donnée réelle complémentaire : coût G0 du tour (cas dérive, 6 tours agent) consigné au plan"
+  ],
+  "horodatage": "2026-11-18T18:05:34Z"
+}
