@@ -1,0 +1,77 @@
+{
+  "axe": "B",
+  "horodatage": "2026-11-18T18:57:43Z",
+  "voies": [
+    {
+      "voie": "V1 — manuelle canonique (séquence G0)",
+      "tours": 6,
+      "commandes": 10,
+      "duree_s": 1.8835,
+      "octets_sortie": 11527,
+      "verdict_consolide": false,
+      "garanties_couvertes": [
+        "préflight git dépôt",
+        "dry-run lecture seule",
+        "installation canonique",
+        "certification complète",
+        "garde É1-INSTALL"
+      ],
+      "detail_tours": [
+        "tour-1 état",
+        "tour-2 préflight git",
+        "tour-3 dry-run",
+        "tour-4 installation",
+        "tour-5 certification",
+        "tour-6 garde É1"
+      ],
+      "note": "donnée réelle complémentaire (cas DÉRIVE, G0 du tour) : 6 tours agent dont reset --hard + fetch — même séquence, sur arbre divergent (2741 fichiers)"
+    },
+    {
+      "voie": "V2 — auto-install D727 (self-healing hôte)",
+      "tours": 1,
+      "commandes": 1,
+      "duree_s": 0.0891,
+      "octets_sortie": 259,
+      "rc": 0,
+      "verdict_consolide": true,
+      "verdict_obtenu": "INSTALLE",
+      "cause": "",
+      "fonctionnel": true,
+      "note_defaut": "",
+      "garanties_couvertes": [
+        "contrôle hôte (ensure-installed + byte-identité pivot)",
+        "pipeline canonique SI défaut détecté",
+        "re-contrôle"
+      ],
+      "garanties_non_couvertes": [
+        "préflight git dépôt (mode-bits/binaires altérés)",
+        "chaîne certification complète 6 arbitres"
+      ]
+    },
+    {
+      "voie": "V3 — prototype consolidé (1 commande, preuve de mesure)",
+      "tours": 1,
+      "commandes": 1,
+      "duree_s": 1.962,
+      "octets_sortie": 428,
+      "verdict_consolide": true,
+      "verdict_global": "INSTALLE-REPARÉ",
+      "garanties_couvertes": [
+        "préflight git dépôt",
+        "dry-run lecture seule",
+        "installation canonique + rescellement v2.3",
+        "certification complète 6 arbitres",
+        "garde É1-INSTALL"
+      ],
+      "garanties_non_couvertes": [],
+      "rapport": "download/rapport-efficacite-task105-bootstrap-consolide.json"
+    }
+  ],
+  "comparaison": {
+    "gain_V3_vs_V1_tours_pct": 83.3,
+    "gain_V3_vs_V1_octets_pct": 96.3,
+    "voie_1_commande_couverture_complete": "V3",
+    "voie_1_commande_couverture_partielle": "V2 (préflight git et certification absents)"
+  },
+  "verdict": "PASS"
+}

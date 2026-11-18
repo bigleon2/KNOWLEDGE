@@ -1,0 +1,36 @@
+{
+  "axe": "C",
+  "horodatage": "2026-11-18T18:56:35Z",
+  "tests": [
+    {
+      "id": "g1",
+      "nom": "idempotence ×2 prototype consolidé",
+      "attendu": "verdicts normalisés byte-identiques (R6)",
+      "obtenu": "identiques",
+      "verdict": "PASS"
+    },
+    {
+      "id": "g2",
+      "nom": "dry-run 0 mutation",
+      "attendu": "rc=0 et 0 fichier modifié dans les zones cibles",
+      "obtenu": "rc=0, 0 fichier(s) modifié(s)",
+      "detail": [],
+      "verdict": "PASS"
+    },
+    {
+      "id": "g3",
+      "nom": "garde R2 anti-rétrogradation",
+      "attendu": "0 rétrogradation — host ≤ repo partout",
+      "obtenu": "0 rétrogradation — host ≤ repo partout",
+      "verdict": "PASS"
+    },
+    {
+      "id": "g4",
+      "nom": "arbitres post-campagne ALL PASS 6/6",
+      "attendu": "certification-complete ALL PASS (6/6)",
+      "obtenu": "rc=0",
+      "verdict": "PASS"
+    }
+  ],
+  "verdict": "PASS"
+}
