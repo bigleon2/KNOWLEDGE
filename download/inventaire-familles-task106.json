@@ -1,0 +1,172 @@
+{
+  "source_directive": "trace 1a1efc61db496e75 — question des orchestrateurs par famille",
+  "kb_entrees": 55,
+  "agents_dot_agent": [
+    "knowledge-observer/knowledge-observer.agent",
+    "orchestrateur-tsi/agent-TSI.agent",
+    "orchestrateur-tsi/orchestrateur-tsi.agent",
+    "tsi-architect/tsi-architect.agent"
+  ],
+  "familles": [
+    {
+      "id": "F1",
+      "nom": "TSI/Traktor (métier)",
+      "membres": [
+        "tsi-architect",
+        "tsi-validator",
+        "multi-shift-architect",
+        "midi-doc-expert",
+        "analyse-doc-s4mk2",
+        "orchestrateur-tsi"
+      ],
+      "membres_absents_du_kb": [],
+      "nb_membres": 6,
+      "aretes_intra_famille": 13,
+      "aretes_vers_autres_familles": 1,
+      "densite_intra": 2.17,
+      "orchestration": "orchestrateur-tsi (skill méthode + agent-TSI.agent)",
+      "orchestrateur_sur_disque": true,
+      "type_mission": "pipeline multi-membres (concevoir → valider → documenter)"
+    },
+    {
+      "id": "F2",
+      "nom": "Socle gouvernance",
+      "membres": [
+        "gen-plan",
+        "correct-work",
+        "clone-chat",
+        "resource-monitor",
+        "knowledge-observer",
+        "skills-inventory",
+        "alias-eco"
+      ],
+      "membres_absents_du_kb": [],
+      "nb_membres": 7,
+      "aretes_intra_famille": 12,
+      "aretes_vers_autres_familles": 2,
+      "densite_intra": 1.71,
+      "orchestration": "gen-plan E1-E15 (hub, 24 dépendances inverses) + agent-engineering n°56 CADRE/ROUTE",
+      "orchestrateur_sur_disque": true,
+      "type_mission": "gouvernance transverse (planifier → vérifier → journaliser)"
+    },
+    {
+      "id": "F3",
+      "nom": "Création d'artefacts écosystème (méta)",
+      "membres": [
+        "skill-creator",
+        "script-creator",
+        "agent-creator",
+        "correct-py",
+        "script-reviewer",
+        "script-mon-ecosysteme-infrastructure",
+        "pm-skill",
+        "version-management",
+        "audit-provenance",
+        "re-curation"
+      ],
+      "membres_absents_du_kb": [],
+      "nb_membres": 10,
+      "aretes_intra_famille": 8,
+      "aretes_vers_autres_familles": 6,
+      "densite_intra": 0.8,
+      "orchestration": "table de routage N2 check-tool-routing (arbitre) + lifecycle gouverné gen-plan/correct-work",
+      "orchestrateur_sur_disque": false,
+      "type_mission": "lifecycle d'artefacts (créer → corriger → relire → versionner → archiver)"
+    },
+    {
+      "id": "F4",
+      "nom": "Disciplines d'ingénierie (n°54-56 + fondamentales)",
+      "membres": [
+        "agent-engineering",
+        "context-engineering",
+        "loop-engineering",
+        "graph-engineering",
+        "harness-engineering",
+        "memory-engineering",
+        "spec-driven-development",
+        "refactoring-engineering",
+        "refactoring-test",
+        "refactor-guard",
+        "prompt-engineering",
+        "agent-prompt-engineering",
+        "fleet-engineering",
+        "autonomous-agent",
+        "inter-scripts"
+      ],
+      "membres_absents_du_kb": [],
+      "nb_membres": 15,
+      "aretes_intra_famille": 10,
+      "aretes_vers_autres_familles": 7,
+      "densite_intra": 0.67,
+      "orchestration": "SHARED §7 méthode-mère (gen-plan §1.6) + n°56 CADRE/ROUTE + inter-scripts (nœuds scripts)",
+      "orchestrateur_sur_disque": true,
+      "type_mission": "méthodes transverses héritées de la méthode-mère"
+    },
+    {
+      "id": "F5",
+      "nom": "Photo/CPE (métier)",
+      "membres": [
+        "iphone17",
+        "iphone18",
+        "iphone19",
+        "dessin-technique"
+      ],
+      "membres_absents_du_kb": [],
+      "nb_membres": 4,
+      "aretes_intra_famille": 0,
+      "aretes_vers_autres_familles": 2,
+      "densite_intra": 0.0,
+      "orchestration": "aucune — générations parallèles, missions mono-membre (règle 1 « simple d'abord »)",
+      "orchestrateur_sur_disque": false,
+      "type_mission": "pipeline CPE mono-membre (UNE génération par photo)"
+    },
+    {
+      "id": "F6",
+      "nom": "Diffusion / portail",
+      "membres": [
+        "vue-upload",
+        "livraison-garantie",
+        "ghorg-cmdr"
+      ],
+      "membres_absents_du_kb": [],
+      "nb_membres": 3,
+      "aretes_intra_famille": 1,
+      "aretes_vers_autres_familles": 1,
+      "densite_intra": 0.33,
+      "orchestration": "chaque membre orchestre sa propre procédure (livraison-garantie compose vue-upload)",
+      "orchestrateur_sur_disque": false,
+      "type_mission": "procédures composées auto-portantes"
+    },
+    {
+      "id": "F7",
+      "nom": "Métier solo / composite",
+      "membres": [
+        "cahier-des-charges",
+        "traduction-zh-fr",
+        "audio-metadata",
+        "cpp-analysis",
+        "resume-youtube",
+        "pdf-llm",
+        "fullstack-dev",
+        "skill-finder-cn",
+        "web-reader",
+        "web-search"
+      ],
+      "membres_absents_du_kb": [],
+      "nb_membres": 10,
+      "aretes_intra_famille": 2,
+      "aretes_vers_autres_familles": 6,
+      "densite_intra": 0.2,
+      "orchestration": "aucune requise — solos ou composites auto-portants",
+      "orchestrateur_sur_disque": false,
+      "type_mission": "missions mono-membre (le composite détient sa propre méthode M1-M4)"
+    }
+  ],
+  "entrees_hors_modele": [],
+  "notes": [
+    "gen-plan : 24 dépendances inverses (hub de gouvernance — mesure)",
+    "correct-work : 12 dépendances inverses (colonne vertébrale de vérification)",
+    "famille TSI : seule famille métier à couplage intra-familial mutuel dense",
+    "famille photo : 0 arête intra-familiale (générations parallèles)"
+  ]
+}
