@@ -67,9 +67,17 @@ def etat() -> dict:
         # (source de vérité de l'écosystème — R4) et non le dépôt hôte, qui reçoit des
         # auto-commits UUID plateforme aux frontières de tours (diagnostic Task 69).
         # Le head hôte demeure consigné séparément (forensique Task 69).
-        m = sh("git rev-parse --short HEAD", cwd=ROOT / "KNOWLEDGE-repo")
-        if m.returncode == 0:
-            e["head"] = m.stdout.strip()
+        # F1 (Task 105, correctif GO-2 Task 107) : le miroir n'est interrogé que
+        # s'il existe — quand ROOT EST le dépôt (copie dépôt de ce script), le
+        # head pointe ROOT lui-même (source de vérité) au lieu de crasher sur un
+        # cwd inexistant (subprocess FileNotFoundError).
+        miroir = ROOT / "KNOWLEDGE-repo"
+        if (miroir / ".git").exists():
+            m = sh("git rev-parse --short HEAD", cwd=miroir)
+            if m.returncode == 0:
+                e["head"] = m.stdout.strip()
+        elif e["git_repo"]:
+            e["head"] = r.stdout.strip()
         e["host_head"] = r.stdout.strip() if e["git_repo"] else None
         for f in FICHIERS_CLES:
             if not (ROOT / f).exists():
