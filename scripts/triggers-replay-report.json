@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "task": "Task 97 — arbitre V6.2 (V6.1 : vetos exclusifs + cache voie L ; V6.2 : réservation de corpus croisée sur non-résolus — voie M inchangée)",
   "heuristique": "SHARED §7 v2 (réplique exacte harnais Task 19 / runner Task 18 — voie M, zéro API)",
   "seuil_routage": "≥ 2 radicaux partagés OU ≥ 1 radical du nom du skill",

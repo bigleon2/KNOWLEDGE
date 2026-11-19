@@ -7,7 +7,7 @@
 | # | Tâche | Acteur | Priorité | État |
 |---|---|---|---|---|
 | 1 | Révoquer le PAT du tour Task 107 + fournir un PAT frais au prochain push | PROPRIÉTAIRE | **P1 — CRITIQUE** | ouvert |
-| 2 | PUSH du commit Task 108 (nécessite le PAT frais) | PROPRIÉTAIRE→session | **P1** | ouvert (créé en G5) |
+| 2 | PUSH du commit Task 108 (nécessite le PAT frais) | PROPRIÉTAIRE→session | **P1** | **ÉTEINTE** (2026-11-19, Task 109 SUIVI — push f658e4c9 rc=0, 0 unpushed) |
 | 3 | GO futur — correctif structurel F3 : injecteur propagate-context.py (gabarit périmé + 5 scripts protégés sans bloc CONTEXTE) | PROPRIÉTAIRE (GO) + session | **P2** | proposé (suite 153) |
 | 4 | GO futur — correctif structurel F2 : garde anti-perte du scelleur v2.3 (évolution légitime du corpus sans ECHEC transitoire) | PROPRIÉTAIRE (GO) + session | **P2** | proposé (suite 153) |
 | 5 | GO-3 (optionnel) : convention « docstring d'abord » (S3/F4) aux canons script-creator + correct-py | PROPRIÉTAIRE (GO) + session | **P3** | proposé (§8 Task 105) |
@@ -21,13 +21,15 @@ Aucune autre pendance : re-curation ÉTEINTE (Task 85), différés Task 101 vér
 
 ### 1. Rotation/révocation du PAT GitHub — P1 CRITIQUE [PROPRIÉTAIRE]
 - **Nature** : le jeton utilisé depuis la Task 63 a cumulé **33 expositions** (E15, suite 153). Le jeton du tour Task 107 doit être révoqué côté GitHub ; un PAT frais sera fourni par le propriétaire à tout tour nécessitant un push.
+- **Mise à jour Task 109 (2026-11-19)** : une clé fraîche a été fournie et utilisée pour les pushes du tour (E15 34ᵉ/35ᵉ). L'ancien jeton (Task 107) reste à révoquer — le jeton précédent n'ayant jamais été stocké (KO-L009), la comparaison est impossible par construction ; la révocation de l'ANCIEN jeton demeure requise.
 - **Source** : suite 153 point d'état (« rotation/révocation PAT [PROPRIÉTAIRE — CRITIQUE — 33 expositions cumulées, révoquer le jeton du tour après usage] ») ; leçons Task 98/101.
 - **Critère d'extinction** : révocation effectuée côté GitHub + (si push requis) nouveau PAT fourni dans une directive — 0 trace écrite (KO-L009).
 
-### 2. PUSH du commit Task 108 — P1 [PROPRIÉTAIRE→session]
+### 2. PUSH du commit Task 108 — P1 [PROPRIÉTAIRE→session] — **ÉTEINTE**
 - **Nature** : le commit « Task 108 CLOSE » (créé en G5 ce tour) restera local — **aucun PAT n'a été fourni ce tour** (0 manipulation, 0 exposition). Pendance PUSH 1 commit.
 - **Source** : présent tour (G5) ; leçon Task 98/101 (« push immédiat dès PAT frais disponible »).
 - **Critère d'extinction** : `git ls-remote` anonyme → origin/main = HEAD dépôt ; `git rev-list --count origin/main..HEAD` = 0.
+- **EXTINCTION (2026-11-19, Task 109 SUIVI, trace 1a1f223f6f3ecab9)** : push `19eb34b1..f658e4c9 HEAD → main` rc=0 avec la clé du tour (E15 34ᵉ) ; atterrissage vérifié ls-remote anonyme : refs/heads/main = f658e4c9, 0 unpushed, parité HEAD = origin/main ✓.
 
 ### 3. Correctif structurel F3 — injecteur propagate-context.py — P2 [GO propriétaire requis]
 - **Nature** : la branche « injection fraîche » de l'injecteur §0 porte un gabarit LITTÉRAL périmé (v1.7.39 — la dynamisation v2.1.1 ne couvre que la branche remplacement, classe F-70-2) et casse les scripts `from __future__`. 5 scripts (task98/101/102/104/106) ont été protégés par revert et **demeurent sans bloc CONTEXTE** (état certifié R2).
