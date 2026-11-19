@@ -157,7 +157,7 @@
 - **Dernière calibration** : 2026-09-19 (N20 : matérialisation du pattern Task Observer — SKILL.md + evals/evals.json + evals/trigger_evals.json + data/lessons-learned.json ; source de vérité du pattern : gen-plan/references/observation-patterns.md) ; 2026-09-26 (B13-r5 : restauration post-wipe — journal L001-L004 restitué, référence observation-patterns.md restaurée) ; 2026-11-09 (Task 82 G2 : **conversion en agent autonome** — tandem 2 couches : `knowledge-observer.agent` créé [format .agent : mémoire 2 niveaux — État Court session / État Long `data/lessons-learned.json` ; pipeline A-H avec modules + verification ; sécurité no_hallucination] + SKILL.md v1.1.0 §1.6 tandem, ajouts purs, description frontmatter verbatim R2 ; liste cibles-to-agent P1 — download/analyse-conversions-task82.md §3)
 - **Statut** : stable
 
-## script-creator v1.1.0
+## script-creator v1.2.0
 
 - **Category** : ecosystem
 - **Description** : Créer et modifier les scripts de l'écosystème (arbitres, collecteurs, outils de vérification stdlib) avec critères de succès et tests mécaniques intégrés. Utiliser lorsque l'utilisateur souhaite créer un script, corriger ou améliorer un script existant, rendre un check certifiable exécutable localement, ou garantir l'idempotence (rejeu ×2 sans effet) d'un outil. Structure, conventions de description héritées de skill-creator ; objectif principal : la création ou la modification des scripts (et non des skills).
@@ -165,6 +165,7 @@
 - **Utilisé par** : script-reviewer v1.0.0 (scripts entrants du processus de création), audit-provenance v1.0.0 (conventions des scripts produits), correct-py v1.0.0 (post-traitement GF-6 — exécuté après chaque utilisation), inter-scripts (conventions de création/évolution des scripts du registre — arête inscrite Task 55)
 - **Dernière calibration : 2026-10-03 (Task 21 F1 — P2 pass 2 : chirurgies incidents-FP locaux radicaux-description + tag iteration retiré (prompt-engineering) ; validation locale zéro-API via arbitre V6 ; cas structurels radical-du-nom consignés réserve 1 ; montées v2.2.0 (prompt-engineering) et v1.1.0 (script-creator) ; KO-L004 recalibré)**
 - **Note N25 (B13-r6)** : famille skill-creator ; processus §1.2 en 7 étapes + 6 garde-fous (R9, N3, idempotence ×2, auto-test P2, correct-work CIBLE, correct-py GF-6) ; evals 4 + trigger_evals 7 en base réelle ; relations bidirectionnelles complétées (script-reviewer §3).
+- **Dernière montée : 2026-11-19 (Task 110 G3, GO-3 directive trace 1a1f2297d90c957d)** : convention « docstring d'abord, bloc CONTEXTE ensuite » (§2 + §4) — bloc §0 en lignes commentées APRÈS la docstring, jamais en second littéral (SyntaxError `from __future__`, F3 CW Task 107) ; injection mécanique propagate-context >= v2.2.0.
 - **Statut** : stable
 
 ## script-reviewer v1.0.0
@@ -200,7 +201,7 @@
 - **Note Task 16** : consultation skills-inventory (§3 — découverte des agents disponibles, relation non versionnée reléguée en Note, SHARED §3.2 règle 5).
 - **Statut** : stable
 
-## correct-py v1.1.0
+## correct-py v1.2.0
 
 - **Category** : ecosystem
 - **Description** : Vérifier et corriger la conformité des scripts Python de l'écosystème aux normes d'écriture du langage (PEP 8 : style, indentation, nommage snake_case ; PEP 257 : docstrings de module et de fonctions ; conventions de commentaires) par analyse AST/tokenize stdlib, via corrections mécaniques ciblées et idempotentes et rapport JSON déterministe. Utiliser lorsqu'un script Python vient d'être généré ou modifié par script-creator (post-traitement obligatoire, garde-fou 6 §1.3 — exécuté APRÈS chaque utilisation), lorsqu'un script existant doit être audité ou normalisé aux normes Python, ou lorsqu'une vérification de style mécanique est requise préalablement à la relecture script-reviewer. Non concerné : création de scripts (script-creator), relecture fonctionnelle G1-G8 (script-reviewer), validation d'écosystème (correct-work), création de skills (skill-creator). Commentaires corrigés, blancs parasites supprimés, style et indentation normalisés.
@@ -208,6 +209,7 @@
 - **Utilisé par** : script-creator (post-traitement GF-6 — exécuté après chaque utilisation)
 - **Dernière calibration** : 2026-10-03 (Task 21 P2 — Description Optimization A10/A14 : extension radicaux discriminants / chirurgies incidents-FP, validation locale zéro-API, contrôles négatifs préservés, arbite V6 re-jeu)
 - **Note Task 16** : convergence script-reviewer (§3 — conformité fine du langage avant relecture G1-G8) — relation non versionnée reléguée en Note (SHARED §3.2 règle 5).
+- **Dernière montée : 2026-11-19 (Task 110 G3, GO-3 directive trace 1a1f2297d90c957d)** : convention « docstring d'abord, bloc CONTEXTE ensuite » (§4 + HISTORIQUE) — le correcteur reconnaît et préserve la forme canonique (jamais de fusion/déplacement/suppression du bloc §0 en lignes commentées).
 - **Statut** : stable
 
 ## fleet-engineering v1.1.1

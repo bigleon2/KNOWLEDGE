@@ -45,6 +45,15 @@ divergence émergente après restauration-sandbox ; preuve mécanique S2 au rapp
 task100-mission-f1-report.json) + étape 2bis — régénération du manifeste
 d'intégrité par l'arbitre canonique (pense-bête du scelleur v2.3), rc propagés
 (anti-faux-succès F1 Task 22 conservé).
+Task 110 (2026-11-19, session web-ecef7f80 — GO futur, directive trace 1a1f2297d90c957d,
+correctif structurel F2 CW Task 107) : l'étape 2 est REPONTÉE sur le scelleur
+canonique v2.4 task-f5-seal-archive-v24.py — la garde anti-perte DISCRIMINE
+désormais PERTE (entrée d'archive sans contrepartie locale → rc=2, jamais
+contournable) et ÉVOLUTION LÉGITIME (divergence à contenu local commité au
+HEAD du dépôt — --depot-git passé par le présent pipeline → rescellement
+AUTORISÉ et tracé, plus aucun ECHEC transitoire sur montée de version de
+corpus ; harnais T1-T5 au rapport Task 110). Le véhicule v2.3 est CONSERVÉ
+intact (R4 — précédent task21-f2 v2.2).
 
 Étapes couvertes par ce script :
   1  Corpus   : sync skills/@mon-ecosysteme/ (9 PMs) + garde R2 anti-rétrogradation
@@ -52,8 +61,9 @@ d'intégrité par l'arbitre canonique (pense-bête du scelleur v2.3), rc propag�
   7  Registre : sync skills/KNOWLEDGE.md + @historique/@Alias/ (registre vivant)
   8  Outillage: sync scripts/ (arbitres + bootstrap), purge des reconstitutions
                provisoires non canoniques (config.json)
-  2  Archive  : rescellement download/mon-ecosysteme_archive.zip (task-f5-seal-archive-v23
-               — véhicule canonique v2.3 corpus+piliers, mission F1 Task 100) + régénération
+  2  Archive  : rescellement download/mon-ecosysteme_archive.zip (task-f5-seal-archive-v24
+               — véhicule canonique v2.4 corpus+piliers, mission F1 Task 100 + discrimination
+               PERTE/ÉVOLUTION Task 110, --depot-git REPO) + régénération
                du manifeste d'intégrité (check-ecosysteme-integrity, mode COMPLET)
 
 Le dépôt et l'hôte partagent le même lignage (projection hôte 109 fichiers) :
@@ -265,15 +275,19 @@ def main():
         # sauté ; la vérification post-install F3 (lecture seule) est conservée.
         report["etapes"]["2_archive"] = "non exécuté (dry-run — lecture seule)"
     else:
-        # Étape 2 — Rescellement archive d'intégrité (véhicule CANONIQUE v2.3
-        # corpus + piliers — mission F1 Task 100, finding suite 142 : l'ancien
-        # véhicule task21-f2 (v2.2) désépilait SILENCIEUSEMENT les piliers d'une
-        # archive v2.3 (ils figurent dans ses RETRAITS_SANCTIONNES) et préservait
-        # des entrées périmées → divergence émergente après restauration-sandbox).
+        # Étape 2 — Rescellement archive d'intégrité (véhicule CANONIQUE v2.4
+        # corpus + piliers — mission F1 Task 100 + discrimination PERTE/ÉVOLUTION
+        # Task 110 [GO futur, correctif F2 CW 107] : PERTE = rc=2 jamais contournable ;
+        # ÉVOLUTION à contenu local commité (comparaison git, --depot-git REPO) =
+        # rescellement AUTORISÉ et tracé — la voie opérationnelle est mécanique.
+        # Historique : le véhicule task21-f2 (v2.2) désépilait SILENCIEUSEMENT les
+        # piliers d'une archive v2.3 (RETRAITS_SANCTIONNES, entrées périmées
+        # préservées → divergence émergente après restauration-sandbox).
         # F1 (Task 22) : anti-faux-succès — le rc est propagé (exit 2 si échec) ;
         # un rescellement qui échoue ne doit JAMAIS produire une installation « verte ».
         r = subprocess.run([sys.executable,
-                            os.path.join(HOST, "scripts", "task-f5-seal-archive-v23.py")],
+                            os.path.join(HOST, "scripts", "task-f5-seal-archive-v24.py"),
+                            "--depot-git", str(REPO)],
                            capture_output=True, text=True)
         report["etapes"]["2_archive"] = (r.stdout.strip() or r.stderr.strip())[-400:]
         if r.returncode != 0:

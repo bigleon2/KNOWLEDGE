@@ -82,7 +82,7 @@ ECO_SKILLS = {
     "skills-inventory": "1.1.0",
     "skill-creator": "1.1.0",
     "agent-creator": "2.3.0",  # Task 22 (2026-10-23) : DÉRIVE CRITIQUE résorbée — SKILL.md re-écrit comme VRAIE fabrique d'agents (workflow F1-F5), .agent ré-écrit (capacites A2A), read_when réparé
-    "script-creator": "1.1.0",
+    "script-creator": "1.2.0",
     "script-reviewer": "1.0.0",
     "audit-provenance": "1.1.0",
     "prompt-engineering": "2.3.1",
@@ -99,7 +99,7 @@ ECO_SKILLS = {
     "skill-finder-cn": "1.0.0",  # Task 23 : fallback §1.16 inscrit au registre
     # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
     "autonomous-agent": "1.2.1",
-    "correct-py": "1.1.0",
+    "correct-py": "1.2.0",
     "fleet-engineering": "1.1.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54
     "memory-engineering": "1.2.1",  # KO-L004 (session web-b4d7dd19, 2026-10-11) : read_when + dependencies gen-plan — bump PATCH cascade n°54 (Task 18 : Description Optimization conservée)
     "spec-driven-development": "1.1.1",

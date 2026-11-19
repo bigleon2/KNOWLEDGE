@@ -1,6 +1,6 @@
 ---
 name: script-creator
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 description: >
@@ -105,6 +105,13 @@ cas limites) fait partie intégrante de sa mission.
   autres langages suivent leurs normes propres (shell : POSIX + en-têtes commentés ;
   JS : JSDoc). Le contrôle fin de ces normes est délégué au post-traitement
   `correct-py` (GF-6).
+- **Convention « docstring d'abord, bloc CONTEXTE ensuite » (GO-3, Task 110)** : pour tout
+  script de l'écosystème, la docstring de module (PEP 257) reste le PREMIER énoncé — le
+  bloc CONTEXTE §0 (Contexte Système) est porté en LIGNES COMMENTÉES (`# ⚙️ …`) APRÈS la
+  docstring, jamais en second littéral de chaîne (un littéral avant `from __future__`
+  produit une SyntaxError — défaut F3 CW Task 107). Démontré par `bootstrap-ecosysteme.py`
+  (Task 105 S3) ; injection et mise à jour mécaniques par `scripts/propagate-context.py`
+  >= v2.2.0 ; évite le FAIL N1 silencieux sur la couche.
 - **Localisation** : `{{SKILLS_ROOT}}script-creator/` pour le skill ; scripts produits
   sous `scripts/` à la racine du projet.
 - **Nommage** : descriptif kebab-case pour les outils durables ; préfixe de session
@@ -128,6 +135,9 @@ cas limites) fait partie intégrante de sa mission.
 ## §4 — CONVENTIONS
 
 - Nommage kebab-case (SHARED §1.2) ; worklog SHARED §1.4 ; idempotence R1-R6 (gen-plan §1.11).
+- « Docstring d'abord, bloc CONTEXTE ensuite » (GO-3, Task 110) : docstring PEP 257 en tête,
+  bloc §0 en lignes commentées APRÈS — jamais de second littéral (SyntaxError
+  `from __future__`).
 - Toute création/modification de script est tracée au worklog (règle d'or n°1) — jamais
   d'édition silencieuse.
 - Non-duplication (SHARED §6.3) : script-creator ne redéfinit ni le processus de création

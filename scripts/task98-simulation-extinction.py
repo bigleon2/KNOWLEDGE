@@ -46,6 +46,13 @@ sur l'écosystème (aucune écriture dans le dépôt cible).
 rc : 0 = GO (101/101 simulé, 0 régression) · 1 = NO-GO · 2 = usage.
 Usage : python3 task98-simulation-extinction.py [CHEMIN_DÉPÔT]
 """
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.40)
+# SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
+# Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
+# Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
+# Langue : FRANÇAIS exclusif pour les échanges avec le propriétaire (règle d'or n°6 gen-plan — dès le premier mot de toute session ou reprise, aucune dérive).
+# Règles d'or & lecture SHARED à l'exécution (SHARED §9) : tout élément exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or (résumé §9 — canonique gen-plan §1.5).
+# Référence canonique skill/agent (SHARED §0/§1.2) : « mon skill X »/« mon agent X » = forme installée skills/X/ à la racine, JAMAIS le PM du corpus @mon-ecosysteme/ (ex-@PM-SKILLS/).
 
 import importlib.util
 import json

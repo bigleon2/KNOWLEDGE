@@ -1,6 +1,6 @@
 ---
 name: correct-py
-version: 1.1.0
+version: 1.2.0
 category: ecosystem
 language: fr
 description: >
@@ -132,6 +132,12 @@ limites ; L005 — garde post-édition) fait partie intégrante de sa mission.
 ## §4 — CONVENTIONS
 
 - Nommage kebab-case (SHARED §1.2) ; worklog SHARED §1.4 ; idempotence R1-R6 (gen-plan §1.11).
+- « Docstring d'abord, bloc CONTEXTE ensuite » (GO-3, Task 110) : le correcteur RECONNAÎT et
+  PRÉSERVE la forme canonique — docstring PEP 257 en tête (premier énoncé), bloc CONTEXTE
+  §0 en lignes commentées APRÈS la docstring — jamais de fusion, déplacement ou suppression
+  du bloc lors des corrections P25/CM ; les lignes du bloc suivent la règle CM (espace
+  après `#`). Un second littéral de chaîne avant `from __future__` est un défaut (F3 CW
+  Task 107), pas une forme tolérée.
 - Toute correction est tracée au worklog (règle d'or n°1) — jamais d'édition silencieuse.
 - Non-duplication (SHARED §6.3) : correct-py ne redéfinit ni la création de scripts
   (script-creator), ni la relecture G1-G8 (script-reviewer), ni la validation
@@ -142,6 +148,11 @@ limites ; L005 — garde post-édition) fait partie intégrante de sa mission.
 
 ## HISTORIQUE DES VERSIONS
 
+- v1.2.0 (2026-11-19, session web-ecef7f80 — Task 110 G3, GO-3, directive trace 1a1f2297d90c957d) :
+  convention « docstring d'abord, bloc CONTEXTE ensuite » (§4) — le correcteur reconnaît et
+  préserve la forme canonique (bloc §0 en lignes commentées après la docstring, jamais en
+  second littéral) ; source feuille de route §8.3 du rapport Task 105 (S3/F4 — évite le
+  FAIL N1 silencieux sur la couche).
 - v1.0.0 (2026-09-27, session B13-r8) : matérialisation initiale — post-traitement de
   script-creator pour les normes du langage (PEP 8 / PEP 257 / commentaires /
   structure), outil `scripts/correct-py-verifie.py` (modes VÉRIF/CORRECT, zones

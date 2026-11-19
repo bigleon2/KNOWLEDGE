@@ -10,9 +10,9 @@
     "README.md": "1626f57160679b0292cb823e90361f41e3a0bf1bb972053fb78bbf17cc6b7fef",
     "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7",
     "piliers/scripts/certification-complete.py": "ccdef756bc8ccb3d4a7b867bbf91285b52c4f0fa769b3fe38072d4669003bf63",
-    "piliers/scripts/check-ecosysteme-integrity.py": "6281b219f70274befc7ab02cb131bccbf14ebc53e6e4f6f6b37ce7dcf65f4d7f",
+    "piliers/scripts/check-ecosysteme-integrity.py": "5554e42b3daac3f5c3548ecbf435104345d13d776c8a054c9ad588863cf7f9f8",
     "piliers/scripts/install-ecosysteme-local.sh": "47322f0a5a2c596eea8447267d582b98aa791d647d50eecde991da11496d21db",
-    "piliers/skills/KNOWLEDGE.md": "f0c24ec6f6364ad268b23a28b604e40c725db0b7da48dfd48e65e4ab575bcefc",
+    "piliers/skills/KNOWLEDGE.md": "5eab145c5695279c0ebb2aa8f09df238ed34d9ff6c0803b473e289c30e82576b",
     "piliers/skills/correct-work/SKILL.md": "5d06147ec2ca15a1b2bcbc5bcbf86de9d3915bf1a79372c36934399e651f7ce4",
     "piliers/skills/gen-plan/SKILL.md": "109e9f69103f195667f044976e019d7da4c80ae47287054da7492f865ceee884"
   },
@@ -28,7 +28,7 @@
     "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "fd2b56823aa06d5d40e0682d5a6bbd718281cc16f6132936d197d5568c2e6025"
+    "mon-ecosysteme_archive.zip": "10e8f4c84187804e639f158baf21daeb8ba506c09e2ec2b0c1464efae3daf8ab"
   },
   "skills": {
     "agent-creator": {
@@ -76,8 +76,8 @@
       "version": "1.2.1"
     },
     "correct-py": {
-      "sha256": "eba2d452b833491860258997b45f143ce6aec7449ae40c644c5c9dd34b8c54b5",
-      "version": "1.1.0"
+      "sha256": "4a9053468ad94f927e241dafb316010230f90b22fed3a09210306e12d1f14730",
+      "version": "1.2.0"
     },
     "correct-work": {
       "sha256": "5d06147ec2ca15a1b2bcbc5bcbf86de9d3915bf1a79372c36934399e651f7ce4",
@@ -196,8 +196,8 @@
       "version": "1.1.0"
     },
     "script-creator": {
-      "sha256": "74c839506d79b7ec6419db89265d62eb53ba1188d542a8bdfda1f7f8460bf5e9",
-      "version": "1.1.0"
+      "sha256": "66e3507bf2fc1cd8174c8d6708335df9cbd5ebe144805187e064bd5313f7426b",
+      "version": "1.2.0"
     },
     "script-mon-ecosysteme-infrastructure": {
       "sha256": "6654eef14f7d978729381b0a7256a2c7b15b656450ab7bd6170a5f2f1d58fd6b",
