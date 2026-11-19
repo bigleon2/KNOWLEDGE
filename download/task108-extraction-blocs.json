@@ -1,0 +1,2162 @@
+{
+  "task": "108-relecture-blocs-clones",
+  "stats_globales": {
+    "nb_suites": 153,
+    "octets_total": 535427,
+    "suites_avec_marqueur": {
+      "clone": 66,
+      "pendance": 57,
+      "PASS": 110,
+      "FAIL": 54,
+      "directif": 6,
+      "arbitre": 25,
+      "bug": 12,
+      "E15": 29,
+      "PUSH": 53
+    },
+    "e15_max_constatee": 33,
+    "premiere_suite": "2026-11-06 s2",
+    "derniere_suite": "2026-11-19 s153",
+    "clones_lus": 21,
+    "clones_octets": 288141,
+    "drifts_par_type": {
+      "ENRICHISSEMENT": 1,
+      "CORRECTION": 1,
+      "RECALIBRAGE": 1,
+      "MODIFICATION": 1
+    },
+    "scellages": {
+      "clone-chat-session-web-ecef7f80-20261108-task72.md": "5/5",
+      "clone-chat-session-web-ecef7f80-20261108-task73.md": "sans-fraction (format antérieur)",
+      "clone-chat-session-web-ecef7f80-20261108-task74.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261108-task77.md": "3/5",
+      "clone-chat-session-web-ecef7f80-20261108.md": "0/1",
+      "clone-chat-session-web-ecef7f80-20261109-task79.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261109-task80.md": "5/5",
+      "clone-chat-session-web-ecef7f80-20261109-task81.md": "1/1",
+      "clone-chat-session-web-ecef7f80-20261109-task82-CLOSE.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261109-task82-pass1.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261109-task83.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261109-task84.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261110-task90.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261115-task91.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261115-task92.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261115-task95.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261115-task97.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261115-task99.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261116-task102.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261116-task103.md": "8/8",
+      "clone-chat-session-web-ecef7f80-20261119-task107.md": "8/8"
+    }
+  },
+  "continuite_suites": {
+    "min": 2,
+    "max": 153,
+    "trous": [],
+    "nb": 153
+  },
+  "blocs_par_jour": [
+    {
+      "jour": "2026-11-06",
+      "suites": "2-9",
+      "nb_suites": 8,
+      "taches": "T54-T58",
+      "taches_liste": [
+        "T54",
+        "T55",
+        "T56",
+        "T57",
+        "T58"
+      ]
+    },
+    {
+      "jour": "2026-11-07",
+      "suites": "10-33",
+      "nb_suites": 25,
+      "taches": "T58-T70",
+      "taches_liste": [
+        "T58",
+        "T60",
+        "T61",
+        "T62",
+        "T63",
+        "T70"
+      ]
+    },
+    {
+      "jour": "2026-11-08",
+      "suites": "34-71",
+      "nb_suites": 38,
+      "taches": "T72-T79",
+      "taches_liste": [
+        "T72",
+        "T73",
+        "T74",
+        "T75",
+        "T76",
+        "T77",
+        "T78",
+        "T79"
+      ]
+    },
+    {
+      "jour": "2026-11-09",
+      "suites": "72-115",
+      "nb_suites": 44,
+      "taches": "T80-T90",
+      "taches_liste": [
+        "T80",
+        "T81",
+        "T82",
+        "T83",
+        "T84",
+        "T85",
+        "T86",
+        "T90"
+      ]
+    },
+    {
+      "jour": "2026-11-15",
+      "suites": "116-146",
+      "nb_suites": 31,
+      "taches": "T91-T101",
+      "taches_liste": [
+        "T91",
+        "T92",
+        "T93",
+        "T94",
+        "T95",
+        "T96",
+        "T97",
+        "T98",
+        "T99",
+        "T100",
+        "T101"
+      ]
+    },
+    {
+      "jour": "2026-11-16",
+      "suites": "147-150",
+      "nb_suites": 4,
+      "taches": "T102-T104",
+      "taches_liste": [
+        "T102",
+        "T103",
+        "T104"
+      ]
+    },
+    {
+      "jour": "2026-11-18",
+      "suites": "151-152",
+      "nb_suites": 2,
+      "taches": "T105-T106",
+      "taches_liste": [
+        "T105",
+        "T106"
+      ]
+    },
+    {
+      "jour": "2026-11-19",
+      "suites": "153-153",
+      "nb_suites": 1,
+      "taches": "T107-T107",
+      "taches_liste": [
+        "T107"
+      ]
+    }
+  ],
+  "clones": [
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261108-task72.md",
+      "task_clone": "T72",
+      "date_nom": "20261108",
+      "position_lignee": 3,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "5/5",
+      "octets": 9105
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261108-task73.md",
+      "task_clone": "T73",
+      "date_nom": "20261108",
+      "position_lignee": 7,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "sans-fraction (format antérieur)",
+      "octets": 7838
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261108-task74.md",
+      "task_clone": "T74",
+      "date_nom": "20261108",
+      "position_lignee": null,
+      "fenetre_worklog": "s1-s5",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 12862
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261108-task77.md",
+      "task_clone": "T77",
+      "date_nom": "20261108",
+      "position_lignee": null,
+      "fenetre_worklog": "s1-s6",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "3/5",
+      "octets": 14456
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261108.md",
+      "task_clone": "—",
+      "date_nom": "—",
+      "position_lignee": 3,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "0/1",
+      "octets": 9358
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261109-task79.md",
+      "task_clone": "T79",
+      "date_nom": "20261109",
+      "position_lignee": 4,
+      "fenetre_worklog": "s1-s5",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 15037
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261109-task80.md",
+      "task_clone": "T80",
+      "date_nom": "20261109",
+      "position_lignee": null,
+      "fenetre_worklog": "s1-s6",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "5/5",
+      "octets": 12137
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261109-task81.md",
+      "task_clone": "T81",
+      "date_nom": "20261109",
+      "position_lignee": 5,
+      "fenetre_worklog": "s1-s6",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "1/1",
+      "octets": 14431
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261109-task82-CLOSE.md",
+      "task_clone": "T82",
+      "date_nom": "20261109",
+      "position_lignee": 5,
+      "fenetre_worklog": "s1-s91",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 19797
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261109-task82-pass1.md",
+      "task_clone": "T82",
+      "date_nom": "20261109",
+      "position_lignee": 5,
+      "fenetre_worklog": "s1-s87",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        83,
+        84,
+        85,
+        86,
+        87
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 19402
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261109-task83.md",
+      "task_clone": "T83",
+      "date_nom": "20261109",
+      "position_lignee": 6,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 10247
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261109-task84.md",
+      "task_clone": "T84",
+      "date_nom": "20261109",
+      "position_lignee": 7,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 7979
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261110-task90.md",
+      "task_clone": "T90",
+      "date_nom": "20261110",
+      "position_lignee": 3,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 12609
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task91.md",
+      "task_clone": "T91",
+      "date_nom": "20261115",
+      "position_lignee": 17,
+      "fenetre_worklog": "s1-s5",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 15135
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task92.md",
+      "task_clone": "T92",
+      "date_nom": "20261115",
+      "position_lignee": 2,
+      "fenetre_worklog": "s1-s6",
+      "suites_listees": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 19017
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task95.md",
+      "task_clone": "T95",
+      "date_nom": "20261115",
+      "position_lignee": 19,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 16646
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task97.md",
+      "task_clone": "T97",
+      "date_nom": "20261115",
+      "position_lignee": 20,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 18550
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261115-task99.md",
+      "task_clone": "T99",
+      "date_nom": "20261115",
+      "position_lignee": 26,
+      "fenetre_worklog": "s1-s1",
+      "suites_listees": [
+        1
+      ],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 14955
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261116-task102.md",
+      "task_clone": "T102",
+      "date_nom": "20261116",
+      "position_lignee": 18,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 11906
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261116-task103.md",
+      "task_clone": "T103",
+      "date_nom": "20261116",
+      "position_lignee": 19,
+      "fenetre_worklog": "—",
+      "suites_listees": [],
+      "nb_drifts": 0,
+      "drifts_types": [],
+      "directives": [],
+      "bugs": [],
+      "scellage": "8/8",
+      "octets": 15505
+    },
+    {
+      "fichier": "clone-chat-session-web-ecef7f80-20261119-task107.md",
+      "task_clone": "T107",
+      "date_nom": "20261119",
+      "position_lignee": 20,
+      "fenetre_worklog": "s150-s153",
+      "suites_listees": [
+        150,
+        151,
+        152,
+        153
+      ],
+      "nb_drifts": 4,
+      "drifts_types": [
+        "ENRICHISSEMENT",
+        "CORRECTION",
+        "RECALIBRAGE",
+        "MODIFICATION"
+      ],
+      "directives": [
+        "D-104: fiche PDF agent engineering 5 exemples",
+        "D-105: installer l'écosystème puis tester le système d'installation pour optimiser son efficacité ($FACON = « de façon cohérent",
+        "D-106: question familles/orchestrateurs avec condition « si oui »",
+        "D-107: chaîne ordonnée « PUSH"
+      ],
+      "bugs": [
+        "F1: copie dépôt d'ensure-installed.py crashe (`subprocess cwd=ROOT/KNOWLEDGE-repo` inexistant quand ROOT est le dé",
+        "F2: garde anti-perte du scelleur v2.3 bloque toute évolution légitime du corpus (aucune dérive/légitime) → voie op",
+        "F3: branche injection de propagate-context.py porte un gabarit littéral périmé (v1.7.39) et casse les scripts `fro"
+      ],
+      "scellage": "8/8",
+      "octets": 11169
+    }
+  ],
+  "details_suites": [
+    {
+      "suite": 2,
+      "date": "2026-11-06",
+      "titre": "session web-c30e6506) — Task 54 suite : fusions PR VÉRIFIÉES R4 + GEN règle langue FR (d387169) + superposition cmdr (PR #2 → 19a306c) + manifeste re-pinné (89f",
+      "octets": 3685,
+      "marqueurs": [
+        "PASS",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 3,
+      "date": "2026-11-06",
+      "titre": "session web-c30e6506) — Task 55 : tsi-validator v1.3.0 (F1 verdict PRÉFÉRENCES + F2 multi-devices E3) + inscription KB des 4 skills hors registre — pendances di",
+      "octets": 5311,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 4,
+      "date": "2026-11-06",
+      "titre": "session web-c30e6506) — Task 56 : plan régénéré via gen-plan v3.35.1 mode step (version-management cause racine + ZIP S4 MK2 + correct-work --bloc + clone-chat)",
+      "octets": 2519,
+      "marqueurs": [
+        "FAIL",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 5,
+      "date": "2026-11-06",
+      "titre": "session web-c30e6506) — Task 56 : E13 intégration directive « lecture SHARED à l'exécution » + G1 cascade v3.35.2 exécutée (preuve vivante 10ᵉ matérialisation a",
+      "octets": 2520,
+      "marqueurs": [
+        "arbitre",
+        "directif"
+      ]
+    },
+    {
+      "suite": 6,
+      "date": "2026-11-06",
+      "titre": "session web-c30e6506) — Task 56 : G2 TERMINÉ (ZIP 6 TSI analysé — classification surprenante, 4 failles, évolution 14→31)",
+      "octets": 1087,
+      "marqueurs": [
+        "PASS"
+      ]
+    },
+    {
+      "suite": 7,
+      "date": "2026-11-06",
+      "titre": "session web-c30e6506) — Task 56 : G5 TERMINÉ (SHARED v1.7.26 §9 règles d'or & protocole lecture à l'exécution + propagation §0 v2.0.7) — batterie 108/108 + 53/2",
+      "octets": 3764,
+      "marqueurs": [
+        "E15",
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "bug",
+        "clone",
+        "directif",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 8,
+      "date": "2026-11-06",
+      "titre": "session web-c30e6506) — Task 57 : plan généré via gen-plan v3.35.2 mode NULL (kit correction TSI F1/F2/F4 + différés agent-actionnables + clôture) — PLAN-AFFICH",
+      "octets": 5377,
+      "marqueurs": [
+        "PASS",
+        "arbitre",
+        "bug",
+        "clone",
+        "directif",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 9,
+      "date": "2026-11-06",
+      "titre": "session web-c30e6506) — Task 58 : installation PM INSTALL (4ᵉ application règle d'or n°9 chemin a→d) + plan régénéré via gen-plan v3.35.2 fraîchement installé (",
+      "octets": 3965,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre"
+      ]
+    },
+    {
+      "suite": 10,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 60 : incident recyclage LIVE (règle d'or n°9, 3ᵉ application — corpus + piliers perdus, rétablissement a→d + certification verte) +",
+      "octets": 22791,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 10,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 60 CLOSE consigné + REPRISE Task 58 mode STEP (directive « gen-plan (step): continue ») — G1 consigné (dette résorbée) + requalific",
+      "octets": 2944,
+      "marqueurs": [
+        "pendance"
+      ]
+    },
+    {
+      "suite": 11,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 58 reprise G2 : porte propriétaire FRANCHIE (mode autonome) + sémantique mode STEP clarifiée + incident de langue n°2 corrigé",
+      "octets": 6448,
+      "marqueurs": [
+        "bug"
+      ]
+    },
+    {
+      "suite": 12,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 58 G2 : directives 12ᵉ/13ᵉ — inventaire mathématique intégral des 3 discussions (mappage 15/15 capacités, aucun calcul orphelin)",
+      "octets": 5191,
+      "marqueurs": [
+        "bug"
+      ]
+    },
+    {
+      "suite": 13,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 58 G2 TERMINÉ : nœud trigo-euler v1.3.0 livré + cascade KO-L004 certifiée — résorptions de dettes héritées",
+      "octets": 4498,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 14,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 58 G3 TERMINÉ : correct-work --bloc PASS 3/3, rapport final, clone-chat scellé — TASK 58 CLOSE",
+      "octets": 5500,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "clone"
+      ]
+    },
+    {
+      "suite": 15,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 61 reprise post-coupure : 12ᵉ directive (chronologie des tests + périmètre push) + état d'avancement consolidé",
+      "octets": 3894,
+      "marqueurs": [
+        "PASS",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 16,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Directive préalable « met à jour » : VÉRIFICATION faite, déclencheur CRÉÉ (gen-plan v3.37.0) + glossaire $FACON/$FACON2 inline + consoli",
+      "octets": 6856,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre"
+      ]
+    },
+    {
+      "suite": 17,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — 13ᵉ directive point 3 : plan d'actions Task 61 CONSOLIDÉ via le déclencheur « met à jour » (preuve vivante v3.37.0) — PLAN-AFFICHE",
+      "octets": 2398,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 18,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 61 (plan consolidé) G1 TERMINÉ : vagues chrono V1-V3 — 13 tests, 0 FAIL bloquant, 5 tickets G3",
+      "octets": 3254,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "bug",
+        "clone"
+      ]
+    },
+    {
+      "suite": 19,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 61 (plan consolidé) G2 TERMINÉ : V4+V5 + journal consolidé — 20 tests au total, 0 FAIL",
+      "octets": 1843,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 20,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 61 (plan consolidé) G3 TERMINÉ : corrections F1/F2 + 5 tickets résorbés + 2 montées + modes normalisés — arbitres 0 FAIL ×2",
+      "octets": 3423,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 21,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 61 (plan consolidé) G4 TERMINÉ : empaquetage push + rapport final + guidance KO-L009 + clone-chat + FINALE — PLAN 100 % · E8 final ",
+      "octets": 2990,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 22,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 62 OUVERTURE : gen-plan : \"correct-work\" (mode NULL) — 22ᵉ recyclage sandbox absorbé par la garde + F-62-1 qualifié + plan correct-",
+      "octets": 5201,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "directif"
+      ]
+    },
+    {
+      "suite": 23,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 62 (plan) G2+G3+G4 TERMINÉS : correct-work --bloc PASS AVEC RÉSERVES + correctifs F-62-1 résorbés + arbitres 0 FAIL ×2 — TASK 62 CL",
+      "octets": 4616,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 24,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 63 OUVERTURE : gen-plan (step) \"continue avec ma clé github_pat_11AJ…CTrp\" — phase PAT GitHub : plan push distant des 16 commits (d",
+      "octets": 3337,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 25,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 63 (plan step) G1 TERMINÉ : cadre sécurisé — zéro-persistance PAT vérifiée en baseline",
+      "octets": 1508,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 26,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 63 (plan step) G2 TERMINÉ : PUSH DISTANT EXÉCUTÉ — 16 commits publiés (390133a → 6f9f284), fast-forward pur, zéro-persistance confi",
+      "octets": 2058,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 27,
+      "date": "2026-11-07",
+      "titre": "session web-c30e6506) — Task 63 (plan step) G3 TERMINÉ + FINALE : F-63-1 découvert et résorbé (propagation §0 v1.7.31 : 48 skills + 2 agents) — arbitres 0 FAIL ",
+      "octets": 4220,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "clone"
+      ]
+    },
+    {
+      "suite": 28,
+      "date": "2026-11-07",
+      "titre": "session web-ecef7f80) — Task 70 OUVERTURE : gen-plan (step) \"continue $FACON\" — intégration collections @Bibliotheque-skills-Multi-IA + @GHORG-ecosysteme + test",
+      "octets": 3864,
+      "marqueurs": [
+        "FAIL",
+        "PASS"
+      ]
+    },
+    {
+      "suite": 29,
+      "date": "2026-11-07",
+      "titre": "session web-ecef7f80) — Task 70 (plan step) G1 TERMINÉ : tests installation $FACON2 — PM INSTALL 2/2 + ensure-installed.py 5/5 + fraîcheur 6/6 — F-70-2 résorbé ",
+      "octets": 3991,
+      "marqueurs": [
+        "FAIL",
+        "PASS"
+      ]
+    },
+    {
+      "suite": 30,
+      "date": "2026-11-07",
+      "titre": "session web-ecef7f80) — Task 70 (plan step) G2 TERMINÉ : Task 1 accomplie — bibliotheque-skills-ia → skills/@Bibliotheque-skills-Multi-IA (R4) + intégration éco",
+      "octets": 2485,
+      "marqueurs": [
+        "PASS",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 31,
+      "date": "2026-11-07",
+      "titre": "session web-ecef7f80) — Task 70 (plan step) G3 TERMINÉ : Task 2 accomplie — ecosystem → skills/@GHORG-ecosysteme (R4) + adaptation complète des références vivan",
+      "octets": 3573,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre"
+      ]
+    },
+    {
+      "suite": 32,
+      "date": "2026-11-07",
+      "titre": "session web-ecef7f80) — Task 70 (plan step) G4 TERMINÉ : Task 3 accomplie — étude de faisabilité performance (OOP + noyau) livrée avec mesures terrain + simulat",
+      "octets": 3413,
+      "marqueurs": [
+        "PASS"
+      ]
+    },
+    {
+      "suite": 33,
+      "date": "2026-11-07",
+      "titre": "session web-ecef7f80) — Task 70 (plan step) G5 TERMINÉ + FINALE : correct-work (projet) --bloc PASS (0 S1 · 0 S2 · 2 S3 · 1 S4) — plan 12/12 verified E8 final P",
+      "octets": 9497,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 34,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 72 (plan step) OUVERTURE : plan E7 écrit + E8 PASS — Chantier R1 re-curation gen-plan + adéquation + liste priorisée + skill re-cur",
+      "octets": 2875,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 35,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 72 (plan step) : plan RÉVISÉ rév. 2 (directive complémentaire skill re-curation intégrée, E8 re-validé PASS) + G1 SG1.0-SG1.3 TERMI",
+      "octets": 6088,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 36,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 72 (plan step) : plan RÉV. 3 (directive complémentaire 2 « fenêtre native AFFICHE-PLAN » intégrée — E8 re-validé PASS 15 décisions)",
+      "octets": 4314,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 37,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 72 (plan step) : G1 TERMINÉ — Chantier R1 CLOSE (gen-plan v3.39.0 re-curé 104,0→29,9 Kio + fenêtre native AFFICHE-PLAN + cascade KO",
+      "octets": 5823,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 38,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 72 (plan step) : G2 TERMINÉ — adéquation gen-plan ↔ écosystème PASS AVEC RÉSERVES (4 arbitres · 4 selftests · evals 9+15 · poids · ",
+      "octets": 3195,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 39,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 72 (plan step) : G3 TERMINÉ — liste priorisée des prochaines re-curations (multicritère + gouvernance + cartographie sèche) — D008 ",
+      "octets": 2849,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 40,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 72 (plan step) : G4+G5 TERMINÉS — skill re-curation v1.0.0 créé (IMPLÉMENTÉ du script protocole-test.py) + tests $FACON réels PASS ",
+      "octets": 4223,
+      "marqueurs": [
+        "PASS",
+        "bug",
+        "clone"
+      ]
+    },
+    {
+      "suite": 41,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 72 (plan step) : G6+G7 TERMINÉS — correct-work (projet) --bloc PASS + E8 FINAL 15/15 + rapport final + clone-chat — TASK 72 CLOSE",
+      "octets": 2493,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 42,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 73 (plan step) : plan INITIAL + G1 TERMINÉ (protocole de tests $FACON2 généré et outillé — campagne d'orchestration R4) — trace dir",
+      "octets": 3895,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 43,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 73 (plan step) : G2 TERMINÉ — campagne PRE C1 gen-plan hôte : PASS 11/11 (fonctionnel + performances, 130 ms) — D002 vérifié",
+      "octets": 1560,
+      "marqueurs": [
+        "FAIL",
+        "PASS"
+      ]
+    },
+    {
+      "suite": 44,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 73 (plan step) : G3 TERMINÉ — campagne PRE C2 écosystème hôte : FAIL par racine unique (version-management absent, 3 tests indépend",
+      "octets": 2451,
+      "marqueurs": [
+        "FAIL",
+        "PASS"
+      ]
+    },
+    {
+      "suite": 45,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 73 (plan step) : G4 TERMINÉ — campagne PRE C3 gen-plan miroir : PASS 7/7 (identité byte totale, 4,7 ms) — D004 vérifié",
+      "octets": 1037,
+      "marqueurs": [
+        "PASS"
+      ]
+    },
+    {
+      "suite": 46,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 73 (plan step) : G5 TERMINÉ — corrections $FACON : version-management restaurée (INSTALLE-REPARÉ rc=0) + cause racine revérifiée (e",
+      "octets": 2860,
+      "marqueurs": [
+        "FAIL",
+        "PASS"
+      ]
+    },
+    {
+      "suite": 47,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 73 (plan step) : G6 TERMINÉ — campagne POST : FAIL -> PASS AVEC RÉSERVES, non-régression stricte True, 3 failles résorbées — D006/D",
+      "octets": 2005,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "bug"
+      ]
+    },
+    {
+      "suite": 48,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 73 (plan step) : G7 — correct-work (projet) --bloc : PASS (0 S1 · 0 S2 · 3 S3-class résorbés en round) + answer key 12/13 verified ",
+      "octets": 1336,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 49,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 73 (plan step) : G8 TERMINÉ — clone-chat v2.0.2 + E8 FINAL 13/13 + check_plan_protocol P1-P5 PASS — TASK 73 CLOSE",
+      "octets": 2354,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 50,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 74 : INSTALLATION écosystème RÉALISÉE ET CERTIFIÉE (réinstallation post-wipe) + plan d'actions clôture généré via gen-plan v3.39.0 ",
+      "octets": 3872,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 51,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 75 (gen-plan NULL) : plan E7 écrit + E8 PASS — vérification idempotence écosystème post-re-curation vs version précédente — trace d",
+      "octets": 3483,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 52,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 75 (gen-plan NULL) : EXÉCUTION COMPLÈTE TERMINÉE — verdict global PASS — écosystème post-re-curation IDEMPOTENT et ÉQUIVALENT à sa ",
+      "octets": 5157,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 53,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 76 (plan step) : plan INITIAL + E8 — tests fonctionnels et performances des systèmes d'installation (PM-INSTALL + ENSURE-INSTALL) →",
+      "octets": 3267,
+      "marqueurs": [
+        "PASS"
+      ]
+    },
+    {
+      "suite": 54,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 76 (plan step) : G1+G2+G3 TERMINÉS — outillage selftest 8/8 + campagnes PRE C1 FAIL (failles F1/F2/F3/F5 + F4 à adjudiquer) / C2 PA",
+      "octets": 3795,
+      "marqueurs": [
+        "FAIL",
+        "PASS"
+      ]
+    },
+    {
+      "suite": 55,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 76 (plan step) : G4 TERMINÉ — corrections $FACON F1-F5 appliquées et prouvées (contrat CLI pipeline, PIN, véhicule archive unifié v",
+      "octets": 5080,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "bug"
+      ]
+    },
+    {
+      "suite": 56,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 76 (plan step) : G5 TERMINÉ — campagne POST : C1 PASS 12/12 · C2 PASS 11/11 · verdict global FAIL→PASS · non-régression TRUE — D007",
+      "octets": 2626,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "bug"
+      ]
+    },
+    {
+      "suite": 57,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 76 (plan step) : G6 TERMINÉ — correct-work (projet) --bloc n°1 (item 2 de la directive) : PASS + rapport final — D008, D009 vérifié",
+      "octets": 1819,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 58,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 76 (plan step) : G7 TERMINÉ — correctifs des différés consignés + autres erreurs non bloquantes (item 3 de la directive) — D010 vér",
+      "octets": 3183,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH"
+      ]
+    },
+    {
+      "suite": 59,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 76 (plan step) : G8 TERMINÉ — correct-work (projet) --bloc n°2 (item 4) : PASS + E8 FINAL 14/14 + sync ciblée + commit — TASK 76 CL",
+      "octets": 2833,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 60,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 77 (plan step) : OUVERTURE + E1-RES (réinstallation post-wipe §3.4 voie directe + certification 4 arbitres en parallèle) + plan INI",
+      "octets": 4659,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "clone"
+      ]
+    },
+    {
+      "suite": 61,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 77 (plan step) : G1 TERMINÉ — PUSH distant exécuté (13 commits, fast-forward pur 0e1e4fb..7d86b3d) — zéro-persistance PAT prouvée ×",
+      "octets": 2478,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 62,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 77 (plan step) : G2 TERMINÉ — diagnostic parallélisme (démo + audit) + correctif gen-plan v3.40.0 PROTOCOLE D'ÉMISSION PARALLÈLE + ",
+      "octets": 9003,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 63,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 77 (plan step) : G3 TERMINÉ — correct-work (projet) : PASS (rapport 5 étapes, 6 findings dont 4 corrigés + 2 documentés) — D014 ✓",
+      "octets": 1245,
+      "marqueurs": [
+        "PASS",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 64,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 77 (plan step) : G4 TERMINÉ + FINALE — clone-chat v2.0.2 (§0-§5 + §1.5 drifts, jeton tronqué, 8 checks) + E8 FINAL 16/16 + commit +",
+      "octets": 3719,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 65,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 78 (plan step) : OUVERTURE (E1-RES réinstallation post-wipe 2ᵉ occurrence consécutive + certification 4 arbitres PAR) + plan INITIA",
+      "octets": 4536,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 66,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 79 (chaîne step) : OUVERTURE (E1-RES — version-management réparé après récidive ≥ 37ᵉ + état mesuré Task 74/78) + plan INITIAL E1-E",
+      "octets": 3324,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone"
+      ]
+    },
+    {
+      "suite": 67,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 78/79 G1 (directive « continue $FACON » trace 1a1bc41ac02feee9) : Task 78 EXÉCUTÉ INTÉGRALEMENT — gen-plan v3.41.0 RÈGLE DE SONDAGE",
+      "octets": 5406,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre"
+      ]
+    },
+    {
+      "suite": 68,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 79 G2 : re-curation version-management EXÉCUTÉE (P0-P7, méthode moves-r4-pur) — 46,1 → 25,2 Kio (−45,4 %) — arbitres 5/5 PASS — syn",
+      "octets": 3916,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "clone"
+      ]
+    },
+    {
+      "suite": 69,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 74 (chaîne Task 79 G3) : EXÉCUTION INTÉGRALE DU GO — G1 clone-chat 8/8 + G2 correct-work (projet) --bloc B1-B4 PASS + G3 finalisati",
+      "octets": 3972,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 70,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 79 : G4 TERMINÉ + FINALE — clone-chat v2.0.2 (§0-§5, 5 drifts, 8 checks, jeton tronqué) + E8 FINAL 14/14 — chaîne G1-G4 CLOSE — G5 ",
+      "octets": 3619,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 71,
+      "date": "2026-11-08",
+      "titre": "session web-ecef7f80) — Task 79 G5 TERMINÉ : PUSH final exécuté (délégation PAT — 2ᵉ push de la chaîne) — distant == HEAD 0b1712b — zéro-persistance prouvée ×2 ",
+      "octets": 2002,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 72,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 80 plan AFFICHÉ (E7-DISP — PLAN-AFFICHE) : suite de tests fonctionnels + performance + interactions intégrée au skill re-curation (",
+      "octets": 1862,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "clone",
+        "directif",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 73,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 80 G1 TERMINÉ : suite de tests v1.2.0 construite dans protocole-test.py (correct-work(G1) PASS)",
+      "octets": 2222,
+      "marqueurs": [
+        "FAIL",
+        "PASS"
+      ]
+    },
+    {
+      "suite": 74,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 80 G2 TERMINÉ : SKILL.md v1.2.0 + cascade légère certifiée (correct-work(G2) PASS)",
+      "octets": 1964,
+      "marqueurs": [
+        "FAIL",
+        "PASS"
+      ]
+    },
+    {
+      "suite": 75,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 80 G3 TERMINÉ : preuves réelles + projection + commit + CW --bloc + clone-chat + E8 FINAL (10/10) — TASK 80 CLOSE",
+      "octets": 3143,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 76,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 81 (chaîne step) : OUVERTURE (E1-RES — version-management auto-réparé par la garde, récidive) + plan INITIAL E1-E8 — trace directiv",
+      "octets": 4961,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 77,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 81 G1 TERMINÉ : règle fidélité intégrée — iphone19 v0.12.0 (règle absolue 15 + critère QC 14, ajouts purs) — PM @photos bump + arch",
+      "octets": 2994,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "clone"
+      ]
+    },
+    {
+      "suite": 78,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 81 G2 TERMINÉ : re-curation progressive disclosure iphone19 P0-P7 (55 645 → 40 430 o, −27,3 %) + harnais protocole-test v1.2.1 + pr",
+      "octets": 6717,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "clone",
+        "directif"
+      ]
+    },
+    {
+      "suite": 79,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 81 G3 TERMINÉ : campagne de tests chronologique 15/15 éléments PASS (hier 9 + aujourd'hui 6 — 1 écart consigné, 0 FAIL) + rapport c",
+      "octets": 3960,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 80,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 81 G4 TERMINÉ : SYNC-CONTEXT v1.5.8 (resync état Task 80+81) + FAILLE F-a ÉTEINTE (worklog dépôt ← profil, 1 879 lignes identiques)",
+      "octets": 2607,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone"
+      ]
+    },
+    {
+      "suite": 81,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 81 G5 TERMINÉ : CW (projet) --bloc B1-B4 PASS (0 round) + clone-chat session 81 scellé (S1-S8) + E8 FINAL 8/8 verified + P1-P5 PASS",
+      "octets": 2888,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 82,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 81 G6 TERMINÉ : PUSH final exécuté (délégation PAT — protocole Task 63/77) — distant == HEAD 3d123ca — zéro-persistance prouvée — C",
+      "octets": 2665,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 83,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 OUVERTURE (E1-RES — garde n°9 récidive n°6 auto-réparée + faille F-a′ @photos restauré miroir) + plan INITIAL E1-E8 — trace dire",
+      "octets": 4886,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone"
+      ]
+    },
+    {
+      "suite": 84,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G1 TERMINÉ : analyse conversions approfondie — 4 listes livrées (knowledge-observer → agent autonome P1 · ultra-maître vide doct",
+      "octets": 4252,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 85,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G2 TERMINÉ : conversion knowledge-observer → PREMIER AGENT AUTONOME DÉPLOYÉ (tandem .agent + SKILL.md v1.1.0) + recalibrage ULTR",
+      "octets": 4894,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "arbitre",
+        "clone"
+      ]
+    },
+    {
+      "suite": 86,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G3 TERMINÉ : campagne tests conversions 8/8 PASS (re-jeu initial 7/8 → 2 anomalies mesurées et corrigées : harnais protocole-tes",
+      "octets": 3502,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 87,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G4 TERMINÉ : CW (projet) --bloc PASS 1 — B1-B4 PASS 4/4 (0 round) + clone-chat session 82 scellé PASS 1 (8/8 S1-S8) + statuts pl",
+      "octets": 3558,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 88,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G5 TERMINÉ : analyse re-curation — cibles-recursion [P1 iphone18 · P2 skill-creator · P3 iphone17 · P4 cahier-des-charges] + cib",
+      "octets": 2806,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 89,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G6 TERMINÉ : re-curation progressive disclosure iphone18 P0-P7 (cible P1 — 41 395 → 36 710 o, −11,3 %, 3 blocs R4 byte-identité,",
+      "octets": 4534,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 90,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G7 TERMINÉ : tests re-curations — selftest 15/15 ×2 · verifiers iphone18 + knowledge-observer PASS · POST run 3 MAINTIEN (3ᵉ con",
+      "octets": 1815,
+      "marqueurs": [
+        "PASS",
+        "clone"
+      ]
+    },
+    {
+      "suite": 91,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G8 TERMINÉ : CW (projet) --bloc PASS 2 — B1-B4 PASS 4/4 (0 round, chaîne 2 passes 0 round) + clone-chat FINAL scellé (8 drifts c",
+      "octets": 3714,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 92,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 82 G9 TERMINÉ : SYNC-CONTEXT v1.5.9 (resync état Task 82 — compteurs mesurés 189/196 porteurs + 4 agents) + worklog dépôt ← profil ",
+      "octets": 3708,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH"
+      ]
+    },
+    {
+      "suite": 93,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 83 OUVERTURE : plan créé + E8 validé (directive 1a1beaee032b5aa5, mode step — création discipline agent-engineering + PUSH chaîne)",
+      "octets": 3099,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 94,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 83 G1 TERMINÉ : hygiène mode-bits + PUSH Task 82 CLOSE 95fef2b exécuté (délégation PAT — E15 : 6ᵉ exposition consignée) + correct-w",
+      "octets": 2260,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH"
+      ]
+    },
+    {
+      "suite": 95,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 83 G2 TERMINÉ : skill discipline agent-engineering v1.0.0 CRÉÉ (SKILL.md + fondements + evals ×2) + correct-work(G2)",
+      "octets": 3311,
+      "marqueurs": [
+        "PASS"
+      ]
+    },
+    {
+      "suite": 96,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 83 G3 TERMINÉ : cascade KO-L004 locale complète — KB + ECO_SKILLS 114/114 + ULTRA 13ᵉ voie + historiques + projection hôte 55/55 + ",
+      "octets": 3136,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 97,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 83 G4 TERMINÉ : tests brefs fonctionnels + performances + idempotence ×2 — l'ULTRA régénéré par générateur (voie canonique) + re-se",
+      "octets": 2214,
+      "marqueurs": [
+        "PASS"
+      ]
+    },
+    {
+      "suite": 98,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 83 G5 TERMINÉ : CW --bloc PASS 4/4 (0 round) + SYNC-CONTEXT v1.5.10 + E8 FINAL 10/10 + clone-chat scellé 8/8 + worklog dépôt + comm",
+      "octets": 4774,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 99,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 84 OUVERTURE : PM SHARED relu intégral (item 1 directive) + E1-RES OK + plan E7 écrit + E8 PASS + cadence 2 h armée (directive 1a1b",
+      "octets": 2617,
+      "marqueurs": [
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 100,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 84 G2 TERMINÉ : campagne tests $FACON2 chronologique 52/52 PASS (round 1 : 40/51 MESURÉS → 3 failles réelles corrigées + 7 calibrag",
+      "octets": 5327,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "bug"
+      ]
+    },
+    {
+      "suite": 101,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 84 G3 TERMINÉ : P1 inscription socle n°56 EXÉCUTÉE — SHARED §7 v1.7.37 + gen-plan v3.42.0 + cascade KO-L004 complète (PM v3.42.0 gé",
+      "octets": 5192,
+      "marqueurs": [
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "arbitre",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 102,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 84 G4 TERMINÉ : SYNC-CONTEXT v1.5.11 (couverture §0 TOTALE 200/200) + E8 FINAL 12/12 verified + CW --bloc B1-B4 PASS (0 S1 · 0 S2 ·",
+      "octets": 3731,
+      "marqueurs": [
+        "E15",
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 103,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 84 G5 TERMINÉ : commit CLOSE 99ce53e + PUSH délégation PAT exécuté (fast-forward pur f7e65a5..99ce53e, zéro-persistance ×2) + bilan",
+      "octets": 4247,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 104,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 85 G1 TERMINÉ : cadence 2 h tick 15:50 — réinstallation 55/55 + elucidation tracking stale + HYGIÈNE MODE-BITS RACINAIRE (dépôt uni",
+      "octets": 2782,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 105,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 85 G2 TERMINÉ : P2 re-curation skill-creator EXÉCUTÉE (méthode P0-P7 éprouvée) — 41 323 → 37 150 o (−10,1 %), 2 blocs R4 byte-ident",
+      "octets": 3837,
+      "marqueurs": [
+        "E15",
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "bug",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 106,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 85 G3 TERMINÉ : re-curation web-reader EXÉCUTÉE — 32 085 → 20 367 o (−36,5 %), 3 zones R4 byte-identité, C1-C4 PASS TOTAL (1ʳᵉ cibl",
+      "octets": 3277,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 107,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 85 G4 TERMINÉ : re-curation cahier-des-charges EXÉCUTÉE — 31 583 → 26 244 o (−16,9 %), 1 zone R4 byte-identité (§6 Traçabilité), C1",
+      "octets": 1889,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 108,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 85 G5 TERMINÉ : re-curation iphone17 EXÉCUTÉE (DERNIÈRE cible — FILE RE-CURATION ÉTEINTE) — 35 013 → 30 949 o (−11,6 %) + BILAN CHI",
+      "octets": 4887,
+      "marqueurs": [
+        "E15",
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 109,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 86 TERMINÉ : cadence 2 h tick 17:50 — réinstallation 55/55 + dépôt propre (hygiène sans commit) + PM SHARED relu + extinction penda",
+      "octets": 5847,
+      "marqueurs": [
+        "E15",
+        "FAIL",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 110,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Cadence 2 h tick 19:50 — réinstallation 55/55 + hygiène mode-bits 2684 fichiers + campagne $FACON2 AU VERT + PUSH Task 86 complété (gen-",
+      "octets": 3248,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 111,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Cadence 2 h tick 21:50 — réinstallation 55/55 + hygiène mode-bits (cycle idempotent confirmé) + campagne $FACON2 AU VERT + PUSH à blanc ",
+      "octets": 2858,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 112,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Cadence 2 h tick 23:50 — réinstallation 55/55 + hygiène mode-bits (cycle idempotent 3ᵉ run consécutif) + campagne $FACON2 AU VERT + PUSH",
+      "octets": 2770,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 113,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 90 OUVERTURE — directive propriétaire trace 1a1c1dde3f6d0021 : installation PM-INSTALL v1.9.14 (écart SHA aa3b99d consigné D001) + ",
+      "octets": 1815,
+      "marqueurs": [
+        "E15",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 114,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 90 G1 TERMINÉ : test $FACON « agent-engineering » écosystème en entrée — 5 failles corrigées (v1.1.0 → v1.1.1 PATCH), M-safe prouvé",
+      "octets": 3670,
+      "marqueurs": [
+        "PASS",
+        "bug",
+        "clone"
+      ]
+    },
+    {
+      "suite": 115,
+      "date": "2026-11-09",
+      "titre": "session web-ecef7f80) — Task 90 G2+G3 TERMINÉS : correct-work (projet) --bloc PASS 4/4 · clone-chat scellé 8/8 · commit + PUSH PAT (E15 : 17ᵉ exposition) — CHAÎ",
+      "octets": 2997,
+      "marqueurs": [
+        "E15",
+        "PASS",
+        "PUSH",
+        "clone",
+        "pendance"
+      ]
+    },
+    {
+      "suite": 116,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 91 OUVERTURE : directive propriétaire trace 1a1de20963908bd9 — installation PM-INSTALL v1.9.14 voie directe (pipeline RC=0, 55/55 S",
+      "octets": 971,
+      "marqueurs": []
+    },
+    {
+      "suite": 117,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 91 G1 TERMINÉ : relecture intégrale de la discussion — 13 clones lus en ordre antichronologique (task90 → task72, pass1 intégré-rem",
+      "octets": 762,
+      "marqueurs": []
+    },
+    {
+      "suite": 118,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 91 G2 TERMINÉ : analyse $FACON des modifications gen-plan + écosystème de la discussion vs dernière version dépôt — 6 montées gen-p",
+      "octets": 1152,
+      "marqueurs": []
+    },
+    {
+      "suite": 119,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 91 G3 TERMINÉ : résumé PDF Premium « tech minimal » — skill pdf chargé (brief creative-flow + fonts + overflow + palette + paginati",
+      "octets": 1373,
+      "marqueurs": []
+    },
+    {
+      "suite": 120,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 91 G4 TERMINÉ : correct-work (projet) --bloc — mode PROJET option bloc par bloc (§1.7, correct-work v2.11.0) sur l'écosystème profi",
+      "octets": 1049,
+      "marqueurs": []
+    },
+    {
+      "suite": 121,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 91 G5 TERMINÉ + FINALE : clone-chat scellé 8/8 S1-S8 (`download/clone-chat-session-web-ecef7f80-20261115-task91.md` — étape 11 PM-I",
+      "octets": 1058,
+      "marqueurs": []
+    },
+    {
+      "suite": 122,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 92 OUVERTURE + PLAN-AFFICHÉ : directive propriétaire trace 1a1de66691f9c2d5 (reformulation 1a1de6474f53677d) « mémorisation écosyst",
+      "octets": 1065,
+      "marqueurs": []
+    },
+    {
+      "suite": 123,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 92 G1 TERMINÉ : analyse technique de l'erreur « SyntaxError : Token inattendu 'd', \"data: {\"da\"… » (note `download/note-analyse-err",
+      "octets": 1185,
+      "marqueurs": []
+    },
+    {
+      "suite": 124,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 92 G2 TERMINÉ : LEÇON L011 ENREGISTRÉE + VALIDÉE (cycle A-H, étapes C→F) — `scripts/task92-enregistrer-l011.py` (chirurgical : R2 L",
+      "octets": 1070,
+      "marqueurs": []
+    },
+    {
+      "suite": 125,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 92 G3 TERMINÉ : MATÉRIALISATION M4 + MONTÉE gen-plan v3.42.0 → **v3.43.0** + CASCADE KO-L004 INTÉGRALE — (1) MÉCANISME `scripts/ada",
+      "octets": 2995,
+      "marqueurs": []
+    },
+    {
+      "suite": 126,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 92 G4 TERMINÉ + E15 + CLOSE : KB Décisions Task 92 (étape H — leçon L011 appliquée, règle KO-L011, mécanisme, montée v3.43.0, 4 déc",
+      "octets": 1922,
+      "marqueurs": [
+        "PASS"
+      ]
+    },
+    {
+      "suite": 127,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 93 OUVERTURE + PLAN-AFFICHÉ : directive propriétaire trace 1a1de9776be93121 « gen-plan : \"continue $FACON\" » ($FACON = de façon coh",
+      "octets": 2126,
+      "marqueurs": []
+    },
+    {
+      "suite": 128,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 93 G1 TERMINÉ : santé d'ouverture — garde É1-INSTALL **INSTALLE-REPARÉ rc=0** (skill version-management restauré depuis miroir, réc",
+      "octets": 822,
+      "marqueurs": []
+    },
+    {
+      "suite": 129,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 93 G2 TERMINÉ : **clone-chat Task 92 scellé 8/8 S1-S8** (`download/clone-chat-session-web-ecef7f80-20261115-task92.md` — étape 11 P",
+      "octets": 1229,
+      "marqueurs": []
+    },
+    {
+      "suite": 130,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 93 G3 TERMINÉ + E15 + CLOSE : miroirs hôte→dépôt (plan task93 + clone task92 vers download/ dépôt) + worklog dépôt suites 127-130 +",
+      "octets": 2571,
+      "marqueurs": []
+    },
+    {
+      "suite": 131,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 94 TERMINÉ + CLOSE : directive propriétaire trace 1a1deb52b30fe8a9 « PUSH des commits avec ma clé [PAT fourni] + explique-moi chacu",
+      "octets": 2264,
+      "marqueurs": []
+    },
+    {
+      "suite": 132,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 95 OUVERTURE + PLAN-AFFICHÉ : directive propriétaire trace 1a1ded2a59319bb9 (reformulée 1a1dee6f8511bee1) « intègre $FACON les 3 pr",
+      "octets": 1661,
+      "marqueurs": []
+    },
+    {
+      "suite": 133,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 95 G1+G2+G3 TERMINÉS : **S4-1 (R2)** — `scripts/gen-ultra-maitre.py` dynamisé : `harness_version()` (version réelle du harnais lue ",
+      "octets": 1966,
+      "marqueurs": []
+    },
+    {
+      "suite": 134,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 95 G4 TERMINÉ : tests $FACON2 (`scripts/task95-tests-s4.py` mode post) — **T01-T18 + P-gardes 20/20 PASS** (rapport `download/rappo",
+      "octets": 2437,
+      "marqueurs": []
+    },
+    {
+      "suite": 135,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 95 G5+G6 + E15 + CLOSE : **correct-work (projet) --bloc** (v2.9.0, couplage gen-plan v3.43.0 §1.5 respecté — plan task95 answer key",
+      "octets": 1824,
+      "marqueurs": []
+    },
+    {
+      "suite": 136,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 96 OUVERTURE + PLAN-AFFICHÉ : directive propriétaire trace 1a1df19ddd9c60c1 (reformulation 1a1df1c1f2ff1875 « continue mais en disc",
+      "octets": 1762,
+      "marqueurs": []
+    },
+    {
+      "suite": 137,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 96 G1-G4 TERMINÉ + E15 + CLOSE : **G1 ré-armage cadence autonome EXÉCUTÉ — AVEC ADAPTATION AUTONOME (règle d'or n°1)** : 1re créati",
+      "octets": 3482,
+      "marqueurs": []
+    },
+    {
+      "suite": 138,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 96 SUIVI (ré-armage de secours cron) + point d'état pendances : directive propriétaire trace 1a1df344c57c50bd « dis-moi ce qu'il re",
+      "octets": 3456,
+      "marqueurs": []
+    },
+    {
+      "suite": 139,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 97 G1-G3 TERMINÉS (items 1-3 directive mode step) : directive propriétaire trace 1a1df48b3eb8fb9d « PUSH avec ma clé [PAT frais] · ",
+      "octets": 4919,
+      "marqueurs": []
+    },
+    {
+      "suite": 140,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 97 G4-G5 + E15 + CLOSE : **ITEM 4 CORRECT-WORK (PROJET) --BLOC** (v2.11.0 §1.7, couplage gen-plan v3.43.0 §1.5 respecté — plan task",
+      "octets": 2273,
+      "marqueurs": []
+    },
+    {
+      "suite": 141,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 97 SUIVI (point d'état pendances) : directive propriétaire trace 1a1df6d06e775941 « dis-moi quelles actions cohérentes restent-ils ",
+      "octets": 2916,
+      "marqueurs": []
+    },
+    {
+      "suite": 142,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 97 SUIVI 2 : GO propriétaire exécuté + tick 15:00 CET VALIDÉ + INCIDENT « restauration-sandbox » diagnostiqué-réparé EN 2 PHASES (d",
+      "octets": 5003,
+      "marqueurs": []
+    },
+    {
+      "suite": 143,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 98 CLOSE : GO propriétaire trace 1a1df74c670cddc1 « GO avec ma clé [PAT frais fourni dans la discussion courante] » (gen-plan mode ",
+      "octets": 5558,
+      "marqueurs": []
+    },
+    {
+      "suite": 144,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 99 CLOSE : directives propriétaire « COMMIT et PUSH avec ma clé [PAT fourni] » (tour amont, trace de session) puis trace 1a1dfac9a2",
+      "octets": 2756,
+      "marqueurs": []
+    },
+    {
+      "suite": 145,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 100 CLOSE : GO propriétaire trace 1a1dfb31d58350d5 « GO » sur la pendance F1 du point d'état Task 99 (gen-plan mode step — mission ",
+      "octets": 3217,
+      "marqueurs": []
+    },
+    {
+      "suite": 146,
+      "date": "2026-11-15",
+      "titre": "session web-ecef7f80) — Task 101 CLOSE : directive propriétaire trace 1a1dfbe7d6565fa5 « vérifie $FACON qu'il n'y a plus de différés consignés à corriger et s'i",
+      "octets": 2549,
+      "marqueurs": []
+    },
+    {
+      "suite": 147,
+      "date": "2026-11-16",
+      "titre": "session web-ecef7f80) — Task 102 CLOSE : directive propriétaire trace 1a1e2bbb50baf7d1 « installe mon écosystème personnel en tant que mon écosystème personnel ",
+      "octets": 3256,
+      "marqueurs": []
+    },
+    {
+      "suite": 148,
+      "date": "2026-11-16",
+      "titre": "session web-ecef7f80) — Task 103 CLOSE : directive propriétaire trace 1a1e5c6648876ad5 « installe mon écosystème personnel en tant que mon écosystème personnel ",
+      "octets": 3730,
+      "marqueurs": []
+    },
+    {
+      "suite": 149,
+      "date": "2026-11-16",
+      "titre": "session web-ecef7f80) — Task 103 SUIVI : directive propriétaire trace 1a1e5eb12bff0939 « PUSH avec ma clé [PAT du tour] » — PENDANCE PUSH suite 148 ÉTEINTE : PR",
+      "octets": 2241,
+      "marqueurs": []
+    },
+    {
+      "suite": 150,
+      "date": "2026-11-16",
+      "titre": "session web-ecef7f80) — Task 104 CLOSE : directive propriétaire trace 1a1e5f3f54c10041 « gen-plan : génère-moi une fiche descriptive détaillée (en version PDF) ",
+      "octets": 4758,
+      "marqueurs": []
+    },
+    {
+      "suite": 151,
+      "date": "2026-11-18",
+      "titre": "session web-ecef7f80) — Task 105 CLOSE : directive propriétaire trace 1a1efb513dfbc805 « installe mon écosystème personnel en tant que mon écosystème personnel ",
+      "octets": 5834,
+      "marqueurs": []
+    },
+    {
+      "suite": 152,
+      "date": "2026-11-18",
+      "titre": "session web-ecef7f80) — Task 106 CLOSE : directive propriétaire trace 1a1efc61db496e75 « continue + gen-plan (step) : Peut-on regrouper par famille (ou groupe) ",
+      "octets": 4425,
+      "marqueurs": []
+    },
+    {
+      "suite": 153,
+      "date": "2026-11-19",
+      "titre": "session web-ecef7f80) — Task 107 CLOSE : directive propriétaire trace 1a1efebf27dcbafd « gen-plan (step) : PUSH [clé du tour] · GO-1 · GO-2 · correct-work · clo",
+      "octets": 7980,
+      "marqueurs": []
+    }
+  ]
+}
