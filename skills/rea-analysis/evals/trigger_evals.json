@@ -1,0 +1,40 @@
+[
+  {
+    "query": "Analyse le binaire holyarrs avec le kit REA et produis l'Evidence YAML.",
+    "should_trigger": true
+  },
+  {
+    "query": "Réinstalle le kit REA dans mon écosystème sur l'épingle datée 03a3fcb.",
+    "should_trigger": true
+  },
+  {
+    "query": "Diagnostique les moteurs d'analyse du kit REA (ghidra, hopper, ida, jadx, kuna).",
+    "should_trigger": true
+  },
+  {
+    "query": "Fais une campagne de rétro-ingénierie du frontend de l'application sans le code source.",
+    "should_trigger": true
+  },
+  {
+    "query": "inspect-go-binary sur ce binaire Go et récupère la vcs.revision embarquée.",
+    "should_trigger": true
+  },
+  {
+    "query": "Clone l'application Leon_Netflix et construis-la avec make.",
+    "should_trigger": false,
+    "exclusifs": ["clone", "construis"],
+    "note": "veto croisé : clonage/build = voie git canonique (ghorg-cmdr / git clone + build — REA inapplicable à la reproduction, verdict Task 8)"
+  },
+  {
+    "query": "Valide ce fichier .tsi de mapping Traktor.",
+    "should_trigger": false,
+    "exclusifs": ["valide"],
+    "note": "veto croisé : validation mécanique TSI = périmètre tsi-validator (arbitre PASS/FAIL)"
+  },
+  {
+    "query": "Conçois le plan d'actions de la prochaine campagne d'audit.",
+    "should_trigger": false,
+    "exclusifs": ["conçois", "plan d'actions"],
+    "note": "veto croisé : planification = périmètre gen-plan (rea-analysis consomme le plan, ne le produit pas)"
+  }
+]
