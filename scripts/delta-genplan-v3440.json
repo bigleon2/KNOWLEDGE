@@ -1,0 +1,20 @@
+{
+  "history": "Chaîne de vérification par étape terminée en mode NULL — §5.4 étendu (titre + granularité ÉTAPE : correct-work(livrables de l'étape, mode=CIBLE) AVANT l'étape suivante, statut verified subordonné au verdict CIBLE — KO-L003) + clause §A NULL + §1.5 Modes + description + dependencies used_at. REAPPLICATION de la montée Task ID 10 (perdue au recyclage du bac à sable, jamais poussée au dépôt — directive 1a1fa816474a35ad « analyse et teste mon skill gen-plan dans l'objectif de l'optimiser »). MINOR, triggers inchangés (non-régression). Cascade KO-L004 COMPLÈTE cette fois (pipeline du dépôt présent) : PM + delta + KB + @historique + pin ECO_SKILLS + certification locale.",
+  "subs": [
+    {
+      "old": "sans portes de confirmation (directive propriétaire 2026-10-11) ; tout autre mode → clarification demandée, jamais d'invention de mode (R2)\n- `orchestre`",
+      "new": "sans portes de confirmation (directive propriétaire 2026-10-11) ; **chaîne de vérification par étape terminée (v3.44.0)** : chaque étape du plan d'actions terminée est vérifiée par `correct-work(livrables de l'étape, mode=CIBLE)` AVANT l'étape suivante — le statut `verified` de l'answer key est subordonné au verdict CIBLE (KO-L003) ; tout autre mode → clarification demandée, jamais d'invention de mode (R2)\n- `orchestre`",
+      "count": 1
+    },
+    {
+      "old": "| — | **Modes** | `step` : chaîne par groupes ; `step-ok` : + confirmation ; NULL : comportement antérieur ; autre mode → clarification (R2). |",
+      "new": "| — | **Modes** | `step` : chaîne par groupes ; `step-ok` : + confirmation ; NULL : comportement antérieur + correct-work(CIBLE) par étape terminée (v3.44.0) ; autre mode → clarification (R2). |",
+      "count": 1
+    },
+    {
+      "old": "**Hook correct-work par phase (E9-E14)** (si correct-work >= v2.4.0 est disponible) :\n- [ ] Dès qu'une phase du plan d'actions vient de se terminer, lancer `correct-work(livrables de la phase, mode=CIBLE)` AVANT d'entamer la phase suivante",
+      "new": "**Hook correct-work par phase ET par étape — mode NULL, granularité étape (v3.44.0)** (si correct-work >= v2.4.0 est disponible) :\n- [ ] Dès qu'une phase du plan d'actions vient de se terminer, lancer `correct-work(livrables de la phase, mode=CIBLE)` AVANT d'entamer la phase suivante\n- [ ] **Mode NULL, granularité étape (v3.44.0)** : dès qu'une ÉTAPE du plan d'actions est terminée, lancer `correct-work(livrables de l'étape, mode=CIBLE)` AVANT l'étape suivante — le statut `verified` de l'entrée d'answer key correspondante est subordonné au verdict CIBLE (KO-L003 : statuts fixés par l'exécution, jamais à la main)",
+      "count": 1
+    }
+  ]
+}

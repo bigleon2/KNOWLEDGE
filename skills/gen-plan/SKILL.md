@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.43.0
+version: 3.44.0
 category: ecosystem
 language: fr
 tags:
@@ -20,11 +20,12 @@ description: >
   déclencheurs verbatim « intègre dans le plan d'actions » (E13 — extension du plan courant, règle d'or n°3)
   et « met à jour » (re-génération $FACON d'un nouveau plan d'actions $FACON2 — v3.37.0),
   glossaire alias-eco inline $FACON/$FACON2 (§A — auto-contenu, v3.37.0)
-  progressive disclosure R1 (v3.39.0) : résumés inline, intégraux en references/ à la demande
+  progressive disclosure R1 (v3.39.0) : résumés inline, intégraux en references/ à la demande,
+  chaîne de vérification par étape terminée en mode NULL — correct-work(CIBLE) AVANT l'étape suivante (v3.44.0)
 dependencies:
   - skill: correct-work
     version: ">=2.4.0"
-    used_at: "E1, E8 hook, contrôle par phase"
+    used_at: "E1, E8 hook, contrôle par phase ; par étape terminée en mode NULL (v3.44.0)"
   - skill: clone-chat
     version: ">=2.0.0"
     used_at: "E4, E15"
@@ -55,7 +56,7 @@ read_when:
 - « intègre dans le plan d'actions » — intégration d'une nouvelle demande dans le plan courant (E13, règle d'or n°3 — extension, jamais réécriture destructrice R2 ; déclencheur verbatim v3.17.2, directive propriétaire)
 - « met à jour (le plan d'actions) » — re-génération $FACON d'un NOUVEAU plan d'actions $FACON2 : consolidation de l'état vérifiable du plan courant (groupes terminés reportés avec preuves — statuts dérivés du disque : worklog, verdicts d'arbitres, livrables ; règle d'or n°5 — KO-L003) + restes-à-faire re-planifiés + nouvelles demandes (E13 intégrées à la consolidation) + re-estimation #token + answer key re-numérotée ; le NOUVEAU plan (fichier horodaté dans `download/`) devient la référence d'exécution, l'ancien est conservé (R2) ; chaîne E7-DISP complète (answer key, E8 horodatages couplés, R5, PLAN-AFFICHE) — VOIE DISTINCTE de « intègre dans le plan d'actions » (extension E13 du plan courant EN PLACE) (règle d'or n°3 — déclencheur verbatim v3.37.0, directive propriétaire 2026-11-07)
 - `gen-plan(step) : <instructions>` — enchaînement autonome des groupes séquentiels du plan d'actions, correct-work(groupe) après chaque groupe (max 2 rounds de correction), correct-work(projet) en fin de chaîne (v3.22.0) ; à l'ouverture de chaque groupe : vue d'évolution PLAN-AFFICHE (E7-DISP v3.36.0 — tous modes)
-- `gen-plan(step-ok) : <instructions>` — identique au mode step avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1) ; alias `step-confirm` (v3.22.0) et `step-confim` normalisés en `step-ok` (R4) ; **clause mode NULL** — toute invocation sans `<mode>` explicite (`gen-plan : <instructions>`, ex. « gen-plan : continue ») conserve le comportement antérieur à l'introduction des modes step/step-ok (v3.21.0) : intégration E13 ou exécution classique, sans portes de confirmation (directive propriétaire 2026-10-11) ; tout autre mode → clarification demandée, jamais d'invention de mode (R2)
+- `gen-plan(step-ok) : <instructions>` — identique au mode step avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1) ; alias `step-confirm` (v3.22.0) et `step-confim` normalisés en `step-ok` (R4) ; **clause mode NULL** — toute invocation sans `<mode>` explicite (`gen-plan : <instructions>`, ex. « gen-plan : continue ») conserve le comportement antérieur à l'introduction des modes step/step-ok (v3.21.0) : intégration E13 ou exécution classique, sans portes de confirmation (directive propriétaire 2026-10-11) ; **chaîne de vérification par étape terminée (v3.44.0)** : chaque étape du plan d'actions terminée est vérifiée par `correct-work(livrables de l'étape, mode=CIBLE)` AVANT l'étape suivante — le statut `verified` de l'answer key est subordonné au verdict CIBLE (KO-L003) ; tout autre mode → clarification demandée, jamais d'invention de mode (R2)
 - `orchestre` — orchestration multi-agents
 - Toute demande impliquant plusieurs étapes séquentielles avec des livrables
 - `gen-plan:generate(<description>)` — génération d'un plan auto-exécutable
@@ -149,7 +150,7 @@ read_when:
 | 1 | **Adaptation autonome** | Blocage = adaptation journalisée, jamais d'arrêt implicite ; pause explicite si inatteignable. |
 | 2 | **Régénération post-installation** | Écosystème installé → plan re-généré via le gen-plan installé (R2). |
 | 3 | **Mise à jour à chaque demande** | E13 (extension, jamais réécriture) ; « intègre dans le plan d'actions » = extension en place ; « met à jour » = NOUVEAU plan consolidé $FACON2. |
-| — | **Modes** | `step` : chaîne par groupes ; `step-ok` : + confirmation ; NULL : comportement antérieur ; autre mode → clarification (R2). |
+| — | **Modes** | `step` : chaîne par groupes ; `step-ok` : + confirmation ; NULL : comportement antérieur + correct-work(CIBLE) par étape terminée (v3.44.0) ; autre mode → clarification (R2). |
 | 4 | **Dépôt par clone** | Clone git local, jamais de lecture distante ; jeton éphémère jamais persisté ; publication = validation propriétaire. |
 | 5 | **État vérifiable** | Chiffres et statuts du disque, jamais pré-écrits (KO-L003) ; dépôt = source R4. |
 | 6 | **Langue française** | Tout texte de l'agent en français dès le premier mot ; dérive → correction + worklog + durcissement. |
@@ -332,13 +333,15 @@ Tous les scripts générés en Python. Aucun script shell (bash, sh, powershell)
 
 Chaque étape du plan et chaque skill utilisé reçoit un tag `#token` indiquant le coût estimé. La grille est auto-calibrée à E15.
 
-### §5.4 Hook correct-work par phase (E9-E14)
+### §5.4 Hook correct-work par phase ET par étape — mode NULL, granularité étape (v3.44.0)
 
 Dès qu'une phase du plan d'actions se termine, lancer `correct-work(livrables de la phase, mode=CIBLE)` AVANT la phase suivante : PASS → suivante ; PASS AVEC RÉSERVES → réserves au worklog, exécution continue ; FAIL → pause, correction, re-vérification. Le hook E8 reste la vérification finale.
+
+**Mode NULL, granularité étape (v3.44.0)** : lorsqu'une ÉTAPE du plan d'actions est terminée, lancer `correct-work(livrables de l'étape, mode=CIBLE)` AVANT l'étape suivante — le statut `verified` de l'entrée d'answer key correspondante est subordonné au verdict CIBLE (KO-L003 : statuts fixés par l'exécution, jamais à la main).
 
 ### §5.5 Mode step — structure hiérarchique et état d'avancement (résumé — intégral : `references/protocoles-detailles.md`)
 
 **Couche d'organisation transverse (v3.25.0, tous modes depuis v3.36.0 — seule différence : les portes de confirmation)** : **groupe `G<k>`** (unité de vérification — correct-work(groupe)) → **sous-groupes `SG<k>.<j>`** (lot cohérent 2-5 tâches) → **tâches `T<k>.<j>.<i>`** (unité élémentaire, tag #token). **Statuts dérivés de l'état vérifiable** (KO-L003) : `[À FAIRE]` · `[EN COURS]` · `[TERMINÉ]` · `[BLOQUÉ]` · `[REPORTÉ]` ; compteurs n/m. **Cadence** : début d'exécution → fenêtre native complète (E7-DISP point 6 — Z.ai : `TodoWrite`) ; ouverture de groupe → PLAN-AFFICHE d'évolution puis tableau du groupe (step-ok : après confirmation) ; fin de tâche → ligne + compteurs ; fin de sous-groupe → rappel ; fin de groupe → fenêtre native mise à jour ; clôture → tableau final + verdict correct-work(groupe). **Orthogonal à l'exécution** : couche de LECTURE ; Graph Diamond automatique dès preuve d'indépendance (sous-groupes inclus, série = exception tracée) ; groupes plats normalisés à l'ouverture (R6/R2).
 ### §5.6 Journal des versions (entrée courante — archive intégrale et mécanique de migration : `references/journal-versions.md`)
 
-- **v3.43.0 (2026-11-15, web-ecef7f80 — Task 92, directive 1a1de66691f9c2d5 [reformulation 1a1de6474f53677d] « mémorisation écosystème de l'erreur "SyntaxError : Token inattendu 'd', "data: {"da"…" [SSE parsé comme JSON] + solution de contournement/correction automatique + adaptation autonome face aux blocages »)** : **LEÇON L011 → RÈGLE KO-L011 — adaptation autonome aux erreurs runtime SSE/JSON** : nouvelle section **§1.14bis** (résumé) + bloc **PATTERN:KO-L011-v1.0.0** intégral `references/regles-or.md` + mécanisme **`scripts/adaptation-json-sse.py`** (sanitize/detect/self-test 11/11 ×2, idempotence ×2, stdlib, rc 0/2 — sœur runtime d'`adaptation-syntaxe.py` : 7 classes Python ≠ classe JSON/SSE, R1 vérifié) ; cycle knowledge-observer **A-H complet intra-session** (C : journal L011 ; F : correct-work CIBLE PASS 8/8 ; G : matérialisation ; H : KB) ; porte M3-M4 sur directive propriétaire explicite (précédent L009/v3.30.0). MINOR, description/§A inchangés (non-régression triggers). Cascade KO-L004 : PM v3.43.0 (delta verrouillé `scripts/delta-genplan-v3430.json`), PM v3.42.0 archivé @historique R4, pin ECO_SKILLS 3.43.0, KB, `@historique/historiques-par-skill/gen-plan.md`, ULTRA régénéré ; SHARED v1.7.38 / PM-INSTALL v1.9.15 recalibrés MÉCANIQUEMENT par le générateur (références §6.1/§2ter, sans changement sémantique — règle gen-plan-scopée).
+- **v3.44.0 (2026-11-20, web-93a4f011 — Task ID 11, directive 1a1fa816474a35ad « analyse et teste mon skill "gen-plan" dans l'objectif de l'optimiser » [REAPPLICATION de la montée Task ID 10 — perdue au recyclage du bac à sable, jamais poussée au dépôt])** : **chaîne de vérification par étape terminée en mode NULL** — §5.4 étendu (titre + extension : granularité ÉTAPE, `correct-work(livrables de l'étape, mode=CIBLE)` AVANT l'étape suivante, statut `verified` subordonné au verdict CIBLE — KO-L003) + clause §A NULL + §1.5 Modes + description + dependencies used_at. MINOR, triggers inchangés (non-régression). Cascade KO-L004 COMPLÈTE (pipeline du dépôt présent — pendances Task ID 10 éteintes) : PM v3.44.0 généré mécaniquement (generer-pm-skill.py) + delta verrouillé + KB + @historique + pin ECO_SKILLS recalibré + certification locale ; v3.43.0 migré R4 byte-identité vers references/journal-versions.md (scripts/migrer-journal-gen-plan-v3440-t11.py — idempotent).
