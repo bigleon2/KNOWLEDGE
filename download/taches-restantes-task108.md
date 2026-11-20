@@ -12,10 +12,10 @@
 | 4 | GO futur — correctif structurel F2 : garde anti-perte du scelleur v2.3 (évolution légitime du corpus sans ECHEC transitoire) | PROPRIÉTAIRE (GO) + session | **P2** | **ÉTEINTE** (2026-11-19, Task 110 G2 — scelleur v2.4 discrimination PERTE/ÉVOLUTION git, harnais T1-T5 9/9, voie mécanique) |
 | 5 | GO-3 (optionnel) : convention « docstring d'abord » (S3/F4) aux canons script-creator + correct-py | PROPRIÉTAIRE (GO) + session | **P3** | **ÉTEINTE** (2026-11-19, Task 110 G3 — canons v1.2.0 + cascade KO-L004, tool-routing N1 PASS inchangé) |
 | 6 | Décision cron 531684 (3ᵉ dispositif perdu) : recréer ou entériner l'absence | PROPRIÉTAIRE | **P3** | escalade maintenue |
-| 7 | Surveillance F3 au prochain bootstrap (si récidive : capture immédiate) | session (AUTO) | P3 | surveillance |
+| 7 | Surveillance F3 au prochain bootstrap (si récidive : capture immédiate) | session (AUTO) | P3 | **ÉTEINTE** (2026-11-20, Task 111 — constat consigné : bootstrap du tour SAIN, injection v2.2.0 0 récidive) |
 | 8 | PMs §0 : propagation automatique aux prochaines montées de version | AUTO (générateur KO-L004) | P3 | nominal |
 
-Aucune autre pendance : re-curation ÉTEINTE (Task 85), différés Task 101 vérifiés éteints, familles/orchestrateurs tranchés (Task 106 : non-création), pendances PUSH antérieures toutes éteintes (Task 107 G0), G-RES OK (7,6 Go, profil NORMAL). **Mise à jour Task 110 (2026-11-19, trace 1a1f2297d90c957d « GO futur + GO-3 ») : tâches 3-4-5 ÉTEINTES — cf. détails ci-dessous.**
+Aucune autre pendance : re-curation ÉTEINTE (Task 85), différés Task 101 vérifiés éteints, familles/orchestrateurs tranchés (Task 106 : non-création), pendances PUSH antérieures toutes éteintes (Task 107 G0), G-RES OK (7,6 Go, profil NORMAL). **Mise à jour Task 110 (2026-11-19, trace 1a1f2297d90c957d « GO futur + GO-3 ») : tâches 3-4-5 ÉTEINTES — cf. détails ci-dessous. Mise à jour Task 111 (2026-11-20, trace 1a1f7d3e607663f1) : pendance PUSH du commit Task 110 (d4e228f4) ÉTEINTE — push a5daa964..d4e228f4 rc=0, atterrissage vérifié ls-remote anonyme (refs/heads/main = d4e228f4, parité HEAD = origin, E15 36ᵉ) ; tâche 7 ÉTEINTE (constat bootstrap consigné) ; cron list = 0 job (4ᵉ dispositif perdu — escalade tâche 6 maintenue).**
 
 ## Détail par tâche
 
@@ -51,13 +51,15 @@ Aucune autre pendance : re-curation ÉTEINTE (Task 85), différés Task 101 vér
 
 ### 6. Décision cron 531684 — P3 [PROPRIÉTAIRE]
 - **Nature** : le job de cadence autonome (2 h) est absent de la plateforme (3ᵉ dispositif perdu — vérifié ce tour : cron list = 0 job). L'escalade propriétaire est maintenue ; AUCUNE recréation en boucle (clause anti-boucle, règle d'or n°5).
+- **Mise à jour Task 111 (2026-11-20)** : re-vérification cron list = 0 job — **4ᵉ dispositif perdu** ; escalade maintenue, décision propriétaire toujours requise (recréation OU entérinement de l'absence).
 - **Source** : suites 141-142 (incident), 153 (point d'état), présent tour (vérification cron list 0).
 - **Critère d'extinction** : décision propriétaire consignée — recréation (cron list ≥ 1 job actif) OU entérinement de l'absence (le préflight/bootstrap en ouverture de session couvre déjà le besoin de réparation).
 
-### 7. Surveillance F3 au prochain bootstrap — P3 [AUTO, surveillance]
+### 7. Surveillance F3 au prochain bootstrap — P3 [AUTO, surveillance] — **ÉTEINTE**
 - **Nature** : si la branche injection de l'injecteur récidive au prochain bootstrap (tâche 3 non exécutée), capture immédiate — le harnais sait désormais le faire.
 - **Source** : feuille de route §8.4 du rapport Task 105.
 - **Critère d'extinction** : constat consigné au prochain tour d'installation (récidive capturée OU absence constatée après exécution de la tâche 3).
+- **EXTINCTION (2026-11-20, Task 111, trace 1a1f7d3e607663f1)** : constat consigné au tour d'installation GO-1 — bootstrap-ecosysteme.py exécuté : preflight RÉPARÉ (2778 modes, 0 contenu), dry-run 55 divergences hôte, installation 55 SHA **0 divergence**, certification ALL-PASS-6/6, garde É1 INSTALLE — branche injection v2.2.0 SAIN : 0 récidive, 0 SyntaxError, 0 revert ; re-check ensure-installed rc=0 (55 entrées KB, 0 manquant).
 
 ### 8. PMs §0 — propagation automatique aux prochaines montées — P3 [AUTO]
 - **Nature** : le générateur KO-L004 recalibre mécaniquement SHARED/PM-INSTALL à chaque montée de version (comportement vérifié Task 92/107) ; les en-têtes §0 des skills/scripts suivent par propagate-context (une fois F3 corrigé, sans limite).

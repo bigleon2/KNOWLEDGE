@@ -2180,7 +2180,7 @@
       ]
     },
     "correct-py": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "n_cases": 7,
       "n_keywords": 62,
       "score_officiel": "7/7",
@@ -7933,7 +7933,7 @@
       ]
     },
     "script-creator": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "n_cases": 7,
       "n_keywords": 40,
       "score_officiel": "7/7",
