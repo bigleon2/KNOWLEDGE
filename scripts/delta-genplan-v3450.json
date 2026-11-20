@@ -1,0 +1,25 @@
+{
+  "history": "Mode step SANS AUCUNE validation — exclusivité des portes au mode step-ok (directive propriétaire trace 1a1faad3d26c524d : « fais en sorte que le mode STEP de mon skill gen-plan ne me demander jamais de validations pour passer aux étapes suivantes, seul le mode STEP-OK de gen-plan doit le faire ») : §A step += clause JAMAIS (aucune porte, aucune pause, enchaînement intégral jusqu'à la clôture, seuls correct-work(groupe)/(projet) mécaniques jalonnent) + §A step-ok += SEUL mode à portes de validation (step et NULL n'en demandent jamais) + §1.5 Modes + §5.5 + description. MINOR, additions pures (non-régression triggers). Cascade KO-L004 COMPLÈTE : PM + delta + KB + @historique + pin ECO_SKILLS + certification locale.",
+  "subs": [
+    {
+      "old": "correct-work(projet) en fin de chaîne (v3.22.0) ; à l'ouverture de chaque groupe : vue d'évolution PLAN-AFFICHE (E7-DISP v3.36.0 — tous modes)",
+      "new": "correct-work(projet) en fin de chaîne (v3.22.0) ; à l'ouverture de chaque groupe : vue d'évolution PLAN-AFFICHE (E7-DISP v3.36.0 — tous modes) ; **JAMAIS de validation du propriétaire pour passer aux étapes/groupes suivants (v3.45.0 — aucune porte, aucune pause : l'exécution enchaîne intégralement jusqu'à la clôture de la chaîne, seuls les verdicts mécaniques correct-work(groupe)/(projet) jalonnent la progression ; les portes de validation sont l'EXCLUSIVITÉ du mode step-ok)**",
+      "count": 1
+    },
+    {
+      "old": "- `gen-plan(step-ok) : <instructions>` — identique au mode step avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1)",
+      "new": "- `gen-plan(step-ok) : <instructions>` — identique au mode step avec demande de confirmation du propriétaire avant chaque groupe — **SEUL mode à portes de validation (v3.45.0 : les modes step et NULL n'en demandent JAMAIS — hors step-ok, aucune validation n'est requise pour passer aux étapes suivantes)** (nom canonique v3.22.1)",
+      "count": 1
+    },
+    {
+      "old": "| — | **Modes** | `step` : chaîne par groupes ; `step-ok` : + confirmation ; NULL : comportement antérieur + correct-work(CIBLE) par étape terminée (v3.44.0) ; autre mode → clarification (R2). |",
+      "new": "| — | **Modes** | `step` : chaîne par groupes SANS AUCUNE validation pour passer aux étapes suivantes (v3.45.0) ; `step-ok` : SEUL mode à confirmation ; NULL : comportement antérieur + correct-work(CIBLE) par étape terminée (v3.44.0) ; autre mode → clarification (R2). |",
+      "count": 1
+    },
+    {
+      "old": "`correct-work(groupe)` après chaque groupe (max 2 rounds de correction par groupe), `correct-work(projet)` en fin de chaîne ; `gen-plan(step-ok) : <instructions>` — identique au mode step (structure hiérarchique §5.5 héritée) avec demande de confirmation du propriétaire avant chaque groupe (nom canonique v3.22.1)",
+      "new": "`correct-work(groupe)` après chaque groupe (max 2 rounds de correction par groupe), `correct-work(projet)` en fin de chaîne — **JAMAIS de validation du propriétaire pour passer aux étapes/groupes suivants (v3.45.0)** ; `gen-plan(step-ok) : <instructions>` — identique au mode step (structure hiérarchique §5.5 héritée) avec demande de confirmation du propriétaire avant chaque groupe — **SEUL mode demandant validation (v3.45.0 : step et NULL n'en demandent jamais)** (nom canonique v3.22.1)",
+      "count": 1
+    }
+  ]
+}

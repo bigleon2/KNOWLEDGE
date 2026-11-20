@@ -1,16 +1,5 @@
 {
   "mode": "generate",
   "date": "2026-11-20",
-  "dry_run": false,
-  "familles": [
-    {
-      "famille": "correct-work",
-      "old": "2.11.0",
-      "new": "2.12.0",
-      "yaml_subs": 1,
-      "coverage_missing": [],
-      "skill_sections": 40,
-      "pm_sections": 66
-    }
-  ]
+  "resultat": "no-op"
 }

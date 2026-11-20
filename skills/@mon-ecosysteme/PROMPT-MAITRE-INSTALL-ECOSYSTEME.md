@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.10.2
+Version : 1.10.3
 Date : 2026-10-12
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -10,7 +10,7 @@ Référence : §2ter — instantané explicite des dernières versions des PMs s
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.7.42)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.7.43)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
 ## §0 — Règle zéro (Contexte commun)
@@ -117,7 +117,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
-| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.44.0.md` | gen-plan v3.44.0 | 3 |
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.45.0.md` | gen-plan v3.45.0 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.12.0.md` | correct-work v2.12.0 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md` | clone-chat v2.0.2 | 5 |
 | refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md` | refactor-guard v1.8.1 | 6 |
@@ -218,6 +218,7 @@ Le contrôle vérifie MÉCANIQUEMENT que l'installation n'a déployé aucune for
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.10.3 | 2026-11-20 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.44.0→v3.45.0 ; recalibrage croisé : SHARED v1.7.43 (§6.1), §2ter, §A.3 |
 | v1.10.2 | 2026-11-20 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : correct-work v2.11.0→v2.12.0 ; recalibrage croisé : SHARED v1.7.42 (§6.1), §2ter, §A.3 |
 | v1.10.1 | 2026-11-20 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.43.0→v3.44.0 ; recalibrage croisé : SHARED v1.7.41 (§6.1), §2ter, §A.3 |
 | v1.10.0 | 2026-11-19 | Task 107 — GO-1 (directive propriétaire trace 1a1efebf27dcbafd, feuille de route §8 du rapport Task 105) : promotion de la voie consolidée en ENTRÉE CANONIQUE du bootstrap de session — §3.2(c) ajouté (point d'entrée unique `scripts/bootstrap-ecosysteme.py`, orchestration R4 des exécutants canoniques, gains mesurés campagne Task 105 : −83,3 % tours / −97,6 % octets sans perte de garantie) ; §2ter +1 ligne socle ; §A.3 étiquette instantané rafraîchie ; recalibrage croisé : SHARED v1.7.40 (§6.1 — ligne PM-INSTALL portée v1.9.16→v1.10.0) · ULTRA régénéré (install_v dérivée dynamiquement) |
@@ -289,7 +290,7 @@ Note P4 (recalibrée v1.7.0) : les SKILL.md + références des 4 familles (gen-p
 ### §A.3 Registre KB cible (14 entrées d'époque + 6 extensions v1.7.0)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.10.2, 2026-11-20) : gen-plan v3.44.0 · correct-work v2.12.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
+Instantané courant (v1.10.3, 2026-11-20) : gen-plan v3.45.0 · correct-work v2.12.0 · clone-chat v2.0.2 · refactor-guard v1.8.1 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|
