@@ -1,6 +1,6 @@
 ---
 name: correct-work
-version: 2.11.0
+version: 2.12.0
 category: ecosystem
 language: fr
 tags:
@@ -16,9 +16,9 @@ description: >
   plan d'actions des CORRECTIFS via gen-plan en mode STEP (contrat §1.5bis — v2.10.0 ré-intégré, v2.11.0),
   intégration KB (Registre, kb_path, --kb-skill),
   délégation alias-eco (mode PROJET — tenue du registre des phrases récurrentes, v2.8.0),
-  option « bloc par bloc » du mode PROJET (déclencheur `correct-work (projet) --bloc` — vérification bloc par bloc, verdict par bloc, v2.9.0),
+  mode PROJET « bloc par bloc » PAR DÉFAUT (v2.12.0 — ex-option `--bloc` v2.9.0 : correct-work(projet) ≡ correct-work (projet) --bloc, vérification bloc par bloc, verdict par bloc),
   matrice de décision agent/skill (statique + dynamique KB),
-  matrice de couverture des versions v1.0.0 → v2.11.0 (best-of — chaque avantage durable présent ou supplanté documenté, §12, v2.11.0),
+  matrice de couverture des versions v1.0.0 → v2.12.0 (best-of — chaque avantage durable présent ou supplanté documenté, §12, v2.12.0),
   métriques de performance.
   Contrôler la cohérence avant de livrer ce que tu viens de produire.
 dependencies:
@@ -40,7 +40,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.41)
+## §0 — Contexte Système (SHARED v1.7.42)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -62,11 +62,11 @@ Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
 - `verifie ton code`
 - `correct-work` ou `correct_work`
 - `verify-work` (alias anglais)
-- `correct-work(projet)` — vérification complète du projet
+- `correct-work(projet)` — vérification complète du projet — « bloc par bloc » PAR DÉFAUT (v2.12.0)
 - `correct-work(<cible>)` — vérification ciblée sur un livrable
 - `correct-work()` — vérification rapide sans analyse approfondie
 - `correct-work(aveugle)` — re-vérification aveugle (Second Opinion) sans accès au premier verdict
-- `correct-work (projet) --bloc` — mode « bloc par bloc » du mode PROJET (v2.9.0) : vérification bloc par bloc, verdict par bloc
+- `correct-work (projet) --bloc` — synonyme explicite du mode PROJET « bloc par bloc » (v2.12.0 : PAR DÉFAUT — déclencheur historique v2.9.0 conservé, R2) : vérification bloc par bloc, verdict par bloc
 
 Options avancées (gen-plan >= v3.6.0) :
 - `correct-work(projet, kb_path=/chemin/KB)` — vérification avec scan des skills KB
@@ -83,7 +83,7 @@ correct-work est un skill de **vérification et correction** du travail réalis�
 
 | Mode | Nom | Description | Cas d'usage |
 |------|-----|-------------|-------------|
-| **PROJET** | Prompt-maître | Vérification complète d'un projet via son prompt maître | Validation finale d'un projet complexe |
+| **PROJET** | Prompt-maître | Vérification complète d'un projet via son prompt maître — « bloc par bloc » PAR DÉFAUT (v2.12.0) | Validation finale d'un projet complexe |
 | **CIBLE** | Ciblé | Vérification ciblée d'un skill ou fichier spécifique (défaut) | Vérification d'un skill (ex: clone-chat) |
 | **DIRECT** | Rapide | Vérification directe sans plan préalable | Correction rapide d'un fichier |
 | **AVEUGLE** | Second Opinion | Re-vérification sans accès au premier verdict (élimine le biais de confirmation) | Divergence ou FAIL persistant à l'Étape 5 ; déclencheur `correct-work(aveugle)` |
@@ -128,15 +128,15 @@ Si `{{KB_ENABLED}}` est `true`, correct-work utilise le Registre KB :
 - **Matrice dynamique** : construite à l'exécution en scannant `KNOWLEDGE.md` (SHARED §2.3)
 - **verify-cross.py --mode correct-work** : 8 checks KB spécifiques
 
-### §1.7 Mode PROJET « bloc par bloc » (`--bloc`, v2.9.0)
+### §1.7 Mode PROJET « bloc par bloc » — PAR DÉFAUT (v2.12.0 — ex-option `--bloc` v2.9.0)
 
-Le mode **bloc par bloc** est une option du mode PROJET, déclenchée par `correct-work (projet) --bloc` : la vérification complète du projet est menée **bloc par bloc** — le projet est décomposé en BLOCS explicites (groupes et sous-groupes du plan d'actions, ou livrables nommés) et les Étapes 2 à 5 sont appliquées à chaque bloc successivement.
+Le mode **bloc par bloc** est le comportement PAR DÉFAUT du mode PROJET (v2.12.0) : `correct-work(projet)` ≡ `correct-work (projet) --bloc` — le déclencheur `--bloc` est conservé comme synonyme explicite (R2, jamais de retrait). La vérification complète du projet est menée **bloc par bloc** — le projet est décomposé en BLOCS explicites (groupes et sous-groupes du plan d'actions, ou livrables nommés) et les Étapes 2 à 5 sont appliquées à chaque bloc successivement.
 
 - **Décomposition en blocs** : chaque bloc est une unité vérifiable (groupe du plan, sous-groupe, livrable, section d'un rapport) ; la liste des blocs est explicite dans le rapport.
 - **Verdict PAR BLOC** : chaque bloc reçoit un verdict individuel (PASS / PASS AVEC RÉSERVES / FAIL — critères §10.5) ; les corrections sont appliquées et re-vérifiées bloc par bloc (maximum 2 rounds par bloc — SHARED §4.4).
 - **Agrégation finale** : le verdict global est le **pire des verdicts de blocs** (aligné sur l'agrégation multi-cibles §1.4) ; il est consigné avec la table des verdicts de blocs.
 - **Rapport** : le format §2.4 est étendu d'une table « Blocs vérifiés » (bloc, étapes couvertes, findings, verdict) placée avant le résumé.
-- **Compatibilité** : coexiste avec le mode PROJET standard (`correct-work(projet)` inchangé) ; le couplage gen-plan obligatoire (§1.5), le plan des correctifs mode STEP (§1.5bis) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.
+- **Compatibilité** : le mode PROJET monolithique d'un seul tenant (≤ v2.11.0) est supplanté — la granularité bloc est la norme (v2.12.0) ; le couplage gen-plan obligatoire (§1.5), le plan des correctifs mode STEP (§1.5bis) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.
 
 ---
 
@@ -180,7 +180,7 @@ Le mode **bloc par bloc** est une option du mode PROJET, déclenchée par `corre
 ## Métadonnées
 - **Date** : YYYY-MM-DD
 - **Mode** : PROJET | CIBLE | DIRECT
-- **Version correct-work** : 2.11.0
+- **Version correct-work** : 2.12.0
 - **Cible** : [nom du skill/fichier] (ou multi-cibles)
 
 ## Étape 1 — Plan d'actions
@@ -307,6 +307,7 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 - [ ] Plan de vérification créé via gen-plan (dernière version installée — OBLIGATOIRE, §1.5)
 - [ ] gen-plan indisponible ou corrompu → ARRÊT EXPLICITE (§1.5 — jamais de plan autonome)
 - [ ] Plan des correctifs Étapes 2-5 via gen-plan mode STEP (§1.5bis — OBLIGATOIRE ; ARRÊT EXPLICITE si < v3.22.0)
+- [ ] Décomposition en BLOCS du projet (PAR DÉFAUT v2.12.0 — §1.7 : groupes/sous-groupes du plan ou livrables nommés, liste explicite au rapport)
 - [ ] Sections à vérifier identifiées
 - [ ] Ordre de vérification défini
 - [ ] Estimation #token faite (grille #token gen-plan §4)
@@ -340,7 +341,7 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 - [ ] Worklog mis à jour
 ```
 
-### §10.1bis Mode PROJET bloc par bloc (`--bloc`, v2.9.0)
+### §10.1bis Mode PROJET bloc par bloc (PAR DÉFAUT — v2.12.0 ; ex-option `--bloc` v2.9.0)
 
 ```markdown
 ### Décomposition en blocs
@@ -409,7 +410,7 @@ Ces checklists sont intégrées dans la section §4 du SKILL.md. Elles sont divi
 | Le skill a déjà été vérifié (round 2+) | CIBLE |
 | Un FAIL ou une divergence persiste à l'Étape 5 | AVEUGLE |
 | Déclencheur explicite `correct-work(aveugle)` | AVEUGLE |
-| Déclencheur explicite `correct-work (projet) --bloc` | PROJET (option « bloc par bloc ») |
+| Déclencheur explicite `correct-work (projet) --bloc` | PROJET « bloc par bloc » (synonyme — PAR DÉFAUT v2.12.0) |
 
 ### §10.5 Verdicts
 
@@ -482,9 +483,9 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 - Planchers directionnels plutôt qu'égalité stricte (leçon E21) pour tout critère couplant
   une valeur à un artefact vivant
 
-## §12 — MATRICE DE COUVERTURE DES VERSIONS (best-of v1.0.0 → v2.11.0 — chaque avantage durable PRÉSENT ou supplanté documenté, jamais de ressuscitation d'un retrait délibéré R2 ; sources : `@historique/historiques-par-skill/correct-work.md` + inventaire Task 60 D601)
+## §12 — MATRICE DE COUVERTURE DES VERSIONS (best-of v1.0.0 → v2.12.0 — chaque avantage durable PRÉSENT ou supplanté documenté, jamais de ressuscitation d'un retrait délibéré R2 ; sources : `@historique/historiques-par-skill/correct-work.md` + inventaire Task 60 D601)
 
-| Version | Apport durable | Statut v2.11.0 |
+| Version | Apport durable | Statut v2.12.0 |
 |---|---|---|
 | v1.0.0 | Vérification basique (5 étapes) | ✓ §1.3 |
 | v2.0.0/v2.1.0 | Mode CIBLE + rapport exploitable ; intégration gen-plan Étape 1 | ✓ §1.2/§2.4/§1.5 |
@@ -495,5 +496,6 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 | v2.6.0 | Mode AVEUGLE (Second Opinion), max 2 rounds | ✓ §1.2/§1.3/§10.4 |
 | v2.7.0 | Couplage gen-plan OBLIGATOIRE + ARRÊT EXPLICITE | ✓ §1.5 (plancher supplanté → 3.22.0, §1.5bis) |
 | v2.8.0 | Délégation alias-eco (registre phrases récurrentes) | ✓ §10.1 Phase 2 |
-| v2.9.0 | Mode PROJET « bloc par bloc » `--bloc` | ✓ §1.7/§10.1bis |
+| v2.9.0 | Mode PROJET « bloc par bloc » `--bloc` | ✓ §1.7/§10.1bis (devenu PAR DÉFAUT — v2.12.0) |
 | v2.10.0 | Contrat §1.5bis correctifs mode STEP | ✓ RÉ-INTÉGRÉ (perdue au recyclage 2026-11-06 — contrat reconstitué plan-task59 D591) |
+| v2.12.0 | Mode PROJET « bloc par bloc » PAR DÉFAUT (≡ `--bloc` synonyme conservé R2 ; monolithique supplanté — directive 1a1fa10c71573105 réappliquée Task ID 11 après recyclage) | ✓ §1.7/§A/§1.2/§10.1/§10.4/§12 |

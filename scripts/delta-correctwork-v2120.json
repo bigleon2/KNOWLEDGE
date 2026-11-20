@@ -1,0 +1,65 @@
+{
+  "history": "Mode PROJET « bloc par bloc » PAR DÉFAUT (REAPPLICATION de la montée Task ID 10 — perdue au recyclage du bac à sable, jamais poussée au dépôt ; directive 1a1fa10c71573105 → 1a1fa816474a35ad) : correct-work(projet) ≡ correct-work (projet) --bloc, déclencheur --bloc conservé comme synonyme explicite (R2, jamais de retrait), mode PROJET monolithique (≤ v2.11.0) supplanté — §1.7 + §A (2 déclencheurs alignés) + §1.2 + §10.1 Phase 1 (décomposition en blocs) + §10.1bis + §10.4 + §12 (ligne v2.12.0). MINOR, triggers inchangés (non-régression). Cascade KO-L004 COMPLÈTE : arbitre verify-correct-work.py recalibré (2.12.0, plage 200-520) 16/16, PM v2.12.0 (delta verrouillé), KB, @historique, pin ECO_SKILLS, dédup R4 v2.11.0 → @historique, rescellement archive v2.4, replay arbitres.",
+  "subs": [
+    {
+      "old": "  option « bloc par bloc » du mode PROJET (déclencheur `correct-work (projet) --bloc` — vérification bloc par bloc, verdict par bloc, v2.9.0),",
+      "new": "  mode PROJET « bloc par bloc » PAR DÉFAUT (v2.12.0 — ex-option `--bloc` v2.9.0 : correct-work(projet) ≡ correct-work (projet) --bloc, vérification bloc par bloc, verdict par bloc),",
+      "count": 1
+    },
+    {
+      "old": "la matrice de couverture des versions v1.0.0 → v2.11.0 (best-of, §12)",
+      "new": "la matrice de couverture des versions v1.0.0 → v2.12.0 (best-of, §12), le mode PROJET « bloc par bloc » PAR DÉFAUT (v2.12.0)",
+      "count": 1
+    },
+    {
+      "old": "- `correct-work(projet)` — vérification complète du projet\n- `correct-work(<cible>)` — vérification ciblée sur un livrable",
+      "new": "- `correct-work(projet)` — vérification complète du projet — « bloc par bloc » PAR DÉFAUT (v2.12.0)\n- `correct-work(<cible>)` — vérification ciblée sur un livrable",
+      "count": 1
+    },
+    {
+      "old": "correct-work (projet) --bloc` — mode « bloc par bloc » du mode PROJET (v2.9.0) : vérification bloc par bloc, verdict par bloc",
+      "new": "correct-work (projet) --bloc` — synonyme explicite du mode PROJET « bloc par bloc » (v2.12.0 : PAR DÉFAUT — déclencheur historique v2.9.0 conservé, R2) : vérification bloc par bloc, verdict par bloc",
+      "count": 1
+    },
+    {
+      "old": "| **PROJET** | Prompt-maître | Vérification complète d'un projet via son prompt maître | Validation finale d'un projet complexe |",
+      "new": "| **PROJET** | Prompt-maître | Vérification complète d'un projet via son prompt maître — « bloc par bloc » PAR DÉFAUT (v2.12.0) | Validation finale d'un projet complexe |",
+      "count": 1
+    },
+    {
+      "old": "### §1.7 Mode PROJET « bloc par bloc » (`--bloc`, v2.9.0)\n\nLe mode **bloc par bloc** est une option du mode PROJET, déclenchée par `correct-work (projet) --bloc` : la vérification complète du projet est menée **bloc par bloc**",
+      "new": "### §1.7 Mode PROJET « bloc par bloc » — PAR DÉFAUT (v2.12.0 — ex-option `--bloc` v2.9.0)\n\nLe mode **bloc par bloc** est le comportement PAR DÉFAUT du mode PROJET (v2.12.0) : `correct-work(projet)` ≡ `correct-work (projet) --bloc` — le déclencheur `--bloc` est conservé comme synonyme explicite (R2, jamais de retrait). La vérification complète du projet est menée **bloc par bloc**",
+      "count": 1
+    },
+    {
+      "old": "- **Compatibilité** : coexiste avec le mode PROJET standard (`correct-work(projet)` inchangé) ; le couplage gen-plan obligatoire (§1.5), le plan des correctifs mode STEP (§1.5bis) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.",
+      "new": "- **Compatibilité** : le mode PROJET monolithique d'un seul tenant (≤ v2.11.0) est supplanté — la granularité bloc est la norme (v2.12.0) ; le couplage gen-plan obligatoire (§1.5), le plan des correctifs mode STEP (§1.5bis) et la délégation alias-eco (§10.1 Phase 2) s'appliquent à l'identique.",
+      "count": 1
+    },
+    {
+      "old": "- [ ] Plan des correctifs Étapes 2-5 via gen-plan mode STEP (§1.5bis — OBLIGATOIRE ; ARRÊT EXPLICITE si < v3.22.0)",
+      "new": "- [ ] Plan des correctifs Étapes 2-5 via gen-plan mode STEP (§1.5bis — OBLIGATOIRE ; ARRÊT EXPLICITE si < v3.22.0)\n- [ ] Décomposition en BLOCS du projet (PAR DÉFAUT v2.12.0 — §1.7 : groupes/sous-groupes du plan ou livrables nommés, liste explicite au rapport)",
+      "count": 1
+    },
+    {
+      "old": "### §10.1bis Mode PROJET bloc par bloc (`--bloc`, v2.9.0)",
+      "new": "### §10.1bis Mode PROJET bloc par bloc (PAR DÉFAUT — v2.12.0 ; ex-option `--bloc` v2.9.0)",
+      "count": 1
+    },
+    {
+      "old": "| Déclencheur explicite `correct-work (projet) --bloc` | PROJET (option « bloc par bloc ») |",
+      "new": "| Déclencheur explicite `correct-work (projet) --bloc` | PROJET « bloc par bloc » (synonyme — PAR DÉFAUT v2.12.0) |",
+      "count": 1
+    },
+    {
+      "old": "## §12 — MATRICE DE COUVERTURE DES VERSIONS (best-of v1.0.0 → v2.11.0)\n\nChaque avantage durable est PRÉSENT en v2.11.0 ou supplanté documenté",
+      "new": "## §12 — MATRICE DE COUVERTURE DES VERSIONS (best-of v1.0.0 → v2.12.0)\n\nChaque avantage durable est PRÉSENT en v2.12.0 ou supplanté documenté",
+      "count": 1
+    },
+    {
+      "old": "| v2.9.0 | Mode PROJET « bloc par bloc » `--bloc` | ✓ §1.7/§10.1bis |\n| v2.10.0 | Contrat §1.5bis correctifs mode STEP | ✓ RÉ-INTÉGRÉ (perdue au recyclage 2026-11-06 — contrat reconstitué plan-task59 D591) |",
+      "new": "| v2.9.0 | Mode PROJET « bloc par bloc » `--bloc` | ✓ §1.7/§10.1bis (devenu PAR DÉFAUT — v2.12.0) |\n| v2.10.0 | Contrat §1.5bis correctifs mode STEP | ✓ RÉ-INTÉGRÉ (perdue au recyclage 2026-11-06 — contrat reconstitué plan-task59 D591) |\n| v2.12.0 | Mode PROJET « bloc par bloc » PAR DÉFAUT (≡ `--bloc` synonyme conservé R2 ; monolithique supplanté — directive 1a1fa10c71573105 réappliquée Task ID 11 après recyclage) | ✓ §1.7/§A/§1.2/§10.1/§10.4/§12 |",
+      "count": 1
+    }
+  ]
+}

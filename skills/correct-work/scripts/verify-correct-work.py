@@ -13,6 +13,10 @@ Recalibrage v2.11.0 (2026-11-07, Task 60 G4 — session web-c30e6506, KO-L004, D
 contrat §1.5bis correctifs via gen-plan mode STEP ré-intégré (v2.10.0 perdue au recyclage
 — contrat reconstitué plan-task59 D591) + matrice best-of §12 ; plancher gen-plan élevé
 >=3.22.0 (checks 11/15 recalibrés), version attendue 2.11.0, PM v2.11.0.
+Recalibrage v2.12.0 (2026-11-20, Task ID 11 — session web-93a4f011, KO-L004, REAPPLICATION
+de la montée Task ID 10 perdue au recyclage du bac à sable, directive 1a1fa10c71573105 → 1a1fa816474a35ad) :
+mode PROJET « bloc par bloc » PAR DÉFAUT (≡ correct-work (projet) --bloc, synonyme conservé R2),
+version attendue 2.12.0, plage étendue 200-520 (croissance directive), PM v2.12.0.
 Calibrage v2.6.0 (B13-r5 : aligné frontmatter installé — L003).
 Usage:
     python verify-correct-work.py
@@ -25,13 +29,13 @@ import sys
 
 SKILLS_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SKILL_PATH = os.path.join(SKILLS_ROOT, "correct-work", "SKILL.md")
-PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md")
+PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.12.0.md")
 SHARED_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-SHARED.md")
 KB_PATH = os.path.join(SKILLS_ROOT, "KNOWLEDGE.md")
 
-EXPECTED_VERSION = "2.11.0"
+EXPECTED_VERSION = "2.12.0"
 EXPECTED_LINES_MIN = 200
-EXPECTED_LINES_MAX = 500
+EXPECTED_LINES_MAX = 520
 EXPECTED_MODES = {"PROJET", "CIBLE", "DIRECT"}
 EXPECTED_STEPS = {"1", "2", "3", "4", "5"}
 REQUIRED_DEPS = {"gen-plan": ">=3.22.0", "clone-chat": ">=2.0.0"}
