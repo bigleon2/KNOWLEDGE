@@ -54,6 +54,21 @@
       "concurrent": false,
       "skill": "dessin-technique",
       "version_script": "1.3.0"
+    },
+    "sxmcore": {
+      "langage": "go",
+      "binaire": "tools/sxm/sxmcore/sxmcore",
+      "binaire_windows": "tools/sxm/sxmcore/sxmcore.exe",
+      "source": "tools/sxm/sxmcore/main.go",
+      "interface": "cli-fichiers",
+      "commandes": ["info <fichier.tsi>", "list <fichier.tsi> [-device N]", "set-channel <fichier.tsi> -canal N [-device N] -sortie <fichier.tsi>"],
+      "modes": ["one-shot"],
+      "capacites": ["tsi.info", "tsi.list", "tsi.set-channel"],
+      "semantique": "SXM 1.3.1 « Keep existing » — set-channel édite le canal MIDI en groupe et garde l'adresse Note/CC de chaque mapping",
+      "concurrent": false,
+      "skill": null,
+      "cross_reference": "orchestrateur-tsi (famille TSI — cœur TSI du SXM : édition des canaux MIDI des mappings TSI ; reproduction Task 11 — sxmcore.exe SHA-256 a0f25d43… byte-identique au livrable download/super-xtreme-mapper-windows10/)",
+      "version_script": "1.0.0"
     }
   },
   "canaux": {
