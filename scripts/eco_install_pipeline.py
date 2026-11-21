@@ -80,6 +80,7 @@ Le dépôt et l'hôte partagent le même lignage (projection hôte 109 fichiers)
 union-merge sans --delete, fichiers dépôt = source de vérité au commit épinglé.
 Les skills plateforme hors dépôt et les scripts de session sont conservés.
 """
+import hashlib
 import json
 import os
 import re
@@ -155,6 +156,7 @@ NON_CANONIQUES = ["config.json"]
 
 
 def semver_of(skill_md):
+    """Version semver lue du frontmatter d'un SKILL.md (None si absente/illisible)."""
     try:
         head = open(skill_md, encoding="utf-8", errors="replace").read(3000)
     except OSError:
@@ -164,20 +166,22 @@ def semver_of(skill_md):
 
 
 def vtuple(v):
+    """Version « x.y.z » → tuple d'entiers comparable ((0, 0, 0) si vide)."""
     return tuple(int(x) for x in v.split(".")) if v else (0, 0, 0)
 
 
 def kb_eco_skills():
     """Entrées écosystème du registre KB dont la forme installée existe au dépôt
     (dérivation dynamique KO-L003 — périmètre COMPLET PM-INSTALL §2bis)."""
-    import re as _re
     kb = open(os.path.join(REPO, "skills", "KNOWLEDGE.md"), encoding="utf-8").read()
-    noms = _re.findall(r"^## ([\w-]+) v[\d.]+$", kb, _re.MULTILINE)
+    noms = re.findall(r"^## ([\w-]+) v[\d.]+$", kb, re.MULTILINE)
     return [n for n in noms
             if os.path.isfile(os.path.join(REPO, "skills", n, "SKILL.md"))]
 
 
 def main():
+    """Point d'entrée du pipeline : préflight pin, garde R2, projection sync,
+    vérification SHA post-install — rapport JSON, rc 0/2."""
     report = {"pin": PIN[:7], "etapes": {}, "garde_R2": [], "purges": []}
 
     # Préflight : commit épinglé (descendant-tolérant — Task 8 : le pin est une
@@ -211,6 +215,7 @@ def main():
     EXCLUS_SYNC = ("__pycache__",)
 
     def sync(rel, delete=False):
+        """Projection d'un chemin dépôt → hôte (fichier ou arbre, dry-run conscient)."""
         src = os.path.join(REPO, rel)
         dst = os.path.join(HOST, rel)
         if not os.path.exists(src):
@@ -330,7 +335,6 @@ def main():
         rel = os.path.join("skills", s, "SKILL.md")
         src, dst = os.path.join(REPO, rel), os.path.join(HOST, rel)
         if os.path.isfile(src) and os.path.isfile(dst):
-            import hashlib
             h = lambda p: hashlib.sha256(open(p, "rb").read()).hexdigest()
             if h(src) != h(dst):
                 divergences.append(s)
