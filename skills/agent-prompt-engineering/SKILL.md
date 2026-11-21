@@ -1,6 +1,6 @@
 ---
 name: agent-prompt-engineering
-version: 1.1.0
+version: 1.2.0
 category: infrastructure
 language: fr
 tags:
@@ -17,13 +17,17 @@ description: >
   déclencheurs (trigger_evals) des artefacts de prompts (PMs, SKILL.md, évals).
   Spécialise la méthode prompt-engineering (méthode-mère : gen-plan ; source de vérité : SHARED §7)
   ; matérialisé le 2026-09-06 (recommandation de session, §5.2).
-  AUTO-DÉCLENCHEMENT PROMPT-GATEWAY (directive propriétaire 2026-11-21, Task 112 G1) :
-  s'exécute automatiquement et de façon autonome sur tout prompt NI COURT NI
-  SIMPLE à exécuter — analyse le prompt, évalue sa complexité, le retranscrit
-  de façon cohérente, optimisée et fonctionnelle, puis envoie à l'IA une
-  version compréhensible, explicite et structurée (objectif, contexte,
-  contraintes, étapes, livrables) qui devient l'entrée d'exécution ; les
-  prompts courts et simples passent sans transformation.
+  AUTO-DÉCLENCHEMENT PROMPT-GATEWAY INCONDITIONNEL (directive propriétaire 2026-11-21 Task 112 G1 + précision trace 1a1fc7b1728869e9) :
+  s'exécute automatiquement, de façon autonome et à CHAQUE prompt envoyé à
+  l'IA — analyse le prompt et évalue sa complexité de façon systématique
+  (phases A-B) ; si le prompt s'avère ni court ni simple (≥ 2 critères
+  COMPLEXE sur la grille 5 critères) : le retranscrit de façon cohérente,
+  optimisée et fonctionnelle et envoie à l'IA une version compréhensible,
+  explicite et structurée (objectif, contexte, contraintes, étapes,
+  livrables) qui devient l'entrée d'exécution ; si court et simple :
+  passage direct sans transformation, verdict journalisé (la profondeur du
+  traitement est routée par la complexité, le déclenchement est
+  inconditionnel).
 dependencies:
   - skill: gen-plan
     version: ">=3.7.0"
@@ -47,11 +51,11 @@ Les fichiers des sessions précédentes n'existent pas dans une nouvelle session
 à reconstruire à partir des documents de la lignée. Ne jamais utiliser le verbe « conserver ».
 Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
 
-## §A — DÉCLENCHEURS (v1.1.0 — Task 112 G1, directive propriétaire 2026-11-21)
+## §A — DÉCLENCHEURS (v1.2.0 — Task 112 G1 + E13 précision propriétaire trace 1a1fc7b1728869e9)
 
 > **Glossaire alias-eco inline** : **`$FACON` = « de façon cohérente, optimisée et fonctionnelle »** (adverbe modal : la manière d'exécuter) · **`$FACON2` = « (cohérent, optimisé et fonctionnel) »** (qualificatif : la propriété attendue du livrable). Source canonique : registre alias-eco `@historique/@Alias/aliases.json` ; en cas d'écart, le présent glossaire fait foi pour la lecture du skill.
 
-- **AUTO-DÉCLENCHEMENT — PROMPT-GATEWAY (voie royale, directive propriétaire 2026-11-21, Task 112 G1)** : tout prompt **ni court ni simple** à exécuter déclenche le skill AUTOMATIQUEMENT et de façon autonome — l'agent **analyse le prompt**, **évalue sa complexité** (grille §1.6), **le retranscrit $FACON**, puis **envoie à l'IA la version compréhensible, explicite et structurée** qui devient l'entrée d'exécution (workflow 4 phases §1.6 ; intégral : `references/prompt-gateway.md`). Les prompts **courts et simples** passent tels quels — aucune transformation, aucun déclenchement (garde anti-bruit).
+- **AUTO-DÉCLENCHEMENT — PROMPT-GATEWAY INCONDITIONNEL (voie royale — directive 2026-11-21 + précision propriétaire trace 1a1fc7b1728869e9 : « à CHAQUE fois que j'envoie un prompt à mon IA »)** : le skill s'exécute automatiquement et de façon autonome sur **CHAQUE prompt envoyé à l'IA** — phases A (analyse) et B (évaluation de complexité) **systématiques** sur tout prompt ; si verdict COMPLEXE (≥ 2 critères sur la grille §1.6) : phases C-D — retranscription $FACON puis envoi à l'IA de la version compréhensible, explicite et structurée qui devient l'entrée d'exécution ; si verdict COURT/SIMPLE : passage direct sans transformation (verdict journalisé worklog). Le déclenchement est INCONDITIONNEL — seule la PROFONDEUR du traitement dépend de la complexité (workflow 4 phases §1.6 ; intégral : `references/prompt-gateway.md`).
 - `optimise ce prompt maître` / `optimise ce prompt, il contient des duplications` — optimisation fine d'un artefact de prompt
 - `restructure ce prompt / cette section §N` (restructure, restructurer) — réorganisation sans perte sémantique
 - `évalue ce SKILL.md / ce prompt selon la grille` — notation 5 axes sans modification
@@ -81,7 +85,7 @@ agent-prompt-engineering est le skill d'**optimisation fine des prompts complexe
 | M2 | **PROJET** | Optimisation d'un ensemble cohérent (les §5 de plusieurs PMs, un corpus) |
 | M3 | **ÉVALUATION** | Notation seule, sans modification (rapport + recommandations) |
 | M4 | **DÉCLENCHEURS** | Validation Description Optimization : trigger_evals (true/false) sur le frontmatter d'un skill |
-| M5 | **PROMPT-GATEWAY** | Auto-déclenchement sur tout prompt ni court ni simple : analyse → évaluation de complexité → retranscription $FACON → envoi à l'IA de la version compréhensible, explicite et structurée (v1.1.0, §1.6) |
+| M5 | **PROMPT-GATEWAY** | Auto-déclenchement INCONDITIONNEL à chaque prompt envoyé à l'IA : phases A-B systématiques (analyse + évaluation de complexité) ; si COMPLEXE : retranscription $FACON + envoi à l'IA de la version compréhensible, explicite et structurée ; si COURT/SIMPLE : passage direct journalisé (v1.2.0, §1.6) |
 
 ### §1.4 Grille d'évaluation (5 axes)
 
@@ -101,16 +105,18 @@ Détail d'usage : `references/grille-evaluation-prompt.md`.
 2. Ajustements proposés (un par axe sous seuil), classés par impact.
 3. Re-évaluation après application. L'itération s'arrête quand tous les axes PASS, ou après 3 itérations (dérive documentée au worklog, décision utilisateur).
 
-### §1.6 Mode PROMPT-GATEWAY — auto-déclenchement sur prompt ni court ni simple (v1.1.0)
+### §1.6 Mode PROMPT-GATEWAY — auto-déclenchement inconditionnel à chaque prompt (v1.2.0)
 
-**Objet (directive propriétaire 2026-11-21, Task 112 G1)** : l'écosystème exécute ce skill AUTOMATIQUEMENT et de façon autonome dès que le propriétaire envoie à son IA un prompt **ni court ni simple** à exécuter. Le skill devient la porte d'entrée des prompts complexes : il analyse, évalue, retranscrit, puis transmet à l'IA une version exécutable sans ambiguïté.
+**Objet (directive propriétaire 2026-11-21, Task 112 G1 + précision trace 1a1fc7b1728869e9)** : l'écosystème exécute ce skill AUTOMATIQUEMENT, de façon autonome et **à CHAQUE prompt envoyé à l'IA** — sans exception. Le skill est la porte d'entrée systématique des prompts : il analyse et évalue la complexité de tout prompt, puis route la profondeur du traitement.
+
+**Règle de routage (E13 — le déclenchement est inconditionnel, la profondeur est conditionnelle)** : phases A-B sur TOUT prompt ; phases C-D (retranscription + envoi structuré) uniquement si verdict COMPLEXE (≥ 2 critères sur la grille) ; verdict COURT/SIMPLE → passage direct sans transformation, verdict journalisé worklog.
 
 **Workflow — 4 phases strictement ordonnées** (intégral, exemples et gabarit de sortie : `references/prompt-gateway.md`) :
 
 | Phase | Action | Sortie |
 |-------|--------|-------|
-| **A — Analyse** | Décomposition du prompt : longueur, structure, verbes d'action, étapes explicites/implicites, dépendances entre étapes, livrables attendus, ambiguïtés, implicites, contexte cité | Fiche d'analyse (points saillants + risques d'exécution) |
-| **B — Évaluation de complexité** | Grille ci-dessous : verdict COURT/SIMPLE (→ passage tel quel, AUCUN déclenchement) ou COMPLEXE (→ phases C-D) | Verdict GO/NO-GO motivé sur critères |
+| **A — Analyse** | **SYSTÉMATIQUE (tout prompt)** — décomposition : longueur, structure, verbes d'action, étapes explicites/implicites, dépendances entre étapes, livrables attendus, ambiguïtés, implicites, contexte cité | Fiche d'analyse (points saillants + risques d'exécution) |
+| **B — Évaluation de complexité** | **SYSTÉMATIQUE (tout prompt)** — grille ci-dessous : verdict COURT/SIMPLE (→ passage direct sans transformation, AUCUNE retranscription, verdict journalisé) ou COMPLEXE (→ phases C-D) | Verdict GO/NO-GO motivé sur critères |
 | **C — Retranscription $FACON** | Reformulation complète en version compréhensible, explicite et structurée : objectif · contexte · contraintes · étapes ordonnées · dépendances · livrables · critères d'acceptation. Zéro perte sémantique — tout détail, nom, URL, chiffre ou contrainte de l'original est préservé | Prompt retranscrit $FACON2 |
 | **D — Envoi à l'IA** | La version structurée devient l'entrée d'exécution de l'IA ; l'original est cité en provenance ; le bloc « prompt retranscrit » est affiché au propriétaire en français (règle d'or n°6) AVANT exécution | Exécution lancée sur la version structurée |
 
@@ -124,7 +130,7 @@ Détail d'usage : `references/grille-evaluation-prompt.md`.
 | Livrables | Réponse immédiate, sans fichier | Livrables nommés, multiples, ou avec format contraint |
 | Contexte | Autosuffisant | Dépend de sessions/fichiers/URLs cités |
 
-**Gardes-fous** : (1) jamais de perte sémantique — la retranscription est vérifiée contre l'original point par point avant envoi (phase C) ; (2) les prompts courts et simples ne sont JAMAIS transformés (garde anti-bruit — le déclenchement injustifié est journalisé) ; (3) en cas d'indécision sur un critère, le critère compte COMPLEXE (prudence — mieux vaut structurer à tort que rater une exécution) ; (4) la retranscription ne modifie jamais l'intention du propriétaire — elle l'explicite ; (5) journalisation worklog R5 (verdict complexité, #token du prompt original/retranscrit).
+**Gardes-fous** : (1) jamais de perte sémantique — la retranscription est vérifiée contre l'original point par point avant envoi (phase C) ; (2) les prompts courts et simples ne sont JAMAIS transformés (phases A-B exécutées, retranscription omise — verdict journalisé, garde anti-bruit) ; (3) en cas d'indécision sur un critère, le critère compte COMPLEXE (prudence — mieux vaut structurer à tort que rater une exécution) ; (4) la retranscription ne modifie jamais l'intention du propriétaire — elle l'explicite ; (5) journalisation worklog R5 de CHAQUE passage gateway (verdict de complexité, #token du prompt original/retranscrit) ; (6) les prompts relevant du périmètre réservé d'un autre skill (déclencheurs verbatim d'un autre skill, corpus trigger_evals croisé — doctrine « périmètre » V6.1/V6.2 de l'arbitre check-triggers-replay) sont transmis à ce skill : la gateway analyse et journalise mais ne détourne JAMAIS le routage d'exécution.
 
 ## §2 — SPÉCIFICATION TECHNIQUE
 

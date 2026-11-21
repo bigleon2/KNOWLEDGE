@@ -1,6 +1,6 @@
 {
   "skill_name": "agent-prompt-engineering",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Évals créées à la matérialisation (session A9, 2026-09-06) au schéma exact skill-creator — couvrent les 4 opérations (§1.2), la grille 5 axes (§1.4) et la non-duplication de la méthode-mère (SHARED §6.3, §7).",
   "evals": [
@@ -75,6 +75,19 @@
         "La retranscription suit le gabarit references/prompt-gateway.md §4.1 (7 rubriques)",
         "Aucun élément sémantique de l'original n'est perdu (vérification point par point)",
         "Les prompts courts et simples ne déclenchent pas (garde anti-bruit testée à part)"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "APE-prompt-gateway-passage-direct — Prompt trivial (déclenchement inconditionnel, profondeur minimale)",
+      "prompt": "Prompt reçu : « quelle heure est-il ? » — exécute le mode PROMPT-GATEWAY (phases A-D, §1.6, déclenchement inconditionnel v1.2.0)",
+      "expected_output": "Phase A : analyse (4 mots, 0 action-outil). Phase B : verdict NO-GO (0 critère COMPLEXE sur 5) motivé et journalisé. Phases C-D : NON exécutées — passage direct du prompt sans transformation à l'IA. Le skill A ÉTÉ exécuté (phases A-B systématiques) — la profondeur seule est réduite (précision propriétaire trace 1a1fc7b1728869e9)",
+      "files": [],
+      "expectations": [
+        "Les phases A-B sont exécutées sur le prompt trivial (inconditionnel)",
+        "Le verdict NO-GO cite les critères évalués (grille §1.6)",
+        "Aucune retranscription n'est produite (phases C-D omises)",
+        "Le verdict est journalisé au worklog (R5)"
       ]
     }
   ]

@@ -2,13 +2,14 @@
 
 > Référence intégrale du §1.6 du SKILL.md (progressive disclosure R1 — le SKILL.md porte le résumé, le présent fichier l'intégral).
 > Directive propriétaire 2026-11-21 (Task 112 G1) : « fais en sorte que mon écosystème l'exécute automatiquement de façon autonome lorsque j'envoie à mon IA un prompt qui n'est ni court et ni simple à exécuter. Ce skill doit automatiquement analyser mon prompt, évaluer sa complexité, puis le retranscrire $FACON et l'envoyer en version compréhensible, explicite et structurée à mon IA. »
+> Précision propriétaire 2026-11-21 (trace 1a1fc7b1728869e9) : « je précise que agent-prompt-engineering doit être exécuté à chaque fois que j'envoie un prompt à mon IA » — le déclenchement est INCONDITIONNEL ; la complexité route la profondeur, pas l'exécution.
 > Glossaire : $FACON = « de façon cohérente, optimisée et fonctionnelle » · $FACON2 = « (cohérent, optimisé et fonctionnel) » (registre alias-eco).
 
 ## §1 — Objet et positionnement
 
-Le mode PROMPT-GATEWAY (M5) fait d'agent-prompt-engineering la **porte d'entrée des prompts complexes** de l'écosystème. Il ne remplace ni gen-plan (planification des tâches), ni l'orchestrateur ULTRA (routage entre PMs) : il s'intercale ENTRE le message du propriétaire et l'exécution, dès que le prompt est ni court ni simple, pour garantir que l'IA reçoive une entrée sans ambiguïté.
+Le mode PROMPT-GATEWAY (M5) fait d'agent-prompt-engineering la **porte d'entrée SYSTÉMATIQUE des prompts** de l'écosystème. Il ne remplace ni gen-plan (planification des tâches), ni l'orchestrateur ULTRA (routage entre PMs) : il s'intercale ENTRE le message du propriétaire et l'exécution, **à CHAQUE prompt**, pour garantir que l'IA reçoive une entrée sans ambiguïté.
 
-Le déclenchement est AUTOMATIQUE (description de routage du SKILL.md + §A) : aucune mention explicite du skill n'est requise dans le prompt du propriétaire.
+Le déclenchement est AUTOMATIQUE ET INCONDITIONNEL (description de routage du SKILL.md + §A — précision propriétaire trace 1a1fc7b1728869e9) : aucune mention explicite du skill n'est requise dans le prompt du propriétaire ; les phases A-B (analyse + évaluation de complexité) s'exécutent sur TOUT prompt ; les phases C-D (retranscription + envoi structuré) uniquement sur verdict COMPLEXE (≥ 2/5 critères).
 
 ## §2 — Phase A : analyse du prompt
 
@@ -82,12 +83,12 @@ Critères : longueur COMPLEXE · étapes COMPLEXE · ambiguïté COMPLEXE (« fa
 
 Retranscription : objectif = exécuter la chaîne complète (installer → planifier → tester/optimmiser 10 skills → correct-work ×2 → clone-chat) ; contexte = écosystème Knowledge, dépôt bigleon2/KNOWLEDGE, pins a5daa964/aaac4fa1 ; contraintes = ordre strict des étapes, mode step sans validation, français ; étapes = 1. installation bootstrap canonique 2. plan gen-plan 3. tests/optims G1-G8 4. correct-work --bloc 5. tests conditionnels G10-G12 6. correct-work --bloc 7. clone-chat ; dépendances = 1 avant 2, 2 avant 3, 3 avant 4… ; livrables = écosystème installé certifié, plan, skills optimisés, rapports, clone ; critères = certification ALL PASS, answer key D001-D011 verified, verdicts correct-work PASS.
 
-### §6.2 NO-GO — prompt court et simple
+### §6.2 NO-GO — prompt court et simple (le skill s'exécute, la retranscription est omise)
 
-Original : « quelle heure est-il ? » — 4 mots, 0 action-outil, réponse immédiate, autosuffisant → 0 critère COMPLEXE → **NO-GO** : passage tel quel, aucun déclenchement.
+Original : « quelle heure est-il ? » — 4 mots, 0 action-outil, réponse immédiate, autosuffisant → 0 critère COMPLEXE → **NO-GO** : phases A-B exécutées (analyse + verdict COURT/SIMPLE journalisé), passage direct SANS retranscription — le déclenchement du skill a bien eu lieu (inconditionnel), seule la profondeur est réduite.
 
 ## §7 — Tests et garde de non-régression
 
-- `evals/trigger_evals.json` porte les cas de routage (positifs : prompts complexes avec imbrication/ordre/livrables ; négatifs : prompts courts et simples) — l'arbitre `scripts/check-triggers-replay.py` doit rester PASS (0 dérive) à toute évolution du présent skill.
+- `evals/trigger_evals.json` porte les cas de routage (positifs : prompts complexes avec imbrication/ordre/livrables ET cas triviaux à déclenchement garanti par arbitrages voie L documentés — précision propriétaire trace 1a1fc7b1728869e9, cache `scripts/voie-l-cache.json` ; négatifs : requêtes du périmètre réservé d'autres skills — doctrine V6.1/V6.2) — l'arbitre `scripts/check-triggers-replay.py` doit rester PASS (0 dérive) à toute évolution du présent skill.
 - `evals/evals.json` porte le scénario de retranscription (id 6 — APE-prompt-gateway).
 - Toute évolution du gabarit §4.1 = montée de version PATCH (recalibrage croisé KO-L004 : KB, arbitres, certification).

@@ -41,14 +41,14 @@
   },
   {
     "query": "quelle heure est-il ?",
-    "should_trigger": false
+    "should_trigger": true
   },
   {
     "query": "merci beaucoup, parfait",
-    "should_trigger": false
+    "should_trigger": true
   },
   {
     "query": "ouvre le dossier téléchargements",
-    "should_trigger": false
+    "should_trigger": true
   }
 ]
