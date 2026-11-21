@@ -54,6 +54,16 @@ HEAD du dépôt — --depot-git passé par le présent pipeline → rescellement
 AUTORISÉ et tracé, plus aucun ECHEC transitoire sur montée de version de
 corpus ; harnais T1-T5 au rapport Task 110). Le véhicule v2.3 est CONSERVÉ
 intact (R4 — précédent task21-f2 v2.2).
+Task 16 (2026-11-21, session web-93a4f011 — directive trace 1a1fbe9f0ef279fd
+« corrige tous les différés consignés », différé constat Task 12) : l'étape 2
+est REPONTÉE sur le scelleur canonique v2.5 task-f5-seal-archive-v25.py —
+la discrimination EST ÉTENDUE au DÉPLACEMENT R4 (entrée corpus de l'archive
+entrante sans contrepartie locale MAIS contenu byte-identique sous
+skills/@historique/prompts-maitres/<skill>/ → rescellement AUTORISÉ et tracé
+déplacement R4 légitime ; sans contrepartie → PERTE rc=2 inchangée) — fin
+du contournement manuel « régénération du véhicule » des déduplications N27
+(Tasks 11/12) ; harnais T0-T8 au rapport Task 16, parité v2.4/v2.5 byte-stable.
+Le véhicule v2.4 est CONSERVÉ intact (R4 — lignage v2.3/v2.2).
 
 Étapes couvertes par ce script :
   1  Corpus   : sync skills/@mon-ecosysteme/ (9 PMs) + garde R2 anti-rétrogradation
@@ -61,9 +71,9 @@ intact (R4 — précédent task21-f2 v2.2).
   7  Registre : sync skills/KNOWLEDGE.md + @historique/@Alias/ (registre vivant)
   8  Outillage: sync scripts/ (arbitres + bootstrap), purge des reconstitutions
                provisoires non canoniques (config.json)
-  2  Archive  : rescellement download/mon-ecosysteme_archive.zip (task-f5-seal-archive-v24
-               — véhicule canonique v2.4 corpus+piliers, mission F1 Task 100 + discrimination
-               PERTE/ÉVOLUTION Task 110, --depot-git REPO) + régénération
+  2  Archive  : rescellement download/mon-ecosysteme_archive.zip (task-f5-seal-archive-v25
+               — véhicule canonique v2.5 corpus+piliers, mission F1 Task 100 + discrimination
+               PERTE/ÉVOLUTION Task 110 + DÉPLACEMENT R4 Task 16, --depot-git REPO) + régénération
                du manifeste d'intégrité (check-ecosysteme-integrity, mode COMPLET)
 
 Le dépôt et l'hôte partagent le même lignage (projection hôte 109 fichiers) :
@@ -275,18 +285,22 @@ def main():
         # sauté ; la vérification post-install F3 (lecture seule) est conservée.
         report["etapes"]["2_archive"] = "non exécuté (dry-run — lecture seule)"
     else:
-        # Étape 2 — Rescellement archive d'intégrité (véhicule CANONIQUE v2.4
+        # Étape 2 — Rescellement archive d'intégrité (véhicule CANONIQUE v2.5
         # corpus + piliers — mission F1 Task 100 + discrimination PERTE/ÉVOLUTION
         # Task 110 [GO futur, correctif F2 CW 107] : PERTE = rc=2 jamais contournable ;
         # ÉVOLUTION à contenu local commité (comparaison git, --depot-git REPO) =
         # rescellement AUTORISÉ et tracé — la voie opérationnelle est mécanique.
+        # Task 16 [directive 1a1fbe9f0ef279fd — différé constat Task 12] : DÉPLACEMENT
+        # R4 = entrée corpus sans contrepartie locale MAIS byte-identique sous
+        # @historique/prompts-maitres/<skill>/ → rescellement AUTORISÉ et tracé
+        # (fin du contournement « régénération du véhicule » des déduplications N27).
         # Historique : le véhicule task21-f2 (v2.2) désépilait SILENCIEUSEMENT les
         # piliers d'une archive v2.3 (RETRAITS_SANCTIONNES, entrées périmées
         # préservées → divergence émergente après restauration-sandbox).
         # F1 (Task 22) : anti-faux-succès — le rc est propagé (exit 2 si échec) ;
         # un rescellement qui échoue ne doit JAMAIS produire une installation « verte ».
         r = subprocess.run([sys.executable,
-                            os.path.join(HOST, "scripts", "task-f5-seal-archive-v24.py"),
+                            os.path.join(HOST, "scripts", "task-f5-seal-archive-v25.py"),
                             "--depot-git", str(REPO)],
                            capture_output=True, text=True)
         report["etapes"]["2_archive"] = (r.stdout.strip() or r.stderr.strip())[-400:]
