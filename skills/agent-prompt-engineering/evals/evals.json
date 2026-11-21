@@ -1,6 +1,6 @@
 {
   "skill_name": "agent-prompt-engineering",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Évals créées à la matérialisation (session A9, 2026-09-06) au schéma exact skill-creator — couvrent les 4 opérations (§1.2), la grille 5 axes (§1.4) et la non-duplication de la méthode-mère (SHARED §6.3, §7).",
   "evals": [
@@ -61,6 +61,20 @@
       "expectations": [
         "Chaque cas true déclenche le skill et chaque cas false ne le déclenche pas",
         "Le rapport M4 est produit avec les justifications"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "APE-prompt-gateway — Retranscription automatique d'un prompt complexe",
+      "prompt": "Prompt reçu : « fais dans l'ordre : installe l'écosystème depuis le dépôt, puis quand c'est terminé génère le plan des tests des skills suivants et exécute-le » — exécute le mode PROMPT-GATEWAY (phases A-D, §1.6)",
+      "expected_output": "Phase A : fiche d'analyse (imbrication, ordre contraignant, dépendance installation→plan). Phase B : verdict GO motivé sur ≥2 critères de la grille. Phase C : prompt retranscrit $FACON2 au gabarit (objectif, contexte, contraintes, étapes ordonnées, dépendances, livrables, critères d'acceptation) avec zéro perte sémantique. Phase D : bloc affiché en français avant exécution, original cité en provenance, journalisation worklog R5",
+      "files": [],
+      "expectations": [
+        "Les 4 phases A-D sont exécutées dans l'ordre strict",
+        "Le verdict de complexité cite au moins 2 critères COMPLEXE de la grille §1.6",
+        "La retranscription suit le gabarit references/prompt-gateway.md §4.1 (7 rubriques)",
+        "Aucun élément sémantique de l'original n'est perdu (vérification point par point)",
+        "Les prompts courts et simples ne déclenchent pas (garde anti-bruit testée à part)"
       ]
     }
   ]

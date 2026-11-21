@@ -1,9 +1,54 @@
 [
-  {"query": "optimise ce prompt maître, il contient des duplications", "should_trigger": true},
-  {"query": "évalue ce SKILL.md selon la grille et propose des ajustements", "should_trigger": true},
-  {"query": "restructure la section §5 de ce PM sans perdre de sémantique", "should_trigger": true},
-  {"query": "valide les déclencheurs (trigger_evals) de ce skill", "should_trigger": true},
-  {"query": "planifie la migration de ces données", "should_trigger": false},
-  {"query": "vérifie le travail que tu viens de faire", "should_trigger": false},
-  {"query": "clone cette discussion", "should_trigger": false}
+  {
+    "query": "optimise ce prompt maître, il contient des duplications",
+    "should_trigger": true
+  },
+  {
+    "query": "évalue ce SKILL.md selon la grille et propose des ajustements",
+    "should_trigger": true
+  },
+  {
+    "query": "restructure la section §5 de ce PM sans perdre de sémantique",
+    "should_trigger": true
+  },
+  {
+    "query": "valide les déclencheurs (trigger_evals) de ce skill",
+    "should_trigger": true
+  },
+  {
+    "query": "planifie la migration de ces données",
+    "should_trigger": false
+  },
+  {
+    "query": "vérifie le travail que tu viens de faire",
+    "should_trigger": false
+  },
+  {
+    "query": "clone cette discussion",
+    "should_trigger": false
+  },
+  {
+    "query": "Mon prompt est long et ambigu avec des étapes imbriquées : analyse-le, évalue sa complexité et retranscris-le en version compréhensible, explicite et structurée avant de l'exécuter",
+    "should_trigger": true
+  },
+  {
+    "query": "Ce prompt complexe enchaîne plusieurs étapes avec des dépendances et des livrables multiples : structure-le de façon explicite avant exécution",
+    "should_trigger": true
+  },
+  {
+    "query": "évalue la complexité de ce prompt puis renvoie-moi une version restructurée, compréhensible et structurée pour mon IA",
+    "should_trigger": true
+  },
+  {
+    "query": "quelle heure est-il ?",
+    "should_trigger": false
+  },
+  {
+    "query": "merci beaucoup, parfait",
+    "should_trigger": false
+  },
+  {
+    "query": "ouvre le dossier téléchargements",
+    "should_trigger": false
+  }
 ]
