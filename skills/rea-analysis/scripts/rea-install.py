@@ -56,7 +56,7 @@ def etape_clone(pin):
             return 0
         print("ÉCHEC : dossier kit présent mais dépôt git illisible")
         return 1
-    print("[TODO] clone anonyme lecture seule…")
+    print("[ÉTAPE] clone anonyme lecture seule…")
     r = run(["git", "clone", URL_FORK, str(KIT)])
     if r.returncode != 0:
         print("ÉCHEC : clone\n" + r.stderr[-400:])
@@ -75,7 +75,7 @@ def etape_npm():
     if (KIT / "node_modules").exists():
         print("[DÉJÀ] node_modules présent — npm ci sauté")
         return 0
-    print("[TODO] npm ci (cache dédié périmètre)…")
+    print("[ÉTAPE] npm ci (cache dédié périmètre)…")
     r = run(["npm", "ci", "--no-audit", "--no-fund"], cwd=KIT)
     if r.returncode != 0:
         print("ÉCHEC : npm ci\n" + (r.stderr or r.stdout)[-400:])
@@ -88,7 +88,7 @@ def etape_build():
     if (KIT / "dist").exists() and any((KIT / "dist").iterdir()):
         print("[DÉJÀ] dist présent — build:cached sauté")
         return 0
-    print("[TODO] npm run build:cached…")
+    print("[ÉTAPE] npm run build:cached…")
     r = run(["npm", "run", "build:cached"], cwd=KIT)
     if r.returncode != 0:
         print("ÉCHEC : build:cached\n" + (r.stderr or r.stdout)[-400:])

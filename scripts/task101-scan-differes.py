@@ -2,11 +2,16 @@
 # -*- coding: utf-8 -*-
 """Task 101 — Scanner mécanique des différés consignés à corriger ($FACON).
 
-Zones :
-  VIVANTE    : worklog (3 dernières suites) · dernier plan · dernier rapport CW.
-  HISTORIQUE : clones-chat scellés + plans/rapports antérieurs (R6 — non éditables,
+Zones (dynamiques — Task 115, KO-L003 : jamais de listes figées) :
+  VIVANTE    : worklog hôte (3 dernières suites ; repli dépôt) · dernier plan
+               download/plan-*.md · dernier rapport CW download/rapport-cw-*.md
+               (hôte d'abord — dossier vivant persistant inter-recyclages ;
+               repli miroir dépôt KNOWLEDGE-repo/download/).
+  HISTORIQUE : 5 derniers clones scellés download/clone-*.md (R6 — non éditables,
                mentions = enregistrements datés).
-  CODE       : scripts/*.py + skills/*/SKILL.md (marqueurs TODO/FIXME = candidats OPEN).
+  CODE       : scripts/*.py + skills/*/SKILL.md du dépôt (marqueurs TODO/FIXME =
+               candidats OPEN ; auto-exclusion du présent scanner — ses docstrings,
+               regex et cas de selftest décrivent la méthode, jamais des différés).
 
 Classification par mots-clés de contexte :
   OPEN         : candidat réel à corriger (aucun marqueur de résolution/acteur)
@@ -37,9 +42,10 @@ from pathlib import Path
 HOST = Path("/home/z/my-project")
 REPO = HOST / "KNOWLEDGE-repo"
 
-# « différé » avec é aigu uniquement — exclut les verbes « diffèrent/diffère » (è grave)
+# « différé » avec é aigu uniquement — exclut les verbes « diffèrent/diffère » (è grave) ;
+# « pendance » avec frontières de mots (Task 115) — exclut « indépendance/dépendance » (sous-chaîne)
 MARKERS = re.compile(
-    r"[Pp]endance|PENDANCE|différé|\[FUTURE\]|à corriger|reste à faire"
+    r"\b[Pp]endances?\b|\bPENDANCES?\b|différé|\[FUTURE\]|à corriger|reste à faire"
     r"|EN ATTENTE|TODO|FIXME|mission dédiée|reporté|PROCHAINE mission",
     re.IGNORECASE,
 )
@@ -57,20 +63,42 @@ OWNER_RX = re.compile(r"propriétaire|PROPRIÉTAIRE|rotation PAT|PAT frais|révo
 AUTO_RX = re.compile(r"\[AUTO|\[AUTOMATIQUE|automatique|cron 531684|prochaines montées|prochain tick", re.IGNORECASE)
 PROPO_RX = re.compile(r"proposition (future|hors cadence)|HORS cadence", re.IGNORECASE)
 
-ZONES_LIVE = [
-    REPO / "worklog.md",                      # 3 dernières suites extraites
-    HOST / "download" / "plan-task100-mission-f1.md",
-    HOST / "download" / "rapport-cw-task99-bloc.md",
-]
-ZONES_HISTO = [
-    HOST / "download" / "clone-chat-session-web-ecef7f80-20261115-task99.md",
-    HOST / "download" / "plan-task99-verif-push-cw-bloc-clonechat-etat.md",
-    HOST / "download" / "plan-task98-extinction-residus-triggers.md",
-    HOST / "download" / "rapport-cw-task97-bloc.md",
-    HOST / "download" / "plan-task96-rearmage-cron-triage-pendances.md",
-]
+ZONES_LIVE_WORKLOG = [HOST / "worklog.md", REPO / "worklog.md"]
+ZONE_DL_HOTE = HOST / "download"
+ZONE_DL_DEPOT = REPO / "download"
 ZONE_SCRIPTS = REPO / "scripts"
 ZONE_SKILLS = REPO / "skills"
+
+
+def _latest(pattern: str, n: int = 1) -> list:
+    """Plus récents fichiers download/ (hôte d'abord — dossier vivant ; repli
+    miroir dépôt), tri mtime décroissant. Une base non vide ÉPUISE la sélection
+    (les archives profondes du dépôt ne polluent jamais la zone vivante)."""
+    for base in (ZONE_DL_HOTE, ZONE_DL_DEPOT):
+        if base.is_dir():
+            fichiers = sorted(
+                base.glob(pattern), key=lambda p: p.stat().st_mtime, reverse=True
+            )
+            if fichiers:
+                return fichiers[:n]
+    return []
+
+
+def zones_vivantes() -> list:
+    """Journal vivant + dernier plan + dernier rapport CW (dynamique — Task 115)."""
+    zones = []
+    for wl in ZONES_LIVE_WORKLOG:
+        if wl.exists():
+            zones.append((wl, "VIVANTE"))
+            break
+    zones.extend((p, "VIVANTE") for p in _latest("plan-*.md", 1))
+    zones.extend((p, "VIVANTE") for p in _latest("rapport-cw-*.md", 1))
+    return zones
+
+
+def zones_historiques() -> list:
+    """5 derniers clones scellés (dynamique — Task 115)."""
+    return [(p, "HISTORIQUE") for p in _latest("clone-*.md", 5)]
 
 
 def last_suites(worklog_text: str, n: int = 3) -> str:
@@ -110,7 +138,7 @@ def scan_zone(path: Path, zone: str, only_tail: bool = False) -> list[dict]:
                 "zone": zone,
                 "fichier": path.name,
                 "ligne": lineno,
-                "extrait": line.strip()[:220],
+                "extrait": line.strip()[:400],
                 "classe": classify(line, zone),
             })
     return hits
@@ -130,12 +158,18 @@ def adjudiquer(item: dict) -> str:
     if parent in {"guizang-ppt", "team-okrs", "horizontal-craft", "design",
                   "dream-interpreter"}:
         return "PLATEFORME_NON_KB"   # règle d'or n°8 — copies informationnelles
+    if re.match(r"^(criterion|verification|source|priority|status)\s*:", extrait):
+        return "METHODE_ARBITRE"     # lignes answer key = contrat de méthode du plan (Task 115)
     if "corriger manuellement en cas d'écart" in extrait or "drift à corriger" in extrait:
         return "METHODE"             # instruction utilisateur / description du comportement
     if "TODO(M7)" in extrait or "squelette" in extrait:
         return "TEMPLATE_CONCU"      # squelette généré par conception (mode M7)
-    if "TODO list" in extrait:
-        return "METHODE"             # description de fonctionnalité gen-plan
+    if "TODO list" in extrait or "TODO/fenêtre" in extrait or "fenêtre de tâches" in extrait:
+        return "METHODE"             # description de fonctionnalité gen-plan / concept fenêtre de tâches (TodoWrite)
+    if "différées au worklog" in extrait or "explicitement différées" in extrait:
+        return "METHODE"             # politique de report documenté — canal worklog (D005, Task 115)
+    if "pendances héritées" in extrait or "vérification croisée pendances" in extrait:
+        return "METHODE"             # langage d'analyse (sujets d'examen, non items ouverts — Task 115)
     if "E13" in extrait or "pendance consignée" in extrait:
         return "METHODE_ARBITRE"     # chaîne descriptive du propre arbitre
     return "OPEN"
@@ -150,6 +184,8 @@ def scan_code() -> list[dict]:
         for path in sorted(base.rglob("*")):
             if path.suffix not in (".py", ".md", ".yaml", ".yml"):
                 continue
+            if path.name == "task101-scan-differes.py":
+                continue  # auto-exclusion (Task 115) : docstrings/regex/selftest = méthode
             rel = str(path.relative_to(REPO))
             try:
                 for lineno, line in enumerate(
@@ -170,11 +206,9 @@ def scan_code() -> list[dict]:
 
 def run_scan() -> dict:
     results: list[dict] = []
-    for path in ZONES_LIVE:
-        only_tail = path.name == "worklog.md"
-        results.extend(scan_zone(path, "VIVANTE", only_tail=only_tail))
-    for path in ZONES_HISTO:
-        results.extend(scan_zone(path, "HISTORIQUE"))
+    for path, zone in zones_vivantes() + zones_historiques():
+        only_tail = zone == "VIVANTE" and path.name == "worklog.md"
+        results.extend(scan_zone(path, zone, only_tail=only_tail))
     results.extend(scan_code())
 
     # Adjudication mécanique des candidats OPEN
@@ -222,6 +256,10 @@ def selftest() -> int:
         failures.append({"texte": "pt-BR todo", "attendu": "aucun match", "obtenu": "match"})
     if MARKERS.search("les deux états diffèrent sur 3 points"):
         failures.append({"texte": "diffèrent (verbe)", "attendu": "aucun match", "obtenu": "match"})
+    if MARKERS.search("parallélisation par défaut sur preuve d'indépendance, application série"):
+        failures.append({"texte": "indépendance (sous-chaîne)", "attendu": "aucun match", "obtenu": "match"})
+    if not MARKERS.search("PENDANCES PROPRIÉTAIRE : rotation PAT"):
+        failures.append({"texte": "PENDANCES (mot entier)", "attendu": "match", "obtenu": "aucun"})
     # Adjudication : règles ordonnées
     adj_cases = [
         ({"fichier": "gen-plan/PROMPT-MAITRE-GEN-PLAN-v3.43.0.md", "extrait": "- TODO list ordonnée"}, "ARCHIVE_R4"),
@@ -233,13 +271,43 @@ def selftest() -> int:
         ({"fichier": "cahier-des-charges/scripts/scaffold_tests.py", "extrait": "# TODO(M7) : assertions exécutables"}, "TEMPLATE_CONCU"),
         ({"fichier": "auto-target-tracker/SKILL.md", "extrait": "inviter l'utilisateur à corriger manuellement en cas d'écart"}, "METHODE"),
         ({"fichier": "scripts/task47-b-precision-v3331-edits.py", "extrait": "dérive à corriger (E13)"}, "METHODE_ARBITRE"),
+        # Règles Task 115 (dynamisation — faux positifs réels constatés au re-jeu)
+        ({"fichier": "scripts/t114-genplan-v3470.py", "extrait": '"tout message, TODO/fenêtre de tâches, résumé de continuation ou livrable"'}, "METHODE"),
+        ({"fichier": "download/plan-courant.md", "extrait": 'criterion: "G2-G8 : ... appliquées ou explicitement différées au worklog"'}, "METHODE_ARBITRE"),
+        ({"fichier": "download/plan-courant.md", "extrait": "**G1b** | Analyse approfondie ... (contexte, décisions, pendances héritées, leçons)"}, "METHODE"),
+        ({"fichier": "download/plan-courant.md", "extrait": "vérification croisée pendances↔plan courant (recontextualisation avant continuation)"}, "METHODE"),
+        ({"fichier": "scripts/ancien.py", "extrait": "# TODO vrai marqueur résiduel à traiter"}, "OPEN"),
     ]
     for item, expected in adj_cases:
         got = adjudiquer(item)
         if got != expected:
             failures.append({"texte": item["fichier"], "attendu": expected, "obtenu": got})
+    # Zones dynamiques (Task 115) : _latest résout hôte d'abord puis dépôt (mtime décroissant)
+    import tempfile
+    import time
+    global ZONE_DL_HOTE, ZONE_DL_DEPOT  # noqa: PLW0603 — swap de test restauré en finally
+    with tempfile.TemporaryDirectory() as td:
+        hote = Path(td) / "h"
+        miroir = Path(td) / "r"
+        for dossier in (hote, miroir):
+            dossier.mkdir()
+        (miroir / "plan-a.md").write_text("A", encoding="utf-8")
+        time.sleep(0.02)
+        (hote / "plan-b.md").write_text("B", encoding="utf-8")
+        ancien_h, ancien_r = ZONE_DL_HOTE, ZONE_DL_DEPOT
+        try:
+            ZONE_DL_HOTE, ZONE_DL_DEPOT = hote, miroir
+            got = [p.name for p in _latest("plan-*.md", 5)]
+            if got != ["plan-b.md"]:
+                failures.append({"texte": "_latest hôte épuise la sélection", "attendu": ["plan-b.md"], "obtenu": got})
+            ZONE_DL_HOTE = Path(td) / "inexistant"
+            got2 = [p.name for p in _latest("plan-*.md", 5)]
+            if got2 != ["plan-a.md"]:
+                failures.append({"texte": "_latest repli dépôt", "attendu": ["plan-a.md"], "obtenu": got2})
+        finally:
+            ZONE_DL_HOTE, ZONE_DL_DEPOT = ancien_h, ancien_r
     report = {"selftest": "PASS" if not failures else "FAIL", "echecs": failures,
-              "nb_cas": len(cases) + 3 + len(adj_cases)}
+              "nb_cas": len(cases) + 3 + len(adj_cases) + 2}
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return 0 if not failures else 1
 
