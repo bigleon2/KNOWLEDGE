@@ -1,7 +1,7 @@
 {
  "script": "routage-skills-agents",
  "version": "1.0.0",
- "tache": "traduire le document pdf en français et corriger les skills du projet",
+ "tache": "traduire le document pdf en français",
  "verdict_complexite": "SIMPLE",
  "criteres_complexite": {
   "multi_livrables": false,
@@ -14,16 +14,9 @@
  "skills_recommandes": [
   {
    "nom": "traduction-zh-fr",
-   "score": 17,
+   "score": 15,
    "extraits": [
     "Déclencher quand la demande concerne : traduction chinois→français, francisation, traduire un PDF chinois, traduire un fichier .md chinois"
-   ]
-  },
-  {
-   "nom": "cahier-des-charges",
-   "score": 12,
-   "extraits": [
-    "Déclencher quand la demande concerne : concevoir, rédiger, établir, produire ou faire évoluer un cahier des charges (CDC) ou un document d'e"
    ]
   },
   {
@@ -41,17 +34,10 @@
    ]
   },
   {
-   "nom": "correct-py",
+   "nom": "cahier-des-charges",
    "score": 7,
    "extraits": [
-    "Déclencher quand la demande concerne : vérifier et corriger la conformité des scripts Python de l'écosystème aux normes d'écriture du langag"
-   ]
-  },
-  {
-   "nom": "orchestrateur-tsi",
-   "score": 7,
-   "extraits": [
-    "Déclencher quand la demande concerne : orchestration de la famille TSI, mission de bout en bout sur un mapping (concevoir + valider + docume"
+    "Déclencher quand la demande concerne : concevoir, rédiger, établir, produire ou faire évoluer un cahier des charges (CDC) ou un document d'e"
    ]
   },
   {
@@ -67,6 +53,20 @@
    "extraits": [
     "Déclencher quand la demande concerne : extraction documentaire PDF vers Markdown + JSON structuré RAG-ready"
    ]
+  },
+  {
+   "nom": "analyse-doc-s4mk2",
+   "score": 5,
+   "extraits": [
+    "Déclencher quand la demande concerne : analyser un ZIP/dossier de mapping TSI avec TOUS ses fichiers liés (PDF, images, textes, sous-dossier"
+   ]
+  },
+  {
+   "nom": "charts",
+   "score": 5,
+   "extraits": [
+    "Ne pas déclencher pour la mise en page PDF (pdf), les diaporamas (pptx), les"
+   ]
   }
  ],
  "agents_recommandes": [],
@@ -74,7 +74,7 @@
  "metadonnees": {
   "skills_scannes": 120,
   "agents_scannes": 4,
-  "duree_ms": 21.34,
+  "duree_ms": 17.55,
   "langue": "fr (règle d'or n°6 — rappel permanent gen-plan v3.47.0)"
  }
 }
