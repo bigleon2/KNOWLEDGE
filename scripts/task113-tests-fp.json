@@ -1,0 +1,351 @@
+{
+  "horodatage": "2026-11-22T06:35:56Z",
+  "perimetre": {
+    "agent_browser": "réécrit (normes skill-creator, hors-KB requis gen-plan)",
+    "skills_kb_corriges": 27,
+    "pms_regenere": 2,
+    "scripts": 4
+  },
+  "t_fonctionnels": {
+    "selftest:task113-audit-conformite.py": {
+      "rc": 0,
+      "verdict": "PASS",
+      "detail": "SELFTEST 8/8",
+      "duree_s": 0.027
+    },
+    "selftest:task113-corrections.py": {
+      "rc": 0,
+      "verdict": "PASS",
+      "detail": "SELFTEST 6/6",
+      "duree_s": 0.032
+    },
+    "selftest:task113-cascade-pm.py": {
+      "rc": 0,
+      "verdict": "PASS",
+      "detail": "SELFTEST 2/2",
+      "duree_s": 0.03
+    },
+    "selftest:task113-dedup-sceau.py": {
+      "rc": 0,
+      "verdict": "PASS",
+      "detail": "PASS garde_name_extrait True",
+      "duree_s": 0.033
+    },
+    "compile:task113-audit-conformite.py": {
+      "verdict": "PASS"
+    },
+    "compile:task113-corrections.py": {
+      "verdict": "PASS"
+    },
+    "compile:task113-cascade-pm.py": {
+      "verdict": "PASS"
+    },
+    "compile:task113-dedup-sceau.py": {
+      "verdict": "PASS"
+    },
+    "frontmatter:agent-creator": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:agent-prompt-engineering": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:analyse-doc-s4mk2": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:autonomous-agent": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:context-engineering": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:correct-work": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:cpp-analysis": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:graph-engineering": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:harness-engineering": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:iphone17": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:iphone18": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:iphone19": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:livraison-garantie": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:loop-engineering": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:midi-doc-expert": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:multi-shift-architect": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:orchestrateur-tsi": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:pm-skill": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:re-curation": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:refactor-guard": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:refactoring-engineering": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:refactoring-test": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:skill-finder-cn": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:skills-inventory": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:tsi-architect": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:tsi-validator": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:version-management": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "frontmatter:agent-browser": {
+      "verdict": "PASS",
+      "defaillances": []
+    },
+    "triptyque:16_skills_ape": {
+      "verdict": "PASS"
+    },
+    "emojis:residus_zero": {
+      "verdict": "PASS",
+      "detail": {
+        "context-engineering": 0,
+        "correct-work": 0,
+        "cpp-analysis": 0,
+        "graph-engineering": 0,
+        "harness-engineering": 0,
+        "iphone17": 0,
+        "iphone18": 0,
+        "iphone19": 0,
+        "loop-engineering": 0,
+        "skill-finder-cn": 0,
+        "skills-inventory": 0,
+        "version-management": 0
+      }
+    },
+    "garde:version-management_present": {
+      "verdict": "PASS"
+    },
+    "pms:regeneration_archive": {
+      "verdict": "PASS"
+    },
+    "arbitre:verify-correct-work": {
+      "verdict": "PASS",
+      "detail": [
+        "  VERDICT : ALL PASS"
+      ],
+      "duree_s": 0.031
+    }
+  },
+  "t_performances": {
+    "poids_skills_modifies": {
+      "total": 27,
+      "ok": 24,
+      "lourd": 3,
+      "critique": 0,
+      "detail": {
+        "agent-browser": {
+          "kio": 13.4,
+          "verdict": "OK"
+        },
+        "agent-creator": {
+          "kio": 13.2,
+          "verdict": "OK"
+        },
+        "agent-prompt-engineering": {
+          "kio": 14.3,
+          "verdict": "OK"
+        },
+        "analyse-doc-s4mk2": {
+          "kio": 19.6,
+          "verdict": "OK"
+        },
+        "context-engineering": {
+          "kio": 13.7,
+          "verdict": "OK"
+        },
+        "correct-work": {
+          "kio": 29.5,
+          "verdict": "OK"
+        },
+        "cpp-analysis": {
+          "kio": 7.9,
+          "verdict": "OK"
+        },
+        "graph-engineering": {
+          "kio": 12.0,
+          "verdict": "OK"
+        },
+        "harness-engineering": {
+          "kio": 12.7,
+          "verdict": "OK"
+        },
+        "iphone17": {
+          "kio": 30.3,
+          "verdict": "LOURD"
+        },
+        "iphone18": {
+          "kio": 35.9,
+          "verdict": "LOURD"
+        },
+        "iphone19": {
+          "kio": 39.5,
+          "verdict": "LOURD"
+        },
+        "livraison-garantie": {
+          "kio": 12.4,
+          "verdict": "OK"
+        },
+        "loop-engineering": {
+          "kio": 13.0,
+          "verdict": "OK"
+        },
+        "midi-doc-expert": {
+          "kio": 8.3,
+          "verdict": "OK"
+        },
+        "multi-shift-architect": {
+          "kio": 6.8,
+          "verdict": "OK"
+        },
+        "orchestrateur-tsi": {
+          "kio": 14.9,
+          "verdict": "OK"
+        },
+        "pm-skill": {
+          "kio": 14.1,
+          "verdict": "OK"
+        },
+        "re-curation": {
+          "kio": 22.0,
+          "verdict": "OK"
+        },
+        "refactor-guard": {
+          "kio": 22.3,
+          "verdict": "OK"
+        },
+        "refactoring-engineering": {
+          "kio": 15.9,
+          "verdict": "OK"
+        },
+        "refactoring-test": {
+          "kio": 15.1,
+          "verdict": "OK"
+        },
+        "skill-finder-cn": {
+          "kio": 3.6,
+          "verdict": "OK"
+        },
+        "skills-inventory": {
+          "kio": 9.1,
+          "verdict": "OK"
+        },
+        "tsi-architect": {
+          "kio": 9.4,
+          "verdict": "OK"
+        },
+        "tsi-validator": {
+          "kio": 9.6,
+          "verdict": "OK"
+        },
+        "version-management": {
+          "kio": 25.2,
+          "verdict": "OK"
+        }
+      }
+    },
+    "durees_arbitres": {
+      "check-ecosysteme-integrity.py": {
+        "rc": 0,
+        "duree_s": 0.046,
+        "verdict": "PASS"
+      },
+      "check-triggers-replay.py": {
+        "rc": 0,
+        "duree_s": 0.106,
+        "verdict": "PASS"
+      },
+      "verify-cross.py": {
+        "rc": 0,
+        "duree_s": 0.033,
+        "verdict": "PASS"
+      },
+      "test-coherence-interactions.py": {
+        "rc": 0,
+        "duree_s": 0.128,
+        "verdict": "PASS"
+      },
+      "check-tool-routing.py": {
+        "rc": 0,
+        "duree_s": 0.092,
+        "verdict": "PASS"
+      }
+    },
+    "duree:task113-audit-conformite.py": 0.027,
+    "duree:task113-corrections.py": 0.031,
+    "duree:task113-cascade-pm.py": 0.03,
+    "duree:task113-dedup-sceau.py": 0.033
+  },
+  "t_interactions": {
+    "bootstrap": "INSTALLE-REPARÉ — certification ALL-PASS-6/6 (4 exécutions du jour)",
+    "integrity": "116/116 PASS ×2 arbres",
+    "coherence-interactions": "PASS STRICT 56/56",
+    "triggers-replay": "56/56 skills au score maximal — 0 dérive",
+    "tool-routing": "PASS 6/6",
+    "verify-cross": "ALL PASS 168/168",
+    "syncs": "KB ×27 + pins ×27 + evals ×22 + PMs ×2 (cascade KO-L004 complète)"
+  },
+  "verdict_global": "PASS"
+}

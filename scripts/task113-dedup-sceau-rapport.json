@@ -1,0 +1,24 @@
+{
+  "mouvements": [
+    {
+      "src": "skills/@mon-ecosysteme/@historique-pms/PROMPT-MAITRE-CORRECT-WORK-v2.12.0.md",
+      "dst": "skills/@historique/prompts-maitres/correct-work/PROMPT-MAITRE-CORRECT-WORK-v2.12.0.md",
+      "statut": "MV_OK",
+      "detail": ""
+    },
+    {
+      "src": "skills/@mon-ecosysteme/@historique-pms/PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md",
+      "dst": "skills/@historique/prompts-maitres/refactor-guard/PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md",
+      "statut": "MV_OK",
+      "detail": ""
+    }
+  ],
+  "dedup": {
+    "retirees": [
+      "@mon-ecosysteme/PROMPT-MAITRE-CORRECT-WORK-v2.12.0.md",
+      "@mon-ecosysteme/PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md"
+    ],
+    "restantes": 7
+  },
+  "dossier_intermediaire": "supprimé (vide)"
+}

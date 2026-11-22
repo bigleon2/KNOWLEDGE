@@ -1,0 +1,31 @@
+{
+  "horodatage": "2026-11-22T06:31:19Z",
+  "pms": {
+    "correct-work": {
+      "statut": "REGENERE_ARCHIVE",
+      "detail": "",
+      "taille": 51614,
+      "substitutions": true
+    },
+    "refactor-guard": {
+      "statut": "REGENERE_ARCHIVE",
+      "detail": "",
+      "taille": 26188,
+      "substitutions": true
+    }
+  },
+  "arbitre": {
+    "statut": "RECALIBRE",
+    "changements": [
+      "EXPECTED_VERSION 2.12.0→2.12.1",
+      "PM_PATH → v2.12.1"
+    ]
+  },
+  "corpus": {
+    "README.md": "MAJ",
+    "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "MAJ",
+    "PROMPT-MAITRE-INSTALL-ECOSYSTEME.md": "MAJ",
+    "PROMPT-MAITRE-SHARED.md": "MAJ",
+    "SYNC-CONTEXT.md": "inchangé"
+  }
+}

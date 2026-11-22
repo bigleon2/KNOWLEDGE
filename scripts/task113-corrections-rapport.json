@@ -1,0 +1,469 @@
+{
+  "horodatage": "2026-11-22T06:28:21Z",
+  "agent_browser": {
+    "skill": "agent-browser",
+    "statut": "REECRIT",
+    "copies": [
+      "dépôt",
+      "hôte"
+    ],
+    "raison": "ordre explicite directive Task 113 — hors-KB (requis gen-plan) car bootstrap ne projette pas les hors-KB"
+  },
+  "skills": {
+    "agent-creator": {
+      "skill": "agent-creator",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 2.3.0→2.3.1"
+      ],
+      "version": [
+        "2.3.0",
+        "2.3.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "agent-prompt-engineering": {
+      "skill": "agent-prompt-engineering",
+      "actions": [
+        "read_when bloc complet ajouté (S08)",
+        "bump PATCH 1.2.0→1.2.1"
+      ],
+      "version": [
+        "1.2.0",
+        "1.2.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "analyse-doc-s4mk2": {
+      "skill": "analyse-doc-s4mk2",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.3.2→1.3.3"
+      ],
+      "version": [
+        "1.3.2",
+        "1.3.3"
+      ],
+      "statut": "MODIFIE"
+    },
+    "autonomous-agent": {
+      "skill": "autonomous-agent",
+      "actions": [
+        "clause de déclenchement additive (S07)",
+        "bump PATCH 1.2.1→1.2.2"
+      ],
+      "version": [
+        "1.2.1",
+        "1.2.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "context-engineering": {
+      "skill": "context-engineering",
+      "actions": [
+        "emoji retiré : '> 📎' (S10)",
+        "bump PATCH 1.2.1→1.2.2"
+      ],
+      "version": [
+        "1.2.1",
+        "1.2.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "correct-work": {
+      "skill": "correct-work",
+      "actions": [
+        "emoji retiré : '> 📎' (S10)",
+        "bump PATCH 2.12.0→2.12.1"
+      ],
+      "version": [
+        "2.12.0",
+        "2.12.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "cpp-analysis": {
+      "skill": "cpp-analysis",
+      "actions": [
+        "emoji retiré : 'echo \"🔍' (S10)",
+        "emoji retiré : 'echo \"📊' (S10)",
+        "emoji retiré : 'echo \"📚' (S10)",
+        "bump PATCH 1.1.0→1.1.1"
+      ],
+      "version": [
+        "1.1.0",
+        "1.1.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "graph-engineering": {
+      "skill": "graph-engineering",
+      "actions": [
+        "emoji retiré : '> 📎' (S10)",
+        "bump PATCH 1.1.1→1.1.2"
+      ],
+      "version": [
+        "1.1.1",
+        "1.1.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "harness-engineering": {
+      "skill": "harness-engineering",
+      "actions": [
+        "emoji retiré : '> 📎' (S10)",
+        "bump PATCH 1.2.1→1.2.2"
+      ],
+      "version": [
+        "1.2.1",
+        "1.2.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "iphone17": {
+      "skill": "iphone17",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "emoji retiré : '## 📋' (S10)",
+        "emoji retiré : '## 🧠' (S10)",
+        "emoji retiré : '## 🗺️' (S10)",
+        "emoji retiré : '## 🖼️' (S10)",
+        "bump PATCH 1.1.0→1.1.1"
+      ],
+      "version": [
+        "1.1.0",
+        "1.1.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "iphone18": {
+      "skill": "iphone18",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "emoji retiré : '## 📋' (S10)",
+        "emoji retiré : '## 🧠' (S10)",
+        "emoji retiré : '## 🗺️' (S10)",
+        "emoji retiré : '## 🖼️' (S10)",
+        "bump PATCH 1.1.0→1.1.1"
+      ],
+      "version": [
+        "1.1.0",
+        "1.1.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "iphone19": {
+      "skill": "iphone19",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "emoji retiré : '## 📋' (S10)",
+        "emoji retiré : '## 🧠' (S10)",
+        "emoji retiré : '## 🗺️' (S10)",
+        "emoji retiré : '## 🖼️' (S10)",
+        "bump PATCH 0.12.0→0.12.1"
+      ],
+      "version": [
+        "0.12.0",
+        "0.12.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "livraison-garantie": {
+      "skill": "livraison-garantie",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.1.0→1.1.1"
+      ],
+      "version": [
+        "1.1.0",
+        "1.1.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "loop-engineering": {
+      "skill": "loop-engineering",
+      "actions": [
+        "emoji retiré : '> 📎' (S10)",
+        "bump PATCH 1.2.1→1.2.2"
+      ],
+      "version": [
+        "1.2.1",
+        "1.2.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "midi-doc-expert": {
+      "skill": "midi-doc-expert",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.2.1→1.2.2"
+      ],
+      "version": [
+        "1.2.1",
+        "1.2.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "multi-shift-architect": {
+      "skill": "multi-shift-architect",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.1.0→1.1.1"
+      ],
+      "version": [
+        "1.1.0",
+        "1.1.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "orchestrateur-tsi": {
+      "skill": "orchestrateur-tsi",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.1.2→1.1.3"
+      ],
+      "version": [
+        "1.1.2",
+        "1.1.3"
+      ],
+      "statut": "MODIFIE"
+    },
+    "pm-skill": {
+      "skill": "pm-skill",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.0.2→1.0.3"
+      ],
+      "version": [
+        "1.0.2",
+        "1.0.3"
+      ],
+      "statut": "MODIFIE"
+    },
+    "re-curation": {
+      "skill": "re-curation",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.2.4→1.2.5"
+      ],
+      "version": [
+        "1.2.4",
+        "1.2.5"
+      ],
+      "statut": "MODIFIE"
+    },
+    "refactor-guard": {
+      "skill": "refactor-guard",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.8.1→1.8.2"
+      ],
+      "version": [
+        "1.8.1",
+        "1.8.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "refactoring-engineering": {
+      "skill": "refactoring-engineering",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.1.1→1.1.2"
+      ],
+      "version": [
+        "1.1.1",
+        "1.1.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "refactoring-test": {
+      "skill": "refactoring-test",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.1.1→1.1.2"
+      ],
+      "version": [
+        "1.1.1",
+        "1.1.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "skill-finder-cn": {
+      "skill": "skill-finder-cn",
+      "actions": [
+        "emoji retiré : 'emoji: 🔍' (S10)",
+        "emoji retiré : '🔍' (S10)",
+        "bump PATCH 1.0.0→1.0.1"
+      ],
+      "version": [
+        "1.0.0",
+        "1.0.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "skills-inventory": {
+      "skill": "skills-inventory",
+      "actions": [
+        "emoji retiré : '> 📎' (S10)",
+        "bump PATCH 1.1.0→1.1.1"
+      ],
+      "version": [
+        "1.1.0",
+        "1.1.1"
+      ],
+      "statut": "MODIFIE"
+    },
+    "tsi-architect": {
+      "skill": "tsi-architect",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.2.1→1.2.2"
+      ],
+      "version": [
+        "1.2.1",
+        "1.2.2"
+      ],
+      "statut": "MODIFIE"
+    },
+    "tsi-validator": {
+      "skill": "tsi-validator",
+      "actions": [
+        "triptyque read_when ajouté (S08)",
+        "bump PATCH 1.3.1→1.3.2"
+      ],
+      "version": [
+        "1.3.1",
+        "1.3.2"
+      ],
+      "statut": "MODIFIE"
+    }
+  },
+  "cascades": {
+    "agent-creator": {
+      "kb": "2.3.0→2.3.1",
+      "pin": "2.3.0→2.3.1",
+      "evals": "2.3.0→2.3.1"
+    },
+    "agent-prompt-engineering": {
+      "kb": "1.2.0→1.2.1",
+      "pin": "1.2.0→1.2.1",
+      "evals": "1.2.0→1.2.1"
+    },
+    "analyse-doc-s4mk2": {
+      "kb": "1.3.2→1.3.3",
+      "pin": "1.3.2→1.3.3"
+    },
+    "autonomous-agent": {
+      "kb": "1.2.1→1.2.2",
+      "pin": "1.2.1→1.2.2",
+      "evals": "1.2.1→1.2.2"
+    },
+    "context-engineering": {
+      "kb": "1.2.1→1.2.2",
+      "pin": "1.2.1→1.2.2",
+      "evals": "1.2.1→1.2.2"
+    },
+    "correct-work": {
+      "kb": "2.12.0→2.12.1",
+      "pin": "2.12.0→2.12.1",
+      "evals": "déjà alignée ou autre (2.5.1)"
+    },
+    "cpp-analysis": {
+      "kb": "1.1.0→1.1.1",
+      "pin": "1.1.0→1.1.1"
+    },
+    "graph-engineering": {
+      "kb": "1.1.1→1.1.2",
+      "pin": "1.1.1→1.1.2",
+      "evals": "1.1.1→1.1.2"
+    },
+    "harness-engineering": {
+      "kb": "1.2.1→1.2.2",
+      "pin": "1.2.1→1.2.2",
+      "evals": "déjà alignée ou autre (1.0.1)"
+    },
+    "iphone17": {
+      "kb": "1.1.0→1.1.1",
+      "pin": "1.1.0→1.1.1",
+      "evals": "déjà alignée ou autre (1.0.0)"
+    },
+    "iphone18": {
+      "kb": "1.1.0→1.1.1",
+      "pin": "1.1.0→1.1.1",
+      "evals": "déjà alignée ou autre (1.0.0)"
+    },
+    "iphone19": {
+      "kb": "0.12.0→0.12.1",
+      "pin": "0.12.0→0.12.1",
+      "evals": "déjà alignée ou autre (0.9.0)"
+    },
+    "livraison-garantie": {
+      "kb": "1.1.0→1.1.1",
+      "pin": "1.1.0→1.1.1",
+      "evals": "format liste sans champ version — non applicable"
+    },
+    "loop-engineering": {
+      "kb": "1.2.1→1.2.2",
+      "pin": "1.2.1→1.2.2",
+      "evals": "déjà alignée ou autre (1.0.1)"
+    },
+    "midi-doc-expert": {
+      "kb": "1.2.1→1.2.2",
+      "pin": "1.2.1→1.2.2",
+      "evals": "déjà alignée ou autre (1.0.0)"
+    },
+    "multi-shift-architect": {
+      "kb": "1.1.0→1.1.1",
+      "pin": "1.1.0→1.1.1",
+      "evals": "déjà alignée ou autre (1.0.0)"
+    },
+    "orchestrateur-tsi": {
+      "kb": "1.1.2→1.1.3",
+      "pin": "1.1.2→1.1.3"
+    },
+    "pm-skill": {
+      "kb": "1.0.2→1.0.3",
+      "pin": "1.0.2→1.0.3",
+      "evals": "déjà alignée ou autre (1.0.0)"
+    },
+    "re-curation": {
+      "kb": "1.2.4→1.2.5",
+      "pin": "1.2.4→1.2.5",
+      "evals": "1.2.4→1.2.5"
+    },
+    "refactor-guard": {
+      "kb": "1.8.1→1.8.2",
+      "pin": "1.8.1→1.8.2",
+      "evals": "1.8.1→1.8.2"
+    },
+    "refactoring-engineering": {
+      "kb": "1.1.1→1.1.2",
+      "pin": "1.1.1→1.1.2",
+      "evals": "1.1.1→1.1.2"
+    },
+    "refactoring-test": {
+      "kb": "1.1.1→1.1.2",
+      "pin": "1.1.1→1.1.2",
+      "evals": "1.1.1→1.1.2"
+    },
+    "skill-finder-cn": {
+      "kb": "1.0.0→1.0.1",
+      "pin": "1.0.0→1.0.1"
+    },
+    "skills-inventory": {
+      "kb": "1.1.0→1.1.1",
+      "pin": "1.1.0→1.1.1",
+      "evals": "déjà alignée ou autre (None)"
+    },
+    "tsi-architect": {
+      "kb": "1.2.1→1.2.2",
+      "pin": "1.2.1→1.2.2",
+      "evals": "déjà alignée ou autre (1.0.0)"
+    },
+    "tsi-validator": {
+      "kb": "1.3.1→1.3.2",
+      "pin": "1.3.1→1.3.2",
+      "evals": "déjà alignée ou autre (1.0.0)"
+    }
+  }
+}
