@@ -168,6 +168,12 @@ def adjudiquer(item: dict) -> str:
         return "METHODE"             # description de fonctionnalité gen-plan / concept fenêtre de tâches (TodoWrite)
     if "différées au worklog" in extrait or "explicitement différées" in extrait:
         return "METHODE"             # politique de report documenté — canal worklog (D005, Task 115)
+    if fichier.startswith("rapport-cw-") and (
+        extrait.startswith("|") or "Périmètre vérifié" in extrait
+    ):
+        return "DOC_VERDICT_CW"      # table de verdicts / périmètre d'un rapport CW = constats
+                                     # mécaniques auto-référentiels (écho du mot « différé »)
+                                     # — un différé RÉEL consigné en prose reste OPEN (Task 116)
     if "pendances héritées" in extrait or "vérification croisée pendances" in extrait:
         return "METHODE"             # langage d'analyse (sujets d'examen, non items ouverts — Task 115)
     if "E13" in extrait or "pendance consignée" in extrait:
@@ -277,6 +283,10 @@ def selftest() -> int:
         ({"fichier": "download/plan-courant.md", "extrait": "**G1b** | Analyse approfondie ... (contexte, décisions, pendances héritées, leçons)"}, "METHODE"),
         ({"fichier": "download/plan-courant.md", "extrait": "vérification croisée pendances↔plan courant (recontextualisation avant continuation)"}, "METHODE"),
         ({"fichier": "scripts/ancien.py", "extrait": "# TODO vrai marqueur résiduel à traiter"}, "OPEN"),
+        # Règles Task 116 (auto-référence rapport CW — écho du verdict B4 dans sa propre table)
+        ({"fichier": "rapport-cw-task116-cloture-projet.md", "extrait": "| **B4 — Différés consignés (0_DIFFERE_CORRECTABLE)** | rc=0 · verdict=0_DIFFERE_CORRECTABLE | **PASS** |"}, "DOC_VERDICT_CW"),
+        ({"fichier": "rapport-cw-task116-cloture-projet.md", "extrait": "**Périmètre vérifié** : état final de la chaîne plan-2026-11-21 après clôture — installation et garde réinjection, certification, conformité, différés consignés, clôture documentaire."}, "DOC_VERDICT_CW"),
+        ({"fichier": "rapport-cw-futur.md", "extrait": "Différé réel : l'optimisation X est REPORTÉE à la prochaine session"}, "OPEN"),
     ]
     for item, expected in adj_cases:
         got = adjudiquer(item)

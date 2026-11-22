@@ -3,9 +3,10 @@
   "verdict": "0_DIFFERE_CORRECTABLE",
   "nb_total_marqueurs": 141,
   "comptages_par_classe": {
-    "PROPRIETAIRE": 21,
+    "PROPRIETAIRE": 19,
     "METHODE": 5,
     "METHODE_ARBITRE": 7,
+    "DOC_VERDICT_CW": 2,
     "HISTORIQUE": 21,
     "RESORBE": 2,
     "ARCHIVE_R4": 65,
@@ -19,42 +20,28 @@
       "zone": "VIVANTE",
       "fichier": "worklog.md",
       "ligne": 1,
-      "extrait": "## 2026-11-22 (suite 161, session web-f492e049) — Task 113 SUITE : import des 16 skills plateforme aux normes écosystème (directive trace 1a201e4bda5a2289 « vérifie tous les skills et les agents contenus dans mon écosystème — même s'ils n'ont pas été écrits par moi » ; requalification du classement « hors périmètre » du tour précédent au nom de la directive explicite) : G26 ÉTAT + RE-AUDIT — 0 com",
-      "classe": "PROPRIETAIRE"
-    },
-    {
-      "zone": "VIVANTE",
-      "fichier": "worklog.md",
-      "ligne": 3,
-      "extrait": "> **Task 114 (trace 1a2025ce4a6ed095) — DÉRIVE LANGUE constatée + corrigée immédiatement** : les messages du tour précédent dialoguaient en CHINOIS (todos, synthèses) alors que la règle d'or n°6 impose le FRANÇAIS exclusif avec le propriétaire (directive 2026-10-31, renforcée 2026-11-06). Correction : retour au français dès le premier mot du présent tour ; durcissement demandé par le propriétaire ",
-      "classe": "PROPRIETAIRE"
-    },
-    {
-      "zone": "VIVANTE",
-      "fichier": "worklog.md",
-      "ligne": 13,
-      "extrait": "CLÔTURE TASK 114 (2026-11-22, traces 1a2025197d2a0e9d + 1a2025ce4a6ed095) — T1 ÉTAT : récidive réinjection plateforme constatée (17 SKILL.md natifs écrasés + ASR/LLM/TTS/VLM recréés — 9ᵉ récidive environnement) → bootstrap INSTALLE-RÉPARÉ (56 divergences) + réparation Task 114 (13 restaurations + 4 suppressions stale sous garde archive R4 byte-identité, idempotence ×2) → AUDIT 73/73 skills + 4/4 a",
-      "classe": "PROPRIETAIRE"
-    },
-    {
-      "zone": "VIVANTE",
-      "fichier": "worklog.md",
-      "ligne": 17,
       "extrait": "## 2026-11-22 (suite 163, session web-f492e049) — Task 115 : résorption des différés consignés + erreurs non bloquantes (directive propriétaire trace 1a2027a1c9c5c9a5 « continue mais fais avant gen-plan : \"recherche tous les différés consignés, puis corrige-les, ainsi que les erreurs non bloquantes\" » — exécutée AVANT la continuation gen-plan) : G0 ÉTAT — dépôt propre HEAD = origin/main = f8bb4847",
       "classe": "PROPRIETAIRE"
     },
     {
       "zone": "VIVANTE",
       "fichier": "worklog.md",
-      "ligne": 19,
+      "ligne": 3,
       "extrait": "CLÔTURE TASK 115 (2026-11-22, trace 1a2027a1c9c5c9a5) — G4 SUITE ET FIN : commit 2b30286f (voie canonique AVANT bootstrap, 10 fichiers : rea ×2 + KB + @historique + pin + scanner + journal lessons + script task115 + worklog + rapport task101) → bootstrap VERDICT GLOBAL INSTALLE-REPARÉ (preflight PROPRE 0 porcelain · dry-run DIVERGENCE-HÔTE 1 divergence · installation 56 SHA 0 divergence · certific",
       "classe": "PROPRIETAIRE"
     },
     {
       "zone": "VIVANTE",
       "fichier": "worklog.md",
-      "ligne": 21,
+      "ligne": 5,
       "extrait": "## 2026-11-22 (suite 164, session web-f492e049) — Task 115 CLOSE+PUSH : directive propriétaire trace 1a2029e4fff390e5 « Clone-chat. PUSH avec ma clé » : clone-chat exécuté (29ᵉ de la lignée, download/clone-chat-session-web-f492e049-20261122-task115-close-push.md, fenêtre suites 163-164, 8/8 checks PASS — §0 SHARED v1.7.45, §1 worklog chronologique, §2 artefacts ×11, §3 décisions ×6, §4 pendances, ",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "worklog.md",
+      "ligne": 9,
+      "extrait": "## 2026-11-22 (suite 165, session web-f492e049) — Clôture de chaîne (directive trace 1a202a931d056f69 « continue le plan d'actions de manière cohérente, optimisée et fonctionnel ») : G0 ÉTAT — constat plan-2026-11-21 INTEGRALEMENT CLOS (G1-G14 answer key D001-D015 tous verified [suites 155-160] + tour G15-G19 clos [suite 159] + Task 113 audit/réécritures 73/73+4/4 [suites 160-161] + Task 114 routa",
       "classe": "PROPRIETAIRE"
     },
     {
@@ -98,6 +85,20 @@
       "ligne": 177,
       "extrait": "6. **Anti-boucle G1** (E13b, directive propriétaire trace 1a1fc8f117057cb1) : G1 est redémarré AU MAXIMUM 1 fois — compteur mécanique `scripts/g1-redemarrages.json` ; à l'épuisement de l'unique redémarrage autorisé, tout échec résiduel est journalisé (statut BLOQUÉ/REPORTÉ + réserves) et la chaîne POURSUIT vers G2 ; jamais de second redémarrage, jamais de boucle (généralisation : aucun groupe n'es",
       "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "rapport-cw-task116-cloture-projet.md",
+      "ligne": 5,
+      "extrait": "**Périmètre vérifié** : état final de la chaîne plan-2026-11-21 après clôture (G1-G14 verified + tour G15-G19 + Task 113-115 + clone 29ᵉ) — installation et garde réinjection, certification, conformité, différés, clôture documentaire.",
+      "classe": "DOC_VERDICT_CW"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "rapport-cw-task116-cloture-projet.md",
+      "ligne": 14,
+      "extrait": "| **B4 — Différés consignés (0_DIFFERE_CORRECTABLE)** | rc=0 · verdict=0_DIFFERE_CORRECTABLE | **PASS** |",
+      "classe": "DOC_VERDICT_CW"
     },
     {
       "zone": "HISTORIQUE",
