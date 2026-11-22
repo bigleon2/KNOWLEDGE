@@ -1,0 +1,4 @@
+{
+  "history": "Pré-traitement PROMPT-GATEWAY en tête de chaîne (Task 112 G16, directive 1a201cc4330be619 : « analyse les interactions de mon agent agent-prompt-engineering dans l'objectif de savoir s'il est déclenché au début de l'exécution de mon skill gen-plan afin de réécrire correctement et de façon cohérente mes demandes complexes ») : §1.16 += hook É1-PROMPT-GATEWAY (après É1-INSTALL, AVANT analyse E1 — agent-prompt-engineering v1.2.0 invoqué pour normaliser les demandes complexes si le PROMPT-GATEWAY n'a pas déjà traité le prompt ; demandes courtes/simples en passage direct journalisé) + table §3 += ligne agent-prompt-engineering (divergence KB↔SKILL.md résorbée) + YAML dependencies + description. MINOR, additions pures (non-régression triggers). Cascade KO-L004 COMPLÈTE : PM + delta + KB + @historique + pin ECO_SKILLS + evals sync 3.10.0→3.46.0 + certification locale.",
+  "subs": []
+}

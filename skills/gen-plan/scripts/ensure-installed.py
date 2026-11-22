@@ -4,6 +4,12 @@
 Task 23 (D006) + Task 29 (D001-D004) — Garde É1-INSTALL : auto-réinstallation de l'écosystème.
 Hook gen-plan v3.20.0 §1.16 — exécuter AVANT E1, EN PREMIER (préemption).
 
+EXTENSION Task 112 G15 : la garde couvre désormais les REQUIS gen-plan HORS registre KB
+(agent-browser — §1.16 contingences E5 : escalade WebFetch → curl → agent-browser → z-ai
+page_reader) — même détection + même AUTO-RÉPARATION miroir que les entrées KB ; et la
+promesse « vérification pipeline (Phase A) » de --reinstall est tenue dans le code
+(certification-complete.py exécutée après clone, résultat consigné, jamais bloquant).
+
   --check      rc=0 écosystème installé / rc=1 absent ou dérivé
                EXTENSION Task 56 (L54-1/L55-3) : la dérive « SKILL.md d'entrées KB
                manquants » (angle mort historique — version-management, 9 occurrences
@@ -39,6 +45,14 @@ MP = Path(os.environ.get("ECO_PROFILE_ROOT", str(ROOT)))
 # la réparation ; jamais d'action distante, jamais de jeton).
 MIROIR = ROOT / "KNOWLEDGE-repo"
 
+# Task 112 G15 — requis gen-plan HORS registre KB (table §3 Relations + §1.16 du
+# SKILL.md gen-plan) : skills exigés par gen-plan sans entrée « ## nom vX.Y.Z » au KB,
+# donc INVISIBLES de la garde étendue Task 56 (dérivation dynamique du registre).
+# Liste figée (arbitre, KO-L003 : le figé est vérifiable) — extensible aux futurs
+# requis hors-KB documentés dans gen-plan §3/§1.16 ; réparation identique aux
+# entrées KB depuis le miroir (reparer_depuis_miroir).
+SKILLS_REQUIS_GENPLAN = ["agent-browser"]
+
 FICHIERS_CLES = [
     "skills/KNOWLEDGE.md",
     "skills/gen-plan/SKILL.md",
@@ -58,7 +72,8 @@ def sh(cmd, cwd=None, env=None):
 
 def etat() -> dict:
     e = {"root_present": ROOT.exists(), "git_repo": False, "head": None,
-         "fichiers_manquants": [], "kb_entrees": 0, "skills_kb_manquants": []}
+         "fichiers_manquants": [], "kb_entrees": 0, "skills_kb_manquants": [],
+         "requis_genplan_manquants": []}
     if e["root_present"]:
         r = sh("git rev-parse --short HEAD", cwd=ROOT)
         e["git_repo"] = r.returncode == 0
@@ -98,6 +113,10 @@ def etat() -> dict:
             e["skills_kb_manquants"] = [n for n in sorted(set(entrees))
                                          if not n.startswith("@")
                                          and not (ROOT / "skills" / n / "SKILL.md").exists()]
+        # Task 112 G15 : même garde pour les requis gen-plan hors-KB (agent-browser) —
+        # une exigence de gen-plan disparue du profil ne peut plus passer inaperçue.
+        e["requis_genplan_manquants"] = [n for n in SKILLS_REQUIS_GENPLAN
+                                          if not (ROOT / "skills" / n / "SKILL.md").exists()]
     return e
 
 
@@ -124,7 +143,8 @@ def installe(e: dict) -> bool:
     # (Task 56 — l'angle mort « INSTALLE à tort » version-management est résorbé
     # par construction, cf. worklog ligne 536 et leçon L54-1).
     return (e["root_present"] and not e["fichiers_manquants"]
-            and e["kb_entrees"] >= 14 and not e["skills_kb_manquants"])
+            and e["kb_entrees"] >= 14 and not e["skills_kb_manquants"]
+            and not e.get("requis_genplan_manquants"))
 
 
 def maj_plan_apres_reinstall(head_avant, e2) -> str:
@@ -172,9 +192,22 @@ def do_reinstall(e, preempt=False):
         sys.exit(3)
     e2 = etat()
     ok = installe(e2)
+    # Task 112 G15 — tenue de la promesse docstring « vérification pipeline (Phase A) » :
+    # certification complète best-effort après clone (résultat consigné au verdict,
+    # jamais bloquant — timeout 600 s).
+    cert = None
+    cert_script = ROOT / "scripts" / "certification-complete.py"
+    if cert_script.exists():
+        try:
+            cr = subprocess.run(["python3", str(cert_script)], cwd=str(ROOT),
+                                capture_output=True, text=True, timeout=600)
+            cert = {"rc": cr.returncode,
+                    "extrait": (cr.stdout or cr.stderr or "").strip()[-400:]}
+        except subprocess.TimeoutExpired:
+            cert = {"rc": None, "extrait": "TIMEOUT 600 s — certification non bloquante"}
     tag = "PRIORITE-REINSTALL-OK" if preempt else "REINSTALLE-OK"
     print(json.dumps({"verdict": tag if ok else ("PRIORITE-REINSTALL-DERIVE" if preempt else "REINSTALLE-DERIVE"),
-                      **e2}, ensure_ascii=False))
+                      "certification_phase_a": cert, **e2}, ensure_ascii=False))
     try:
         chemin_directive = maj_plan_apres_reinstall(head_avant, e2)
         print("Directive de mise à jour du plan : " + chemin_directive)
@@ -192,12 +225,17 @@ def main():
     e = etat()
     if mode == "--check":
         ok = installe(e)
-        if not ok and e["root_present"] and not e["fichiers_manquants"] and e["skills_kb_manquants"]:
-            # Task 56 : dérive limitée aux skills KB manquants → AUTO-RÉPARATION
+        # Task 112 G15 : la dérive détectable = entrées KB manquants + requis gen-plan
+        # hors-KB manquants (même détection, même auto-réparation miroir).
+        manquants = e["skills_kb_manquants"] + e.get("requis_genplan_manquants", [])
+        if not ok and e["root_present"] and not e["fichiers_manquants"] and manquants:
+            # Task 56 : dérive limitée aux skills manquants → AUTO-RÉPARATION
             # depuis le miroir local (défense structurelle contre la volatilité
             # sandbox — L55-3 : la disparition ne peut plus passer inaperçue).
-            reparés = reparer_depuis_miroir(e["skills_kb_manquants"])
-            if reparés and not etat()["skills_kb_manquants"]:
+            reparés = reparer_depuis_miroir(manquants)
+            e2 = etat()
+            if reparés and not e2["skills_kb_manquants"] and not e2.get("requis_genplan_manquants"):
+                e = e2
                 try:
                     with open(MP / "worklog.md", "a", encoding="utf-8") as f:
                         f.write("\n> É1-INSTALL Task 56 : auto-réparation garde étendue — "

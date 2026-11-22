@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.45.0
+version: 3.46.0
 category: ecosystem
 language: fr
 tags:
@@ -22,7 +22,8 @@ description: >
   glossaire alias-eco inline $FACON/$FACON2 (§A — auto-contenu, v3.37.0)
   progressive disclosure R1 (v3.39.0) : résumés inline, intégraux en references/ à la demande,
   chaîne de vérification par étape terminée en mode NULL — correct-work(CIBLE) AVANT l'étape suivante (v3.44.0),
-  mode step sans AUCUNE validation du propriétaire pour passer aux étapes suivantes — seul le mode step-ok en demande (v3.45.0)
+  mode step sans AUCUNE validation du propriétaire pour passer aux étapes suivantes — seul le mode step-ok en demande (v3.45.0),
+  pré-traitement PROMPT-GATEWAY : agent-prompt-engineering v1.2.0 invoqué en tête de chaîne (É1-PROMPT-GATEWAY §1.16, v3.46.0) — réécriture des demandes complexes AVANT l'analyse E1
 dependencies:
   - skill: correct-work
     version: ">=2.4.0"
@@ -40,6 +41,9 @@ dependencies:
   - skill: resource-monitor
     version: ">=1.0.0"
     used_at: "Hook E1-RES (collecte G-RES, ouverture de session)"
+  - skill: agent-prompt-engineering
+    version: ">=1.2.0"
+    used_at: "É1-PROMPT-GATEWAY (pré-traitement de la demande, §1.16) + délégation §1.6/§1.9"
 read_when:
   - Déclencher quand la demande concerne : skill de planification de tâches pour assistant IA
   - Déclencher si la demande mentionne : plan d'actions, planification, adaptation, answer, intègre dans le plan d'actions, met à jour (le plan d'actions), gen-plan(step), gen-plan(step-ok), orchestre
@@ -208,6 +212,7 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 ### §1.16 Routage de découverte des skills + garde d'installation (résumé — intégral : `references/protocoles-detailles.md`)
 
 - **É1-INSTALL — garde avec PRÉEMPTION** : à l'ouverture de session, AVANT E1 : `ensure-installed.py --check` (chemin canonique). rc=0 → no-op ; rc≠0 → suspension + `--reinstall` (pipeline PM-INSTALL) AVANT toute autre étape ; directive post-réinstall intégrée au plan ; idempotente. **v3.35.2** : contrôle du SKILL.md de toutes les entrées KB ; manquants → AUTO-RÉPARÉS depuis le miroir (INSTALLE-REPARÉ, rc=0, trace worklog).
+- **É1-PROMPT-GATEWAY — pré-traitement de la demande (v3.46.0)** : après É1-INSTALL et AVANT l'analyse E1 : si le prompt du propriétaire n'a pas déjà été normalisé par le PROMPT-GATEWAY de agent-prompt-engineering (v1.2.0 — déclenchement inconditionnel : phases A-B systématiques, phases C-D conditionnelles au verdict COMPLEXE >= 2/5), l'agent l'invoque pour réécrire la demande en version compréhensible, explicite et structurée ; la version normalisée alimente l'analyse E1 et l'answer key ; les demandes courtes/simples passent directement (phases C-D by-passées, passage journalisé).
 - **Routage (E5)** : skills-inventory en PRIORITÉ (`generate_skills_md.py --json`/`--search`/`--category`, comparaison mémorisée au KB) ; skill-finder-cn en FALLBACK si échec — contrôle `audit-provenance` AVANT adoption ; bascule unidirectionnelle.
 ## §2 — Spécification technique
 
@@ -287,6 +292,7 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 | skills-inventory | Routage prioritaire de découverte (§1.16) + consultation à E5 | Sélection des skills, version >= v1.1.0 |
 | skill-finder-cn | Fallback de découverte (§1.16) | Recherche externe UNIQUEMENT si skills-inventory échoue — contrôle cybersécurité audit-provenance obligatoire avant adoption |
 | prompt-engineering | Délégation (§1.6) | Optimisation des prompts complexes, version >= v1.0.0 |
+| agent-prompt-engineering | Pré-traitement (É1-PROMPT-GATEWAY §1.16) + délégation (§1.6/§1.9) | PROMPT-GATEWAY inconditionnel v1.2.0 — réécriture des demandes complexes AVANT l'analyse E1 ; optimisation fine des prompts (SHARED §3.1) — version >= v1.2.0 |
 | context-engineering | Mobilisation (§1.6) | Socle SHARED, Protocole de Découverte KB, lecture bloc par bloc — déclenchement automatique (SHARED §7) |
 | loop-engineering | Mobilisation (§1.6) | Boucle E10-E13 + auto-calibration E15 — déclenchement automatique (SHARED §7) |
 | graph-engineering | Mobilisation (§1.6) | Registre KB graphe bidirectionnel versionné, matrice agent × skill — déclenchement automatique (SHARED §7) |
@@ -345,4 +351,4 @@ Dès qu'une phase du plan d'actions se termine, lancer `correct-work(livrables d
 **Couche d'organisation transverse (v3.25.0, tous modes depuis v3.36.0 — seule différence : les portes de confirmation, EXCLUSIVES au mode step-ok — v3.45.0 : les modes step et NULL n'en demandent JAMAIS)** : **groupe `G<k>`** (unité de vérification — correct-work(groupe)) → **sous-groupes `SG<k>.<j>`** (lot cohérent 2-5 tâches) → **tâches `T<k>.<j>.<i>`** (unité élémentaire, tag #token). **Statuts dérivés de l'état vérifiable** (KO-L003) : `[À FAIRE]` · `[EN COURS]` · `[TERMINÉ]` · `[BLOQUÉ]` · `[REPORTÉ]` ; compteurs n/m. **Cadence** : début d'exécution → fenêtre native complète (E7-DISP point 6 — Z.ai : `TodoWrite`) ; ouverture de groupe → PLAN-AFFICHE d'évolution puis tableau du groupe (step-ok : après confirmation) ; fin de tâche → ligne + compteurs ; fin de sous-groupe → rappel ; fin de groupe → fenêtre native mise à jour ; clôture → tableau final + verdict correct-work(groupe). **Orthogonal à l'exécution** : couche de LECTURE ; Graph Diamond automatique dès preuve d'indépendance (sous-groupes inclus, série = exception tracée) ; groupes plats normalisés à l'ouverture (R6/R2).
 ### §5.6 Journal des versions (entrée courante — archive intégrale et mécanique de migration : `references/journal-versions.md`)
 
-- **v3.45.0 (2026-11-21, web-93a4f011 — Task ID 12, directive 1a1faad3d26c524d « fais en sorte que le mode "STEP" de mon skill gen-plan ne me demander jamais de validations pour passer aux étapes suivantes, seul le mode "STEP-OK" de gen-plan doit le faire »)** : **mode step SANS AUCUNE validation — exclusivité des portes au mode step-ok** — le mode step ne demande JAMAIS de validation du propriétaire pour passer aux étapes/groupes suivants (aucune porte, aucune pause : enchaînement intégral jusqu'à la clôture de la chaîne, seuls les verdicts mécaniques correct-work(groupe)/(projet) jalonnent la progression) ; le mode step-ok est le SEUL mode à portes de validation (les modes step et NULL n'en demandent JAMAIS) — §A step + §A step-ok + §1.5 Modes + §5.5 + description. MINOR, additions pures (non-régression triggers). Cascade KO-L004 COMPLÈTE : PM v3.45.0 généré mécaniquement (delta verrouillé scripts/delta-genplan-v3450.json) + KB + @historique + pin ECO_SKILLS recalibré + certification locale ; v3.44.0 migré R4 byte-identité vers references/journal-versions.md (scripts/migrer-journal-gen-plan-v3450-t12.py — idempotent).
+- **v3.46.0 (2026-11-22, web-f492e049 — Task 112 G16, directive 1a201cc4330be619 « analyse les interactions de mon agent "agent-prompt-engineering" dans l'objectif de savoir s'il est déclenché au début de l'exécution de mon skill "gen-plan" afin de réécrire correctement et de façon cohérente mes demandes complexes »)** : **pré-traitement PROMPT-GATEWAY en tête de chaîne** — constat mécanique : 0 référence à agent-prompt-engineering dans le SKILL.md (divergence KB↔SKILL.md : la KB déclarait la relation « §3 du skill » absente du corps) ; correctif : §1.16 += hook É1-PROMPT-GATEWAY (après É1-INSTALL, AVANT l'analyse E1 : si le PROMPT-GATEWAY n'a pas déjà normalisé le prompt — déclenchement inconditionnel v1.2.0, phases A-B systématiques, C-D conditionnelles verdict COMPLEXE >= 2/5 — l'agent invoque agent-prompt-engineering pour réécrire la demande en version compréhensible, explicite et structurée ; demandes courtes/simples en passage direct journalisé) + table §3 += ligne agent-prompt-engineering + YAML dependencies += agent-prompt-engineering >= 1.2.0 + description. MINOR, additions pures (non-régression triggers). Cascade KO-L004 COMPLÈTE : PM v3.46.0 généré mécaniquement (delta verrouillé scripts/delta-genplan-v3460.json) + KB + @historique + pin ECO_SKILLS recalibré ×2 arbres + evals sync 3.10.0→3.46.0 (stale résorbé) + certification locale ; v3.45.0 migrée R4 byte-identité vers references/journal-versions.md.
