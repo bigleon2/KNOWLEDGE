@@ -1,12 +1,12 @@
 {
   "task": "101-verif-differes",
   "verdict": "0_DIFFERE_CORRECTABLE",
-  "nb_total_marqueurs": 132,
+  "nb_total_marqueurs": 141,
   "comptages_par_classe": {
-    "PROPRIETAIRE": 20,
+    "PROPRIETAIRE": 21,
     "METHODE": 5,
     "METHODE_ARBITRE": 7,
-    "HISTORIQUE": 13,
+    "HISTORIQUE": 21,
     "RESORBE": 2,
     "ARCHIVE_R4": 65,
     "DOC_METHODE": 14,
@@ -19,35 +19,42 @@
       "zone": "VIVANTE",
       "fichier": "worklog.md",
       "ligne": 1,
-      "extrait": "## 2026-11-22 (suite 160, session web-f492e049) — Task 113 : directive propriétaire trace 1a201e4bda5a2289 « gen-plan(step) : je n'ai pas l'impression que mon agent \"agent-browser\" a été écrit avec les normes de mon écosystème (ex : les skills sont écrits via mon skill \"skill-creator\"). vérifie si c'est le cas et si ça ne l'est pas alors réécris-le. vérifie tous les skills et les agents contenus d",
-      "classe": "PROPRIETAIRE"
-    },
-    {
-      "zone": "VIVANTE",
-      "fichier": "worklog.md",
-      "ligne": 2,
       "extrait": "## 2026-11-22 (suite 161, session web-f492e049) — Task 113 SUITE : import des 16 skills plateforme aux normes écosystème (directive trace 1a201e4bda5a2289 « vérifie tous les skills et les agents contenus dans mon écosystème — même s'ils n'ont pas été écrits par moi » ; requalification du classement « hors périmètre » du tour précédent au nom de la directive explicite) : G26 ÉTAT + RE-AUDIT — 0 com",
       "classe": "PROPRIETAIRE"
     },
     {
       "zone": "VIVANTE",
       "fichier": "worklog.md",
-      "ligne": 4,
+      "ligne": 3,
       "extrait": "> **Task 114 (trace 1a2025ce4a6ed095) — DÉRIVE LANGUE constatée + corrigée immédiatement** : les messages du tour précédent dialoguaient en CHINOIS (todos, synthèses) alors que la règle d'or n°6 impose le FRANÇAIS exclusif avec le propriétaire (directive 2026-10-31, renforcée 2026-11-06). Correction : retour au français dès le premier mot du présent tour ; durcissement demandé par le propriétaire ",
       "classe": "PROPRIETAIRE"
     },
     {
       "zone": "VIVANTE",
       "fichier": "worklog.md",
-      "ligne": 14,
+      "ligne": 13,
       "extrait": "CLÔTURE TASK 114 (2026-11-22, traces 1a2025197d2a0e9d + 1a2025ce4a6ed095) — T1 ÉTAT : récidive réinjection plateforme constatée (17 SKILL.md natifs écrasés + ASR/LLM/TTS/VLM recréés — 9ᵉ récidive environnement) → bootstrap INSTALLE-RÉPARÉ (56 divergences) + réparation Task 114 (13 restaurations + 4 suppressions stale sous garde archive R4 byte-identité, idempotence ×2) → AUDIT 73/73 skills + 4/4 a",
       "classe": "PROPRIETAIRE"
     },
     {
       "zone": "VIVANTE",
       "fichier": "worklog.md",
-      "ligne": 18,
+      "ligne": 17,
       "extrait": "## 2026-11-22 (suite 163, session web-f492e049) — Task 115 : résorption des différés consignés + erreurs non bloquantes (directive propriétaire trace 1a2027a1c9c5c9a5 « continue mais fais avant gen-plan : \"recherche tous les différés consignés, puis corrige-les, ainsi que les erreurs non bloquantes\" » — exécutée AVANT la continuation gen-plan) : G0 ÉTAT — dépôt propre HEAD = origin/main = f8bb4847",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "worklog.md",
+      "ligne": 19,
+      "extrait": "CLÔTURE TASK 115 (2026-11-22, trace 1a2027a1c9c5c9a5) — G4 SUITE ET FIN : commit 2b30286f (voie canonique AVANT bootstrap, 10 fichiers : rea ×2 + KB + @historique + pin + scanner + journal lessons + script task115 + worklog + rapport task101) → bootstrap VERDICT GLOBAL INSTALLE-REPARÉ (preflight PROPRE 0 porcelain · dry-run DIVERGENCE-HÔTE 1 divergence · installation 56 SHA 0 divergence · certific",
+      "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "VIVANTE",
+      "fichier": "worklog.md",
+      "ligne": 21,
+      "extrait": "## 2026-11-22 (suite 164, session web-f492e049) — Task 115 CLOSE+PUSH : directive propriétaire trace 1a2029e4fff390e5 « Clone-chat. PUSH avec ma clé » : clone-chat exécuté (29ᵉ de la lignée, download/clone-chat-session-web-f492e049-20261122-task115-close-push.md, fenêtre suites 163-164, 8/8 checks PASS — §0 SHARED v1.7.45, §1 worklog chronologique, §2 artefacts ×11, §3 décisions ×6, §4 pendances, ",
       "classe": "PROPRIETAIRE"
     },
     {
@@ -91,6 +98,90 @@
       "ligne": 177,
       "extrait": "6. **Anti-boucle G1** (E13b, directive propriétaire trace 1a1fc8f117057cb1) : G1 est redémarré AU MAXIMUM 1 fois — compteur mécanique `scripts/g1-redemarrages.json` ; à l'épuisement de l'unique redémarrage autorisé, tout échec résiduel est journalisé (statut BLOQUÉ/REPORTÉ + réserves) et la chaîne POURSUIT vers G2 ; jamais de second redémarrage, jamais de boucle (généralisation : aucun groupe n'es",
       "classe": "PROPRIETAIRE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 1,
+      "extrait": "# Clone de discussion — session web-f492e049 (Task 115 : résorption différés + clôture + PUSH), 29ᵉ de la lignée",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 3,
+      "extrait": "> Session : web-f492e049 · chat 17b8e0d9-d141-4dda-b86b-8b152e773f70 · canal zai-web · traces directives 1a2027a1c9c5c9a5 (différés) + 1a2029e4fff390e5 (clone + PUSH). Généré le 2026-11-22 par clone-chat v2.0.2 (7+1 étapes). Fenêtre du clone : recherche et correction de TOUS les différés consignés et erreurs non bloquantes AVANT la continuation gen-plan, puis clôture Task 115, puis clone de clôtur",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 7,
+      "extrait": "> Écosystème Knowledge : skills/ = racine (73 SKILL.md + 4 .agent) | KB = skills/KNOWLEDGE.md | @mon-ecosysteme/ (corpus PM) | @historique/ (archive R4 — R2 jamais éditer, jamais source d'installation KO-L003). Conventions kebab-case/semver/#token. Règle d'or n°6 : FRANÇAIS exclusif dès le premier mot de toute session ou reprise (rappel permanent §0 gen-plan v3.47.0). Référence canonique : « mon s",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 13,
+      "extrait": "| 163 | 2026-11-22 | Task 115 — directive 1a2027a1c9c5c9a5 « recherche tous les différés consignés, puis corrige-les, ainsi que les erreurs non bloquantes » exécutée AVANT continuation gen-plan : G0 ÉTAT (dépôt parité f8bb4847, certification ALL PASS 6/6 sans avertissement, divergence gif-animator-pro = 0 — ancien différé résorbé par réécritures Task 113, KB 0 résidu, journal 11 entrées dont 6 non",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 20,
+      "extrait": "| skills/rea-analysis/SKILL.md | rea-analysis v1.0.0→v1.0.1 (étiquettes d'étape [TODO]→[ÉTAPE] ×3 — KO-L003 réalité corrigée) | INSTALLED ×2 arbres |",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 21,
+      "extrait": "| scripts/task101-scan-differes.py | Scanner différés DYNAMISÉ (zones dynamiques + repli miroir + auto-exclusion + adjudication, selftest 21→28) | CERTIFIÉ ×2 arbres |",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 30,
+      "extrait": "| Commits dépôt | 2b30286f (résorption différés) + dde3d19f (Task 115 CLOSE) + commit clone suite 164 | POUSSÉS ce tour |",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 36,
+      "extrait": "| Différés AVANT gen-plan | La directive propriétaire impose la résorption des différés consignés AVANT toute continuation gen-plan — ordonnancement respecté (Task 115 prioritaire) | Task 115 |",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 37,
+      "extrait": "| Étiquettes d'étape ≠ différés | Un marqueur « [TODO] » nommant une ÉTAPE EN COURS n'est pas un différé : KO-L003 — la réalité trompeuse est corrigée ([TODO]→[ÉTAPE]), jamais la méthode dissimulée | Task 115 |",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 43,
+      "extrait": "## §4 — État des pendances (Étape 4)",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 45,
+      "extrait": "| Pendance | État |",
+      "classe": "HISTORIQUE"
+    },
+    {
+      "zone": "HISTORIQUE",
+      "fichier": "clone-chat-session-web-f492e049-20261122-task115-close-push.md",
+      "ligne": 54,
+      "extrait": "Lignée : … → Task 112 (24ᵉ) → Task 113 audit conformité (26ᵉ) → Task 113 SUITE plateforme (27ᵉ) → Task 114 routage décisionnel (28ᵉ) → **Task 115 résorption différés + clôture + PUSH (29ᵉ)**. Session web-f492e049, fenêtre suites 163-164.",
+      "classe": "HISTORIQUE"
     },
     {
       "zone": "HISTORIQUE",
@@ -153,34 +244,6 @@
       "fichier": "clone-chat-session-web-f492e049-20261122-task112-tour-g15-g19.md",
       "ligne": 50,
       "extrait": "| Pendance PUSH | ÉTEINTE | 9 commits locaux → poussés aaac4fa1→8af48df0 + commits du tour | PUSH |",
-      "classe": "HISTORIQUE"
-    },
-    {
-      "zone": "HISTORIQUE",
-      "fichier": "clone-chat-session-web-f492e049-20261122-task112.md",
-      "ligne": 20,
-      "extrait": "| `download/analyse-dernier-clone.md` | LIVRABLE | analyse approfondie du 23ᵉ clone (G1b, D014) — identification, structure, lignée, 6 décisions, 6 pendances recoupées, 5 leçons, 6 implications |",
-      "classe": "HISTORIQUE"
-    },
-    {
-      "zone": "HISTORIQUE",
-      "fichier": "clone-chat-session-web-f492e049-20261122-task112.md",
-      "ligne": 30,
-      "extrait": "| origin/main | PENDANCE | 9 commits locaux SANS PUSH (f7b97018→CLOSE) — PAT non fourni, E15 inchangée 37 |",
-      "classe": "HISTORIQUE"
-    },
-    {
-      "zone": "HISTORIQUE",
-      "fichier": "clone-chat-session-web-f492e049-20261122-task112.md",
-      "ligne": 48,
-      "extrait": "| Pendance PUSH | RÉACTIVÉE | 0 unpushed (Task 111) → 9 commits locaux (PAT requis — push immédiat dès PAT frais, leçon 98/101) | G14 clôture |",
-      "classe": "HISTORIQUE"
-    },
-    {
-      "zone": "HISTORIQUE",
-      "fichier": "clone-chat-session-web-f492e049-20261122-task112.md",
-      "ligne": 61,
-      "extrait": "Le mécanisme de croissance : chaque tour CLOSE génère son clone (lignée Task 72→112, 24ᵉ) — les sections §1-§3 sont ENRICHIES par le clone du tour, les sections §0/§4-§5 sont RÉGÉNÉRÉES (état courant). clone-chat référencé (skill v2.0.2, déclencheurs §A). La session héritière reprend : lire le présent clone + worklog.md (suite 158) + le plan Task 112 (fait foi) — puis exécuter le bootstrap canoniq",
       "classe": "HISTORIQUE"
     },
     {
