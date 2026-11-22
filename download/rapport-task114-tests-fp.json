@@ -1,0 +1,203 @@
+{
+ "tache": "Task 114 tests F+P",
+ "trace": "1a2025197d2a0e9d + 1a2025ce4a6ed095",
+ "synthese": {
+  "total": 32,
+  "pass": 32,
+  "fail": 0
+ },
+ "tests": [
+  {
+   "type": "F",
+   "nom": "F1_selftest_hôte",
+   "verdict": "PASS",
+   "detail": "SELFTEST 9/9"
+  },
+  {
+   "type": "F",
+   "nom": "F1_selftest_dépôt",
+   "verdict": "PASS",
+   "detail": "SELFTEST 9/9"
+  },
+  {
+   "type": "F",
+   "nom": "F2_parite_script",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F3_traduction_top",
+   "verdict": "PASS",
+   "detail": "traduction-zh-fr, midi-doc-expert, docx"
+  },
+  {
+   "type": "F",
+   "nom": "F4_gate_simple",
+   "verdict": "PASS",
+   "detail": "verdict SIMPLE — délégation d'agents réservée aux cas complexes (>= 2/5 critères, grille PROMPT-GATEWAY §1.6 ; gen-plan §1.17)"
+  },
+  {
+   "type": "F",
+   "nom": "F5_complexe_agents",
+   "verdict": "PASS",
+   "detail": "3/5 critères, 1 agent(s)"
+  },
+  {
+   "type": "F",
+   "nom": "F6_idempotence",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F7_frontmatter",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F7_§0 rappel langue",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F7_§1.16 hook",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F7_§1.17",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F7_§2.2 structure",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F7_§3 ligne",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F7_§4 coût",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F8_kb_titre",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F8_pin_x2",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F8_evals",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F8_pm_347",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F8_pm_346_archive",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F8_journal_r4",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F9_garde_code",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F9_etat_stable",
+   "verdict": "PASS",
+   "detail": "INSTALLE"
+  },
+  {
+   "type": "F",
+   "nom": "F10_audit",
+   "verdict": "PASS",
+   "detail": "SKILLS  : 73/73 CONFORMES — 0 NON_CONFORMES"
+  },
+  {
+   "type": "F",
+   "nom": "F11_triggers",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F11_verify_cross",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F12_analyse",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F13_derive_worklog",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "F13_rappel_genplan",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "type": "F",
+   "nom": "P1_duree_max",
+   "verdict": "PASS",
+   "detail": "max 47 ms (cible < 1000 ms)"
+  },
+  {
+   "type": "F",
+   "nom": "P2_poids_genplan",
+   "verdict": "PASS",
+   "detail": "39788 o (38.9 Kio < 60 Kio)"
+  },
+  {
+   "type": "F",
+   "nom": "P3_sortie_json",
+   "verdict": "PASS",
+   "detail": "2492 o < 5120 o"
+  },
+  {
+   "type": "F",
+   "nom": "P4_poids_arbitre",
+   "verdict": "PASS",
+   "detail": "| 1 | iphone19 | 39.5 | 10119 | 22.8 / 6 | 62.3 | LOURD |"
+  }
+ ]
+}

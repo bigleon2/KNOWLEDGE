@@ -1,0 +1,35 @@
+{
+  "tache": "Task 114 réparation réinjection plateforme",
+  "trace": "1a2025197d2a0e9d",
+  "horodatage": "2026-11-22T08:21:30Z",
+  "synthese": {
+    "restaurés": 0,
+    "supprimés": 0,
+    "déjà_faits": 17,
+    "reportés": 0
+  },
+  "resultats": {
+    "restaurations": [],
+    "suppressions": [],
+    "reportes": [],
+    "deja_faits": [
+      "agent-browser",
+      "charts",
+      "docx",
+      "gif-animator",
+      "gif-animator-pro",
+      "image-edit",
+      "image-generation",
+      "image-search",
+      "pdf",
+      "pptx",
+      "task-review",
+      "video-understand",
+      "xlsx",
+      "ASR (absent)",
+      "LLM (absent)",
+      "TTS (absent)",
+      "VLM (absent)"
+    ]
+  }
+}
