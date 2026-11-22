@@ -1,0 +1,44 @@
+{
+  "horodatage": "2026-11-22T09:29:06Z",
+  "voie": "V3-canonique (entrée consolidée PM-INSTALL §3.2-c, GO-1 Task 107)",
+  "commandes": 1,
+  "tours": 1,
+  "etapes": [
+    {
+      "etape": "preflight-git",
+      "statut": "PROPRE",
+      "detail": "0 porcelain"
+    },
+    {
+      "etape": "dry-run",
+      "statut": "DIVERGENCE-HÔTE",
+      "detail": "1 divergences — réparation à l'étape suivante"
+    },
+    {
+      "etape": "installation",
+      "statut": "OK",
+      "detail": "rc=0 · post-install 56 SHA, 0 divergence"
+    },
+    {
+      "etape": "certification",
+      "statut": "ALL-PASS-6/6",
+      "detail": "rc=0"
+    },
+    {
+      "etape": "garde-E1-INSTALL",
+      "statut": "INSTALLE",
+      "detail": "rc=0"
+    }
+  ],
+  "garanties_couvertes": [
+    "préflight git dépôt",
+    "dry-run lecture seule",
+    "installation canonique + rescellement v2.3",
+    "certification complète 6 arbitres",
+    "garde É1-INSTALL"
+  ],
+  "verdict_global": "INSTALLE-REPARÉ",
+  "duree_s": 0.8197,
+  "octets_sortie": 411,
+  "verdict_compact": "=== BOOTSTRAP CONSOLIDÉ (entrée canonique — PM-INSTALL §3.2-c) ===\npreflight-git     : PROPRE 0 porcelain\ndry-run           : DIVERGENCE-HÔTE 1 divergences — réparation à l'étape suivante\ninstallation      : OK rc=0 · post-install 56 SHA, 0 divergence\ncertification     : ALL-PASS-6/6 rc=0\ngarde-E1-INSTALL  : INSTALLE rc=0\nVERDICT GLOBAL     : INSTALLE-REPARÉ (durée 0.8197 s, 1 commande, 1 tour)"
+}

@@ -398,7 +398,7 @@
       {
         "element": "rea-analysis",
         "type": "skill",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "verdict": "CONFORME",
         "defaillances": [],
         "corps_fr_ratio": 0.145
