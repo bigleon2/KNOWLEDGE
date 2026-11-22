@@ -1,6 +1,6 @@
 {
   "skill_name": "fleet-engineering",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Évals de matérialisation N34 (n°54, session B12-r56) — sources de vérité SHARED §7 ; structure miroir des 4 disciplines (graph/context/loop/harness).",
   "evals": [
