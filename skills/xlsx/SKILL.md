@@ -1,230 +1,156 @@
 ---
 name: xlsx
-metadata:
-  author: Z.AI
-  version: "1.0"
-description: "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file; create a new spreadsheet from scratch or from other data sources; analyze data and output results as an Excel file with charts; convert between tabular file formats (CSV/JSON/PDF → XLSX or vice versa); clean, merge, pivot, or transform tabular data. Trigger especially when the user references a spreadsheet file by name or path, says 'make a table/report/model', mentions Excel/CSV/数据分析/报表/汇总, or wants data visualization inside a spreadsheet."
-license: Proprietary. LICENSE.txt has complete terms
+version: 1.0.0
+category: ecosystem
+language: fr
+tags:
+  - tableur
+  - excel
+  - xlsx
+  - csv
+  - formules
+  - tableau-de-bord
+  - plateforme
+description: >
+  Atelier de tableurs piloté par scènes : ouvrir, lire, éditer, corriger un fichier
+  .xlsx/.xlsm/.csv/.tsv existant ; créer un tableur depuis zéro ou depuis d'autres
+  sources ; analyser des données et produire un résultat Excel avec graphiques
+  intégrés ; convertir entre formats tabulaires (CSV/JSON/PDF vers XLSX et inversement) ;
+  nettoyer, fusionner, pivoter, transformer ; modèles financiers (DCF, LBO, P&L),
+  budgets, tableaux croisés, VBA. Déclencher dès qu'un tableur est l'entrée ou la
+  sortie principale de la tâche, ou que l'utilisateur nomme un fichier Excel/CSV.
+dependencies:
+  - skill: charts
+    version: ">=1.0.0"
+    used_at: "Frontière — graphiques autonomes (le présent skill intègre les graphiques AU tableur)"
+read_when:
+  - Déclencher quand la demande concerne : lire/éditer/corriger un xlsx/xlsm/csv/tsv,
+    créer un tableur, analyser des données avec sortie Excel, convertir des formats
+    tabulaires, construire un modèle financier, un tableau croisé ou une macro VBA.
+  - Déclencher si la demande mentionne : Excel, .xlsx, .xlsm, .csv, .tsv, classeur,
+    feuille de calcul, tableau croisé, pivot, formule, VBA, macro, modèle financier,
+    DCF, tableau de bord Excel.
+  - Ne pas déclencher pour un rapport d'analyse rédigé (docx), une présentation
+    (pptx), un document formel imprimable (pdf), des graphiques sans table de
+    données (charts) — convention protocole, Task 28.
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-# XLSX — Scene-Driven Spreadsheet Workbench
+# XLSX v1.0.0 — Atelier de tableurs piloté par scènes
 
-## Quick Setup
+## §0 — Contexte Système (SHARED v1.7.44)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+> Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
+
+## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
+
+Skill OUTIL PLATEFORME importé aux normes de l'écosystème via skill-creator —
+directive propriétaire Task 113 (trace 1a201e4bda5a2289). Les commandes CLI, le
+code et les identifiants d'API restent en anglais verbatim (artefacts techniques,
+règle d'or n°6) ; la documentation, les titres et les notes sont en français.
+Contenu intégral d'origine conservé byte-identité :
+`references/plateforme-original.md` (archive R4 — arbres de routage complets,
+exemples de demandes multi-intentions, matrice de capacités).
+
+## §1 — Spécification fonctionnelle
+
+### Porte d'intention (avant tout code)
+
+Confirmer que la sortie attendue est bien un tableur : résumé d'analyse rédigé →
+docx ; présentation → pptx ; document formel → pdf ; graphiques seuls → charts ;
+format explicitement nommé par l'utilisateur → le respecter. Décomposer ensuite
+toute demande (besoins explicites, besoins implicites, demandes multi-parties à
+satisfaire intégralement).
+
+### Porte de complexité (avant le routeur de scènes)
+
+- **LITE** (agrégation simple, un graphique, conversion directe, audit seul) :
+  SKILL.md + UN fichier de scène, sans moteurs — cible 400 lignes de contexte.
+- **FULL** (analyse multidimensionnelle, modèle financier, tableau de bord) :
+  SKILL.md + scène + moteurs (`engines/chart.md`, `engines/design.md`), recettes
+  et templates chargés à la demande — pipeline qualité complet.
+
+### Routeur de scènes
+
+| Contexte | Scène |
+|----------|-------|
+| Fichier existant, modifier contenu/structure | `scenes/edit.md` |
+| Fichier existant, lire/analyser seulement | `scenes/analyze.md` |
+| Conversion de format (CSV/xlsx/JSON/PDF) | `scenes/convert.md` |
+| Finance complexe (DCF, LBO, P&L, trois-tables, sensibilité, IB) | `scenes/finance.md` |
+| Finance simple (budget, frais, revenus-dépenses, ROI) | `scenes/finance_lite.md` |
+| Tableau/rapport/gabarit général | `scenes/create.md` |
+| Traitement par lots, gros fichiers, protection, validation | `scenes/advanced.md` |
+| VBA/macros/automatisation Excel | `scenes/vba.md` + `engines/vba-templates.md` |
+| Graphiques ou visualisation de données | ajouter `engines/chart.md` |
+| Style et système de design | ajouter `engines/design.md` |
+
+Demandes mixtes : charger tous les fichiers correspondants, exécuter dans l'ordre
+préparation → analyse → visualisation → style → qualité.
+
+### Principes de conception
+
+1. **Formules vivantes** : toute valeur dérivée DEVRAIT être une formule Excel —
+   exception : sortie vérifiée par Python (lignes TOTAL écrites en valeurs
+   calculées, openpyxl n'évaluant pas les formules).
+2. **Zéro erreur** : divisions protégées par `IFERROR` ou `IF(denom=0,...)`,
+   références absolues pour les dénominateurs partagés.
+3. **Compatibilité d'abord** : pas de fonctions de tableau dynamique (FILTER,
+   UNIQUE, XLOOKUP, SORT, XMATCH, SEQUENCE, LET, LAMBDA) — alternatives
+   SUMPRODUCT ; texte commençant par `=` préfixé par `'`.
+4. **Préserver et assortir** : à l'édition, le format et les conventions du
+   fichier existant priment toujours sur les défauts.
+5. **Miroir de langue** : la langue de sortie (feuilles, en-têtes, libellés)
+   reflète celle de l'utilisateur.
+6. **Cohérence des données avant les instructions** : en cas de conflit, suivre
+   le motif des données existantes puis signaler l'écart.
+
+## §2 — Spécification technique
+
+### Emplacement et chemins (OBLIGATOIRE avant tout appel de script)
 
 ```bash
-bash "$XLSX_SKILL_DIR/setup.sh"    # Interactive environment check + install
-```
-## Pre-Flight: Intent Gate
-
-Before touching any code, confirm the user actually needs a spreadsheet:
-
-- Report / analysis summary (述职, 调研报告) → **docx skill**
-- Presentation (汇报, 演示, pitch deck) → **pptx skill**
-- Formal print document (合同, 证书, "PDF") → **pdf skill**
-- Charts only, no data table needed → **charts skill**
-- User explicitly says a format → respect it
-
-If confirmed xlsx → proceed to Scene Router below.
-
-**Request Decomposition** (do this every time):
-- **Explicit needs**: sheets, columns, formulas, metrics the user stated
-- **Implicit needs**: business context, downstream use (filter? sort? input?)
-- **Multi-part requests**: generate ALL parts — never silently drop a component
-
-**Multi-Intent Detection** — some requests combine multiple scenes:
-
-```
-"Create a financial model with charts and export a PDF summary"
- → scenes/finance.md + engines/chart.md + (hand off PDF to pdf skill)
-
-"Analyze this CSV, build a dashboard, and make it look professional"
- → scenes/analyze.md + engines/chart.md + engines/design.md
-
-"Edit this budget file, add a new quarter column, and create a pivot"
- → scenes/edit.md + quality/pipeline.md (pivot command)
-
-"Convert these 5 CSVs into one xlsx with a summary sheet"
- → scenes/convert.md + scenes/create.md (for summary)
-```
-
-When multiple intents detected, load all matching files and execute in logical order: data preparation → analysis → visualization → styling → QA.
-
----
-
-## Complexity Gate (evaluate BEFORE Scene Router)
-
-Determine task complexity to control file loading depth:
-
-```
-User Request
-│
-├─ LITE (single aggregation, simple chart, direct conversion, QA-only)
-│  → Load: SKILL.md + ONE scene file (lean version)
-│  → Skip: engine files (use built-in knowledge for basic styles)
-│  → QA: audit + validate only
-│  → Target: ≤ 400 lines total context
-│
-└─ FULL (multi-dimensional analysis, financial model, dashboard, KANO, etc.)
-   → Load: SKILL.md + scene + engines (chart.md / design.md) as needed
-   → For code patterns: load recipes/templates files ON DEMAND (not upfront)
-   → QA: full pipeline (recalc → audit → scan → chart-verify → validate)
-   → Target: load recipes/templates only when stuck on implementation
-```
-
-**LITE triggers**: single groupby, one chart, format conversion, inspect/audit/validate, simple pivot
-**FULL triggers**: correlation matrix, multi-sheet dashboard, statistical analysis, financial model, KANO/funnel/cohort
-
----
-
-## Scene Router
-
-```
-User Request
-│
-├─ Involves an existing file?
-│  ├─ Yes → Modify content or structure?
-│  │         ├─ Yes ──────────────────── → scenes/edit.md
-│  │         └─ No (read/analyze only) ─ → scenes/analyze.md
-│  │
-│  └─ Format conversion (CSV↔XLSX, JSON, PDF tables)?
-│     └─ Yes ────────────────────────── → scenes/convert.md
-│
-├─ Create from scratch?
-│  ├─ Financial / budget / forecast / cost tracking?
-│  │  ├─ Complex (DCF / LBO / three-statement linkage (三表联动) / sensitivity / IB model)?
-│  │  │  └─ Yes ─────────────────────── → scenes/finance.md
-│  │  └─ Simple (budget table (预算表) / expense report (费用报表) / revenue vs cost (收支对比) / project cost (项目成本) / personal finance (个人记账))?
-│  │     └─ Yes ─────────────────────── → scenes/finance_lite.md
-│  └─ General table / report / template
-│     └─ ──────────────────────────── → scenes/create.md
-│
-├─ Batch processing / large files / protection / validation?
-│  └─ Yes ───────────────────────────── → scenes/advanced.md
-│
-├─ VBA / macros / automation inside Excel?
-│  └─ Yes ───────────────────────────── → scenes/vba.md + engines/vba-templates.md
-│
-├─ Needs charts or data visualization?
-│  └─ Yes ───────────── append ────────→ engines/chart.md
-│
-└─ Needs styling / design system?
-   └─ Yes ───────────── append ────────→ engines/design.md
-```
-
-**Mixed requests**: load all matching files. Engine files always **append** to a scene.
-
-**Finance detection**:
-- **finance.md** (complex): DCF, LBO, P&L, 利润表, 资产负债, valuation, 估值, IRR, 三表联动, sensitivity, scenario
-- **finance_lite.md** (simple): 预算, budget, 费用, expense, 收支, 记账, 项目成本, cost tracking, 报销, ROI
-
-**VBA detection**: 宏, macro, VBA, 自动化, automation, .xlsm, 按钮, button, auto-run, 批量处理脚本
-
----
-
-## Design Principles
-
-### 1. Live Formula Guarantee
-Every derived value SHOULD be an Excel formula so the spreadsheet stays dynamic.
-
-**Exception — Programmatic Verification**: When the output file will be verified by Python (not opened in Excel), TOTAL/SUM rows should write **computed values** instead of formulas, because openpyxl cannot evaluate formulas and `data_only=True` returns `None` for newly-written formulas. Optionally add the formula as a cell comment for reference.
-
-### 2. Zero Error Tolerance
-Deliverables must have zero formula errors. All divisions wrapped with `IFERROR` or `IF(denom=0,...)`. Absolute references (`$C$42`) for shared denominators.
-
-### 3. Compatibility First
-No dynamic array functions (`FILTER`, `UNIQUE`, `XLOOKUP`, `SORT`, `SORTBY`, `XMATCH`, `SEQUENCE`, `LET`, `LAMBDA`, `RANDARRAY`). No implicit array formulas — use `SUMPRODUCT` alternatives.
-
-### 4. Preserve & Match
-When editing existing files: study and exactly match format, style, conventions. Existing patterns always override defaults. Text starting with `=` must be prefixed with `'`.
-
-### 5. Language Mirror
-Output language (sheet names, headers, labels) matches user's input language.
-
-### 6. Data Consistency Over Instructions
-When user instructions conflict with the actual data patterns in the existing file:
-- **First priority**: match the existing data pattern (e.g., if existing data uses `0` for empty, don't switch to `-`)
-- **Second priority**: follow user instructions literally
-- Always flag the conflict to the user
-
-Example: User says "show hyphen for zero" but existing data and answer key use numeric `0` → Use `0` and notify user of the discrepancy.
-
----
-
-## Toolchain
-
-### Script Path Setup (MANDATORY before any script call)
-
-All CLI tools live relative to this skill's directory. Before calling any script, resolve the absolute path once:
-
-```bash
-XLSX_SKILL_DIR="<skill_directory>"   # ← parent directory of this SKILL.md
-
-# Then all commands use absolute paths:
+XLSX_SKILL_DIR="<repertoire_du_skill>"
 python3 "$XLSX_SKILL_DIR/xlsx.py" inspect data.xlsx --pretty
 python3 "$XLSX_SKILL_DIR/xlsx.py" pivot data.xlsx output.xlsx --rows Region --values Revenue
 python3 "$XLSX_SKILL_DIR/xlsx.py" validate output.xlsx
 ```
 
-**For Python imports** (when generation code needs to import skill modules):
+Toujours le chemin absolu, jamais un chemin relatif nu. Pour les imports Python :
+insérer `XLSX_SKILL_DIR` et `XLSX_SKILL_DIR/templates` dans `sys.path`.
 
-```python
-import sys, os
-XLSX_SKILL_DIR = "<skill_directory>"
-for sub in [XLSX_SKILL_DIR, os.path.join(XLSX_SKILL_DIR, "templates")]:
-    if sub not in sys.path:
-        sys.path.insert(0, sub)
-```
+### Outillage
 
-**⚠️ NEVER use bare `python3 xlsx.py ...`** — it only works if cwd happens to be the skill directory. Always use the absolute path.
+openpyxl (formules, formats, graphiques, contrôle cellulaire) | pandas (analyse,
+lots, CSV/TSV) | `load_workbook(read_only=True)` pour les gros fichiers en lecture |
+`Workbook(write_only=True)` pour l'écriture massive | `templates/base.py` =
+source unique de vérité (jetons de design, polices, fabriques de styles — tout
+code DOIT importer depuis base.py, jamais de hex ni de nom de police codé en dur) |
+`xlsx.py` pour les commandes qualité. Métadonnées du classeur :
+`wb.properties.creator = "Z.ai"`.
 
-### Tool Reference
+### Porte qualité
 
-| Tool | Use |
-|------|-----|
-| **openpyxl** | Formulas, formatting, charts, cell-level control |
-| **pandas** | Data analysis, bulk operations, CSV/TSV |
-| `load_workbook(read_only=True)` | Large file reads |
-| `Workbook(write_only=True)` | Large file writes |
-| **templates/base.py** | Design tokens, font resolution, style factories, utilities (single source of truth) |
-| **xlsx.py** | QA commands (see `quality/pipeline.md`) |
+Chaque livrable passe le pipeline d'intégrité complet — voir `quality/pipeline.md` :
+plan → construction et auto-contrôle (par feuille) → inspect → pivot (si requis) →
+publication.
 
-Workbook metadata: `wb.properties.creator = "Z.ai"`
+## §3 — Relations
 
-> **All code must import from `templates/base.py`** for colors, fonts, and style helpers. Never hardcode hex values or font names.
-
----
-
-## Quality Gate
-
-Every deliverable must pass the full integrity pipeline before delivery.
-
-→ **Load `quality/pipeline.md` for the role-based integrity workflow.**
-
-Quick reference:
-```
-Blueprint → Build & Self-check (per-sheet) → Inspect → Pivot (if needed) → Release
-```
+| Avec | Nature | Détails |
+|------|--------|---------|
+| docx / pptx / pdf | Frontières | Document rédigé, diaporama, document formel |
+| charts | Frontière | Graphique autonome vs graphique intégré au tableur |
 
 ---
 
-## Capability Matrix
+## HISTORIQUE DES VERSIONS
 
-| Capability | Supported | Scene/Engine |
-|-----------|-----------|-------------|
-| Create from scratch | ✅ | scenes/create |
-| Edit existing file | ✅ | scenes/edit |
-| Data analysis & EDA | ✅ | scenes/analyze |
-| Format conversion | ✅ | scenes/convert |
-| Financial models (DCF/LBO/P&L) | ✅ | scenes/finance |
-| Simple budgets & expenses | ✅ | scenes/finance_lite |
-| VBA macros & automation | ✅ | scenes/vba + engines/vba-templates |
-| Batch processing | ✅ | scenes/advanced |
-| Embedded charts | ✅ | engines/chart |
-| Smart chart recommendation | ✅ | engines/chart |
-| Design system & styling | ✅ | engines/design |
-| PivotTable creation | ✅ | quality/pipeline (pivot cmd) |
-| Formula validation | ✅ | quality/pipeline |
-| Structural validation | ✅ | quality/pipeline |
-| Data provenance tracking | ✅ | scenes/analyze |
-| Large file handling | ✅ | scenes/advanced |
-| Data protection & locking | ✅ | scenes/advanced |
+| Version | Date | Changements |
+|---------|------|-------------|
+| 1.0.0 | 2026-11-22 | Task 113 — import aux normes skill-creator : frontmatter écosystème (semver, category, language, tags, read_when triptyque), §0 Contexte Système, corps français, retrait des emojis décoratifs et des métadonnées plateforme externes ; original anglais archivé byte-identité references/plateforme-original.md (R4) |

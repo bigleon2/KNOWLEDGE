@@ -1,201 +1,152 @@
 ---
 name: docx
-metadata:
-  author: Z.AI
-  version: "1.0"
-description: "Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. When GLM needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks"
-license: Proprietary. LICENSE.txt has complete terms
+version: 1.0.0
+category: ecosystem
+language: fr
+tags:
+  - word
+  - documents
+  - docx
+  - creation
+  - edition
+  - revision
+  - plateforme
+description: >
+  Création, édition et analyse de documents Word (.docx) : création de nouveaux
+  documents, modification de contenu, révisions suivies (tracked changes), commentaires,
+  préservation du formatage, extraction de texte. Déclencher dès qu'un fichier
+  professionnel .docx doit être produit, modifié, annoté, relu ou analysé — rapports,
+  contrats, thèses, CV, examens, documents officiels, scripts.
+dependencies:
+  - skill: pdf
+    version: ">=1.0.0"
+    used_at: "Frontière — conversion PDF et documents formels imprimables"
+read_when:
+  - Déclencher quand la demande concerne : créer un document Word, modifier/éditer
+    un .docx existant, travailler avec des révisions suivies, ajouter des
+    commentaires, analyser ou extraire le contenu d'un .docx.
+  - Déclencher si la demande mentionne : document Word, .docx, traitement de texte,
+    révisions suivies, tracked changes, commentaires de relecture, première de
+    couverture, table des matières Word.
+  - Ne pas déclencher pour les PDF natifs (pdf), les diaporamas (pptx) ni les
+    tableurs (xlsx) — convention protocole, Task 28.
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-# DOCX Creation, Editing, and Analysis
+# DOCX v1.0.0 — Atelier de documents Word
 
-## Quick Setup
+## §0 — Contexte Système (SHARED v1.7.44)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+> Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
+
+## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
+
+Skill OUTIL PLATEFORME importé aux normes de l'écosystème via skill-creator —
+directive propriétaire Task 113 (trace 1a201e4bda5a2289). Les commandes CLI, le
+code et les identifiants d'API restent en anglais verbatim (artefacts techniques,
+règle d'or n°6) ; la documentation, les titres et les notes sont en français.
+Contenu intégral d'origine conservé byte-identité :
+`references/plateforme-original.md` (archive R4 — listes de contrôle complètes,
+règles de couverture, détails API).
+
+## §1 — Spécification fonctionnelle
+
+Un .docx est une archive ZIP de fichiers XML. Le skill couvre création, édition,
+lecture et relecture. Route de chargement : (1) déterminer le type de tâche →
+charger le fichier de route ; (2) déterminer la scène métier → charger le fichier
+de scène ; (3) charger `references/design-system.md` (recettes de couverture,
+palettes, couleurs de graphiques) ; (4) charger `references/common-rules.md`
+(règles partagées de mise en page, polices, qualité) ; (5) exécuter selon la
+route ; (6) passer la liste de contrôle post-génération.
+
+OBLIGATION COUVERTURE : toute première de couverture DOIT utiliser l'une des 7
+recettes validées (R1 à R7) de `design-system.md` — le code de couverture libre
+est INTERDIT (sources d'incompatibilités : pages blanches MS Office, bordures
+manquantes, débordements). Passer par `selectCoverRecipe(docType, industry)` puis
+le builder `buildCoverRX()` correspondant.
+
+### Routeur de tâches
+
+| Intention | Route | Fichiers à charger |
+|-----------|-------|--------------------|
+| Créer/rédiger/générer (sans pièce jointe) | Create | `routes/create.md` + `references/docx-js-core.md` |
+| Modifier/réviser (avec pièce jointe) | Edit | `routes/edit.md` + `references/ooxml.md` |
+| Format/mise en page/police/marges | Format | `routes/format.md` |
+| Commenter/annoter/relire | Comment | `routes/comment.md` |
+| Lire/analyser/extraire | Read | `routes/read.md` |
+
+### Routeur de scènes (après la route)
+
+thèse/mémoire/article → `scenes/academic.md` | rapport/analyse/synthèse/proposition →
+`scenes/report.md` | contrat/accord/NDA/confidentialité → `scenes/contract.md` |
+CV → `scenes/resume.md` | examen/quiz/lesson plan → `scenes/exam.md` | document
+officiel/avis/courrier/procès-verbal → `scenes/official-doc.md` | script de
+diffusion/copywriting/discours → `scenes/copywriting.md`. Sans scène : règles par
+défaut de `references/design-system.md` + `references/common-rules.md`.
+
+## §2 — Spécification technique
+
+### Emplacement et chemins (OBLIGATOIRE avant tout appel de script)
 
 ```bash
-bash "$SKILL_DIR/setup.sh"    # Interactive environment check + install
-```
-
-## Overview
-
-A .docx file is a ZIP archive containing XML files. This skill provides tools for creating, editing, reading, and reviewing Word documents.
-
-## Quick Route — Read This First
-
-**Step 1**: Determine task type → load the corresponding route file
-**Step 2**: Determine business scene → load the corresponding scene file (if applicable)
-**Step 3**: Load `references/design-system.md` for cover recipes, palettes, and chart colors
-**Step 4**: Load `references/common-rules.md` for shared layout, font, and quality rules
-**Step 5**: Execute per route instructions
-**Step 6**: Run the post-generation checklist
-
-⚠️ **MANDATORY — Cover Recipe Enforcement (Step 3):**
-When creating a document that needs a cover page, you MUST use one of the 7 validated cover recipes (R1–R7) from `design-system.md`. **Free-form cover code is FORBIDDEN.** The recipe provides the wrapper table, background, layout structure, border settings, and spacing — do not reinvent any of these.
-
-Workflow: (1) Call `selectCoverRecipe(docType, industry)` to get recipe + palette → (2) Use the corresponding `buildCoverRX()` function code from `design-system.md` → (3) Pass your `config` (title, subtitle, metaLines, etc.) into the recipe builder. If you skip this and write cover code from scratch, the cover WILL have compatibility issues (blank pages in MS Office, missing borders, overflow, etc.).
-
-### Script Path Setup (MANDATORY before any script call)
-
-All CLI tools live in `scripts/` relative to this skill's directory. Before calling any script, resolve the absolute path once:
-
-```bash
-DOCX_SCRIPTS="<skill_directory>/scripts"   # ← parent directory of this SKILL.md
-
-# Then all commands use $DOCX_SCRIPTS:
+DOCX_SCRIPTS="<repertoire_du_skill>/scripts"
 python3 "$DOCX_SCRIPTS/postcheck.py" output.docx
 python3 "$DOCX_SCRIPTS/add_toc_placeholders.py" output.docx --auto
 ```
 
-**For Python imports** (when generation code needs to import skill modules):
+Ne JAMAIS utiliser un chemin relatif nu `python3 scripts/...` — toujours le chemin
+absolu. Pour les imports Python : insérer `DOCX_SCRIPTS` dans `sys.path`.
 
-```python
-import sys, os
-DOCX_SCRIPTS = os.path.join("<skill_directory>", "scripts")
-if DOCX_SCRIPTS not in sys.path:
-    sys.path.insert(0, DOCX_SCRIPTS)
-```
+### Règles de formatage clés (référence rapide)
 
-**⚠️ NEVER use bare `python3 scripts/...`** — it only works if cwd happens to be the skill directory. Always use the absolute `$DOCX_SCRIPTS` path.
+- Interligne 1,3 (`line: 312`) OBLIGATOIRE — exceptions : CV 1,15, document
+  officiel 28 pt fixes, copywriting `400`, contrat 1,5.
+- Corps CJK : justifié + retrait 2 caractères (`firstLine: 480` SimSun / `420` YaHei).
+- Tableaux : `margins` renseignés, `ShadingType.CLEAR`, `tableHeader: true`,
+  `cantSplit: true`, titre `keepNext: true`.
+- Images : paramètre `type` requis, ratio préservé via `image-size`, PageBreak
+  dans un Paragraph.
+- Échappement des guillemets chinois dans les chaînes JS : source n°1 des bugs —
+  utiliser les échappements Unicode.
+- Unités : 1 cm = 567 twips | 1 pouce = 1440 twips | A4 = 11906 x 16838 twips.
 
-### Task Router
+### Vérification post-génération (deux couches)
 
-| User Intent | Route | Files to Load |
-|-------------|-------|---------------|
-| Create/write/generate (no attachment) | **Create** | `routes/create.md` + `references/docx-js-core.md` |
-| Edit/modify/revise (has attachment) | **Edit** | `routes/edit.md` + `references/ooxml.md` |
-| Format/layout/font/margin | **Format** | `routes/format.md` |
-| Comment/annotate/review | **Comment** | `routes/comment.md` |
-| Read/analyze/extract | **Read** | `routes/read.md` |
+1. Liste de contrôle manuelle pendant la génération (couverture, TOC, sauts de
+   page, en-têtes/pieds — détail intégral dans l'archive R4) ;
+2. `postcheck.py` — 14 règles métier automatisées (pages blanches, débordement de
+   couverture, interligne, marges de tableaux, ratio d'images, TOC, propreté du
+   document...). Toute erreur doit être corrigée avant livraison.
 
-### Scene Router (Optional — load after route)
+### Ressources spécialisées
 
-| User Keywords | Scene | File |
-|---------------|-------|------|
-| thesis, academic, research, paper, dissertation, abstract, journal | Academic | `scenes/academic.md` |
-| report, analysis, experiment, testing, survey, review, summary, proposal, feasibility, competitor, industry, operations | Report | `scenes/report.md` |
-| contract, agreement, terms, transfer, NDA, confidential, framework, cooperation, service terms, user agreement, procurement | Contract | `scenes/contract.md` |
-| resume, CV, job application | Resume | `scenes/resume.md` |
-| exam, test, quiz, paper (exam context), lesson plan | Exam | `scenes/exam.md` |
-| official document, notice, letter, reply, minutes, red header, government, issuance | Official | `scenes/official-doc.md` |
-| broadcast script, product copy, livestream, speech, presentation script, video script | Copywriting | `scenes/copywriting.md` |
-| plan, proposal (if not report context) | Report | `scenes/report.md` |
-| policy, regulation, standard, management rules | Official | `scenes/official-doc.md` |
+Formules mathématiques : `references/math-formulas.md` (LaTeX converti ; repli
+matplotlib PNG pour les cas complexes). Graphiques : `references/chart-templates.md`
+(6 modèles matplotlib, couleurs dérivées de la palette du document). TOC complet :
+`references/toc.md`.
 
-**If no scene matches**, use default design rules from `references/design-system.md` and `references/common-rules.md`.
+### Dépendances
 
-## Formatting Standards (Always Apply)
+pandoc (extraction de texte) | docx via bun/npm (création) | LibreOffice
+(conversion PDF) | Poppler (PDF vers image) | defusedxml | python-docx (commentaires).
 
-→ See `references/common-rules.md` for full font profiles, spacing, indent, and layout rules.
+## §3 — Relations
 
-**Key rules (quick reference):**
-- **Line spacing**: 1.3x (`line: 312`) — MANDATORY. Exceptions: resume 1.15x, official doc 28pt fixed, copywriting `400`, contract 1.5x
-- **CJK body**: Justified + 2-char indent (`firstLine: 480` SimSun / `420` YaHei)
-- **Tables**: `margins` set, `ShadingType.CLEAR`, `tableHeader: true`, `cantSplit: true`, title `keepNext: true`
-- **Images**: `type` parameter required, preserve aspect ratio via `image-size`, PageBreak inside Paragraph
-- **Full-page Table row**: `rule: "exact"` with 1200 twips safety margin
+| Avec | Nature | Détails |
+|------|--------|---------|
+| pdf | Frontière | PDF natifs et impressions formelles |
+| pptx / xlsx | Sœurs | Diaporamas et tableurs — mêmes frontières de format |
+| charts | Amont | Graphiques intégrés aux documents |
 
-## Unit Quick Reference
+---
 
-| Unit | Value |
-|------|-------|
-| 1 cm | 567 twips |
-| 1 inch | 1440 twips |
-| 1 pt | 20 half-points |
-| A4 | 11906 × 16838 twips |
+## HISTORIQUE DES VERSIONS
 
-For Chinese font size table and common margins, see `references/common-rules.md`.
-
-## Post-Generation — Two-Layer Verification
-
-### Layer 1: Manual Checklist (self-check during generation)
-
-#### Basic Format
-- [ ] Line spacing is 1.3x (`line: 312`) or scene-specific override
-- [ ] CJK body has 2-char indent (`firstLine: 480` or `420`)
-- [ ] Tables have margins set
-- [ ] Images preserve aspect ratio via `image-size` — NEVER hardcode both width and height
-- [ ] PageBreak inside Paragraph
-- [ ] ShadingType uses CLEAR
-- [ ] Each numbered list uses unique `reference`
-- [ ] **⚠️ CRITICAL — Quotation marks in JS strings properly escaped.** Chinese curly quotes (`""` `''`) MUST use Unicode escapes (`\u201c` `\u201d` `\u2018` `\u2019`); straight quotes (`"` `'`) use `\"` `\'` or alternate delimiters. **This is the #1 most common code generation bug.** Chinese text frequently contains `""` for emphasis or proper nouns (e.g., "双11", "前低后高", "618") — every occurrence MUST be escaped. Failure to escape produces JS syntax errors that silently break document generation.
-- [ ] ImageRun includes `type` parameter
-- [ ] Header/footer present (unless scene says otherwise)
-
-#### Heading Styles
-- [ ] All body chapter headings use `heading: HeadingLevel.HEADING_X` (never simulate with bold + large font)
-- [ ] Cover title may skip Heading style (not in TOC), but body headings MUST use Heading style
-
-#### Page Break & Blank Page Prevention
-- [ ] Cover/content in separate sections
-- [ ] Three rules to prevent blank pages:
-  - ① When using section(NEXT_PAGE), previous section must NOT end with PageBreak (double break = blank page)
-  - ② PageBreak paragraph SHOULD contain visible text — **exception**: section-ending empty para + PageBreak is allowed (normal section separator, e.g., after cover page)
-  - ③ No more than 3 consecutive empty paragraphs
-- [ ] Full-page Table row height uses `rule: "exact"` (never `"atLeast"` for tall tables)
-- [ ] No unwanted blank pages (check each section ending)
-
-#### TOC
-→ See `references/toc.md` for the complete TOC reference and checklist.
-- [ ] If TOC title exists → `TableOfContents` element must be present
-- [ ] **⚠️ MANDATORY PageBreak after TableOfContents** — a Paragraph containing PageBreak MUST immediately follow the `TableOfContents` element; without it, TOC and body content will render on the same page. This is the #1 TOC formatting failure — never omit it
-- [ ] `add_toc_placeholders.py --auto` runs after generation; exit code = 0
-- [ ] **TOC MUST be in its own section** — body section sets `page: { pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL } }` so page numbers start from the first body page, not from the TOC pages
-- [ ] **Page number API nesting** — `pageNumbers` MUST be inside `page: {}`, NOT at properties top level (see toc.md § Page Number API)
-- [ ] **3-section page numbering** — Cover (no page#) → Front matter (Roman i,ii,iii, start=1) → Body (Arabic 1,2,3, start=1)
-- [ ] **Post-process footers** — Roman section footer instrText must contain `PAGE \* ROMAN \* MERGEFORMAT`; Arabic section `PAGE \* arabic \* MERGEFORMAT` (WPS ignores pgNumType fmt). **⚠️ NEVER use `\* decimal` in instrText** — `decimal` is a docx-js API enum value (`NumberFormat.DECIMAL`), NOT a valid Word field format switch; using it causes page numbers to render as "1decimal", "2decimal". The correct Word field switch for Arabic numerals is `\* arabic`.
-- [ ] **Remove empty pgNumType** — Post-process to strip `<w:pgNumType/>` from cover section (docx-js emits empty element that confuses WPS)
-- [ ] **⚠️ TOC Refresh Hint MANDATORY** — between `TableOfContents` element and the PageBreak, MUST add an italic gray note paragraph telling users to right-click TOC → "Update Field" to refresh page numbers (see toc.md § TOC Refresh Hint)
-
-#### Table Cross-Page
-- [ ] Header rows: `tableHeader: true`
-- [ ] All rows: `cantSplit: true`
-- [ ] Title paragraph: `keepNext: true`
-
-#### Cover
-- [ ] **Cover MUST use a validated recipe (R1–R7)** from `design-system.md` — free-form cover code is forbidden
-- [ ] Cover recipe matches document type (per `selectCoverRecipe()` in `design-system.md`)
-- [ ] Cover uses the 16838 outer wrapper table with `allNoBorders` (all recipes provide this)
-- [ ] Cover title uses `calcTitleLayout()` — never hardcoded font size above 40pt
-- [ ] Cover spacing uses `calcCoverSpacing()` — never hardcoded large spacing values
-- [ ] Cover content does not overflow (total height ≤ 15638 twips, Table uses `rule: "exact"`)
-- [ ] Every TextRun on dark/colored background has explicit `color` set (Rule 9 — never rely on default black)
-- [ ] Cover section has no trailing PageBreak or empty paragraphs
-- [ ] Title lines split at semantic boundaries (no mid-word breaks, no single-char orphan lines)
-- [ ] No text-character decorative lines (`───`, `━━━`) — use paragraph borders only
-
-### Layer 2: Automated Post-Check Script
-
-```bash
-python3 "$DOCX_SCRIPTS/postcheck.py" output.docx
-```
-
-Automatically checks 14 business rules: blank pages, **cover overflow (font size/spacing/trailing content)**, line spacing consistency, table margins, table cross-page control (cantSplit/tblHeader), image overflow, image aspect ratio distortion, font fallback, CJK indent, heading hierarchy, ShadingType misuse, TOC quality, document cleanliness (placeholder text/Markdown/HTML residuals), report content quality (abstract presence/heading specificity/vague conclusion detection).
-
-⚠️ **After generating any document, MUST run postcheck.py and fix all ❌ errors.**
-
-## Math Formulas
-
-Formula input uses **LaTeX syntax**, internally converted to docx-js Math objects.
-
-- **Basic formulas** (fractions, sub/superscript, roots, summation) → docx-js Math components
-- **Complex formulas** (3+ nesting, matrices, piecewise functions) → matplotlib PNG fallback
-
-See `references/math-formulas.md`.
-
-## Charts
-
-Default: **matplotlib template library** generates PNG for embedding.
-
-6 ready-to-use templates: bar, line, pie, box, radar, heatmap.
-Colors auto-derived from document palette.accent for style consistency.
-Default palette: Morandi low-saturation (see design-system.md).
-
-See `references/chart-templates.md`.
-
-## Dependencies
-
-- **pandoc**: Text extraction
-- **docx**: `bun add docx` or `npm install docx` (creating)
-- **LibreOffice**: PDF conversion, .doc support
-- **Poppler**: PDF to image (`pdftoppm`)
-- **defusedxml**: Secure XML parsing
-- **python-docx**: Simple comment operations
+| Version | Date | Changements |
+|---------|------|-------------|
+| 1.0.0 | 2026-11-22 | Task 113 — import aux normes skill-creator : frontmatter écosystème (semver, category, language, tags, read_when triptyque), §0 Contexte Système, corps français, retrait des emojis décoratifs, suppression des métadonnées plateforme externes du frontmatter ; original anglais archivé byte-identité references/plateforme-original.md (R4) |

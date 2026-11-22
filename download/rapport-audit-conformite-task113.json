@@ -2,83 +2,15 @@
   "tache": "Task 113 audit conformité skills+agents",
   "norme": "skill-creator + §0 SHARED v1.7.44 + read_when triptyque (Task 28)",
   "synthese": {
-    "skills_total": 73,
-    "skills_conformes": 57,
-    "skills_non_conformes": 16,
+    "skills_total": 72,
+    "skills_conformes": 72,
+    "skills_non_conformes": 0,
     "agents_total": 4,
     "agents_conformes": 4,
     "agents_non_conformes": 0
   },
   "resultats": {
     "skills": [
-      {
-        "element": "ASR",
-        "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S02 name « ASR » ≠ kebab-case du dossier « ASR »",
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
-      },
-      {
-        "element": "LLM",
-        "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S02 name « LLM » ≠ kebab-case du dossier « LLM »",
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
-      },
-      {
-        "element": "TTS",
-        "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S02 name « TTS » ≠ kebab-case du dossier « TTS »",
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
-      },
-      {
-        "element": "VLM",
-        "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S02 name « VLM » ≠ kebab-case du dossier « VLM »",
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
-      },
       {
         "element": "agent-browser",
         "type": "skill",
@@ -128,6 +60,14 @@
         "corps_fr_ratio": 0.203
       },
       {
+        "element": "asr",
+        "type": "skill",
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.145
+      },
+      {
         "element": "audio-metadata",
         "type": "skill",
         "version": "1.1.0",
@@ -162,19 +102,10 @@
       {
         "element": "charts",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S10 emoji présent ×9",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.195
       },
       {
         "element": "clone-chat",
@@ -227,20 +158,10 @@
       {
         "element": "docx",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S07 description non française / sans clause de déclenchement",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S10 emoji présent ×7",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.165
       },
       {
         "element": "fleet-engineering",
@@ -277,34 +198,18 @@
       {
         "element": "gif-animator",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S10 emoji présent ×4"
-        ],
-        "corps_fr_ratio": 0.188
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.17
       },
       {
         "element": "gif-animator-pro",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S10 emoji présent ×2"
-        ],
-        "corps_fr_ratio": 0.117
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.145
       },
       {
         "element": "graph-engineering",
@@ -325,50 +230,26 @@
       {
         "element": "image-edit",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.14
       },
       {
         "element": "image-generation",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.145
       },
       {
         "element": "image-search",
         "type": "skill",
         "version": "1.0.0",
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S07 description non française / sans clause de déclenchement",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.172
       },
       {
         "element": "inter-scripts",
@@ -419,6 +300,14 @@
         "corps_fr_ratio": 0.217
       },
       {
+        "element": "llm",
+        "type": "skill",
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.145
+      },
+      {
         "element": "loop-engineering",
         "type": "skill",
         "version": "1.2.2",
@@ -461,20 +350,10 @@
       {
         "element": "pdf",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S07 description non française / sans clause de déclenchement",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S10 emoji présent ×15",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.158
       },
       {
         "element": "pdf-llm",
@@ -495,21 +374,10 @@
       {
         "element": "pptx",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S02 name « ppt » ≠ kebab-case du dossier « pptx »",
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S07 description non française / sans clause de déclenchement",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S10 emoji présent ×2",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.155
       },
       {
         "element": "prompt-engineering",
@@ -634,19 +502,10 @@
       {
         "element": "task-review",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S10 emoji présent ×2",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.207
       },
       {
         "element": "traduction-zh-fr",
@@ -673,28 +532,28 @@
         "corps_fr_ratio": 0.17
       },
       {
-        "element": "version-management",
+        "element": "tts",
         "type": "skill",
-        "version": "1.3.0",
+        "version": "1.0.0",
         "verdict": "CONFORME",
         "defaillances": [],
-        "corps_fr_ratio": 0.203
+        "corps_fr_ratio": 0.145
       },
       {
         "element": "video-understand",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.158
+      },
+      {
+        "element": "vlm",
+        "type": "skill",
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.155
       },
       {
         "element": "vue-upload",
@@ -723,19 +582,10 @@
       {
         "element": "xlsx",
         "type": "skill",
-        "version": null,
-        "verdict": "NON_CONFORME",
-        "defaillances": [
-          "S03 version absente ou non-semver (« — »)",
-          "S04 category absente",
-          "S05 language « — » ≠ fr",
-          "S06 tags absents",
-          "S08 read_when absent",
-          "S09 bloc §0 Contexte Système (SHARED v…) absent",
-          "S10 emoji présent ×1",
-          "S12 corps non français (ratio marqueurs 0.000 < 0.05)"
-        ],
-        "corps_fr_ratio": 0.0
+        "version": "1.0.0",
+        "verdict": "CONFORME",
+        "defaillances": [],
+        "corps_fr_ratio": 0.155
       }
     ],
     "agents": [

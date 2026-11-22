@@ -1,0 +1,138 @@
+{
+  "tache": "Task 113 — synchronisation dépôt canonique (16 réécritures plateforme)",
+  "horodatage": "2026-11-22T07:40:42+00:00",
+  "resultats": [
+    {
+      "kebab": "asr",
+      "dossier_depot_avant": "ASR",
+      "renommage": "DEJA_RENOMME",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "llm",
+      "dossier_depot_avant": "LLM",
+      "renommage": "DEJA_RENOMME",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "tts",
+      "dossier_depot_avant": "TTS",
+      "renommage": "DEJA_RENOMME",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "vlm",
+      "dossier_depot_avant": "VLM",
+      "renommage": "DEJA_RENOMME",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "charts",
+      "dossier_depot_avant": "charts",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "docx",
+      "dossier_depot_avant": "docx",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "gif-animator",
+      "dossier_depot_avant": "gif-animator",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "gif-animator-pro",
+      "dossier_depot_avant": "gif-animator-pro",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "image-edit",
+      "dossier_depot_avant": "image-edit",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "image-generation",
+      "dossier_depot_avant": "image-generation",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "image-search",
+      "dossier_depot_avant": "image-search",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "pdf",
+      "dossier_depot_avant": "pdf",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "pptx",
+      "dossier_depot_avant": "pptx",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "task-review",
+      "dossier_depot_avant": "task-review",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "video-understand",
+      "dossier_depot_avant": "video-understand",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    },
+    {
+      "kebab": "xlsx",
+      "dossier_depot_avant": "xlsx",
+      "renommage": "NON_REQUIS",
+      "skill_md": "DEJA_SYNCHRO",
+      "archive": "DEJA_SYNCHRO",
+      "statut": "OK"
+    }
+  ],
+  "synthese": {
+    "ok": 16,
+    "problemes": []
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "tache": "Task 113 (suite) — tests F+P sur les 16 réécritures plateforme + synchro dépôt",
+  "verdict": "PASS",
+  "fonctionnel": {
+    "echecs": [],
+    "note": "F1-F10 tous PASS"
+  },
+  "performance": {
+    "audit_complet_s": 0.081,
+    "sync_depot_noop_s": 0.044,
+    "import_noop_s": 0.035,
+    "poids_16_reecrits_kio": 109.6,
+    "poids_16_originaux_kio": 290.6,
+    "ratio_nouveau_sur_original": 0.377
+  }
+}

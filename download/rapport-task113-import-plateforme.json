@@ -1,0 +1,143 @@
+{
+  "tache": "Task 113 — import mécanique 16 skills plateforme (archivage R4 + renommages kebab-case)",
+  "horodatage": "2026-11-22T07:40:42+00:00",
+  "resultats": [
+    {
+      "source": "ASR",
+      "cible": "asr",
+      "statut": "DEJA_RENOMME",
+      "archive": true
+    },
+    {
+      "source": "LLM",
+      "cible": "llm",
+      "statut": "DEJA_RENOMME",
+      "archive": true
+    },
+    {
+      "source": "TTS",
+      "cible": "tts",
+      "statut": "DEJA_RENOMME",
+      "archive": true
+    },
+    {
+      "source": "VLM",
+      "cible": "vlm",
+      "statut": "DEJA_RENOMME",
+      "archive": true
+    },
+    {
+      "source": "charts",
+      "cible": "charts",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "f3bbbc2fcfb55717",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "docx",
+      "cible": "docx",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "73f6b9c384b66729",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "gif-animator",
+      "cible": "gif-animator",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "f0c3b23e0845dcc0",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "gif-animator-pro",
+      "cible": "gif-animator-pro",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "e29eccb0204e58ff",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "image-edit",
+      "cible": "image-edit",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "6c50b5127d4c683c",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "image-generation",
+      "cible": "image-generation",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "eeb64a859c4feb82",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "image-search",
+      "cible": "image-search",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "c24c9884d5d5ce20",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "pdf",
+      "cible": "pdf",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "914d58c329fcc26f",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "pptx",
+      "cible": "pptx",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "6ea128304dbd95b6",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "task-review",
+      "cible": "task-review",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "bad4be95f2e82137",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "video-understand",
+      "cible": "video-understand",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "fe4787378794dba4",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    },
+    {
+      "source": "xlsx",
+      "cible": "xlsx",
+      "archivage": "DEJA_ARCHIVE",
+      "sha_archive": "97cd35e37f42a1e6",
+      "note": "SKILL.md diffère de l'archive (réécriture en cours/faite — normal)",
+      "statut": "OK",
+      "renommage": "NON_REQUIS"
+    }
+  ],
+  "synthese": {
+    "ok": 12,
+    "deja_faits": 4,
+    "problemes": 0
+  }
+}
