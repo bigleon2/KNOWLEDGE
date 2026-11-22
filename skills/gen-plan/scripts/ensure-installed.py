@@ -53,6 +53,24 @@ MIROIR = ROOT / "KNOWLEDGE-repo"
 # entrées KB depuis le miroir (reparer_depuis_miroir).
 SKILLS_REQUIS_GENPLAN = ["agent-browser"]
 
+# Task 114 (directive 1a2025197d2a0e9d) — garde RÉINJECTION PLATEFORME : la plateforme
+# réinjecte ses skills natifs au démarrage de session — les SKILL.md français posés par
+# Task 113 (réécritures norme skill-creator, archives R4 references/plateforme-original.md)
+# sont ÉCRASÉS par les versions natives anglaises, et les 4 dossiers majuscules
+# ASR/LLM/TTS/VLM (renommés kebab-case dans le miroir) sont RECRÉÉS. La garde compare le
+# contenu INSTALLÉ au MIROIR (règle d'or n°4 — source de vérité) et répare SEULEMENT les
+# signatures natives (SKILL.md sans §0 « Contexte Système » ou avec métadonnée clawdbot)
+# dont la version miroir porte le §0 SHARED — jamais une édition légitime des deux arbres
+# (ceux-ci restent du ressort de la parité bootstrap). Les dossiers majuscules ne sont
+# retirés QUE si leur archive R4 est byte-identique à celle du jumeau kebab-case
+# (jamais de destruction sans preuve d'intégrité — R4).
+SKILLS_REINJETES = ["asr", "llm", "tts", "vlm", "agent-browser", "charts", "docx",
+                    "gif-animator", "gif-animator-pro", "image-edit", "image-generation",
+                    "image-search", "pdf", "pptx", "task-review", "video-understand",
+                    "xlsx"]
+MAJUSCULES_STALE = {"ASR": "asr", "LLM": "llm", "TTS": "tts", "VLM": "vlm"}
+MARQUEUR_SHARED = "Contexte Système"
+
 FICHIERS_CLES = [
     "skills/KNOWLEDGE.md",
     "skills/gen-plan/SKILL.md",
@@ -70,10 +88,23 @@ def sh(cmd, cwd=None, env=None):
     return subprocess.run(cmd, cwd=cwd, shell=True, capture_output=True, text=True, env=env)
 
 
+def sha256_f(p):
+    import hashlib
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def signature_native(texte: str) -> bool:
+    """Task 114 — un SKILL.md réinjecté par la plateforme est reconnu par sa signature
+    native : métadonnée clawdbot OU absence du §0 « Contexte Système » (les versions
+    écosystème portent toutes le §0 SHARED — convention skill-creator Task 113)."""
+    return ("clawdbot" in texte[:1500]) or (MARQUEUR_SHARED not in texte[:4000])
+
+
 def etat() -> dict:
     e = {"root_present": ROOT.exists(), "git_repo": False, "head": None,
          "fichiers_manquants": [], "kb_entrees": 0, "skills_kb_manquants": [],
-         "requis_genplan_manquants": []}
+         "requis_genplan_manquants": [], "reinjection_divergentes": [],
+         "plateforme_stale": []}
     if e["root_present"]:
         r = sh("git rev-parse --short HEAD", cwd=ROOT)
         e["git_repo"] = r.returncode == 0
@@ -117,7 +148,45 @@ def etat() -> dict:
         # une exigence de gen-plan disparue du profil ne peut plus passer inaperçue.
         e["requis_genplan_manquants"] = [n for n in SKILLS_REQUIS_GENPLAN
                                           if not (ROOT / "skills" / n / "SKILL.md").exists()]
+        # Task 114 — détection réinjection plateforme (divergences natives + stale majuscules)
+        for n in SKILLS_REINJETES:
+            hote, miroir = ROOT / "skills" / n / "SKILL.md", MIROIR / "skills" / n / "SKILL.md"
+            if not hote.exists():
+                continue  # disparition entière : couverte par les gardes Task 56/G15
+            if not miroir.exists():
+                continue  # miroir absent : hors périmètre de la garde
+            if sha256_f(hote) != sha256_f(miroir) and signature_native(hote.read_text(encoding="utf-8", errors="replace")):
+                e["reinjection_divergentes"].append(n)
+        e["plateforme_stale"] = [m for m in sorted(MAJUSCULES_STALE)
+                                  if (ROOT / "skills" / m / "SKILL.md").exists()]
     return e
+
+
+def reparer_reinjection(divergentes, stale) -> dict:
+    """Task 114 — réparation réinjection depuis le miroir (règle d'or n°4).
+    Divergences natives : SKILL.md restauré depuis le miroir (garde : la version
+    miroir porte le §0 SHARED — jamais restaurer une version non conforme).
+    Stale majuscules : suppression SEULEMENT si l'archive R4 du dossier réinjecté
+    est byte-identique à celle du jumeau kebab-case (sinon REPORTÉ, jamais détruit)."""
+    import shutil
+    rep = {"skills_repairés": [], "stale_supprimés": [], "reportés": []}
+    for n in divergentes:
+        src, dst = MIROIR / "skills" / n / "SKILL.md", ROOT / "skills" / n / "SKILL.md"
+        if src.exists() and MARQUEUR_SHARED in src.read_text(encoding="utf-8", errors="replace")[:4000]:
+            dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+            rep["skills_repairés"].append(n)
+        else:
+            rep["reportés"].append(n)
+    for m in stale:
+        jumeau = MAJUSCULES_STALE[m]
+        arc_hote = ROOT / "skills" / m / "references" / "plateforme-original.md"
+        arc_mir = MIROIR / "skills" / jumeau / "references" / "plateforme-original.md"
+        if arc_hote.exists() and arc_mir.exists() and sha256_f(arc_hote) == sha256_f(arc_mir):
+            shutil.rmtree(ROOT / "skills" / m)
+            rep["stale_supprimés"].append(m)
+        else:
+            rep["reportés"].append(m)
+    return rep
 
 
 def reparer_depuis_miroir(manquants: list) -> list:
@@ -228,6 +297,28 @@ def main():
         # Task 112 G15 : la dérive détectable = entrées KB manquants + requis gen-plan
         # hors-KB manquants (même détection, même auto-réparation miroir).
         manquants = e["skills_kb_manquants"] + e.get("requis_genplan_manquants", [])
+        # Task 114 : réinjection plateforme — réparation indépendante du verdict
+        # (un écrasement natif peut coexister avec un noyau installé ; la garde
+        # ne doit PAS attendre que l'écosystème soit « absent » pour agir).
+        divergentes = [n for n in e.get("reinjection_divergentes", [])
+                       if signature_native((ROOT / "skills" / n / "SKILL.md")
+                                           .read_text(encoding="utf-8", errors="replace"))]
+        stale = list(e.get("plateforme_stale", []))
+        if divergentes or stale:
+            rep = reparer_reinjection(divergentes, stale)
+            e2 = etat()
+            print(json.dumps({"verdict": "INSTALLE-REPARÉ", "reparation_reinjection": rep,
+                              **e2}, ensure_ascii=False))
+            try:
+                with open(MP / "worklog.md", "a", encoding="utf-8") as f:
+                    f.write("\n> É1-INSTALL Task 114 : garde réinjection plateforme — "
+                            + ", ".join(rep["skills_repairés"] + rep["stale_supprimés"])
+                            + " restauré(s)/supprimé(s) depuis le miroir local"
+                            + (" ; REPORTÉS : " + ", ".join(rep["reportés"]) if rep["reportés"] else "")
+                            + ".\n")
+            except Exception:
+                pass
+            sys.exit(0)
         if not ok and e["root_present"] and not e["fichiers_manquants"] and manquants:
             # Task 56 : dérive limitée aux skills manquants → AUTO-RÉPARATION
             # depuis le miroir local (défense structurelle contre la volatilité

@@ -1,0 +1,4 @@
+{
+  "history": "É5-ROUTAGE + porte d'agents + rappel permanent langue (Task 114, directives 1a2025197d2a0e9d et 1a2025ce4a6ed095) : §0 += RAPPEL PERMANENT LANGUE (français exclusif à chaque exécution) + §1.16 += hook É5-ROUTAGE (routage-skills-agents.py — scores depuis les frontmatters installés, source unique R4, verdict complexité 5 critères, porte agents COMPLEXE >= 2/5) + §1.17 (porte + matrice agents dynamique) + §2.2 + §3 + §4 + description + ensure-installed.py garde réinjection plateforme. MINOR additions pures. Cascade KO-L004 : PM + delta + KB + pin ×2 + evals sync →3.47.0 + @historique R4.",
+  "subs": []
+}

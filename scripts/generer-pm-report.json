@@ -5,12 +5,12 @@
   "familles": [
     {
       "famille": "gen-plan",
-      "old": "3.45.0",
-      "new": "3.46.0",
+      "old": "3.46.0",
+      "new": "3.47.0",
       "yaml_subs": 1,
       "coverage_missing": [],
-      "skill_sections": 37,
-      "pm_sections": 63
+      "skill_sections": 38,
+      "pm_sections": 64
     }
   ]
 }

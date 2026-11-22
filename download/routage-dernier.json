@@ -1,0 +1,80 @@
+{
+ "script": "routage-skills-agents",
+ "version": "1.0.0",
+ "tache": "traduire le document pdf en français et corriger les skills du projet",
+ "verdict_complexite": "SIMPLE",
+ "criteres_complexite": {
+  "multi_livrables": false,
+  "multi_domaines": true,
+  "horizon_long": false,
+  "parallele": false,
+  "integration_externe": false
+ },
+ "criteres_remplis": 1,
+ "skills_recommandes": [
+  {
+   "nom": "traduction-zh-fr",
+   "score": 17,
+   "extraits": [
+    "Déclencher quand la demande concerne : traduction chinois→français, francisation, traduire un PDF chinois, traduire un fichier .md chinois"
+   ]
+  },
+  {
+   "nom": "cahier-des-charges",
+   "score": 12,
+   "extraits": [
+    "Déclencher quand la demande concerne : concevoir, rédiger, établir, produire ou faire évoluer un cahier des charges (CDC) ou un document d'e"
+   ]
+  },
+  {
+   "nom": "midi-doc-expert",
+   "score": 10,
+   "extraits": [
+    "Déclencher quand la demande concerne : documenter un mapping TSI validé, générer un document technique MIDI (tableaux de référence MIDI, éta"
+   ]
+  },
+  {
+   "nom": "docx",
+   "score": 8,
+   "extraits": [
+    "Déclencher quand la demande concerne : créer un document Word, modifier/éditer"
+   ]
+  },
+  {
+   "nom": "correct-py",
+   "score": 7,
+   "extraits": [
+    "Déclencher quand la demande concerne : vérifier et corriger la conformité des scripts Python de l'écosystème aux normes d'écriture du langag"
+   ]
+  },
+  {
+   "nom": "orchestrateur-tsi",
+   "score": 7,
+   "extraits": [
+    "Déclencher quand la demande concerne : orchestration de la famille TSI, mission de bout en bout sur un mapping (concevoir + valider + docume"
+   ]
+  },
+  {
+   "nom": "pdf",
+   "score": 7,
+   "extraits": [
+    "Déclencher quand la demande concerne : produire un PDF (rapport, affiche,"
+   ]
+  },
+  {
+   "nom": "pdf-llm",
+   "score": 7,
+   "extraits": [
+    "Déclencher quand la demande concerne : extraction documentaire PDF vers Markdown + JSON structuré RAG-ready"
+   ]
+  }
+ ],
+ "agents_recommandes": [],
+ "portegardes_agents": "verdict SIMPLE — délégation d'agents réservée aux cas complexes (>= 2/5 critères, grille PROMPT-GATEWAY §1.6 ; gen-plan §1.17)",
+ "metadonnees": {
+  "skills_scannes": 120,
+  "agents_scannes": 4,
+  "duree_ms": 21.34,
+  "langue": "fr (règle d'or n°6 — rappel permanent gen-plan v3.47.0)"
+ }
+}

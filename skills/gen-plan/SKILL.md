@@ -1,6 +1,6 @@
 ---
 name: gen-plan
-version: 3.46.0
+version: 3.47.0
 category: ecosystem
 language: fr
 tags:
@@ -23,7 +23,9 @@ description: >
   progressive disclosure R1 (v3.39.0) : résumés inline, intégraux en references/ à la demande,
   chaîne de vérification par étape terminée en mode NULL — correct-work(CIBLE) AVANT l'étape suivante (v3.44.0),
   mode step sans AUCUNE validation du propriétaire pour passer aux étapes suivantes — seul le mode step-ok en demande (v3.45.0),
-  pré-traitement PROMPT-GATEWAY : agent-prompt-engineering v1.2.0 invoqué en tête de chaîne (É1-PROMPT-GATEWAY §1.16, v3.46.0) — réécriture des demandes complexes AVANT l'analyse E1
+  pré-traitement PROMPT-GATEWAY : agent-prompt-engineering v1.2.0 invoqué en tête de chaîne (É1-PROMPT-GATEWAY §1.16, v3.46.0) — réécriture des demandes complexes AVANT l'analyse E1,
+  routage décisionnel É5-ROUTAGE (v3.47.0) : script routage-skills-agents.py — recommandation de skills depuis les frontmatters installés (source unique R4) + verdict de complexité 5 critères + porte COMPLEXE >= 2/5 pour la délégation d'agents (§1.17),
+  rappel permanent langue française (règle d'or n°6 durcie — §0, v3.47.0)
 dependencies:
   - skill: correct-work
     version: ">=2.4.0"
@@ -74,6 +76,8 @@ read_when:
 > Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
 > Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
 > Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
+
+**RAPPEL PERMANENT — LANGUE DU DIALOGUE (règle d'or n°6 durcie, v3.47.0 — directive propriétaire trace 1a2025ce4a6ed095, rappel à CHAQUE exécution de gen-plan, AVANT tout autre rappel)** : le dialogue avec le propriétaire est en FRANÇAIS exclusif — JAMAIS de chinois, jamais d'anglais, dès le PREMIER mot de tout message, TODO/fenêtre de tâches, résumé de continuation ou livrable ; toute dérive constatée (langue du tour précédent ou en cours) est CORRIGÉE IMMÉDIATEMENT dans le même message et journalisée au worklog (correction + worklog + durcissement) ; artefacts techniques verbatim exceptés (code, CLI, identifiants d'API — règle d'or n°6).
 
 ## §1 — Spécification fonctionnelle
 
@@ -213,7 +217,17 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 
 - **É1-INSTALL — garde avec PRÉEMPTION** : à l'ouverture de session, AVANT E1 : `ensure-installed.py --check` (chemin canonique). rc=0 → no-op ; rc≠0 → suspension + `--reinstall` (pipeline PM-INSTALL) AVANT toute autre étape ; directive post-réinstall intégrée au plan ; idempotente. **v3.35.2** : contrôle du SKILL.md de toutes les entrées KB ; manquants → AUTO-RÉPARÉS depuis le miroir (INSTALLE-REPARÉ, rc=0, trace worklog).
 - **É1-PROMPT-GATEWAY — pré-traitement de la demande (v3.46.0)** : après É1-INSTALL et AVANT l'analyse E1 : si le prompt du propriétaire n'a pas déjà été normalisé par le PROMPT-GATEWAY de agent-prompt-engineering (v1.2.0 — déclenchement inconditionnel : phases A-B systématiques, phases C-D conditionnelles au verdict COMPLEXE >= 2/5), l'agent l'invoque pour réécrire la demande en version compréhensible, explicite et structurée ; la version normalisée alimente l'analyse E1 et l'answer key ; les demandes courtes/simples passent directement (phases C-D by-passées, passage journalisé).
+- **É5-ROUTAGE — décision mécanique de routage skills + agents (v3.47.0, Task 114 — directive trace 1a2025197d2a0e9d)** : à E5 (sélection des skills) et à E7 (écriture du plan — section « Routage »), exécuter `python3 skills/gen-plan/scripts/routage-skills-agents.py --tache "<demande normalisée>" --format json` : le script lit les frontmatters INSTALLÉS (description + read_when — source unique, zéro duplication R4, zéro lag KO-L004) et rend une recommandation compacte (skills scorés + verdict de complexité 5 critères) ; les skills recommandés alimentent la sélection E5 (croisement avec le registre KB et l'arbitre poids-chargement) ; les AGENTS ne sont recommandés QUE si le verdict est COMPLEXE (>= 2/5 critères — porte-garde §1.17) ; sortie consignée download/routage-dernier.json ; idempotent, < 1 s.
 - **Routage (E5)** : skills-inventory en PRIORITÉ (`generate_skills_md.py --json`/`--search`/`--category`, comparaison mémorisée au KB) ; skill-finder-cn en FALLBACK si échec — contrôle `audit-provenance` AVANT adoption ; bascule unidirectionnelle.
+### §1.17 Décision d'agents — porte de complexité et matrice dynamique (v3.47.0, Task 114)
+
+La délégation à un agent (sous-agent = contexte plein — coût #token élevé) est JUSTIFIÉE uniquement dans les cas complexes : verdict COMPLEXE du script de routage (>= 2/5 critères : multi_livrables, multi_domaines >= 3 skills, horizon_long, parallele, integration_externe — grille alignée sur le PROMPT-GATEWAY §1.6). En dessous du seuil : skills directs, aucun agent (motif journalisé par le script — portegardes_agents).
+
+| Agent | Cas justifiés (COMPLEXE requis) | Moteur de recommandation |
+|-------|----------------------------------|--------------------------|
+| agents écosystème (.agent installés) | Sous-tâches autonomes multi-phases d'un cas complexe — recommandation dérivée À L'EXÉCUTION du score objectif/modes des .agent | `routage-skills-agents.py` (matrice dynamique — R4, jamais de copie statique dans le corps) |
+
+> La matrice des agents est DYNAMIQUE (objectifs .agent lus à l'exécution — source unique) : gen-plan ne duplique JAMAIS les descriptions d'agents dans son corps (R4) ; le verdict COMPLEXE est la PORTE, le score du script est le MOTEUR, la décision finale reste à E5/E7 avec l'arbitre poids-chargement (budget #token).
 ## §2 — Spécification technique
 
 ### §2.1 Stack
@@ -228,7 +242,8 @@ R4 ne jamais dupliquer · R5 journaliser · R6 auto-adaptation sans duplication.
 skills/gen-plan/
 ├── SKILL.md                          # < 30 Kio — progressive disclosure
 ├── scripts/
-│   ├── ensure-installed.py           # É1-INSTALL — préemption (v3.35.2)
+│   ├── ensure-installed.py           # É1-INSTALL — préemption (v3.35.2) + garde réinjection plateforme (Task 114)
+│   ├── routage-skills-agents.py      # É5-ROUTAGE — décision skills + agents (v3.47.0)
 │   └── check_plan_protocol.py        # Arbitre E7-DISP — P1-P5 (v3.27.0)
 ├── references/
 │   ├── etapes-detaillees.md          # 15 étapes + mode step
@@ -293,6 +308,7 @@ Si activé : consultation de `{{KB_PATH}}`, scan du registre pour identifier les
 | skill-finder-cn | Fallback de découverte (§1.16) | Recherche externe UNIQUEMENT si skills-inventory échoue — contrôle cybersécurité audit-provenance obligatoire avant adoption |
 | prompt-engineering | Délégation (§1.6) | Optimisation des prompts complexes, version >= v1.0.0 |
 | agent-prompt-engineering | Pré-traitement (É1-PROMPT-GATEWAY §1.16) + délégation (§1.6/§1.9) | PROMPT-GATEWAY inconditionnel v1.2.0 — réécriture des demandes complexes AVANT l'analyse E1 ; optimisation fine des prompts (SHARED §3.1) — version >= v1.2.0 |
+| agents écosystème (4 .agent) | Délégation porte-gardée (§1.17) | Recommandation dérivée à l'exécution par routage-skills-agents.py — verdict COMPLEXE >= 2/5 requis ; matrice dynamique R4 |
 | context-engineering | Mobilisation (§1.6) | Socle SHARED, Protocole de Découverte KB, lecture bloc par bloc — déclenchement automatique (SHARED §7) |
 | loop-engineering | Mobilisation (§1.6) | Boucle E10-E13 + auto-calibration E15 — déclenchement automatique (SHARED §7) |
 | graph-engineering | Mobilisation (§1.6) | Registre KB graphe bidirectionnel versionné, matrice agent × skill — déclenchement automatique (SHARED §7) |
@@ -320,6 +336,7 @@ Résumé des plages clés (voir `references/grille-token.md` pour la grille comp
 - **Exécution complexe (4+ skills)** : 10000-20000 #token
 - **Coefficients** : 0.8x (faible) → 1.5x (critique), ECO 0.7x, VIEUX PC 0.5x
 - **Contingences (preuves : `references/grille-token.md`)** : **profil frais local ×3-4** (première exécution sur profil restauré — coût de DÉCOUVERTE hors grilles calibrées, v3.28.1) ; **appels API en masse ×2-3** (429/backoff — ThreadPool 2-4 workers, throttle 1-2 s, reprise par lots, petits d'abord) ; **récupération externe bloquée ×3-4** (WAF/SPA/rate-limit — escalade WebFetch → curl → agent-browser → z-ai `page_reader`, budget propre AVANT l'étape requérante, v3.28.2).
+- **Routage É5-ROUTAGE (v3.47.0)** : ~300 #token par plan (exécution script + intégration section Routage) — sortie JSON ~1-2 Kio, < 1 s ; économie nette : le catalogue des déclencheurs N'EST PAS incrusté dans le corps (R4 + poids gen-plan maîtré sous le seuil CRITIQUE 60 Kio).
 
 ---
 
@@ -351,4 +368,4 @@ Dès qu'une phase du plan d'actions se termine, lancer `correct-work(livrables d
 **Couche d'organisation transverse (v3.25.0, tous modes depuis v3.36.0 — seule différence : les portes de confirmation, EXCLUSIVES au mode step-ok — v3.45.0 : les modes step et NULL n'en demandent JAMAIS)** : **groupe `G<k>`** (unité de vérification — correct-work(groupe)) → **sous-groupes `SG<k>.<j>`** (lot cohérent 2-5 tâches) → **tâches `T<k>.<j>.<i>`** (unité élémentaire, tag #token). **Statuts dérivés de l'état vérifiable** (KO-L003) : `[À FAIRE]` · `[EN COURS]` · `[TERMINÉ]` · `[BLOQUÉ]` · `[REPORTÉ]` ; compteurs n/m. **Cadence** : début d'exécution → fenêtre native complète (E7-DISP point 6 — Z.ai : `TodoWrite`) ; ouverture de groupe → PLAN-AFFICHE d'évolution puis tableau du groupe (step-ok : après confirmation) ; fin de tâche → ligne + compteurs ; fin de sous-groupe → rappel ; fin de groupe → fenêtre native mise à jour ; clôture → tableau final + verdict correct-work(groupe). **Orthogonal à l'exécution** : couche de LECTURE ; Graph Diamond automatique dès preuve d'indépendance (sous-groupes inclus, série = exception tracée) ; groupes plats normalisés à l'ouverture (R6/R2).
 ### §5.6 Journal des versions (entrée courante — archive intégrale et mécanique de migration : `references/journal-versions.md`)
 
-- **v3.46.0 (2026-11-22, web-f492e049 — Task 112 G16, directive 1a201cc4330be619 « analyse les interactions de mon agent "agent-prompt-engineering" dans l'objectif de savoir s'il est déclenché au début de l'exécution de mon skill "gen-plan" afin de réécrire correctement et de façon cohérente mes demandes complexes »)** : **pré-traitement PROMPT-GATEWAY en tête de chaîne** — constat mécanique : 0 référence à agent-prompt-engineering dans le SKILL.md (divergence KB↔SKILL.md : la KB déclarait la relation « §3 du skill » absente du corps) ; correctif : §1.16 += hook É1-PROMPT-GATEWAY (après É1-INSTALL, AVANT l'analyse E1 : si le PROMPT-GATEWAY n'a pas déjà normalisé le prompt — déclenchement inconditionnel v1.2.0, phases A-B systématiques, C-D conditionnelles verdict COMPLEXE >= 2/5 — l'agent invoque agent-prompt-engineering pour réécrire la demande en version compréhensible, explicite et structurée ; demandes courtes/simples en passage direct journalisé) + table §3 += ligne agent-prompt-engineering + YAML dependencies += agent-prompt-engineering >= 1.2.0 + description. MINOR, additions pures (non-régression triggers). Cascade KO-L004 COMPLÈTE : PM v3.46.0 généré mécaniquement (delta verrouillé scripts/delta-genplan-v3460.json) + KB + @historique + pin ECO_SKILLS recalibré ×2 arbres + evals sync 3.10.0→3.46.0 (stale résorbé) + certification locale ; v3.45.0 migrée R4 byte-identité vers references/journal-versions.md.
+- **v3.47.0 (2026-11-22, web-f492e049 — Task 114, directives 1a2025197d2a0e9d « intégrer les déclencheurs des skills et des agents dans le corps de gen-plan + forcer leur usage + script de décision pour les agents complexes » et 1a2025ce4a6ed095 « rappel permanent langue française dans le corps »)** : **É5-ROUTAGE + porte d'agents + rappel permanent langue** — analyse Task 114 (download/analyse-routage-decisionnel-task114.md) : incruster le catalogue complet des déclencheurs DÉGRADERAIT chaque session (gen-plan +30-40 Kio → franchit le seuil CRITIQUE 60 Kio de l'arbitre poids-chargement) et violerait R4 (les déclencheurs vivent déjà dans les frontmatters installés — source unique) ; solution retenue : routage MÉCANIQUE à l'exécution — §1.16 += hook É5-ROUTAGE (routage-skills-agents.py : scores depuis les frontmatters installés, verdict complexité 5 critères, porte-garde agents, sortie download/routage-dernier.json) + §1.17 (porte COMPLEXE >= 2/5 + matrice agents DYNAMIQUE R4) + §2.2 (script au structure) + §3 (ligne agents écosystème) + §4 (coût ~300 #token/plan) + §0 += RAPPEL PERMANENT LANGUE (français exclusif à chaque exécution — correction immédiate + worklog + durcissement ; dérive chinois constatée et corrigée Task 114) + ensure-installed.py += garde réinjection plateforme (Task 114 : réparation native→miroir + stale majuscules, archives R4 byte-identité ; testé INSTALLE-REPARÉ → INSTALLE idempotent). MINOR, additions pures (non-régression triggers). Cascade KO-L004 COMPLÈTE : PM v3.47.0 généré mécaniquement (delta verrouillé scripts/delta-genplan-v3470.json) + KB + @historique + pin ECO_SKILLS ×2 arbres + evals sync →3.47.0 + v3.46.0 migrée R4 byte-identité references/journal-versions.md.

@@ -1,6 +1,6 @@
 {
   "skill_name": "gen-plan",
-  "version": "3.46.0",
+  "version": "3.47.0",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Schéma unifié skill-creator (révision PM v3.8.0, session A9 — recommandation clone 2026-09-06 §5) : sémantique des 6 evals v3.7.0 préservée (5 d'origine + hook correct-work E9-E14) ; eval 7 GP-mode-step ajouté en v3.22.0 (modes step — enchaînement autonome des groupes, correct-work(groupe) par groupe, correct-work(projet) final) ; eval 8 GP-mode-step-ok ajouté en v3.22.1 (renommage step-confirm → step-ok — confirmation propriétaire avant chaque groupe). Eval 9 GP-diamond-defaut ajouté en v3.24.0 (inversion du défaut série — parallélisation par défaut sur preuve d'indépendance, sériographie = exception tracée).",
   "evals": [
