@@ -493,7 +493,12 @@ pm_text = pm_file.read_text(encoding="utf-8") if pm_file else ""
 pm_ok = bool(pm_file) and pm_gv in pm_text[:600] and 1200 <= pm_text.count("\n") + 1 <= 1900  # recalibrage L004 3e éd. (session web-ecef7f80, 2026-11-08, Task 72 G1 — KO-L003 divergence légitime : re-curation progressive disclosure R1 v3.39.0 = 1770 L, intégraux references/ reportés in extenso en §9.7-§9.10 — la réalité a changé, l'invariant suit) ; 2e éd. (web-6058b3ba, 2026-11-04, Task 47) : [v3.33.1, 1513 L] ; 1re éd. (web-b93f42fa, 2026-10-09) : PM v3.21.0 = 1425 L
 carriers = [
     (f"SKILL.md gen-plan : frontmatter {gv}", read_frontmatter_version(gp) == gv),
-    ("SKILL.md gen-plan : zéro mention stale 3.10.0", gp_text.count("3.10.0") == 0),
+    ("SKILL.md gen-plan : zéro mention stale 3.10.0",
+     re.sub(r"3\.10\.0\s*→[\w.]+", "", gp_text).count("3.10.0") == 0),
+    # Task 112 G16 dynamisation KO-L003 : une occurrence en contexte de TRANSITION
+    # documentée (« 3.10.0→3.46.0 — stale résorbé », journal/sync) est un historique
+    # légitime, pas une mention stale — seules les versions 3.10.0 citées comme
+    # courante (sans flèche de transition) demeurent un échec de l'invariant.
     (f"PM {pm_name} (corpus) : en-tête version + plage 1200-1900 lignes", pm_ok),
     ("PM : 6e référence PEK (§2.2) + section §9.6",
      "prompt-engineering-kit.md" in pm_text and "9.6" in pm_text),
