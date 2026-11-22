@@ -1,6 +1,6 @@
 ---
 name: re-curation
-version: 1.2.3
+version: 1.2.4
 category: ecosystem
 language: fr
 tags:
@@ -123,6 +123,8 @@ skills/re-curation/
 
 ## §5 — Journal des versions
 
+- **v1.2.4 (2026-11-22, session web-f492e049 — Task 112 G6, tests fonctionnels et de performances $FACON2)** : complétion structurelle — ajout « §6 — Relations » (arêtes KB réelles : gen-plan chaînage mode step + réciproque protocole PRE/POST P0-P7, correct-work vérification P6, registre KB bidirectionnel, pin ECO_SKILLS) ; la section Relations était le seul déficit structurel du diagnostic T1 (spéc. fonctionnelle et technique satisfaites en substance sous formes équivalentes §1 Mission et nature / §2 Méthode P0-P7 + §4 Structure — équivalences documentées au diagnostic, KO-L003) ; PATCH, documentation additive, description frontmatter inchangée (non-régression triggers) ; cascade KO-L004 : KB v1.2.4 + pin ECO_SKILLS ×2 arbres + evals.json version sync 1.0.0→1.2.4 (résorption stale) ; poids : SKILL.md 20.1 Kio mesuré avant ajout.
+
 - **v1.2.2 (2026-11-09, session web-ecef7f80 — Task 82 G3, correctif KO-L003 sur preuves réelles knowledge-observer)** : tolérance des références INTER-SKILL dans `pointeurs_valides` — la regex capturait TOUT `references/<fichier>`, y compris les citations `<autre-skill>/references/<fichier>` (non-duplication SHARED §6.3 : la source de vérité vit dans un autre skill) et exigeait le fichier dans le `references/` LOCAL du skill → faux FAIL « manquants : observation-patterns.md » sur `--verifier knowledge-observer` v1.1.0 (cite `gen-plan/references/observation-patterns.md` — la définition du pattern Task Observer vit dans gen-plan) ; correctif : lookbehind `(?<![\w/-])` — seuls les pointeurs LOCAUX (non précédés d'un caractère de chemin) exigent l'existence locale ; selftest 14→15 cas (**15/15 ×2 idempotent** — cas discriminant : pointeur LOCAL manquant demeure rc=1 · référence inter-skill tolérée rc=0) ; PATCH, description frontmatter inchangée (non-régression triggers) ; re-verdict honnête knowledge-observer : PASS (pointeurs + non-duplication + F1 + F3 SAINES + KB=1.1.0).
 - **v1.2.1 (2026-11-09, session web-ecef7f80 — Task 81 G2, correctif KO-L003 sur preuves réelles iphone19)** : idempotence des verdicts POST — le critère OPTIMISÉ (`apres < avant or sous seuil LOURD`) rendait tout re-jeu POST sur un état stable LOURD (≥ 30 Kio) structurellement DÉRIVE (chaque POST ré-ancrant la baseline, le re-jeu comparait l'état à lui-même : 0 % de réduction) — faille révélée par la re-curation iphone19 (run 1 MAINTIEN [55 645 → 40 430 o, −27,3 %], run 2 DÉRIVE [0 %]) ; correctif : baseline ancrée par un POST précédent (re-jeu de stabilité) → MAINTIEN = NON-RÉGRESSION (`apres <= avant`) ; la réduction stricte demeure exigée au PREMIER POST (baseline PRE fraîche) ; selftest 13→14 cas (**14/14 ×2 idempotent** — cas discriminant : 1er POST identité LOURD → DÉRIVE strict · re-jeu baseline ancrée → MAINTIEN) ; PATCH, description frontmatter inchangée (non-régression triggers) ; re-verdict honnête iphone19 : runs 3-4 MAINTIEN ×2.
 
@@ -131,3 +133,20 @@ skills/re-curation/
 - **v1.1.0 (2026-11-09, session web-ecef7f80 — pendance consignée au commit Task 79 0b1712b, directive gen-plan(step) « correctif du comparateur §0 de protocole-test (harnais) »)** : harnais v3 — deux défauts du comparateur §0 de `scripts/protocole-test.py` résorbés : (1) **borne du bloc socle** — le contrat `section_0_normalisee` capturait de « ## §0 » jusqu'à « ## §1 », et quand le skill n'a pas de section §1 (cas réel version-management : 23,4 Kio capturés sur 25,8 ; ASR : 16,7 Kio ; preuve : 104 des 119 porteurs corrigés, contrat §0 cumulé 1 180,3 → 193,4 Kio — `download/protocole-test-correctif-comparateur-v110-preuves.json`), le contrat couvrait le CORPS entier → une re-curation légitime du corps (déplacement R4) donnait un DÉRIVE fausse ; nouvelle borne `bloc_socle()` = premier titre markdown suivant (~1,6 Kio) ; (2) **dates de directives du socle normalisées** — extension de la leçon harnais v2 (étiquette SHARED) : une date de directive propriétaire enrichie au bloc socle (ex. « directive 2026-10-31, renforcée 2026-11-06 ») n'est pas une dérive de contrat ; selftest étendu 5→7 tests (bump socle étiquette+date → PASS ; déplacement R4 du corps, socle intact → MAINTIEN), 7/7 ×2 idempotent ; MINOR, description frontmatter inchangée (non-régression triggers) ; baselines capturées avant v1.1.0 à re-capturer (convention de mesure §0 v3).
 
 - **v1.0.0 (2026-11-08, session web-ecef7f80 — Task 72 G4, directive à 7 items item 4 + directive complémentaire 1a1b7b297b7b4975)** : création — skill IMPLÉMENTÉ du script principal `scripts/protocole-test.py` (GÉNÈRE le protocole de test adapté à l'élément ciblé, l'exécute en phase PRE avant toute re-curation [baseline golden master, GO/NO-GO], le ré-exécute en POST [maintien de l'optimisation : cohérent/optimisé/fonctionnel], arbitre les méthodes candidates en `--compare`) + méthode P0-P7 (P0 = tests avant re-curation, P7 = vérification POST) + arbitre check-recuration.py (C1 pointeurs, C2 non-duplication 1024 o, C3 marqueurs, C4 seuils) + mesure-sections.py généralisé (selftests embarqués ×3) ; liste des cibles priorisées (G3) ; cascade légère (KB + pin ECO_SKILLS + historiques + ULTRA + arbitres + sync).
+
+## §6 — Relations
+
+- **gen-plan** (dépendance frontmatter `>=3.39.0`) : chaînage mode step des
+  re-curations — règles d'or partagées (n°5 état vérifiable, KO-L003) ;
+  réciproquement, gen-plan mobilise re-curation `>= v1.0.0` comme protocole
+  de test PRE/POST des re-curations (P0-P7 — arête KB « Utilisé par »).
+- **correct-work** (dépendance frontmatter `>=2.4.0`) : vérification par phase
+  du protocole (P6) — la re-curation d'un élément vérifié s'appuie sur les
+  verdicts correct-work comme baseline d'état.
+- **Registre KB** : entrée bidirectionnelle `re-curation` (description,
+  arêtes sortantes gen-plan/correct-work, arêtes entrantes gen-plan) ;
+  pin ECO_SKILLS `check-ecosysteme-integrity.py` (gouvernance KO-L004).
+- **Non-concerné** : les cibles re-curables (skills/PMs/agents) sont des
+  CIBLES du protocole, pas des relations structurelles — la liste des cibles
+  priorisées vit au §1 (file ÉTEINTE Task 85 G5).
+

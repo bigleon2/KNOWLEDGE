@@ -1,6 +1,6 @@
 {
   "skill_name": "re-curation",
-  "version": "1.0.0",
+  "version": "1.2.4",
   "schema": "skill-creator",
   "note": "Évals de la méthode P0-P7 — le comportement attendu mobilise les scripts du skill.",
   "evals": [
@@ -10,7 +10,11 @@
       "prompt": "Re-cure mon skill version-management (il est trop lourd).",
       "expected_output": "Le skill exécute d'abord protocole-test.py --pre version-management (baseline golden master + verdict GO/NO-GO) AVANT toute écriture — jamais de re-curation sans PRE",
       "files": [],
-      "expectations": ["Phase PRE exécutée avant tout move", "Baseline sha256 des contrats capturée", "Verdict GO/NO-GO tracé"]
+      "expectations": [
+        "Phase PRE exécutée avant tout move",
+        "Baseline sha256 des contrats capturée",
+        "Verdict GO/NO-GO tracé"
+      ]
     },
     {
       "id": 2,
@@ -18,7 +22,11 @@
       "prompt": "Compare les méthodes possibles pour la re-curation de version-management et prends la plus optimisée.",
       "expected_output": "protocole-test.py --compare avec gains projetés calculés des sections mesurées ; les méthodes non-R4 (suppression) disqualifiées ; la plus optimisée et performante désignée",
       "files": [],
-      "expectations": ["Gains projetés issus de mesures", "Conformité R4 vérifiée", "Méthode gagnante désignée"]
+      "expectations": [
+        "Gains projetés issus de mesures",
+        "Conformité R4 vérifiée",
+        "Méthode gagnante désignée"
+      ]
     },
     {
       "id": 3,
@@ -26,7 +34,11 @@
       "prompt": "La re-curation de version-management est faite, vérifie que l'écosystème reste optimisé.",
       "expected_output": "protocole-test.py --post : contrats == baseline (cohérent), pointeurs/non-duplication (fonctionnel), poids réduit/sous seuil (optimisé) → verdict MAINTIEN DE L'OPTIMISATION",
       "files": [],
-      "expectations": ["Comparaison contrats vs baseline", "Trois axes vérifiés (cohérent/fonctionnel/optimisé)", "Verdict bloquant tracé"]
+      "expectations": [
+        "Comparaison contrats vs baseline",
+        "Trois axes vérifiés (cohérent/fonctionnel/optimisé)",
+        "Verdict bloquant tracé"
+      ]
     },
     {
       "id": 4,
@@ -34,7 +46,11 @@
       "prompt": "Effectue la re-curation du skill cahier-des-charges.",
       "expected_output": "Blocs déplacés byte-identité vers references/ avec en-tête de provenance (section, version, date, SHA-256), résumés NOUVEAUX inline, aucune duplication",
       "files": [],
-      "expectations": ["Extraction mécanique par marqueurs", "Provenance SHA-256 consignée", "check-recuration.py C1-C4 PASS"]
+      "expectations": [
+        "Extraction mécanique par marqueurs",
+        "Provenance SHA-256 consignée",
+        "check-recuration.py C1-C4 PASS"
+      ]
     },
     {
       "id": 5,
@@ -42,7 +58,11 @@
       "prompt": "Re-cure gen-plan.",
       "expected_output": "Gouvernance détectée (famille PM) → cascade KO-L004 complète requise (delta, PM, archive R4, pin, KB, historiques, ULTRA, sweep, arbitres, sync) en plus de la méthode P0-P7",
       "files": [],
-      "expectations": ["Nature/gouvernance détectée avant écriture", "Cascade adaptée à la famille", "Arbitres re-certifiés"]
+      "expectations": [
+        "Nature/gouvernance détectée avant écriture",
+        "Cascade adaptée à la famille",
+        "Arbitres re-certifiés"
+      ]
     },
     {
       "id": 6,
@@ -50,7 +70,11 @@
       "prompt": "Re-cure pdf, c'est le plus lourd.",
       "expected_output": "Le skill constate la gouvernance PLATEFORME (hors KB/ECO_SKILLS) et demande la décision explicite du propriétaire AVANT toute écriture (risque de régression au cycle plateforme)",
       "files": [],
-      "expectations": ["Gouvernance plateforme détectée", "Aucune écriture sans GO propriétaire", "Risque documenté"]
+      "expectations": [
+        "Gouvernance plateforme détectée",
+        "Aucune écriture sans GO propriétaire",
+        "Risque documenté"
+      ]
     }
   ]
 }
