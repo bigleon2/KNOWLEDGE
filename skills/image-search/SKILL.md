@@ -35,7 +35,7 @@ read_when:
 
 # IMAGE-SEARCH v1.0.0 — Recherche d'images réelles du web (service interne ZAI)
 
-## §0 — Contexte Système (SHARED v1.7.44)
+## §0 — Contexte Système (SHARED v1.7.45)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

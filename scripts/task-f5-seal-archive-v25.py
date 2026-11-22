@@ -54,7 +54,7 @@ Codes retour : 0 = scellée · 1 = échec round-trip (archive restaurée) ·
 Usage :
   task-f5-seal-archive-v25.py [--depot-git <chemin-dépôt>] [--autoriser-evolution]
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.43)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.45)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
