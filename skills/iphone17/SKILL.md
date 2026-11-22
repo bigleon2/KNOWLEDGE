@@ -148,7 +148,7 @@ Noter chaque critère de **0 (sain/absent) à 4 (critique)** + 1 phrase d'observ
 | R13 | C2 = ère ancienne ET C3 = iphone17_max | Mode restauration (authenticité préservée) | P1–P6 |
 | R14 | C3 = poster/print OU cadrage focalisé demandé | Cadrage focalisé sujets (§6.7) + ratio print + 300 DPI (P8b) | P8/P8b |
 | R15 | Terme de plan ambigu + contrainte « ne garder que les corps/sujets » | Interpréter `focalisé sujets` (bbox minimale des corps + marge) | P8 |
-| R16 | C3 = print/poster ET résolution source insuffisante (agrandissement > ×2) | Super-résolution renforcée en P4 + **avis « limite de résolution pour impression »** obligatoire dans le rapport | P4 + §8 ⚠️ |
+| R16 | C3 = print/poster ET résolution source insuffisante (agrandissement > ×2) | Super-résolution renforcée en P4 + **avis « limite de résolution pour impression »** obligatoire dans le rapport | P4 + §8 ⚠ |
 | **R17** | C3 = focale équivalente demandée (13 / 24 / 28 / 35 / 48 / 100 / 200 mm) | **Simulation de focale par recadrage intelligent** : cadrage correspondant à la focale (bbox sujets + marge selon focale) + netteté finale adaptée (rendu télé : piqué serré). **Honnêteté (règle 7) : il s'agit d'un RECADRAGE — la perspective et la profondeur de champ de la source sont conservées ; c'est un choix de framing (G3), jamais une modification optique de la scène.** Avis « limite de focale » dans le rapport si le recadrage dégrade le piqué (cropping > ×2, cf. R16) | P8 (+P4 si pitié source insuffisant) |
 
 **Garde-fous (toujours actifs) :**
@@ -321,7 +321,7 @@ img = export_print(crop_ratio(img, 210/297, cx=0.5), 210, 297)   # poster A4 300
 ## Plan d'actions exécuté (YAML, dont focale_cible) + estimation
 ## ✅ Résultat QC (OK/KO + itérations) — fidélité (1–4), cadrage (8), ratio/DPI (9), résolution/support (10), focale (11)
 ## Description du résultat (+ script P8b si besoin)
-## ⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, avis grain/tonalité sources argentiques N&B, éléments [SPÉCULATIF] éventuels)
+## ⚠ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, avis grain/tonalité sources argentiques N&B, éléments [SPÉCULATIF] éventuels)
 ## ❓ Souhaitez-vous des modifications ? (question OBLIGATOIRE — §9)
 ```
 

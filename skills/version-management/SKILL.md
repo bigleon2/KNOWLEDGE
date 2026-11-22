@@ -31,7 +31,7 @@ read_when:
 
 ---
 
-## ⚠️ Règle absolue des chemins (priorité maximale, à exécuter avant d'écrire tout fichier)
+## ⚠ Règle absolue des chemins (priorité maximale, à exécuter avant d'écrire tout fichier)
 
 **Ce Skill doit intervenir avant l'écriture du premier fichier d'entrée, pas en rattrapage après production.** Dès la première écriture sur disque d'un fichier d'entrée (`.html` / `.jsx` / `.tsx` / `.vue`), le chemin cible doit se situer dans `mes-projets/{nom-projet}/`.
 
@@ -138,7 +138,7 @@ Si la production est une image, un doc, un ppt, du JSON, une design spec, du tex
 
 ### 1.4 Flux de création
 
-À la première production d'un fichier d'entrée pour l'utilisateur (**les étapes 1 à 3 doivent survenir avant l'écriture de tout fichier de code**, voir la « ⚠️ Règle absolue des chemins » en tête) :
+À la première production d'un fichier d'entrée pour l'utilisateur (**les étapes 1 à 3 doivent survenir avant l'écriture de tout fichier de code**, voir la « ⚠ Règle absolue des chemins » en tête) :
 
 1. Générer le nom du projet d'après l'intention de l'utilisateur
 2. Revenir à la racine du workspace ; si « mes-projets » n'existe pas : `mkdir -p mes-projets/`
