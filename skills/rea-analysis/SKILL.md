@@ -44,7 +44,7 @@ read_when:
 - `inspect-*`, `analyze-*`, `capture`, `compare` (commandes REA) — exécution bornée de la surface du kit
 - Toute demande d'Evidence d'analyse (YAML) sur un artefact compilé (ELF, APK, IPA, bundle web/Electron/.NET, firmware, DB)
 
-## §0 — Contexte Système (SHARED v1.7.43)
+## §0 — Contexte Système (SHARED v1.7.44)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)

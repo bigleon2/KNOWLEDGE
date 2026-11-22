@@ -579,7 +579,10 @@ if sh_ver:
                 n_hdr += 1
                 if m_h.group(1) != sh_ver:
                     stale.append(f"{sp.parent.name}:{i} en-tête §0 SHARED v{m_h.group(1)} ≠ v{sh_ver}")
-if "3.10.0" in gp_text:
+# Task 112 G16 dynamisation KO-L003 (même règle que 11a) : une occurrence en
+# contexte de TRANSITION documentée (« 3.10.0→3.46.0 — stale résorbé ») est un
+# historique légitime — seules les citations courantes sans flèche sont stale.
+if re.sub(r"3\.10\.0\s*→[\w.]+", "", gp_text).count("3.10.0"):
     stale.append("SKILL.md gen-plan mentionne v3.10.0")
 if cal.get("gen-plan") != gv:
     stale.append("ECO_SKILLS désaligné")
