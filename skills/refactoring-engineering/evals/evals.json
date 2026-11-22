@@ -1,6 +1,6 @@
 {
   "skill_name": "refactoring-engineering",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Évals de matérialisation n°55 (Task 7, session web-b4d7dd19) — structure miroir des disciplines n°54 ; contrôles négatifs : correct-work (mode DIRECT) et harness-engineering.",
   "evals": [

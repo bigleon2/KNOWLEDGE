@@ -1,6 +1,6 @@
 {
   "skill_name": "re-curation",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "schema": "skill-creator",
   "note": "Évals de la méthode P0-P7 — le comportement attendu mobilise les scripts du skill.",
   "evals": [

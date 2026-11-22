@@ -1,6 +1,6 @@
 ---
 name: iphone17
-version: 1.1.0
+version: 1.1.1
 category: metier
 language: fr
 tags:
@@ -42,6 +42,7 @@ read_when:
   - Déclencher quand la demande concerne : rendu « iPhone 17 Pro Max qualité max » demandé explicitement, preset iphone17_max, focale équivalente 13-200 mm, rendu d'époque génération 17, restauration (dont photographies argentiques N&B années 1930-1950 — ex. 1944), poster/print, mode série
   - Déclencher si la demande mentionne : iphone17, preset iphone17_max, focale équivalente, CPE génération 17, photo de 1944
   - Ne pas déclencher pour : périmètre iPhone 18 (→ skill iphone18 — génération courante), dessin technique coté (→ dessin-technique), génération d'image sans photo source (→ image-generation), vidéo (hors périmètre)
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)
@@ -315,11 +316,11 @@ img = export_print(crop_ratio(img, 210/297, cx=0.5), 210, 297)   # poster A4 300
 ## §8 — RAPPORT FINAL (gabarit obligatoire, en français)
 
 ```
-## 📋 Analyse (scores ANALYSE-v2 + inventaire B6 + cadrage et focale demandés)
-## 🧠 Diagnostic & règles déclenchées (R1–R17)
-## 🗺️ Plan d'actions exécuté (YAML, dont focale_cible) + estimation
+## Analyse (scores ANALYSE-v2 + inventaire B6 + cadrage et focale demandés)
+## Diagnostic & règles déclenchées (R1–R17)
+## Plan d'actions exécuté (YAML, dont focale_cible) + estimation
 ## ✅ Résultat QC (OK/KO + itérations) — fidélité (1–4), cadrage (8), ratio/DPI (9), résolution/support (10), focale (11)
-## 🖼️ Description du résultat (+ script P8b si besoin)
+## Description du résultat (+ script P8b si besoin)
 ## ⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, avis grain/tonalité sources argentiques N&B, éléments [SPÉCULATIF] éventuels)
 ## ❓ Souhaitez-vous des modifications ? (question OBLIGATOIRE — §9)
 ```

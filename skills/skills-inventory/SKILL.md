@@ -1,6 +1,6 @@
 ---
 name: skills-inventory
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -164,7 +164,7 @@ L'inventaire markdown complet (`skills.md`) contient :
 
 ## Écosystème Knowledge — Registre KB (décentralisé, Architecture v2.0)
 
-> 📎 Contenu décentralisé depuis `PROMPT-MAITRE-SHARED.md` (corrige-ecosysteme v2.0.0).
+> Contenu décentralisé depuis `PROMPT-MAITRE-SHARED.md` (corrige-ecosysteme v2.0.0).
 
 ### §2.1 Format d'une entrée KNOWLEDGE.md (décentralisé du SHARED §2.2)
 

@@ -1,6 +1,6 @@
 {
   "skill_name": "agent-prompt-engineering",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Évals créées à la matérialisation (session A9, 2026-09-06) au schéma exact skill-creator — couvrent les 4 opérations (§1.2), la grille 5 axes (§1.4) et la non-duplication de la méthode-mère (SHARED §6.3, §7).",
   "evals": [

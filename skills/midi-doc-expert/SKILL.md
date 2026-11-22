@@ -1,6 +1,6 @@
 ---
 name: midi-doc-expert
-version: 1.2.1
+version: 1.2.2
 category: ecosystem
 language: fr
 tags:
@@ -36,6 +36,7 @@ read_when:
   - Déclencher quand la demande concerne : documenter un mapping TSI validé, générer un document technique MIDI (tableaux de référence MIDI, états LED), produire la notice d'un mode contrôleur (ex. Freeze Mode), exporter un mapping en Markdown/JSON/PDF.
   - Déclencher si la demande mentionne : documentation MIDI, tableau de référence MIDI, états LED, notice mapping, documenter le Freeze Mode, midi-doc-expert.
   - Ne pas déclencher pour valider un TSI (tsi-validator), concevoir une architecture (tsi-architect) ou arbitrer des couches (multi-shift-architect).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

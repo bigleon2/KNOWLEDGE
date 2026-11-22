@@ -1,6 +1,6 @@
 ---
 name: autonomous-agent
-version: 1.2.1
+version: 1.2.2
 category: ecosystem
 language: fr
 tags:
@@ -15,6 +15,9 @@ description: >
   5 modules internes, 4 modes, pipeline 8 étapes (A-H), format .agent,
   intégration multi-LLM et orchestration multi-agents.
   Exécution autonome d'opérations complexes, persistance de l'état entre les sessions, traitement de requêtes de bout en bout, simulation de comportement sur des cas d'usage.
+  Utiliser quand l'utilisateur demande d'exécuter, de créer, de tester ou de simuler un agent autonome persistant (format .agent), de traiter une requête de bout
+  en bout de façon autonome, de persister un état entre les sessions, ou de reprendre un travail long avec intégration multi-LLM et orchestration multi-agents.
+
 dependencies:
   - skill: gen-plan
     version: ">=3.6.0"

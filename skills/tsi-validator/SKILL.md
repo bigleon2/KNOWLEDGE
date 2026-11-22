@@ -1,6 +1,6 @@
 ---
 name: tsi-validator
-version: 1.3.1
+version: 1.3.2
 category: ecosystem
 language: fr
 tags:
@@ -40,6 +40,7 @@ read_when:
   - Déclencher quand la demande concerne : valider ou diagnostiquer un fichier TSI, vérifier la conformité d'un mapping Traktor au schéma de référence, contrôler des allocations MIDI (doublons, plages), détecter une couche morte.
   - Déclencher si la demande mentionne : valider TSI, vérifier un mapping, tsi-validator, erreurs TSI, conflits MIDI, couche morte.
   - Ne pas déclencher pour concevoir une architecture (tsi-architect), la méthode des couches SHIFT (multi-shift-architect), ni la documentation (midi-doc-expert).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

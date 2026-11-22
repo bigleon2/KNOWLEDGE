@@ -1,20 +1,57 @@
 ---
-name: Agent Browser
-description: A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
+name: agent-browser
+version: 1.0.0
+category: infrastructure
+language: fr
+tags:
+  - agent-browser
+  - navigateur
+  - headless
+  - automatisation-web
+  - snapshot
+description: >
+  Skill d'automatisation de navigateur headless via la CLI agent-browser (vercel-labs,
+  Rust avec repli Node.js) : naviguer, cliquer, saisir, extraire et capturer des pages
+  via des commandes structurées avec refs (@e1…). Utiliser quand l'utilisateur demande
+  d'automatiser des interactions web (navigation, clics, formulaires), d'extraire des
+  données structurées de pages, de tester des interfaces web, de capturer des
+  instantanés ou des captures d'écran, ou quand une escalade E5 de gen-plan atteint
+  la contingence agent-browser (WebFetch → curl → agent-browser → z-ai). Requis
+  gen-plan hors-KB (SKILLS_REQUIS_GENPLAN, garde ensure-installed.py — Task 112 G15).
+dependencies:
+  - skill: gen-plan
+    version: ">=3.15.0"
+    used_at: "escalade E5 — contingence agent-browser des sondages web"
 read_when:
-  - Automating web interactions
-  - Extracting structured data from pages
-  - Filling forms programmatically
-  - Testing web UIs
-metadata: {"clawdbot":{"emoji":"🌐","requires":{"bins":["node","npm"]}}}
-allowed-tools: Bash(agent-browser:*)
+  - Déclencher quand la demande concerne : automatiser un navigateur headless (ouvrir,
+    cliquer, remplir, extraire, capturer) via la CLI agent-browser, ou restaurer la
+    contingence E5 de gen-plan quand WebFetch et curl sont insuffisants.
+  - Déclencher si la demande mentionne : agent-browser, navigateur headless, snapshot,
+    ref @e, automatisation web, scraping structuré, capture d'écran, test d'UI, CDP.
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-# Browser Automation with agent-browser
+## §0 — Contexte Système (SHARED v1.7.44)
+
+> Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
+> Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
+> Règle Zéro : skills auto-contenus, versionnés semver, registre KB source de vérité, dépendances YAML, cross-references bidirectionnelles.
+> Langue : FRANÇAIS exclusif pour tous les échanges avec le propriétaire (règle d'or n°6 gen-plan — directive 2026-10-31, renforcée 2026-11-06) : dès le PREMIER mot de toute session ou reprise, la langue d'un message, d'un résumé de continuation ou d'un canal ne dérive JAMAIS la réponse ; toute dérive est corrigée immédiatement.
+> Règles d'or & lecture SHARED à l'exécution (directive propriétaire 2026-11-06 — SHARED §9) : tout skill/agent/script exécuté lit le §0, ses sections dédiées du PM SHARED (§3/§4/§7) et les règles d'or de l'écosystème (résumé §9 — canonique gen-plan §1.5).
+> Référence canonique skill/agent (directive propriétaire 2026-11-07 — SHARED §0/§1.2) : toute référence à « mon skill X »/« mon agent X » désigne la forme installée à la racine `skills/X/SKILL.md`, JAMAIS le prompt maître du corpus `@mon-ecosysteme/` (ex-nommé `@PM-SKILLS/`) — les PMs sont des spécifications générées mécaniquement (KO-L004), les skills installés sont les formes exécutables.
+
+## §0 — RÈGLE ZÉRO (résumé de SHARED §0)
+
+Skill auto-contenu versionné semver ; les commandes CLI de l'outil tiers `agent-browser`
+restent en anglais verbatim (syntaxe d'outil externe — artefact technique, règle d'or n°6) ;
+la documentation, les titres et les notes sont en français. Hors-KB mais requis par
+gen-plan (escalade E5, garde ensure-installed.py). Provenance : HÉRITÉ-CORPUS
+(TheSethRose/Agent-Browser-CLI) RÉÉCRIT via les normes skill-creator — directive
+propriétaire Task 113 (trace 1a201e4bda5a2289).
 
 ## Installation
 
-### npm recommended
+### npm (recommandé)
 
 ```bash
 npm install -g agent-browser
@@ -22,7 +59,7 @@ agent-browser install
 agent-browser install --with-deps
 ```
 
-### From Source
+### Depuis les sources
 
 ```bash
 git clone https://github.com/vercel-labs/agent-browser
@@ -32,242 +69,243 @@ pnpm build
 agent-browser install
 ```
 
-## Quick start
+## Démarrage rapide
 
 ```bash
-agent-browser open <url>        # Navigate to page
-agent-browser snapshot -i       # Get interactive elements with refs
-agent-browser click @e1         # Click element by ref
-agent-browser fill @e2 "text"   # Fill input by ref
-agent-browser close             # Close browser
+agent-browser open <url>        # Naviguer vers la page
+agent-browser snapshot -i       # Éléments interactifs avec refs
+agent-browser click @e1         # Cliquer un élément par ref
+agent-browser fill @e2 "texte"  # Remplir un champ par ref
+agent-browser close             # Fermer le navigateur
 ```
 
-## Core workflow
+## Flux de travail principal
 
-1. Navigate: `agent-browser open <url>`
-2. Snapshot: `agent-browser snapshot -i` (returns elements with refs like `@e1`, `@e2`)
-3. Interact using refs from the snapshot
-4. Re-snapshot after navigation or significant DOM changes
+1. Naviguer : `agent-browser open <url>`
+2. Instantané : `agent-browser snapshot -i` (renvoie des refs comme `@e1`, `@e2`)
+3. Interagir via les refs issues de l'instantané
+4. Re-snapshotter après navigation ou changement significatif du DOM
 
-## Commands
+## Commandes
 
 ### Navigation
 
 ```bash
-agent-browser open <url>      # Navigate to URL
-agent-browser back            # Go back
-agent-browser forward         # Go forward
-agent-browser reload          # Reload page
-agent-browser close           # Close browser
+agent-browser open <url>      # Naviguer vers l'URL
+agent-browser back            # Retour
+agent-browser forward         # Avancer
+agent-browser reload          # Recharger
+agent-browser close           # Fermer
 ```
 
-### Snapshot (page analysis)
+### Snapshot (analyse de page)
 
 ```bash
-agent-browser snapshot            # Full accessibility tree
-agent-browser snapshot -i         # Interactive elements only (recommended)
-agent-browser snapshot -c         # Compact output
-agent-browser snapshot -d 3       # Limit depth to 3
-agent-browser snapshot -s "#main" # Scope to CSS selector
+agent-browser snapshot            # Arbre d'accessibilité complet
+agent-browser snapshot -i         # Éléments interactifs seuls (recommandé)
+agent-browser snapshot -c         # Sortie compacte
+agent-browser snapshot -d 3       # Profondeur limitée à 3
+agent-browser snapshot -s "#main" # Cibler un sélecteur CSS
 ```
 
-### Interactions (use @refs from snapshot)
+### Interactions (refs issues du snapshot)
 
 ```bash
-agent-browser click @e1           # Click
-agent-browser dblclick @e1        # Double-click
-agent-browser focus @e1           # Focus element
-agent-browser fill @e2 "text"     # Clear and type
-agent-browser type @e2 "text"     # Type without clearing
-agent-browser press Enter         # Press key
-agent-browser press Control+a     # Key combination
-agent-browser keydown Shift       # Hold key down
-agent-browser keyup Shift         # Release key
-agent-browser hover @e1           # Hover
-agent-browser check @e1           # Check checkbox
-agent-browser uncheck @e1         # Uncheck checkbox
-agent-browser select @e1 "value"  # Select dropdown
-agent-browser scroll down 500     # Scroll page
-agent-browser scrollintoview @e1  # Scroll element into view
-agent-browser drag @e1 @e2        # Drag and drop
-agent-browser upload @e1 file.pdf # Upload files
+agent-browser click @e1           # Clic
+agent-browser dblclick @e1        # Double-clic
+agent-browser focus @e1           # Focaliser
+agent-browser fill @e2 "texte"    # Vider puis saisir
+agent-browser type @e2 "texte"    # Saisir sans vider
+agent-browser press Enter         # Toucher
+agent-browser press Control+a     # Combinaison de touches
+agent-browser keydown Shift       # Maintenir
+agent-browser keyup Shift         # Relâcher
+agent-browser hover @e1           # Survol
+agent-browser check @e1           # Cocher
+agent-browser uncheck @e1         # Décocher
+agent-browser select @e1 "valeur" # Sélectionner une option
+agent-browser scroll down 500     # Défiler
+agent-browser scrollintoview @e1  # Amener en vue
+agent-browser drag @e1 @e2        # Glisser-déposer
+agent-browser upload @e1 f.pdf    # Téléverser des fichiers
 ```
 
-### Get information
+### Lecture d'informations
 
 ```bash
-agent-browser get text @e1        # Get element text
-agent-browser get html @e1        # Get innerHTML
-agent-browser get value @e1       # Get input value
-agent-browser get attr @e1 href   # Get attribute
-agent-browser get title           # Get page title
-agent-browser get url             # Get current URL
-agent-browser get count ".item"   # Count matching elements
-agent-browser get box @e1         # Get bounding box
+agent-browser get text @e1        # Texte de l'élément
+agent-browser get html @e1        # innerHTML
+agent-browser get value @e1       # Valeur du champ
+agent-browser get attr @e1 href   # Attribut
+agent-browser get title           # Titre de la page
+agent-browser get url             # URL courante
+agent-browser get count ".item"   # Nombre d'éléments correspondants
+agent-browser get box @e1         # Boîte englobante
 ```
 
-### Check state
+### Vérifier un état
 
 ```bash
-agent-browser is visible @e1      # Check if visible
-agent-browser is enabled @e1      # Check if enabled
-agent-browser is checked @e1      # Check if checked
+agent-browser is visible @e1      # Visibilité
+agent-browser is enabled @e1      # Activité
+agent-browser is checked @e1      # État de case à cocher
 ```
 
-### Screenshots & PDF
+### Captures d'écran et PDF
 
 ```bash
-agent-browser screenshot          # Screenshot to stdout
-agent-browser screenshot path.png # Save to file
-agent-browser screenshot --full   # Full page
-agent-browser pdf output.pdf      # Save as PDF
+agent-browser screenshot          # Capture vers stdout
+agent-browser screenshot p.png    # Vers fichier
+agent-browser screenshot --full   # Page entière
+agent-browser pdf sorties.pdf     # PDF
 ```
 
-### Video recording
+### Enregistrement vidéo
 
 ```bash
-agent-browser record start ./demo.webm    # Start recording (uses current URL + state)
-agent-browser click @e1                   # Perform actions
-agent-browser record stop                 # Stop and save video
-agent-browser record restart ./take2.webm # Stop current + start new recording
+agent-browser record start ./demo.webm    # Démarrer (URL et état courants)
+agent-browser record stop                 # Arrêter et sauver
+agent-browser record restart ./prise2.webm  # Arrêter puis redémarrer
 ```
 
-Recording creates a fresh context but preserves cookies/storage from your session. If no URL is provided, it automatically returns to your current page. For smooth demos, explore first, then start recording.
+L'enregistrement crée un contexte frais mais préserve cookies et stockage de la
+session ; sans URL fournie il revient automatiquement à la page courante. Pour une
+démo fluide : explorer d'abord, démarrer l'enregistrement ensuite.
 
-### Wait
+### Attente
 
 ```bash
-agent-browser wait @e1                     # Wait for element
-agent-browser wait 2000                    # Wait milliseconds
-agent-browser wait --text "Success"        # Wait for text
-agent-browser wait --url "/dashboard"    # Wait for URL pattern
-agent-browser wait --load networkidle      # Wait for network idle
-agent-browser wait --fn "window.ready"     # Wait for JS condition
+agent-browser wait @e1                   # Attendre un élément
+agent-browser wait 2000                  # Attendre en millisecondes
+agent-browser wait --text "Succès"       # Attendre un texte
+agent-browser wait --url "/tableau-bord" # Attendre un motif d'URL
+agent-browser wait --load networkidle    # Attendre le repos du réseau
+agent-browser wait --fn "window.ready"   # Attendre une condition JS
 ```
 
-### Mouse control
+### Souris
 
 ```bash
-agent-browser mouse move 100 200      # Move mouse
-agent-browser mouse down left         # Press button
-agent-browser mouse up left           # Release button
-agent-browser mouse wheel 100         # Scroll wheel
+agent-browser mouse move 100 200   # Déplacer
+agent-browser mouse down left      # Appuyer
+agent-browser mouse up left        # Relâcher
+agent-browser mouse wheel 100      # Molette
 ```
 
-### Semantic locators (alternative to refs)
+### Localisateurs sémantiques (alternative aux refs)
 
 ```bash
-agent-browser find role button click --name "Submit"
-agent-browser find text "Sign In" click
-agent-browser find label "Email" fill "user@test.com"
+agent-browser find role button click --name "Envoyer"
+agent-browser find text "Connexion" click
+agent-browser find label "Email" fill "utilisateur@test.com"
 agent-browser find first ".item" click
 agent-browser find nth 2 "a" text
 ```
 
-### Browser settings
+### Réglages du navigateur
 
 ```bash
-agent-browser set viewport 1920 1080      # Set viewport size
-agent-browser set device "iPhone 14"      # Emulate device
-agent-browser set geo 37.7749 -122.4194   # Set geolocation
-agent-browser set offline on              # Toggle offline mode
-agent-browser set headers '{"X-Key":"v"}' # Extra HTTP headers
-agent-browser set credentials user pass   # HTTP basic auth
-agent-browser set media dark              # Emulate color scheme
+agent-browser set viewport 1920 1080     # Taille de la fenêtre
+agent-browser set device "iPhone 14"     # Émuler un appareil
+agent-browser set geo 37.7749 -122.4194  # Géolocalisation
+agent-browser set offline on             # Mode hors-ligne
+agent-browser set headers '{"X-Cle":"v"}' # En-têtes HTTP additionnels
+agent-browser set credentials user pass  # Authentification basique
+agent-browser set media dark             # Schéma de couleurs
 ```
 
-### Cookies & Storage
+### Cookies et stockage
 
 ```bash
-agent-browser cookies                     # Get all cookies
-agent-browser cookies set name value      # Set cookie
-agent-browser cookies clear               # Clear cookies
-agent-browser storage local               # Get all localStorage
-agent-browser storage local key           # Get specific key
-agent-browser storage local set k v       # Set value
-agent-browser storage local clear         # Clear all
+agent-browser cookies                    # Tous les cookies
+agent-browser cookies set nom valeur     # Définir un cookie
+agent-browser cookies clear              # Vider les cookies
+agent-browser storage local              # Tout le localStorage
+agent-browser storage local cle          # Clé spécifique
+agent-browser storage local set c v      # Définir une valeur
+agent-browser storage local clear        # Tout vider
 ```
 
-### Network
+### Réseau
 
 ```bash
-agent-browser network route <url>              # Intercept requests
-agent-browser network route <url> --abort      # Block requests
-agent-browser network route <url> --body '{}'  # Mock response
-agent-browser network unroute [url]            # Remove routes
-agent-browser network requests                 # View tracked requests
-agent-browser network requests --filter api    # Filter requests
+agent-browser network route <url>              # Intercepter les requêtes
+agent-browser network route <url> --abort      # Bloquer
+agent-browser network route <url> --body '{}'  # Réponse simulée
+agent-browser network unroute [url]            # Retirer les routes
+agent-browser network requests                 # Requêtes suivies
+agent-browser network requests --filter api    # Filtrer
 ```
 
-### Tabs & Windows
+### Onglets et fenêtres
 
 ```bash
-agent-browser tab                 # List tabs
-agent-browser tab new [url]       # New tab
-agent-browser tab 2               # Switch to tab
-agent-browser tab close           # Close tab
-agent-browser window new          # New window
+agent-browser tab                 # Lister
+agent-browser tab new [url]       # Nouvel onglet
+agent-browser tab 2               # Basculer vers l'onglet
+agent-browser tab close           # Fermer l'onglet
+agent-browser window new          # Nouvelle fenêtre
 ```
 
-### Frames
+### Cadres (iframes)
 
 ```bash
-agent-browser frame "#iframe"     # Switch to iframe
-agent-browser frame main          # Back to main frame
+agent-browser frame "#iframe"     # Basculer vers l'iframe
+agent-browser frame main          # Revenir au cadre principal
 ```
 
-### Dialogs
+### Boîtes de dialogue
 
 ```bash
-agent-browser dialog accept [text]  # Accept dialog
-agent-browser dialog dismiss        # Dismiss dialog
+agent-browser dialog accept [texte]  # Accepter
+agent-browser dialog dismiss         # Rejeter
 ```
 
 ### JavaScript
 
 ```bash
-agent-browser eval "document.title"   # Run JavaScript
+agent-browser eval "document.title"   # Exécuter du JS
 ```
 
-### State management
+### Gestion d'état de session
 
 ```bash
-agent-browser state save auth.json    # Save session state
-agent-browser state load auth.json    # Load saved state
+agent-browser state save auth.json    # Sauver l'état de session
+agent-browser state load auth.json    # Charger un état sauvegardé
 ```
 
-## Example: Form submission
+## Exemple : soumission de formulaire
 
 ```bash
-agent-browser open https://example.com/form
+agent-browser open https://exemple.com/formulaire
 agent-browser snapshot -i
-# Output shows: textbox "Email" [ref=e1], textbox "Password" [ref=e2], button "Submit" [ref=e3]
+# Sortie : textbox "Email" [ref=e1], textbox "Mot de passe" [ref=e2], button "Envoyer" [ref=e3]
 
-agent-browser fill @e1 "user@example.com"
-agent-browser fill @e2 "password123"
+agent-browser fill @e1 "utilisateur@exemple.com"
+agent-browser fill @e2 "motdepasse123"
 agent-browser click @e3
 agent-browser wait --load networkidle
-agent-browser snapshot -i  # Check result
+agent-browser snapshot -i  # Vérifier le résultat
 ```
 
-## Example: Authentication with saved state
+## Exemple : authentification avec état sauvegardé
 
 ```bash
-# Login once
-agent-browser open https://app.example.com/login
+# Connexion unique
+agent-browser open https://app.exemple.com/connexion
 agent-browser snapshot -i
-agent-browser fill @e1 "username"
-agent-browser fill @e2 "password"
+agent-browser fill @e1 "utilisateur"
+agent-browser fill @e2 "motdepasse"
 agent-browser click @e3
-agent-browser wait --url "/dashboard"
+agent-browser wait --url "/tableau-bord"
 agent-browser state save auth.json
 
-# Later sessions: load saved state
+# Sessions ultérieures : charger l'état sauvegardé
 agent-browser state load auth.json
-agent-browser open https://app.example.com/dashboard
+agent-browser open https://app.exemple.com/tableau-bord
 ```
 
-## Sessions (parallel browsers)
+## Sessions (navigateurs parallèles)
 
 ```bash
 agent-browser --session test1 open site-a.com
@@ -275,54 +313,53 @@ agent-browser --session test2 open site-b.com
 agent-browser session list
 ```
 
-## JSON output (for parsing)
+## Sortie JSON (pour parsing)
 
-Add `--json` for machine-readable output:
+Ajouter `--json` pour une sortie lisible par machine :
 
 ```bash
 agent-browser snapshot -i --json
 agent-browser get text @e1 --json
 ```
 
-## Debugging
+## Débogage
 
 ```bash
-agent-browser open example.com --headed              # Show browser window
-agent-browser console                                # View console messages
-agent-browser console --clear                        # Clear console
-agent-browser errors                                 # View page errors
-agent-browser errors --clear                         # Clear errors
-agent-browser highlight @e1                          # Highlight element
-agent-browser trace start                            # Start recording trace
-agent-browser trace stop trace.zip                   # Stop and save trace
-agent-browser record start ./debug.webm              # Record from current page
-agent-browser record stop                            # Save recording
-agent-browser --cdp 9222 snapshot                    # Connect via CDP
+agent-browser open exemple.com --headed              # Afficher la fenêtre
+agent-browser console                                # Messages console
+agent-browser console --clear                        # Vider la console
+agent-browser errors                                 # Erreurs de page
+agent-browser errors --clear                         # Vider les erreurs
+agent-browser highlight @e1                          # Surligner l'élément
+agent-browser trace start                            # Démarrer une trace
+agent-browser trace stop trace.zip                   # Arrêter et sauver la trace
+agent-browser --cdp 9222 snapshot                    # Connexion via CDP
 ```
 
-## Troubleshooting
+## Dépannage
 
-- If the command is not found on Linux ARM64, use the full path in the bin folder.
-- If an element is not found, use snapshot to find the correct ref.
-- If the page is not loaded, add a wait command after navigation.
-- Use --headed to see the browser window for debugging.
+- Commande introuvable sur Linux ARM64 : utiliser le chemin complet du dossier bin.
+- Élément introuvable : faire un snapshot pour obtenir la bonne ref.
+- Page non chargée : ajouter une commande wait après la navigation.
+- Utiliser `--headed` pour voir la fenêtre pendant le débogage.
 
 ## Options
 
-- --session <name> uses an isolated session.
-- --json provides JSON output.
-- --full takes a full page screenshot.
-- --headed shows the browser window.
-- --timeout sets the command timeout in milliseconds.
-- --cdp <port> connects via Chrome DevTools Protocol.
+- `--session <nom>` : session isolée.
+- `--json` : sortie JSON.
+- `--full` : capture de page entière.
+- `--headed` : afficher la fenêtre du navigateur.
+- `--timeout` : délai d'expiration des commandes en millisecondes.
+- `--cdp <port>` : connexion via Chrome DevTools Protocol.
 
 ## Notes
 
-- Refs are stable per page load but change on navigation.
-- Always snapshot after navigation to get new refs.
-- Use fill instead of type for input fields to ensure existing text is cleared.
+- Les refs sont stables par chargement de page mais changent à la navigation.
+- Toujours snapshotter après navigation pour obtenir les nouvelles refs.
+- Préférer `fill` à `type` pour les champs afin de vider le texte existant.
 
-## Reporting Issues
+## Provenance et signalement
 
-- Skill issues: Open an issue at https://github.com/TheSethRose/Agent-Browser-CLI
-- agent-browser CLI issues: Open an issue at https://github.com/vercel-labs/agent-browser
+- Skill réécrit selon les normes skill-creator de l'écosystème (Task 113) ; contenu
+  technique issu de la documentation verbatim de la CLI agent-browser (vercel-labs).
+- Problèmes CLI : https://github.com/vercel-labs/agent-browser

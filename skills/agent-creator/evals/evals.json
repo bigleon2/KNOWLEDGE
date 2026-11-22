@@ -1,6 +1,6 @@
 {
   "skill_name": "agent-creator",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Créé via skill-creator (T1c, session A8) : agent-creator ne possédait AUCUN eval. 5 evals couvrant les 5 modules, les 4 modes, le pipeline A-H, la mémoire EC/EL et la persistance .agent — conformément à sa propre spécification §1-§2.",
   "evals": [

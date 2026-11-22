@@ -1,6 +1,6 @@
 ---
 name: analyse-doc-s4mk2
-version: 1.3.2
+version: 1.3.3
 category: ecosystem
 language: fr
 tags:
@@ -45,6 +45,7 @@ read_when:
   - Déclencher quand la demande concerne : analyser un ZIP/dossier de mapping TSI avec TOUS ses fichiers liés (PDF, images, textes, sous-dossiers), relier des captures d'éléments du S4 MK2 à la vue d'ensemble (QuickGuide), classifier les TSI d'un pack (mapping/préférences), extraire les comptes d'un mapping réel (format DIOM), extraire le texte des PDF compagnons (liste d'assignation, description du fonctionnement), analyser les sous-dossiers d'un pack.
   - Déclencher si la demande mentionne : analyse-doc-s4mk2, documents illustrés, vue partielle, vue complète, QuickGuide, Manual, Freeze Mode Help, sous-dossiers du ZIP, DJTT, DREW, FX Settings, Layouts, PDF compagnon, Assignment List, Mapping Speech, adaptatif, types de fichiers, correspondance visuels↔contrôles, comptes G2, cohérence croisée, source de vérité, mentions numérotées, HORS_UNIVERS, NON_CÂBLÉE, attestations.
   - Ne pas déclencher pour concevoir une architecture (tsi-architect), valider la structure d'un TSI synthétique E1-E8 (tsi-validator), les couches SHIFT d'une architecture (multi-shift-architect), ni la documentation d'un mapping (midi-doc-expert).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

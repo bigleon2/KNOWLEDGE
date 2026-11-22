@@ -1,6 +1,6 @@
 ---
 name: iphone18
-version: 1.1.0
+version: 1.1.1
 category: metier
 language: fr
 tags:
@@ -40,6 +40,7 @@ read_when:
   - Déclencher quand la demande concerne : améliorer/retoucher/restaurer une photo (y compris photographies argentiques N&B années 1930-1950, ex. 1944), rendu « iPhone 18 Pro Max qualité max », preset iphone18_max, ouverture variable ƒ/1.48-ƒ/4.0, rendus d'époque, poster/print A4 300 DPI, mode série multi-photos
   - Déclencher si la demande mentionne : iphone18, photo qualité max, CPE, preset photo, ouverture ƒ, photo de 1944 à améliorer/restaurer, photo de concert/fête/famille à améliorer
   - Ne pas déclencher pour : périmètre iPhone 17 (→ skill iphone17), dessin technique coté (→ dessin-technique), génération d'image sans photo source (→ image-generation), vidéo (hors périmètre)
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)
@@ -326,11 +327,11 @@ img = export_print(crop_ratio(img, 210/297, cx=0.5), 210, 297)   # poster A4 300
 ## §8 — RAPPORT FINAL (gabarit obligatoire, en français)
 
 ```
-## 📋 Analyse (scores ANALYSE-v2 + inventaire B6 + cadrage, focale et ouverture demandés)
-## 🧠 Diagnostic & règles déclenchées (R1–R18)
-## 🗺️ Plan d'actions exécuté (YAML, dont focale_cible et ouverture_cible) + estimation
+## Analyse (scores ANALYSE-v2 + inventaire B6 + cadrage, focale et ouverture demandés)
+## Diagnostic & règles déclenchées (R1–R18)
+## Plan d'actions exécuté (YAML, dont focale_cible et ouverture_cible) + estimation
 ## ✅ Résultat QC (OK/KO + itérations) — fidélité (1–4), cadrage (8), ratio/DPI (9), résolution/support (10), focale (11), ouverture (12)
-## 🖼️ Description du résultat (+ script P8b si besoin)
+## Description du résultat (+ script P8b si besoin)
 ## ⚠️ Limites & reconstructions honnêtes (dont avis R16, avis focale R17, avis ouverture R18, avis grain/tonalité sources argentiques N&B, éléments [SPÉCULATIF] éventuels)
 ## ❓ Souhaitez-vous des modifications ? (question OBLIGATOIRE — §9)
 ```

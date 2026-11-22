@@ -1,6 +1,6 @@
 {
   "skill_name": "refactor-guard",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "schema": "skill-creator v1.0.0 (references/schemas.md)",
   "note": "Continuation du projet « Skill Refactorisation Plan » (discussion Qwen T1-T46, clone ecosystem-corrections-clone-2026-10-10.md) : matérialisation du skill appelable par gen-plan. 4 evals couvrant le cycle R1-R8 : déclenchement par gen-plan, scoring de risque critique (block), parcours sandbox puis plan (règle d'or n°3), validation correct-work v2.7.0 (couplage gen-plan OBLIGATOIRE). Rédigé en français, langue du SKILL.md.",
   "evals": [

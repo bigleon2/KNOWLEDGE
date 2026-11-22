@@ -1,6 +1,6 @@
 ---
 name: skill-finder-cn
-version: 1.0.0
+version: 1.0.1
 category: "Méta (Skills & Plans)"
 tags:
   - skill
@@ -11,7 +11,6 @@ author: zhuanqian xiao neng shou (gagne-petit-argent)
 language: fr
 metadata:
   openclaw:
-    emoji: 🔍
     requires:
       bins: [clawhub]
 
@@ -84,7 +83,7 @@ clawhub install <skill-name>
 
 ---
 
-*Aide l'utilisateur à découvrir les Skills dont il a besoin 🔍*
+*Aide l'utilisateur à découvrir les Skills dont il a besoin*
 
 
 [INSTRUCTION COMPLÉMENTAIRE : il reste des caractères chinois ; translittère-les en pinyin ou traduis-les, renvoie le document intégral final]

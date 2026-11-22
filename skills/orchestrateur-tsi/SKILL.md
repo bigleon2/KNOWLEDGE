@@ -1,6 +1,6 @@
 ---
 name: orchestrateur-tsi
-version: 1.1.2
+version: 1.1.3
 category: ecosystem
 language: fr
 tags:
@@ -46,6 +46,7 @@ read_when:
   - Déclencher quand la demande concerne : orchestration de la famille TSI, mission de bout en bout sur un mapping (concevoir + valider + documenter), routage entre skills Traktor/S4 MK2, coordination de plusieurs skills/agents du domaine TSI.
   - Déclencher si la demande mentionne : orchestre, coordonne, de bout en bout avec TSI/Traktor/S4, pipeline mapping complet.
   - Ne pas déclencher pour une demande relevant d'un seul membre : concevoir/étendre (tsi-architect), valider (tsi-validator), couches SHIFT (multi-shift-architect), documenter (midi-doc-expert).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

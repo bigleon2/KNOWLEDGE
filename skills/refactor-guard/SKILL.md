@@ -1,6 +1,6 @@
 ---
 name: refactor-guard
-version: 1.8.1
+version: 1.8.2
 category: ecosystem
 language: fr
 tags:
@@ -58,6 +58,7 @@ read_when:
   - Déclencher quand gen-plan détecte un besoin de refactorisation (métriques dégradées, dette technique, demande utilisateur explicite)
   - Déclencher si la demande mentionne : refactorisation, refactor, refactor-guard, restructuration de modules
   - Ne pas déclencher pour du code neuf sans base existante (pas de refactorisation possible)
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

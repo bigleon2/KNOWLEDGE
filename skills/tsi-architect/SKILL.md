@@ -1,6 +1,6 @@
 ---
 name: tsi-architect
-version: 1.2.1
+version: 1.2.2
 category: ecosystem
 language: fr
 tags:
@@ -38,6 +38,7 @@ read_when:
   - Déclencher quand la demande concerne : architecture d'un mapping TSI, structure de fichier .tsi Traktor (devices, mappings, assignments, modifiers, LED), allocation de notes/CC, extension d'un mapping existant, tandem skill/agent tsi-architect.
   - Déclencher si la demande mentionne : TSI, architecture de mapping, Traktor mapping, S4 MK2 mapping, étendre un mapping, allouer des notes MIDI.
   - Ne pas déclencher pour la validation mécanique d'un TSI (tsi-validator), la méthode des couches SHIFT (multi-shift-architect), ni la génération de documentation (midi-doc-expert).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

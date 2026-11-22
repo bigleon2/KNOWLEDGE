@@ -1,6 +1,6 @@
 ---
 name: refactoring-engineering
-version: 1.1.1
+version: 1.1.2
 category: ecosystem
 language: fr
 tags:
@@ -30,6 +30,7 @@ read_when:
   - Déclencher quand la demande concerne : déclarer, planifier ou exécuter une opération de refactoring — transformations préservant le comportement, zéro-régression, cascade versionnée, archivage.
   - Déclencher si la demande mentionne : refactoring, restructuration, opération de refactoring, migration progressive, zéro-régression, refactorer un skill/corpus/script, pré-checks verrouillés, archivage @historique.
   - Ne pas déclencher pour la DÉTECTION/ÉVALUATION seule (refactoring-test) ni pour la vérification post-hoc générique (correct-work).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

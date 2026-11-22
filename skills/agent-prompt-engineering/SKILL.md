@@ -1,6 +1,6 @@
 ---
 name: agent-prompt-engineering
-version: 1.2.0
+version: 1.2.1
 category: infrastructure
 language: fr
 tags:
@@ -28,6 +28,11 @@ description: >
   passage direct sans transformation, verdict journalisé (la profondeur du
   traitement est routée par la complexité, le déclenchement est
   inconditionnel).
+read_when:
+  - Déclencher quand la demande concerne : optimiser, évaluer, itérer ou valider un prompt complexe (rédaction, restructuration, restructure, restructurer) — pré-traitement PROMPT-GATEWAY des demandes complexes en tête de chaîne gen-plan (É1-PROMPT-GATEWAY §1.16).
+  - Déclencher si la demande mentionne : prompt complexe, PROMPT-GATEWAY, optimisation de prompt, restructure, restructurer, réécriture de demande, évaluation de prompt, itération, validation de déclencheurs.
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
+
 dependencies:
   - skill: gen-plan
     version: ">=3.7.0"

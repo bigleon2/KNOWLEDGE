@@ -1,6 +1,6 @@
 ---
 name: livraison-garantie
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -35,6 +35,7 @@ read_when:
   - Déclencher si la demande mentionne : livraison garantie, livraison-garantie, delivery-warden, boucle fermée, vérifier que le bon fichier a été téléchargé, mauvais fichier, mauvais fichier téléchargé
   - Déclencher aussi si la demande mentionne : épingle et surveille, fenêtre de livraison, confirme le téléchargement, livrer le GIF / le rapport / le document final au propriétaire
   - Ne pas déclencher pour un simple accès aux dossiers (portail seul → vue-upload) ni pour l'hygiène seule (versions → vue-upload).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

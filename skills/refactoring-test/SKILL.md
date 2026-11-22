@@ -1,6 +1,6 @@
 ---
 name: refactoring-test
-version: 1.1.1
+version: 1.1.2
 category: ecosystem
 language: fr
 tags:
@@ -22,6 +22,7 @@ read_when:
   - Déclencher quand la demande concerne : reconnaître ou évaluer une situation de refactoring — signaux de dette technique, scoring de risque/urgence/portée, verdict de nécessité.
   - Déclencher si la demande mentionne : refactoring nécessaire, évaluer un refactoring, blast radius, graphe d'interactions, impact d'une modification, dette technique, scan de signaux, re-scan post-opératoire.
   - Ne pas déclencher pour l'EXÉCUTION d'un refactoring (refactoring-engineering) ni pour une vérification post-hoc générique (correct-work).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

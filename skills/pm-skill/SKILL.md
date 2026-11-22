@@ -1,6 +1,6 @@
 ---
 name: pm-skill
-version: 1.0.2
+version: 1.0.3
 category: ecosystem
 language: fr
 tags:
@@ -52,6 +52,7 @@ read_when:
   - Déclencher quand la demande concerne : exporter ou utiliser un skill de l'écosystème dans une IA externe (ChatGPT, Claude, Gemini…), générer le prompt maître d'un skill sous forme de fichier MD autonome, obtenir une version auto-portante collable d'un skill.
   - Déclencher si la demande mentionne : PM-skill, PM-skill(<skill>), prompt maître éphémère, « génère le prompt maître de X », « exporte X pour une IA », « je veux utiliser mon skill X dans ChatGPT/Claude/Gemini ».
   - Ne pas déclencher pour : la montée de version d'un skill famille et la génération de son PM corpus (cascade KO-L004 via gen-plan), l'exécution d'un skill dans l'écosystème (voie native = le skill installé, règle canonique SHARED §0/§1.2), l'installation de l'écosystème (PM-INSTALL).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

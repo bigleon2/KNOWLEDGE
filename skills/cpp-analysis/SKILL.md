@@ -1,6 +1,6 @@
 ---
 name: cpp-analysis
-version: 1.1.0
+version: 1.1.1
 category: metier
 language: fr
 description: >
@@ -98,10 +98,10 @@ REPORT_DIR="/home/z/my-project/reports/cpp"
 
 mkdir -p $REPORT_DIR
 
-echo "🔍 Analyse avec cppcheck..."
+echo "Analyse avec cppcheck..."
 cppcheck --enable=all --inconclusive --xml $PROJECT_DIR 2> $REPORT_DIR/cppcheck.xml
 
-echo "📊 Génération rapport HTML..."
+echo "Génération rapport HTML..."
 cppcheck --enable=all --html-report=$REPORT_DIR/cppcheck-report $PROJECT_DIR
 
 echo "✅ Analyse terminée"
@@ -116,7 +116,7 @@ echo "Rapport : $REPORT_DIR/cppcheck-report/index.html"
 EXECUTABLE="./my-program"
 REPORT="valgrind-report.txt"
 
-echo "🔍 Analyse avec valgrind..."
+echo "Analyse avec valgrind..."
 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
   --log-file=$REPORT $EXECUTABLE
 
@@ -194,7 +194,7 @@ EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES
 EOF
 
-echo "📚 Génération de documentation..."
+echo "Génération de documentation..."
 doxygen $DOXYFILE
 
 echo "✅ Documentation générée"

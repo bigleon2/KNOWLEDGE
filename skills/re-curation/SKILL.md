@@ -1,6 +1,6 @@
 ---
 name: re-curation
-version: 1.2.4
+version: 1.2.5
 category: ecosystem
 language: fr
 tags:
@@ -42,6 +42,7 @@ read_when:
   - "maintien de l'optimisation" — vérifier qu'une re-curation préserve le fonctionnement
   - comparer les méthodes de re-curation — la plus optimisée et performante
   - « tests fonctionnels et de performance » avant re-curation + « validation de toutes
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
     les interactions » de l'élément ciblé avec ses composants liés — suite v1.2.0 (directive 2026-11-09)
 ---
 

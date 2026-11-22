@@ -1,6 +1,6 @@
 ---
 name: graph-engineering
-version: 1.1.1
+version: 1.1.2
 category: ecosystem
 language: fr
 tags:
@@ -147,7 +147,7 @@ qui rendent la discipline exécutable et déclenchable automatiquement.
 
 ## §8 — Registre d'assignation des disciplines (décentralisé du SHARED §7)
 
-> 📎 Les définitions des disciplines restent dans `PROMPT-MAITRE-SHARED.md §7` (source de vérité conservée) ; le registre d'assignation est copié ici pour l'autonomie du skill (Architecture v2.0).
+> Les définitions des disciplines restent dans `PROMPT-MAITRE-SHARED.md §7` (source de vérité conservée) ; le registre d'assignation est copié ici pour l'autonomie du skill (Architecture v2.0).
 
 | Détenteur | Mode de détention | Usage |
 |-----------|-------------------|-------|

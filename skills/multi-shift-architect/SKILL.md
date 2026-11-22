@@ -1,6 +1,6 @@
 ---
 name: multi-shift-architect
-version: 1.1.0
+version: 1.1.1
 category: ecosystem
 language: fr
 tags:
@@ -30,6 +30,7 @@ read_when:
   - Déclencher quand la demande concerne : conception ou audit de couches SHIFT dans un mapping TSI, matrice de couverture contrôles × couches, détection de conflits entre couches, transitions/activations de couches, architecture multi-shift S4 MK2.
   - Déclencher si la demande mentionne : multi-shift, couche SHIFT, Freeze, modifier, couche morte, matrice de couverture, SHIFT+LOOP IN.
   - Ne pas déclencher pour la validation mécanique d'un TSI (tsi-validator), la conception structurelle générale (tsi-architect), ni la documentation (midi-doc-expert).
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 ## §0 — Contexte Système (SHARED v1.7.44)

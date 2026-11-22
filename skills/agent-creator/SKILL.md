@@ -1,6 +1,6 @@
 ---
 name: agent-creator
-version: 2.3.0
+version: 2.3.1
 category: ecosystem
 language: fr
 tags:
@@ -33,6 +33,7 @@ read_when:
   - Déclencher quand la demande concerne : CRÉATION d'agents persistants (fichier .agent) — cadrer, générer, valider, tester, inscrire un agent
   - Déclencher si la demande mentionne : créer/cadrer/générer un agent, fabrique d'agents, fichier .agent, agent persistant
   - Ne pas déclencher pour EXÉCUTER un agent existant (autonomous-agent) ni pour ORCHESTRER une flotte existante (fleet-engineering) — convention protocole, Task 28/22.
+  - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
 # AGENT-CREATOR v2.2.0 — Fabrique d'agents persistants

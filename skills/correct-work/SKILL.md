@@ -1,6 +1,6 @@
 ---
 name: correct-work
-version: 2.12.0
+version: 2.12.1
 category: ecosystem
 language: fr
 tags:
@@ -279,7 +279,7 @@ Relations directes de correct-work (extrait de SHARED §3.1) :
 
 ### §3.2 Règles de cross-references (décentralisé du SHARED §3.2)
 
-> 📎 Décentralisé depuis `PROMPT-MAITRE-SHARED.md` (corrige-ecosysteme v2.0.0).
+> Décentralisé depuis `PROMPT-MAITRE-SHARED.md` (corrige-ecosysteme v2.0.0).
 
 Quand un skill A référence un skill B :
 1. La référence dans A doit inclure la version minimale requise de B
