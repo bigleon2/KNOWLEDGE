@@ -43,7 +43,7 @@
 | GEN-PLAN | PROMPT-MAITRE-GEN-PLAN-v3.43.0.md (la plus récente) | — |
 | CORRECT-WORK | PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md (la plus récente) | — |
 | CLONE-CHAT | PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md (la plus récente) | — |
-| REFACTOR-GUARD | PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md (la plus récente) | — |
+| REFACTOR-GUARD | PROMPT-MAITRE-REFACTOR-GUARD-v1.8.2.md (la plus récente) | — |
 
 Socle : `PROMPT-MAITRE-SHARED.md` v1.7.40 (lire en premier). Installateur : `PROMPT-MAITRE-INSTALL-ECOSYSTEME.md` v1.10.0 — **source d'installation UNIQUE** (fusion v1.1.0 : `INSTALL-ECOSYSTEME.md` supprimé, miroir `skills/_prompts-maitres/` supprimé, décision d'architecture v2.0 exécutée).
 

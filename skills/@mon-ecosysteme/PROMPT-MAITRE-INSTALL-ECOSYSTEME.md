@@ -118,9 +118,9 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
 | gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.46.0.md` | gen-plan v3.46.0 | 3 |
-| correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.12.0.md` | correct-work v2.12.0 | 4 |
+| correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.12.1.md` | correct-work v2.12.0 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md` | clone-chat v2.0.2 | 5 |
-| refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.1.md` | refactor-guard v1.8.1 | 6 |
+| refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.2.md` | refactor-guard v1.8.1 | 6 |
 refactor-guard (4e famille — décision D009, bootstrap v1.7.0) : installé à l'étape 6 depuis le pipeline v1.7.0 (fin de l'exclusion « hors pipeline 3-5 » de la décision d'origine — le PM porte son §5 d'installation standard) ; l'instantané est tenu à jour au même titre.
 
 ### Fichiers de socle indispensables (corpus, archive, outillage, registre)

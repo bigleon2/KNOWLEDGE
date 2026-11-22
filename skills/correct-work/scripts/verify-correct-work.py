@@ -29,11 +29,11 @@ import sys
 
 SKILLS_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SKILL_PATH = os.path.join(SKILLS_ROOT, "correct-work", "SKILL.md")
-PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.12.0.md")
+PM_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-CORRECT-WORK-v2.12.1.md")
 SHARED_PATH = os.path.join(SKILLS_ROOT, "@mon-ecosysteme", "PROMPT-MAITRE-SHARED.md")
 KB_PATH = os.path.join(SKILLS_ROOT, "KNOWLEDGE.md")
 
-EXPECTED_VERSION = "2.12.0"
+EXPECTED_VERSION = "2.12.1"  # KO-L004 Task 113 — addition pure triptyque
 EXPECTED_LINES_MIN = 200
 EXPECTED_LINES_MAX = 520
 EXPECTED_MODES = {"PROJET", "CIBLE", "DIRECT"}
