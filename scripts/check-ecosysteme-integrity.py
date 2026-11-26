@@ -98,6 +98,7 @@ ECO_SKILLS = {
     "resource-monitor": "1.1.1",
     "version-management": "1.3.0",  # re-curation Task 79 G2 (2026-11-08) : 46,1→25,2 Kio, 7 blocs R4 references/ — version inchangée (contrats intacts)
     "skill-finder-cn": "1.0.1",  # Task 23 : fallback §1.16 inscrit au registre
+    "add-template-pdf": "1.0.0",  # KO-L004 (Task 12, 2026-11-26, web-f68de5ac — directive 1a218db7095e21f9 : création du skill — déclencheur verbatim « add-template-pdf (<nom du template>) », installation templates au skill pdf + inscription registre écosystème ; test réel slate, idempotence NO-OP)
     # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
     "autonomous-agent": "1.2.2",
     "correct-py": "1.2.0",
