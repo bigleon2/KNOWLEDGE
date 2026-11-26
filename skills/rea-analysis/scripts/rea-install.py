@@ -16,7 +16,7 @@ présent — git checkout détaché, arbre propre exigé).
 Codes retour : 0 = kit opérationnel · 1 = échec d'étape (message) ·
 2 = état incohérent (arbre sale / CLI cassée après build).
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.45)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

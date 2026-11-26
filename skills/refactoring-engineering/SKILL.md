@@ -33,7 +33,7 @@ read_when:
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
-## §0 — Contexte Système (SHARED v1.7.45)
+## §0 — Contexte Système (SHARED v1.7.46)
 
 > Écosystème Knowledge : {{SKILLS_ROOT}}=skills/ | {{KB_PATH}}=skills/KNOWLEDGE.md | {{KB_ENABLED}}=true | {{PROFILE_DEFAULT}}=NORMAL
 > Conventions : kebab-case (dossiers/fichiers) | semver (versions) | #token (tags) | {{VARIABLE}} (variables) | @mon-ecosysteme/ (PMs) | @historique/ (archive documentaire des versions — R4 git mv byte-identité, R2 jamais éditer, jamais source d'installation KO-L003)
@@ -111,7 +111,7 @@ Kebab-case ; semver strict (PATCH = recalibrage, MINOR = nouvelle capacité, MAJ
 ## §7 — RÉFÉRENCES
 - `references/fondements-academiques.md` — sources vérifiées (behavior-preserving, préparatoire, golden master, migrations progressives, fitness functions).
 - SHARED §7 (PROMPT-MAITRE-SHARED.md, corpus) — source de vérité des disciplines.
-- gen-plan v3.47.0 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
+- gen-plan v3.48.0 (SKILL.md) §1.6 bloc n°55 — orchestration E4/E7/E9-E14.
 - correct-work v2.7.0 (SKILL.md) §1.2/§10 — modes de vérification déclarés.
 - `scripts/refactoring-test-graph.py` — bras mécanique de l'évaluateur indépendant.
 

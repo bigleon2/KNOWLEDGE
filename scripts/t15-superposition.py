@@ -24,7 +24,7 @@ relics périmés d'image sandbox, l'état du push final Task 13 est la référen
 Sortie : rapport JSON tool-results/t15-superposition-rapport.json + résumé stdout.
 Codes retour : 0 = OK · 1 = garde d'entrée violée (clone HEAD inattendu).
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.45)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

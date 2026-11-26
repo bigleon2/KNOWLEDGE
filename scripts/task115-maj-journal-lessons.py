@@ -27,7 +27,7 @@ Idempotence ×2 : le second passage ne modifie RIEN (mutateurs conditionnés sur
 l'état courant). Les deux arbres (hôte + dépôt) sont écrits à l'identité byte.
 Codes retour : 0 = OK (mutations appliquées ou déjà propres) · 1 = écart inattendu.
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.45)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

@@ -10,7 +10,7 @@ Séquence (précédent Task 112 G16 « post-dédup PM v3.45.0 ») :
 3. Idempotent : re-exécuter = 0 changement. Stdlib.
 Codes retour : 0 = PASS, 1 = échec, 2 = selftest.
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.45)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

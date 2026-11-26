@@ -10,7 +10,7 @@ F+P PASS + CW --bloc suite PASS 5/5) · PUSH (clé du tour, KO-L009).
 Protocole clone-chat v2.0.2 (7+1 étapes) : scellage 8 checks S1-S8, 0 secret.
 Codes retour : 0 = succès, 1 = échec.
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.45)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
