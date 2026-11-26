@@ -34,6 +34,11 @@ RETRAITS_SANCTIONNES = {
     # Task 78 : PM GEN-PLAN v3.40.0 DÉPLACÉ git mv vers
     # skills/@historique/prompts-maitres/gen-plan/ — byte-identité vérifiée
     # ci-dessous (garde anti-perte ; SHA 8fa129f99892…).
+    # cascade gen-plan v3.48.0 (Task 11, session web-f68de5ac 2026-11-26 — port règle
+    # FAIL-CLOSE §1.18, directive trace 1a218bf09bb0cfd1) — re-scellement Task 11 :
+    # PM GEN-PLAN v3.47.0 DÉPLACÉ vers skills/@historique/prompts-maitres/gen-plan/
+    # — byte-identité vérifiée par la garde ci-dessous (SHA e21f868c4d485472…).
+    "PROMPT-MAITRE-GEN-PLAN-v3.47.0.md",
     "PROMPT-MAITRE-GEN-PLAN-v3.42.0.md",  # cascade gen-plan v3.43.0 (Task 92 — leçon L011 → règle KO-L011 adaptation autonome erreurs runtime SSE/JSON, directive 1a1de66691f9c2d5)
     "PROMPT-MAITRE-GEN-PLAN-v3.41.0.md",  # cascade gen-plan v3.42.0 (Task 84 G3 — inscription socle n°56)
     "PROMPT-MAITRE-GEN-PLAN-v3.40.0.md",

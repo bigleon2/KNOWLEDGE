@@ -1,0 +1,206 @@
+{
+  "meta": {
+    "name": "blue-tech",
+    "version": "1.0.0",
+    "standard": "blue-tech v1",
+    "description": "Modèle par défaut de l'écosystème KNOWLEDGE pour documents techniques A4 — design « tech sombre » dérivé du design du PDF progressive-disclosure-optimise.pdf (palette, structure, polices, fonds, composants — tout sauf le contenu rédactionnel).",
+    "source": {
+      "type": "pdf",
+      "file": "download/progressive-disclosure-optimise.pdf",
+      "analysis": "98 sélecteurs CSS, 2 familles de polices, 12 blocs de code, structure cover→toc→parts→ending",
+      "extracted": "2026-11-08"
+    },
+    "language": "fr",
+    "output_formats": ["html", "pdf"],
+    "page_format": "A4 portrait",
+    "created_by": "gen-plan v3.41.0 (Task 79/80, session web-f68de5ac)",
+    "license": "usage propriétaire écosystème KNOWLEDGE"
+  },
+  "page": {
+    "size": "210mm 297mm",
+    "orientation": "portrait",
+    "margin": "0",
+    "padding": "50px 58px",
+    "background": "#0f172a",
+    "background_effects": {
+      "grid": "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+      "grid_size": "44px 44px",
+      "glows": [
+        { "color": "rgba(34,211,238,0.10)", "position": "haut-droit", "shape": "radial, 500px" },
+        { "color": "rgba(124,58,237,0.12)", "position": "bas-gauche", "shape": "radial, 520px" }
+      ]
+    },
+    "footer": {
+      "enabled": true,
+      "method": "tampon pypdf + overlay reportlab (post-rendu)",
+      "title_left": "{{document_title}}",
+      "number_right": true,
+      "font": "Helvetica",
+      "size_pt": 7.5,
+      "color": "#94a3b8",
+      "numbering": { "page_2": "i", "pages_3_to_n_minus_1": "arabe croissant (page_pdf - 2)", "exclusions": ["page 1 (couverture)", "page N (finale)"] }
+    }
+  },
+  "design_tokens": {
+    "colors": [
+      { "name": "dark", "hex": "#0f172a", "role": "fond principal (couverture, intercalaires, code, fin)" },
+      { "name": "dark-2", "hex": "#1e293b", "role": "panneaux/cartes sur fond sombre" },
+      { "name": "surface-3", "hex": "#16213b", "role": "surface imbriquée niveau 3" },
+      { "name": "surface-4", "hex": "#1f2a44", "role": "surface imbriquée niveau 4" },
+      { "name": "surface-5", "hex": "#26334d", "role": "surface imbriquée niveau 5 / bordures fortes" },
+      { "name": "cyan", "hex": "#22d3ee", "role": "accent principal (kickers, hashes, liens visuels)" },
+      { "name": "cyan-deep", "hex": "#0891b2", "role": "accent principal appuyé (bordures, barres)" },
+      { "name": "cyan-light", "hex": "#7dd3fc", "role": "accent principal clair (surlignage code)" },
+      { "name": "violet", "hex": "#c4b5fd", "role": "accent secondaire (numéros, tags)" },
+      { "name": "violet-deep", "hex": "#7c3aed", "role": "accent secondaire appuyé (glows)" },
+      { "name": "green", "hex": "#34d399", "role": "accent succès (checklist validée)" },
+      { "name": "text", "hex": "#e2e8f0", "role": "texte principal" },
+      { "name": "text-soft", "hex": "#cbd5e1", "role": "texte secondaire" },
+      { "name": "text-muted", "hex": "#94a3b8", "role": "texte tertiaire / pieds de page" },
+      { "name": "text-dim", "hex": "#64748b", "role": "légendes discrètes" }
+    ],
+    "borders": {
+      "subtile": "1px solid rgba(255,255,255,0.08)",
+      "normale": "1px solid rgba(255,255,255,0.10)",
+      "accentuée": "1px solid rgba(255,255,255,0.18)",
+      "cyan": "1px solid rgba(34,211,238,0.25)",
+      "violet": "1px solid rgba(124,58,237,0.55)"
+    },
+    "fonds_transparents": {
+      "panneau": "rgba(255,255,255,0.035)",
+      "surbrillance": "rgba(34,211,238,0.08)",
+      "violet_doux": "rgba(124,58,237,0.12)",
+      "vert_doux": "rgba(16,185,129,0.12)"
+    },
+    "radii": { "carte": "10px", "bloc_code": "8px", "puce": "999px" }
+  },
+  "typography": {
+    "fonts": [
+      { "family": "Inter", "fallback": "'Liberation Sans', sans-serif", "weights": [300, 400, 500, 600, 700, 900], "usage": "titres et corps", "chargement": "Google Fonts css2 (preconnect)" },
+      { "family": "JetBrains Mono", "fallback": "'Liberation Mono', monospace", "weights": [400, 500, 700], "usage": "kickers, labels, code, numéros, tags" }
+    ],
+    "scale": [
+      { "token": "cover-title", "size": "62px", "weight": 900, "line_height": 1.08, "usage": "titre de couverture (accent cyan sur mot clé)" },
+      { "token": "cover-subtitle", "size": "20px", "weight": 300, "line_height": 1.4, "usage": "sous-titre de couverture" },
+      { "token": "part-divider-num", "size": "58px", "weight": 900, "usage": "numéro de partie (intercalaire)" },
+      { "token": "toc-title", "size": "30px", "weight": 900, "usage": "titre de sommaire" },
+      { "token": "sec-title", "size": "25px", "weight": 800, "usage": "titre de section" },
+      { "token": "sub-title", "size": "17px", "weight": 700, "usage": "sous-titre de bloc" },
+      { "token": "body", "size": "15px", "weight": 400, "line_height": 1.65, "usage": "corps de texte" },
+      { "token": "cover-kicker", "size": "12.5px", "mono": true, "letter_spacing": "4px", "transform": "uppercase", "color": "#22d3ee", "usage": "kicker de couverture" },
+      { "token": "kicker", "size": "11px", "mono": true, "letter_spacing": "2-3px", "transform": "uppercase", "usage": "kickers de section" },
+      { "token": "code", "size": "12.5px", "mono": true, "line_height": 1.6, "usage": "blocs de code" }
+    ]
+  },
+  "components": {
+    "cover": {
+      "purpose": "couverture pleine page, fond #0f172a, grille + glows",
+      "fields": ["kicker", "titre (avec accent cyan)", "sous_titre", "résumé (max-width 62%)", "tags[]", "pied de couverture (méta mono)"],
+      "css_contract": ["fond var(--dark)", "titre 62px/900", "kicker mono cyan espacé", "tags en puces bordées"]
+    },
+    "toc": {
+      "purpose": "sommaire sur UNE page, fond sombre",
+      "fields": ["kicker", "titre", "parties[] {partie, entrées[] {numéro, label, page}}", "repère de lecture (callout court)"],
+      "css_contract": ["toc-line : num mono cyan · label · leader points · numéro de page", "une seule page — resserrage si dépassement"]
+    },
+    "part-divider": {
+      "purpose": "intercalaire sombre de partie (rupture de page)",
+      "fields": ["numéro", "titre", "chapo", "liste d'items (pd-item : num/titre/texte)"],
+      "css_contract": ["page pleine #0f172a", "numéro 58px/900 violet", "glow cyan/violet"]
+    },
+    "chapter-header": {
+      "purpose": "en-tête de section numérotée",
+      "fields": ["hash (N.N mono cyan)", "kicker", "titre"],
+      "css_contract": ["hash mono cyan", "titre 25px/800", "filet bas fin"]
+    },
+    "body-text": { "purpose": "paragraphe courant", "fields": ["texte"], "css_contract": ["15px/1.65 #cbd5e1", "mots-clés en <strong> #e2e8f0"] },
+    "inline-code": { "purpose": "code en ligne", "fields": ["code"], "css_contract": ["JetBrains Mono", "fond rgba(255,255,255,0.06)", "texte #7dd3fc"] },
+    "codeblock": {
+      "purpose": "bloc de code stylé, sécable entre pages",
+      "fields": ["fichier", "langage", "lignes[]"],
+      "css_contract": ["head sombre (#1e293b) avec fichier + badge langage", "corps #0f172a à bordure cyan douce", "chaque ligne = <pre> individuel dans .breakable (overflow visible)", "coloration syntaxique claire sur fond sombre"]
+    },
+    "callout": {
+      "purpose": "encadré d'accent (info, repère, attention)",
+      "fields": ["tag", "texte"],
+      "css_contract": ["bordure gauche 3px cyan ou violet", "fond rgba(34,211,238,0.08) ou rgba(124,58,237,0.12)", "tag mono uppercase"]
+    },
+    "stat-card": {
+      "purpose": "carte de statistique (rangée de 3)",
+      "fields": ["valeur", "libellé"],
+      "css_contract": ["carte #1e293b bordée subtile", "valeur 26px/900 cyan ou violet", "libellé mono 10px muted"]
+    },
+    "checklist": {
+      "purpose": "liste à cocher",
+      "fields": ["items[]"],
+      "css_contract": ["puce carrée bordée cyan", "coche verte #34d399"]
+    },
+    "diagram": {
+      "purpose": "schéma de flux (horizontal ou vertical) et étapes numérotées",
+      "fields": ["titre", "noeuds[] {tag, titre, description}", "étapes[] {numéro, titre, description}", "flèches[] {label}"],
+      "css_contract": ["nœuds cartes #1e293b bordées", "flèches cyan avec label mono", "étapes : numéro dans pastille violette"]
+    },
+    "table": {
+      "purpose": "tableau récapitulatif",
+      "fields": ["en-têtes[]", "lignes[][]"],
+      "css_contract": ["en-têtes fond #1e293b mono uppercase cyan", "lignes séparées rgba(255,255,255,0.08)", "zébrage rgba(255,255,255,0.02)"]
+    },
+    "lexicon": {
+      "purpose": "entrée de lexique/glossaire",
+      "fields": ["numéro", "terme", "définition", "note"],
+      "css_contract": ["terme en <strong> cyan clair", "numéro mono violet", "note discrète muted"]
+    },
+    "qa-bubble": {
+      "purpose": "question/restitution (transcription d'assistant)",
+      "fields": ["tag", "question", "réponse"],
+      "css_contract": ["bulle bordée violette douce", "tag mono violet"]
+    },
+    "steps": {
+      "purpose": "liste ordonnée de procédure",
+      "fields": ["étapes[] {titre, description}"],
+      "css_contract": ["numéro mono cyan", "titre 700", "description muted"]
+    },
+    "ending": {
+      "purpose": "page finale sombre de clôture",
+      "fields": ["marque", "titre", "texte", "stats[] {valeur, libellé}", "pied"],
+      "css_contract": ["pleine page #0f172a", "glow double cyan/violet", "stats en rangée mono"]
+    }
+  },
+  "sections": {
+    "order": ["cover", "toc", "part-divider", "main-content", "part-divider", "main-content", "ending"],
+    "rules": [
+      "cover toujours page 1 ; toc toujours page 2 (une seule page)",
+      "chaque partie = part-divider (rupture de page) + main-content (sections N.N)",
+      "ending toujours dernière page, sans pied de page",
+      "les sections main-content utilisent un padding-top: 0 après un part-divider"
+    ]
+  },
+  "fields": {
+    "document": ["{{document_title}}", "{{document_subtitle}}", "{{cover_kicker}}", "{{cover_summary}}", "{{cover_tags}}", "{{cover_footer_meta}}", "{{date}}", "{{version}}"],
+    "sommaire": ["{{toc_parts}}", "{{toc_entries}}"],
+    "contenu": ["{{sections}}", "{{code_blocks}}", "{{callouts}}", "{{stats}}", "{{diagrams}}", "{{tables}}", "{{lexicon_entries}}", "{{qa_bubbles}}"],
+    "fin": ["{{ending_title}}", "{{ending_text}}", "{{ending_stats}}"]
+  },
+  "validations": [
+    { "id": "V1", "rule": "Palette exclusive : aucun fond clair (#f8fafc, #ffffff, #eef7fb, #f3effc, #f0f9ff, #ecfeff, #ecfdf5, #e8eef6) dans le CSS", "severity": "S1", "method": "grep CSS" },
+    { "id": "V2", "rule": "Polices déclarées : Inter + JetBrains Mono (fallbacks Liberation) avec preconnect Google Fonts", "severity": "S2", "method": "grep <head>" },
+    { "id": "V3", "rule": "Géométrie @page 210mm 297mm", "severity": "S1", "method": "grep @page" },
+    { "id": "V4", "rule": "Ordre des sections conforme (cover → toc → parts → ending)", "severity": "S1", "method": "validate_doc.py structure" },
+    { "id": "V5", "rule": "Sommaire sur une seule page et numéros conformes aux pages réelles", "severity": "S2", "method": "rendu 2 passes + extraction PyMuPDF" },
+    { "id": "V6", "rule": "Pieds de page tamponnés p.2=i, p.3..N-1 numérotés, couverture et page finale propres", "severity": "S2", "method": "stamper_pieds_page.py + fitz" },
+    { "id": "V7", "rule": "Blocs de code sécables sans déborder (breakable, overflow visible, lignes individuelles)", "severity": "S2", "method": "inspection + poster_validate" },
+    { "id": "V8", "rule": "Contraste texte/fond : textes clairs (#e2e8f0/#cbd5e1/#94a3b8) sur fonds sombres uniquement", "severity": "S1", "method": "validate_doc.py couleurs" },
+    { "id": "V9", "rule": "Équilibre des <div> (structure HTML valide)", "severity": "S1", "method": "comptage <div>/</div>" },
+    { "id": "V10", "rule": "QA mécanique du PDF rendu PASS", "severity": "S1", "method": "pdf_qa.py" }
+  ],
+  "generation": {
+    "pipeline": [
+      "1. instancier le HTML depuis ce template (composants + fields) — fontes Google Fonts preconnect",
+      "2. poster_validate.py check-html (overlaps, lisibilité)",
+      "3. rendu Paged.js : node skills/pdf/scripts/html2pdf-next.js (sommaire : rendu 2 passes — 1er pass pour extraire les numéros de pages réels, 2e pass pour les injecter au sommaire)",
+      "4. tampon pieds de page : python scripts/stamper_pieds_page.py (pypdf + reportlab)",
+      "5. arbitres : pdf_qa.py + validate_doc.py + inspection visuelle des pages (pdftoppm 60dpi)"
+    ],
+    "dependencies": { "pagedjs": "rendu paginé (symlink node_modules)", "PyMuPDF": "extraction TOC/pieds", "pypdf+reportlab": "tampon pieds", "Chromium headless": "moteur de rendu" }
+  }
+}

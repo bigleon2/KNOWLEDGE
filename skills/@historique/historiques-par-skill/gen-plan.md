@@ -1,8 +1,8 @@
 # Historique par skill — gen-plan
 
 > **Version** : 1.0.0 — **Date** : 2026-10-11 (Task 17-B, session web-b93f42fa — directive propriétaire « un historique par skill »)
-> **Version vivante (corpus)** : v3.43.0 — `skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.43.0.md` (sa table §7 fait foi)
-> **Versions archivées** : 47 PMs (v3.6.1 → v3.42.0 — comptage mécanique Task 92) dans `prompts-maitres/gen-plan/` — sceaux SHA-256 au README §5 (v3.36.0 : SHA bab8777c… ; sceaux v3.35.1/v3.35.2 ajoutés au passage — lag hérité résorbé)
+> **Version vivante (corpus)** : v3.48.0 — `skills/@mon-ecosysteme/PROMPT-MAITRE-GEN-PLAN-v3.48.0.md` (sa table §7 fait foi — recalibrage Task 11, 2026-11-26 : précédent stale v3.43.0 résorbé KO-L003)
+> **Versions archivées** : 52 PMs (v3.6.1 → v3.47.0 — comptage mécanique Task 11) dans `prompts-maitres/gen-plan/` — sceaux SHA-256 au README §5 (v3.36.0 : SHA bab8777c… ; sceaux v3.35.1/v3.35.2 ajoutés au passage — lag hérité résorbé)
 > **Provenance** : tables migrées verbatim de `historique-versions-prompts-maitres.md` §2 (fichier retiré après migration — R4 une information, une source ; Task 17-B)
 
 ## Famille GEN-PLAN — 51 versions (skill : gen-plan)

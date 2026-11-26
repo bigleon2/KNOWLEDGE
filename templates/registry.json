@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "description": "Registre des modèles de documents de l'écosystème KNOWLEDGE — le modèle « default » sert de gabarit par défaut aux générations/automatisations.",
+  "updated": "2026-11-08",
+  "default": "blue-tech",
+  "templates": [
+    {
+      "name": "blue-tech",
+      "version": "1.0.0",
+      "status": "default",
+      "path": "templates/blue-tech/blue-tech.template.json",
+      "documentation": "templates/blue-tech/README.md",
+      "standard": "blue-tech v1",
+      "page_format": "A4 portrait",
+      "source_design": "download/progressive-disclosure-optimise.pdf (session web-f68de5ac, Task 79)",
+      "created": "2026-11-08",
+      "validations": 10,
+      "components": 16
+    }
+  ]
+}
