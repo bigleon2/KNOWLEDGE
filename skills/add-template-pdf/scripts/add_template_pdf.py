@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""add-template-pdf — exécutant canonique du skill homonyme (v1.0.0).
+"""add-template-pdf — exécutant canonique du skill homonyme (v1.0.1).
 
 Ajoute un template PDF aux skills PDF : création du squelette 9 blocs
 (conforme au format blue-tech), installation au skill `pdf`
@@ -8,6 +8,15 @@ Ajoute un template PDF aux skills PDF : création du squelette 9 blocs
 
 Idempotent ×2 (re-exécution = NO-OP). Stdlib uniquement. Portabilité L008 :
 chemins dérivés de __file__ avec repli documenté.
+
+v1.0.1 (Task 13, 2026-11-26, web-f68de5ac — correctif journal-fails #15) :
+valider_template supporte les DEUX formats de template (squelette : colors dict /
+page width_mm / typography.body ; riche blue-tech : colors liste de tokens nommés /
+page « 210mm 297mm » / typography.fonts / sections « part-divider ») ;
+réinstallation registre généralisée (tout template inscrit non installé — README
+copié depuis la source de vérité) ; idempotence registre par CONTENU (entrée
+existante + contenu identique → NO-OP, « created » n'est plus comparé) ;
+parité profil resynchronisée même sur verdict NO-OP.
 """
 import argparse
 import hashlib
@@ -118,6 +127,7 @@ def readme(nom: str, palette: dict) -> str:
 
 
 def valider_template(t: dict, nom: str) -> list:
+    """v1.0.1 : tolérant aux deux formats — squelette (dict) ET riche (blue-tech)."""
     errs = []
     if list(t.keys()) != BLOCS and set(t.keys()) != set(BLOCS):
         errs.append(f"blocs {list(t.keys())} ≠ 9 blocs standard")
@@ -127,15 +137,32 @@ def valider_template(t: dict, nom: str) -> list:
         errs.append("meta.version non-semver")
     cols = t.get("design_tokens", {}).get("colors", {})
     claires = {"#fff", "#ffffff", "#f8fafc", "#f1f5f9", "#e2e8f0"}
-    if any(v.lower() in claires for k, v in cols.items() if k in ("background", "surface")):
-        errs.append("fond clair détecté (palette sombre exigée)")
-    if "background" not in cols:
-        errs.append("design_tokens.colors.background absent")
-    if not t.get("typography", {}).get("body"):
-        errs.append("typography.body absente")
-    if t.get("page", {}).get("width_mm") != 210 or t.get("page", {}).get("height_mm") != 297:
+    if isinstance(cols, dict):
+        # format squelette : {background, surface, accent, ...}
+        if any(v.lower() in claires for k, v in cols.items() if k in ("background", "surface")):
+            errs.append("fond clair détecté (palette sombre exigée)")
+        if "background" not in cols:
+            errs.append("design_tokens.colors.background absent")
+    elif isinstance(cols, list):
+        # format riche blue-tech : liste de tokens nommés {name, hex, role}
+        fonds = [c for c in cols if isinstance(c, dict)
+                 and ("fond" in str(c.get("role", "")).lower()
+                      or str(c.get("name", "")).lower() in ("background", "fond", "dark"))]
+        if not fonds:
+            errs.append("design_tokens.colors : aucun token de fond déclaré")
+        elif any(str(c.get("hex", "")).lower() in claires for c in fonds):
+            errs.append("fond clair détecté (palette sombre exigée)")
+    else:
+        errs.append("design_tokens.colors : format non reconnu (dict ou liste attendus)")
+    if not (t.get("typography", {}).get("body") or t.get("typography", {}).get("fonts")):
+        errs.append("typography : ni body (squelette) ni fonts (riche) déclarés")
+    page = t.get("page", {})
+    a4_ok = (page.get("width_mm") == 210 and page.get("height_mm") == 297) or \
+        ("210mm" in str(page.get("size", "")) and "297mm" in str(page.get("size", "")))
+    if not a4_ok:
         errs.append("page ≠ A4 210×297")
-    if t.get("sections", {}).get("order", [])[:3] != ["cover", "toc", "part"]:
+    ordre = [str(o) for o in t.get("sections", {}).get("order", [])]
+    if len(ordre) < 3 or not all(o.startswith(p) for o, p in zip(ordre[:3], ["cover", "toc", "part"])):
         errs.append("ordre de sections non conforme")
     return errs
 
@@ -190,9 +217,17 @@ def main() -> int:
     dest_depot = depot / "skills" / "pdf" / "templates" / nom
     tpl_path_depot = dest_depot / f"{nom}.template.json"
 
-    if nom in entrees and not dest_depot.exists() and nom == "blue-tech":
-        # réinstallation depuis la source de vérité du registre
-        src = depot / entrees[nom]["path"]
+    src_readme = None
+    if nom in entrees:
+        p_src = depot / str(entrees[nom].get("path", ""))
+        if p_src.is_file():
+            cand = p_src.parent / "README.md"
+            if cand.is_file():
+                src_readme = cand
+    if nom in entrees and not tpl_path_depot.exists() and src_readme is not None:
+        # réinstallation depuis la source de vérité du registre (v1.0.1 : tout
+        # template inscrit et non installé — ex. blue-tech depuis templates/<nom>/)
+        src = depot / str(entrees[nom]["path"])
         rapport["actions"].append(f"réinstallation registre → {src}")
         if not args.dry_run:
             dest_depot.mkdir(parents=True, exist_ok=True)
@@ -210,7 +245,9 @@ def main() -> int:
             return 1
         tpl_bytes = json.dumps(tpl, ensure_ascii=False, indent=2).encode("utf-8") + b"\n"
 
-    # idempotence : fichiers identiques + entrée registre identique → NO-OP
+    # idempotence (v1.0.1) : fichiers identiques + entrée registre cohérente par
+    # CONTENU → NO-OP (« created » n'est plus comparé — une entrée existante dont
+    # le path désigne un fichier de même contenu est conservée, R4)
     no_op = tpl_path_depot.exists() and sha256(tpl_path_depot) == hashlib.sha256(tpl_bytes).hexdigest()
     entree_attendue = {
         "name": nom, "version": "1.0.0", "status": "default" if args.default else "standard",
@@ -219,9 +256,46 @@ def main() -> int:
         "standard": f"{nom} v1", "page_format": "A4 portrait",
         "source": "add-template-pdf", "created": datetime.now().strftime("%Y-%m-%d"),
     }
-    entree_ok = nom in entrees and all(entrees[nom].get(k) == v for k, v in entree_attendue.items() if k in entrees[nom]) if nom in entrees else False
+    src_entree_ok = False
+    if nom in entrees and tpl_bytes:
+        p_src = depot / str(entrees[nom].get("path", ""))
+        try:
+            src_entree_ok = p_src.is_file() and sha256(p_src) == hashlib.sha256(tpl_bytes).hexdigest()
+        except OSError:
+            src_entree_ok = False
+    entree_ok = False
+    if nom in entrees:
+        entree_ok = src_entree_ok or all(
+            entrees[nom].get(k) == v for k, v in entree_attendue.items() if k in entrees[nom])
 
     if no_op and entree_ok:
+        # v1.0.1 : auto-réparation — README dépôt + parité profil, même sur NO-OP
+        resyncs = []
+        rd_depot = dest_depot / "README.md"
+        if src_readme is not None and (not rd_depot.exists() or sha256(rd_depot) != sha256(src_readme)):
+            shutil.copy2(src_readme, rd_depot)
+            resyncs.append("README dépôt resynchronisé (source de vérité)")
+        if profil:
+            dest_profil = profil / "skills" / "pdf" / "templates" / nom
+            tpl_profil = dest_profil / f"{nom}.template.json"
+            rd_profil = dest_profil / "README.md"
+            if (not tpl_profil.exists() or sha256(tpl_profil) != sha256(tpl_path_depot)
+                    or not rd_profil.exists() or sha256(rd_profil) != sha256(rd_depot)):
+                dest_profil.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(tpl_path_depot, tpl_profil)
+                shutil.copy2(rd_depot, rd_profil)
+                resyncs.append(f"parité profil resynchronisée : {dest_profil}")
+        if resyncs:
+            rapport["actions"] += resyncs
+            rapport["verdict"] = "PASS"
+            rapport["validations"].append("dépôt + registre déjà cohérents (idempotence) — " + " · ".join(resyncs))
+            if args.as_json:
+                print(json.dumps(rapport, ensure_ascii=False, indent=1))
+            else:
+                for a in rapport["actions"]:
+                    print("  •", a)
+                print("VERDICT : PASS —", rapport["validations"][-1])
+            return 0
         rapport["verdict"] = "NO-OP (déjà installé et inscrit — idempotence)"
         if args.as_json:
             print(json.dumps(rapport, ensure_ascii=False, indent=1))
@@ -231,9 +305,12 @@ def main() -> int:
 
     if args.dry_run:
         rapport["verdict"] = "DRY-RUN — aucune écriture"
+        action_registre = ("registre : NO-OP (entrée déjà cohérente par contenu — conservée)"
+                           if (nom in entrees and src_entree_ok)
+                           else f"inscrirait registre {reg_path} (status={entree_attendue['status']})")
         rapport["actions"] += [f"écrirait {tpl_path_depot}",
                                f"écrirait {dest_depot}/README.md",
-                               f"inscrirait registre {reg_path} (status={entree_attendue['status']})"]
+                               action_registre]
         if args.as_json:
             print(json.dumps(rapport, ensure_ascii=False, indent=1))
         else:
@@ -244,26 +321,34 @@ def main() -> int:
     dest_depot.mkdir(parents=True, exist_ok=True)
     tpl_path_depot.write_bytes(tpl_bytes)
     rapport["actions"].append(f"template écrit : {tpl_path_depot}")
-    (dest_depot / "README.md").write_text(readme(nom, palette), encoding="utf-8")
-    rapport["actions"].append("README écrit")
-
-    # registre
-    if nom in entrees:
-        if entrees[nom] != entree_attendue and not args.force:
-            diffs = {k: (entrees[nom].get(k), v) for k, v in entree_attendue.items() if entrees[nom].get(k) != v}
-            rapport["validations"].append(f"REFUS — entrée registre divergente {diffs} (relancez avec --force)")
-            rapport["verdict"] = "FAIL"
-            if args.as_json:
-                print(json.dumps(rapport, ensure_ascii=False, indent=1))
-            return 1
-        entrees[nom].update({k: v for k, v in entree_attendue.items() if k != "created"})
+    if src_readme is not None and str(src_readme) != str(dest_depot / "README.md"):
+        shutil.copy2(src_readme, dest_depot / "README.md")
+        rapport["actions"].append("README copié depuis la source de vérité du registre")
     else:
-        registre["templates"].append(entree_attendue)
-    if args.default:
-        registre["default"] = nom
-    registre["updated"] = datetime.now().strftime("%Y-%m-%d")
-    reg_path.write_text(json.dumps(registre, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    rapport["actions"].append(f"registre mis à jour : {reg_path} ({len(registre['templates'])} entrées)")
+        (dest_depot / "README.md").write_text(readme(nom, palette), encoding="utf-8")
+        rapport["actions"].append("README écrit")
+
+    # registre (v1.0.1 : entrée existante cohérente par contenu → NO-OP R4,
+    # jamais de réécriture silencieuse ; REFUS conservé pour divergence réelle)
+    if nom in entrees and src_entree_ok:
+        rapport["actions"].append("registre : entrée existante cohérente par contenu — NO-OP (conservée, R4)")
+    else:
+        if nom in entrees:
+            if entrees[nom] != entree_attendue and not args.force:
+                diffs = {k: (entrees[nom].get(k), v) for k, v in entree_attendue.items() if entrees[nom].get(k) != v}
+                rapport["validations"].append(f"REFUS — entrée registre divergente {diffs} (relancez avec --force)")
+                rapport["verdict"] = "FAIL"
+                if args.as_json:
+                    print(json.dumps(rapport, ensure_ascii=False, indent=1))
+                return 1
+            entrees[nom].update({k: v for k, v in entree_attendue.items() if k != "created"})
+        else:
+            registre["templates"].append(entree_attendue)
+        if args.default:
+            registre["default"] = nom
+        registre["updated"] = datetime.now().strftime("%Y-%m-%d")
+        reg_path.write_text(json.dumps(registre, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        rapport["actions"].append(f"registre mis à jour : {reg_path} ({len(registre['templates'])} entrées)")
 
     # installation au profil (skill pdf)
     if profil:

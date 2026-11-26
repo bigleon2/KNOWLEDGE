@@ -8,7 +8,13 @@
     "PROMPT-MAITRE-SHARED.md": "7d55cf1a4d279da4b0a194d925a757453db6a475d448918c86e2e7f0eef12b9d",
     "PROMPT-ULTRA-MAITRE-ORCHESTRATION.md": "3cf961bac757a9021d0fba881f7716fc7e67d31b3114f35a4dbfb25c4dc31203",
     "README.md": "3720348ebc9cfeebe6f6cc505465b1117e350a91a8385cbdeeacc89894d60221",
-    "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
+    "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7",
+    "piliers/scripts/certification-complete.py": "a580097ecf2d1735243cd45d895c09f39a3049327f6c2af1ee90a7d290e6d165",
+    "piliers/scripts/check-ecosysteme-integrity.py": "12da95c3ff5792ff42aa14498c344dd21dff08a7f2c5eba7a9bfcdce1292d254",
+    "piliers/scripts/install-ecosysteme-local.sh": "47322f0a5a2c596eea8447267d582b98aa791d647d50eecde991da11496d21db",
+    "piliers/skills/KNOWLEDGE.md": "625ec6e64d3cdb9d0e0bc8405f050cc387dd6b5e11c3566d1e7a88f3f3cf0aaa",
+    "piliers/skills/correct-work/SKILL.md": "ffe72b1738f73609a271119d28883218102dde51be72e309cc2b11d6626b3a65",
+    "piliers/skills/gen-plan/SKILL.md": "960e453124b0593c50fad7d2fefba7b056aab49eba571f1b5be5e154da0148a2"
   },
   "corpus": {
     "PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md": "3be1ce9f95f83bdf9caca20115403a21548834ae14f9912090f22cfb29235d77",
@@ -22,12 +28,12 @@
     "SYNC-CONTEXT.md": "4eacd593907b31e29cd4d2187f6ab45aaf9bd4db9a8071c33a4d3da40b2538c7"
   },
   "download": {
-    "mon-ecosysteme_archive.zip": "eb09304c7ccbc915618f021ad4e1fa6cb57aa1fbe4f0946400dd2a93396b360f"
+    "mon-ecosysteme_archive.zip": "b4be8fab898ccf68bdda2f69d74a04799f8773850b76f19622fca3b78f35b9c4"
   },
   "skills": {
     "add-template-pdf": {
-      "sha256": "b20239f2d36d4feaf1c2f6aa128fe5b07436f11dde5a2d4806bb50f44d785fb6",
-      "version": "1.0.0"
+      "sha256": "9b8ebf648e71adc07cabeda3b631a1aab5765e8c7abd3ce07dba56a436e82c67",
+      "version": "1.0.1"
     },
     "agent-creator": {
       "sha256": "9738091932d0fe5ce4129ca7c38ae4f427c3313ed4355127fa333975b553ef37",
