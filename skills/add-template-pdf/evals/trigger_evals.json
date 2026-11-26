@@ -1,0 +1,11 @@
+[
+  {"query": "add-template-pdf (slate)", "should_trigger": true},
+  {"query": "add-template-pdf (blue-tech)", "should_trigger": true},
+  {"query": "add-template-pdf affiche-noel", "should_trigger": true},
+  {"query": "ajoute un template PDF nommé rapport-annual", "should_trigger": true},
+  {"query": "génère un template PDF pour mes rapports", "should_trigger": true},
+  {"query": "bonjour", "should_trigger": false},
+  {"query": "clone cette discussion", "should_trigger": false},
+  {"query": "extrait le texte de ce PDF", "should_trigger": false},
+  {"query": "optimise la mise en page de ce document", "should_trigger": false}
+]

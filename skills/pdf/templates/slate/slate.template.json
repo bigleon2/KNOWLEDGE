@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "name": "slate",
+    "version": "1.0.0",
+    "standard": "slate v1",
+    "page_format": "A4 portrait",
+    "language": "fr",
+    "source": "add-template-pdf (skill écosystème)",
+    "created": "2026-11-26"
+  },
+  "page": {
+    "format": "A4",
+    "width_mm": 210,
+    "height_mm": 297,
+    "background": "#111827",
+    "margins_mm": {
+      "top": 0,
+      "right": 0,
+      "bottom": 48,
+      "left": 0
+    },
+    "footer": {
+      "style": "tamponné",
+      "reserve_basse_px": 48
+    }
+  },
+  "design_tokens": {
+    "colors": {
+      "background": "#111827",
+      "surface": "#1f2937",
+      "accent": "#38bdf8",
+      "accent-2": "#a5b4fc",
+      "text": "#f8fafc",
+      "muted": "#94a3b8"
+    },
+    "rule": "palette sombre exclusive — aucun fond clair dans le rendu"
+  },
+  "typography": {
+    "body": {
+      "family": "Inter",
+      "weights": [
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ]
+    },
+    "code": {
+      "family": "JetBrains Mono",
+      "weights": [
+        400,
+        700
+      ]
+    }
+  },
+  "components": [
+    {
+      "id": "cover",
+      "purpose": "composant cover du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "toc",
+      "purpose": "composant toc du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "part-divider",
+      "purpose": "composant part-divider du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "main-content",
+      "purpose": "composant main-content du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "codeblock",
+      "purpose": "composant codeblock du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "callout",
+      "purpose": "composant callout du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "stat-card",
+      "purpose": "composant stat-card du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "checklist",
+      "purpose": "composant checklist du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "table",
+      "purpose": "composant table du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    },
+    {
+      "id": "ending",
+      "purpose": "composant ending du standard blue-tech",
+      "fields": [],
+      "css_contract": "classes .{c} — tokens de design_tokens uniquement"
+    }
+  ],
+  "sections": {
+    "order": [
+      "cover",
+      "toc",
+      "part",
+      "ending"
+    ],
+    "breaks": "page-break avant chaque part-divider et ending"
+  },
+  "fields": [
+    "{{document_title}}",
+    "{{document_subtitle}}",
+    "{{date}}",
+    "{{sections}}"
+  ],
+  "validations": [
+    {
+      "id": "V1",
+      "rule": "JSON parseable — 9 blocs présents",
+      "severity": "S1",
+      "method": "add_template_pdf.py"
+    },
+    {
+      "id": "V2",
+      "rule": "palette sombre exclusive (aucun fond clair)",
+      "severity": "S1",
+      "method": "design_tokens.colors"
+    },
+    {
+      "id": "V3",
+      "rule": "polices déclarées (body + code)",
+      "severity": "S2",
+      "method": "typography"
+    },
+    {
+      "id": "V4",
+      "rule": "@page A4 210mm×297mm",
+      "severity": "S1",
+      "method": "page"
+    },
+    {
+      "id": "V5",
+      "rule": "ordre des sections conforme (cover → toc → parts → ending)",
+      "severity": "S1",
+      "method": "sections.order"
+    },
+    {
+      "id": "V6",
+      "rule": "champs {{...}} instanciables — aucun placeholder résiduel au rendu",
+      "severity": "S2",
+      "method": "validate_doc.py"
+    }
+  ],
+  "generation": {
+    "pipeline": [
+      "validate",
+      "rendu Paged.js (2 passes si sommaire paginé)",
+      "tampon pieds de page",
+      "arbitres (pdf_qa + validate_doc)",
+      "inspection visuelle (pdftoppm 60dpi)"
+    ],
+    "dependencies": [
+      "node+pagedjs",
+      "PyMuPDF",
+      "pypdf",
+      "reportlab",
+      "Chromium"
+    ]
+  }
+}

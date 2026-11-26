@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "Registre des modèles de documents de l'écosystème KNOWLEDGE — le modèle « default » sert de gabarit par défaut aux générations/automatisations.",
-  "updated": "2026-11-08",
+  "updated": "2026-11-26",
   "default": "blue-tech",
   "templates": [
     {
@@ -16,6 +16,17 @@
       "created": "2026-11-08",
       "validations": 10,
       "components": 16
+    },
+    {
+      "name": "slate",
+      "version": "1.0.0",
+      "status": "standard",
+      "path": "skills/pdf/templates/slate/slate.template.json",
+      "documentation": "skills/pdf/templates/slate/README.md",
+      "standard": "slate v1",
+      "page_format": "A4 portrait",
+      "source": "add-template-pdf",
+      "created": "2026-11-26"
     }
   ]
 }

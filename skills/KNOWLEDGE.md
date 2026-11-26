@@ -55,6 +55,15 @@
 - **Note v2.0 (corrige-ecosysteme)** : conventions YAML (SHARED §1.3 → §2), format SKILL.md (SHARED §5 → §3), règle impérative Contexte Système (§3.0) — Contexte Système appliqué (Architecture v2.0).
 - **Statut** : stable
 
+## add-template-pdf v1.0.0
+
+- **Category** : ecosystem
+- **Description** : Ajoute des templates PDF aux skills PDF de l'écosystème — déclencheur verbatim propriétaire « add-template-pdf (<nom du template>) » (argument kebab-case, trace 1a218db7095e21f9 Task 12 2026-11-26) ; installe les templates au skill `pdf` (seul générateur PDF — 4 lignes de production Report/Creative/Academic/Process) et inscrit au registre écosystème `templates/registry.json` (source de vérité des modèles — `default` jamais réassigné sans option explicite) ; exécutant canonique `scripts/add_template_pdf.py` (stdlib, idempotent ×2 NO-OP, gardes anti-nom-invalide/anti-doublon, --dry-run/--json/--selftest, palette paramétrable) ; squelette standard 9 blocs conforme au format blue-tech (meta, page, design_tokens, typography, components, sections, fields, validations, generation) ; exclusions routage justifiées : pdf-llm (extraction), mise-en-page (couche DA transverse), pptx/docx/charts (hors PDF). Test réel : template « slate » installé + inscrit (idempotence NO-OP, négatifs refusés rc=2, parité SHA dépôt↔profil).
+- **Dépend de** : pdf >= v1.0.0 (cible d'installation — templates consommés par les lignes de production)
+- **Utilisé par** : Main (ajout de templates PDF), pdf (consommateur des templates installés), mise-en-page (consommatrice DA des templates)
+- **Dernière calibration** : création v1.0.0 (Task 12, session web-f68de5ac)
+- **Statut** : stable
+
 ## re-curation v1.2.5
 
 - **Dernière montée : 2026-11-22 (Task 112 G6, session web-f492e049)** : complétion structurelle §6 Relations (arêtes KB réelles) — PATCH, documentation additive, description inchangée.
