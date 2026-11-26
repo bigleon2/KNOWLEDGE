@@ -40,7 +40,7 @@ KNOWLEDGE/
 ├── @mon-ecosysteme/                     ← Prompts maîtres (Niveau 1) — dernières versions seules (Task 16)
 │   ├── README.md                        ← Ce guide
 │   ├── PROMPT-MAITRE-SHARED.md          ← Socle commun (source de vérité)
-│   ├── PROMPT-MAITRE-GEN-PLAN-v3.42.0.md
+│   ├── PROMPT-MAITRE-GEN-PLAN-v3.48.0.md
 │   ├── PROMPT-MAITRE-CORRECT-WORK-v2.11.0.md
 │   ├── PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md
 │   ├── PROMPT-MAITRE-REFACTOR-GUARD-v1.8.2.md  ← 4e famille (décision D009)
