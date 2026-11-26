@@ -27,3 +27,7 @@ interactions-report.json
 tool-routing-report.json
 mon-ecosysteme_archive.zip.bak
 dev.log
+
+# Miroir worktree local É1-INSTALL (ensure-installed.py — non suivi R4,
+# créé/maintenu hors historique par le hook d'installation)
+KNOWLEDGE-repo/
