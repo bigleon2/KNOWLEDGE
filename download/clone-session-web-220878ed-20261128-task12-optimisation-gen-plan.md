@@ -144,7 +144,7 @@ arrivée EN VOL et a été intégrée par E13 en place (règle d'or n°3).
 **Écarts consignés (non bloquants, traçés au rapport CW Étape 4)** : integrity dépôt 119/120 (FAIL
 archive round-trip = artefact structurel — l'archive vivante est scellée côté hôte par le pipeline,
 préexistant G3) ; WARN génération PM (« en-tête §0 Contexte Système » absent du PM de base v3.48.0) ;
-certification PASS AVEC RÉSERVES (2 avertissements §11b, réserves non bloquants §3.3 S3/S4).
+certification PASS AVEC RÉSERVES (2 avertissements §11b, réserves non bloquantes §3.3 S3/S4).
 
 ---
 
