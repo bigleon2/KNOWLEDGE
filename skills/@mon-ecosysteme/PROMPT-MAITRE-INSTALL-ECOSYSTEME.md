@@ -1,6 +1,6 @@
 # PROMPT MAÎTRE — Pipeline d'installation de l'écosystème personnel
 
-Version : 1.10.7
+Version : 1.10.8
 Date : 2026-11-28
 Fusionne : INSTALL-ECOSYSTEME.md v1.0.0 (périmètre §A — supprimé, directive utilisateur « source d'installation unique »)
 Répare : le bloc CONTEXTE SYSTÈME embarqué, corrompu depuis le sync b13-r7-c (table dupliquée cassée, résolu par git @1519bbe)
@@ -10,7 +10,7 @@ Référence : §2ter — instantané explicite des dernières versions des PMs s
 Fonction héritée (SHARED §7) : ce pipeline applique la méthode prompt-engineering (méthode-mère : gen-plan, PM v3.7.0 §1.9) en tant que fonction héritée — chaque étape est un artefact de prompt (entrée, instruction, arbitre, sortie).
 
 ---
-## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.7.46)
+## ⚙️ CONTEXTE SYSTÈME (Extrait SHARED v1.7.47)
 > **INSTRUCTION** : Ce bloc remplace la dépendance de lecture externe.
 
 ## §0 — Règle zéro (Contexte commun)
@@ -117,7 +117,7 @@ Note (recalibrage v1.1.0, 2026-10-02) : les comptes et versions d'époque (15 fi
 
 | Famille | PM source explicite (dernière version du corpus) | Version skill cible | Étape |
 |---------|--------------------------------------------------|---------------------|-------|
-| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.48.0.md` | gen-plan v3.48.0 | 3 |
+| gen-plan | `PROMPT-MAITRE-GEN-PLAN-v3.49.0.md` | gen-plan v3.49.0 | 3 |
 | correct-work | `PROMPT-MAITRE-CORRECT-WORK-v2.12.1.md` | correct-work v2.12.1 | 4 |
 | clone-chat | `PROMPT-MAITRE-CLONE-CHAT-v2.0.2.md` | clone-chat v2.0.2 | 5 |
 | refactor-guard | `PROMPT-MAITRE-REFACTOR-GUARD-v1.8.2.md` | refactor-guard v1.8.2 | 6 |
@@ -140,7 +140,7 @@ refactor-guard (4e famille — décision D009, bootstrap v1.7.0) : installé à 
 | `scripts/refactoring-test-graph.py` | Outil n°55 — graphe d'interactions (blast radius) des opérations de refactoring | Usage refactoring (pré-vol/post-vol) |
 | `scripts/install-ecosystem.py` · `ensure-installed.py` · `task23-install-minimale.py` | Bootstrap, réinstallation garantie, profil MINIMALE | Étapes 3-8 |
 | `scripts/bootstrap-ecosysteme.py` | ENTRÉE CONSOLIDÉE CANONIQUE du bootstrap de session (GO-1 Task 107 — 1 commande : préflight git → dry-run → installation → sweep §0 → certification → É1-INSTALL, verdict consolidé) | Toutes étapes (orchestration R4) |
-| `scripts/sweep-entetes-shared.py` | Balayage §0 — alignement mécanique des en-têtes §0 des SKILL.md installés sur le SHARED vivant (v1.10.7 C2 — extinction classe « §0 STALE » réinjectée plateforme) | Étape installation (bootstrap 3-bis) |
+| `scripts/sweep-entetes-shared.py` | Balayage §0 — alignement mécanique des en-têtes §0 des SKILL.md installés sur le SHARED vivant (v1.10.7 C2 — extinction classe « §0 STALE » réinjectée plateforme). **Frontière R4 (v1.10.8 — audit déduplication Task 12, trace 1a21e38435b96641)** : RÉPARATION des en-têtes §0 au bootstrap — rôle DISTINCT de `sync-context-block.py` (skill script-mon-ecosysteme-infrastructure : INJECTION du bloc §0 à la GÉNÉRATION de fichiers après évolution du SHARED) ; réparation installation ≠ injection génération — rôles complémentaires, aucune fusion | Étape installation (bootstrap 3-bis) |
 | `skills/KNOWLEDGE.md` | Registre KB — source de vérité de l'état installé | Étape 7 |
 
 **Versions historiques (jamais sources d'installation)** : les PMs antérieurs (`PROMPT-MAITRE-GEN-PLAN-v3.6.1` → `v3.19.0`, `PROMPT-MAITRE-CORRECT-WORK-v2.4.0` → `v2.6.0`) sont archivés depuis le 2026-10-11 (Task 16 — directive propriétaire « ne garder que la dernière version ») dans `skills/@historique/prompts-maitres/` (byte-identité SHA-256 scellée contre blobs b36f177 ; historique par skill dans `skills/@historique/historiques-par-skill/` (Task 17-B — distillation globale retirée après migration verbatim, R4 une information une source)) — les étapes 3-6 ne les mobilisent jamais (garde R2 ; byte-identité historique assumée, SYNC-CONTEXT v1.4.2 rétro-compatibilité R2).
@@ -221,6 +221,7 @@ Le contrôle vérifie MÉCANIQUEMENT que l'installation n'a déployé aucune for
 
 | Version | Date | Changements |
 |---------|------|-------------|
+| v1.10.8 | 2026-11-28 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.48.0→v3.49.0 ; recalibrage croisé : SHARED v1.7.47 (§6.1), §2ter, §A.3 ; complément Task 12 (précision propriétaire trace 1a21e38435b96641 — audit de déduplication rôles/objectifs) : note de frontière §3.2-c `sweep-entetes-shared.py` (RÉPARATION §0 au bootstrap) ↔ `sync-context-block.py` (INJECTION §0 à la génération — skill script-mon-ecosysteme-infrastructure, rôles complémentaires, aucune fusion) + alignement règle d'or n°9 ↔ É1-INSTALL v3.49.0 (rétablissement GRADUÉ : fermeture MINIMALE adaptée au plan quand les piliers sont sains, voie complète 4 temps sinon — documenté gen-plan §1.16 + regles-or.md) |
 | v1.10.7 | 2026-11-28 | Task 12 (session web-220878ed, directive trace 1a21e208f489f7f5 — « analyse mon fichier PM INSTALL … le corriger et de l'optimiser pour qu'il n'y ait pas les mêmes erreurs ou échecs les prochaines fois ») : 5 correctifs structurels d'extinction de classes récidives — **C1** §3.2-d garde AMORÇABLE (shim `scripts/ensure-installed.py` → repli bootstrap canonique si `skills/gen-plan/` absent, anti-récursion `ECO_REPLI_ACTIF`, mode test `ECO_SIMULER` — fin de l'œuf-et-la-poule : le constat Task 12 montrait le shim cassé en traceback au lieu de réparer l'amnésie) ; **C2** étape 3-bis sweep §0 au bootstrap (`scripts/sweep-entetes-shared.py` — alignement mécanique des en-têtes §0 sur le SHARED vivant, extinction classe récidive « §0 STALE » réinjectée plateforme Tasks 11-12 : asr/llm/tts/vlm v1.7.44 + mise-en-page v1.7.40 → FAIL certification 59/60, boucle E12-E13 manuelle à chaque session) ; **C3** préflight `core.fileMode false` (extinction dérive mode-only 2874 fichiers, Task 11) ; **C4** pin descendant-tolérant : fetch systématique + rapport ahead/behind au préflight (fin des divergences origin/main silencieuses — Task 11 : 8 commits devant découverts manuellement) ; **C5** vérification SEEDS-FIRST §2bis (les 3 seeds vérifiés avant le scan KB — cas réel Task 12 : gen-plan/correct-work absents du profil hôte) ; recalibrage §2ter/§A.3 (correct-work v2.12.1, refactor-guard v1.8.2 — stale v1.10.6 résorbé) + socle += `scripts/sweep-entetes-shared.py` + NOTE FLUX (éditer dépôt → committer → bootstrap) |
 | v1.10.6 | 2026-11-26 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.47.0→v3.48.0 ; recalibrage croisé : SHARED v1.7.46 (§6.1), §2ter, §A.3 |
 | v1.10.5 | 2026-11-22 | KO-L004 v1.1.0 — génération mécanique du PM à toute montée de version (`scripts/generer-pm-skill.py`) : gen-plan v3.46.0→v3.47.0 ; recalibrage croisé : SHARED v1.7.45 (§6.1), §2ter, §A.3 |
@@ -297,7 +298,7 @@ Note P4 (recalibrée v1.7.0) : les SKILL.md + références des 4 familles (gen-p
 ### §A.3 Registre KB cible (14 entrées d'époque + 6 extensions v1.7.0)
 Règle de version (recalibrage v1.1.0, anti-drift) : la version de chaque entrée est celle du PM le plus récent présent dans le corpus au moment de l'installation (dérivation dynamique — KO-L003) ; les versions figées d'époque ci-dessous (gen-plan v3.10.0, correct-work v2.5.1, prompt-engineering v1.0.1) sont des instantanés historiques et ne doivent pas être ré-installées telles quelles si le corpus porte un PM plus récent.
 
-Instantané courant (v1.10.7, 2026-11-28) : gen-plan v3.48.0 · correct-work v2.12.1 · clone-chat v2.0.2 · refactor-guard v1.8.2 — cf. §2ter.
+Instantané courant (v1.10.8, 2026-11-28) : gen-plan v3.49.0 · correct-work v2.12.1 · clone-chat v2.0.2 · refactor-guard v1.8.2 — cf. §2ter.
 
 | Entrée KNOWLEDGE.md | Version d'époque |
 |---------------------|------------------|

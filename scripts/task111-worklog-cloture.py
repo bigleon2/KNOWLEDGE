@@ -7,7 +7,7 @@ clone 23ᵉ scellé) à la FIN de l'entrée suite 157 dans les deux arbres.
 R1 : no-op si la phrase de clôture est déjà présente.
 """
 
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.47)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

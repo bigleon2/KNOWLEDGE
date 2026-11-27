@@ -25,7 +25,7 @@ T3 INTERACTIONS (consignation des verdicts bootstrap) : integrity 116/116,
 Idempotent (lecture seule + exécutions sans effet), stdlib.
 Codes retour : 0 = PASS global, 1 = échec, 2 = selftest.
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.47)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

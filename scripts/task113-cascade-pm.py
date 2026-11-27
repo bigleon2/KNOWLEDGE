@@ -12,7 +12,7 @@ README · ULTRA · INSTALL-ECOSYSTEME · SHARED).
 Voie canonique : édition DÉPÔT → commit → bootstrap. Idempotent ×2. Stdlib.
 Codes retour : 0 = PASS, 1 = échec, 2 = selftest.
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.47)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.

@@ -7,7 +7,7 @@ plan interne (D101-D107), agrégation = pire des verdicts (§1.4).
 Supersessions documentées au plan lui-même (D001/D003 : v3.44.0 → v3.45.0 —
 critère substantiel intact, Task 12 KO-L005 re-validation).
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.47)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
