@@ -196,7 +196,7 @@ def main() -> int:
         print(json.dumps(rapport, ensure_ascii=False, indent=2))
     else:
         print(f"MOBILISATION DES DISCIPLINES — déclencheur {rapport['declencheur']}, "
-              f"complexité {rapport['complexité']}")
+              f"complexité {rapport['complexite']}")
         print(f"  socle commun : {', '.join(rapport['socle_commun'])}")
         print(f"  disciplines mobilisées ({len(rapport['disciplines_mobilisees'])}) : "
               f"{', '.join(rapport['disciplines_mobilisees'])}")
