@@ -64,6 +64,15 @@
 - **Dernière calibration** : v1.0.1 (Task 13, session web-f68de5ac — correctif exécutant, journal-fails #15) ; précédent création v1.0.0 (Task 12, session web-f68de5ac)
 - **Statut** : stable
 
+## orchestration-disciplines v1.0.0
+
+- **Category** : ecosystem
+- **Description** : Orchestration des disciplines d'ingénierie de prompts du plan d'actions — méthode 3 couches : C1 DÉCISION mécanique (routage-disciplines.py : plan de mobilisation dérivé de la tâche normalisée, du déclencheur, du verdict de complexité É5-ROUTAGE et de l'état du plan — matrice = forme mécanique des tables sources, --check-coherence KO-L003) ; C2 EXÉCUTION (disciplines matérialisées mobilisées aux étapes E1-E15 selon gen-plan references/disciplines-mobilisation.md — source unique R4, jamais dupliquée) ; C3 ÉVOLUTION (nouvelles requêtes via E13 règle d'or n°3 + re-injection MÉCANIQUE des résultats vérifiés des tâches parallèles aux checkpoints E11 et frontières de groupes — scan du disque KO-L003 : worklog, verdicts d'arbitres, empreintes de livrables). Création Task 12 (session web-220878ed, directive trace 1a21e208f489f7f5 — « génère des skills ou des agents spécialisés (cohérent, optimisé et fonctionnel) pour que toutes ces disciplines s'exécutent et s'orchestrent de façon cohérente, optimisée et fonctionnelle »)
+- **Dépend de** : gen-plan >= v3.49.0 (hook consommateur É5-DISCIPLINES + tables sources), resource-monitor >= v1.0.0 (verdict G-RES couche C3)
+- **Utilisé par** : gen-plan (hook É5-DISCIPLINES v3.49.0 — section « Orchestration des disciplines » du plan d'actions), sessions d'exécution de plans multi-groupes avec tâches parallèles liées
+- **Dernière calibration** : v1.0.0 (Task 12, session web-220878ed — création : selftest 6/6, check-coherence 12 disciplines matérialisées, idempotence ×2)
+- **Statut** : stable
+
 ## re-curation v1.2.5
 
 - **Dernière montée : 2026-11-22 (Task 112 G6, session web-f492e049)** : complétion structurelle §6 Relations (arêtes KB réelles) — PATCH, documentation additive, description inchangée.

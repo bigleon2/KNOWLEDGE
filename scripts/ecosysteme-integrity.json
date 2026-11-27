@@ -258,6 +258,10 @@
     "web-search": {
       "sha256": "2a8a7a216dc190449c9b206fe816fb6d50ac3f3b84e1d7073d3459b14aa9ed0d",
       "version": "1.0.0"
+    },
+    "orchestration-disciplines": {
+      "sha256": "c320f37eb6df9e3135c7080316b78345d5eb0dcd6ab5503708178241a6c5bab4",
+      "version": "1.0.0"
     }
   }
 }

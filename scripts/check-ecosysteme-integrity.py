@@ -99,6 +99,7 @@ ECO_SKILLS = {
     "version-management": "1.3.0",  # re-curation Task 79 G2 (2026-11-08) : 46,1→25,2 Kio, 7 blocs R4 references/ — version inchangée (contrats intacts)
     "skill-finder-cn": "1.0.1",  # Task 23 : fallback §1.16 inscrit au registre
     "add-template-pdf": "1.0.1",  # KO-L004 (Task 13, 2026-11-26, web-f68de5ac — v1.0.1 correctif exécutant : valider_template bilingue squelette/riche blue-tech [crash AttributeError v1.0.0, journal-fails #15], réinstallation registre généralisée + README source de vérité, idempotence par contenu, parité profil NO-OP ; test réel blue-tech ×3 arbres, registre inchangé) ; précédent KO-L004 (Task 12, 2026-11-26, web-f68de5ac — directive 1a218db7095e21f9 : création du skill — déclencheur verbatim « add-template-pdf (<nom du template>) », installation templates au skill pdf + inscription registre écosystème ; test réel slate, idempotence NO-OP)
+    "orchestration-disciplines": "1.0.0",  # KO-L004 (Task 12, 2026-11-28, web-220878ed — directive 1a21e208f489f7f5 : création — couche d'orchestration des disciplines du plan d'actions, méthode 3 couches C1/C2/C3, consommée par gen-plan v3.49.0 hook É5-DISCIPLINES ; selftest 6/6, check-coherence 12 disciplines)
     # Skills famille (Task 16, suggestion (a) — inscription au registre, résorption F1)
     "autonomous-agent": "1.2.2",
     "correct-py": "1.2.0",
