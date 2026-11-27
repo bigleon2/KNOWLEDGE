@@ -1,0 +1,240 @@
+{
+  "tache": 12,
+  "mode": "correct-work (projet) --bloc",
+  "verdict": "PASS",
+  "total": "33/33 PASS",
+  "amendement_e13": "précision propriétaire trace 1a21e38435b96641 — audit déduplication rôles/objectifs (D011, F1-F5)",
+  "checks": [
+    {
+      "bloc": "B1 plan",
+      "id": "F1",
+      "critere": "plan Task 12 avec answer key D001-D011 (11 décisions)",
+      "verdict": "PASS",
+      "preuve": "11 décisions"
+    },
+    {
+      "bloc": "B1 amendement",
+      "id": "F2",
+      "critere": "amendement E13 intégré (trace 1a21e38435b96641 + D011 audit déduplication)",
+      "verdict": "PASS",
+      "preuve": "amendement + conclusions F1-F5 au plan"
+    },
+    {
+      "bloc": "B1 E8",
+      "id": "F3",
+      "critere": "verdict E8 re-validé après amendement (PASS 11 décisions, horodatage 18:25Z)",
+      "verdict": "PASS",
+      "preuve": "re-validation consignée"
+    },
+    {
+      "bloc": "B1 protocole",
+      "id": "F4",
+      "critere": "check_plan_protocol P1-P5 PASS (re-validation mécanique)",
+      "verdict": "PASS",
+      "preuve": "  VERDICT : PASS"
+    },
+    {
+      "bloc": "B1 worklog-hôte",
+      "id": "F5",
+      "critere": "worklog hôte : entrée E13 (précision déduplication) + PLAN-AFFICHE",
+      "verdict": "PASS",
+      "preuve": "journalisation E13 append-only"
+    },
+    {
+      "bloc": "B2 pm-install",
+      "id": "F6",
+      "critere": "PM-INSTALL v1.10.8 + historiques v1.10.7 (C1-C5) et v1.10.8",
+      "verdict": "PASS",
+      "preuve": "v1.10.8 courante, 2 entrées §7"
+    },
+    {
+      "bloc": "B2 clauses",
+      "id": "F7",
+      "critere": "5 correctifs C1-C5 présents (garde AMORÇABLE, sweep, core.fileMode, pin tolérant, SEEDS-FIRST)",
+      "verdict": "PASS",
+      "preuve": "C1-C5 dans §7 v1.10.7"
+    },
+    {
+      "bloc": "B2 sweep",
+      "id": "F8",
+      "critere": "sweep-entetes-shared.py selftest OK (idempotent)",
+      "verdict": "PASS",
+      "preuve": "SELFTEST PASS (6/6)"
+    },
+    {
+      "bloc": "B2 shim",
+      "id": "F9",
+      "critere": "shim hôte : repli bootstrap canonique (ECO_REPLI_ACTIF)",
+      "verdict": "PASS",
+      "preuve": "repli amnésie en place"
+    },
+    {
+      "bloc": "B3 skill",
+      "id": "F10",
+      "critere": "orchestration-disciplines v1.0.0 installé dépôt + hôte (byte-identique)",
+      "verdict": "PASS",
+      "preuve": "SKILL.md ×2 arbres"
+    },
+    {
+      "bloc": "B3 scripts",
+      "id": "F11",
+      "critere": "routage-disciplines.py selftest 6/6 + check-coherence rc=0",
+      "verdict": "PASS",
+      "preuve": "selftest rc=0 · coherence rc=0"
+    },
+    {
+      "bloc": "B3 kb",
+      "id": "F12",
+      "critere": "KB 57ᵉ entrée + pin ECO_SKILLS 1.0.0",
+      "verdict": "PASS",
+      "preuve": "entrée KB + ECO_SKILLS"
+    },
+    {
+      "bloc": "B3 evals",
+      "id": "F13",
+      "critere": "evals ≥ 5 positifs / ≥ 4 négatifs",
+      "verdict": "PASS",
+      "preuve": "6+ / 4-"
+    },
+    {
+      "bloc": "B4 version",
+      "id": "F14",
+      "critere": "gen-plan v3.49.0 dépôt + hôte (byte-identique)",
+      "verdict": "PASS",
+      "preuve": "SKILL.md ×2 arbres"
+    },
+    {
+      "bloc": "B4 garde",
+      "id": "F15",
+      "critere": "É1-INSTALL v3.49.0 : garde à TOUTE invocation + AMORÇABLE + INSTALLE-POUR-PLAN + SEEDS-FIRST",
+      "verdict": "PASS",
+      "preuve": "§1.16 étendu"
+    },
+    {
+      "bloc": "B4 hook-tableau",
+      "id": "F16",
+      "critere": "F1 — ligne É5-DISCIPLINES DANS le tableau §1.2bis (adjacente à R2-CACHE, 0 ligne vide intercalée)",
+      "verdict": "PASS",
+      "preuve": "placement corrigé"
+    },
+    {
+      "bloc": "B4 dependencies",
+      "id": "F17",
+      "critere": "dependencies += orchestration-disciplines >= 1.0.0 + §3 relations",
+      "verdict": "PASS",
+      "preuve": "YAML + table §3"
+    },
+    {
+      "bloc": "B4 pm",
+      "id": "F18",
+      "critere": "PM v3.49.0 au corpus + PM v3.48.0 archivé @historique (R4)",
+      "verdict": "PASS",
+      "preuve": "corpus v3.49.0 + archive v3.48.0"
+    },
+    {
+      "bloc": "B4 cascade",
+      "id": "F19",
+      "critere": "SHARED v1.7.47 + PM-INSTALL v1.10.8 + delta v3490 verrouillé",
+      "verdict": "PASS",
+      "preuve": "recalibrage croisé générateur"
+    },
+    {
+      "bloc": "B4 kb-genplan",
+      "id": "F20",
+      "critere": "KB gen-plan v3.49.0 (en-tête + Dernière calibration) + pin ECO_SKILLS 3.49.0",
+      "verdict": "PASS",
+      "preuve": "KB + pin synchrones"
+    },
+    {
+      "bloc": "B4 migration",
+      "id": "F21",
+      "critere": "§5.6 entrée courante unique (v3.49.0) + v3.48.0 migrée R4 journal-versions.md",
+      "verdict": "PASS",
+      "preuve": "1 entrée §5.6 · v3.48.0 en archive"
+    },
+    {
+      "bloc": "B4 propagation",
+      "id": "F22",
+      "critere": "propagation §0 v1.7.47 convergée (0 SKILL.md dépôt à v1.7.46)",
+      "verdict": "PASS",
+      "preuve": "123 skills alignés SHARED vivant"
+    },
+    {
+      "bloc": "B4 recalibrage",
+      "id": "F23",
+      "critere": "recalibrage croisé §11b : 0 citation vive « gen-plan v3.48.0 » dans skills/*/SKILL.md",
+      "verdict": "PASS",
+      "preuve": "classe éteinte (9 lignes : 5 + 4)"
+    },
+    {
+      "bloc": "B4 certification",
+      "id": "F24",
+      "critere": "certification 6 arbitres rc=0 (verdict consolidé, réserves non bloquantes)",
+      "verdict": "PASS",
+      "preuve": "6 arbitres, 0 échec(s)"
+    },
+    {
+      "bloc": "B5 F2",
+      "id": "F25",
+      "critere": "F2 — alignement règle d'or n°9 : §1.16 cite n°9 + regles-or.md porte le raffinement v3.49.0 (rétablissement GRADUÉ)",
+      "verdict": "PASS",
+      "preuve": "une seule description : n°9 source, É1-INSTALL implémentation"
+    },
+    {
+      "bloc": "B5 F3",
+      "id": "F26",
+      "critere": "F3 — frontière documentée PM-INSTALL §3.2-c (sweep RÉPARATION ↔ sync-context-block INJECTION)",
+      "verdict": "PASS",
+      "preuve": "note de frontière v1.10.8"
+    },
+    {
+      "bloc": "B5 F4",
+      "id": "F27",
+      "critere": "F4 — non-doublon routage-disciplines ↔ routage-skills-agents (tables sources vs frontmatters, verdict = entrée)",
+      "verdict": "PASS",
+      "preuve": "objets distincts, dépendance documentée"
+    },
+    {
+      "bloc": "B5 F5",
+      "id": "F28",
+      "critere": "F5 — non-doublon orchestration-disciplines (garde §1.4 + cross-référence KB resource-monitor « Utilisé par »)",
+      "verdict": "PASS",
+      "preuve": "garde anti-duplication + références croisées"
+    },
+    {
+      "bloc": "B6 sécurité",
+      "id": "F29",
+      "critere": "0 octet de jeton dans tout artefact (scan PAT générique)",
+      "verdict": "PASS",
+      "preuve": "0 fichier(s) : "
+    },
+    {
+      "bloc": "B7 pendances",
+      "id": "F30",
+      "critere": "D010 pendances reconduites au plan (RÉVOCATION PATs, PUSH git final, cron 531684, différés partage, GIF)",
+      "verdict": "PASS",
+      "preuve": "5 pendances au plan"
+    },
+    {
+      "bloc": "B7 anti-invention",
+      "id": "F31",
+      "critere": "aucune URL z.ai fabriquée dans les artefacts Task 12",
+      "verdict": "PASS",
+      "preuve": "0 URL trouvée(s)"
+    },
+    {
+      "bloc": "B8 miroir",
+      "id": "F32",
+      "critere": "commits Task 12 en tête du dépôt local (G2+G3+G4+correctifs)",
+      "verdict": "PASS",
+      "preuve": "9 commits Task 12"
+    },
+    {
+      "bloc": "B8 langue",
+      "id": "F33",
+      "critere": "français exclusif — 0 caractère CJK dans plan + rapport CW",
+      "verdict": "PASS",
+      "preuve": "plan sans dérive"
+    }
+  ]
+}
