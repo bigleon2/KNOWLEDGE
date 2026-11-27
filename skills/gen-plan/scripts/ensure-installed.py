@@ -15,6 +15,11 @@ promesse « vérification pipeline (Phase A) » de --reinstall est tenue dans le
                manquants » (angle mort historique — version-management, 9 occurrences
                documentées) est AUTO-RÉPARÉE depuis le miroir local KNOWLEDGE-repo
                (rc=0, verdict INSTALLE-REPARÉ, trace worklog) ; sans miroir : rc=1
+               CORRECTIF D007 (Task 13, session web-220878ed) : branches UNIFIÉES —
+               la réparation entrées KB (Task 56) n'est plus exclusive de la
+               réparation réinjection plateforme (Task 114) ; si l'une des deux
+               ne peut pas être complétée (miroir absent, entrée non réparable),
+               le verdict est honnêtement différencié : INSTALLE-REPARÉ-PARTIEL rc=1
   --reinstall  si ABSENT : clone (jeton éphémère env GITHUB_TOKEN, jamais persisté)
                puis vérification pipeline (Phase A) ; si déjà installé : no-op (idempotence)
                si présent mais DÉRIVÉ : diagnostic + rc=2 (aucune action destructive)
@@ -304,41 +309,48 @@ def main():
                        if signature_native((ROOT / "skills" / n / "SKILL.md")
                                            .read_text(encoding="utf-8", errors="replace"))]
         stale = list(e.get("plateforme_stale", []))
-        if divergentes or stale:
-            rep = reparer_reinjection(divergentes, stale)
+        # D007 (Task 13) — branches unifiées : réinjection (Task 114) ET entrées KB
+        # manquantes (Task 56) sont réparées dans le MÊME passage. Auparavant, la
+        # branche réinjection sortait sys.exit(0) AVANT la branche Task 56 : une
+        # réinjection coexistant avec une entrée KB manquante rendait un verdict
+        # INSTALLE-REPARÉ sans jamais réparer l'entrée KB (faille constatée Task 13
+        # G0 : version-management signalé skills_kb_manquants et non réparé).
+        rep = reparer_reinjection(divergentes, stale) if (divergentes or stale) \
+            else {"skills_repairés": [], "stale_supprimés": [], "reportés": []}
+        reparés = []
+        if manquants and e["root_present"] and not e["fichiers_manquants"]:
+            # Task 56 : dérive limitée aux skills manquants → AUTO-RÉPARATION
+            # depuis le miroir local (défense structurelle contre la volatilité
+            # sandbox — L55-3 : la disparition ne peut plus passer inaperçue).
+            reparés = reparer_depuis_miroir(manquants)
+        if rep["skills_repairés"] or rep["stale_supprimés"] or reparés:
             e2 = etat()
-            print(json.dumps({"verdict": "INSTALLE-REPARÉ", "reparation_reinjection": rep,
-                              **e2}, ensure_ascii=False))
+            complet = (not e2["skills_kb_manquants"]
+                       and not e2.get("requis_genplan_manquants"))
+            # D007 : verdict honnête différencié — INSTALLE-REPARÉ seulement si
+            # TOUT est réparé ; sinon INSTALLE-REPARÉ-PARTIEL (rc 1) : un verdict
+            # positif ne masque jamais une dérive résiduelle (FAIL-CLOSE §1.18).
+            print(json.dumps({"verdict": "INSTALLE-REPARÉ" if complet else "INSTALLE-REPARÉ-PARTIEL",
+                              "reparation_reinjection": rep,
+                              "skills_reparés": reparés, **e2}, ensure_ascii=False))
             try:
                 with open(MP / "worklog.md", "a", encoding="utf-8") as f:
-                    f.write("\n> É1-INSTALL Task 114 : garde réinjection plateforme — "
-                            + ", ".join(rep["skills_repairés"] + rep["stale_supprimés"])
+                    items = rep["skills_repairés"] + rep["stale_supprimés"] + reparés
+                    f.write("\n> É1-INSTALL (garde unifiée Task 114 + Task 56, correctif D007) : "
+                            + ", ".join(items)
                             + " restauré(s)/supprimé(s) depuis le miroir local"
                             + (" ; REPORTÉS : " + ", ".join(rep["reportés"]) if rep["reportés"] else "")
                             + ".\n")
             except Exception:
                 pass
-            sys.exit(0)
-        if not ok and e["root_present"] and not e["fichiers_manquants"] and manquants:
-            # Task 56 : dérive limitée aux skills manquants → AUTO-RÉPARATION
-            # depuis le miroir local (défense structurelle contre la volatilité
-            # sandbox — L55-3 : la disparition ne peut plus passer inaperçue).
-            reparés = reparer_depuis_miroir(manquants)
-            e2 = etat()
-            if reparés and not e2["skills_kb_manquants"] and not e2.get("requis_genplan_manquants"):
-                e = e2
-                try:
-                    with open(MP / "worklog.md", "a", encoding="utf-8") as f:
-                        f.write("\n> É1-INSTALL Task 56 : auto-réparation garde étendue — "
-                                + ", ".join(reparés)
-                                + " restauré(s) depuis le miroir local KNOWLEDGE-repo.\n")
-                except Exception:
-                    pass
-                print(json.dumps({"verdict": "INSTALLE-REPARÉ", "skills_reparés": reparés, **e},
-                                 ensure_ascii=False))
-                sys.exit(0)
-        print(json.dumps({"verdict": "INSTALLE" if ok else "ABSENT-DERIVE", **e},
-                         ensure_ascii=False))
+            sys.exit(0 if complet else 1)
+        sortie = {"verdict": "INSTALLE" if ok else "ABSENT-DERIVE", **e}
+        if rep["reportés"]:
+            # D007 : les entrées REPORTÉES (non réparables, ex. archives R4 non
+            # byte-identiques) sont consignées au verdict honnête — plus jamais un
+            # INSTALLE-REPARÉ à vide porté par de simples reportés.
+            sortie["reinjection_reportés"] = rep["reportés"]
+        print(json.dumps(sortie, ensure_ascii=False))
         sys.exit(0 if ok else 1)
 
     if mode == "--reinstall":
