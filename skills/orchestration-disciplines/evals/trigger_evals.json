@@ -1,0 +1,12 @@
+[
+  {"query": "orchestration des disciplines de mon plan d'actions", "should_trigger": true},
+  {"query": "mobilise les disciplines du plan pour cette tâche complexe", "should_trigger": true},
+  {"query": "rend mon plan d'actions évolutif avec les résultats des tâches parallèles", "should_trigger": true},
+  {"query": "coordination des tâches parallèles liées en cours d'exécution", "should_trigger": true},
+  {"query": "dérive la section Orchestration des disciplines du plan (É5-DISCIPLINES)", "should_trigger": true},
+  {"query": "quelles disciplines mobiliser à chaque étape de mon plan gen-plan", "should_trigger": true},
+  {"query": "bonjour", "should_trigger": false},
+  {"query": "clone cette discussion", "should_trigger": false},
+  {"query": "corrige l'orthographe de ce document", "should_trigger": false},
+  {"query": "génère un GIF animé de mon logo", "should_trigger": false}
+]
