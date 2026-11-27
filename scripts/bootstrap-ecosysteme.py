@@ -11,6 +11,17 @@ voie V3 vs V1 manuelle) : −83,3 % de tours agent, −97,6 % d'octets émis, sa
 aucune perte de garantie (idempotence ×2, dry-run lecture seule, garde R2,
 arbitres 6/6).
 
+v1.10.7 (Task 12, session web-220878ed — correctifs C2+C3+C4) : préflight
+`core.fileMode false` (C3 : la dérive mode-only — 2874 fichiers, Task 11 —
+devient invisible : les modes ne sont pas du contenu) + fetch systématique avec
+rapport ahead/behind (C4 : une divergence origin/main n'est plus jamais
+silencieuse — réalignement descendant-tolérant `git pull --rebase` à exécuter
+et tracer quand origin est devant) + étape 3-bis SWEEP §0 (C2 :
+`scripts/sweep-entetes-shared.py` — alignement mécanique des en-têtes §0 des
+SKILL.md installés sur le SHARED vivant, extinction de la classe récidive
+« §0 STALE » réinjectée par la plateforme, Tasks 11-12 : asr/llm/tts/vlm/
+mise-en-page → FAIL certification 59/60).
+
 Orchestration R4 : exécute les EXÉCUTANTS CANONIQUES existants par
 sous-processus et agrège leurs verdicts — ne duplique aucune logique de
 verdict, n'écrit aucune correction propre, ne modifie ni le pipeline ni les
@@ -26,8 +37,12 @@ Codes retour : 0 = INSTALLE / INSTALLE-REPARÉ · 1 = ECHEC · 64 = usage.
 Idempotent ×2 : re-jeu sur état sain = no-op de réparation (verdict INSTALLE).
 Rapport machine : download/bootstrap-ecosysteme-rapport.json (artefact de
 travail — seule écriture propre du script, hors exécutants canoniques).
+
+NOTE FLUX (leçon Task 12) : toute évolution des exécuteurs se fait DANS LE
+DÉPÔT (éditer → committer) PUIS le bootstrap sync l'hôte — un exécuteur modifié
+seulement côté hôte est écrasé par le sync union à l'étape installation.
 """
-# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.40)
+# ⚙️ CONTEXTE SYSTÈME — Écosystème Knowledge (SHARED v1.7.46)
 # SKILLS_ROOT = skills/ | KB_PATH = skills/KNOWLEDGE.md | PROFILE = NORMAL
 # Conventions : kebab-case | semver | #token | {{VARIABLE}} | @historique/ (archive R4)
 # Règle Zéro : skills auto-contenus, KB source de vérité, dépendances YAML.
@@ -52,6 +67,7 @@ DOWNLOAD = BASE / "download"
 PIPELINE = REPO / "scripts" / "eco_install_pipeline.py"
 CERTIFICATION = HOST / "scripts" / "certification-complete.py"
 ENSURE = HOST / "scripts" / "ensure-installed.py"
+SWEEP = HOST / "scripts" / "sweep-entetes-shared.py"
 RAPPORT = DOWNLOAD / "bootstrap-ecosysteme-rapport.json"
 
 # Statuts verts d'une étape (tout autre statut = ECHEC au verdict consolidé).
@@ -112,19 +128,38 @@ def bootstrap():
     def _etape(nom, statut, detail=""):
         etapes.append({"etape": nom, "statut": statut, "detail": str(detail)[:300]})
 
-    # 1 — Préflight git dépôt (réparation dérive mode-bits/contenu si besoin —
-    #     reset --hard LOCAL uniquement, fetch ANONYME : 0 exposition de jeton)
+    # 1 — Préflight git dépôt (réparation dérive contenu si besoin — reset --hard
+    #     LOCAL uniquement, fetch ANONYME : 0 exposition de jeton ; v1.10.7 C3 :
+    #     core.fileMode false — la dérive mode-only n'est pas du contenu et
+    #     devient invisible pour git, fin des reset --hard de 2874 fichiers ;
+    #     v1.10.7 C4 : fetch systématique + rapport ahead/behind — une divergence
+    #     origin/main n'est plus jamais silencieuse, réalignement descendant-
+    #     tolérant git pull --rebase à exécuter et tracer quand origin est devant)
+    _run(["git", "config", "core.fileMode", "false"], cwd=REPO)
+    _run(["git", "fetch", "origin"], cwd=REPO)
     st = _run(["git", "status", "--porcelain"], cwd=REPO)
+    divergence = ""
+    ab = _run(["git", "rev-list", "--left-right", "--count",
+               "HEAD...origin/main"], cwd=REPO)
+    if ab["rc"] == 0:
+        try:
+            avant, derriere = (int(x) for x in ab["stdout"].split())
+            if avant or derriere:
+                divergence = f" · HEAD {avant} devant / origin/main {derriere} devant"
+                if derriere:
+                    divergence += (" — réalignement descendant-tolérant requis "
+                                   "(git pull --rebase, décision tracée)")
+        except ValueError:
+            pass
     if st["rc"] != 0:
         _etape("preflight-git", "ECHEC", st["stderr"])
     elif st["stdout"].strip():
         nb = len(st["stdout"].splitlines())
-        _run(["git", "fetch", "origin"], cwd=REPO)
         rr = _run(["git", "reset", "--hard", "HEAD"], cwd=REPO)
         _etape("preflight-git", "RÉPARÉ" if rr["rc"] == 0 else "ECHEC",
-               f"dérive {nb} fichiers — reset --hard LOCAL")
+               f"dérive {nb} fichiers — reset --hard LOCAL{divergence}")
     else:
-        _etape("preflight-git", "PROPRE", "0 porcelain")
+        _etape("preflight-git", "PROPRE", f"0 porcelain{divergence}")
 
     # 2 — Dry-run (lecture seule — détecte la dérive hôte sans mutation)
     dr = _run([sys.executable, PIPELINE, "--dry-run"], cwd=REPO)
@@ -149,6 +184,24 @@ def bootstrap():
                f"{len(post.get('divergences', []))} divergence")
     else:
         _etape("installation", "ECHEC", ir["stderr"][:200])
+
+    # 3-bis — Sweep §0 (PM-INSTALL §3.2-c v1.10.7 C2 : alignement mécanique des
+    #     en-têtes §0 des SKILL.md installés sur le SHARED vivant — même source
+    #     de version que l'arbitre §11b, KO-L003)
+    sw = _run([sys.executable, SWEEP, "--json"], cwd=HOST)
+    nb_sw = -1
+    try:
+        debut, fin = sw["stdout"].find("{"), sw["stdout"].rfind("}")
+        if debut >= 0 and fin > debut:
+            nb_sw = int(json.loads(sw["stdout"][debut:fin + 1]).get("nb_alignes", -1))
+    except (ValueError, json.JSONDecodeError):
+        pass
+    if sw["rc"] == 0 and nb_sw == 0:
+        _etape("sweep-§0", "OK", "0 en-tête — tous alignés sur le SHARED vivant")
+    elif sw["rc"] == 0 and nb_sw > 0:
+        _etape("sweep-§0", "RÉPARÉ", f"{nb_sw} en-tête(s) §0 alignés")
+    else:
+        _etape("sweep-§0", "ECHEC", (sw["stdout"] or sw["stderr"])[:120])
 
     # 4 — Chaîne de certification (6 arbitres)
     cr = _run([sys.executable, CERTIFICATION], cwd=HOST)
@@ -178,8 +231,10 @@ def bootstrap():
         "commandes": 1,
         "tours": 1,
         "etapes": etapes,
-        "garanties_couvertes": ["préflight git dépôt", "dry-run lecture seule",
+        "garanties_couvertes": ["préflight git dépôt (core.fileMode false + divergence v1.10.7)",
+                                "dry-run lecture seule",
                                 "installation canonique + rescellement v2.3",
+                                "sweep §0 alignement SHARED vivant (v1.10.7)",
                                 "certification complète 6 arbitres",
                                 "garde É1-INSTALL"],
         "verdict_global": verdict_global,
@@ -199,8 +254,8 @@ def selftest() -> int:
     """Tests internes — AUCUNE mutation (lecture seule)."""
     checks = []
 
-    # T1 : exécutants canoniques présents (dépôt + hôte)
-    requis = [REPO / "skills" / "KNOWLEDGE.md", PIPELINE, CERTIFICATION, ENSURE]
+    # T1 : exécutants canoniques présents (dépôt + hôte — sweep §0 v1.10.7 inclus)
+    requis = [REPO / "skills" / "KNOWLEDGE.md", PIPELINE, CERTIFICATION, ENSURE, SWEEP]
     manquants = [str(p) for p in requis if not p.exists()]
     checks.append((f"exécutants canoniques {len(requis) - len(manquants)}/{len(requis)} présents",
                    not manquants))
