@@ -203,11 +203,16 @@ def bootstrap():
     else:
         _etape("sweep-§0", "ECHEC", (sw["stdout"] or sw["stderr"])[:120])
 
-    # 4 — Chaîne de certification (6 arbitres)
+    # 4 — Chaîne de certification (6 arbitres) — verdict de l'EXÉCUTANT (rc)
+    #     uniquement : R4, aucune logique de verdict dupliquée (leçon Task 12 :
+    #     la correspondance de chaîne « ALL PASS (6/6) » refusait le verdict
+    #     « PASS AVEC RÉSERVES » rc=0 de l'arbitre — faux négatif, réserves
+    #     non bloquantes PM-INSTALL §3.3 : S3/S4 = journalisées + reprise)
     cr = _run([sys.executable, CERTIFICATION], cwd=HOST)
-    _etape("certification", "ALL-PASS-6/6"
-           if cr["rc"] == 0 and "ALL PASS (6/6)" in cr["stdout"] else "ECHEC",
-           f"rc={cr['rc']}")
+    verdict_cert = next((l.strip() for l in cr["stdout"].splitlines()
+                         if l.startswith("  VERDICT")), "")
+    _etape("certification", "OK" if cr["rc"] == 0 else "ECHEC",
+           f"rc={cr['rc']} · {verdict_cert[:80]}")
 
     # 5 — Garde É1-INSTALL
     er = _run([sys.executable, ENSURE, "--check"], cwd=HOST)
