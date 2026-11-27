@@ -1,0 +1,155 @@
+{
+ "date": "2026-11-27",
+ "verifications": 21,
+ "pass": 21,
+ "fail": 0,
+ "checks": [
+  {
+   "bloc": "B0",
+   "id": "b0.1",
+   "label": "certification rapport présent",
+   "ok": true,
+   "proof": "/home/z/my-project/scripts/certification-report.json"
+  },
+  {
+   "bloc": "B0",
+   "id": "b0.2",
+   "label": "certification ALL PASS 6/6",
+   "ok": true,
+   "proof": "6/6 arbitres verts"
+  },
+  {
+   "bloc": "B1",
+   "id": "b1.1",
+   "label": "README kps-converter présent (source lue)",
+   "ok": true,
+   "proof": "/home/z/my-project/kps-converter/README.md"
+  },
+  {
+   "bloc": "B1",
+   "id": "b1.2",
+   "label": "rapport checklist §8.7 présent",
+   "ok": true,
+   "proof": "download/rapport-kps2-checklist.md"
+  },
+  {
+   "bloc": "B1",
+   "id": "b1.3",
+   "label": "dernier clone présent (re-relu)",
+   "ok": true,
+   "proof": "clone Task 8"
+  },
+  {
+   "bloc": "B2",
+   "id": "b2.1",
+   "label": "template blue-tech installé",
+   "ok": true,
+   "proof": "/home/z/my-project/skills/pdf/templates/blue-tech/blue-tech.template.json"
+  },
+  {
+   "bloc": "B2",
+   "id": "b2.2",
+   "label": "template 9/9 blocs",
+   "ok": true,
+   "proof": "['meta', 'page', 'design_tokens', 'typography', 'components', 'sections', 'fields', 'validations', 'generation']"
+  },
+  {
+   "bloc": "B2",
+   "id": "b2.3",
+   "label": "palette sombre exclusive (#111827)",
+   "ok": true,
+   "proof": "#111827"
+  },
+  {
+   "bloc": "B2",
+   "id": "b2.4",
+   "label": "template inscrit au registre (default blue-tech)",
+   "ok": true,
+   "proof": "templates=['blue-tech'] default=blue-tech"
+  },
+  {
+   "bloc": "B2",
+   "id": "b2.5",
+   "label": "schéma 1/3 généré non vide (>50 Ko)",
+   "ok": true,
+   "proof": "254774 octets"
+  },
+  {
+   "bloc": "B2",
+   "id": "b2.6",
+   "label": "schéma 2/3 généré non vide (>50 Ko)",
+   "ok": true,
+   "proof": "270235 octets"
+  },
+  {
+   "bloc": "B2",
+   "id": "b2.7",
+   "label": "schéma 3/3 généré non vide (>50 Ko)",
+   "ok": true,
+   "proof": "263979 octets"
+  },
+  {
+   "bloc": "B3",
+   "id": "b3.1",
+   "label": "PDF livré",
+   "ok": true,
+   "proof": "1293853 octets"
+  },
+  {
+   "bloc": "B3",
+   "id": "b3.2",
+   "label": "12 pages",
+   "ok": true,
+   "proof": "12"
+  },
+  {
+   "bloc": "B3",
+   "id": "b3.3",
+   "label": "0 caractère U+FFFD (encodage)",
+   "ok": true,
+   "proof": "0"
+  },
+  {
+   "bloc": "B3",
+   "id": "b3.4",
+   "label": "10 mots-clés sources présents",
+   "ok": true,
+   "proof": "manquants=aucun"
+  },
+  {
+   "bloc": "B3",
+   "id": "b3.5",
+   "label": "3 figures intégrées",
+   "ok": true,
+   "proof": "mentions Schéma: 3"
+  },
+  {
+   "bloc": "B3",
+   "id": "b3.6",
+   "label": "pdf_qa verdict PASS",
+   "ok": true,
+   "proof": "--------------------------------------------------------"
+  },
+  {
+   "bloc": "B3",
+   "id": "b3.7",
+   "label": "source HTML livrée à côté du PDF (brief creative-flow)",
+   "ok": true,
+   "proof": "/home/z/my-project/download/resume-fullstack-kps-converter-bluetech.html"
+  },
+  {
+   "bloc": "B4",
+   "id": "b4.1",
+   "label": "plan avec Verdict E8 frais (P1-P5)",
+   "ok": true,
+   "proof": "plan-task9"
+  },
+  {
+   "bloc": "B4",
+   "id": "b4.2",
+   "label": "answer key D001-D006 présente",
+   "ok": true,
+   "proof": "6 décisions"
+  }
+ ]
+}

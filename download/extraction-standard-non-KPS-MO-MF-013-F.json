@@ -1,0 +1,149 @@
+{
+  "objet": "Extraction structurée du « standard non-KPS » photographié — analyse préalable à la conversion « standard version KPS »",
+  "source_photo": "upload/IMG_20261127_131943.jpg (photo smartphone du document papier plastifié, 2479x1723 px)",
+  "date_analyse": "2026-11-27",
+  "references_croisees": [
+    "download/analyse-photos-reservoir.json (analyse VLM Task 5 des 3 photos du même document)",
+    "download/PROMPT-MAITRE-KPS-2-FULLSTACK-GLM-FINAL-v2.md §0/§4 (référentiel KPS Kubota + conversion canonique seed)"
+  ],
+  "statut_original": "Le standard non-KPS est CONSERVÉ tel quel : aucune modification de l'original (upload/ intact + copie d'archive download/source-standard-non-KPS-MO-MF-013-F.jpg).",
+  "identification": {
+    "type_document": "Assemblage Standard (mode opératoire d'assemblage)",
+    "reference_documentaire": "MO-MF-013-F",
+    "dossier": "Dossier Caractéristiques",
+    "operation": "Sous assemblage du tank fuel",
+    "modele": "S/P/H",
+    "numero": "TA-S-3055-020",
+    "page_qa": "6-425/430",
+    "temps_cartouche": "VIDE (champ non renseigné sur la source)",
+    "revision_en_cours": "D",
+    "date_effet_revision_D": "23/09/2024",
+    "tampon_dateur": "21 OCT. 2024"
+  },
+  "signataires": [
+    {"role": "Rédacteur", "fonction": "Floteur qualité", "nom": "Maxence DEGROOTE", "date": "23 SEP. 2024"},
+    {"role": "Approbateur", "fonction": "Team leader", "nom": "Fabien BERNAERT", "date": "23 SEP. 2024"},
+    {"role": "Vérificateur 1", "fonction": "Team Leader FLQ / FLQ multilignes", "nom": "Camille DEBRUGNE", "date": "18 OCT. 2024"},
+    {"role": "Vérificateur 2", "fonction": "Assistant production / Quality control (kaku S)", "nom": "Kazumi D. FUKUSHIMA (fin du nom partiellement illisible sur la photo)", "date": "21 OCT. 2024"}
+  ],
+  "revisions": [
+    {"rev": "A", "date": "23/06/2022", "raison": "Initialisation", "resp": "Bruno.W"},
+    {"rev": "B", "date": "10/01/2024", "raison": "Modification suite ECN 3597", "resp": "DEGROOTE.M"},
+    {"rev": "C", "date": "22/02/2024", "raison": "Clarification suite défaut", "resp": "DEGROOTE.M"},
+    {"rev": "D", "date": "23/09/2024", "raison": "Ajout d'informations outillage", "resp": "DEGROOTE.M"}
+  ],
+  "nomenclature": [
+    {"no": 1, "reference": "3J070-1002-", "designation": "VALVE(COOLANT)", "qte": 1},
+    {"no": 2, "reference": "3J099-2737-1", "designation": "BOLT(EN 1665,M8-60,C8.8)", "qte": 3},
+    {"no": 3, "reference": "3J037-3096-", "designation": "HOSE", "qte": 1},
+    {"no": 4, "reference": "3J033-9475-", "designation": "CLAMP", "qte": 2, "note": "ligne surlignée en vert sur la source"},
+    {"no": 5, "reference": "3S205-0552-", "designation": "JOINT PIPE", "qte": 2},
+    {"no": 6, "reference": "3J037-3093-", "designation": "HOSE", "qte": 1},
+    {"no": 7, "reference": "3J099-0000-3", "designation": "SCREW M5", "qte": 1}
+  ],
+  "illustrations_source": [
+    {"label": "Photo 1", "contenu": "assemblage VALVE COOLANT ① sur HOSE avec BOLT ②, repères ①② cerclés, marquages blanc/jaune visibles sur durites"},
+    {"label": "Photo 2", "contenu": "détail HOSE + CLAMP, repères ④⑤, zone de positionnement du collier"},
+    {"label": "Photo 3", "contenu": "encadré bleu : détail CLAMP ① serré sur durite (contrôle du collier)"},
+    {"label": "Photo 4", "contenu": "détail HOSE + CLAMP + JOINT PIPE, repères ④⑤⑥"},
+    {"label": "Photo 5", "contenu": "détail SCREW M5 ⑦ sur surface noire (repère ⑦ cerclé)"},
+    {"label": "Localisation d'assemblage", "contenu": "vue du tank fuel noir, zone d'implantation du circuit entourée en pointillés jaunes"},
+    {"label": "Visseuses marquées", "contenu": "vignettes « visseuse — Marquage blanc » et « Marquage jaune » (distinguer les deux réglages)"}
+  ],
+  "operations": [
+    {
+      "no": 1,
+      "texte_imprime": "Photo 1 : Assembler ① VALVE COOLANT avec ② BOLT et serrer",
+      "points_de_controle": "Couple de serrage",
+      "defaut": "Défaillance de la pièce",
+      "standard": "12–13,5 Nm (13 Nm)",
+      "equipement": "Visseuse 12V",
+      "outil_controle": "Clé dynamométrique",
+      "points_attention": "",
+      "check_sheet": "X en colonne Pré."
+    },
+    {
+      "no": 2,
+      "texte_imprime": "Photo 2 : Assembler ③ JOINT dans ④ HOSE et serrer avec ⑤ CLAMP",
+      "annotation_manuscrite": "-> 3J09900482 (flèche manuscrite après le texte imprimé)",
+      "points_de_controle": "",
+      "defaut": "",
+      "standard": "",
+      "equipement": "Visseuse 12V avec marquage jaune régler à puissance 20 (cellule surlignée orange — correction révision D)",
+      "outil_controle": "Douille ø 7",
+      "points_attention": "Le collier doit être positionner à environ 0,5cm du bord du hose",
+      "check_sheet": "X en colonne Pré.",
+      "note_lecture": "La nomenclature ne contient pas de pièce « JOINT » : lecture canonique validée Task 5 (seed §4) = assembler le ⑤ JOINT PIPE dans le ③ HOSE et serrer avec le ④ CLAMP."
+    },
+    {
+      "no": 3,
+      "texte_imprime": "Photo 3 : Insérer le ⑤ JOINT PIPE préalablement assemblé sur ③ HOSE dans ① VALVE COOLANT puis mettre en place le clip plastique présent sur le ⑤ JOINT PIPE",
+      "points_de_controle": "",
+      "defaut": "",
+      "standard": "",
+      "equipement": "",
+      "outil_controle": "",
+      "points_attention": "Vérifier que le clip plastique du joint pipe maintient les deux parties du joint pipe et de la valve coolant",
+      "check_sheet": "X en colonne Pré."
+    },
+    {
+      "no": 4,
+      "texte_imprime": "Photo 4 : Assembler ⑤ JOINT dans ⑥ HOSE et serrer avec ④ CLAMP (ne pas le connecter sur la valve coolant avec TA-M-3131-100)",
+      "points_de_controle": "",
+      "defaut": "",
+      "standard": "",
+      "equipement": "Visseuse 12V avec marquage jaune régler à puissance 20 (cellule surlignée orange — correction révision D)",
+      "outil_controle": "Douille ø 7",
+      "points_attention": "",
+      "check_sheet": ""
+    },
+    {
+      "no": 5,
+      "texte_imprime": "Photo 5 : Assembler ⑦ SCREW M5 puis serrer",
+      "points_de_controle": "Couple de serrage",
+      "defaut": "Rouille / défaut d'aspect",
+      "standard": "9–11 Nm (10 Nm)",
+      "equipement": "clé dynamo",
+      "outil_controle": "",
+      "points_attention": "",
+      "check_sheet": "X en colonne Pré."
+    }
+  ],
+  "lignes_non_renseignees": {"operations": [6, 7], "colonnes_vides": ["Kaku", "Événements", "Temps (cartouche)"]},
+  "audit_kps_source_C1_C10": {
+    "methode": "Algorithme d'audit §6.1 du PM KPS-2 (10 critères binaires, score = satisfaits/10 x 100)",
+    "C1_en-tete": {"verdict": "PASS", "detail": "les 9 champs requis sont non vides sur la source"},
+    "C2_verification": {"verdict": "PASS", "detail": "vérificateur 1 et 2 renseignés (nom v2 partiellement illisible mais présent)"},
+    "C3_takt": {"verdict": "FAIL", "detail": "aucun Takt Time sur la source (champ « Temps » vide)"},
+    "C4_swip": {"verdict": "FAIL", "detail": "pas de SWIP (concept absent du document source)"},
+    "C5_anomalie": {"verdict": "FAIL", "detail": "pas de règle d'anomalie explicite (consignes dispersées en points d'attention)"},
+    "C6_nomenclature": {"verdict": "PASS", "detail": "7 pièces, références et quantités non vides"},
+    "C7_etapes": {"verdict": "PASS", "detail": "5 étapes numérotées 1..5 (lignes 6-7 vides)"},
+    "C8_temps": {"verdict": "FAIL", "detail": "aucun temps manuel/machine/marche renseigné"},
+    "C9_points_cles": {"verdict": "FAIL", "detail": "points d'attention présents sur ops 2-3 seulement, pas de structure point clé + raison par étape"},
+    "C10_controles": {"verdict": "FAIL", "detail": "Points de contrôle vides pour ops 2, 3, 4"},
+    "score_source_pourcent": 40
+  },
+  "ecarts_vs_cible_kps": [
+    "Pas de Takt Time ni de décomposition de temps (manuel/machine/marche) : la charge de poste n'est pas objectivable",
+    "Pas de SWIP : l'en-cours minimal n'est pas maîtrisé",
+    "Pas de règle d'anomalie centralisée : les consignes de blocage sont dispersées",
+    "Points de contrôle non systématisés : 3 étapes sur 5 sans contrôle renseigné",
+    "Points clés sans raison (要点と理由 absent) : l'opérateur exécute sans comprendre le pourquoi",
+    "Repères cerclés ①..⑦ ambigus sur les opérations imprimées (ops 2 et 4 : « JOINT » hors nomenclature, corrigé par interprétation validée Task 5)",
+    "Annotations manuscrites et surlignages orange : corrections terrain non intégrées proprement (rev D partielle)",
+    "Illustrations imprimées sombres et petites : localisation des points de serrage difficile à lire au poste"
+  ],
+  "conversion_cible": {
+    "format": "Fiche KPS Standardized Work (fusion Standardized Work Chart + Process Capacity Sheet + Combination Table + dossier de poste — choix assumé PM KPS-2 §0)",
+    "source_canonique_des_valeurs": "seed §4 du PM KPS-2 (validé Task 5 : 26/26 tests, audit 100 %)",
+    "valeur_ajoutee": "Takt 150 s (démonstration), SWIP 1, temps décomposés par étape (total 144 s = 96 % du Takt), points clés + raisons, contrôles QG, règle d'anomalie centralisée",
+    "score_cible_pourcent": 100
+  },
+  "hypotheses_a_valider_methodes": [
+    "Signification exacte des flags QG1 / QG2 / Pré. (convention qualité du site)",
+    "Source du Takt Time (planning vs mesure terrain)",
+    "Temps par étape = valeurs de démonstration réalistes du seed (ne remplacent pas des chronométrages terrain)",
+    "Nom complet du Vérificateur 2 (tronqué sur la photo) et référence manuscrite 3J09900482 à confirmer"
+  ]
+}

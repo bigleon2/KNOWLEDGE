@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-27",
+  "task": "10",
+  "bloc": "conversion KPS",
+  "correct_work_version": "2.12.1",
+  "controles": [
+    {
+      "id": "C01",
+      "controle": "fiche présente, 2 pages, A4 paysage",
+      "verdict": "PASS",
+      "detail": "(2 pages, 297x210 mm)"
+    },
+    {
+      "id": "C02",
+      "controle": "métadonnées scellées (title + author)",
+      "verdict": "PASS",
+      "detail": "author='Z.ai'"
+    },
+    {
+      "id": "C03",
+      "controle": "0 caractère corrompu, 0 placeholder",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "C06",
+      "controle": "contenu complet (7 refs, 5 Op., 5 Photo n, jauge 96 %)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "C04",
+      "controle": "extraction structurée complète",
+      "verdict": "PASS",
+      "detail": "(score source 40 %)"
+    },
+    {
+      "id": "C05",
+      "controle": "cohérence temps seed (somme 144 s, takt 150 s, 96 %)",
+      "verdict": "PASS",
+      "detail": "(Σ=144 s, 96 %)"
+    },
+    {
+      "id": "C07",
+      "controle": "audit C1-C10 de la fiche convertie = 100 %",
+      "verdict": "PASS",
+      "detail": "(100 % — critères FAIL: aucun)"
+    },
+    {
+      "id": "C08",
+      "controle": "standard non-KPS conservé byte-identique",
+      "verdict": "PASS",
+      "detail": "(sha256 3d4d5109847d9f51…)"
+    },
+    {
+      "id": "C09",
+      "controle": "poster_validate check-html : 0 erreur",
+      "verdict": "PASS",
+      "detail": "(0 erreur(s))"
+    },
+    {
+      "id": "C10",
+      "controle": "sources citées (PM KPS-2 §4 + analyse Task 5)",
+      "verdict": "PASS",
+      "detail": ""
+    }
+  ],
+  "resume": "10/10 PASS",
+  "verdict": "PASS"
+}

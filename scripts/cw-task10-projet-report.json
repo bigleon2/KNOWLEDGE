@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-27",
+  "task": "10",
+  "bloc": "projet (clôture)",
+  "correct_work_version": "2.12.1",
+  "controles": [
+    {
+      "id": "P01",
+      "controle": "fiche KPS livrée (2 p. A4 paysage, scellée)",
+      "verdict": "PASS",
+      "detail": "(author='Z.ai')"
+    },
+    {
+      "id": "P02",
+      "controle": "résumé illustré livré (8 p., scellé, propre)",
+      "verdict": "PASS",
+      "detail": "(author='Z.ai')"
+    },
+    {
+      "id": "P03",
+      "controle": "folios du sommaire conformes au rendu réel",
+      "verdict": "PASS",
+      "detail": "(5 repères)"
+    },
+    {
+      "id": "P04",
+      "controle": "audit mise-en-page M3 = PASS",
+      "verdict": "PASS",
+      "detail": "(titres sans keepNext: n/a)"
+    },
+    {
+      "id": "P05",
+      "controle": "correct-work bloc conversion consigné 10/10",
+      "verdict": "PASS",
+      "detail": "(10/10)"
+    },
+    {
+      "id": "P06",
+      "controle": "garde du standard non-KPS byte-identique",
+      "verdict": "PASS",
+      "detail": "(sha256 3d4d5109847d9f51…)"
+    },
+    {
+      "id": "P07",
+      "controle": "extraction structurée complète",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "P08",
+      "controle": "inventaire des livrables cités : tout existe",
+      "verdict": "PASS",
+      "detail": "(manquants: aucun)"
+    },
+    {
+      "id": "P09",
+      "controle": "source HTML + images livrées (chemins réécrits)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "P10",
+      "controle": "KO-L009 : aucun secret dans les livrables",
+      "verdict": "PASS",
+      "detail": "(0 motif(s))"
+    }
+  ],
+  "resume": "10/10 PASS",
+  "verdict": "PASS"
+}

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>KPS Converter — Fonctionnement du full stack</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+@page { size: 794px 1123px; margin: 0; }
+:root{
+  --bg:#111827; --surface:#1f2937; --accent:#38bdf8; --accent2:#a5b4fc;
+  --text:#f8fafc; --muted:#94a3b8; --line:#334155;
+}
+html,body{ margin:0; padding:0; width:794px; background:#111827; color:var(--text);
+  font-family:'Inter','Noto Sans SC',sans-serif; }
+@media screen { html{ display:flex; justify-content:center; background:#111827; }
+  body{ margin:20px auto; } }
+
+/* ---------- tampon pied de page (répété sur chaque page) ---------- */
+.stamp{ position:fixed; bottom:18px; left:64px; right:64px; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted);
+  border-top:1px solid var(--line); padding-top:8px; }
+.stamp .dot{ color:var(--accent); }
+
+/* ---------- couverture ---------- */
+.cover{ width:794px; height:1123px; box-sizing:border-box; break-after:page;
+  overflow:hidden; position:relative; display:flex; flex-direction:column;
+  justify-content:center; padding:0 70px; }
+.cover .grid{ position:absolute; inset:0;
+  background-image:linear-gradient(var(--line) 1px, transparent 1px),
+                   linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:64px 64px; opacity:.14; }
+.cover .glow{ position:absolute; width:420px; height:420px; border-radius:50%;
+  border:2px solid var(--accent); opacity:.16; right:48px; top:64px; }
+.cover .glow.b{ width:260px; height:260px; right:130px; top:170px; opacity:.10; }
+.cover .badge{ position:relative; font-family:'JetBrains Mono',monospace;
+  font-size:12px; letter-spacing:4px; color:var(--accent); text-transform:uppercase;
+  border:1px solid var(--accent); border-radius:6px; padding:6px 14px;
+  display:inline-block; width:max-content; margin-bottom:34px; }
+.cover h1{ position:relative; font-size:52px; font-weight:900; line-height:1.08; }
+.cover h1 .hl{ color:var(--accent); }
+.cover .sub{ position:relative; font-size:17px; color:var(--muted); margin-top:22px;
+  line-height:1.6; max-width:560px; }
+.cover .meta{ position:relative; margin-top:52px; display:flex; gap:14px; flex-wrap:wrap; }
+.cover .chip{ font-family:'JetBrains Mono',monospace; font-size:11.5px;
+  color:var(--accent2); border:1px solid var(--line); background:var(--surface);
+  border-radius:6px; padding:5px 12px; }
+.cover .ed{ position:absolute; bottom:60px; left:70px; right:70px;
+  display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace;
+  font-size:11px; color:var(--muted); padding-top:12px; }
+
+/* ---------- sommaire ---------- */
+.toc{ padding:88px 64px 40px 64px; }
+.toc .sec-tag, .main-content .sec-tag{ font-family:'JetBrains Mono',monospace;
+  font-size:11px; letter-spacing:3px; color:var(--accent); text-transform:uppercase; }
+.toc h2, .main-content .part-title{ font-size:30px; font-weight:800; margin-top:8px; }
+.toc .rule{ height:2px; background:linear-gradient(90deg,var(--accent),transparent);
+  margin:42px 0 32px 0; }
+.toc .entry{ display:flex; align-items:baseline; gap:14px; padding:12px 0;
+  border-bottom:1px dashed var(--line); }
+.toc .num{ font-family:'JetBrains Mono',monospace; color:var(--accent);
+  font-weight:700; min-width:36px; }
+.toc .lab{ font-size:15px; font-weight:600; }
+.toc .pg{ margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:12px;
+  color:var(--muted); }
+
+/* ---------- corps ---------- */
+.main-content{ padding:60px 64px 40px 64px; }
+.part-divider{ break-before:page; margin-top:0; }
+.part-head{ border-left:5px solid var(--accent); background:var(--surface);
+  border-radius:12px; padding:20px 24px; break-after:avoid; break-inside:avoid; }
+.part-head .sec-tag{ color:var(--accent2); }
+.part-head h2{ font-size:26px; font-weight:800; margin-top:6px; }
+.part-head p{ font-size:13.5px; color:var(--muted); margin-top:8px; line-height:1.6; }
+.block{ margin-top:26px; }
+.block>h3{ font-size:17px; font-weight:700; color:var(--accent); margin-bottom:12px;
+  break-after:avoid; }
+p.txt{ font-size:13.5px; line-height:1.75; color:var(--text); margin-bottom:12px;
+  text-align:left; }
+p.txt b{ color:var(--accent2); }
+.mono{ font-family:'JetBrains Mono',monospace; font-size:12px; }
+figure{ break-inside:avoid; margin:18px 0; }
+figure img{ width:100%; border-radius:10px; border:1px solid var(--line); display:block; }
+figcaption{ font-size:11.5px; color:var(--muted); margin-top:8px; line-height:1.5; }
+figcaption b{ color:var(--accent2); }
+
+/* stat cards */
+.stats{ display:flex; gap:14px; margin:16px 0; break-inside:avoid; }
+.stat{ flex:1; background:var(--surface); border:1px solid var(--line);
+  border-top:3px solid var(--accent); border-radius:10px; padding:14px 16px; }
+.stat .v{ font-size:26px; font-weight:800; color:var(--accent); }
+.stat .k{ font-size:11.5px; color:var(--muted); margin-top:4px; line-height:1.4; }
+
+/* callout */
+.callout{ background:var(--surface); border-left:4px solid var(--accent2);
+  border-radius:8px; padding:14px 18px; font-size:12.5px; line-height:1.65;
+  color:var(--text); margin:14px 0; break-inside:avoid; }
+.callout .t{ font-family:'JetBrains Mono',monospace; font-size:10.5px;
+  letter-spacing:2px; color:var(--accent2); text-transform:uppercase; margin-bottom:6px; }
+
+/* table */
+table{ width:100%; border-collapse:collapse; font-size:12px; margin:12px 0;
+  break-inside:avoid; }
+th{ text-align:left; font-family:'JetBrains Mono',monospace; font-size:10.5px;
+  letter-spacing:1px; text-transform:uppercase; color:var(--accent);
+  border-bottom:2px solid var(--accent); padding:8px 10px; }
+td{ border-bottom:1px solid var(--line); padding:8px 10px; vertical-align:top;
+  line-height:1.5; }
+td.mono{ color:var(--accent2); font-size:11px; white-space:nowrap; }
+
+/* checklist */
+.check{ display:flex; gap:10px; align-items:flex-start; background:var(--surface);
+  border:1px solid var(--line); border-radius:8px; padding:11px 14px;
+  margin-bottom:10px; break-inside:avoid; }
+.check .box{ color:var(--accent); font-weight:800; font-family:'JetBrains Mono',monospace; }
+.check .body{ font-size:12.5px; line-height:1.55; }
+.check .body b{ color:var(--accent2); }
+
+/* code */
+pre{ background:#0b1220; border:1px solid var(--line); border-radius:8px;
+  padding:14px 16px; font-family:'JetBrains Mono',monospace; font-size:11.5px;
+  line-height:1.6; color:#d7e3f4; overflow:hidden; break-inside:avoid; margin:12px 0; }
+pre .c{ color:#64748b; } pre .a{ color:var(--accent); }
+
+/* fin */
+.ending{ width:794px; height:1123px; box-sizing:border-box; break-before:page;
+  overflow:hidden; position:relative; display:flex; flex-direction:column;
+  justify-content:center; padding:0 70px; }
+.ending .grid{ position:absolute; inset:0;
+  background-image:linear-gradient(var(--line) 1px, transparent 1px),
+                   linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:64px 64px; opacity:.14; }
+.ending h2{ position:relative; font-size:34px; font-weight:900; }
+.ending .rule{ position:relative; height:2px; width:180px;
+  background:var(--accent); margin:18px 0 46px 0; }
+.ending p{ position:relative; font-size:14px; color:var(--muted); line-height:1.75;
+  max-width:600px; }
+.ending .src{ position:relative; margin-top:26px; font-family:'JetBrains Mono',monospace;
+  font-size:11.5px; color:var(--accent2); line-height:1.9; }
+</style>
+</head>
+<body>
+
+<div class="stamp"><span><span class="dot">●</span>&nbsp; KPS CONVERTER — FONCTIONNEMENT DU FULL STACK</span><span>TASK 9 · 2026-11-27 · TEMPLATE BLUE-TECH v1.0.0</span></div>
+
+<!-- ============ COUVERTURE ============ -->
+<div class="cover">
+  <div class="grid"></div><div class="glow"></div><div class="glow b"></div>
+  <div class="badge">Résumé technique illustré</div>
+  <h1>KPS Converter<br><span class="hl">le fonctionnement<br>du full stack</span></h1>
+  <div class="sub">Comment l'application convertit les standards d'assemblage mécanique non-KPS vers le KPS Standardized Work (Kubota Production System) — architecture, contrats API, idempotence, audit qualité et déploiement atelier.</div>
+  <div class="meta">
+    <span class="chip">React 18 + TS + Vite</span>
+    <span class="chip">Express + TS + Zod</span>
+    <span class="chip">Prisma + SQLite</span>
+    <span class="chip">Docker Node 20 Alpine</span>
+  </div>
+  <div class="ed"><span>Fiche de démonstration TA-S-3055-020 « Sous assemblage du tank fuel » rév. D</span><span>Édition 2026-11-27</span></div>
+</div>
+
+<!-- ============ SOMMAIRE ============ -->
+<div class="toc">
+  <div class="sec-tag">Sommaire</div>
+  <h2>Ce que couvre ce résumé</h2>
+  <div class="rule"></div>
+  <div class="entry"><span class="num">01</span><span class="lab">Mission et architecture du monorepo</span><span class="pg">Partie 1</span></div>
+  <div class="entry"><span class="num">02</span><span class="lab">Contrats API et garanties d'idempotence</span><span class="pg">Partie 2</span></div>
+  <div class="entry"><span class="num">03</span><span class="lab">Cycle de vie d'une fiche et garanties qualité</span><span class="pg">Partie 3</span></div>
+  <div class="entry"><span class="num">04</span><span class="lab">Déploiement atelier et preuves de vérification</span><span class="pg">Partie 4</span></div>
+  <div class="block" style="margin-top:34px">
+    <h3>En bref</h3>
+    <div class="stats" style="margin-top:4px">
+      <div class="stat"><div class="v">63</div><div class="k">fichiers livrés dans le dépôt kps-converter/ (zip 7,6 Mo)</div></div>
+      <div class="stat"><div class="v">5</div><div class="k">modèles de données Prisma sur SQLite (JSON en String, pas de listes)</div></div>
+      <div class="stat"><div class="v">11</div><div class="k">contrats REST sous un format d'erreur unique</div></div>
+      <div class="stat"><div class="v">1</div><div class="k">seul conteneur en production — API + client compilé + uploads sur le port 3001</div></div>
+    </div>
+    <p class="txt">Ce résumé reprend, partie par partie, ce que fait l'application et comment chaque garantie est prouvée. Les trois schémas donnent la vue d'ensemble ; le texte donne les détails vérifiables, chacun trace jusqu'à sa source (README du dépôt, checklist §8.7, worklog de session). Rien n'est avancé sans preuve : chaque chiffre cité correspond à une sortie de commande ou à un test automatisé documenté.</p>
+  </div>
+</div>
+
+<!-- ============ CORPS ============ -->
+<div class="main-content">
+
+  <!-- PARTIE 1 -->
+  <div class="part-divider">
+    <div class="part-head">
+      <div class="sec-tag">Partie 1</div>
+      <h2>Mission et architecture du monorepo</h2>
+      <p>Une seule application web sert deux mondes : la fiche atelier papier (format MO-MF-013-F) en entrée, la fiche KPS Standardized Work en sortie.</p>
+    </div>
+  </div>
+  <div class="block">
+    <h3>La mission</h3>
+    <p class="txt">Le KPS Converter est une application web full-stack <b>idempotente et conteneurisable</b> qui convertit les standards d'assemblage mécanique rédigés au format fiche atelier (document source MO-MF-013-F, archivé en photos réelles) vers la structure KPS Standardized Work du Kubota Production System. La fiche de démonstration TA-S-3055-020 « Sous assemblage du tank fuel » (rév. D) est pré-chargée : 7 pièces de nomenclature, 5 étapes opératoires, somme des temps de 144 secondes face à un Takt de 150 secondes. Le document source papier reste la référence : l'application ne recopie que ce qui est lisible, et signale le reste plutôt que d'inventer.</p>
+    <p class="txt">L'architecture est un <b>monorepo à deux paquets</b> : un client React 18 + TypeScript + Vite (port 5173) et un serveur Node.js + Express + TypeScript + Zod + Prisma + SQLite (port 3001). En développement, le proxy Vite aiguille /api et /uploads vers le serveur ; en production, le même serveur Express sert le client compilé avec repli SPA, ce qui réduit le déploiement à un seul conteneur et un seul port.</p>
+  </div>
+  <figure>
+    <img src="schema-1-architecture.png" alt="Architecture monorepo">
+    <figcaption><b>Schéma 1 — Architecture.</b> Trois phases : le client navigateur (6 vues React, composant cerclé CSS, proxy), le serveur API (11 contrats REST, validation Zod unifiée, garde d'idempotence, audit C1-C10 miroir) et la persistance/déploiement (Prisma + SQLite, seed idempotent, Docker multi-stage avec volumes persistants et healthcheck).</figcaption>
+  </figure>
+  <div class="block">
+    <h3>Les six vues du client</h3>
+    <p class="txt">Le client organise tout le travail opératoire en six vues : le sélecteur de fiches avec reset démo, la fiche KPS complète imprimable en A4 paysage, l'éditeur de temps avec simulateur, l'import non-KPS avec prévisualisation, la gestion des photos par étape, et le panneau d'audit C1-C10 temps réel. Un composant CSS dédié dessine les numéros cerclés ①..⑩ sans aucune police d'icônes : le rendu à l'impression atelier est garanti identique quel que soit le poste.</p>
+  </div>
+  <div class="block">
+    <h3>La pile technique en un coup d'œil</h3>
+    <table>
+      <tr><th>Couche</th><th>Technologie</th><th>Rôle précis</th></tr>
+      <tr><td class="mono">client/</td><td>React 18 · TypeScript · Vite · Tailwind</td><td>six vues, éditeur, audit client, impression A4 paysage</td></tr>
+      <tr><td class="mono">server/</td><td>Node.js · Express · TypeScript · Zod</td><td>onze contrats REST, validation, erreurs unifiées</td></tr>
+      <tr><td class="mono">server/prisma</td><td>Prisma ORM · SQLite</td><td>cinq modèles, transactions atomiques sur les enfants</td></tr>
+      <tr><td class="mono">racine</td><td>concurrently + tsx</td><td>un seul npm run dev pour API + client</td></tr>
+      <tr><td class="mono">conteneur</td><td>Docker multi-stage · Node 20 Alpine</td><td>build client, prisma generate, npm ci --omit=dev, entrypoint LF</td></tr>
+      <tr><td class="mono">qualité</td><td>Vitest · Supertest · miroir kpsAudit</td><td>26 tests, algorithme d'audit identique client/serveur</td></tr>
+    </table>
+    <p class="txt">La contrainte SQLite est assumée dès la conception : la base embarquée ne connaît pas les listes natives, la nomenclature et les étapes sont donc modélisées en tables enfants liées, sérialisées côté API quand un contrat l'exige. Ce choix garde le déploiement atelier trivial — un fichier de base, deux volumes Docker, aucun serveur de base de données à administrer — tout en conservant l'intégrité transactionnelle là où elle compte : le remplacement complet d'une fiche.</p>
+  </div>
+
+  <!-- PARTIE 2 -->
+  <div class="part-divider">
+    <div class="part-head">
+      <div class="sec-tag">Partie 2</div>
+      <h2>Contrats API et garanties d'idempotence</h2>
+      <p>Onze routes REST, un format d'erreur unique, et une règle transversale : rejouer une opération ne duplique jamais rien.</p>
+    </div>
+  </div>
+  <div class="block">
+    <h3>Les 11 contrats REST</h3>
+    <table>
+      <tr><th>Route</th><th>Rôle</th><th>Garantie</th></tr>
+      <tr><td class="mono">GET /api/health</td><td>Sonde de vie</td><td>503 explicite si la base est inaccessible</td></tr>
+      <tr><td class="mono">GET /api/standards</td><td>Liste des fiches</td><td>tri docNumber/revision, score d'audit en %</td></tr>
+      <tr><td class="mono">GET /api/standards/:id</td><td>Fiche complète</td><td>enfants triés, index liés désérialisés</td></tr>
+      <tr><td class="mono">POST /api/standards</td><td>Création</td><td>409 + existingId si (docNumber, revision) existe</td></tr>
+      <tr><td class="mono">PUT /api/standards/:id</td><td>Remplacement complet</td><td>enfants remplacés en transaction</td></tr>
+      <tr><td class="mono">DELETE /api/standards/:id</td><td>Suppression</td><td>idempotent : { deleted: true | false }</td></tr>
+      <tr><td class="mono">POST /api/demo/reset</td><td>Reset démo</td><td>rejoue le seed TA-S-3055-020</td></tr>
+      <tr><td class="mono">POST /api/convert/parse</td><td>Analyse non-KPS</td><td>texte/CSV/JSON + warnings, jamais d'invention</td></tr>
+      <tr><td class="mono">POST /api/uploads</td><td>Photos/PDF</td><td>10 Mo max, dédupliqué par SHA-256 du contenu</td></tr>
+      <tr><td class="mono">POST /api/vision/extract</td><td>Extraction vision</td><td>501 explicite tant que la clé vision n'est pas câblée</td></tr>
+      <tr><td class="mono">GET …/export/markdown|json</td><td>Exports</td><td>téléchargement re-importable sans duplication</td></tr>
+    </table>
+    <p class="txt">Tout échec de validation Zod renvoie le même contrat sur les onze routes : <span class="mono" style="color:var(--accent2)">400 { error, details: [{ path, message }] }</span>. Le client affiche donc les erreurs de champ sans logique spécifique par route, et les tests vérifient ce format une fois pour toutes.</p>
+  </div>
+  <figure>
+    <img src="schema-2-flux-requete.png" alt="Flux d'une requête API">
+    <figcaption><b>Schéma 2 — Flux d'une requête.</b> Cinq étapes : émission client (avec Idempotency-Key optionnelle), validation Zod à l'échec unifié, garde d'idempotence par SHA-256 (rejeu du 2xx en cache, 409 en cas de collision), persistance transactionnelle avec uploads dédupliqués, puis réponse JSON. Chaque garantie est couverte par un test dédié.</figcaption>
+  </figure>
+  <div class="block">
+    <h3>Les quatre règles d'idempotence</h3>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>Base et seed</b> — UPSERT déterministe sur (docNumber, revision) ; les enfants sont supprimés puis recréés dans la même transaction Prisma. Relancer dix fois ne duplique jamais la fiche démo (count contrôlé = 1).</div></div>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>API</b> — l'empreinte requestHash = SHA-256 de méthode + chemin + corps (empreinte du fichier incluse pour les uploads). Même clé et même hash : rejeu de la réponse 2xx en cache. Même clé et hash différent : 409 avant toute écriture. Les 4xx/5xx ne sont jamais mis en cache, et la purge des enregistrements de plus de 7 jours s'exécute au démarrage.</div></div>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>Uploads</b> — le fichier est stocké sous &lt;sha256&gt;.extension, jamais sous son nom d'origine ; un contenu déjà connu renvoie le MediaAsset existant sans réécrire sur disque.</div></div>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>Import/export</b> — ré-importer un JSON exporté met la fiche à jour via (docNumber, revision) : zéro pièce ou étape dupliquée.</div></div>
+  </div>
+  <div class="block">
+    <h3>Un échange idempotent, pas à pas</h3>
+<pre><span class="c"># 1er appel — création effective</span>
+<span class="a">POST</span> /api/standards   <span class="a">Idempotency-Key:</span> recap-2026-11-27-a
+  → 201 Created  { id, docNumber: "TA-S-3055-021", revision: "A", … }
+
+<span class="c"># réseau interrompu, le client rejoue la même requête</span>
+<span class="a">POST</span> /api/standards   <span class="a">Idempotency-Key:</span> recap-2026-11-27-a   (même corps)
+  → 200 (même réponse servie depuis le cache — aucun second enregistrement)
+
+<span class="c"># même clé, mais corps différent : collision détectée avant écriture</span>
+<span class="a">POST</span> /api/standards   <span class="a">Idempotency-Key:</span> recap-2026-11-27-a   (autre corps)
+  → <span class="a">409 Conflict</span>  { existingId }</pre>
+    <p class="txt">Ce scénario — exactement celui que rejouent les tests — résume la promesse de l'application face à un réseau d'atelier imparfait : le même envoi répété ne crée jamais de doublon, et un envoi contradictoire est refusé au lieu d'écraser silencieusement une donnée. La même discipline s'applique aux suppressions (re-supprimer renvoie deleted:false sans erreur) et aux uploads (un fichier déjà connu renvoie l'asset existant sans réécriture disque).</p>
+  </div>
+
+  <!-- PARTIE 3 -->
+  <div class="part-divider">
+    <div class="part-head">
+      <div class="sec-tag">Partie 3</div>
+      <h2>Cycle de vie d'une fiche et garanties qualité</h2>
+      <p>De la fiche papier scannée à la fiche KPS imprimable : importer, convertir, auditer, équilibrer, diffuser.</p>
+    </div>
+  </div>
+  <figure>
+    <img src="schema-3-cycle-fiche.png" alt="Cycle de vie d'une fiche">
+    <figcaption><b>Schéma 3 — Cycle de vie.</b> Import non-KPS (warnings explicites), conversion structurée, audit temps réel C1-C10 en miroir client/serveur, équilibrage des temps avec simulateur 70/20/10, puis diffusion par exports re-importables ou impression A4 paysage.</figcaption>
+  </figure>
+  <div class="block">
+    <h3>Audit KPS C1-C10 : un algorithme, deux copies identiques</h3>
+    <p class="txt">Dix critères valent dix points : C1 en-tête complet, C2 double vérification, C3 Takt positif, C4 SWIP au moins égal à un, C5 règle d'anomalie, C6 nomenclature (index uniques, références non vides, quantités positives), C7 étapes aux ordres uniques, C8 somme de temps positive par étape, C9 point clé et raison présents, C10 contrôle défini. Le fichier serveur <span class="mono" style="color:var(--accent2)">kpsAudit.ts</span> et son miroir client sont <b>identiques byte à byte</b>, garantie par un test dédié : le score affiché en temps réel dans le panneau d'audit est donc exactement celui que recalculerait le serveur. La fiche démo atteint 100 %.</p>
+    <p class="txt">Le simulateur de temps est volontairement déterministe : pour M étapes et un Takt défini, manuel = round(0,7 × takt / M), machine = round(0,2 × takt / M), marche = round(0,1 × takt / M). Si le Takt est absent ou nul, le bouton est désactivé et affiche la consigne « Définir le Takt Time avant de simuler » — la jauge Cycle/Takt est masquée dans le même cas, ce qui évite tout indicateur trompeur.</p>
+  </div>
+  <div class="callout">
+    <div class="t">Choix assumés — jamais d'invention</div>
+    Les temps absents du document source restent à 0 avec un warning visible et la mention « à compléter manuellement » ; les hypothèses de la fiche démo sont documentées « à valider par Méthodes » partout (code, README, rapport). L'extraction vision renvoie un 501 explicite tant qu'aucun fournisseur n'est câblé : l'application ne simule jamais une capacité qu'elle n'a pas.
+  </div>
+  <div class="block">
+    <h3>Les dix critères d'audit, critère par critère</h3>
+    <table>
+      <tr><th>#</th><th>Critère</th><th>Exigence</th></tr>
+      <tr><td class="mono">C1</td><td>En-tête complet</td><td>docNumber, révision, titre — rien de manquant</td></tr>
+      <tr><td class="mono">C2</td><td>Double vérification</td><td>champ préparé/vérifié présent</td></tr>
+      <tr><td class="mono">C3</td><td>Takt time</td><td>strictement positif</td></tr>
+      <tr><td class="mono">C4</td><td>SWIP</td><td>au moins égal à 1</td></tr>
+      <tr><td class="mono">C5</td><td>Règle d'anomalie</td><td>consigne d'arrêt définie</td></tr>
+      <tr><td class="mono">C6</td><td>Nomenclature</td><td>index uniques ≥ 1, références non vides, quantités ≥ 1</td></tr>
+      <tr><td class="mono">C7</td><td>Étapes</td><td>ordres uniques ≥ 1</td></tr>
+      <tr><td class="mono">C8</td><td>Temps par étape</td><td>somme de temps strictement positive</td></tr>
+      <tr><td class="mono">C9</td><td>Point clé &amp; raison</td><td>présents sur chaque étape</td></tr>
+      <tr><td class="mono">C10</td><td>Contrôle</td><td>moyen de contrôle défini sur chaque étape</td></tr>
+    </table>
+    <p class="txt">Le panneau d'audit (vue 6) calcule ce score à chaque frappe : la fiche démo affiche 100 % en permanence, et toute édition qui ferait chuter un critère est visible instantanément, côté client comme côté serveur. C'est cette immédiateté qui fait de l'audit un outil de saisie, pas un contrôle a posteriori : l'opérateur corrige pendant qu'il complète, pas après export.</p>
+  </div>
+
+  <!-- PARTIE 4 -->
+  <div class="part-divider">
+    <div class="part-head">
+      <div class="sec-tag">Partie 4</div>
+      <h2>Déploiement atelier et preuves de vérification</h2>
+      <p>Un conteneur, un port, des volumes persistants — et une checklist dont chaque succès est prouvé par une sortie de commande.</p>
+    </div>
+  </div>
+  <div class="block">
+    <h3>Démarrage</h3>
+<pre><span class="c"># développement local — API :3001 + client Vite :5173</span>
+npm install && npm install --prefix client && npm install --prefix server
+cd server && npx prisma db push && npx tsx src/seed.ts && cd ..
+npm run dev
+
+<span class="c"># serveur d'atelier (production)</span>
+<span class="a">docker compose up -d --build</span>   <span class="c"># → http://serveur:3001</span></pre>
+    <p class="txt">Le Dockerfile multi-stage (Node 20 Alpine) compile le client, génère le client Prisma, puis l'entrypoint pousse le schéma, rejoue le seed et démarre Express. Deux volumes nommés (<span class="mono" style="color:var(--accent2)">kps_db</span> et <span class="mono" style="color:var(--accent2)">kps_uploads</span>) persistent les données et les médias, et un healthcheck HTTP interroge /api/health toutes les 30 secondes.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="v">26/26</div><div class="k">tests Vitest + Supertest — dont les 7 exigés (409, cache 2xx, SHA-256, re-DELETE, double seed…)</div></div>
+    <div class="stat"><div class="v">11/11</div><div class="k">scénarios navigateur vérifiés (audit 100 %, import + 409, impression A4, 0 erreur console)</div></div>
+    <div class="stat"><div class="v">15/15</div><div class="k">contrôles Docker en vérification manuelle mécanisée (compose, Dockerfile, entrypoint LF)</div></div>
+    <div class="stat"><div class="v">100 %</div><div class="k">score d'audit C1-C10 de la fiche démo TA-S-3055-020 (miroir byte-identique)</div></div>
+  </div>
+  <div class="block">
+    <h3>Checklist §8 — résultats prouvés</h3>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>8.1-8.2 Installations et base</b> — trois installs distinctes, prisma db push, seed exécuté deux fois : même id, count = 1 à chaque rejeu (7 pièces, 5 étapes, 144 s / Takt 150 s).</div></div>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>8.3-8.4 Compilation</b> — tsc --noEmit zéro erreur côté client et serveur ; build Vite OK (188 Ko de JS), server/dist/seed.js présent pour le mode conteneur.</div></div>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>8.5 Tests</b> — 26/26 : parseur texte + CSV, SHA-256 d'upload, double POST même clé (201 puis cache), même clé + payload différent (409), re-DELETE (deleted:false), double seed, audit démo à 100 %, miroir kpsAudit, PUT transactionnel, format d'erreur Zod, vision 501, health, exports.</div></div>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>8.6 Docker</b> — binaire absent du sandbox de génération : vérification manuelle mécanisée 15/15 (ports, restart, DATABASE_URL absolu, volumes, healthcheck 30s/5s/3, entrypoint verbatim LF, multi-stage). À valider sur poste équipé à l'installation atelier.</div></div>
+    <div class="check"><span class="box">[OK]</span><div class="body"><b>8.7 Rapport</b> — chaque échec rencontré en cours de route (client Prisma non généré, 2 erreurs de typage, fixture CSV décalée, PORT YAML) est documenté cause → correctif → rejeu. Aucun succès déclaré sans preuve.</div></div>
+  </div>
+  <div class="block">
+    <h3>Les scénarios navigateur vérifiés (11/11)</h3>
+    <p class="txt">La vérification en navigateur réel a couvert onze scénarios de bout en bout, dont notamment : l'affichage de la fiche démo TA-S-3055-020 avec son audit à 100 %, la jauge Cycle/Takt à 96 % (144 s sur 150 s), le simulateur de temps (répartition 21/6/3 sur la fiche démo), l'import d'un standard avec erreur 409 gérée proprement côté interface, le reset de la fiche démo, l'impression A4 paysage avec navigation masquée — le tout sans une seule erreur console. Ce parcours confirme que l'expérience opératoire promise par l'architecture tient réellement debout à l'écran, et pas seulement dans les tests d'API.</p>
+    <p class="txt">Pour installer et utiliser l'application, le README du dépôt reprend l'intégralité de ces étapes : démarrage local en deux terminaux (ou une seule commande npm run dev), préparation idempotente de la base et de la fiche démo, puis déploiement Docker pour le serveur d'atelier. Les choix assumés et les limites documentées (vision 501, vérification Docker à rejouer sur poste équipé) y sont rappelés pour que chaque utilisateur sache exactement ce que l'application garantit — et ce qu'elle refuse de prétendre.</p>
+  </div>
+  <div class="block">
+    <h3>Où trouver quoi dans le dépôt</h3>
+    <table>
+      <tr><th>Chemin</th><th>Contenu</th></tr>
+      <tr><td class="mono">README.md</td><td>démarrage, architecture, contrats API, choix assumés</td></tr>
+      <tr><td class="mono">Dockerfile + docker-compose.yml</td><td>image multi-stage Node 20 Alpine, volumes kps_db / kps_uploads, healthcheck</td></tr>
+      <tr><td class="mono">client/src/components/</td><td>les six vues (VueKps, EditeurTemps, ImportNonKps, PhotosVignettes, PanneauAudit…) et le composant cerclé ①..⑩</td></tr>
+      <tr><td class="mono">client/src/lib/kpsAudit.ts</td><td>miroir client de l'algorithme C1-C10 (testé byte-identique au serveur)</td></tr>
+      <tr><td class="mono">server/src/</td><td>routes, validation Zod, idempotence, parseur de conversion, audit, seed, exports</td></tr>
+      <tr><td class="mono">server/prisma/</td><td>schéma des 5 modèles + base SQLite générée par db push</td></tr>
+      <tr><td class="mono">docs/source/</td><td>photos du document papier source MO-MF-013-F (référence de la fiche démo)</td></tr>
+      <tr><td class="mono">server/src/__tests__/</td><td>les 26 tests Vitest + Supertest, dont le test miroir kpsAudit</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============ FIN ============ -->
+<div class="ending">
+  <div class="grid"></div>
+  <h2>KPS Converter —<br>prêt pour l'atelier</h2>
+  <div class="rule"></div>
+  <p>Une application full-stack unique : le navigateur prépare et contrôle, le serveur garantit et persiste, Docker transporte. La fiche papier devient une fiche KPS vérifiée, imprimable et re-importable — sans jamais inventer ce que le document source ne dit pas.</p>
+  <div class="src">
+    Sources — kps-converter/ (63 fichiers) · download/rapport-kps2-checklist.md §8.7 · worklog Task 5<br>
+    Template blue-tech v1.0.0 · généré le 2026-11-27 · session web-220878ed, Task 9
+  </div>
+</div>
+
+</body>
+</html>
