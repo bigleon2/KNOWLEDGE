@@ -1,0 +1,290 @@
+{
+  "sections": {
+    "S1": [
+      {
+        "check": "hook R2-CACHE déclaré (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "hook R2-CACHE déclaré (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "cache-verdicts.py présent ×2 miroirs SHA identiques",
+        "verdict": "PASS",
+        "detail": "ff9285f5d35f"
+      },
+      {
+        "check": "selftest wrapper 12/12 PASS",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ],
+    "S2": [
+      {
+        "check": "1ᵉʳ appel : exécution réelle (verdict grader)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "1ᵉʳ appel : marqueur EXÉCUTION RÉELLE",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "durée 1ᵉʳ appel ≥ 0,2 s (grader lent)",
+        "verdict": "PASS",
+        "detail": "0.247 s"
+      },
+      {
+        "check": "2ᵉ appel : REJEU SANS RÉ-APPEL",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "verdict figé identique",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "2ᵉ appel < 0,1 s",
+        "verdict": "PASS",
+        "detail": "0.035 s"
+      },
+      {
+        "check": "gain mesuré ≥ 5×",
+        "verdict": "PASS",
+        "detail": "gain 7×"
+      },
+      {
+        "check": "invalidation sur modification cible → ré-exécution réelle",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "--force ré-exécute réellement",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "stats lisibles (entrées)",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ],
+    "S3": [
+      {
+        "check": "frontmatter version 2.12.2 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "§1.4bis présente avec les 4 règles (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "matrice §12 ligne v2.12.2 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "arbitre canonique recalibré 2.12.2 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "frontmatter version 2.12.2 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "§1.4bis présente avec les 4 règles (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "matrice §12 ligne v2.12.2 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "arbitre canonique recalibré 2.12.2 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "verify-correct-work : 16/16 PASS réel",
+        "verdict": "PASS",
+        "detail": "] KNOWLEDGE.md entree\n  [PASS] Logging worklog\n  [PASS] dépendances frontmatter (4 deps trouvées)\n  [PASS] compatibilité écosystème\n\n=== RESUME ===\n  PASS  : 16/16\n  FAIL  : 0/16\n "
+      },
+      {
+        "check": "frontière preuve citée (JAMAIS une preuve en soi)",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ],
+    "S4": [
+      {
+        "check": "frontmatter version 2.2.0 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "tag cache présent (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "§1.13 complète (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "note grille v2.2.0 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "le clone complet demeure canonique (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "frontmatter version 2.2.0 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "tag cache présent (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "§1.13 complète (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "note grille v2.2.0 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "le clone complet demeure canonique (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ],
+    "S5": [
+      {
+        "check": "scan jetons réel rc=0 (figé)",
+        "verdict": "PASS",
+        "detail": "rc=0"
+      },
+      {
+        "check": "rejeu du scan rc figé = 0",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "rejeu marqué REJEU SANS RÉ-APPEL",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "gain ≥ 10× (réel 0.67 s → rejeu 0.036 s)",
+        "verdict": "PASS",
+        "detail": "18×"
+      }
+    ],
+    "S6": [
+      {
+        "check": "KB entrée correct-work v2.12.2 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "KB entrée clone-chat v2.2.0 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "invariants ECO_SKILLS ×2 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "PM v2.12.2 présent + v2.12.1 archivé R4 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "KB entrée correct-work v2.12.2 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "KB entrée clone-chat v2.2.0 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "invariants ECO_SKILLS ×2 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "PM v2.12.2 présent + v2.12.1 archivé R4 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "parité SHA hôte/dépôt SKILL.md",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "parité SHA hôte/dépôt SKILL.md",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "parité SHA hôte/dépôt KNOWLEDGE.md",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "parité SHA hôte/dépôt check-ecosysteme-integrity.py",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "parité SHA hôte/dépôt verify-correct-work.py",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "parité SHA hôte/dépôt PROMPT-MAITRE-CORRECT-WORK-v2.12.2.md",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ]
+  },
+  "ok": 52,
+  "total": 52,
+  "mesures": {
+    "s2_rejeu": {
+      "reel_ms": 247,
+      "rejeu_ms": 35,
+      "gain": 7
+    },
+    "s5_scan": {
+      "reel_s": 0.67,
+      "rejeu_s": 0.036,
+      "gain": 18
+    }
+  }
+}
