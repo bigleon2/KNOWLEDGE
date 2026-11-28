@@ -1,6 +1,6 @@
 ---
 name: clone-chat
-version: 2.0.2
+version: 2.1.0
 category: ecosystem
 language: fr
 tags:
@@ -11,11 +11,15 @@ tags:
   - gen-plan
   - auto-clonage
   - worklog
+  - themes
 description: >
   Clone l'intégralité d'une discussion (contexte, décisions, artefacts,
   worklog) dans un fichier Markdown auto-suffisant. 7+1 étapes, Étape 3.5
   Context Drift, intégration gen-plan v3.6.1+ KB. Format Markdown unique,
   propriété auto-clonage.
+  Modes thématiques v2.1.0 : `--theme` (table des thèmes/sous-projets de la
+  discussion), `(<theme>)` (clone partiel restreint au thème précisé),
+  `(ALL)` (un clone par thème + index récapitulatif).
   Archive la session pour reprise par une session héritière.
 dependencies:
   - skill: gen-plan
@@ -54,6 +58,8 @@ Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
 ## §A — DÉCLENCHEURS
 
 - `clone-chat` ou `clone_chat`
+- `clone-chat --theme` — analyse de l'intégralité de la discussion et table des thèmes (sous-projets) principaux (v2.1.0)
+- `clone-chat (<theme>)` — clone partiel restreint au thème précisé ; `(ALL)` = un clone par thème + index (v2.1.0)
 - `clone la discussion` ou `clone cette session`
 - `clone-chat:` suivi d'une description de session
 - `archiver la discussion` — archivage complet d'une session multi-sessions
@@ -181,6 +187,8 @@ Exécuter les **8 checks de validation**. Chaque check est binaire (PASS/FAIL). 
 
 Si un check échoue, corriger avant de passer à l'étape 7.
 
+**Check 9 — Cohérence thématique (v2.1.0, modes `(<theme>)` et `(ALL)` uniquement)** : (a) aucun contenu hors-thème dans les sections §1-§3, (b) exclusions listées en §0bis du clone thématique, (c) slug du thème présent dans le nom de fichier, (d) preuves ≥2 citées pour le périmètre retenu (R4). Le clone thématique est valide si 9/9 PASS (8 checks + check 9).
+
 ### §1.10 Détail de l'Étape 7 — Sauvegarde
 
 Sauvegarder le clone dans `download/` avec un nom descriptif incluant la date et le sujet.
@@ -197,6 +205,83 @@ Si `{{KB_ENABLED}}` est `true` :
 - **Registre KB** : enrichir la section §2 du clone avec les descriptions des skills depuis le registre
 - **Historique des interactions** : reproduire en §2.4 l'historique des interactions clés entre skills
 - **Protocole de Découverte** : voir SHARED §2.3
+
+### §1.12 Modes thématiques (v2.1.0)
+
+clone-chat supporte 4 modes d'invocation :
+
+| Mode | Invocation | Sortie |
+|------|-----------|--------|
+| Complet (défaut) | `clone-chat` | Clone intégral de la discussion (7+1 étapes, 8 checks) |
+| Analyse des thèmes | `clone-chat --theme` | Table des thèmes détectés — AUCUN clone produit |
+| Clone thématique | `clone-chat (<theme>)` | Clone partiel restreint au thème `<theme>` |
+| Clones multiples | `clone-chat (ALL)` | Un clone par thème + index récapitulatif |
+
+#### §1.12.1 Détection des thèmes (`--theme`)
+
+Analyse de l'intégralité de la discussion en cours — fenêtre courante, résumés de
+continuation hérités, worklog, §1.0 des clones antérieurs — pour différencier les
+thèmes principaux (sous-projets). Critères de segmentation (au moins 2 réunis) :
+1. Objet technique distinct (ex : KPS, GIF, installation de l'écosystème)
+2. Famille de livrables distincte (skills, scripts, documents, clones)
+3. Plages de sessions/fenêtres disjointes ou quasi disjointes
+4. Chaîne de décisions propre (décisions/drifts non partagés avec les autres thèmes)
+
+**Règle de preuve (R4)** : un thème n'est retenu que s'il est ancré par ≥ 2 preuves
+(entrée worklog, artefact disque, trace_id, section de clone antérieur). Nommage :
+slug kebab-case (`<slug>`).
+
+**Format de sortie — table des thèmes** :
+
+| # | Thème | Slug | Sessions / fenêtres | Artefacts associés | Preuves (≥2) | Statut |
+|---|-------|------|--------------------|--------------------|--------------|--------|
+
+Statut : `ACTIF` (sous-projet en cours) / `CLÔTURÉ` (archivé).
+
+**Garde mono-thème** : si la discussion ne comporte qu'un seul sous-projet
+distinguable, la table contient 1 ligne et la mention explicite « aucun sous-projet
+distinguable ». Aucun thème inventé.
+
+#### §1.12.2 Clone thématique (`(<theme>)`)
+
+Le clone thématique suit la structure §0-§5 du gabarit `références/theme-template.md`
+avec filtrage par thème :
+
+| Section | Contenu en mode thématique |
+|---------|---------------------------|
+| §0 + §0bis | Règle zéro + périmètre + table des EXCLUSIONS (thèmes et sections hors périmètre, avec pointeurs) |
+| §1 | Sessions du thème uniquement |
+| §2 | Artefacts (skills, scripts, documents) du thème uniquement |
+| §3 | Décisions, bugs, conventions, drifts du thème uniquement |
+| §4 | Instructions de reprise POUR CE THÈME (état courant + prochaine étape exécutable) |
+| §5 | Auto-clonage thématique (le clone thématique grandit par ses propres sessions) |
+
+**Gardes** :
+1. Thème inconnu ou mal orthographié → reproduire la table `--theme` + erreur contrôlée
+   « thème non reconnu — choisir dans la table » ; AUCUN clone partiel inventé.
+2. Auto-suffisance périmétrique : le clone thématique se suffit AU PÉRIMÈTRE du thème
+   (check 9) ; la reprise globale de la discussion exige le clone complet ou `(ALL)` —
+   mention obligatoire en §0.
+3. Nommage : `<sujet>-clone-theme-<slug>-<AAAA-MM-JJ>.md`.
+
+#### §1.12.3 Clones multiples (`(ALL)`)
+
+`<theme> = "ALL"` : exécuter `--theme` puis générer un clone thématique PAR thème de la
+table, plus un index `<sujet>-clone-themes-index-<AAAA-MM-JJ>.md` récapitulant : table
+des thèmes, fichiers produits, tailles, verdicts de validation (9/9). Idempotence :
+ré-exécution régénère les mêmes noms de fichiers (même périmètre → écrasement à
+l'identique) ; périmètre modifié → nouveaux fichiers, l'ancien index reste lisible.
+
+#### §1.12.4 Impact sur les 7+1 étapes
+
+| Étape | Mode complet | Modes `(<theme>)` / `(ALL)` |
+|-------|--------------|----------------------------|
+| 1 (worklog) | Collecte intégrale | Collecte intégrale + attribution de thème par session |
+| 2-4 | Collecte intégrale | Collecte filtrée par thème |
+| 3.5 | Drifts intégraux | Drifts du thème uniquement |
+| 5 | Assemblage §0-§5 complet | Assemblage filtré + §0bis exclusions |
+| 6 | 8 checks | 8 checks + check 9 (cohérence thématique) |
+| 7 | `<sujet>-clone-<date>.md` | `<sujet>-clone-theme-<slug>-<date>.md` |
 
 ---
 
@@ -225,8 +310,12 @@ Si `{{KB_ENABLED}}` est `true` :
 | Discussion courte (< 5 sessions) | 2750 | ECO | 2000-3500 |
 | Discussion moyenne (5-15 sessions) | 4500 | NORMAL | 3500-5500 |
 | Discussion longue (> 15 sessions) | 7250 | NORMAL | 5500-9000 |
+| Mode `--theme` (analyse seule) | 2000 | ECO | 1500-2500 |
+| Mode `(<theme>)` (clone thématique) | 3500 | NORMAL | 2500-4500 (60-80 % du clone complet) |
+| Mode `(ALL)` (N clones + index) | 7000 | NORMAL | 4500-10000 (croît avec le nombre de thèmes) |
 
 **Note v2.0.0** : estimation recalibrée pour couvrir l'Étape 3.5 Context Drift, l'intégration gen-plan v3.6.1+ KB, et la section historique des interactions.
+**Note v2.1.0** : trois lignes ajoutées pour les modes thématiques (§1.12) — l'analyse `--theme` est plus légère qu'un clone, le clone `(<theme>)` vaut ~60-80 % du complet, `(ALL)` est la somme des clones plus l'index.
 
 ### §2.4 Profils ressource
 
@@ -262,7 +351,8 @@ Clone-chat fonctionne **standalone** sans gen-plan. Si gen-plan v3.6.1+ est pré
 {{SKILLS_ROOT}}clone-chat/
 ├── SKILL.md
 └── références/
-    └── clone-template.md
+    ├── clone-template.md
+    └── theme-template.md
 ```
 
 ### §2.8 Logging worklog
@@ -320,11 +410,11 @@ mkdir -p {{SKILLS_ROOT}}clone-chat/références
 
 ### §5.2 Créer le fichier SKILL.md
 
-Le fichier `SKILL.md` (~365 lignes) doit contenir :
+Le fichier `SKILL.md` (~480 lignes) doit contenir :
 
 1. **YAML frontmatter** (voir §4)
 2. **§0 — Règle zéro** : contexte écosystème (voir SHARED §0), mention du corpus de skills (nombre réel courant, recalibré), variables `{{SKILLS_ROOT}}`, `{{KB_PATH}}`, `{{KB_ENABLED}}`
-3. **§1 — Spécification fonctionnelle** : objectif, 7+1 étapes (détail de chaque), profils ressource
+3. **§1 — Spécification fonctionnelle** : objectif, 7+1 étapes (détail de chaque), modes thématiques (§1.12), profils ressource
 4. **§2 — Spécification technique** : format sortie, stack, grille #token, intégration gen-plan, mitigation taille, structure fichiers
 5. **§3 — Conventions** : nommage (SHARED §1.2), chemins relatifs, règle in extenso, numérotation §0-§5, Context Drift obligatoire
 6. **§4 — Relations** : gen-plan (§4.1), correct-work (§4.2), skill-creator (§4.3)
@@ -340,7 +430,7 @@ Le contenu in extenso du template est en §9.
 Ajouter l'entrée clone-chat au registre KB (format SHARED §2.2) :
 
 ```markdown
-## clone-chat v2.0.1
+## clone-chat v2.1.0
 
 - **Category** : ecosystem
 - **Description** : Clonage de discussion en Markdown auto-suffisant. 7+1 étapes, intégration gen-plan v3.6.1+ KB.
@@ -368,3 +458,6 @@ Vérifier que (SHARED §3.2) :
   l'état le plus frais
 - Scellement APRÈS enrichissement final (méthode neutral-line, Annexe D du PDF) pour que la
   SHA déclarée reste vérifiable byte-identique
+- Thèmes (v2.1.0) : slug kebab-case, règle de preuve ≥2 par thème (R4), exclusions toujours
+  citées en §0bis d'un clone thématique ; le clone complet demeure l'instantané de clôture
+  canonique — les clones thématiques en dérivent et ne le remplacent jamais (§5 inchangé)
