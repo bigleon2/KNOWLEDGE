@@ -1,0 +1,49 @@
+{
+  "task": "Task 21 / suite 177 — test $FANCON2 jumeau YAML (clone-chat v2.3.0 §1.14)",
+  "trace_directive": "1a221e5599452e2d",
+  "parseur": "PyYAML 6.0.3",
+  "passes": [
+    {
+      "pass_num": 1,
+      "verdicts": {
+        "T1-parse-sans-erreur": "PASS",
+        "T2-9-cles-racines": "PASS",
+        "T3-couverture-S0-S5": "PASS",
+        "T4-idempotence-bytes-identiques": "PASS",
+        "T4bis-roundtrip-stable": "PASS",
+        "T5-provenance-source-sha256": "PASS",
+        "T6-sans-tabulations-indent2": "PASS"
+      },
+      "sha_jumeau": "3e4491008ca1d54b0ca7d9854f66d5686d941f1cef66b507a7ac0a214446d539",
+      "nb_pass": 7,
+      "nb_total": 7
+    },
+    {
+      "pass_num": 2,
+      "verdicts": {
+        "T1-parse-sans-erreur": "PASS",
+        "T2-9-cles-racines": "PASS",
+        "T3-couverture-S0-S5": "PASS",
+        "T4-idempotence-bytes-identiques": "PASS",
+        "T4bis-roundtrip-stable": "PASS",
+        "T5-provenance-source-sha256": "PASS",
+        "T6-sans-tabulations-indent2": "PASS"
+      },
+      "sha_jumeau": "3e4491008ca1d54b0ca7d9854f66d5686d941f1cef66b507a7ac0a214446d539",
+      "nb_pass": 7,
+      "nb_total": 7
+    }
+  ],
+  "idempotence_croisee_p1_p2": "PASS",
+  "echantillon_yaml": "/home/z/my-project/download/echantillon-clone-jumeau-yaml-demo.yaml",
+  "echantillon_source_md": "/home/z/my-project/download/echantillon-clone-jumeau-yaml-demo.source.md",
+  "regles_validees": {
+    "R-1": "structure = vue dérivée, non canonique (meta.canonique cité)",
+    "R-2": "meta.source_md + meta.sha256_source présents et exacts (T5)",
+    "R-3": "combinabilité documentée au SKILL.md §1.14 (hors périmètre d'exécution ici)",
+    "R-4": "T4 + T4bis + croisé p1/p2",
+    "R-5": "T6 (sans tabs, indent 2)",
+    "R-6": "T1-T3 (parse, 9 clés, couverture §0-§5)"
+  },
+  "verdict_global": "PASS"
+}

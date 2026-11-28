@@ -1,6 +1,6 @@
 ---
 name: clone-chat
-version: 2.2.0
+version: 2.3.0
 category: ecosystem
 language: fr
 tags:
@@ -13,6 +13,8 @@ tags:
   - worklog
   - themes
   - cache
+  - yaml
+  - yalm
 description: >
   Clone l'intégralité d'une discussion (contexte, décisions, artefacts,
   worklog) dans un fichier Markdown auto-suffisant. 7+1 étapes, Étape 3.5
@@ -24,6 +26,10 @@ description: >
   Cache d'analyse v2.2.0 : le clone antérieur canonique sert de cache sémantique —
   §1-§3 réutilisés byte-stables pour les sessions déjà couvertes, seule la delta
   worklog est re-analysée (§1.13) ; le cache n'accélère jamais la validation.
+  Sortie duale v2.3.0 : `--yaml` (alias `--yalm` — formulation propriétaire
+  « YALM », trace 1a221e5599452e2d, interprétée YAML) produit en tandem un
+  jumeau `.yaml` structuré dérivé du clone (vue machine non canonique,
+  idempotente) ; le Markdown demeure l'instantané canonique.
   Archive la session pour reprise par une session héritière.
 dependencies:
   - skill: gen-plan
@@ -39,6 +45,7 @@ dependencies:
 read_when:
   - Déclencher quand la demande concerne : clone l'intégralité d'une discussion (contexte, décisions, artefacts, worklog) dans un fichier Markdown auto-s…
   - Déclencher si la demande mentionne : markdown, auto, session
+  - Déclencher si la demande mentionne : yaml, yalm, jumeau, clone yaml
   - Ne pas déclencher hors de ce périmètre (convention protocole, Task 28).
 ---
 
@@ -64,6 +71,7 @@ Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
 - `clone-chat` ou `clone_chat`
 - `clone-chat --theme` — analyse de l'intégralité de la discussion et table des thèmes (sous-projets) principaux (v2.1.0)
 - `clone-chat (<theme>)` — clone partiel restreint au thème précisé ; `(ALL)` = un clone par thème + index (v2.1.0)
+- `clone-chat --yaml` (alias `clone-chat --yalm`) — clone complet + jumeau `.yaml` structuré dérivé (v2.3.0 ; combinable aux modes thématiques ; formulation propriétaire « clones au format YALM » acceptée)
 - `clone la discussion` ou `clone cette session`
 - `clone-chat:` suivi d'une description de session
 - `archiver la discussion` — archivage complet d'une session multi-sessions
@@ -77,7 +85,7 @@ Voir `PROMPT-MAITRE-SHARED.md §0` pour la règle complète.
 
 ### §1.1 Description
 
-clone-chat est un skill de **clonage de discussion** pour assistant IA. Il produit un fichier Markdown auto-suffisant qui capture l'intégralité du contexte d'une discussion multi-sessions : les décisions, les artefacts produits, les spécifications techniques, les évolution de contexte (drifts), et les instructions de reprise. Le clone permet à un assistant IA dans une nouvelle session de reconstruire l'état exact de la discussion et de poursuivre le travail sans perte d'information.
+clone-chat est un skill de **clonage de discussion** pour assistant IA. Il produit un fichier Markdown auto-suffisant qui capture l'intégralité du contexte d'une discussion multi-sessions : les décisions, les artefacts produits, les spécifications techniques, les évolution de contexte (drifts), et les instructions de reprise. Le clone permet à un assistant IA dans une nouvelle session de reconstruire l'état exact de la discussion et de poursuivre le travail sans perte d'information. Depuis v2.3.0 (`--yaml`), le clone peut être accompagné d'un **jumeau YAML** : vue structurée machine-lisible dérivée du Markdown, qui demeure le seul format canonique (§1.14).
 
 ### §1.2 Les 7+1 étapes
 
@@ -193,6 +201,8 @@ Si un check échoue, corriger avant de passer à l'étape 7.
 
 **Check 9 — Cohérence thématique (v2.1.0, modes `(<theme>)` et `(ALL)` uniquement)** : (a) aucun contenu hors-thème dans les sections §1-§3, (b) exclusions listées en §0bis du clone thématique, (c) slug du thème présent dans le nom de fichier, (d) preuves ≥2 citées pour le périmètre retenu (R4). Le clone thématique est valide si 9/9 PASS (8 checks + check 9).
 
+**Check 10 — Validité du jumeau YAML (v2.3.0, mode `--yaml` uniquement)** : (a) le jumeau `.yaml` parse sans erreur (parseur YAML si disponible, sinon garde structurelle des clés racines), (b) les 9 clés racines attendues sont présentes (§1.14), (c) couverture : chaque section §0-§5 du clone a son équivalent dans le jumeau, (d) idempotence prouvée : régénération du jumeau sur le même clone → bytes identiques. Le clone en mode `--yaml` est valide si 10/10 PASS (8 checks + check 9 thématique le cas échéant + check 10).
+
 ### §1.10 Détail de l'Étape 7 — Sauvegarde
 
 Sauvegarder le clone dans `download/` avec un nom descriptif incluant la date et le sujet.
@@ -212,7 +222,7 @@ Si `{{KB_ENABLED}}` est `true` :
 
 ### §1.12 Modes thématiques (v2.1.0)
 
-clone-chat supporte 4 modes d'invocation :
+clone-chat supporte 4 modes d'invocation, plus un modificateur transversal `--yaml` (v2.3.0) :
 
 | Mode | Invocation | Sortie |
 |------|-----------|--------|
@@ -220,6 +230,7 @@ clone-chat supporte 4 modes d'invocation :
 | Analyse des thèmes | `clone-chat --theme` | Table des thèmes détectés — AUCUN clone produit |
 | Clone thématique | `clone-chat (<theme>)` | Clone partiel restreint au thème `<theme>` |
 | Clones multiples | `clone-chat (ALL)` | Un clone par thème + index récapitulatif |
+| Jumeau YAML (modificateur transversal) | `clone-chat --yaml` (alias `--yalm`) | Clone du mode choisi + jumeau `.yaml` dérivé — combinable aux 4 modes ci-dessus (v2.3.0, §1.14) |
 
 #### §1.12.1 Détection des thèmes (`--theme`)
 
@@ -312,6 +323,46 @@ analyse déjà validée des sessions qu'il couvre. À l'Étape 1 :
 **Gain** : pour une fenêtre type (1-3 suites worklog nouvelles), la collecte Étapes
 1-4 ne re-analyse que le delta — voir ligne « clone incrémental » de la grille §2.3.
 
+### §1.14 Jumeau YAML (v2.3.0)
+
+**Terminologie** : « YALM » (formulation propriétaire, trace 1a221e5599452e2d)
+est interprété comme **YAML** (sérialisation structurée) — aucune norme publique
+« YALM » n'existe comme format documentaire. Le déclencheur accepte l'alias
+`--yalm` ; le format produit est du YAML valide. Évolution réversible (ajout de
+mode, aucune fonction retirée).
+
+**Principe (sortie duale)** : `clone-chat --yaml` produit le clone Markdown
+intégral (7+1 étapes, 8 checks + check 9 thématique le cas échéant) PUIS dérive
+mécaniquement son **jumeau** `<sujet>-clone-<AAAA-MM-JJ>.yaml` à l'Étape 7 :
+
+| Règle | Contenu |
+|-------|---------|
+| R-1 Non-canonique | Le Markdown demeure l'unique instantané canonique (§5 inchangé) ; le jumeau est une VUE DÉRIVÉE régénérable — R4 : jamais une seconde source d'information |
+| R-2 Provenance | Le jumeau cite sa source : `meta.source_md` (nom de fichier) + `meta.sha256_source` (SHA-256 du clone canonique) |
+| R-3 Combinabilité | `--yaml` se combine aux modes thématiques : jumeau du clone complet ou du clone thématique |
+| R-4 Idempotence | Régénération sur clone md inchangé → bytes identiques (ordre des clés stable, listes non chronologiques triées, indentation fixe 2 espaces) |
+| R-5 Sérialisation | Pas de tabulations ; blocs scalaires `\|` indentés pour les extraits multi-lignes ; tableaux de lignes pour les longues citations ; aucune clé contenant `: ` non échappé |
+| R-6 Validation | Check 10 : parse sans erreur, 9 clés racines présentes, couverture §0-§5, idempotence prouvée |
+
+**Schéma des clés racines** (9 clés, miroir des sections du gabarit) :
+
+```yaml
+meta:         # sujet, date, session_id, trace_id, generation, source_md, sha256_source
+rule_zero:    # §0 — règle zéro + contexte écosystème
+chronologie:  # §1 — sessions (table de hachage task -> lignes)
+artefacts:    # §2 — skills, scripts, documents, charts, archives
+decisions:    # §3 — decisions, bugs, conventions, calibration
+drifts:       # §3.5 — table des évolutions de contexte (5 types)
+instructions: # §4 — instructions de reprise
+autoclone:    # §5 — mécanisme de croissance
+chain:        # §1.0 — chaîne de clonage (lignée des clones antérieurs)
+```
+
+**Usage cible** : reprise par une session héritière avec lecture machine
+(parsing direct), réingestion par arbitres/scripts écosystème (ancrage KO-L003,
+checkpoints E11) — le jumeau ne remplace JAMAIS la lecture humaine du clone
+canonique.
+
 ---
 
 
@@ -323,6 +374,7 @@ analyse déjà validée des sessions qu'il couvre. À l'Étape 1 :
 - **Environnement** : `{{SKILLS_ROOT}}clone-chat/`
 - **Pas de dépendance externe** (aucun ZIP, aucune image embed, aucun outil spécifique requis)
 - Le fichier doit être lisible avec n'importe quel éditeur de texte
+- **Jumeau YAML (v2.3.0)** : texte YAML pur, lisible dans tout éditeur ; PRODUCTION sans dépendance installée, VALIDATION par parseur YAML si disponible (PyYAML), sinon garde structurelle des clés racines (§1.14, check 10)
 
 ### §2.2 Format de sortie
 
@@ -331,6 +383,7 @@ analyse déjà validée des sessions qu'il couvre. À l'Étape 1 :
 - Tout le contexte est contenu dans le fichier
 - Tableaux Markdown pour les données structurées
 - Code fences pour les extraits de code
+- Jumeau `.yaml` optionnel (`--yaml`, v2.3.0) : vue structurée dérivée, non canonique (§1.14)
 
 ### §2.3 Grille #token
 
@@ -343,10 +396,12 @@ analyse déjà validée des sessions qu'il couvre. À l'Étape 1 :
 | Mode `(<theme>)` (clone thématique) | 3500 | NORMAL | 2500-4500 (60-80 % du clone complet) |
 | Mode `(ALL)` (N clones + index) | 7000 | NORMAL | 4500-10000 (croît avec le nombre de thèmes) |
 | Clone incrémental (§1.13, delta worklog) | 3000 | NORMAL | 2000-4000 (40-60 % du clone complet — seul le delta est re-analysé) |
+| Mode `--yaml` (clone choisi + jumeau, §1.14) | +325 | NORMAL | +15-20 % du mode correspondant (dérivation mécanique, aucune re-analyse, check 10 inclus) |
 
 **Note v2.0.0** : estimation recalibrée pour couvrir l'Étape 3.5 Context Drift, l'intégration gen-plan v3.6.1+ KB, et la section historique des interactions.
 **Note v2.1.0** : trois lignes ajoutées pour les modes thématiques (§1.12) — l'analyse `--theme` est plus légère qu'un clone, le clone `(<theme>)` vaut ~60-80 % du complet, `(ALL)` est la somme des clones plus l'index.
 **Note v2.2.0** : ligne « clone incrémental » ajoutée (§1.13) — la réutilisation du cache d'analyse du clone antérieur ramène la collecte à ~40-60 % d'un clone complet pour une fenêtre type.
+**Note v2.3.0** : ligne « mode `--yaml` » ajoutée (§1.14) — le jumeau YAML est dérivé mécaniquement des sections déjà assemblées : surcoût ~15-20 % (#token de sérialisation + check 10), aucune re-analyse.
 
 ### §2.4 Profils ressource
 
@@ -404,7 +459,7 @@ Work Log:
 - Étape 4 : N fichiers détaillés (X in extenso, Y résumés)
 - Étape 5 : Assemblage terminé
 - Étape 6 : 8/8 checks PASS
-- Étape 7 : Clone sauvegardé dans download/
+- Étape 7 : Clone sauvegardé dans download/ (+ jumeau .yaml et check 10 si --yaml)
 
 Stage Summary:
 - Clone produit : [nom-du-clone].md ([taille] Ko)
@@ -496,3 +551,7 @@ Vérifier que (SHARED §3.2) :
   réutilisation byte-stable des sessions couvertes, re-analyse du delta worklog uniquement
   (§1.13) ; le cache n'accélère JAMAIS la validation : les 8 checks s'exécutent sur le
   clone final complet
+- Jumeau YAML (v2.3.0) : `--yaml` (alias `--yalm`) ajoute au clone un jumeau `.yaml`
+  DÉRIVÉ (vue machine non canonique — R4), idempotent, validé par le check 10 (§1.14) ;
+  le Markdown demeure l'unique instantané canonique ; « YALM » (formulation propriétaire)
+  est la lecture propriétaire de YAML, alias accepté au déclencheur
