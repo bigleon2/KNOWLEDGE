@@ -1,0 +1,50 @@
+{
+  "mode": "(ALL)",
+  "themes": 7,
+  "produits": [
+    {
+      "fichier": "download/clone-session-web-220878ed-clone-theme-kps-conversion-20261128.md",
+      "octets": 8868,
+      "verdict": "9/9 PASS",
+      "statut": "CLÔTURÉ"
+    },
+    {
+      "fichier": "download/clone-session-web-220878ed-clone-theme-ecosysteme-gif-photo-20261128.md",
+      "octets": 9017,
+      "verdict": "9/9 PASS",
+      "statut": "CLÔTURÉ"
+    },
+    {
+      "fichier": "download/clone-session-web-220878ed-clone-theme-installation-ecosysteme-20261128.md",
+      "octets": 11112,
+      "verdict": "9/9 PASS",
+      "statut": "ACTIF (garde permanente)"
+    },
+    {
+      "fichier": "download/clone-session-web-220878ed-clone-theme-gen-plan-optimisation-20261128.md",
+      "octets": 9784,
+      "verdict": "9/9 PASS",
+      "statut": "ACTIF (évolutions continues)"
+    },
+    {
+      "fichier": "download/clone-session-web-220878ed-clone-theme-git-pendances-20261128.md",
+      "octets": 8663,
+      "verdict": "9/9 PASS",
+      "statut": "ACTIF (n°1 révocation PATs CRITIQUE ouverte)"
+    },
+    {
+      "fichier": "download/clone-session-web-220878ed-clone-theme-clone-chat-archivage-20261128.md",
+      "octets": 9933,
+      "verdict": "9/9 PASS",
+      "statut": "ACTIF (cache d'analyse livré)"
+    },
+    {
+      "fichier": "download/clone-session-web-220878ed-clone-theme-caches-semantiques-20261128.md",
+      "octets": 10581,
+      "verdict": "9/9 PASS",
+      "statut": "ACTIF (livré fenêtre 15 — re-jeux et caches en place)"
+    }
+  ],
+  "index": "download/clone-session-web-220878ed-clone-themes-index-20261128.md",
+  "idempotence": "SHA ×2 vérifiées à la re-génération"
+}

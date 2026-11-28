@@ -1,0 +1,187 @@
+{
+  "sections": {
+    "S1": [
+      {
+        "check": "gabarit theme-template.md ×2 SHA identiques",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "§1.12.3 (ALL) : N clones + index + idempotence (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "version 2.2.0 (hôte)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "§1.12.3 (ALL) : N clones + index + idempotence (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "version 2.2.0 (dépôt)",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ],
+    "S2": [
+      {
+        "check": "7 thèmes détectés à slugs uniques",
+        "verdict": "PASS",
+        "detail": "['kps-conversion', 'ecosysteme-gif-photo', 'installation-ecosysteme', 'gen-plan-optimisation', 'git-pendances', 'clone-chat-archivage', 'caches-semantiques']"
+      },
+      {
+        "check": "slugs kebab-case",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "statuts valides (ACTIF/CLÔTURÉ) sur chaque ligne",
+        "verdict": "PASS",
+        "detail": "7"
+      },
+      {
+        "check": "preuves ≥2 renseignées (colonne preuve non vide)",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ],
+    "S3": [
+      {
+        "check": "noms déterministes (idempotence ×2)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "7 noms de clones + 1 index uniques",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "convention <sujet>-clone-theme-<slug>-<date>.md",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "convention <sujet>-clone-themes-index-<date>.md",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ],
+    "S4": [
+      {
+        "check": "garde : slug connu reconnu, slug inconnu rejeté (aucun clone)",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "garde : auto-suffisance périmétrique documentée dans le gabarit",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "garde : le clone complet demeure canonique",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "garde : exclusions obligatoires en §0bis du gabarit",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ],
+    "S5": [
+      {
+        "check": "fixture conforme → check 9 sans échec",
+        "verdict": "PASS",
+        "detail": "[]"
+      },
+      {
+        "check": "fixture hors-thème → échec détecté (critère a)",
+        "verdict": "PASS",
+        "detail": "['(b) §0bis exclusions absente', '(a) hors-thème : slug voisin « ecosysteme-gif-photo » cité en §1-§3', '(a) hors-thème : slug voisin « git-pendances » cité en §1-§3']"
+      }
+    ],
+    "S6": [
+      {
+        "check": "section gabarit : ## §0 —",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ### §0bis — Exclusions",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ## §1 —",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ### §1.2 Table des sessions",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ### §2.3 Artefacts produits",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ### §3.5 Évolutions de contexte",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ## §4 — INSTRUCTIONS DE REPRISE DU THÈME",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ### État courant du sous-projet",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ### Prochaine étape exécutable",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "section gabarit : ## §5 — AUTO-CLONAGE THÉMATIQUE",
+        "verdict": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "gabarit : drifts obligatoires ou mention « Aucune évolution »",
+        "verdict": "PASS",
+        "detail": ""
+      }
+    ]
+  },
+  "ok": 30,
+  "total": 30,
+  "slugs": [
+    "kps-conversion",
+    "ecosysteme-gif-photo",
+    "installation-ecosysteme",
+    "gen-plan-optimisation",
+    "git-pendances",
+    "clone-chat-archivage",
+    "caches-semantiques"
+  ],
+  "noms_prevus": [
+    "clone-session-web-220878ed-clone-theme-kps-conversion-20261128.md",
+    "clone-session-web-220878ed-clone-theme-ecosysteme-gif-photo-20261128.md",
+    "clone-session-web-220878ed-clone-theme-installation-ecosysteme-20261128.md",
+    "clone-session-web-220878ed-clone-theme-gen-plan-optimisation-20261128.md",
+    "clone-session-web-220878ed-clone-theme-git-pendances-20261128.md",
+    "clone-session-web-220878ed-clone-theme-clone-chat-archivage-20261128.md",
+    "clone-session-web-220878ed-clone-theme-caches-semantiques-20261128.md",
+    "clone-session-web-220878ed-clone-themes-index-20261128.md"
+  ]
+}
