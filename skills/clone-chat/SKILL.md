@@ -1,6 +1,6 @@
 ---
 name: clone-chat
-version: 2.1.0
+version: 2.2.0
 category: ecosystem
 language: fr
 tags:
@@ -12,6 +12,7 @@ tags:
   - auto-clonage
   - worklog
   - themes
+  - cache
 description: >
   Clone l'intégralité d'une discussion (contexte, décisions, artefacts,
   worklog) dans un fichier Markdown auto-suffisant. 7+1 étapes, Étape 3.5
@@ -20,6 +21,9 @@ description: >
   Modes thématiques v2.1.0 : `--theme` (table des thèmes/sous-projets de la
   discussion), `(<theme>)` (clone partiel restreint au thème précisé),
   `(ALL)` (un clone par thème + index récapitulatif).
+  Cache d'analyse v2.2.0 : le clone antérieur canonique sert de cache sémantique —
+  §1-§3 réutilisés byte-stables pour les sessions déjà couvertes, seule la delta
+  worklog est re-analysée (§1.13) ; le cache n'accélère jamais la validation.
   Archive la session pour reprise par une session héritière.
 dependencies:
   - skill: gen-plan
@@ -283,6 +287,31 @@ l'identique) ; périmètre modifié → nouveaux fichiers, l'ancien index reste 
 | 6 | 8 checks | 8 checks + check 9 (cohérence thématique) |
 | 7 | `<sujet>-clone-<date>.md` | `<sujet>-clone-theme-<slug>-<date>.md` |
 
+### §1.13 Cache d'analyse des clones (v2.2.0)
+
+Le clone complet antérieur canonique (dernier clone de clôture — §1.0 chaîne de
+clonage) est le **cache sémantique de l'analyse** : ses sections §1-§3 sont une
+analyse déjà validée des sessions qu'il couvre. À l'Étape 1 :
+
+1. **Couverture** : lire la dernière suite worklog couverte par le clone antérieur
+   (§1.0) et la comparer à la dernière suite présente au worklog courant ;
+2. **Réutilisation** : pour toute session DÉJÀ couverte, réutiliser les lignes §1.2
+   et les extraits §1.3 du clone antérieur tels quels (byte-stable — la cohérence
+   historique prime sur la reformulation) ;
+3. **Delta** : n'analyser fraîchement que les sessions NOUVELLES (delta worklog) ;
+   l'Étape 3.5 trace les drifts du delta uniquement ;
+4. **Garde de couverture** : l'union {sessions du clone antérieur} ∪ {sessions du
+   delta} doit égaler l'ensemble des sessions du worklog — toute session non couverte
+   = FAIL du check 2 (complétude worklog) ; AUCUNE session inventée ;
+5. **Validation inchangée** : les 8 checks (et le check 9 en mode thématique)
+   s'exécutent sur le clone FINAL complet — le cache accélère la COLLECTE, jamais
+   la VALIDATION ;
+6. **Sans clone antérieur** : premier clone de la lignée → collecte intégrale
+   (comportement v2.1.0 inchangé).
+
+**Gain** : pour une fenêtre type (1-3 suites worklog nouvelles), la collecte Étapes
+1-4 ne re-analyse que le delta — voir ligne « clone incrémental » de la grille §2.3.
+
 ---
 
 
@@ -313,9 +342,11 @@ l'identique) ; périmètre modifié → nouveaux fichiers, l'ancien index reste 
 | Mode `--theme` (analyse seule) | 2000 | ECO | 1500-2500 |
 | Mode `(<theme>)` (clone thématique) | 3500 | NORMAL | 2500-4500 (60-80 % du clone complet) |
 | Mode `(ALL)` (N clones + index) | 7000 | NORMAL | 4500-10000 (croît avec le nombre de thèmes) |
+| Clone incrémental (§1.13, delta worklog) | 3000 | NORMAL | 2000-4000 (40-60 % du clone complet — seul le delta est re-analysé) |
 
 **Note v2.0.0** : estimation recalibrée pour couvrir l'Étape 3.5 Context Drift, l'intégration gen-plan v3.6.1+ KB, et la section historique des interactions.
 **Note v2.1.0** : trois lignes ajoutées pour les modes thématiques (§1.12) — l'analyse `--theme` est plus légère qu'un clone, le clone `(<theme>)` vaut ~60-80 % du complet, `(ALL)` est la somme des clones plus l'index.
+**Note v2.2.0** : ligne « clone incrémental » ajoutée (§1.13) — la réutilisation du cache d'analyse du clone antérieur ramène la collecte à ~40-60 % d'un clone complet pour une fenêtre type.
 
 ### §2.4 Profils ressource
 
@@ -461,3 +492,7 @@ Vérifier que (SHARED §3.2) :
 - Thèmes (v2.1.0) : slug kebab-case, règle de preuve ≥2 par thème (R4), exclusions toujours
   citées en §0bis d'un clone thématique ; le clone complet demeure l'instantané de clôture
   canonique — les clones thématiques en dérivent et ne le remplacent jamais (§5 inchangé)
+- Cache d'analyse (v2.2.0) : le clone antérieur canonique est le cache sémantique —
+  réutilisation byte-stable des sessions couvertes, re-analyse du delta worklog uniquement
+  (§1.13) ; le cache n'accélère JAMAIS la validation : les 8 checks s'exécutent sur le
+  clone final complet

@@ -1,6 +1,6 @@
 ---
 name: correct-work
-version: 2.12.1
+version: 2.12.2
 category: ecosystem
 language: fr
 tags:
@@ -17,8 +17,9 @@ description: >
   intégration KB (Registre, kb_path, --kb-skill),
   délégation alias-eco (mode PROJET — tenue du registre des phrases récurrentes, v2.8.0),
   mode PROJET « bloc par bloc » PAR DÉFAUT (v2.12.0 — ex-option `--bloc` v2.9.0 : correct-work(projet) ≡ correct-work (projet) --bloc, vérification bloc par bloc, verdict par bloc),
+  re-jeux et cache de verdicts (§1.4bis, v2.12.2 : contrôles mécaniques NON-preuve via `scripts/cache-verdicts.py` à entrées inchangées — JAMAIS le verdict final ni le mode AVEUGLE),
   matrice de décision agent/skill (statique + dynamique KB),
-  matrice de couverture des versions v1.0.0 → v2.12.0 (best-of — chaque avantage durable présent ou supplanté documenté, §12, v2.12.0),
+  matrice de couverture des versions v1.0.0 → v2.12.2 (best-of — chaque avantage durable présent ou supplanté documenté, §12, v2.12.2),
   métriques de performance.
   Contrôler la cohérence avant de livrer ce que tu viens de produire.
 dependencies:
@@ -103,6 +104,15 @@ correct-work est un skill de **vérification et correction** du travail réalis�
 ### §1.4 Support multi-cibles
 
 correct-work peut vérifier plusieurs artefacts dans une même session. Chaque cible reçoit un sous-rapport indépendant, et le rapport final agrège les résultats. Les verdicts sont calculés par cible puis globalement (le verdict global est le pire des verdicts individuels).
+
+### §1.4bis Re-jeux et cache de verdicts (v2.12.2)
+
+Les re-passes de correct-work re-exécutent des contrôles MÉCANIQUES (arbitres, scanners, batteries) dont les entrées n'ont pas changé entre deux passages. Conformément au hook R2-CACHE de gen-plan (source unique — `scripts/cache-verdicts.py`, jamais de seconde implémentation — R4), correct-work applique la frontière suivante :
+
+1. **Autorisé** : les contrôles mécaniques SANS valeur de preuve finale (re-jeux intermédiaires de rounds de correction, scans répétés à cibles inchangées, vérifications exploratoires) peuvent passer par `python3 scripts/cache-verdicts.py run -- <commande> --cibles <fichiers>` — le re-jeu restitue le verdict figé (rc + stdout) avec le marqueur `REJEU SANS RÉ-APPEL` ; la mention « rejeu (cache) » est consignée dans le sous-rapport du bloc concerné ;
+2. **Interdit** : le VERDICT FINAL d'un bloc ou du projet, le mode AVEUGLE (Second Opinion — l'absence de premier verdict est son principe), et toute preuve de certification (idempotence ×2 d'un livrable, verdict producteur) — l'exécution réelle reste la norme de preuve (même frontière que R2-CACHE gen-plan : « un verdict figé n'est JAMAIS une preuve en soi ») ;
+3. **Invalidation** : automatique par la clé du wrapper (SHA-256 commande + état taille/mtime_ns des cibles) — toute cible modifiée change la clé et force la ré-exécution réelle ; `--force` disponible pour la re-vérification réelle à la demande ;
+4. **Idempotence préservée** : le second passage d'une preuve d'idempotence (×2) reste TOUJOURS une exécution réelle — le cache ne sert qu'aux re-jeux INTRA-exécution qui ne portent pas preuve.
 
 ### §1.5 Couplage gen-plan (obligatoire — v2.7.0)
 
@@ -499,3 +509,4 @@ Ces checklists sont utilisées pendant l'exécution du skill (Étapes 2-5). Elle
 | v2.9.0 | Mode PROJET « bloc par bloc » `--bloc` | ✓ §1.7/§10.1bis (devenu PAR DÉFAUT — v2.12.0) |
 | v2.10.0 | Contrat §1.5bis correctifs mode STEP | ✓ RÉ-INTÉGRÉ (perdue au recyclage 2026-11-06 — contrat reconstitué plan-task59 D591) |
 | v2.12.0 | Mode PROJET « bloc par bloc » PAR DÉFAUT (≡ `--bloc` synonyme conservé R2 ; monolithique supplanté — directive 1a1fa10c71573105 réappliquée Task ID 11 après recyclage) | ✓ §1.7/§A/§1.2/§10.1/§10.4/§12 |
+| v2.12.2 | Re-jeux et cache de verdicts (§1.4bis) — contrôles mécaniques non-preuve via `cache-verdicts.py`, verdict final / mode AVEUGLE / preuves ×2 toujours réels | ✓ §1.4bis |
