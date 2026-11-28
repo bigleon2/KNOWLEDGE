@@ -60,7 +60,7 @@ def scan_fichier(p: Path):
     try:
         texte = p.read_text(encoding="utf-8", errors="ignore")
     except OSError:
-        return []
+        return [], 0
     trouvailles, faux_positifs = [], 0
     for motif in MOTIFS:
         for m in motif.finditer(texte):
