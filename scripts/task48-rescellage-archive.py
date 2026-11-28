@@ -82,5 +82,8 @@ if not (corpus_ok and piliers_ok and not extras):
     shutil.copy2(BAK, ARCHIVE)
     print("ÉCHEC — archive restaurée depuis la sauvegarde")
     raise SystemExit(1)
-BAK.unlink()
+# Correctif Task 19 (session web-220878ed 2026-11-28) : première matérialisation =
+# aucune ancienne archive → aucun .bak créé ; unlink naïf levait FileNotFoundError
+# APRÈS l'écriture réussie de l'archive (fausse impression d'échec). missing_ok=True.
+BAK.unlink(missing_ok=True)
 print("Archive rescellée et round-trip vérifié (véhicule v2.3 — corpus + piliers).")
