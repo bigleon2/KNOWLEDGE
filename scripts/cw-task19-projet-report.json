@@ -1,0 +1,150 @@
+{
+  "verdict": "PASS",
+  "ok": 25,
+  "total": 25,
+  "blocs": [
+    {
+      "titre": "B1 analyse caches sémantiques — 3 verdicts consignés",
+      "checks": [
+        [
+          "gen-plan R2-CACHE présent live (non modifié — adéquat)",
+          true
+        ],
+        [
+          "gen-plan R2-CACHE présent dépôt (SHA ×2 identiques)",
+          true
+        ],
+        [
+          "correct-work v2.12.2 implémenté live (§1.4bis)",
+          true
+        ],
+        [
+          "correct-work v2.12.2 implémenté dépôt (×2)",
+          true
+        ],
+        [
+          "clone-chat v2.2.0 implémenté live (§1.13)",
+          true
+        ],
+        [
+          "clone-chat v2.2.0 implémenté dépôt (×2)",
+          true
+        ],
+        [
+          "frontière preuve dans les 2 implémentations",
+          true
+        ]
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "titre": "B2 cascade KO-L004 complète (commits 01095268→8a0eae0c)",
+      "checks": [
+        [
+          "KB correct-work v2.12.2 ×2",
+          true
+        ],
+        [
+          "KB clone-chat v2.2.0 ×2",
+          true
+        ],
+        [
+          "invariants ECO_SKILLS actualisés ×2 (2.12.2/2.2.0)",
+          true
+        ],
+        [
+          "PM vivant v2.12.2 présent ×2 (corpus 9 fichiers)",
+          true
+        ],
+        [
+          "PM v2.12.1 archivé R4 byte-identité ×2",
+          true
+        ],
+        [
+          "arbitre canonique recalibré 2.12.2 ×2",
+          true
+        ],
+        [
+          "cascade script verrouillé ×2 (idempotent NO-OP)",
+          true
+        ],
+        [
+          "parité SHA ×2 des 5 fichiers de la montée",
+          true
+        ]
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "titre": "B3 batterie $FACON2 — 52/52 PASS ×2 idempotent",
+      "checks": [
+        [
+          "rapport JSON 52/52 PASS",
+          true
+        ],
+        [
+          "6 sections présentes (S1-S6)",
+          true
+        ],
+        [
+          "harnais ×2 miroirs SHA identiques",
+          true
+        ],
+        [
+          "mesures performance consignées (S2 rejeu + S5 scan réel)",
+          true
+        ]
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "titre": "B4 garde É1-INSTALL + sécurité jetons (réels)",
+      "checks": [
+        [
+          "certification complète 6/6 (ré-exécutée)",
+          true
+        ],
+        [
+          "scan jetons rc=0 — 0 jeton réel (ré-exécuté)",
+          true
+        ],
+        [
+          "invariants arbitre alignés vivant (leçon KO-L004)",
+          true
+        ]
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "titre": "B5 clones — 10ᵉ génération scellée",
+      "checks": [
+        [
+          "clone 10ᵉ présent (instantané d'entrée fenêtre 15)",
+          true
+        ],
+        [
+          "table des thèmes §1bis — 7 thèmes (≥2 preuves)",
+          true
+        ],
+        [
+          "lignée complète 1→10 en §1.0",
+          true
+        ]
+      ],
+      "verdict": "PASS"
+    }
+  ],
+  "mesures": {
+    "s2_rejeu": {
+      "reel_ms": 247,
+      "rejeu_ms": 35,
+      "gain": 7
+    },
+    "s5_scan": {
+      "reel_s": 0.67,
+      "rejeu_s": 0.036,
+      "gain": 18
+    }
+  },
+  "horodatage": "2026-11-28T11:08:34Z"
+}
